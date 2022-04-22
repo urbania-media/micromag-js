@@ -42,4 +42,13 @@ export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
 export const Video = (storyProps) => <Article {...storyProps} {...props()} article={testVideo} />;
 
+export const URL = (storyProps) => (
+    <Article
+        {...storyProps}
+        {...props()}
+        article={null}
+        url="https://quatre95.urbania.ca.test:8080/article/regardons-les-choses-en-face-nos-habitudes-de-consommation-nuisent-a-la-planete"
+    />
+);
+
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

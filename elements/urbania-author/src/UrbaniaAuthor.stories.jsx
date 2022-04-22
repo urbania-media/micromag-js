@@ -14,10 +14,45 @@ export default {
 const elementProps = {
     // visible: true,
     author: {
-        name: 'Paul le fermier',
+        name: { body: '<p>Paul le fermier avec un nom assez long</p>' },
         avatar: imageMedia(),
         url: 'https://urbania.ca/auteurs/hugomeunier',
     },
 };
 
-export const Normal = () => <UrbaniaAuthor {...elementProps} width={320} height={480} />;
+export const Normal = () => <UrbaniaAuthor {...elementProps} />;
+
+export const Small = () => <UrbaniaAuthor {...elementProps} isSmall />;
+
+export const WithoutAvatar = () => (
+    <UrbaniaAuthor
+        {...elementProps}
+        author={{
+            name: { body: '<p>Paul le fermier</p>' },
+            avatar: null,
+            url: 'https://urbania.ca/auteurs/hugomeunier',
+        }}
+    />
+);
+
+export const WithoutLink = () => (
+    <UrbaniaAuthor
+        {...elementProps}
+        author={{
+            name: { body: '<p>Paul le fermier</p>' },
+            avatar: imageMedia(),
+            url: null,
+        }}
+    />
+);
+
+export const WithoutLinkAndAvatar = () => (
+    <UrbaniaAuthor
+        {...elementProps}
+        author={{
+            name: { body: '<p>Paul le fermier</p>' },
+            avatar: null,
+            url: null,
+        }}
+    />
+);

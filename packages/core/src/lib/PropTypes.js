@@ -366,6 +366,12 @@ export const videoElement = PropTypes.shape({
     withPlayPause: PropTypes.bool,
 });
 
+export const visualElement = PropTypes.shape({
+    media: imageMedia,
+});
+
+export const visualElements = PropTypes.arrayOf(visualElement);
+
 export const audioElement = PropTypes.shape({
     media: audioMedia,
     autoPlay: PropTypes.bool,

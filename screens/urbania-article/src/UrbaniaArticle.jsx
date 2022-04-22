@@ -31,7 +31,7 @@ import WatchIcon from './icons/WatchIcon';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    type: PropTypes.string,
+    type: PropTypes.oneOf(['article', 'video']),
     video: MicromagPropTypes.videoElement,
     image: MicromagPropTypes.visualElement,
     title: MicromagPropTypes.headingElement,
@@ -105,8 +105,7 @@ const UrbaniaArticle = ({
         return { imageHeight: difference };
     }, [contentTop, contentHeight, width, height]);
 
-    const { media: currentVideo = null } = video || {};
-
+    // const { media: currentVideo = null } = video || {};
     // console.log('cv', type, currentVideo, video);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -117,13 +116,17 @@ const UrbaniaArticle = ({
     const { body: overTitleText = null } = overTitle || {};
     const hasOverTitle = overTitleText !== null;
 
-    const { body: titleText = null } = overTitle || {};
+    const { body: titleText = null } = title || {};
     const hasTitle = titleText !== null;
 
     const { body: sponsorText = null } = sponsor || {};
     const hasSponsor = sponsorText !== null;
 
     const hasAuthors = (authors || []).length > 0 || author !== null;
+    const { name: authorFullName } = author || {};
+    const { body: authorName } = authorFullName || {};
+
+    console.log('author', author, authors);
 
     const { url = null } = image || {};
     const hasImage = url !== null;
@@ -165,7 +168,7 @@ const UrbaniaArticle = ({
                     </Empty>
                 </div>
             }
-            isEmpty={!hasOverTitle}
+            isEmpty={!hasTitle}
         >
             {hasTitle ? <Heading className={classNames([styles.title])} {...title} /> : null}
         </ScreenElement>,
@@ -186,9 +189,11 @@ const UrbaniaArticle = ({
             >
                 {hasAuthors ? (
                     <div className={classNames([styles.authors])}>
-                        {authors.map((author) => (
+                        {author !== null && authorName !== null ? (
                             <UrbaniaAuthor author={author} />
-                        ))}
+                        ) : (
+                            (authors || []).map((a) => <UrbaniaAuthor author={a} />)
+                        )}
                     </div>
                 ) : null}
             </ScreenElement>
@@ -302,7 +307,7 @@ const UrbaniaArticle = ({
                                         focusable={current && isView}
                                         screenSize={{ width, height }}
                                         arrow={<ArrowIcon />}
-                                        icon={<WatchIcon />}
+                                        icon={type === 'video' ? <WatchIcon /> : null}
                                     />
                                 </div>
                             ) : null}

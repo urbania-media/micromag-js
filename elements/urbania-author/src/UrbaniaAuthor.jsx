@@ -1,20 +1,24 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import Link from '@micromag/element-link';
+import Text from '@micromag/element-text';
 import Avatar from './Avatar';
 import styles from './styles.module.scss';
 
 const propTypes = {
     author: PropTypes.shape({
         slug: PropTypes.string,
-        name: PropTypes.string,
+        name: MicromagPropTypes.textElement,
         avatar: MicromagPropTypes.imageElement,
         url: PropTypes.string,
     }),
     withAvatar: PropTypes.bool,
-    withConjunction: PropTypes.bool,
     withoutLink: PropTypes.bool,
     isSmall: PropTypes.bool,
     linkUnderlineColor: PropTypes.string,
@@ -24,7 +28,6 @@ const propTypes = {
 const defaultProps = {
     author: null,
     withAvatar: true,
-    withConjunction: false,
     withoutLink: false,
     isSmall: false,
     linkUnderlineColor: null,
@@ -34,33 +37,28 @@ const defaultProps = {
 const UrbaniaAuthor = ({
     author,
     withAvatar,
-    withConjunction,
     withoutLink,
     isSmall,
     linkUnderlineColor,
     className,
 }) => {
-    const { name = '', avatar = null, url = null } = author || {};
+    const { name = null, avatar = null, url = null } = author || {};
 
-    let prefix = (
+    const prefix = (
         <span className={styles.by}>
             <FormattedMessage defaultMessage="By" description="Author label" />
         </span>
     );
 
-    if (withConjunction) {
-        prefix = (
-            <span className={styles.conjunction}>
-                <FormattedMessage defaultMessage="and" description="Author label" />
-            </span>
-        );
-    }
-
     return (
         <div
             className={classNames([
                 styles.container,
-                { [styles.isSmall]: isSmall, [className]: className !== null },
+                {
+                    [styles.isSmall]: isSmall,
+                    [styles.withoutAvatar]: !withAvatar || avatar === null,
+                    [className]: className !== null,
+                },
             ])}
         >
             <span className={styles.prefix}>{prefix}</span>
@@ -68,8 +66,10 @@ const UrbaniaAuthor = ({
                 <Avatar className={styles.avatar} image={avatar} />
             ) : null}
             {url !== null && !withoutLink ? (
-                <div
-                    className={styles.name}
+                <Link
+                    className={styles.link}
+                    url={url}
+                    external
                     style={{
                         backgroundImage:
                             linkUnderlineColor !== null
@@ -77,10 +77,12 @@ const UrbaniaAuthor = ({
                                 : null,
                     }}
                 >
-                    {name}
-                </div>
+                    <Text className={styles.name} {...name} />
+                </Link>
             ) : (
-                <em className={styles.name}>{name}</em>
+                <div>
+                    <Text className={styles.name} {...name} />
+                </div>
             )}
         </div>
     );

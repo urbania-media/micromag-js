@@ -124,7 +124,8 @@ export const Test = () => (
             components: [
                 {
                     id: '1cb8a4be-5c1a-11eb-985f-ad6fce99d848',
-                    type: 'urbania-horoscope',
+                    type: 'urbania-article',
+                    url: 'https://quatre95.urbania.ca.test:8081/article/regardons-les-choses-en-face-nos-habitudes-de-consommation-nuisent-a-la-planete',
                     title: {
                         body: 'ASTROLOGIE',
                         textStyle: {
@@ -133,7 +134,7 @@ export const Test = () => (
                                 fallback: 'Arial',
                                 type: 'sans-serif',
                             },
-                            fontSize: 60,
+                            fontSize: 30,
                             fontStyle: {
                                 bold: true,
                                 transform: 'uppercase',

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading, jsx-a11y/control-has-associated-label */
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -10,6 +10,7 @@ import { getStyleFromColor, isIos, isValidUrl } from '@micromag/core/utils';
 import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
 import WebView from '@micromag/element-webview';
+import ArrowIcon from './ArrowIcon';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -166,7 +167,7 @@ function CallToAction({
                 {arrow}
             </div>
         ) : (
-            <FontAwesomeIcon
+            <ArrowIcon
                 className={classNames([
                     styles.arrow,
                     {
@@ -174,7 +175,6 @@ function CallToAction({
                     },
                 ])}
                 style={arrowStyle}
-                icon={faChevronUp}
             />
         );
 

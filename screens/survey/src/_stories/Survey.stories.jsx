@@ -42,6 +42,10 @@ export const Edit = (storyProps) => <SurveyScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
 
+export const WithoutResults = (storyProps) => (
+    <SurveyScreen {...storyProps} {...props} withoutResults />
+);
+
 export const WithCallToAction = (storyProps) => (
     <SurveyScreen {...storyProps} {...props} callToAction={callToAction()} />
 );

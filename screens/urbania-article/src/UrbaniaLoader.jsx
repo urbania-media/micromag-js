@@ -18,6 +18,11 @@ const defaultProps = {
 const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
     const [article, setArticle] = useState(initialArticle);
 
+    const hostname = useMemo(() => {
+        const { hostname: urlHostname = null } = url !== null ? new URL(url) : {};
+        return urlHostname;
+    }, [url]);
+
     useEffect(() => {
         if (url !== null) {
             // TODO: fix cors on urbania.ca
@@ -34,6 +39,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             title = {},
             overTitle = {},
             sponsor = {},
+            author = null,
             image = {},
             video = {},
             callToAction = null,
@@ -60,6 +66,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             sponsorBody === null ? (
                 <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
             ) : null;
+
         const defaultSponsor =
             (sponsors || []).length > 0
                 ? (sponsors || [])
@@ -68,13 +75,20 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                       .join(', ')
                       .trim()
                 : null;
-
         return {
             type,
             title: titleBody !== null ? title : { ...title, body: articleTitle },
             overTitle: overTitleBody !== null ? overTitle : { ...overTitle, body: 'En vedette' },
-            authors,
-            sponsor: { ...sponsor, body: defaultSponsor || sponsorBody },
+            authors: authors.map(({ name = null, url: authorUrl = null, ...otherProps }) => ({
+                name: { body: `<p>${name}</p>` },
+                url: `${hostname}${authorUrl}`,
+                ...otherProps,
+            })),
+            author,
+            sponsor:
+                defaultSponsor !== null
+                    ? [{ ...sponsor, body: `<strong>${defaultSponsor || sponsorBody}</strong>` }]
+                    : null,
             sponsorPrefix,
             site,
             image:
@@ -87,11 +101,12 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 type: 'swipe-up',
                 url: videoMedia !== null ? videoMedia.url : canonical,
                 label: type === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
+                icon: type === 'video' ? { id: 'play' } : null,
                 inWebView: true,
                 ...callToAction,
             },
         };
-    }, [article, props]);
+    }, [article, props, hostname]);
 
     console.log('values', values);
 
