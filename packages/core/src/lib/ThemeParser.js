@@ -1,5 +1,6 @@
-import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import isObject from 'lodash/isObject';
 
 class ThemeParser {
     constructor({ screensManager }) {
@@ -29,6 +30,7 @@ class ThemeParser {
             background: themeBackground = null,
             colors: themeColors = {},
             textStyles: themeTextStyles = null,
+            boxStyles: themeBoxStyles = null,
         } = theme;
 
         const newComponents = components.reduce((currentComponents, screen, index) => {
@@ -41,6 +43,7 @@ class ThemeParser {
                 themeBackground,
                 themeColors,
                 themeTextStyles,
+                themeBoxStyles,
             );
 
             // Only switch screen if it has changed
@@ -64,7 +67,15 @@ class ThemeParser {
             : story;
     }
 
-    parseScreen(definition, value, themeValue, themeBackground, themeColors, themeTextSyle) {
+    parseScreen(
+        definition,
+        value,
+        themeValue,
+        themeBackground,
+        themeColors,
+        themeTextStyles,
+        themeBoxStyles,
+    ) {
         const { fields = [] } = definition;
 
         const newThemeValue = themeValue === null && themeBackground !== null ? {} : themeValue;
@@ -88,7 +99,8 @@ class ThemeParser {
                 fieldValue,
                 fieldThemeValue,
                 themeColors,
-                themeTextSyle,
+                themeTextStyles,
+                themeBoxStyles,
             );
 
             // Only switch field if it has changed
@@ -109,23 +121,40 @@ class ThemeParser {
     }
 
     // eslint-disable-next-line class-methods-use-this
-    parseField(key, definition, value, themeValue, themeColors, themeTextStyles) {
-        const { theme: fieldTheme = {} } = definition;
+    parseField(key, definition, value, themeValue, themeColors, themeTextStyles, themeBoxStyles) {
+        const { theme: fieldTheme = null } = definition;
+
+        // Early return
+        if (fieldTheme === null || !isObject(fieldTheme)) {
+            return value;
+        }
 
         // @TODO very sloow
         if (isArray(value)) {
             const newFieldValue = value.map((innerField) =>
                 innerField !== null
                     ? Object.keys(innerField).reduce((newInnerField, innerFieldName) => {
-                          const {
-                              textStyle: innerFieldTextStyle = null,
-                              color: innerFieldColor = null,
-                          } = fieldTheme[innerFieldName] || {};
-
                           // Early return
                           if (!isObject(innerField[innerFieldName])) {
                               return newInnerField;
                           }
+
+                          const {
+                              textStyle: innerFieldTextStyle = null,
+                              color: innerFieldColor = null,
+                              boxStyle: innerFieldBoxStyle = null,
+                          } = fieldTheme[innerFieldName] || {};
+
+                          // Early return, no theme
+                          if (
+                              innerFieldTextStyle === null &&
+                              innerFieldColor === null &&
+                              innerFieldBoxStyle === null
+                          ) {
+                              return newInnerField;
+                          }
+
+                          // TODO: replace this with the recursive parseValue...
 
                           // Color
                           const colorValue =
@@ -152,7 +181,24 @@ class ThemeParser {
                                     }
                                   : null;
 
-                          if (colorValue === null && textStyleValue === null) {
+                          const boxStyleValue =
+                              innerFieldBoxStyle !== null
+                                  ? {
+                                        boxStyle: {
+                                            ...(innerFieldBoxStyle !== null &&
+                                            themeBoxStyles !== null
+                                                ? themeBoxStyles[innerFieldBoxStyle] || null
+                                                : null),
+                                            ...(innerField[innerFieldName].boxStyle || null),
+                                        },
+                                    }
+                                  : null;
+
+                          if (
+                              colorValue === null &&
+                              textStyleValue === null &&
+                              boxStyleValue === null
+                          ) {
                               return newInnerField;
                           }
 
@@ -162,6 +208,7 @@ class ThemeParser {
                                   ...colorValue,
                                   ...innerField[innerFieldName],
                                   ...textStyleValue,
+                                  ...boxStyleValue,
                               },
                           };
                       }, innerField)
@@ -171,9 +218,61 @@ class ThemeParser {
             return newFieldValue;
         }
 
-        if (isObject(value) && !isArray(value)) {
-            const { textStyle: fieldTextStyleName = null, color: fieldColorName = null } =
-                fieldTheme || {};
+        if (isObject(value)) {
+            return this.parseValue(
+                value,
+                fieldTheme,
+                themeValue,
+                themeColors,
+                themeTextStyles,
+                themeBoxStyles,
+            );
+        }
+
+        return value;
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    parseValue(initialValue, fieldTheme, themeValue, themeColors, themeTextStyles, themeBoxStyles) {
+        if (isObject(initialValue) || isObject(fieldTheme)) {
+            const value = initialValue || null;
+
+            const {
+                textStyle: fieldTextStyleName = null,
+                color: fieldColorName = null,
+                boxStyle: fieldBoxStyleName = null,
+                ...otherProps
+            } = fieldTheme || {};
+
+            if (
+                fieldTextStyleName === null &&
+                fieldColorName === null &&
+                fieldBoxStyleName === null &&
+                isEmpty(otherProps) &&
+                !isObject(fieldTheme)
+            ) {
+                return value;
+            }
+
+            let complexValue = null;
+
+            if (!isEmpty(otherProps)) {
+                complexValue = Object.keys(fieldTheme).reduce((newObject, key) => {
+                    const innerValue = value !== null ? value[key] || null : null;
+                    const newValue = this.parseValue(
+                        innerValue,
+                        fieldTheme[key],
+                        themeValue,
+                        themeColors,
+                        themeTextStyles,
+                        themeBoxStyles,
+                    );
+                    return { ...newObject, ...(newValue !== null ? { [key]: newValue } : null) };
+                }, {});
+            }
+
+            const { textStyle: valueTextStyle = null, boxStyle: valueBoxStyle = null } =
+                value || {};
 
             // Color
             const fieldColor =
@@ -200,22 +299,49 @@ class ThemeParser {
                           textStyle: {
                               ...fieldTextStyle,
                               ...fieldThemeComponentTextStyle,
-                              ...(value.textStyle || null),
+                              ...(valueTextStyle || null),
                           },
                       }
                     : null;
+
+            // Box style
+            const fieldBoxStyle =
+                fieldBoxStyleName !== null && themeBoxStyles !== null
+                    ? themeBoxStyles[fieldBoxStyleName] || null
+                    : null;
+
+            const fieldThemeComponentBoxStyle =
+                themeValue !== null ? themeValue.boxStyle || null : null;
+
+            const boxStyleValue =
+                fieldBoxStyle !== null || fieldThemeComponentBoxStyle !== null
+                    ? {
+                          boxStyle: {
+                              ...fieldBoxStyle,
+                              ...fieldThemeComponentBoxStyle,
+                              ...(valueBoxStyle || null),
+                          },
+                      }
+                    : null;
+
             // Only change value if something is overrided
-            return colorValue !== null || themeValue !== null || textStyleValue !== null
+            return colorValue !== null ||
+                themeValue !== null ||
+                textStyleValue !== null ||
+                boxStyleValue !== null ||
+                complexValue !== null
                 ? {
                       ...colorValue,
                       ...themeValue,
                       ...value,
+                      ...boxStyleValue,
                       ...textStyleValue,
+                      ...complexValue,
                   }
                 : value;
         }
 
-        return value;
+        return initialValue;
     }
 }
 

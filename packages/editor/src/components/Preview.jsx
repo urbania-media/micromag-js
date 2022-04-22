@@ -64,6 +64,7 @@ const EditorPreview = ({
     const { screen: screenId = null, field: fieldParam = null } = useRouteParams();
     const { screen = null, screens = [] } = useScreenSize();
     const valueWithTheme = useThemeValue(value, isTheme);
+    // console.log(valueWithTheme);
     // const valueParsed = valueWithTheme;
     const valueParsed = useParsedStory(valueWithTheme, { withTheme: isTheme, withMedias: false });
 

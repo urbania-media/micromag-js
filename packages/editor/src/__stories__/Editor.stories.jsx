@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { callToAction } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
@@ -121,29 +122,31 @@ export const Test = () => (
     <EditorContainer
         defaultValue={{
             title: 'Test',
+            theme: defaultTheme,
             components: [
                 {
                     id: '1cb8a4be-5c1a-11eb-985f-ad6fce99d848',
                     type: 'urbania-article',
                     url: 'https://quatre95.urbania.ca.test:8081/article/regardons-les-choses-en-face-nos-habitudes-de-consommation-nuisent-a-la-planete',
                     title: {
-                        body: 'ASTROLOGIE',
+                        body: 'ARTICLE',
                         textStyle: {
-                            fontFamily: {
-                                name: 'Garage Gothic',
-                                fallback: 'Arial',
-                                type: 'sans-serif',
-                            },
+                            // fontFamily: {
+                            //     name: 'Garage Gothic',
+                            //     fallback: 'Arial',
+                            //     type: 'sans-serif',
+                            // },
                             fontSize: 30,
                             fontStyle: {
                                 bold: true,
-                                transform: 'uppercase',
+                                // transform: 'uppercase',
                             },
-                            lineHeight: 0.2,
+                            // lineHeight: 0.2,
                             align: 'center',
                             color: '#ff4dff',
                         },
                     },
+                    callToAction: callToAction(),
                 },
             ],
         }}

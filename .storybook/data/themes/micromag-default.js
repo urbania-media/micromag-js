@@ -8,7 +8,7 @@ const text = {
 
 export const defaultTheme = {
     type: 'theme',
-    title: 'Default theme',
+    title: 'Micromag Default theme',
     colors: {
         primary: { color: '#FFF', alpha: 1 },
         secondary: { color: '#999', alpha: 1 },
@@ -16,13 +16,17 @@ export const defaultTheme = {
     background: { color: { color: '#0F0', alpha: 1 }, image: null, video: null },
     textStyles: {
         heading1: {
-            fontFamily: 'Arial',
+            fontFamily: 'Agrandir',
             fontSize: 32,
             ...text,
         },
         heading2: {
-            fontFamily: 'Arial',
+            fontFamily: 'Agrandir',
             fontSize: 24,
+            fontStyle: {
+                bold: true,
+                transform: 'uppercase',
+            },
             ...text,
         },
         heading3: {
@@ -40,6 +44,30 @@ export const defaultTheme = {
             fontFamily: 'Georgia',
             fontSize: 16,
             ...text,
+        },
+        cta: {
+            color: {
+                alpha: 1,
+                color: '#2222FF',
+            },
+            fontFamily: 'Agrandir',
+            fontSize: 30,
+        },
+    },
+    boxStyles: {
+        // button: {},
+        cta: {
+            borderColor: {
+                alpha: 0.5,
+                color: '#f5ff00',
+            },
+            padding: 5,
+            backgroundColor: {
+                color: '#fcff00',
+                alpha: 1,
+            },
+            borderWidth: 5,
+            borderRadius: 10,
         },
     },
     components: [

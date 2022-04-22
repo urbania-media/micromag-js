@@ -3,12 +3,12 @@
     "title": "All screens",
     "theme": {
         "type": "theme",
-        "title": "Default Theme",
+        "title": "Default Theme Ok...",
         "colors": { "primary": "#0F0", "secondary": "#00C" },
         "background": {
             "color": { "alpha": 1, "color": "#fc0" }
         },
-        "textStyle": {
+        "textStyles": {
             "heading1": { "fontSize": 36, "fontFamily": "Courier" },
             "heading2": { "fontSize": 24, "fontFamily": "Courier" },
             "heading3": { "fontSize": 18, "fontFamily": "Courier" },

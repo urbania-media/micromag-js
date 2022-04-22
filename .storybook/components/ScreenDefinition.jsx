@@ -19,7 +19,7 @@ const defaultProps = {
 
 const ScreenDefinition = ({ definition, defaultScreen }) => {
     const definitions = isArray(definition) ? definition : [definition];
-    console.log(definition, definitions);
+    // console.log(definition, definitions);
     const [data, setData] = useState({
         type: definition.id,
         ...defaultScreen,

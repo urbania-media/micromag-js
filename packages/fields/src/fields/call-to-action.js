@@ -68,7 +68,7 @@ export default {
             }),
         },
         {
-            name: 'buttonStyle',
+            name: 'boxStyle',
             type: 'box-style-form',
             label: defineMessage({
                 defaultMessage: 'Button',

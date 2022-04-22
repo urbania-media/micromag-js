@@ -126,8 +126,6 @@ const UrbaniaArticle = ({
     const { name: authorFullName } = author || {};
     const { body: authorName } = authorFullName || {};
 
-    console.log('author', author, authors);
-
     const { url = null } = image || {};
     const hasImage = url !== null;
 
@@ -137,6 +135,8 @@ const UrbaniaArticle = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
+
+    // console.log('hasCTA', hasCallToAction, isEdit);
 
     const items = [
         <ScreenElement
@@ -295,23 +295,23 @@ const UrbaniaArticle = ({
                                     objectFit={{ fit: 'cover' }}
                                 />
                             ) : null}
-                            {!isPlaceholder && hasCallToAction ? (
-                                <div key="call-to-action">
-                                    <CallToAction
-                                        className={styles.callToAction}
-                                        buttonClassName={styles.button}
-                                        labelClassName={styles.label}
-                                        arrowClassName={styles.arrow}
-                                        callToAction={callToAction}
-                                        animationDisabled={isPreview}
-                                        focusable={current && isView}
-                                        screenSize={{ width, height }}
-                                        arrow={<ArrowIcon />}
-                                        icon={type === 'video' ? <WatchIcon /> : null}
-                                    />
-                                </div>
-                            ) : null}
                         </ScreenElement>
+                        {!isPlaceholder && hasCallToAction ? (
+                            <div key="call-to-action">
+                                <CallToAction
+                                    className={styles.callToAction}
+                                    buttonClassName={styles.button}
+                                    labelClassName={styles.label}
+                                    arrowClassName={styles.arrow}
+                                    callToAction={callToAction}
+                                    animationDisabled={isPreview}
+                                    focusable={current && isView}
+                                    screenSize={{ width, height }}
+                                    arrow={<ArrowIcon />}
+                                    icon={type === 'video' ? <WatchIcon /> : null}
+                                />
+                            </div>
+                        ) : null}
                     </Transitions>
                 </div>
             </Container>

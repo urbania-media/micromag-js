@@ -76,7 +76,7 @@ function CallToAction({
         type = null,
         url = null,
         label = null,
-        buttonStyle = null,
+        boxStyle = null,
         inWebView = false,
     } = callToAction || {};
 
@@ -92,8 +92,6 @@ function CallToAction({
         () => ({ ...{ fontSize }, ...getStyleFromColor(color, 'color') }),
         [fontSize, color],
     );
-
-    console.log(buttonStyle);
 
     // MobileSafari blocks popup no matter what
     const selfTargetLinkRef = useRef(null);
@@ -220,7 +218,7 @@ function CallToAction({
                         focusable={focusable}
                         buttonStyle={{
                             marginBottom: 10,
-                            ...buttonStyle,
+                            ...boxStyle,
                         }}
                         {...(swipeUpEnabled && !disabled ? bind() : null)}
                         {...(inWebView

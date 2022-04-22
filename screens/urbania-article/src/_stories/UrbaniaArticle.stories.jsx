@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, transitions } from '../../../../.storybook/data';
+import { backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 //  videoMedia,
 import Article from '../UrbaniaLoader';
 import definition from '../definition';
@@ -41,6 +41,10 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
 export const Video = (storyProps) => <Article {...storyProps} {...props()} article={testVideo} />;
+
+export const CallToAction = (storyProps) => (
+    <Article {...storyProps} {...props()} article={testVideo} callToAction={callToAction()} />
+);
 
 export const URL = (storyProps) => (
     <Article

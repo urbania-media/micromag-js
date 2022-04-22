@@ -93,8 +93,6 @@ const Button = ({
         };
     }
 
-    console.log('yo');
-
     const button = (
         <CoreButton
             className={classNames([

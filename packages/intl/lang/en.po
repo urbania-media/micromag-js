@@ -119,12 +119,6 @@ msgctxt "0GzLBc"
 msgid "Message"
 msgstr "Message"
 
-# Author label
-#: 0UxdOa
-msgctxt "0UxdOa"
-msgid "and"
-msgstr "and"
-
 # Horoscope sign
 #: 0acGK7
 msgctxt "0acGK7"

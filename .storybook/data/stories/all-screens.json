@@ -3,7 +3,7 @@
     "title": "All screens",
     "theme": {
         "type": "theme",
-        "title": "Default Theme",
+        "title": "Default Theme alll",
         "colors": {
             "primary": "#0F0",
             "secondary": "#00C"
@@ -11,7 +11,7 @@
         "background": {
             "color": { "alpha": 1, "color": "#fc0" }
         },
-        "textStyle": {
+        "textStyles": {
             "heading1": {
                 "fontSize": 36,
                 "fontFamily": "Courier"
