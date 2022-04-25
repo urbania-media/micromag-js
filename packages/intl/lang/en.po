@@ -683,6 +683,12 @@ msgctxt "GMCLhn"
 msgid "Case"
 msgstr "Case"
 
+# Direction
+#: GPqjnH
+msgctxt "GPqjnH"
+msgid "Left"
+msgstr "Left"
+
 # Video 360 screen title
 #: GRVidW
 msgctxt "GRVidW"
@@ -748,6 +754,12 @@ msgstr "Links"
 msgctxt "J6cnbt"
 msgid "Signs"
 msgstr "Signs"
+
+# Type field label
+#: J9e9Qb
+msgctxt "J9e9Qb"
+msgid "Video"
+msgstr "Video"
 
 # Your message placeholder
 #: JAguka
@@ -910,6 +922,12 @@ msgstr "Urbania article screen"
 msgctxt "P1dwGU"
 msgid "Title with subtitle"
 msgstr "Title with subtitle"
+
+# Direction
+#: PFNMAQ
+msgctxt "PFNMAQ"
+msgid "Bottom"
+msgstr "Bottom"
 
 # Label when there is no item in items field
 #: PKCv5M
@@ -1432,6 +1450,12 @@ msgctxt "fVqgfl"
 msgid "[no title]"
 msgstr "[no title]"
 
+# No value label
+#: fbiNiR
+msgctxt "fbiNiR"
+msgid "Select a size..."
+msgstr "Select a size..."
+
 # Square label
 #: fusnxf
 msgctxt "fusnxf"
@@ -1558,6 +1582,12 @@ msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Name"
 
+# Direction
+#: kf/5Tw
+msgctxt "kf/5Tw"
+msgid "Right"
+msgstr "Right"
+
 # Button label
 #: l/Y6or
 msgctxt "l/Y6or"
@@ -1640,6 +1670,12 @@ msgctxt "n8zmLY"
 msgid "Go to next screen on end"
 msgstr "Go to next screen on end"
 
+# Direction
+#: n9LoBJ
+msgctxt "n9LoBJ"
+msgid "Top"
+msgstr "Top"
+
 # Name field label
 #: nXVNeg
 msgctxt "nXVNeg"
@@ -1706,6 +1742,12 @@ msgctxt "p85qJD"
 msgid "Caption"
 msgstr "Caption"
 
+# Type field label
+#: pE7UhY
+msgctxt "pE7UhY"
+msgid "Article"
+msgstr "Article"
+
 # Field label
 #: pJgYyE
 msgctxt "pJgYyE"
@@ -1723,6 +1765,12 @@ msgstr "Overtitle"
 msgctxt "pfvDzR"
 msgid "Added by"
 msgstr "Added by"
+
+# Type field label
+#: ppq6CK
+msgctxt "ppq6CK"
+msgid "Type"
+msgstr "Type"
 
 # Field right label
 #: ptJkUl

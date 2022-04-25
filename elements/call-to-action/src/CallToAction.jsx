@@ -88,9 +88,16 @@ function CallToAction({
     const buttonRef = useRef(null);
 
     const { textStyle: { fontSize = null, color = null } = {} } = label || {};
+    const { backgroundColor = null } = boxStyle || {};
+
     const arrowStyle = useMemo(
-        () => ({ ...{ fontSize }, ...getStyleFromColor(color, 'color') }),
-        [fontSize, color],
+        () => ({
+            ...{ fontSize },
+            ...(backgroundColor === null
+                ? getStyleFromColor(color, 'color')
+                : getStyleFromColor(backgroundColor, 'color')),
+        }),
+        [fontSize, backgroundColor, color],
     );
 
     // MobileSafari blocks popup no matter what
@@ -161,11 +168,12 @@ function CallToAction({
                         [arrowClassName]: arrowClassName !== null,
                     },
                 ])}
+                style={arrowStyle}
             >
                 {arrow}
             </div>
         ) : (
-            <ArrowIcon
+            <div
                 className={classNames([
                     styles.arrow,
                     {
@@ -173,7 +181,9 @@ function CallToAction({
                     },
                 ])}
                 style={arrowStyle}
-            />
+            >
+                <ArrowIcon />
+            </div>
         );
 
     return active ? (

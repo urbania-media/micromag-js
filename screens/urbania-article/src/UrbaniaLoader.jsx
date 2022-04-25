@@ -8,7 +8,9 @@ import UrbaniaArticle from './UrbaniaArticle';
 
 const propTypes = {
     url: PropTypes.string,
-    article: PropTypes.shape({}),
+    article: PropTypes.shape({
+        type: PropTypes.string,
+    }),
 };
 
 const defaultProps = {
