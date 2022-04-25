@@ -162,8 +162,8 @@ const Form = ({
     );
 
     const closeFieldForm = useCallback(() => {
-        const newFields =
-            fieldPaths !== null && fieldPaths.length > 0 ? fieldPaths.slice(-1)[0] : [];
+        const newFields = [...fieldPaths];
+        newFields.pop();
         setFieldPaths([...newFields]);
         if (onCloseFieldForm !== null) {
             onCloseFieldForm();
