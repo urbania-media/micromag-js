@@ -85,7 +85,7 @@ const Button = ({
         };
 
         borderStyles = {
-            borderRadius,
+            borderRadius: borderRadius + borderWidth,
             borderWidth,
             borderColor,
             borderStyle,

@@ -25,6 +25,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
 
     useEffect(() => {
         if (url !== null) {
+            console.log('heyy', url);
             // TODO: fix cors on urbania.ca
             getJSON(`${url}.json`, { mode: 'cors' }).then((art) => {
                 setArticle(art);
@@ -75,8 +76,10 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                       .join(', ')
                       .trim()
                 : null;
+
+        const defaultType = videoMedia !== null ? 'video' : type;
         return {
-            type,
+            type: defaultType,
             title: titleBody !== null ? title : { ...title, body: articleTitle },
             overTitle: overTitleBody !== null ? overTitle : { ...overTitle, body: 'En vedette' },
             authors: authors.map(({ name = null, url: authorUrl = null, ...otherProps }) => ({
@@ -100,17 +103,17 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 active: true,
                 type: 'swipe-up',
                 url: videoMedia !== null ? videoMedia.url : canonical,
-                label: type === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
-                icon: type === 'video' ? { id: 'play' } : null,
+                label: defaultType === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
+                icon: defaultType === 'video' ? { id: 'play' } : null,
                 inWebView: true,
                 ...callToAction,
             },
         };
-    }, [article, props, hostname]);
+    }, [article, url, hostname, props]);
 
-    console.log('values', values);
+    console.log('values', url, values);
 
-    return <UrbaniaArticle {...props} {...values} />;
+    return <UrbaniaArticle {...props} {...values} hasArticle={url !== null} />;
 };
 
 UrbaniaLoader.propTypes = propTypes;

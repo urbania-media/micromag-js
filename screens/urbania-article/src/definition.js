@@ -1,5 +1,5 @@
 import { defineMessage } from 'react-intl';
-import UrbaniaArticleScreen from './UrbaniaArticle';
+import UrbaniaLoaderScreen from './UrbaniaLoader';
 
 // import * as transforms from './transforms/index';
 
@@ -18,7 +18,7 @@ export default {
         defaultMessage: 'Urbania article screen',
         description: 'Urbania screen title',
     }),
-    component: UrbaniaArticleScreen,
+    component: UrbaniaLoaderScreen,
     fields: [
         {
             name: 'url',

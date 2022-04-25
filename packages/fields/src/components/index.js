@@ -44,6 +44,7 @@ export { default as Media } from './Media';
 export { default as Message } from './Message';
 export { default as Number } from './Number';
 export { default as NumberWithIcon } from './NumberWithIcon';
+export { default as Padding } from './Padding';
 export { default as Position } from './Position';
 export { default as Question } from './Question';
 export { default as Radios } from './Radios';

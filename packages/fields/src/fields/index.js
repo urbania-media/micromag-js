@@ -51,6 +51,7 @@ export { default as message } from './message';
 export { default as messages } from './messages';
 export { default as metadata } from './metadata';
 export { default as number } from './number';
+export { default as padding } from './padding';
 export { default as password } from './password';
 export { default as parameters } from './parameters';
 export { default as quizAnswer } from './quiz-answer';

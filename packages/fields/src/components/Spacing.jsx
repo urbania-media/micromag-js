@@ -1,10 +1,8 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
 import PropTypes from 'prop-types';
-
-// import * as AppPropTypes from '../../lib/PropTypes';
-import Number from './Number';
+import React from 'react';
 import InputGroup from './InputGroup';
+import Number from './Number';
 
 const propTypes = {
     value: PropTypes.number,
@@ -18,9 +16,9 @@ const defaultProps = {
     onChange: null,
 };
 
-const Spacing = ({ value, className, onChange }) => (
-    <InputGroup append="px">
-        <Number value={value} min={0} max={20} className={className} onChange={onChange} />
+const Spacing = ({ value, className, onChange, ...props }) => (
+    <InputGroup className={className} append="px">
+        <Number value={value} min={0} max={20} onChange={onChange} {...props} />
     </InputGroup>
 );
 

@@ -1,9 +1,8 @@
-import React, { useCallback, useState } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useState } from 'react';
 import styles from '../styles/number.module.scss';
 
 const propTypes = {
@@ -17,6 +16,7 @@ const propTypes = {
     dataList: PropTypes.arrayOf(PropTypes.number),
     autoComplete: PropTypes.bool,
     fullWidth: PropTypes.bool,
+    placeholder: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -32,6 +32,7 @@ const defaultProps = {
     dataList: null,
     autoComplete: false,
     fullWidth: false,
+    placeholder: null,
     className: null,
     onChange: null,
 };
@@ -47,6 +48,7 @@ const NumberField = ({
     dataList,
     autoComplete,
     fullWidth,
+    placeholder,
     className,
     onChange,
 }) => {
@@ -110,6 +112,7 @@ const NumberField = ({
                 onChange={onInputChange}
                 onFocus={onInputFocus}
                 onBlur={onInputBlur}
+                placeholder={placeholder}
             />
             {hasDataList ? (
                 <div className={styles.arrow}>

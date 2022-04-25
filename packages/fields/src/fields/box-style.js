@@ -31,9 +31,8 @@ export default {
                 },
                 {
                     name: 'padding',
-                    type: 'number',
+                    type: 'padding',
                     isHorizontal: true,
-                    dataList: [5, 10, 20, 30, 40],
                     label: defineMessage({
                         defaultMessage: 'Padding',
                         description: 'Field label',

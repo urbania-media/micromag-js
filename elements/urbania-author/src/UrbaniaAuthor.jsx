@@ -4,7 +4,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Link from '@micromag/element-link';
 import Text from '@micromag/element-text';
@@ -20,6 +20,7 @@ const propTypes = {
     }),
     withAvatar: PropTypes.bool,
     withoutLink: PropTypes.bool,
+    withoutPrefix: PropTypes.bool,
     isSmall: PropTypes.bool,
     linkUnderlineColor: PropTypes.string,
     className: PropTypes.string,
@@ -29,6 +30,7 @@ const defaultProps = {
     author: null,
     withAvatar: true,
     withoutLink: false,
+    withoutPrefix: false,
     isSmall: false,
     linkUnderlineColor: null,
     className: null,
@@ -38,17 +40,18 @@ const UrbaniaAuthor = ({
     author,
     withAvatar,
     withoutLink,
+    withoutPrefix,
     isSmall,
     linkUnderlineColor,
     className,
 }) => {
+    const intl = useIntl();
     const { name = null, avatar = null, url = null } = author || {};
 
-    const prefix = (
-        <span className={styles.by}>
-            <FormattedMessage defaultMessage="By" description="Author label" />
-        </span>
-    );
+    const prefix = intl.formatMessage({
+        defaultMessage: 'By',
+        description: 'Author label',
+    });
 
     return (
         <div
@@ -61,7 +64,7 @@ const UrbaniaAuthor = ({
                 },
             ])}
         >
-            <span className={styles.prefix}>{prefix}</span>
+            {!withoutPrefix ? <Text {...name} className={styles.prefix} body={prefix} /> : null}
             {withAvatar && avatar !== null ? (
                 <Avatar className={styles.avatar} image={avatar} />
             ) : null}

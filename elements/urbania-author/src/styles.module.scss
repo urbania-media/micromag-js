@@ -38,14 +38,14 @@
         }
     }
 
-    .by {
+    .prefix {
         margin-right: -5px;
         padding: 6px 13px 6px 8px;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
     }
 
-    .name, .by {
+    .name, .prefix {
         display: block;
         background-color: $gray-200;
         font-size: 12px;
@@ -56,7 +56,7 @@
     &.isSmall {
         font-size: 10px;
 
-        .name, .by {
+        .name, .prefix {
             font-size: 10px;
             white-space: normal;
         }

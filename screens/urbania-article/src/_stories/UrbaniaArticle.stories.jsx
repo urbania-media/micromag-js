@@ -51,7 +51,7 @@ export const URL = (storyProps) => (
         {...storyProps}
         {...props()}
         article={null}
-        url="https://quatre95.urbania.ca.test:8080/article/regardons-les-choses-en-face-nos-habitudes-de-consommation-nuisent-a-la-planete"
+        url="https://urbania.ca.test:8081/article/la-vie-apres-le-masque-obligatoireen-ontario"
     />
 );
 

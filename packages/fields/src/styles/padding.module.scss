@@ -1,0 +1,25 @@
+/* stylelint-disable max-nesting-depth, selector-max-compound-selectors, no-descending-specificity */
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/mixins';
+@import 'placeholders';
+
+.preview {
+    @include background-grid(4px, $gray-300);
+    display: block;
+    border: solid 1px $black;
+
+    .color {
+        display: block;
+        width: 1em;
+        height: 1em;
+    }
+}
+
+.spacing {
+    width: auto;
+
+    label {
+        color: #fff !important;
+    }
+}

@@ -48,20 +48,20 @@ export const defaultTheme = {
         cta: {
             color: {
                 alpha: 1,
-                color: '#2222FF',
+                color: '#222222',
             },
             fontFamily: 'Agrandir',
-            fontSize: 30,
+            fontSize: 15,
+            textTransform: 'uppercase',
         },
     },
     boxStyles: {
-        // button: {},
         cta: {
             borderColor: {
                 alpha: 0.5,
                 color: '#f5ff00',
             },
-            padding: 5,
+            padding: '5 10',
             backgroundColor: {
                 color: '#fcff00',
                 alpha: 1,

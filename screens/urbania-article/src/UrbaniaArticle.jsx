@@ -31,6 +31,7 @@ import WatchIcon from './icons/WatchIcon';
 import styles from './styles.module.scss';
 
 const propTypes = {
+    hasArticle: PropTypes.bool,
     type: PropTypes.oneOf(['article', 'video']),
     video: MicromagPropTypes.videoElement,
     image: MicromagPropTypes.visualElement,
@@ -51,6 +52,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    hasArticle: false,
     type: null,
     video: null,
     image: null,
@@ -71,6 +73,7 @@ const defaultProps = {
 };
 
 const UrbaniaArticle = ({
+    hasArticle,
     type,
     video,
     image,
@@ -210,7 +213,7 @@ const UrbaniaArticle = ({
                     </Empty>
                 </div>
             }
-            isEmpty={!hasSponsor}
+            isEmpty={!hasSponsor && !hasArticle}
         >
             {hasSponsor ? (
                 <div className={styles.sponsors}>
