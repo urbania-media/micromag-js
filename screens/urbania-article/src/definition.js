@@ -29,6 +29,30 @@ export default {
             }),
         },
         {
+            name: 'articleType',
+            type: 'select',
+            label: defineMessage({
+                defaultMessage: 'Type',
+                description: 'Type field label',
+            }),
+            options: [
+                {
+                    value: 'article',
+                    label: defineMessage({
+                        defaultMessage: 'Article',
+                        description: 'Type field label',
+                    }),
+                },
+                {
+                    value: 'video',
+                    label: defineMessage({
+                        defaultMessage: 'Video',
+                        description: 'Type field label',
+                    }),
+                },
+            ],
+        },
+        {
             name: 'overTitle',
             type: 'heading-element',
             theme: {

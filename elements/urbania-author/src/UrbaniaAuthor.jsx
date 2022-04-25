@@ -4,8 +4,9 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { isTextFilled } from '@micromag/core/utils';
 import Link from '@micromag/element-link';
 import Text from '@micromag/element-text';
 import Avatar from './Avatar';
@@ -53,6 +54,8 @@ const UrbaniaAuthor = ({
         description: 'Author label',
     });
 
+    const text = isTextFilled(name) ? <Text className={styles.name} {...name} /> : null;
+
     return (
         <div
             className={classNames([
@@ -80,12 +83,10 @@ const UrbaniaAuthor = ({
                                 : null,
                     }}
                 >
-                    <Text className={styles.name} {...name} />
+                    {text}
                 </Link>
             ) : (
-                <div>
-                    <Text className={styles.name} {...name} />
-                </div>
+                <div>{text}</div>
             )}
         </div>
     );

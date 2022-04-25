@@ -64,7 +64,6 @@ $color-dehors-text: #ffeada;
         align-items: center;
         justify-content: center;
         width: 100%;
-        // background-color: $color-urbania-background;
         color: $color-urbania-text;
         text-align: center;
 
@@ -75,6 +74,7 @@ $color-dehors-text: #ffeada;
         }
 
         .overTitle {
+            padding-top: 30px;
             font-family: 'Agrandir Grand';
             font-size: 10px;
             font-weight: 500;
@@ -95,7 +95,7 @@ $color-dehors-text: #ffeada;
             display: inline-block;
             width: 100%;
             margin-top: auto;
-            padding: 3px 10px 4px;
+            padding: 0 10px 4px;
             background-color: $color-urbania-text;
             color: $color-urbania-background;
         }
@@ -152,6 +152,7 @@ $color-dehors-text: #ffeada;
         bottom: 0;
         left: 0;
         padding-bottom: 5px;
+        vertical-align: middle;
 
         // .button {
         //     display: inline-block;
@@ -199,6 +200,13 @@ $color-dehors-text: #ffeada;
             margin-bottom: 5px;
             opacity: 0.95;
             color: $color-urbania-background;
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 2px;
+            margin-bottom: 2px;
+            padding: 1px;
         }
     }
 

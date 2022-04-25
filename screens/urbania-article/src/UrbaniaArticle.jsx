@@ -20,6 +20,7 @@ import {
     useScreenRenderContext, // useViewerNavigation,
 } from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
+import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
@@ -100,8 +101,8 @@ const UrbaniaArticle = ({
     const { height: contentHeight, top: contentTop } = contentRect || {};
 
     const { minContentHeight = null, imageHeight } = useMemo(() => {
-        const defaultHeight = width * 0.8; // Think about this
-        const difference = height - contentHeight - contentTop;
+        const defaultHeight = width * 0.8;
+        const difference = height - contentHeight - contentTop + 1;
         if (difference > defaultHeight) {
             return { imageHeight: difference };
         }
@@ -115,15 +116,9 @@ const UrbaniaArticle = ({
         useScreenRenderContext();
 
     const isVideo = type === 'video';
-
-    const { body: overTitleText = null } = overTitle || {};
-    const hasOverTitle = overTitleText !== null;
-
-    const { body: titleText = null } = title || {};
-    const hasTitle = titleText !== null;
-
-    const { body: sponsorText = null } = sponsor || {};
-    const hasSponsor = sponsorText !== null;
+    const hasOverTitle = isTextFilled(overTitle);
+    const hasTitle = isTextFilled(title);
+    const hasSponsor = isTextFilled(sponsor);
 
     const hasAuthors = (authors || []).length > 0 || author !== null;
     const { name: authorFullName } = author || {};
@@ -311,7 +306,11 @@ const UrbaniaArticle = ({
                                     focusable={current && isView}
                                     screenSize={{ width, height }}
                                     arrow={<ArrowIcon />}
-                                    icon={type === 'video' ? <WatchIcon /> : null}
+                                    icon={
+                                        type === 'video' ? (
+                                            <WatchIcon className={styles.icon} />
+                                        ) : null
+                                    }
                                 />
                             </div>
                         ) : null}
