@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-map",
-    "version": "0.3.64",
+    "version": "0.3.65",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,7 +52,7 @@
         "@micromag/core": "^0.3.64",
         "@micromag/element-background": "^0.3.64",
         "@micromag/element-button": "^0.3.64",
-        "@micromag/element-call-to-action": "^0.3.64",
+        "@micromag/element-call-to-action": "^0.3.65",
         "@micromag/element-container": "^0.3.64",
         "@micromag/element-heading": "^0.3.64",
         "@micromag/element-image": "^0.3.64",
