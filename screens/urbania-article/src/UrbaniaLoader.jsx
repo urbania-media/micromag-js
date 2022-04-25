@@ -43,13 +43,11 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             sponsor = {},
             author = null,
             image = {},
-            video = {},
             callToAction = null,
         } = props || {};
         const { body: titleBody = null } = title || {};
         const { body: overTitleBody = null } = overTitle || {};
         const { url: imageUrl = null } = image || {};
-        const { media: videoMedia = null } = video || {};
 
         // Straight from article
         const {
@@ -61,16 +59,11 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
         const { authors = [], sponsors = [], site = null, canonical = null } = metadata || {};
         const { sizes = {} } = articleImage || {};
         const { medium, large } = sizes || {};
-        const hasSponsor = isTextFilled(sponsor);
 
         // Type
         const defaultType = articleType || type;
 
         // Sponsors
-        const sponsorPrefix = !hasSponsor ? (
-            <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
-        ) : null;
-
         const defaultSponsor =
             (sponsors || []).length > 0
                 ? (sponsors || [])
@@ -79,6 +72,13 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                       .join(', ')
                       .trim()
                 : null;
+
+        const hasSponsor = isTextFilled(sponsor);
+
+        const sponsorPrefix =
+            !hasSponsor && defaultSponsor === null ? (
+                <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
+            ) : null;
 
         return {
             type: defaultType,
@@ -99,11 +99,10 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 imageUrl !== null
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
-            video: { ...video },
             callToAction: {
                 active: true,
                 type: 'swipe-up',
-                url: videoMedia !== null ? videoMedia.url : canonical,
+                url: canonical,
                 label: defaultType === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
                 icon: defaultType === 'video' ? { id: 'play' } : null,
                 inWebView: true,

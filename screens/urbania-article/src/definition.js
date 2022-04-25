@@ -103,29 +103,6 @@ export default {
             }),
         },
         {
-            name: 'video',
-            type: 'video-element',
-            theme: {
-                color: 'primary',
-            },
-            defaultValue: {
-                autoPlay: true,
-            },
-            label: defineMessage({
-                defaultMessage: 'Video',
-                description: 'Video field label',
-            }),
-        },
-        {
-            name: 'gotoNextScreenOnEnd',
-            type: 'toggle',
-            defaultValue: false,
-            label: defineMessage({
-                defaultMessage: 'Go to next screen on end',
-                description: 'Field label',
-            }),
-        },
-        {
             name: 'background',
             type: 'background',
             label: defineMessage({

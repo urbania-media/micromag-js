@@ -34,7 +34,6 @@ import styles from './styles.module.scss';
 const propTypes = {
     hasArticle: PropTypes.bool,
     type: PropTypes.oneOf(['article', 'video']),
-    video: MicromagPropTypes.videoElement,
     image: MicromagPropTypes.visualElement,
     title: MicromagPropTypes.headingElement,
     overTitle: MicromagPropTypes.headingElement,
@@ -55,7 +54,6 @@ const propTypes = {
 const defaultProps = {
     hasArticle: false,
     type: null,
-    video: null,
     image: null,
     title: null,
     overTitle: null,
@@ -76,7 +74,6 @@ const defaultProps = {
 const UrbaniaArticle = ({
     hasArticle,
     type,
-    video,
     image,
     title,
     overTitle,
@@ -109,9 +106,6 @@ const UrbaniaArticle = ({
         return { imageHeight: difference };
     }, [contentTop, contentHeight, width, height]);
 
-    // const { media: currentVideo = null } = video || {};
-    // console.log('cv', type, currentVideo, video);
-
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
@@ -133,8 +127,6 @@ const UrbaniaArticle = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
-
-    // console.log('hasCTA', hasCallToAction, isEdit);
 
     const items = [
         <ScreenElement

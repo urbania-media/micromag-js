@@ -1,5 +1,4 @@
 import isArray from 'lodash/isArray';
-
 import getFieldByName from './getFieldByName';
 
 const getFieldFromPath = (path, fields, fieldManager) =>
@@ -8,21 +7,31 @@ const getFieldFromPath = (path, fields, fieldManager) =>
             if (foundField === null) {
                 return null;
             }
-            const { type = null, fields: fieldFields = null, field = null, itemsField = null } = foundField;
+            const {
+                type = null,
+                fields: fieldFields = null,
+                field = null,
+                itemsField = null,
+            } = foundField;
+
             const finalType = field !== null ? field.type || type : type;
-            const { fields: subFields = null, settings = null, itemsField: defItemsField = null } =
-                finalType !== null ? fieldManager.getDefinition(finalType) : foundField;
+
+            const definition = fieldManager.getDefinition(finalType);
+
+            const {
+                fields: subFields = null,
+                settings = null,
+                itemsField: defItemsField = null,
+            } = finalType !== null ? definition : foundField;
+
             const finalItemsField = itemsField || defItemsField;
+
             if (finalItemsField !== null && key.match(/^[0-9]+$/)) {
                 return { ...finalItemsField, name: path.join('/'), listItems: true };
             }
 
             return getFieldByName(
-                [
-                    ...(fieldFields || []),
-                    ...(subFields || []),
-                    ...(settings || []),
-                ],
+                [...(fieldFields || []), ...(subFields || []), ...(settings || [])],
                 key,
             );
         },
