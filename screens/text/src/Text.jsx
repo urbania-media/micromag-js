@@ -59,7 +59,7 @@ const TextScreen = ({
     transitionStagger,
     className,
 }) => {
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -151,6 +151,7 @@ const TextScreen = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

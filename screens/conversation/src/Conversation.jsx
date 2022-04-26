@@ -63,7 +63,7 @@ const ConversationScreen = ({
     transitions,
     className,
 }) => {
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
     const trackScreenEvent = useTrackScreenEvent(type);
 
@@ -167,6 +167,7 @@ const ConversationScreen = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

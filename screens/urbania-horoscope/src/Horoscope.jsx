@@ -92,11 +92,9 @@ const Horoscope = ({
         image: signsImages[sign.id] ? signsImages[sign.id] : null,
     }));
 
-    console.log(signs);
-
     const trackScreenEvent = useTrackScreenEvent();
 
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -196,6 +194,7 @@ const Horoscope = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

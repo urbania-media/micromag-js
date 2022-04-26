@@ -11,6 +11,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
+    resolution: PropTypes.number,
     fit: PropTypes.oneOf(['contain', 'cover']),
     horizontalAlign: PropTypes.string,
     verticalAlign: PropTypes.string,
@@ -27,6 +28,7 @@ const propTypes = {
 const defaultProps = {
     width: null,
     height: null,
+    resolution: 1,
     fit: null,
     horizontalAlign: 'center',
     verticalAlign: 'center',
@@ -43,6 +45,7 @@ const defaultProps = {
 const Background = ({
     width,
     height,
+    resolution,
     fit,
     horizontalAlign,
     verticalAlign,
@@ -85,6 +88,7 @@ const Background = ({
             isVideo ? { url: mediaThumbnailUrl } : media,
             width,
             height,
+            { resolution }
         );
         containerStyle.backgroundImage =
             finalUrl !== null && finalShouldLoad ? `url("${finalUrl}")` : null;

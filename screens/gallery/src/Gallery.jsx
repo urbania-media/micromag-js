@@ -84,7 +84,7 @@ const GalleryScreen = ({
     transitionStagger,
     className,
 }) => {
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -189,6 +189,7 @@ const GalleryScreen = ({
                                 className={styles.image}
                                 {...finalImage}
                                 {...imageSize}
+                                resolution={resolution}
                                 objectFit={{ fit: 'cover' }}
                                 playing={backgroundPlaying}
                                 onLoaded={onImageLoaded}
@@ -244,6 +245,7 @@ const GalleryScreen = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

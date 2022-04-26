@@ -12,6 +12,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
+    resolution: PropTypes.number,
     background: PropTypes.oneOfType([
         MicromagPropTypes.backgroundElement,
         PropTypes.arrayOf(MicromagPropTypes.backgroundElement),
@@ -28,6 +29,7 @@ const propTypes = {
 const defaultProps = {
     width: null,
     height: null,
+    resolution: 1,
     background: [],
     playing: false,
     children: null,
@@ -41,6 +43,7 @@ const defaultProps = {
 const BackgroundLayers = ({
     width,
     height,
+    resolution,
     background,
     playing,
     children,
@@ -98,6 +101,7 @@ const BackgroundLayers = ({
                             <Background
                                 width={width}
                                 height={height}
+                                resolution={resolution}
                                 className={classNames([
                                     styles.background,
                                     {

@@ -59,7 +59,7 @@ const SlideshowScreen = ({
     // transitionStagger,
     className,
 }) => {
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -133,6 +133,7 @@ const SlideshowScreen = ({
                                 className={styles.image}
                                 media={visual}
                                 {...imageSize}
+                                resolution={resolution}
                                 objectFit={{ fit: 'cover' }}
                                 playing={backgroundPlaying}
                                 onLoaded={onImageLoaded}
@@ -188,6 +189,7 @@ const SlideshowScreen = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

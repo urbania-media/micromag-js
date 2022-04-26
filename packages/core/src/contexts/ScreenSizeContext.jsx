@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '../lib';
 
 export const ScreenSizeContext = React.createContext({
@@ -8,6 +8,7 @@ export const ScreenSizeContext = React.createContext({
     screens: [],
     width: 0,
     height: 0,
+    resolution: 1,
     landscape: false,
 });
 
@@ -25,14 +26,13 @@ const defaultProps = {
 // Note: this is done to avoid excessive renders on the screens that use the context
 
 export const ScreenSizeProvider = ({ size, children }) => {
-    const [currentSize, setSize] = useState(size);
-    const { width: prevWidth, height: prevHeight } = currentSize;
-    const { width: nextWidth, height: nextHeight } = size;
-    useEffect(() => {
-        if (prevWidth !== nextWidth || prevHeight !== nextHeight) {
-            setSize(size);
-        }
-    }, [setSize, nextWidth, nextHeight, prevWidth, prevHeight, size]);
+    const {
+        screen: nextScreen,
+        width: nextWidth,
+        height: nextHeight,
+        resolution: nextResolution,
+    } = size;
+    const currentSize = useMemo(() => size, [nextScreen, nextWidth, nextHeight, nextResolution]);
     return <ScreenSizeContext.Provider value={currentSize}>{children}</ScreenSizeContext.Provider>;
 };
 
