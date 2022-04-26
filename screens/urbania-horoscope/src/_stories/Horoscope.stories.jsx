@@ -2,28 +2,32 @@
 import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
-    // text,
+    // text
     // title,
+    imageMedia,
+    backgroundVideo,
     backgroundImage,
     transitions,
-    callToAction,
 } from '../../../../.storybook/data';
 import Horoscope from '../Horoscope';
 import definition from '../definition';
 
 const props = {
     title: { body: 'Astrologie' },
-    description: {
-        body: 'Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac ',
-    },
+    // description: text(),
+    description: { body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?' },
+
     author: {
-        name: 'Paul le fermier',
+        name: { body: 'Robert Léponge' },
+        avatar: imageMedia(),
     },
     button: {
         label: 'Découvrir',
     },
     signs: [],
-    background: backgroundImage(),
+    background: backgroundVideo(),
+    // popupBackground: backgroundImage(),
+    // popupBackground: { color: '#000F66', aplha: 1 },
     transitions: transitions(),
 };
 
@@ -47,9 +51,5 @@ export const Capture = (storyProps) => <Horoscope {...storyProps} {...props} />;
 export const Edit = (storyProps) => <Horoscope {...storyProps} />;
 
 export const Normal = (storyProps) => <Horoscope {...storyProps} {...props} />;
-
-export const WithCallToAction = (storyProps) => (
-    <Horoscope {...storyProps} {...props} callToAction={callToAction()} />
-);
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

@@ -335,6 +335,9 @@
     "GMCLhn": {
         "defaultMessage": "Case"
     },
+    "GPqjnH": {
+        "defaultMessage": "Left"
+    },
     "GRVidW": {
         "defaultMessage": "360 Video"
     },
@@ -448,6 +451,9 @@
     },
     "P1dwGU": {
         "defaultMessage": "Title with subtitle"
+    },
+    "PFNMAQ": {
+        "defaultMessage": "Bottom"
     },
     "PKCv5M": {
         "defaultMessage": "No item..."
@@ -710,6 +716,9 @@
     "fVqgfl": {
         "defaultMessage": "[no title]"
     },
+    "fbiNiR": {
+        "defaultMessage": "Select a size..."
+    },
     "fusnxf": {
         "defaultMessage": "Square"
     },
@@ -773,6 +782,9 @@
     "kBz8vF": {
         "defaultMessage": "Name"
     },
+    "kf/5Tw": {
+        "defaultMessage": "Right"
+    },
     "l/Y6or": {
         "defaultMessage": "Add an entry"
     },
@@ -814,6 +826,9 @@
     },
     "n8zmLY": {
         "defaultMessage": "Go to next screen on end"
+    },
+    "n9LoBJ": {
+        "defaultMessage": "Top"
     },
     "nXVNeg": {
         "defaultMessage": "Name"

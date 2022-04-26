@@ -113,15 +113,6 @@ export default [
                     description: 'Background field label',
                 }),
             },
-            {
-                name: 'callToAction',
-                type: 'call-to-action',
-                theme: {
-                    label: {
-                        textStyle: 'heading2',
-                    },
-                },
-            },
         ],
     },
 ];

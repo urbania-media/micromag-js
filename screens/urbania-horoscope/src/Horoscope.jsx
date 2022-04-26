@@ -11,17 +11,19 @@ import {
     TransitionsStagger,
 } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
+// import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
+import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
-// import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
-import signsImages from './images';
+import Author from '@micromag/element-urbania-author';
+import SignsGrid from './SignsGrid';
+// import signsImages from './images';
+import Astrologie from './images/astrologie-text.svg';
 import signsList from './signs';
 import styles from './styles.module.scss';
 
@@ -40,13 +42,13 @@ const propTypes = {
             description: MicromagPropTypes.textElement,
         }),
     ),
-    category: MicromagPropTypes.headingElement,
     title: MicromagPropTypes.headingElement,
     description: MicromagPropTypes.textElement,
     author: MicromagPropTypes.authorElement,
+    button: MicromagPropTypes.buttonElement,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    popupBackground: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -57,13 +59,13 @@ const propTypes = {
 const defaultProps = {
     defaultSigns: signsList,
     signs: null,
-    category: null,
     title: null,
     description: null,
     author: null,
+    button: null,
     spacing: 20,
     background: null,
-    callToAction: null,
+    popupBackground: null,
     current: true,
     active: true,
     transitions: null,
@@ -74,27 +76,36 @@ const defaultProps = {
 const Horoscope = ({
     defaultSigns,
     signs: signsValue,
-    category,
     title,
     description,
+    author,
+    button,
     spacing,
     background,
-    callToAction,
+    popupBackground,
     current,
     active,
     transitions,
     transitionStagger,
     className,
 }) => {
+    const [hasPopup, setHasPopup] = useState(true);
+
+    const openPopup = useCallback(() => {
+        setHasPopup(true);
+    }, [hasPopup, setHasPopup]);
+
+    const closePopup = useCallback(() => {
+        setHasPopup(false);
+    }, [hasPopup, setHasPopup]);
+
     const signs = defaultSigns.map((sign, index) => ({
         ...sign,
         ...(signsValue !== null && signsValue[index] ? signsValue[index] || null : null),
-        image: signsImages[sign.id] ? signsImages[sign.id] : null,
+        // image: signsImages[sign.id] ? signsImages[sign.id] : null,
     }));
 
-    console.log(signs);
-
-    const trackScreenEvent = useTrackScreenEvent();
+    // console.log(signs);
 
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
@@ -102,11 +113,8 @@ const Horoscope = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
-    const hasCategory = isTextFilled(category);
     const hasTitle = isTextFilled(title);
     const hasDescription = isTextFilled(description);
-
-    const onlyCategory = hasCategory && !hasTitle && !hasDescription;
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
@@ -115,69 +123,74 @@ const Horoscope = ({
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active || !isView;
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
-    const [scrolledBottom, setScrolledBottom] = useState(false);
-
-    const onScrolledBottom = useCallback(
-        ({ initial }) => {
-            if (initial) {
-                trackScreenEvent('scroll', 'Screen');
-            }
-            setScrolledBottom(true);
-        },
-        [trackScreenEvent],
-    );
-
-    const onScrolledNotBottom = useCallback(() => {
-        setScrolledBottom(false);
-    }, [setScrolledBottom]);
-
     // Create elements
     const items = [
         // !isPlaceholder ? <Spacer key="spacer-cta-top" /> : null,
-
+        <div className={styles.headerContainer}>
+            <ScreenElement
+                key="title"
+                placeholder={<PlaceholderTitle className={styles.titlePlaceholder} />}
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Title" description="Title placeholder" />
+                }
+                emptyClassName={styles.emptyText}
+                isEmpty={!hasTitle}
+            >
+                <img src={Astrologie} alt="" className={styles.title} />
+                {/* <Astrologie /> */}
+                {/* <Heading className={styles.title} {...title} /> */}
+            </ScreenElement>
+            <ScreenElement
+                key="description"
+                placeholder={<PlaceholderText className={styles.descriptionPlaceholder} />}
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Description" description="Text placeholder" />
+                }
+                emptyClassName={styles.emptyText}
+                isEmpty={!hasDescription}
+            >
+                {hasDescription ? <Text className={styles.description} {...description} /> : null}
+            </ScreenElement>
+            {!isPlaceholder && !isEdit ? (
+                <Author author={author} className={styles.author} />
+            ) : null}
+        </div>,
         <ScreenElement
-            key="title"
-            placeholder={<PlaceholderTitle className={styles.categoryPlaceholder} />}
-            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
-            emptyClassName={styles.emptyText}
-            isEmpty={!hasTitle}
-        >
-            <Heading
-                className={classNames([
-                    styles.title,
-                    {
-                        [className]: className !== null,
-                        [styles.noBottomBorder]: onlyCategory,
-                    },
-                ])}
-                {...title}
-            />
-        </ScreenElement>,
-        <ScreenElement
-            key="description"
-            placeholder={<PlaceholderText className={styles.descriptionPlaceholder} />}
+            key="button"
+            placeholder={<PlaceholderText className={styles.buttonPlaceholder} />}
             emptyLabel={
-                <FormattedMessage defaultMessage="Description" description="Text placeholder" />
+                <FormattedMessage defaultMessage="Button" description="Button placeholder" />
             }
             emptyClassName={styles.emptyText}
             isEmpty={!hasDescription}
         >
-            {hasDescription ? <Text className={styles.description} {...description} /> : null}
+            {!isPlaceholder ? (
+                <div className={styles.buttonContainer}>
+                    {button ? (
+                        <Button
+                            className={styles.button}
+                            type="button"
+                            separ
+                            ateBorder
+                            onClick={openPopup}
+                        >
+                            {button.label}
+                        </Button>
+                    ) : null}
+                </div>
+            ) : null}
         </ScreenElement>,
+        hasPopup ? (
+            <SignsGrid
+                width={width}
+                height={height}
+                className={styles.signsGrid}
+                closeButton={closePopup}
+                background={popupBackground}
+            />
+        ) : null,
 
         // !isPlaceholder ? <Spacer key="spacer-cta-bottom" /> : null,
-        !isPlaceholder && hasCallToAction ? (
-            <div style={{ margin: -spacing, marginTop: '10px' }} key="call-to-action">
-                <CallToAction
-                    callToAction={callToAction}
-                    disabled={!scrolledBottom}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                    screenSize={{ width, height }}
-                />
-            </div>
-        ) : null,
     ].filter((el) => el !== null);
 
     return (
@@ -191,20 +204,18 @@ const Horoscope = ({
             ])}
             data-screen-ready
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
-                />
-            ) : null}
+            <Background
+                background={background}
+                width={width}
+                height={height}
+                playing={backgroundPlaying}
+                shouldLoad={backgroundShouldLoad}
+            />
             <Container width={width} height={height}>
                 <Scroll
                     disabled={scrollingDisabled}
-                    onScrolledBottom={onScrolledBottom}
-                    onScrolledNotBottom={onScrolledNotBottom}
+                    // onScrolledBottom={onScrolledBottom}
+                    // onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="middle"
                 >
                     <Layout
@@ -218,6 +229,7 @@ const Horoscope = ({
                                   }
                                 : null
                         }
+                        height={height * 0.8}
                     >
                         <TransitionsStagger
                             transitions={transitions}

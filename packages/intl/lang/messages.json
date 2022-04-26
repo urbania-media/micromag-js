@@ -447,6 +447,10 @@
     "defaultMessage": "Case",
     "description": "Field label"
   },
+  "GPqjnH": {
+    "defaultMessage": "Left",
+    "description": "Direction"
+  },
   "GRVidW": {
     "defaultMessage": "360 Video",
     "description": "Video 360 screen title"
@@ -598,6 +602,10 @@
   "P1dwGU": {
     "defaultMessage": "Title with subtitle",
     "description": "TitleSubtitle screen title"
+  },
+  "PFNMAQ": {
+    "defaultMessage": "Bottom",
+    "description": "Direction"
   },
   "PKCv5M": {
     "defaultMessage": "No item...",
@@ -946,6 +954,10 @@
     "defaultMessage": "[no title]",
     "description": "No title label in Media Gallery"
   },
+  "fbiNiR": {
+    "defaultMessage": "Select a size...",
+    "description": "No value label"
+  },
   "fusnxf": {
     "defaultMessage": "Square",
     "description": "Square label"
@@ -1030,6 +1042,10 @@
     "defaultMessage": "Name",
     "description": "Name in Media Gallery"
   },
+  "kf/5Tw": {
+    "defaultMessage": "Right",
+    "description": "Direction"
+  },
   "l/Y6or": {
     "defaultMessage": "Add an entry",
     "description": "Button label"
@@ -1083,6 +1099,10 @@
   "n8zmLY": {
     "defaultMessage": "Go to next screen on end",
     "description": "Field label"
+  },
+  "n9LoBJ": {
+    "defaultMessage": "Top",
+    "description": "Direction"
   },
   "nXVNeg": {
     "defaultMessage": "Name",

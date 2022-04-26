@@ -6,6 +6,14 @@
 .container {
     @extend %screen;
 
+    .layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+    }
+
     .emptyTitle,
     .emptyText {
         @extend %empty;
@@ -21,57 +29,64 @@
         height: 50px;
     }
 
-    .textCard {
-        display: flex;
-        flex-direction: column;
-        border: 2px solid #000;
-        color: #000;
-        text-align: center;
-
-        &.isPlaceholder {
-            height: 200px;
-            background-color: $gray-500;
-        }
+    .title {
+        width: 100%;
+        height: auto;
+        // color: #0ff;
+        // font-family: 'Agrandir Tight', sans-serif;
+        // font-size: 48px;
+        // font-weight: 700;
+        // letter-spacing: -1px;
+        // text-shadow: -3px -3px 0 #000f66;
+        // text-transform: uppercase;
+        // -webkit-text-stroke: 1px #000f66;
     }
 
-    .category {
-        padding: 14px 10px 12px;
-        font-family: 'Agrandir Tight', sans-serif;
-        font-size: 28px;
-        font-weight: 900;
-        text-transform: uppercase;
-    }
-
-    .categoryPlaceholder {
+    .titlePlaceholder {
         padding: 10px;
         background-color: $gray-800;
     }
 
-    .title {
+    .description {
+        margin-bottom: 8px;
+        padding: 10px;
         color: #0ff;
         font-family: 'Agrandir Tight', sans-serif;
-        font-size: 48px;
+        font-size: 18px;
         font-weight: 700;
-        letter-spacing: -1px;
-        text-shadow: -3px -3px 0 #000f66;
-        text-transform: uppercase;
-        -webkit-text-stroke: 1px #000f66;
-    }
-
-    .sponsorPlaceholder {
-        padding: 10px;
-    }
-
-    .description {
-        padding: 10px;
-        font-family: 'Roboto', sans-serif;
-        font-size: 12px;
-        text-align: left;
     }
 
     .descriptionPlaceholder {
         padding: 10px;
         padding-bottom: 30px;
+    }
+
+    .author {
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .button {
+        padding: 10px 15px 7px;
+        transition: all 0.2s ease-in-out;
+        border-radius: 24px;
+        background-color: #fffc00;
+        box-shadow: 0 0 0 6px rgba(255, 250, 0, 0.6);
+        color: #000;
+        font-family: 'Agrandir Tight', sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.05rem;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+
+    .signsGrid {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
     &.isPlaceholder {

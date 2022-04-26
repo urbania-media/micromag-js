@@ -1,0 +1,23 @@
+// stylelint-disable max-nesting-depth
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %screen;
+    position: relative;
+    z-index: 2;
+
+    .backButton {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        height: 40px;
+    }
+
+    .modalContainer {
+        height: 200px;
+        margin-top: 20%;
+        background-color: #200;
+    }
+}

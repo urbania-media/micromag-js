@@ -683,6 +683,12 @@ msgctxt "GMCLhn"
 msgid "Case"
 msgstr "Case"
 
+# Direction
+#: GPqjnH
+msgctxt "GPqjnH"
+msgid "Left"
+msgstr ""
+
 # Video 360 screen title
 #: GRVidW
 msgctxt "GRVidW"
@@ -910,6 +916,12 @@ msgstr "Écran Urbania Article"
 msgctxt "P1dwGU"
 msgid "Title with subtitle"
 msgstr "Titre avec sous-titre"
+
+# Direction
+#: PFNMAQ
+msgctxt "PFNMAQ"
+msgid "Bottom"
+msgstr ""
 
 # Label when there is no item in items field
 #: PKCv5M
@@ -1432,6 +1444,12 @@ msgctxt "fVqgfl"
 msgid "[no title]"
 msgstr "[sans titre]"
 
+# No value label
+#: fbiNiR
+msgctxt "fbiNiR"
+msgid "Select a size..."
+msgstr ""
+
 # Square label
 #: fusnxf
 msgctxt "fusnxf"
@@ -1558,6 +1576,12 @@ msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Nom"
 
+# Direction
+#: kf/5Tw
+msgctxt "kf/5Tw"
+msgid "Right"
+msgstr ""
+
 # Button label
 #: l/Y6or
 msgctxt "l/Y6or"
@@ -1639,6 +1663,12 @@ msgstr "Ajouter une réponse"
 msgctxt "n8zmLY"
 msgid "Go to next screen on end"
 msgstr "Aller au prochain écran à la fin de la vidéo"
+
+# Direction
+#: n9LoBJ
+msgctxt "n9LoBJ"
+msgid "Top"
+msgstr ""
 
 # Name field label
 #: nXVNeg

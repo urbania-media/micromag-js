@@ -1,0 +1,74 @@
+// stylelint-disable max-nesting-depth
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %screen;
+    position: relative;
+    z-index: 1;
+
+    .closeButton {
+        position: absolute;
+        z-index: 3;
+        top: 5px;
+        right: 5px;
+        font-size: 20px;
+    }
+
+    .gridContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 30px;
+    }
+
+    .gridElement {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        width: 80px;
+        height: 85px;
+        margin-bottom: 8px;
+        padding: 5px;
+        transition: 0.2s all ease-in-out;
+        border: 0;
+        border-radius: 20px;
+        background-color: #1d3af2;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    .image {
+        max-height: 42px;
+        padding-bottom: 5px;
+    }
+
+    .signName {
+        margin: 4px;
+        padding: 2px 5px 1px;
+        border-radius: 24px;
+        background-color: #fffc00;
+        box-shadow: 0 0 0 2px rgba(255, 250, 0, 0.6);
+        color: #222;
+        font-family: 'Agrandir Tight', sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .date {
+        color: #fffa00;
+        font-family: 'Agrandir', sans-serif;
+        font-size: 8px;
+    }
+
+    .signModal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        // height: 50%;
+    }
+}
