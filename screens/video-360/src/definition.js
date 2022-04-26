@@ -1,5 +1,4 @@
 import { defineMessage } from 'react-intl';
-
 import Video360Screen from './Video360';
 import * as transforms from './transforms/index';
 
@@ -47,8 +46,9 @@ export default {
             name: 'callToAction',
             type: 'call-to-action',
             theme: {
+                boxStyle: 'cta',
                 label: {
-                    textStyle: 'heading2',
+                    textStyle: 'cta',
                 },
             },
         },

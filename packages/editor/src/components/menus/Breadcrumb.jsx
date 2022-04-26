@@ -8,9 +8,9 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
 import { useScreensManager, useFieldsManager, useUrlGenerator } from '@micromag/core/contexts';
 import { isMessage, getScreenExtraField } from '@micromag/core/utils';
-import getScreenFieldsWithStates from '../../utils/getScreenFieldsWithStates';
 import styles from '../../styles/menus/breadcrumb.module.scss';
 import getFieldByName from '../../utils/getFieldByName';
+import getScreenFieldsWithStates from '../../utils/getScreenFieldsWithStates';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -44,9 +44,12 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
         }
         const { type } = screens[screenIndex];
         const definition = screensManager.getDefinition(type);
-        const { states } = definition;
+        const { states = null } = definition || {};
         return {
-            fields: [...getScreenFieldsWithStates(definition), getScreenExtraField(intl)],
+            fields:
+                definition !== null
+                    ? [...getScreenFieldsWithStates(definition), getScreenExtraField(intl)]
+                    : null,
             states,
         };
     }, [screens, screenId, screensManager, intl]);

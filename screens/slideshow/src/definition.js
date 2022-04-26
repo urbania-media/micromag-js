@@ -1,5 +1,6 @@
 import { defineMessage } from 'react-intl';
 import SlideshowScreen from './Slideshow';
+
 // import * as transforms from './transforms/index';
 
 export default [
@@ -50,8 +51,9 @@ export default [
                 name: 'callToAction',
                 type: 'call-to-action',
                 theme: {
+                    boxStyle: 'cta',
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
                 },
             },

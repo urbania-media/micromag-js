@@ -54,8 +54,9 @@ export default [
                 name: 'callToAction',
                 type: 'call-to-action',
                 theme: {
+                    boxStyle: 'cta',
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
                 },
             },
@@ -123,8 +124,9 @@ export default [
                 name: 'callToAction',
                 type: 'call-to-action',
                 theme: {
+                    boxStyle: 'cta',
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
                 },
             },

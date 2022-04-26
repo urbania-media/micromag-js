@@ -14,10 +14,10 @@ import survey from '@micromag/screen-survey';
 import text from '@micromag/screen-text';
 import timeline from '@micromag/screen-timeline';
 import title from '@micromag/screen-title';
-// import urbaniaArticle from '@micromag/screen-urbania-article';
+import urbaniaArticle from '@micromag/screen-urbania-article';
 // import urbaniaHoroscope from '@micromag/screen-urbania-horoscope';
-// import urbaniaRecommendation from '@micromag/screen-urbania-recommendation';
-// import urbaniaTrivia from '@micromag/screen-urbania-trivia';
+import urbaniaRecommendation from '@micromag/screen-urbania-recommendation';
+import urbaniaTrivia from '@micromag/screen-urbania-trivia';
 import video from '@micromag/screen-video';
 import video360 from '@micromag/screen-video-360';
 
@@ -39,9 +39,9 @@ manager.addDefinition(title);
 manager.addDefinition(video);
 manager.addDefinition(video360);
 // manager.addDefinition(slideshow);
-// manager.addDefinition(urbaniaArticle);
-// manager.addDefinition(urbaniaTrivia);
-// manager.addDefinition(urbaniaRecommendation);
+manager.addDefinition(urbaniaArticle);
+manager.addDefinition(urbaniaTrivia);
+manager.addDefinition(urbaniaRecommendation);
 // manager.addDefinition(urbaniaHoroscope);
 
 export default manager;

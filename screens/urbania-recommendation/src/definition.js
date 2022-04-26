@@ -87,8 +87,9 @@ export default [
                 type: 'call-to-action',
                 theme: {
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
+                    boxStyle: 'cta',
                 },
             },
         ],

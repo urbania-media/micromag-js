@@ -21,7 +21,7 @@ const defaultProps = {
 
 const FieldWithContexts = ({ name, form, ...props }) => {
     // Get definitions
-    const definition = useScreenDefinition();
+    const definition = useScreenDefinition() || null;
     const { states = null } = definition;
     const screenFields = getScreenFieldsWithStates(definition);
     // const [stateId = null] = name.split('.');
@@ -58,7 +58,8 @@ const FieldWithContexts = ({ name, form, ...props }) => {
     //               },
     //           }]
     // : fields;
-    return (
+    console.log('def', definition);
+    return definition !== null ? (
         <div
             className={classNames({
                 'p-2': form === null,
@@ -76,7 +77,7 @@ const FieldWithContexts = ({ name, form, ...props }) => {
                 <Fields fields={stateFields} {...props} />
             )}
         </div>
-    );
+    ) : null;
 };
 
 FieldWithContexts.propTypes = propTypes;
