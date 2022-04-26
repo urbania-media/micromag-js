@@ -3,6 +3,7 @@ import { defineMessage } from 'react-intl';
 export default {
     id: 'metadata',
     component: 'field-with-form',
+    labelPath: 'title',
     noValueLabel: defineMessage({
         defaultMessage: 'Edit metadata...',
         description: 'No value field label',
@@ -24,5 +25,5 @@ export default {
                 description: 'Field label',
             }),
         },
-    ]
+    ],
 };

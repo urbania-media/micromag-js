@@ -58,7 +58,6 @@ const FieldWithContexts = ({ name, form, ...props }) => {
     //               },
     //           }]
     // : fields;
-    console.log('def', definition);
     return definition !== null ? (
         <div
             className={classNames({

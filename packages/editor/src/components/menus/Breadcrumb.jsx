@@ -37,12 +37,17 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
     const fieldsManager = useFieldsManager();
     const route = useUrlGenerator();
 
-    const { fields: screenFields = [], states: screenStates = null } = useMemo(() => {
+    const {
+        fields: screenFields = [],
+        states: screenStates = null,
+        parameters: screenParameters = null,
+    } = useMemo(() => {
         const screenIndex = screens.findIndex((it) => it.id === screenId);
         if (!screens[screenIndex]) {
             return {};
         }
-        const { type } = screens[screenIndex];
+        const { type, parameters = null } = screens[screenIndex];
+
         const definition = screensManager.getDefinition(type);
         const { states = null } = definition || {};
         return {
@@ -51,6 +56,7 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                     ? [...getScreenFieldsWithStates(definition), getScreenExtraField(intl)]
                     : null,
             states,
+            parameters,
         };
     }, [screens, screenId, screensManager, intl]);
 
@@ -174,16 +180,21 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
             );
         }
 
+        const { metadata = null } = screenParameters || {};
+        const { title = null } = metadata || {};
+
+        const parametersMessage = intl.formatMessage({
+            defaultMessage: 'Parameters',
+            description: 'Screen label in the breadcrumb',
+        });
+
+        const defaultLabel =
+            (fieldItems || []).length === 0 ? title || parametersMessage : parametersMessage;
+
         const finalItems = [
             currentState === null || (currentState.repeatable || false) === false
                 ? {
-                      label:
-                          currentState !== null
-                              ? currentState.label
-                              : intl.formatMessage({
-                                    defaultMessage: 'Parameters',
-                                    description: 'Screen label in the breadcrumb',
-                                }),
+                      label: currentState !== null ? currentState.label : defaultLabel,
                       url:
                           currentState !== null
                               ? route('screen.field', {

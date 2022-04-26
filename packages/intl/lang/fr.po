@@ -687,7 +687,7 @@ msgstr "Case"
 #: GPqjnH
 msgctxt "GPqjnH"
 msgid "Left"
-msgstr ""
+msgstr "Gauche"
 
 # Video 360 screen title
 #: GRVidW
@@ -753,13 +753,13 @@ msgstr "Liens"
 #: J6cnbt
 msgctxt "J6cnbt"
 msgid "Signs"
-msgstr ""
+msgstr "Signes"
 
 # Type field label
 #: J9e9Qb
 msgctxt "J9e9Qb"
 msgid "Video"
-msgstr ""
+msgstr "Vidéo"
 
 # Your message placeholder
 #: JAguka
@@ -927,7 +927,7 @@ msgstr "Titre avec sous-titre"
 #: PFNMAQ
 msgctxt "PFNMAQ"
 msgid "Bottom"
-msgstr ""
+msgstr "Bas"
 
 # Label when there is no item in items field
 #: PKCv5M
@@ -1454,7 +1454,7 @@ msgstr "[sans titre]"
 #: fbiNiR
 msgctxt "fbiNiR"
 msgid "Select a size..."
-msgstr ""
+msgstr "Choisir une taille..."
 
 # Square label
 #: fusnxf
@@ -1586,7 +1586,7 @@ msgstr "Nom"
 #: kf/5Tw
 msgctxt "kf/5Tw"
 msgid "Right"
-msgstr ""
+msgstr "Droite"
 
 # Button label
 #: l/Y6or
@@ -1674,7 +1674,7 @@ msgstr "Aller au prochain écran à la fin de la vidéo"
 #: n9LoBJ
 msgctxt "n9LoBJ"
 msgid "Top"
-msgstr ""
+msgstr "Haut"
 
 # Name field label
 #: nXVNeg
@@ -1746,7 +1746,7 @@ msgstr "Légende"
 #: pE7UhY
 msgctxt "pE7UhY"
 msgid "Article"
-msgstr ""
+msgstr "Article"
 
 # Field label
 #: pJgYyE
@@ -1770,7 +1770,7 @@ msgstr "Ajouté par"
 #: ppq6CK
 msgctxt "ppq6CK"
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 # Field right label
 #: ptJkUl
