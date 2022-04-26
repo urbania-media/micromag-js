@@ -169,8 +169,6 @@ const Viewer = ({
         ...screenSizeOptions,
     });
 
-    console.log(screenSize);
-
     const {
         width: screenWidth = null,
         height: screenHeight = null,

@@ -91,8 +91,6 @@ const SlideshowScreen = ({
 
     const { height: callToActionHeight = 0 } = callToActionRect || {};
 
-    // console.log(transitionDisabled);
-
     const items = (slides || []).map((item, itemI) => {
         const { visual = null, caption = null } = item || {};
         const imageSize = { width: width / 2, height: height / 2 };
