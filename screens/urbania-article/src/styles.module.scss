@@ -64,7 +64,6 @@ $color-dehors-text: #ffeada;
         align-items: center;
         justify-content: center;
         width: 100%;
-        // background-color: $color-urbania-background;
         color: $color-urbania-text;
         text-align: center;
 
@@ -75,6 +74,7 @@ $color-dehors-text: #ffeada;
         }
 
         .overTitle {
+            padding-top: 30px;
             font-family: 'Agrandir Grand';
             font-size: 10px;
             font-weight: 500;
@@ -95,7 +95,7 @@ $color-dehors-text: #ffeada;
             display: inline-block;
             width: 100%;
             margin-top: auto;
-            padding: 3px 10px 4px;
+            padding: 0 10px 4px;
             background-color: $color-urbania-text;
             color: $color-urbania-background;
         }
@@ -152,53 +152,18 @@ $color-dehors-text: #ffeada;
         bottom: 0;
         left: 0;
         padding-bottom: 5px;
-
-        // .button {
-        //     display: inline-block;
-        //     min-width: 100px;
-        //     margin: 0 auto;
-        //     padding: 0;
-        //     transition: border 0.2s ease-in-out;
-        //     border: 4px solid rgba(255, 255, 0, 0.5);
-        //     border-radius: 20px;
-
-        //     &:hover {
-        //         border-color: transparent;
-        //     }
-
-        //     .label {
-        //         display: flex;
-        //         align-items: center;
-        //         justify-content: center;
-        //         padding: 6px 15px 4px;
-        //         border-radius: 20px;
-        //         background-color: $color-urbania-background;
-
-        //         svg {
-        //             display: block;
-        //             margin-bottom: 2px;
-        //         }
-
-        //         span {
-        //             display: block;
-        //             margin: 0 5px;
-        //             color: $color-urbania-text;
-        //             font-family: 'Agrandir Tight';
-        //             font-size: 18px;
-        //             font-weight: 700;
-        //             line-height: 1;
-
-        //             &:last-child {
-        //                 margin-top: 2px;
-        //             }
-        //         }
-        //     }
-        // }
+        vertical-align: middle;
 
         .arrow {
             margin-bottom: 5px;
             opacity: 0.95;
-            color: $color-urbania-background;
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 2px;
+            margin-bottom: 2px;
+            padding: 1px;
         }
     }
 

@@ -495,6 +495,10 @@
     "defaultMessage": "Signs",
     "description": "State label"
   },
+  "J9e9Qb": {
+    "defaultMessage": "Video",
+    "description": "Type field label"
+  },
   "JAguka": {
     "defaultMessage": "Your message",
     "description": "Your message placeholder"
@@ -1148,6 +1152,10 @@
     "defaultMessage": "Caption",
     "description": "Field label"
   },
+  "pE7UhY": {
+    "defaultMessage": "Article",
+    "description": "Type field label"
+  },
   "pJgYyE": {
     "defaultMessage": "AutoPlay",
     "description": "Field label"
@@ -1159,6 +1167,10 @@
   "pfvDzR": {
     "defaultMessage": "Added by",
     "description": "Media label"
+  },
+  "ppq6CK": {
+    "defaultMessage": "Type",
+    "description": "Type field label"
   },
   "ptJkUl": {
     "defaultMessage": "Right",

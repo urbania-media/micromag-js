@@ -29,6 +29,30 @@ export default {
             }),
         },
         {
+            name: 'articleType',
+            type: 'select',
+            label: defineMessage({
+                defaultMessage: 'Type',
+                description: 'Type field label',
+            }),
+            options: [
+                {
+                    value: 'article',
+                    label: defineMessage({
+                        defaultMessage: 'Article',
+                        description: 'Type field label',
+                    }),
+                },
+                {
+                    value: 'video',
+                    label: defineMessage({
+                        defaultMessage: 'Video',
+                        description: 'Type field label',
+                    }),
+                },
+            ],
+        },
+        {
             name: 'overTitle',
             type: 'heading-element',
             theme: {
@@ -76,29 +100,6 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Image',
                 description: 'Visuals field label',
-            }),
-        },
-        {
-            name: 'video',
-            type: 'video-element',
-            theme: {
-                color: 'primary',
-            },
-            defaultValue: {
-                autoPlay: true,
-            },
-            label: defineMessage({
-                defaultMessage: 'Video',
-                description: 'Video field label',
-            }),
-        },
-        {
-            name: 'gotoNextScreenOnEnd',
-            type: 'toggle',
-            defaultValue: false,
-            label: defineMessage({
-                defaultMessage: 'Go to next screen on end',
-                description: 'Field label',
             }),
         },
         {

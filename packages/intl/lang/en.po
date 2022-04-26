@@ -755,6 +755,12 @@ msgctxt "J6cnbt"
 msgid "Signs"
 msgstr "Signs"
 
+# Type field label
+#: J9e9Qb
+msgctxt "J9e9Qb"
+msgid "Video"
+msgstr "Video"
+
 # Your message placeholder
 #: JAguka
 msgctxt "JAguka"
@@ -1736,6 +1742,12 @@ msgctxt "p85qJD"
 msgid "Caption"
 msgstr "Caption"
 
+# Type field label
+#: pE7UhY
+msgctxt "pE7UhY"
+msgid "Article"
+msgstr "Article"
+
 # Field label
 #: pJgYyE
 msgctxt "pJgYyE"
@@ -1753,6 +1765,12 @@ msgstr "Overtitle"
 msgctxt "pfvDzR"
 msgid "Added by"
 msgstr "Added by"
+
+# Type field label
+#: ppq6CK
+msgctxt "ppq6CK"
+msgid "Type"
+msgstr "Type"
 
 # Field right label
 #: ptJkUl

@@ -3,11 +3,14 @@ import { getJSON } from '@folklore/fetch';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { isTextFilled } from '@micromag/core/utils';
 import UrbaniaArticle from './UrbaniaArticle';
 
 const propTypes = {
     url: PropTypes.string,
-    article: PropTypes.shape({}),
+    article: PropTypes.shape({
+        type: PropTypes.string,
+    }),
 };
 
 const defaultProps = {
@@ -25,7 +28,6 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
 
     useEffect(() => {
         if (url !== null) {
-            console.log('heyy', url);
             // TODO: fix cors on urbania.ca
             getJSON(`${url}.json`, { mode: 'cors' }).then((art) => {
                 setArticle(art);
@@ -34,22 +36,18 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
     }, [url, setArticle]);
 
     const values = useMemo(() => {
-        console.log('article', article);
-
         const {
+            articleType = null,
             title = {},
             overTitle = {},
             sponsor = {},
             author = null,
             image = {},
-            video = {},
             callToAction = null,
         } = props || {};
         const { body: titleBody = null } = title || {};
         const { body: overTitleBody = null } = overTitle || {};
-        const { body: sponsorBody = null } = sponsor || {};
         const { url: imageUrl = null } = image || {};
-        const { media: videoMedia = null } = video || {};
 
         // Straight from article
         const {
@@ -62,12 +60,10 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
         const { sizes = {} } = articleImage || {};
         const { medium, large } = sizes || {};
 
-        // Sponsors
-        const sponsorPrefix =
-            sponsorBody === null ? (
-                <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
-            ) : null;
+        // Type
+        const defaultType = articleType || type;
 
+        // Sponsors
         const defaultSponsor =
             (sponsors || []).length > 0
                 ? (sponsors || [])
@@ -77,7 +73,13 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                       .trim()
                 : null;
 
-        const defaultType = videoMedia !== null ? 'video' : type;
+        const hasSponsor = isTextFilled(sponsor);
+
+        const sponsorPrefix =
+            !hasSponsor && defaultSponsor === null ? (
+                <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
+            ) : null;
+
         return {
             type: defaultType,
             title: titleBody !== null ? title : { ...title, body: articleTitle },
@@ -88,21 +90,19 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 ...otherProps,
             })),
             author,
-            sponsor:
-                defaultSponsor !== null
-                    ? [{ ...sponsor, body: `<strong>${defaultSponsor || sponsorBody}</strong>` }]
-                    : null,
+            sponsor: !hasSponsor
+                ? { ...sponsor, body: `<strong>${defaultSponsor}</strong>` }
+                : sponsor,
             sponsorPrefix,
             site,
             image:
                 imageUrl !== null
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
-            video: { ...video },
             callToAction: {
                 active: true,
                 type: 'swipe-up',
-                url: videoMedia !== null ? videoMedia.url : canonical,
+                url: canonical,
                 label: defaultType === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
                 icon: defaultType === 'video' ? { id: 'play' } : null,
                 inWebView: true,
@@ -110,8 +110,6 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             },
         };
     }, [article, url, hostname, props]);
-
-    console.log('values', url, values);
 
     return <UrbaniaArticle {...props} {...values} hasArticle={url !== null} />;
 };

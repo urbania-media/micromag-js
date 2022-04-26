@@ -47,14 +47,12 @@ const FieldForm = ({
     const field = getFieldFromPath(name.split('.'), fields, fieldsManager);
 
     const { type = null, ...fieldProps } = field || {};
-    const {
-        component: fieldComponent = null,
-        id,
-        settings,
-        ...definitionProps
-    } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
+
+    const fieldDefinition = fieldsManager.getDefinition(type) || null;
+    const fieldData = fieldDefinition || {
         ...field,
     };
+    const { component: fieldComponent = null, id, settings, ...definitionProps } = fieldData || {};
 
     const FieldComponent = useFieldComponent(fieldComponent);
 

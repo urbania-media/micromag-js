@@ -51,8 +51,10 @@ export const defaultTheme = {
                 color: '#222222',
             },
             fontFamily: 'Agrandir',
-            fontSize: 15,
-            textTransform: 'uppercase',
+            fontSize: 14,
+            fontStyle: {
+                bold: true,
+            },
         },
     },
     boxStyles: {
@@ -61,13 +63,14 @@ export const defaultTheme = {
                 alpha: 0.5,
                 color: '#f5ff00',
             },
+            borderStyle: 'solid',
             padding: '5 10',
             backgroundColor: {
                 color: '#fcff00',
                 alpha: 1,
             },
             borderWidth: 5,
-            borderRadius: 10,
+            borderRadius: 30,
         },
     },
     components: [
