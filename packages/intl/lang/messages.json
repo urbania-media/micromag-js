@@ -79,6 +79,10 @@
     "defaultMessage": "Sign",
     "description": "Breadcrumb field label"
   },
+  "142Fjj": {
+    "defaultMessage": "May 21 - June 20",
+    "description": "Horoscope date"
+  },
   "15GBmG": {
     "defaultMessage": "All",
     "description": "Dropdown default all items label"
@@ -251,6 +255,10 @@
     "defaultMessage": "Sponsor",
     "description": "Title field label"
   },
+  "7ZzlUE": {
+    "defaultMessage": "Oct 23 - Nov 22",
+    "description": "Horoscope date"
+  },
   "7mMPO4": {
     "defaultMessage": "Sagittarius",
     "description": "Horoscope sign"
@@ -419,9 +427,17 @@
     "defaultMessage": "Edit content...",
     "description": "Label when no value is provided to Field with form"
   },
+  "Evl2dG": {
+    "defaultMessage": "Feb 19 - Mar 20",
+    "description": "Horoscope date"
+  },
   "F/gl4b": {
     "defaultMessage": "Menu",
     "description": "Button label"
+  },
+  "F0QDfY": {
+    "defaultMessage": "Sept 23 - Oct 22",
+    "description": "Horoscope date"
   },
   "F2SD/0": {
     "defaultMessage": "Loop",
@@ -598,6 +614,10 @@
   "OkNUmk": {
     "defaultMessage": "Type",
     "description": "Type Label in Media Gallery"
+  },
+  "Op1ZIp": {
+    "defaultMessage": "Jan 21 - Feb 18",
+    "description": "Horoscope date"
   },
   "Oqks/j": {
     "defaultMessage": "Urbania article screen",
@@ -802,6 +822,10 @@
     "defaultMessage": "Text",
     "description": "Field label"
   },
+  "ZeosMy": {
+    "defaultMessage": "Mar 21 - Apr 19",
+    "description": "Horoscope date"
+  },
   "ZiWlL6": {
     "defaultMessage": "Questions",
     "description": "Screen group"
@@ -833,6 +857,10 @@
   "bLYuuN": {
     "defaultMessage": "You are on screen {current} of {total}.",
     "description": "Nav ARIA label"
+  },
+  "bMdONM": {
+    "defaultMessage": "June 21 - July 22",
+    "description": "Horoscope date"
   },
   "bhEaUt": {
     "defaultMessage": "Audio",
@@ -1168,6 +1196,10 @@
     "defaultMessage": "Added by",
     "description": "Media label"
   },
+  "pnT3od": {
+    "defaultMessage": "June 23 - Aug 22",
+    "description": "Horoscope date"
+  },
   "ppq6CK": {
     "defaultMessage": "Type",
     "description": "Type field label"
@@ -1204,9 +1236,17 @@
     "defaultMessage": "Marker",
     "description": "Breadcrumb field label"
   },
+  "rAkTvt": {
+    "defaultMessage": "Dec 22 - Jan 20",
+    "description": "Horoscope date"
+  },
   "rBPIgw": {
     "defaultMessage": "Conversation",
     "description": "Conversation screen title"
+  },
+  "raUY02": {
+    "defaultMessage": "Apr 20 - May 20",
+    "description": "Horoscope date"
   },
   "rdFCsN": {
     "defaultMessage": "No marker...",
@@ -1364,6 +1404,10 @@
     "defaultMessage": "Rounded corners",
     "description": "Field label"
   },
+  "xL0GD2": {
+    "defaultMessage": "Aug 23 - Sept 22",
+    "description": "Horoscope date"
+  },
   "xT/onn": {
     "defaultMessage": "Image",
     "description": "Field label"
@@ -1387,6 +1431,10 @@
   "yCXMzz": {
     "defaultMessage": "Close",
     "description": "Close button label in Media Gallery"
+  },
+  "yCj5uv": {
+    "defaultMessage": "Nov 23 - Dec 21",
+    "description": "Horoscope date"
   },
   "yEG9zh": {
     "defaultMessage": "Date",

@@ -131,6 +131,12 @@ msgctxt "12wlTR"
 msgid "Sign"
 msgstr "Signe"
 
+# Horoscope date
+#: 142Fjj
+msgctxt "142Fjj"
+msgid "May 21 - June 20"
+msgstr ""
+
 # Dropdown default all items label
 #: 15GBmG
 msgctxt "15GBmG"
@@ -389,6 +395,12 @@ msgctxt "7YE/VU"
 msgid "Sponsor"
 msgstr "Présentateur"
 
+# Horoscope date
+#: 7ZzlUE
+msgctxt "7ZzlUE"
+msgid "Oct 23 - Nov 22"
+msgstr ""
+
 # Horoscope sign
 #: 7mMPO4
 msgctxt "7mMPO4"
@@ -641,11 +653,23 @@ msgctxt "EoVdMy"
 msgid "Edit content..."
 msgstr "Modifier le contenu..."
 
+# Horoscope date
+#: Evl2dG
+msgctxt "Evl2dG"
+msgid "Feb 19 - Mar 20"
+msgstr ""
+
 # Button label
 #: F/gl4b
 msgctxt "F/gl4b"
 msgid "Menu"
 msgstr "Menu"
+
+# Horoscope date
+#: F0QDfY
+msgctxt "F0QDfY"
+msgid "Sept 23 - Oct 22"
+msgstr ""
 
 # Field label
 #: F2SD/0
@@ -910,6 +934,12 @@ msgstr "Aucune diapo..."
 msgctxt "OkNUmk"
 msgid "Type"
 msgstr "Type"
+
+# Horoscope date
+#: Op1ZIp
+msgctxt "Op1ZIp"
+msgid "Jan 21 - Feb 18"
+msgstr ""
 
 # Urbania screen title
 #: Oqks/j
@@ -1216,6 +1246,12 @@ msgctxt "ZMS1Wv"
 msgid "Text"
 msgstr "Texte"
 
+# Horoscope date
+#: ZeosMy
+msgctxt "ZeosMy"
+msgid "Mar 21 - Apr 19"
+msgstr ""
+
 # Screen group
 #: ZiWlL6
 msgctxt "ZiWlL6"
@@ -1263,6 +1299,12 @@ msgstr "Nom du fichier"
 msgctxt "bLYuuN"
 msgid "You are on screen {current} of {total}."
 msgstr "Vous êtes sur l’écran {current} de {total}."
+
+# Horoscope date
+#: bMdONM
+msgctxt "bMdONM"
+msgid "June 21 - July 22"
+msgstr ""
 
 # Audio screen title
 #: bhEaUt
@@ -1766,6 +1808,12 @@ msgctxt "pfvDzR"
 msgid "Added by"
 msgstr "Ajouté par"
 
+# Horoscope date
+#: pnT3od
+msgctxt "pnT3od"
+msgid "June 23 - Aug 22"
+msgstr ""
+
 # Type field label
 #: ppq6CK
 msgctxt "ppq6CK"
@@ -1820,11 +1868,23 @@ msgctxt "qroLmS"
 msgid "Marker"
 msgstr "Marqueur"
 
+# Horoscope date
+#: rAkTvt
+msgctxt "rAkTvt"
+msgid "Dec 22 - Jan 20"
+msgstr ""
+
 # Conversation screen title
 #: rBPIgw
 msgctxt "rBPIgw"
 msgid "Conversation"
 msgstr "Conversation"
+
+# Horoscope date
+#: raUY02
+msgctxt "raUY02"
+msgid "Apr 20 - May 20"
+msgstr ""
 
 # Label when there is no item
 #: rdFCsN
@@ -2060,6 +2120,12 @@ msgctxt "xKG76H"
 msgid "Rounded corners"
 msgstr "Coins arrondis"
 
+# Horoscope date
+#: xL0GD2
+msgctxt "xL0GD2"
+msgid "Aug 23 - Sept 22"
+msgstr ""
+
 # Field label
 #: xT/onn
 msgctxt "xT/onn"
@@ -2095,6 +2161,12 @@ msgstr "Paramètres avancés"
 msgctxt "yCXMzz"
 msgid "Close"
 msgstr "Fermer"
+
+# Horoscope date
+#: yCj5uv
+msgctxt "yCj5uv"
+msgid "Nov 23 - Dec 21"
+msgstr ""
 
 # Text field label
 #: yEG9zh

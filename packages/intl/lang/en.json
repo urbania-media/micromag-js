@@ -59,6 +59,9 @@
     "12wlTR": {
         "defaultMessage": "Sign"
     },
+    "142Fjj": {
+        "defaultMessage": "May 21 - June 20"
+    },
     "15GBmG": {
         "defaultMessage": "All"
     },
@@ -188,6 +191,9 @@
     "7YE/VU": {
         "defaultMessage": "Sponsor"
     },
+    "7ZzlUE": {
+        "defaultMessage": "Oct 23 - Nov 22"
+    },
     "7mMPO4": {
         "defaultMessage": "Sagittarius"
     },
@@ -314,8 +320,14 @@
     "EoVdMy": {
         "defaultMessage": "Edit content..."
     },
+    "Evl2dG": {
+        "defaultMessage": "Feb 19 - Mar 20"
+    },
     "F/gl4b": {
         "defaultMessage": "Menu"
+    },
+    "F0QDfY": {
+        "defaultMessage": "Sept 23 - Oct 22"
     },
     "F2SD/0": {
         "defaultMessage": "Loop"
@@ -448,6 +460,9 @@
     },
     "OkNUmk": {
         "defaultMessage": "Type"
+    },
+    "Op1ZIp": {
+        "defaultMessage": "Jan 21 - Feb 18"
     },
     "Oqks/j": {
         "defaultMessage": "Urbania article screen"
@@ -602,6 +617,9 @@
     "ZMS1Wv": {
         "defaultMessage": "Text"
     },
+    "ZeosMy": {
+        "defaultMessage": "Mar 21 - Apr 19"
+    },
     "ZiWlL6": {
         "defaultMessage": "Questions"
     },
@@ -625,6 +643,9 @@
     },
     "bLYuuN": {
         "defaultMessage": "You are on screen {current} of {total}."
+    },
+    "bMdONM": {
+        "defaultMessage": "June 21 - July 22"
     },
     "bhEaUt": {
         "defaultMessage": "Audio"
@@ -878,6 +899,9 @@
     "pfvDzR": {
         "defaultMessage": "Added by"
     },
+    "pnT3od": {
+        "defaultMessage": "June 23 - Aug 22"
+    },
     "ppq6CK": {
         "defaultMessage": "Type"
     },
@@ -905,8 +929,14 @@
     "qroLmS": {
         "defaultMessage": "Marker"
     },
+    "rAkTvt": {
+        "defaultMessage": "Dec 22 - Jan 20"
+    },
     "rBPIgw": {
         "defaultMessage": "Conversation"
+    },
+    "raUY02": {
+        "defaultMessage": "Apr 20 - May 20"
     },
     "rdFCsN": {
         "defaultMessage": "No marker..."
@@ -1025,6 +1055,9 @@
     "xKG76H": {
         "defaultMessage": "Rounded corners"
     },
+    "xL0GD2": {
+        "defaultMessage": "Aug 23 - Sept 22"
+    },
     "xT/onn": {
         "defaultMessage": "Image"
     },
@@ -1042,6 +1075,9 @@
     },
     "yCXMzz": {
         "defaultMessage": "Close"
+    },
+    "yCj5uv": {
+        "defaultMessage": "Nov 23 - Dec 21"
     },
     "yEG9zh": {
         "defaultMessage": "Date"
