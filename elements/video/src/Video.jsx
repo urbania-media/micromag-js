@@ -91,7 +91,12 @@ const Video = ({
     supportedMimes,
     // onPosterLoaded,
 }) => {
-    const { url: mediaUrl = null, files = null, metadata = null } = media || {};
+    const {
+        url: mediaUrl = null,
+        files = null,
+        metadata = null,
+        thumbnail_url: thumbnailUrl = null,
+    } = media || {};
     const { description = null, mime: mediaMime = null } = metadata || {};
     const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
 
@@ -238,7 +243,7 @@ const Video = ({
                     autoPlay={autoPlay}
                     loop={loop}
                     muted={muted}
-                    // poster={thumbnailUrl}
+                    poster={thumbnailUrl}
                     preload={preload}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}

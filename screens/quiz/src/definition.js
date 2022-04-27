@@ -112,8 +112,9 @@ export default [
                 name: 'callToAction',
                 type: 'call-to-action',
                 theme: {
+                    boxStyle: 'cta',
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
                 },
             },
@@ -194,7 +195,7 @@ export default [
                             description: 'Field label',
                         }),
                     },
-                ]
+                ],
             },
             {
                 id: 'questions',
@@ -323,9 +324,9 @@ export default [
                         label: defineMessage({
                             defaultMessage: 'Buttons',
                             description: 'Field label',
-                        })
+                        }),
                     },
-                ]
+                ],
             },
             {
                 name: 'background',
@@ -339,8 +340,9 @@ export default [
                 name: 'callToAction',
                 type: 'call-to-action',
                 theme: {
+                    boxStyle: 'cta',
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
                 },
             },

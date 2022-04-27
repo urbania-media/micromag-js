@@ -65,7 +65,7 @@ const GalleryFeedScreen = ({
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -117,6 +117,7 @@ const GalleryFeedScreen = ({
                     <Visual
                         {...finalImage}
                         width={firstImageRefWidth}
+                        resolution={resolution}
                         onLoaded={onImageLoaded}
                         playing={backgroundPlaying}
                     />
@@ -219,6 +220,7 @@ const GalleryFeedScreen = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

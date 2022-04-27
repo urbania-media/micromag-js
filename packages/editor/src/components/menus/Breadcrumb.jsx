@@ -8,9 +8,9 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
 import { useScreensManager, useFieldsManager, useUrlGenerator } from '@micromag/core/contexts';
 import { isMessage, getScreenExtraField } from '@micromag/core/utils';
-import getScreenFieldsWithStates from '../../utils/getScreenFieldsWithStates';
 import styles from '../../styles/menus/breadcrumb.module.scss';
 import getFieldByName from '../../utils/getFieldByName';
+import getScreenFieldsWithStates from '../../utils/getScreenFieldsWithStates';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -37,17 +37,26 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
     const fieldsManager = useFieldsManager();
     const route = useUrlGenerator();
 
-    const { fields: screenFields = [], states: screenStates = null } = useMemo(() => {
+    const {
+        fields: screenFields = [],
+        states: screenStates = null,
+        parameters: screenParameters = null,
+    } = useMemo(() => {
         const screenIndex = screens.findIndex((it) => it.id === screenId);
         if (!screens[screenIndex]) {
             return {};
         }
-        const { type } = screens[screenIndex];
+        const { type, parameters = null } = screens[screenIndex];
+
         const definition = screensManager.getDefinition(type);
-        const { states } = definition;
+        const { states = null } = definition || {};
         return {
-            fields: [...getScreenFieldsWithStates(definition), getScreenExtraField(intl)],
+            fields:
+                definition !== null
+                    ? [...getScreenFieldsWithStates(definition), getScreenExtraField(intl)]
+                    : null,
             states,
+            parameters,
         };
     }, [screens, screenId, screensManager, intl]);
 
@@ -171,16 +180,21 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
             );
         }
 
+        const { metadata = null } = screenParameters || {};
+        const { title = null } = metadata || {};
+
+        const parametersMessage = intl.formatMessage({
+            defaultMessage: 'Parameters',
+            description: 'Screen label in the breadcrumb',
+        });
+
+        const defaultLabel =
+            (fieldItems || []).length === 0 ? title || parametersMessage : parametersMessage;
+
         const finalItems = [
             currentState === null || (currentState.repeatable || false) === false
                 ? {
-                      label:
-                          currentState !== null
-                              ? currentState.label
-                              : intl.formatMessage({
-                                    defaultMessage: 'Parameters',
-                                    description: 'Screen label in the breadcrumb',
-                                }),
+                      label: currentState !== null ? currentState.label : defaultLabel,
                       url:
                           currentState !== null
                               ? route('screen.field', {

@@ -77,7 +77,7 @@ const Video360Screen = ({
     const trackScreenEvent = useTrackScreenEvent(type);
     const trackScreenMedia = useTrackScreenMedia('video_360');
 
-    const { width, height, landscape } = useScreenSize();
+    const { width, height, landscape, resolution } = useScreenSize();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -462,8 +462,9 @@ const Video360Screen = ({
                                 url: thumbnailUrl,
                                 metadata: { width: videoWidth, height: videoHeight },
                             }}
-                            width="100%"
-                            height="100%"
+                            width={resizedVideoWidth}
+                            height={resizedVideoHeight}
+                            resolution={resolution}
                         />
                     </div>
                 )}
@@ -529,6 +530,7 @@ const Video360Screen = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

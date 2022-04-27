@@ -1,13 +1,13 @@
 /* eslint-disable react/no-array-index-key, no-alert */
-import React, { /* useCallback */ } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from /* useCallback */
+'react';
 // import { useIntl, FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenDefinition } from '@micromag/core/contexts';
 // import { Button, CollapsablePanel } from '@micromag/core/components';
 import { Fields } from '@micromag/fields';
-import { useScreenDefinition } from '@micromag/core/contexts';
-
 import styles from '../../styles/forms/screen.module.scss';
 
 const propTypes = {
@@ -59,14 +59,16 @@ const ScreenForm = ({
             ])}
         >
             <div className={styles.inner}>
-                <Fields
-                    fields={fields}
-                    value={value}
-                    onChange={onChange}
-                    gotoFieldForm={gotoFieldForm}
-                    closeFieldForm={closeFieldForm}
-                />
-                { /* <CollapsablePanel
+                {fields !== null ? (
+                    <Fields
+                        fields={fields}
+                        value={value}
+                        onChange={onChange}
+                        gotoFieldForm={gotoFieldForm}
+                        closeFieldForm={closeFieldForm}
+                    />
+                ) : null}
+                {/* <CollapsablePanel
                     title={
                         <FormattedMessage
                             defaultMessage="Danger zone"
@@ -87,7 +89,7 @@ const ScreenForm = ({
                             description="Delete screen button"
                         />
                     </Button>
-                </CollapsablePanel> */ }
+                </CollapsablePanel> */}
             </div>
         </div>
     );

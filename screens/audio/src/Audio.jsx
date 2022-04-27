@@ -64,7 +64,7 @@ const AudioScreen = ({
 }) => {
     const trackScreenMedia = useTrackScreenMedia('audio');
 
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
@@ -305,6 +305,7 @@ const AudioScreen = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

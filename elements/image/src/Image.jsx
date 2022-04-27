@@ -12,6 +12,7 @@ const propTypes = {
     alt: PropTypes.string,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    resolution: PropTypes.number,
     objectFit: MicromagPropTypes.objectFit,
     containerStyle: MicromagPropTypes.containerStyle,
     imageStyle: MicromagPropTypes.containerStyle,
@@ -26,6 +27,7 @@ const defaultProps = {
     alt: null,
     width: null,
     height: null,
+    resolution: 1,
     objectFit: null,
     containerStyle: {}, //
     imageStyle: {},
@@ -40,6 +42,7 @@ const Image = ({
     alt,
     width,
     height,
+    resolution,
     objectFit,
     containerStyle,
     imageStyle,
@@ -174,7 +177,9 @@ const Image = ({
     };
 
     const { width: finalWidth = null, height: finalHeight = null } = finalImageStyle;
-    const finalUrl = getOptimalImageUrl(media, finalWidth, finalHeight);
+    const finalUrl = getOptimalImageUrl(media, finalWidth, finalHeight, {
+        resolution,
+    });
 
     return (
         <div

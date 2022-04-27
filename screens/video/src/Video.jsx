@@ -66,7 +66,7 @@ const VideoScreen = ({
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
 
-    const { width, height } = useScreenSize();
+    const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
@@ -314,8 +314,9 @@ const VideoScreen = ({
                                 url: thumbnailUrl,
                                 metadata: { width: videoWidth, height: videoHeight },
                             }}
-                            width="100%"
-                            height="100%"
+                            width={resizedVideoWidth}
+                            height={resizedVideoHeight}
+                            resolution={resolution}
                         />
                     ) : (
                         <Video
@@ -419,6 +420,7 @@ const VideoScreen = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

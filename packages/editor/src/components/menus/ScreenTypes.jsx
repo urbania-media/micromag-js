@@ -28,7 +28,8 @@ const defaultProps = {
 const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
     const intl = useIntl();
     const screensManager = useScreensManager();
-    const finalDefinitions = screens || screensManager.getDefinitions();
+    const screenDefinitions = screens || screensManager.getDefinitions();
+    const finalDefinitions = (screenDefinitions || []).filter((s) => s !== null);
     const groups = useMemo(() => {
         const groupItems = finalDefinitions.reduce((allGroups, definition) => {
             const { id, title, group = {} } = definition;

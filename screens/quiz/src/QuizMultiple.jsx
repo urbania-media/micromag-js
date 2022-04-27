@@ -103,7 +103,7 @@ const QuizMultipleScreen = ({
 }) => {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -315,6 +315,7 @@ const QuizMultipleScreen = ({
                             background={finalBackground}
                             width={width}
                             height={height}
+                            resolution={resolution}
                             playing={backgroundPlaying}
                             shouldLoad={backgroundShouldLoad}
                             className={styles.background}

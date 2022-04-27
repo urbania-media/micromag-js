@@ -2,6 +2,8 @@ import { match as matchMediaQuery } from 'css-mediaquery';
 import { useEffect, useMemo, useState } from 'react';
 import { useResizeObserver } from './useObserver';
 
+const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+
 const useScreenSize = ({
     width = null,
     height = null,
@@ -10,6 +12,7 @@ const useScreenSize = ({
     screens = [],
     mediaType = 'screen',
     media: providedMedia = null,
+    scale = null,
 }) => {
     const screenSize = useMemo(() => {
         const media =
@@ -26,6 +29,7 @@ const useScreenSize = ({
                 ({ mediaQuery = null }) =>
                     mediaQuery === null || matchMediaQuery(mediaQuery, media),
             );
+
         return {
             screen: matchingScreens.length > 0 ? matchingScreens[0].name : null,
             screens: [...matchingScreens].reverse().map(({ name }) => name),
@@ -33,6 +37,7 @@ const useScreenSize = ({
             height,
             landscape,
             menuOverScreen,
+            resolution: scale !== null ? scale * devicePixelRatio : devicePixelRatio,
         };
     }, [screens, providedMedia, mediaType, width, height, landscape, menuOverScreen]);
     return screenSize;
@@ -84,13 +89,14 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
         finalHeight -= 1;
     }
 
-    const scale = finalWidth / screenWidth;
+    const scale = finalWidth > 0 ? finalWidth / screenWidth : null;
 
     const screenSize = useScreenSize({
-        width: withoutScale ? finalWidth : screenWidth,
-        height: withoutScale ? finalHeight : finalHeight / scale,
+        width: withoutScale || scale === null ? finalWidth : screenWidth,
+        height: withoutScale || scale === null ? finalHeight : finalHeight / scale,
         landscape,
         menuOverScreen,
+        scale: !withoutScale ? scale : null,
         ...opts,
     });
 
@@ -98,6 +104,7 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
         ref,
         screenSize,
         scale: !withoutScale ? scale : null,
+        resolution: !withoutScale ? scale * devicePixelRatio : devicePixelRatio,
     };
 };
 

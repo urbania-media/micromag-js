@@ -92,7 +92,7 @@ const SurveyScreen = ({
 }) => {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
     const { create: submitQuiz } = useQuizCreate({
         screenId,
@@ -449,6 +449,7 @@ const SurveyScreen = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

@@ -54,7 +54,6 @@ const Editor = ({
     fullscreen,
     className,
 }) => {
-    // console.log('value', value);
 
     const push = useRoutePush();
     const refScreensContainer = useRef(null);
@@ -130,8 +129,6 @@ const Editor = ({
                 cnt.offsetTop + item.offsetTop + item.offsetHeight / 2 - screens.clientHeight / 2;
         }
     }, [screenId]);
-
-    // console.log('editor level value', value);
 
     return (
         <ModalsProvider>
