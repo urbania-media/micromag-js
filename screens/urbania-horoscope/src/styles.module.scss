@@ -79,11 +79,14 @@
         border-radius: 24px;
         background-color: #fffc00;
         box-shadow: 0 0 0 6px rgba(255, 250, 0, 0.6);
-        color: #000;
-        font-family: 'Agrandir Tight', sans-serif;
-        font-size: 22px;
-        font-weight: 700;
-        letter-spacing: 0.05rem;
+
+        .buttonLabel {
+            color: #000;
+            font-family: 'Agrandir Tight', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.05rem;
+        }
 
         &:hover {
             transform: scale(1.02);

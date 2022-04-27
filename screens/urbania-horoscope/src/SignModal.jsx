@@ -10,11 +10,11 @@ import {
     ScreenElement, // TransitionsStagger,
 } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
-import Background from '@micromag/element-background';
+// import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
-// import Heading from '@micromag/element-heading';
-import Layout from '@micromag/element-layout';
+import Heading from '@micromag/element-heading';
+// import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import styles from './sign-modal.module.scss';
@@ -47,7 +47,7 @@ const defaultProps = {
 };
 
 const SignModal = ({ width, height, background, backButton, sign, current, className }) => {
-    const { label, image, word } = sign;
+    const { label, image, date, word } = sign;
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -55,9 +55,11 @@ const SignModal = ({ width, height, background, backButton, sign, current, class
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
+    console.log(sign);
+
     const items = [
         <Button onClick={backButton} className={styles.backButton}>
-            <span className={styles.backArrow}>←</span> Back to the signs
+            <span className={styles.arrow}>←</span> Back to the signs
         </Button>,
         <ScreenElement>
             <h2 className={styles.signName}>
@@ -69,9 +71,9 @@ const SignModal = ({ width, height, background, backButton, sign, current, class
                 {/* <Heading className={styles.wordTitle} {...word} /> */}
                 Le mot de la semaine
             </h3>
-            <h2 className={styles.word}>ça va pas être jojo!</h2>
-            <Text className={styles.word} {...word} />
+            {/* <h2 className={styles.word}>ça va pas être jojo!</h2> */}
         </div>,
+
         <p className={styles.description}>
             On vous reproche parfois d’être une personne manipulatrice. Certes, vous avez vos torts.
             Mais vous souhaitez à tout prix évoluer. « Sincérité avant tout » est votre nouveau

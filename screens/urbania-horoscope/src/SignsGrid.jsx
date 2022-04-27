@@ -9,7 +9,19 @@ import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
 import SignModal from './SignModal';
+import Close from './icons/Close';
+import { background as horoscopeBackground } from './images';
 import styles from './signs-grid.module.scss';
+
+const defaultBackground = {
+    image: {
+        type: 'image',
+        url: horoscopeBackground,
+        width: 2161,
+        height: 3859,
+    },
+    color: '#000F66',
+};
 
 const propTypes = {
     signs: PropTypes.arrayOf(
@@ -33,7 +45,7 @@ const defaultProps = {
     signs: null,
     width: null,
     height: null,
-    background: { color: '#000F66', aplha: 1 },
+    background: null,
     closeButton: null,
     className: null,
 };
@@ -43,8 +55,6 @@ const SignsGrid = ({ signs, width, height, background, closeButton, className })
 
     const closeModal = () => setActiveSign({});
 
-    // MOVE THIS TO DEFAULT PROPS !!!!
-    const defaultBackground = { color: '#000F66', aplha: 1 };
     return (
         <div
             className={classNames([
@@ -56,8 +66,10 @@ const SignsGrid = ({ signs, width, height, background, closeButton, className })
         >
             <Background
                 background={background || defaultBackground}
-                width={width}
-                height={height}
+                // background={defaultBackground}
+                // width={width}
+                // height={height}
+                fit="contain"
                 // playing={backgroundPlaying}
                 // shouldLoad={backgroundShouldLoad}
             />
@@ -69,38 +81,43 @@ const SignsGrid = ({ signs, width, height, background, closeButton, className })
                     verticalAlign="middle"
                 >
                     <Button onClick={closeButton} className={styles.closeButton}>
-                        X
+                        <Close className={styles.closeX} />
                     </Button>
-                    <div className={styles.gridContainer}>
-                        {signs.map(({ id = null, image = null, label = null, date = null }) => (
-                            <Button
-                                className={styles.gridElement}
-                                type="button"
-                                onClick={() => setActiveSign({ id, image, label, date })}
-                            >
-                                {image ? (
-                                    <img className={styles.image} src={image.toString()} alt={id} />
-                                ) : null}
-                                <div className={styles.gridText}>
-                                    <h2 className={styles.signName}>
-                                        <FormattedMessage {...label} />
-                                    </h2>
-                                    <p className={styles.date}>
-                                        <FormattedMessage {...date} />
-                                    </p>
-                                </div>
-                            </Button>
-                        ))}
-                        {activeSign.id ? (
-                            <SignModal
-                                width={width}
-                                height={height}
-                                className={styles.signModal}
-                                backButton={closeModal}
-                                sign={activeSign}
-                            />
-                        ) : null}
-                    </div>
+                    {!activeSign.id ? (
+                        <div className={styles.gridContainer}>
+                            {signs.map(({ id = null, image = null, label = null, date = null }) => (
+                                <Button
+                                    className={styles.gridElement}
+                                    type="button"
+                                    onClick={() => setActiveSign({ id, image, label, date })}
+                                >
+                                    {image ? (
+                                        <img
+                                            className={styles.image}
+                                            src={image.toString()}
+                                            alt={id}
+                                        />
+                                    ) : null}
+                                    <div className={styles.gridText}>
+                                        <h2 className={styles.signName}>
+                                            <FormattedMessage {...label} />
+                                        </h2>
+                                        <p className={styles.date}>
+                                            <FormattedMessage {...date} />
+                                        </p>
+                                    </div>
+                                </Button>
+                            ))}
+                        </div>
+                    ) : (
+                        <SignModal
+                            width={width}
+                            height={height}
+                            className={styles.signModal}
+                            backButton={closeModal}
+                            sign={activeSign}
+                        />
+                    )}
                 </Layout>
             </Container>
         </div>

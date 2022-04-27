@@ -11,7 +11,7 @@ import {
     TransitionsStagger,
 } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-// import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -115,6 +115,7 @@ const Horoscope = ({
 
     const hasTitle = isTextFilled(title);
     const hasDescription = isTextFilled(description);
+    const hasButton = isTextFilled(button);
     // const hasAuthor = isTextFilled(author);
 
     const transitionPlaying = current;
@@ -141,7 +142,6 @@ const Horoscope = ({
                 ) : (
                     <img src={Astrologie} alt="" className={styles.titleImage} />
                 )}
-                {/* <Astrologie /> */}
             </ScreenElement>
             <ScreenElement
                 key="description"
@@ -177,9 +177,15 @@ const Horoscope = ({
             emptyClassName={styles.emptyText}
             isEmpty={!hasDescription}
         >
-            {!isPlaceholder && button ? (
-                <Button className={styles.button} type="button" separateBorder onClick={openPopup}>
-                    {button.body}
+            {!isPlaceholder && hasButton ? (
+                <Button
+                    className={styles.button}
+                    type="button"
+                    separateBorder
+                    onClick={openPopup}
+                    {...button}
+                >
+                    <Text className={styles.buttonLabel} {...button} inline />
                 </Button>
             ) : null}
         </ScreenElement>,

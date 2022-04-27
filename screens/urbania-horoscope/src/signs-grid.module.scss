@@ -10,16 +10,20 @@
 
     .closeButton {
         position: absolute;
-        // z-index: 3;
-        z-index: 1;
+        z-index: 3;
         top: 7px;
         right: 7px;
-        padding: auto;
+        width: 30px;
+        height: 30px;
+        padding: 0;
         border-radius: 50%;
         background-color: #fff;
         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85);
+    }
+
+    .closeX {
+        transform: scale(0.8);
         color: #000;
-        font-size: 12px;
     }
 
     .gridContainer {
