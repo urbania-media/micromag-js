@@ -105,13 +105,9 @@ const Horoscope = ({
         // image: signsImages[sign.id] ? signsImages[sign.id] : null,
     }));
 
-<<<<<<< HEAD
-    const { width, height, menuOverScreen } = useScreenSize();
-=======
     const trackScreenEvent = useTrackScreenEvent();
 
     const { width, height, menuOverScreen, resolution } = useScreenSize();
->>>>>>> bbcb5e74b786e9e5126e4a51994674e824ca7643
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -210,15 +206,6 @@ const Horoscope = ({
             ])}
             data-screen-ready
         >
-<<<<<<< HEAD
-            <Background
-                background={background}
-                width={width}
-                height={height}
-                playing={backgroundPlaying}
-                shouldLoad={backgroundShouldLoad}
-            />
-=======
             {!isPlaceholder ? (
                 <Background
                     background={background}
@@ -229,7 +216,6 @@ const Horoscope = ({
                     shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
->>>>>>> bbcb5e74b786e9e5126e4a51994674e824ca7643
             <Container width={width} height={height}>
                 <Scroll
                     disabled={scrollingDisabled}

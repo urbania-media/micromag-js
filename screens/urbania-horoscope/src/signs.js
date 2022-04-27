@@ -1,5 +1,4 @@
 import { defineMessage } from 'react-intl';
-import { description } from '../../../.storybook/data';
 import * as images from './images/index';
 
 export default [

@@ -37,7 +37,8 @@
         "assets"
     ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh"
+        "prepare": "../../scripts/prepare-package.sh",
+        "rollup": "../../node_modules/.bin/rollup --config ../../rollup.config.js"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0",
