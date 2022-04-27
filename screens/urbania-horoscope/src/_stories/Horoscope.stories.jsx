@@ -6,14 +6,13 @@ import {
     // title,
     imageMedia,
     backgroundVideo,
-    backgroundImage,
     transitions,
 } from '../../../../.storybook/data';
 import Horoscope from '../Horoscope';
 import definition from '../definition';
 
 const props = {
-    title: { body: 'Astrologie' },
+    // title: { body: 'Astrologie' },
     // description: text(),
     description: { body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?' },
 
@@ -22,11 +21,10 @@ const props = {
         avatar: imageMedia(),
     },
     button: {
-        label: 'Découvrir',
+        body: 'Découvrir',
     },
     signs: [],
     background: backgroundVideo(),
-    // popupBackground: backgroundImage(),
     // popupBackground: { color: '#000F66', aplha: 1 },
     transitions: transitions(),
 };

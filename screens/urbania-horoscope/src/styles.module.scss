@@ -29,17 +29,24 @@
         height: 50px;
     }
 
+    .headerContainer {
+        width: 300px;
+    }
+
     .title {
+        color: #0ff;
+        font-family: 'Agrandir Tight', sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        letter-spacing: -1px;
+        text-shadow: -3px -3px 0 #000f66;
+        text-transform: uppercase;
+        -webkit-text-stroke: 1px #000f66;
+    }
+
+    .titleImage {
         width: 100%;
         height: auto;
-        // color: #0ff;
-        // font-family: 'Agrandir Tight', sans-serif;
-        // font-size: 48px;
-        // font-weight: 700;
-        // letter-spacing: -1px;
-        // text-shadow: -3px -3px 0 #000f66;
-        // text-transform: uppercase;
-        // -webkit-text-stroke: 1px #000f66;
     }
 
     .titlePlaceholder {

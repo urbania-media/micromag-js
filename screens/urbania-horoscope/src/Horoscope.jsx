@@ -105,8 +105,6 @@ const Horoscope = ({
         // image: signsImages[sign.id] ? signsImages[sign.id] : null,
     }));
 
-    // console.log(signs);
-
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -115,6 +113,7 @@ const Horoscope = ({
 
     const hasTitle = isTextFilled(title);
     const hasDescription = isTextFilled(description);
+    // const hasAuthor = isTextFilled(author);
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
@@ -125,7 +124,6 @@ const Horoscope = ({
 
     // Create elements
     const items = [
-        // !isPlaceholder ? <Spacer key="spacer-cta-top" /> : null,
         <div className={styles.headerContainer}>
             <ScreenElement
                 key="title"
@@ -136,9 +134,12 @@ const Horoscope = ({
                 emptyClassName={styles.emptyText}
                 isEmpty={!hasTitle}
             >
-                <img src={Astrologie} alt="" className={styles.title} />
+                {hasTitle && title?.body.length > 0 ? (
+                    <Heading className={styles.title} {...title} />
+                ) : (
+                    <img src={Astrologie} alt="" className={styles.titleImage} />
+                )}
                 {/* <Astrologie /> */}
-                {/* <Heading className={styles.title} {...title} /> */}
             </ScreenElement>
             <ScreenElement
                 key="description"
@@ -151,9 +152,19 @@ const Horoscope = ({
             >
                 {hasDescription ? <Text className={styles.description} {...description} /> : null}
             </ScreenElement>
-            {!isPlaceholder && !isEdit ? (
-                <Author author={author} className={styles.author} />
-            ) : null}
+            <ScreenElement
+                key="author"
+                placeholder={<PlaceholderText className={styles.authorPlaceholder} />}
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Author" description="Author placeholder" />
+                }
+                emptyClassName={styles.emptyText}
+                isEmpty={!hasDescription}
+            >
+                {author && !isPlaceholder && !isEdit ? (
+                    <Author author={author} className={styles.author} />
+                ) : null}
+            </ScreenElement>
         </div>,
         <ScreenElement
             key="button"
@@ -164,20 +175,10 @@ const Horoscope = ({
             emptyClassName={styles.emptyText}
             isEmpty={!hasDescription}
         >
-            {!isPlaceholder ? (
-                <div className={styles.buttonContainer}>
-                    {button ? (
-                        <Button
-                            className={styles.button}
-                            type="button"
-                            separ
-                            ateBorder
-                            onClick={openPopup}
-                        >
-                            {button.label}
-                        </Button>
-                    ) : null}
-                </div>
+            {!isPlaceholder && button ? (
+                <Button className={styles.button} type="button" separateBorder onClick={openPopup}>
+                    {button.body}
+                </Button>
             ) : null}
         </ScreenElement>,
         hasPopup ? (
@@ -187,10 +188,9 @@ const Horoscope = ({
                 className={styles.signsGrid}
                 closeButton={closePopup}
                 background={popupBackground}
+                signs={signs}
             />
         ) : null,
-
-        // !isPlaceholder ? <Spacer key="spacer-cta-bottom" /> : null,
     ].filter((el) => el !== null);
 
     return (
