@@ -1,3 +1,4 @@
+import alias from '@rollup/plugin-alias';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import image from '@rollup/plugin-image';
@@ -7,8 +8,10 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import url from '@rollup/plugin-url';
 import path from 'path';
+import copy from 'rollup-plugin-copy';
 import postcss from 'rollup-plugin-postcss';
 import generateScopedName from './scripts/lib/generateScopedName';
+import imageAssets from './scripts/rollup-image-assets';
 
 export const createConfig = ({
     file = 'index.js',
@@ -44,6 +47,20 @@ export const createConfig = ({
         output: outputConfig,
         plugins: [
             ...prependPlugins,
+
+            imageAssets({
+                // limit: 0,
+                include: [
+                    'src/**/*.png',
+                    'src/**/*.svg',
+                    'src/**/*.jpg',
+                    'src/**/*.gif',
+                    'src/**/*.webp',
+                ],
+                emitFiles: true,
+                // sourceDir: 'src/images',
+                destDir: 'assets/images',
+            }),
             json(),
             resolve({
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
@@ -115,10 +132,11 @@ export const createConfig = ({
                     extract: !withoutPostCssExtract ? 'styles.css' : false,
                     inject: false,
                 }),
-            image({
-                // exclude: ['**/*.svg'],
-            }),
+            // image({
+            //     include: ['**/*.svg'],
+            // }),
             url({ include: ['**/*.mp4'] }),
+            // url({ include: ['**/*.svg'], limit: 0, destDir: 'assets/img' }),
             replace({
                 values: {
                     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),

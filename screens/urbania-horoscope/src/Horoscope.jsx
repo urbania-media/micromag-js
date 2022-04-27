@@ -11,7 +11,7 @@ import {
     TransitionsStagger,
 } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-// import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -105,7 +105,7 @@ const Horoscope = ({
         // image: signsImages[sign.id] ? signsImages[sign.id] : null,
     }));
 
-    // const trackScreenEvent = useTrackScreenEvent();
+    const trackScreenEvent = useTrackScreenEvent();
 
     const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
