@@ -55,6 +55,8 @@ const Button = ({
 }) => {
     let finalStyles = null;
     let borderStyles = null;
+    // eslint-disable-next-line no-unused-vars
+    const { body = null, ...otherProps } = buttonProps || {};
 
     if (textStyle !== null) {
         finalStyles = {
@@ -93,6 +95,8 @@ const Button = ({
         };
     }
 
+    console.log(finalStyles);
+
     const button = (
         <CoreButton
             className={classNames([
@@ -107,7 +111,7 @@ const Button = ({
             refButton={refButton}
             type={type}
             focusable={focusable}
-            {...buttonProps}
+            {...otherProps}
         >
             {children}
         </CoreButton>
