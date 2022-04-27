@@ -105,13 +105,9 @@ const Horoscope = ({
         // image: signsImages[sign.id] ? signsImages[sign.id] : null,
     }));
 
-<<<<<<< HEAD
-    const { width, height, menuOverScreen } = useScreenSize();
-=======
-    const trackScreenEvent = useTrackScreenEvent();
+    // const trackScreenEvent = useTrackScreenEvent();
 
     const { width, height, menuOverScreen, resolution } = useScreenSize();
->>>>>>> bbcb5e74b786e9e5126e4a51994674e824ca7643
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -119,6 +115,7 @@ const Horoscope = ({
 
     const hasTitle = isTextFilled(title);
     const hasDescription = isTextFilled(description);
+    const hasButton = isTextFilled(button);
     // const hasAuthor = isTextFilled(author);
 
     const transitionPlaying = current;
@@ -145,7 +142,6 @@ const Horoscope = ({
                 ) : (
                     <img src={Astrologie} alt="" className={styles.titleImage} />
                 )}
-                {/* <Astrologie /> */}
             </ScreenElement>
             <ScreenElement
                 key="description"
@@ -181,9 +177,15 @@ const Horoscope = ({
             emptyClassName={styles.emptyText}
             isEmpty={!hasDescription}
         >
-            {!isPlaceholder && button ? (
-                <Button className={styles.button} type="button" separateBorder onClick={openPopup}>
-                    {button.body}
+            {!isPlaceholder && hasButton ? (
+                <Button
+                    className={styles.button}
+                    type="button"
+                    separateBorder
+                    onClick={openPopup}
+                    {...button}
+                >
+                    <Text className={styles.buttonLabel} {...button} inline />
                 </Button>
             ) : null}
         </ScreenElement>,
@@ -210,15 +212,6 @@ const Horoscope = ({
             ])}
             data-screen-ready
         >
-<<<<<<< HEAD
-            <Background
-                background={background}
-                width={width}
-                height={height}
-                playing={backgroundPlaying}
-                shouldLoad={backgroundShouldLoad}
-            />
-=======
             {!isPlaceholder ? (
                 <Background
                     background={background}
@@ -229,7 +222,6 @@ const Horoscope = ({
                     shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
->>>>>>> bbcb5e74b786e9e5126e4a51994674e824ca7643
             <Container width={width} height={height}>
                 <Scroll
                     disabled={scrollingDisabled}

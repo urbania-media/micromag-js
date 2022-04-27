@@ -113,19 +113,6 @@ export default [
                     description: 'Background field label',
                 }),
             },
-<<<<<<< HEAD
-=======
-            {
-                name: 'callToAction',
-                type: 'call-to-action',
-                theme: {
-                    boxStyle: 'cta',
-                    label: {
-                        textStyle: 'cta',
-                    },
-                },
-            },
->>>>>>> bbcb5e74b786e9e5126e4a51994674e824ca7643
         ],
     },
 ];
