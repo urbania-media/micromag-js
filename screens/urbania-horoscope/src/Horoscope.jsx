@@ -219,15 +219,16 @@ const Horoscope = ({
             ])}
             data-screen-ready
         >
-            <Background
-                background={background}
-                width={width}
-                height={height}
-                resolution={resolution}
-                playing={backgroundPlaying}
-                shouldLoad={backgroundShouldLoad}
-            />
-
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
+                />
+            ) : null}
             <Container width={width} height={height}>
                 <Scroll disabled={scrollingDisabled} verticalAlign="middle">
                     <Layout

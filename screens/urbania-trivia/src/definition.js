@@ -21,9 +21,6 @@ export default {
         {
             name: 'title',
             type: 'heading-element',
-            theme: {
-                textStyle: 'heading1',
-            },
             label: defineMessage({
                 defaultMessage: 'Title',
                 description: 'Title field label',
@@ -60,14 +57,5 @@ export default {
                 description: 'Background field label',
             }),
         },
-        // {
-        //     name: 'callToAction',
-        //     type: 'call-to-action',
-        //     theme: {
-        //         label: {
-        //             textStyle: 'heading2',
-        //         },
-        //     },
-        // },
     ],
 };

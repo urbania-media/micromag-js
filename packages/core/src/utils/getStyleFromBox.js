@@ -33,11 +33,11 @@ const getStyleFromBox = (value) => {
         ...getStyleFromColor(backgroundColor, 'backgroundColor'),
         ...(borderRadius !== null ? { borderRadius } : null),
         ...getStyleFromBorder(border),
-        paddingTop,
-        paddingRight,
-        paddingBottom,
-        paddingLeft,
-        padding,
+        ...(padding !== null ? { padding } : null),
+        ...(paddingTop !== null ? { paddingTop } : null),
+        ...(paddingRight !== null ? { paddingRight } : null),
+        ...(paddingBottom !== null ? { paddingBottom } : null),
+        ...(paddingLeft !== null ? { paddingLeft } : null),
     };
 };
 
