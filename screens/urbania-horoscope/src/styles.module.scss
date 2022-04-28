@@ -95,8 +95,10 @@
 
     .signsGrid {
         position: absolute;
-        top: 0;
+        bottom: 0;
         left: 0;
+        // transform: translateY(0);
+        // transition: all 2s ease-in-out;
     }
 
     &.isPlaceholder {
@@ -104,4 +106,24 @@
             padding: 10px;
         }
     }
+}
+
+.enter {
+    z-index: 1;
+    transform: translateY(100%);
+    transition: transform 0.5s ease-out;
+}
+
+.enterActive {
+    transform: translateY(0);
+}
+
+.exit {
+    z-index: 2;
+    transform: translateY(0);
+    transition: transform 0.5s ease-out;
+}
+
+.exitActive {
+    transform: translateY(100%);
 }

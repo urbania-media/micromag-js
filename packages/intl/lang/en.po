@@ -1336,6 +1336,12 @@ msgctxt "cGItoy"
 msgid "List"
 msgstr "List"
 
+# Sign placeholder
+#: ceaRdq
+msgctxt "ceaRdq"
+msgid "Horoscope sign"
+msgstr "Horoscope sign"
+
 # Subtitle placeholder
 #: d60tSn
 msgctxt "d60tSn"

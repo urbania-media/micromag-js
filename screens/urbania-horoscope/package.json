@@ -62,6 +62,7 @@
         "@micromag/element-text": "^0.3.71",
         "@micromag/element-urbania-author": "^0.3.71",
         "@micromag/transforms": "^0.3.71",
+        "react-transition-group": "^4.4.2",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",

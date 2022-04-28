@@ -15,7 +15,7 @@ import text from '@micromag/screen-text';
 import timeline from '@micromag/screen-timeline';
 import title from '@micromag/screen-title';
 import urbaniaArticle from '@micromag/screen-urbania-article';
-// import urbaniaHoroscope from '@micromag/screen-urbania-horoscope';
+import urbaniaHoroscope from '@micromag/screen-urbania-horoscope';
 import urbaniaRecommendation from '@micromag/screen-urbania-recommendation';
 import urbaniaTrivia from '@micromag/screen-urbania-trivia';
 import video from '@micromag/screen-video';
@@ -42,6 +42,6 @@ manager.addDefinition(video360);
 manager.addDefinition(urbaniaArticle);
 manager.addDefinition(urbaniaTrivia);
 manager.addDefinition(urbaniaRecommendation);
-// manager.addDefinition(urbaniaHoroscope);
+manager.addDefinition(urbaniaHoroscope);
 
 export default manager;

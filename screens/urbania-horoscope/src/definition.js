@@ -54,6 +54,17 @@ export default [
                 }),
             },
             {
+                name: 'button',
+                type: 'button-element',
+                theme: {
+                    textStyle: 'button',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Button',
+                    description: 'Field label',
+                }),
+            },
+            {
                 name: 'signs',
                 component: 'items',
                 theme: {
@@ -95,14 +106,12 @@ export default [
                 },
             },
             {
-                name: 'button',
-                type: 'button-element',
-                theme: {
-                    textStyle: 'button',
-                },
+                name: 'signSubtitle',
+                type: 'heading-element',
+
                 label: defineMessage({
-                    defaultMessage: 'Button',
-                    description: 'Field label',
+                    defaultMessage: 'Sign Subtitle',
+                    description: 'Title field label',
                 }),
             },
             {

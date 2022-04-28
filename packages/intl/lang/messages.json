@@ -882,6 +882,10 @@
     "defaultMessage": "List",
     "description": "List screen group"
   },
+  "ceaRdq": {
+    "defaultMessage": "Horoscope sign",
+    "description": "Sign placeholder"
+  },
   "d60tSn": {
     "defaultMessage": "Subtitle",
     "description": "Subtitle placeholder"
