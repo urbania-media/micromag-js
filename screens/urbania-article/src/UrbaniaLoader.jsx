@@ -45,8 +45,6 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             image = {},
             callToAction = null,
         } = props || {};
-        const { body: titleBody = null } = title || {};
-        const { body: overTitleBody = null } = overTitle || {};
         const { url: imageUrl = null } = image || {};
 
         // Straight from article
@@ -73,26 +71,31 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                       .trim()
                 : null;
 
-        const hasSponsor = isTextFilled(sponsor);
+        const hasTitle = isTextFilled(title);
+        const hasOverTitle = isTextFilled(overTitle);
+        const hasSponsorProps = isTextFilled(sponsor);
 
         const sponsorPrefix =
-            !hasSponsor && defaultSponsor === null ? (
+            !hasSponsorProps && defaultSponsor !== null ? (
                 <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
             ) : null;
 
+        console.log('lol');
+
         return {
             type: defaultType,
-            title: titleBody !== null ? title : { ...title, body: articleTitle },
-            overTitle: overTitleBody !== null ? overTitle : { ...overTitle, body: 'En vedette' },
+            title: hasTitle ? title : { ...title, body: articleTitle },
+            overTitle: hasOverTitle ? overTitle : { ...overTitle, body: 'En vedette' },
             authors: authors.map(({ name = null, url: authorUrl = null, ...otherProps }) => ({
                 name: { body: `<p>${name}</p>` },
                 url: `${hostname}${authorUrl}`,
                 ...otherProps,
             })),
             author,
-            sponsor: !hasSponsor
-                ? { ...sponsor, body: `<strong>${defaultSponsor}</strong>` }
-                : sponsor,
+            sponsor:
+                defaultSponsor !== null && !hasSponsorProps
+                    ? { ...sponsor, body: `<strong>${defaultSponsor}</strong>` }
+                    : sponsor,
             sponsorPrefix,
             site,
             image:
