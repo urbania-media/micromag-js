@@ -3,18 +3,18 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     // PlaceholderText,
     // PlaceholderTitle,
-    ScreenElement, // TransitionsStagger,
+    ScreenElement,
 } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
-// import Background from '@micromag/element-background';
+import { isTextFilled } from '@micromag/core/utils';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
-// import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import styles from './sign-modal.module.scss';
@@ -32,6 +32,7 @@ const propTypes = {
         word: MicromagPropTypes.headingElement,
         description: MicromagPropTypes.textElement,
     }),
+    subtitle: MicromagPropTypes.headingElement,
     current: PropTypes.bool,
     className: PropTypes.string,
 };
@@ -42,49 +43,63 @@ const defaultProps = {
     background: null,
     backButton: null,
     sign: null,
+    subtitle: null,
     current: true,
     className: null,
 };
 
-const SignModal = ({ width, height, background, backButton, sign, current, className }) => {
-    const { label, image, date, word } = sign;
+const SignModal = ({
+    width,
+    height,
+    background,
+    backButton,
+    sign,
+    subtitle,
+    current,
+    className,
+}) => {
+    const { label = null, image = null, date = null, word = null, description = null } = sign;
+    const { body: wordBody = null } = word || {};
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
+    const hasWord = isTextFilled(word);
+    const hasSubtitle = isTextFilled(subtitle);
+
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
-    console.log(sign);
-
     const items = [
         <Button onClick={backButton} className={styles.backButton}>
-            <span className={styles.arrow}>←</span> Back to the signs
+            <span className={styles.arrow}>←</span>{' '}
+            <FormattedMessage
+                defaultMessage="Back to the Signs"
+                description="Horoscope Back Button"
+            />
         </Button>,
         <ScreenElement>
             <h2 className={styles.signName}>
                 <FormattedMessage {...label} />
             </h2>
         </ScreenElement>,
-        <div className={styles.wordContainer}>
-            <h3 className={styles.wordTitle}>
-                {/* <Heading className={styles.wordTitle} {...word} /> */}
-                Le mot de la semaine
-            </h3>
-            {/* <h2 className={styles.word}>ça va pas être jojo!</h2> */}
-        </div>,
-
-        <p className={styles.description}>
-            On vous reproche parfois d’être une personne manipulatrice. Certes, vous avez vos torts.
-            Mais vous souhaitez à tout prix évoluer. « Sincérité avant tout » est votre nouveau
-            mantra. <br /> <br />
-            L’année 2022 est le bon moment pour devenir moins serpent et plus humain. Commencez par
-            faire une vidéo d’excuses qui cartonnera sur Tiktok. Ça prouvera votre humilité, mais
-            aussi votre grande maîtrise des réseaux sociaux. On vous reproche parfois d’être une
-            personne manipulatrice. Certes, vous avez vos torts. Mais vous souhaitez à tout prix
-            évoluer. « Sincérité avant tout » est votre nouveau mantra.
-        </p>,
-        <img className={styles.image} src={image.toString()} alt="" />,
+        hasWord ? (
+            <div className={styles.wordContainer}>
+                {hasSubtitle ? (
+                    <Heading className={styles.wordTitle} {...subtitle} />
+                ) : (
+                    <h3 className={styles.wordTitle}>
+                        <FormattedMessage
+                            defaultMessage="Word of the Week"
+                            description="Horoscope Subtitle"
+                        />
+                    </h3>
+                )}
+                <Text className={styles.word} body={wordBody} />
+            </div>
+        ) : null,
+        description ? <Text className={styles.description} {...description} /> : null,
+        <img className={styles.image} src={image} alt="" />,
     ];
 
     return (
@@ -108,4 +123,4 @@ const SignModal = ({ width, height, background, backButton, sign, current, class
 SignModal.propTypes = propTypes;
 SignModal.defaultProps = defaultProps;
 
-export default React.memo(SignModal);
+export default SignModal;

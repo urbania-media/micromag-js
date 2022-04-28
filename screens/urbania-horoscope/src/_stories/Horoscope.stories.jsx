@@ -38,6 +38,7 @@ const props = {
                 description: 'Horoscope date',
             }),
             word: { body: 'FJFKSJDKFJ' },
+            description: { body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?' },
         },
         {
             id: 'taurus',
@@ -50,6 +51,10 @@ const props = {
                 defaultMessage: 'Apr 20 - May 20',
                 description: 'Horoscope date',
             }),
+            word: { body: "C'est le mot de la semaine" },
+            description: {
+                body: '<span>dflgk LFSKGJL lkjgdf lkSLFKJG Lklkdfjg SKLFJg <br/> <br/> <br/> <br/>dls;kfgj SKLDJF d;fklgj</span>',
+            },
         },
         {
             id: 'gemini',

@@ -3,15 +3,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
-    PlaceholderText,
-    PlaceholderTitle,
+    // PlaceholderText,
+    // PlaceholderTitle,
     ScreenElement,
     TransitionsStagger,
 } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -22,7 +22,6 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Author from '@micromag/element-urbania-author';
 import SignsGrid from './SignsGrid';
-// import signsImages from './images';
 import Astrologie from './images/astrologie-text.svg';
 import signsList from './signs';
 import styles from './styles.module.scss';
@@ -46,6 +45,7 @@ const propTypes = {
     description: MicromagPropTypes.textElement,
     author: MicromagPropTypes.authorElement,
     button: MicromagPropTypes.buttonElement,
+    signSubtitle: MicromagPropTypes.headingElement,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     popupBackground: MicromagPropTypes.backgroundElement,
@@ -63,6 +63,7 @@ const defaultProps = {
     description: null,
     author: null,
     button: null,
+    signSubtitle: null,
     spacing: 20,
     background: null,
     popupBackground: null,
@@ -80,6 +81,7 @@ const Horoscope = ({
     description,
     author,
     button,
+    signSubtitle,
     spacing,
     background,
     popupBackground,
@@ -89,7 +91,7 @@ const Horoscope = ({
     transitionStagger,
     className,
 }) => {
-    const [hasPopup, setHasPopup] = useState(true);
+    const [hasPopup, setHasPopup] = useState(false);
 
     const openPopup = useCallback(() => {
         setHasPopup(true);
@@ -102,10 +104,7 @@ const Horoscope = ({
     const signs = defaultSigns.map((sign, index) => ({
         ...sign,
         ...(signsValue !== null && signsValue[index] ? signsValue[index] || null : null),
-        // image: signsImages[sign.id] ? signsImages[sign.id] : null,
     }));
-
-    const trackScreenEvent = useTrackScreenEvent();
 
     const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
@@ -115,37 +114,38 @@ const Horoscope = ({
 
     const hasTitle = isTextFilled(title);
     const hasDescription = isTextFilled(description);
+    const hasAuthor = author !== null && isTextFilled(author.name);
     const hasButton = isTextFilled(button);
-    // const hasAuthor = isTextFilled(author);
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
+    const backgroundShouldLoad = !isPlaceholder && (current || active || !isView);
 
     // Create elements
     const items = [
         <div className={styles.headerContainer}>
+            {/* TITLE */}
             <ScreenElement
                 key="title"
-                placeholder={<PlaceholderTitle className={styles.titlePlaceholder} />}
                 emptyLabel={
                     <FormattedMessage defaultMessage="Title" description="Title placeholder" />
                 }
                 emptyClassName={styles.emptyText}
                 isEmpty={!hasTitle}
             >
-                {hasTitle && title?.body.length > 0 ? (
+                {hasTitle ? (
                     <Heading className={styles.title} {...title} />
                 ) : (
                     <img src={Astrologie} alt="" className={styles.titleImage} />
                 )}
             </ScreenElement>
+
+            {/* DESCRIPTION */}
             <ScreenElement
                 key="description"
-                placeholder={<PlaceholderText className={styles.descriptionPlaceholder} />}
                 emptyLabel={
                     <FormattedMessage defaultMessage="Description" description="Text placeholder" />
                 }
@@ -154,30 +154,32 @@ const Horoscope = ({
             >
                 {hasDescription ? <Text className={styles.description} {...description} /> : null}
             </ScreenElement>
+
+            {/* AUTHOR */}
             <ScreenElement
                 key="author"
-                placeholder={<PlaceholderText className={styles.authorPlaceholder} />}
                 emptyLabel={
                     <FormattedMessage defaultMessage="Author" description="Author placeholder" />
                 }
                 emptyClassName={styles.emptyText}
-                isEmpty={!hasDescription}
+                isEmpty={!hasAuthor}
             >
-                {author && !isPlaceholder && !isEdit ? (
+                {hasAuthor && !isPlaceholder ? (
                     <Author author={author} className={styles.author} />
                 ) : null}
             </ScreenElement>
         </div>,
+
+        // BUTTON
         <ScreenElement
             key="button"
-            placeholder={<PlaceholderText className={styles.buttonPlaceholder} />}
             emptyLabel={
                 <FormattedMessage defaultMessage="Button" description="Button placeholder" />
             }
             emptyClassName={styles.emptyText}
-            isEmpty={!hasDescription}
+            isEmpty={!hasButton}
         >
-            {!isPlaceholder && hasButton ? (
+            {hasButton ? (
                 <Button
                     className={styles.button}
                     type="button"
@@ -189,16 +191,21 @@ const Horoscope = ({
                 </Button>
             ) : null}
         </ScreenElement>,
-        hasPopup ? (
-            <SignsGrid
-                width={width}
-                height={height}
-                className={styles.signsGrid}
-                closeButton={closePopup}
-                background={popupBackground}
-                signs={signs}
-            />
-        ) : null,
+        <TransitionGroup>
+            {hasPopup || isPlaceholder ? (
+                <CSSTransition key="grid" classNames={styles} timeout={500}>
+                    <SignsGrid
+                        width={width}
+                        height={height}
+                        className={styles.signsGrid}
+                        closeButton={closePopup}
+                        background={popupBackground}
+                        signs={signs}
+                        signSubtitle={signSubtitle}
+                    />
+                </CSSTransition>
+            ) : null}
+        </TransitionGroup>,
     ].filter((el) => el !== null);
 
     return (
@@ -223,12 +230,7 @@ const Horoscope = ({
                 />
             ) : null}
             <Container width={width} height={height}>
-                <Scroll
-                    disabled={scrollingDisabled}
-                    // onScrolledBottom={onScrolledBottom}
-                    // onScrolledNotBottom={onScrolledNotBottom}
-                    verticalAlign="middle"
-                >
+                <Scroll disabled={scrollingDisabled} verticalAlign="middle">
                     <Layout
                         className={styles.layout}
                         style={
