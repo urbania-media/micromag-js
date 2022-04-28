@@ -85,8 +85,6 @@ const Field = ({
     };
     const FieldComponent = useFieldComponent(fieldComponent);
 
-    // console.log(fieldsManager, fieldComponent, FieldComponent); // ok
-
     const isFields = FieldComponent === FieldsComponent;
     const context = useFieldContext();
 

@@ -90,7 +90,7 @@ const ImageScreen = ({
         [imageFit, defaultImageFit],
     );
 
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
 
     const { menuSize } = useViewer();
 
@@ -167,6 +167,7 @@ const ImageScreen = ({
                             objectFit={finalImageFit}
                             width={imageWidth}
                             height={imageHeight}
+                            resolution={resolution}
                             playing={backgroundPlaying}
                             onLoaded={onImageLoaded}
                         />
@@ -302,6 +303,7 @@ const ImageScreen = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

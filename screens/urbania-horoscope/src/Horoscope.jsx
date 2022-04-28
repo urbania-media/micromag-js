@@ -107,7 +107,7 @@ const Horoscope = ({
 
     // console.log(signs);
 
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -204,13 +204,16 @@ const Horoscope = ({
             ])}
             data-screen-ready
         >
-            <Background
-                background={background}
-                width={width}
-                height={height}
-                playing={backgroundPlaying}
-                shouldLoad={backgroundShouldLoad}
-            />
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
+                />
+            ) : null}
             <Container width={width} height={height}>
                 <Scroll
                     disabled={scrollingDisabled}

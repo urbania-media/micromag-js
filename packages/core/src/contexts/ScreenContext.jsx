@@ -16,10 +16,12 @@ export const useScreen = () => useContext(ScreenContext);
 
 export const useScreenDefinition = () => {
     const intl = useIntl();
-    const { definition } = useScreen() || {};
-    const { fields } = definition || {};
-    const finalFields = useMemo(() => [...fields, getScreenExtraField(intl)], [fields]);
-
+    const { definition = null } = useScreen() || {};
+    const { fields = null } = definition || {};
+    const finalFields = useMemo(
+        () => (fields !== null ? [...fields, getScreenExtraField(intl)] : null),
+        [fields],
+    );
     return { ...definition, fields: finalFields };
 };
 
@@ -52,7 +54,7 @@ export const useScreenRenderContext = () => {
 export const useScreenState = () => {
     const { screenState } = useScreen() || {};
     return screenState;
-}
+};
 
 const propTypes = {
     children: PropTypes.node.isRequired,

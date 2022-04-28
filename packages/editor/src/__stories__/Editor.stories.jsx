@@ -126,7 +126,7 @@ export const Test = () => (
             components: [
                 {
                     id: '1cb8a4be-5c1a-11eb-985f-ad6fce99d848',
-                    type: 'urbania-article',
+                    type: 'urbania-recommendation',
                     url: 'https://urbania.ca.test:8081/article/prendre-le-large-dans-le-bas-st-laurent',
                     title: {
                         body: 'ARTICLE',

@@ -80,7 +80,7 @@ const Timeline = ({
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -187,6 +187,7 @@ const Timeline = ({
                                                     videoClassName={styles.video}
                                                     media={image}
                                                     width={imageWidth}
+                                                    resolution={resolution}
                                                     playing={backgroundPlaying}
                                                     onLoaded={onImageLoaded}
                                                 />
@@ -339,6 +340,7 @@ const Timeline = ({
                     background={background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />

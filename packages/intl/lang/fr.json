@@ -335,6 +335,9 @@
     "GMCLhn": {
         "defaultMessage": "Case"
     },
+    "GPqjnH": {
+        "defaultMessage": "Gauche"
+    },
     "GRVidW": {
         "defaultMessage": "Vidéo 360"
     },
@@ -364,6 +367,12 @@
     },
     "ICXTfR": {
         "defaultMessage": "Liens"
+    },
+    "J6cnbt": {
+        "defaultMessage": "Signes"
+    },
+    "J9e9Qb": {
+        "defaultMessage": "Vidéo"
     },
     "JAguka": {
         "defaultMessage": "Votre message"
@@ -445,6 +454,9 @@
     },
     "P1dwGU": {
         "defaultMessage": "Titre avec sous-titre"
+    },
+    "PFNMAQ": {
+        "defaultMessage": "Bas"
     },
     "PKCv5M": {
         "defaultMessage": "Aucun item..."
@@ -707,6 +719,9 @@
     "fVqgfl": {
         "defaultMessage": "[sans titre]"
     },
+    "fbiNiR": {
+        "defaultMessage": "Choisir une taille..."
+    },
     "fusnxf": {
         "defaultMessage": "Carré"
     },
@@ -770,6 +785,9 @@
     "kBz8vF": {
         "defaultMessage": "Nom"
     },
+    "kf/5Tw": {
+        "defaultMessage": "Droite"
+    },
     "l/Y6or": {
         "defaultMessage": "Ajouter une entrée"
     },
@@ -812,6 +830,9 @@
     "n8zmLY": {
         "defaultMessage": "Aller au prochain écran à la fin de la vidéo"
     },
+    "n9LoBJ": {
+        "defaultMessage": "Haut"
+    },
     "nXVNeg": {
         "defaultMessage": "Nom"
     },
@@ -845,6 +866,9 @@
     "p85qJD": {
         "defaultMessage": "Légende"
     },
+    "pE7UhY": {
+        "defaultMessage": "Article"
+    },
     "pJgYyE": {
         "defaultMessage": "Lecture automatique"
     },
@@ -853,6 +877,9 @@
     },
     "pfvDzR": {
         "defaultMessage": "Ajouté par"
+    },
+    "ppq6CK": {
+        "defaultMessage": "Type"
     },
     "ptJkUl": {
         "defaultMessage": "Droite"

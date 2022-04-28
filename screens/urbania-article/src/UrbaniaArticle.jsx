@@ -90,7 +90,7 @@ const UrbaniaArticle = ({
     spacing,
     className,
 }) => {
-    const { width, height } = useScreenSize();
+    const { width, height, resolution } = useScreenSize();
     const {
         ref: contentRef,
         entry: { contentRect },
@@ -230,6 +230,7 @@ const UrbaniaArticle = ({
                 background={background}
                 width={width}
                 height={height}
+                resolution={resolution}
                 playing={backgroundPlaying}
                 shouldLoad={backgroundShouldLoad}
             />
@@ -273,6 +274,7 @@ const UrbaniaArticle = ({
                                     media={image}
                                     width={width}
                                     height={imageHeight}
+                                    resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
                                 />
                             ) : null}
@@ -282,6 +284,7 @@ const UrbaniaArticle = ({
                                     media={image}
                                     width={width}
                                     height={height}
+                                    resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
                                 />
                             ) : null}

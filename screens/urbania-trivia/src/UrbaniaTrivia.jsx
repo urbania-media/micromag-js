@@ -102,7 +102,7 @@ const UrbaniaTrivia = ({
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
 
-    const { width, height } = useScreenSize();
+    const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
@@ -407,8 +407,9 @@ const UrbaniaTrivia = ({
                                     url: thumbnailUrl,
                                     metadata: { width: videoWidth, height: videoHeight },
                                 }}
-                                width="100%"
-                                height="100%"
+                                width={Math.min(width, resizedVideoWidth)}
+                                height={resizedVideoHeight}
+                                resolution={resolution}
                             />
                         ) : (
                             <Video
@@ -526,6 +527,7 @@ const UrbaniaTrivia = ({
                     ])}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />
@@ -535,6 +537,7 @@ const UrbaniaTrivia = ({
                     className={styles.background}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     styles={{ backgroundColor: 'red' }}
                 />
             )}

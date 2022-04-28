@@ -12,6 +12,7 @@ const propTypes = {
     media: MicromagPropTypes.media,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    resolution: PropTypes.number,
     objectFit: MicromagPropTypes.objectFit,
     playing: PropTypes.bool,
     videoLoop: PropTypes.bool,
@@ -25,6 +26,7 @@ const defaultProps = {
     media: null,
     width: null,
     height: null,
+    resolution: 1,
     objectFit: null,
     playing: true,
     videoLoop: true,
@@ -38,6 +40,7 @@ const Visual = ({
     media,
     width,
     height,
+    resolution,
     objectFit,
     playing,
     videoLoop,
@@ -92,6 +95,7 @@ const Visual = ({
                     objectFit={objectFit}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     onLoaded={onLoaded}
                     className={classNames([styles.container, { [className]: className !== null }])}
                 />

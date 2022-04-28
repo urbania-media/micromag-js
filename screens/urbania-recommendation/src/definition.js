@@ -22,9 +22,6 @@ export default [
             {
                 name: 'category',
                 type: 'heading-element',
-                theme: {
-                    textStyle: 'heading1',
-                },
                 label: defineMessage({
                     defaultMessage: 'Category',
                     description: 'Title field label',
@@ -33,9 +30,6 @@ export default [
             {
                 name: 'date',
                 type: 'text-element',
-                theme: {
-                    textStyle: 'text',
-                },
                 label: defineMessage({
                     defaultMessage: 'Date',
                     description: 'Text field label',
@@ -44,9 +38,6 @@ export default [
             {
                 name: 'title',
                 type: 'heading-element',
-                theme: {
-                    textStyle: 'heading1',
-                },
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -55,9 +46,6 @@ export default [
             {
                 name: 'sponsor',
                 type: 'text-element',
-                theme: {
-                    textStyle: 'text',
-                },
                 label: defineMessage({
                     defaultMessage: 'Sponsor',
                     description: 'Text field label',
@@ -87,8 +75,9 @@ export default [
                 type: 'call-to-action',
                 theme: {
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
+                    boxStyle: 'cta',
                 },
             },
         ],

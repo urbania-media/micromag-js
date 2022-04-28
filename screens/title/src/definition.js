@@ -1,5 +1,4 @@
 import { defineMessage } from 'react-intl';
-
 import TitleScreen from './Title';
 import TitleSubtitleScreen from './TitleSubtitle';
 import TitleSubtitleCreditsScreen from './TitleSubtitleCredits';
@@ -57,8 +56,9 @@ export default [
                 name: 'callToAction',
                 type: 'call-to-action',
                 theme: {
+                    boxStyle: 'cta',
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
                 },
             },
@@ -125,8 +125,9 @@ export default [
                 name: 'callToAction',
                 type: 'call-to-action',
                 theme: {
+                    boxStyle: 'cta',
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
                 },
             },
@@ -204,8 +205,9 @@ export default [
                 name: 'callToAction',
                 type: 'call-to-action',
                 theme: {
+                    boxStyle: 'cta',
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
                 },
             },
@@ -285,9 +287,9 @@ export default [
                         label: defineMessage({
                             defaultMessage: 'Box',
                             description: 'Field label',
-                        })
+                        }),
                     },
-                ]
+                ],
             },
             {
                 name: 'background',
@@ -301,8 +303,9 @@ export default [
                 name: 'callToAction',
                 type: 'call-to-action',
                 theme: {
+                    boxStyle: 'cta',
                     label: {
-                        textStyle: 'heading2',
+                        textStyle: 'cta',
                     },
                 },
             },

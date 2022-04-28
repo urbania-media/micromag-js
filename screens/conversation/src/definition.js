@@ -1,5 +1,4 @@
 import { defineMessage } from 'react-intl';
-
 import ConversationScreen from './Conversation';
 
 export default {
@@ -82,8 +81,9 @@ export default {
             name: 'callToAction',
             type: 'call-to-action',
             theme: {
+                boxStyle: 'cta',
                 label: {
-                    textStyle: 'heading2',
+                    textStyle: 'cta',
                 },
             },
         },

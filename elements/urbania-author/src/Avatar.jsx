@@ -10,6 +10,7 @@ const propTypes = {
     image: MicromagPropTypes.imageElement,
     width: PropTypes.number,
     height: PropTypes.number,
+    resolution: PropTypes.number,
     isTag: PropTypes.bool,
     shape: PropTypes.oneOf([null, 'tag', 'circle']),
     className: PropTypes.string,
@@ -19,13 +20,14 @@ const defaultProps = {
     image: null,
     width: 100,
     height: 100,
+    resolution: 1,
     isTag: false,
     shape: 'Circle',
     className: null,
 };
 
-const Avatar = ({ image, width, height, shape, isTag, className }) => {
-    const imageAtSize = getOptimalImageUrl(image, width, height);
+const Avatar = ({ image, width, height, resolution, shape, isTag, className }) => {
+    const imageAtSize = getOptimalImageUrl(image, width, height, { resolution });
 
     return (
         <span

@@ -58,19 +58,39 @@ export const defaultTheme = {
         },
     },
     boxStyles: {
+        // cta: {
+        //     borderColor: {
+        //         alpha: 0.5,
+        //         color: '#f5ff00',
+        //     },
+        //     borderStyle: 'solid',
+        //     padding: '5 10',
+        //     backgroundColor: {
+        //         color: '#fcff00',
+        //         alpha: 1,
+        //     },
+        //     borderWidth: 5,
+        //     borderRadius: 30,
+        // }
         cta: {
+            // padding: '5 10',
+            padding: {
+                top: 5,
+                right: 10,
+                left: 10,
+                bottom: 5,
+            },
             borderColor: {
-                alpha: 0.5,
-                color: '#f5ff00',
+                color: '#fffc00',
+                alpha: 0.44,
             },
             borderStyle: 'solid',
-            padding: '5 10',
+            borderWidth: 5,
             backgroundColor: {
-                color: '#fcff00',
+                color: '#fffc00',
                 alpha: 1,
             },
-            borderWidth: 5,
-            borderRadius: 30,
+            borderRadius: 40,
         },
     },
     components: [

@@ -103,7 +103,7 @@ function MapScreen({
     const hasSelectedMarker = selectedMarkerIndex !== null;
     const lastRenderedMarker = useRef(null);
 
-    const { width, height } = useScreenSize();
+    const { width, height, resolution } = useScreenSize();
 
     const { color: backgroundColor } = background || {};
     const markerOverlayContentStyle = getStyleFromColor(backgroundColor);
@@ -338,6 +338,7 @@ function MapScreen({
                     color={{ color: '#FFFFFF', alpha: 1 }}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />
@@ -367,6 +368,7 @@ function MapScreen({
                                 }
                                 width={width}
                                 height={height}
+                                resolution={resolution}
                                 objectFit={{ fit: 'cover' }}
                             />
                         ) : (
@@ -419,6 +421,7 @@ function MapScreen({
                                                         className={styles.markerImage}
                                                         media={markerImage}
                                                         width={markerOverContentInnerWidth}
+                                                        resolution={resolution}
                                                     />
                                                 ) : null}
                                                 {hasMarkerTitle ? (

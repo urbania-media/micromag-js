@@ -74,7 +74,7 @@ const Recommendation = ({
 }) => {
     const trackScreenEvent = useTrackScreenEvent();
 
-    const { width, height, menuOverScreen } = useScreenSize();
+    const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -315,6 +315,7 @@ const Recommendation = ({
                     background={finalBackground}
                     width={width}
                     height={height}
+                    resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                     backgroundClassName={finalAnimateBackground ? styles.background : null}

@@ -55,9 +55,6 @@ export default {
         {
             name: 'overTitle',
             type: 'heading-element',
-            theme: {
-                textStyle: 'heading2',
-            },
             defaultValue: { body: 'En vedette' },
             label: defineMessage({
                 defaultMessage: 'Overtitle',
@@ -67,9 +64,6 @@ export default {
         {
             name: 'title',
             type: 'heading-element',
-            theme: {
-                textStyle: 'heading1',
-            },
             label: defineMessage({
                 defaultMessage: 'Title',
                 description: 'Title field label',
@@ -78,9 +72,6 @@ export default {
         {
             name: 'author',
             type: 'author-element',
-            theme: {
-                textStyle: 'text',
-            },
             label: defineMessage({
                 defaultMessage: 'Author',
                 description: 'Author field label',

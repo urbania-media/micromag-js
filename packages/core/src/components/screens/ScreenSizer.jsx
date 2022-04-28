@@ -8,6 +8,8 @@ import { ScreenSizeProvider } from '../../contexts';
 import { useResizeObserver } from '../../hooks';
 import styles from '../../styles/screens/screen-sizer.module.scss';
 
+const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
@@ -39,6 +41,7 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
     const {
         width: frameWidth = null,
         height: frameHeight = null,
+        scale: frameScale = null,
         transform: screenTransform = null,
     } = useMemo(() => {
         const containerWidth = width || calculatedWidth || null;
@@ -58,6 +61,7 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
             return {
                 width: finalContainerWidth,
                 height: finalContainerHeight,
+                scale: screenScale,
                 transform: `scale(${screenScale})`,
             };
         }
@@ -82,6 +86,7 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
         return {
             width: finalContainerWidth,
             height: finalContainerHeight,
+            scale: screenScale,
             transform: `scale(${screenScale}) translate(${x}px, ${y}px)`,
         };
     }, [screenWidth, screenHeight, width, height, fit, calculatedWidth, calculatedHeight, hasSize]);
@@ -92,8 +97,9 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
             screens: ['mobile'],
             width: screenWidth,
             height: screenHeight,
+            resolution: frameScale !== null ? frameScale * devicePixelRatio : devicePixelRatio,
         }),
-        [screenWidth, screenHeight],
+        [screenWidth, screenHeight, frameScale],
     );
 
     const hasFrameSize = frameWidth !== null && frameHeight !== null;
