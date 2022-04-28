@@ -66,7 +66,6 @@ const SignModal = ({
 
     const hasWord = isTextFilled(word);
     const hasSubtitle = isTextFilled(subtitle);
-    console.log(hasSubtitle);
 
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
