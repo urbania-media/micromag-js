@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-article",
-    "version": "0.3.75",
+    "version": "0.3.76",
     "description": "",
     "keywords": [
         "javascript"
@@ -53,13 +53,13 @@
         "@folklore/size": "^0.1.20",
         "@micromag/core": "^0.3.74",
         "@micromag/element-background": "^0.3.74",
-        "@micromag/element-call-to-action": "^0.3.74",
+        "@micromag/element-call-to-action": "^0.3.76",
         "@micromag/element-closed-captions": "^0.3.74",
         "@micromag/element-container": "^0.3.74",
         "@micromag/element-heading": "^0.3.74",
         "@micromag/element-image": "^0.3.74",
         "@micromag/element-media-controls": "^0.3.74",
-        "@micromag/element-urbania-author": "^0.3.74",
+        "@micromag/element-urbania-author": "^0.3.76",
         "@micromag/element-video": "^0.3.74",
         "@micromag/element-visual": "^0.3.74",
         "@micromag/transforms": "^0.3.74",
