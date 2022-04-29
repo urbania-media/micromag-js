@@ -35,6 +35,10 @@
     "defaultMessage": "Circle",
     "description": "Circle label"
   },
+  "+vzDdb": {
+    "defaultMessage": "Word of the Week",
+    "description": "Horoscope Subtitle"
+  },
   "/62oe4": {
     "defaultMessage": "My files",
     "description": "Media gallery source"
@@ -615,6 +619,10 @@
     "defaultMessage": "Type",
     "description": "Type Label in Media Gallery"
   },
+  "Om6Dis": {
+    "defaultMessage": "Sign Subtitle",
+    "description": "Title field label"
+  },
   "Op1ZIp": {
     "defaultMessage": "Jan 21 - Feb 18",
     "description": "Horoscope date"
@@ -1077,6 +1085,10 @@
   "kBz8vF": {
     "defaultMessage": "Name",
     "description": "Name in Media Gallery"
+  },
+  "keK5s0": {
+    "defaultMessage": "Back to the Signs",
+    "description": "Horoscope Back Button"
   },
   "kf/5Tw": {
     "defaultMessage": "Right",

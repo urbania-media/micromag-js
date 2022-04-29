@@ -65,6 +65,12 @@ msgctxt "+uInZz"
 msgid "Circle"
 msgstr "Cercle"
 
+# Horoscope Subtitle
+#: +vzDdb
+msgctxt "+vzDdb"
+msgid "Word of the Week"
+msgstr ""
+
 # Media gallery source
 #: /62oe4
 msgctxt "/62oe4"
@@ -935,6 +941,12 @@ msgctxt "OkNUmk"
 msgid "Type"
 msgstr "Type"
 
+# Title field label
+#: Om6Dis
+msgctxt "Om6Dis"
+msgid "Sign Subtitle"
+msgstr ""
+
 # Horoscope date
 #: Op1ZIp
 msgctxt "Op1ZIp"
@@ -1629,6 +1641,12 @@ msgstr "Style du texte"
 msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Nom"
+
+# Horoscope Back Button
+#: keK5s0
+msgctxt "keK5s0"
+msgid "Back to the Signs"
+msgstr ""
 
 # Direction
 #: kf/5Tw
