@@ -74,9 +74,6 @@
     "17BMn2": {
         "defaultMessage": "Ranking"
     },
-    "18XpuL": {
-        "defaultMessage": "Urbania recommendation screen"
-    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -218,9 +215,6 @@
     "8EI08h": {
         "defaultMessage": "With play/pause button"
     },
-    "8bYfFG": {
-        "defaultMessage": "Urbania horoscope screen"
-    },
     "8oczXQ": {
         "defaultMessage": "Add a marker"
     },
@@ -253,6 +247,9 @@
     },
     "AA8TV9": {
         "defaultMessage": "Image with title"
+    },
+    "ACSasN": {
+        "defaultMessage": "URL"
     },
     "ACkeH6": {
         "defaultMessage": "Quiz with multiple questions"
@@ -334,6 +331,9 @@
     },
     "F2SD/0": {
         "defaultMessage": "Loop"
+    },
+    "F59wsl": {
+        "defaultMessage": "Urbania horoscope"
     },
     "FJygXH": {
         "defaultMessage": "Result"
@@ -464,14 +464,8 @@
     "OkNUmk": {
         "defaultMessage": "Type"
     },
-    "Om6Dis": {
-        "defaultMessage": "Sign Subtitle"
-    },
     "Op1ZIp": {
         "defaultMessage": "Jan 21 - Feb 18"
-    },
-    "Oqks/j": {
-        "defaultMessage": "Urbania article screen"
     },
     "P1dwGU": {
         "defaultMessage": "Title with subtitle"
@@ -496,6 +490,9 @@
     },
     "QSmRdP": {
         "defaultMessage": "Add an image"
+    },
+    "Qe03Xz": {
+        "defaultMessage": "Sign Subtitle"
     },
     "QfpTKK": {
         "defaultMessage": "Select a screen..."
@@ -707,9 +704,6 @@
     "e6+aGf": {
         "defaultMessage": "Select a media..."
     },
-    "eA6lME": {
-        "defaultMessage": "Urbania trivia screen"
-    },
     "eBFxNl": {
         "defaultMessage": "Call to Action"
     },
@@ -866,6 +860,9 @@
     "n9LoBJ": {
         "defaultMessage": "Top"
     },
+    "nJgzwC": {
+        "defaultMessage": "Urbania article"
+    },
     "nXVNeg": {
         "defaultMessage": "Name"
     },
@@ -964,6 +961,9 @@
     },
     "sESmah": {
         "defaultMessage": "Entries"
+    },
+    "sUP5BO": {
+        "defaultMessage": "Urbania recommendation"
     },
     "sUR1xV": {
         "defaultMessage": "Author"
@@ -1105,6 +1105,9 @@
     },
     "zDH24s": {
         "defaultMessage": "Latitude"
+    },
+    "zDdDqI": {
+        "defaultMessage": "Urbania trivia"
     },
     "zGIcdn": {
         "defaultMessage": "Sponsors"

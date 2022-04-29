@@ -161,12 +161,6 @@ msgctxt "17BMn2"
 msgid "Ranking"
 msgstr "Ranking"
 
-# Urbania screen title
-#: 18XpuL
-msgctxt "18XpuL"
-msgid "Urbania recommendation screen"
-msgstr "Urbania recommendation screen"
-
 # Item label in items field
 #: 2/F1Q7
 msgctxt "2/F1Q7"
@@ -449,12 +443,6 @@ msgctxt "8EI08h"
 msgid "With play/pause button"
 msgstr "With play/pause button"
 
-# Urbania screen title
-#: 8bYfFG
-msgctxt "8bYfFG"
-msgid "Urbania horoscope screen"
-msgstr "Urbania horoscope screen"
-
 # Button label
 #: 8oczXQ
 msgctxt "8oczXQ"
@@ -520,6 +508,12 @@ msgstr "Draggable"
 msgctxt "AA8TV9"
 msgid "Image with title"
 msgstr "Image with title"
+
+# Field label
+#: ACSasN
+msgctxt "ACSasN"
+msgid "URL"
+msgstr "URL"
 
 # Screen title
 #: ACkeH6
@@ -682,6 +676,12 @@ msgstr "Sept 23 - Oct 22"
 msgctxt "F2SD/0"
 msgid "Loop"
 msgstr "Loop"
+
+# Urbania screen title
+#: F59wsl
+msgctxt "F59wsl"
+msgid "Urbania horoscope"
+msgstr "Urbania horoscope"
 
 # Field label
 #: FJygXH
@@ -941,23 +941,11 @@ msgctxt "OkNUmk"
 msgid "Type"
 msgstr "Type"
 
-# Title field label
-#: Om6Dis
-msgctxt "Om6Dis"
-msgid "Sign Subtitle"
-msgstr "Sign Subtitle"
-
 # Horoscope date
 #: Op1ZIp
 msgctxt "Op1ZIp"
 msgid "Jan 21 - Feb 18"
 msgstr "Jan 21 - Feb 18"
-
-# Urbania screen title
-#: Oqks/j
-msgctxt "Oqks/j"
-msgid "Urbania article screen"
-msgstr "Urbania article screen"
 
 # TitleSubtitle screen title
 #: P1dwGU
@@ -1006,6 +994,12 @@ msgstr "Videos"
 msgctxt "QSmRdP"
 msgid "Add an image"
 msgstr "Add an image"
+
+# Heading field label
+#: Qe03Xz
+msgctxt "Qe03Xz"
+msgid "Sign Subtitle"
+msgstr "Sign Subtitle"
 
 #: QfpTKK
 msgctxt "QfpTKK"
@@ -1426,12 +1420,6 @@ msgctxt "e6+aGf"
 msgid "Select a media..."
 msgstr "Select a media..."
 
-# Urbania screen title
-#: eA6lME
-msgctxt "eA6lME"
-msgid "Urbania trivia screen"
-msgstr "Urbania trivia screen"
-
 # Field label
 #: eBFxNl
 msgctxt "eBFxNl"
@@ -1742,6 +1730,12 @@ msgctxt "n9LoBJ"
 msgid "Top"
 msgstr "Top"
 
+# Urbania screen title
+#: nJgzwC
+msgctxt "nJgzwC"
+msgid "Urbania article"
+msgstr "Urbania article"
+
 # Name field label
 #: nXVNeg
 msgctxt "nXVNeg"
@@ -1939,6 +1933,12 @@ msgstr "Speaker"
 msgctxt "sESmah"
 msgid "Entries"
 msgstr "Entries"
+
+# Urbania screen title
+#: sUP5BO
+msgctxt "sUP5BO"
+msgid "Urbania recommendation"
+msgstr "Urbania recommendation"
 
 # Label in Media Gallery
 #: sUR1xV
@@ -2221,6 +2221,12 @@ msgstr "Text"
 msgctxt "zDH24s"
 msgid "Latitude"
 msgstr "Latitude"
+
+# Urbania screen title
+#: zDdDqI
+msgctxt "zDdDqI"
+msgid "Urbania trivia"
+msgstr "Urbania trivia"
 
 # Sponsors placeholder
 #: zGIcdn

@@ -26,6 +26,9 @@
     "+uInZz": {
         "defaultMessage": "Cercle"
     },
+    "+vzDdb": {
+        "defaultMessage": "Le mot de la semaine"
+    },
     "/62oe4": {
         "defaultMessage": "Mes fichiers"
     },
@@ -59,6 +62,9 @@
     "12wlTR": {
         "defaultMessage": "Signe"
     },
+    "142Fjj": {
+        "defaultMessage": "21 mai au 20 juin"
+    },
     "15GBmG": {
         "defaultMessage": "Tout"
     },
@@ -67,9 +73,6 @@
     },
     "17BMn2": {
         "defaultMessage": "Classement"
-    },
-    "18XpuL": {
-        "defaultMessage": "Écran de recommandation Urbania"
     },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
@@ -188,6 +191,9 @@
     "7YE/VU": {
         "defaultMessage": "Présentateur"
     },
+    "7ZzlUE": {
+        "defaultMessage": "23 oct au 22 nov"
+    },
     "7mMPO4": {
         "defaultMessage": "Sagittaire"
     },
@@ -208,9 +214,6 @@
     },
     "8EI08h": {
         "defaultMessage": "Avec bouton de lecture"
-    },
-    "8bYfFG": {
-        "defaultMessage": "Écran Urbania Horoscope"
     },
     "8oczXQ": {
         "defaultMessage": "Ajouter un marqueur"
@@ -244,6 +247,9 @@
     },
     "AA8TV9": {
         "defaultMessage": "Image avec titre"
+    },
+    "ACSasN": {
+        "defaultMessage": "URL"
     },
     "ACkeH6": {
         "defaultMessage": "Quiz avec plusieurs questions"
@@ -314,11 +320,20 @@
     "EoVdMy": {
         "defaultMessage": "Modifier le contenu..."
     },
+    "Evl2dG": {
+        "defaultMessage": "19 fév au 20 mars"
+    },
     "F/gl4b": {
         "defaultMessage": "Menu"
     },
+    "F0QDfY": {
+        "defaultMessage": "23 sept au 22 oct"
+    },
     "F2SD/0": {
         "defaultMessage": "Boucle"
+    },
+    "F59wsl": {
+        "defaultMessage": "Urbania Horoscope"
     },
     "FJygXH": {
         "defaultMessage": "Résultat"
@@ -449,8 +464,8 @@
     "OkNUmk": {
         "defaultMessage": "Type"
     },
-    "Oqks/j": {
-        "defaultMessage": "Écran Urbania Article"
+    "Op1ZIp": {
+        "defaultMessage": "21 jan au 18 fév"
     },
     "P1dwGU": {
         "defaultMessage": "Titre avec sous-titre"
@@ -475,6 +490,9 @@
     },
     "QSmRdP": {
         "defaultMessage": "Ajouter une image"
+    },
+    "Qe03Xz": {
+        "defaultMessage": "Sous-titre du signe"
     },
     "QfpTKK": {
         "defaultMessage": "Sélectionnez un écran..."
@@ -602,6 +620,9 @@
     "ZMS1Wv": {
         "defaultMessage": "Texte"
     },
+    "ZeosMy": {
+        "defaultMessage": "21 mars au 19 avr"
+    },
     "ZiWlL6": {
         "defaultMessage": "Questions"
     },
@@ -626,6 +647,9 @@
     "bLYuuN": {
         "defaultMessage": "Vous êtes sur l’écran {current} de {total}."
     },
+    "bMdONM": {
+        "defaultMessage": "21 juin au 22 juil"
+    },
     "bhEaUt": {
         "defaultMessage": "Audio"
     },
@@ -640,6 +664,9 @@
     },
     "cGItoy": {
         "defaultMessage": "Liste"
+    },
+    "ceaRdq": {
+        "defaultMessage": "Signe astrologique"
     },
     "d60tSn": {
         "defaultMessage": "Sous-titre"
@@ -676,9 +703,6 @@
     },
     "e6+aGf": {
         "defaultMessage": "Sélectionnez un média..."
-    },
-    "eA6lME": {
-        "defaultMessage": "Écran Urbania Faits Insolites"
     },
     "eBFxNl": {
         "defaultMessage": "Action"
@@ -785,6 +809,9 @@
     "kBz8vF": {
         "defaultMessage": "Nom"
     },
+    "keK5s0": {
+        "defaultMessage": "Retourner aux signes"
+    },
     "kf/5Tw": {
         "defaultMessage": "Droite"
     },
@@ -833,6 +860,9 @@
     "n9LoBJ": {
         "defaultMessage": "Haut"
     },
+    "nJgzwC": {
+        "defaultMessage": "Urbania Article"
+    },
     "nXVNeg": {
         "defaultMessage": "Nom"
     },
@@ -878,6 +908,9 @@
     "pfvDzR": {
         "defaultMessage": "Ajouté par"
     },
+    "pnT3od": {
+        "defaultMessage": "23 juin au 22 août"
+    },
     "ppq6CK": {
         "defaultMessage": "Type"
     },
@@ -905,8 +938,14 @@
     "qroLmS": {
         "defaultMessage": "Marqueur"
     },
+    "rAkTvt": {
+        "defaultMessage": "22 déc au 20 jan"
+    },
     "rBPIgw": {
         "defaultMessage": "Conversation"
+    },
+    "raUY02": {
+        "defaultMessage": "20 avr au 20 mai"
     },
     "rdFCsN": {
         "defaultMessage": "Aucun marqueur..."
@@ -922,6 +961,9 @@
     },
     "sESmah": {
         "defaultMessage": "Entrées"
+    },
+    "sUP5BO": {
+        "defaultMessage": "Urbania Recommandation"
     },
     "sUR1xV": {
         "defaultMessage": "Auteur"
@@ -1025,6 +1067,9 @@
     "xKG76H": {
         "defaultMessage": "Coins arrondis"
     },
+    "xL0GD2": {
+        "defaultMessage": "23 août au 22 sept"
+    },
     "xT/onn": {
         "defaultMessage": "Image"
     },
@@ -1043,6 +1088,9 @@
     "yCXMzz": {
         "defaultMessage": "Fermer"
     },
+    "yCj5uv": {
+        "defaultMessage": "23 nov au 21 déc"
+    },
     "yEG9zh": {
         "defaultMessage": "Date"
     },
@@ -1057,6 +1105,9 @@
     },
     "zDH24s": {
         "defaultMessage": "Latitude"
+    },
+    "zDdDqI": {
+        "defaultMessage": "Urbania Insolite"
     },
     "zGIcdn": {
         "defaultMessage": "Présentateurs"

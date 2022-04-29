@@ -8,6 +8,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
+import { isMessage } from '@micromag/core/utils';
 import styles from '../styles/field-with-form.module.scss';
 import Field from './Field';
 import Fields from './Fields';
@@ -80,16 +81,24 @@ const FieldWithForm = ({
     }
 
     const labelValue = label !== null ? label : get(value, labelPath, null);
-    const labelString =
-        labelValue !== null && isObject(labelValue)
-            ? labelValue.name || labelValue.id || ''
-            : labelValue;
 
-    // Strip html
-    const labelElement =
-        labelString !== null && isString(labelString)
-            ? labelString.replace(/(<([^>]+)>)/gi, '')
-            : null;
+    let labelElement = null;
+    let labelString = null;
+
+    if (labelValue !== null && isMessage(labelValue)) {
+        labelElement = <FormattedMessage {...labelValue} />;
+    } else {
+        labelString =
+            labelValue !== null && isObject(labelValue)
+                ? labelValue.name || labelValue.id || ''
+                : labelValue;
+
+        // Strip html
+        labelElement =
+            labelString !== null && isString(labelString)
+                ? labelString.replace(/(<([^>]+)>)/gi, '')
+                : null;
+    }
 
     let thumbnailElement = null;
     const thumbnailSrc = get(value, thumbnailPath, null);
