@@ -15,7 +15,7 @@ export default {
         order: 10,
     },
     title: defineMessage({
-        defaultMessage: 'Urbania article screen',
+        defaultMessage: 'Urbania article',
         description: 'Urbania screen title',
     }),
     component: UrbaniaLoaderScreen,

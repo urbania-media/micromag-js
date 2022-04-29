@@ -87,7 +87,8 @@ function CallToAction({
     const validUrl = useMemo(() => isValidUrl(url), [url]);
     const buttonRef = useRef(null);
 
-    const { textStyle: { fontSize = null, color = null } = {} } = label || {};
+    const { textStyle = null } = label || {};
+    const { fontSize = null, color = null, lineHeight = null } = textStyle || {};
     const { backgroundColor = null } = boxStyle || {};
 
     const arrowStyle = useMemo(
@@ -186,8 +187,6 @@ function CallToAction({
             </div>
         );
 
-    console.log('bs', boxStyle);
-
     return active ? (
         <>
             <div
@@ -232,6 +231,7 @@ function CallToAction({
                             marginBottom: 10,
                             ...boxStyle,
                         }}
+                        inline
                         {...(swipeUpEnabled && !disabled ? bind() : null)}
                         {...(inWebView
                             ? { onClick: onOpenWebView }
@@ -249,7 +249,11 @@ function CallToAction({
                             ])}
                         >
                             {icon !== null ? <div className={styles.icon}>{icon}</div> : null}
-                            <Text {...label} inline />
+                            <Text
+                                {...label}
+                                textStyle={{ ...textStyle, lineHeight: lineHeight || 1 }}
+                                inline
+                            />
                         </span>
                     </Button>
                 </div>

@@ -16,10 +16,10 @@ const propTypes = {
     author: PropTypes.shape({
         slug: PropTypes.string,
         name: MicromagPropTypes.textElement,
-        avatar: MicromagPropTypes.imageElement,
+        image: MicromagPropTypes.imageElement,
         url: PropTypes.string,
     }),
-    withAvatar: PropTypes.bool,
+    withImage: PropTypes.bool,
     withoutLink: PropTypes.bool,
     withoutPrefix: PropTypes.bool,
     isSmall: PropTypes.bool,
@@ -29,7 +29,7 @@ const propTypes = {
 
 const defaultProps = {
     author: null,
-    withAvatar: true,
+    withImage: true,
     withoutLink: false,
     withoutPrefix: false,
     isSmall: false,
@@ -39,7 +39,7 @@ const defaultProps = {
 
 const UrbaniaAuthor = ({
     author,
-    withAvatar,
+    withImage,
     withoutLink,
     withoutPrefix,
     isSmall,
@@ -47,7 +47,7 @@ const UrbaniaAuthor = ({
     className,
 }) => {
     const intl = useIntl();
-    const { name = null, avatar = null, url = null } = author || {};
+    const { name = null, image = null, url = null } = author || {};
 
     const prefix = intl.formatMessage({
         defaultMessage: 'By',
@@ -62,15 +62,13 @@ const UrbaniaAuthor = ({
                 styles.container,
                 {
                     [styles.isSmall]: isSmall,
-                    [styles.withoutAvatar]: !withAvatar || avatar === null,
+                    [styles.withoutImage]: !withImage || image === null,
                     [className]: className !== null,
                 },
             ])}
         >
             {!withoutPrefix ? <Text {...name} className={styles.prefix} body={prefix} /> : null}
-            {withAvatar && avatar !== null ? (
-                <Avatar className={styles.avatar} image={avatar} />
-            ) : null}
+            {withImage && image !== null ? <Avatar className={styles.image} image={image} /> : null}
             {url !== null && !withoutLink ? (
                 <Link
                     className={styles.link}

@@ -311,10 +311,15 @@ const UrbaniaTrivia = ({
         if (isArray(background) && background.length > 0) {
             return background;
         }
-        if (background !== null) {
+        const {
+            image: bgImage = null,
+            video: bgVideo = null,
+            color: bgColor = null,
+        } = background || {};
+        if (bgImage !== null || bgVideo !== null) {
             return { ...defaultBackground, ...background };
         }
-        return defaultBackground;
+        return { ...defaultBackground, ...(bgColor !== null ? { color: bgColor } : null) };
     }, [background]);
 
     const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };

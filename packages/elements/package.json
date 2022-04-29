@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.3.74",
+    "version": "0.3.76",
     "description": "",
     "keywords": [
         "javascript"
@@ -63,8 +63,8 @@
         "@micromag/core": "^0.3.74",
         "@micromag/element-audio": "^0.3.74",
         "@micromag/element-background": "^0.3.74",
-        "@micromag/element-button": "^0.3.74",
-        "@micromag/element-call-to-action": "^0.3.74",
+        "@micromag/element-button": "^0.3.76",
+        "@micromag/element-call-to-action": "^0.3.76",
         "@micromag/element-checkbox": "^0.3.74",
         "@micromag/element-closed-captions": "^0.3.74",
         "@micromag/element-container": "^0.3.74",
@@ -80,10 +80,10 @@
         "@micromag/element-stack": "^0.3.74",
         "@micromag/element-text": "^0.3.74",
         "@micromag/element-text-input": "^0.3.74",
-        "@micromag/element-urbania-author": "^0.3.74",
+        "@micromag/element-urbania-author": "^0.3.76",
         "@micromag/element-video": "^0.3.74",
         "@micromag/element-visual": "^0.3.74",
-        "@micromag/element-webview": "^0.3.74",
+        "@micromag/element-webview": "^0.3.76",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2"

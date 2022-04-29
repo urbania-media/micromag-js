@@ -14,7 +14,7 @@ export default [
             order: 10,
         },
         title: defineMessage({
-            defaultMessage: 'Urbania recommendation screen',
+            defaultMessage: 'Urbania recommendation',
             description: 'Urbania screen title',
         }),
         component: Recommendation,

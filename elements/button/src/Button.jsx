@@ -15,10 +15,11 @@ const propTypes = {
     type: PropTypes.oneOf(['button', 'submit']),
     disabled: PropTypes.bool,
     focusable: PropTypes.bool,
-    separateBorder: PropTypes.bool,
+    inline: PropTypes.bool,
     onClick: PropTypes.func,
     children: PropTypes.node,
     className: PropTypes.string,
+    withoutExternalBorder: PropTypes.bool,
     refButton: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({
@@ -33,10 +34,11 @@ const defaultProps = {
     type: 'button',
     disabled: false,
     focusable: true,
-    separateBorder: true,
+    inline: false,
     onClick: null,
     children: null,
     className: null,
+    withoutExternalBorder: false,
     refButton: null,
 };
 
@@ -46,10 +48,11 @@ const Button = ({
     type,
     disabled,
     focusable,
-    separateBorder,
+    inline,
     onClick,
     children,
     className,
+    withoutExternalBorder,
     refButton,
     ...buttonProps
 }) => {
@@ -69,10 +72,11 @@ const Button = ({
         finalStyles = {
             ...finalStyles,
             ...getStyleFromBox(buttonStyle),
+            display: withoutExternalBorder && inline ? 'inline-block' : null,
         };
     }
 
-    if (separateBorder) {
+    if (!withoutExternalBorder) {
         const {
             borderRadius = null,
             borderWidth = null,
@@ -91,11 +95,10 @@ const Button = ({
             borderWidth,
             borderColor,
             borderStyle,
+            display: inline ? 'inline-block' : null,
             // width: `calc(100% - ${borderWidth || 0}px)`,
         };
     }
-
-    console.log(finalStyles);
 
     const button = (
         <CoreButton
