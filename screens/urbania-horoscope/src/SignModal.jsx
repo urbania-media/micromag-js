@@ -22,7 +22,6 @@ import styles from './sign-modal.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
-    backButton: PropTypes.func,
     sign: PropTypes.shape({
         id: PropTypes.string,
         label: PropTypes.string,
@@ -39,14 +38,13 @@ const propTypes = {
 const defaultProps = {
     width: null,
     height: null,
-    backButton: null,
     sign: null,
     subtitle: null,
     current: true,
     className: null,
 };
 
-const SignModal = ({ width, height, backButton, sign, subtitle, current, className }) => {
+const SignModal = ({ width, height, sign, subtitle, current, className }) => {
     // eslint-disable-next-line no-unused-vars
     const { label = null, image = null, date = null, word = null, description = null } = sign;
     const { body: wordBody = null } = word || {};
@@ -60,13 +58,6 @@ const SignModal = ({ width, height, backButton, sign, subtitle, current, classNa
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     const items = [
-        // <Button onClick={backButton} className={styles.backButton}>
-        //     <span className={styles.arrow}>←</span>{' '}
-        //     <FormattedMessage
-        //         defaultMessage="Back to the Signs"
-        //         description="Horoscope Back Button"
-        //     />
-        // </Button>,
         <ScreenElement>
             <h2 className={styles.signName}>
                 <FormattedMessage {...label} />

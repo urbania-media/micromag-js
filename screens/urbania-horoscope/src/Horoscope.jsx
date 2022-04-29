@@ -51,6 +51,8 @@ const propTypes = {
     popupBackground: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
@@ -69,6 +71,8 @@ const defaultProps = {
     popupBackground: null,
     current: true,
     active: true,
+    enableInteraction: null,
+    disableInteraction: null,
     transitions: null,
     transitionStagger: 100,
     className: null,
@@ -87,6 +91,8 @@ const Horoscope = ({
     popupBackground,
     current,
     active,
+    enableInteraction,
+    disableInteraction,
     transitions,
     transitionStagger,
     className,
@@ -95,11 +101,13 @@ const Horoscope = ({
 
     const openPopup = useCallback(() => {
         setHasPopup(true);
-    }, [hasPopup, setHasPopup]);
+        disableInteraction();
+    }, [hasPopup, setHasPopup, disableInteraction]);
 
     const closePopup = useCallback(() => {
         setHasPopup(false);
-    }, [hasPopup, setHasPopup]);
+        enableInteraction();
+    }, [hasPopup, setHasPopup, enableInteraction]);
 
     const signs = defaultSigns.map((sign, index) => ({
         ...sign,
