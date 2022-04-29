@@ -118,6 +118,26 @@ const SignsGrid = ({
                         </Button>
                     ) : null}
                     <TransitionGroup>
+                        {activeSign ? (
+                            <CSSTransition
+                                key="backButton"
+                                classNames={{
+                                    enter: styles.buttonEnter,
+                                    enterActive: styles.buttonEnterActive,
+                                    exit: styles.buttonExit,
+                                    exitActive: styles.buttonExitActive,
+                                }}
+                                timeout={1000}
+                            >
+                                <Button onClick={closeModal} className={styles.backButton}>
+                                    <span className={styles.arrow}>←</span>
+                                    <FormattedMessage
+                                        defaultMessage="Back to the Signs"
+                                        description="Horoscope Back Button"
+                                    />
+                                </Button>
+                            </CSSTransition>
+                        ) : null}
                         {!activeSign ? (
                             <CSSTransition key="grid" classNames={styles} timeout={1000}>
                                 <div
@@ -187,29 +207,6 @@ const SignsGrid = ({
                                 </div>
                             </CSSTransition>
                         ) : (
-                            // <>
-                            //     <CSSTransition
-                            //         key="backButton"
-                            //         // classNames={{
-                            //         //     enter: styles.buttonEnter,
-                            //         //     enterActive: styles.buttonEnterActive,
-                            //         //     exit: styles.buttonExit,
-                            //         //     exitActive: styles.buttonExitActive,
-                            //         // }}
-                            //         // classNames={{
-                            //         //     enter: styles.modalEnter,
-                            //         //     enterActive: styles.modalEnterActive,
-                            //         //     exit: styles.modalExit,
-                            //         //     exitActive: styles.modalExitActive,
-                            //         // }}
-                            //         classNames={styles}
-                            //         timeout={1000}
-                            //     >
-                            //         <Button onClick={closeModal} className={styles.backButton}>
-                            //             <span className={styles.arrow}>←</span> Back to the signs
-                            //         </Button>
-                            //     </CSSTransition>
-
                             <CSSTransition
                                 key="modal"
                                 classNames={{
@@ -229,7 +226,6 @@ const SignsGrid = ({
                                     subtitle={signSubtitle}
                                 />
                             </CSSTransition>
-                            // </>
                         )}
                     </TransitionGroup>
                 </Layout>

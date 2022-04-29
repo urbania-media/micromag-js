@@ -4,7 +4,7 @@ import { defineMessage } from 'react-intl';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     // text
-    title,
+    // title,
     imageMedia,
     backgroundVideo,
     transitions,

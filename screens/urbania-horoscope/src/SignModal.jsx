@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+// import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     // PlaceholderText,
@@ -22,7 +22,6 @@ import styles from './sign-modal.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
-    background: MicromagPropTypes.backgroundElement,
     backButton: PropTypes.func,
     sign: PropTypes.shape({
         id: PropTypes.string,
@@ -40,7 +39,6 @@ const propTypes = {
 const defaultProps = {
     width: null,
     height: null,
-    background: null,
     backButton: null,
     sign: null,
     subtitle: null,
@@ -48,21 +46,12 @@ const defaultProps = {
     className: null,
 };
 
-const SignModal = ({
-    width,
-    height,
-    background,
-    backButton,
-    sign,
-    subtitle,
-    current,
-    className,
-}) => {
+const SignModal = ({ width, height, backButton, sign, subtitle, current, className }) => {
+    // eslint-disable-next-line no-unused-vars
     const { label = null, image = null, date = null, word = null, description = null } = sign;
     const { body: wordBody = null } = word || {};
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
+    const { isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
 
     const hasWord = isTextFilled(word);
     const hasSubtitle = isTextFilled(subtitle);
@@ -71,18 +60,19 @@ const SignModal = ({
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     const items = [
-        <Button onClick={backButton} className={styles.backButton}>
-            <span className={styles.arrow}>←</span>{' '}
-            <FormattedMessage
-                defaultMessage="Back to the Signs"
-                description="Horoscope Back Button"
-            />
-        </Button>,
+        // <Button onClick={backButton} className={styles.backButton}>
+        //     <span className={styles.arrow}>←</span>{' '}
+        //     <FormattedMessage
+        //         defaultMessage="Back to the Signs"
+        //         description="Horoscope Back Button"
+        //     />
+        // </Button>,
         <ScreenElement>
             <h2 className={styles.signName}>
                 <FormattedMessage {...label} />
             </h2>
         </ScreenElement>,
+
         hasWord ? (
             <div className={styles.wordContainer}>
                 {hasSubtitle ? (
