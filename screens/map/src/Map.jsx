@@ -45,8 +45,8 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    onEnableInteraction: PropTypes.func,
-    onDisableInteraction: PropTypes.func,
+    enableInteractions: PropTypes.func,
+    disableInteraction: PropTypes.func,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -67,8 +67,8 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
-    onEnableInteraction: null,
-    onDisableInteraction: null,
+    enableInteractions: null,
+    disableInteraction: null,
     type: null,
     className: null,
 };
@@ -89,8 +89,8 @@ function MapScreen({
     current,
     active,
     transitions,
-    onEnableInteraction,
-    onDisableInteraction,
+    enableInteractions,
+    disableInteraction,
     type,
     className,
 }) {
@@ -164,20 +164,20 @@ function MapScreen({
 
     const onButtonClick = useCallback(() => {
         setOpened(true);
-        if (onDisableInteraction !== null) {
-            onDisableInteraction();
+        if (disableInteraction !== null) {
+            disableInteraction();
         }
         trackScreenEvent('click_button', button.body);
-    }, [setOpened, onDisableInteraction, trackScreenEvent, button]);
+    }, [setOpened, disableInteraction, trackScreenEvent, button]);
 
     const onCloseClick = useCallback(() => {
         setOpened(false);
-        if (onEnableInteraction !== null) {
-            onEnableInteraction();
+        if (enableInteractions !== null) {
+            enableInteractions();
         }
         trackScreenEvent('click_close', 'Close icon');
         closeMarker();
-    }, [setOpened, onEnableInteraction, trackScreenEvent]);
+    }, [setOpened, enableInteractions, trackScreenEvent]);
 
     const onMapDragEnd = useCallback(
         (newCenter) => {
