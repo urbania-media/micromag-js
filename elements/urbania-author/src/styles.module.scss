@@ -10,7 +10,7 @@
     font-family: 'Agrandir';
     vertical-align: center;
 
-    .avatar {
+    .image {
         min-width: 2.5em;
         max-width: 35px;
     }
@@ -61,12 +61,12 @@
             white-space: normal;
         }
 
-        .avatar {
+        .image {
             max-width: 30px;
         }
     }
 
-    &.withoutAvatar {
+    &.withoutImage {
         .name {
             margin-left: 0;
             padding-left: 0;

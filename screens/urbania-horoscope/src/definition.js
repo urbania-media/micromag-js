@@ -15,7 +15,7 @@ export default [
             order: 10,
         },
         title: defineMessage({
-            defaultMessage: 'Urbania horoscope screen',
+            defaultMessage: 'Urbania horoscope',
             description: 'Urbania screen title',
         }),
         component: Horoscope,

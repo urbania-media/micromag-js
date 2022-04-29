@@ -13,7 +13,7 @@ export default {
         order: 10,
     },
     title: defineMessage({
-        defaultMessage: 'Urbania trivia screen',
+        defaultMessage: 'Urbania trivia',
         description: 'Urbania screen title',
     }),
     component: UrbaniaTriviaScreen,

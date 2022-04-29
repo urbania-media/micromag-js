@@ -14,10 +14,18 @@ export default {
             }),
         },
         {
-            name: 'avatar',
+            name: 'image',
             type: 'image',
             label: defineMessage({
                 defaultMessage: 'Image',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'url',
+            type: 'url',
+            label: defineMessage({
+                defaultMessage: 'URL',
                 description: 'Field label',
             }),
         },

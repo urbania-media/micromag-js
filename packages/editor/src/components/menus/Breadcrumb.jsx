@@ -1,8 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
+
 /* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo, useCallback } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useHistory } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
@@ -38,6 +40,7 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
     const route = useUrlGenerator();
 
     const {
+        title: screenTitle = null,
         fields: screenFields = [],
         states: screenStates = null,
         parameters: screenParameters = null,
@@ -49,8 +52,10 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
         const { type, parameters = null } = screens[screenIndex];
 
         const definition = screensManager.getDefinition(type);
-        const { states = null } = definition || {};
+        const { states = null, title: definitionTitle = null } = definition || {};
+
         return {
+            title: definitionTitle,
             fields:
                 definition !== null
                     ? [...getScreenFieldsWithStates(definition), getScreenExtraField(intl)]
@@ -183,13 +188,17 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
         const { metadata = null } = screenParameters || {};
         const { title = null } = metadata || {};
 
+        const typeTitle = screenTitle !== null ? <FormattedMessage {...screenTitle} /> : null;
+
         const parametersMessage = intl.formatMessage({
             defaultMessage: 'Parameters',
             description: 'Screen label in the breadcrumb',
         });
 
         const defaultLabel =
-            (fieldItems || []).length === 0 ? title || parametersMessage : parametersMessage;
+            (fieldItems || []).length === 0
+                ? title || typeTitle || parametersMessage
+                : parametersMessage;
 
         const finalItems = [
             currentState === null || (currentState.repeatable || false) === false
@@ -221,7 +230,18 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                   }
                 : it,
         );
-    }, [intl, route, screenId, field, form, url, screenFields, screenStates, fieldsManager]);
+    }, [
+        intl,
+        route,
+        screenId,
+        field,
+        form,
+        url,
+        screenFields,
+        screenStates,
+        screenTitle,
+        fieldsManager,
+    ]);
 
     const { length: itemsLength } = items;
 
@@ -229,6 +249,7 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
         history.push(items[itemsLength - 2].url);
     }, [items]);
     const withBack = itemsLength > 1;
+
     return (
         <>
             {withBack ? <BackButton onClick={onClickBack} className="me-2 py-0" /> : null}
