@@ -125,10 +125,6 @@ const SignsGrid = ({
                                             image = null,
                                             label = null,
                                             date = null,
-                                            // eslint-disable-next-line no-unused-vars
-                                            word = null,
-                                            // eslint-disable-next-line no-unused-vars
-                                            description = null,
                                         } = sign || {};
                                         return (
                                             <ScreenElement
