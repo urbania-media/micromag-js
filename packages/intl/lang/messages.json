@@ -99,10 +99,6 @@
     "defaultMessage": "Ranking",
     "description": "Ranking screen title"
   },
-  "18XpuL": {
-    "defaultMessage": "Urbania recommendation screen",
-    "description": "Urbania screen title"
-  },
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
@@ -291,10 +287,6 @@
     "defaultMessage": "With play/pause button",
     "description": "Field label"
   },
-  "8bYfFG": {
-    "defaultMessage": "Urbania horoscope screen",
-    "description": "Urbania screen title"
-  },
   "8oczXQ": {
     "defaultMessage": "Add a marker",
     "description": "Button label"
@@ -338,6 +330,10 @@
   "AA8TV9": {
     "defaultMessage": "Image with title",
     "description": "ImageTitle screen title"
+  },
+  "ACSasN": {
+    "defaultMessage": "URL",
+    "description": "Field label"
   },
   "ACkeH6": {
     "defaultMessage": "Quiz with multiple questions",
@@ -446,6 +442,10 @@
   "F2SD/0": {
     "defaultMessage": "Loop",
     "description": "Field label"
+  },
+  "F59wsl": {
+    "defaultMessage": "Urbania horoscope",
+    "description": "Urbania screen title"
   },
   "FJygXH": {
     "defaultMessage": "Result",
@@ -626,10 +626,6 @@
   "Op1ZIp": {
     "defaultMessage": "Jan 21 - Feb 18",
     "description": "Horoscope date"
-  },
-  "Oqks/j": {
-    "defaultMessage": "Urbania article screen",
-    "description": "Urbania screen title"
   },
   "P1dwGU": {
     "defaultMessage": "Title with subtitle",
@@ -942,10 +938,6 @@
     "defaultMessage": "Select a media...",
     "description": "Label when no value is provided to Media field"
   },
-  "eA6lME": {
-    "defaultMessage": "Urbania trivia screen",
-    "description": "Urbania screen title"
-  },
   "eBFxNl": {
     "defaultMessage": "Call to Action",
     "description": "Field label"
@@ -1152,6 +1144,10 @@
     "defaultMessage": "Top",
     "description": "Direction"
   },
+  "nJgzwC": {
+    "defaultMessage": "Urbania article",
+    "description": "Urbania screen title"
+  },
   "nXVNeg": {
     "defaultMessage": "Name",
     "description": "Name field label"
@@ -1283,6 +1279,10 @@
   "sESmah": {
     "defaultMessage": "Entries",
     "description": "Entries field label"
+  },
+  "sUP5BO": {
+    "defaultMessage": "Urbania recommendation",
+    "description": "Urbania screen title"
   },
   "sUR1xV": {
     "defaultMessage": "Author",
@@ -1471,6 +1471,10 @@
   "zDH24s": {
     "defaultMessage": "Latitude",
     "description": "Latitude description"
+  },
+  "zDdDqI": {
+    "defaultMessage": "Urbania trivia",
+    "description": "Urbania screen title"
   },
   "zGIcdn": {
     "defaultMessage": "Sponsors",

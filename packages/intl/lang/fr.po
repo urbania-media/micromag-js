@@ -161,12 +161,6 @@ msgctxt "17BMn2"
 msgid "Ranking"
 msgstr "Classement"
 
-# Urbania screen title
-#: 18XpuL
-msgctxt "18XpuL"
-msgid "Urbania recommendation screen"
-msgstr "Écran de recommandation Urbania"
-
 # Item label in items field
 #: 2/F1Q7
 msgctxt "2/F1Q7"
@@ -449,12 +443,6 @@ msgctxt "8EI08h"
 msgid "With play/pause button"
 msgstr "Avec bouton de lecture"
 
-# Urbania screen title
-#: 8bYfFG
-msgctxt "8bYfFG"
-msgid "Urbania horoscope screen"
-msgstr "Écran Urbania Horoscope"
-
 # Button label
 #: 8oczXQ
 msgctxt "8oczXQ"
@@ -520,6 +508,12 @@ msgstr "Déplaçable"
 msgctxt "AA8TV9"
 msgid "Image with title"
 msgstr "Image avec titre"
+
+# Field label
+#: ACSasN
+msgctxt "ACSasN"
+msgid "URL"
+msgstr ""
 
 # Screen title
 #: ACkeH6
@@ -682,6 +676,12 @@ msgstr ""
 msgctxt "F2SD/0"
 msgid "Loop"
 msgstr "Boucle"
+
+# Urbania screen title
+#: F59wsl
+msgctxt "F59wsl"
+msgid "Urbania horoscope"
+msgstr ""
 
 # Field label
 #: FJygXH
@@ -952,12 +952,6 @@ msgstr ""
 msgctxt "Op1ZIp"
 msgid "Jan 21 - Feb 18"
 msgstr ""
-
-# Urbania screen title
-#: Oqks/j
-msgctxt "Oqks/j"
-msgid "Urbania article screen"
-msgstr "Écran Urbania Article"
 
 # TitleSubtitle screen title
 #: P1dwGU
@@ -1426,12 +1420,6 @@ msgctxt "e6+aGf"
 msgid "Select a media..."
 msgstr "Sélectionnez un média..."
 
-# Urbania screen title
-#: eA6lME
-msgctxt "eA6lME"
-msgid "Urbania trivia screen"
-msgstr "Écran Urbania Faits Insolites"
-
 # Field label
 #: eBFxNl
 msgctxt "eBFxNl"
@@ -1742,6 +1730,12 @@ msgctxt "n9LoBJ"
 msgid "Top"
 msgstr "Haut"
 
+# Urbania screen title
+#: nJgzwC
+msgctxt "nJgzwC"
+msgid "Urbania article"
+msgstr ""
+
 # Name field label
 #: nXVNeg
 msgctxt "nXVNeg"
@@ -1939,6 +1933,12 @@ msgstr "Interlocuteur"
 msgctxt "sESmah"
 msgid "Entries"
 msgstr "Entrées"
+
+# Urbania screen title
+#: sUP5BO
+msgctxt "sUP5BO"
+msgid "Urbania recommendation"
+msgstr ""
 
 # Label in Media Gallery
 #: sUR1xV
@@ -2221,6 +2221,12 @@ msgstr "Texte"
 msgctxt "zDH24s"
 msgid "Latitude"
 msgstr "Latitude"
+
+# Urbania screen title
+#: zDdDqI
+msgctxt "zDdDqI"
+msgid "Urbania trivia"
+msgstr ""
 
 # Sponsors placeholder
 #: zGIcdn
