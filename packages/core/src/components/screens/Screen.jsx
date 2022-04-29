@@ -18,8 +18,8 @@ const propTypes = {
     className: PropTypes.string,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
-    onEnableInteraction: PropTypes.func,
-    onDisableInteraction: PropTypes.func,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     getMediaRef: PropTypes.func,
 };
 
@@ -33,8 +33,8 @@ const defaultProps = {
     className: null,
     onPrevious: null,
     onNext: null,
-    onEnableInteraction: null,
-    onDisableInteraction: null,
+    enableInteraction: null,
+    disableInteraction: null,
     getMediaRef: null,
 };
 
@@ -49,8 +49,8 @@ const Screen = ({
     className,
     onPrevious,
     onNext,
-    onEnableInteraction,
-    onDisableInteraction,
+    enableInteraction,
+    disableInteraction,
     getMediaRef,
 }) => {
     const { type = null } = screen || {};
@@ -76,8 +76,8 @@ const Screen = ({
                         current={current}
                         onPrevious={onPrevious}
                         onNext={onNext}
-                        onEnableInteraction={onEnableInteraction}
-                        onDisableInteraction={onDisableInteraction}
+                        enableInteraction={enableInteraction}
+                        disableInteraction={disableInteraction}
                         getMediaRef={getMediaRef}
                     />
                 </div>

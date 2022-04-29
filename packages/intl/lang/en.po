@@ -101,6 +101,12 @@ msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Remove all"
 
+# Image 360 placeholder
+#: /YQ+xP
+msgctxt "/YQ+xP"
+msgid "Image 360"
+msgstr "Image 360"
+
 # Media label
 #: /ca7BX
 msgctxt "/ca7BX"

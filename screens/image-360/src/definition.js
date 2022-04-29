@@ -1,0 +1,56 @@
+import { defineMessage } from 'react-intl';
+import Image360Screen from './Image360';
+import * as transforms from './transforms/index';
+
+export default {
+    id: 'video-360',
+    type: 'screen',
+    group: {
+        label: defineMessage({
+            defaultMessage: 'Audio and Video',
+            description: 'Audio and Video screen group',
+        }),
+        order: 5,
+    },
+    title: defineMessage({
+        defaultMessage: '360 Video',
+        description: 'Video 360 screen title',
+    }),
+    component: Image360Screen,
+    layouts: ['full'],
+    transforms,
+    fields: [
+        {
+            name: 'video',
+            type: 'video-element',
+            theme: {
+                color: 'primary',
+            },
+            defaultValue: {
+                autoPlay: true,
+            },
+            label: defineMessage({
+                defaultMessage: 'Video',
+                description: 'Video field label',
+            }),
+        },
+        {
+            name: 'background',
+            type: 'background',
+            label: defineMessage({
+                defaultMessage: 'Background',
+                description: 'Background field label',
+            }),
+        },
+        {
+            name: 'callToAction',
+            type: 'call-to-action',
+            theme: {
+                boxStyle: 'cta',
+                label: {
+                    textStyle: 'cta',
+                },
+            },
+        },
+    ],
+};

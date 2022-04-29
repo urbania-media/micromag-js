@@ -2,6 +2,7 @@ import Chance from 'chance';
 import authors from './data/authors';
 import companies from './data/companies';
 import subtitles from './data/subtitles';
+import image360File from './data/image-360.jpg';
 import video360File from './data/test-360.mp4';
 import videoFileVertical from './data/test-vertical.mp4';
 import gifFile from './data/test.gif';
@@ -185,6 +186,16 @@ export const video360Media = () => ({
     metadata: {
         width: 1920,
         height: 960,
+    },
+});
+
+export const image360Media = () => ({
+    type: 'image',
+    url: image360File,
+    thumbnail_url: image360File,
+    metadata: {
+        width: 7680,
+        height: 1920,
     },
 });
 

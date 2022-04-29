@@ -1,0 +1,62 @@
+// stylelint-disable max-nesting-depth
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %screen;
+
+    .empty {
+        @extend %empty;
+        height: 100%;
+        margin: 0;
+    }
+
+    .content,
+    .canvas,
+    .canvasButton,
+    .video {
+        @extend %fullscreen;
+    }
+
+    .canvasButton {
+        @extend %reset-button;
+        touch-action: none;
+    }
+
+    .videoContainer {
+        position: absolute;
+    }
+
+    .video {
+        visibility: hidden;
+
+        video {
+            height: 100%;
+        }
+    }
+
+    .mediaControls {
+        padding: 10px 20px 20px;
+    }
+
+    .placeholder {
+        @extend %fullscreen;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .bottomContent {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    &.showVideo {
+        .video {
+            visibility: visible;
+        }
+    }
+}

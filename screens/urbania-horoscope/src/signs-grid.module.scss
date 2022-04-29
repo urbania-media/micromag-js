@@ -6,7 +6,7 @@
 .container {
     @extend %screen;
     position: relative;
-    z-index: 6;
+    z-index: 2;
 
     .closeButton {
         position: absolute;
@@ -89,13 +89,12 @@
 
     .backButton {
         position: absolute;
-        // height: 36px;
-        z-index: 8;
+        z-index: 5;
         top: 7px;
-        // left: -15px;
-        left: 5px;
-        padding-left: 10%;
-        border-radius: 25px;
+        left: 0;
+        padding-left: 20px;
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
         background-color: #fff;
         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 4px (#010f66);
         color: #010f66;
@@ -103,57 +102,99 @@
         font-weight: 700;
     }
 
-    .signModal {
+    .arrow {
+        padding-right: 5px;
+        font-size: 20px;
+        vertical-align: middle;
+    }
+
+    .modalContainer {
         position: absolute;
         top: 0;
+        right: 0;
         left: 0;
     }
 }
 
 // CSS TRANSITIONS
+.gridContainer {
+    &.enter {
+        z-index: 1;
+        transition: opacity 0.5s ease-out;
+        opacity: 0;
+    }
 
-.enter {
-    z-index: 1;
-    // transition: transform 0.5s ease-out;
-    transition: opacity 0.5s ease-out;
-    // transform: translateX(-100%);
-    opacity: 0;
+    &.enterActive {
+        opacity: 1;
+    }
+
+    &.exit {
+        z-index: 2;
+        transition: opacity 0.8s ease-out;
+        opacity: 1;
+    }
+
+    &.exitActive {
+        opacity: 0;
+    }
 }
 
-.enterActive {
-    // transform: translateX(0);
-    opacity: 1;
-}
+.modalContainer {
+    &.enter {
+        .signModal {
+            z-index: 1;
+            transform: scale(20%);
+            transition: transform 0.5s ease-out;
+        }
 
-.exit {
-    z-index: 2;
-    // transform: translateX(100%);
-    // transition: transform 0.5s ease-out;
-    transition: opacity 0.8s ease-out;
-    opacity: 1;
-}
+        .backButton {
+            z-index: 1;
+            transform: translateX(-10px);
+            transition: all 0.5s ease-out;
+            opacity: 0;
+        }
+    }
 
-.exitActive {
-    // transform: translateX(-100%);
-    opacity: 0;
-}
+    &.enterActive {
+        .signModal {
+            transform: scale(100%);
+        }
 
-.modalEnter {
-    z-index: 1;
-    transform: scale(20%);
-    transition: transform 0.5s ease-out;
-}
+        .backButton {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
 
-.modalEnterActive {
-    transform: scale(100%);
-}
+    &.exit {
+        z-index: 2;
+        transform: translateX(0);
+        transition: transform 0.5s ease-out;
 
-.modalExit {
-    z-index: 2;
-    transform: translateX(0);
-    transition: transform 0.5s ease-out;
-}
+        .signModal {
+            z-index: 2;
+            transform: translateX(0);
+            transition: all 0.5s ease-out;
+            opacity: 1;
+        }
 
-.modalExitActive {
-    transform: translateX(-100%);
+        .backButton {
+            z-index: 2;
+            transform: translateX(0);
+            transition: all 0.5s ease-out;
+            opacity: 1;
+        }
+    }
+
+    &.exitActive {
+        .signModal {
+            transform: translateX(-100%);
+        }
+
+        .backButton {
+            // width: 100%;
+            transform: translateX(-10px);
+            opacity: 0;
+        }
+    }
 }
