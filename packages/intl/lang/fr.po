@@ -27,7 +27,7 @@ msgstr "Titre"
 #: +FHxPO
 msgctxt "+FHxPO"
 msgid "Questions title"
-msgstr ""
+msgstr "Titre questions"
 
 # State label
 #: +LvOvJ
@@ -585,7 +585,7 @@ msgstr "Intro"
 #: BnRW4y
 msgctxt "BnRW4y"
 msgid "Results title"
-msgstr ""
+msgstr "Titre des résultats"
 
 # Success form message
 #: BpZoQZ
@@ -1556,7 +1556,7 @@ msgstr "Recherche..."
 #: gwPu/I
 msgctxt "gwPu/I"
 msgid "Buttons text"
-msgstr ""
+msgstr "Texte des boutons"
 
 # Question field label
 #: hVE7TA
@@ -2040,7 +2040,7 @@ msgstr "Envoyer"
 #: uDHTZn
 msgctxt "uDHTZn"
 msgid "Results description"
-msgstr ""
+msgstr "Description des résultats"
 
 # Image screen title
 #: uJ9eBc

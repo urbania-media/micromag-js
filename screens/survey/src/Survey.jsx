@@ -233,17 +233,18 @@ const SurveyScreen = ({
             return;
         }
 
-        const maxWidth = answers.reduce((currentMaxWidth, answer, answerI) => {
-            const button = buttonsRefs.current[answerI] || null;
-            const label = labelsRefs.current[answerI] || null;
-            if (button !== null && label !== null) {
-                const borderWidth = button.offsetWidth - button.clientWidth;
-                const totalWidth = borderWidth + label.getBoundingClientRect().width + 20;
-                return Math.max(currentMaxWidth, totalWidth);
-            }
-            return currentMaxWidth;
-        }, 0);
-        setButtonMaxWidth(Math.min(width * 0.75, Math.max(width * 0.2, maxWidth)));
+        // const maxWidth = answers.reduce((currentMaxWidth, answer, answerI) => {
+        //     const button = buttonsRefs.current[answerI] || null;
+        //     const label = labelsRefs.current[answerI] || null;
+        //     if (button !== null && label !== null) {
+        //         const borderWidth = button.offsetWidth - button.clientWidth;
+        //         const totalWidth = borderWidth + label.getBoundingClientRect().width + 20;
+        //         return Math.max(currentMaxWidth, totalWidth);
+        //     }
+        //     return currentMaxWidth;
+        // }, 0);
+        // setButtonMaxWidth(Math.min(width * 0.75, Math.max(width * 0.2, maxWidth)));
+        setButtonMaxWidth(width * 0.75);
         setReady(true);
     }, [answers, width, height, setButtonMaxWidth, finalTransitionDuration, isPlaceholder]);
 
@@ -306,10 +307,7 @@ const SurveyScreen = ({
                                                 <div
                                                     className={styles.itemInner}
                                                     style={{
-                                                        width:
-                                                            answered && !withoutResults
-                                                                ? buttonMaxWidth
-                                                                : null,
+                                                        width: buttonMaxWidth,
                                                         transitionDuration: finalTransitionDuration,
                                                     }}
                                                 >

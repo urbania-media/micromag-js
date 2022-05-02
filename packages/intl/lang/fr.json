@@ -5,6 +5,9 @@
     "+AEVbJ": {
         "defaultMessage": "Titre"
     },
+    "+FHxPO": {
+        "defaultMessage": "Titre questions"
+    },
     "+LvOvJ": {
         "defaultMessage": "Marqueurs"
     },
@@ -280,6 +283,9 @@
     },
     "BgrRxZ": {
         "defaultMessage": "Intro"
+    },
+    "BnRW4y": {
+        "defaultMessage": "Titre des résultats"
     },
     "BpZoQZ": {
         "defaultMessage": "Succès"
@@ -764,6 +770,9 @@
     "gprXiG": {
         "defaultMessage": "Recherche..."
     },
+    "gwPu/I": {
+        "defaultMessage": "Texte des boutons"
+    },
     "hVE7TA": {
         "defaultMessage": "Question"
     },
@@ -1003,6 +1012,9 @@
     },
     "uAKPQ9": {
         "defaultMessage": "Envoyer"
+    },
+    "uDHTZn": {
+        "defaultMessage": "Description des résultats"
     },
     "uJ9eBc": {
         "defaultMessage": "Image"
