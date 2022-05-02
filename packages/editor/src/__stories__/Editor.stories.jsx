@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { callToAction } from '../../../../.storybook/data';
+import { callToAction, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
@@ -199,8 +199,10 @@ export const QuizMultiple = () => (
         defaultValue={{ components: [{ id: 'quiz-multiple', type: 'quiz-multiple' }] }}
     />
 );
-export const Survey = () => (
-    <EditorContainer defaultValue={{ components: [{ id: 'survey', type: 'survey' }] }} />
+export const VideoCustom = () => (
+    <EditorContainer
+        defaultValue={{ components: [{ id: 'video', type: 'video', video: videoMedia() }] }}
+    />
 );
 export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
 export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;

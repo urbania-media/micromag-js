@@ -1134,7 +1134,7 @@
                     }
                 },
                 "autoPlay": false,
-                "loop": true,
+                "loop": false,
                 "closedCaptions": {
                     "type": "closed-captions",
                     "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"

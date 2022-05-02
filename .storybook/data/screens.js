@@ -298,7 +298,24 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        // callToAction: callToAction(),
+        callToAction: callToAction(),
+    },
+    {
+        id: uuid(),
+        type: 'video',
+        layout: 'full',
+        video: {
+            media: videoMedia({ vertical: true }),
+            autoPlay: true,
+            loop: false,
+            withSeekBar: true,
+            withPlayPause: true,
+            withTime: false,
+        },
+        background: {
+            color: { alpha: 1, color: '#FF00FF' },
+        },
+        callToAction: callToAction(),
     },
     // {
     //     id: uuid(),

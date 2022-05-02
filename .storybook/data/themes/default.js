@@ -37,10 +37,14 @@ export default {
         cta: {
             color: {
                 alpha: 1,
-                color: '#2222FF',
+                color: '#222222',
             },
-            fontFamily: 'Agrandir',
-            fontSize: 30,
+            fontFamily: 'Agrandir Narrow',
+            fontSize: 14,
+            fontWeight: 700,
+            fontStyle: {
+                bold: false,
+            },
         },
     },
     components: [
@@ -59,7 +63,7 @@ export default {
                 alpha: 0.5,
                 color: '#f5ff00',
             },
-            padding: 5,
+            padding: { top: 5, left: 10, right: 10, bottom: 5 },
             backgroundColor: {
                 color: '#fcff00',
                 alpha: 1,
