@@ -21,6 +21,7 @@ const propTypes = {
     answeredIndex: PropTypes.number,
     answersCollapseDelay: PropTypes.number,
     buttonsStyle: MicromagPropTypes.boxStyle,
+    buttonsTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     withoutGoodAnswer: PropTypes.bool,
@@ -41,6 +42,7 @@ const defaultProps = {
     answeredIndex: null,
     answersCollapseDelay: 2000,
     buttonsStyle: null,
+    buttonsTextStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
     withoutGoodAnswer: false,
@@ -62,6 +64,7 @@ const Answers = ({
     answeredIndex,
     answersCollapseDelay,
     buttonsStyle,
+    buttonsTextStyle,
     goodAnswerColor,
     badAnswerColor,
     withoutGoodAnswer,
@@ -191,6 +194,8 @@ const Answers = ({
                             buttonStyle: answerButtonStyle = null,
                         } = answer || {};
 
+                        const { textStyle = null } = label || {};
+
                         const hasAnswer = isTextFilled(label);
 
                         if (answersDidCollapsed && !rightAnswer) {
@@ -288,6 +293,10 @@ const Answers = ({
                                                     <Text
                                                         {...label}
                                                         className={styles.optionLabel}
+                                                        textStyle={{
+                                                            ...buttonsTextStyle,
+                                                            ...textStyle,
+                                                        }}
                                                     />
                                                 </Button>
                                             </Transitions>

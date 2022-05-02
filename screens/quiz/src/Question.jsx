@@ -27,6 +27,8 @@ const propTypes = {
     totalCount: PropTypes.number,
     answeredIndex: PropTypes.number,
     buttonsStyle: MicromagPropTypes.boxStyle,
+    buttonsTextStyle: MicromagPropTypes.textStyle,
+    questionsHeadingStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     focusable: PropTypes.bool,
@@ -54,6 +56,8 @@ const defaultProps = {
     totalCount: null,
     answeredIndex: null,
     buttonsStyle: null,
+    buttonsTextStyle: null,
+    questionsHeadingStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
     focusable: false,
@@ -81,6 +85,8 @@ const Question = ({
     totalCount,
     answeredIndex,
     buttonsStyle,
+    buttonsTextStyle,
+    questionsHeadingStyle,
     goodAnswerColor,
     badAnswerColor,
     focusable,
@@ -105,6 +111,8 @@ const Question = ({
     const verticalAlign = isSplitted ? null : layout;
 
     const hasQuestion = isTextFilled(question);
+    const { textStyle: questionTextStyle = null } = question || {};
+
     const hasResult = isTextFilled(result);
 
     const [resultVisible, setResultVisible] = useState(showInstantAnswer);
@@ -174,7 +182,11 @@ const Question = ({
                             playing={transitionPlaying}
                             disabled={transitionDisabled}
                         >
-                            <Heading {...question} className={styles.question} />
+                            <Heading
+                                {...question}
+                                className={styles.question}
+                                textStyle={{ ...questionsHeadingStyle, ...questionTextStyle }}
+                            />
                         </Transitions>
                     ) : null}
                 </ScreenElement>,
@@ -187,6 +199,7 @@ const Question = ({
                     badAnswerColor={badAnswerColor}
                     withoutGoodAnswer={withoutGoodAnswer}
                     buttonsStyle={buttonsStyle}
+                    buttonsTextStyle={buttonsTextStyle}
                     focusable={focusable}
                     transitions={transitions}
                     transitionStagger={transitionStagger}

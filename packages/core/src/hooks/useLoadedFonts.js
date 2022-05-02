@@ -25,7 +25,11 @@ const useLoadedFonts = (fonts) => {
 
     useEffect(() => {
         const config = fonts.reduce((newConfig, font) => {
-            const { type, name } = isObject(font)
+            const {
+                type,
+                name,
+                variants = [],
+            } = isObject(font)
                 ? font
                 : {
                       type: 'system',
@@ -42,7 +46,26 @@ const useLoadedFonts = (fonts) => {
                     [type]: {
                         families: [
                             ...(newConfig !== null ? (newConfig[type] || {}).families || [] : []),
-                            type === 'google' ? `${name}:400,700` : name,
+                            type === 'google'
+                                ? [name, (variants || []).filter((it) => it !== null).join(',')]
+                                      .filter((it) => it !== null && it.length > 0)
+                                      .join(':')
+                                : [
+                                      name,
+                                      (variants !== null ? [{fvd: 'n4'}, ...variants] : [])
+                                          .map(
+                                              ({ fvd = null, weight = null, style = null }) =>
+                                                  fvd ||
+                                                  [style, weight]
+                                                      .filter((it) => it !== null)
+                                                      .map((it) => `${it}`.substr(0, 1))
+                                                      .join(''),
+                                          )
+                                          .filter((it) => it !== null && it.length > 0)
+                                          .join(','),
+                                  ]
+                                      .filter((it) => it !== null && it.length > 0)
+                                      .join(':'),
                         ],
                     },
                 };

@@ -7,6 +7,10 @@
     "defaultMessage": "Title",
     "description": "Field label"
   },
+  "+FHxPO": {
+    "defaultMessage": "Questions title",
+    "description": "Field label"
+  },
   "+LvOvJ": {
     "defaultMessage": "Markers",
     "description": "State label"
@@ -374,6 +378,10 @@
   "BgrRxZ": {
     "defaultMessage": "Intro",
     "description": "State label"
+  },
+  "BnRW4y": {
+    "defaultMessage": "Results title",
+    "description": "Field label"
   },
   "BpZoQZ": {
     "defaultMessage": "Success",
@@ -1026,6 +1034,10 @@
     "defaultMessage": "Search...",
     "description": "Input placeholder"
   },
+  "gwPu/I": {
+    "defaultMessage": "Buttons text",
+    "description": "Field label"
+  },
   "hVE7TA": {
     "defaultMessage": "Question",
     "description": "Question field label"
@@ -1347,6 +1359,10 @@
   "uAKPQ9": {
     "defaultMessage": "Submit",
     "description": "Submit field label"
+  },
+  "uDHTZn": {
+    "defaultMessage": "Results description",
+    "description": "Field label"
   },
   "uJ9eBc": {
     "defaultMessage": "Image",

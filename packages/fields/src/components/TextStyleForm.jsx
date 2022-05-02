@@ -4,7 +4,6 @@ import React from 'react';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { getStyleFromText, getFontFamilyFromFont } from '@micromag/core/utils';
-import styles from '../styles/text-style.module.scss';
 import FieldWithForm from './FieldWithForm';
 
 const propTypes = {
@@ -32,42 +31,19 @@ const TextStyleForm = ({ value, onChange, closeForm, ...props }) => {
     const textStyle = getStyleFromText(value);
     const { fontFamily = null } = textStyle || {};
     const fontLabel = fontFamily !== null ? fontFamily.replace(/['"]+/g, '') : null;
-    const finalFontLabel =
-        fontLabel !== null && fontLabel.length > 12 ? fontLabel.substring(0, 12) : null;
 
     const previewElement =
         value !== null ? (
-            <span className={styles.preview}>
-                <span
-                    className={styles.text}
-                    style={{
-                        ...textStyle,
-                        padding: 0,
-                        fontSize: '16px',
-                        lineHeight: 1,
-                    }}
-                >
-                    {finalFontLabel !== null ? (
-                        finalFontLabel
-                    ) : (
-                        <FormattedMessage
-                            defaultMessage="Text style"
-                            description="Preview value label"
-                        />
-                    )}
-                </span>
-                {/* <strong
-                    className="d-inline-block"
-                    style={{ fontFamily: getFontFamilyFromFont(value) }}
-                >
-                    Aa
-                </strong> */}
-            </span>
+            <strong className="d-inline-block" style={{ fontFamily: getFontFamilyFromFont(value) }}>
+                Aa
+            </strong>
         ) : null;
+
     return (
         <FieldWithForm
             isForm
             value={value}
+            label={fontLabel}
             onChange={onChange}
             thumbnail={previewElement}
             noValueLabel={

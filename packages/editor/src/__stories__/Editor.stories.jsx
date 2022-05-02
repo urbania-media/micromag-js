@@ -192,9 +192,15 @@ export const Map = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'map', type: 'map' }] }} />
 );
 export const Quiz = () => (
+    <EditorContainer defaultValue={{ components: [{ id: 'quiz', type: 'quiz' }] }} />
+);
+export const QuizMultiple = () => (
     <EditorContainer
         defaultValue={{ components: [{ id: 'quiz-multiple', type: 'quiz-multiple' }] }}
     />
+);
+export const Survey = () => (
+    <EditorContainer defaultValue={{ components: [{ id: 'survey', type: 'survey' }] }} />
 );
 export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
 export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;

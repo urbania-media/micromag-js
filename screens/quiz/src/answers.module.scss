@@ -78,9 +78,8 @@
     position: relative;
     width: 100%;
     padding: 10px;
-    color: $white;
-    border: 1px solid $white;
     border-radius: 10px;
+    color: $white;
 
     &:disabled {
         opacity: 1;
