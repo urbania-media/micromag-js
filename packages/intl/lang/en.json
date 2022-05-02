@@ -5,6 +5,9 @@
     "+AEVbJ": {
         "defaultMessage": "Title"
     },
+    "+FHxPO": {
+        "defaultMessage": "Questions title"
+    },
     "+LvOvJ": {
         "defaultMessage": "Markers"
     },
@@ -280,6 +283,9 @@
     },
     "BgrRxZ": {
         "defaultMessage": "Intro"
+    },
+    "BnRW4y": {
+        "defaultMessage": "Results title"
     },
     "BpZoQZ": {
         "defaultMessage": "Success"
@@ -764,6 +770,9 @@
     "gprXiG": {
         "defaultMessage": "Search..."
     },
+    "gwPu/I": {
+        "defaultMessage": "Buttons text"
+    },
     "hVE7TA": {
         "defaultMessage": "Question"
     },
@@ -1003,6 +1012,9 @@
     },
     "uAKPQ9": {
         "defaultMessage": "Submit"
+    },
+    "uDHTZn": {
+        "defaultMessage": "Results description"
     },
     "uJ9eBc": {
         "defaultMessage": "Image"

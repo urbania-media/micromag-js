@@ -23,6 +23,12 @@ msgctxt "+AEVbJ"
 msgid "Title"
 msgstr "Title"
 
+# Field label
+#: +FHxPO
+msgctxt "+FHxPO"
+msgid "Questions title"
+msgstr "Questions title"
+
 # State label
 #: +LvOvJ
 msgctxt "+LvOvJ"
@@ -574,6 +580,12 @@ msgstr "Title"
 msgctxt "BgrRxZ"
 msgid "Intro"
 msgstr "Intro"
+
+# Field label
+#: BnRW4y
+msgctxt "BnRW4y"
+msgid "Results title"
+msgstr "Results title"
 
 # Success form message
 #: BpZoQZ
@@ -1540,6 +1552,12 @@ msgctxt "gprXiG"
 msgid "Search..."
 msgstr "Search..."
 
+# Field label
+#: gwPu/I
+msgctxt "gwPu/I"
+msgid "Buttons text"
+msgstr "Buttons text"
+
 # Question field label
 #: hVE7TA
 msgctxt "hVE7TA"
@@ -2017,6 +2035,12 @@ msgstr "Position"
 msgctxt "uAKPQ9"
 msgid "Submit"
 msgstr "Submit"
+
+# Field label
+#: uDHTZn
+msgctxt "uDHTZn"
+msgid "Results description"
+msgstr "Results description"
 
 # Image screen title
 #: uJ9eBc
