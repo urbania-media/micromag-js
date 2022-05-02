@@ -129,7 +129,7 @@ const Recommendation = ({
     // Create elements
     const items = [
         !isPlaceholder ? <Spacer key="spacer-cta-top" /> : null,
-        hasTextCard || isPlaceholder ? (
+        hasTextCard || isPlaceholder || isEdit ? (
             <Container
                 className={classNames([
                     styles.textCard,
