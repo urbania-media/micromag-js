@@ -26,15 +26,15 @@
         padding: 6px 8px 6px 13px;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
-        font-weight: 700;
-        text-transform: uppercase;
 
         p {
-            display: inline;
+            display: inline-block;
             margin: 0;
-            padding: 0;
+            padding: 2px 0 0;
             font-size: inherit;
+            font-weight: 700;
             line-height: 1;
+            text-transform: uppercase;
         }
     }
 
@@ -48,7 +48,9 @@
     .name, .prefix {
         display: block;
         background-color: $gray-200;
+        font-family: 'Agrandir';
         font-size: 12px;
+        letter-spacing: 0.04em;
         line-height: 1;
         white-space: nowrap;
     }
@@ -70,6 +72,11 @@
         .name {
             margin-left: 0;
             padding-left: 0;
+        }
+
+        .prefix {
+            margin-right: 0;
+            padding-right: 0.4em;
         }
     }
 }

@@ -146,6 +146,9 @@ export const Test = () => (
                             color: '#ff4dff',
                         },
                     },
+                    background: {
+                        color: { color: '#00f', alpha: 1 },
+                    },
                     callToAction: callToAction(),
                 },
             ],

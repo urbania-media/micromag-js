@@ -64,8 +64,8 @@ export default {
                 color: '#fcff00',
                 alpha: 1,
             },
-            borderWidth: 5,
-            borderRadius: 10,
+            borderWidth: 4,
+            borderRadius: 40,
         },
     },
 };

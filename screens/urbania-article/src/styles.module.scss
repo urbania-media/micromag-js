@@ -60,7 +60,6 @@ $color-dehors-text: #ffeada;
         display: flex;
         z-index: 1;
         flex-direction: column;
-        // flex-grow: 1;
         align-items: center;
         justify-content: center;
         width: 100%;
@@ -74,11 +73,13 @@ $color-dehors-text: #ffeada;
         }
 
         .overTitle {
-            padding-top: 30px;
+            margin-bottom: 10px;
+            padding: 30px 0 2px;
+            border-bottom: 1px solid currentColor;
             font-family: 'Agrandir Grand';
             font-size: 10px;
             font-weight: 500;
-            text-decoration: underline;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
         }
 
@@ -98,6 +99,7 @@ $color-dehors-text: #ffeada;
             padding: 0 10px 4px;
             background-color: $color-urbania-text;
             color: $color-urbania-background;
+            letter-spacing: 0.04em;
         }
 
         .sponsor {
@@ -107,10 +109,6 @@ $color-dehors-text: #ffeada;
             font-weight: 400;
             line-height: 1;
             text-transform: uppercase;
-
-            // &:last-child {
-            //     font-weight: bold;
-            // }
         }
 
         &.quatre95 {

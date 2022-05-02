@@ -85,13 +85,17 @@ const Button = ({
             ...otherStyles
         } = finalStyles || {};
 
+        const margin = borderWidth !== null && borderWidth > 0 ? '-1px' : null;
+
         finalStyles = {
             ...otherStyles,
             borderRadius,
+            ...(margin !== null ? { margin } : null),
         };
 
         borderStyles = {
             borderRadius: borderRadius + borderWidth,
+            // backgroundColor: borderColor,
             borderWidth,
             borderColor,
             borderStyle,
