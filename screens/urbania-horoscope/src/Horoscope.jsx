@@ -138,11 +138,11 @@ const Horoscope = ({
             {/* TITLE */}
             <ScreenElement
                 key="title"
-                emptyLabel={
-                    <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-                }
+                // emptyLabel={
+                //     <FormattedMessage defaultMessage="Title" description="Title placeholder" />
+                // }
                 emptyClassName={styles.emptyText}
-                isEmpty={!hasTitle}
+                // isEmpty={!hasTitle}
             >
                 {hasTitle ? (
                     <Heading className={styles.title} {...title} />

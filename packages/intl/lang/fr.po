@@ -827,6 +827,12 @@ msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
 
+# Field label
+#: JMq0pm
+msgctxt "JMq0pm"
+msgid "Answers text"
+msgstr ""
+
 # Button to create your first screen
 #: JoWKee
 msgctxt "JoWKee"
@@ -862,6 +868,12 @@ msgstr "Réponses"
 msgctxt "KuzZbb"
 msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
+
+# Field label
+#: L0xMt7
+msgctxt "L0xMt7"
+msgid "Answers headings"
+msgstr ""
 
 # Field label
 #: LOknw0
@@ -1873,6 +1885,12 @@ msgstr "Droite"
 msgctxt "q/tLk0"
 msgid "Are you sure you want to delete this screen?"
 msgstr "Êtes-vous sûr que vous voulez supprimer cet écran?"
+
+# Preview value label
+#: q56b2e
+msgctxt "q56b2e"
+msgid "Text style"
+msgstr ""
 
 # Save in Media Gallery
 #: qIw1nW

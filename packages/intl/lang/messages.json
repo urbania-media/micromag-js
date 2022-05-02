@@ -543,6 +543,10 @@
     "defaultMessage": "Background color",
     "description": "Field label"
   },
+  "JMq0pm": {
+    "defaultMessage": "Answers text",
+    "description": "Field label"
+  },
   "JoWKee": {
     "defaultMessage": "Create your first screen",
     "description": "Button to create your first screen"
@@ -566,6 +570,10 @@
   "KuzZbb": {
     "defaultMessage": "Background color",
     "description": "Breadcrumb field label"
+  },
+  "L0xMt7": {
+    "defaultMessage": "Answers headings",
+    "description": "Field label"
   },
   "LOknw0": {
     "defaultMessage": "Styles",
@@ -1239,6 +1247,10 @@
   "q/tLk0": {
     "defaultMessage": "Are you sure you want to delete this screen?",
     "description": "Confirmation message before deleting a screen"
+  },
+  "q56b2e": {
+    "defaultMessage": "Text style",
+    "description": "Preview value label"
   },
   "qIw1nW": {
     "defaultMessage": "Save",
