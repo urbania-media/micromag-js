@@ -39,6 +39,10 @@ const propTypes = {
         }),
     ),
     buttonsStyle: MicromagPropTypes.boxStyle,
+    buttonsTextStyle: MicromagPropTypes.textStyle,
+    questionsHeadingStyle: MicromagPropTypes.textStyle,
+    resultsHeadingStyle: MicromagPropTypes.textStyle,
+    resultsTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     spacing: PropTypes.number,
@@ -63,6 +67,10 @@ const defaultProps = {
     questions: null,
     results: null,
     buttonsStyle: null,
+    buttonsTextStyle: null,
+    questionsHeadingStyle: null,
+    resultsHeadingStyle: null,
+    resultsTextStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
     spacing: 20,
@@ -87,6 +95,10 @@ const QuizMultipleScreen = ({
     questions,
     results,
     buttonsStyle,
+    buttonsTextStyle,
+    questionsHeadingStyle,
+    resultsHeadingStyle,
+    resultsTextStyle,
     goodAnswerColor,
     badAnswerColor,
     spacing,
@@ -367,6 +379,8 @@ const QuizMultipleScreen = ({
                                     answers={answers}
                                     answeredIndex={currentAnsweredIndex}
                                     buttonsStyle={buttonsStyle}
+                                    buttonsTextStyle={buttonsTextStyle}
+                                    questionsHeadingStyle={questionsHeadingStyle}
                                     goodAnswerColor={goodAnswerColor}
                                     badAnswerColor={badAnswerColor}
                                     focusable={current && isView}
@@ -399,6 +413,8 @@ const QuizMultipleScreen = ({
                             <CSSTransition key="results" classNames={styles} timeout={2000}>
                                 <Results
                                     {...currentResult}
+                                    resultsHeadingStyle={resultsHeadingStyle}
+                                    resultsTextStyle={resultsTextStyle}
                                     layout={resultLayout || layout}
                                     transitions={transitions}
                                     transitionPlaying={transitionPlaying}

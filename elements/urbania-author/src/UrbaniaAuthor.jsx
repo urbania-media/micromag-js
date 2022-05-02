@@ -67,7 +67,9 @@ const UrbaniaAuthor = ({
                 },
             ])}
         >
-            {!withoutPrefix ? <Text {...name} className={styles.prefix} body={prefix} /> : null}
+            {!withoutPrefix ? (
+                <Text {...name} className={styles.prefix} body={`<span>${prefix}<span>`} />
+            ) : null}
             {withImage && image !== null ? <Avatar className={styles.image} image={image} /> : null}
             {url !== null && !withoutLink ? (
                 <Link

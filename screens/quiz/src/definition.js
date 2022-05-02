@@ -64,7 +64,6 @@ export default [
                     description: 'Field label',
                 }),
             },
-
             {
                 type: 'fields',
                 isList: true,
@@ -73,6 +72,14 @@ export default [
                     description: 'Field section label',
                 }),
                 fields: [
+                    {
+                        name: 'buttonsTextStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Buttons text',
+                            description: 'Field label',
+                        }),
+                    },
                     {
                         name: 'buttonsStyle',
                         type: 'box-style-form',
@@ -319,6 +326,14 @@ export default [
                 isList: true,
                 fields: [
                     {
+                        name: 'buttonsTextStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Buttons text',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
                         name: 'buttonsStyle',
                         type: 'box-style-form',
                         label: defineMessage({
@@ -327,18 +342,26 @@ export default [
                         }),
                     },
                     {
-                        name: 'answersHeadingStyle',
+                        name: 'questionsHeadingStyle',
                         type: 'text-style-form',
                         label: defineMessage({
-                            defaultMessage: 'Answers headings',
+                            defaultMessage: 'Questions title',
                             description: 'Field label',
                         }),
                     },
                     {
-                        name: 'answersTextStyle',
+                        name: 'resultsHeadingStyle',
                         type: 'text-style-form',
                         label: defineMessage({
-                            defaultMessage: 'Answers text',
+                            defaultMessage: 'Results title',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'resultsTextStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Results description',
                             description: 'Field label',
                         }),
                     },

@@ -43,6 +43,13 @@
         padding: 6px 13px 6px 8px;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
+
+        span {
+            display: inline-block;
+            padding: 1px 0;
+            font-size: inherit;
+            line-height: 1;
+        }
     }
 
     .name, .prefix {

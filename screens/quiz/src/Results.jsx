@@ -16,6 +16,8 @@ import styles from './results.module.scss';
 const propTypes = {
     title: MicromagPropTypes.textElement,
     description: MicromagPropTypes.textElement,
+    resultsHeadingStyle: MicromagPropTypes.textStyle,
+    resultsTextStyle: MicromagPropTypes.textStyle,
     layout: PropTypes.string,
     transitions: MicromagPropTypes.transitions,
     transitionPlaying: PropTypes.bool,
@@ -28,6 +30,8 @@ const propTypes = {
 const defaultProps = {
     title: null,
     description: null,
+    resultsHeadingStyle: null,
+    resultsTextStyle: null,
     layout: null,
     transitions: null,
     transitionPlaying: false,
@@ -41,6 +45,8 @@ const Results = ({
     layout,
     title,
     description,
+    resultsHeadingStyle,
+    resultsTextStyle,
     transitions,
     transitionPlaying,
     transitionStagger,
@@ -52,7 +58,9 @@ const Results = ({
     const verticalAlign = isSplitted ? null : layout;
 
     const hasTitle = isTextFilled(title);
+    const { textStyle: titleTextStyle = null } = title || {};
     const hasDescription = isTextFilled(description);
+    const { textStyle: descriptionTextStyle = null } = description || {};
 
     return (
         <Layout
@@ -82,7 +90,11 @@ const Results = ({
                             playing={transitionPlaying}
                             disabled={transitionDisabled}
                         >
-                            <Heading {...title} className={styles.title} />
+                            <Heading
+                                {...title}
+                                className={styles.title}
+                                textStyle={{ ...resultsHeadingStyle, ...titleTextStyle }}
+                            />
                         </Transitions>
                     ) : null}
                 </ScreenElement>,
@@ -106,7 +118,11 @@ const Results = ({
                             disabled={transitionDisabled}
                             delay={transitionStagger}
                         >
-                            <Text {...description} className={styles.description} />
+                            <Text
+                                {...description}
+                                className={styles.description}
+                                textStyle={{ ...resultsTextStyle, ...descriptionTextStyle }}
+                            />
                         </Transitions>
                     ) : null}
                 </ScreenElement>,

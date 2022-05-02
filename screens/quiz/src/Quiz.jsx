@@ -22,6 +22,7 @@ const propTypes = {
         text: MicromagPropTypes.textElement,
     }),
     buttonsStyle: MicromagPropTypes.boxStyle,
+    buttonsTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     spacing: PropTypes.number,
@@ -42,6 +43,7 @@ const defaultProps = {
     answers: null,
     result: null,
     buttonsStyle: null,
+    buttonsTextStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
     spacing: 20,
@@ -62,6 +64,7 @@ const QuizScreen = ({
     answers,
     result,
     buttonsStyle,
+    buttonsTextStyle,
     goodAnswerColor,
     badAnswerColor,
     spacing,
@@ -165,6 +168,7 @@ const QuizScreen = ({
                     result={result}
                     answeredIndex={userAnswerIndex}
                     buttonsStyle={buttonsStyle}
+                    buttonsTextStyle={buttonsTextStyle}
                     goodAnswerColor={goodAnswerColor}
                     badAnswerColor={badAnswerColor}
                     focusable={current && isView}
