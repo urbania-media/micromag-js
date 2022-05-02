@@ -186,8 +186,6 @@ function CallToAction({
             </div>
         );
 
-    console.log('bs', boxStyle);
-
     return active ? (
         <>
             <div

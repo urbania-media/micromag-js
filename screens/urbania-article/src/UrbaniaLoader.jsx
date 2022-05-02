@@ -80,8 +80,6 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
             ) : null;
 
-        console.log('lol');
-
         return {
             type: defaultType,
             title: hasTitle ? title : { ...title, body: articleTitle },

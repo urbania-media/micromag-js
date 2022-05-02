@@ -95,8 +95,6 @@ const Button = ({
         };
     }
 
-    console.log(finalStyles);
-
     const button = (
         <CoreButton
             className={classNames([
