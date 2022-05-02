@@ -85,7 +85,7 @@ const PaddingField = ({ value, onChange, closeForm, ...props }) => {
             {...props}
         >
             <div className="p-2">
-                <div className="d-flex align-content-center justify-content-center my-2">
+                <div className="d-flex w-100 align-content-center justify-content-center my-2">
                     <Spacing
                         className={styles.spacing}
                         value={defaultValue || top}
@@ -96,7 +96,7 @@ const PaddingField = ({ value, onChange, closeForm, ...props }) => {
                         })}
                     />
                 </div>
-                <div className="d-flex align-content-center justify-content-between my-2">
+                <div className="d-flex w-100 align-content-center justify-content-between my-2">
                     <Spacing
                         className={styles.spacing}
                         value={defaultValue || left}
@@ -116,7 +116,7 @@ const PaddingField = ({ value, onChange, closeForm, ...props }) => {
                         })}
                     />
                 </div>
-                <div className="d-flex align-content-center justify-content-center my-2">
+                <div className="d-flex w-100 align-content-center justify-content-center my-2">
                     <Spacing
                         className={styles.spacing}
                         value={defaultValue || bottom}

@@ -17,6 +17,7 @@
 
 .container {
     position: relative;
+    margin-bottom: 5px;
     transition: opacity 0.3s ease;
     opacity: 1;
     text-align: center;
@@ -33,6 +34,7 @@
 
     .label {
         display: inline-block;
+        line-height: 1;
     }
 
     .button {

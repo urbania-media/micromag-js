@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -70,19 +70,10 @@ const SignsGrid = ({
     active,
     className,
 }) => {
-    const [activeSign, setActiveSign] = useState(null);
+    const [activeSignId, setActiveSignId] = useState(null);
+    const activeSign = signs.find(({ id = null }) => activeSignId === id) || null;
 
-    useEffect(() => {
-        const { id: currentId = null } = activeSign || {};
-        const currentSign =
-            signs.find(({ id = null }) => currentId !== null && currentId === id) || null;
-
-        if (currentSign !== null) {
-            setActiveSign(currentSign);
-        }
-    }, [activeSign, setActiveSign, signs]);
-
-    const closeModal = () => setActiveSign(null);
+    const closeModal = useCallback(() => setActiveSignId(null), [activeSignId, setActiveSignId]);
 
     const { isView, isPlaceholder } = useScreenRenderContext();
 
@@ -118,27 +109,7 @@ const SignsGrid = ({
                         </Button>
                     ) : null}
                     <TransitionGroup>
-                        {activeSign ? (
-                            <CSSTransition
-                                key="backButton"
-                                classNames={{
-                                    enter: styles.buttonEnter,
-                                    enterActive: styles.buttonEnterActive,
-                                    exit: styles.buttonExit,
-                                    exitActive: styles.buttonExitActive,
-                                }}
-                                timeout={1000}
-                            >
-                                <Button onClick={closeModal} className={styles.backButton}>
-                                    <span className={styles.arrow}>←</span>
-                                    <FormattedMessage
-                                        defaultMessage="Back to the Signs"
-                                        description="Horoscope Back Button"
-                                    />
-                                </Button>
-                            </CSSTransition>
-                        ) : null}
-                        {!activeSign ? (
+                        {!activeSignId ? (
                             <CSSTransition key="grid" classNames={styles} timeout={1000}>
                                 <div
                                     className={classNames([
@@ -154,10 +125,6 @@ const SignsGrid = ({
                                             image = null,
                                             label = null,
                                             date = null,
-                                            // eslint-disable-next-line no-unused-vars
-                                            word = null,
-                                            // eslint-disable-next-line no-unused-vars
-                                            description = null,
                                         } = sign || {};
                                         return (
                                             <ScreenElement
@@ -179,7 +146,7 @@ const SignsGrid = ({
                                                 <Button
                                                     className={styles.gridElement}
                                                     type="button"
-                                                    onClick={() => setActiveSign(sign)}
+                                                    onClick={() => setActiveSignId(id)}
                                                 >
                                                     {image !== null ? (
                                                         <img
@@ -207,24 +174,23 @@ const SignsGrid = ({
                                 </div>
                             </CSSTransition>
                         ) : (
-                            <CSSTransition
-                                key="modal"
-                                classNames={{
-                                    enter: styles.modalEnter,
-                                    enterActive: styles.modalEnterActive,
-                                    exit: styles.modalExit,
-                                    exitActive: styles.modalExitActive,
-                                }}
-                                timeout={500}
-                            >
-                                <SignModal
-                                    width={width}
-                                    height={height}
-                                    className={styles.signModal}
-                                    backButton={closeModal}
-                                    sign={activeSign}
-                                    subtitle={signSubtitle}
-                                />
+                            <CSSTransition key="modal" classNames={styles} timeout={500}>
+                                <div className={styles.modalContainer}>
+                                    <Button onClick={closeModal} className={styles.backButton}>
+                                        <span className={styles.arrow}>←</span>
+                                        <FormattedMessage
+                                            defaultMessage="Back to the Signs"
+                                            description="Horoscope Back Button"
+                                        />
+                                    </Button>
+                                    <SignModal
+                                        width={width}
+                                        height={height}
+                                        className={styles.signModal}
+                                        sign={activeSign}
+                                        subtitle={signSubtitle}
+                                    />
+                                </div>
                             </CSSTransition>
                         )}
                     </TransitionGroup>

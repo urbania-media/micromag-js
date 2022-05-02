@@ -28,9 +28,8 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
 
     useEffect(() => {
         if (url !== null) {
-            // TODO: fix cors on urbania.ca
             getJSON(`${url}.json`, { mode: 'cors' }).then((art) => {
-                setArticle(art);
+                setArticle(art || null);
             });
         }
     }, [url, setArticle]);
@@ -54,9 +53,22 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             image: articleImage = null,
             metadata = {},
         } = article || {};
+        const hasArticle = url !== null && article !== null;
+
         const { authors = [], sponsors = [], site = null, canonical = null } = metadata || {};
         const { sizes = {} } = articleImage || {};
         const { medium, large } = sizes || {};
+        const articleAuthor = (authors || []).length > 0 ? authors[0] : null;
+        const {
+            name: authorName = null,
+            avatar: authorImage = null,
+            url: authorUrl = null,
+        } = articleAuthor || {};
+        const finalArticleAuthor = {
+            ...(authorName !== null ? { name: { body: `<p>${authorName}</p>` } } : null),
+            ...(authorUrl !== null ? { url: `${hostname}${authorUrl}` } : null),
+            ...(authorImage !== null ? { image: authorImage } : null),
+        };
 
         // Type
         const defaultType = articleType || type;
@@ -71,6 +83,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                       .trim()
                 : null;
 
+        // Content
         const hasTitle = isTextFilled(title);
         const hasOverTitle = isTextFilled(overTitle);
         const hasSponsorProps = isTextFilled(sponsor);
@@ -84,12 +97,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             type: defaultType,
             title: hasTitle ? title : { ...title, body: articleTitle },
             overTitle: hasOverTitle ? overTitle : { ...overTitle, body: 'En vedette' },
-            authors: authors.map(({ name = null, url: authorUrl = null, ...otherProps }) => ({
-                name: { body: `<p>${name}</p>` },
-                url: `${hostname}${authorUrl}`,
-                ...otherProps,
-            })),
-            author,
+            author: { ...finalArticleAuthor, ...author },
             sponsor:
                 defaultSponsor !== null && !hasSponsorProps
                     ? { ...sponsor, body: `<strong>${defaultSponsor}</strong>` }
@@ -108,6 +116,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 icon: defaultType === 'video' ? { id: 'play' } : null,
                 inWebView: true,
                 ...callToAction,
+                ...(hasArticle ? { active: true } : null),
             },
         };
     }, [article, url, hostname, props]);

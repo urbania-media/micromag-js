@@ -28,7 +28,6 @@ const defaultProps = {
 
 const Avatar = ({ image, width, height, resolution, shape, isTag, className }) => {
     const imageAtSize = getOptimalImageUrl(image, width, height, { resolution });
-
     return (
         <span
             className={classNames([

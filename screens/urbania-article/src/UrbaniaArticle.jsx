@@ -37,7 +37,6 @@ const propTypes = {
     image: MicromagPropTypes.visualElement,
     title: MicromagPropTypes.headingElement,
     overTitle: MicromagPropTypes.headingElement,
-    authors: PropTypes.arrayOf(PropTypes.shape({})),
     author: MicromagPropTypes.authorElement,
     sponsor: PropTypes.arrayOf(PropTypes.shape({})),
     sponsorPrefix: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
@@ -57,7 +56,6 @@ const defaultProps = {
     image: null,
     title: null,
     overTitle: null,
-    authors: null,
     author: null,
     sponsor: null,
     sponsorPrefix: null,
@@ -77,7 +75,6 @@ const UrbaniaArticle = ({
     image,
     title,
     overTitle,
-    authors,
     author,
     sponsor,
     sponsorPrefix,
@@ -114,9 +111,8 @@ const UrbaniaArticle = ({
     const hasTitle = isTextFilled(title);
     const hasSponsor = isTextFilled(sponsor);
 
-    const hasAuthors = (authors || []).length > 0 || author !== null;
     const { name: authorFullName } = author || {};
-    const { body: authorName } = authorFullName || {};
+    const hasAuthor = isTextFilled(authorFullName);
 
     const { url = null } = image || {};
     const hasImage = url !== null;
@@ -175,15 +171,11 @@ const UrbaniaArticle = ({
                         </Empty>
                     </div>
                 }
-                isEmpty={!hasAuthors}
+                isEmpty={!hasAuthor}
             >
-                {hasAuthors ? (
+                {hasAuthor ? (
                     <div className={classNames([styles.authors])}>
-                        {author !== null && authorName !== null ? (
-                            <UrbaniaAuthor author={author} />
-                        ) : (
-                            (authors || []).map((a) => <UrbaniaAuthor author={a} />)
-                        )}
+                        <UrbaniaAuthor author={author} />
                     </div>
                 ) : null}
             </ScreenElement>

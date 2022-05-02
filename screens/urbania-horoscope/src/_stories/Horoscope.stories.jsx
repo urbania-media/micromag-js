@@ -2,20 +2,12 @@
 import React from 'react';
 import { defineMessage } from 'react-intl';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    // text
-    // title,
-    imageMedia,
-    backgroundVideo,
-    transitions,
-} from '../../../../.storybook/data';
+import { text, title, imageMedia, backgroundVideo, transitions } from '../../../../.storybook/data';
 import Horoscope from '../Horoscope';
 import definition from '../definition';
 import * as images from '../images/index';
 
 const props = {
-    // title: { body: 'Astrologie' },
-    // description: text(),
     description: { body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?' },
 
     author: {
@@ -37,8 +29,8 @@ const props = {
                 defaultMessage: 'Mar 21 - Apr 19',
                 description: 'Horoscope date',
             }),
-            word: { body: 'FJFKSJDKFJ' },
-            description: { body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?' },
+            word: { body: title() },
+            description: text('long'),
         },
         {
             id: 'taurus',
@@ -51,10 +43,8 @@ const props = {
                 defaultMessage: 'Apr 20 - May 20',
                 description: 'Horoscope date',
             }),
-            word: { body: "C'est le mot de la semaine" },
-            description: {
-                body: '<span>dflgk LFSKGJL lkjgdf lkSLFKJG Lklkdfjg SKLFJg <br/> <br/> <br/> <br/>dls;kfgj SKLDJF d;fklgj</span>',
-            },
+            word: { body: title() },
+            description: text(),
         },
         {
             id: 'gemini',
