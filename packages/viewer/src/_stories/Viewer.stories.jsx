@@ -232,16 +232,23 @@ export const CustomFonts = () => (
                     type: 'title-subtitle-credits',
                     layout: 'middle',
                     title: {
-                        body: 'Monument Extended Black',
+                        body: 'Monument Extended <strong>Black</strong>',
                         textStyle: {
                             align: 'center',
-                            fontStyle: { bold: true, italic: true },
+                            fontStyle: { bold: false, italic: false },
                             fontSize: 26,
                             lineHeight: 2,
                             fontFamily: {
                                 type: 'custom',
                                 name: 'MonumentExtended Black',
                                 media: 'media://1',
+                                variants: [
+                                    {
+                                        weight: 700,
+                                        style: 'normal',
+                                        media: 'media://2',
+                                    },
+                                ],
                             },
                         },
                     },
