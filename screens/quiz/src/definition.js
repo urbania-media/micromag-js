@@ -326,6 +326,22 @@ export default [
                             description: 'Field label',
                         }),
                     },
+                    {
+                        name: 'answersHeadingStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Answers headings',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'answersTextStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Answers text',
+                            description: 'Field label',
+                        }),
+                    },
                 ],
             },
             {

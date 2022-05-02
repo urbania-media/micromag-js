@@ -66,6 +66,7 @@ export { default as speaker } from './speaker';
 export { default as speakers } from './speakers';
 export { default as textElement } from './text-element';
 export { default as textStyle } from './text-style';
+export { default as textStyleForm } from './text-style-form';
 export { default as text } from './text';
 export { default as toggle } from './toggle';
 export { default as tokens } from './tokens';

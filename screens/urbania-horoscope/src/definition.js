@@ -23,9 +23,6 @@ export default [
             {
                 name: 'title',
                 type: 'heading-element',
-                theme: {
-                    textStyle: 'heading1',
-                },
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -34,9 +31,6 @@ export default [
             {
                 name: 'description',
                 type: 'text-element',
-                theme: {
-                    textStyle: 'text',
-                },
                 label: defineMessage({
                     defaultMessage: 'Description',
                     description: 'Text field label',
@@ -45,9 +39,6 @@ export default [
             {
                 name: 'author',
                 type: 'author-element',
-                theme: {
-                    textStyle: 'text',
-                },
                 label: defineMessage({
                     defaultMessage: 'Author',
                     description: 'Author field label',
@@ -56,9 +47,6 @@ export default [
             {
                 name: 'button',
                 type: 'button-element',
-                theme: {
-                    textStyle: 'button',
-                },
                 label: defineMessage({
                     defaultMessage: 'Button',
                     description: 'Field label',
@@ -67,9 +55,6 @@ export default [
             {
                 name: 'signs',
                 component: 'items',
-                theme: {
-                    textStyle: 'text',
-                },
                 label: defineMessage({
                     defaultMessage: 'Signs',
                     description: 'State label',

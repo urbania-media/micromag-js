@@ -54,9 +54,6 @@ export default [
             {
                 name: 'description',
                 type: 'text-element',
-                theme: {
-                    textStyle: 'text',
-                },
                 label: defineMessage({
                     defaultMessage: 'Description',
                     description: 'Text field label',

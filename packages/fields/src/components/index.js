@@ -65,6 +65,7 @@ export { default as Textarea } from './Textarea';
 export { default as TextEditor } from './TextEditor';
 export { default as TextElement } from './TextElement';
 export { default as TextTransform } from './TextTransform';
+export { default as TextStyleForm } from './TextStyleForm';
 export { default as Toggle } from './Toggle';
 export { default as Tokens } from './Tokens';
 export { default as Url } from './Url';

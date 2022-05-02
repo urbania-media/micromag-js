@@ -29,9 +29,6 @@ export default {
         {
             name: 'video',
             type: 'video-element',
-            theme: {
-                color: 'primary',
-            },
             defaultValue: {
                 autoPlay: true,
             },
