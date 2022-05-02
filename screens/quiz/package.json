@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-quiz",
-    "version": "0.3.78",
+    "version": "0.3.79",
     "description": "",
     "keywords": [
         "javascript"
@@ -55,8 +55,8 @@
         "@micromag/core": "^0.3.78",
         "@micromag/data": "^0.3.78",
         "@micromag/element-background": "^0.3.78",
-        "@micromag/element-button": "^0.3.78",
-        "@micromag/element-call-to-action": "^0.3.78",
+        "@micromag/element-button": "^0.3.79",
+        "@micromag/element-call-to-action": "^0.3.79",
         "@micromag/element-container": "^0.3.78",
         "@micromag/element-heading": "^0.3.78",
         "@micromag/element-layout": "^0.3.78",
