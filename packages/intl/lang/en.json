@@ -44,6 +44,9 @@
     "/T/UDH": {
         "defaultMessage": "Remove all"
     },
+    "/YQ+xP": {
+        "defaultMessage": "Image 360"
+    },
     "/ca7BX": {
         "defaultMessage": "Types"
     },
@@ -464,9 +467,6 @@
     "OkNUmk": {
         "defaultMessage": "Type"
     },
-    "Om6Dis": {
-        "defaultMessage": "Sign Subtitle"
-    },
     "Op1ZIp": {
         "defaultMessage": "Jan 21 - Feb 18"
     },
@@ -493,6 +493,9 @@
     },
     "QSmRdP": {
         "defaultMessage": "Add an image"
+    },
+    "Qe03Xz": {
+        "defaultMessage": "Sign Subtitle"
     },
     "QfpTKK": {
         "defaultMessage": "Select a screen..."

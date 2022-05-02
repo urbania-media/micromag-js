@@ -101,6 +101,12 @@ msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Remove all"
 
+# Image 360 placeholder
+#: /YQ+xP
+msgctxt "/YQ+xP"
+msgid "Image 360"
+msgstr "Image 360"
+
 # Media label
 #: /ca7BX
 msgctxt "/ca7BX"
@@ -941,12 +947,6 @@ msgctxt "OkNUmk"
 msgid "Type"
 msgstr "Type"
 
-# Title field label
-#: Om6Dis
-msgctxt "Om6Dis"
-msgid "Sign Subtitle"
-msgstr "Sign Subtitle"
-
 # Horoscope date
 #: Op1ZIp
 msgctxt "Op1ZIp"
@@ -1000,6 +1000,12 @@ msgstr "Videos"
 msgctxt "QSmRdP"
 msgid "Add an image"
 msgstr "Add an image"
+
+# Heading field label
+#: Qe03Xz
+msgctxt "Qe03Xz"
+msgid "Sign Subtitle"
+msgstr "Sign Subtitle"
 
 #: QfpTKK
 msgctxt "QfpTKK"

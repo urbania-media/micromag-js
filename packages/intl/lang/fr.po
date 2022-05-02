@@ -69,7 +69,7 @@ msgstr "Cercle"
 #: +vzDdb
 msgctxt "+vzDdb"
 msgid "Word of the Week"
-msgstr ""
+msgstr "Le mot de la semaine"
 
 # Media gallery source
 #: /62oe4
@@ -100,6 +100,12 @@ msgstr "Bélier"
 msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Tout effacer"
+
+# Image 360 placeholder
+#: /YQ+xP
+msgctxt "/YQ+xP"
+msgid "Image 360"
+msgstr "Image 360"
 
 # Media label
 #: /ca7BX
@@ -141,7 +147,7 @@ msgstr "Signe"
 #: 142Fjj
 msgctxt "142Fjj"
 msgid "May 21 - June 20"
-msgstr ""
+msgstr "21 mai au 20 juin"
 
 # Dropdown default all items label
 #: 15GBmG
@@ -399,7 +405,7 @@ msgstr "Présentateur"
 #: 7ZzlUE
 msgctxt "7ZzlUE"
 msgid "Oct 23 - Nov 22"
-msgstr ""
+msgstr "23 oct au 22 nov"
 
 # Horoscope sign
 #: 7mMPO4
@@ -513,7 +519,7 @@ msgstr "Image avec titre"
 #: ACSasN
 msgctxt "ACSasN"
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 # Screen title
 #: ACkeH6
@@ -657,7 +663,7 @@ msgstr "Modifier le contenu..."
 #: Evl2dG
 msgctxt "Evl2dG"
 msgid "Feb 19 - Mar 20"
-msgstr ""
+msgstr "19 fév au 20 mars"
 
 # Button label
 #: F/gl4b
@@ -669,7 +675,7 @@ msgstr "Menu"
 #: F0QDfY
 msgctxt "F0QDfY"
 msgid "Sept 23 - Oct 22"
-msgstr ""
+msgstr "23 sept au 22 oct"
 
 # Field label
 #: F2SD/0
@@ -681,7 +687,7 @@ msgstr "Boucle"
 #: F59wsl
 msgctxt "F59wsl"
 msgid "Urbania horoscope"
-msgstr ""
+msgstr "Urbania Horoscope"
 
 # Field label
 #: FJygXH
@@ -941,17 +947,11 @@ msgctxt "OkNUmk"
 msgid "Type"
 msgstr "Type"
 
-# Title field label
-#: Om6Dis
-msgctxt "Om6Dis"
-msgid "Sign Subtitle"
-msgstr ""
-
 # Horoscope date
 #: Op1ZIp
 msgctxt "Op1ZIp"
 msgid "Jan 21 - Feb 18"
-msgstr ""
+msgstr "21 jan au 18 fév"
 
 # TitleSubtitle screen title
 #: P1dwGU
@@ -1000,6 +1000,12 @@ msgstr "Vidéos"
 msgctxt "QSmRdP"
 msgid "Add an image"
 msgstr "Ajouter une image"
+
+# Heading field label
+#: Qe03Xz
+msgctxt "Qe03Xz"
+msgid "Sign Subtitle"
+msgstr "Sous-titre du signe"
 
 #: QfpTKK
 msgctxt "QfpTKK"
@@ -1256,7 +1262,7 @@ msgstr "Texte"
 #: ZeosMy
 msgctxt "ZeosMy"
 msgid "Mar 21 - Apr 19"
-msgstr ""
+msgstr "21 mars au 19 avr"
 
 # Screen group
 #: ZiWlL6
@@ -1310,7 +1316,7 @@ msgstr "Vous êtes sur l’écran {current} de {total}."
 #: bMdONM
 msgctxt "bMdONM"
 msgid "June 21 - July 22"
-msgstr ""
+msgstr "21 juin au 22 juil"
 
 # Audio screen title
 #: bhEaUt
@@ -1346,7 +1352,7 @@ msgstr "Liste"
 #: ceaRdq
 msgctxt "ceaRdq"
 msgid "Horoscope sign"
-msgstr ""
+msgstr "Signe astrologique"
 
 # Subtitle placeholder
 #: d60tSn
@@ -1634,7 +1640,7 @@ msgstr "Nom"
 #: keK5s0
 msgctxt "keK5s0"
 msgid "Back to the Signs"
-msgstr ""
+msgstr "Retourner aux signes"
 
 # Direction
 #: kf/5Tw
@@ -1734,7 +1740,7 @@ msgstr "Haut"
 #: nJgzwC
 msgctxt "nJgzwC"
 msgid "Urbania article"
-msgstr ""
+msgstr "Urbania Article"
 
 # Name field label
 #: nXVNeg
@@ -1830,7 +1836,7 @@ msgstr "Ajouté par"
 #: pnT3od
 msgctxt "pnT3od"
 msgid "June 23 - Aug 22"
-msgstr ""
+msgstr "23 juin au 22 août"
 
 # Type field label
 #: ppq6CK
@@ -1890,7 +1896,7 @@ msgstr "Marqueur"
 #: rAkTvt
 msgctxt "rAkTvt"
 msgid "Dec 22 - Jan 20"
-msgstr ""
+msgstr "22 déc au 20 jan"
 
 # Conversation screen title
 #: rBPIgw
@@ -1902,7 +1908,7 @@ msgstr "Conversation"
 #: raUY02
 msgctxt "raUY02"
 msgid "Apr 20 - May 20"
-msgstr ""
+msgstr "20 avr au 20 mai"
 
 # Label when there is no item
 #: rdFCsN
@@ -1938,7 +1944,7 @@ msgstr "Entrées"
 #: sUP5BO
 msgctxt "sUP5BO"
 msgid "Urbania recommendation"
-msgstr ""
+msgstr "Urbania Recommandation"
 
 # Label in Media Gallery
 #: sUR1xV
@@ -2148,7 +2154,7 @@ msgstr "Coins arrondis"
 #: xL0GD2
 msgctxt "xL0GD2"
 msgid "Aug 23 - Sept 22"
-msgstr ""
+msgstr "23 août au 22 sept"
 
 # Field label
 #: xT/onn
@@ -2190,7 +2196,7 @@ msgstr "Fermer"
 #: yCj5uv
 msgctxt "yCj5uv"
 msgid "Nov 23 - Dec 21"
-msgstr ""
+msgstr "23 nov au 21 déc"
 
 # Text field label
 #: yEG9zh
@@ -2226,7 +2232,7 @@ msgstr "Latitude"
 #: zDdDqI
 msgctxt "zDdDqI"
 msgid "Urbania trivia"
-msgstr ""
+msgstr "Urbania Insolite"
 
 # Sponsors placeholder
 #: zGIcdn

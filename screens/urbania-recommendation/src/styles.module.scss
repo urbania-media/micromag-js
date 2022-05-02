@@ -76,14 +76,20 @@
     }
 
     .dateContainer {
-        min-width: 25%;
+        flex-grow: 1;
+        min-width: 30%;
         max-width: 50%;
         height: inherit;
         padding: 15px 10px;
         text-align: left;
+        overflow-wrap: break-word;
 
         &.rightBorder {
             border-right: 2px solid #000;
+        }
+
+        strong {
+            white-space: nowrap;
         }
     }
 
@@ -98,7 +104,8 @@
     }
 
     .titleContainer {
-        max-width: 75%;
+        min-width: 50%;
+        max-width: 70%;
         overflow-wrap: break-word;
 
         &.leftBorder {
@@ -109,10 +116,11 @@
     }
 
     .title {
-        padding: 15px 30px 13px;
+        padding: 15px 20px;
         font-family: 'Agrandir Narrow', sans-serif;
         font-size: 20px;
         font-weight: 700;
+        text-align: center;
         text-transform: uppercase;
     }
 

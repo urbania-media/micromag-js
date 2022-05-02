@@ -84,7 +84,7 @@ export default [
                         defaultMessage: 'Sign',
                         description: 'Breadcrumb field label',
                     }),
-                    labelPath: 'id',
+                    labelPath: 'label',
                     fields: [
                         {
                             name: 'word',
@@ -108,10 +108,10 @@ export default [
             {
                 name: 'signSubtitle',
                 type: 'heading-element',
-
+                defaultValue: { body: 'Le mot de la semaine' },
                 label: defineMessage({
                     defaultMessage: 'Sign Subtitle',
-                    description: 'Title field label',
+                    description: 'Heading field label',
                 }),
             },
             {

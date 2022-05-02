@@ -59,6 +59,10 @@
     "defaultMessage": "Remove all",
     "description": "Remove all button label"
   },
+  "/YQ+xP": {
+    "defaultMessage": "Image 360",
+    "description": "Image 360 placeholder"
+  },
   "/ca7BX": {
     "defaultMessage": "Types",
     "description": "Media label"
@@ -619,10 +623,6 @@
     "defaultMessage": "Type",
     "description": "Type Label in Media Gallery"
   },
-  "Om6Dis": {
-    "defaultMessage": "Sign Subtitle",
-    "description": "Title field label"
-  },
   "Op1ZIp": {
     "defaultMessage": "Jan 21 - Feb 18",
     "description": "Horoscope date"
@@ -658,6 +658,10 @@
   "QSmRdP": {
     "defaultMessage": "Add an image",
     "description": "Button label"
+  },
+  "Qe03Xz": {
+    "defaultMessage": "Sign Subtitle",
+    "description": "Heading field label"
   },
   "QfpTKK": {
     "defaultMessage": "Select a screen..."

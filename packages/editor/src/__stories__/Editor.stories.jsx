@@ -126,8 +126,8 @@ export const Test = () => (
             components: [
                 {
                     id: '1cb8a4be-5c1a-11eb-985f-ad6fce99d848',
-                    type: 'urbania-article',
-                    url: 'https://dev.urbania.ca/article/tous-les-dechets-sen-vont-a-la-meme-place-et-autres-mythes-sur-le-compostage',
+                    type: 'urbania-recommendation',
+                    // url: 'https://dev.urbania.ca/article/tous-les-dechets-sen-vont-a-la-meme-place-et-autres-mythes-sur-le-compostage',
                     title: {
                         body: null,
                         textStyle: {
