@@ -47,10 +47,6 @@
     "defaultMessage": "My files",
     "description": "Media gallery source"
   },
-  "/MsgWe": {
-    "defaultMessage": "Date",
-    "description": "Date placeholder"
-  },
   "/OM5UY": {
     "defaultMessage": "Tags",
     "description": "Media label"

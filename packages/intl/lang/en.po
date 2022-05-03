@@ -83,12 +83,6 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "My files"
 
-# Date placeholder
-#: /MsgWe
-msgctxt "/MsgWe"
-msgid "Date"
-msgstr "Date"
-
 # Media label
 #: /OM5UY
 msgctxt "/OM5UY"
