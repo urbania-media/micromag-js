@@ -199,8 +199,8 @@ const Horoscope = ({
                 </Button>
             ) : null}
         </ScreenElement>,
-        <TransitionGroup>
-            {hasPopup || isPlaceholder ? (
+        hasPopup || isPlaceholder ? (
+            <TransitionGroup>
                 <CSSTransition key="grid" classNames={styles} timeout={500}>
                     <SignsGrid
                         width={width}
@@ -212,8 +212,8 @@ const Horoscope = ({
                         signSubtitle={signSubtitle}
                     />
                 </CSSTransition>
-            ) : null}
-        </TransitionGroup>,
+            </TransitionGroup>
+        ) : null,
     ].filter((el) => el !== null);
 
     return (
