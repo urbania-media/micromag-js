@@ -1,14 +1,12 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useMemo, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import isArray from 'lodash/isArray';
 import classNames from 'classnames';
+import isArray from 'lodash/isArray';
+import PropTypes from 'prop-types';
 import Slider from 'rc-slider';
-
+import React, { useMemo, useCallback } from 'react';
+import styles from '../styles/slider.module.scss';
 // import * as AppPropTypes from '../../lib/PropTypes';
 import Text from './Text';
-
-import styles from '../styles/slider.module.scss';
 
 // const roundEven = value => 2 * Math.round(value / 2);
 
@@ -48,7 +46,7 @@ const propTypes = {
     value: PropTypes.string,
     min: PropTypes.number,
     max: PropTypes.number,
-    marks: PropTypes.objectOf(PropTypes.object),
+    marks: PropTypes.objectOf(PropTypes.object), // eslint-disable-line
     marksStep: PropTypes.number,
     marksCount: PropTypes.number,
     marksStyle: PropTypes.object, // eslint-disable-line
@@ -87,14 +85,15 @@ const SliderField = ({
     className,
     onChange,
 }) => {
-
-
-    const customOnChange = useCallback( val => {
-        if (onChange !== null) {
-            onChange(val);
-            // onChange(parseInt(val, 10));
-        }
-    }, [onChange]);
+    const customOnChange = useCallback(
+        (val) => {
+            if (onChange !== null) {
+                onChange(val);
+                // onChange(parseInt(val, 10));
+            }
+        },
+        [onChange],
+    );
 
     const finalMarks = useMemo(
         () =>

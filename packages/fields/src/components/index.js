@@ -27,6 +27,7 @@ export { default as FontSize } from './FontSize';
 export { default as FontStyle } from './FontStyle';
 export { default as FontStyleTransform } from './FontStyleTransform';
 export { default as FontStyleWithAlign } from './FontStyleWithAlign';
+export { default as FontWeight } from './FontWeight';
 export { default as GeoPosition } from './GeoPosition';
 export { default as GridLayout } from './GridLayout';
 export { default as Image } from './Image';
