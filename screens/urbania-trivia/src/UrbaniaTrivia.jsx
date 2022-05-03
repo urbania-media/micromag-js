@@ -21,6 +21,7 @@ import {
     useViewerNavigation,
 } from '@micromag/core/contexts';
 import { useLongPress, useTrackScreenMedia, useResizeObserver } from '@micromag/core/hooks';
+import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -106,6 +107,9 @@ const UrbaniaTrivia = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
+
+    const hasTitle = isTextFilled(title);
+
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active || !isView;
     const videoShouldLoad = current || active || !isView;
@@ -264,6 +268,8 @@ const UrbaniaTrivia = ({
     const isCustomBackground =
         background === null || (backgroundImage === null && backgroundVideo === null);
 
+    const isAnimatedBackground = !isStatic && !isPreview && isCustomBackground;
+
     const hasVideo = video !== null;
     const [ready, setReady] = useState(hasVideo);
     const transitionPlaying = current && ready;
@@ -351,31 +357,23 @@ const UrbaniaTrivia = ({
                         </Empty>
                     </div>
                 }
-                isEmpty={body.length === 0}
+                isEmpty={!hasTitle}
             >
-                <div ref={titleRef}>
-                    <Heading
-                        className={classNames([
-                            styles.heading,
-                            {
-                                [className]: className !== null,
-                                [styles.hideHeading]: body.length === 0,
-                            },
-                        ])}
-                        body={body}
-                        {...title}
-                    />
-                </div>
+                {hasTitle ? (
+                    <div ref={titleRef}>
+                        <Heading
+                            className={styles.heading}
+                            // body={body}
+                            {...title}
+                        />
+                    </div>
+                ) : null}
             </ScreenElement>
             <ScreenElement
                 key="video"
                 className={styles.videoScreenElement}
                 placeholder={
-                    <PlaceholderVideo
-                        className={styles.videoPlaceholder}
-                        height="300px"
-                        {...placeholderProps}
-                    />
+                    <PlaceholderVideo className={styles.videoPlaceholder} {...placeholderProps} />
                 }
                 empty={
                     <div className={styles.emptyContainer}>
@@ -527,7 +525,7 @@ const UrbaniaTrivia = ({
                         {
                             [className]: className !== null,
                             [styles.isCustomBackground]: isCustomBackground,
-                            [styles.isAnimated]: !isStatic && !isPreview && isCustomBackground,
+                            [styles.isAnimated]: isAnimatedBackground,
                         },
                     ])}
                     width={width}
@@ -543,7 +541,6 @@ const UrbaniaTrivia = ({
                     width={width}
                     height={height}
                     resolution={resolution}
-                    styles={{ backgroundColor: 'red' }}
                 />
             )}
             <Container width={width} height={height}>
