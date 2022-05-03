@@ -48,6 +48,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
 
         // Straight from article
         const {
+            readerUrl = null,
             type = null,
             title: articleTitle = null,
             image: articleImage = null,
@@ -111,7 +112,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             callToAction: {
                 active: true,
                 type: 'swipe-up',
-                url: canonical,
+                url: readerUrl || canonical,
                 label: defaultType === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
                 icon: defaultType === 'video' ? { id: 'play' } : null,
                 inWebView: true,
