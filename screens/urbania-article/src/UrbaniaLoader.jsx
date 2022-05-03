@@ -60,14 +60,9 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
         const { sizes = {} } = articleImage || {};
         const { medium, large } = sizes || {};
         const articleAuthor = (authors || []).length > 0 ? authors[0] : null;
-        const {
-            name: authorName = null,
-            avatar: authorImage = null,
-            url: authorUrl = null,
-        } = articleAuthor || {};
+        const { name: authorName = null, avatar: authorImage = null } = articleAuthor || {};
         const finalArticleAuthor = {
             ...(authorName !== null ? { name: { body: `<p>${authorName}</p>` } } : null),
-            ...(authorUrl !== null ? { url: `${hostname}${authorUrl}` } : null),
             ...(authorImage !== null ? { image: authorImage } : null),
         };
 

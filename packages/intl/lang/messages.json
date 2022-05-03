@@ -954,6 +954,10 @@
     "defaultMessage": "Call to Action",
     "description": "Field label"
   },
+  "eDMxHS": {
+    "defaultMessage": "Font weight",
+    "description": "Field label"
+  },
   "eWIM/8": {
     "defaultMessage": "Image with title and text",
     "description": "ImageTitleText screen title"

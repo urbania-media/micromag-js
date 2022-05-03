@@ -53,6 +53,15 @@ export default [
                     description: 'Field label',
                 }),
             },
+            // {
+            //     name: 'withoutResultsValue',
+            //     type: 'toggle',
+            //     defaultValue: false,
+            //     label: defineMessage({
+            //         defaultMessage: 'Without results value',
+            //         description: 'Field label',
+            //     }),
+            // },
             {
                 name: 'result',
                 type: 'text-element',

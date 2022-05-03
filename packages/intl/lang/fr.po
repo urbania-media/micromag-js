@@ -1444,6 +1444,12 @@ msgctxt "eBFxNl"
 msgid "Call to Action"
 msgstr "Action"
 
+# Field label
+#: eDMxHS
+msgctxt "eDMxHS"
+msgid "Font weight"
+msgstr ""
+
 # ImageTitleText screen title
 #: eWIM/8
 msgctxt "eWIM/8"

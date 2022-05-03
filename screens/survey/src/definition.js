@@ -52,7 +52,7 @@ export default {
             }),
         },
         {
-            name: 'withoutResult',
+            name: 'withoutResults',
             type: 'toggle',
             defaultValue: false,
             label: defineMessage({

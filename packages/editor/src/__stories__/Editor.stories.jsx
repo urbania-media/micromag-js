@@ -191,6 +191,9 @@ export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
 export const Map = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'map', type: 'map' }] }} />
 );
+export const Survey = () => (
+    <EditorContainer defaultValue={{ components: [{ id: 'survey', type: 'survey' }] }} />
+);
 export const Quiz = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'quiz', type: 'quiz' }] }} />
 );
