@@ -50,7 +50,7 @@ const defaultProps = {
     callToAction: null,
     current: true,
     active: true,
-    animateBackground: false,
+    animateBackground: true,
     transitions: null,
     transitionStagger: 100,
     className: null,
@@ -90,13 +90,16 @@ const Recommendation = ({
 
     const hasTextCard = hasCategory || hasDate || hasTitle || hasSponsor || hasDescription;
 
+    const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
+    const finalAnimateBackground =
+        animateBackground && !isPlaceholder && !isStatic && !isPreview && !isEdit;
+
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
-
-    const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
-    const finalAnimateBackground = animateBackground && !isPlaceholder && !isStatic && !isPreview;
+    const scrollTimein = setTimeout(() => true, 3000);
+    const finalScrollTimein = finalAnimateBackground && scrollTimein;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
     const [scrolledBottom, setScrolledBottom] = useState(false);
@@ -136,6 +139,7 @@ const Recommendation = ({
                     {
                         [className]: className !== null,
                         [styles.isPlaceholder]: isPlaceholder,
+                        [styles.appear]: finalAnimateBackground,
                     },
                 ])}
             >
@@ -323,7 +327,7 @@ const Recommendation = ({
             ) : null}
             <Container width={width} height={height}>
                 <Scroll
-                    disabled={scrollingDisabled}
+                    disabled={finalScrollTimein && scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="middle"

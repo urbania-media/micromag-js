@@ -26,7 +26,6 @@
         flex-direction: column;
         border: 2px solid #000;
         border-radius: 17px;
-        // opacity: 0.1;
         box-shadow: 0 3px 34px rgba(0, 0, 0, 0.43);
         color: #000;
         text-align: center;
@@ -34,6 +33,10 @@
         &.isPlaceholder {
             height: 200px;
             background-color: $gray-500;
+        }
+
+        &.appear {
+            animation: appear 2s ease-in-out;
         }
     }
 
@@ -81,7 +84,7 @@
         max-width: 50%;
         height: inherit;
         padding: 15px 10px;
-        text-align: left;
+        text-align: center;
         overflow-wrap: break-word;
 
         &.rightBorder {
@@ -179,5 +182,19 @@
 
     100% {
         background-position-y: 9000px;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    66% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
