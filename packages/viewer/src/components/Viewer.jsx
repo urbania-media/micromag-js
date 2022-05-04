@@ -149,6 +149,8 @@ const Viewer = ({
     );
     const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
+    console.log(fonts, finalFonts, fontsLoaded);
+
     const isView = renderContext === 'view';
     const isStatic = renderContext === 'static';
     const isCapture = renderContext === 'capture';

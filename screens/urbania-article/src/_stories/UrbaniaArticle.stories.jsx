@@ -51,7 +51,7 @@ export const URL = (storyProps) => (
         {...storyProps}
         {...props()}
         article={null}
-        url="https://urbania.ca.test:8081/article/la-vie-apres-le-masque-obligatoireen-ontario"
+        url="https://urbania.ca/article/la-vie-apres-le-masque-obligatoireen-ontario"
     />
 );
 
