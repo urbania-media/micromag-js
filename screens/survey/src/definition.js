@@ -52,11 +52,20 @@ export default {
             }),
         },
         {
-            name: 'withoutResults',
+            name: 'withoutPercentage',
             type: 'toggle',
             defaultValue: false,
             label: defineMessage({
-                defaultMessage: 'Without results',
+                defaultMessage: 'Without percentage',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'withoutBar',
+            type: 'toggle',
+            defaultValue: false,
+            label: defineMessage({
+                defaultMessage: 'Without bar',
                 description: 'Field label',
             }),
         },

@@ -24,7 +24,9 @@ const propTypes = {
     buttonsTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
+    showUserAnswer: PropTypes.bool,
     withoutGoodAnswer: PropTypes.bool,
+    withoutIcon: PropTypes.bool,
     focusable: PropTypes.bool,
     collapsed: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -45,7 +47,9 @@ const defaultProps = {
     buttonsTextStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
+    showUserAnswer: false,
     withoutGoodAnswer: false,
+    withoutIcon: false,
     focusable: false,
     collapsed: false,
     transitions: null,
@@ -67,7 +71,9 @@ const Answers = ({
     buttonsTextStyle,
     goodAnswerColor,
     badAnswerColor,
+    showUserAnswer,
     withoutGoodAnswer,
+    withoutIcon,
     focusable,
     collapsed: initialCollapsed,
     transitions,
@@ -104,7 +110,7 @@ const Answers = ({
         [rightAnswerHeight],
     );
 
-    const shouldCollapse = !withoutGoodAnswer;
+    const shouldCollapse = !withoutGoodAnswer || (showUserAnswer && answeredIndex !== null);
     const [answersCollapsed, setAnswersCollapsed] = useState(answeredIndex !== null);
     const [answersDidCollapsed, setAnswersDidCollapsed] = useState(
         initialCollapsed || answeredIndex !== null,
@@ -120,7 +126,7 @@ const Answers = ({
                         onCollapse();
                     }
                 },
-                hasAnsweredRight ? 500 : answersCollapseDelay,
+                hasAnsweredRight || showUserAnswer ? 500 : answersCollapseDelay,
             );
         }
 
@@ -136,6 +142,7 @@ const Answers = ({
         onCollapse,
         answersCollapseDelay,
         hasAnsweredRight,
+        showUserAnswer,
     ]);
 
     const onAnswerTransitionEnd = useCallback(() => {
@@ -193,12 +200,17 @@ const Answers = ({
                             label = null,
                             buttonStyle: answerButtonStyle = null,
                         } = answer || {};
-
                         const { textStyle = null } = label || {};
-
                         const hasAnswer = isTextFilled(label);
+                        const hasFinalUserAnswer = showUserAnswer && answeredIndex !== null;
 
-                        if (answersDidCollapsed && !rightAnswer) {
+                        // Hide bad answers
+                        if (!showUserAnswer && answersDidCollapsed && !rightAnswer) {
+                            return null;
+                        }
+
+                        // Only show user answer
+                        if (hasFinalUserAnswer && answersCollapsed && !userAnswer) {
                             return null;
                         }
 
@@ -210,7 +222,8 @@ const Answers = ({
                                     styles.item,
                                     {
                                         [styles.rightAnswer]: rightAnswer && !withoutGoodAnswer,
-                                        [styles.userAnswer]: userAnswer,
+                                        [styles.userAnswer]: userAnswer && !showUserAnswer,
+                                        [styles.isUserAnswer]: userAnswer && hasFinalUserAnswer,
                                     },
                                 ])}
                                 style={
@@ -224,7 +237,9 @@ const Answers = ({
                                         : null
                                 }
                                 onTransitionEnd={
-                                    rightAnswer || (withoutGoodAnswer && userAnswer)
+                                    rightAnswer ||
+                                    (withoutGoodAnswer && userAnswer) ||
+                                    (showUserAnswer && userAnswer)
                                         ? onAnswerTransitionEnd
                                         : null
                                 }
@@ -259,7 +274,9 @@ const Answers = ({
                                                         ...getStyleFromBox(answerButtonStyle),
                                                     }}
                                                 >
-                                                    {!withoutGoodAnswer && rightAnswer ? (
+                                                    {!withoutGoodAnswer &&
+                                                    !withoutIcon &&
+                                                    rightAnswer ? (
                                                         <span
                                                             className={styles.resultIcon}
                                                             style={getStyleFromColor(
@@ -274,6 +291,7 @@ const Answers = ({
                                                         </span>
                                                     ) : null}
                                                     {!withoutGoodAnswer &&
+                                                    !withoutIcon &&
                                                     answered &&
                                                     !hasAnsweredRight &&
                                                     userAnswer ? (

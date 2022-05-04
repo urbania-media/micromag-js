@@ -9,7 +9,11 @@ const getStyleFromBox = (value) => {
     const {
         backgroundColor = null,
         borderRadius = null,
-        padding: paddingValue = null,
+        padding = null,
+        paddingTop = null,
+        paddingRight = null,
+        paddingBottom = null,
+        paddingLeft = null,
         borderWidth = null,
         borderStyle = null,
         borderColor = null,
@@ -22,22 +26,32 @@ const getStyleFromBox = (value) => {
     };
 
     const {
-        top: paddingTop = null,
-        right: paddingRight = null,
-        bottom: paddingBottom = null,
-        left: paddingLeft = null,
-        padding = null,
-    } = isObject(paddingValue) ? paddingValue : { padding: paddingValue };
+        top: paddingValueTop = null,
+        right: paddingValueRight = null,
+        bottom: paddingValueBottom = null,
+        left: paddingValueLeft = null,
+        padding: paddingValue = null,
+    } = isObject(padding) ? padding : { padding };
 
     return {
         ...getStyleFromColor(backgroundColor, 'backgroundColor'),
         ...(borderRadius !== null ? { borderRadius } : null),
         ...getStyleFromBorder(border),
-        ...(padding !== null ? { padding } : null),
-        ...(paddingTop !== null ? { paddingTop } : null),
-        ...(paddingRight !== null ? { paddingRight } : null),
-        ...(paddingBottom !== null ? { paddingBottom } : null),
-        ...(paddingLeft !== null ? { paddingLeft } : null),
+        ...(padding !== null || paddingValue !== null
+            ? { padding: padding || paddingValue }
+            : null),
+        ...(paddingTop !== null || paddingValueTop !== null
+            ? { paddingTop: paddingTop || paddingValueTop }
+            : null),
+        ...(paddingRight !== null || paddingValueRight != null
+            ? { paddingRight: paddingRight || paddingValueRight }
+            : null),
+        ...(paddingBottom !== null || paddingValueBottom !== null
+            ? { paddingBottom: paddingBottom || paddingValueBottom }
+            : null),
+        ...(paddingLeft !== null || paddingValueLeft !== null
+            ? { paddingLeft: paddingLeft || paddingValueLeft }
+            : null),
     };
 };
 

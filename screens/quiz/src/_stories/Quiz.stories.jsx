@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-
-import { subtitle, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import { subtitle, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import QuizScreen from '../Quiz';
 import definition from '../definition';
 
@@ -33,7 +32,9 @@ export default {
 export const Placeholder = (storyProps) => <QuizScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <QuizScreen {...storyProps} {...props} />;
+
 export const Static = (storyProps) => <QuizScreen {...storyProps} {...props} />;
+
 export const Capture = (storyProps) => <QuizScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <QuizScreen {...storyProps} />;

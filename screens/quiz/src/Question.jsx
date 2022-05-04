@@ -37,6 +37,7 @@ const propTypes = {
     showInstantAnswer: PropTypes.bool,
     withResult: PropTypes.bool,
     withoutGoodAnswer: PropTypes.bool,
+    withoutTrueFalse: PropTypes.bool,
     withoutIndex: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionPlaying: PropTypes.bool,
@@ -66,6 +67,7 @@ const defaultProps = {
     showInstantAnswer: false,
     withResult: false,
     withoutGoodAnswer: false,
+    withoutTrueFalse: false,
     withoutIndex: false,
     transitions: null,
     transitionPlaying: false,
@@ -93,6 +95,7 @@ const Question = ({
     showInstantAnswer,
     withResult,
     withoutGoodAnswer,
+    withoutTrueFalse,
     withoutIndex,
     layout,
     callToActionHeight,
@@ -198,6 +201,8 @@ const Question = ({
                     goodAnswerColor={goodAnswerColor}
                     badAnswerColor={badAnswerColor}
                     withoutGoodAnswer={withoutGoodAnswer}
+                    withoutIcon={withoutTrueFalse}
+                    showUserAnswer={withoutTrueFalse}
                     buttonsStyle={buttonsStyle}
                     buttonsTextStyle={buttonsTextStyle}
                     focusable={focusable}

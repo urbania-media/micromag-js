@@ -30,7 +30,7 @@
         p {
             display: inline-block;
             margin: 0;
-            padding: 2px 0 0;
+            padding: 3px 0 0;
             font-size: inherit;
             font-weight: 700;
             line-height: 1;
@@ -46,7 +46,7 @@
 
         span {
             display: inline-block;
-            padding: 1px 0;
+            padding: 3px 0;
             font-size: inherit;
             line-height: 1;
         }
@@ -54,7 +54,7 @@
 
     .name, .prefix {
         display: block;
-        background-color: $gray-200;
+        background-color: #efefef; // $gray-200;
         font-family: 'Agrandir';
         font-size: 10px;
         letter-spacing: 0.04em;

@@ -55,46 +55,48 @@
         align-items: center;
     }
 
-    .itemText {
-        // transition: color 0.5s ease;
-        // color: $gray-600;
-    }
+    // .itemText {
+    // transition: color 0.5s ease;
+    // color: $gray-600;
+    // }
 
-    .resultContainer {
-        flex-grow: 1;
-        align-self: center;
-        padding: 15px 0;
-        transition-property: padding;
-        transition-timing-function: ease;
-    }
+    // .resultContainer {
+    //     flex-grow: 1;
+    //     align-self: center;
+    //     padding: 15px 0;
+    //     transition-property: padding;
+    //     transition-timing-function: ease;
+    // }
 
-    .resultContent {
-        width: 0;
-        height: 1em;
-        transition-property: width opacity;
-        transition-timing-function: ease;
-        opacity: 0;
-    }
+    // .resultContent {
+    //     width: 0;
+    //     height: 1em;
+    //     transition-property: width opacity;
+    //     transition-timing-function: ease;
+    //     opacity: 0;
+    // }
 
-    .result {
-        position: relative;
+    .resultBar {
+        position: absolute;
+        top: 0;
         height: 100%;
-        background-color: $white;
+        background-color: rgba(255,255,255,0.3);
     }
 
     .resultLabel {
         position: absolute;
         top: 50%;
         left: 100%;
-        margin-left: 5px;
+        width: 3em;
+        padding-left: 5px;
         transform: translateY(-50%);
         color: $white;
     }
 
     .itemInner {
         width: 100%;
-        transition-property: width;
-        transition-timing-function: ease;
+        // transition-property: width;
+        // transition-timing-function: ease;
     }
 
     .button {

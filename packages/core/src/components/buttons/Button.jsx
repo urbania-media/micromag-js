@@ -1,13 +1,11 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import Label from '../partials/Label';
-
 import styles from '../../styles/buttons/button.module.scss';
+import Label from '../partials/Label';
 
 const propTypes = {
     type: PropTypes.string,
@@ -206,6 +204,9 @@ const Button = ({
             [className]: className !== null,
         },
     ]);
+
+    console.log('button props', props);
+
     if (href !== null) {
         const linkClassNames = classNames([
             buttonClassNames,

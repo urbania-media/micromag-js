@@ -42,8 +42,14 @@ export const Edit = (storyProps) => <SurveyScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
 
+export const WithoutPercentage = (storyProps) => (
+    <SurveyScreen {...storyProps} {...props} withoutPercentage />
+);
+
+export const WithoutBar = (storyProps) => <SurveyScreen {...storyProps} {...props} withoutBar />;
+
 export const WithoutResults = (storyProps) => (
-    <SurveyScreen {...storyProps} {...props} withoutResults />
+    <SurveyScreen {...storyProps} {...props} withoutPercentage withoutBar />
 );
 
 export const WithCallToAction = (storyProps) => (

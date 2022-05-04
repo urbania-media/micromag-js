@@ -95,12 +95,10 @@ const Button = ({
 
         borderStyles = {
             borderRadius: borderRadius + borderWidth,
-            // backgroundColor: borderColor,
             borderWidth,
             borderColor,
             borderStyle,
             display: inline ? 'inline-block' : null,
-            // width: `calc(100% - ${borderWidth || 0}px)`,
         };
     }
 

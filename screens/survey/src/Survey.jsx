@@ -38,8 +38,8 @@ const propTypes = {
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
-    withPercentLabels: PropTypes.bool,
-    withoutResults: PropTypes.bool,
+    withoutPercentage: PropTypes.bool,
+    withoutBar: PropTypes.bool,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -59,8 +59,8 @@ const defaultProps = {
     spacing: 20,
     background: null,
     callToAction: null,
-    withPercentLabels: true,
-    withoutResults: false,
+    withoutPercentage: false,
+    withoutBar: false,
     current: true,
     active: true,
     transitions: null,
@@ -80,8 +80,8 @@ const SurveyScreen = ({
     spacing,
     background,
     callToAction,
-    withPercentLabels,
-    withoutResults,
+    withoutPercentage,
+    withoutBar,
     current,
     active,
     transitions,
@@ -224,37 +224,37 @@ const SurveyScreen = ({
 
     const buttonsRefs = useRef([]);
     const labelsRefs = useRef([]);
-    const [buttonMaxWidth, setButtonMaxWidth] = useState(null);
+    // const [buttonMaxWidth, setButtonMaxWidth] = useState(null);
 
     const finalTransitionDuration = showInstantAnswer ? 0 : `${resultTransitionDuration}ms`;
-    const [ready, setReady] = useState(false);
-    useEffect(() => {
-        if (answers === null || isPlaceholder) {
-            return;
-        }
+    // const [ready, setReady] = useState(false);
+    // useEffect(() => {
+    //     if (answers === null || isPlaceholder) {
+    //         return;
+    //     }
 
-        // const maxWidth = answers.reduce((currentMaxWidth, answer, answerI) => {
-        //     const button = buttonsRefs.current[answerI] || null;
-        //     const label = labelsRefs.current[answerI] || null;
-        //     if (button !== null && label !== null) {
-        //         const borderWidth = button.offsetWidth - button.clientWidth;
-        //         const totalWidth = borderWidth + label.getBoundingClientRect().width + 20;
-        //         return Math.max(currentMaxWidth, totalWidth);
-        //     }
-        //     return currentMaxWidth;
-        // }, 0);
-        // setButtonMaxWidth(Math.min(width * 0.75, Math.max(width * 0.2, maxWidth)));
-        setButtonMaxWidth(withoutResults ? '100%' : width * 0.75);
-        setReady(true);
-    }, [
-        answers,
-        width,
-        height,
-        setButtonMaxWidth,
-        finalTransitionDuration,
-        isPlaceholder,
-        withoutResults,
-    ]);
+    //     // const maxWidth = answers.reduce((currentMaxWidth, answer, answerI) => {
+    //     //     const button = buttonsRefs.current[answerI] || null;
+    //     //     const label = labelsRefs.current[answerI] || null;
+    //     //     if (button !== null && label !== null) {
+    //     //         const borderWidth = button.offsetWidth - button.clientWidth;
+    //     //         const totalWidth = borderWidth + label.getBoundingClientRect().width + 20;
+    //     //         return Math.max(currentMaxWidth, totalWidth);
+    //     //     }
+    //     //     return currentMaxWidth;
+    //     // }, 0);
+    //     // setButtonMaxWidth(Math.min(width * 0.75, Math.max(width * 0.2, maxWidth)));
+    //     setButtonMaxWidth(withoutPercentage ? '100%' : `calc(100% - 3em)`);
+    //     setReady(true);
+    // }, [
+    //     answers,
+    //     width,
+    //     height,
+    //     setButtonMaxWidth,
+    //     finalTransitionDuration,
+    //     isPlaceholder,
+    //     withoutPercentage,
+    // ]);
 
     const { barColor: resultsBarColor = null, textColor: resultsTextColor = null } =
         resultsStyle || {};
@@ -315,7 +315,7 @@ const SurveyScreen = ({
                                                 <div
                                                     className={styles.itemInner}
                                                     style={{
-                                                        width: buttonMaxWidth,
+                                                        // width: buttonMaxWidth,
                                                         transitionDuration: finalTransitionDuration,
                                                     }}
                                                 >
@@ -355,66 +355,47 @@ const SurveyScreen = ({
                                                                 inline
                                                                 className={styles.itemText}
                                                             />
+                                                            {!withoutPercentage ? (
+                                                                <div
+                                                                    className={styles.resultLabel}
+                                                                    style={{
+                                                                        ...getStyleFromColor(
+                                                                            answered
+                                                                                ? answerResultTextColor ||
+                                                                                      resultsTextColor ||
+                                                                                      answerResultBarColor ||
+                                                                                      resultsBarColor ||
+                                                                                      labelColor
+                                                                                : null,
+                                                                            'color',
+                                                                        ),
+                                                                    }}
+                                                                >{`${percent}%`}</div>
+                                                            ) : null}
+                                                            {!withoutBar ? (
+                                                                <div
+                                                                    className={styles.resultBar}
+                                                                    style={{
+                                                                        transitionDuration:
+                                                                            finalTransitionDuration,
+                                                                        width:
+                                                                            percent !== null
+                                                                                ? `${percent}%`
+                                                                                : null,
+                                                                        ...getStyleFromColor(
+                                                                            answered
+                                                                                ? answerResultBarColor ||
+                                                                                      resultsBarColor ||
+                                                                                      labelColor
+                                                                                : null,
+                                                                            'backgroundColor',
+                                                                        ),
+                                                                    }}
+                                                                />
+                                                            ) : null}
                                                         </span>
                                                     </Button>
                                                 </div>
-                                                {!withoutResults ? (
-                                                    <div
-                                                        className={styles.resultContainer}
-                                                        style={{
-                                                            transitionDuration:
-                                                                finalTransitionDuration,
-                                                        }}
-                                                    >
-                                                        <div
-                                                            className={styles.resultContent}
-                                                            style={{
-                                                                transitionDelay:
-                                                                    finalTransitionDuration,
-                                                                transitionDuration:
-                                                                    finalTransitionDuration,
-                                                            }}
-                                                        >
-                                                            <div
-                                                                className={styles.result}
-                                                                style={{
-                                                                    width:
-                                                                        percent !== null
-                                                                            ? `${percent}%`
-                                                                            : null,
-                                                                    ...getStyleFromColor(
-                                                                        answered
-                                                                            ? answerResultBarColor ||
-                                                                                  resultsBarColor ||
-                                                                                  labelColor
-                                                                            : null,
-                                                                        'backgroundColor',
-                                                                    ),
-                                                                }}
-                                                            >
-                                                                {withPercentLabels ? (
-                                                                    <div
-                                                                        className={
-                                                                            styles.resultLabel
-                                                                        }
-                                                                        style={{
-                                                                            ...getStyleFromColor(
-                                                                                answered
-                                                                                    ? answerResultTextColor ||
-                                                                                          resultsTextColor ||
-                                                                                          answerResultBarColor ||
-                                                                                          resultsBarColor ||
-                                                                                          labelColor
-                                                                                    : null,
-                                                                                'color',
-                                                                            ),
-                                                                        }}
-                                                                    >{`${percent}%`}</div>
-                                                                ) : null}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                ) : null}
                                             </div>
                                         </Transitions>
                                     ) : null}
@@ -455,7 +436,6 @@ const SurveyScreen = ({
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
-            data-screen-ready={ready}
         >
             {!isPlaceholder ? (
                 <Background
