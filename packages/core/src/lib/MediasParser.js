@@ -130,7 +130,10 @@ class MediasParser {
                 ...patterns,
                 ...(MediasParser.fieldIsMedia(fieldDefinition) ? [new RegExp(`^${path}$`)] : []),
                 ...(MediasParser.fieldIsFontFamily(fieldDefinition)
-                    ? [new RegExp(`^${path}\\.media$`)]
+                    ? [
+                          new RegExp(`^${path}\\.media$`),
+                          new RegExp(`^${path}\\.variants\\.[0-9]+\\.media$`),
+                      ]
                     : []),
                 ...this.getMediaFieldsPattern(subFields, path),
                 ...this.getMediaFieldsPattern(settings, path),
