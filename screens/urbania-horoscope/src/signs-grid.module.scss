@@ -97,6 +97,7 @@
         z-index: 5;
         top: 7px;
         left: 0;
+        height: 30px;
         padding-left: 20px;
         border-top-right-radius: 25px;
         border-bottom-right-radius: 25px;
@@ -104,7 +105,9 @@
         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 4px (#010f66);
         color: #010f66;
         font-family: 'Agrandir Tight', sans-serif;
-        font-weight: 700;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1;
     }
 
     .arrow {
