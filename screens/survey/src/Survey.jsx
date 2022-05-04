@@ -244,9 +244,17 @@ const SurveyScreen = ({
         //     return currentMaxWidth;
         // }, 0);
         // setButtonMaxWidth(Math.min(width * 0.75, Math.max(width * 0.2, maxWidth)));
-        setButtonMaxWidth(width * 0.75);
+        setButtonMaxWidth(withoutResults ? '100%' : width * 0.75);
         setReady(true);
-    }, [answers, width, height, setButtonMaxWidth, finalTransitionDuration, isPlaceholder]);
+    }, [
+        answers,
+        width,
+        height,
+        setButtonMaxWidth,
+        finalTransitionDuration,
+        isPlaceholder,
+        withoutResults,
+    ]);
 
     const { barColor: resultsBarColor = null, textColor: resultsTextColor = null } =
         resultsStyle || {};
@@ -317,7 +325,9 @@ const SurveyScreen = ({
                                                         refButton={(el) => {
                                                             buttonsRefs.current[answerIndex] = el;
                                                         }}
-                                                        disabled={isPreview}
+                                                        disabled={
+                                                            isPreview || userAnswerIndex !== null
+                                                        }
                                                         focusable={current && isView}
                                                         buttonStyle={
                                                             !answered
@@ -348,58 +358,63 @@ const SurveyScreen = ({
                                                         </span>
                                                     </Button>
                                                 </div>
-                                                <div
-                                                    className={styles.resultContainer}
-                                                    style={{
-                                                        transitionDuration: finalTransitionDuration,
-                                                    }}
-                                                >
+                                                {!withoutResults ? (
                                                     <div
-                                                        className={styles.resultContent}
+                                                        className={styles.resultContainer}
                                                         style={{
-                                                            transitionDelay:
-                                                                finalTransitionDuration,
                                                             transitionDuration:
                                                                 finalTransitionDuration,
                                                         }}
                                                     >
                                                         <div
-                                                            className={styles.result}
+                                                            className={styles.resultContent}
                                                             style={{
-                                                                width: !withoutResults
-                                                                    ? `${percent}%`
-                                                                    : null,
-                                                                ...getStyleFromColor(
-                                                                    answered
-                                                                        ? answerResultBarColor ||
-                                                                              resultsBarColor ||
-                                                                              labelColor
-                                                                        : null,
-                                                                    'backgroundColor',
-                                                                ),
+                                                                transitionDelay:
+                                                                    finalTransitionDuration,
+                                                                transitionDuration:
+                                                                    finalTransitionDuration,
                                                             }}
                                                         >
-                                                            {withPercentLabels &&
-                                                            !withoutResults ? (
-                                                                <div
-                                                                    className={styles.resultLabel}
-                                                                    style={{
-                                                                        ...getStyleFromColor(
-                                                                            answered
-                                                                                ? answerResultTextColor ||
-                                                                                      resultsTextColor ||
-                                                                                      answerResultBarColor ||
-                                                                                      resultsBarColor ||
-                                                                                      labelColor
-                                                                                : null,
-                                                                            'color',
-                                                                        ),
-                                                                    }}
-                                                                >{`${percent}%`}</div>
-                                                            ) : null}
+                                                            <div
+                                                                className={styles.result}
+                                                                style={{
+                                                                    width:
+                                                                        percent !== null
+                                                                            ? `${percent}%`
+                                                                            : null,
+                                                                    ...getStyleFromColor(
+                                                                        answered
+                                                                            ? answerResultBarColor ||
+                                                                                  resultsBarColor ||
+                                                                                  labelColor
+                                                                            : null,
+                                                                        'backgroundColor',
+                                                                    ),
+                                                                }}
+                                                            >
+                                                                {withPercentLabels ? (
+                                                                    <div
+                                                                        className={
+                                                                            styles.resultLabel
+                                                                        }
+                                                                        style={{
+                                                                            ...getStyleFromColor(
+                                                                                answered
+                                                                                    ? answerResultTextColor ||
+                                                                                          resultsTextColor ||
+                                                                                          answerResultBarColor ||
+                                                                                          resultsBarColor ||
+                                                                                          labelColor
+                                                                                    : null,
+                                                                                'color',
+                                                                            ),
+                                                                        }}
+                                                                    >{`${percent}%`}</div>
+                                                                ) : null}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                ) : null}
                                             </div>
                                         </Transitions>
                                     ) : null}

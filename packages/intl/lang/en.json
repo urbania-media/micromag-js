@@ -35,9 +35,6 @@
     "/62oe4": {
         "defaultMessage": "My files"
     },
-    "/MsgWe": {
-        "defaultMessage": "Date"
-    },
     "/OM5UY": {
         "defaultMessage": "Tags"
     },
@@ -715,6 +712,9 @@
     },
     "eBFxNl": {
         "defaultMessage": "Call to Action"
+    },
+    "eDMxHS": {
+        "defaultMessage": "Font weight"
     },
     "eWIM/8": {
         "defaultMessage": "Image with title and text"

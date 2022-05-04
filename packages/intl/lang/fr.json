@@ -35,9 +35,6 @@
     "/62oe4": {
         "defaultMessage": "Mes fichiers"
     },
-    "/MsgWe": {
-        "defaultMessage": "Date"
-    },
     "/OM5UY": {
         "defaultMessage": "Mots-clés"
     },
@@ -715,6 +712,9 @@
     },
     "eBFxNl": {
         "defaultMessage": "Action"
+    },
+    "eDMxHS": {
+        "defaultMessage": "Graisse"
     },
     "eWIM/8": {
         "defaultMessage": "Image avec titre et texte"

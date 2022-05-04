@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+
 /* eslint-disable jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -538,6 +540,16 @@ const Viewer = ({
                                     </React.Fragment>
                                 );
                             })}
+                            {/* <button
+                                type="button"
+                                onClick={gotoPreviousScreen}
+                                className={classNames([styles.navButton, styles.previous])}
+                            />
+                            <button
+                                type="button"
+                                onClick={gotoNextScreen}
+                                className={classNames([styles.navButton, styles.next])}
+                            /> */}
                         </div>
                     ) : null}
                 </div>

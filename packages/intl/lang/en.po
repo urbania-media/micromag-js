@@ -83,12 +83,6 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "My files"
 
-# Date placeholder
-#: /MsgWe
-msgctxt "/MsgWe"
-msgid "Date"
-msgstr "Date"
-
 # Media label
 #: /OM5UY
 msgctxt "/OM5UY"
@@ -1443,6 +1437,12 @@ msgstr "Select a media..."
 msgctxt "eBFxNl"
 msgid "Call to Action"
 msgstr "Call to Action"
+
+# Field label
+#: eDMxHS
+msgctxt "eDMxHS"
+msgid "Font weight"
+msgstr "Font weight"
 
 # ImageTitleText screen title
 #: eWIM/8

@@ -45,29 +45,31 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             callToAction = null,
         } = props || {};
         const { url: imageUrl = null } = image || {};
+        const { url: ctaUrl = null } = callToAction || {};
 
         // Straight from article
         const {
-            readerUrl = null,
             type = null,
             title: articleTitle = null,
             image: articleImage = null,
             metadata = {},
         } = article || {};
-        const hasArticle = url !== null && article !== null;
 
-        const { authors = [], sponsors = [], site = null, canonical = null } = metadata || {};
+        const hasArticle = article !== null;
+
+        const {
+            authors = [],
+            sponsors = [],
+            site = null,
+            canonical = null,
+            readerUrl = null,
+        } = metadata || {};
         const { sizes = {} } = articleImage || {};
         const { medium, large } = sizes || {};
         const articleAuthor = (authors || []).length > 0 ? authors[0] : null;
-        const {
-            name: authorName = null,
-            avatar: authorImage = null,
-            url: authorUrl = null,
-        } = articleAuthor || {};
+        const { name: authorName = null, avatar: authorImage = null } = articleAuthor || {};
         const finalArticleAuthor = {
             ...(authorName !== null ? { name: { body: `<p>${authorName}</p>` } } : null),
-            ...(authorUrl !== null ? { url: `${hostname}${authorUrl}` } : null),
             ...(authorImage !== null ? { image: authorImage } : null),
         };
 
@@ -110,14 +112,13 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
             callToAction: {
-                active: true,
                 type: 'swipe-up',
-                url: readerUrl || canonical,
                 label: defaultType === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
                 icon: defaultType === 'video' ? { id: 'play' } : null,
                 inWebView: true,
                 ...callToAction,
                 ...(hasArticle ? { active: true } : null),
+                url: ctaUrl || readerUrl || canonical,
             },
         };
     }, [article, url, hostname, props]);

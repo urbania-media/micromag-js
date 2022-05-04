@@ -1,14 +1,14 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useMemo, useCallback, useState } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isObject from 'lodash/isObject';
+import PropTypes from 'prop-types';
+import React, { useMemo, useCallback, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getFontFamilyFromFont } from '@micromag/core/utils';
+import { Button } from '@micromag/core/components';
 import { useFonts } from '@micromag/core/contexts';
 import { useLoadedFonts } from '@micromag/core/hooks';
-
+import { getFontFamilyFromFont } from '@micromag/core/utils';
 import FieldWithForm from './FieldWithForm';
 
 const normalize = (str) =>
@@ -140,6 +140,15 @@ const FontFamily = ({ value, onChange, closeForm, maxFontsVisible, isForm, ...pr
     );
     useLoadedFonts(fontsToLoad);
 
+    const onClickReset = useCallback(() => {
+        if (onChange !== null) {
+            onChange(null);
+        }
+        if (closeForm !== null) {
+            closeForm();
+        }
+    }, [onChange, closeForm]);
+
     return (
         <FieldWithForm
             value={value}
@@ -217,6 +226,19 @@ const FontFamily = ({ value, onChange, closeForm, maxFontsVisible, isForm, ...pr
                     </div>
                 ))}
             </div>
+            {value !== null ? (
+                <div className="p-2">
+                    <Button
+                        outline
+                        theme="secondary"
+                        size="sm"
+                        className="ms-auto"
+                        onClick={onClickReset}
+                    >
+                        <FormattedMessage defaultMessage="Clear" description="Button label" />
+                    </Button>
+                </div>
+            ) : null}
         </FieldWithForm>
     );
 };
