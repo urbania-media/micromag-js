@@ -149,8 +149,6 @@ const Viewer = ({
     );
     const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
-    console.log(fonts, finalFonts, fontsLoaded);
-
     const isView = renderContext === 'view';
     const isStatic = renderContext === 'static';
     const isCapture = renderContext === 'capture';
@@ -542,7 +540,7 @@ const Viewer = ({
                                     </React.Fragment>
                                 );
                             })}
-                            <button
+                            {/* <button
                                 type="button"
                                 onClick={gotoPreviousScreen}
                                 className={classNames([styles.navButton, styles.previous])}
@@ -551,7 +549,7 @@ const Viewer = ({
                                 type="button"
                                 onClick={gotoNextScreen}
                                 className={classNames([styles.navButton, styles.next])}
-                            />
+                            /> */}
                         </div>
                     ) : null}
                 </div>
