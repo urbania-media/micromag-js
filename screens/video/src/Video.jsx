@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+
 /* eslint-disable no-param-reassign */
 
 /* eslint-disable react/jsx-props-no-spreading */
@@ -13,7 +15,7 @@ import {
     useScreenRenderContext,
     useViewerNavigation,
 } from '@micromag/core/contexts';
-import { useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
+import { useTrackScreenMedia, useLongPress, useResizeObserver } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -84,6 +86,12 @@ const VideoScreen = ({
         withPlayPause = false,
         withTime = false,
     } = video || {};
+
+    const {
+        ref: controlsRef,
+        entry: { contentRect },
+    } = useResizeObserver();
+    const { height: controlsHeight = null } = contentRect || {};
 
     const apiRef = useRef();
     const {
@@ -214,6 +222,13 @@ const VideoScreen = ({
             pause();
         }
     }, [play, playing, pause, onMouseMove, withPlayPause, setShowMediaControls]);
+
+    const onShowControls = useCallback(
+        (e) => {
+            onMouseMove(e, 3000);
+        },
+        [onMouseMove],
+    );
 
     const longPressBind = useLongPress({ onLongPress, onClick: onMouseMove });
 
@@ -359,31 +374,46 @@ const VideoScreen = ({
                         className={classNames([
                             styles.bottom,
                             {
-                                [styles.visible]: visibleControls,
+                                // [styles.visible]: visibleControls,
                                 [styles.withGradient]: withSeekBar || withPlayPause || muted,
                             },
                         ])}
                     >
                         {hasVideoUrl ? (
-                            <MediaControls
-                                className={classNames([
-                                    styles.mediaControls,
-                                    {
-                                        [styles.visible]: visibleControls,
-                                    },
-                                ])}
-                                withSeekBar={withSeekBar}
-                                withPlayPause={withPlayPause}
-                                withTime={withTime}
-                                playing={playing}
-                                muted={muted}
-                                currentTime={currentTime}
-                                duration={duration}
-                                onTogglePlay={togglePlay}
-                                onToggleMute={onToggleMute}
-                                onSeek={onSeek}
-                                focusable={current && isView}
-                            />
+                            <>
+                                <div ref={controlsRef}>
+                                    <MediaControls
+                                        className={classNames([
+                                            styles.mediaControls,
+                                            {
+                                                [styles.visible]: visibleControls,
+                                            },
+                                        ])}
+                                        withSeekBar={withSeekBar}
+                                        withPlayPause={withPlayPause}
+                                        withTime={withTime}
+                                        playing={playing}
+                                        muted={muted}
+                                        currentTime={currentTime}
+                                        duration={duration}
+                                        onTogglePlay={togglePlay}
+                                        onToggleMute={onToggleMute}
+                                        onSeek={onSeek}
+                                        focusable={current && isView}
+                                    />
+                                </div>
+                                <button
+                                    type="button"
+                                    style={{ height: controlsHeight }}
+                                    onClick={onShowControls}
+                                    className={classNames([
+                                        styles.videoButton,
+                                        {
+                                            [styles.visible]: !visibleControls,
+                                        },
+                                    ])}
+                                />
+                            </>
                         ) : null}
                         {hasCallToAction ? (
                             <div style={{ marginTop: -spacing / 2 }}>

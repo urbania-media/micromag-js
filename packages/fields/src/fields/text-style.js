@@ -106,6 +106,14 @@ export default {
             isList: true,
             fields: [
                 {
+                    name: 'fontWeight',
+                    type: 'font-weight',
+                    label: defineMessage({
+                        defaultMessage: 'Font weight',
+                        description: 'Field label',
+                    }),
+                },
+                {
                     name: 'lineHeight',
                     type: 'line-height',
                     label: defineMessage({

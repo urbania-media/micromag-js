@@ -38,6 +38,7 @@ const TextStyleForm = ({ value, onChange, closeForm, ...props }) => {
                 Aa
             </strong>
         ) : null;
+
     return (
         <FieldWithForm
             isForm

@@ -23,6 +23,36 @@
         user-select: none;
     }
 
+    .screen {
+        z-index: 2;
+    }
+
+    .navButton {
+        @extend %reset-button;
+        display: none;
+        visibility: hidden;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        border: 0;
+        cursor: auto;
+
+        &.previous {
+            left: 0;
+        }
+
+        &.next {
+            right: 0;
+        }
+
+        @media screen and (min-width: 768px) {
+            display: block;
+            visibility: visible;
+        }
+    }
+
     .menuDotsContainer {
         visibility: hidden;
         position: absolute;

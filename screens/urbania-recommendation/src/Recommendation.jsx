@@ -50,7 +50,7 @@ const defaultProps = {
     callToAction: null,
     current: true,
     active: true,
-    animateBackground: false,
+    animateBackground: true,
     transitions: null,
     transitionStagger: 100,
     className: null,
@@ -90,13 +90,16 @@ const Recommendation = ({
 
     const hasTextCard = hasCategory || hasDate || hasTitle || hasSponsor || hasDescription;
 
+    const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
+    const finalAnimateBackground =
+        animateBackground && !isPlaceholder && !isStatic && !isPreview && !isEdit;
+
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
-
-    const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
-    const finalAnimateBackground = animateBackground && !isPlaceholder && !isStatic && !isPreview;
+    const scrollTimein = setTimeout(() => true, 3000);
+    const finalScrollTimein = finalAnimateBackground && scrollTimein;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
     const [scrolledBottom, setScrolledBottom] = useState(false);
@@ -129,13 +132,14 @@ const Recommendation = ({
     // Create elements
     const items = [
         !isPlaceholder ? <Spacer key="spacer-cta-top" /> : null,
-        hasTextCard || isPlaceholder ? (
+        hasTextCard || isPlaceholder || isEdit ? (
             <Container
                 className={classNames([
                     styles.textCard,
                     {
                         [className]: className !== null,
                         [styles.isPlaceholder]: isPlaceholder,
+                        [styles.appear]: finalAnimateBackground,
                     },
                 ])}
             >
@@ -181,14 +185,14 @@ const Recommendation = ({
                         <ScreenElement
                             key="date"
                             placeholder={<PlaceholderText className={styles.datePlaceholder} />}
-                            emptyLabel={
-                                <FormattedMessage
-                                    defaultMessage="Date"
-                                    description="Date placeholder"
-                                />
-                            }
-                            emptyClassName={styles.emptyText}
-                            isEmpty={!hasDate}
+                            // emptyLabel={
+                            //     <FormattedMessage
+                            //         defaultMessage="Date"
+                            //         description="Date placeholder"
+                            //     />
+                            // }
+                            // emptyClassName={styles.emptyText}
+                            // isEmpty={!hasDate}
                         >
                             {hasDate ? (
                                 <div
@@ -217,14 +221,14 @@ const Recommendation = ({
                         <ScreenElement
                             key="title"
                             placeholder="title"
-                            emptyLabel={
-                                <FormattedMessage
-                                    defaultMessage="Title"
-                                    description="Title placeholder"
-                                />
-                            }
-                            emptyClassName={styles.emptyTitle}
-                            isEmpty={!hasTitle}
+                            // emptyLabel={
+                            //     <FormattedMessage
+                            //         defaultMessage="Title"
+                            //         description="Title placeholder"
+                            //     />
+                            // }
+                            // emptyClassName={styles.emptyTitle}
+                            // isEmpty={!hasTitle}
                         >
                             {hasTitle ? (
                                 <div
@@ -323,7 +327,7 @@ const Recommendation = ({
             ) : null}
             <Container width={width} height={height}>
                 <Scroll
-                    disabled={scrollingDisabled}
+                    disabled={finalScrollTimein && scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="middle"

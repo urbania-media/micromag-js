@@ -1,15 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-14 14:06-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2022-05-03 17:07-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 3.2.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 # Audio and Video screen group
 #: +9akmg
@@ -27,7 +28,7 @@ msgstr "Titre"
 #: +FHxPO
 msgctxt "+FHxPO"
 msgid "Questions title"
-msgstr ""
+msgstr "Titre questions"
 
 # State label
 #: +LvOvJ
@@ -82,12 +83,6 @@ msgstr "Le mot de la semaine"
 msgctxt "/62oe4"
 msgid "My files"
 msgstr "Mes fichiers"
-
-# Date placeholder
-#: /MsgWe
-msgctxt "/MsgWe"
-msgid "Date"
-msgstr "Date"
 
 # Media label
 #: /OM5UY
@@ -585,7 +580,7 @@ msgstr "Intro"
 #: BnRW4y
 msgctxt "BnRW4y"
 msgid "Results title"
-msgstr ""
+msgstr "Titre des résultats"
 
 # Success form message
 #: BpZoQZ
@@ -1444,6 +1439,12 @@ msgctxt "eBFxNl"
 msgid "Call to Action"
 msgstr "Action"
 
+# Field label
+#: eDMxHS
+msgctxt "eDMxHS"
+msgid "Font weight"
+msgstr "Graisse"
+
 # ImageTitleText screen title
 #: eWIM/8
 msgctxt "eWIM/8"
@@ -1556,7 +1557,7 @@ msgstr "Recherche..."
 #: gwPu/I
 msgctxt "gwPu/I"
 msgid "Buttons text"
-msgstr ""
+msgstr "Texte des boutons"
 
 # Question field label
 #: hVE7TA
@@ -2040,7 +2041,7 @@ msgstr "Envoyer"
 #: uDHTZn
 msgctxt "uDHTZn"
 msgid "Results description"
-msgstr ""
+msgstr "Description des résultats"
 
 # Image screen title
 #: uJ9eBc

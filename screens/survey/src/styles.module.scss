@@ -103,7 +103,7 @@
         width: 100%;
         padding: 0;
         transition: opacity 500ms ease-out;
-        border: 2px solid $gray-600;
+        // border: 2px solid $gray-600;
 
         &:disabled {
             opacity: 1;
@@ -113,9 +113,9 @@
 
     .itemLabel {
         display: inline-block;
-        margin-left: 50%;
+        // margin-left: 50%;
         padding: 10px;
-        transform: translate(-50%, 0);
+        // transform: translate(-50%, 0);
         transition: margin-left 300ms ease-out, transform 300ms ease-out;
     }
 

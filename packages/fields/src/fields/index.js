@@ -30,6 +30,7 @@ export { default as font } from './font';
 export { default as fonts } from './fonts';
 export { default as fontFamily } from './font-family';
 export { default as fontSize } from './font-size';
+export { default as fontWeight } from './font-weight';
 export { default as geoPosition } from './geo-position';
 export { default as graphBarStyle } from './graph-bar-style';
 export { default as headingElement } from './heading-element';

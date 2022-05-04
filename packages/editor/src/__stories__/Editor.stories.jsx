@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { callToAction } from '../../../../.storybook/data';
+import { callToAction, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
@@ -191,12 +191,20 @@ export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
 export const Map = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'map', type: 'map' }] }} />
 );
+export const Survey = () => (
+    <EditorContainer defaultValue={{ components: [{ id: 'survey', type: 'survey' }] }} />
+);
 export const Quiz = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'quiz', type: 'quiz' }] }} />
 );
 export const QuizMultiple = () => (
     <EditorContainer
         defaultValue={{ components: [{ id: 'quiz-multiple', type: 'quiz-multiple' }] }}
+    />
+);
+export const VideoCustom = () => (
+    <EditorContainer
+        defaultValue={{ components: [{ id: 'video', type: 'video', video: videoMedia() }] }}
     />
 );
 export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;

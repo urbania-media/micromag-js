@@ -26,7 +26,6 @@
         flex-direction: column;
         border: 2px solid #000;
         border-radius: 17px;
-        // opacity: 0.1;
         box-shadow: 0 3px 34px rgba(0, 0, 0, 0.43);
         color: #000;
         text-align: center;
@@ -35,12 +34,16 @@
             height: 200px;
             background-color: $gray-500;
         }
+
+        &.appear {
+            animation: appear 2s ease-in-out;
+        }
     }
 
     .category {
-        padding: 16px 10px 12px;
+        padding: 12px 10px 6px;
         border-bottom: 2px solid #000;
-        background-color: #ff3b41;
+        background-color: #ff4f46;
         color: #fff;
         font-family: 'Agrandir Tight', sans-serif;
         font-size: 28px;
@@ -81,7 +84,7 @@
         max-width: 50%;
         height: inherit;
         padding: 15px 10px;
-        text-align: left;
+        text-align: center;
         overflow-wrap: break-word;
 
         &.rightBorder {
@@ -125,11 +128,10 @@
     }
 
     .sponsor {
-        padding: 7px 10px 5px;
-        background-color: #ff0;
+        padding: 5px 10px 3px;
+        background-color: #fffc00;
         font-family: 'Agrandir', sans-serif;
         font-size: 10px;
-        text-transform: uppercase;
 
         &.bottomBorder {
             border-bottom: 2px solid #000;
@@ -146,6 +148,14 @@
         font-family: 'Roboto', sans-serif;
         font-size: 12px;
         text-align: left;
+
+        p {
+            margin-bottom: 1em;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
 
     .descriptionPlaceholder {
@@ -172,5 +182,19 @@
 
     100% {
         background-position-y: 9000px;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    66% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
