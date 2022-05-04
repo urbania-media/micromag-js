@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -11,7 +11,12 @@ import {
     ScreenElement,
     TransitionsStagger,
 } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useScreenState,
+    useViewer,
+} from '@micromag/core/contexts';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -99,6 +104,13 @@ const Horoscope = ({
 }) => {
     const [hasPopup, setHasPopup] = useState(false);
 
+    const signs = defaultSigns.map((sign, index) => ({
+        ...sign,
+        ...(signsValue !== null && signsValue[index] ? signsValue[index] || null : null),
+    }));
+
+    const [activeSignId, setActiveSignId] = useState(null);
+
     const openPopup = useCallback(() => {
         setHasPopup(true);
         disableInteraction();
@@ -109,10 +121,22 @@ const Horoscope = ({
         enableInteraction();
     }, [hasPopup, setHasPopup, enableInteraction]);
 
-    const signs = defaultSigns.map((sign, index) => ({
-        ...sign,
-        ...(signsValue !== null && signsValue[index] ? signsValue[index] || null : null),
-    }));
+    const screenState = useScreenState();
+
+    useEffect(() => {
+        if (screenState === 'intro') {
+            setHasPopup(false);
+        }
+        if (screenState === 'grid') {
+            setHasPopup(true);
+            setActiveSignId(null);
+        }
+        if (screenState !== null && screenState.includes('signs')) {
+            const index = screenState.split('.').pop();
+            setHasPopup(true);
+            setActiveSignId(signs[index].id);
+        }
+    }, [screenState]);
 
     const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
@@ -199,21 +223,23 @@ const Horoscope = ({
                 </Button>
             ) : null}
         </ScreenElement>,
-        hasPopup || isPlaceholder ? (
-            <TransitionGroup>
-                <CSSTransition key="grid" classNames={styles} timeout={500}>
-                    <SignsGrid
-                        width={width}
-                        height={height}
-                        className={styles.signsGrid}
-                        closeButton={closePopup}
-                        background={popupBackground}
-                        signs={signs}
-                        signSubtitle={signSubtitle}
-                    />
-                </CSSTransition>
-            </TransitionGroup>
-        ) : null,
+        // <TransitionGroup>
+        //     {hasPopup || isPlaceholder ? (
+        //         <CSSTransition key="grid" classNames={styles} timeout={500}>
+        //             <SignsGrid
+        //                 width={width}
+        //                 height={height}
+        //                 className={styles.signsGrid}
+        //                 closeButton={closePopup}
+        //                 background={popupBackground}
+        //                 signs={signs}
+        //                 signSubtitle={signSubtitle}
+        //                 activeSignId={activeSignId}
+        //                 setActiveSignId={setActiveSignId}
+        //             />
+        //         </CSSTransition>
+        //     ) : null}
+        // </TransitionGroup>,
     ].filter((el) => el !== null);
 
     return (
@@ -261,6 +287,23 @@ const Horoscope = ({
                             {items}
                         </TransitionsStagger>
                     </Layout>
+                    <TransitionGroup>
+                        {hasPopup || isPlaceholder ? (
+                            <CSSTransition key="grid" classNames={styles} timeout={500}>
+                                <SignsGrid
+                                    width={width}
+                                    height={height}
+                                    className={styles.signsGrid}
+                                    closeButton={closePopup}
+                                    background={popupBackground}
+                                    signs={signs}
+                                    signSubtitle={signSubtitle}
+                                    activeSignId={activeSignId}
+                                    setActiveSignId={setActiveSignId}
+                                />
+                            </CSSTransition>
+                        ) : null}
+                    </TransitionGroup>
                 </Scroll>
             </Container>
         </div>

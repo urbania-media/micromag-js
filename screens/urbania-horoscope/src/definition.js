@@ -19,77 +19,85 @@ export default [
             description: 'Urbania screen title',
         }),
         component: Horoscope,
-        fields: [
+        states: [
             {
-                name: 'title',
-                type: 'heading-element',
-                label: defineMessage({
-                    defaultMessage: 'Title',
-                    description: 'Title field label',
-                }),
+                id: 'intro',
+                label: defineMessage({ defaultMessage: 'Intro', description: ' Horoscope state' }),
+                fields: [
+                    {
+                        name: 'title',
+                        type: 'heading-element',
+                        label: defineMessage({
+                            defaultMessage: 'Title',
+                            description: 'Title field label',
+                        }),
+                    },
+                    {
+                        name: 'description',
+                        type: 'text-element',
+                        label: defineMessage({
+                            defaultMessage: 'Description',
+                            description: 'Text field label',
+                        }),
+                    },
+                    {
+                        name: 'author',
+                        type: 'author-element',
+                        label: defineMessage({
+                            defaultMessage: 'Author',
+                            description: 'Author field label',
+                        }),
+                    },
+                    {
+                        name: 'button',
+                        type: 'button-element',
+                        label: defineMessage({
+                            defaultMessage: 'Button',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'background',
+                        type: 'background',
+                        label: defineMessage({
+                            defaultMessage: 'Background',
+                            description: 'Background field label',
+                        }),
+                    },
+                ],
             },
             {
-                name: 'description',
-                type: 'text-element',
-                label: defineMessage({
-                    defaultMessage: 'Description',
-                    description: 'Text field label',
-                }),
+                id: 'grid',
+                label: defineMessage({ defaultMessage: 'Grid', description: 'Horoscope state' }),
+                fields: [],
             },
             {
-                name: 'author',
-                type: 'author-element',
-                label: defineMessage({
-                    defaultMessage: 'Author',
-                    description: 'Author field label',
-                }),
-            },
-            {
-                name: 'button',
-                type: 'button-element',
-                label: defineMessage({
-                    defaultMessage: 'Button',
-                    description: 'Field label',
-                }),
-            },
-            {
-                name: 'signs',
-                component: 'items',
-                label: defineMessage({
-                    defaultMessage: 'Signs',
-                    description: 'State label',
-                }),
+                id: 'signs',
+                label: defineMessage({ defaultMessage: 'Signs', description: 'Horoscope state' }),
                 defaultValue: signs,
-                withoutSort: true,
-                withoutAddItem: true,
-                withoutDeleteItem: true,
-                itemsField: {
-                    type: 'field-with-form',
-                    breadcrumbLabel: defineMessage({
-                        defaultMessage: 'Sign',
-                        description: 'Breadcrumb field label',
-                    }),
-                    labelPath: 'label',
-                    fields: [
-                        {
-                            name: 'word',
-                            type: 'heading-element',
-                            label: defineMessage({
-                                defaultMessage: 'Word of the week',
-                                description: 'Field label',
-                            }),
-                        },
-                        {
-                            name: 'description',
-                            type: 'text-element',
-                            label: defineMessage({
-                                defaultMessage: 'Description',
-                                description: 'Field label',
-                            }),
-                        },
-                    ],
-                },
+                repeatable: true,
+                withoutCreate: true,
+                fields: [
+                    {
+                        name: 'word',
+                        type: 'heading-element',
+                        label: defineMessage({
+                            defaultMessage: 'Word of the week',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'description',
+                        type: 'text-element',
+                        label: defineMessage({
+                            defaultMessage: 'Description',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
             },
+        ],
+        fields: [
             {
                 name: 'signSubtitle',
                 type: 'heading-element',

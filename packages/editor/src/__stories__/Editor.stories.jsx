@@ -10,6 +10,7 @@ import treeTheme from '../../../../.storybook/data/themes/tree';
 import { theme as backgroundTheme } from '../../../../.storybook/data/themes/with-background';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import withUppy from '../../../../.storybook/decorators/withUppy';
+import signs from '../../../../screens/urbania-horoscope/src/signs';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import Editor from '../components/EditorContainer';
 
@@ -165,17 +166,7 @@ export const TestHoroscope = () => (
                 {
                     id: '1cb8a4be-5c1a-11eb-985f-ad6fce99d848',
                     type: 'urbania-horoscope',
-                    signs: [
-                        {
-                            id: 'aries',
-                            label: { body: 'Aries', id: 1 },
-
-                            word: { body: 'FJFKSJDKFJ', id: 1 },
-                            description: {
-                                body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?',
-                            },
-                        },
-                    ],
+                    signs,
                 },
             ],
         }}

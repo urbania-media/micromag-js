@@ -8,6 +8,10 @@
     margin: 0;
     padding: 0;
 
+    > * {
+        @extend %reset-viewer-elements;
+    }
+
     &.showEmpty {
         display: inline-block;
         width: 300px;

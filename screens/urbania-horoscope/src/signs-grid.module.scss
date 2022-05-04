@@ -5,8 +5,13 @@
 
 .container {
     @extend %screen;
+    display: flex;
     position: relative;
     z-index: 2;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
 
     .closeButton {
         position: absolute;

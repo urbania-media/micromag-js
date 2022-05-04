@@ -1,5 +1,4 @@
 import { defineMessage } from 'react-intl';
-
 import MapScreen from './Map';
 import MapImagesScreen from './MapImages';
 import * as transforms from './transforms/index';
@@ -63,7 +62,7 @@ export default [
                             description: 'Field label',
                         }),
                     },
-                ]
+                ],
             },
             {
                 id: 'map',
@@ -109,7 +108,7 @@ export default [
                             description: 'Field label',
                         }),
                     },
-                ]
+                ],
             },
             {
                 id: 'markers',
@@ -143,9 +142,9 @@ export default [
                             defaultMessage: 'Position',
                             description: 'Field label',
                         }),
-                    }
-                ]
-            }
+                    },
+                ],
+            },
         ],
         fields: [
             {
