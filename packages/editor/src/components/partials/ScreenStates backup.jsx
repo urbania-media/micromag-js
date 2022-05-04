@@ -47,7 +47,7 @@ function ScreenStates({ screen, value, className, onChange }) {
                 },
             ])}
         >
-            <div className="d-flex align-items-end m-n1">
+            <div className="d-flex align-items-end flex-wrap m-n1">
                 <div className="p-1 align-self-stretch d-flex flex-column">
                     <h6 className={classNames(['fw-normal', 'invisible', styles.title])}>
                         Settings
@@ -110,7 +110,7 @@ function ScreenStates({ screen, value, className, onChange }) {
                                 <FormattedMessage {...label} />
                             </h6>
                             {repeatable ? (
-                                <ul className="d-flex list-unstyled m-n1 flex-grow-1">
+                                <ul className="d-flex list-unstyled flex-wrap m-n1 flex-grow-1">
                                     {repeatableItems.map((item, index) => (
                                         <li className="p-1">
                                             <ScreenWithPreview

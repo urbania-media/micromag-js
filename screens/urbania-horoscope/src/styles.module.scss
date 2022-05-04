@@ -42,13 +42,13 @@
         text-shadow: -3px -3px 0 #000f66;
         text-transform: uppercase;
         -webkit-text-stroke: 1px #000f66;
-        filter: drop-shadow(4px 4px 3px rgba(0, 0, 0, 0.7));
+        filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
     }
 
     .titleImage {
         width: 100%;
         height: auto;
-        filter: drop-shadow(4px 4px 3px rgba(0, 0, 0, 0.7));
+        filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
     }
 
     .titlePlaceholder {
@@ -63,7 +63,7 @@
         font-family: 'Agrandir Tight', sans-serif;
         font-size: 18px;
         font-weight: 700;
-        filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.7));
+        filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.7));
     }
 
     .descriptionPlaceholder {
@@ -74,7 +74,7 @@
     .author {
         width: fit-content;
         margin: 0 auto;
-        filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.7));
+        filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.7));
     }
 
     .button {

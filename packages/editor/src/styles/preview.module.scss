@@ -13,6 +13,7 @@
 
     .top {
         display: none;
+        width: 100%;
         padding: 20px 0;
     }
 
@@ -70,9 +71,11 @@
 
 @include match-screen('medium') {
     .top {
-        display: flex;
-        justify-content: center;
+        display: block;
+        // justify-content: center;
         width: 100%;
+        overflow-x: auto;
+        text-align: center;
     }
 
     .bottom {

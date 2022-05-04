@@ -235,7 +235,6 @@ const Recommendation = ({
                                     className={classNames([
                                         styles.titleContainer,
                                         {
-                                            [className]: className !== null,
                                             [styles.leftBorder]: hasDate,
                                         },
                                     ])}
@@ -261,7 +260,6 @@ const Recommendation = ({
                             className={classNames([
                                 styles.sponsor,
                                 {
-                                    [className]: className !== null,
                                     [styles.bottomBorder]: hasDescription,
                                 },
                             ])}

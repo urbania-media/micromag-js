@@ -38,6 +38,8 @@ const propTypes = {
         }),
     ),
     signSubtitle: MicromagPropTypes.headingElement,
+    activeSignId: PropTypes.string,
+    setActiveSignId: PropTypes.func,
     width: PropTypes.number,
     height: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -50,6 +52,8 @@ const propTypes = {
 const defaultProps = {
     signs: null,
     signSubtitle: null,
+    activeSignId: null,
+    setActiveSignId: null,
     width: null,
     height: null,
     background: null,
@@ -62,6 +66,8 @@ const defaultProps = {
 const SignsGrid = ({
     signs,
     signSubtitle,
+    activeSignId,
+    setActiveSignId,
     width,
     height,
     background,
@@ -70,7 +76,7 @@ const SignsGrid = ({
     active,
     className,
 }) => {
-    const [activeSignId, setActiveSignId] = useState(null);
+    // const [activeSignId, setActiveSignId] = useState(null);
     const activeSign = signs.find(({ id = null }) => activeSignId === id) || null;
 
     const closeModal = useCallback(() => setActiveSignId(null), [activeSignId, setActiveSignId]);
