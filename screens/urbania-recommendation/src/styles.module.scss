@@ -134,6 +134,11 @@
         font-family: 'Agrandir', sans-serif;
         font-size: 10px;
 
+        > p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
         &.bottomBorder {
             border-bottom: 2px solid #000;
         }
