@@ -127,8 +127,8 @@ export const Test = () => (
             components: [
                 {
                     id: '1cb8a4be-5c1a-11eb-985f-ad6fce99d848',
-                    type: 'urbania-recommendation',
-                    // url: 'https://dev.urbania.ca/article/tous-les-dechets-sen-vont-a-la-meme-place-et-autres-mythes-sur-le-compostage',
+                    type: 'urbania-article',
+                    url: 'https://urbania.ca/article/tous-les-dechets-sen-vont-a-la-meme-place-et-autres-mythes-sur-le-compostage',
                     title: {
                         body: null,
                         textStyle: {
@@ -182,17 +182,21 @@ export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
 export const Map = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'map', type: 'map' }] }} />
 );
+
 export const Survey = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'survey', type: 'survey' }] }} />
 );
+
 export const Quiz = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'quiz', type: 'quiz' }] }} />
 );
+
 export const QuizMultiple = () => (
     <EditorContainer
         defaultValue={{ components: [{ id: 'quiz-multiple', type: 'quiz-multiple' }] }}
     />
 );
+
 export const VideoCustom = () => (
     <EditorContainer
         defaultValue={{ components: [{ id: 'video', type: 'video', video: videoMedia() }] }}

@@ -205,8 +205,6 @@ const Button = ({
         },
     ]);
 
-    console.log('button props', props);
-
     if (href !== null) {
         const linkClassNames = classNames([
             buttonClassNames,

@@ -15,6 +15,9 @@ $color-quatre95-text: #5e79ff;
 $color-dehors-background: #00c693;
 $color-dehors-text: #ffeada;
 
+$color-universities-background: #fff;
+$color-universities-text: #f33;
+
 .container {
     @extend %screen;
 
@@ -97,8 +100,8 @@ $color-dehors-text: #ffeada;
             width: 100%;
             margin-top: auto;
             padding: 0 10px 4px;
-            background-color: $color-urbania-text;
-            color: $color-urbania-background;
+            background-color: $color-urbania-background;
+            color: $color-urbania-text;
             letter-spacing: 0.04em;
         }
 
@@ -131,6 +134,11 @@ $color-dehors-text: #ffeada;
             .author {
                 color: $color-urbania-text;
             }
+
+            .sponsors  {
+                background-color: $color-urbania-text;
+                color: $color-urbania-background;
+            }
         }
 
         &.dehors {
@@ -139,6 +147,15 @@ $color-dehors-text: #ffeada;
 
             .author {
                 color: $color-dehors-text;
+            }
+        }
+
+        &.universities {
+            background-color: $color-universities-background;
+            color: $color-universities-text;
+
+            .overTitle {
+                color: $color-urbania-text;
             }
         }
     }

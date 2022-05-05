@@ -20,7 +20,7 @@ import {
     useScreenRenderContext, // useViewerNavigation,
 } from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
@@ -40,6 +40,7 @@ const propTypes = {
     author: MicromagPropTypes.authorElement,
     sponsor: PropTypes.arrayOf(PropTypes.shape({})),
     sponsorPrefix: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    sponsorColor: MicromagPropTypes.color,
     site: PropTypes.string,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
@@ -59,6 +60,7 @@ const defaultProps = {
     author: null,
     sponsor: null,
     sponsorPrefix: null,
+    sponsorColor: null,
     site: null,
     background: null,
     callToAction: null,
@@ -78,6 +80,7 @@ const UrbaniaArticle = ({
     author,
     sponsor,
     sponsorPrefix,
+    sponsorColor,
     site,
     background,
     callToAction,
@@ -195,7 +198,7 @@ const UrbaniaArticle = ({
             isEmpty={!hasSponsor && !hasArticle}
         >
             {hasSponsor ? (
-                <div className={styles.sponsors}>
+                <div className={styles.sponsors} style={{ ...getStyleFromColor(sponsorColor) }}>
                     {sponsorPrefix !== null ? (
                         <span className={styles.sponsor}>{sponsorPrefix}</span>
                     ) : null}

@@ -30,24 +30,6 @@
                 width: 90%;
             }
         }
-
-        // &.userAnswer {
-        //     .itemText {
-        //         color: $black;
-        //     }
-
-        //     .button {
-        //         border-color: $black;
-        //     }
-
-        //     .result {
-        //         background-color: $black;
-        //     }
-
-        //     .resultLabel {
-        //         color: $black;
-        //     }
-        // }
     }
 
     .itemContent {
@@ -55,30 +37,10 @@
         align-items: center;
     }
 
-    // .itemText {
-    // transition: color 0.5s ease;
-    // color: $gray-600;
-    // }
-
-    // .resultContainer {
-    //     flex-grow: 1;
-    //     align-self: center;
-    //     padding: 15px 0;
-    //     transition-property: padding;
-    //     transition-timing-function: ease;
-    // }
-
-    // .resultContent {
-    //     width: 0;
-    //     height: 1em;
-    //     transition-property: width opacity;
-    //     transition-timing-function: ease;
-    //     opacity: 0;
-    // }
-
     .resultBar {
         position: absolute;
         top: 0;
+        left: 0;
         height: 100%;
         background-color: rgba(255,255,255,0.3);
     }
@@ -86,17 +48,16 @@
     .resultLabel {
         position: absolute;
         top: 50%;
-        left: 100%;
-        width: 3em;
-        padding-left: 5px;
+        right: 0;
+        width: 4em;
+        padding: 0 5px;
         transform: translateY(-50%);
         color: $white;
+        text-align: right;
     }
 
     .itemInner {
         width: 100%;
-        // transition-property: width;
-        // transition-timing-function: ease;
     }
 
     .button {
@@ -105,7 +66,6 @@
         width: 100%;
         padding: 0;
         transition: opacity 500ms ease-out;
-        // border: 2px solid $gray-600;
 
         &:disabled {
             opacity: 1;
@@ -115,9 +75,13 @@
 
     .itemLabel {
         display: inline-block;
-        // margin-left: 50%;
+        width: 100%;
         padding: 10px;
-        // transform: translate(-50%, 0);
+        transition: margin-left 300ms ease-out, transform 300ms ease-out;
+    }
+
+    .itemText {
+        display: inline-block;
         transition: margin-left 300ms ease-out, transform 300ms ease-out;
     }
 
@@ -134,6 +98,14 @@
 
     .emptyAnswer {
         height: 50px;
+    }
+
+    .userAnswer {
+        .button,
+        .result,
+        .resultLabel {
+            opacity: 1 !important;
+        }
     }
 
     &.answered {
@@ -159,17 +131,22 @@
         }
 
         .itemLabel {
+            margin-right: 0;
             margin-left: 0;
-            transform: translate(-10px, 0);
             text-align: left;
+        }
+
+        &.withPercentage {
+            .itemText {
+                transform: translate(-2em, 0);
+            }
         }
     }
 
-    .userAnswer {
-        .button,
-        .result,
-        .resultLabel {
-            opacity: 1;
+    &.withPercentage {
+        .itemLabel {
+            margin-right: 2em;
+            margin-left: 2em;
         }
     }
 

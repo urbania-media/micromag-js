@@ -55,4 +55,11 @@ export const URL = (storyProps) => (
     />
 );
 
+export const ThemeUrl = (storyProps) => (
+    <Article
+        {...storyProps}
+        url="https://universites.urbania.ca/article/de-pascale-a-lysandre-nadeau-comment-bien-animer-a-lere-de-la-gen-z"
+    />
+);
+
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

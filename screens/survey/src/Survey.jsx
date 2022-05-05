@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
@@ -104,7 +104,6 @@ const SurveyScreen = ({
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const { quiz: quizAnswers = [] } = useQuiz({ screenId, opts: { autoload: !isPlaceholder } });
-
     const hasQuestion = isTextFilled(question);
 
     const showInstantAnswer = isStatic || isCapture;
@@ -193,7 +192,6 @@ const SurveyScreen = ({
     }, [isEdit, current, userAnswerIndex, setUserAnswerIndex]);
 
     // Question
-
     const items = [
         <ScreenElement
             key="question"
@@ -220,41 +218,7 @@ const SurveyScreen = ({
         items.push(<Spacer key="spacer" />);
     }
 
-    // Answer
-
-    const buttonsRefs = useRef([]);
-    const labelsRefs = useRef([]);
-    // const [buttonMaxWidth, setButtonMaxWidth] = useState(null);
-
     const finalTransitionDuration = showInstantAnswer ? 0 : `${resultTransitionDuration}ms`;
-    // const [ready, setReady] = useState(false);
-    // useEffect(() => {
-    //     if (answers === null || isPlaceholder) {
-    //         return;
-    //     }
-
-    //     // const maxWidth = answers.reduce((currentMaxWidth, answer, answerI) => {
-    //     //     const button = buttonsRefs.current[answerI] || null;
-    //     //     const label = labelsRefs.current[answerI] || null;
-    //     //     if (button !== null && label !== null) {
-    //     //         const borderWidth = button.offsetWidth - button.clientWidth;
-    //     //         const totalWidth = borderWidth + label.getBoundingClientRect().width + 20;
-    //     //         return Math.max(currentMaxWidth, totalWidth);
-    //     //     }
-    //     //     return currentMaxWidth;
-    //     // }, 0);
-    //     // setButtonMaxWidth(Math.min(width * 0.75, Math.max(width * 0.2, maxWidth)));
-    //     setButtonMaxWidth(withoutPercentage ? '100%' : `calc(100% - 3em)`);
-    //     setReady(true);
-    // }, [
-    //     answers,
-    //     width,
-    //     height,
-    //     setButtonMaxWidth,
-    //     finalTransitionDuration,
-    //     isPlaceholder,
-    //     withoutPercentage,
-    // ]);
 
     const { barColor: resultsBarColor = null, textColor: resultsTextColor = null } =
         resultsStyle || {};
@@ -322,33 +286,19 @@ const SurveyScreen = ({
                                                     <Button
                                                         className={styles.button}
                                                         onClick={() => onAnswerClick(answerIndex)}
-                                                        refButton={(el) => {
-                                                            buttonsRefs.current[answerIndex] = el;
-                                                        }}
                                                         disabled={
                                                             isPreview || userAnswerIndex !== null
                                                         }
                                                         focusable={current && isView}
-                                                        buttonStyle={
-                                                            !answered
-                                                                ? {
-                                                                      ...getStyleFromBox(
-                                                                          buttonsStyle,
-                                                                      ),
-                                                                      ...getStyleFromBox(
-                                                                          answerButtonStyle,
-                                                                      ),
-                                                                  }
-                                                                : null
-                                                        }
+                                                        buttonStyle={{
+                                                            ...getStyleFromBox(buttonsStyle),
+                                                            ...getStyleFromBox(answerButtonStyle),
+                                                            ...(answered
+                                                                ? { textAlign: 'left' }
+                                                                : null),
+                                                        }}
                                                     >
-                                                        <span
-                                                            className={styles.itemLabel}
-                                                            ref={(el) => {
-                                                                labelsRefs.current[answerIndex] =
-                                                                    el;
-                                                            }}
-                                                        >
+                                                        <span className={styles.itemLabel}>
                                                             <Text
                                                                 {...label}
                                                                 textStyle={textStyle}
@@ -369,6 +319,9 @@ const SurveyScreen = ({
                                                                                 : null,
                                                                             'color',
                                                                         ),
+                                                                        ...(answered
+                                                                            ? { opacity: 1 }
+                                                                            : { opacity: 0 }),
                                                                     }}
                                                                 >{`${percent}%`}</div>
                                                             ) : null}
@@ -390,6 +343,9 @@ const SurveyScreen = ({
                                                                                 : null,
                                                                             'backgroundColor',
                                                                         ),
+                                                                        ...(answered
+                                                                            ? { opacity: 1 }
+                                                                            : { opacity: 0 }),
                                                                     }}
                                                                 />
                                                             ) : null}
@@ -433,6 +389,7 @@ const SurveyScreen = ({
                 {
                     [className]: className !== null,
                     [styles.answered]: answered,
+                    [styles.withPercentage]: !withoutPercentage,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}

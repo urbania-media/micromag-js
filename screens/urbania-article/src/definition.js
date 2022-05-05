@@ -86,6 +86,14 @@ export default {
             }),
         },
         {
+            name: 'sponsorColor',
+            type: 'color',
+            label: defineMessage({
+                defaultMessage: 'Sponsor color',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'image',
             type: 'visual',
             label: defineMessage({

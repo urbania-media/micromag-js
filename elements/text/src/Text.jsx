@@ -25,6 +25,12 @@ const propTypes = {
     className: PropTypes.string,
     emptyClassName: PropTypes.string,
     inline: PropTypes.bool,
+    refText: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            current: PropTypes.any, // eslint-disable-line
+        }),
+    ]),
 };
 
 const defaultProps = {
@@ -37,6 +43,7 @@ const defaultProps = {
     className: null,
     emptyClassName: null,
     inline: false,
+    refText: null,
 };
 
 const Text = ({
@@ -49,6 +56,7 @@ const Text = ({
     className,
     emptyClassName,
     inline,
+    refText,
 }) => {
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = {};
@@ -95,6 +103,7 @@ const Text = ({
         ]),
         style: finalStyle,
         dangerouslySetInnerHTML: { __html: body },
+        ref: refText,
     };
 
     const Tag = `${inline ? 'span' : 'div'}`;
