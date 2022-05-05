@@ -277,6 +277,34 @@ const Viewer = ({
         onChangeScreen: changeIndex,
     });
 
+    const onClickContent = useCallback(
+        (e) => {
+            if (withLandscapeSiblingsScreens || e.target !== contentRef.current) {
+                return;
+            }
+
+            const { left: contentX = 0, width: contentWidth = 0 } =
+                e.currentTarget.getBoundingClientRect();
+            const tapX = e.clientX;
+            const hasTappedLeft = tapX - contentX < contentWidth * 0.5;
+            const nextIndex = hasTappedLeft
+                ? Math.max(0, screenIndex - 1)
+                : Math.min(screensCount - 1, screenIndex + 1);
+            if (eventsManager !== null) {
+                eventsManager.emit('change_screen', nextIndex);
+            }
+            changeIndex(nextIndex);
+        },
+        [
+            withLandscapeSiblingsScreens,
+            screenIndex,
+            tapNextScreenWidthPercent,
+            changeIndex,
+            eventsManager,
+            screensCount,
+        ],
+    );
+
     // swipe menu open
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
     const [menuOpened, setMenuOpened] = useState(false);
@@ -417,7 +445,7 @@ const Viewer = ({
                         />
                     ) : null}
                     {ready || withoutScreensTransforms ? (
-                        <div ref={contentRef} className={styles.content}>
+                        <div ref={contentRef} className={styles.content} onClick={onClickContent}>
                             {screens.map((scr, i) => {
                                 const current = i === screenIndex;
                                 const active =
