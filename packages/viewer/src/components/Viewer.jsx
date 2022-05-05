@@ -289,7 +289,7 @@ const Viewer = ({
             const hasTappedLeft = tapX - contentX < contentWidth * 0.5;
             const nextIndex = hasTappedLeft
                 ? Math.max(0, screenIndex - 1)
-                : Math.max(screensCount - 1, screenIndex + 1);
+                : Math.min(screensCount - 1, screenIndex + 1);
             if (eventsManager !== null) {
                 eventsManager.emit('change_screen', nextIndex);
             }
