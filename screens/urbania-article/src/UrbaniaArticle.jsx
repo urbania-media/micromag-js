@@ -107,19 +107,20 @@ const UrbaniaArticle = ({
 
     const {
         minContentHeight = null,
-        maxContentHeight = null,
+        // maxContentHeight = null,
         imageHeight = null,
     } = useMemo(() => {
         const defaultImageHeight = width * 0.8;
-        // const difference = height - contentHeight - contentTop + 1;
+        const difference = height - contentHeight - contentTop + 1;
 
-        // if (difference > defaultImageHeight) {
-        //     return { imageHeight: difference, minImageHeight: defaultImageHeight };
-        // }
-        // return { imageHeight: difference, minImageHeight: defaultImageHeight };
+        if (difference > defaultImageHeight) {
+            return { imageHeight: difference };
+        }
 
-        const finalMaxContentHeight = height - defaultImageHeight;
-        return { imageHeight: defaultImageHeight, maxContentHeight: finalMaxContentHeight };
+        return { imageHeight: difference };
+
+        // const finalMaxContentHeight = height - defaultImageHeight;
+        // return { imageHeight: defaultImageHeight, maxContentHeight: finalMaxContentHeight };
     }, [contentTop, contentHeight, width, height]);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -256,7 +257,6 @@ const UrbaniaArticle = ({
                     style={{
                         paddingTop: spacing,
                         minHeight: minContentHeight,
-                        height: maxContentHeight,
                         ...(!isVideo
                             ? getStyleFromColor(backgroundColor, 'backgroundColor')
                             : null),
