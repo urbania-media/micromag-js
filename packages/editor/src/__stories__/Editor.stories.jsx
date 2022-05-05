@@ -173,6 +173,21 @@ export const TestHoroscope = () => (
     />
 );
 
+export const TestReco = () => (
+    <EditorContainer
+        defaultValue={{
+            title: 'Test',
+            // theme: defaultTheme,
+            components: [
+                {
+                    id: '1cb8a4be-5c1a-11eb-985f-ad6fce99d848',
+                    type: 'urbania-recommendation',
+                },
+            ],
+        }}
+    />
+);
+
 export const Empty = () => <EditorContainer defaultValue={{ title: 'Empty' }} />;
 
 export const VideoAudio = () => <EditorContainer defaultValue={videoAudio} />;

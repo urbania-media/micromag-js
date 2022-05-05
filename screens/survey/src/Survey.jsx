@@ -329,7 +329,15 @@ const SurveyScreen = ({
                                                                             ? { opacity: 1 }
                                                                             : { opacity: 0 }),
                                                                     }}
-                                                                >{`${percent}%`}</div>
+                                                                >
+                                                                    <Text
+                                                                        {...label}
+                                                                        textStyle={textStyle}
+                                                                        inline
+                                                                        className={styles.itemText}
+                                                                        body={`<span>${percent}%</span>`}
+                                                                    />
+                                                                </div>
                                                             ) : null}
                                                             {!withoutBar ? (
                                                                 <div

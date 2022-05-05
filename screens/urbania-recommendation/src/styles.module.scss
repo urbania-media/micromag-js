@@ -100,6 +100,7 @@
         color: #ff4f46;
         font-family: 'Agrandir', sans-serif;
         font-size: 12px;
+        line-height: 1;
 
         &.centerDate {
             text-align: center;
@@ -119,10 +120,11 @@
     }
 
     .title {
-        padding: 15px 20px;
+        padding: 15px 20px 11px;
         font-family: 'Agrandir Narrow', sans-serif;
         font-size: 20px;
         font-weight: 700;
+        line-height: 1;
         text-align: center;
         text-transform: uppercase;
     }
@@ -132,6 +134,7 @@
         background-color: #fffc00;
         font-family: 'Agrandir', sans-serif;
         font-size: 10px;
+        line-height: 1;
         text-transform: uppercase;
 
         > p {

@@ -66,13 +66,14 @@ $color-universities-text: #f33;
         align-items: center;
         justify-content: center;
         width: 100%;
+        overflow: hidden;
         color: $color-urbania-text;
         text-align: center;
 
         .title,
         .overTitle,
         .authors {
-            padding: 10px;
+            padding: 8px 20px;
         }
 
         .overTitle {
@@ -92,7 +93,7 @@ $color-universities-text: #f33;
         }
 
         .authors {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .sponsors {
