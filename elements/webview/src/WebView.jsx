@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '@micromag/element-button';
+import Close from './Close';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -49,7 +48,7 @@ function WebView({ iframeRef, src, width, height, closeable, onClose, hidden, cl
             {closeable ? (
                 <div className={styles.top}>
                     <Button className={styles.close} onClick={onClose}>
-                        <FontAwesomeIcon className={styles.icon} icon={faTimes} size="lg" />
+                        <Close />
                     </Button>
                 </div>
             ) : null}

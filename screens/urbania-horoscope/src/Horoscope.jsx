@@ -300,6 +300,7 @@ const Horoscope = ({
                                     signSubtitle={signSubtitle}
                                     activeSignId={activeSignId}
                                     setActiveSignId={setActiveSignId}
+                                    transitionDisabled={transitionDisabled}
                                 />
                             </CSSTransition>
                         ) : null}

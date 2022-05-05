@@ -391,6 +391,10 @@
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
   },
+  "CMNP2S": {
+    "defaultMessage": "Grid",
+    "description": "Horoscope state"
+  },
   "CW3KAC": {
     "defaultMessage": "Markers with image",
     "description": "Field label"
@@ -402,6 +406,10 @@
   "D7LIZQ": {
     "defaultMessage": "Start",
     "description": "Screen button label"
+  },
+  "D7kxD3": {
+    "defaultMessage": "Without bar",
+    "description": "Field label"
   },
   "DU1qdc": {
     "defaultMessage": "Text color",
@@ -670,6 +678,10 @@
   "QfpTKK": {
     "defaultMessage": "Select a screen..."
   },
+  "Qw8cb5": {
+    "defaultMessage": "Sponsor color",
+    "description": "Field label"
+  },
   "R9DB4a": {
     "defaultMessage": "Styles",
     "description": "Field section label"
@@ -754,10 +766,6 @@
     "defaultMessage": "Upload an image",
     "description": "Upload button label in Media Gallery"
   },
-  "W3aj7x": {
-    "defaultMessage": "Without results",
-    "description": "Field label"
-  },
   "W5qWPj": {
     "defaultMessage": "Center",
     "description": "Field label"
@@ -769,6 +777,10 @@
   "Wb5zY4": {
     "defaultMessage": "Select a font file...",
     "description": "Label when no value"
+  },
+  "Wk/o9B": {
+    "defaultMessage": "Without true/false",
+    "description": "Field label"
   },
   "WlNxMj": {
     "defaultMessage": "Repeat",
@@ -789,6 +801,10 @@
   "XKcyqx": {
     "defaultMessage": "Taurus",
     "description": "Horoscope sign"
+  },
+  "XS4j3F": {
+    "defaultMessage": "Intro",
+    "description": " Horoscope state"
   },
   "XTJGzY": {
     "defaultMessage": "Gallery feed with captions",
@@ -897,6 +913,10 @@
   "ceaRdq": {
     "defaultMessage": "Horoscope sign",
     "description": "Sign placeholder"
+  },
+  "crLqJd": {
+    "defaultMessage": "Without percentage",
+    "description": "Field label"
   },
   "d60tSn": {
     "defaultMessage": "Subtitle",
@@ -1291,6 +1311,10 @@
   "rzdds2": {
     "defaultMessage": "Speaker",
     "description": "Breadcrumb field label"
+  },
+  "s5cvZR": {
+    "defaultMessage": "Signs",
+    "description": "Horoscope state"
   },
   "sESmah": {
     "defaultMessage": "Entries",

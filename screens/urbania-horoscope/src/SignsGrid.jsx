@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -46,6 +46,7 @@ const propTypes = {
     closeButton: PropTypes.func,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    transitionDisabled: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -60,6 +61,7 @@ const defaultProps = {
     closeButton: null,
     current: true,
     active: true,
+    transitionDisabled: false,
     className: null,
 };
 
@@ -74,15 +76,13 @@ const SignsGrid = ({
     closeButton,
     current,
     active,
+    transitionDisabled,
     className,
 }) => {
     // const [activeSignId, setActiveSignId] = useState(null);
     const activeSign = signs.find(({ id = null }) => activeSignId === id) || null;
-
     const closeModal = useCallback(() => setActiveSignId(null), [activeSignId, setActiveSignId]);
-
     const { isView, isPlaceholder } = useScreenRenderContext();
-
     const backgroundShouldLoad = !isPlaceholder && (current || active || !isView);
 
     return (
@@ -116,7 +116,11 @@ const SignsGrid = ({
                     ) : null}
                     <TransitionGroup>
                         {!activeSignId ? (
-                            <CSSTransition key="grid" classNames={styles} timeout={1000}>
+                            <CSSTransition
+                                key="grid"
+                                classNames={styles}
+                                timeout={transitionDisabled ? 0 : 1000}
+                            >
                                 <div
                                     className={classNames([
                                         styles.gridContainer,
@@ -195,6 +199,7 @@ const SignsGrid = ({
                                         className={styles.signModal}
                                         sign={activeSign}
                                         subtitle={signSubtitle}
+                                        transitionDisabled={transitionDisabled}
                                     />
                                 </div>
                             </CSSTransition>

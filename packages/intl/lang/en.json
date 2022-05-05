@@ -293,6 +293,9 @@
     "CJmQeh": {
         "defaultMessage": "Image with text"
     },
+    "CMNP2S": {
+        "defaultMessage": "Grid"
+    },
     "CW3KAC": {
         "defaultMessage": "Markers with image"
     },
@@ -301,6 +304,9 @@
     },
     "D7LIZQ": {
         "defaultMessage": "Start"
+    },
+    "D7kxD3": {
+        "defaultMessage": "Without bar"
     },
     "DU1qdc": {
         "defaultMessage": "Text color"
@@ -503,6 +509,9 @@
     "QfpTKK": {
         "defaultMessage": "Select a screen..."
     },
+    "Qw8cb5": {
+        "defaultMessage": "Sponsor color"
+    },
     "R9DB4a": {
         "defaultMessage": "Styles"
     },
@@ -566,9 +575,6 @@
     "VspZp9": {
         "defaultMessage": "Upload an image"
     },
-    "W3aj7x": {
-        "defaultMessage": "Without results"
-    },
     "W5qWPj": {
         "defaultMessage": "Center"
     },
@@ -577,6 +583,9 @@
     },
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
+    },
+    "Wk/o9B": {
+        "defaultMessage": "Without true/false"
     },
     "WlNxMj": {
         "defaultMessage": "Repeat"
@@ -592,6 +601,9 @@
     },
     "XKcyqx": {
         "defaultMessage": "Taurus"
+    },
+    "XS4j3F": {
+        "defaultMessage": "Intro"
     },
     "XTJGzY": {
         "defaultMessage": "Gallery feed with captions"
@@ -673,6 +685,9 @@
     },
     "ceaRdq": {
         "defaultMessage": "Horoscope sign"
+    },
+    "crLqJd": {
+        "defaultMessage": "Without percentage"
     },
     "d60tSn": {
         "defaultMessage": "Subtitle"
@@ -970,6 +985,9 @@
     },
     "rzdds2": {
         "defaultMessage": "Speaker"
+    },
+    "s5cvZR": {
+        "defaultMessage": "Signs"
     },
     "sESmah": {
         "defaultMessage": "Entries"

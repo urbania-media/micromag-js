@@ -293,6 +293,9 @@
     "CJmQeh": {
         "defaultMessage": "Image avec texte"
     },
+    "CMNP2S": {
+        "defaultMessage": "Grille"
+    },
     "CW3KAC": {
         "defaultMessage": "Marqueurs avec image"
     },
@@ -301,6 +304,9 @@
     },
     "D7LIZQ": {
         "defaultMessage": "Démarrer"
+    },
+    "D7kxD3": {
+        "defaultMessage": "Sans progression"
     },
     "DU1qdc": {
         "defaultMessage": "Couleur du texte"
@@ -503,6 +509,9 @@
     "QfpTKK": {
         "defaultMessage": "Sélectionnez un écran..."
     },
+    "Qw8cb5": {
+        "defaultMessage": "Couleur du présentateur"
+    },
     "R9DB4a": {
         "defaultMessage": "Styles"
     },
@@ -566,9 +575,6 @@
     "VspZp9": {
         "defaultMessage": "Téléverser une image"
     },
-    "W3aj7x": {
-        "defaultMessage": "Sans résultats"
-    },
     "W5qWPj": {
         "defaultMessage": "Centrer"
     },
@@ -577,6 +583,9 @@
     },
     "Wb5zY4": {
         "defaultMessage": "Sélectionnez un fichier de police..."
+    },
+    "Wk/o9B": {
+        "defaultMessage": "Sans vrai/faux"
     },
     "WlNxMj": {
         "defaultMessage": "Répéter"
@@ -592,6 +601,9 @@
     },
     "XKcyqx": {
         "defaultMessage": "Taureau"
+    },
+    "XS4j3F": {
+        "defaultMessage": "Intro"
     },
     "XTJGzY": {
         "defaultMessage": "Galerie (fil) avec légendes"
@@ -673,6 +685,9 @@
     },
     "ceaRdq": {
         "defaultMessage": "Signe astrologique"
+    },
+    "crLqJd": {
+        "defaultMessage": "Sans pourcentage"
     },
     "d60tSn": {
         "defaultMessage": "Sous-titre"
@@ -970,6 +985,9 @@
     },
     "rzdds2": {
         "defaultMessage": "Interlocuteur"
+    },
+    "s5cvZR": {
+        "defaultMessage": "Signes astrologiques"
     },
     "sESmah": {
         "defaultMessage": "Entrées"

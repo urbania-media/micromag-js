@@ -599,6 +599,12 @@ msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image with text"
 
+# Horoscope state
+#: CMNP2S
+msgctxt "CMNP2S"
+msgid "Grid"
+msgstr "Grid"
+
 # Field label
 #: CW3KAC
 msgctxt "CW3KAC"
@@ -616,6 +622,12 @@ msgstr "Quote"
 msgctxt "D7LIZQ"
 msgid "Start"
 msgstr "Start"
+
+# Field label
+#: D7kxD3
+msgctxt "D7kxD3"
+msgid "Without bar"
+msgstr "Without bar"
 
 # Field label
 #: DU1qdc
@@ -1018,6 +1030,12 @@ msgctxt "QfpTKK"
 msgid "Select a screen..."
 msgstr "Select a screen..."
 
+# Field label
+#: Qw8cb5
+msgctxt "Qw8cb5"
+msgid "Sponsor color"
+msgstr "Sponsor color"
+
 # Field section label
 #: R9DB4a
 msgctxt "R9DB4a"
@@ -1145,12 +1163,6 @@ msgid "Upload an image"
 msgstr "Upload an image"
 
 # Field label
-#: W3aj7x
-msgctxt "W3aj7x"
-msgid "Without results"
-msgstr "Without results"
-
-# Field label
 #: W5qWPj
 msgctxt "W5qWPj"
 msgid "Center"
@@ -1167,6 +1179,12 @@ msgstr "Sponsor"
 msgctxt "Wb5zY4"
 msgid "Select a font file..."
 msgstr "Select a font file..."
+
+# Field label
+#: Wk/o9B
+msgctxt "Wk/o9B"
+msgid "Without true/false"
+msgstr "Without true/false"
 
 # Field label
 #: WlNxMj
@@ -1197,6 +1215,12 @@ msgstr "Answer"
 msgctxt "XKcyqx"
 msgid "Taurus"
 msgstr "Taurus"
+
+#  Horoscope state
+#: XS4j3F
+msgctxt "XS4j3F"
+msgid "Intro"
+msgstr "Intro"
 
 # GalleryFeedCaptions screen title
 #: XTJGzY
@@ -1359,6 +1383,12 @@ msgstr "List"
 msgctxt "ceaRdq"
 msgid "Horoscope sign"
 msgstr "Horoscope sign"
+
+# Field label
+#: crLqJd
+msgctxt "crLqJd"
+msgid "Without percentage"
+msgstr "Without percentage"
 
 # Subtitle placeholder
 #: d60tSn
@@ -1951,6 +1981,12 @@ msgstr "Bad answer color"
 msgctxt "rzdds2"
 msgid "Speaker"
 msgstr "Speaker"
+
+# Horoscope state
+#: s5cvZR
+msgctxt "s5cvZR"
+msgid "Signs"
+msgstr "Signs"
 
 # Entries field label
 #: sESmah

@@ -26,6 +26,7 @@ const propTypes = {
     }),
     subtitle: MicromagPropTypes.headingElement,
     current: PropTypes.bool,
+    transitionDisabled: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -35,20 +36,20 @@ const defaultProps = {
     sign: null,
     subtitle: null,
     current: true,
+    transitionDisabled: false,
     className: null,
 };
 
-const SignModal = ({ width, height, sign, subtitle, current, className }) => {
+const SignModal = ({ width, height, sign, subtitle, current, transitionDisabled, className }) => {
     // eslint-disable-next-line no-unused-vars
     const { label = null, image = null, date = null, word = null, description = null } = sign;
     const { body: wordBody = null } = word || {};
 
-    const { isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const { isEdit } = useScreenRenderContext();
 
     const hasWord = isTextFilled(word);
     const hasSubtitle = isTextFilled(subtitle);
 
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     const items = [
@@ -84,6 +85,7 @@ const SignModal = ({ width, height, sign, subtitle, current, className }) => {
             className={classNames([
                 styles.container,
                 {
+                    [styles.withoutTransitions]: transitionDisabled,
                     [className]: className !== null,
                 },
             ])}
