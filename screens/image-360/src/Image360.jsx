@@ -38,6 +38,8 @@ const propTypes = {
     onNext: PropTypes.func,
     type: PropTypes.string,
     spacing: PropTypes.number,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -53,6 +55,8 @@ const defaultProps = {
     onNext: null,
     type: null,
     spacing: 20,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -68,6 +72,8 @@ const Image360Screen = ({
     onNext,
     type,
     spacing,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const THREE = useThree();
@@ -131,7 +137,7 @@ const Image360Screen = ({
     const lat = useRef(0);
     const phi = useRef(0);
     const theta = useRef(0);
-    const distance = useRef(50);
+    // const distance = useRef(50);
     const pointerDown = useRef(false);
     const pointerDownX = useRef(0);
     const pointerDownY = useRef(0);
@@ -144,7 +150,7 @@ const Image360Screen = ({
         if (THREE === null) {
             return;
         }
-        const { MathUtils } = THREE;
+        // const { MathUtils } = THREE;
         // lat.current = Math.max(-85, Math.min(85, lat.current));
         // phi.current = MathUtils.degToRad(90 - lat.current);
         // theta.current = MathUtils.degToRad(lon.current);
@@ -187,7 +193,15 @@ const Image360Screen = ({
             camera.current = new PerspectiveCamera(50, canvasWidth / canvasHeight, 1, 1100);
             scene.current = new Scene();
 
-            const geometry = new SphereBufferGeometry(500, 60, 40, 0, Math.PI * 2, Math.PI / 3, Math.PI / 3);
+            const geometry = new SphereBufferGeometry(
+                500,
+                60,
+                40,
+                0,
+                Math.PI * 2,
+                Math.PI / 3,
+                Math.PI / 3,
+            );
             geometry.scale(-1, 1, 1);
 
             const texture = new TextureLoader().load(imageUrl);
@@ -384,6 +398,8 @@ const Image360Screen = ({
                                 animationDisabled={isPreview}
                                 focusable={current && isView}
                                 screenSize={{ width, height }}
+                                enableInteraction={enableInteraction}
+                                disableInteraction={disableInteraction}
                             />
                         </div>
                     ) : null}

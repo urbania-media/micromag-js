@@ -26,6 +26,8 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -40,6 +42,8 @@ const defaultProps = {
     active: true,
     transitions: null,
     transitionStagger: 100,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -54,6 +58,8 @@ const QuoteScreen = ({
     active,
     transitions,
     transitionStagger,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const { width, height, menuOverScreen, resolution } = useScreenSize();
@@ -118,6 +124,8 @@ const QuoteScreen = ({
                     animationDisabled={isPreview}
                     focusable={current && isView}
                     screenSize={{ width, height }}
+                    enableInteraction={enableInteraction}
+                    disableInteraction={disableInteraction}
                 />
             </div>
         ) : null,

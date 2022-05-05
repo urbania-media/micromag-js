@@ -48,6 +48,8 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -68,6 +70,8 @@ const defaultProps = {
     active: true,
     transitions: null,
     spacing: 20,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -88,9 +92,13 @@ const UrbaniaArticle = ({
     active,
     transitions,
     spacing,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
+    const { color: backgroundColor = null } = background || {};
+
     const {
         ref: contentRef,
         entry: { contentRect },
@@ -237,7 +245,11 @@ const UrbaniaArticle = ({
                             [styles[`${site}`]]: site !== null,
                         },
                     ])}
-                    style={{ paddingTop: spacing, minHeight: minContentHeight }}
+                    style={{
+                        paddingTop: spacing,
+                        minHeight: minContentHeight,
+                        ...getStyleFromColor(backgroundColor, 'backgroundColor'),
+                    }}
                     ref={contentRef}
                 >
                     {items}
@@ -296,6 +308,8 @@ const UrbaniaArticle = ({
                                     focusable={current && isView}
                                     screenSize={{ width, height }}
                                     arrow={<ArrowIcon />}
+                                    enableInteraction={enableInteraction}
+                                    disableInteraction={disableInteraction}
                                     icon={
                                         type === 'video' ? (
                                             <WatchIcon className={styles.icon} />

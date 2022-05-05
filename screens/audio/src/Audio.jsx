@@ -32,6 +32,8 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     getMediaRef: PropTypes.func,
     showWave: PropTypes.bool,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -46,6 +48,8 @@ const defaultProps = {
     transitions: null,
     getMediaRef: null,
     showWave: false,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -60,6 +64,8 @@ const AudioScreen = ({
     transitions,
     getMediaRef,
     showWave,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('audio');
@@ -211,6 +217,8 @@ const AudioScreen = ({
                     animationDisabled={isPreview}
                     focusable={current && isView}
                     screenSize={{ width, height }}
+                    enableInteraction={enableInteraction}
+                    disableInteraction={disableInteraction}
                 />
             </div>
         ) : null;

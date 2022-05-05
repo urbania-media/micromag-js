@@ -41,6 +41,8 @@ const propTypes = {
     onNext: PropTypes.func,
     type: PropTypes.string,
     spacing: PropTypes.number,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -56,6 +58,8 @@ const defaultProps = {
     onNext: null,
     type: null,
     spacing: 20,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -71,6 +75,8 @@ const Video360Screen = ({
     onNext,
     type,
     spacing,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const THREE = useThree();
@@ -506,6 +512,8 @@ const Video360Screen = ({
                                 animationDisabled={isPreview}
                                 focusable={current && isView}
                                 screenSize={{ width, height }}
+                                enableInteraction={enableInteraction}
+                                disableInteraction={disableInteraction}
                             />
                         </div>
                     ) : null}

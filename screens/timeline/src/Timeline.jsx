@@ -39,6 +39,8 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -58,6 +60,8 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 75,
     type: null,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -77,6 +81,8 @@ const Timeline = ({
     transitions,
     transitionStagger,
     type,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -379,6 +385,8 @@ const Timeline = ({
                         callToAction={callToAction}
                         focusable={current && isView}
                         screenSize={{ width, height }}
+                        enableInteraction={enableInteraction}
+                        disableInteraction={disableInteraction}
                     />
                 ) : null}
             </Container>

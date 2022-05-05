@@ -34,6 +34,8 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -56,6 +58,8 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 100,
     type: null,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -78,6 +82,8 @@ const QuizScreen = ({
     transitions,
     transitionStagger,
     type,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const screenId = id || 'screen-id';
@@ -204,6 +210,8 @@ const QuizScreen = ({
                         animationDisabled={isPreview}
                         focusable={current && isView}
                         screenSize={{ width, height }}
+                        enableInteraction={enableInteraction}
+                        disableInteraction={disableInteraction}
                     />
                 ) : null}
             </Container>

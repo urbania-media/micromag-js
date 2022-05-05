@@ -69,7 +69,16 @@ export default [
             {
                 id: 'grid',
                 label: defineMessage({ defaultMessage: 'Grid', description: 'Horoscope state' }),
-                fields: [],
+                fields: [
+                    {
+                        name: 'popupBackground',
+                        type: 'background',
+                        label: defineMessage({
+                            defaultMessage: 'Background',
+                            description: 'Background field label',
+                        }),
+                    },
+                ],
             },
             {
                 id: 'signs',

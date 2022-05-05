@@ -36,6 +36,8 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
     getMediaRef: PropTypes.func,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -50,6 +52,8 @@ const defaultProps = {
     transitions: null,
     spacing: 20,
     getMediaRef: null,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -64,6 +68,8 @@ const VideoScreen = ({
     transitions,
     spacing,
     getMediaRef,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
@@ -423,6 +429,8 @@ const VideoScreen = ({
                                     animationDisabled={isPreview}
                                     focusable={current && isView}
                                     screenSize={{ width, height }}
+                                    enableInteraction={enableInteraction}
+                                    disableInteraction={disableInteraction}
                                 />
                             </div>
                         ) : null}

@@ -46,6 +46,8 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resultTransitionDuration: PropTypes.number,
     type: PropTypes.string,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -67,6 +69,8 @@ const defaultProps = {
     transitionStagger: 100,
     resultTransitionDuration: 500,
     type: null,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -88,6 +92,8 @@ const SurveyScreen = ({
     transitionStagger,
     resultTransitionDuration,
     type,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const screenId = id || 'screen-id';
@@ -377,6 +383,8 @@ const SurveyScreen = ({
                     animationDisabled={isPreview}
                     focusable={current && isView}
                     screenSize={{ width, height }}
+                    enableInteraction={enableInteraction}
+                    disableInteraction={disableInteraction}
                 />
             </div>,
         );

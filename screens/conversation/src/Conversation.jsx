@@ -31,6 +31,8 @@ const propTypes = {
     type: PropTypes.string,
     conversation: MicromagPropTypes.conversation,
     transitions: MicromagPropTypes.transitions,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -46,6 +48,8 @@ const defaultProps = {
     type: null,
     conversation: null,
     transitions: null,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -61,6 +65,8 @@ const ConversationScreen = ({
     type,
     conversation,
     transitions,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const { width, height, menuOverScreen, resolution } = useScreenSize();
@@ -109,7 +115,8 @@ const ConversationScreen = ({
     const defaultTimingFactor = 40;
     const defaultHesitationDelay = 1000;
     const filteredMessages = (messages || []).filter((m) => m !== null);
-    const timings = filteredMessages.map(({ timing = null, message = null } = {}, messageI) => {
+    const timings = filteredMessages.map((messageParams, messageI) => {
+        const { timing = null, message = null } = messageParams || {};
         if (timing !== null) {
             return timing;
         }
@@ -273,6 +280,8 @@ const ConversationScreen = ({
                                                 callToAction={callToAction}
                                                 focusable={current && isView}
                                                 screenSize={{ width, height }}
+                                                enableInteraction={enableInteraction}
+                                                disableInteraction={disableInteraction}
                                             />
                                         </div>
                                     ) : null}

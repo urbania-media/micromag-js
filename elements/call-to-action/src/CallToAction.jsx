@@ -36,6 +36,8 @@ const propTypes = {
     labelClassName: PropTypes.string,
     arrowClassName: PropTypes.string,
     focusable: PropTypes.bool,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
 };
 
 const defaultProps = {
@@ -53,6 +55,8 @@ const defaultProps = {
     labelClassName: null,
     arrowClassName: null,
     focusable: true,
+    enableInteraction: null,
+    disableInteraction: null,
 };
 
 function CallToAction({
@@ -70,6 +74,8 @@ function CallToAction({
     labelClassName,
     arrowClassName,
     focusable,
+    enableInteraction,
+    disableInteraction,
 }) {
     const {
         active = false,
@@ -115,7 +121,7 @@ function CallToAction({
                 if (inWebView) {
                     setShowWebView(true);
                     setDisabledWebView(false);
-                } else if (isIos()) {
+                } else if (isIos() && selfTargetLinkRef.current !== null) {
                     selfTargetLinkRef.current.click();
                     setLeaving(true);
                 } else if (buttonRef.current) {
@@ -154,11 +160,17 @@ function CallToAction({
     const onOpenWebView = useCallback(() => {
         setShowWebView(true);
         setDisabledWebView(false);
-    }, [setShowWebView, setDisabledWebView]);
+        if (disableInteraction !== null) {
+            disableInteraction();
+        }
+    }, [setShowWebView, setDisabledWebView, disableInteraction]);
 
     const onCloseWebView = useCallback(() => {
         setShowWebView(false);
-    }, [setShowWebView]);
+        if (enableInteraction !== null) {
+            enableInteraction();
+        }
+    }, [setShowWebView, enableInteraction]);
 
     const ArrowElement =
         arrow !== null ? (
@@ -203,12 +215,14 @@ function CallToAction({
                 ref={elRef}
             >
                 {leaving ? <div className={styles.leavingFrame} /> : null}
-                <a
-                    className={styles.selfTargetLink}
-                    href={url}
-                    ref={selfTargetLinkRef}
-                    tabIndex={focusable ? '0' : '-1'}
-                />
+                {!inWebView && swipeUpEnabled ? (
+                    <a
+                        className={styles.selfTargetLink}
+                        href={url}
+                        ref={selfTargetLinkRef}
+                        tabIndex={focusable ? '0' : '-1'}
+                    />
+                ) : null}
                 {swipeUpEnabled ? ArrowElement : null}
                 <div
                     className={classNames([

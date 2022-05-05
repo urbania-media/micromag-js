@@ -27,6 +27,8 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     // transitionStagger: PropTypes.number,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -42,11 +44,13 @@ const defaultProps = {
     active: true,
     transitions: null,
     // transitionStagger: 50,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
 const SlideshowScreen = ({
-    layout,
+    // layout,
     slides,
     withCaptions,
     background,
@@ -57,6 +61,8 @@ const SlideshowScreen = ({
     captionMaxLines,
     transitions,
     // transitionStagger,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const { width, height, menuOverScreen, resolution } = useScreenSize();
@@ -210,6 +216,8 @@ const SlideshowScreen = ({
                                 animationDisabled={isPreview}
                                 focusable={current && isView}
                                 screenSize={{ width, height }}
+                                enableInteraction={enableInteraction}
+                                disableInteraction={disableInteraction}
                             />
                         </div>
                     ) : null}

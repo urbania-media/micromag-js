@@ -43,6 +43,8 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -63,6 +65,8 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -83,6 +87,8 @@ const ImageScreen = ({
     current,
     active,
     transitions,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const finalImageFit = useMemo(
@@ -266,6 +272,8 @@ const ImageScreen = ({
                     animationDisabled={isPreview}
                     focusable={current && isView}
                     screenSize={{ width, height }}
+                    enableInteraction={enableInteraction}
+                    disableInteraction={disableInteraction}
                 />
             </div>,
         );
