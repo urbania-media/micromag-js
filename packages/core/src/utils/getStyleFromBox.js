@@ -2,6 +2,7 @@ import isObject from 'lodash/isObject';
 import getStyleFromBorder from './getStyleFromBorder';
 import getStyleFromColor from './getStyleFromColor';
 
+//
 const getStyleFromBox = (value) => {
     if (value === null) {
         return null;
