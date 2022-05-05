@@ -36,6 +36,7 @@ const propTypes = {
     locale: PropTypes.string,
     locales: PropTypes.arrayOf(PropTypes.string),
     translations: PropTypes.objectOf(PropTypes.string),
+    pathWithIndex: PropTypes.bool,
     children: PropTypes.func,
 };
 
@@ -52,6 +53,7 @@ const defaultProps = {
     locale: 'en',
     locales: ['fr', 'en'],
     translations: null,
+    pathWithIndex: false,
     children: null,
 };
 
@@ -67,6 +69,7 @@ const ViewerContainer = ({
     locale,
     locales,
     translations,
+    pathWithIndex,
     ...otherProps
 }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
@@ -111,6 +114,7 @@ const ViewerContainer = ({
                                             <ViewerRoutes
                                                 story={story}
                                                 basePath={basePath}
+                                                pathWithIndex={pathWithIndex}
                                                 {...otherProps}
                                             />
                                         )}

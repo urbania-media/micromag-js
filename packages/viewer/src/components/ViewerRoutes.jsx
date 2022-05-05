@@ -1,34 +1,43 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
 import { Route, Switch } from 'react-router';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useRoutes, useRoutePush } from '@micromag/core/contexts';
-
 import Viewer from './Viewer';
 
 const propTypes = {
+    story: MicromagPropTypes.story, // .isRequired,
+    pathWithIndex: PropTypes.bool,
     children: PropTypes.func,
     onScreenChange: PropTypes.func,
 };
 
 const defaultProps = {
+    story: null,
+    pathWithIndex: false,
     children: null,
     onScreenChange: null,
 };
 
-const ViewerRoutes = ({ children, onScreenChange, ...otherProps }) => {
+const ViewerRoutes = ({ story, pathWithIndex, children, onScreenChange, ...otherProps }) => {
     const routes = useRoutes();
     const push = useRoutePush();
+    const { components: screens = [] } = story || {};
     const finalOnScreenChange = useCallback(
         (it) => {
+            const screenIndex = screens.findIndex((screen) => {
+                const { id: screenId } = screen;
+                return screenId === it.id || screen === it;
+            });
             push('screen', {
-                screen: it.id,
+                screen: pathWithIndex ? screenIndex + 1 : it.id,
             });
             if (onScreenChange !== null) {
                 onScreenChange(it);
             }
         },
-        [push, onScreenChange],
+        [push, pathWithIndex, screens, onScreenChange],
     );
 
     return (
@@ -42,11 +51,25 @@ const ViewerRoutes = ({ children, onScreenChange, ...otherProps }) => {
                 path={routes.screen}
                 render={({
                     match: {
-                        params: { screen },
+                        params: { screen: screenParam = null },
                     },
-                }) => (
-                    <Viewer {...otherProps} screen={screen} onScreenChange={finalOnScreenChange} />
-                )}
+                }) => {
+                    const screenFromIndex =
+                        pathWithIndex && screenParam !== null
+                            ? screens[parseInt(screenParam, 10) - 1] || null
+                            : null;
+                    const screenId = pathWithIndex
+                        ? (screenFromIndex || {}).id || null
+                        : screenParam;
+                    return (
+                        <Viewer
+                            {...otherProps}
+                            story={story}
+                            screen={screenId}
+                            onScreenChange={finalOnScreenChange}
+                        />
+                    );
+                }}
             />
         </Switch>
     );
