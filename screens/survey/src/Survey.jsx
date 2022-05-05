@@ -334,8 +334,10 @@ const SurveyScreen = ({
                                                                         {...label}
                                                                         textStyle={textStyle}
                                                                         inline
-                                                                        className={styles.itemText}
-                                                                        body={`<span>${percent}%</span>`}
+                                                                        className={
+                                                                            styles.resultText
+                                                                        }
+                                                                        body={`${percent}%`}
                                                                     />
                                                                 </div>
                                                             ) : null}

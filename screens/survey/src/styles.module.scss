@@ -42,7 +42,7 @@
         top: 0;
         left: 0;
         height: 100%;
-        background-color: rgba(255,255,255,0.3);
+        background-color: rgba(255,255,255,0.2);
     }
 
     .resultLabel {
@@ -109,6 +109,9 @@
     }
 
     &.answered {
+
+        line-height: 1;
+
         .resultContainer {
             padding-right: 50px;
             padding-left: 15px;
