@@ -36,6 +36,8 @@ const propTypes = {
     animateBackground: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
+    enableInteraction: PropTypes.func,
+    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -53,6 +55,8 @@ const defaultProps = {
     animateBackground: true,
     transitions: null,
     transitionStagger: 100,
+    enableInteraction: null,
+    disableInteraction: null,
     className: null,
 };
 
@@ -70,6 +74,8 @@ const Recommendation = ({
     animateBackground,
     transitions,
     transitionStagger,
+    enableInteraction,
+    disableInteraction,
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent();
@@ -296,6 +302,8 @@ const Recommendation = ({
                     animationDisabled={isPreview}
                     focusable={current && isView}
                     screenSize={{ width, height }}
+                    enableInteraction={enableInteraction}
+                    disableInteraction={disableInteraction}
                 />
             </div>
         ) : null,
