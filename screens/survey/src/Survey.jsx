@@ -109,7 +109,25 @@ const SurveyScreen = ({
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
-    const { quiz: quizAnswers = [] } = useQuiz({ screenId, opts: { autoload: !isPlaceholder } });
+    const { quiz: allQuizAnswers = [] } = useQuiz({ screenId, opts: { autoload: !isPlaceholder } });
+    const quizAnswers = allQuizAnswers.filter((item) => {
+        const { choice = null } = item || {};
+        const answersBody = answers
+            .map((answer) => {
+                const { label = null } = answer || {};
+                const { body = null } = label || {};
+                return body;
+            })
+            .filter((body) => body !== null);
+        const hasResult = answersBody.find((body) => body === choice);
+        if (hasResult) {
+            return true;
+        }
+        return false;
+    });
+
+    // console.log('finalQuizAnswers', finalQuizAnswers);
+
     const hasQuestion = isTextFilled(question);
 
     const showInstantAnswer = isStatic || isCapture;
