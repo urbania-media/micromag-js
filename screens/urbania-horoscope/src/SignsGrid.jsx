@@ -111,7 +111,7 @@ const SignsGrid = ({
                 >
                     {!isPlaceholder ? (
                         <Button onClick={closeButton} className={styles.closeButton}>
-                            <Close />
+                            <Close className={styles.close} />
                         </Button>
                     ) : null}
                     <TransitionGroup>
