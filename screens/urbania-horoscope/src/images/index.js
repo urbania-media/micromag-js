@@ -10,4 +10,5 @@ export { default as sagittarius } from './sagittarius.png';
 export { default as scorpio } from './scorpio.png';
 export { default as taurus } from './taurus.png';
 export { default as virgo } from './virgo.png';
+
 export { default as background } from './horoscope-background.png';

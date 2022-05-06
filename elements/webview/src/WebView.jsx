@@ -48,7 +48,7 @@ function WebView({ iframeRef, src, width, height, closeable, onClose, hidden, cl
             {closeable ? (
                 <div className={styles.top}>
                     <Button className={styles.close} onClick={onClose}>
-                        <Close />
+                        <Close className={styles.closeIcon} />
                     </Button>
                 </div>
             ) : null}

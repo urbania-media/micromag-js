@@ -104,6 +104,8 @@ const Horoscope = ({
 }) => {
     const [hasPopup, setHasPopup] = useState(false);
 
+    console.log('test');
+
     const signs = defaultSigns.map((sign, index) => ({
         ...sign,
         ...(signsValue !== null && signsValue[index] ? signsValue[index] || null : null),

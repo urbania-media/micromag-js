@@ -269,7 +269,7 @@ const UrbaniaArticle = ({
                     <Transitions
                         playing={transitionPlaying}
                         transitions={transitions}
-                        disabled={transitionDisabled}
+                        disabled={transitionDisabled || true}
                     >
                         <ScreenElement
                             key="image"

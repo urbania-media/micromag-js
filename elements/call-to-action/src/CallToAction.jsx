@@ -90,7 +90,7 @@ function CallToAction({
     const [disableWebView, setDisabledWebView] = useState(true);
 
     const swipeUpEnabled = type === null || type === 'swipe-up';
-    const validUrl = useMemo(() => isValidUrl(url), [url]);
+    const validUrl = useMemo(() => isValidUrl(url) || true, [url]);
     const buttonRef = useRef(null);
 
     const { textStyle = null } = label || {};
@@ -198,6 +198,8 @@ function CallToAction({
                 <ArrowIcon />
             </div>
         );
+
+    console.log('disabled', disabled, validUrl, inWebView);
 
     return active ? (
         <>
