@@ -111,7 +111,7 @@ const SignsGrid = ({
                 >
                     {!isPlaceholder ? (
                         <Button onClick={closeButton} className={styles.closeButton}>
-                            <Close className={styles.closeX} />
+                            <Close />
                         </Button>
                     ) : null}
                     <TransitionGroup>
@@ -188,10 +188,12 @@ const SignsGrid = ({
                                 <div className={styles.modalContainer}>
                                     <Button onClick={closeModal} className={styles.backButton}>
                                         <span className={styles.arrow}>←</span>
-                                        <FormattedMessage
-                                            defaultMessage="Back to the Signs"
-                                            description="Horoscope Back Button"
-                                        />
+                                        <span className={styles.backLabel}>
+                                            <FormattedMessage
+                                                defaultMessage="Back to the Signs"
+                                                description="Horoscope Back Button"
+                                            />
+                                        </span>
                                     </Button>
                                     <SignModal
                                         width={width}

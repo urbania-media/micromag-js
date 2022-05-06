@@ -27,14 +27,12 @@
     }
 
     .close {
+        @extend %reset-button;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
-        border: 2px solid $white;
-        border-radius: 50%;
-        background-color: $gray-800;
+        color: #222;
+        filter: invert(100%);
     }
 
     .icon {
