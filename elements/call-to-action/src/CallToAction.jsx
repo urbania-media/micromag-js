@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useTrackEvent } from '@micromag/core/hooks';
 import { getStyleFromColor, isIos, isValidUrl } from '@micromag/core/utils';
 import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
@@ -38,6 +39,7 @@ const propTypes = {
     focusable: PropTypes.bool,
     enableInteraction: PropTypes.func,
     disableInteraction: PropTypes.func,
+    onClick: PropTypes.func,
 };
 
 const defaultProps = {
@@ -57,6 +59,7 @@ const defaultProps = {
     focusable: true,
     enableInteraction: null,
     disableInteraction: null,
+    onClick: null,
 };
 
 function CallToAction({
@@ -76,6 +79,7 @@ function CallToAction({
     focusable,
     enableInteraction,
     disableInteraction,
+    onClick,
 }) {
     const {
         active = false,
@@ -85,6 +89,8 @@ function CallToAction({
         boxStyle = null,
         inWebView = false,
     } = callToAction || {};
+
+    const trackEvent = useTrackEvent();
 
     const [showWebView, setShowWebView] = useState(false);
     const [disableWebView, setDisabledWebView] = useState(true);
@@ -111,6 +117,25 @@ function CallToAction({
     const selfTargetLinkRef = useRef(null);
     const [leaving, setLeaving] = useState(false);
 
+    // On click
+    const onClickLink = useCallback(
+        (action = 'click') => {
+            if (trackEvent !== null) {
+                trackEvent('call_to_action', action, url);
+            }
+            if (onClick !== null) {
+                onClick();
+            }
+        },
+        [url, onClick, trackEvent],
+    );
+
+    const onClickClose = useCallback(() => {
+        if (trackEvent !== null) {
+            trackEvent('call_to_action', 'close', url);
+        }
+    }, [url, trackEvent]);
+
     const bind = useGesture({
         onDrag: ({ event }) => {
             // fix firefox https://use-gesture.netlify.app/docs/faq/#why-cant-i-properly-drag-an-image-or-a-link
@@ -121,11 +146,14 @@ function CallToAction({
                 if (inWebView) {
                     setShowWebView(true);
                     setDisabledWebView(false);
+                    onClickLink('swipe');
                 } else if (isIos() && selfTargetLinkRef.current !== null) {
                     selfTargetLinkRef.current.click();
                     setLeaving(true);
+                    onClickLink('swipe');
                 } else if (buttonRef.current) {
                     buttonRef.current.click();
+                    onClickLink('swipe');
                 }
             }
         },
@@ -163,14 +191,16 @@ function CallToAction({
         if (disableInteraction !== null) {
             disableInteraction();
         }
-    }, [setShowWebView, setDisabledWebView, disableInteraction]);
+        onClickLink('click');
+    }, [setShowWebView, setDisabledWebView, disableInteraction, onClickLink]);
 
     const onCloseWebView = useCallback(() => {
         setShowWebView(false);
         if (enableInteraction !== null) {
             enableInteraction();
         }
-    }, [setShowWebView, enableInteraction]);
+        onClickClose();
+    }, [setShowWebView, enableInteraction, onClickClose]);
 
     const ArrowElement =
         arrow !== null ? (
@@ -252,6 +282,7 @@ function CallToAction({
                             : {
                                   href: url,
                                   external: true,
+                                  onClick: onClickLink,
                               })}
                     >
                         <span

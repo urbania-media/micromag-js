@@ -82,7 +82,8 @@ const SignsGrid = ({
     // const [activeSignId, setActiveSignId] = useState(null);
     const activeSign = signs.find(({ id = null }) => activeSignId === id) || null;
     const closeModal = useCallback(() => setActiveSignId(null), [activeSignId, setActiveSignId]);
-    const { isView, isPlaceholder } = useScreenRenderContext();
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
+    const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = !isPlaceholder && (current || active || !isView);
 
     return (
@@ -98,7 +99,7 @@ const SignsGrid = ({
                 <Background
                     background={background || defaultBackground}
                     fit="cover"
-                    // playing={backgroundPlaying}
+                    playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
