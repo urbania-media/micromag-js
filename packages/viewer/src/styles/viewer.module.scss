@@ -138,7 +138,7 @@
         }
     }
 
-    &.hideMenu:not(.landscape) {
+    &.hideMenu {
         .menuDotsContainer {
             pointer-events: none;
         }
@@ -147,6 +147,16 @@
             opacity: 0;
         }
     }
+
+    // &.hideMenu:not(.landscape) {
+    //     .menuDotsContainer {
+    //         pointer-events: none;
+    //     }
+
+    //     .menuDots {
+    //         opacity: 0;
+    //     }
+    // }
 
     &.ready {
         .menuDotsContainer,

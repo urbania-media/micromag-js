@@ -17,6 +17,7 @@
 
 .container {
     position: relative;
+    z-index: 100;
     padding-bottom: 5px;
     transition: opacity 0.3s ease;
     opacity: 1;

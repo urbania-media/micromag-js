@@ -307,6 +307,7 @@ const Viewer = ({
 
     // swipe menu open
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
+
     const [menuOpened, setMenuOpened] = useState(false);
 
     const onMenuRequestOpen = useCallback(() => setMenuOpened(true), [setMenuOpened]);
