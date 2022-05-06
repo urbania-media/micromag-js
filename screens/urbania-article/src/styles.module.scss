@@ -169,6 +169,7 @@ $color-universities-text: #f33;
         bottom: 0;
         left: 0;
         padding-bottom: 5px;
+        transform: translate3d(0, 0, 0);
         vertical-align: middle;
 
         .arrow {
@@ -194,13 +195,6 @@ $color-universities-text: #f33;
 
     .videoContainer {
         position: absolute;
-    }
-
-    .bottomContent {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        transform: translate3d(0, 0, 0);
     }
 
     .bottom {

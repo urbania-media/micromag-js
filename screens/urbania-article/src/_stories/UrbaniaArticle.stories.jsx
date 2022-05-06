@@ -1,7 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
+import {
+    backgroundColor,
+    transitions,
+    callToAction,
+    videoMedia,
+} from '../../../../.storybook/data';
 //  videoMedia,
 import Article from '../UrbaniaLoader';
 import definition from '../definition';
@@ -9,11 +14,17 @@ import testArticle from './article.json';
 import testVideo from './video.json';
 
 // import videoArticle from './video.json';
-// const video = (props) => ({ ...props, media: videoMedia(), autoPlay: true, loop: false });
+const video = (props) => ({
+    ...props,
+    type: 'video',
+    media: videoMedia(),
+    autoPlay: true,
+    loop: false,
+});
 
 const props = () => ({
-    //  video: video(videoProps),
-    video: null,
+    image: video(null),
+    // video: null,
     article: testArticle,
     background: backgroundColor(),
     transitions: transitions(),
@@ -40,7 +51,9 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
-export const Video = (storyProps) => <Article {...storyProps} {...props()} article={testVideo} />;
+export const Video = (storyProps) => (
+    <Article {...storyProps} type="video" image={videoMedia()} callToAction={callToAction()} />
+);
 
 export const CallToAction = (storyProps) => (
     <Article {...storyProps} {...props()} article={testVideo} callToAction={callToAction()} />
