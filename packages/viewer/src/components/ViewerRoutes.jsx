@@ -45,7 +45,9 @@ const ViewerRoutes = ({ story, pathWithIndex, children, onScreenChange, ...other
             <Route
                 path={routes.home}
                 exact
-                render={() => <Viewer {...otherProps} onScreenChange={finalOnScreenChange} />}
+                render={() => (
+                    <Viewer {...otherProps} story={story} onScreenChange={finalOnScreenChange} />
+                )}
             />
             <Route
                 path={routes.screen}
