@@ -5,11 +5,21 @@ import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition
 import { text, title, imageMedia, backgroundVideo, transitions } from '../../../../.storybook/data';
 import Horoscope from '../Horoscope';
 import definition from '../definition';
-import * as images from '../images/index';
+import aquarius from '../images/aquarius.png';
+import aries from '../images/aries.png';
+import cancer from '../images/cancer.png';
+import capricorn from '../images/capricorn.png';
+import gemini from '../images/gemini.png';
+import leo from '../images/leo.png';
+import libra from '../images/libra.png';
+import pisces from '../images/pisces.png';
+import sagittarius from '../images/sagittarius.png';
+import scorpio from '../images/scorpio.png';
+import taurus from '../images/taurus.png';
+import virgo from '../images/virgo.png';
 
 const props = {
     description: { body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?' },
-
     author: {
         name: { body: 'Robert Léponge' },
         avatar: imageMedia(),
@@ -20,7 +30,7 @@ const props = {
     signs: [
         {
             id: 'aries',
-            image: images.aries,
+            image: aries,
             label: defineMessage({
                 defaultMessage: 'Aries',
                 description: 'Horoscope sign',
@@ -34,7 +44,7 @@ const props = {
         },
         {
             id: 'taurus',
-            image: images.taurus,
+            image: taurus,
             label: defineMessage({
                 defaultMessage: 'Taurus',
                 description: 'Horoscope sign',
@@ -48,7 +58,7 @@ const props = {
         },
         {
             id: 'gemini',
-            image: images.gemini,
+            image: gemini,
             label: defineMessage({
                 defaultMessage: 'Gemini',
                 description: 'Horoscope sign',
@@ -60,7 +70,7 @@ const props = {
         },
         {
             id: 'cancer',
-            image: images.cancer,
+            image: cancer,
             label: defineMessage({
                 defaultMessage: 'Cancer',
                 description: 'Horoscope sign',
@@ -72,7 +82,7 @@ const props = {
         },
         {
             id: 'leo',
-            image: images.leo,
+            image: leo,
             label: defineMessage({
                 defaultMessage: 'Leo',
                 description: 'Horoscope sign',
@@ -84,7 +94,7 @@ const props = {
         },
         {
             id: 'virgo',
-            image: images.virgo,
+            image: virgo,
             label: defineMessage({
                 defaultMessage: 'Virgo',
                 description: 'Horoscope sign',
@@ -96,7 +106,7 @@ const props = {
         },
         {
             id: 'libra',
-            image: images.libra,
+            image: libra,
             label: defineMessage({
                 defaultMessage: 'Libra',
                 description: 'Horoscope sign',
@@ -108,7 +118,7 @@ const props = {
         },
         {
             id: 'scorpio',
-            image: images.scorpio,
+            image: scorpio,
             label: defineMessage({
                 defaultMessage: 'Scorpio',
                 description: 'Horoscope sign',
@@ -120,7 +130,7 @@ const props = {
         },
         {
             id: 'sagittarius',
-            image: images.sagittarius,
+            image: sagittarius,
             label: defineMessage({
                 defaultMessage: 'Sagittarius',
                 description: 'Horoscope sign',
@@ -132,7 +142,7 @@ const props = {
         },
         {
             id: 'capricorn',
-            image: images.capricorn,
+            image: capricorn,
             label: defineMessage({
                 defaultMessage: 'Capricorn',
                 description: 'Horoscope sign',
@@ -144,7 +154,7 @@ const props = {
         },
         {
             id: 'aquarius',
-            image: images.aquarius,
+            image: aquarius,
             label: defineMessage({
                 defaultMessage: 'Aquarius',
                 description: 'Horoscope sign',
@@ -156,7 +166,7 @@ const props = {
         },
         {
             id: 'pisces',
-            image: images.pisces,
+            image: pisces,
             label: defineMessage({
                 defaultMessage: 'Pisces',
                 description: 'Horoscope sign',

@@ -13,7 +13,7 @@ import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
 import SignModal from './SignModal';
 import Close from './icons/Close';
-import { background as horoscopeBackground } from './images';
+import horoscopeBackground from './images/horoscope-background.png';
 import styles from './signs-grid.module.scss';
 
 const defaultBackground = {
