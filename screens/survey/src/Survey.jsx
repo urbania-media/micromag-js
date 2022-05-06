@@ -126,8 +126,6 @@ const SurveyScreen = ({
         return false;
     });
 
-    // console.log('finalQuizAnswers', finalQuizAnswers);
-
     const hasQuestion = isTextFilled(question);
 
     const showInstantAnswer = isStatic || isCapture;
