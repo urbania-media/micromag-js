@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -104,10 +104,17 @@ const Horoscope = ({
 }) => {
     const [hasPopup, setHasPopup] = useState(false);
 
-    const signs = defaultSigns.map((sign, index) => ({
-        ...sign,
-        ...(signsValue !== null && signsValue[index] ? signsValue[index] || null : null),
-    }));
+    const signs = useMemo(
+        () =>
+            defaultSigns.map((defaultSign, index) => ({
+                ...(signsValue !== null
+                    ? signsValue.find(({ id: signValueId }) => signValueId === defaultSign.id) ||
+                      signsValue[index]
+                    : null),
+                ...defaultSign,
+            })),
+        [],
+    );
 
     const [activeSignId, setActiveSignId] = useState(null);
 
