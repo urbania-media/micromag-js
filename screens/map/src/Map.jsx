@@ -256,7 +256,7 @@ function MapScreen({
         } else if (stateId === 'map') {
             setOpened(true);
             setSelectedMarkerIndex(null);
-        } else if (stateId === 'markers') {
+        } else if (stateId === 'markers' || stateId === 'markers-with-image') {
             setOpened(true);
             setSelectedMarkerIndex(parseInt(markerIndex, 10));
         }

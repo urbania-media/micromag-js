@@ -174,65 +174,132 @@ export default [
         component: MapImagesScreen,
         layouts: ['normal'],
         transforms,
+        states: [
+            {
+                id: 'intro',
+                label: defineMessage({
+                    defaultMessage: 'Intro',
+                    description: 'State label',
+                }),
+                fields: [
+                    {
+                        name: 'title',
+                        type: 'heading-element',
+                        theme: {
+                            textStyle: 'heading1',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Title',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'description',
+                        type: 'text-element',
+                        theme: {
+                            textStyle: 'text',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Description',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'button',
+                        type: 'button-element',
+                        theme: {
+                            textStyle: 'button',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Button',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
+            },
+            {
+                id: 'map',
+                label: defineMessage({
+                    defaultMessage: 'Map',
+                    description: 'State label',
+                }),
+                fields: [
+                    {
+                        name: 'draggable',
+                        type: 'toggle',
+                        defaultValue: true,
+                        label: defineMessage({
+                            defaultMessage: 'Draggable',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'fitBounds',
+                        type: 'toggle',
+                        defaultValue: true,
+                        label: defineMessage({
+                            defaultMessage: 'Map fit markers',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'zoom',
+                        type: 'slider',
+                        defaultValue: 9,
+                        min: 0,
+                        max: 16,
+                        label: defineMessage({
+                            defaultMessage: 'Zoom',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'center',
+                        type: 'geo-position',
+                        label: defineMessage({
+                            defaultMessage: 'Center',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
+            },
+            {
+                id: 'markers-with-image',
+                label: defineMessage({
+                    defaultMessage: 'Markers',
+                    description: 'State label',
+                }),
+                repeatable: true,
+                fieldName: 'markers',
+                fields: [
+                    {
+                        name: 'title',
+                        type: 'heading-element',
+                        label: defineMessage({
+                            defaultMessage: 'Title',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'description',
+                        type: 'text-element',
+                        label: defineMessage({
+                            defaultMessage: 'Description',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'geoPosition',
+                        type: 'geo-position',
+                        label: defineMessage({
+                            defaultMessage: 'Position',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
+            },
+        ],
         fields: [
-            {
-                name: 'title',
-                type: 'heading-element',
-                theme: {
-                    textStyle: 'heading1',
-                },
-                label: defineMessage({
-                    defaultMessage: 'Title',
-                    description: 'Field label',
-                }),
-            },
-            {
-                name: 'description',
-                type: 'text-element',
-                theme: {
-                    textStyle: 'text',
-                },
-                label: defineMessage({
-                    defaultMessage: 'Description',
-                    description: 'Field label',
-                }),
-            },
-            {
-                name: 'button',
-                type: 'button-element',
-                theme: {
-                    textStyle: 'button',
-                },
-                label: defineMessage({
-                    defaultMessage: 'Button',
-                    description: 'Field label',
-                }),
-            },
-            {
-                name: 'draggable',
-                type: 'toggle',
-                defaultValue: true,
-                label: defineMessage({
-                    defaultMessage: 'Draggable',
-                    description: 'Field label',
-                }),
-            },
-            {
-                name: 'markers',
-                type: 'markers-with-image',
-                theme: {
-                    title: {
-                        textStyle: 'heading3',
-                    },
-                    description: {
-                        textStyle: 'text',
-                    },
-                },
-                label: defineMessage({
-                    defaultMessage: 'Markers with image',
-                    description: 'Field label',
-                }),
-            },
             {
                 name: 'background',
                 type: 'background',
