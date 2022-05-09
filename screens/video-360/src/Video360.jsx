@@ -88,7 +88,9 @@ const Video360Screen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
+    // const backgroundShouldLoad = current || active || !isView;
+    const backgroundShouldLoad = current || active;
+    const videoShouldLoad = current || active;
 
     const videoContainerRef = useRef();
     const apiRef = useRef();
@@ -570,6 +572,7 @@ const Video360Screen = ({
                             onVolumeChanged={onVolumeChanged}
                             onPosterLoaded={onPosterLoaded}
                             focusable={current && isView}
+                            preload={videoShouldLoad ? 'auto' : 'metadata'}
                         />
                     </div>
                 ) : null}

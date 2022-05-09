@@ -133,15 +133,17 @@ const SlideshowScreen = ({
                             emptyClassName={styles.emptyImage}
                             isEmpty={!hasImage}
                         >
-                            <Visual
-                                className={styles.image}
-                                media={visual}
-                                {...imageSize}
-                                resolution={resolution}
-                                objectFit={{ fit: 'cover' }}
-                                playing={backgroundPlaying}
-                                onLoaded={onImageLoaded}
-                            />
+                            {backgroundShouldLoad ? (
+                                <Visual
+                                    className={styles.image}
+                                    media={visual}
+                                    {...imageSize}
+                                    resolution={resolution}
+                                    objectFit={{ fit: 'cover' }}
+                                    playing={backgroundPlaying}
+                                    onLoaded={onImageLoaded}
+                                />
+                            ): null}
                         </ScreenElement>
                     </Transitions>
                 </div>

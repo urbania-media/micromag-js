@@ -246,6 +246,7 @@ const ViewerMenuPreview = ({
                                                         width={thumbWidth}
                                                         screen={screen}
                                                         focusable={false}
+                                                        active={focusable}
                                                         withSize
                                                         // withStack
                                                         // stackCount={count}
