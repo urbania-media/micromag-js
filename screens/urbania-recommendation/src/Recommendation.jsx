@@ -99,7 +99,7 @@ const Recommendation = ({
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active || !isView;
     const finalAnimateBackground =
-        animateBackground && !isPlaceholder && !isStatic && !isPreview && !isEdit;
+        current && animateBackground && !isPlaceholder && !isStatic && !isPreview && !isEdit;
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
@@ -336,7 +336,7 @@ const Recommendation = ({
                     disabled={finalScrollTimein && scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
-                    verticalAlign="middle"
+                    verticalAlign="top"
                 >
                     <Layout
                         className={styles.layout}
