@@ -41,12 +41,12 @@
         "rollup": "../../node_modules/.bin/rollup --config ../../rollup.config.js"
     },
     "devDependencies": {
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
