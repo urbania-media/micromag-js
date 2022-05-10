@@ -20,7 +20,7 @@ const useParsedStory = (story, { disabled = false, withTheme = true, withMedias 
         return parser.parse(story, { withMedias, withTheme, withFonts });
     }, [parser, disabled, withMedias, withTheme, withFonts, story]);
 
-    // console.log({newStory}); // eslint-disable-line
+    console.log({newStory}); // eslint-disable-line
     return newStory;
 };
 

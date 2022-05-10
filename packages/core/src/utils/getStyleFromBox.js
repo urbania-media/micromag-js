@@ -1,8 +1,8 @@
 import isObject from 'lodash/isObject';
 import getStyleFromBorder from './getStyleFromBorder';
 import getStyleFromColor from './getStyleFromColor';
+import getStyleFromShadow from './getStyleFromShadow';
 
-//
 const getStyleFromBox = (value) => {
     if (value === null) {
         return null;
@@ -18,7 +18,7 @@ const getStyleFromBox = (value) => {
         borderWidth = null,
         borderStyle = null,
         borderColor = null,
-        dropShadow = null,
+        shadow = null,
     } = value;
 
     const border = {
@@ -26,11 +26,6 @@ const getStyleFromBox = (value) => {
         style: borderStyle,
         color: borderColor,
     };
-
-    // const {
-    //     distance: dropShadowDistance,
-    //     blur: dropShadowBlur,
-    // } = dropShadow || {};
 
     const {
         top: paddingValueTop = null,
@@ -44,6 +39,7 @@ const getStyleFromBox = (value) => {
         ...getStyleFromColor(backgroundColor, 'backgroundColor'),
         ...(borderRadius !== null ? { borderRadius } : null),
         ...getStyleFromBorder(border),
+        ...getStyleFromShadow(shadow),
         ...(padding !== null || paddingValue !== null
             ? { padding: padding || paddingValue }
             : null),
@@ -59,7 +55,6 @@ const getStyleFromBox = (value) => {
         ...(paddingLeft !== null || paddingValueLeft !== null
             ? { paddingLeft: paddingLeft || paddingValueLeft }
             : null),
-        ...dropShadow,
     };
 };
 
