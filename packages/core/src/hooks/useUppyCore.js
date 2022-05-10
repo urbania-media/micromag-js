@@ -28,6 +28,7 @@ const useUppyCore = () => {
             canceled = true;
         };
     }, [loadedPackage, setLoadedPackage]);
+
     return loadedPackage;
 };
 

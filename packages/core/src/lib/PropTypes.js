@@ -300,6 +300,11 @@ export const borderTypes = PropTypes.oneOf([
     'hidden',
 ]);
 
+export const dropShadowType = PropTypes.shape({
+    distance: PropTypes.number,
+    blur: PropTypes.number,
+});
+
 export const borderStyle = PropTypes.shape({
     width: PropTypes.number,
     style: borderTypes,
@@ -313,6 +318,7 @@ export const boxStyle = PropTypes.shape({
     borderWidth: PropTypes.number,
     borderColor: color,
     borderStyle: borderTypes,
+    dropShadow: dropShadowType,
 });
 
 export const margin = PropTypes.shape({

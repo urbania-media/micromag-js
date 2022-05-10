@@ -70,6 +70,10 @@ export default {
             },
             borderWidth: 4,
             borderRadius: 40,
+            dropShadow: {
+                distance: 5,
+                blur: 0,
+            }
         },
     },
 };

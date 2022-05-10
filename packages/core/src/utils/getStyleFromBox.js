@@ -18,6 +18,7 @@ const getStyleFromBox = (value) => {
         borderWidth = null,
         borderStyle = null,
         borderColor = null,
+        dropShadow = null,
     } = value;
 
     const border = {
@@ -25,6 +26,11 @@ const getStyleFromBox = (value) => {
         style: borderStyle,
         color: borderColor,
     };
+
+    // const {
+    //     distance: dropShadowDistance,
+    //     blur: dropShadowBlur,
+    // } = dropShadow || {};
 
     const {
         top: paddingValueTop = null,
@@ -53,6 +59,7 @@ const getStyleFromBox = (value) => {
         ...(paddingLeft !== null || paddingValueLeft !== null
             ? { paddingLeft: paddingLeft || paddingValueLeft }
             : null),
+        ...dropShadow,
     };
 };
 
