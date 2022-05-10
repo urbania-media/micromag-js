@@ -1,6 +1,6 @@
 {
     "name": "@micromag/cli",
-    "version": "0.3.104",
+    "version": "0.3.105",
     "description": "",
     "keywords": [
         "javascript"
@@ -44,13 +44,13 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.91",
-        "@micromag/elements": "^0.3.103",
-        "@micromag/fields": "^0.3.91",
-        "@micromag/screens": "^0.3.104",
-        "@micromag/transforms": "^0.3.91",
-        "@micromag/viewer": "^0.3.104",
-        "@micromag/viewer-build": "^0.3.104",
+        "@micromag/core": "^0.3.105",
+        "@micromag/elements": "^0.3.105",
+        "@micromag/fields": "^0.3.105",
+        "@micromag/screens": "^0.3.105",
+        "@micromag/transforms": "^0.3.105",
+        "@micromag/viewer": "^0.3.105",
+        "@micromag/viewer-build": "^0.3.105",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "commander": "^8.3.0",
@@ -61,8 +61,8 @@
         "node-fetch": "^2.6.1",
         "prop-types": "^15.7.2",
         "puppeteer": "^9.1.1",
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "publishConfig": {
         "access": "public"

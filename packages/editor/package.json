@@ -1,6 +1,6 @@
 {
     "name": "@micromag/editor",
-    "version": "0.3.104",
+    "version": "0.3.105",
     "description": "",
     "keywords": [
         "javascript"
@@ -46,12 +46,12 @@
         "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
@@ -62,11 +62,11 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.91",
-        "@micromag/elements": "^0.3.103",
-        "@micromag/fields": "^0.3.91",
-        "@micromag/screens": "^0.3.104",
-        "@micromag/viewer": "^0.3.104",
+        "@micromag/core": "^0.3.105",
+        "@micromag/elements": "^0.3.105",
+        "@micromag/fields": "^0.3.105",
+        "@micromag/screens": "^0.3.105",
+        "@micromag/viewer": "^0.3.105",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",

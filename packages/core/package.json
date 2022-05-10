@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.3.91",
+    "version": "0.3.105",
     "description": "",
     "keywords": [
         "javascript"
@@ -75,12 +75,12 @@
         "prepare": "../../scripts/prepare-package.sh --scss && npm run vendor"
     },
     "devDependencies": {
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",

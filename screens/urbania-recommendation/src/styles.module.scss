@@ -5,6 +5,7 @@
 
 .container {
     @extend %screen;
+    align-items: flex-start;
 
     .emptyTitle,
     .emptyText {

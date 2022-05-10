@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-call-to-action",
-    "version": "0.3.103",
+    "version": "0.3.105",
     "description": "",
     "keywords": [
         "javascript"
@@ -40,22 +40,22 @@
         "prepare": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.91",
-        "@micromag/element-button": "^0.3.91",
-        "@micromag/element-text": "^0.3.91",
-        "@micromag/element-webview": "^0.3.98",
+        "@micromag/core": "^0.3.105",
+        "@micromag/element-button": "^0.3.105",
+        "@micromag/element-text": "^0.3.105",
+        "@micromag/element-webview": "^0.3.105",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "@use-gesture/react": "^10.2.4",

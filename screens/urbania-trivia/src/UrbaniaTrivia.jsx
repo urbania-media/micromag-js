@@ -261,8 +261,6 @@ const UrbaniaTrivia = ({
 
     const fullscreen = layout === 'full';
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
-
     const { image: backgroundImage = null, video: backgroundVideo = null } = background || {};
 
     const isCustomBackground =
@@ -313,6 +311,8 @@ const UrbaniaTrivia = ({
     const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
     // const resizedVideoTop = -(resizedVideoHeight - videoMaxHeight) / 2;
 
+    const verticalVideo = resizedVideoHeight > resizedVideoWidth;
+
     const finalBackground = useMemo(() => {
         if (isArray(background) && background.length > 0) {
             return background;
@@ -340,7 +340,7 @@ const UrbaniaTrivia = ({
 
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
     const items = [
-        <Container className={styles.itemsContainer}>
+        <Container className={styles.itemsContainer} style={{ marginTop: -spacing / 2 }}>
             <ScreenElement
                 key="heading"
                 className={styles.headingScreenElement}
@@ -483,7 +483,7 @@ const UrbaniaTrivia = ({
                                                 focusable={current && isView}
                                             />
                                         ) : null}
-                                        {hasCallToAction ? (
+                                        {/* {hasCallToAction ? (
                                             <div style={{ marginTop: -spacing / 2 }}>
                                                 <CallToAction
                                                     className={styles.callToAction}
@@ -493,7 +493,7 @@ const UrbaniaTrivia = ({
                                                     screenSize={{ width, height }}
                                                 />
                                             </div>
-                                        ) : null}
+                                        ) : null} */}
                                     </div>
                                 </Transitions>
                             </div>
@@ -544,7 +544,16 @@ const UrbaniaTrivia = ({
                 />
             )}
             <Container width={width} height={height}>
-                <div className={styles.content}>{items}</div>
+                <div
+                    className={styles.content}
+                    style={
+                        verticalVideo
+                            ? { justifyContent: 'flex-start', marginTop: spacing * 2 }
+                            : null
+                    }
+                >
+                    {items}
+                </div>
             </Container>
         </div>
     );
