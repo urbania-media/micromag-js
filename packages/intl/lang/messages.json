@@ -395,10 +395,6 @@
     "defaultMessage": "Grid",
     "description": "Horoscope state"
   },
-  "CW3KAC": {
-    "defaultMessage": "Markers with image",
-    "description": "Field label"
-  },
   "CrzYgw": {
     "defaultMessage": "Quote",
     "description": "Quote placeholder"

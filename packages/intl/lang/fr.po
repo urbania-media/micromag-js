@@ -605,12 +605,6 @@ msgctxt "CMNP2S"
 msgid "Grid"
 msgstr "Grille"
 
-# Field label
-#: CW3KAC
-msgctxt "CW3KAC"
-msgid "Markers with image"
-msgstr "Marqueurs avec image"
-
 # Quote placeholder
 #: CrzYgw
 msgctxt "CrzYgw"
