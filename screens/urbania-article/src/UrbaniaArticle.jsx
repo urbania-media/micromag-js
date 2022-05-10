@@ -138,7 +138,7 @@ const UrbaniaArticle = ({
     const hasImage = url !== null;
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
@@ -244,7 +244,7 @@ const UrbaniaArticle = ({
                 height={height}
                 resolution={resolution}
                 playing={backgroundPlaying}
-                shouldLoad={backgroundShouldLoad}
+                shouldLoad={mediaShouldLoad}
             />
             <Container className={styles.inner} width={width} height={height}>
                 <div
@@ -294,6 +294,7 @@ const UrbaniaArticle = ({
                                     height={imageHeight}
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
+                                    shouldLoad={mediaShouldLoad}
                                 />
                             ) : null}
                             {hasImage && isVideo ? (
@@ -304,6 +305,7 @@ const UrbaniaArticle = ({
                                     height={height}
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
+                                    shouldLoad={mediaShouldLoad}
                                 />
                             ) : null}
                         </ScreenElement>

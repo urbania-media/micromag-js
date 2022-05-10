@@ -77,7 +77,7 @@ const ConversationScreen = ({
         useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
     const withAnimation = isView && !isStatic && timingMode === 'sequence';
     const { speakers = null, messages = [], messageStyle, speakerStyle } = conversation || {};
 
@@ -176,7 +176,7 @@ const ConversationScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : null}
 
@@ -264,6 +264,7 @@ const ConversationScreen = ({
                                                     onChange={conversationStateChange}
                                                     withAnimation={withAnimation}
                                                     isPlaying={current && shouldPlay}
+                                                    shouldLoad={mediaShouldLoad}
                                                     messageStyle={messageStyle}
                                                     speakerStyle={speakerStyle}
                                                 />

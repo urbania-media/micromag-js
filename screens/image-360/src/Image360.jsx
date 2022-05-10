@@ -84,7 +84,7 @@ const Image360Screen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
 
     const canvasContainerRef = useRef();
 
@@ -379,6 +379,7 @@ const Image360Screen = ({
                             width={resizedImageWidth}
                             height={resizedImageHeight}
                             resolution={resolution}
+                            shouldLoad={mediaShouldLoad}
                         />
                     </div>
                 )}
@@ -426,7 +427,7 @@ const Image360Screen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

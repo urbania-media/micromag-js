@@ -161,7 +161,7 @@ const Horoscope = ({
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = !isPlaceholder && (current || active);
+    const mediaShouldLoad = !isPlaceholder && (current || active);
 
     // Create elements
     const items = [
@@ -267,7 +267,7 @@ const Horoscope = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

@@ -71,7 +71,7 @@ const SlideshowScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 
@@ -133,7 +133,7 @@ const SlideshowScreen = ({
                             emptyClassName={styles.emptyImage}
                             isEmpty={!hasImage}
                         >
-                            {backgroundShouldLoad ? (
+                            {mediaShouldLoad ? (
                                 <Visual
                                     className={styles.image}
                                     media={visual}
@@ -197,7 +197,7 @@ const SlideshowScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

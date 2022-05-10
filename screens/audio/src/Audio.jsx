@@ -80,7 +80,7 @@ const AudioScreen = ({
     const [ready, setReady] = useState(isStatic || isPlaceholder);
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
@@ -315,7 +315,7 @@ const AudioScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

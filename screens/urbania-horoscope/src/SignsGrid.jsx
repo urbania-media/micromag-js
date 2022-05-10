@@ -84,7 +84,7 @@ const SignsGrid = ({
     const closeModal = useCallback(() => setActiveSignId(null), [activeSignId, setActiveSignId]);
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = !isPlaceholder && (current || active);
+    const mediaShouldLoad = !isPlaceholder && (current || active);
 
     return (
         <div
@@ -100,7 +100,7 @@ const SignsGrid = ({
                     background={background || defaultBackground}
                     fit="cover"
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -164,6 +164,7 @@ const SignsGrid = ({
                                                             className={styles.image}
                                                             src={image}
                                                             alt={id}
+                                                            loading="lazy"
                                                         />
                                                     ) : null}
                                                     <div className={styles.gridText}>

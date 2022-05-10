@@ -356,7 +356,6 @@ const VideoScreen = ({
                             onVolumeChanged={onVolumeChanged}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}
-                            // onPosterLoaded={onPosterLoaded}
                         />
                     )}
                     {/* </Transitions> */}

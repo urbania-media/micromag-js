@@ -103,8 +103,8 @@ const ImageScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    // const backgroundShouldLoad = current || active;
-    const backgroundShouldLoad = current || active;
+    // const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
 
     const hasImage = image !== null;
     const hasTitle = isTextFilled(title);
@@ -176,6 +176,7 @@ const ImageScreen = ({
                             height={imageHeight}
                             resolution={resolution}
                             playing={backgroundPlaying}
+                            shouldLoad={mediaShouldLoad}
                             onLoaded={onImageLoaded}
                         />
                     </Transitions>
@@ -314,7 +315,7 @@ const ImageScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

@@ -101,8 +101,7 @@ const ContributionScreen = ({
         useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
-    // const backgroundShouldLoad = current || active;
-    const backgroundShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
@@ -440,7 +439,7 @@ const ContributionScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

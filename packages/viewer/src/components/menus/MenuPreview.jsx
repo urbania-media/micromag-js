@@ -248,8 +248,8 @@ const ViewerMenuPreview = ({
                                                         screenHeight={screenHeight}
                                                         width={thumbWidth}
                                                         screen={screen}
-                                                        focusable={false}
-                                                        shouldLoad={shouldLoad}
+                                                        focusable={focusable}
+                                                        active={focusable}
                                                         withSize
                                                         // withStack
                                                         // stackCount={count}

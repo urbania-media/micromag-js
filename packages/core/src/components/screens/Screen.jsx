@@ -24,7 +24,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    active: false,
+    active: true,
     renderContext: null,
     screenState: null,
     current: false,

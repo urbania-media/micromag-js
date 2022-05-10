@@ -262,7 +262,7 @@ const Video = ({
                         />
                     ))}
                 </video>
-            )}
+            ): null}
         </div>
     );
 };

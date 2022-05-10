@@ -23,6 +23,7 @@ const propTypes = {
     onChange: PropTypes.func,
     withAnimation: PropTypes.bool,
     isPlaying: PropTypes.bool,
+    shouldLoad: PropTypes.bool,
     speakerStyle: MicromagPropTypes.textStyle,
     messageStyle: MicromagPropTypes.textStyle,
     className: PropTypes.string,
@@ -39,6 +40,7 @@ const defaultProps = {
     onChange: null,
     withAnimation: false,
     isPlaying: false,
+    shouldLoad: true,
     messageStyle: null,
     speakerStyle: null,
     className: null,
@@ -55,6 +57,7 @@ const ConversationMessage = ({
     onChange,
     withAnimation,
     isPlaying,
+    shouldLoad,
     messageStyle,
     speakerStyle,
     className,
@@ -166,6 +169,7 @@ const ConversationMessage = ({
                                         className={styles.avatar}
                                         src={avatarUrl}
                                         alt={speakerName}
+                                        loading="lazy"
                                     />
                                 </div>
                             ) : null}
@@ -176,7 +180,12 @@ const ConversationMessage = ({
                     <div className={styles.messageBody}>
                         {image !== null ? (
                             <div className={styles.imageContainer}>
-                                <Visual media={image} width="100%" playing={isPlaying} />
+                                <Visual
+                                    media={image}
+                                    width="100%"
+                                    playing={isPlaying}
+                                    shouldLoad={shouldLoad}
+                                />
                             </div>
                         ) : null}
                         <Text

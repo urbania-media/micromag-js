@@ -96,7 +96,7 @@ const GalleryScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 
@@ -201,6 +201,7 @@ const GalleryScreen = ({
                                         objectFit={{ fit: 'cover' }}
                                         playing={backgroundPlaying}
                                         onLoaded={onImageLoaded}
+                                        shouldLoad={mediaShouldLoad}
                                     />
                                 ) : null}
                         </ScreenElement>
@@ -256,7 +257,7 @@ const GalleryScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>
