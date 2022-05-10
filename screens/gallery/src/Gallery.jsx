@@ -96,7 +96,7 @@ const GalleryScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
+    const backgroundShouldLoad = current || active;
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 

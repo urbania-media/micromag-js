@@ -79,9 +79,9 @@ const VideoScreen = ({
         useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
     const backgroundPlaying = current && (isView || isEdit);
-    // const backgroundShouldLoad = current || active || !isView;
+    // const backgroundShouldLoad = current || active;
     const backgroundShouldLoad = current || active;
-    // const videoShouldLoad = current || active || !isView;
+    // const videoShouldLoad = current || active;
     const videoShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 

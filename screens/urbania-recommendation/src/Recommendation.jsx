@@ -97,7 +97,7 @@ const Recommendation = ({
     const hasTextCard = hasCategory || hasDate || hasTitle || hasSponsor || hasDescription;
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
+    const backgroundShouldLoad = current || active;
     const finalAnimateBackground =
         current && animateBackground && !isPlaceholder && !isStatic && !isPreview && !isEdit;
 

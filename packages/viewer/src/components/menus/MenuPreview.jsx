@@ -23,6 +23,7 @@ const propTypes = {
     shareUrl: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     focusable: PropTypes.bool,
+    shouldLoad: PropTypes.bool,
     onClickItem: PropTypes.func,
     onClose: PropTypes.func,
     onShare: PropTypes.func,
@@ -41,6 +42,7 @@ const defaultProps = {
     shareUrl: null,
     items: [],
     focusable: true,
+    shouldLoad: true,
     onClickItem: null,
     onClose: null,
     onShare: null,
@@ -59,6 +61,7 @@ const ViewerMenuPreview = ({
     shareUrl,
     items,
     focusable,
+    shouldLoad,
     onClickItem,
     onClose,
     onShare,
@@ -246,7 +249,7 @@ const ViewerMenuPreview = ({
                                                         width={thumbWidth}
                                                         screen={screen}
                                                         focusable={false}
-                                                        active={focusable}
+                                                        shouldLoad={shouldLoad}
                                                         withSize
                                                         // withStack
                                                         // stackCount={count}

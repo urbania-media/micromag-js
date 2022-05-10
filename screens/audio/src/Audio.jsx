@@ -80,7 +80,7 @@ const AudioScreen = ({
     const [ready, setReady] = useState(isStatic || isPlaceholder);
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
+    const backgroundShouldLoad = current || active;
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 

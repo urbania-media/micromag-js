@@ -84,7 +84,7 @@ const TextScreen = ({
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
+    const backgroundShouldLoad = current || active;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 

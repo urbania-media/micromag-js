@@ -24,6 +24,7 @@ const propTypes = {
     loop: PropTypes.bool,
     playsInline: PropTypes.bool,
     preload: PropTypes.oneOf(['auto', 'metadata', 'none', null]),
+    shouldLoad: PropTypes.bool,
     withoutCors: PropTypes.bool,
     className: PropTypes.string,
     onReady: PropTypes.func,
@@ -50,6 +51,7 @@ const defaultProps = {
     loop: false,
     playsInline: true,
     preload: 'auto',
+    shouldLoad: true,
     withoutCors: false,
     className: null,
     onReady: null,
@@ -76,6 +78,7 @@ const Video = ({
     loop,
     playsInline,
     preload,
+    shouldLoad,
     withoutCors,
     className,
     onReady,
@@ -200,7 +203,7 @@ const Video = ({
     const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata');
     useEffect(() => {
         const { current: videoElement = null } = ref;
-        const canLoad = preload !== 'none' && preload !== 'metadata';
+        const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad; // @todo
         const preloadHasChanged = firstPreloadRef.current !== preload;
         if (
             canLoad &&
@@ -212,7 +215,7 @@ const Video = ({
             hasLoadedRef.current = true;
             videoElement.load();
         }
-    }, [preload]);
+    }, [shouldLoad, preload]);
 
     return (
         <div

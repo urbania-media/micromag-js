@@ -84,7 +84,7 @@ const SignsGrid = ({
     const closeModal = useCallback(() => setActiveSignId(null), [activeSignId, setActiveSignId]);
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = !isPlaceholder && (current || active || !isView);
+    const backgroundShouldLoad = !isPlaceholder && (current || active);
 
     return (
         <div

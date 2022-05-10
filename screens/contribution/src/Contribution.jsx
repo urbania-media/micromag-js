@@ -101,7 +101,7 @@ const ContributionScreen = ({
         useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
-    // const backgroundShouldLoad = current || active || !isView;
+    // const backgroundShouldLoad = current || active;
     const backgroundShouldLoad = current || active;
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;

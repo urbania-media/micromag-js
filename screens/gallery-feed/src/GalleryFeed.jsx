@@ -77,7 +77,7 @@ const GalleryFeedScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
+    const backgroundShouldLoad = current || active;
     const hasImages = images !== null;
     const imagesCount = hasImages ? images.length : 0;
     const [imagesLoaded, setImagesLoaded] = useState(0);

@@ -111,8 +111,8 @@ const UrbaniaTrivia = ({
     const hasTitle = isTextFilled(title);
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
-    const videoShouldLoad = current || active || !isView;
+    const backgroundShouldLoad = current || active;
+    const videoShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
     const { body = '' } = title || {};

@@ -20,6 +20,7 @@ const propTypes = {
     imageClassName: PropTypes.string,
     onLoaded: PropTypes.func,
     loadingMode: PropTypes.string,
+    shouldLoad: PropTypes.bool
 };
 
 const defaultProps = {
@@ -35,6 +36,7 @@ const defaultProps = {
     imageClassName: null,
     onLoaded: null,
     loadingMode: 'lazy',
+    shouldLoad: true
 };
 
 const Image = ({
@@ -50,6 +52,7 @@ const Image = ({
     imageClassName,
     onLoaded,
     loadingMode,
+    shouldLoad,
 }) => {
     const { url = null, metadata = null } = media || {};
     const {
@@ -191,7 +194,7 @@ const Image = ({
             ])}
             style={finalContainerStyle}
         >
-            {finalUrl !== null ? (
+            {finalUrl !== null && shouldLoad ? (
                 <img
                     src={finalUrl}
                     alt={alt || description}

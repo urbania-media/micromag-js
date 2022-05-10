@@ -259,6 +259,7 @@ const ViewerMenu = ({
                     screenSize={screenSize}
                     menuWidth={menuWidth}
                     focusable={opened}
+                    shouldLoad={opened}
                     items={items}
                     onClickItem={onClickItem}
                     onClose={onClickClose}

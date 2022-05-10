@@ -77,7 +77,7 @@ const ConversationScreen = ({
         useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active || !isView;
+    const backgroundShouldLoad = current || active;
     const withAnimation = isView && !isStatic && timingMode === 'sequence';
     const { speakers = null, messages = [], messageStyle, speakerStyle } = conversation || {};
 
