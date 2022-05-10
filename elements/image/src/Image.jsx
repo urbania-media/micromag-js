@@ -4,7 +4,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getOptimalImageUrl } from '@micromag/core/utils';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -66,6 +66,12 @@ const Image = ({
         width: mediaWidth,
         height: mediaHeight,
     });
+
+    const wasLoadedRef = useRef(shouldLoad);
+    if (shouldLoad && !wasLoadedRef.current) {
+        wasLoadedRef.current = shouldLoad;
+    }
+    const { current: finalShouldLoad } = wasLoadedRef;
 
     const onImageLoaded = useCallback(
         (e) => {
@@ -194,7 +200,7 @@ const Image = ({
             ])}
             style={finalContainerStyle}
         >
-            {finalUrl !== null && shouldLoad ? (
+            {finalUrl !== null && finalShouldLoad ? (
                 <img
                     src={finalUrl}
                     alt={alt || description}

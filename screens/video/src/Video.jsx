@@ -80,9 +80,7 @@ const VideoScreen = ({
     const { gotoNextScreen } = useViewerNavigation();
     const backgroundPlaying = current && (isView || isEdit);
     // const backgroundShouldLoad = current || active;
-    const backgroundShouldLoad = current || active;
-    // const videoShouldLoad = current || active;
-    const videoShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
     // get resized video style props
@@ -340,6 +338,7 @@ const VideoScreen = ({
                             width={resizedVideoWidth}
                             height={resizedVideoHeight}
                             resolution={resolution}
+                            shouldLoad={mediaShouldLoad}
                         />
                     ) : (
                         <Video
@@ -356,7 +355,7 @@ const VideoScreen = ({
                             onEnded={onEnded}
                             onVolumeChanged={onVolumeChanged}
                             focusable={current && isView}
-                            preload={videoShouldLoad ? 'auto' : 'metadata'}
+                            shouldLoad={mediaShouldLoad}
                             // onPosterLoaded={onPosterLoaded}
                         />
                     )}
@@ -462,7 +461,7 @@ const VideoScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

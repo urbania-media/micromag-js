@@ -236,9 +236,10 @@ const Video = ({
                     : null
             }
         >
-            {isImageWithoutSourceFile ? (
+            {isImageWithoutSourceFile && shouldLoad ? (
                 <img src={mediaUrl} alt={description} className={styles.video} />
-            ) : (
+            ) : null}
+            {!isImageWithoutSourceFile ? (
                 <video
                     key={mediaUrl}
                     ref={ref}
@@ -246,8 +247,8 @@ const Video = ({
                     autoPlay={autoPlay}
                     loop={loop}
                     muted={muted}
-                    poster={thumbnailUrl}
-                    preload={preload}
+                    poster={shouldLoad ? thumbnailUrl : null}
+                    preload={shouldLoad ? preload : 'metadata'}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     tabIndex={focusable ? '0' : '-1'}

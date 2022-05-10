@@ -142,7 +142,7 @@ const Background = ({
                         autoPlay={playing}
                         initialMuted
                         loop
-                        preload={finalShouldLoad ? 'auto' : 'metadata'}
+                        shouldLoad={shouldLoad}
                     />
                 </div>
             ) : null}
