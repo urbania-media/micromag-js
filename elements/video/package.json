@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-video",
-    "version": "0.3.108",
+    "version": "0.3.109",
     "description": "",
     "keywords": [
         "javascript"
@@ -53,7 +53,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.3.108",
-        "@micromag/element-closed-captions": "^0.3.108",
+        "@micromag/element-closed-captions": "^0.3.109",
         "@micromag/element-media-controls": "^0.3.108",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
