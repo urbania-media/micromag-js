@@ -5,12 +5,13 @@ const getStyleFromShadow = (value) => {
         return null;
     }
     const {
-        shadowDistance = null,
-        shadowBlur = null,
-        shadowColor = null,
-    } = value;
+        shadowHorizontalOffset = 0,
+        shadowVerticalOffset = 0,
+        shadowBlur = 0,
+        shadowColor = '#000000',
+    } = value || {};
     const color = getColorAsString(shadowColor);
-    const boxShadow = `${shadowDistance}px ${shadowDistance}px ${shadowBlur}px 0 ${color}`;
+    const boxShadow = `${shadowHorizontalOffset}px ${shadowVerticalOffset}px ${shadowBlur}px 0 ${color}`;
 
     return {
         boxShadow

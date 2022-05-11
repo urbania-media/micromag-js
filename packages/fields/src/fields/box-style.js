@@ -90,12 +90,22 @@ export default {
                     type: 'color',
                 },
                 {
-                    name: 'shadowDistance',
+                    name: 'shadowHorizontalOffset',
                     type: 'number',
                     isHorizontal: true,
                     dataList: [1, 2, 3, 4, 5],
                     label: defineMessage({
-                        defaultMessage: 'Distance',
+                        defaultMessage: 'Horizontal offset',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'shadowVerticalOffset',
+                    type: 'number',
+                    isHorizontal: true,
+                    dataList: [1, 2, 3, 4, 5],
+                    label: defineMessage({
+                        defaultMessage: 'Vertical offset',
                         description: 'Field label',
                     }),
                 },

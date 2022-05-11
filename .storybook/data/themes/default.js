@@ -70,7 +70,8 @@ export default {
             },
             borderWidth: 4,
             borderRadius: 40,
-            shadowDistance: 5,
+            shadowHorizontalOffset: 5,
+            shadowVerticalOffset: 5,
             shadowBlur: 0,
             shadowColor: {
                 color: '#000000',
