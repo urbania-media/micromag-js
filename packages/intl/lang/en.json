@@ -245,6 +245,9 @@
     "A+a0kL": {
         "defaultMessage": "No answer..."
     },
+    "A5gMBc": {
+        "defaultMessage": "Horizontal offset"
+    },
     "A7ncT3": {
         "defaultMessage": "Draggable"
     },
@@ -512,6 +515,9 @@
     "R9DB4a": {
         "defaultMessage": "Styles"
     },
+    "RC7NdL": {
+        "defaultMessage": "Vertical offset"
+    },
     "RHMS2f": {
         "defaultMessage": "Line color"
     },
@@ -535,6 +541,9 @@
     },
     "THKV4v": {
         "defaultMessage": "Longitude"
+    },
+    "TZUu3s": {
+        "defaultMessage": "Blur"
     },
     "Tol+/U": {
         "defaultMessage": "Clear"
@@ -685,6 +694,9 @@
     },
     "crLqJd": {
         "defaultMessage": "Without percentage"
+    },
+    "cuKSQz": {
+        "defaultMessage": "Lede"
     },
     "d60tSn": {
         "defaultMessage": "Subtitle"
@@ -1043,6 +1055,9 @@
     "uSpItE": {
         "defaultMessage": "Add tags..."
     },
+    "udLCuY": {
+        "defaultMessage": "Shadow"
+    },
     "uiTxd7": {
         "defaultMessage": "Results"
     },
@@ -1150,5 +1165,8 @@
     },
     "zh2m/S": {
         "defaultMessage": "Search fonts..."
+    },
+    "zl6zsZ": {
+        "defaultMessage": "Lede"
     }
 }

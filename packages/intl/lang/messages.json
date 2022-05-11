@@ -327,6 +327,10 @@
     "defaultMessage": "No answer...",
     "description": "Label when there is no item"
   },
+  "A5gMBc": {
+    "defaultMessage": "Horizontal offset",
+    "description": "Field label"
+  },
   "A7ncT3": {
     "defaultMessage": "Draggable",
     "description": "Field label"
@@ -682,6 +686,10 @@
     "defaultMessage": "Styles",
     "description": "Field section label"
   },
+  "RC7NdL": {
+    "defaultMessage": "Vertical offset",
+    "description": "Field label"
+  },
   "RHMS2f": {
     "defaultMessage": "Line color",
     "description": "Field label"
@@ -713,6 +721,10 @@
   "THKV4v": {
     "defaultMessage": "Longitude",
     "description": "Longitude description"
+  },
+  "TZUu3s": {
+    "defaultMessage": "Blur",
+    "description": "Field label"
   },
   "Tol+/U": {
     "defaultMessage": "Clear",
@@ -913,6 +925,10 @@
   "crLqJd": {
     "defaultMessage": "Without percentage",
     "description": "Field label"
+  },
+  "cuKSQz": {
+    "defaultMessage": "Lede",
+    "description": "Text field label"
   },
   "d60tSn": {
     "defaultMessage": "Subtitle",
@@ -1388,6 +1404,10 @@
     "defaultMessage": "Add tags...",
     "description": "Dropdown select label"
   },
+  "udLCuY": {
+    "defaultMessage": "Shadow",
+    "description": "Field label"
+  },
   "uiTxd7": {
     "defaultMessage": "Results",
     "description": "State label"
@@ -1531,5 +1551,9 @@
   "zh2m/S": {
     "defaultMessage": "Search fonts...",
     "description": "Field placeholder"
+  },
+  "zl6zsZ": {
+    "defaultMessage": "Lede",
+    "description": "Lede placeholder"
   }
 }

@@ -197,7 +197,6 @@ const VideoScreen = ({
     }, [muted, toggleMute]);
 
     const onEnded = useCallback(() => {
-        console.log(id, 'onEnded', shouldGotoNextScreenOnEnd, 'current', current);
         if (shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }

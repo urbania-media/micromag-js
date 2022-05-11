@@ -504,6 +504,12 @@ msgid "No answer..."
 msgstr "Aucune réponse..."
 
 # Field label
+#: A5gMBc
+msgctxt "A5gMBc"
+msgid "Horizontal offset"
+msgstr ""
+
+# Field label
 #: A7ncT3
 msgctxt "A7ncT3"
 msgid "Draggable"
@@ -1037,6 +1043,12 @@ msgid "Styles"
 msgstr "Styles"
 
 # Field label
+#: RC7NdL
+msgctxt "RC7NdL"
+msgid "Vertical offset"
+msgstr ""
+
+# Field label
 #: RHMS2f
 msgctxt "RHMS2f"
 msgid "Line color"
@@ -1083,6 +1095,12 @@ msgstr "Images"
 msgctxt "THKV4v"
 msgid "Longitude"
 msgstr "Longitude"
+
+# Field label
+#: TZUu3s
+msgctxt "TZUu3s"
+msgid "Blur"
+msgstr ""
 
 # Button label
 #: Tol+/U
@@ -1383,6 +1401,12 @@ msgstr "Signe astrologique"
 msgctxt "crLqJd"
 msgid "Without percentage"
 msgstr "Sans pourcentage"
+
+# Text field label
+#: cuKSQz
+msgctxt "cuKSQz"
+msgid "Lede"
+msgstr ""
 
 # Subtitle placeholder
 #: d60tSn
@@ -2096,6 +2120,12 @@ msgctxt "uSpItE"
 msgid "Add tags..."
 msgstr "Ajouter des étiquettes..."
 
+# Field label
+#: udLCuY
+msgctxt "udLCuY"
+msgid "Shadow"
+msgstr ""
+
 # State label
 #: uiTxd7
 msgctxt "uiTxd7"
@@ -2311,3 +2341,9 @@ msgstr "Aller à l'écran précédent"
 msgctxt "zh2m/S"
 msgid "Search fonts..."
 msgstr "Rechercher une police..."
+
+# Lede placeholder
+#: zl6zsZ
+msgctxt "zl6zsZ"
+msgid "Lede"
+msgstr ""
