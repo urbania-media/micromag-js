@@ -1,13 +1,12 @@
 /* eslint-disable react/no-danger */
-import 'whatwg-fetch';
-import React, { useState, useEffect, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import parseSRT from 'parse-srt';
 import fetch from 'node-fetch';
+import parseSRT from 'parse-srt';
+import PropTypes from 'prop-types';
+import React, { useState, useEffect, useCallback } from 'react';
+import 'whatwg-fetch';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getSecondsFromTime } from '@micromag/core/utils';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
