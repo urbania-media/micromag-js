@@ -94,7 +94,7 @@ const Editor = ({
     );
 
     // @todo
-    const anotherUserIsEditing = true;
+    // const anotherUserIsEditing = true;
 
     const clickedScreenId = useRef(null);
     const onClickScreen = useCallback(
@@ -245,9 +245,9 @@ const Editor = ({
                             </div>
                         </div>
                         <Modals />
-                        {anotherUserIsEditing ? (
+                        {/* {anotherUserIsEditing ? (
                             <AnotherUserIsEditingModal />
-                        ) : null}
+                        ) : null} */}
                     </div>
                 </ScreenSizeProvider>
             </PanelsProvider>
