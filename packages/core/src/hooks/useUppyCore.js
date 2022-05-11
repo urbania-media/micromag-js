@@ -16,11 +16,12 @@ const useUppyCore = () => {
                 canceled = true;
             };
         }
-        import('@uppy/core').then(({ Uppy }) => {
-            packageCache = Uppy;
+        import('@uppy/core').then(({ Uppy, ...other }) => {
+            const { default: defaultPackage } = other || {};
+            packageCache = Uppy || defaultPackage;
             if (!canceled) {
                 setLoadedPackage({
-                    package: Uppy,
+                    package: Uppy || defaultPackage,
                 });
             }
         });

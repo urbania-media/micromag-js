@@ -1,13 +1,10 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import isArray from 'lodash/isArray';
 // import classNames from 'classnames';
 import { DashboardModal } from '@uppy/react';
-
-import { PropTypes as MicromagPropTypes } from '../../lib';
-
+import isArray from 'lodash/isArray';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useUppy } from '../../contexts';
-
+import { PropTypes as MicromagPropTypes } from '../../lib';
 import '../../styles/modals/upload.scss';
 
 const propTypes = {
