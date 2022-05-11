@@ -19,9 +19,6 @@ import EditorForm from './Form';
 import EditorPreview from './Preview';
 import Screens from './Screens';
 
-// @todo
-import AnotherUserIsEditingModal from './modals/AnotherUserIsEditing';
-
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
     deviceScreens: MicromagPropTypes.deviceScreens,
@@ -92,9 +89,6 @@ const Editor = ({
         },
         [onChange, parseMediasToPath],
     );
-
-    // @todo
-    // const anotherUserIsEditing = true;
 
     const clickedScreenId = useRef(null);
     const onClickScreen = useCallback(
@@ -245,9 +239,6 @@ const Editor = ({
                             </div>
                         </div>
                         <Modals />
-                        {/* {anotherUserIsEditing ? (
-                            <AnotherUserIsEditingModal />
-                        ) : null} */}
                     </div>
                 </ScreenSizeProvider>
             </PanelsProvider>
