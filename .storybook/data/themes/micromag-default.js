@@ -91,6 +91,13 @@ export const defaultTheme = {
                 alpha: 1,
             },
             borderRadius: 40,
+            shadowHorizontalOffset: 5,
+            shadowVerticalOffset: 5,
+            shadowBlur: 0,
+            shadowColor: {
+                color: '#000000',
+                alpha: 1
+            }
         },
     },
     components: [

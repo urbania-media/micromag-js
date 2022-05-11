@@ -27,7 +27,7 @@ const defaultProps = {
 };
 
 const UploadModal = ({ type, opened, sources, onUploaded, onRequestClose }) => {
-    const onUpppyComplete = useCallback(
+    const onUppyComplete = useCallback(
         (response) => {
             if (onUploaded !== null) {
                 onUploaded(response);
@@ -46,7 +46,7 @@ const UploadModal = ({ type, opened, sources, onUploaded, onRequestClose }) => {
     }, [type]);
 
     const uppy = useUppy({
-        onComplete: onUpppyComplete,
+        onComplete: onUppyComplete,
         sources,
         allowedFileTypes: fileTypes !== null && fileTypes.length > 0 ? fileTypes : null,
     });

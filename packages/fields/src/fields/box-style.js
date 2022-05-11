@@ -73,5 +73,53 @@ export default {
                 },
             ],
         },
+        {
+            type: 'fields',
+            label: defineMessage({
+                defaultMessage: 'Shadow',
+                description: 'Field label',
+            }),
+            isList: true,
+            fields: [
+                {
+                    name: 'shadowColor',
+                    label: defineMessage({
+                        defaultMessage: 'Color',
+                        description: 'Field label',
+                    }),
+                    type: 'color',
+                },
+                {
+                    name: 'shadowHorizontalOffset',
+                    type: 'number',
+                    isHorizontal: true,
+                    dataList: [1, 2, 3, 4, 5],
+                    label: defineMessage({
+                        defaultMessage: 'Horizontal offset',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'shadowVerticalOffset',
+                    type: 'number',
+                    isHorizontal: true,
+                    dataList: [1, 2, 3, 4, 5],
+                    label: defineMessage({
+                        defaultMessage: 'Vertical offset',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'shadowBlur',
+                    type: 'number',
+                    isHorizontal: true,
+                    dataList: [0, 1, 2, 3, 4, 5],
+                    label: defineMessage({
+                        defaultMessage: 'Blur',
+                        description: 'Field label',
+                    }),
+                },
+            ]
+        }
     ],
 };

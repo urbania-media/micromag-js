@@ -89,7 +89,6 @@ function CallToAction({
         boxStyle = null,
         inWebView = false,
     } = callToAction || {};
-
     const trackEvent = useTrackEvent();
 
     const [showWebView, setShowWebView] = useState(false);

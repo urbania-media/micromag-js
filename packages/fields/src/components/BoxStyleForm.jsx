@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
 import React from 'react';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { getStyleFromBox } from '@micromag/core/utils';
@@ -8,10 +9,7 @@ import styles from '../styles/box-style.module.scss';
 import FieldWithForm from './FieldWithForm';
 
 const propTypes = {
-    value: PropTypes.shape({
-        color: PropTypes.string,
-        alpha: PropTypes.number,
-    }),
+    value: MicromagPropTypes.boxStyle,
     isForm: PropTypes.bool,
     isHorizontal: PropTypes.bool,
     className: PropTypes.string,
