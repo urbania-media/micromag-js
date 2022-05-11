@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Spinner, UploadModal } from '@micromag/core/components';
 import { useStory } from '@micromag/core/contexts';
@@ -192,12 +193,17 @@ function MediaGallery({
                     />
                 </div>
             </div>
-            <UploadModal
-                type={type === 'video' ? ['video', 'image/gif'] : type}
-                opened={uploadModalOpened}
-                onUploaded={onUploadCompleted}
-                onRequestClose={onUploadRequestClose}
-            />
+            {createPortal(
+                (
+                    <UploadModal
+                        type={type === 'video' ? ['video', 'image/gif'] : type}
+                        opened={uploadModalOpened}
+                        onUploaded={onUploadCompleted}
+                        onRequestClose={onUploadRequestClose}
+                    />
+                ),
+                document.body
+            )}
         </div>
     );
 }
