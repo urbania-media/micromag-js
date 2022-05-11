@@ -57,6 +57,7 @@
         "@micromag/element-closed-captions": "^0.3.106",
         "@micromag/element-container": "^0.3.106",
         "@micromag/element-heading": "^0.3.106",
+        "@micromag/element-text": "^0.3.106",
         "@micromag/element-image": "^0.3.106",
         "@micromag/element-media-controls": "^0.3.106",
         "@micromag/element-urbania-author": "^0.3.106",

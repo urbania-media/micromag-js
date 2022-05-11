@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
 import classNames from 'classnames';
-import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -173,6 +172,7 @@ const Video = ({
     }, [dataReady, onReady]);
 
     const withSize = width !== null && height !== null;
+
     // const { thumbnail_url: thumbnailUrl = null } = media || {};
 
     // useEffect(() => {
@@ -262,7 +262,7 @@ const Video = ({
                         />
                     ))}
                 </video>
-            ): null}
+            ) : null}
         </div>
     );
 };

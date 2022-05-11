@@ -72,7 +72,8 @@ $color-universities-text: #f33;
 
         .title,
         .overTitle,
-        .authors {
+        .authors,
+        .description {
             padding: 8px 20px;
         }
 
@@ -90,6 +91,10 @@ $color-universities-text: #f33;
         .title {
             font-family: 'GarageGothic-Bold';
             text-transform: uppercase;
+        }
+
+        .description {
+            font-family: 'Agrandir';
         }
 
         .authors {

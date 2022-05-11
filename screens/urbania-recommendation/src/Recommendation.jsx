@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
@@ -86,6 +86,11 @@ const Recommendation = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
+    const finalAnimateBackground =
+        current && animateBackground && !isPlaceholder && !isStatic && !isPreview && !isEdit;
+
+    const [animationStarted, setAnimationStarted] = useState(finalAnimateBackground);
+
     const hasCategory = isTextFilled(category);
     const hasDate = isTextFilled(date);
     const hasTitle = isTextFilled(title);
@@ -98,17 +103,33 @@ const Recommendation = ({
 
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active;
-    const finalAnimateBackground =
-        current && animateBackground && !isPlaceholder && !isStatic && !isPreview && !isEdit;
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
-    const scrollTimein = setTimeout(() => true, 3000);
-    const finalScrollTimein = finalAnimateBackground && scrollTimein;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
     const [scrolledBottom, setScrolledBottom] = useState(false);
+
+    useEffect(() => {
+        let id = null;
+        if (animationStarted) {
+            id = setTimeout(() => {
+                setAnimationStarted(false);
+            }, 3000);
+        }
+        return () => {
+            clearTimeout(id);
+        };
+    }, [animationStarted, finalAnimateBackground, setAnimationStarted]);
+
+    useEffect(() => {
+        if (!isView) {
+            setAnimationStarted(false);
+        } else {
+            setAnimationStarted(true);
+        }
+    }, [isView, setAnimationStarted]);
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -333,7 +354,7 @@ const Recommendation = ({
             ) : null}
             <Container width={width} height={height}>
                 <Scroll
-                    disabled={finalScrollTimein && scrollingDisabled}
+                    disabled={animationStarted || scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="top"

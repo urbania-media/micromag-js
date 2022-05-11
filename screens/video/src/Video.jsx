@@ -58,6 +58,7 @@ const defaultProps = {
 };
 
 const VideoScreen = ({
+    id,
     layout,
     video,
     gotoNextScreenOnEnd,
@@ -92,6 +93,8 @@ const VideoScreen = ({
         withPlayPause = false,
         withTime = false,
     } = video || {};
+
+    const hasControls = withSeekBar || withPlayPause;
 
     const {
         ref: controlsRef,
@@ -194,10 +197,11 @@ const VideoScreen = ({
     }, [muted, toggleMute]);
 
     const onEnded = useCallback(() => {
+        console.log(id, 'onEnded', shouldGotoNextScreenOnEnd, 'current', current);
         if (shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }
-    }, [shouldGotoNextScreenOnEnd, seek, gotoNextScreen]);
+    }, [id, current, shouldGotoNextScreenOnEnd, seek, gotoNextScreen]);
 
     useEffect(() => {
         if (!current && playing) {
@@ -323,11 +327,6 @@ const VideoScreen = ({
                         top: resizedVideoTop,
                     }}
                 >
-                    {/* <Transitions
-                        playing={transitionPlaying}
-                        transitions={transitions}
-                        disabled={transitionDisabled}
-                    > */}
                     {isPreview || isCapture ? (
                         <Image
                             className={styles.image}
@@ -358,7 +357,6 @@ const VideoScreen = ({
                             shouldLoad={mediaShouldLoad}
                         />
                     )}
-                    {/* </Transitions> */}
                 </div>
             ) : null}
         </ScreenElement>,
@@ -416,6 +414,7 @@ const VideoScreen = ({
                                         styles.videoButton,
                                         {
                                             [styles.visible]: !visibleControls,
+                                            [styles.alwaysHidden]: !hasControls,
                                         },
                                     ])}
                                 />

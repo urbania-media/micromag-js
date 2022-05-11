@@ -107,72 +107,93 @@ const useMediaApi = ({
         setPlaying(true);
     }, [initialPlay, setPlaying, onPlay]);
 
-    const onCustomPause = useCallback((e) => {
-        const { currentTarget: eventMedia } = e;
-        setPlaying(false);
+    const onCustomPause = useCallback(
+        (e) => {
+            const { currentTarget: eventMedia } = e;
+            setPlaying(false);
 
-        if (onPause !== null) {
-            onPause({ midway: eventMedia.currentTime > 0 && eventMedia.currentTime < eventMedia.duration });
-        }
-    }, [setPlaying, onPause]);
-
-    const onCustomEnded = useCallback((e) => {
-        const { currentTarget: eventMedia } = e;
-        eventMedia.currentTime = 0;
-        if (onEnded !== null) {
-            onEnded();
-        }
-        setInitialPlay(true);
-    }, [setInitialPlay, onEnded]);
-
-    const onCustomTimeUpdate = useCallback((e) => {
-        const { currentTarget: eventMedia } = e;
-
-        setCurrentTime(eventMedia.currentTime);
-
-        if (onTimeUpdate !== null) {
-            onTimeUpdate(eventMedia.currentTime);
-        }
-
-        const progress = eventMedia.currentTime / eventMedia.duration;
-        const currentSteps = progressStepsReached.current;
-        const stepsToTrack = progressSteps.filter(
-            (step) => progress > step && typeof currentSteps[step] === 'undefined',
-        );
-        stepsToTrack.forEach((step) => {
-            if (onProgressStep !== null) {
-                onProgressStep(step);
+            if (onPause !== null) {
+                onPause({
+                    midway:
+                        eventMedia.currentTime > 0 && eventMedia.currentTime < eventMedia.duration,
+                });
             }
-            currentSteps[step] = true;
-        });
-    }, [setCurrentTime, onTimeUpdate, onProgressStep]);
+        },
+        [setPlaying, onPause],
+    );
 
-    const onCustomDurationChange = useCallback((e) => {
-        const { currentTarget: eventMedia } = e;
+    const onCustomEnded = useCallback(
+        (e) => {
+            const { currentTarget: eventMedia } = e;
+            eventMedia.currentTime = 0;
+            if (onEnded !== null) {
+                onEnded();
+            }
+            setInitialPlay(true);
+        },
+        [setInitialPlay, onEnded],
+    );
 
-        setDuration(eventMedia.duration);
+    const onCustomTimeUpdate = useCallback(
+        (e) => {
+            const { currentTarget: eventMedia } = e;
 
-        if (onDurationChanged !== null) {
-            onDurationChanged(eventMedia.duration);
-        }
-    }, [setDuration, onDurationChanged]);
+            setCurrentTime(eventMedia.currentTime);
 
-    const onCustomSeeked = useCallback((e) => {
-        const { currentTarget: eventMedia } = e;
+            if (onTimeUpdate !== null) {
+                onTimeUpdate(eventMedia.currentTime);
+            }
 
-        if (onSeeked !== null) {
-            onSeeked(eventMedia.currentTime);
-        }
-    }, [onSeeked]);
+            const progress = eventMedia.currentTime / eventMedia.duration;
+            const currentSteps = progressStepsReached.current;
+            const stepsToTrack = progressSteps.filter(
+                (step) => progress > step && typeof currentSteps[step] === 'undefined',
+            );
+            stepsToTrack.forEach((step) => {
+                if (onProgressStep !== null) {
+                    onProgressStep(step);
+                }
+                currentSteps[step] = true;
+            });
+        },
+        [setCurrentTime, onTimeUpdate, onProgressStep],
+    );
 
-    const onCustomVolumeChange = useCallback((e) => {
-        const { currentTarget: eventMedia } = e;
+    const onCustomDurationChange = useCallback(
+        (e) => {
+            const { currentTarget: eventMedia } = e;
 
-        setMuted(eventMedia.muted);
-        if (onVolumeChanged !== null) {
-            onVolumeChanged(eventMedia.muted, eventMedia.volume);
-        }
-    }, [setMuted, onVolumeChanged]);
+            setDuration(eventMedia.duration);
+
+            if (onDurationChanged !== null) {
+                onDurationChanged(eventMedia.duration);
+            }
+        },
+        [setDuration, onDurationChanged],
+    );
+
+    const onCustomSeeked = useCallback(
+        (e) => {
+            const { currentTarget: eventMedia } = e;
+
+            if (onSeeked !== null) {
+                onSeeked(eventMedia.currentTime);
+            }
+        },
+        [onSeeked],
+    );
+
+    const onCustomVolumeChange = useCallback(
+        (e) => {
+            const { currentTarget: eventMedia } = e;
+
+            setMuted(eventMedia.muted);
+            if (onVolumeChanged !== null) {
+                onVolumeChanged(eventMedia.muted, eventMedia.volume);
+            }
+        },
+        [setMuted, onVolumeChanged],
+    );
 
     const onCustomLoadStart = useCallback(() => {
         if (onLoadStart !== null) {
@@ -230,18 +251,6 @@ const useMediaApi = ({
             media.addEventListener('loadeddata', onCustomLoadedData);
         }
 
-        if (media !== null && media.readyState > 1) {
-            setDataReady(true);
-        } else {
-            setDataReady(false);
-        }
-
-        if (media !== null && media.readyState > 3) {
-            setReady(true);
-        } else {
-            setReady(false);
-        }
-
         return () => {
             if (media !== null) {
                 media.removeEventListener('timeupdate', onCustomTimeUpdate);
@@ -257,6 +266,35 @@ const useMediaApi = ({
                 media.removeEventListener('loadedmetadata', onCustomLoadedMetadata);
             }
         };
+    }, [
+        url,
+        onCustomTimeUpdate,
+        onCustomDurationChange,
+        onCustomVolumeChange,
+        onCustomPlay,
+        onCustomPause,
+        onCustomEnded,
+        onCustomSeeked,
+        onCustomLoadStart,
+        onCustomCanPlayThrough,
+        onCustomCanPlay,
+        onCustomLoadedMetadata,
+    ]);
+
+    useEffect(() => {
+        const { current: media = null } = ref;
+
+        if (media !== null && media.readyState > 1) {
+            setDataReady(true);
+        } else {
+            setDataReady(false);
+        }
+
+        if (media !== null && media.readyState > 3) {
+            setReady(true);
+        } else {
+            setReady(false);
+        }
     }, [url]);
 
     return {

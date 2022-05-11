@@ -70,6 +70,14 @@ export default {
             }),
         },
         {
+            name: 'description',
+            type: 'text-element',
+            label: defineMessage({
+                defaultMessage: 'Lede',
+                description: 'Text field label',
+            }),
+        },
+        {
             name: 'author',
             type: 'author-element',
             label: defineMessage({

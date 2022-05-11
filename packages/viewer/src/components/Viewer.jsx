@@ -448,7 +448,7 @@ const Viewer = ({
                     {ready || withoutScreensTransforms ? (
                         <div ref={contentRef} className={styles.content} onClick={onClickContent}>
                             {screens.map((scr, i) => {
-                                const current = i === screenIndex;
+                                const current = i === parseInt(screenIndex, 10);
                                 const active =
                                     i > screenIndex - neighborScreensActive &&
                                     i < screenIndex + neighborScreensActive;

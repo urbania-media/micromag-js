@@ -147,6 +147,9 @@ function CallToAction({
                     setShowWebView(true);
                     setDisabledWebView(false);
                     onClickLink('swipe');
+                    if (disableInteraction !== null) {
+                        disableInteraction();
+                    }
                 } else if (isIos() && selfTargetLinkRef.current !== null) {
                     selfTargetLinkRef.current.click();
                     setLeaving(true);

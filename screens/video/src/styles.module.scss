@@ -50,6 +50,11 @@
         &.visible {
             opacity: 1;
         }
+
+        &.alwaysHidden {
+            display: none;
+            visibility: hidden;
+        }
     }
 
     .videoButton {
@@ -91,6 +96,8 @@
         width: 100%;
         transform: translate3d(0, 0, 0);
     }
+
+
 
     &.fullscreen {
         .image,

@@ -25,6 +25,7 @@ import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
+import Text from '@micromag/element-text';
 import UrbaniaAuthor from '@micromag/element-urbania-author';
 import Visual from '@micromag/element-visual';
 import ArrowIcon from './icons/ArrowIcon';
@@ -36,6 +37,7 @@ const propTypes = {
     type: PropTypes.oneOf(['article', 'video']),
     image: MicromagPropTypes.visualElement,
     title: MicromagPropTypes.headingElement,
+    description: MicromagPropTypes.textElement,
     overTitle: MicromagPropTypes.headingElement,
     author: MicromagPropTypes.authorElement,
     sponsor: PropTypes.arrayOf(PropTypes.shape({})),
@@ -58,6 +60,7 @@ const defaultProps = {
     type: null,
     image: null,
     title: null,
+    description: null,
     overTitle: null,
     author: null,
     sponsor: null,
@@ -80,6 +83,7 @@ const UrbaniaArticle = ({
     type,
     image,
     title,
+    description,
     overTitle,
     author,
     sponsor,
@@ -132,6 +136,7 @@ const UrbaniaArticle = ({
     const hasSponsor = isTextFilled(sponsor);
 
     const { name: authorFullName } = author || {};
+    const hasDescription = isTextFilled(description);
     const hasAuthor = isTextFilled(authorFullName);
 
     const { url = null } = image || {};
@@ -178,7 +183,7 @@ const UrbaniaArticle = ({
         >
             {hasTitle ? <Heading className={classNames([styles.title])} {...title} /> : null}
         </ScreenElement>,
-        !isVideo ? (
+        !isVideo && !hasDescription ? (
             <ScreenElement
                 key="authors"
                 empty={
@@ -196,6 +201,28 @@ const UrbaniaArticle = ({
                 {hasAuthor ? (
                     <div className={classNames([styles.authors])}>
                         <UrbaniaAuthor author={author} />
+                    </div>
+                ) : null}
+            </ScreenElement>
+        ) : null,
+        !isVideo && hasDescription ? (
+            <ScreenElement
+                key="description"
+                empty={
+                    <div className={styles.emptyContainer}>
+                        <Empty className={styles.empty}>
+                            <FormattedMessage
+                                defaultMessage="Lede"
+                                description="Lede placeholder"
+                            />
+                        </Empty>
+                    </div>
+                }
+                isEmpty={!hasDescription}
+            >
+                {hasDescription ? (
+                    <div className={classNames([styles.authors])}>
+                        <Text className={classNames([styles.description])} {...description} />
                     </div>
                 ) : null}
             </ScreenElement>
@@ -295,6 +322,7 @@ const UrbaniaArticle = ({
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
                                     shouldLoad={mediaShouldLoad}
+                                    playing={backgroundPlaying}
                                 />
                             ) : null}
                             {hasImage && isVideo ? (
@@ -306,6 +334,7 @@ const UrbaniaArticle = ({
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
                                     shouldLoad={mediaShouldLoad}
+                                    playing={backgroundPlaying}
                                 />
                             ) : null}
                         </ScreenElement>
