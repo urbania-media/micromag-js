@@ -7,7 +7,6 @@ const useThemeParser = () => {
     const screensManager = useScreensManager();
     const parser = useMemo(() => new ThemeParser({ screensManager }), [screensManager]);
     const parse = useCallback((story) => parser.parse(story), [parser]);
-    // console.log({parser, parse}); // eslint-disable-line
 
     return parse;
 };

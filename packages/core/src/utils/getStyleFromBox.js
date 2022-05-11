@@ -18,13 +18,21 @@ const getStyleFromBox = (value) => {
         borderWidth = null,
         borderStyle = null,
         borderColor = null,
-        shadow = null,
+        shadowDistance = null,
+        shadowBlur = null,
+        shadowColor = null,
     } = value;
 
     const border = {
         width: borderWidth,
         style: borderStyle,
         color: borderColor,
+    };
+
+    const shadow = {
+        shadowDistance,
+        shadowBlur,
+        shadowColor,
     };
 
     const {

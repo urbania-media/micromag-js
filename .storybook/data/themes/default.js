@@ -70,13 +70,11 @@ export default {
             },
             borderWidth: 4,
             borderRadius: 40,
-            shadow: {
-                shadowDistance: 5,
-                shadowBlur: 0,
-                shadowColor: {
-                    color: '#000000',
-                    alpha: 1
-                }
+            shadowDistance: 5,
+            shadowBlur: 0,
+            shadowColor: {
+                color: '#000000',
+                alpha: 1
             }
         },
     },
