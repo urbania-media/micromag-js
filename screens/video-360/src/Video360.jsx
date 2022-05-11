@@ -179,7 +179,7 @@ const Video360Screen = ({
         media: videoMedia = null,
         closedCaptions = null,
         withSeekBar = false,
-        withPlayPause = false,
+        withControls = false,
         autoPlay = true,
     } = video || {};
     const finalVideo = hasVideo
@@ -494,7 +494,7 @@ const Video360Screen = ({
                         <MediaControls
                             className={styles.mediaControls}
                             withSeekBar={withSeekBar}
-                            withPlayPause={withPlayPause}
+                            withControls={withControls}
                             playing={playing}
                             muted={muted}
                             currentTime={currentTime}

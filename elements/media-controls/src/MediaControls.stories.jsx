@@ -11,14 +11,12 @@ export default {
 
 export const normal = () => <MediaControls />;
 export const withSeekBar = () => <MediaControls withSeekBar />;
-export const withPlayPause = () => <MediaControls withPlayPause />;
-export const withSeekbarAndTime = () => <MediaControls withSeekBar withPlayPause withTime />;
-export const withAll = () => <MediaControls withPlayPause withSeekBar withTime muted />;
+export const withControls = () => <MediaControls withControls />;
+export const withAll = () => <MediaControls withControls withSeekBar muted />;
 export const withAllColored = () => (
     <MediaControls
-        withPlayPause
+        withControls
         withSeekBar
-        withTime
         muted
         color={{ color: '#FF0000', alpha: 1 }}
         progressColor={{ color: '#00FF00', alpha: 1 }}
