@@ -65,9 +65,9 @@ export const URL = (storyProps) => (
         {...props()}
         article={null}
         url="https://urbania.ca/article/la-vie-apres-le-masque-obligatoireen-ontario"
-        // description={{
-        //     body: '<span>HELLO MY NAME IS EARL I AM SOMETHING SOMETHING AND STUFF YOU KNOW THINGS</span>',
-        // }}
+        description={{
+            body: '<p>HELLO MY NAME IS EARL I AM SOMETHING SOMETHING AND STUFF YOU KNOW THINGS</p>',
+        }}
     />
 );
 

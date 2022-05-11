@@ -94,7 +94,16 @@ $color-universities-text: #f33;
         }
 
         .description {
+            padding: 10px 20px 15px;
+        }
+
+        .lede {
             font-family: 'Agrandir';
+            line-height: 1;
+
+            p {
+                margin: 0;
+            }
         }
 
         .authors {
