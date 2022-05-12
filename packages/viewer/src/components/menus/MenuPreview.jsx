@@ -61,7 +61,6 @@ const ViewerMenuPreview = ({
     shareUrl,
     items,
     focusable,
-    shouldLoad,
     onClickItem,
     onClose,
     onShare,
