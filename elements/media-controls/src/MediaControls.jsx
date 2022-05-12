@@ -77,7 +77,7 @@ const MediaControls = ({
                     [styles.muted]: muted,
                     [styles.withControls]: withControls,
                     [styles.withSeekBar]: withSeekBar,
-                    [styles.withoutEvents]: !muted && !withPlayPause && !withSeekBar,
+                    [styles.withoutEvents]: !muted && !withControls && !withSeekBar,
                 },
             ])}
             style={{ color: finalColor }}
