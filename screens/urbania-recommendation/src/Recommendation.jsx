@@ -147,9 +147,9 @@ const Recommendation = ({
 
     const finalBackground = useMemo(
         () => ({
-            fit: 'contain',
-            horizontalAlign: 'left',
-            verticalAlign: '-20%',
+            fit: 'cover',
+            // horizontalAlign: 'left',
+            // verticalAlign: '-20%',
             repeat: true,
             ...background,
         }),
