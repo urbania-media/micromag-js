@@ -108,6 +108,7 @@ const FieldRow = ({
         label !== null ? (
             <label
                 className={classNames({
+                    [styles.colLabel]: isHorizontal,
                     'col-form-label': isHorizontal || withSettings,
                     'form-label': !isHorizontal && !withSettings,
                     'col-auto': isHorizontal,
@@ -115,7 +116,6 @@ const FieldRow = ({
                     'py-0': isHorizontal,
                     'pt-2': isHorizontal && hasIndicationsUnder,
                     'align-self-center': isHorizontal && !hasIndicationsUnder,
-                    'text-truncate': isHorizontal,
                     'fw-normal': !isSection,
                     'fw-bold': isSection,
                     [labelClassName]: labelClassName !== null,
@@ -126,7 +126,7 @@ const FieldRow = ({
         ) : null;
 
     const arrowElement = isClickable ? (
-        <span className="col-auto align-self-middle">
+        <span className="col-auto align-self-middle d-flex align-items-center">
             <FontAwesomeIcon icon={faAngleRight} />
         </span>
     ) : null;
