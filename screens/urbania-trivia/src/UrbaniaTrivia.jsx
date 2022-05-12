@@ -111,8 +111,7 @@ const UrbaniaTrivia = ({
     const hasTitle = isTextFilled(title);
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active;
-    const videoShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
     const { body = '' } = title || {};
@@ -430,7 +429,7 @@ const UrbaniaTrivia = ({
                                 onEnded={onEnded}
                                 onVolumeChanged={onVolumeChanged}
                                 focusable={current && isView}
-                                preload={videoShouldLoad ? 'auto' : 'metadata'}
+                                shouldLoad={mediaShouldLoad}
                             />
                         )}
                         {/* </Transitions> */}
@@ -530,7 +529,7 @@ const UrbaniaTrivia = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                 />
             ) : (
                 <Background

@@ -7,9 +7,14 @@
     background: transparent;
 }
 
-.colValue {    
-    min-width: 0;
+.colLabel {
+    flex-shrink: 1;
+    text-align: left;
+}
+
+.colValue {
     margin-left: auto;
+    white-space: nowrap;
 }
 
 .settingsButton {

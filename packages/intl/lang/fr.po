@@ -507,7 +507,7 @@ msgstr "Aucune réponse..."
 #: A5gMBc
 msgctxt "A5gMBc"
 msgid "Horizontal offset"
-msgstr ""
+msgstr "Décalage horizontal"
 
 # Field label
 #: A7ncT3
@@ -1046,7 +1046,7 @@ msgstr "Styles"
 #: RC7NdL
 msgctxt "RC7NdL"
 msgid "Vertical offset"
-msgstr ""
+msgstr "Décalage vertical"
 
 # Field label
 #: RHMS2f
@@ -1100,7 +1100,7 @@ msgstr "Longitude"
 #: TZUu3s
 msgctxt "TZUu3s"
 msgid "Blur"
-msgstr ""
+msgstr "Flou"
 
 # Button label
 #: Tol+/U
@@ -1406,7 +1406,7 @@ msgstr "Sans pourcentage"
 #: cuKSQz
 msgctxt "cuKSQz"
 msgid "Lede"
-msgstr ""
+msgstr "Chapeau"
 
 # Subtitle placeholder
 #: d60tSn
@@ -2124,7 +2124,7 @@ msgstr "Ajouter des étiquettes..."
 #: udLCuY
 msgctxt "udLCuY"
 msgid "Shadow"
-msgstr ""
+msgstr "Ombre"
 
 # State label
 #: uiTxd7
@@ -2346,4 +2346,4 @@ msgstr "Rechercher une police..."
 #: zl6zsZ
 msgctxt "zl6zsZ"
 msgid "Lede"
-msgstr ""
+msgstr "Chapeau"

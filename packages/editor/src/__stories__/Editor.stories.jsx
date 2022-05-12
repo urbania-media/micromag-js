@@ -151,6 +151,9 @@ export const Test = () => (
                         color: { color: '#00f', alpha: 1 },
                     },
                     callToAction: callToAction(),
+                    description: {
+                        body: '<p>HELLO MY NAME IS EARL I AM SOMETHING SOMETHING AND STUFF YOU KNOW THINGS</p>',
+                    },
                 },
             ],
         }}

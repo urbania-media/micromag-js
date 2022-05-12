@@ -102,7 +102,7 @@ const Recommendation = ({
     const hasTextCard = hasCategory || hasDate || hasTitle || hasSponsor || hasDescription;
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active;
+    const mediaShouldLoad = current || active;
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
@@ -348,7 +348,7 @@ const Recommendation = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                     backgroundClassName={finalAnimateBackground ? styles.background : null}
                 />
             ) : null}

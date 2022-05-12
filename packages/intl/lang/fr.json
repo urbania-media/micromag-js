@@ -245,6 +245,9 @@
     "A+a0kL": {
         "defaultMessage": "Aucune réponse..."
     },
+    "A5gMBc": {
+        "defaultMessage": "Décalage horizontal"
+    },
     "A7ncT3": {
         "defaultMessage": "Déplaçable"
     },
@@ -512,6 +515,9 @@
     "R9DB4a": {
         "defaultMessage": "Styles"
     },
+    "RC7NdL": {
+        "defaultMessage": "Décalage vertical"
+    },
     "RHMS2f": {
         "defaultMessage": "Couleur de la ligne"
     },
@@ -535,6 +541,9 @@
     },
     "THKV4v": {
         "defaultMessage": "Longitude"
+    },
+    "TZUu3s": {
+        "defaultMessage": "Flou"
     },
     "Tol+/U": {
         "defaultMessage": "Effacer"
@@ -685,6 +694,9 @@
     },
     "crLqJd": {
         "defaultMessage": "Sans pourcentage"
+    },
+    "cuKSQz": {
+        "defaultMessage": "Chapeau"
     },
     "d60tSn": {
         "defaultMessage": "Sous-titre"
@@ -1043,6 +1055,9 @@
     "uSpItE": {
         "defaultMessage": "Ajouter des étiquettes..."
     },
+    "udLCuY": {
+        "defaultMessage": "Ombre"
+    },
     "uiTxd7": {
         "defaultMessage": "Résultats"
     },
@@ -1150,5 +1165,8 @@
     },
     "zh2m/S": {
         "defaultMessage": "Rechercher une police..."
+    },
+    "zl6zsZ": {
+        "defaultMessage": "Chapeau"
     }
 }
