@@ -52,6 +52,7 @@ export { default as Radios } from './Radios';
 export { default as ScreenLayout } from './ScreenLayout';
 export { default as Select } from './Select';
 export { default as SelectAdvanced } from './SelectAdvanced';
+export { default as ShadowAngle } from './ShadowAngle';
 export { default as Slide } from './Slide';
 export { default as Slider } from './Slider';
 export { default as SliderPercentage } from './SliderPercentage';

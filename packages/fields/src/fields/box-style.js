@@ -69,7 +69,10 @@ export default {
                 {
                     name: 'borderStyle',
                     type: 'border-style',
-                    isHorizontal: true,
+                    label: defineMessage({
+                        defaultMessage: 'Style',
+                        description: 'Field label',
+                    }),
                 },
             ],
         },
@@ -82,30 +85,12 @@ export default {
             isList: true,
             fields: [
                 {
-                    name: 'shadowColor',
-                    label: defineMessage({
-                        defaultMessage: 'Color',
-                        description: 'Field label',
-                    }),
-                    type: 'color',
-                },
-                {
-                    name: 'shadowHorizontalOffset',
+                    name: 'shadowDistance',
                     type: 'number',
                     isHorizontal: true,
-                    dataList: [1, 2, 3, 4, 5],
+                    dataList: [0, 1, 2, 3, 4, 5],
                     label: defineMessage({
-                        defaultMessage: 'Horizontal offset',
-                        description: 'Field label',
-                    }),
-                },
-                {
-                    name: 'shadowVerticalOffset',
-                    type: 'number',
-                    isHorizontal: true,
-                    dataList: [1, 2, 3, 4, 5],
-                    label: defineMessage({
-                        defaultMessage: 'Vertical offset',
+                        defaultMessage: 'Distance',
                         description: 'Field label',
                     }),
                 },
@@ -116,6 +101,22 @@ export default {
                     dataList: [0, 1, 2, 3, 4, 5],
                     label: defineMessage({
                         defaultMessage: 'Blur',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'shadowColor',
+                    label: defineMessage({
+                        defaultMessage: 'Color',
+                        description: 'Field label',
+                    }),
+                    type: 'color',
+                },
+                {
+                    name: 'shadowAngle',
+                    type: 'shadow-angle',
+                    label: defineMessage({
+                        defaultMessage: 'Angle',
                         description: 'Field label',
                     }),
                 },

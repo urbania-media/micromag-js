@@ -1,17 +1,19 @@
 import getColorAsString from './getColorAsString';
+import getShadowCoords from './getShadowCoords';
 
 const getStyleFromShadow = (value) => {
     if (value == null) {
         return null;
     }
     const {
-        shadowHorizontalOffset = 0,
-        shadowVerticalOffset = 0,
+        shadowAngle = 0,
+        shadowDistance = 5,
         shadowBlur = 0,
         shadowColor = '#000000',
     } = value || {};
     const color = getColorAsString(shadowColor);
-    const boxShadow = `${shadowHorizontalOffset}px ${shadowVerticalOffset}px ${shadowBlur}px 0 ${color}`;
+    const {x, y} = getShadowCoords(shadowAngle, shadowDistance);
+    const boxShadow = `${x}px ${y}px ${shadowBlur}px 0 ${color}`;
 
     return {
         boxShadow

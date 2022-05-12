@@ -21,44 +21,52 @@ const defaultProps = {
     onChange: null,
 };
 
-const BorderStyle = ({ types, value, className, onChange }) => (
-    <div
-        className={classNames([
-            'd-flex',
-            {
-                [className]: className !== null,
-            },
-        ])}
-    >
-        <div className={classNames(['d-inline-flex', 'ms-auto', 'me-auto'])}>
-            <Radios
-                options={types.map((type) => ({
-                    value: type,
-                    label: (
-                        <div className={styles.type}>
-                            <div
-                                style={{
-                                    width: 40,
-                                    height: 40,
-                                    border: `2px ${type} #ccc`,
-                                }}
-                            />
-                        </div>
-                    ),
-                }))}
-                value={value || null}
-                className={classNames([
-                    styles.container,
-                    {
-                        [className]: className !== null,
-                    },
-                ])}
-                buttonClassName={styles.button}
-                onChange={onChange}
-            />
+const BorderStyle = ({ types, value, className, onChange }) => {
+    const onBorderStyleChange = newVal => {
+        const v = newVal === value ? null : newVal;
+
+        onChange(v);
+    }
+
+    return (
+        <div
+            className={classNames([
+                'd-flex',
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            <div className={classNames(['d-inline-flex', 'ms-auto', 'me-auto'])}>
+                <Radios
+                    options={types.map((type) => ({
+                        value: type,
+                        label: (
+                            <div className={styles.type}>
+                                <div
+                                    style={{
+                                        width: 30,
+                                        height: 30,
+                                        border: `2px ${type} currentColor`,
+                                    }}
+                                />
+                            </div>
+                        ),
+                    }))}
+                    value={value || null}
+                    className={classNames([
+                        styles.container,
+                        {
+                            [className]: className !== null,
+                        },
+                    ])}
+                    buttonClassName={styles.button}
+                    onChange={onBorderStyleChange}
+                />
+            </div>
         </div>
-    </div>
-);
+    );
+}
 
 BorderStyle.propTypes = propTypes;
 BorderStyle.defaultProps = defaultProps;
