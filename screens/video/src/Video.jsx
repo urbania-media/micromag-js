@@ -298,7 +298,7 @@ const VideoScreen = ({
     //     setPosterReady(true);
     // }, [isStatic, isCapture, setPosterReady]);
 
-    const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
+    const visibleControls = withControls && ( (!autoPlay && !playing) || muted || showMediaControls);
 
     const items = [
         <ScreenElement
@@ -429,17 +429,17 @@ const VideoScreen = ({
                             </div>
                         ) : null}
 
-                        {(!showMediaControls || !withControls) ? (
-                            <SeekBar
-                                currentTime={currentTime}
-                                duration={duration}
-                                playing={playing}
-                                // backgroundColor,
-                                // progressColor,
-                                focusable={false}
-                                className={styles.bottomSeekBar}
-                            />
-                        ) : null}
+                        <SeekBar
+                            currentTime={currentTime}
+                            duration={duration}
+                            playing={playing}
+                            focusable={false}
+                            className={classNames([
+                                styles.bottomSeekBar,
+                                { [styles.isHidden]: visibleControls }
+                            ])}
+                            isSmall
+                        />
                     </div>
                 </Transitions>
             </div>

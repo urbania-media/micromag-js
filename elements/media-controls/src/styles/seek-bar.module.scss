@@ -49,4 +49,14 @@
         display: flex;
         align-items:center;
     }
+
+    &.isSmall {
+        .inner {
+            height: auto;
+        }
+
+        .progressBar {
+            top: auto;
+        }
+    }
 }

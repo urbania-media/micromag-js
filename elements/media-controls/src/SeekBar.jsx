@@ -16,6 +16,7 @@ const propTypes = {
     onSeek: PropTypes.func,
     focusable: PropTypes.bool,
     className: PropTypes.string,
+    isSmall: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -28,6 +29,7 @@ const defaultProps = {
     onSeek: null,
     focusable: true,
     className: null,
+    isSmall: false,
 };
 
 const SeekBar = ({
@@ -40,6 +42,7 @@ const SeekBar = ({
     onSeek,
     focusable,
     className,
+    isSmall,
 }) => {
     const intl = useIntl();
 
@@ -112,6 +115,7 @@ const SeekBar = ({
                 styles.container,
                 {
                     [styles.withTime]: withTime,
+                    [styles.isSmall]: isSmall,
                     [className]: className !== null,
                 },
             ])}
@@ -127,20 +131,22 @@ const SeekBar = ({
                         }}
                     />
                 </div>
-                <button
-                    type="button"
-                    className={styles.button}
-                    onClick={onSeekClick}
-                    title={intl.formatMessage({
-                        defaultMessage: 'Seek',
-                        description: 'Button label',
-                    })}
-                    aria-label={intl.formatMessage({
-                        defaultMessage: 'Seek',
-                        description: 'Button label',
-                    })}
-                    tabIndex={focusable ? '0' : '-1'}
-                />
+                {!isSmall ? (
+                    <button
+                        type="button"
+                        className={styles.button}
+                        onClick={onSeekClick}
+                        title={intl.formatMessage({
+                            defaultMessage: 'Seek',
+                            description: 'Button label',
+                        })}
+                        aria-label={intl.formatMessage({
+                            defaultMessage: 'Seek',
+                            description: 'Button label',
+                        })}
+                        tabIndex={focusable ? '0' : '-1'}
+                    />
+                ): null}
             </div>
             {withTime ? <div className={styles.time}>{formattedDuration}</div> : null}
         </div>
