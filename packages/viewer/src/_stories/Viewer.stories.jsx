@@ -169,8 +169,7 @@ export const MultipleVideos = () => (
                     video: {
                         media: videoMedia(),
                         withSeekBar: true,
-                        withPlayPause: true,
-                        withTime: false,
+                        withControls: true,
                         autoPlay: true,
                     },
                     gotoNextScreenOnEnd: true,
@@ -181,11 +180,10 @@ export const MultipleVideos = () => (
                     layout: 'full',
                     video: {
                         withSeekBar: true,
-                        withPlayPause: true,
-                        withTime: false,
+                        withControls: true,
                         media: gifVideoMedia(),
                         autoPlay: true,
-                        // muted: true,
+                        muted: true,
                     },
                     gotoNextScreenOnEnd: true,
                 },

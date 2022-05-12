@@ -122,8 +122,7 @@ const UrbaniaTrivia = ({
         media: videoMedia = null,
         closedCaptions = null,
         withSeekBar = false,
-        withPlayPause = false,
-        withTime = false,
+        withControls = false,
     } = video || {};
 
     const apiRef = useRef();
@@ -249,12 +248,12 @@ const UrbaniaTrivia = ({
     const onLongPress = useCallback(() => {
         if (!playing) {
             play();
-        } else if (withPlayPause) {
+        } else if (withControls) {
             onMouseMove(null, 3000);
         } else {
             pause();
         }
-    }, [play, playing, pause, onMouseMove, withPlayPause, setShowMediaControls]);
+    }, [play, playing, pause, onMouseMove, withControls, setShowMediaControls]);
 
     const longPressBind = useLongPress({ onLongPress, onClick: onMouseMove });
 
@@ -457,7 +456,7 @@ const UrbaniaTrivia = ({
                                             {
                                                 [styles.visible]: visibleControls,
                                                 [styles.withGradient]:
-                                                    withSeekBar || withPlayPause || muted,
+                                                    withSeekBar || withControls || muted,
                                             },
                                         ])}
                                     >
@@ -470,8 +469,7 @@ const UrbaniaTrivia = ({
                                                     },
                                                 ])}
                                                 withSeekBar={withSeekBar}
-                                                withPlayPause={withPlayPause}
-                                                withTime={withTime}
+                                                withControls={withControls}
                                                 playing={playing}
                                                 muted={muted}
                                                 currentTime={currentTime}

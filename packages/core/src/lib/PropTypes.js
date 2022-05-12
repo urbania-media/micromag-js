@@ -370,7 +370,7 @@ export const videoElement = PropTypes.shape({
     loop: PropTypes.bool,
     closedCaptions: closedCaptionsMedia,
     withSeekBar: PropTypes.bool,
-    withPlayPause: PropTypes.bool,
+    withControls: PropTypes.bool,
 });
 
 export const visualElement = PropTypes.shape({

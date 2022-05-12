@@ -21,7 +21,7 @@ import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
-import MediaControls from '@micromag/element-media-controls';
+import MediaControls, { SeekBar } from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
 import styles from './styles.module.scss';
 
@@ -58,7 +58,6 @@ const defaultProps = {
 };
 
 const VideoScreen = ({
-    id,
     layout,
     video,
     gotoNextScreenOnEnd,
@@ -89,11 +88,10 @@ const VideoScreen = ({
         media: videoMedia = null,
         closedCaptions = null,
         withSeekBar = false,
-        withPlayPause = false,
-        withTime = false,
+        withControls = false,
     } = video || {};
 
-    const hasControls = withSeekBar || withPlayPause;
+    const hasControls = withSeekBar || withControls;
 
     const {
         ref: controlsRef,
@@ -199,7 +197,7 @@ const VideoScreen = ({
         if (shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }
-    }, [id, current, shouldGotoNextScreenOnEnd, seek, gotoNextScreen]);
+    }, [current, shouldGotoNextScreenOnEnd, seek, gotoNextScreen]);
 
     useEffect(() => {
         if (!current && playing) {
@@ -224,12 +222,12 @@ const VideoScreen = ({
     const onLongPress = useCallback(() => {
         if (!playing) {
             play();
-        } else if (withPlayPause) {
+        } else if (withControls) {
             onMouseMove(null, 3000);
         } else {
             pause();
         }
-    }, [play, playing, pause, onMouseMove, withPlayPause, setShowMediaControls]);
+    }, [play, playing, pause, onMouseMove, withControls, setShowMediaControls]);
 
     const onShowControls = useCallback(
         (e) => {
@@ -300,7 +298,7 @@ const VideoScreen = ({
     //     setPosterReady(true);
     // }, [isStatic, isCapture, setPosterReady]);
 
-    const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
+    const visibleControls = withControls && ( (!autoPlay && !playing) || muted || showMediaControls);
 
     const items = [
         <ScreenElement
@@ -377,7 +375,7 @@ const VideoScreen = ({
                             styles.bottom,
                             {
                                 // [styles.visible]: visibleControls,
-                                [styles.withGradient]: withSeekBar || withPlayPause || muted,
+                                [styles.withGradient]: withSeekBar || withControls || muted,
                             },
                         ])}
                     >
@@ -392,8 +390,7 @@ const VideoScreen = ({
                                             },
                                         ])}
                                         withSeekBar={withSeekBar}
-                                        withPlayPause={withPlayPause}
-                                        withTime={withTime}
+                                        withControls={withControls}
                                         playing={playing}
                                         muted={muted}
                                         currentTime={currentTime}
@@ -431,6 +428,18 @@ const VideoScreen = ({
                                 />
                             </div>
                         ) : null}
+
+                        <SeekBar
+                            currentTime={currentTime}
+                            duration={duration}
+                            playing={playing}
+                            focusable={false}
+                            className={classNames([
+                                styles.bottomSeekBar,
+                                { [styles.isHidden]: visibleControls }
+                            ])}
+                            isSmall
+                        />
                     </div>
                 </Transitions>
             </div>

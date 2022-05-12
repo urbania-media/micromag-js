@@ -26,10 +26,10 @@ export default {
             }),
         },
         {
-            name: 'withPlayPause',
+            name: 'withControls',
             type: 'toggle',
             label: defineMessage({
-                defaultMessage: 'With play/pause button',
+                defaultMessage: 'With controls button',
                 description: 'Field label',
             }),
         },
@@ -38,14 +38,6 @@ export default {
             type: 'toggle',
             label: defineMessage({
                 defaultMessage: 'With seek bar',
-                description: 'Field label',
-            }),
-        },
-        {
-            name: 'withTime',
-            type: 'toggle',
-            label: defineMessage({
-                defaultMessage: 'With time',
                 description: 'Field label',
             }),
         },

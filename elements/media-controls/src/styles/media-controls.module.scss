@@ -92,11 +92,10 @@
         }
     }
 
-    &.withSeekBar {
-        //
-    }
+    // &.withSeekBar {
+    // }
 
-    &.withPlayPause {
+    &.withControls {
         .playPauseButton {
             display: flex;
             visibility: visible;

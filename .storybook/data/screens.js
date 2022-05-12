@@ -292,8 +292,7 @@ export const allScreens = [
             loop: true,
             closedCaptions: closedCaptionsMedia(),
             withSeekBar: true,
-            withPlayPause: true,
-            withTime: false,
+            withControls: true,
         },
         background: {
             color: { alpha: 1, color: '#FF00FF' },
@@ -309,8 +308,7 @@ export const allScreens = [
             autoPlay: true,
             loop: false,
             withSeekBar: true,
-            withPlayPause: true,
-            withTime: false,
+            withControls: true,
         },
         background: {
             color: { alpha: 1, color: '#FF00FF' },

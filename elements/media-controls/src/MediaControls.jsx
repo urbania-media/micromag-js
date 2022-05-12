@@ -19,8 +19,7 @@ const propTypes = {
     onToggleMute: PropTypes.func,
     onSeek: PropTypes.func,
     withSeekBar: PropTypes.bool,
-    withPlayPause: PropTypes.bool,
-    withTime: PropTypes.bool,
+    withControls: PropTypes.bool,
     color: MicromagPropTypes.color,
     progressColor: MicromagPropTypes.color,
     className: PropTypes.string,
@@ -36,8 +35,7 @@ const defaultProps = {
     onToggleMute: null,
     onSeek: null,
     withSeekBar: false,
-    withPlayPause: false,
-    withTime: false,
+    withControls: false,
     color: null,
     progressColor: null,
     className: null,
@@ -53,8 +51,7 @@ const MediaControls = ({
     onToggleMute,
     onSeek,
     withSeekBar,
-    withPlayPause,
-    withTime,
+    withControls,
     color,
     progressColor,
     className,
@@ -78,9 +75,9 @@ const MediaControls = ({
                     [className]: className !== null,
                     [styles.playing]: playing,
                     [styles.muted]: muted,
-                    [styles.withPlayPause]: withPlayPause,
+                    [styles.withControls]: withControls,
                     [styles.withSeekBar]: withSeekBar,
-                    [styles.withoutEvents]: !muted && !withPlayPause && !withSeekBar,
+                    [styles.withoutEvents]: !muted && !withControls && !withSeekBar,
                 },
             ])}
             style={{ color: finalColor }}
@@ -127,7 +124,7 @@ const MediaControls = ({
                     playing={playing}
                     onSeek={onSeek}
                     focusable={focusable}
-                    withTime={withTime}
+                    // withTime={withControls}
                     backgroundColor={finalColor}
                     progressColor={alternateColor}
                 />
