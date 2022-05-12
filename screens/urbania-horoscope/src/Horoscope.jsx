@@ -204,7 +204,7 @@ const Horoscope = ({
                 isEmpty={!hasAuthor}
             >
                 {hasAuthor && !isPlaceholder ? (
-                    <Author author={author} className={styles.author} />
+                    <Author author={author} className={styles.author} shouldLoad={mediaShouldLoad} />
                 ) : null}
             </ScreenElement>
         </div>,

@@ -14,6 +14,7 @@ const propTypes = {
     isTag: PropTypes.bool,
     shape: PropTypes.oneOf([null, 'tag', 'circle']),
     className: PropTypes.string,
+    shouldLoad: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -24,9 +25,10 @@ const defaultProps = {
     isTag: false,
     shape: 'Circle',
     className: null,
+    shouldLoad: true,
 };
 
-const Avatar = ({ image, width, height, resolution, shape, isTag, className }) => {
+const Avatar = ({ image, width, height, resolution, shape, isTag, className, shouldLoad }) => {
     const imageAtSize = getOptimalImageUrl(image, width, height, { resolution });
     return (
         <span
@@ -42,7 +44,7 @@ const Avatar = ({ image, width, height, resolution, shape, isTag, className }) =
             <span
                 className={styles.shape}
                 style={{
-                    backgroundImage: `url("${imageAtSize}")`,
+                    backgroundImage: shouldLoad ? `url("${imageAtSize}")` : null,
                 }}
             />
         </span>

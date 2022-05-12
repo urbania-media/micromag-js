@@ -25,6 +25,7 @@ const propTypes = {
     isSmall: PropTypes.bool,
     linkUnderlineColor: PropTypes.string,
     className: PropTypes.string,
+    shouldLoad: PropTypes.bool
 };
 
 const defaultProps = {
@@ -35,6 +36,7 @@ const defaultProps = {
     isSmall: false,
     linkUnderlineColor: null,
     className: null,
+    shouldLoad: true,
 };
 
 const UrbaniaAuthor = ({
@@ -45,6 +47,7 @@ const UrbaniaAuthor = ({
     isSmall,
     linkUnderlineColor,
     className,
+    shouldLoad
 }) => {
     const intl = useIntl();
     const { name = null, image = null, url = null } = author || {};
@@ -70,7 +73,7 @@ const UrbaniaAuthor = ({
             {!withoutPrefix ? (
                 <Text {...name} className={styles.prefix} body={`<span>${prefix}<span>`} />
             ) : null}
-            {withImage && image !== null ? <Avatar className={styles.image} image={image} /> : null}
+            {withImage && image !== null ? <Avatar className={styles.image} image={image} shouldLoad={shouldLoad} /> : null}
             {url !== null && !withoutLink ? (
                 <Link
                     className={styles.link}

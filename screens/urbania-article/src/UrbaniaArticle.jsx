@@ -200,7 +200,7 @@ const UrbaniaArticle = ({
             >
                 {hasAuthor ? (
                     <div className={classNames([styles.authors])}>
-                        <UrbaniaAuthor author={author} />
+                        <UrbaniaAuthor author={author} shouldLoad={mediaShouldLoad} />
                     </div>
                 ) : null}
             </ScreenElement>
