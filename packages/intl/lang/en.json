@@ -98,6 +98,9 @@
     "3E57H7": {
         "defaultMessage": "No marker..."
     },
+    "3LEBIA": {
+        "defaultMessage": "Angle"
+    },
     "3NghmM": {
         "defaultMessage": "Good answer"
     },
@@ -245,9 +248,6 @@
     "A+a0kL": {
         "defaultMessage": "No answer..."
     },
-    "A5gMBc": {
-        "defaultMessage": "Horizontal offset"
-    },
     "A7ncT3": {
         "defaultMessage": "Draggable"
     },
@@ -292,6 +292,9 @@
     },
     "Bv1Q38": {
         "defaultMessage": "Sponsor"
+    },
+    "BwYZbB": {
+        "defaultMessage": "With controls button"
     },
     "CJmQeh": {
         "defaultMessage": "Image with text"
@@ -514,9 +517,6 @@
     },
     "R9DB4a": {
         "defaultMessage": "Styles"
-    },
-    "RC7NdL": {
-        "defaultMessage": "Vertical offset"
     },
     "RHMS2f": {
         "defaultMessage": "Line color"
@@ -821,6 +821,9 @@
     "iipV5Q": {
         "defaultMessage": "Type"
     },
+    "irG6mX": {
+        "defaultMessage": "Distance"
+    },
     "jEK6B8": {
         "defaultMessage": "By"
     },
@@ -1030,9 +1033,6 @@
     },
     "twTaAZ": {
         "defaultMessage": "Bullet shape"
-    },
-    "u/LEHI": {
-        "defaultMessage": "With time"
     },
     "u3ok54": {
         "defaultMessage": "Position"

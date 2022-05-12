@@ -245,9 +245,6 @@
     "A+a0kL": {
         "defaultMessage": "Aucune réponse..."
     },
-    "A5gMBc": {
-        "defaultMessage": "Décalage horizontal"
-    },
     "A7ncT3": {
         "defaultMessage": "Déplaçable"
     },
@@ -292,6 +289,9 @@
     },
     "Bv1Q38": {
         "defaultMessage": "Présentateur"
+    },
+    "BwYZbB": {
+        "defaultMessage": "Avec les contrôles"
     },
     "CJmQeh": {
         "defaultMessage": "Image avec texte"
@@ -514,9 +514,6 @@
     },
     "R9DB4a": {
         "defaultMessage": "Styles"
-    },
-    "RC7NdL": {
-        "defaultMessage": "Décalage vertical"
     },
     "RHMS2f": {
         "defaultMessage": "Couleur de la ligne"
@@ -821,6 +818,9 @@
     "iipV5Q": {
         "defaultMessage": "Type"
     },
+    "irG6mX": {
+        "defaultMessage": "Distance"
+    },
     "jEK6B8": {
         "defaultMessage": "Par"
     },
@@ -1030,9 +1030,6 @@
     },
     "twTaAZ": {
         "defaultMessage": "Forme du point"
-    },
-    "u/LEHI": {
-        "defaultMessage": "Avec temps"
     },
     "u3ok54": {
         "defaultMessage": "Position"

@@ -210,6 +210,12 @@ msgid "No marker..."
 msgstr "No marker..."
 
 # Field label
+#: 3LEBIA
+msgctxt "3LEBIA"
+msgid "Angle"
+msgstr "Angle"
+
+# Field label
 #: 3NghmM
 msgctxt "3NghmM"
 msgid "Good answer"
@@ -504,12 +510,6 @@ msgid "No answer..."
 msgstr "No answer..."
 
 # Field label
-#: A5gMBc
-msgctxt "A5gMBc"
-msgid "Horizontal offset"
-msgstr "Horizontal offset"
-
-# Field label
 #: A7ncT3
 msgctxt "A7ncT3"
 msgid "Draggable"
@@ -598,6 +598,12 @@ msgstr "Success"
 msgctxt "Bv1Q38"
 msgid "Sponsor"
 msgstr "Sponsor"
+
+# Field label
+#: BwYZbB
+msgctxt "BwYZbB"
+msgid "With controls button"
+msgstr "With controls button"
 
 # ImageText screen title
 #: CJmQeh
@@ -1041,12 +1047,6 @@ msgstr "Sponsor color"
 msgctxt "R9DB4a"
 msgid "Styles"
 msgstr "Styles"
-
-# Field label
-#: RC7NdL
-msgctxt "RC7NdL"
-msgid "Vertical offset"
-msgstr "Vertical offset"
 
 # Field label
 #: RHMS2f
@@ -1654,6 +1654,12 @@ msgctxt "iipV5Q"
 msgid "Type"
 msgstr "Type"
 
+# Field label
+#: irG6mX
+msgctxt "irG6mX"
+msgid "Distance"
+msgstr "Distance"
+
 # Author label
 #: jEK6B8
 msgctxt "jEK6B8"
@@ -2071,12 +2077,6 @@ msgstr "Video"
 msgctxt "twTaAZ"
 msgid "Bullet shape"
 msgstr "Bullet shape"
-
-# Field label
-#: u/LEHI
-msgctxt "u/LEHI"
-msgid "With time"
-msgstr "With time"
 
 # Field label
 #: u3ok54

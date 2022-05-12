@@ -131,6 +131,10 @@
     "defaultMessage": "No marker...",
     "description": "Label when there is no item in markers field"
   },
+  "3LEBIA": {
+    "defaultMessage": "Angle",
+    "description": "Field label"
+  },
   "3NghmM": {
     "defaultMessage": "Good answer",
     "description": "Field label"
@@ -327,10 +331,6 @@
     "defaultMessage": "No answer...",
     "description": "Label when there is no item"
   },
-  "A5gMBc": {
-    "defaultMessage": "Horizontal offset",
-    "description": "Field label"
-  },
   "A7ncT3": {
     "defaultMessage": "Draggable",
     "description": "Field label"
@@ -390,6 +390,10 @@
   "Bv1Q38": {
     "defaultMessage": "Sponsor",
     "description": "Text placeholder"
+  },
+  "BwYZbB": {
+    "defaultMessage": "With controls button",
+    "description": "Field label"
   },
   "CJmQeh": {
     "defaultMessage": "Image with text",
@@ -685,10 +689,6 @@
   "R9DB4a": {
     "defaultMessage": "Styles",
     "description": "Field section label"
-  },
-  "RC7NdL": {
-    "defaultMessage": "Vertical offset",
-    "description": "Field label"
   },
   "RHMS2f": {
     "defaultMessage": "Line color",
@@ -1094,6 +1094,10 @@
     "defaultMessage": "Type",
     "description": "Field label"
   },
+  "irG6mX": {
+    "defaultMessage": "Distance",
+    "description": "Field label"
+  },
   "jEK6B8": {
     "defaultMessage": "By",
     "description": "Author label"
@@ -1370,10 +1374,6 @@
   },
   "twTaAZ": {
     "defaultMessage": "Bullet shape",
-    "description": "Field label"
-  },
-  "u/LEHI": {
-    "defaultMessage": "With time",
     "description": "Field label"
   },
   "u3ok54": {
