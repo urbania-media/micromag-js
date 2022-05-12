@@ -91,7 +91,7 @@ const VideoScreen = ({
         withControls = false,
     } = video || {};
 
-    const hasControls = withSeekBar || withControls;
+    const hasControls = (withSeekBar || withControls) && (isView || isEdit);
 
     const {
         ref: controlsRef,
@@ -379,7 +379,7 @@ const VideoScreen = ({
                             },
                         ])}
                     >
-                        {hasVideoUrl ? (
+                        {hasVideoUrl && hasControls ? (
                             <>
                                 <div ref={controlsRef}>
                                     <MediaControls
@@ -429,17 +429,19 @@ const VideoScreen = ({
                             </div>
                         ) : null}
 
-                        <SeekBar
-                            currentTime={currentTime}
-                            duration={duration}
-                            playing={playing}
-                            focusable={false}
-                            className={classNames([
-                                styles.bottomSeekBar,
-                                { [styles.isHidden]: visibleControls }
-                            ])}
-                            isSmall
-                        />
+                        {hasControls ? (
+                            <SeekBar
+                                currentTime={currentTime}
+                                duration={duration}
+                                playing={playing}
+                                focusable={false}
+                                className={classNames([
+                                    styles.bottomSeekBar,
+                                    { [styles.isHidden]: visibleControls }
+                                ])}
+                                isSmall
+                            />
+                        ): null}
                     </div>
                 </Transitions>
             </div>
