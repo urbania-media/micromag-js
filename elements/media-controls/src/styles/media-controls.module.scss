@@ -107,4 +107,8 @@
             margin-top: 5px;
         }
     }
+
+    &.withoutEvents {
+        pointer-events: none;
+    }
 }
