@@ -213,7 +213,7 @@ msgstr "Aucun marqueur..."
 #: 3LEBIA
 msgctxt "3LEBIA"
 msgid "Angle"
-msgstr ""
+msgstr "Angle"
 
 # Field label
 #: 3NghmM
@@ -891,7 +891,7 @@ msgstr "Écran {index}"
 #: Lrwi2G
 msgctxt "Lrwi2G"
 msgid "Email"
-msgstr ""
+msgstr "Courriel"
 
 # Horoscope sign
 #: M/FGRs
@@ -1854,7 +1854,7 @@ msgstr "Texte avec titre"
 #: oL4ueH
 msgctxt "oL4ueH"
 msgid "Share"
-msgstr ""
+msgstr "Partage"
 
 # Video 360 placeholder
 #: oLtEu6
