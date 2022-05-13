@@ -25,7 +25,6 @@
     left: 50%;
     width: calc(100% - 1rem);
     max-width: 500px;
-    padding: 1rem;
     transform: translate(-50%, -50%) translateY(1rem);
     transition: opacity 0.2s ease-out, transform 0.2s ease-out;
     border-radius: 1.5rem;
@@ -43,7 +42,7 @@
 .header {
     display: flex;
     align-items: center;
-    margin-bottom: 1rem;
+    padding: 1rem;
 }
 
 // more specificity needed here
@@ -62,10 +61,17 @@
     color: $black;
 }
 
+.content {
+    padding-bottom: 1rem;
+}
+
 .buttons {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    padding: 0 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .shareOption {
