@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '@micromag/element-button';
-import Close from './Close';
+import { Close } from '@micromag/core/components';
 import styles from './styles.module.scss';
 
 const propTypes = {
