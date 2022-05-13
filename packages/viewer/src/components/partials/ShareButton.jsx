@@ -39,7 +39,6 @@ const ShareButton = ({ title, url, className, buttonClassName, onShare, children
 
     const onStoryShared = useCallback(
         (type) => {
-            console.log('story shared'); // eslint-disable-line
             setStoryShareModalOpened(false);
             if (onShare !== null) {
                 onShare(type);
