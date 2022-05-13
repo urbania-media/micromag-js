@@ -1,11 +1,15 @@
 // import classNames from 'classnames';
-import { DashboardModal } from '@uppy/react';
+// import { DashboardModal } from '@uppy/react';
 import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { Suspense, useCallback, useEffect, useMemo } from 'react';
 import { useUppy } from '../../contexts';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import '../../styles/modals/upload.scss';
+
+const DashboardModal = React.lazy(() =>
+    import('@uppy/react').then(({ DashboardModal: Component }) => ({ default: Component })),
+);
 
 const propTypes = {
     type: PropTypes.oneOfType([MicromagPropTypes.mediaTypes, PropTypes.array]),
@@ -55,13 +59,15 @@ const UploadModal = ({ type, opened, sources, onUploaded, onRequestClose }) => {
     }, [uppy, opened]);
 
     return uppy !== null ? (
-        <DashboardModal
-            uppy={uppy}
-            open={opened}
-            closeAfterFinish
-            onRequestClose={onRequestClose}
-            plugins={sources}
-        />
+        <Suspense fallback={<div />}>
+            <DashboardModal
+                uppy={uppy}
+                open={opened}
+                closeAfterFinish
+                onRequestClose={onRequestClose}
+                plugins={sources}
+            />
+        </Suspense>
     ) : null;
 };
 
