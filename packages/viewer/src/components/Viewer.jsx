@@ -399,7 +399,7 @@ const Viewer = ({
                       ),
                       endIndex: Math.min(
                           screenIndex + (neighborScreensActive + neighborScreensMounted),
-                          screensCount - 1,
+                          screensCount,
                       ),
                   }
                 : {
