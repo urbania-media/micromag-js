@@ -17,6 +17,7 @@ import {
     useScreenState,
     useViewer,
 } from '@micromag/core/contexts';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -60,6 +61,7 @@ const propTypes = {
     disableInteraction: PropTypes.func,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -76,6 +78,7 @@ const defaultProps = {
     popupBackground: null,
     current: true,
     active: true,
+    type: 'horoscope',
     enableInteraction: null,
     disableInteraction: null,
     transitions: null,
@@ -100,8 +103,10 @@ const Horoscope = ({
     disableInteraction,
     transitions,
     transitionStagger,
+    type,
     className,
 }) => {
+    const trackScreenEvent = useTrackScreenEvent(type);
     const [hasPopup, setHasPopup] = useState(false);
 
     const signs = useMemo(
@@ -116,17 +121,29 @@ const Horoscope = ({
         [],
     );
 
-    const [activeSignId, setActiveSignId] = useState(null);
+    const [currentSign, setCurrentSign] = useState(null);
 
     const openPopup = useCallback(() => {
         setHasPopup(true);
         disableInteraction();
-    }, [hasPopup, setHasPopup, disableInteraction]);
+        trackScreenEvent('open');
+    }, [hasPopup, setHasPopup, disableInteraction, trackScreenEvent]);
 
     const closePopup = useCallback(() => {
         setHasPopup(false);
         enableInteraction();
+        trackScreenEvent('close');
     }, [hasPopup, setHasPopup, enableInteraction]);
+
+    const onClickSign = useCallback((signId) => {
+        setCurrentSign(signId);
+        trackScreenEvent(`open_sign_${signId}`);
+    }, [setCurrentSign, trackScreenEvent]);
+
+    const onClickCloseSign = useCallback(() => {
+        setCurrentSign(null);
+        trackScreenEvent('close_sign');
+    }, [setCurrentSign, trackScreenEvent]);
 
     const screenState = useScreenState();
 
@@ -136,12 +153,12 @@ const Horoscope = ({
         }
         if (screenState === 'grid') {
             setHasPopup(true);
-            setActiveSignId(null);
+            setCurrentSign(null);
         }
         if (screenState !== null && screenState.includes('signs')) {
             const index = screenState.split('.').pop();
             setHasPopup(true);
-            setActiveSignId(signs[index].id);
+            setCurrentSign(signs[index].id);
         }
     }, [screenState]);
 
@@ -242,7 +259,7 @@ const Horoscope = ({
         //                 signs={signs}
         //                 signSubtitle={signSubtitle}
         //                 activeSignId={activeSignId}
-        //                 setActiveSignId={setActiveSignId}
+        //                 setCurrentSign={setCurrentSign}
         //             />
         //         </CSSTransition>
         //     ) : null}
@@ -305,8 +322,9 @@ const Horoscope = ({
                                     background={popupBackground}
                                     signs={signs}
                                     signSubtitle={signSubtitle}
-                                    activeSignId={activeSignId}
-                                    setActiveSignId={setActiveSignId}
+                                    currentSign={currentSign}
+                                    onClickSign={onClickSign}
+                                    onClickClose={onClickCloseSign}
                                     transitionDisabled={transitionDisabled}
                                 />
                             </CSSTransition>
