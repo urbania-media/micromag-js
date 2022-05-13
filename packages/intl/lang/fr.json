@@ -98,6 +98,9 @@
     "3E57H7": {
         "defaultMessage": "Aucun marqueur..."
     },
+    "3LEBIA": {
+        "defaultMessage": "Angle"
+    },
     "3NghmM": {
         "defaultMessage": "Bonne réponse"
     },
@@ -433,6 +436,9 @@
     },
     "LkVfwW": {
         "defaultMessage": "Écran {index}"
+    },
+    "Lrwi2G": {
+        "defaultMessage": "Courriel"
     },
     "M/FGRs": {
         "defaultMessage": "Balance"
@@ -913,6 +919,9 @@
     },
     "oCBQKV": {
         "defaultMessage": "Texte avec titre"
+    },
+    "oL4ueH": {
+        "defaultMessage": "Partage"
     },
     "oLtEu6": {
         "defaultMessage": "Vidéo 360"

@@ -1,45 +1,84 @@
-// stylelint-disable max-nesting-depth
-
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
 .container {
+    position: fixed;
+    z-index: 1020;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: background-color 0.2s ease-out;
+    background-color: transparent;
     pointer-events: none;
 
-    .content {
-        padding: 5px;
-        transform: scale(0.8);
-        transform-origin: center top;
-        transition: all .2s ease;
-        border-radius: 10px;
-        opacity: 0;
-        background-color: $white;
-
-        &::before {
-            content: '';
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            transform: translateX(-50%);
-            border-right: 8px solid transparent;
-            border-bottom: 8px solid $white;
-            border-left: 8px solid transparent;
-        }
-    }
-
-    button {
-        display: block;
-        margin: 5px;
-    }
-
     &.opened {
+        background-color: rgba($black, 0.85);
         pointer-events: auto;
-
-        .content {
-            transform: scale(1);
-            opacity: 1;
-        }
     }
+}
+
+.modal {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: calc(100% - 1rem);
+    max-width: 500px;
+    padding: 1rem;
+    transform: translate(-50%, -50%) translateY(1rem);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    border-radius: 1.5rem;
+    opacity: 0;
+    background-color: $gray-200;
+    color: $black;
+
+    .opened & {
+        transform: translate(-50%, -50%) translateY(0);
+        transition: opacity 0.2s 0.1s ease-out, transform 0.2s 0.1s ease-out;
+        opacity: 1;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+// more specificity needed here
+.container .heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.close {
+    margin: -2px -2px 0 0; // @todo counteracts the border (it's included in svg viewBox...)
+    margin-left: auto;
+    padding: 0;
+}
+
+.closeIcon {
+    color: $black;
+}
+
+.buttons {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.shareOption {
+    margin-right: 0.5rem;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.shareLabel {
+    margin-top: 0.5rem;
+    color: $gray-600;
+    font-size: 0.75rem;
+    font-weight: normal;
 }

@@ -583,6 +583,10 @@
     "defaultMessage": "Screen {index}",
     "description": "Button label"
   },
+  "Lrwi2G": {
+    "defaultMessage": "Email",
+    "description": "Share option label"
+  },
   "M/FGRs": {
     "defaultMessage": "Libra",
     "description": "Horoscope sign"
@@ -1219,6 +1223,10 @@
   "oCBQKV": {
     "defaultMessage": "Text with title",
     "description": "TextTitle screen title"
+  },
+  "oL4ueH": {
+    "defaultMessage": "Share",
+    "description": "Modal heading"
   },
   "oLtEu6": {
     "defaultMessage": "Video 360",

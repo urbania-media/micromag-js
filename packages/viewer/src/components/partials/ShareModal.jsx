@@ -2,6 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useRef } from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
     EmailShareButton,
     EmailIcon,
@@ -11,6 +12,7 @@ import {
     TwitterIcon,
 } from 'react-share';
 import { useDocumentEvent } from '@micromag/core/hooks';
+import { Button, Close } from '@micromag/core/components';
 import styles from '../../styles/partials/share-modal.module.scss';
 
 const propTypes = {
@@ -32,7 +34,7 @@ const defaultProps = {
 };
 
 const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
-    const containerRef = useRef(null);
+    const modalRef = useRef();
     const onShareButtonClick = useCallback(
         (type) => {
             if (onShare !== null) {
@@ -54,22 +56,76 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
         [url, onCancel],
     );
 
-    const shareIconProps = useMemo(() => ({ size: 32, round: true }), []);
+    const shareIconProps = useMemo(() => ({ size: 64, round: true }), []);
 
     const onDocumentClick = useCallback(
         (e) => {
-            const target = e.currentTarget;
-            if (!containerRef.current || containerRef.current.contains(target)) {
+            const { target } = e || {};
+
+            if (!modalRef.current || modalRef.current.contains(target)) {
                 return;
             }
-            if (onCancel !== null) {
-                onCancel();
-            }
+
+            onCancel();
         },
         [opened, onCancel],
     );
 
     useDocumentEvent('click', onDocumentClick, opened);
+
+    const shareOptions = [
+        {
+            id: 'email',
+            label: <FormattedMessage defaultMessage="Email" description="Share option label" />,
+            icon: (
+                <EmailShareButton
+                    {...shareButtonProps}
+                    subject={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('Email');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={opened ? null : '-1'}
+                >
+                    <EmailIcon {...shareIconProps} />
+                </EmailShareButton>
+            )
+        },
+        {
+            id: 'facebook',
+            label: 'Facebook',
+            icon: (
+                <FacebookShareButton
+                    {...shareButtonProps}
+                    quote={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('Facebook');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={opened ? null : '-1'}
+                >
+                    <FacebookIcon {...shareIconProps} />
+                </FacebookShareButton>
+            ),
+        },
+        {
+            id: 'twitter',
+            label: 'Twitter',
+            icon: (
+                <TwitterShareButton
+                    {...shareButtonProps}
+                    title={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('Twitter');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={opened ? null : '-1'}
+                >
+                    <TwitterIcon {...shareIconProps} />
+                </TwitterShareButton>
+            )
+        },
+    ];
 
     return (
         <div
@@ -80,44 +136,29 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                     [styles.opened]: opened,
                 },
             ])}
-            ref={containerRef}
             aria-hidden={opened ? null : '-1'}
         >
-            <div className={styles.content}>
-                <div className={styles.buttons}>
-                    <FacebookShareButton
-                        {...shareButtonProps}
-                        quote={title}
-                        beforeOnClick={() => {
-                            onShareButtonClick('Facebook');
-                            return Promise.resolve();
-                        }}
-                        tabIndex={opened ? null : '-1'}
-                    >
-                        <FacebookIcon {...shareIconProps} />
-                    </FacebookShareButton>
-                    <TwitterShareButton
-                        {...shareButtonProps}
-                        title={title}
-                        beforeOnClick={() => {
-                            onShareButtonClick('Twitter');
-                            return Promise.resolve();
-                        }}
-                        tabIndex={opened ? null : '-1'}
-                    >
-                        <TwitterIcon {...shareIconProps} />
-                    </TwitterShareButton>
-                    <EmailShareButton
-                        {...shareButtonProps}
-                        subject={title}
-                        beforeOnClick={() => {
-                            onShareButtonClick('Email');
-                            return Promise.resolve();
-                        }}
-                        tabIndex={opened ? null : '-1'}
-                    >
-                        <EmailIcon {...shareIconProps} />
-                    </EmailShareButton>
+            <div className={styles.modal} ref={modalRef}>
+                <div className={styles.header}>
+                    <h2 className={styles.heading}>
+                        <FormattedMessage defaultMessage="Share" description="Modal heading" />
+                    </h2>
+
+                    <Button className={styles.close} onClick={onCancel} focusable={opened}>
+                        <Close className={styles.closeIcon} border={false} />
+                    </Button>
+                </div>
+                <div className={styles.content}>
+                    <div className={styles.buttons}>
+                        { shareOptions.map(({id, label, icon}) => (
+                            <div key={id} className={styles.shareOption}>
+                                {icon}
+                                <div className={styles.shareLabel}>
+                                    {label}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
