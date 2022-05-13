@@ -10,6 +10,8 @@ import {
     FacebookIcon,
     TwitterShareButton,
     TwitterIcon,
+    LinkedinShareButton,
+    LinkedinIcon,
 } from 'react-share';
 import { useDocumentEvent } from '@micromag/core/hooks';
 import { Button, Close } from '@micromag/core/components';
@@ -123,6 +125,23 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                 >
                     <TwitterIcon {...shareIconProps} />
                 </TwitterShareButton>
+            )
+        },
+        {
+            id: 'linkedin',
+            label: 'LinkedIn',
+            icon: (
+                <LinkedinShareButton
+                    {...shareButtonProps}
+                    title={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('LinkedIns');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={opened ? null : '-1'}
+                >
+                    <LinkedinIcon {...shareIconProps} />
+                </LinkedinShareButton>
             )
         },
     ];
