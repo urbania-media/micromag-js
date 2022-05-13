@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, ScreenPreview } from '@micromag/core/components';
@@ -131,6 +131,8 @@ const ViewerMenuPreview = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const finalItems = useMemo(() => !focusable ? items.slice(0, 3) : items, [items, focusable]);
+
     return (
         <div
             className={classNames([
@@ -209,8 +211,8 @@ const ViewerMenuPreview = ({
                 >
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
-                            {items.map((item, index) => {
-                                const { current = false, screen, count = 1 } = item;
+                            {finalItems.map((item, index) => {
+                                const { screenId, current = false, screen, count = 1 } = item;
 
                                 const screenAriaLabel = `${intl.formatMessage(
                                     {
@@ -234,7 +236,7 @@ const ViewerMenuPreview = ({
                                                 [styles.active]: current,
                                             },
                                         ])}
-                                        key={`item-${index}`}
+                                        key={`item-${screenId}`}
                                         style={{
                                             width: `${100 / thumbsPerLine}%`,
                                         }}
