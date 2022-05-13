@@ -12,7 +12,6 @@ const propTypes = {
     playing: PropTypes.bool,
     backgroundColor: PropTypes.string,
     progressColor: PropTypes.string,
-    withTime: PropTypes.bool,
     onSeek: PropTypes.func,
     focusable: PropTypes.bool,
     className: PropTypes.string,
@@ -25,7 +24,6 @@ const defaultProps = {
     playing: false,
     backgroundColor: 'white',
     progressColor: 'lightblue',
-    withTime: false,
     onSeek: null,
     focusable: true,
     className: null,
@@ -38,7 +36,6 @@ const SeekBar = ({
     playing,
     backgroundColor,
     progressColor,
-    withTime,
     onSeek,
     focusable,
     className,
@@ -92,35 +89,33 @@ const SeekBar = ({
     );
 
     const formattedCurrrentTime = useMemo(() => {
-        if (withTime) {
+        if (!isSmall) {
             const date = new Date(null);
             date.setSeconds(currentTime); // specify value for SECONDS here
             return date.toISOString().substring(maxTime, 19);
         }
         return null;
-    }, [currentTime, maxTime, withTime]);
+    }, [currentTime, maxTime, isSmall]);
 
     const formattedDuration = useMemo(() => {
-        if (withTime) {
+        if (!isSmall) {
             const date = new Date(null);
             date.setSeconds(duration); // specify value for SECONDS here
             return date.toISOString().substring(maxTime, 19);
         }
         return null;
-    }, [duration, maxTime, withTime]);
+    }, [duration, maxTime, isSmall]);
 
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles.withTime]: withTime,
                     [styles.isSmall]: isSmall,
                     [className]: className !== null,
                 },
             ])}
         >
-            {withTime ? <div className={styles.time}>{formattedCurrrentTime}</div> : null}
             <div className={styles.inner}>
                 <div className={styles.progressBar} style={{ backgroundColor }}>
                     <animated.div
@@ -148,7 +143,12 @@ const SeekBar = ({
                     />
                 ): null}
             </div>
-            {withTime ? <div className={styles.time}>{formattedDuration}</div> : null}
+            {!isSmall ? (
+                <div className={styles.time}>
+                    <span className={styles.currentTime}>{formattedCurrrentTime}</span>
+                    <span className={styles.duration}>{formattedDuration}</span>
+                </div>
+            ): null}
         </div>
     );
 };

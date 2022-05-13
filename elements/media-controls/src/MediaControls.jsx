@@ -124,7 +124,6 @@ const MediaControls = ({
                     playing={playing}
                     onSeek={onSeek}
                     focusable={focusable}
-                    // withTime={withControls}
                     backgroundColor={finalColor}
                     progressColor={alternateColor}
                 />

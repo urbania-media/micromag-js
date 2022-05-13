@@ -429,7 +429,7 @@ const VideoScreen = ({
                             </div>
                         ) : null}
 
-                        {(isView || isEdit) ? (
+                        {withSeekBar && (isView || isEdit) ? (
                             <SeekBar
                                 currentTime={currentTime}
                                 duration={duration}
