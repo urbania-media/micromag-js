@@ -1,7 +1,7 @@
 /* eslint-disable arrow-body-style */
 
 /* eslint-disable react/jsx-props-no-spreading */
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 
 /* eslint-disable react/jsx-props-no-spreading */
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';

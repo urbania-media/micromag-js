@@ -1,6 +1,9 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, react/jsx-props-no-spreading, arrow-body-style */
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
-import { faCompress, faExpand, faShare, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCompress } from '@fortawesome/free-solid-svg-icons/faCompress';
+import { faExpand } from '@fortawesome/free-solid-svg-icons/faExpand';
+import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';

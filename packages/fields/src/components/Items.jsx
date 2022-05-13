@@ -1,5 +1,9 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import { faBars, faCheck, faList, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+import { faList } from '@fortawesome/free-solid-svg-icons/faList';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';

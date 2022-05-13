@@ -2,7 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo } from '@fortawesome/free-solid-svg-icons';
+import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 

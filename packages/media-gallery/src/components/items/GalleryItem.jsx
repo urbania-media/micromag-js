@@ -1,10 +1,8 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import {
-    faHeadphonesAlt,
-    faInfoCircle,
-    faPlayCircle,
-    faTimesCircle,
-} from '@fortawesome/free-solid-svg-icons';
+import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons/faHeadphonesAlt';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons/faInfoCircle';
+import { faPlayCircle } from '@fortawesome/free-solid-svg-icons/faPlayCircle';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';

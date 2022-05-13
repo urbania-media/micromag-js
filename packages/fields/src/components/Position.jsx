@@ -1,21 +1,16 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, jsx-a11y/label-has-associated-control */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
+import { faDotCircle } from '@fortawesome/free-solid-svg-icons/faDotCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faDotCircle,
-    faArrowUp,
-    faArrowDown,
-    faArrowLeft,
-    faArrowRight,
-} from '@fortawesome/free-solid-svg-icons';
-
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
-import getSelectOptions from '../utils/getSelectOptions';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
 import styles from '../styles/position.module.scss';
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import getSelectOptions from '../utils/getSelectOptions';
 
 const propTypes = {
     name: PropTypes.string,
@@ -107,7 +102,7 @@ const Position = ({
                             name={name}
                             autoComplete="off"
                             value={`${axisOption}-${crossOption}`}
-                            onChange={e => {
+                            onChange={(e) => {
                                 if (onChange !== null) {
                                     onChange(
                                         e.currentTarget.checked

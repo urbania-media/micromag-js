@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { faCogs, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faCogs } from '@fortawesome/free-solid-svg-icons/faCogs';
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 // import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';

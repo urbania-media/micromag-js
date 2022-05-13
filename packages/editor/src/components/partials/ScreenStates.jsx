@@ -1,5 +1,6 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import { faPlus, faCogs } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faCogs } from '@fortawesome/free-solid-svg-icons/faCogs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';

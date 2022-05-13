@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
+import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRedo, faPlay } from '@fortawesome/free-solid-svg-icons';
-
-import PlaceholderBlock from '../partials/PlaceholderBlock';
-
+import React from 'react';
 import styles from '../../styles/placeholders/placeholders.module.scss';
+import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 export const VideoLoop = ({ width, height, className }) => (
     <PlaceholderBlock width={width} height={height} className={className}>

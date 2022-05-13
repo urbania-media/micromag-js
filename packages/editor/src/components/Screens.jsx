@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import isString from 'lodash/isString';

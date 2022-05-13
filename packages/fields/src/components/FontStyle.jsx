@@ -1,5 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import { faBold, faItalic, faUnderline } from '@fortawesome/free-solid-svg-icons';
+import { faBold } from '@fortawesome/free-solid-svg-icons/faBold';
+import { faItalic } from '@fortawesome/free-solid-svg-icons/faItalic';
+import { faUnderline } from '@fortawesome/free-solid-svg-icons/faUnderline';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
@@ -7,7 +9,12 @@ import Checkboxes from './Checkboxes';
 
 const propTypes = {
     value: PropTypes.shape({}),
-    options: PropTypes.arrayOf(PropTypes.object),
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            value: PropTypes.string,
+            label: PropTypes.node,
+        }),
+    ),
     onChange: PropTypes.func,
 };
 

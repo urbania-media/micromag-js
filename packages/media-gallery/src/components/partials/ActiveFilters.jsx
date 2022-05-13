@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/label-has-associated-control, react/jsx-indent */
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@micromag/core/components';
 import classNames from 'classnames';

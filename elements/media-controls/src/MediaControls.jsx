@@ -1,4 +1,6 @@
-import { faPlay, faPause, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { faPause } from '@fortawesome/free-solid-svg-icons/faPause';
+import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons/faVolumeUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import isString from 'lodash/isString';

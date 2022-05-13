@@ -1,13 +1,12 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons/faAngleUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
-
-import Button from '../buttons/Button';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useState, useCallback } from 'react';
 import styles from '../../styles/partials/collapsable-panel.module.scss';
+import Button from '../buttons/Button';
 
 const propTypes = {
     title: PropTypes.node,

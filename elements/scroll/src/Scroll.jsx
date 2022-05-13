@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useScroll } from '@use-gesture/react';
 import classNames from 'classnames';

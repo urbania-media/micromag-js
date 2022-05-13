@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClone } from '@fortawesome/free-solid-svg-icons';
+import { faClone } from '@fortawesome/free-solid-svg-icons/faClone';
 import { Button } from '@micromag/core/components';
 
 const propTypes = {
