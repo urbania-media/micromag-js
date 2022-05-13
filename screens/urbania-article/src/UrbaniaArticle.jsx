@@ -205,7 +205,7 @@ const UrbaniaArticle = ({
                 ) : null}
             </ScreenElement>
         ) : null,
-        !isVideo && hasDescription ? (
+        hasDescription ? (
             <ScreenElement
                 key="description"
                 empty={
@@ -246,7 +246,7 @@ const UrbaniaArticle = ({
                     {sponsorPrefix !== null ? (
                         <span className={styles.sponsor}>{sponsorPrefix}</span>
                     ) : null}
-                    &nbsp;
+                    <span>&nbsp;</span>
                     <Heading className={styles.sponsor} size="6" {...sponsor} />
                 </div>
             ) : null}

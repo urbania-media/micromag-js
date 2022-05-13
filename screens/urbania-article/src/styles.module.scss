@@ -115,11 +115,15 @@ $color-universities-text: #f33;
             display: inline-block;
             width: 100%;
             margin-top: auto;
-            padding: 0 10px 4px;
+            padding: 2px 10px 4px;
             background-color: $color-urbania-background;
             color: $color-urbania-text;
             letter-spacing: 0.04em;
-            line-height: 1;
+            line-height: 0.7;
+
+            p, span {
+                line-height: 0.7;
+            }
         }
 
         .sponsor {
@@ -127,7 +131,7 @@ $color-universities-text: #f33;
             font-family: 'Agrandir';
             font-size: 9px;
             font-weight: 400;
-            line-height: 1;
+            line-height: 0.7;
             text-transform: uppercase;
         }
 
@@ -260,7 +264,12 @@ $color-universities-text: #f33;
 
             .title {
                 color: $color-video-title;
-                text-shadow: 2px 2px 0 $color-video-outline;
+                text-shadow: 0 0 6px $color-video-outline;
+            }
+
+            .description {
+                color: $color-video-title;
+                text-shadow: 0 0 6px $color-video-outline;
             }
 
             .sponsors {
