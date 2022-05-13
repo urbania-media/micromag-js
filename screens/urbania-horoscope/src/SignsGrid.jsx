@@ -38,8 +38,7 @@ const propTypes = {
         }),
     ),
     signSubtitle: MicromagPropTypes.headingElement,
-    activeSignId: PropTypes.string,
-    setActiveSignId: PropTypes.func,
+    currentSign: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -47,14 +46,15 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitionDisabled: PropTypes.bool,
+    onClickSign: PropTypes.func,
+    onClickClose: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     signs: null,
     signSubtitle: null,
-    activeSignId: null,
-    setActiveSignId: null,
+    currentSign: null,
     width: null,
     height: null,
     background: null,
@@ -62,14 +62,15 @@ const defaultProps = {
     current: true,
     active: true,
     transitionDisabled: false,
+    onClickSign: null,
+    onClickClose: null,
     className: null,
 };
 
 const SignsGrid = ({
     signs,
     signSubtitle,
-    activeSignId,
-    setActiveSignId,
+    currentSign: currentSignId,
     width,
     height,
     background,
@@ -77,15 +78,14 @@ const SignsGrid = ({
     current,
     active,
     transitionDisabled,
+    onClickSign,
+    onClickClose,
     className,
 }) => {
-    // const [activeSignId, setActiveSignId] = useState(null);
-    const activeSign = signs.find(({ id = null }) => activeSignId === id) || null;
-    const closeModal = useCallback(() => setActiveSignId(null), [activeSignId, setActiveSignId]);
+    const currentSign = signs.find(({ id = null }) => currentSignId === id) || null;
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
-
     return (
         <div
             className={classNames([
@@ -116,7 +116,7 @@ const SignsGrid = ({
                         </Button>
                     ) : null}
                     <TransitionGroup>
-                        {!activeSignId ? (
+                        {currentSign === null ? (
                             <CSSTransition
                                 key="grid"
                                 classNames={styles}
@@ -157,7 +157,11 @@ const SignsGrid = ({
                                                 <Button
                                                     className={styles.gridElement}
                                                     type="button"
-                                                    onClick={() => setActiveSignId(id)}
+                                                    onClick={() => {
+                                                        if (onClickSign !== null) {
+                                                            onClickSign(id);
+                                                        }
+                                                    }}
                                                 >
                                                     {image !== null ? (
                                                         <img
@@ -188,7 +192,7 @@ const SignsGrid = ({
                         ) : (
                             <CSSTransition key="modal" classNames={styles} timeout={500}>
                                 <div className={styles.modalContainer}>
-                                    <Button onClick={closeModal} className={styles.backButton}>
+                                    <Button onClick={onClickClose} className={styles.backButton}>
                                         <span className={styles.arrow}>←</span>
                                         <span className={styles.backLabel}>
                                             <FormattedMessage
@@ -201,7 +205,7 @@ const SignsGrid = ({
                                         width={width}
                                         height={height}
                                         className={styles.signModal}
-                                        sign={activeSign}
+                                        sign={currentSign}
                                         subtitle={signSubtitle}
                                         transitionDisabled={transitionDisabled}
                                     />

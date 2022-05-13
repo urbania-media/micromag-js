@@ -11,6 +11,7 @@ import { getStyleFromColor, isIos, isValidUrl } from '@micromag/core/utils';
 import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
 import WebView from '@micromag/element-webview';
+import isString from 'lodash/isString';
 import ArrowIcon from './ArrowIcon';
 import styles from './styles.module.scss';
 
@@ -120,7 +121,7 @@ function CallToAction({
     const onClickLink = useCallback(
         (action = 'click') => {
             if (trackEvent !== null) {
-                trackEvent('call_to_action', action, url);
+                trackEvent('call_to_action', isString(action) ? action : 'click', url);
             }
             if (onClick !== null) {
                 onClick();
