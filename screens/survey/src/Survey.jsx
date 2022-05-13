@@ -313,7 +313,7 @@ const SurveyScreen = ({
                                                         }
                                                         focusable={current && isView}
                                                         buttonStyle={{
-                                                            ...getStyleFromBox(buttonsStyle),
+                                                            ...buttonsStyle,
                                                             ...getStyleFromBox(answerButtonStyle),
                                                             ...(answered
                                                                 ? { textAlign: 'left' }

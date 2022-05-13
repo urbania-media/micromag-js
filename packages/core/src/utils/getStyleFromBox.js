@@ -49,7 +49,7 @@ const getStyleFromBox = (value) => {
         ...getStyleFromColor(backgroundColor, 'backgroundColor'),
         ...(borderRadius !== null ? { borderRadius } : null),
         ...getStyleFromBorder(border),
-        ...(shadowAngle ? getStyleFromShadow(shadow) : null),
+        ...getStyleFromShadow(shadow),
         ...(padding !== null || paddingValue !== null
             ? { padding: padding || paddingValue }
             : null),

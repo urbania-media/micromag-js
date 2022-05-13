@@ -37,6 +37,16 @@
                 "url": "https://urbania.ca",
                 "label": {
                     "body": "En apprendre plusse"
+                },
+                "boxStyle": {
+                    "borderRadius": 5,
+                    "shadowAngle": 45,
+                    "shadowDistance": 6,
+                    "shadowBlur": 0,
+                    "shadowColor": {
+                        "color": "#ff0000",
+                        "alpha": 1
+                    }
                 }
             },
             "quote": {

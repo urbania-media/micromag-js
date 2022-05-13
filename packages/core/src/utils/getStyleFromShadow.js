@@ -6,14 +6,18 @@ const getStyleFromShadow = (value) => {
         return null;
     }
     const {
-        shadowAngle = 0,
-        shadowDistance = 5,
-        shadowBlur = 0,
-        shadowColor = '#000000',
+        shadowAngle = null,
+        shadowDistance = null,
+        shadowBlur = null,
+        shadowColor = null
     } = value || {};
-    const color = getColorAsString(shadowColor);
+
+    if (!shadowAngle) return null;
+
+    const blur = shadowBlur || '0';
+    const color = getColorAsString(shadowColor) || '#000000';
     const {x, y} = getShadowCoords(shadowAngle, shadowDistance);
-    const boxShadow = `${x}px ${y}px ${shadowBlur}px 0 ${color}`;
+    const boxShadow = `${x}px ${y}px ${blur}px 0 ${color}`;
 
     return {
         boxShadow
