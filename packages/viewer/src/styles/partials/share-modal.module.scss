@@ -45,13 +45,14 @@
     padding: 1rem;
 }
 
-// more specificity needed here
+// more specificity was needed here
 .container .heading {
     font-size: 1.25rem;
     font-weight: 700;
 }
 
 .close {
+    @extend %reset-button;
     margin: -2px -2px 0 0; // @todo counteracts the border (it's included in svg viewBox...)
     margin-left: auto;
     padding: 0;

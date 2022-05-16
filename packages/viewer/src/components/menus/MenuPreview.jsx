@@ -16,6 +16,7 @@ import { useResizeObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
 import styles from '../../styles/menus/menu-preview.module.scss';
+import StackIcon from '../icons/Stack';
 import ShareButton from '../partials/ShareButton';
 
 const propTypes = {
@@ -213,7 +214,6 @@ const ViewerMenuPreview = ({
                         <ul className={styles.items}>
                             {finalItems.map((item, index) => {
                                 const { screenId, current = false, screen, count = 1 } = item;
-
                                 const screenAriaLabel = `${intl.formatMessage(
                                     {
                                         defaultMessage: 'Screen {index}',
@@ -246,6 +246,14 @@ const ViewerMenuPreview = ({
                                                 className={styles.screenContainer}
                                                 ref={index === 0 ? firstScreenContainerRef : null}
                                             >
+                                                {count > 1 ? (
+                                                    <div className={styles.subScreenBadge}>
+                                                        <span className={styles.subScreenCount}>
+                                                            {count}
+                                                        </span>
+                                                        <StackIcon className={styles.subScreenIcon}/>
+                                                    </div>
+                                                ): null}
                                                 {screenWidth > 0 && screenHeight > 0 ? (
                                                     <ScreenPreview
                                                         screenWidth={screenWidth}
