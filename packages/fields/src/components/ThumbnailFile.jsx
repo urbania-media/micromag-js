@@ -2,6 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
+import { FormattedMessage } from 'react-intl';
 import styles from '../styles/thumbnail-file.module.scss';
 import Radios from './Radios';
 
@@ -56,7 +57,11 @@ function ThumbnailFile({ value, fieldName, onChange, className, ...props }) {
                   })
             : null;
     }, [media]);
-    return (
+    return options === null ? (
+        <div className="card card-body">
+            <FormattedMessage defaultMessage="No thumbnail" description="Field no value label" />
+        </div>
+    ) : (
         <Radios
             value={thumbnailValue}
             options={options || []}
