@@ -12,6 +12,8 @@ import Gallery from './lists/Gallery';
 import MediaMetadata from './partials/MediaMetadata';
 import Navbar from './partials/Navbar';
 
+const videoTypes = ['video', 'image/gif'];
+
 const propTypes = {
     type: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     source: PropTypes.string,
@@ -196,7 +198,7 @@ function MediaGallery({
             {createPortal(
                 (
                     <UploadModal
-                        type={type === 'video' ? ['video', 'image/gif'] : type}
+                        type={type === 'video' ? videoTypes : type}
                         opened={uploadModalOpened}
                         onUploaded={onUploadCompleted}
                         onRequestClose={onUploadRequestClose}

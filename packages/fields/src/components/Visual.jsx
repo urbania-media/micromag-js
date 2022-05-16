@@ -6,6 +6,8 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MediaField from './Media';
 
+const visualTypes = ['video', 'image'];
+
 const propTypes = {
     value: MicromagPropTypes.videoMedia,
 };
@@ -23,7 +25,7 @@ const VisualField = (props) => (
             />
         }
         {...props}
-        type={['video', 'image']}
+        type={visualTypes}
     />
 );
 
