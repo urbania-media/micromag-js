@@ -48,6 +48,7 @@ export { default as markerWithImage } from './marker-with-image';
 export { default as markers } from './markers';
 export { default as markersWithImage } from './markers-with-image';
 export { default as mapZoom } from './map-zoom';
+export { default as mediaThumbnail } from './media-thumbnail';
 export { default as message } from './message';
 export { default as messages } from './messages';
 export { default as metadata } from './metadata';

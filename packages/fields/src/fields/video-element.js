@@ -49,5 +49,13 @@ export default {
                 description: 'Field label',
             }),
         },
+        {
+            fieldName: 'thumbnailFile',
+            type: 'media-thumbnail',
+            label: defineMessage({
+                defaultMessage: 'Thumbnail',
+                description: 'Field label',
+            }),
+        },
     ],
 };

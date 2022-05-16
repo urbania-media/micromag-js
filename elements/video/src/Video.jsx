@@ -10,6 +10,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.videoMedia,
+    thumbnailFile: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     apiRef: PropTypes.oneOfType([
@@ -42,6 +43,7 @@ const propTypes = {
 
 const defaultProps = {
     media: null,
+    thumbnailFile: null,
     width: null,
     height: null,
     apiRef: null,
@@ -69,6 +71,7 @@ const defaultProps = {
 
 const Video = ({
     media,
+    thumbnailFile,
     width,
     height,
     apiRef,
@@ -97,10 +100,14 @@ const Video = ({
         url: mediaUrl = null,
         files = null,
         metadata = null,
-        thumbnail_url: thumbnailUrl = null,
+        thumbnail_url: defaultThumbnailUrl = null,
     } = media || {};
     const { description = null, mime: mediaMime = null } = metadata || {};
     const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
+    const { url: thumbnailUrl = defaultThumbnailUrl } =
+        (thumbnailFile !== null
+            ? filesArray.find(({ handle }) => handle === thumbnailFile) || null
+            : null) || {};
 
     // Get source files with supported mimes
     const sourceFiles = useMemo(() => {
@@ -172,20 +179,6 @@ const Video = ({
     }, [dataReady, onReady]);
 
     const withSize = width !== null && height !== null;
-
-    // const { thumbnail_url: thumbnailUrl = null } = media || {};
-
-    // useEffect(() => {
-    //     if (thumbnailUrl !== null) {
-    //         const img = new Image();
-    //         img.src = thumbnailUrl;
-    //         img.onload = () => {
-    //             if (onPosterLoaded) {
-    //                 onPosterLoaded();
-    //             }
-    //         };
-    //     }
-    // }, [thumbnailUrl]);
 
     useEffect(() => {
         if (autoPlay) {

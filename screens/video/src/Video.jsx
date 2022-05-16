@@ -16,6 +16,7 @@ import {
     useViewerNavigation,
 } from '@micromag/core/contexts';
 import { useTrackScreenMedia, useLongPress, useResizeObserver } from '@micromag/core/hooks';
+import { getMediaFilesAsArray } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -86,6 +87,7 @@ const VideoScreen = ({
     const {
         autoPlay = true,
         media: videoMedia = null,
+        thumbnailFile = null,
         closedCaptions = null,
         withSeekBar = false,
         withControls = false,
@@ -261,8 +263,18 @@ const VideoScreen = ({
     const {
         metadata: videoMetadata = null,
         url: videoUrl = null,
-        thumbnail_url: thumbnailUrl = null,
+        thumbnail_url: defaultThumbnailUrl = null,
+        files: videoFiles = null,
     } = videoMedia || {};
+    const thumbnailUrl = useMemo(() => {
+        const videoFilesArray = getMediaFilesAsArray(videoFiles) || [];
+        const { url } =
+            (thumbnailFile !== null
+                ? videoFilesArray.find(({ handle }) => handle === thumbnailFile) || null
+                : null) || {};
+        return url || defaultThumbnailUrl;
+    }, [videoFiles, thumbnailFile, defaultThumbnailUrl])
+
     const hasVideoUrl = videoUrl !== null;
 
     // const hasThumbnail = thumbnailUrl !== null;

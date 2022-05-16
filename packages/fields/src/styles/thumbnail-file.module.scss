@@ -1,0 +1,15 @@
+@use 'sass:math';
+@import '~@micromag/core/scss/variables';
+
+.container {
+    display: flex;
+
+    .thumbnail {
+        width: 100%;
+    }
+
+    .button {
+        flex-grow: 1;
+        padding: 4px;
+    }
+}
