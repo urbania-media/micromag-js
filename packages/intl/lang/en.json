@@ -152,6 +152,9 @@
     "4iBXj2": {
         "defaultMessage": "Layout"
     },
+    "4kSwvn": {
+        "defaultMessage": "Thumbnail"
+    },
     "507VAi": {
         "defaultMessage": "Description"
     },
@@ -611,6 +614,9 @@
     "XKcyqx": {
         "defaultMessage": "Taurus"
     },
+    "XRmkEh": {
+        "defaultMessage": "Link copied to clipboard!"
+    },
     "XS4j3F": {
         "defaultMessage": "Intro"
     },
@@ -970,6 +976,9 @@
     },
     "qKQCxc": {
         "defaultMessage": "Add a marker"
+    },
+    "qTdBzB": {
+        "defaultMessage": "No thumbnail"
     },
     "qhjeuO": {
         "defaultMessage": "Padding"

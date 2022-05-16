@@ -317,6 +317,12 @@ msgctxt "4iBXj2"
 msgid "Layout"
 msgstr "Disposition"
 
+# Field label
+#: 4kSwvn
+msgctxt "4kSwvn"
+msgid "Thumbnail"
+msgstr "Vignette"
+
 # Description placeholder
 #: 507VAi
 msgctxt "507VAi"
@@ -1234,6 +1240,12 @@ msgctxt "XKcyqx"
 msgid "Taurus"
 msgstr "Taureau"
 
+# Message displayed once text was copied successfully.
+#: XRmkEh
+msgctxt "XRmkEh"
+msgid "Link copied to clipboard!"
+msgstr "Lien copié dans le presse-papier"
+
 #  Horoscope state
 #: XS4j3F
 msgctxt "XS4j3F"
@@ -1951,6 +1963,12 @@ msgstr "Enregistrer"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
+
+# Field no value label
+#: qTdBzB
+msgctxt "qTdBzB"
+msgid "No thumbnail"
+msgstr "Aucune image"
 
 # Field label
 #: qhjeuO

@@ -203,6 +203,10 @@
     "defaultMessage": "Layout",
     "description": "Layout field label"
   },
+  "4kSwvn": {
+    "defaultMessage": "Thumbnail",
+    "description": "Field label"
+  },
   "507VAi": {
     "defaultMessage": "Description",
     "description": "Description placeholder"
@@ -814,6 +818,10 @@
     "defaultMessage": "Taurus",
     "description": "Horoscope sign"
   },
+  "XRmkEh": {
+    "defaultMessage": "Link copied to clipboard!",
+    "description": "Message displayed once text was copied successfully."
+  },
   "XS4j3F": {
     "defaultMessage": "Intro",
     "description": " Horoscope state"
@@ -1291,6 +1299,10 @@
   "qKQCxc": {
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
+  },
+  "qTdBzB": {
+    "defaultMessage": "No thumbnail",
+    "description": "Field no value label"
   },
   "qhjeuO": {
     "defaultMessage": "Padding",
