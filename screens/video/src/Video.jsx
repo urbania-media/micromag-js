@@ -15,8 +15,12 @@ import {
     useScreenRenderContext,
     useViewerNavigation,
 } from '@micromag/core/contexts';
-import { useTrackScreenMedia, useLongPress, useResizeObserver } from '@micromag/core/hooks';
-import { getMediaFilesAsArray } from '@micromag/core/utils';
+import {
+    useTrackScreenMedia,
+    useLongPress,
+    useResizeObserver,
+    useMediaThumbnail,
+} from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -260,20 +264,8 @@ const VideoScreen = ({
         [hasVideo, video, isPreview, isStatic, isCapture, autoPlay, current],
     );
 
-    const {
-        metadata: videoMetadata = null,
-        url: videoUrl = null,
-        thumbnail_url: defaultThumbnailUrl = null,
-        files: videoFiles = null,
-    } = videoMedia || {};
-    const thumbnailUrl = useMemo(() => {
-        const videoFilesArray = getMediaFilesAsArray(videoFiles) || [];
-        const { url } =
-            (thumbnailFile !== null
-                ? videoFilesArray.find(({ handle }) => handle === thumbnailFile) || null
-                : null) || {};
-        return url || defaultThumbnailUrl;
-    }, [videoFiles, thumbnailFile, defaultThumbnailUrl])
+    const { metadata: videoMetadata = null, url: videoUrl = null } = videoMedia || {};
+    const thumbnailUrl = useMediaThumbnail(videoMedia, thumbnailFile);
 
     const hasVideoUrl = videoUrl !== null;
 
@@ -310,7 +302,7 @@ const VideoScreen = ({
     //     setPosterReady(true);
     // }, [isStatic, isCapture, setPosterReady]);
 
-    const visibleControls = withControls && ( (!autoPlay && !playing) || muted || showMediaControls);
+    const visibleControls = withControls && ((!autoPlay && !playing) || muted || showMediaControls);
 
     const items = [
         <ScreenElement
@@ -449,11 +441,11 @@ const VideoScreen = ({
                                 focusable={false}
                                 className={classNames([
                                     styles.bottomSeekBar,
-                                    { [styles.isHidden]: visibleControls }
+                                    { [styles.isHidden]: visibleControls },
                                 ])}
                                 isSmall
                             />
-                        ): null}
+                        ) : null}
                     </div>
                 </Transitions>
             </div>

@@ -9,6 +9,7 @@ export { default as useLoadedFonts } from './useLoadedFonts';
 export { default as useLongPress } from './useLongPress';
 export { default as useMediaApi } from './useMediaApi';
 export { default as useMediasParser } from './useMediasParser';
+export { default as useMediaThumbnail } from './useMediaThumbnail';
 export * from './useObserver';
 export { default as useParsedStory } from './useParsedStory';
 export * from './useScreenSize';

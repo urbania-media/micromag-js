@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useUserInteracted } from '@micromag/core/contexts';
-import { useMediaApi } from '@micromag/core/hooks';
+import { useMediaApi, useMediaThumbnail } from '@micromag/core/hooks';
 import { getMediaFilesAsArray } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
@@ -96,18 +96,10 @@ const Video = ({
     supportedMimes,
     // onPosterLoaded,
 }) => {
-    const {
-        url: mediaUrl = null,
-        files = null,
-        metadata = null,
-        thumbnail_url: defaultThumbnailUrl = null,
-    } = media || {};
+    const { url: mediaUrl = null, files = null, metadata = null } = media || {};
     const { description = null, mime: mediaMime = null } = metadata || {};
     const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
-    const { url: thumbnailUrl = defaultThumbnailUrl } =
-        (thumbnailFile !== null
-            ? filesArray.find(({ handle }) => handle === thumbnailFile) || null
-            : null) || {};
+    const thumbnailUrl = useMediaThumbnail(media, thumbnailFile);
 
     // Get source files with supported mimes
     const sourceFiles = useMemo(() => {
