@@ -45,10 +45,10 @@
     padding: 1rem;
 }
 
-// more specificity was needed here
-.container .heading {
-    font-size: 1.25rem;
-    font-weight: 700;
+.heading {
+    // @todo more specificity was needed here because viewer sets styles to headings h2, h3, etc.
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
 }
 
 .close {
@@ -90,23 +90,23 @@
     font-weight: normal;
 }
 
-// copy link section
 .otherOptions {
     padding: 1rem;
 }
 
 .copyLink {
     display: flex;
-    border: 1px solid $black;
+    border: 1px solid currentColor;
     border-radius: 0.5rem;
     background-color: $white;
+    color: $black;
 }
 
 .screenUrlInput {
     flex-grow: 1;
     padding: 0.75rem;
     border: 0;
-    border-right: 1px solid $black;
+    border-right: 1px solid currentColor;
     border-radius: 0.5rem 0 0 0.5rem;
     background-color: $white;
 }
@@ -114,10 +114,15 @@
 .copyUrlButton {
     padding: 0.5rem;
     border: 0;
+    color: $black;
+
+    &:hover {
+        color: $black;
+    }
 }
 
 .linkIcon {
-    padding: 0.5rem;
+    padding: 0.25rem;
 }
 
 .successfulCopyMessage {
@@ -127,7 +132,7 @@
     padding: 0.25rem 0.5rem;
     transform: translate(-50%, 0.5rem);
     transition: opacity 0.2s ease-out, transform 0.2s ease-out;
-    border: 1px solid $black;
+    border: 1px solid currentColor;
     border-radius: 0.5rem;
     opacity: 0;
     background-color: $white;
