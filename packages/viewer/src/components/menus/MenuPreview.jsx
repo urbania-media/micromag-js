@@ -263,8 +263,6 @@ const ViewerMenuPreview = ({
                                                         focusable={focusable}
                                                         active={focusable}
                                                         withSize
-                                                        // withStack
-                                                        // stackCount={count}
                                                     />
                                                 ) : null}
                                                 {current ? (

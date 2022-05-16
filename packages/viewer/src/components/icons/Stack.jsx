@@ -13,29 +13,14 @@ const defaultProps = {
 const StackIcon = ({ className }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        width="49.818"
-        height="52"
-        viewBox="0 0 15.818 19"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
         className={classNames([
             { [className]: className !== null },
         ])}
     >
-        <defs>
-            <filter id="Icon_material-content-copy" x="0" y="0" width="49.818" height="52" filterUnits="userSpaceOnUse">
-                <feOffset dy="3" input="SourceAlpha"/>
-                <feGaussianBlur stdDeviation="6" result="blur"/>
-                <feFlood floodOpacity="0.161"/>
-                <feComposite operator="in" in2="blur"/>
-                <feComposite in="SourceGraphic"/>
-            </filter>
-        </defs>
-        <g filter="url(#Icon_material-content-copy)">
-            <path
-                d="M13.182,1.5H4.455A1.459,1.459,0,0,0,3,2.955V13.136H4.455V2.955h8.727Zm2.182,2.909h-8A1.459,1.459,0,0,0,5.909,5.864V16.045A1.459,1.459,0,0,0,7.364,17.5h8a1.459,1.459,0,0,0,1.455-1.455V5.864A1.459,1.459,0,0,0,15.364,4.409Zm0,11.636h0Z"
-                fill="#fff"
-            />
-        </g>
+        <path d="M22.33.15H5A2.9,2.9,0,0,0,2.12,3V23.25H5V3H22.33Zm4.33,5.78H10.78A2.9,2.9,0,0,0,7.89,8.81V29a2.9,2.9,0,0,0,2.89,2.89H26.66A2.89,2.89,0,0,0,29.55,29V8.81A2.88,2.88,0,0,0,26.66,5.93Zm0,23.09Z"/>
     </svg>
 );
 
