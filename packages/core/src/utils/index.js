@@ -1,4 +1,5 @@
 export { default as convertStyleToString } from './convertStyleToString';
+export { default as copyToClipboard } from './copyToClipboard';
 export { default as createNullableOnChange } from './createNullableOnChange';
 export { default as createUseEvent } from './createUseEvent';
 export { default as getColorAsString } from './getColorAsString';
