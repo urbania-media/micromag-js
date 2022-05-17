@@ -16,7 +16,7 @@ import {
 import { useDocumentEvent } from '@micromag/core/hooks';
 import { copyToClipboard } from '@micromag/core/utils';
 import { Button, Close } from '@micromag/core/components';
-import LinkIcon from '../icons/Link'; // @todo replace with proper symbol
+import LinkIcon from '../icons/Link';
 import styles from '../../styles/partials/share-modal.module.scss';
 
 const propTypes = {
