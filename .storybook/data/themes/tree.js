@@ -1,3 +1,5 @@
+import { audioMedia } from '../../data';
+
 export const defaultTheme = {
     type: 'story',
     title: 'Tree story',
@@ -9,7 +11,12 @@ export const defaultTheme = {
             text: {
                 body: 'Test body 3',
             },
-            background: { color: { color: '#F00', alpha: 1 }, image: null, video: null },
+            background: {
+                color: { color: '#F00', alpha: 1 },
+                image: null,
+                video: null,
+                audio: audioMedia()
+            },
         },
         {
             id: '1111111111',

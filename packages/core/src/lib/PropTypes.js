@@ -395,6 +395,7 @@ export const backgroundElement = PropTypes.shape({
     color,
     image: imageMedia,
     video: videoMedia,
+    audio: audioMedia,
 });
 
 export const imageElementWithCaption = PropTypes.shape({

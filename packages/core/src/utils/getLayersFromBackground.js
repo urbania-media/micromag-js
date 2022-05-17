@@ -5,7 +5,7 @@ const getLayersFromBackground = (background = null) => {
         return [];
     }
     return (isArray(background) ? background : [background]).reduce(
-        (layers, { image = null, video = null, media = null, ...data }) => {
+        (layers, { image = null, video = null, media = null, audio = null, ...data }) => {
             if (image !== null && video !== null) {
                 return [
                     ...layers,
@@ -17,12 +17,16 @@ const getLayersFromBackground = (background = null) => {
                         media: video,
                         ...data,
                     },
+                    {
+                        media: audio,
+                        ...data,
+                    },
                 ];
             }
             return [
                 ...layers,
                 {
-                    media: media || image || video,
+                    media: media || image || video || audio,
                     ...data,
                 },
             ];

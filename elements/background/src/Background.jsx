@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getOptimalImageUrl, getStyleFromColor } from '@micromag/core/utils';
+import Audio from '@micromag/element-audio';
 import Video from '@micromag/element-video';
 import styles from './styles.module.scss';
 
@@ -17,7 +18,7 @@ const propTypes = {
     verticalAlign: PropTypes.string,
     repeat: PropTypes.bool,
     color: MicromagPropTypes.color,
-    media: PropTypes.oneOfType([MicromagPropTypes.imageMedia, MicromagPropTypes.videoMedia]),
+    media: PropTypes.oneOfType([MicromagPropTypes.imageMedia, MicromagPropTypes.videoMedia, MicromagPropTypes.audioMedia]),
     className: PropTypes.string,
     playing: PropTypes.bool,
     children: PropTypes.node,
@@ -66,6 +67,7 @@ const Background = ({
     const { width: mediaWidth = 0, height: mediaHeight = 0 } = mediaMetadata || {};
     const isVideo = mediaType === 'video';
     const isImage = mediaType === 'image';
+    const isAudio = mediaType === 'audio';
 
     // Lazy load
     const newShouldLoad = shouldLoad || loadingMode !== 'lazy';
@@ -124,6 +126,10 @@ const Background = ({
         }
     }
 
+    // @todo audio controls
+    // const audioContainerStyle = {};
+    // if (isAudio && playing) {}
+
     return (
         <div
             className={classNames([
@@ -141,8 +147,23 @@ const Background = ({
                         media={media}
                         autoPlay={playing}
                         initialMuted
-                        loop
                         shouldLoad={shouldLoad}
+                        loop
+                    />
+                </div>
+            ) : null}
+            {isAudio && playing ? (
+                <div
+                    className={styles.audioContainer}
+                    // style={audioContainerStyle}
+                >
+                    <Audio
+                        // className={styles.audio}
+                        // shouldLoad={shouldLoad}
+                        media={media}
+                        autoPlay={playing}
+                        initialMuted={false}
+                        loop
                     />
                 </div>
             ) : null}

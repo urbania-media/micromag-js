@@ -40,6 +40,18 @@ export default {
                 description: 'Breadcrumb field label',
             }),
         },
+        {
+            name: 'audio',
+            type: 'audio',
+            label: defineMessage({
+                defaultMessage: 'Sound',
+                description: 'Field label',
+            }),
+            breadcrumbLabel: defineMessage({
+                defaultMessage: 'Background sound',
+                description: 'Breadcrumb field label',
+            }),
+        },
     ],
     settings: [
         {
