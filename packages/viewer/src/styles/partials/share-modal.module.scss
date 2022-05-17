@@ -91,7 +91,7 @@
 }
 
 .otherOptions {
-    padding: 1rem;
+    padding: 2rem 1rem 0.25rem;
 }
 
 .copyLink {
@@ -103,6 +103,7 @@
 }
 
 .screenUrlInput {
+    @extend %reset-input;
     flex-grow: 1;
     padding: 0.75rem;
     border: 0;
@@ -112,8 +113,10 @@
 }
 
 .copyUrlButton {
+    @extend %reset-button;
     padding: 0.5rem;
     border: 0;
+    border-radius: 0 0.5rem 0.5rem 0;
     color: $black;
 
     &:hover {
