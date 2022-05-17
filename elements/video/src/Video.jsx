@@ -228,7 +228,7 @@ const Video = ({
                 <video
                     key={mediaUrl}
                     ref={ref}
-                    src={sourceFiles === null ? mediaUrl : null}
+                    src={sourceFiles === null || sourceFiles.length === 0 ? mediaUrl : null}
                     autoPlay={autoPlay}
                     loop={loop}
                     muted={muted}

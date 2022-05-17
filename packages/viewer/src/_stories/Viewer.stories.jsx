@@ -172,6 +172,9 @@ export const MultipleVideos = () => (
                         withControls: true,
                         autoPlay: true,
                     },
+                    background: {
+                        color: { alpha: 1, color: '#FFFF00' },
+                    },
                     gotoNextScreenOnEnd: true,
                 },
                 {

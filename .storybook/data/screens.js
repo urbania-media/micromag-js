@@ -315,23 +315,6 @@ export const allScreens = [
         },
         callToAction: callToAction(),
     },
-    // {
-    //     id: uuid(),
-    //     type: 'video-360',
-    //     layout: 'full',
-    //     video: {
-    //         media: video360Media(),
-    //         autoPlay: false,
-    //         loop: true,
-    //         closedCaptions: closedCaptionsMedia(),
-    //         withSeekBar: true,
-    //     },
-    //     background: {
-    //         color: { alpha: 1, color: '#FF00FF'},
-    //     },
-    //
-    //     callToAction: callToAction(),
-    // },
 ];
 
 export default allScreens;
