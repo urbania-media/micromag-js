@@ -301,7 +301,6 @@ const SurveyScreen = ({
                                                 <div
                                                     className={styles.itemInner}
                                                     style={{
-                                                        // width: buttonMaxWidth,
                                                         transitionDuration: finalTransitionDuration,
                                                     }}
                                                 >
@@ -314,7 +313,7 @@ const SurveyScreen = ({
                                                         focusable={current && isView}
                                                         buttonStyle={{
                                                             ...buttonsStyle,
-                                                            ...getStyleFromBox(answerButtonStyle),
+                                                            ...answerButtonStyle,
                                                             ...(answered
                                                                 ? { textAlign: 'left' }
                                                                 : null),
