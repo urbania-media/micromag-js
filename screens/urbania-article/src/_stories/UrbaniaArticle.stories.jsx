@@ -7,24 +7,22 @@ import {
     callToAction,
     videoMedia,
 } from '../../../../.storybook/data';
-//  videoMedia,
 import Article from '../UrbaniaLoader';
 import definition from '../definition';
 import testArticle from './article.json';
 import testVideo from './video.json';
 
-// import videoArticle from './video.json';
 const video = (props) => ({
     ...props,
     type: 'video',
     media: videoMedia(),
     autoPlay: true,
+    article: testVideo,
     loop: false,
 });
 
 const props = () => ({
     image: video(null),
-    // video: null,
     article: testArticle,
     background: backgroundColor(),
     transitions: transitions(),
@@ -52,7 +50,7 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
 export const Video = (storyProps) => (
-    <Article {...storyProps} type="video" image={videoMedia()} callToAction={callToAction()} />
+    <Article {...storyProps} {...video()} type="video" image={videoMedia()} callToAction={callToAction()} />
 );
 
 export const CallToAction = (storyProps) => (

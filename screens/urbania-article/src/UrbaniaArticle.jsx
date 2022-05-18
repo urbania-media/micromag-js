@@ -183,7 +183,7 @@ const UrbaniaArticle = ({
         >
             {hasTitle ? <Heading className={classNames([styles.title])} {...title} /> : null}
         </ScreenElement>,
-        !isVideo && !hasDescription ? (
+        !hasDescription ? (
             <ScreenElement
                 key="authors"
                 empty={
