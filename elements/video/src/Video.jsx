@@ -162,7 +162,7 @@ const Video = ({
         apiRef.current.mediaRef = ref;
     }
 
-    const { playing, muted, dataReady, play, pause, unMute } = api;
+    const { muted, dataReady, play, pause, unMute } = api;
 
     useEffect(() => {
         if (dataReady && onReady !== null) {
@@ -185,14 +185,16 @@ const Video = ({
 
     // Ensure load if preload value change over time
     const firstPreloadRef = useRef(preload);
-    const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata');
+    const firstShouldLoadRef = useRef(shouldLoad);
+    const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata' && shouldLoad);
     useEffect(() => {
         const { current: videoElement = null } = ref;
         const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad; // @todo
         const preloadHasChanged = firstPreloadRef.current !== preload;
+        const shouldLoadHasChanged = firstShouldLoadRef.current !== shouldLoad;
         if (
             canLoad &&
-            preloadHasChanged &&
+            (preloadHasChanged || shouldLoadHasChanged) &&
             !hasLoadedRef.current &&
             videoElement !== null &&
             typeof videoElement.load !== 'undefined'
@@ -208,7 +210,6 @@ const Video = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.paused]: !playing,
                     [styles.withSize]: withSize,
                 },
             ])}
@@ -233,7 +234,7 @@ const Video = ({
                     loop={loop}
                     muted={muted}
                     poster={shouldLoad ? thumbnailUrl : null}
-                    preload={shouldLoad ? preload : 'metadata'}
+                    preload={shouldLoad ? preload : 'none'}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     tabIndex={focusable ? '0' : '-1'}
