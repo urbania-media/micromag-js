@@ -22,7 +22,7 @@ const propTypes = {
     title: PropTypes.string,
     url: PropTypes.string,
     onShare: PropTypes.func,
-    onShareWindowClose: PropTypes.func,
+    onClose: PropTypes.func,
     focusable: PropTypes.bool,
 };
 
@@ -33,18 +33,18 @@ const defaultProps = {
     title: null,
     url: null,
     onShare: null,
-    onShareWindowClose: null,
+    onClose: null,
     focusable: true,
 };
 
 const ShareOptions = ({
     className,
     itemClassName,
-    labelClassName
+    labelClassName,
     title,
     url,
     onShare,
-    onShareWindowClose,
+    onClose,
     focusable,
 }) => {
     const onShareButtonClick = useCallback(
@@ -60,12 +60,12 @@ const ShareOptions = ({
         () => ({
             url,
             onShareWindowClose: () => {
-                if (onShareWindowClose !== null) {
-                    onShareWindowClose();
+                if (onClose !== null) {
+                    onClose();
                 }
             },
         }),
-        [url, onShareWindowClose],
+        [url, onClose],
     );
 
     const shareIconProps = useMemo(() => ({ size: 64, round: true }), []);
@@ -144,7 +144,7 @@ const ShareOptions = ({
     return (
         <div
             className={classNames([
-                style.container,
+                styles.container,
                 { [className]: className !== null },
             ])}
         >
@@ -152,14 +152,14 @@ const ShareOptions = ({
                 <div
                     key={id}
                     className={classNames([
-                        style.item,
+                        styles.item,
                         { [itemClassName]: itemClassName !== null },
                     ])}
                 >
                     {icon}
                     <div
                         className={classNames([
-                            style.container,
+                            styles.label,
                             { [labelClassName]: labelClassName !== null },
                         ])}
                     >

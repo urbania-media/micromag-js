@@ -315,6 +315,15 @@ export const allScreens = [
         },
         callToAction: callToAction(),
     },
+    {
+        id: uuid(),
+        type: 'share',
+        // layout: 'full',
+        heading: 'Share this micromag!',
+        background: {
+            color: { alpha: 1, color: '#00c28e' },
+        },
+    },
 ];
 
 export default allScreens;

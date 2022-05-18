@@ -62,36 +62,12 @@
     color: $black;
 }
 
-.content {
-    padding-bottom: 1rem;
-}
-
-.buttons {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+.shareOptions {
     padding: 0 1rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-.shareOption {
-    margin-right: 0.5rem;
-
-    &:last-child {
-        margin-right: 0;
-    }
-}
-
-.shareLabel {
-    margin-top: 0.5rem;
-    color: $gray-600;
-    font-size: 0.75rem;
-    font-weight: normal;
 }
 
 .otherOptions {
-    padding: 2rem 1rem 0.25rem;
+    padding: 2rem 1rem 1rem;
 }
 
 .copyLink {
