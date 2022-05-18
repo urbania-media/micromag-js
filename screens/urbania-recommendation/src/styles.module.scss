@@ -190,12 +190,11 @@
 
 @keyframes roll {
     0% {
-        background-position-y: -100vh;
+        background-position-y: -50vh;
     }
 
     100% {
         background-position-y: 0;
-        // background-position-y: 0;
     }
 }
 
