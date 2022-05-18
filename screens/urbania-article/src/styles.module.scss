@@ -51,10 +51,6 @@ $color-universities-text: #f33;
         height: 100%;
     }
 
-    .image {
-        //
-    }
-
     .video {
         @extend %fullscreen;
     }
@@ -287,5 +283,21 @@ $color-universities-text: #f33;
         .callToAction {
             position: relative;
         }
+    }
+}
+
+.image {
+    .isCurrent & {
+        animation: slowZoom 15s 1 ease-out forwards;
+    }
+}
+
+@keyframes slowZoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
     }
 }

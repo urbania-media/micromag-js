@@ -15,6 +15,7 @@ import {
     callToAction,
     conversation, // color,
 } from '../data';
+import article from './stories/article.json';
 
 export const allScreens = [
     {
@@ -310,6 +311,15 @@ export const allScreens = [
             withSeekBar: true,
             withControls: true,
         },
+        background: {
+            color: { alpha: 1, color: '#FF00FF' },
+        },
+        callToAction: callToAction(),
+    },
+    {
+        id: uuid(),
+        type: 'urbania-article',
+        article,
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },

@@ -259,6 +259,7 @@ const UrbaniaArticle = ({
                 styles.container,
                 {
                     [className]: className !== null,
+                    [styles.isCurrent]: current,
                     [styles.isVideo]: isVideo,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
