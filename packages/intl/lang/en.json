@@ -95,6 +95,9 @@
     "33UbSd": {
         "defaultMessage": "Timeline with images"
     },
+    "36zPWy": {
+        "defaultMessage": "Share option"
+    },
     "3E57H7": {
         "defaultMessage": "No marker..."
     },
@@ -161,8 +164,14 @@
     "59f2bg": {
         "defaultMessage": "Images"
     },
+    "5mk1b+": {
+        "defaultMessage": "Share"
+    },
     "5uH4x7": {
         "defaultMessage": "Submit"
+    },
+    "64JlRq": {
+        "defaultMessage": "Share"
     },
     "650XRF": {
         "defaultMessage": "Survey"
@@ -442,6 +451,9 @@
     },
     "Lrwi2G": {
         "defaultMessage": "Email"
+    },
+    "Ly1pYX": {
+        "defaultMessage": "Sharing options"
     },
     "M/FGRs": {
         "defaultMessage": "Libra"
@@ -1117,6 +1129,9 @@
     },
     "wt1+dM": {
         "defaultMessage": "Select an audio file..."
+    },
+    "wx5PI0": {
+        "defaultMessage": "Heading"
     },
     "xAzv6g": {
         "defaultMessage": "All sources"

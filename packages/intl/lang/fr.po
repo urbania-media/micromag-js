@@ -203,6 +203,12 @@ msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Ligne du temps avec images"
 
+# Breadcrumb field label
+#: 36zPWy
+msgctxt "36zPWy"
+msgid "Share option"
+msgstr ""
+
 # Label when there is no item in markers field
 #: 3E57H7
 msgctxt "3E57H7"
@@ -335,11 +341,23 @@ msgctxt "59f2bg"
 msgid "Images"
 msgstr "Images"
 
+# Share screen title
+#: 5mk1b+
+msgctxt "5mk1b+"
+msgid "Share"
+msgstr ""
+
 # Submit placeholder
 #: 5uH4x7
 msgctxt "5uH4x7"
 msgid "Submit"
 msgstr "Envoyer"
+
+# Share screen group
+#: 64JlRq
+msgctxt "64JlRq"
+msgid "Share"
+msgstr ""
 
 # Survey screen title
 #: 650XRF
@@ -898,6 +916,12 @@ msgstr "Écran {index}"
 msgctxt "Lrwi2G"
 msgid "Email"
 msgstr "Courriel"
+
+# Share Options field label
+#: Ly1pYX
+msgctxt "Ly1pYX"
+msgid "Sharing options"
+msgstr ""
 
 # Horoscope sign
 #: M/FGRs
@@ -2245,6 +2269,12 @@ msgstr "Écrans"
 msgctxt "wt1+dM"
 msgid "Select an audio file..."
 msgstr "Sélectionnez un fichier audio..."
+
+# Heading field label
+#: wx5PI0
+msgctxt "wx5PI0"
+msgid "Heading"
+msgstr ""
 
 # Media gallery source
 #: xAzv6g

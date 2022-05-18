@@ -15,6 +15,7 @@ export { default as Map } from '@micromag/element-map';
 export { default as MediaControls } from '@micromag/element-media-controls';
 export { default as Quote } from '@micromag/element-quote';
 export { default as Scroll } from '@micromag/element-scroll';
+export { default as ShareOptions } from '@micromag/element-share-options';
 export { default as Stack } from '@micromag/element-stack';
 export { default as Text } from '@micromag/element-text';
 export { default as TextInput } from '@micromag/element-text-input';

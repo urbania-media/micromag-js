@@ -127,6 +127,10 @@
     "defaultMessage": "Timeline with images",
     "description": "TimelineIllustrated screen title"
   },
+  "36zPWy": {
+    "defaultMessage": "Share option",
+    "description": "Breadcrumb field label"
+  },
   "3E57H7": {
     "defaultMessage": "No marker...",
     "description": "Label when there is no item in markers field"
@@ -215,9 +219,17 @@
     "defaultMessage": "Images",
     "description": "visualsWithCaptions field label"
   },
+  "5mk1b+": {
+    "defaultMessage": "Share",
+    "description": "Share screen title"
+  },
   "5uH4x7": {
     "defaultMessage": "Submit",
     "description": "Submit placeholder"
+  },
+  "64JlRq": {
+    "defaultMessage": "Share",
+    "description": "Share screen group"
   },
   "650XRF": {
     "defaultMessage": "Survey",
@@ -590,6 +602,10 @@
   "Lrwi2G": {
     "defaultMessage": "Email",
     "description": "Share option label"
+  },
+  "Ly1pYX": {
+    "defaultMessage": "Sharing options",
+    "description": "Share Options field label"
   },
   "M/FGRs": {
     "defaultMessage": "Libra",
@@ -1487,6 +1503,10 @@
   "wt1+dM": {
     "defaultMessage": "Select an audio file...",
     "description": "Label when no value is provided to Audio field"
+  },
+  "wx5PI0": {
+    "defaultMessage": "Heading",
+    "description": "Heading field label"
   },
   "xAzv6g": {
     "defaultMessage": "All sources",
