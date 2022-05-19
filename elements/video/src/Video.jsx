@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useUserInteracted } from '@micromag/core/contexts';
-import { useMediaApi } from '@micromag/core/hooks';
+import { useMediaApi, useMediaThumbnail } from '@micromag/core/hooks';
 import { getMediaFilesAsArray } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.videoMedia,
+    thumbnailFile: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     apiRef: PropTypes.oneOfType([
@@ -42,6 +43,7 @@ const propTypes = {
 
 const defaultProps = {
     media: null,
+    thumbnailFile: null,
     width: null,
     height: null,
     apiRef: null,
@@ -69,6 +71,7 @@ const defaultProps = {
 
 const Video = ({
     media,
+    thumbnailFile,
     width,
     height,
     apiRef,
@@ -93,14 +96,10 @@ const Video = ({
     supportedMimes,
     // onPosterLoaded,
 }) => {
-    const {
-        url: mediaUrl = null,
-        files = null,
-        metadata = null,
-        thumbnail_url: thumbnailUrl = null,
-    } = media || {};
+    const { url: mediaUrl = null, files = null, metadata = null } = media || {};
     const { description = null, mime: mediaMime = null } = metadata || {};
     const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
+    const thumbnailUrl = useMediaThumbnail(media, thumbnailFile);
 
     // Get source files with supported mimes
     const sourceFiles = useMemo(() => {
@@ -163,7 +162,7 @@ const Video = ({
         apiRef.current.mediaRef = ref;
     }
 
-    const { playing, muted, dataReady, play, pause, unMute } = api;
+    const { muted, dataReady, play, pause, unMute } = api;
 
     useEffect(() => {
         if (dataReady && onReady !== null) {
@@ -172,20 +171,6 @@ const Video = ({
     }, [dataReady, onReady]);
 
     const withSize = width !== null && height !== null;
-
-    // const { thumbnail_url: thumbnailUrl = null } = media || {};
-
-    // useEffect(() => {
-    //     if (thumbnailUrl !== null) {
-    //         const img = new Image();
-    //         img.src = thumbnailUrl;
-    //         img.onload = () => {
-    //             if (onPosterLoaded) {
-    //                 onPosterLoaded();
-    //             }
-    //         };
-    //     }
-    // }, [thumbnailUrl]);
 
     useEffect(() => {
         if (autoPlay) {
@@ -200,14 +185,16 @@ const Video = ({
 
     // Ensure load if preload value change over time
     const firstPreloadRef = useRef(preload);
-    const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata');
+    const firstShouldLoadRef = useRef(shouldLoad);
+    const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata' && shouldLoad);
     useEffect(() => {
         const { current: videoElement = null } = ref;
         const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad; // @todo
         const preloadHasChanged = firstPreloadRef.current !== preload;
+        const shouldLoadHasChanged = firstShouldLoadRef.current !== shouldLoad;
         if (
             canLoad &&
-            preloadHasChanged &&
+            (preloadHasChanged || shouldLoadHasChanged) &&
             !hasLoadedRef.current &&
             videoElement !== null &&
             typeof videoElement.load !== 'undefined'
@@ -223,7 +210,6 @@ const Video = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.paused]: !playing,
                     [styles.withSize]: withSize,
                 },
             ])}
@@ -243,12 +229,12 @@ const Video = ({
                 <video
                     key={mediaUrl}
                     ref={ref}
-                    src={sourceFiles === null ? mediaUrl : null}
+                    src={sourceFiles === null || sourceFiles.length === 0 ? mediaUrl : null}
                     autoPlay={autoPlay}
                     loop={loop}
                     muted={muted}
                     poster={shouldLoad ? thumbnailUrl : null}
-                    preload={shouldLoad ? preload : 'metadata'}
+                    preload={shouldLoad ? preload : 'none'}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     tabIndex={focusable ? '0' : '-1'}

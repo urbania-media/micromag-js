@@ -12,7 +12,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
-import { getStyleFromBox, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
+import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
 import styles from './answers.module.scss';
@@ -271,8 +271,8 @@ const Answers = ({
                                                     disabled={isPreview || answered}
                                                     focusable={focusable}
                                                     buttonStyle={{
-                                                        ...getStyleFromBox(buttonsStyle),
-                                                        ...getStyleFromBox(answerButtonStyle),
+                                                        ...buttonsStyle,
+                                                        ...answerButtonStyle,
                                                     }}
                                                 >
                                                     {!withoutGoodAnswer &&

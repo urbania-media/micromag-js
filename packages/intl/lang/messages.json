@@ -203,6 +203,10 @@
     "defaultMessage": "Layout",
     "description": "Layout field label"
   },
+  "4kSwvn": {
+    "defaultMessage": "Thumbnail",
+    "description": "Field label"
+  },
   "507VAi": {
     "defaultMessage": "Description",
     "description": "Description placeholder"
@@ -583,6 +587,10 @@
     "defaultMessage": "Screen {index}",
     "description": "Button label"
   },
+  "Lrwi2G": {
+    "defaultMessage": "Email",
+    "description": "Share option label"
+  },
   "M/FGRs": {
     "defaultMessage": "Libra",
     "description": "Horoscope sign"
@@ -809,6 +817,10 @@
   "XKcyqx": {
     "defaultMessage": "Taurus",
     "description": "Horoscope sign"
+  },
+  "XRmkEh": {
+    "defaultMessage": "Link copied to clipboard!",
+    "description": "Message displayed once text was copied successfully."
   },
   "XS4j3F": {
     "defaultMessage": "Intro",
@@ -1220,6 +1232,10 @@
     "defaultMessage": "Text with title",
     "description": "TextTitle screen title"
   },
+  "oL4ueH": {
+    "defaultMessage": "Share",
+    "description": "Modal heading"
+  },
   "oLtEu6": {
     "defaultMessage": "Video 360",
     "description": "Video 360 placeholder"
@@ -1283,6 +1299,10 @@
   "qKQCxc": {
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
+  },
+  "qTdBzB": {
+    "defaultMessage": "No thumbnail",
+    "description": "Field no value label"
   },
   "qhjeuO": {
     "defaultMessage": "Padding",

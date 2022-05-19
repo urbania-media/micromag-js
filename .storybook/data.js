@@ -149,6 +149,16 @@ export const videoMedia = ({ vertical = false } = {}) => ({
               width: 1920,
               height: 1080,
           },
+    files: {
+        thumbnail_0: {
+            handle: 'thumbnail_0',
+            url: imageUrl({ width: 1920, height: 1080, rand: true }),
+        },
+        thumbnail_1: {
+            handle: 'thumbnail_1',
+            url: imageUrl({ width: 1920, height: 1080, rand: true }),
+        },
+    },
 });
 
 export const gifVideoMedia = ({ withoutFiles = null } = {}) => ({

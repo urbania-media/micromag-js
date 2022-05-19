@@ -317,6 +317,12 @@ msgctxt "4iBXj2"
 msgid "Layout"
 msgstr "Layout"
 
+# Field label
+#: 4kSwvn
+msgctxt "4kSwvn"
+msgid "Thumbnail"
+msgstr "Thumbnail"
+
 # Description placeholder
 #: 507VAi
 msgctxt "507VAi"
@@ -887,6 +893,12 @@ msgctxt "LkVfwW"
 msgid "Screen {index}"
 msgstr "Screen {index}"
 
+# Share option label
+#: Lrwi2G
+msgctxt "Lrwi2G"
+msgid "Email"
+msgstr "Email"
+
 # Horoscope sign
 #: M/FGRs
 msgctxt "M/FGRs"
@@ -1227,6 +1239,12 @@ msgstr "Answer"
 msgctxt "XKcyqx"
 msgid "Taurus"
 msgstr "Taurus"
+
+# Message displayed once text was copied successfully.
+#: XRmkEh
+msgctxt "XRmkEh"
+msgid "Link copied to clipboard!"
+msgstr "Link copied to clipboard!"
 
 #  Horoscope state
 #: XS4j3F
@@ -1844,6 +1862,12 @@ msgctxt "oCBQKV"
 msgid "Text with title"
 msgstr "Text with title"
 
+# Modal heading
+#: oL4ueH
+msgctxt "oL4ueH"
+msgid "Share"
+msgstr "Share"
+
 # Video 360 placeholder
 #: oLtEu6
 msgctxt "oLtEu6"
@@ -1939,6 +1963,12 @@ msgstr "Save"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Add a marker"
+
+# Field no value label
+#: qTdBzB
+msgctxt "qTdBzB"
+msgid "No thumbnail"
+msgstr "No thumbnail"
 
 # Field label
 #: qhjeuO

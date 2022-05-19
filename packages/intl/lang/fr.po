@@ -213,7 +213,7 @@ msgstr "Aucun marqueur..."
 #: 3LEBIA
 msgctxt "3LEBIA"
 msgid "Angle"
-msgstr ""
+msgstr "Angle"
 
 # Field label
 #: 3NghmM
@@ -316,6 +316,12 @@ msgstr "Catégorie"
 msgctxt "4iBXj2"
 msgid "Layout"
 msgstr "Disposition"
+
+# Field label
+#: 4kSwvn
+msgctxt "4kSwvn"
+msgid "Thumbnail"
+msgstr "Vignette"
 
 # Description placeholder
 #: 507VAi
@@ -887,6 +893,12 @@ msgctxt "LkVfwW"
 msgid "Screen {index}"
 msgstr "Écran {index}"
 
+# Share option label
+#: Lrwi2G
+msgctxt "Lrwi2G"
+msgid "Email"
+msgstr "Courriel"
+
 # Horoscope sign
 #: M/FGRs
 msgctxt "M/FGRs"
@@ -1227,6 +1239,12 @@ msgstr "Réponse"
 msgctxt "XKcyqx"
 msgid "Taurus"
 msgstr "Taureau"
+
+# Message displayed once text was copied successfully.
+#: XRmkEh
+msgctxt "XRmkEh"
+msgid "Link copied to clipboard!"
+msgstr "Copié dans le presse-papier!"
 
 #  Horoscope state
 #: XS4j3F
@@ -1844,6 +1862,12 @@ msgctxt "oCBQKV"
 msgid "Text with title"
 msgstr "Texte avec titre"
 
+# Modal heading
+#: oL4ueH
+msgctxt "oL4ueH"
+msgid "Share"
+msgstr "Partage"
+
 # Video 360 placeholder
 #: oLtEu6
 msgctxt "oLtEu6"
@@ -1939,6 +1963,12 @@ msgstr "Enregistrer"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
+
+# Field no value label
+#: qTdBzB
+msgctxt "qTdBzB"
+msgid "No thumbnail"
+msgstr "Aucune image"
 
 # Field label
 #: qhjeuO

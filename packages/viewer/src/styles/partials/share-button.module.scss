@@ -1,12 +1,4 @@
 .container {
     position: relative;
     white-space: nowrap;
-
-    .shareModal {
-        position: absolute;
-        top: 100%;
-        right: 50%;
-        margin-top: 15px;
-        transform: translateX(50%);
-    }
 }

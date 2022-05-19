@@ -15,7 +15,12 @@ import {
     useScreenRenderContext,
     useViewerNavigation,
 } from '@micromag/core/contexts';
-import { useTrackScreenMedia, useLongPress, useResizeObserver } from '@micromag/core/hooks';
+import {
+    useTrackScreenMedia,
+    useLongPress,
+    useResizeObserver,
+    useMediaThumbnail,
+} from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -86,9 +91,12 @@ const VideoScreen = ({
     const {
         autoPlay = true,
         media: videoMedia = null,
+        thumbnailFile = null,
         closedCaptions = null,
         withSeekBar = false,
         withControls = false,
+        color = null,
+        progressColor = null,
     } = video || {};
 
     const hasControls = (withSeekBar || withControls) && (isView || isEdit);
@@ -258,11 +266,9 @@ const VideoScreen = ({
         [hasVideo, video, isPreview, isStatic, isCapture, autoPlay, current],
     );
 
-    const {
-        metadata: videoMetadata = null,
-        url: videoUrl = null,
-        thumbnail_url: thumbnailUrl = null,
-    } = videoMedia || {};
+    const { metadata: videoMetadata = null, url: videoUrl = null } = videoMedia || {};
+    const thumbnailUrl = useMediaThumbnail(videoMedia, thumbnailFile);
+
     const hasVideoUrl = videoUrl !== null;
 
     // const hasThumbnail = thumbnailUrl !== null;
@@ -298,7 +304,7 @@ const VideoScreen = ({
     //     setPosterReady(true);
     // }, [isStatic, isCapture, setPosterReady]);
 
-    const visibleControls = withControls && ( (!autoPlay && !playing) || muted || showMediaControls);
+    const visibleControls = withControls && ((!autoPlay && !playing) || muted || showMediaControls);
 
     const items = [
         <ScreenElement
@@ -389,8 +395,10 @@ const VideoScreen = ({
                                                 [styles.visible]: visibleControls,
                                             },
                                         ])}
-                                        withSeekBar={withSeekBar}
                                         withControls={withControls}
+                                        withSeekBar={withSeekBar}
+                                        color={color}
+                                        progressColor={progressColor}
                                         playing={playing}
                                         muted={muted}
                                         currentTime={currentTime}
@@ -435,13 +443,15 @@ const VideoScreen = ({
                                 duration={duration}
                                 playing={playing}
                                 focusable={false}
+                                backgroundColor={color}
+                                progressColor={progressColor}
                                 className={classNames([
                                     styles.bottomSeekBar,
-                                    { [styles.isHidden]: visibleControls }
+                                    { [styles.isHidden]: visibleControls },
                                 ])}
                                 isSmall
                             />
-                        ): null}
+                        ) : null}
                     </div>
                 </Transitions>
             </div>

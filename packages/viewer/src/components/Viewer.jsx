@@ -39,6 +39,7 @@ const propTypes = {
     onScreenChange: PropTypes.func,
     tapNextScreenWidthPercent: PropTypes.number,
     neighborScreensActive: PropTypes.number,
+    neighborScreensMounted: PropTypes.number,
     storyIsParsed: PropTypes.bool,
     landscapeScreenMargin: PropTypes.number,
     withMetadata: PropTypes.bool,
@@ -76,7 +77,8 @@ const defaultProps = {
     renderContext: 'view',
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.8,
-    neighborScreensActive: 2,
+    neighborScreensActive: 1,
+    neighborScreensMounted: 2,
     storyIsParsed: false,
     landscapeScreenMargin: 20,
     withMetadata: false,
@@ -111,6 +113,7 @@ const Viewer = ({
     onScreenChange,
     tapNextScreenWidthPercent,
     neighborScreensActive,
+    neighborScreensMounted,
     storyIsParsed,
     landscapeScreenMargin,
     withMetadata,
@@ -386,6 +389,39 @@ const Viewer = ({
 
     const { height: menuDotsContainerHeight = 0 } = menuDotsContainerRect || {};
 
+    const { startIndex: mountedScreenStartIndex, endIndex: mountedScreenEndIndex } = useMemo(
+        () =>
+            neighborScreensMounted !== null
+                ? {
+                      startIndex: Math.max(
+                          screenIndex - (neighborScreensActive + neighborScreensMounted),
+                          0,
+                      ),
+                      endIndex: Math.min(
+                          screenIndex + (neighborScreensActive + neighborScreensMounted),
+                          screensCount,
+                      ),
+                  }
+                : {
+                      startIndex: 0,
+                      endIndex: screensCount - 1,
+                  },
+        [screenIndex, neighborScreensActive, neighborScreensMounted, screensCount],
+    );
+    const mountedScreens = useMemo(
+        () =>
+            neighborScreensMounted != null
+                ? screens.slice(mountedScreenStartIndex, mountedScreenEndIndex)
+                : screens,
+        [
+            screens,
+            mountedScreenStartIndex,
+            mountedScreenEndIndex,
+            neighborScreensActive,
+            neighborScreensMounted,
+        ],
+    );
+
     return (
         <ScreenSizeProvider size={screenSize}>
             <ViewerProvider
@@ -447,11 +483,12 @@ const Viewer = ({
                     ) : null}
                     {ready || withoutScreensTransforms ? (
                         <div ref={contentRef} className={styles.content} onClick={onClickContent}>
-                            {screens.map((scr, i) => {
+                            {mountedScreens.map((scr, mountedIndex) => {
+                                const i = mountedScreenStartIndex + mountedIndex;
                                 const current = i === parseInt(screenIndex, 10);
                                 const active =
-                                    i > screenIndex - neighborScreensActive &&
-                                    i < screenIndex + neighborScreensActive;
+                                    i >= screenIndex - neighborScreensActive &&
+                                    i <= screenIndex + neighborScreensActive;
                                 const viewerScreen = (
                                     <ViewerScreen
                                         screen={scr}

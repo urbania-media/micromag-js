@@ -15,6 +15,7 @@ import {
     callToAction,
     conversation, // color,
 } from '../data';
+import article from './stories/article.json';
 
 export const allScreens = [
     {
@@ -315,23 +316,15 @@ export const allScreens = [
         },
         callToAction: callToAction(),
     },
-    // {
-    //     id: uuid(),
-    //     type: 'video-360',
-    //     layout: 'full',
-    //     video: {
-    //         media: video360Media(),
-    //         autoPlay: false,
-    //         loop: true,
-    //         closedCaptions: closedCaptionsMedia(),
-    //         withSeekBar: true,
-    //     },
-    //     background: {
-    //         color: { alpha: 1, color: '#FF00FF'},
-    //     },
-    //
-    //     callToAction: callToAction(),
-    // },
+    {
+        id: uuid(),
+        type: 'urbania-article',
+        article,
+        background: {
+            color: { alpha: 1, color: '#FF00FF' },
+        },
+        callToAction: callToAction(),
+    },
 ];
 
 export default allScreens;

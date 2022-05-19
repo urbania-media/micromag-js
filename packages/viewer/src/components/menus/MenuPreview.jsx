@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, ScreenPreview } from '@micromag/core/components';
@@ -16,6 +16,7 @@ import { useResizeObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
 import styles from '../../styles/menus/menu-preview.module.scss';
+import StackIcon from '../icons/Stack';
 import ShareButton from '../partials/ShareButton';
 
 const propTypes = {
@@ -131,6 +132,8 @@ const ViewerMenuPreview = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const finalItems = useMemo(() => !focusable ? items.slice(0, 3) : items, [items, focusable]);
+
     return (
         <div
             className={classNames([
@@ -209,9 +212,8 @@ const ViewerMenuPreview = ({
                 >
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
-                            {items.map((item, index) => {
-                                const { current = false, screen, count = 1 } = item;
-
+                            {finalItems.map((item, index) => {
+                                const { screenId, current = false, screen, count = 1 } = item;
                                 const screenAriaLabel = `${intl.formatMessage(
                                     {
                                         defaultMessage: 'Screen {index}',
@@ -234,7 +236,7 @@ const ViewerMenuPreview = ({
                                                 [styles.active]: current,
                                             },
                                         ])}
-                                        key={`item-${index}`}
+                                        key={`item-${screenId}`}
                                         style={{
                                             width: `${100 / thumbsPerLine}%`,
                                         }}
@@ -244,6 +246,14 @@ const ViewerMenuPreview = ({
                                                 className={styles.screenContainer}
                                                 ref={index === 0 ? firstScreenContainerRef : null}
                                             >
+                                                {count > 1 ? (
+                                                    <div className={styles.subScreenBadge}>
+                                                        <span className={styles.subScreenCount}>
+                                                            {count}
+                                                        </span>
+                                                        <StackIcon className={styles.subScreenIcon}/>
+                                                    </div>
+                                                ): null}
                                                 {screenWidth > 0 && screenHeight > 0 ? (
                                                     <ScreenPreview
                                                         screenWidth={screenWidth}
@@ -253,8 +263,6 @@ const ViewerMenuPreview = ({
                                                         focusable={focusable}
                                                         active={focusable}
                                                         withSize
-                                                        // withStack
-                                                        // stackCount={count}
                                                     />
                                                 ) : null}
                                                 {current ? (

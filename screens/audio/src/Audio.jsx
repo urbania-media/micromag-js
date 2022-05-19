@@ -278,7 +278,7 @@ const AudioScreen = ({
                 {hasAudioUrl && (isView || isEdit) ? (
                     <MediaControls
                         className={styles.mediaControls}
-                        withPlayPause={withPlayPause}
+                        withControls={withPlayPause}
                         playing={playing}
                         muted={muted}
                         onTogglePlay={togglePlay}

@@ -49,5 +49,29 @@ export default {
                 description: 'Field label',
             }),
         },
+        {
+            fieldName: 'thumbnailFile',
+            type: 'media-thumbnail',
+            label: defineMessage({
+                defaultMessage: 'Thumbnail',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'color',
+            type: 'color',
+            label: defineMessage({
+                defaultMessage: 'Controls color',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'progressColor',
+            type: 'color',
+            label: defineMessage({
+                defaultMessage: 'Progress bar color',
+                description: 'Field label',
+            }),
+        },
     ],
 };

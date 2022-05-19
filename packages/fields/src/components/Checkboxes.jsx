@@ -13,6 +13,7 @@ const propTypes = {
     value: PropTypes.arrayOf(PropTypes.string),
     options: MicromagPropTypes.selectOptions,
     className: PropTypes.string,
+    buttonClassName: PropTypes.string,
     onChange: PropTypes.func,
 };
 
@@ -21,10 +22,11 @@ const defaultProps = {
     value: null,
     options: [],
     className: null,
+    buttonClassName: null,
     onChange: null,
 };
 
-const Checkboxes = ({ name, value, options, className, onChange }) => {
+const Checkboxes = ({ name, value, options, className, buttonClassName, onChange }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
         <div
@@ -45,6 +47,7 @@ const Checkboxes = ({ name, value, options, className, onChange }) => {
                         'btn',
                         'btn-outline-secondary',
                         {
+                            [buttonClassName]: buttonClassName !== null,
                             active: value !== null && value.indexOf(optionValue) !== -1,
                         },
                     ])}

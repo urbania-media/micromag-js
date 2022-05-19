@@ -7,24 +7,22 @@ import {
     callToAction,
     videoMedia,
 } from '../../../../.storybook/data';
-//  videoMedia,
 import Article from '../UrbaniaLoader';
 import definition from '../definition';
 import testArticle from './article.json';
 import testVideo from './video.json';
 
-// import videoArticle from './video.json';
 const video = (props) => ({
     ...props,
     type: 'video',
     media: videoMedia(),
     autoPlay: true,
+    article: testVideo,
     loop: false,
 });
 
 const props = () => ({
     image: video(null),
-    // video: null,
     article: testArticle,
     background: backgroundColor(),
     transitions: transitions(),
@@ -52,7 +50,7 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
 export const Video = (storyProps) => (
-    <Article {...storyProps} type="video" image={videoMedia()} callToAction={callToAction()} />
+    <Article {...storyProps} {...video()} type="video" image={videoMedia()} callToAction={callToAction()} />
 );
 
 export const CallToAction = (storyProps) => (
@@ -64,9 +62,9 @@ export const URL = (storyProps) => (
         {...storyProps}
         {...props()}
         article={null}
-        url="https://urbania.ca/article/la-vie-apres-le-masque-obligatoireen-ontario"
+        url="https://urbania.ca/article/expose-plonger-dans-lorthophonie-scolaire-avec-mathilde-dupas"
         description={{
-            body: '<p>HELLO MY NAME IS EARL I AM SOMETHING SOMETHING AND STUFF YOU KNOW THINGS</p>',
+            body: '<p>Salutr sdfksajdfh sfdksahdf hsdfhsadfaksdf as df sadf sadfg adg sadg....</p>',
         }}
     />
 );
@@ -74,7 +72,8 @@ export const URL = (storyProps) => (
 export const ThemeUrl = (storyProps) => (
     <Article
         {...storyProps}
-        url="https://universites.urbania.ca/article/de-pascale-a-lysandre-nadeau-comment-bien-animer-a-lere-de-la-gen-z"
+        url="https://urbania.ca/article/expose-plonger-dans-lorthophonie-scolaire-avec-mathilde-dupas"
+        articleType="article"
     />
 );
 

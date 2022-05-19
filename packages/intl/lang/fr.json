@@ -98,6 +98,9 @@
     "3E57H7": {
         "defaultMessage": "Aucun marqueur..."
     },
+    "3LEBIA": {
+        "defaultMessage": "Angle"
+    },
     "3NghmM": {
         "defaultMessage": "Bonne réponse"
     },
@@ -148,6 +151,9 @@
     },
     "4iBXj2": {
         "defaultMessage": "Disposition"
+    },
+    "4kSwvn": {
+        "defaultMessage": "Vignette"
     },
     "507VAi": {
         "defaultMessage": "Description"
@@ -434,6 +440,9 @@
     "LkVfwW": {
         "defaultMessage": "Écran {index}"
     },
+    "Lrwi2G": {
+        "defaultMessage": "Courriel"
+    },
     "M/FGRs": {
         "defaultMessage": "Balance"
     },
@@ -604,6 +613,9 @@
     },
     "XKcyqx": {
         "defaultMessage": "Taureau"
+    },
+    "XRmkEh": {
+        "defaultMessage": "Copié dans le presse-papier!"
     },
     "XS4j3F": {
         "defaultMessage": "Intro"
@@ -914,6 +926,9 @@
     "oCBQKV": {
         "defaultMessage": "Texte avec titre"
     },
+    "oL4ueH": {
+        "defaultMessage": "Partage"
+    },
     "oLtEu6": {
         "defaultMessage": "Vidéo 360"
     },
@@ -961,6 +976,9 @@
     },
     "qKQCxc": {
         "defaultMessage": "Ajouter un marqueur"
+    },
+    "qTdBzB": {
+        "defaultMessage": "Aucune image"
     },
     "qhjeuO": {
         "defaultMessage": "Marges"

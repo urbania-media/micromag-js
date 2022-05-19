@@ -14,7 +14,7 @@
 1. Make sure the `.env` file exists and contains the right information.
 2. Install the Javascript dependencies with `npm install`
 3. Install the PHP dependencies with `composer install`
-4. Build the libraries with `lerna boostrap`
+4. Build the libraries with `lerna bootstrap`
 
 ### Development
 
