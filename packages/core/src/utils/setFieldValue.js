@@ -5,6 +5,8 @@ const setValue = (value, keyParts, fieldValue) => {
     if (value !== null || fieldValue !== null) {
         if (isArray) {
             const index = parseInt(key, 10);
+            // TODO: fix this with an explicit delete
+            // instead on splicing out the element on null fieldValue
             const newArrayValue =
                 fieldValue !== null
                     ? [

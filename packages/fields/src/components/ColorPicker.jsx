@@ -1,10 +1,10 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import { useGetColors } from '@micromag/core/contexts';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 import { SketchPicker } from 'react-color';
 import tinycolor from 'tinycolor2';
 import { v4 as uuid } from 'uuid';
+import { useGetColors } from '@micromag/core/contexts';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
 
