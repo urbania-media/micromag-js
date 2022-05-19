@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
+import isString from 'lodash/isString';
+import { getContrastingColor } from '@micromag/core/utils';
 import styles from './styles/seek-bar.module.scss';
 
 const propTypes = {
@@ -22,8 +24,8 @@ const defaultProps = {
     currentTime: null,
     duration: null,
     playing: false,
-    backgroundColor: 'white',
-    progressColor: 'lightblue',
+    backgroundColor: null,
+    progressColor: null,
     onSeek: null,
     focusable: true,
     className: null,
@@ -42,6 +44,14 @@ const SeekBar = ({
     isSmall,
 }) => {
     const intl = useIntl();
+    const fullColor = isString(backgroundColor) ? { color: backgroundColor, alpha: 1 } : backgroundColor;
+    const { color: finalBackgroundColor = 'white' } = fullColor || {};
+    const fullProgressColor = isString(progressColor) ? { progressColor, alpha: 1 } : progressColor;
+    const alternateColor = useMemo(
+        () => fullProgressColor || getContrastingColor(fullProgressColor),
+        [fullProgressColor, fullColor],
+    );
+    const { color: finalProgressColor = null } = alternateColor || {};
 
     const [springProps, setSpringProps] = useSpring(() => ({
         x: 0,
@@ -117,12 +127,12 @@ const SeekBar = ({
             ])}
         >
             <div className={styles.inner}>
-                <div className={styles.progressBar} style={{ backgroundColor }}>
+                <div className={styles.progressBar} style={{ backgroundColor: finalBackgroundColor }}>
                     <animated.div
                         className={styles.progress}
                         style={{
                             transform: springProps.x.to((x) => `scaleX(${x})`),
-                            backgroundColor: progressColor,
+                            backgroundColor: finalProgressColor,
                         }}
                     />
                 </div>

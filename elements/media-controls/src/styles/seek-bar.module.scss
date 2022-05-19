@@ -13,6 +13,7 @@
     .progressBar {
         position: relative;
         top: 7px;
+        background-color: rgba($white, 0.5);
     }
 
     .progress,
@@ -22,8 +23,9 @@
 
     .progress {
         position: relative;
-        height: 2px;
+        height: 4px;
         transform-origin: left center;
+        background-color: $purple;
     }
 
     .button {

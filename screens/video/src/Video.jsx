@@ -95,6 +95,8 @@ const VideoScreen = ({
         closedCaptions = null,
         withSeekBar = false,
         withControls = false,
+        color = null,
+        progressColor = null,
     } = video || {};
 
     const hasControls = (withSeekBar || withControls) && (isView || isEdit);
@@ -393,8 +395,10 @@ const VideoScreen = ({
                                                 [styles.visible]: visibleControls,
                                             },
                                         ])}
-                                        withSeekBar={withSeekBar}
                                         withControls={withControls}
+                                        withSeekBar={withSeekBar}
+                                        color={color}
+                                        progressColor={progressColor}
                                         playing={playing}
                                         muted={muted}
                                         currentTime={currentTime}
@@ -439,6 +443,8 @@ const VideoScreen = ({
                                 duration={duration}
                                 playing={playing}
                                 focusable={false}
+                                backgroundColor={color}
+                                progressColor={progressColor}
                                 className={classNames([
                                     styles.bottomSeekBar,
                                     { [styles.isHidden]: visibleControls },

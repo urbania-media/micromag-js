@@ -5,10 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getContrastingColor } from '@micromag/core/utils';
 import SeekBar from './SeekBar';
 import styles from './styles/media-controls.module.scss';
 
@@ -62,12 +61,6 @@ const MediaControls = ({
     const intl = useIntl();
     const fullColor = isString(color) ? { color, alpha: 1 } : color;
     const { color: finalColor = 'white' } = fullColor || {};
-    const fullProgressColor = isString(color) ? { progressColor, alpha: 1 } : color;
-
-    const alternateColor = useMemo(
-        () => fullProgressColor || getContrastingColor(fullColor),
-        [fullProgressColor, fullColor],
-    );
 
     return (
         <div
@@ -126,8 +119,8 @@ const MediaControls = ({
                     playing={playing}
                     onSeek={onSeek}
                     focusable={focusable}
-                    backgroundColor={finalColor}
-                    progressColor={alternateColor}
+                    backgroundColor={color}
+                    progressColor={progressColor}
                 />
             ) : null}
         </div>
