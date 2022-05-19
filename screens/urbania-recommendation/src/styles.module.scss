@@ -38,7 +38,7 @@
 
         &.appear {
             animation: appear 1s ease-in-out;
-            animation-delay: 0.7s;
+            animation-delay: 0.9s;
             opacity: 0;
             animation-fill-mode: forwards;
         }
@@ -177,7 +177,7 @@
     }
 
     .background {
-        animation: roll 0.8s ease-out;
+        animation: roll 0.9s ease-out;
         animation-fill-mode: forwards;
     }
 
