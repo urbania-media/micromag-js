@@ -530,6 +530,9 @@
     "RcLsua": {
         "defaultMessage": "Message"
     },
+    "Rl7C1A": {
+        "defaultMessage": "Controls color"
+    },
     "S/mavZ": {
         "defaultMessage": "Text and Images"
     },
@@ -1081,6 +1084,9 @@
     },
     "uwcXzb": {
         "defaultMessage": "Image"
+    },
+    "v1r3AA": {
+        "defaultMessage": "Progress bar color"
     },
     "v4Qtl9": {
         "defaultMessage": "Today"

@@ -1072,6 +1072,12 @@ msgctxt "RcLsua"
 msgid "Message"
 msgstr "Message"
 
+# Field label
+#: Rl7C1A
+msgctxt "Rl7C1A"
+msgid "Controls color"
+msgstr "Controls color"
+
 # Text and Images screen group
 #: S/mavZ
 msgctxt "S/mavZ"
@@ -2173,6 +2179,12 @@ msgstr "Credits"
 msgctxt "uwcXzb"
 msgid "Image"
 msgstr "Image"
+
+# Field label
+#: v1r3AA
+msgctxt "v1r3AA"
+msgid "Progress bar color"
+msgstr "Progress bar color"
 
 # Today date message
 #: v4Qtl9

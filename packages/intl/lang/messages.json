@@ -706,6 +706,10 @@
     "defaultMessage": "Message",
     "description": "Message field label"
   },
+  "Rl7C1A": {
+    "defaultMessage": "Controls color",
+    "description": "Field label"
+  },
   "S/mavZ": {
     "defaultMessage": "Text and Images",
     "description": "Text and Images screen group"
@@ -1439,6 +1443,10 @@
   "uwcXzb": {
     "defaultMessage": "Image",
     "description": "Breadcrumb field label"
+  },
+  "v1r3AA": {
+    "defaultMessage": "Progress bar color",
+    "description": "Field label"
   },
   "v4Qtl9": {
     "defaultMessage": "Today",
