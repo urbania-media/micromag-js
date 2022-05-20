@@ -1892,6 +1892,12 @@ msgctxt "opcGwP"
 msgid "Add a speaker"
 msgstr "Add a speaker"
 
+# Field label
+#: p5RHzq
+msgctxt "p5RHzq"
+msgid "Button text style"
+msgstr "Button text style"
+
 # Label when there is no item in answers field
 #: p6n6vY
 msgctxt "p6n6vY"

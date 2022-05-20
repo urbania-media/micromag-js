@@ -1,16 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-14 14:06-0400\n"
-"PO-Revision-Date: 2022-05-19 16:57-0400\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: fr\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Translate Toolkit 3.2.0\n"
 
 # Audio and Video screen group
 #: +9akmg
@@ -1892,6 +1891,12 @@ msgstr "Urbania"
 msgctxt "opcGwP"
 msgid "Add a speaker"
 msgstr "Ajouter un interlocuteur"
+
+# Field label
+#: p5RHzq
+msgctxt "p5RHzq"
+msgid "Button text style"
+msgstr "Style du texte des boutons"
 
 # Label when there is no item in answers field
 #: p6n6vY
