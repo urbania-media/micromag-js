@@ -64,8 +64,6 @@ export { default as radios } from './radios';
 export { default as screenLayout } from './screen-layout';
 export { default as select } from './select';
 export { default as shadowAngle } from './shadow-angle';
-export { default as shareOption } from './share-option';
-export { default as shareOptions } from './share-options';
 export { default as slider } from './slider';
 export { default as speaker } from './speaker';
 export { default as speakers } from './speakers';

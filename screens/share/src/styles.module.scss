@@ -7,3 +7,26 @@
     @extend %screen;
 }
 
+.layout {
+    .isPlaceholder & {
+        padding: 10px;
+    }
+}
+
+.shareOptions {
+    &.isCentered {
+        justify-content: center;
+    }
+}
+
+.emptyHeading,
+.emptyOptions {
+    @extend %empty;
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.emptyOptions {
+    padding: 40px;
+}

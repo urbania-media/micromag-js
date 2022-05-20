@@ -318,8 +318,12 @@ export const allScreens = [
     {
         id: uuid(),
         type: 'share',
-        // layout: 'full',
+        layout: 'top',
         heading: 'Share this micromag!',
+        options: {
+            facebook: true,
+            twitter: true
+        },
         background: {
             color: { alpha: 1, color: '#00c28e' },
         },

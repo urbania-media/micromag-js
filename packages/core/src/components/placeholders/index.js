@@ -10,6 +10,7 @@ export { default as Map } from './Map';
 export { default as MapPath } from './MapPath';
 export { default as QuizAnswer } from './QuizAnswer';
 export { default as Quote } from './Quote';
+export { default as ShareOptions } from './ShareOptions';
 export { default as ShortText } from './ShortText';
 export { default as Subtitle } from './Subtitle';
 export { default as SurveyAnswer } from './SurveyAnswer';

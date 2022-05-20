@@ -21,6 +21,7 @@ const propTypes = {
     labelClassName: PropTypes.string,
     title: PropTypes.string,
     url: PropTypes.string,
+    options: PropTypes.arrayOf(PropTypes.string),
     onShare: PropTypes.func,
     onClose: PropTypes.func,
     focusable: PropTypes.bool,
@@ -32,6 +33,7 @@ const defaultProps = {
     labelClassName: null,
     title: null,
     url: null,
+    options: null,
     onShare: null,
     onClose: null,
     focusable: true,
@@ -43,6 +45,7 @@ const ShareOptions = ({
     labelClassName,
     title,
     url,
+    options,
     onShare,
     onClose,
     focusable,
@@ -140,6 +143,9 @@ const ShareOptions = ({
             )
         },
     ];
+    const selectedOptions = options !== null
+        ? shareOptions.filter(opt => options.includes(opt.id))
+        : shareOptions;
 
     return (
         <div
@@ -148,7 +154,7 @@ const ShareOptions = ({
                 { [className]: className !== null },
             ])}
         >
-            { shareOptions.map(({id, label, icon}) => (
+            { selectedOptions.map(({id, label, icon}) => (
                 <div
                     key={id}
                     className={classNames([
