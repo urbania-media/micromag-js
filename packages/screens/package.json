@@ -65,6 +65,7 @@
         "@micromag/screen-quiz": "^0.3.120",
         "@micromag/screen-quote": "^0.3.120",
         "@micromag/screen-ranking": "^0.3.120",
+        "@micromag/screen-share": "^0.3.120",
         "@micromag/screen-slideshow": "^0.3.120",
         "@micromag/screen-survey": "^0.3.120",
         "@micromag/screen-text": "^0.3.120",

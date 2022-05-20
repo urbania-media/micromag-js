@@ -61,6 +61,7 @@
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.3.120",
         "@micromag/element-scroll": "^0.3.120",
+        "@micromag/element-share-options": "^0.3.120",
         "@micromag/elements": "^0.3.120",
         "@micromag/fields": "^0.3.120",
         "@micromag/intl": "^0.3.120",
