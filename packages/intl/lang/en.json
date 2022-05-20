@@ -59,6 +59,9 @@
     "0GzLBc": {
         "defaultMessage": "Message"
     },
+    "0R+nB5": {
+        "defaultMessage": "Custom URL"
+    },
     "0acGK7": {
         "defaultMessage": "Cancer"
     },
@@ -94,9 +97,6 @@
     },
     "33UbSd": {
         "defaultMessage": "Timeline with images"
-    },
-    "36zPWy": {
-        "defaultMessage": "Share option"
     },
     "3E57H7": {
         "defaultMessage": "No marker..."
@@ -154,6 +154,9 @@
     },
     "4iBXj2": {
         "defaultMessage": "Layout"
+    },
+    "4js1kW": {
+        "defaultMessage": "Share Options"
     },
     "4kSwvn": {
         "defaultMessage": "Thumbnail"
@@ -443,6 +446,9 @@
     "KuzZbb": {
         "defaultMessage": "Background color"
     },
+    "LI0Gz4": {
+        "defaultMessage": "Email"
+    },
     "LOknw0": {
         "defaultMessage": "Styles"
     },
@@ -451,9 +457,6 @@
     },
     "Lrwi2G": {
         "defaultMessage": "Email"
-    },
-    "Ly1pYX": {
-        "defaultMessage": "Sharing options"
     },
     "M/FGRs": {
         "defaultMessage": "Libra"
@@ -544,6 +547,9 @@
     },
     "Rl7C1A": {
         "defaultMessage": "Controls color"
+    },
+    "RucIeL": {
+        "defaultMessage": "Share options"
     },
     "S/mavZ": {
         "defaultMessage": "Text and Images"
@@ -698,6 +704,9 @@
     "bMdONM": {
         "defaultMessage": "June 21 - July 22"
     },
+    "bQsPrs": {
+        "defaultMessage": "If this field is left empty, this Micromag's URL will be shared."
+    },
     "bhEaUt": {
         "defaultMessage": "Audio"
     },
@@ -712,6 +721,9 @@
     },
     "cGItoy": {
         "defaultMessage": "List"
+    },
+    "cNLZOF": {
+        "defaultMessage": "Align to center"
     },
     "ceaRdq": {
         "defaultMessage": "Horoscope sign"
@@ -833,6 +845,9 @@
     "hqOIl4": {
         "defaultMessage": "Avatar"
     },
+    "hvxkzE": {
+        "defaultMessage": "LinkedIn"
+    },
     "i+3ZrF": {
         "defaultMessage": "Select a font family..."
     },
@@ -904,6 +919,9 @@
     },
     "menus.pagination.previous": {
         "defaultMessage": "Previous"
+    },
+    "mlucL+": {
+        "defaultMessage": "Twitter"
     },
     "muPX/j": {
         "defaultMessage": "Speaker"
@@ -1009,6 +1027,9 @@
     },
     "qroLmS": {
         "defaultMessage": "Marker"
+    },
+    "r+bcpa": {
+        "defaultMessage": "Facebook"
     },
     "rAkTvt": {
         "defaultMessage": "Dec 22 - Jan 20"

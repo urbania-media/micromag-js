@@ -131,6 +131,12 @@ msgctxt "0GzLBc"
 msgid "Message"
 msgstr "Message"
 
+# Field label
+#: 0R+nB5
+msgctxt "0R+nB5"
+msgid "Custom URL"
+msgstr "URL personnalisée"
+
 # Horoscope sign
 #: 0acGK7
 msgctxt "0acGK7"
@@ -202,12 +208,6 @@ msgstr "Hauteur de ligne"
 msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Ligne du temps avec images"
-
-# Breadcrumb field label
-#: 36zPWy
-msgctxt "36zPWy"
-msgid "Share option"
-msgstr ""
 
 # Label when there is no item in markers field
 #: 3E57H7
@@ -324,6 +324,12 @@ msgid "Layout"
 msgstr "Disposition"
 
 # Field label
+#: 4js1kW
+msgctxt "4js1kW"
+msgid "Share Options"
+msgstr "Options de partage"
+
+# Field label
 #: 4kSwvn
 msgctxt "4kSwvn"
 msgid "Thumbnail"
@@ -345,7 +351,7 @@ msgstr "Images"
 #: 5mk1b+
 msgctxt "5mk1b+"
 msgid "Share"
-msgstr ""
+msgstr "Partage"
 
 # Submit placeholder
 #: 5uH4x7
@@ -357,7 +363,7 @@ msgstr "Envoyer"
 #: 64JlRq
 msgctxt "64JlRq"
 msgid "Share"
-msgstr ""
+msgstr "Partage"
 
 # Survey screen title
 #: 650XRF
@@ -900,6 +906,12 @@ msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
 
 # Field label
+#: LI0Gz4
+msgctxt "LI0Gz4"
+msgid "Email"
+msgstr "Courriel"
+
+# Field label
 #: LOknw0
 msgctxt "LOknw0"
 msgid "Styles"
@@ -916,12 +928,6 @@ msgstr "Écran {index}"
 msgctxt "Lrwi2G"
 msgid "Email"
 msgstr "Courriel"
-
-# Share Options field label
-#: Ly1pYX
-msgctxt "Ly1pYX"
-msgid "Sharing options"
-msgstr ""
 
 # Horoscope sign
 #: M/FGRs
@@ -1101,6 +1107,12 @@ msgstr "Message"
 msgctxt "Rl7C1A"
 msgid "Controls color"
 msgstr "Couleur des contrôles"
+
+# Title placeholder
+#: RucIeL
+msgctxt "RucIeL"
+msgid "Share options"
+msgstr "Options de partage"
 
 # Text and Images screen group
 #: S/mavZ
@@ -1408,6 +1420,12 @@ msgctxt "bMdONM"
 msgid "June 21 - July 22"
 msgstr "21 juin au 22 juil"
 
+# Field help text
+#: bQsPrs
+msgctxt "bQsPrs"
+msgid "If this field is left empty, this Micromag's URL will be shared."
+msgstr "Si ce champ est laissé vide, l'URL de ce Micromag sera utilisée."
+
 # Audio screen title
 #: bhEaUt
 msgctxt "bhEaUt"
@@ -1437,6 +1455,12 @@ msgstr "Arrière-plan"
 msgctxt "cGItoy"
 msgid "List"
 msgstr "Liste"
+
+# Field label
+#: cNLZOF
+msgctxt "cNLZOF"
+msgid "Align to center"
+msgstr "Aligner au centre"
 
 # Sign placeholder
 #: ceaRdq
@@ -1678,6 +1702,12 @@ msgctxt "hqOIl4"
 msgid "Avatar"
 msgstr "Photo de profil"
 
+# Field label
+#: hvxkzE
+msgctxt "hvxkzE"
+msgid "LinkedIn"
+msgstr ""
+
 # No value label
 #: i+3ZrF
 msgctxt "i+3ZrF"
@@ -1819,6 +1849,12 @@ msgstr "suivant"
 msgctxt "menus.pagination.previous"
 msgid "Previous"
 msgstr "Précédent"
+
+# Field label
+#: mlucL+
+msgctxt "mlucL+"
+msgid "Twitter"
+msgstr ""
 
 # Field label
 #: muPX/j
@@ -2029,6 +2065,12 @@ msgstr "Fenêtre pop-up"
 msgctxt "qroLmS"
 msgid "Marker"
 msgstr "Marqueur"
+
+# Field label
+#: r+bcpa
+msgctxt "r+bcpa"
+msgid "Facebook"
+msgstr ""
 
 # Horoscope date
 #: rAkTvt
@@ -2292,7 +2334,7 @@ msgstr "Sélectionnez un fichier audio..."
 #: wx5PI0
 msgctxt "wx5PI0"
 msgid "Heading"
-msgstr ""
+msgstr "Titre"
 
 # Media gallery source
 #: xAzv6g

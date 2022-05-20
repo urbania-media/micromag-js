@@ -47,6 +47,7 @@
 
     .resultLabel {
         position: absolute;
+        z-index: 1;
         top: 50%;
         right: 0;
         width: 4em;
@@ -65,6 +66,7 @@
         position: relative;
         width: 100%;
         padding: 0;
+        overflow: hidden;
         transition: opacity 500ms ease-out;
 
         &:disabled {
@@ -82,6 +84,8 @@
 
     .itemText {
         display: inline-block;
+        position: relative;
+        z-index: 1;
         transition: margin-left 300ms ease-out, transform 300ms ease-out;
     }
 

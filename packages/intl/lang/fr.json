@@ -59,6 +59,9 @@
     "0GzLBc": {
         "defaultMessage": "Message"
     },
+    "0R+nB5": {
+        "defaultMessage": "URL personnalisée"
+    },
     "0acGK7": {
         "defaultMessage": "Cancer"
     },
@@ -152,6 +155,9 @@
     "4iBXj2": {
         "defaultMessage": "Disposition"
     },
+    "4js1kW": {
+        "defaultMessage": "Options de partage"
+    },
     "4kSwvn": {
         "defaultMessage": "Vignette"
     },
@@ -161,8 +167,14 @@
     "59f2bg": {
         "defaultMessage": "Images"
     },
+    "5mk1b+": {
+        "defaultMessage": "Partage"
+    },
     "5uH4x7": {
         "defaultMessage": "Envoyer"
+    },
+    "64JlRq": {
+        "defaultMessage": "Partage"
     },
     "650XRF": {
         "defaultMessage": "Sondage"
@@ -434,6 +446,9 @@
     "KuzZbb": {
         "defaultMessage": "Couleur de l'arrière-plan"
     },
+    "LI0Gz4": {
+        "defaultMessage": "Courriel"
+    },
     "LOknw0": {
         "defaultMessage": "Styles"
     },
@@ -532,6 +547,9 @@
     },
     "Rl7C1A": {
         "defaultMessage": "Couleur des contrôles"
+    },
+    "RucIeL": {
+        "defaultMessage": "Options de partage"
     },
     "S/mavZ": {
         "defaultMessage": "Texte et images"
@@ -686,6 +704,9 @@
     "bMdONM": {
         "defaultMessage": "21 juin au 22 juil"
     },
+    "bQsPrs": {
+        "defaultMessage": "Si ce champ est laissé vide, l'URL de ce Micromag sera utilisée."
+    },
     "bhEaUt": {
         "defaultMessage": "Audio"
     },
@@ -700,6 +721,9 @@
     },
     "cGItoy": {
         "defaultMessage": "Liste"
+    },
+    "cNLZOF": {
+        "defaultMessage": "Aligner au centre"
     },
     "ceaRdq": {
         "defaultMessage": "Signe astrologique"
@@ -1126,6 +1150,9 @@
     },
     "wt1+dM": {
         "defaultMessage": "Sélectionnez un fichier audio..."
+    },
+    "wx5PI0": {
+        "defaultMessage": "Titre"
     },
     "xAzv6g": {
         "defaultMessage": "Toutes les sources"

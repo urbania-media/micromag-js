@@ -11,7 +11,6 @@ import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import {
     getLargestRemainderRound,
-    getStyleFromBox,
     getStyleFromColor,
     isTextFilled,
 } from '@micromag/core/utils';
@@ -257,6 +256,7 @@ const SurveyScreen = ({
                         const {
                             label = null,
                             buttonStyle: answerButtonStyle = null,
+                            textStyle: answerButtonTextStyle = null,
                             resultStyle: answerResultStyle = null,
                         } = answer || {};
                         const {
@@ -316,17 +316,25 @@ const SurveyScreen = ({
                                                         focusable={current && isView}
                                                         buttonStyle={{
                                                             ...buttonsStyle,
-                                                            ...buttonsTextStyle,
                                                             ...answerButtonStyle,
                                                             ...(answered
                                                                 ? { textAlign: 'left' }
                                                                 : null),
                                                         }}
+                                                        textStyle={{
+                                                            ...textStyle,
+                                                            ...buttonsTextStyle,
+                                                            ...answerButtonTextStyle,
+                                                        }}
                                                     >
                                                         <span className={styles.itemLabel}>
                                                             <Text
                                                                 {...label}
-                                                                textStyle={textStyle}
+                                                                textStyle={{
+                                                                    ...textStyle,
+                                                                    ...buttonsTextStyle,
+                                                                    ...answerButtonTextStyle,
+                                                                }}
                                                                 inline
                                                                 className={styles.itemText}
                                                             />
@@ -351,7 +359,11 @@ const SurveyScreen = ({
                                                                 >
                                                                     <Text
                                                                         {...label}
-                                                                        textStyle={textStyle}
+                                                                        textStyle={{
+                                                                            ...textStyle,
+                                                                            ...resultsTextColor,
+                                                                            ...answerResultTextColor,
+                                                                        }}
                                                                         inline
                                                                         className={
                                                                             styles.resultText

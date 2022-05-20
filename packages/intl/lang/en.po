@@ -131,6 +131,12 @@ msgctxt "0GzLBc"
 msgid "Message"
 msgstr "Message"
 
+# Field label
+#: 0R+nB5
+msgctxt "0R+nB5"
+msgid "Custom URL"
+msgstr "Custom URL"
+
 # Horoscope sign
 #: 0acGK7
 msgctxt "0acGK7"
@@ -202,12 +208,6 @@ msgstr "Line height"
 msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Timeline with images"
-
-# Breadcrumb field label
-#: 36zPWy
-msgctxt "36zPWy"
-msgid "Share option"
-msgstr "Share option"
 
 # Label when there is no item in markers field
 #: 3E57H7
@@ -322,6 +322,12 @@ msgstr "Category"
 msgctxt "4iBXj2"
 msgid "Layout"
 msgstr "Layout"
+
+# Field label
+#: 4js1kW
+msgctxt "4js1kW"
+msgid "Share Options"
+msgstr "Share Options"
 
 # Field label
 #: 4kSwvn
@@ -900,6 +906,12 @@ msgid "Background color"
 msgstr "Background color"
 
 # Field label
+#: LI0Gz4
+msgctxt "LI0Gz4"
+msgid "Email"
+msgstr "Email"
+
+# Field label
 #: LOknw0
 msgctxt "LOknw0"
 msgid "Styles"
@@ -916,12 +928,6 @@ msgstr "Screen {index}"
 msgctxt "Lrwi2G"
 msgid "Email"
 msgstr "Email"
-
-# Share Options field label
-#: Ly1pYX
-msgctxt "Ly1pYX"
-msgid "Sharing options"
-msgstr "Sharing options"
 
 # Horoscope sign
 #: M/FGRs
@@ -1101,6 +1107,12 @@ msgstr "Message"
 msgctxt "Rl7C1A"
 msgid "Controls color"
 msgstr "Controls color"
+
+# Title placeholder
+#: RucIeL
+msgctxt "RucIeL"
+msgid "Share options"
+msgstr "Share options"
 
 # Text and Images screen group
 #: S/mavZ
@@ -1408,6 +1420,12 @@ msgctxt "bMdONM"
 msgid "June 21 - July 22"
 msgstr "June 21 - July 22"
 
+# Field help text
+#: bQsPrs
+msgctxt "bQsPrs"
+msgid "If this field is left empty, this Micromag's URL will be shared."
+msgstr "If this field is left empty, this Micromag's URL will be shared."
+
 # Audio screen title
 #: bhEaUt
 msgctxt "bhEaUt"
@@ -1437,6 +1455,12 @@ msgstr "Background"
 msgctxt "cGItoy"
 msgid "List"
 msgstr "List"
+
+# Field label
+#: cNLZOF
+msgctxt "cNLZOF"
+msgid "Align to center"
+msgstr "Align to center"
 
 # Sign placeholder
 #: ceaRdq
@@ -1678,6 +1702,12 @@ msgctxt "hqOIl4"
 msgid "Avatar"
 msgstr "Avatar"
 
+# Field label
+#: hvxkzE
+msgctxt "hvxkzE"
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
 # No value label
 #: i+3ZrF
 msgctxt "i+3ZrF"
@@ -1819,6 +1849,12 @@ msgstr "next"
 msgctxt "menus.pagination.previous"
 msgid "Previous"
 msgstr "Previous"
+
+# Field label
+#: mlucL+
+msgctxt "mlucL+"
+msgid "Twitter"
+msgstr "Twitter"
 
 # Field label
 #: muPX/j
@@ -2029,6 +2065,12 @@ msgstr "Pop-up window"
 msgctxt "qroLmS"
 msgid "Marker"
 msgstr "Marker"
+
+# Field label
+#: r+bcpa
+msgctxt "r+bcpa"
+msgid "Facebook"
+msgstr "Facebook"
 
 # Horoscope date
 #: rAkTvt

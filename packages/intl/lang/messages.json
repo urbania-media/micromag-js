@@ -79,6 +79,10 @@
     "defaultMessage": "Message",
     "description": "Breadcrumb field label"
   },
+  "0R+nB5": {
+    "defaultMessage": "Custom URL",
+    "description": "Field label"
+  },
   "0acGK7": {
     "defaultMessage": "Cancer",
     "description": "Horoscope sign"
@@ -126,10 +130,6 @@
   "33UbSd": {
     "defaultMessage": "Timeline with images",
     "description": "TimelineIllustrated screen title"
-  },
-  "36zPWy": {
-    "defaultMessage": "Share option",
-    "description": "Breadcrumb field label"
   },
   "3E57H7": {
     "defaultMessage": "No marker...",
@@ -206,6 +206,10 @@
   "4iBXj2": {
     "defaultMessage": "Layout",
     "description": "Layout field label"
+  },
+  "4js1kW": {
+    "defaultMessage": "Share Options",
+    "description": "Field label"
   },
   "4kSwvn": {
     "defaultMessage": "Thumbnail",
@@ -591,6 +595,10 @@
     "defaultMessage": "Background color",
     "description": "Breadcrumb field label"
   },
+  "LI0Gz4": {
+    "defaultMessage": "Email",
+    "description": "Field label"
+  },
   "LOknw0": {
     "defaultMessage": "Styles",
     "description": "Field label"
@@ -602,10 +610,6 @@
   "Lrwi2G": {
     "defaultMessage": "Email",
     "description": "Share option label"
-  },
-  "Ly1pYX": {
-    "defaultMessage": "Sharing options",
-    "description": "Share Options field label"
   },
   "M/FGRs": {
     "defaultMessage": "Libra",
@@ -725,6 +729,10 @@
   "Rl7C1A": {
     "defaultMessage": "Controls color",
     "description": "Field label"
+  },
+  "RucIeL": {
+    "defaultMessage": "Share options",
+    "description": "Title placeholder"
   },
   "S/mavZ": {
     "defaultMessage": "Text and Images",
@@ -930,6 +938,10 @@
     "defaultMessage": "June 21 - July 22",
     "description": "Horoscope date"
   },
+  "bQsPrs": {
+    "defaultMessage": "If this field is left empty, this Micromag's URL will be shared.",
+    "description": "Field help text"
+  },
   "bhEaUt": {
     "defaultMessage": "Audio",
     "description": "Audio screen title"
@@ -949,6 +961,10 @@
   "cGItoy": {
     "defaultMessage": "List",
     "description": "List screen group"
+  },
+  "cNLZOF": {
+    "defaultMessage": "Align to center",
+    "description": "Field label"
   },
   "ceaRdq": {
     "defaultMessage": "Horoscope sign",
@@ -1110,6 +1126,10 @@
     "defaultMessage": "Avatar",
     "description": "Field label"
   },
+  "hvxkzE": {
+    "defaultMessage": "LinkedIn",
+    "description": "Field label"
+  },
   "i+3ZrF": {
     "defaultMessage": "Select a font family...",
     "description": "No value label"
@@ -1203,6 +1223,10 @@
   },
   "menus.pagination.previous": {
     "defaultMessage": "Previous"
+  },
+  "mlucL+": {
+    "defaultMessage": "Twitter",
+    "description": "Field label"
   },
   "muPX/j": {
     "defaultMessage": "Speaker",
@@ -1343,6 +1367,10 @@
   "qroLmS": {
     "defaultMessage": "Marker",
     "description": "Breadcrumb field label"
+  },
+  "r+bcpa": {
+    "defaultMessage": "Facebook",
+    "description": "Field label"
   },
   "rAkTvt": {
     "defaultMessage": "Dec 22 - Jan 20",
