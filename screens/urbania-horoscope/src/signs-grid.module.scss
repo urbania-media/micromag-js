@@ -5,7 +5,7 @@
 
 .container {
     @extend %screen;
-    display: flex;
+    // display: flex;
     position: relative;
     z-index: 2;
     flex-direction: column;
@@ -38,7 +38,8 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding: 30px;
+        margin-top: 20px;
+        padding: 20px;
 
         &.isPlaceholder {
             padding: 0;
@@ -56,14 +57,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-end;
-        width: 80px;
-        height: 85px;
-        margin-bottom: 8px;
+        // justify-content: flex-end;
+        width: 87px;
+        height: 90px;
+        margin-bottom: 9px;
         padding: 5px;
         transition: 0.2s all ease-in-out;
         border: 0;
-        border-radius: 16px;
+        border-radius: 10px;
+        filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
+
         background-color: #1d3af2;
 
         &:hover {
@@ -72,8 +75,12 @@
     }
 
     .image {
-        max-height: 44px;
+        max-height: 50px;
         padding-bottom: 4px;
+    }
+
+    .gridText {
+        height: 20%;
     }
 
     .signName {

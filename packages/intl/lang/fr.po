@@ -1096,6 +1096,12 @@ msgctxt "RcLsua"
 msgid "Message"
 msgstr "Message"
 
+# Field label
+#: Rl7C1A
+msgctxt "Rl7C1A"
+msgid "Controls color"
+msgstr "Couleur des contrôles"
+
 # Text and Images screen group
 #: S/mavZ
 msgctxt "S/mavZ"
@@ -1910,6 +1916,12 @@ msgctxt "opcGwP"
 msgid "Add a speaker"
 msgstr "Ajouter un interlocuteur"
 
+# Field label
+#: p5RHzq
+msgctxt "p5RHzq"
+msgid "Button text style"
+msgstr "Style du texte des boutons"
+
 # Label when there is no item in answers field
 #: p6n6vY
 msgctxt "p6n6vY"
@@ -2197,6 +2209,12 @@ msgstr "Crédits"
 msgctxt "uwcXzb"
 msgid "Image"
 msgstr "Image"
+
+# Field label
+#: v1r3AA
+msgctxt "v1r3AA"
+msgid "Progress bar color"
+msgstr "Couleur de la barre de progression"
 
 # Today date message
 #: v4Qtl9

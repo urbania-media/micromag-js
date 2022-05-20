@@ -38,7 +38,7 @@
 
         &.appear {
             animation: appear 1s ease-in-out;
-            animation-delay: 1.3s;
+            animation-delay: 0.9s;
             opacity: 0;
             animation-fill-mode: forwards;
         }
@@ -177,7 +177,7 @@
     }
 
     .background {
-        animation: roll 1.3s ease-out;
+        animation: roll 0.9s ease-out;
         animation-fill-mode: forwards;
     }
 
@@ -190,12 +190,11 @@
 
 @keyframes roll {
     0% {
-        background-position-y: -100vh;
+        background-position-y: -50vh;
     }
 
     100% {
         background-position-y: 0;
-        // background-position-y: 0;
     }
 }
 

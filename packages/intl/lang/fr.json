@@ -530,6 +530,9 @@
     "RcLsua": {
         "defaultMessage": "Message"
     },
+    "Rl7C1A": {
+        "defaultMessage": "Couleur des contrôles"
+    },
     "S/mavZ": {
         "defaultMessage": "Texte et images"
     },
@@ -938,6 +941,9 @@
     "opcGwP": {
         "defaultMessage": "Ajouter un interlocuteur"
     },
+    "p5RHzq": {
+        "defaultMessage": "Style du texte des boutons"
+    },
     "p6n6vY": {
         "defaultMessage": "Pas de réponse..."
     },
@@ -1081,6 +1087,9 @@
     },
     "uwcXzb": {
         "defaultMessage": "Image"
+    },
+    "v1r3AA": {
+        "defaultMessage": "Couleur de la barre de progression"
     },
     "v4Qtl9": {
         "defaultMessage": "Aujourd'hui"

@@ -57,7 +57,6 @@ const Button = ({
     ...buttonProps
 }) => {
     let finalStyles = null;
-    let borderStyles = null;
     // eslint-disable-next-line no-unused-vars
     const { body = null, ...otherProps } = buttonProps || {};
 
@@ -78,31 +77,19 @@ const Button = ({
 
     if (!withoutExternalBorder) {
         const {
-            borderRadius = null,
             borderWidth = null,
-            borderColor = null,
-            borderStyle = null,
-            ...otherStyles
         } = finalStyles || {};
 
         const margin = borderWidth !== null && borderWidth > 0 ? '-1px' : null;
 
         finalStyles = {
-            ...otherStyles,
-            borderRadius,
-            ...(margin !== null ? { margin } : null),
-        };
-
-        borderStyles = {
-            borderRadius: borderRadius + borderWidth,
-            borderWidth,
-            borderColor,
-            borderStyle,
+            ...finalStyles,
             display: inline ? 'inline-block' : null,
+            ...(margin !== null ? { margin } : null),
         };
     }
 
-    const button = (
+    return (
         <CoreButton
             className={classNames([
                 styles.container,
@@ -120,14 +107,6 @@ const Button = ({
         >
             {children}
         </CoreButton>
-    );
-
-    return borderStyles !== null ? (
-        <div className={styles.border} style={borderStyles}>
-            {button}
-        </div>
-    ) : (
-        button
     );
 };
 

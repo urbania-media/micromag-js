@@ -171,6 +171,8 @@ export const MultipleVideos = () => (
                         withSeekBar: true,
                         withControls: true,
                         autoPlay: true,
+                        color: { alpha: 1, color: '#000000' },
+                        progressColor: { alpha: 1, color: '#FF0000' }
                     },
                     background: {
                         color: { alpha: 1, color: '#FFFF00' },

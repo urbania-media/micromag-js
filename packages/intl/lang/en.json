@@ -542,6 +542,9 @@
     "RcLsua": {
         "defaultMessage": "Message"
     },
+    "Rl7C1A": {
+        "defaultMessage": "Controls color"
+    },
     "S/mavZ": {
         "defaultMessage": "Text and Images"
     },
@@ -950,6 +953,9 @@
     "opcGwP": {
         "defaultMessage": "Add a speaker"
     },
+    "p5RHzq": {
+        "defaultMessage": "Button text style"
+    },
     "p6n6vY": {
         "defaultMessage": "No answer..."
     },
@@ -1093,6 +1099,9 @@
     },
     "uwcXzb": {
         "defaultMessage": "Image"
+    },
+    "v1r3AA": {
+        "defaultMessage": "Progress bar color"
     },
     "v4Qtl9": {
         "defaultMessage": "Today"

@@ -57,5 +57,21 @@ export default {
                 description: 'Field label',
             }),
         },
+        {
+            name: 'color',
+            type: 'color',
+            label: defineMessage({
+                defaultMessage: 'Controls color',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'progressColor',
+            type: 'color',
+            label: defineMessage({
+                defaultMessage: 'Progress bar color',
+                description: 'Field label',
+            }),
+        },
     ],
 };

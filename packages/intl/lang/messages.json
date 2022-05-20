@@ -722,6 +722,10 @@
     "defaultMessage": "Message",
     "description": "Message field label"
   },
+  "Rl7C1A": {
+    "defaultMessage": "Controls color",
+    "description": "Field label"
+  },
   "S/mavZ": {
     "defaultMessage": "Text and Images",
     "description": "Text and Images screen group"
@@ -1264,6 +1268,10 @@
     "defaultMessage": "Add a speaker",
     "description": "Button label"
   },
+  "p5RHzq": {
+    "defaultMessage": "Button text style",
+    "description": "Field label"
+  },
   "p6n6vY": {
     "defaultMessage": "No answer...",
     "description": "Label when there is no item in answers field"
@@ -1455,6 +1463,10 @@
   "uwcXzb": {
     "defaultMessage": "Image",
     "description": "Breadcrumb field label"
+  },
+  "v1r3AA": {
+    "defaultMessage": "Progress bar color",
+    "description": "Field label"
   },
   "v4Qtl9": {
     "defaultMessage": "Today",

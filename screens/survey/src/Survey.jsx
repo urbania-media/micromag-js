@@ -31,6 +31,7 @@ const propTypes = {
     question: MicromagPropTypes.textElement,
     answers: MicromagPropTypes.answers,
     buttonsStyle: MicromagPropTypes.boxStyle,
+    buttonsTextStyle: MicromagPropTypes.textStyle,
     resultsStyle: PropTypes.shape({
         barColor: MicromagPropTypes.color,
         textColor: MicromagPropTypes.color,
@@ -57,6 +58,7 @@ const defaultProps = {
     question: null,
     answers: null,
     buttonsStyle: null,
+    buttonsTextStyle: null,
     resultsStyle: null,
     spacing: 20,
     background: null,
@@ -80,6 +82,7 @@ const SurveyScreen = ({
     question,
     answers,
     buttonsStyle,
+    buttonsTextStyle,
     resultsStyle,
     spacing,
     background,
@@ -301,7 +304,6 @@ const SurveyScreen = ({
                                                 <div
                                                     className={styles.itemInner}
                                                     style={{
-                                                        // width: buttonMaxWidth,
                                                         transitionDuration: finalTransitionDuration,
                                                     }}
                                                 >
@@ -314,7 +316,8 @@ const SurveyScreen = ({
                                                         focusable={current && isView}
                                                         buttonStyle={{
                                                             ...buttonsStyle,
-                                                            ...getStyleFromBox(answerButtonStyle),
+                                                            ...buttonsTextStyle,
+                                                            ...answerButtonStyle,
                                                             ...(answered
                                                                 ? { textAlign: 'left' }
                                                                 : null),

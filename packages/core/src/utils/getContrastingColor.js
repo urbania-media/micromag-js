@@ -3,7 +3,7 @@ import tinycolor from 'tinycolor2';
 const getContrastingColor = (backgroundColor) => {
     const { color = 'white' } = backgroundColor || {};
     if (tinycolor.equals(color, tinycolor('white'))) {
-        return 'lightblue';
+        return '#A13DFF';
     }
     if (tinycolor.equals(color, tinycolor('black'))) {
         return 'white';
