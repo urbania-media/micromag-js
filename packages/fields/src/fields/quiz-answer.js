@@ -27,8 +27,16 @@ export default {
             isList: true,
             fields: [
                 {
-                    type: 'box-style-form',
+                    name: 'textStyle',
+                    type: 'text-style-form',
+                    label: defineMessage({
+                        defaultMessage: 'Button text style',
+                        description: 'Field label',
+                    }),
+                },
+                {
                     name: 'buttonStyle',
+                    type: 'box-style-form',
                     label: defineMessage({
                         defaultMessage: 'Button style',
                         description: 'Field label',

@@ -200,6 +200,7 @@ const Answers = ({
                             good: rightAnswer = false,
                             label = null,
                             buttonStyle: answerButtonStyle = null,
+                            textStyle: answerButtonTextStyle = null,
                         } = answer || {};
                         const { textStyle = null } = label || {};
                         const hasAnswer = isTextFilled(label);
@@ -274,6 +275,10 @@ const Answers = ({
                                                         ...buttonsStyle,
                                                         ...answerButtonStyle,
                                                     }}
+                                                    textStyle={{
+                                                        ...buttonsTextStyle,
+                                                        ...answerButtonTextStyle,
+                                                    }}
                                                 >
                                                     {!withoutGoodAnswer &&
                                                     !withoutIcon &&
@@ -313,8 +318,9 @@ const Answers = ({
                                                         {...label}
                                                         className={styles.optionLabel}
                                                         textStyle={{
-                                                            ...buttonsTextStyle,
                                                             ...textStyle,
+                                                            ...buttonsTextStyle,
+                                                            ...answerButtonTextStyle,
                                                         }}
                                                     />
                                                 </Button>

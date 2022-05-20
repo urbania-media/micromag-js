@@ -86,6 +86,14 @@ export default {
                     }),
                 },
                 {
+                    name: 'buttonsTextStyle',
+                    type: 'text-style-form',
+                    label: defineMessage({
+                        defaultMessage: 'Buttons text',
+                        description: 'Field label',
+                    }),
+                },
+                {
                     name: 'resultsStyle',
                     type: 'field-with-form',
                     label: defineMessage({
