@@ -242,7 +242,10 @@ export const allScreens = [
         layout: 'normal',
         items: [...new Array(10)].map(() => ({
             title: { body: title() },
-            description: text('long'),
+            description: {
+                ...text('long'),
+                textStyle: { color: '#fff', alpha: 1 },
+            },
         })),
         bulletShape: 'circle',
         bulletColor: { alpha: 1, color: '#FFF' },
@@ -257,10 +260,10 @@ export const allScreens = [
         id: uuid(),
         type: 'timeline-illustrated',
         layout: 'normal',
-        items: [...new Array(10)].map(() => ({
+        items: [...new Array(10)].map((it, index) => ({
             title: { body: title() },
             description: text('long'),
-            image: imageMedia(),
+            image: index % 3 === 0 ? videoMedia() : imageMedia(), // use a video for every third item
         })),
         bulletShape: 'circle',
         bulletColor: { alpha: 1, color: '#FFF' },

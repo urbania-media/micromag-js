@@ -17,7 +17,10 @@ import definition from '../definition';
 const props = {
     items: [...new Array(10)].map((_, index) => ({
         title: { body: title() },
-        description: text('long'),
+        description: {
+            ...text('long'),
+            textStyle: { color: '#fff', alpha: 1 },
+        },
         image: index % 3 === 0 ? videoMedia() : imageMedia(), // use a video for every third item
     })),
     background: backgroundColor(),
