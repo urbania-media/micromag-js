@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import isString from 'lodash/isString';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getContrastingColor } from '@micromag/core/utils';
 import styles from './styles/seek-bar.module.scss';
 
@@ -12,8 +13,8 @@ const propTypes = {
     currentTime: PropTypes.number,
     duration: PropTypes.number,
     playing: PropTypes.bool,
-    backgroundColor: PropTypes.string,
-    progressColor: PropTypes.string,
+    backgroundColor: MicromagPropTypes.color,
+    progressColor: MicromagPropTypes.color,
     onSeek: PropTypes.func,
     focusable: PropTypes.bool,
     className: PropTypes.string,
