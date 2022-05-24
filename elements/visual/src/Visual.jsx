@@ -53,21 +53,12 @@ const Visual = ({
     videoClassName,
     ...props
 }) => {
-    const { type = null, thumbnail_url: thumbnailUrl = null, metadata, url } = media || {};
-    const { mime } = metadata || {};
-    const isVideo = type === 'video';
-    const isGIF = type === 'image' && mime === 'image/gif';
+    const { type = null } = media || {};
     const elProps = useMemo(() => ({ ...props, media }), [props, media]);
-
-    const imageElProps = useMemo(() => {
-        const tmpProps =
-            !playing && (isVideo || isGIF) ? { ...elProps, media: { url: thumbnailUrl } } : elProps;
-        return isGIF && playing ? { ...elProps, media: { url } } : tmpProps;
-    }, [isVideo, isGIF, elProps, thumbnailUrl, url, playing]);
 
     let videoContainerStyle = null;
 
-    if (isVideo && objectFit !== null && playing) {
+    if (type === 'video' && objectFit !== null && playing) {
         const { fit = 'cover' } = objectFit || {};
         const { metadata: videoMetadata = null } = media || {};
         const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
@@ -92,9 +83,9 @@ const Visual = ({
 
     return type !== null ? (
         <>
-            {type === 'image' || !playing ? (
+            {type === 'image' ? (
                 <Image
-                    {...imageElProps}
+                    {...elProps}
                     objectFit={objectFit}
                     width={width}
                     height={height}
@@ -104,7 +95,7 @@ const Visual = ({
                     className={classNames([styles.container, { [className]: className !== null }])}
                 />
             ) : null}
-            {isVideo && playing ? (
+            {type === 'video' ? (
                 <div
                     className={classNames([styles.container, { [className]: className !== null }])}
                     style={{ width, height }}

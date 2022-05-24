@@ -103,7 +103,6 @@ const ImageScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    // const mediaShouldLoad = current || active;
     const mediaShouldLoad = current || active;
 
     const hasImage = image !== null;
