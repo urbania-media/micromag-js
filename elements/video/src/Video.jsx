@@ -38,6 +38,7 @@ const propTypes = {
     onVolumeChanged: PropTypes.func,
     focusable: PropTypes.bool,
     supportedMimes: PropTypes.arrayOf(PropTypes.string),
+    withPoster: PropTypes.bool,
     // onPosterLoaded: PropTypes.func,
 };
 
@@ -66,6 +67,7 @@ const defaultProps = {
     onVolumeChanged: null,
     focusable: true,
     supportedMimes: ['video/mp4', 'video/webm', 'video/ogg'],
+    withPoster: false
     // onPosterLoaded: null,
 };
 
@@ -94,6 +96,7 @@ const Video = ({
     onVolumeChanged,
     focusable,
     supportedMimes,
+    withPoster,
     // onPosterLoaded,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
@@ -233,16 +236,13 @@ const Video = ({
                     autoPlay={autoPlay}
                     loop={loop}
                     muted={muted}
-                    // poster={shouldLoad ? thumbnailUrl : null}
+                    poster={shouldLoad && withPoster ? thumbnailUrl : null}
                     preload={shouldLoad ? preload : 'none'}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     tabIndex={focusable ? '0' : '-1'}
                     className={classNames(
-                        styles.video,
-                        {
-                            [styles.isLoaded]: dataReady
-                        }
+                        styles.video
                     )}
                 >
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
