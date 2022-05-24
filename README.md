@@ -21,9 +21,3 @@
 Run the `npm run storybook` command to launch the Storybook environment.
 
 Every element of the Micromag interface should be available as [Storybook](https://storybook.js.org/) _stories_.
-
-### Deployment
-
--   Development server: `envoy run deploy`
--   Production server: `envoy run deploy-prod`
--   Both: `envoy run deploy-all`
