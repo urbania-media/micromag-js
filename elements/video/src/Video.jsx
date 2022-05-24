@@ -233,12 +233,17 @@ const Video = ({
                     autoPlay={autoPlay}
                     loop={loop}
                     muted={muted}
-                    poster={shouldLoad ? thumbnailUrl : null}
+                    // poster={shouldLoad ? thumbnailUrl : null}
                     preload={shouldLoad ? preload : 'none'}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     tabIndex={focusable ? '0' : '-1'}
-                    className={styles.video}
+                    className={classNames(
+                        styles.video,
+                        {
+                            [styles.isLoaded]: dataReady
+                        }
+                    )}
                 >
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
                         <source

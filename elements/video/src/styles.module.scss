@@ -7,6 +7,12 @@
     .video {
         display: block;
         width: 100%;
+        transition: opacity 0.2s ease-out;
+        opacity: 0;
+
+        &.isLoaded {
+            opacity: 1;
+        }
     }
 
     &.withSize {
