@@ -81,7 +81,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                     </h2>
 
                     <Button className={styles.close} onClick={onCancel} focusable={opened}>
-                        <Close className={styles.closeIcon} border={false} />
+                        <Close className={styles.closeIcon} border="none" />
                     </Button>
                 </div>
                 <div className={styles.content}>

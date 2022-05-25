@@ -1,23 +1,19 @@
 # MICROMAG
 
-## Getting started
+## Prerequisites
 
-### Prerequisites
+* [nodejs](https://nodejs.org/en/) (v14.17.0, as of May 25, 2022)
+    - use [nvm](https://github.com/nvm-sh/nvm) and install it with `nvm install 14.17.0`
+* [lerna](https://lerna.js.org/) (v4, as of May 25, 2022)
+    - install with `npm i -g lerna`
 
--   [nodejs](https://nodejs.org/en/)
--   [composer](https://getcomposer.org/doc/00-intro.md)
--   [lerna](https://lerna.js.org/)
--   [envoy](https://laravel.com/docs/8.x/envoy)
+## Installation
 
-### Installation
+1. Copy `.env.example` to `.env`, and edit it with the right configuration.
+2. Run `npm i`
+3. Run `lerna bootstrap` (grab a coffee or a tea, it's gonna take a while!)
 
-1. Make sure the `.env` file exists and contains the right information.
-2. Install the Javascript dependencies with `npm install`
-3. Install the PHP dependencies with `composer install`
-4. Build the libraries with `lerna bootstrap`
+## Development
 
-### Development
+* Run `npm start` command to launch the Storybook environment. Every element of the Micromag UI should be available as [Storybook](https://storybook.js.org/) _stories_.
 
-Run the `npm run storybook` command to launch the Storybook environment.
-
-Every element of the Micromag interface should be available as [Storybook](https://storybook.js.org/) _stories_.
