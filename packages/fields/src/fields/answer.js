@@ -8,6 +8,7 @@ export default {
         {
             name: 'label',
             type: 'text-element',
+            textOnly: true,
             label: defineMessage({
                 defaultMessage: 'Label',
                 description: 'Field label',
