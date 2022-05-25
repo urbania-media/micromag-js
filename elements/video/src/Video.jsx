@@ -67,7 +67,7 @@ const defaultProps = {
     onVolumeChanged: null,
     focusable: true,
     supportedMimes: ['video/mp4', 'video/webm', 'video/ogg'],
-    withPoster: false
+    withPoster: false,
     // onPosterLoaded: null,
 };
 
@@ -241,9 +241,7 @@ const Video = ({
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     tabIndex={focusable ? '0' : '-1'}
-                    className={classNames(
-                        styles.video
-                    )}
+                    className={classNames(styles.video)}
                 >
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
                         <source

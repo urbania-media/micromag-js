@@ -236,14 +236,51 @@ const useMediaApi = ({
     useEffect(() => {
         const { current: media = null } = ref;
 
+        // console.log('actions', url);
+
         if (media !== null) {
-            media.addEventListener('timeupdate', onCustomTimeUpdate);
-            media.addEventListener('durationchange', onCustomDurationChange);
             media.addEventListener('volumechange', onCustomVolumeChange);
             media.addEventListener('play', onCustomPlay);
             media.addEventListener('pause', onCustomPause);
             media.addEventListener('ended', onCustomEnded);
             media.addEventListener('seeked', onCustomSeeked);
+            // media.addEventListener('loadstart', onCustomLoadStart);
+            // media.addEventListener('canplaythrough', onCustomCanPlayThrough);
+            // media.addEventListener('canplay', onCustomCanPlay);
+            // media.addEventListener('loadedmetadata', onCustomLoadedMetadata);
+            // media.addEventListener('loadeddata', onCustomLoadedData);
+        }
+
+        return () => {
+            if (media !== null) {
+                media.removeEventListener('volumechange', onCustomVolumeChange);
+                media.removeEventListener('play', onCustomPlay);
+                media.removeEventListener('pause', onCustomPause);
+                media.removeEventListener('ended', onCustomEnded);
+                media.removeEventListener('seeked', onCustomSeeked);
+                // media.removeEventListener('loadstart', onCustomLoadStart);
+                // media.removeEventListener('canplaythrough', onCustomCanPlayThrough);
+                // media.removeEventListener('canplay', onCustomCanPlay);
+                // media.removeEventListener('loadedmetadata', onCustomLoadedMetadata);
+            }
+        };
+    }, [
+        url,
+        onCustomVolumeChange,
+        onCustomPlay,
+        onCustomPause,
+        onCustomEnded,
+        onCustomSeeked,
+        // onCustomLoadStart,
+        // onCustomCanPlayThrough,
+        // onCustomCanPlay,
+        // onCustomLoadedMetadata,
+    ]);
+
+    useEffect(() => {
+        const { current: media = null } = ref;
+
+        if (media !== null) {
             media.addEventListener('loadstart', onCustomLoadStart);
             media.addEventListener('canplaythrough', onCustomCanPlayThrough);
             media.addEventListener('canplay', onCustomCanPlay);
@@ -253,33 +290,40 @@ const useMediaApi = ({
 
         return () => {
             if (media !== null) {
-                media.removeEventListener('timeupdate', onCustomTimeUpdate);
-                media.removeEventListener('durationchange', onCustomDurationChange);
-                media.removeEventListener('volumechange', onCustomVolumeChange);
-                media.removeEventListener('play', onCustomPlay);
-                media.removeEventListener('pause', onCustomPause);
-                media.removeEventListener('ended', onCustomEnded);
-                media.removeEventListener('seeked', onCustomSeeked);
                 media.removeEventListener('loadstart', onCustomLoadStart);
                 media.removeEventListener('canplaythrough', onCustomCanPlayThrough);
                 media.removeEventListener('canplay', onCustomCanPlay);
                 media.removeEventListener('loadedmetadata', onCustomLoadedMetadata);
             }
         };
-    }, [
-        url,
-        onCustomTimeUpdate,
-        onCustomDurationChange,
-        onCustomVolumeChange,
-        onCustomPlay,
-        onCustomPause,
-        onCustomEnded,
-        onCustomSeeked,
-        onCustomLoadStart,
-        onCustomCanPlayThrough,
-        onCustomCanPlay,
-        onCustomLoadedMetadata,
-    ]);
+    }, [url, onCustomLoadStart, onCustomCanPlayThrough, onCustomCanPlay, onCustomLoadedMetadata]);
+
+    // Duration
+    useEffect(() => {
+        const { current: media = null } = ref;
+        if (media !== null) {
+            media.addEventListener('durationchange', onCustomDurationChange);
+        }
+        return () => {
+            if (media !== null) {
+                media.removeEventListener('durationchange', onCustomDurationChange);
+            }
+        };
+    }, [url, onCustomDurationChange]);
+
+    // Timeupdate
+    useEffect(() => {
+        const { current: media = null } = ref;
+        // console.log('timeupdate', url);
+        if (media !== null) {
+            media.addEventListener('timeupdate', onCustomTimeUpdate);
+        }
+        return () => {
+            if (media !== null) {
+                media.removeEventListener('timeupdate', onCustomTimeUpdate);
+            }
+        };
+    }, [url, onCustomTimeUpdate, onCustomDurationChange]);
 
     useEffect(() => {
         const { current: media = null } = ref;

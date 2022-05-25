@@ -1,14 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getStyleFromColor } from '@micromag/core/utils';
 // import { Label } from '@micromag/core/components';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
-import { getStyleFromColor } from '@micromag/core/utils';
-
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -22,8 +20,8 @@ const propTypes = {
     typingTiming: PropTypes.number,
     onChange: PropTypes.func,
     withAnimation: PropTypes.bool,
+    active: PropTypes.bool,
     isPlaying: PropTypes.bool,
-    shouldLoad: PropTypes.bool,
     speakerStyle: MicromagPropTypes.textStyle,
     messageStyle: MicromagPropTypes.textStyle,
     className: PropTypes.string,
@@ -39,8 +37,8 @@ const defaultProps = {
     typingTiming: null,
     onChange: null,
     withAnimation: false,
+    active: false,
     isPlaying: false,
-    shouldLoad: true,
     messageStyle: null,
     speakerStyle: null,
     className: null,
@@ -56,8 +54,8 @@ const ConversationMessage = ({
     typingTiming,
     onChange,
     withAnimation,
+    active,
     isPlaying,
-    shouldLoad,
     messageStyle,
     speakerStyle,
     className,
@@ -184,7 +182,7 @@ const ConversationMessage = ({
                                     media={image}
                                     width="100%"
                                     playing={isPlaying}
-                                    shouldLoad={shouldLoad}
+                                    active={active}
                                 />
                             </div>
                         ) : null}

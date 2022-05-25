@@ -175,6 +175,7 @@ const ImageScreen = ({
                             height={imageHeight}
                             resolution={resolution}
                             playing={backgroundPlaying}
+                            active={active}
                             shouldLoad={mediaShouldLoad}
                             onLoaded={onImageLoaded}
                         />

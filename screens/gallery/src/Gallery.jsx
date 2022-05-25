@@ -191,19 +191,19 @@ const GalleryScreen = ({
                             emptyClassName={styles.emptyImage}
                             isEmpty={!hasImage}
                         >
-                            {active || current
-                                ? (
-                                    <Visual
-                                        className={styles.image}
-                                        {...finalImage}
-                                        {...imageSize}
-                                        resolution={resolution}
-                                        objectFit={{ fit: 'cover' }}
-                                        playing={backgroundPlaying}
-                                        onLoaded={onImageLoaded}
-                                        shouldLoad={mediaShouldLoad}
-                                    />
-                                ) : null}
+                            {active || current ? (
+                                <Visual
+                                    className={styles.image}
+                                    {...finalImage}
+                                    {...imageSize}
+                                    resolution={resolution}
+                                    objectFit={{ fit: 'cover' }}
+                                    playing={backgroundPlaying}
+                                    active={active}
+                                    shouldLoad={mediaShouldLoad}
+                                    onLoaded={onImageLoaded}
+                                />
+                            ) : null}
                         </ScreenElement>
                     </Transitions>
                 </div>

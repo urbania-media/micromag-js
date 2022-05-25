@@ -141,9 +141,10 @@ const SlideshowScreen = ({
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
                                     playing={backgroundPlaying}
+                                    active={active}
                                     onLoaded={onImageLoaded}
                                 />
-                            ): null}
+                            ) : null}
                         </ScreenElement>
                     </Transitions>
                 </div>

@@ -2,7 +2,7 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
@@ -48,17 +48,24 @@ const Visual = ({
     shouldLoad,
     videoLoop,
     videoInitialMuted,
-    onLoaded,
+    onLoaded: onParentLoaded,
     className,
     videoClassName,
     ...props
 }) => {
-    const { type = null } = media || {};
+    const { type = null, thumbnail_url: thumbnailUrl = null, url = null } = media || {};
+    const isVideo = type === 'video';
     const elProps = useMemo(() => ({ ...props, media }), [props, media]);
+
+    const imageElProps = useMemo(() => {
+        const tmpProps =
+            !shouldLoad && isVideo ? { ...elProps, media: { url: thumbnailUrl } } : elProps;
+        return shouldLoad ? { ...elProps, media: { url } } : tmpProps;
+    }, [isVideo, elProps, thumbnailUrl, url, shouldLoad]);
 
     let videoContainerStyle = null;
 
-    if (type === 'video' && objectFit !== null && playing) {
+    if (type === 'video' && objectFit !== null && shouldLoad) {
         const { fit = 'cover' } = objectFit || {};
         const { metadata: videoMetadata = null } = media || {};
         const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
@@ -81,11 +88,17 @@ const Visual = ({
         };
     }
 
+    const onLoaded = useCallback((e) => {
+        if (onParentLoaded !== null) {
+            onParentLoaded(e);
+        }
+    }, []);
+
     return type !== null ? (
         <>
-            {type === 'image' ? (
+            {type === 'image' || !shouldLoad ? (
                 <Image
-                    {...elProps}
+                    {...imageElProps}
                     objectFit={objectFit}
                     width={width}
                     height={height}
@@ -95,7 +108,7 @@ const Visual = ({
                     className={classNames([styles.container, { [className]: className !== null }])}
                 />
             ) : null}
-            {type === 'video' ? (
+            {type === 'video' && shouldLoad ? (
                 <div
                     className={classNames([styles.container, { [className]: className !== null }])}
                     style={{ width, height }}
@@ -111,7 +124,7 @@ const Visual = ({
                             {...elProps}
                             width={objectFit === null ? width : null}
                             height={objectFit === null ? height : null}
-                            autoPlay
+                            autoPlay={playing}
                             loop={videoLoop}
                             shouldLoad={shouldLoad}
                             initialMuted={videoInitialMuted}

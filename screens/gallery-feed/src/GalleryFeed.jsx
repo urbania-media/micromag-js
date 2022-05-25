@@ -124,9 +124,10 @@ const GalleryFeedScreen = ({
                         {...finalImage}
                         width={firstImageRefWidth}
                         resolution={resolution}
-                        onLoaded={onImageLoaded}
                         playing={backgroundPlaying}
+                        active={active}
                         shouldLoad={mediaShouldLoad}
+                        onLoaded={onImageLoaded}
                     />
                 </div>
             </ScreenElement>
