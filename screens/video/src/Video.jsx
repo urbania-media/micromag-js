@@ -136,7 +136,7 @@ const VideoScreen = ({
         (time) => {
             setCurrentTime(time);
         },
-        [setDuration, duration],
+        [duration, setCurrentTime],
     );
 
     const onProgressStep = useCallback(

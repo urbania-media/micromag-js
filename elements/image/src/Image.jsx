@@ -156,8 +156,8 @@ const Image = ({
         const validWidth = width !== null && typeof width === 'number';
         const validHeight = height !== null && typeof height === 'number';
 
-        const ratioWidth = validHeight ? height * mediaRatio : null;
-        const ratioHeight = validWidth ? width / mediaRatio : null;
+        const ratioWidth = mediaRatio && validHeight ? height * mediaRatio : null;
+        const ratioHeight = mediaRatio && validWidth ? width / mediaRatio : null;
 
         let finalWidth = width !== null ? width : ratioWidth;
         let finalHeight = height !== null ? height : ratioHeight;
