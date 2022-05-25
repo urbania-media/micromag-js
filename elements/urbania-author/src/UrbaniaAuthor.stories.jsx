@@ -15,7 +15,7 @@ const elementProps = {
     // visible: true,
     author: {
         name: { body: '<p>Paul le fermier avec un nom assez long</p>' },
-        avatar: imageMedia(),
+        image: imageMedia(),
         url: 'https://urbania.ca/auteurs/hugomeunier',
     },
 };
@@ -29,7 +29,7 @@ export const WithoutAvatar = () => (
         {...elementProps}
         author={{
             name: { body: '<p>Paul le fermier</p>' },
-            avatar: null,
+            image: null,
             url: 'https://urbania.ca/auteurs/hugomeunier',
         }}
     />
@@ -40,7 +40,7 @@ export const WithoutLink = () => (
         {...elementProps}
         author={{
             name: { body: '<p>Paul le fermier</p>' },
-            avatar: imageMedia(),
+            image: imageMedia(),
             url: null,
         }}
     />
@@ -51,8 +51,22 @@ export const WithoutLinkAndAvatar = () => (
         {...elementProps}
         author={{
             name: { body: '<p>Paul le fermier</p>' },
-            avatar: null,
+            image: null,
             url: null,
+        }}
+    />
+);
+
+export const WithCollaborator = () => (
+    <UrbaniaAuthor
+        {...elementProps}
+        author={{
+            name: { body: '<p>Jean le fermier</p>' },
+            image: imageMedia(),
+            url: 'https://urbania.ca/auteurs/hugomeunier',
+            collaborator: {
+                body: "<p>Paul l'illustrateur</p>",
+            },
         }}
     />
 );

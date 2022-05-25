@@ -7,20 +7,29 @@ const setValue = (value, keyParts, fieldValue) => {
             const index = parseInt(key, 10);
             // TODO: fix this with an explicit delete
             // instead on splicing out the element on null fieldValue
-            const newArrayValue =
-                fieldValue !== null
-                    ? [
-                          ...value.slice(0, index),
-                          keyParts.length > 0
-                              ? setValue(
-                                    value !== null ? value[index] || null : null,
-                                    keyParts,
-                                    fieldValue,
-                                )
-                              : fieldValue,
-                          ...value.slice(index + 1),
-                      ]
-                    : [...value.slice(0, index), ...value.slice(index + 1)];
+            // const newArrayValue =
+            //     fieldValue !== null
+            //         ? [
+            //               ...value.slice(0, index),
+            //               keyParts.length > 0
+            //                   ? setValue(
+            //                         value !== null ? value[index] || null : null,
+            //                         keyParts,
+            //                         fieldValue,
+            //                     )
+            //                   : fieldValue,
+            //               ...value.slice(index + 1),
+            //           ]
+            //         : [...value.slice(0, index), ...value.slice(index + 1)];
+
+            const newArrayValue = [
+                ...value.slice(0, index),
+                keyParts.length > 0
+                    ? setValue(value !== null ? value[index] || null : null, keyParts, fieldValue)
+                    : fieldValue,
+                ...value.slice(index + 1),
+            ];
+
             return newArrayValue.length > 0 ? newArrayValue : null;
         }
         return {

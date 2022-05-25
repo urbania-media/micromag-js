@@ -1138,9 +1138,17 @@
     "defaultMessage": "Button",
     "description": "Field label"
   },
+  "iD0t3t": {
+    "defaultMessage": "Et",
+    "description": "Author label"
+  },
   "iHV3W3": {
     "defaultMessage": "No entry...",
     "description": "Label when there is no item"
+  },
+  "iL9RLu": {
+    "defaultMessage": "Collaborator",
+    "description": "Field label"
   },
   "iipV5Q": {
     "defaultMessage": "Type",

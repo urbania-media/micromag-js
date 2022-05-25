@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
  */
 let packageCache = null;
 const useCKEditor = () => {
-    // transport
     const [{ package: loadedPackage }, setLoadedPackage] = useState({
         package: packageCache,
     });
@@ -16,16 +15,14 @@ const useCKEditor = () => {
                 canceled = true;
             };
         }
-        import('@micromag/ckeditor/build').then(
-            ({ default: Editor }) => {
-                packageCache = Editor;
-                if (!canceled) {
-                    setLoadedPackage({
-                        package: Editor,
-                    });
-                }
-            },
-        );
+        import('@micromag/ckeditor/build').then(({ default: Editor }) => {
+            packageCache = Editor;
+            if (!canceled) {
+                setLoadedPackage({
+                    package: Editor,
+                });
+            }
+        });
         return () => {
             canceled = true;
         };

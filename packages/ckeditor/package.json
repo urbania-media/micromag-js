@@ -58,13 +58,14 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@ckeditor/ckeditor5-basic-styles": "^31.0.0",
+        "@ckeditor/ckeditor5-basic-styles": "^34.1.0",
         "@ckeditor/ckeditor5-dev-webpack-plugin": "^28.0.2",
-        "@ckeditor/ckeditor5-editor-inline": "^31.0.0",
-        "@ckeditor/ckeditor5-essentials": "^31.0.0",
-        "@ckeditor/ckeditor5-highlight": "^31.0.0",
-        "@ckeditor/ckeditor5-link": "^31.0.0",
-        "@ckeditor/ckeditor5-paragraph": "^31.0.0",
+        "@ckeditor/ckeditor5-editor-inline": "^34.1.0",
+        "@ckeditor/ckeditor5-build-inline": "^34.1.0",
+        "@ckeditor/ckeditor5-essentials": "^34.1.0",
+        "@ckeditor/ckeditor5-highlight": "^34.1.0",
+        "@ckeditor/ckeditor5-link": "^34.1.0",
+        "@ckeditor/ckeditor5-paragraph": "^34.1.0",
         "@ckeditor/ckeditor5-react": "^3.0.0"
     },
     "publishConfig": {

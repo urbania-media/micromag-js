@@ -54,6 +54,12 @@ const MediaField = ({
         [value, onChange, closeForm],
     );
 
+    const onClearMedia = useCallback(() => {
+        if (onChange !== null) {
+            onChange(null);
+        }
+    }, [value, onChange, closeForm]);
+
     const label = value !== null ? value.name || getFileName(value.url) || null : null;
 
     return (
@@ -71,6 +77,7 @@ const MediaField = ({
                 isSmall
                 selectedMedia={value}
                 onClickMedia={onClickMedia}
+                onClearMedia={onClearMedia}
             />
         </FieldWithForm>
     );

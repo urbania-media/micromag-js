@@ -18,6 +18,7 @@ const propTypes = {
         name: MicromagPropTypes.textElement,
         image: MicromagPropTypes.imageElement,
         url: PropTypes.string,
+        collaborator: MicromagPropTypes.textElement,
     }),
     withImage: PropTypes.bool,
     withoutLink: PropTypes.bool,
@@ -25,7 +26,7 @@ const propTypes = {
     isSmall: PropTypes.bool,
     linkUnderlineColor: PropTypes.string,
     className: PropTypes.string,
-    shouldLoad: PropTypes.bool
+    shouldLoad: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -47,17 +48,25 @@ const UrbaniaAuthor = ({
     isSmall,
     linkUnderlineColor,
     className,
-    shouldLoad
+    shouldLoad,
 }) => {
     const intl = useIntl();
-    const { name = null, image = null, url = null } = author || {};
+    const { name = null, image = null, url = null, collaborator = null } = author || {};
 
     const prefix = intl.formatMessage({
         defaultMessage: 'By',
         description: 'Author label',
     });
 
-    const text = isTextFilled(name) ? <Text className={styles.name} {...name} /> : null;
+    const and = intl.formatMessage({
+        defaultMessage: 'Et',
+        description: 'Author label',
+    });
+
+    const authorText = isTextFilled(name) ? <Text className={styles.name} {...name} /> : null;
+    const collaboratorText = isTextFilled(collaborator) ? (
+        <Text className={styles.collaboratorText} {...collaborator} inline />
+    ) : null;
 
     return (
         <div
@@ -73,24 +82,32 @@ const UrbaniaAuthor = ({
             {!withoutPrefix ? (
                 <Text {...name} className={styles.prefix} body={`<span>${prefix}<span>`} />
             ) : null}
-            {withImage && image !== null ? <Avatar className={styles.image} image={image} shouldLoad={shouldLoad} /> : null}
-            {url !== null && !withoutLink ? (
-                <Link
-                    className={styles.link}
-                    url={url}
-                    external
-                    style={{
-                        backgroundImage:
-                            linkUnderlineColor !== null
-                                ? `linear-gradient(0deg, ${linkUnderlineColor} 0, ${linkUnderlineColor})`
-                                : null,
-                    }}
-                >
-                    {text}
-                </Link>
-            ) : (
-                <div>{text}</div>
-            )}
+            {withImage && image !== null ? (
+                <Avatar className={styles.image} image={image} shouldLoad={shouldLoad} />
+            ) : null}
+            <div className={styles.right}>
+                {url !== null && !withoutLink ? (
+                    <Link
+                        className={styles.link}
+                        url={url}
+                        external
+                        style={{
+                            backgroundImage:
+                                linkUnderlineColor !== null
+                                    ? `linear-gradient(0deg, ${linkUnderlineColor} 0, ${linkUnderlineColor})`
+                                    : null,
+                        }}
+                    >
+                        {authorText}
+                    </Link>
+                ) : (
+                    <div>{authorText}</div>
+                )}
+                <div className={styles.collaborator}>
+                    <span className={styles.collaboratorPrefix}>{and}</span>
+                    {collaboratorText !== null ? collaboratorText : null}
+                </div>
+            </div>
         </div>
     );
 };

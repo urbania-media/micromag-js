@@ -30,7 +30,7 @@ const propTypes = {
     onClickAdd: PropTypes.func,
     onClickItem: PropTypes.func,
     onClickItemInfo: PropTypes.func,
-    // onClickCancel: PropTypes.func, // TODO: still needed?
+    onClickClear: PropTypes.func, // TODO: still needed?
     onFocusSearch: PropTypes.func,
     onFiltersChange: PropTypes.func,
     onClickBack: PropTypes.func,
@@ -49,7 +49,7 @@ const defaultProps = {
     onClickAdd: null,
     onClickItem: null,
     onClickItemInfo: null,
-    // onClickCancel: null,
+    onClickClear: null,
     onFocusSearch: null,
     onFiltersChange: null,
     onClickBack: null,
@@ -69,7 +69,7 @@ function Navbar({
     onClickAdd,
     onClickItem,
     onClickItemInfo,
-    // onClickCancel,
+    onClickClear,
     onFocusSearch,
     onFiltersChange,
     onClickBack,
@@ -168,6 +168,14 @@ function Navbar({
         setOpen(!open);
     }, [open, setOpen]);
 
+    const onClickRemove = useCallback(() => {
+        if (onClickClear !== null) {
+            onClickClear();
+        } else if (onClickItem !== null) {
+            onClickItem(null);
+        }
+    }, [onClickClear, onClickItem]);
+
     return (
         <nav
             className={classNames([
@@ -230,7 +238,7 @@ function Navbar({
                             <Button
                                 theme="primary"
                                 icon={<FontAwesomeIcon icon={faTimes} />}
-                                onClick={() => onClickItem(selectedMedia)}
+                                onClick={onClickRemove}
                                 title={intl.formatMessage({
                                     defaultMessage: 'Remove',
                                     description: 'Remove button label in Media Gallery',

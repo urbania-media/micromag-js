@@ -1720,11 +1720,23 @@ msgctxt "i6bmbD"
 msgid "Button"
 msgstr "Button"
 
+# Author label
+#: iD0t3t
+msgctxt "iD0t3t"
+msgid "Et"
+msgstr "Et"
+
 # Label when there is no item
 #: iHV3W3
 msgctxt "iHV3W3"
 msgid "No entry..."
 msgstr "No entry..."
+
+# Field label
+#: iL9RLu
+msgctxt "iL9RLu"
+msgid "Collaborator"
+msgstr "Collaborator"
 
 # Field label
 #: iipV5Q

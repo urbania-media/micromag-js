@@ -12,13 +12,23 @@
 
     .image {
         min-width: 2.2em;
-        max-width: 35px;
+        max-width: 4em;
     }
 
     .link {
         display: inline-block;
         color: $color-black;
         text-decoration: none;
+    }
+
+    .name, .prefix, .collaborator {
+        display: block;
+        background-color: #efefef; // $gray-200;
+        font-family: 'Agrandir';
+        font-size: 10px;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        white-space: nowrap;
     }
 
     .name {
@@ -38,6 +48,32 @@
         }
     }
 
+    .collaborator {
+        position: absolute;
+        padding-top: 2px;
+        background-color: transparent;
+        color: $white;
+
+        .collaboratorText{
+            font-size: inherit;
+
+            p {
+                display: inline;
+                font-size: 0.9em;
+                font-weight: 700;
+                line-height: 1;
+                text-transform: uppercase;
+            }
+        }
+
+        .collaboratorPrefix {
+            display: inline-block;
+            padding-right: 0.3em;
+            padding-left: 7px;
+            font-size: 0.9em;
+        }
+    }
+
     .prefix {
         margin-right: -5px;
         padding: 3px 12px 3px 8px;
@@ -50,16 +86,6 @@
             font-size: inherit;
             line-height: 1;
         }
-    }
-
-    .name, .prefix {
-        display: block;
-        background-color: #efefef; // $gray-200;
-        font-family: 'Agrandir';
-        font-size: 10px;
-        letter-spacing: 0.04em;
-        line-height: 1;
-        white-space: nowrap;
     }
 
     &.isSmall {

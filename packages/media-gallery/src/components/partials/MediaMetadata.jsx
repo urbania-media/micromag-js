@@ -1,14 +1,15 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button } from '@micromag/core/components';
-import { useFieldComponent } from '@micromag/core/contexts';
-import { useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
+// useOrganisationTeam
 import classNames from 'classnames';
 import uniqBy from 'lodash/uniqBy';
 import prettyBytes from 'pretty-bytes';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button } from '@micromag/core/components';
+import { useFieldComponent } from '@micromag/core/contexts';
+import { useMediaUpdate } from '@micromag/data';
 import styles from '../../styles/partials/media-metadata.module.scss';
 
 const propTypes = {
@@ -144,7 +145,7 @@ function MediaMetadata({ media, tags: allTags, className }) {
             </div>
             <div className="p-2">
                 <div className="tags mb-4">
-                    <div className="form-group">
+                    <div className="my-3">
                         <h6>
                             <FormattedMessage
                                 defaultMessage="Name"
@@ -153,7 +154,7 @@ function MediaMetadata({ media, tags: allTags, className }) {
                         </h6>
                         <TextField value={name} onChange={onNameChange} />
                     </div>
-                    <div className="form-group">
+                    <div className="my-3">
                         <h6 className="mb-0">
                             <FormattedMessage
                                 defaultMessage="Description"
@@ -170,7 +171,7 @@ function MediaMetadata({ media, tags: allTags, className }) {
                         </p>
                         <TextField value={description} onChange={onDescriptionChange} />
                     </div>
-                    <div className="form-group">
+                    <div className="my-3">
                         <h6>
                             <FormattedMessage
                                 defaultMessage="Tags"

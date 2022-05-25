@@ -1,11 +1,11 @@
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Spinner, UploadModal } from '@micromag/core/components';
 import { useStory } from '@micromag/core/contexts';
 import { useMediaAuthors, useMediaCreate, useMedias, useMediaTags } from '@micromag/data';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
 // import list from '../_stories/list.json';
 import styles from '../styles/media-gallery.module.scss';
 import Gallery from './lists/Gallery';
@@ -27,6 +27,7 @@ const propTypes = {
     className: PropTypes.string,
     navbarClassName: PropTypes.string,
     onClickMedia: PropTypes.func,
+    onClearMedia: PropTypes.func,
 };
 
 const defaultProps = {
@@ -42,6 +43,7 @@ const defaultProps = {
     className: null,
     navbarClassName: null,
     onClickMedia: null,
+    onClearMedia: null,
 };
 
 function MediaGallery({
@@ -57,6 +59,7 @@ function MediaGallery({
     className,
     navbarClassName,
     onClickMedia,
+    onClearMedia,
 }) {
     // Base state for filters
     const defaultFilters = {
@@ -163,7 +166,7 @@ function MediaGallery({
                 onClickItem={onClickItem}
                 onClickItemInfo={onClickItemInfo}
                 onClickBack={onClickBack}
-                onClickCancel={onClickCancel}
+                onClickClear={onClearMedia}
                 withoutTitle={withoutTitle}
                 withoutSource={withoutSource}
                 withoutType={withoutType}
@@ -196,15 +199,13 @@ function MediaGallery({
                 </div>
             </div>
             {createPortal(
-                (
-                    <UploadModal
-                        type={type === 'video' ? videoTypes : type}
-                        opened={uploadModalOpened}
-                        onUploaded={onUploadCompleted}
-                        onRequestClose={onUploadRequestClose}
-                    />
-                ),
-                document.body
+                <UploadModal
+                    type={type === 'video' ? videoTypes : type}
+                    opened={uploadModalOpened}
+                    onUploaded={onUploadCompleted}
+                    onRequestClose={onUploadRequestClose}
+                />,
+                document.body,
             )}
         </div>
     );

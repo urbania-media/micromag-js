@@ -29,5 +29,13 @@ export default {
                 description: 'Field label',
             }),
         },
+        {
+            name: 'collaborator',
+            type: 'text-element',
+            label: defineMessage({
+                defaultMessage: 'Collaborator',
+                description: 'Field label',
+            }),
+        },
     ],
 };
