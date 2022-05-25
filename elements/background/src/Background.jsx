@@ -83,12 +83,12 @@ const Background = ({
     };
 
     // image
-    if (media !== null && (isImage || (isVideo && !playing))) {
+    if (media !== null && (isImage || (isVideo && !shouldLoad))) {
         const finalUrl = getOptimalImageUrl(
             isVideo ? { url: mediaThumbnailUrl } : media,
             width,
             height,
-            { resolution }
+            { resolution },
         );
         containerStyle.backgroundImage =
             finalUrl !== null && finalShouldLoad ? `url("${finalUrl}")` : null;
@@ -104,7 +104,7 @@ const Background = ({
 
     // video
     const videoContainerStyle = {};
-    if (isVideo && playing) {
+    if (isVideo && shouldLoad) {
         if (width > 0 && height > 0) {
             const { width: videoWidth = 0, height: videoHeight = 0 } = getSizeWithinBounds(
                 mediaWidth,
@@ -134,7 +134,7 @@ const Background = ({
             ])}
             style={containerStyle}
         >
-            {isVideo && playing ? (
+            {isVideo && shouldLoad ? (
                 <div className={styles.videoContainer} style={videoContainerStyle}>
                     <Video
                         className={styles.video}

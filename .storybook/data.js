@@ -4,6 +4,7 @@ import companies from './data/companies';
 import image360File from './data/image-360.jpg';
 import subtitles from './data/subtitles';
 import video360File from './data/test-360.mp4';
+import bigVideoFile from './data/test-apple.mp4';
 import videoFileVertical from './data/test-vertical.mp4';
 import gifFile from './data/test.gif';
 import audioFile from './data/test.mp3';
@@ -139,9 +140,9 @@ export const imageMedia = ({
     ),
 });
 
-export const videoMedia = ({ vertical = false } = {}) => ({
+export const videoMedia = ({ vertical = false, big = false } = {}) => ({
     type: 'video',
-    url: vertical ? videoFileVertical : videoFile,
+    url: vertical ? videoFileVertical : big ? bigVideoFile : videoFile, // eslint-disable-line no-nested-ternary
     thumbnail_url: imageUrl({ width: 1920, height: 1080, rand: true }),
     metadata: vertical
         ? { width: 720, height: 1280 }
