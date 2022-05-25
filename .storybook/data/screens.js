@@ -323,7 +323,10 @@ export const allScreens = [
         id: uuid(),
         type: 'share',
         layout: 'top',
-        heading: 'Share this micromag!',
+        heading: {
+            body: 'Share this micromag!',
+            textStyle: { textAlign: 'center' },
+        },
         options: {
             facebook: true,
             twitter: true

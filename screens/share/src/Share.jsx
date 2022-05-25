@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FormattedMessage } from 'react-intl';
-import { ScreenElement, PlaceholderBlock, TransitionsStagger } from '@micromag/core/components';
+import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -113,7 +113,7 @@ const ShareScreen = ({
                     className={classNames([
                         styles.heading,
                     ])}
-                    body={heading}
+                    {...heading}
                 />
             ) : null}
         </ScreenElement>,
@@ -134,7 +134,6 @@ const ShareScreen = ({
                     styles.shareOptions,
                     { [styles.isCentered]: centered },
                 ])}
-                title={heading}
                 url={finalShareURL}
                 options={selectedOptions}
             />
