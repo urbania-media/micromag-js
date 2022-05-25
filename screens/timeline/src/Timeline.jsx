@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useMemo, useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
@@ -91,7 +91,7 @@ const Timeline = ({
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-    const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})) : items || [null];
+    const finalItems = useMemo(() => isPlaceholder ? [...new Array(5)].map(() => ({})) : items || [null], [isPlaceholder, items]);
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
     const hasItems = finalItems !== null && itemsCount;
@@ -111,8 +111,8 @@ const Timeline = ({
     const mediaShouldLoad = current || active;
 
     const onImageLoaded = useCallback(() => {
-        setImagesLoaded(imagesLoaded + 1);
-    }, [imagesLoaded, setImagesLoaded]);
+        setImagesLoaded(count => count + 1);
+    }, [setImagesLoaded]);
 
     const firstLineRef = useRef(null);
     const firstContentRef = useRef(null);
@@ -139,6 +139,7 @@ const Timeline = ({
         }
 
         const typesCount = elementsTypes.length;
+        const { textStyle: descriptionTextStyle } = description || {};
 
         return (
             <div className={styles.item} key={`item-${itemI}`}>
@@ -220,7 +221,12 @@ const Timeline = ({
                                             emptyClassName={styles.empty}
                                             isEmpty={!hasDescription}
                                         >
-                                            {hasElement ? <Text {...description} /> : null}
+                                            {hasElement ? (
+                                                <Text
+                                                    {...description}
+                                                    textStyle={getStyleFromColor(descriptionTextStyle)}
+                                                />
+                                            ): null}
                                         </ScreenElement>
                                     </div>
                                 );

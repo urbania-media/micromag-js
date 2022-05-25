@@ -115,8 +115,8 @@ const GalleryScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const onImageLoaded = useCallback(() => {
-        setImagesLoaded(imagesLoaded + 1);
-    }, [imagesLoaded, setImagesLoaded]);
+        setImagesLoaded(count => count + 1);
+    }, [setImagesLoaded]);
 
     const imagesEl = useRef([]);
     const [imagesSizes, setImagesSizes] = useState([]);
