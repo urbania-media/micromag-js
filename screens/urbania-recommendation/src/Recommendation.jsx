@@ -354,7 +354,6 @@ const Recommendation = ({
             ) : null}
             <Container width={width} height={height}>
                 <Scroll
-                    scrolleeClassName={styles.scrollee}
                     disabled={animationStarted || scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
