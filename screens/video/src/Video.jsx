@@ -18,7 +18,6 @@ import {
 import {
     useTrackScreenMedia,
     useLongPress,
-    useResizeObserver,
     useMediaThumbnail,
 } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
@@ -98,14 +97,6 @@ const VideoScreen = ({
         color = null,
         progressColor = null,
     } = video || {};
-
-    const hasControls = (withSeekBar || withControls) && (isView || isEdit);
-
-    const {
-        ref: controlsRef,
-        entry: { contentRect },
-    } = useResizeObserver();
-    const { height: controlsHeight = null } = contentRect || {};
 
     const apiRef = useRef();
     const {
@@ -240,8 +231,12 @@ const VideoScreen = ({
     const onShowControls = useCallback(
         (e) => {
             onMouseMove(e, 3000);
+
+            if(autoPlay && !playing) {
+                play();
+            }
         },
-        [onMouseMove],
+        [play, onMouseMove],
     );
 
     const longPressBind = useLongPress({ onLongPress, onClick: onMouseMove });
@@ -271,9 +266,6 @@ const VideoScreen = ({
 
     const hasVideoUrl = videoUrl !== null;
 
-    // const hasThumbnail = thumbnailUrl !== null;
-    // const [posterReady, setPosterReady] = useState(!hasThumbnail);
-
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
     const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
@@ -292,19 +284,11 @@ const VideoScreen = ({
         setReady(!hasVideoUrl);
     }, [videoUrl, hasVideoUrl, setReady]);
 
-    // useEffect(() => {
-    //     setPosterReady(!hasThumbnail);
-    // }, [thumbnailUrl, hasThumbnail, setPosterReady]);
-
     const onVideoReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
 
-    // const onPosterLoaded = useCallback(() => {
-    //     setPosterReady(true);
-    // }, [isStatic, isCapture, setPosterReady]);
-
-    const visibleControls = withControls && ((!autoPlay && !playing) || muted || showMediaControls);
+    const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
     const items = [
         <ScreenElement
@@ -362,6 +346,21 @@ const VideoScreen = ({
                 </div>
             ) : null}
         </ScreenElement>,
+
+        hasVideoUrl ? (
+            <button
+                key="video-button"
+                type="button"
+                onClick={onShowControls}
+                className={classNames([
+                    styles.videoButton,
+                    {
+                        [styles.visible]: !visibleControls,
+                    },
+                ])}
+            />
+        ): null,
+
         !isPlaceholder ? (
             <div key="bottom-content" className={styles.bottomContent}>
                 <Transitions
@@ -380,48 +379,31 @@ const VideoScreen = ({
                         className={classNames([
                             styles.bottom,
                             {
-                                // [styles.visible]: visibleControls,
                                 [styles.withGradient]: withSeekBar || withControls || muted,
                             },
                         ])}
                     >
-                        {hasVideoUrl && hasControls ? (
-                            <>
-                                <div ref={controlsRef}>
-                                    <MediaControls
-                                        className={classNames([
-                                            styles.mediaControls,
-                                            {
-                                                [styles.visible]: visibleControls,
-                                            },
-                                        ])}
-                                        withControls={withControls}
-                                        withSeekBar={withSeekBar}
-                                        color={color}
-                                        progressColor={progressColor}
-                                        playing={playing}
-                                        muted={muted}
-                                        currentTime={currentTime}
-                                        duration={duration}
-                                        onTogglePlay={togglePlay}
-                                        onToggleMute={onToggleMute}
-                                        onSeek={onSeek}
-                                        focusable={current && isView}
-                                    />
-                                </div>
-                                <button
-                                    type="button"
-                                    style={{ height: controlsHeight }}
-                                    onClick={onShowControls}
-                                    className={classNames([
-                                        styles.videoButton,
-                                        {
-                                            [styles.visible]: !visibleControls,
-                                            [styles.alwaysHidden]: !hasControls,
-                                        },
-                                    ])}
-                                />
-                            </>
+                        {hasVideoUrl ? (
+                            <MediaControls
+                                className={classNames([
+                                    styles.mediaControls,
+                                    {
+                                        [styles.visible]: visibleControls,
+                                    },
+                                ])}
+                                withControls={withControls}
+                                withSeekBar={withSeekBar}
+                                color={color}
+                                progressColor={progressColor}
+                                playing={playing}
+                                muted={muted}
+                                currentTime={currentTime}
+                                duration={duration}
+                                onTogglePlay={togglePlay}
+                                onToggleMute={onToggleMute}
+                                onSeek={onSeek}
+                                focusable={current && isView}
+                            />
                         ) : null}
                         {hasCallToAction ? (
                             <div style={{ marginTop: -spacing / 2 }}>
@@ -467,7 +449,7 @@ const VideoScreen = ({
                     [styles.fullscreen]: fullscreen,
                 },
             ])}
-            data-screen-ready={isStatic || isCapture /* && posterReady */ || ready}
+            data-screen-ready={isStatic || isCapture || ready}
             {...longPressBind}
             onMouseMove={onMouseMove}
         >

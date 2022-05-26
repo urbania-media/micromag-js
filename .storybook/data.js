@@ -5,6 +5,7 @@ import image360File from './data/image-360.jpg';
 import subtitles from './data/subtitles';
 import video360File from './data/test-360.mp4';
 import bigVideoFile from './data/test-apple.mp4';
+import videoWithAudio from './data/test-audio.mp4';
 import videoFileVertical from './data/test-vertical.mp4';
 import gifFile from './data/test.gif';
 import audioFile from './data/test.mp3';
@@ -160,6 +161,11 @@ export const videoMedia = ({ vertical = false, big = false } = {}) => ({
             url: imageUrl({ width: 1920, height: 1080, rand: true }),
         },
     },
+});
+
+export const videoMediaWithSound = () => ({
+    ...videoMedia(),
+    url: videoWithAudio
 });
 
 export const gifVideoMedia = ({ withoutFiles = null } = {}) => ({
