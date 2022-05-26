@@ -18,7 +18,6 @@ import {
 import {
     useTrackScreenMedia,
     useLongPress,
-    useResizeObserver,
     useMediaThumbnail,
 } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
@@ -98,11 +97,6 @@ const VideoScreen = ({
         color = null,
         progressColor = null,
     } = video || {};
-
-    const {
-        ref: controlsRef,
-        entry: { contentRect },
-    } = useResizeObserver();
 
     const apiRef = useRef();
     const {
@@ -390,28 +384,26 @@ const VideoScreen = ({
                         ])}
                     >
                         {hasVideoUrl ? (
-                            <div ref={controlsRef}>
-                                <MediaControls
-                                    className={classNames([
-                                        styles.mediaControls,
-                                        {
-                                            [styles.visible]: visibleControls,
-                                        },
-                                    ])}
-                                    withControls={withControls}
-                                    withSeekBar={withSeekBar}
-                                    color={color}
-                                    progressColor={progressColor}
-                                    playing={playing}
-                                    muted={muted}
-                                    currentTime={currentTime}
-                                    duration={duration}
-                                    onTogglePlay={togglePlay}
-                                    onToggleMute={onToggleMute}
-                                    onSeek={onSeek}
-                                    focusable={current && isView}
-                                />
-                            </div>
+                            <MediaControls
+                                className={classNames([
+                                    styles.mediaControls,
+                                    {
+                                        [styles.visible]: visibleControls,
+                                    },
+                                ])}
+                                withControls={withControls}
+                                withSeekBar={withSeekBar}
+                                color={color}
+                                progressColor={progressColor}
+                                playing={playing}
+                                muted={muted}
+                                currentTime={currentTime}
+                                duration={duration}
+                                onTogglePlay={togglePlay}
+                                onToggleMute={onToggleMute}
+                                onSeek={onSeek}
+                                focusable={current && isView}
+                            />
                         ) : null}
                         {hasCallToAction ? (
                             <div style={{ marginTop: -spacing / 2 }}>
