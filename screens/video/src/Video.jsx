@@ -103,7 +103,6 @@ const VideoScreen = ({
         ref: controlsRef,
         entry: { contentRect },
     } = useResizeObserver();
-    const { height: controlsHeight = null } = contentRect || {};
 
     const apiRef = useRef();
     const {
