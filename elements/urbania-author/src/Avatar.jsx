@@ -23,7 +23,7 @@ const defaultProps = {
     height: 100,
     resolution: 1,
     isTag: false,
-    shape: 'Circle',
+    shape: 'circle',
     className: null,
     shouldLoad: true,
 };
