@@ -238,6 +238,10 @@ const VideoScreen = ({
     const onShowControls = useCallback(
         (e) => {
             onMouseMove(e, 3000);
+
+            if(autoPlay && !playing) {
+                play();
+            }
         },
         [onMouseMove],
     );
