@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.3.127",
+    "version": "0.3.128",
     "description": "",
     "keywords": [
         "javascript"
@@ -64,7 +64,7 @@
         "@micromag/element-audio": "^0.3.126",
         "@micromag/element-background": "^0.3.127",
         "@micromag/element-button": "^0.3.126",
-        "@micromag/element-call-to-action": "^0.3.126",
+        "@micromag/element-call-to-action": "^0.3.128",
         "@micromag/element-checkbox": "^0.3.126",
         "@micromag/element-closed-captions": "^0.3.126",
         "@micromag/element-container": "^0.3.126",
@@ -76,12 +76,12 @@
         "@micromag/element-map": "^0.3.126",
         "@micromag/element-media-controls": "^0.3.126",
         "@micromag/element-quote": "^0.3.126",
-        "@micromag/element-scroll": "^0.3.126",
+        "@micromag/element-scroll": "^0.3.128",
         "@micromag/element-share-options": "^0.3.126",
         "@micromag/element-stack": "^0.3.126",
         "@micromag/element-text": "^0.3.126",
         "@micromag/element-text-input": "^0.3.126",
-        "@micromag/element-urbania-author": "^0.3.126",
+        "@micromag/element-urbania-author": "^0.3.128",
         "@micromag/element-video": "^0.3.126",
         "@micromag/element-visual": "^0.3.126",
         "@micromag/element-webview": "^0.3.126",
