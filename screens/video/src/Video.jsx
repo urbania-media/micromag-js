@@ -99,8 +99,6 @@ const VideoScreen = ({
         progressColor = null,
     } = video || {};
 
-    const hasControls = (withSeekBar || withControls) && (isView || isEdit);
-
     const {
         ref: controlsRef,
         entry: { contentRect },
@@ -271,9 +269,6 @@ const VideoScreen = ({
 
     const hasVideoUrl = videoUrl !== null;
 
-    // const hasThumbnail = thumbnailUrl !== null;
-    // const [posterReady, setPosterReady] = useState(!hasThumbnail);
-
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
     const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
@@ -292,19 +287,11 @@ const VideoScreen = ({
         setReady(!hasVideoUrl);
     }, [videoUrl, hasVideoUrl, setReady]);
 
-    // useEffect(() => {
-    //     setPosterReady(!hasThumbnail);
-    // }, [thumbnailUrl, hasThumbnail, setPosterReady]);
-
     const onVideoReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
 
-    // const onPosterLoaded = useCallback(() => {
-    //     setPosterReady(true);
-    // }, [isStatic, isCapture, setPosterReady]);
-
-    const visibleControls = withControls && ((!autoPlay && !playing) || muted || showMediaControls);
+    const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
     const items = [
         <ScreenElement
@@ -385,7 +372,7 @@ const VideoScreen = ({
                             },
                         ])}
                     >
-                        {hasVideoUrl && hasControls ? (
+                        {hasVideoUrl ? (
                             <>
                                 <div ref={controlsRef}>
                                     <MediaControls
@@ -417,7 +404,6 @@ const VideoScreen = ({
                                         styles.videoButton,
                                         {
                                             [styles.visible]: !visibleControls,
-                                            [styles.alwaysHidden]: !hasControls,
                                         },
                                     ])}
                                 />
@@ -467,7 +453,7 @@ const VideoScreen = ({
                     [styles.fullscreen]: fullscreen,
                 },
             ])}
-            data-screen-ready={isStatic || isCapture /* && posterReady */ || ready}
+            data-screen-ready={isStatic || isCapture || ready}
             {...longPressBind}
             onMouseMove={onMouseMove}
         >
