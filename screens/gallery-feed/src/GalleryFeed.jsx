@@ -122,6 +122,8 @@ const GalleryFeedScreen = ({
                 <div className={styles.imageContainer} ref={index === 0 ? firstImageRef : null}>
                     <Visual
                         {...finalImage}
+                        className={styles.image}
+                        videoClassName={styles.video}
                         width={firstImageRefWidth}
                         resolution={resolution}
                         playing={backgroundPlaying}

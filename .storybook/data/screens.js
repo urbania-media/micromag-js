@@ -1,8 +1,10 @@
 import { v1 as uuid } from 'uuid';
 import {
-    images,
+    medias,
+    mediasWithCaptions,
+    // images,
     imageMedia,
-    imagesWithCaptions,
+    // imagesWithCaptions,
     closedCaptionsMedia,
     text,
     title,
@@ -53,7 +55,7 @@ export const allScreens = [
         id: uuid(),
         type: 'gallery',
         layout: 'one-two-one',
-        images: images({ count: 4 }),
+        images: medias({ count: 4 }),
         background: {
             color: { alpha: 1, color: '#FFFF00' },
         },
@@ -63,7 +65,7 @@ export const allScreens = [
         id: uuid(),
         type: 'gallery-feed',
         layout: 'normal',
-        images: images({ count: 5 }),
+        images: medias({ count: 5 }),
         background: {
             color: { alpha: 1, color: '#00FF00' },
         },
@@ -73,7 +75,7 @@ export const allScreens = [
         id: uuid(),
         type: 'gallery-feed-captions',
         layout: 'normal',
-        images: imagesWithCaptions({ count: 5 }),
+        images: mediasWithCaptions({ count: 5 }),
         background: {
             color: { alpha: 1, color: '#00FFFF' },
         },

@@ -227,6 +227,25 @@ export const closedCaptionsMedia = () => ({
 });
 
 // -----------------
+export const medias = ({ count = 3, width = 800, height = 800, rand = false, gif = false } = {}) =>
+    [...Array(count)].map((_, index) => index % 3 === 0
+        ? videoMedia({ width, height })
+        : imageMedia({ width, height, rand, gif }),
+    );
+
+export const mediasWithCaptions = ({
+    count = 3,
+    width = 800,
+    height = 800,
+    rand = false,
+    gif = false,
+} = {}) =>
+    [...Array(count)].map((_, index) => ({
+        media: index % 3 === 0
+            ? videoMedia({ width, height})
+            : imageMedia({ width, height, rand, gif }),
+        caption: index % 3 === 0 ? text() : null,
+    }));
 
 export const images = ({ count = 3, width = 800, height = 800, rand = false, gif = false } = {}) =>
     [...Array(count)].map(() => imageMedia({ width, height, rand, gif }));

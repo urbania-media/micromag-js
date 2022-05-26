@@ -21,6 +21,16 @@
         height: 50px;
     }
 
+    .image,
+    .imageContainer,
+    .video {
+        position: relative;
+    }
+
+    .imageContainer {
+        overflow: hidden;
+    }
+
     .callToAction {
         position: absolute;
         bottom: 0;
