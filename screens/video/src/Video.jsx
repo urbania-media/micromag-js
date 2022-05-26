@@ -353,6 +353,20 @@ const VideoScreen = ({
                 </div>
             ) : null}
         </ScreenElement>,
+
+        hasVideoUrl ? (
+            <button
+                type="button"
+                onClick={onShowControls}
+                className={classNames([
+                    styles.videoButton,
+                    {
+                        [styles.visible]: !visibleControls,
+                    },
+                ])}
+            />
+        ): null,
+
         !isPlaceholder ? (
             <div key="bottom-content" className={styles.bottomContent}>
                 <Transitions
@@ -371,47 +385,33 @@ const VideoScreen = ({
                         className={classNames([
                             styles.bottom,
                             {
-                                // [styles.visible]: visibleControls,
                                 [styles.withGradient]: withSeekBar || withControls || muted,
                             },
                         ])}
                     >
                         {hasVideoUrl ? (
-                            <>
-                                <div ref={controlsRef}>
-                                    <MediaControls
-                                        className={classNames([
-                                            styles.mediaControls,
-                                            {
-                                                [styles.visible]: visibleControls,
-                                            },
-                                        ])}
-                                        withControls={withControls}
-                                        withSeekBar={withSeekBar}
-                                        color={color}
-                                        progressColor={progressColor}
-                                        playing={playing}
-                                        muted={muted}
-                                        currentTime={currentTime}
-                                        duration={duration}
-                                        onTogglePlay={togglePlay}
-                                        onToggleMute={onToggleMute}
-                                        onSeek={onSeek}
-                                        focusable={current && isView}
-                                    />
-                                </div>
-                                <button
-                                    type="button"
-                                    style={{ height: controlsHeight }}
-                                    onClick={onShowControls}
+                            <div ref={controlsRef}>
+                                <MediaControls
                                     className={classNames([
-                                        styles.videoButton,
+                                        styles.mediaControls,
                                         {
-                                            [styles.visible]: !visibleControls,
+                                            [styles.visible]: visibleControls,
                                         },
                                     ])}
+                                    withControls={withControls}
+                                    withSeekBar={withSeekBar}
+                                    color={color}
+                                    progressColor={progressColor}
+                                    playing={playing}
+                                    muted={muted}
+                                    currentTime={currentTime}
+                                    duration={duration}
+                                    onTogglePlay={togglePlay}
+                                    onToggleMute={onToggleMute}
+                                    onSeek={onSeek}
+                                    focusable={current && isView}
                                 />
-                            </>
+                            </div>
                         ) : null}
                         {hasCallToAction ? (
                             <div style={{ marginTop: -spacing / 2 }}>
