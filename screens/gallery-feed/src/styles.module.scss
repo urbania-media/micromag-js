@@ -24,7 +24,7 @@
     .image,
     .imageContainer,
     .video {
-        position: relative;
+        position: relative !important; // TODO: find workaround for when styles are doubly applied, and override this declaration
     }
 
     .imageContainer {
