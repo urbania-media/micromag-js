@@ -334,18 +334,18 @@ export default [
                 isList: true,
                 fields: [
                     {
-                        name: 'buttonsTextStyle',
-                        type: 'text-style-form',
-                        label: defineMessage({
-                            defaultMessage: 'Buttons text',
-                            description: 'Field label',
-                        }),
-                    },
-                    {
                         name: 'buttonsStyle',
                         type: 'box-style-form',
                         label: defineMessage({
                             defaultMessage: 'Buttons',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'buttonsTextStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Buttons text',
                             description: 'Field label',
                         }),
                     },
