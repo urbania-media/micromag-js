@@ -7,6 +7,11 @@
     @extend %screen;
     align-items: flex-start;
 
+    .layout,
+    .scrollee {
+        height: 100%;
+    }
+
     .emptyTitle,
     .emptyText {
         @extend %empty;
@@ -157,6 +162,7 @@
 
     .description {
         padding: 10px;
+        overflow: auto;
         background-color: #fff;
         font-family: 'Roboto', sans-serif;
         font-size: 12px;
