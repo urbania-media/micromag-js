@@ -319,7 +319,6 @@ const Recommendation = ({
             <div style={{ margin: -spacing, marginTop: '10px' }} key="call-to-action">
                 <CallToAction
                     callToAction={callToAction}
-                    disabled={!scrolledBottom}
                     animationDisabled={isPreview}
                     focusable={current && isView}
                     screenSize={{ width, height }}
@@ -354,6 +353,7 @@ const Recommendation = ({
             ) : null}
             <Container width={width} height={height}>
                 <Scroll
+                    scrolleeClassName={styles.scrollee}
                     disabled={animationStarted || scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}

@@ -14,6 +14,7 @@ const propTypes = {
     disabled: PropTypes.bool,
     verticalAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
     className: PropTypes.string,
+    scrolleeClassName: PropTypes.string,
     children: PropTypes.node,
     onScrolledBottom: PropTypes.func,
     onScrolledNotBottom: PropTypes.func,
@@ -27,6 +28,7 @@ const defaultProps = {
     disabled: false,
     verticalAlign: null,
     className: null,
+    scrolleeClassName: null,
     children: null,
     onScrolledBottom: null,
     onScrolledNotBottom: null,
@@ -40,6 +42,7 @@ function Scroll({
     disabled,
     verticalAlign,
     className,
+    scrolleeClassName,
     children,
     onScrolledBottom,
     onScrolledNotBottom,
@@ -134,7 +137,14 @@ function Scroll({
             style={finalStyle}
         >
             <div className={styles.scrollable} ref={scrollableRef} {...bind()}>
-                <div className={styles.scrollee} ref={scrolleeRef}>
+                <div
+                    className={classNames([
+                        styles.scrollee,
+                        {
+                            [scrolleeClassName]: scrolleeClassName !== null,
+                        },
+                    ])}
+                >
                     {children}
                 </div>
             </div>
