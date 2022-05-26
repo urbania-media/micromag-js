@@ -243,7 +243,7 @@ const VideoScreen = ({
                 play();
             }
         },
-        [onMouseMove],
+        [play, onMouseMove],
     );
 
     const longPressBind = useLongPress({ onLongPress, onClick: onMouseMove });
@@ -356,6 +356,7 @@ const VideoScreen = ({
 
         hasVideoUrl ? (
             <button
+                key="video-button"
                 type="button"
                 onClick={onShowControls}
                 className={classNames([
