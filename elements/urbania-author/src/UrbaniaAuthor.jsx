@@ -58,11 +58,6 @@ const UrbaniaAuthor = ({
         description: 'Author label',
     });
 
-    const and = intl.formatMessage({
-        defaultMessage: 'Et',
-        description: 'Author label',
-    });
-
     const authorText = isTextFilled(name) ? <Text className={styles.name} {...name} /> : null;
     const collaboratorText = isTextFilled(collaborator) ? (
         <Text className={styles.collaboratorText} {...collaborator} inline />
@@ -105,7 +100,6 @@ const UrbaniaAuthor = ({
                 )}
                 {collaboratorText !== null ? (
                     <div className={styles.collaborator}>
-                        <span className={styles.collaboratorPrefix}>{and}</span>
                         {collaboratorText !== null ? collaboratorText : null}
                     </div>
                 ) : null}
