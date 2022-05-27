@@ -6,6 +6,7 @@
 
     .circle {
         position: absolute;
+        z-index: 2;
         top: -10px;
         left: 0;
         width: 21px;
@@ -20,6 +21,8 @@
     }
 
     .hand {
+        position: relative;
+        z-index: 2;
         width: 30px;
         height: auto;
         animation-name: panY;
@@ -29,31 +32,62 @@
         animation-direction: alternate;
         animation-fill-mode: both;
     }
+}
 
-    @keyframes pulse {
-        0% {
-            transform: scale(0.5);
-            opacity: 0;
-        }
+.inner {
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        width: 600%;
+        height: 500%;
+        transform: translate(-50%, -50%);
+        animation-name: shadowFade;
+        animation-duration: 0.6s;
+        animation-timing-function: ease;
+        animation-delay: 0.05s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        background-image: radial-gradient(rgba($gray-600, 0.4), rgba($gray-600, 0) 60%);
+        animation-fill-mode: both;
+    }
+}
 
-        50% {
-            transform: scale(1.5);
-            opacity: 0.5;
-        }
-
-        100% {
-            transform: scale(2);
-            opacity: 0;
-        }
+@keyframes pulse {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
     }
 
-    @keyframes panY {
-        from {
-            transform: translateY(0);
-        }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
 
-        to {
-            transform: translateY(10px);
-        }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes panY {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(10px);
+    }
+}
+
+@keyframes shadowFade {
+    from {
+        transform: translate(-50%, -50%) translateY(0) scale(0.85);
+    }
+
+    to {
+        transform: translate(-50%, -50%) translateY(10px) scale(1.1);
     }
 }
