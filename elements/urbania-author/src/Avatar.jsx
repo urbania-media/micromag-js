@@ -35,7 +35,7 @@ const Avatar = ({ image, width, height, resolution, shape, isTag, className, sho
             className={classNames([
                 styles.container,
                 {
-                    [styles[`shape${shape}`]]: shape !== null,
+                    [styles[`shape-${shape}`]]: shape !== null,
                     [styles.isTag]: isTag,
                     [className]: className !== null,
                 },

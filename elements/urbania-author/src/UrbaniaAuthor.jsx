@@ -103,10 +103,12 @@ const UrbaniaAuthor = ({
                 ) : (
                     <div>{authorText}</div>
                 )}
-                <div className={styles.collaborator}>
-                    <span className={styles.collaboratorPrefix}>{and}</span>
-                    {collaboratorText !== null ? collaboratorText : null}
-                </div>
+                {collaboratorText !== null ? (
+                    <div className={styles.collaborator}>
+                        <span className={styles.collaboratorPrefix}>{and}</span>
+                        {collaboratorText !== null ? collaboratorText : null}
+                    </div>
+                ) : null}
             </div>
         </div>
     );
