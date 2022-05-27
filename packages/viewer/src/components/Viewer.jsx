@@ -87,7 +87,7 @@ const defaultProps = {
     withoutScreensMenu: false,
     withoutMenuShadow: false,
     withoutFullscreen: false,
-    withLandscapeSiblingsScreens: true,
+    withLandscapeSiblingsScreens: false,
     withNavigationHint: false,
     menuIsScreenWidth: false,
     closeable: false,
