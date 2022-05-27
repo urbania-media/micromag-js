@@ -19,6 +19,7 @@ import {
     useTrackScreenMedia,
     useLongPress,
     useMediaThumbnail,
+    useResizeObserver,
 } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -98,6 +99,12 @@ const VideoScreen = ({
         progressColor = null,
     } = video || {};
 
+    const {
+        ref: controlsRef,
+        entry: { contentRect },
+    } = useResizeObserver();
+    const { height: controlsHeight = null } = contentRect || {};
+
     const apiRef = useRef();
     const {
         togglePlay,
@@ -116,6 +123,7 @@ const VideoScreen = ({
 
     const mouseMoveRef = useRef(null);
     const [showMediaControls, setShowMediaControls] = useState(false);
+    const [playOnFirstTap, setPlayOnFirstTap] = useState(false);
 
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
@@ -231,10 +239,6 @@ const VideoScreen = ({
     const onShowControls = useCallback(
         (e) => {
             onMouseMove(e, 3000);
-
-            if(autoPlay && !playing) {
-                play();
-            }
         },
         [play, onMouseMove],
     );
@@ -286,6 +290,10 @@ const VideoScreen = ({
 
     const onVideoReady = useCallback(() => {
         setReady(true);
+
+        if(autoPlay && !playing) {
+            setPlayOnFirstTap(true); // @note: this sets up a button that plays the video on click for folks who are low on battery on their device: e.g. ios stops the autoplay of videos in that case...
+        }
     }, [setReady]);
 
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
@@ -347,16 +355,13 @@ const VideoScreen = ({
             ) : null}
         </ScreenElement>,
 
-        hasVideoUrl ? (
+        (playOnFirstTap && !playing) ? (
             <button
-                key="video-button"
+                key="first-tap-button"
                 type="button"
-                onClick={onShowControls}
+                onClick={onPlay}
                 className={classNames([
                     styles.videoButton,
-                    {
-                        [styles.visible]: !visibleControls,
-                    },
                 ])}
             />
         ): null,
@@ -384,26 +389,42 @@ const VideoScreen = ({
                         ])}
                     >
                         {hasVideoUrl ? (
-                            <MediaControls
-                                className={classNames([
-                                    styles.mediaControls,
-                                    {
-                                        [styles.visible]: visibleControls,
-                                    },
-                                ])}
-                                withControls={withControls}
-                                withSeekBar={withSeekBar}
-                                color={color}
-                                progressColor={progressColor}
-                                playing={playing}
-                                muted={muted}
-                                currentTime={currentTime}
-                                duration={duration}
-                                onTogglePlay={togglePlay}
-                                onToggleMute={onToggleMute}
-                                onSeek={onSeek}
-                                focusable={current && isView}
-                            />
+                            <>
+                                <div ref={controlsRef}>
+                                    <MediaControls
+                                        className={classNames([
+                                            styles.mediaControls,
+                                            {
+                                                [styles.visible]: visibleControls,
+                                            },
+                                        ])}
+                                        withControls={withControls}
+                                        withSeekBar={withSeekBar}
+                                        color={color}
+                                        progressColor={progressColor}
+                                        playing={playing}
+                                        muted={muted}
+                                        currentTime={currentTime}
+                                        duration={duration}
+                                        onTogglePlay={togglePlay}
+                                        onToggleMute={onToggleMute}
+                                        onSeek={onSeek}
+                                        focusable={current && isView}
+                                    />
+                                </div>
+                                <button
+                                    key="video-button"
+                                    style={{ height: controlsHeight }}
+                                    type="button"
+                                    onPointerDown={onShowControls}
+                                    className={classNames([
+                                        styles.videoButton,
+                                        {
+                                            [styles.visible]: !visibleControls,
+                                        },
+                                    ])}
+                                />
+                            </>
                         ) : null}
                         {hasCallToAction ? (
                             <div style={{ marginTop: -spacing / 2 }}>
