@@ -134,6 +134,7 @@ const ShareScreen = ({
                     styles.shareOptions,
                     { [styles.isCentered]: centered },
                 ])}
+                labelClassName={styles.shareLabel}
                 url={finalShareURL}
                 options={selectedOptions}
             />

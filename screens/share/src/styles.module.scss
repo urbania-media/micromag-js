@@ -19,6 +19,10 @@
     }
 }
 
+.shareLabel {
+    display: none; // @todo: later on, we'll offer styling options for the label
+}
+
 .emptyHeading,
 .emptyOptions {
     @extend %empty;
