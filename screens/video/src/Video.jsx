@@ -359,9 +359,10 @@ const VideoScreen = ({
             <button
                 key="first-tap-button"
                 type="button"
-                onClick={onPlay}
+                onPointerDown={onPlay}
                 className={classNames([
                     styles.videoButton,
+                    styles.visible,
                 ])}
             />
         ): null,
