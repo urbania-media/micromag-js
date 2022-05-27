@@ -487,8 +487,9 @@ const Viewer = ({
                         <div
                             ref={contentRef}
                             className={styles.content}
-                            onPointerDown={detectPointerEvents.hasApi ? onClickContent : null}
-                            onMouseDown={detectPointerEvents.hasApi ? onClickContent : null}
+                            onClick={onClickContent}
+                            // onPointerDown={detectPointerEvents.hasApi ? onClickContent : null}
+                            // onMouseDown={detectPointerEvents.hasApi ? onClickContent : null}
                         >
                             {mountedScreens.map((scr, mountedIndex) => {
                                 const i = mountedScreenStartIndex + mountedIndex;
@@ -573,16 +574,18 @@ const Viewer = ({
                                                     onScreenClick(e, i);
                                                 }
                                             }}
-                                            onPointerDown={
-                                                detectPointerEvents.hasApi
-                                                    ? (e) => onScreenClick(e, i)
-                                                    : null
-                                            }
-                                            onMouseDown={
-                                                !detectPointerEvents.hasApi
-                                                    ? (e) => onScreenClick(e, i)
-                                                    : null
-                                            }
+                                            onClick={(e) => onScreenClick(e, i)}
+                                            // @todo: this was to make the experience “snappier” when switching screens
+                                            // onPointerDown={
+                                            //     detectPointerEvents.hasApi
+                                            //         ? (e) => onScreenClick(e, i)
+                                            //         : null
+                                            // }
+                                            // onMouseDown={
+                                            //     !detectPointerEvents.hasApi
+                                            //         ? (e) => onScreenClick(e, i)
+                                            //         : null
+                                            // }
                                         >
                                             <div
                                                 className={styles.scaler}
