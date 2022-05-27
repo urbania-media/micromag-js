@@ -79,7 +79,7 @@ const defaultProps = {
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.8,
     neighborScreensActive: 1,
-    neighborScreensMounted: 2,
+    neighborScreensMounted: 1,
     storyIsParsed: false,
     landscapeScreenMargin: 20,
     withMetadata: false,
