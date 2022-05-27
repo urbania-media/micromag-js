@@ -2,6 +2,7 @@
 
 /* eslint-disable jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
+import detectPointerEvents from 'detect-pointer-events';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -19,7 +20,6 @@ import {
     useTrackScreenView,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
-import detectPointerEvents from 'detect-pointer-events';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
 import styles from '../styles/viewer.module.scss';
@@ -484,7 +484,12 @@ const Viewer = ({
                         />
                     ) : null}
                     {ready || withoutScreensTransforms ? (
-                        <div ref={contentRef} className={styles.content} onClick={onClickContent}>
+                        <div
+                            ref={contentRef}
+                            className={styles.content}
+                            onPointerDown={detectPointerEvents.hasApi ? onClickContent : null}
+                            onMouseDown={detectPointerEvents.hasApi ? onClickContent : null}
+                        >
                             {mountedScreens.map((scr, mountedIndex) => {
                                 const i = mountedScreenStartIndex + mountedIndex;
                                 const current = i === parseInt(screenIndex, 10);
@@ -568,8 +573,16 @@ const Viewer = ({
                                                     onScreenClick(e, i);
                                                 }
                                             }}
-                                            onPointerDown={detectPointerEvents.hasApi ? (e) => onScreenClick(e, i) : null}
-                                            onMouseDown={!detectPointerEvents.hasApi ? (e) => onScreenClick(e, i) : null}
+                                            onPointerDown={
+                                                detectPointerEvents.hasApi
+                                                    ? (e) => onScreenClick(e, i)
+                                                    : null
+                                            }
+                                            onMouseDown={
+                                                !detectPointerEvents.hasApi
+                                                    ? (e) => onScreenClick(e, i)
+                                                    : null
+                                            }
                                         >
                                             <div
                                                 className={styles.scaler}
