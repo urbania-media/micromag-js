@@ -21,6 +21,14 @@
         text-decoration: none;
     }
 
+    .right {
+        display: block;
+    }
+
+    .name, .prefix {
+        min-height: 20px;
+    }
+
     .name, .prefix, .collaborator {
         display: block;
         background-color: #efefef; // $gray-200;
@@ -55,6 +63,7 @@
         color: $white;
 
         .collaboratorText{
+            padding-left: 7.3px;
             font-size: inherit;
 
             p {
@@ -62,13 +71,6 @@
                 font-size: 0.9em;
                 line-height: 1;
             }
-        }
-
-        .collaboratorPrefix {
-            display: inline-block;
-            padding-right: 0.3em;
-            padding-left: 7px;
-            font-size: 0.9em;
         }
     }
 
@@ -80,10 +82,14 @@
 
         span {
             display: inline-block;
-            padding: 3px 0;
+            padding: 3px 0 0;
             font-size: inherit;
             line-height: 1;
         }
+    }
+
+    &.withoutAvatar {
+
     }
 
     &.isSmall {

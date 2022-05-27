@@ -52,7 +52,7 @@ const UrbaniaAuthor = ({
 }) => {
     const intl = useIntl();
     const { name = null, image = null, url = null, collaborator = null } = author || {};
-
+    const withAvatar = withImage && image !== null;
     const prefix = intl.formatMessage({
         defaultMessage: 'By',
         description: 'Author label',
@@ -69,6 +69,7 @@ const UrbaniaAuthor = ({
                 styles.container,
                 {
                     [styles.isSmall]: isSmall,
+                    [styles.withoutAvatar]: withAvatar,
                     [styles.withoutImage]: !withImage || image === null,
                     [className]: className !== null,
                 },
@@ -77,7 +78,7 @@ const UrbaniaAuthor = ({
             {!withoutPrefix ? (
                 <Text {...name} className={styles.prefix} body={`<span>${prefix}<span>`} />
             ) : null}
-            {withImage && image !== null ? (
+            {withAvatar ? (
                 <Avatar className={styles.image} image={image} shouldLoad={shouldLoad} />
             ) : null}
             <div className={styles.right}>
