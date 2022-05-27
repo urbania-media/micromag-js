@@ -19,6 +19,7 @@ import {
     useTrackScreenView,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
+import detectPointerEvents from 'detect-pointer-events';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
 import styles from '../styles/viewer.module.scss';
@@ -86,7 +87,7 @@ const defaultProps = {
     withoutScreensMenu: false,
     withoutMenuShadow: false,
     withoutFullscreen: false,
-    withLandscapeSiblingsScreens: false,
+    withLandscapeSiblingsScreens: true,
     withNavigationHint: false,
     menuIsScreenWidth: false,
     closeable: false,
@@ -447,7 +448,8 @@ const Viewer = ({
                         screenSize.screens.map((screenName) => `story-screen-${screenName}`),
                         {
                             [styles.landscape]: landscape,
-                            [styles.blings]: withLandscapeSiblingsScreens,
+
+                            [styles.withSiblings]: withLandscapeSiblingsScreens,
                             [styles.hideMenu]: !menuVisible,
                             [styles.ready]: ready || withoutScreensTransforms,
                             [styles.hasInteracted]: hasInteracted,
@@ -566,7 +568,8 @@ const Viewer = ({
                                                     onScreenClick(e, i);
                                                 }
                                             }}
-                                            onClick={(e) => onScreenClick(e, i)}
+                                            onPointerDown={detectPointerEvents.hasApi ? (e) => onScreenClick(e, i) : null}
+                                            onMouseDown={!detectPointerEvents.hasApi ? (e) => onScreenClick(e, i) : null}
                                         >
                                             <div
                                                 className={styles.scaler}

@@ -112,8 +112,9 @@
             top: 0;
             right: auto;
             bottom: 0;
-            left: 100%;
+            left: 50%;
             margin: auto;
+            transform: translate(50vw, 0);
             opacity: 0.2;
             cursor: pointer;
 
@@ -123,11 +124,11 @@
             }
 
             &.visible {
-                left: 50%;
+                transform: translate(0, 0);
             }
 
             &.current {
-                transform: translate(-50%);
+                transform: translate(-50%, 0);
                 opacity: 1;
                 cursor: auto;
             }
