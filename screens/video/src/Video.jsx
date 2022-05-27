@@ -417,7 +417,7 @@ const VideoScreen = ({
                                     key="video-button"
                                     style={{ height: controlsHeight }}
                                     type="button"
-                                    onPointerDown={onShowControls}
+                                    onTouchStart={onShowControls}
                                     className={classNames([
                                         styles.videoButton,
                                         {
