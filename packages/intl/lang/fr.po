@@ -1720,12 +1720,6 @@ msgctxt "i6bmbD"
 msgid "Button"
 msgstr "Bouton"
 
-# Author label
-#: iD0t3t
-msgctxt "iD0t3t"
-msgid "Et"
-msgstr ""
-
 # Label when there is no item
 #: iHV3W3
 msgctxt "iHV3W3"
