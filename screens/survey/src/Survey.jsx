@@ -361,6 +361,7 @@ const SurveyScreen = ({
                                                                         {...label}
                                                                         textStyle={{
                                                                             ...textStyle,
+                                                                            ...buttonsTextStyle,
                                                                             ...resultsTextColor,
                                                                             ...answerResultTextColor,
                                                                         }}
