@@ -15,7 +15,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    types: ['solid', 'dotted', 'dashed', 'groove'],
+    types: ['solid', 'dotted', 'dashed'],
     value: null,
     className: null,
     onChange: null,
