@@ -386,42 +386,37 @@ const VideoScreen = ({
                         ])}
                     >
                         {hasVideoUrl ? (
-                            <>
-                                <div ref={controlsRef}>
-                                    <MediaControls
-                                        className={classNames([
-                                            styles.mediaControls,
-                                            {
-                                                [styles.visible]: visibleControls,
-                                            },
-                                        ])}
-                                        withControls={withControls}
-                                        withSeekBar={withSeekBar}
-                                        color={color}
-                                        progressColor={progressColor}
-                                        playing={playing}
-                                        muted={muted}
-                                        currentTime={currentTime}
-                                        duration={duration}
-                                        onTogglePlay={togglePlay}
-                                        onToggleMute={onToggleMute}
-                                        onSeek={onSeek}
-                                        focusable={current && isView}
-                                    />
-                                </div>
-                                <button
-                                    key="video-button"
-                                    style={{ height: controlsHeight }}
-                                    type="button"
-                                    onTouchStart={onShowControls}
+                            <div className={styles.controls}>
+                                <MediaControls
                                     className={classNames([
-                                        styles.videoButton,
+                                        styles.mediaControls,
                                         {
-                                            [styles.visible]: !visibleControls,
+                                            [styles.visible]: visibleControls,
                                         },
                                     ])}
+                                    withControls={withControls}
+                                    withSeekBar={withSeekBar}
+                                    color={color}
+                                    progressColor={progressColor}
+                                    playing={playing}
+                                    muted={muted}
+                                    currentTime={currentTime}
+                                    duration={duration}
+                                    onTogglePlay={togglePlay}
+                                    onToggleMute={onToggleMute}
+                                    onSeek={onSeek}
+                                    focusable={current && isView}
                                 />
-                            </>
+                                {withControls ? (
+                                    <button
+                                        key="video-button"
+                                        type="button"
+                                        onTouchStart={onShowControls}
+                                        // onClick={onShowControls}
+                                        className={styles.showControlsButton}
+                                    />
+                                ): null}
+                            </div>
                         ) : null}
                         {hasCallToAction ? (
                             <div style={{ marginTop: -spacing / 2 }}>

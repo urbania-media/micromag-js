@@ -4,18 +4,11 @@
 
 .container {
     color: $white;
+    pointer-events: none;
 
     .toggles {
         position: relative;
         color: currentColor;
-    }
-
-    .seekBar {
-        margin-top : 10px;
-    }
-
-    .icon {
-        //
     }
 
     .playPauseButton,
@@ -27,10 +20,10 @@
         justify-content: center;
         width: 50px;
         height: 50px;
+        pointer-events: auto;
     }
 
     .playPauseButton {
-        // display: none;
         visibility: hidden;
         margin: 0 auto;
         border: 2px solid currentColor;
@@ -45,7 +38,6 @@
     }
 
     .muteButton {
-        // display: none;
         visibility: hidden;
         position: absolute;
         right: 0;
@@ -73,6 +65,11 @@
         }
     }
 
+    .seekBar {
+        margin-top : 10px;
+        pointer-events: auto;
+    }
+
     &.playing {
         .playPauseButton {
             .icon {
@@ -91,9 +88,6 @@
             }
         }
     }
-
-    // &.withSeekBar {
-    // }
 
     &.withControls {
         .playPauseButton {
