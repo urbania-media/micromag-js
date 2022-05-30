@@ -19,7 +19,6 @@ import {
     useTrackScreenMedia,
     useLongPress,
     useMediaThumbnail,
-    useResizeObserver,
 } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -99,12 +98,6 @@ const VideoScreen = ({
         progressColor = null,
     } = video || {};
 
-    const {
-        ref: controlsRef,
-        entry: { contentRect },
-    } = useResizeObserver();
-    const { height: controlsHeight = null } = contentRect || {};
-
     const apiRef = useRef();
     const {
         togglePlay,
@@ -123,6 +116,7 @@ const VideoScreen = ({
 
     const mouseMoveRef = useRef(null);
     const [showMediaControls, setShowMediaControls] = useState(false);
+    const [shouldCatchFirstTapToPlay, setShouldCatchFirstTapToPlay] = useState(false);
 
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
@@ -291,6 +285,16 @@ const VideoScreen = ({
         setReady(true);
     }, [setReady]);
 
+    useEffect(() => {
+        const checkPlayStatus = setTimeout( () => {
+            if (current && ready && autoPlay && !playing && apiMediaRef) {
+                setShouldCatchFirstTapToPlay(true);
+            }
+        }, 200); // @todo?
+
+        return clearTimeout(checkPlayStatus);
+    }, [current, ready, autoPlay, playing, setShouldCatchFirstTapToPlay]);
+
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
     const items = [
@@ -350,18 +354,14 @@ const VideoScreen = ({
             ) : null}
         </ScreenElement>,
 
-        // @todo: this is supposed to be a full-screen invisible button that triggers
-        // an “unmute & play” action, for when someone lands on the video with a device
-        // is set to "battery-savings mode", making the video paused by default
-        //
-        // (muted) ? (
-        //     <button
-        //         key="first-tap-button"
-        //         type="button"
-        //         onTouchStart={onPlay}
-        //         className={styles.unmuteAndPlayButton}
-        //     />
-        // ): null,
+        shouldCatchFirstTapToPlay ? (
+            <button
+                key="tap-catcher-button"
+                type="button"
+                onTouchStart={play}
+                className={styles.unmuteAndPlayButton}
+            />
+        ): null,
 
         !isPlaceholder ? (
             <div key="bottom-content" className={styles.bottomContent}>
@@ -412,7 +412,6 @@ const VideoScreen = ({
                                         key="video-button"
                                         type="button"
                                         onTouchStart={onShowControls}
-                                        // onClick={onShowControls}
                                         className={styles.showControlsButton}
                                     />
                                 ): null}
