@@ -123,7 +123,6 @@ const VideoScreen = ({
 
     const mouseMoveRef = useRef(null);
     const [showMediaControls, setShowMediaControls] = useState(false);
-    const [playOnFirstTap, setPlayOnFirstTap] = useState(false);
 
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
@@ -290,10 +289,6 @@ const VideoScreen = ({
 
     const onVideoReady = useCallback(() => {
         setReady(true);
-
-        if(autoPlay && !playing) {
-            setPlayOnFirstTap(true); // @note: this sets up a button that plays the video on click for folks who are low on battery on their device: e.g. ios stops the autoplay of videos in that case...
-        }
     }, [setReady]);
 
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
@@ -355,17 +350,18 @@ const VideoScreen = ({
             ) : null}
         </ScreenElement>,
 
-        (playOnFirstTap && !playing) ? (
-            <button
-                key="first-tap-button"
-                type="button"
-                onTouchStart={onPlay}
-                className={classNames([
-                    styles.videoButton,
-                    styles.visible,
-                ])}
-            />
-        ): null,
+        // @todo: this is supposed to be a full-screen invisible button that triggers
+        // an “unmute & play” action, for when someone lands on the video with a device
+        // is set to "battery-savings mode", making the video paused by default
+        //
+        // (muted) ? (
+        //     <button
+        //         key="first-tap-button"
+        //         type="button"
+        //         onTouchStart={onPlay}
+        //         className={styles.unmuteAndPlayButton}
+        //     />
+        // ): null,
 
         !isPlaceholder ? (
             <div key="bottom-content" className={styles.bottomContent}>
