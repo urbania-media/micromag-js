@@ -13,6 +13,7 @@ const useMediaApi = ({
     onPause = null,
     onEnded = null,
     onSeeked = null,
+    onSuspended = null,
     onLoadStart = null,
     onCanPlayThough = null,
     onCanPlay = null,
@@ -27,6 +28,7 @@ const useMediaApi = ({
     const [ready, setReady] = useState(false);
     const [dataReady, setDataReady] = useState(false);
     const [initialPlay, setInitialPlay] = useState(true);
+    const [suspended, setSuspended] = useState(false);
     const progressStepsReached = useRef({});
 
     const paused = !playing;
@@ -233,6 +235,14 @@ const useMediaApi = ({
         }
     }, [setDataReady, onLoadedData]);
 
+    const onCustomSuspended = useCallback(() => {
+        setSuspended(true);
+
+        if (onSuspended !== null) {
+            onSuspended();
+        }
+    }, [setDataReady, onLoadedData]);
+
     useEffect(() => {
         const { current: media = null } = ref;
 
@@ -271,6 +281,7 @@ const useMediaApi = ({
         onCustomPause,
         onCustomEnded,
         onCustomSeeked,
+        onCustomSuspended,
         // onCustomLoadStart,
         // onCustomCanPlayThrough,
         // onCustomCanPlay,
@@ -286,6 +297,7 @@ const useMediaApi = ({
             media.addEventListener('canplay', onCustomCanPlay);
             media.addEventListener('loadedmetadata', onCustomLoadedMetadata);
             media.addEventListener('loadeddata', onCustomLoadedData);
+            media.addEventListener('suspend', onCustomSuspended);
         }
 
         return () => {
@@ -294,9 +306,10 @@ const useMediaApi = ({
                 media.removeEventListener('canplaythrough', onCustomCanPlayThrough);
                 media.removeEventListener('canplay', onCustomCanPlay);
                 media.removeEventListener('loadedmetadata', onCustomLoadedMetadata);
+                media.removeEventListener('suspend', onCustomSuspended);
             }
         };
-    }, [url, onCustomLoadStart, onCustomCanPlayThrough, onCustomCanPlay, onCustomLoadedMetadata]);
+    }, [url, onCustomLoadStart, onCustomCanPlayThrough, onCustomCanPlay, onCustomLoadedMetadata, onCustomSuspended]);
 
     // Duration
     useEffect(() => {
@@ -358,6 +371,7 @@ const useMediaApi = ({
         paused,
         ready,
         dataReady,
+        suspended,
     };
 };
 

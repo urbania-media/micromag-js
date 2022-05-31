@@ -285,15 +285,11 @@ const VideoScreen = ({
         setReady(true);
     }, [setReady]);
 
-    useEffect(() => {
-        const checkPlayStatus = setTimeout( () => {
-            if (current && ready && autoPlay && !playing && apiMediaRef) {
-                setShouldCatchFirstTapToPlay(true);
-            }
-        }, 200); // @todo?
-
-        return clearTimeout(checkPlayStatus);
-    }, [current, ready, autoPlay, playing, setShouldCatchFirstTapToPlay]);
+    const onSuspended = useCallback(() => {
+        if (autoPlay) {
+            setShouldCatchFirstTapToPlay(true);
+        }
+    }, [setShouldCatchFirstTapToPlay]);
 
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
@@ -345,6 +341,7 @@ const VideoScreen = ({
                             onDurationChanged={onDurationChanged}
                             onSeeked={onSeeked}
                             onEnded={onEnded}
+                            onSuspended={onSuspended}
                             onVolumeChanged={onVolumeChanged}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}
@@ -354,7 +351,7 @@ const VideoScreen = ({
             ) : null}
         </ScreenElement>,
 
-        shouldCatchFirstTapToPlay ? (
+        (shouldCatchFirstTapToPlay && !playing) ? (
             <button
                 key="tap-catcher-button"
                 type="button"
