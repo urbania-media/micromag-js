@@ -105,6 +105,7 @@ const VideoScreen = ({
         seek,
         play,
         pause,
+        suspended,
         mediaRef: apiMediaRef = null,
     } = apiRef.current || {};
 
@@ -283,10 +284,15 @@ const VideoScreen = ({
 
     const onVideoReady = useCallback(() => {
         setReady(true);
+
+        // @todo the battery-saving play button issue
+        if (autoPlay && suspended) {
+            setShouldCatchFirstTapToPlay(true);
+        }
     }, [setReady]);
 
     const onSuspended = useCallback(() => {
-        if (autoPlay) {
+        if (autoPlay && suspended) {
             setShouldCatchFirstTapToPlay(true);
         }
     }, [setShouldCatchFirstTapToPlay]);
@@ -294,6 +300,15 @@ const VideoScreen = ({
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
     const items = [
+        (shouldCatchFirstTapToPlay && suspended) ? (
+            <button
+                key="tap-catcher-button"
+                type="button"
+                onTouchStart={() => play()}
+                className={styles.unmuteAndPlayButton}
+            />
+        ): null,
+
         <ScreenElement
             key="video"
             placeholder={<PlaceholderVideo className={styles.placeholder} {...placeholderProps} />}
@@ -350,15 +365,6 @@ const VideoScreen = ({
                 </div>
             ) : null}
         </ScreenElement>,
-
-        (shouldCatchFirstTapToPlay && !playing) ? (
-            <button
-                key="tap-catcher-button"
-                type="button"
-                onTouchStart={play}
-                className={styles.unmuteAndPlayButton}
-            />
-        ): null,
 
         !isPlaceholder ? (
             <div key="bottom-content" className={styles.bottomContent}>

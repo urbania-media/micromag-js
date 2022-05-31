@@ -36,6 +36,7 @@ const propTypes = {
     onProgressStep: PropTypes.func,
     onDurationChanged: PropTypes.func,
     onVolumeChanged: PropTypes.func,
+    onSuspended: PropTypes.func,
     focusable: PropTypes.bool,
     supportedMimes: PropTypes.arrayOf(PropTypes.string),
     withPoster: PropTypes.bool,
@@ -65,6 +66,7 @@ const defaultProps = {
     onProgressStep: null,
     onDurationChanged: null,
     onVolumeChanged: null,
+    onSuspended: null,
     focusable: true,
     supportedMimes: ['video/mp4', 'video/webm', 'video/ogg'],
     withPoster: false,
@@ -94,6 +96,7 @@ const Video = ({
     onProgressStep,
     onDurationChanged,
     onVolumeChanged,
+    onSuspended,
     focusable,
     supportedMimes,
     withPoster,
@@ -158,6 +161,7 @@ const Video = ({
         onProgressStep,
         onDurationChanged,
         onVolumeChanged,
+        onSuspended,
     });
 
     if (apiRef !== null) {

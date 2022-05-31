@@ -6,6 +6,7 @@ import subtitles from './data/subtitles';
 import video360File from './data/test-360.mp4';
 import bigVideoFile from './data/test-apple.mp4';
 import videoWithAudio from './data/test-audio.mp4';
+import bigVideoWithAudio from './data/test-big-skate.mp4';
 import videoFileVertical from './data/test-vertical.mp4';
 import gifFile from './data/test.gif';
 import audioFile from './data/test.mp3';
@@ -166,6 +167,11 @@ export const videoMedia = ({ vertical = false, big = false } = {}) => ({
 export const videoMediaWithSound = () => ({
     ...videoMedia(),
     url: videoWithAudio
+});
+
+export const bigVideoMediaWithSound = () => ({
+    ...videoMedia(),
+    url: bigVideoWithAudio
 });
 
 export const gifVideoMedia = ({ withoutFiles = null } = {}) => ({

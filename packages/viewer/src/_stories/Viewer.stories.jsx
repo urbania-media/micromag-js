@@ -7,7 +7,7 @@ import {
     imageMedia,
     video360Media,
     videoMedia,
-    videoMediaWithSound,
+    bigVideoMediaWithSound,
     gifVideoMedia,
     webfont2Files,
     webfont3Files,
@@ -168,11 +168,11 @@ export const MultipleVideos = () => (
                     id: '1',
                     type: 'video',
                     video: {
-                        media: videoMediaWithSound(),
+                        media: bigVideoMediaWithSound(),
                         withSeekBar: false,
                         withControls: false,
                         loop: true,
-                        autoPlay: true,
+                        autoPlay: false,
                         muted: true,
                     },
                     background: {
