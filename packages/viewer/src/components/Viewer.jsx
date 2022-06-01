@@ -2,7 +2,6 @@
 
 /* eslint-disable jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import detectPointerEvents from 'detect-pointer-events';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -10,7 +9,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FontFaces, Meta } from '@micromag/core/components';
-import { ScreenSizeProvider, ViewerProvider } from '@micromag/core/contexts';
+import { PlaybackProvider, ScreenSizeProvider, ViewerProvider } from '@micromag/core/contexts';
 import {
     useFullscreen,
     useLoadedFonts,
@@ -425,220 +424,222 @@ const Viewer = ({
 
     return (
         <ScreenSizeProvider size={screenSize}>
-            <ViewerProvider
-                events={eventsManager}
-                menuVisible={menuVisible}
-                menuSize={menuDotsContainerHeight}
-                gotoPreviousScreen={gotoPreviousScreen}
-                gotoNextScreen={gotoNextScreen}
-                disableInteraction={disableInteraction}
-                enableInteraction={enableInteraction}
-            >
-                {withMetadata ? (
-                    <Meta title={finalTitle} metadata={finalMetadata}>
-                        {overscrollStyle}
-                    </Meta>
-                ) : (
-                    <Helmet>{overscrollStyle}</Helmet>
-                )}
-                <FontFaces fonts={finalFonts} />
-                <div
-                    className={classNames([
-                        styles.container,
-                        screenSize.screens.map((screenName) => `story-screen-${screenName}`),
-                        {
-                            [styles.landscape]: landscape,
-
-                            [styles.withSiblings]: withLandscapeSiblingsScreens,
-                            [styles.hideMenu]: !menuVisible,
-                            [styles.ready]: ready || withoutScreensTransforms,
-                            [styles.hasInteracted]: hasInteracted,
-                            [className]: className,
-                        },
-                    ])}
-                    ref={containerRef}
-                    onContextMenu={onContextMenu}
+            <PlaybackProvider>
+                <ViewerProvider
+                    events={eventsManager}
+                    menuVisible={menuVisible}
+                    menuSize={menuDotsContainerHeight}
+                    gotoPreviousScreen={gotoPreviousScreen}
+                    gotoNextScreen={gotoNextScreen}
+                    disableInteraction={disableInteraction}
+                    enableInteraction={enableInteraction}
                 >
-                    {!withoutMenu ? (
-                        <ViewerMenu
-                            story={parsedStory}
-                            currentScreenIndex={screenIndex}
-                            opened={menuOpened}
-                            withShadow={menuOverScreen && !withoutMenuShadow}
-                            toggleFullscreen={toggleFullscreen}
-                            fullscreenActive={fullscreenActive}
-                            fullscreenEnabled={fullscreenEnabled}
-                            closeable={closeable}
-                            shareBasePath={basePath}
-                            screenSize={screenSize}
-                            menuWidth={menuIsScreenWidth ? screenContainerWidth : null}
-                            trackingEnabled={trackingEnabled}
-                            onClickItem={onClickMenuItem}
-                            onClickMenu={onClickMenu}
-                            onClickCloseViewer={onCloseViewer}
-                            onRequestOpen={onMenuRequestOpen}
-                            onRequestClose={onMenuRequestClose}
-                            withDotItemClick={screenContainerWidth > 400}
-                            withoutScreensMenu={withoutScreensMenu}
-                            refDots={menuDotsContainerRef}
-                        />
-                    ) : null}
-                    {ready || withoutScreensTransforms ? (
-                        <div
-                            ref={contentRef}
-                            className={styles.content}
-                            onClick={onClickContent}
-                            // onPointerDown={detectPointerEvents.hasApi ? onClickContent : null}
-                            // onMouseDown={detectPointerEvents.hasApi ? onClickContent : null}
-                        >
-                            {mountedScreens.map((scr, mountedIndex) => {
-                                const i = mountedScreenStartIndex + mountedIndex;
-                                const current = i === parseInt(screenIndex, 10);
-                                const active =
-                                    i >= screenIndex - neighborScreensActive &&
-                                    i <= screenIndex + neighborScreensActive;
-                                const viewerScreen = (
-                                    <ViewerScreen
-                                        screen={scr}
-                                        screenState={current ? screenState : null}
-                                        renderContext={renderContext}
-                                        index={i}
-                                        current={current}
-                                        active={active}
-                                        onPrevious={gotoPreviousScreen}
-                                        onNext={gotoNextScreen}
-                                        enableInteraction={enableInteraction}
-                                        disableInteraction={disableInteraction}
-                                        getMediaRef={(mediaRef) => {
-                                            screensMediasRef.current[i] = mediaRef;
-                                        }}
-                                    />
-                                );
-                                const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
-                                let screenTransform = null;
-                                if (landscape) {
-                                    screenTransform = withLandscapeSiblingsScreens
-                                        ? `translateX(calc(${
-                                              (screenContainerWidth + landscapeScreenMargin) *
-                                              (i - screenIndex)
-                                          }px - 50%)) scale(${current ? 1 : 0.9})`
-                                        : null;
-                                } else {
-                                    screenTransform = `translateX(${current ? 0 : '100%'})`;
-                                }
-                                return (
-                                    <React.Fragment key={key}>
-                                        {current && screenIndex > 0 ? (
-                                            <button
-                                                type="button"
-                                                className="sr-only"
-                                                onClick={gotoPreviousScreen}
-                                                tabIndex="-1"
-                                            >
-                                                <FormattedMessage
-                                                    defaultMessage="Go to previous screen"
-                                                    description="Button label"
-                                                />
-                                            </button>
-                                        ) : null}
-                                        <div
-                                            ref={current ? currentScreenRef : null}
-                                            style={{
-                                                // width: landscape ? screenWidth : null,
-                                                // height: landscape ? screenHeight : null,
-                                                width: screenContainerWidth,
-                                                height: screenContainerHeight,
-                                                transform: !withoutScreensTransforms
-                                                    ? screenTransform
-                                                    : null,
-                                            }}
-                                            className={classNames([
-                                                styles.screen,
-                                                {
-                                                    [styles.current]: current,
-                                                    [styles.visible]:
-                                                        current || withLandscapeSiblingsScreens,
-                                                },
-                                            ])}
-                                            tabIndex={active ? '0' : '-1'} /* eslint-disable-line */
-                                            aria-hidden={current ? null : 'true'}
-                                            aria-label={intl.formatMessage(
-                                                {
-                                                    defaultMessage: 'Screen {index}',
-                                                    description: 'Button label',
-                                                },
-                                                { index: i + 1 },
-                                            )}
-                                            onKeyUp={(e) => {
-                                                if (e.key === 'Enter') {
-                                                    onScreenClick(e, i);
-                                                }
-                                            }}
-                                            onClick={(e) => onScreenClick(e, i)}
-                                            // @todo: this was to make the experience “snappier” when switching screens
-                                            // onPointerDown={
-                                            //     detectPointerEvents.hasApi
-                                            //         ? (e) => onScreenClick(e, i)
-                                            //         : null
-                                            // }
-                                            // onMouseDown={
-                                            //     !detectPointerEvents.hasApi
-                                            //         ? (e) => onScreenClick(e, i)
-                                            //         : null
-                                            // }
-                                        >
-                                            <div
-                                                className={styles.scaler}
-                                                style={{
-                                                    width: screenWidth,
-                                                    height: screenHeight,
-                                                    transform:
-                                                        screenScale !== null
-                                                            ? `scale(${screenScale})`
-                                                            : null,
-                                                    transformOrigin:
-                                                        screenScale !== null ? '0 0' : null,
-                                                }}
-                                            >
-                                                {viewerScreen}
-                                            </div>
-                                            {withNavigationHint &&
-                                            !withLandscapeSiblingsScreens &&
-                                            current &&
-                                            screenIndex === 0 ? (
-                                                <HandTap className={styles.handTap} />
-                                            ) : null}
-                                        </div>
-                                        {current && screenIndex < screens.length ? (
-                                            <button
-                                                type="button"
-                                                className="sr-only"
-                                                onClick={gotoNextScreen}
-                                                tabIndex="-1"
-                                            >
-                                                <FormattedMessage
-                                                    defaultMessage="Go to next screen"
-                                                    description="Button label"
-                                                />
-                                            </button>
-                                        ) : null}
-                                    </React.Fragment>
-                                );
-                            })}
-                            {/* <button
-                                type="button"
-                                onClick={gotoPreviousScreen}
-                                className={classNames([styles.navButton, styles.previous])}
+                    {withMetadata ? (
+                        <Meta title={finalTitle} metadata={finalMetadata}>
+                            {overscrollStyle}
+                        </Meta>
+                    ) : (
+                        <Helmet>{overscrollStyle}</Helmet>
+                    )}
+                    <FontFaces fonts={finalFonts} />
+                    <div
+                        className={classNames([
+                            styles.container,
+                            screenSize.screens.map((screenName) => `story-screen-${screenName}`),
+                            {
+                                [styles.landscape]: landscape,
+
+                                [styles.withSiblings]: withLandscapeSiblingsScreens,
+                                [styles.hideMenu]: !menuVisible,
+                                [styles.ready]: ready || withoutScreensTransforms,
+                                [styles.hasInteracted]: hasInteracted,
+                                [className]: className,
+                            },
+                        ])}
+                        ref={containerRef}
+                        onContextMenu={onContextMenu}
+                    >
+                        {!withoutMenu ? (
+                            <ViewerMenu
+                                story={parsedStory}
+                                currentScreenIndex={screenIndex}
+                                opened={menuOpened}
+                                withShadow={menuOverScreen && !withoutMenuShadow}
+                                toggleFullscreen={toggleFullscreen}
+                                fullscreenActive={fullscreenActive}
+                                fullscreenEnabled={fullscreenEnabled}
+                                closeable={closeable}
+                                shareBasePath={basePath}
+                                screenSize={screenSize}
+                                menuWidth={menuIsScreenWidth ? screenContainerWidth : null}
+                                trackingEnabled={trackingEnabled}
+                                onClickItem={onClickMenuItem}
+                                onClickMenu={onClickMenu}
+                                onClickCloseViewer={onCloseViewer}
+                                onRequestOpen={onMenuRequestOpen}
+                                onRequestClose={onMenuRequestClose}
+                                withDotItemClick={screenContainerWidth > 400}
+                                withoutScreensMenu={withoutScreensMenu}
+                                refDots={menuDotsContainerRef}
                             />
-                            <button
-                                type="button"
-                                onClick={gotoNextScreen}
-                                className={classNames([styles.navButton, styles.next])}
-                            /> */}
-                        </div>
-                    ) : null}
-                </div>
-            </ViewerProvider>
+                        ) : null}
+                        {ready || withoutScreensTransforms ? (
+                            <div
+                                ref={contentRef}
+                                className={styles.content}
+                                onClick={onClickContent}
+                                // onPointerDown={detectPointerEvents.hasApi ? onClickContent : null}
+                                // onMouseDown={detectPointerEvents.hasApi ? onClickContent : null}
+                            >
+                                {mountedScreens.map((scr, mountedIndex) => {
+                                    const i = mountedScreenStartIndex + mountedIndex;
+                                    const current = i === parseInt(screenIndex, 10);
+                                    const active =
+                                        i >= screenIndex - neighborScreensActive &&
+                                        i <= screenIndex + neighborScreensActive;
+                                    const viewerScreen = (
+                                        <ViewerScreen
+                                            screen={scr}
+                                            screenState={current ? screenState : null}
+                                            renderContext={renderContext}
+                                            index={i}
+                                            current={current}
+                                            active={active}
+                                            onPrevious={gotoPreviousScreen}
+                                            onNext={gotoNextScreen}
+                                            enableInteraction={enableInteraction}
+                                            disableInteraction={disableInteraction}
+                                            getMediaRef={(mediaRef) => {
+                                                screensMediasRef.current[i] = mediaRef;
+                                            }}
+                                        />
+                                    );
+                                    const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
+                                    let screenTransform = null;
+                                    if (landscape) {
+                                        screenTransform = withLandscapeSiblingsScreens
+                                            ? `translateX(calc(${
+                                                (screenContainerWidth + landscapeScreenMargin) *
+                                                (i - screenIndex)
+                                            }px - 50%)) scale(${current ? 1 : 0.9})`
+                                            : null;
+                                    } else {
+                                        screenTransform = `translateX(${current ? 0 : '100%'})`;
+                                    }
+                                    return (
+                                        <React.Fragment key={key}>
+                                            {current && screenIndex > 0 ? (
+                                                <button
+                                                    type="button"
+                                                    className="sr-only"
+                                                    onClick={gotoPreviousScreen}
+                                                    tabIndex="-1"
+                                                >
+                                                    <FormattedMessage
+                                                        defaultMessage="Go to previous screen"
+                                                        description="Button label"
+                                                    />
+                                                </button>
+                                            ) : null}
+                                            <div
+                                                ref={current ? currentScreenRef : null}
+                                                style={{
+                                                    // width: landscape ? screenWidth : null,
+                                                    // height: landscape ? screenHeight : null,
+                                                    width: screenContainerWidth,
+                                                    height: screenContainerHeight,
+                                                    transform: !withoutScreensTransforms
+                                                        ? screenTransform
+                                                        : null,
+                                                }}
+                                                className={classNames([
+                                                    styles.screen,
+                                                    {
+                                                        [styles.current]: current,
+                                                        [styles.visible]:
+                                                            current || withLandscapeSiblingsScreens,
+                                                    },
+                                                ])}
+                                                tabIndex={active ? '0' : '-1'} /* eslint-disable-line */
+                                                aria-hidden={current ? null : 'true'}
+                                                aria-label={intl.formatMessage(
+                                                    {
+                                                        defaultMessage: 'Screen {index}',
+                                                        description: 'Button label',
+                                                    },
+                                                    { index: i + 1 },
+                                                )}
+                                                onKeyUp={(e) => {
+                                                    if (e.key === 'Enter') {
+                                                        onScreenClick(e, i);
+                                                    }
+                                                }}
+                                                onClick={(e) => onScreenClick(e, i)}
+                                                // @todo: this was to make the experience “snappier” when switching screens
+                                                // onPointerDown={
+                                                //     detectPointerEvents.hasApi
+                                                //         ? (e) => onScreenClick(e, i)
+                                                //         : null
+                                                // }
+                                                // onMouseDown={
+                                                //     !detectPointerEvents.hasApi
+                                                //         ? (e) => onScreenClick(e, i)
+                                                //         : null
+                                                // }
+                                            >
+                                                <div
+                                                    className={styles.scaler}
+                                                    style={{
+                                                        width: screenWidth,
+                                                        height: screenHeight,
+                                                        transform:
+                                                            screenScale !== null
+                                                                ? `scale(${screenScale})`
+                                                                : null,
+                                                        transformOrigin:
+                                                            screenScale !== null ? '0 0' : null,
+                                                    }}
+                                                >
+                                                    {viewerScreen}
+                                                </div>
+                                                {withNavigationHint &&
+                                                !withLandscapeSiblingsScreens &&
+                                                current &&
+                                                screenIndex === 0 ? (
+                                                    <HandTap className={styles.handTap} />
+                                                ) : null}
+                                            </div>
+                                            {current && screenIndex < screens.length ? (
+                                                <button
+                                                    type="button"
+                                                    className="sr-only"
+                                                    onClick={gotoNextScreen}
+                                                    tabIndex="-1"
+                                                >
+                                                    <FormattedMessage
+                                                        defaultMessage="Go to next screen"
+                                                        description="Button label"
+                                                    />
+                                                </button>
+                                            ) : null}
+                                        </React.Fragment>
+                                    );
+                                })}
+                                {/* <button
+                                    type="button"
+                                    onClick={gotoPreviousScreen}
+                                    className={classNames([styles.navButton, styles.previous])}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={gotoNextScreen}
+                                    className={classNames([styles.navButton, styles.next])}
+                                /> */}
+                            </div>
+                        ) : null}
+                    </div>
+                </ViewerProvider>
+            </PlaybackProvider>
         </ScreenSizeProvider>
     );
 };

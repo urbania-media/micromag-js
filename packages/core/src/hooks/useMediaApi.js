@@ -4,7 +4,6 @@ const progressSteps = [0.1, 0.25, 0.5, 0.75, 0.9];
 
 const useMediaApi = ({
     url = null,
-    initialMuted = false,
     onTimeUpdate = null,
     onProgressStep = null,
     onDurationChanged = null,
@@ -21,7 +20,6 @@ const useMediaApi = ({
     onLoadedMetadata = null,
 } = {}) => {
     const ref = useRef(null);
-    const [muted, setMuted] = useState(initialMuted);
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
     const [playing, setPlaying] = useState(false);
@@ -75,26 +73,19 @@ const useMediaApi = ({
         }
     }, []);
 
-    const mute = useCallback(() => {
-        const { current: media } = ref;
-        if (media !== null) {
-            media.muted = true;
-        }
-    }, []);
+    // const mute = useCallback(() => {
+    //     const { current: media } = ref;
+    //     if (media !== null) {
+    //         media.muted = true;
+    //     }
+    // }, []);
 
-    const unMute = useCallback(() => {
-        const { current: media } = ref;
-        if (media !== null) {
-            media.muted = false;
-        }
-    }, []);
-
-    const toggleMute = useCallback(() => {
-        const { current: media } = ref;
-        if (media !== null) {
-            media.muted = !muted;
-        }
-    }, [muted]);
+    // const unMute = useCallback(() => {
+    //     const { current: media } = ref;
+    //     if (media !== null) {
+    //         media.muted = false;
+    //     }
+    // }, []);
 
     // Media events callbacks
 
@@ -189,12 +180,12 @@ const useMediaApi = ({
         (e) => {
             const { currentTarget: eventMedia } = e;
 
-            setMuted(eventMedia.muted);
+            // setMuted(eventMedia.muted);
             if (onVolumeChanged !== null) {
-                onVolumeChanged(eventMedia.muted, eventMedia.volume);
+                onVolumeChanged(eventMedia.volume);
             }
         },
-        [setMuted, onVolumeChanged],
+        [onVolumeChanged],
     );
 
     const onCustomLoadStart = useCallback(() => {
@@ -361,10 +352,6 @@ const useMediaApi = ({
         togglePlay,
         stop,
         seek,
-        mute,
-        unMute,
-        toggleMute,
-        muted,
         currentTime,
         duration,
         playing,

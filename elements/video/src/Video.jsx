@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useUserInteracted } from '@micromag/core/contexts';
 import { useMediaApi, useMediaThumbnail } from '@micromag/core/hooks';
 import { getMediaFilesAsArray } from '@micromag/core/utils';
 import styles from './styles.module.scss';
@@ -19,7 +18,7 @@ const propTypes = {
             current: PropTypes.any,
         }),
     ]),
-    initialMuted: PropTypes.oneOf(['auto', true, false]),
+    muted: PropTypes.bool,
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
     playsInline: PropTypes.bool,
@@ -49,7 +48,7 @@ const defaultProps = {
     width: null,
     height: null,
     apiRef: null,
-    initialMuted: 'auto',
+    muted: false,
     autoPlay: false,
     loop: false,
     playsInline: true,
@@ -79,7 +78,7 @@ const Video = ({
     width,
     height,
     apiRef,
-    initialMuted,
+    muted,
     autoPlay,
     loop,
     playsInline,
@@ -146,13 +145,8 @@ const Video = ({
     const isImageWithoutSourceFile =
         originalFileIsImage && (sourceFiles === null || sourceFiles.length === 0);
 
-    const userInteracted = useUserInteracted();
-    const finalInitialMuted =
-        initialMuted === true || (initialMuted === 'auto' && autoPlay && !userInteracted);
-
     const { ref, ...api } = useMediaApi({
         url: !isImageWithoutSourceFile ? mediaUrl : null,
-        initialMuted: finalInitialMuted,
         onPlay,
         onPause,
         onEnded,
@@ -169,7 +163,7 @@ const Video = ({
         apiRef.current.mediaRef = ref;
     }
 
-    const { muted, dataReady, play, pause, unMute } = api;
+    const { dataReady, play, pause } = api;
 
     useEffect(() => {
         if (dataReady && onReady !== null) {
@@ -182,9 +176,6 @@ const Video = ({
     useEffect(() => {
         if (autoPlay) {
             play();
-            if (initialMuted === 'auto' && muted && userInteracted) {
-                unMute();
-            }
         } else {
             pause();
         }
