@@ -2,9 +2,11 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useMediaApi, useMediaThumbnail } from '@micromag/core/hooks';
+import { useMediaThumbnail } from '@micromag/core/hooks';
 import { getMediaFilesAsArray } from '@micromag/core/utils';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -12,7 +14,7 @@ const propTypes = {
     thumbnailFile: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
-    apiRef: PropTypes.oneOfType([
+    mediaRef: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({
             current: PropTypes.any,
@@ -20,6 +22,7 @@ const propTypes = {
     ]),
     muted: PropTypes.bool,
     autoPlay: PropTypes.bool,
+    paused: PropTypes.bool,
     loop: PropTypes.bool,
     playsInline: PropTypes.bool,
     preload: PropTypes.oneOf(['auto', 'metadata', 'none', null]),
@@ -47,9 +50,10 @@ const defaultProps = {
     thumbnailFile: null,
     width: null,
     height: null,
-    apiRef: null,
+    mediaRef: null,
     muted: false,
     autoPlay: false,
+    paused: false,
     loop: false,
     playsInline: true,
     preload: 'auto',
@@ -77,9 +81,10 @@ const Video = ({
     thumbnailFile,
     width,
     height,
-    apiRef,
+    mediaRef,
     muted,
     autoPlay,
+    paused,
     loop,
     playsInline,
     preload,
@@ -145,48 +150,14 @@ const Video = ({
     const isImageWithoutSourceFile =
         originalFileIsImage && (sourceFiles === null || sourceFiles.length === 0);
 
-    const { ref, ...api } = useMediaApi({
-        url: !isImageWithoutSourceFile ? mediaUrl : null,
-        onPlay,
-        onPause,
-        onEnded,
-        onSeeked,
-        onTimeUpdate,
-        onProgressStep,
-        onDurationChanged,
-        onVolumeChanged,
-        onSuspended,
-    });
-
-    if (apiRef !== null) {
-        apiRef.current = api;
-        apiRef.current.mediaRef = ref;
-    }
-
-    const { dataReady, play, pause } = api;
-
-    useEffect(() => {
-        if (dataReady && onReady !== null) {
-            onReady();
-        }
-    }, [dataReady, onReady]);
-
     const withSize = width !== null && height !== null;
-
-    useEffect(() => {
-        if (autoPlay) {
-            play();
-        } else {
-            pause();
-        }
-    }, [autoPlay]);
 
     // Ensure load if preload value change over time
     const firstPreloadRef = useRef(preload);
     const firstShouldLoadRef = useRef(shouldLoad);
     const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata' && shouldLoad);
     useEffect(() => {
-        const { current: videoElement = null } = ref;
+        const { current: videoElement = null } = mediaRef || {};
         const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad; // @todo
         const preloadHasChanged = firstPreloadRef.current !== preload;
         const shouldLoadHasChanged = firstShouldLoadRef.current !== shouldLoad;
@@ -201,6 +172,19 @@ const Video = ({
             videoElement.load();
         }
     }, [shouldLoad, preload]);
+
+    useEffect(() => {
+        const { current: videoElement = null } = mediaRef || {};
+        if (videoElement === null) {
+            return;
+        }
+        const { paused: isPaused } = videoElement;
+        if (paused && !isPaused) {
+            videoElement.pause();
+        } else if (!paused && isPaused) {
+            videoElement.play();
+        }
+    }, [paused]);
 
     return (
         <div
@@ -226,7 +210,7 @@ const Video = ({
             {!isImageWithoutSourceFile ? (
                 <video
                     key={mediaUrl}
-                    ref={ref}
+                    ref={mediaRef}
                     src={sourceFiles === null || sourceFiles.length === 0 ? mediaUrl : null}
                     autoPlay={autoPlay}
                     loop={loop}
@@ -237,6 +221,12 @@ const Video = ({
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     tabIndex={focusable ? '0' : '-1'}
                     className={classNames(styles.video)}
+                    onPlay={onPlay}
+                    onPause={onPause}
+                    onEnded={onEnded}
+                    onSeeked={onSeeked}
+                    onVolumeChange={onVolumeChanged}
+                    onTimeUpdate={onTimeUpdate}
                 >
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
                         <source
@@ -254,4 +244,4 @@ const Video = ({
 Video.propTypes = propTypes;
 Video.defaultProps = defaultProps;
 
-export default React.forwardRef((props, ref) => <Video apiRef={ref} {...props} />);
+export default React.forwardRef((props, ref) => <Video mediaRef={ref} {...props} />);

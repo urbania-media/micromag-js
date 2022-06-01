@@ -335,6 +335,12 @@ msgctxt "4kSwvn"
 msgid "Thumbnail"
 msgstr "Vignette"
 
+# Field label
+#: 4y3gAI
+msgctxt "4y3gAI"
+msgid "Result percentage text"
+msgstr ""
+
 # Description placeholder
 #: 507VAi
 msgctxt "507VAi"
@@ -934,6 +940,12 @@ msgstr "Courriel"
 msgctxt "M/FGRs"
 msgid "Libra"
 msgstr "Balance"
+
+# Horoscope date
+#: MBgLeH
+msgctxt "MBgLeH"
+msgid "July 23 - Aug 22"
+msgstr ""
 
 # Audio placeholder
 #: MYZwSA

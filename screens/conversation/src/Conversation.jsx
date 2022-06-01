@@ -69,8 +69,8 @@ const ConversationScreen = ({
     disableInteraction,
     className,
 }) => {
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
+    const { width, height, resolution } = useScreenSize();
+    const { topHeight: viewerTopHeight } = useViewer();
     const trackScreenEvent = useTrackScreenEvent(type);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -195,7 +195,7 @@ const ConversationScreen = ({
                                     ? {
                                           padding: spacing,
                                           paddingTop:
-                                              (menuOverScreen && !isPreview ? menuSize : 0) +
+                                              (!isPreview ? viewerTopHeight : 0) +
                                               spacing,
                                       }
                                     : null

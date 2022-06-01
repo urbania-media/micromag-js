@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import React, { useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import {
     EmailShareButton,
@@ -13,6 +13,7 @@ import {
     LinkedinShareButton,
     LinkedinIcon,
 } from 'react-share';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -89,7 +90,7 @@ const ShareOptions = ({
                 >
                     <EmailIcon {...shareIconProps} />
                 </EmailShareButton>
-            )
+            ),
         },
         {
             id: 'facebook',
@@ -123,7 +124,7 @@ const ShareOptions = ({
                 >
                     <TwitterIcon {...shareIconProps} />
                 </TwitterShareButton>
-            )
+            ),
         },
         {
             id: 'linkedin',
@@ -140,21 +141,15 @@ const ShareOptions = ({
                 >
                     <LinkedinIcon {...shareIconProps} />
                 </LinkedinShareButton>
-            )
+            ),
         },
     ];
-    const selectedOptions = options !== null
-        ? shareOptions.filter(opt => options.includes(opt.id))
-        : shareOptions;
+    const selectedOptions =
+        options !== null ? shareOptions.filter((opt) => options.includes(opt.id)) : shareOptions;
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                { [className]: className !== null },
-            ])}
-        >
-            { selectedOptions.map(({id, label, icon}) => (
+        <div className={classNames([styles.container, { [className]: className !== null }])}>
+            {selectedOptions.map(({ id, label, icon }) => (
                 <div
                     key={id}
                     className={classNames([

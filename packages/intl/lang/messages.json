@@ -215,6 +215,10 @@
     "defaultMessage": "Thumbnail",
     "description": "Field label"
   },
+  "4y3gAI": {
+    "defaultMessage": "Result percentage text",
+    "description": "Field label"
+  },
   "507VAi": {
     "defaultMessage": "Description",
     "description": "Description placeholder"
@@ -614,6 +618,10 @@
   "M/FGRs": {
     "defaultMessage": "Libra",
     "description": "Horoscope sign"
+  },
+  "MBgLeH": {
+    "defaultMessage": "July 23 - Aug 22",
+    "description": "Horoscope date"
   },
   "MYZwSA": {
     "defaultMessage": "Audio",

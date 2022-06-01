@@ -12,6 +12,7 @@ import {
     FieldsProvider,
     UserInteractionProvider,
     ComponentsProvider,
+    PlaybackProvider,
     SCREENS_NAMESPACE,
 } from '@micromag/core/contexts';
 import fieldsManager from '@micromag/fields/manager';
@@ -103,22 +104,24 @@ const ViewerContainer = ({
                                 components={screenComponents || {}}
                             >
                                 <UserInteractionProvider>
-                                    <TrackingProvider variables={finalTrackingVariables}>
-                                        {withoutRouter ? (
-                                            <Viewer
-                                                story={story}
-                                                basePath={basePath}
-                                                {...otherProps}
-                                            />
-                                        ) : (
-                                            <ViewerRoutes
-                                                story={story}
-                                                basePath={basePath}
-                                                pathWithIndex={pathWithIndex}
-                                                {...otherProps}
-                                            />
-                                        )}
-                                    </TrackingProvider>
+                                    <PlaybackProvider>
+                                        <TrackingProvider variables={finalTrackingVariables}>
+                                            {withoutRouter ? (
+                                                <Viewer
+                                                    story={story}
+                                                    basePath={basePath}
+                                                    {...otherProps}
+                                                />
+                                            ) : (
+                                                <ViewerRoutes
+                                                    story={story}
+                                                    basePath={basePath}
+                                                    pathWithIndex={pathWithIndex}
+                                                    {...otherProps}
+                                                />
+                                            )}
+                                        </TrackingProvider>
+                                    </PlaybackProvider>
                                 </UserInteractionProvider>
                             </ComponentsProvider>
                         </ScreensProvider>

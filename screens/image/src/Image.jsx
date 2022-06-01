@@ -96,9 +96,9 @@ const ImageScreen = ({
         [imageFit, defaultImageFit],
     );
 
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
+    const { width, height, resolution } = useScreenSize();
 
-    const { menuSize } = useViewer();
+    const { topHeight: viewerTopHeight } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -282,14 +282,14 @@ const ImageScreen = ({
     }
 
     let paddingBottom = finalSpacing / 2;
-    let paddingTop = (menuOverScreen && !isPreview ? menuSize : 0) + finalSpacing / 2;
+    let paddingTop = (!isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
 
     if (isCard || isFullscreen) {
         paddingTop = 0;
     }
 
     if (isCardReverse) {
-        paddingTop = menuOverScreen ? menuSize : finalSpacing / 2;
+        paddingTop = viewerTopHeight;
         paddingBottom = 0;
     }
 

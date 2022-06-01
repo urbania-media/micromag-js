@@ -94,8 +94,8 @@ const ContributionScreen = ({
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
 
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
+    const { width, height, resolution } = useScreenSize();
+    const { topHeight: viewerTopHeight } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -450,7 +450,7 @@ const ContributionScreen = ({
                             ? {
                                   padding: spacing,
                                   paddingTop:
-                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                      (!isPreview ? viewerTopHeight : 0) + spacing,
                               }
                             : null
                     }

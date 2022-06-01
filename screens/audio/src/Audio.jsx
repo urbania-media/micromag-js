@@ -70,11 +70,11 @@ const AudioScreen = ({
 }) => {
     const trackScreenMedia = useTrackScreenMedia('audio');
 
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
+    const { width, height, resolution } = useScreenSize();
     const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
-    const { menuSize } = useViewer();
+    const { topHeight: viewerTopHeight } = useViewer();
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const [ready, setReady] = useState(isStatic || isPlaceholder);
@@ -325,8 +325,7 @@ const AudioScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop:
-                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                               }
                             : null
                     }

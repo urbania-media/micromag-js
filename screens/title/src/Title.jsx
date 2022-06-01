@@ -82,8 +82,8 @@ const TitleScreen = ({
     disableInteraction,
     className,
 }) => {
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
+    const { width, height, resolution } = useScreenSize();
+    const { topHeight: viewerTopHeight } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -194,7 +194,7 @@ const TitleScreen = ({
                             ? {
                                   padding: spacing,
                                   paddingTop:
-                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                      (!isPreview ? viewerTopHeight : 0) + spacing,
                               }
                             : null
                     }

@@ -1,5 +1,6 @@
 import { match as matchMediaQuery } from 'css-mediaquery';
 import { useEffect, useMemo, useState } from 'react';
+
 import { useResizeObserver } from './useObserver';
 
 const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;

@@ -65,8 +65,8 @@ const SlideshowScreen = ({
     disableInteraction,
     className,
 }) => {
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
+    const { width, height, resolution } = useScreenSize();
+    const { topHeight: viewerTopHeight } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -205,7 +205,7 @@ const SlideshowScreen = ({
                 <div
                     className={styles.content}
                     style={{
-                        paddingTop: menuOverScreen && !isPreview ? menuSize : null,
+                        paddingTop: !isPreview ? viewerTopHeight : null,
                         paddingBottom: hasCallToAction ? callToActionHeight - finalSpacing : 0,
                     }}
                 >
