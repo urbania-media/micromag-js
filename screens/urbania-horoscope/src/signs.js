@@ -11,11 +11,24 @@ import sagittarius from './images/sagittarius.png';
 import scorpio from './images/scorpio.png';
 import taurus from './images/taurus.png';
 import virgo from './images/virgo.png';
+import aquariusThumbnail from './images/aquarius_small.png';
+import ariesThumbnail from './images/aries_small.png';
+import cancerThumbnail from './images/cancer_small.png';
+import capricornThumbnail from './images/capricorn_small.png';
+import geminiThumbnail from './images/gemini_small.png';
+import leoThumbnail from './images/leo_small.png';
+import libraThumbnail from './images/libra_small.png';
+import piscesThumbnail from './images/pisces_small.png';
+import sagittariusThumbnail from './images/sagittarius_small.png';
+import scorpioThumbnail from './images/scorpio_small.png';
+import taurusThumbnail from './images/taurus_small.png';
+import virgoThumbnail from './images/virgo_small.png';
 
 export default [
     {
         id: 'aries',
         image: aries,
+        thumbnail: ariesThumbnail,
         label: defineMessage({
             defaultMessage: 'Aries',
             description: 'Horoscope sign',
@@ -28,6 +41,7 @@ export default [
     {
         id: 'taurus',
         image: taurus,
+        thumbnail: taurusThumbnail,
         label: defineMessage({
             defaultMessage: 'Taurus',
             description: 'Horoscope sign',
@@ -40,6 +54,7 @@ export default [
     {
         id: 'gemini',
         image: gemini,
+        thumbnail: geminiThumbnail,
         label: defineMessage({
             defaultMessage: 'Gemini',
             description: 'Horoscope sign',
@@ -52,6 +67,7 @@ export default [
     {
         id: 'cancer',
         image: cancer,
+        thumbnail: cancerThumbnail,
         label: defineMessage({
             defaultMessage: 'Cancer',
             description: 'Horoscope sign',
@@ -64,6 +80,7 @@ export default [
     {
         id: 'leo',
         image: leo,
+        thumbnail: leoThumbnail,
         label: defineMessage({
             defaultMessage: 'Leo',
             description: 'Horoscope sign',
@@ -76,6 +93,7 @@ export default [
     {
         id: 'virgo',
         image: virgo,
+        thumbnail: virgoThumbnail,
         label: defineMessage({
             defaultMessage: 'Virgo',
             description: 'Horoscope sign',
@@ -88,6 +106,7 @@ export default [
     {
         id: 'libra',
         image: libra,
+        thumbnail: libraThumbnail,
         label: defineMessage({
             defaultMessage: 'Libra',
             description: 'Horoscope sign',
@@ -100,6 +119,7 @@ export default [
     {
         id: 'scorpio',
         image: scorpio,
+        thumbnail: scorpioThumbnail,
         label: defineMessage({
             defaultMessage: 'Scorpio',
             description: 'Horoscope sign',
@@ -112,6 +132,7 @@ export default [
     {
         id: 'sagittarius',
         image: sagittarius,
+        thumbnail: sagittariusThumbnail,
         label: defineMessage({
             defaultMessage: 'Sagittarius',
             description: 'Horoscope sign',
@@ -124,6 +145,7 @@ export default [
     {
         id: 'capricorn',
         image: capricorn,
+        thumbnail: capricornThumbnail,
         label: defineMessage({
             defaultMessage: 'Capricorn',
             description: 'Horoscope sign',
@@ -136,6 +158,7 @@ export default [
     {
         id: 'aquarius',
         image: aquarius,
+        thumbnail: aquariusThumbnail,
         label: defineMessage({
             defaultMessage: 'Aquarius',
             description: 'Horoscope sign',
@@ -148,6 +171,7 @@ export default [
     {
         id: 'pisces',
         image: pisces,
+        thumbnail: piscesThumbnail,
         label: defineMessage({
             defaultMessage: 'Pisces',
             description: 'Horoscope sign',

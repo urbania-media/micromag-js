@@ -32,7 +32,7 @@ const propTypes = {
             id: PropTypes.string,
             label: PropTypes.string,
             date: MicromagPropTypes.message,
-            image: PropTypes.string,
+            thumbnail: PropTypes.string,
             word: MicromagPropTypes.headingElement,
             description: MicromagPropTypes.textElement,
         }),
@@ -133,7 +133,7 @@ const SignsGrid = ({
                                     {signs.map((sign) => {
                                         const {
                                             id = null,
-                                            image = null,
+                                            thumbnail = null,
                                             label = null,
                                             date = null,
                                         } = sign || {};
@@ -163,10 +163,10 @@ const SignsGrid = ({
                                                         }
                                                     }}
                                                 >
-                                                    {image !== null ? (
+                                                    {thumbnail !== null ? (
                                                         <img
-                                                            className={styles.image}
-                                                            src={image}
+                                                            className={styles.thumbnail}
+                                                            src={thumbnail}
                                                             alt={id}
                                                             loading="lazy"
                                                         />
