@@ -61,7 +61,7 @@
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.3.135",
         "@micromag/data": "^0.3.135",
-        "bootstrap": "^5.1.0",
+        "bootstrap": "5.2.0-beta1",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
