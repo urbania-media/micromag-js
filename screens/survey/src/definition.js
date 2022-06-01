@@ -108,6 +108,14 @@ export default {
                         type: 'graph-bar-style',
                     },
                 },
+                {
+                    name: 'percentageResultTextStyle',
+                    type: 'text-style-form',
+                    label: defineMessage({
+                        defaultMessage: 'Result percentage text',
+                        description: 'Field label',
+                    }),
+                },
             ],
         },
 

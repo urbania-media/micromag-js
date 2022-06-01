@@ -31,6 +31,7 @@ const propTypes = {
     answers: MicromagPropTypes.answers,
     buttonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
+    percentageResultTextStyle: MicromagPropTypes.textStyle,
     resultsStyle: PropTypes.shape({
         barColor: MicromagPropTypes.color,
         textColor: MicromagPropTypes.color,
@@ -59,6 +60,7 @@ const defaultProps = {
     buttonsStyle: null,
     buttonsTextStyle: null,
     resultsStyle: null,
+    percentageResultTextStyle: null,
     spacing: 20,
     background: null,
     callToAction: null,
@@ -83,6 +85,7 @@ const SurveyScreen = ({
     buttonsStyle,
     buttonsTextStyle,
     resultsStyle,
+    percentageResultTextStyle,
     spacing,
     background,
     callToAction,
@@ -364,6 +367,7 @@ const SurveyScreen = ({
                                                                             ...buttonsTextStyle,
                                                                             ...resultsTextColor,
                                                                             ...answerResultTextColor,
+                                                                            ...percentageResultTextStyle,
                                                                         }}
                                                                         inline
                                                                         className={
