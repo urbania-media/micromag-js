@@ -289,13 +289,13 @@ const VideoScreen = ({
         if (autoPlay && suspended) {
             setShouldCatchFirstTapToPlay(true);
         }
-    }, [setReady]);
+    }, [setReady, autoPlay, suspended, setShouldCatchFirstTapToPlay]);
 
     const onSuspended = useCallback(() => {
         if (autoPlay && suspended) {
             setShouldCatchFirstTapToPlay(true);
         }
-    }, [setShouldCatchFirstTapToPlay]);
+    }, [autoPlay, suspended, setShouldCatchFirstTapToPlay]);
 
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
