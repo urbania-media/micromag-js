@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
-import { FormattedMessage } from 'react-intl';
-
+import React, { useCallback, useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { FormattedMessage } from 'react-intl';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import {
     useScreenSize,
@@ -14,6 +13,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
@@ -105,6 +105,20 @@ const ShareScreen = ({
               }, [])
             : defaultOptions;
 
+
+    const trackingEnabled = isView;
+    const trackEvent = useTrackScreenEvent('share');
+    const onClickShare = useCallback(
+        (type) => {
+            if (trackingEnabled) {
+                trackEvent('click_share', type, {
+                    shareUrl
+                });
+            }
+        },
+        [trackEvent],
+    );
+
     // Create elements
     const items = [
         <ScreenElement
@@ -133,6 +147,7 @@ const ShareScreen = ({
                 labelClassName={styles.shareLabel}
                 url={finalShareURL}
                 options={selectedOptions}
+                onShare={onClickShare}
             />
         </ScreenElement>,
 
