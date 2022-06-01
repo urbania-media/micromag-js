@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FormattedMessage } from 'react-intl';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -87,7 +88,7 @@ const ShareScreen = ({
     }, []);
     const finalShareURL = shareUrl || currentUrl;
 
-    const defaultOptions = options === true
+    const defaultOptions = options === null
         ? ['email', 'facebook', 'twitter', 'linkedin']
         : [];
     const selectedOptions = options !== null
@@ -96,6 +97,20 @@ const ShareScreen = ({
             return [...acc, key];
         }, [])
         : defaultOptions;
+
+
+    const trackingEnabled = isView;
+    const trackEvent = useTrackScreenEvent('share');
+    const onClickShare = useCallback(
+        (type) => {
+            if (trackingEnabled) {
+                trackEvent('click_share', type, {
+                    shareUrl
+                });
+            }
+        },
+        [trackEvent],
+    );
 
     // Create elements
     const items = [
@@ -137,6 +152,7 @@ const ShareScreen = ({
                 labelClassName={styles.shareLabel}
                 url={finalShareURL}
                 options={selectedOptions}
+                onShare={onClickShare}
             />
         </ScreenElement>,
 
