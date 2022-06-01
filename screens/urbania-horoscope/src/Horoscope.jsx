@@ -7,8 +7,6 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
-    // PlaceholderText,
-    // PlaceholderTitle,
     ScreenElement,
     TransitionsStagger,
 } from '@micromag/core/components';
@@ -30,8 +28,6 @@ import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
-import Author from '@micromag/element-urbania-author';
-
 import SignsGrid from './SignsGrid';
 import signsList from './signs';
 
@@ -177,7 +173,6 @@ const Horoscope = ({
 
     const hasTitle = isTextFilled(title);
     const hasDescription = isTextFilled(description);
-    const hasAuthor = author !== null && isTextFilled(author.name);
     const hasButton = isTextFilled(button);
 
     const transitionPlaying = current;
@@ -215,24 +210,6 @@ const Horoscope = ({
                 isEmpty={!hasDescription}
             >
                 {hasDescription ? <Text className={styles.description} {...description} /> : null}
-            </ScreenElement>
-
-            {/* AUTHOR */}
-            <ScreenElement
-                key="author"
-                emptyLabel={
-                    <FormattedMessage defaultMessage="Author" description="Author placeholder" />
-                }
-                emptyClassName={styles.emptyText}
-                isEmpty={!hasAuthor}
-            >
-                {hasAuthor && !isPlaceholder ? (
-                    <Author
-                        author={author}
-                        className={styles.author}
-                        shouldLoad={mediaShouldLoad}
-                    />
-                ) : null}
             </ScreenElement>
         </div>,
 
@@ -331,6 +308,7 @@ const Horoscope = ({
                                     width={width}
                                     height={height}
                                     className={styles.signsGrid}
+                                    author={author}
                                     closeButton={closePopup}
                                     background={popupBackground}
                                     muted={muted}

@@ -1,18 +1,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
+import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
-
+import Author from '@micromag/element-urbania-author';
 import SignModal from './SignModal';
 import Close from './icons/Close';
 
@@ -41,6 +42,7 @@ const propTypes = {
             description: MicromagPropTypes.textElement,
         }),
     ),
+    author: MicromagPropTypes.authorElement,
     signSubtitle: MicromagPropTypes.headingElement,
     currentSign: PropTypes.string,
     width: PropTypes.number,
@@ -65,6 +67,7 @@ const propTypes = {
 
 const defaultProps = {
     signs: null,
+    author: null,
     signSubtitle: null,
     currentSign: null,
     width: null,
@@ -83,6 +86,7 @@ const defaultProps = {
 
 const SignsGrid = ({
     signs,
+    author,
     signSubtitle,
     currentSign: currentSignId,
     width,
@@ -102,6 +106,8 @@ const SignsGrid = ({
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
+    const hasAuthor = author !== null && isTextFilled(author.name);
+
     return (
         <div
             className={classNames([
@@ -134,6 +140,8 @@ const SignsGrid = ({
                         </Button>
                     ) : null}
                     <TransitionGroup>
+
+
                         {currentSign === null ? (
                             <CSSTransition
                                 key="grid"
@@ -230,6 +238,26 @@ const SignsGrid = ({
                                 </div>
                             </CSSTransition>
                         )}
+
+                        {/* Author + Collaborator credit */}
+                        {currentSign === null ? (
+                            <ScreenElement
+                                key="author"
+                                emptyLabel={
+                                    <FormattedMessage defaultMessage="Author" description="Author placeholder" />
+                                }
+                                emptyClassName={styles.emptyText}
+                                isEmpty={!hasAuthor}
+                            >
+                                {hasAuthor && !isPlaceholder ? (
+                                    <Author
+                                        author={author}
+                                        className={styles.author}
+                                        shouldLoad={mediaShouldLoad}
+                                    />
+                                ) : null}
+                            </ScreenElement>
+                        ): null}
                     </TransitionGroup>
                 </Layout>
             </Container>
