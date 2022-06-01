@@ -1,4 +1,5 @@
 import { v1 as uuid } from 'uuid';
+import { signs } from '../../screens/urbania-horoscope';
 import {
     medias,
     mediasWithCaptions,
@@ -6,6 +7,7 @@ import {
     // imagesWithCaptions,
     imageMedia,
     backgroundImage,
+    backgroundVideo,
     closedCaptionsMedia,
     text,
     title,
@@ -360,6 +362,25 @@ export const allScreens = [
         },
         callToAction: callToAction(),
     },
+    {
+        id: uuid(),
+        type: 'urbania-horoscope',
+        description: { body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?' },
+        author: {
+            name: { body: 'Robert Léponge' },
+            avatar: imageMedia(),
+            collaborator: { body: 'Paul Lee' }
+        },
+        button: {
+            body: '<span>Découvrir</span>',
+        },
+        signs: signs.map(sign => ({
+            ...sign,
+            word: { body: title() },
+            description: text('long'),
+        })),
+        background: backgroundVideo(),
+    }
 ];
 
 export default allScreens;

@@ -41,14 +41,6 @@ export default [
                         }),
                     },
                     {
-                        name: 'author',
-                        type: 'author-element',
-                        label: defineMessage({
-                            defaultMessage: 'Author',
-                            description: 'Author field label',
-                        }),
-                    },
-                    {
                         name: 'button',
                         type: 'button-element',
                         label: defineMessage({
@@ -76,6 +68,14 @@ export default [
                         label: defineMessage({
                             defaultMessage: 'Background',
                             description: 'Background field label',
+                        }),
+                    },
+                    {
+                        name: 'author',
+                        type: 'author-element',
+                        label: defineMessage({
+                            defaultMessage: 'Author',
+                            description: 'Author field label',
                         }),
                     },
                 ],
