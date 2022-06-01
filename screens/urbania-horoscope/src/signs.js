@@ -69,7 +69,7 @@ export default [
             description: 'Horoscope sign',
         }),
         date: defineMessage({
-            defaultMessage: 'June 23 - Aug 22',
+            defaultMessage: 'July 23 - Aug 22',
             description: 'Horoscope date',
         }),
     },
