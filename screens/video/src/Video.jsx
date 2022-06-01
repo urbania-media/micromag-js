@@ -11,6 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
 import {
+    usePlaybackContext,
     useScreenSize,
     useScreenRenderContext,
     useViewerNavigation,
@@ -82,6 +83,7 @@ const VideoScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
+    const { muted, setMuted } = usePlaybackContext();
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
@@ -101,7 +103,6 @@ const VideoScreen = ({
     const apiRef = useRef();
     const {
         togglePlay,
-        toggleMute,
         seek,
         play,
         pause,
@@ -123,7 +124,6 @@ const VideoScreen = ({
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
     const [playing, setPlaying] = useState(false);
-    const [muted, setMuted] = useState(false);
 
     const onTimeUpdate = useCallback(
         (time) => {
@@ -162,14 +162,6 @@ const VideoScreen = ({
         [trackScreenMedia, video],
     );
 
-    const onVolumeChanged = useCallback(
-        (isMuted) => {
-            setMuted(isMuted);
-            trackScreenMedia(video, isMuted ? 'mute' : 'unmute');
-        },
-        [trackScreenMedia, video],
-    );
-
     const onSeek = useCallback(
         (e) => {
             seek(e);
@@ -188,11 +180,8 @@ const VideoScreen = ({
     );
 
     const onToggleMute = useCallback(() => {
-        if (muted && !playing) {
-            play();
-        }
-        toggleMute();
-    }, [muted, toggleMute]);
+        setMuted(!muted);
+    }, [muted]);
 
     const onEnded = useCallback(() => {
         if (shouldGotoNextScreenOnEnd) {
@@ -357,7 +346,7 @@ const VideoScreen = ({
                             onSeeked={onSeeked}
                             onEnded={onEnded}
                             onSuspended={onSuspended}
-                            onVolumeChanged={onVolumeChanged}
+                            muted={muted}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}
                         />
@@ -400,11 +389,12 @@ const VideoScreen = ({
                                     withControls={withControls}
                                     withSeekBar={withSeekBar}
                                     color={color}
+                                    muted={muted}
                                     progressColor={progressColor}
                                     playing={playing}
-                                    muted={muted}
                                     currentTime={currentTime}
                                     duration={duration}
+                                    // @todo: change `onTogglePlay` to onPlay, onPause, onMute
                                     onTogglePlay={togglePlay}
                                     onToggleMute={onToggleMute}
                                     onSeek={onSeek}

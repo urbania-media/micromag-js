@@ -7,7 +7,7 @@ export const PlaybackContext = React.createContext({
     muted: false,
 });
 
-export const usePlayback = () => useContext(PlaybackContext);
+export const usePlaybackContext = () => useContext(PlaybackContext);
 
 const propTypes = {
     children: PropTypes.node.isRequired,
