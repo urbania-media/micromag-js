@@ -424,7 +424,7 @@ const Viewer = ({
 
     return (
         <ScreenSizeProvider size={screenSize}>
-            <PlaybackProvider>
+            <PlaybackProvider muted>
                 <ViewerProvider
                     events={eventsManager}
                     menuVisible={menuVisible}

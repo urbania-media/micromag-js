@@ -10,17 +10,8 @@ import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react'
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
-import {
-    usePlaybackContext,
-    useScreenSize,
-    useScreenRenderContext,
-    useViewerNavigation,
-} from '@micromag/core/contexts';
-import {
-    useTrackScreenMedia,
-    useLongPress,
-    useMediaThumbnail,
-} from '@micromag/core/hooks';
+import { usePlaybackContext, useScreenSize, useScreenRenderContext, useViewerNavigation } from '@micromag/core/contexts';
+import { useTrackScreenMedia, useLongPress, useMediaThumbnail } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -29,6 +20,7 @@ import Image from '@micromag/element-image';
 import MediaControls, { SeekBar } from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
 import styles from './styles.module.scss';
+
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle', 'full']),
@@ -102,7 +94,6 @@ const VideoScreen = ({
 
     const apiRef = useRef();
     const {
-        togglePlay,
         seek,
         play,
         pause,
@@ -118,7 +109,7 @@ const VideoScreen = ({
 
     const mouseMoveRef = useRef(null);
     const [showMediaControls, setShowMediaControls] = useState(false);
-    const [shouldCatchFirstTapToPlay, setShouldCatchFirstTapToPlay] = useState(false);
+    // const [shouldCatchFirstTapToPlay, setShouldCatchFirstTapToPlay] = useState(false);
 
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
@@ -144,6 +135,20 @@ const VideoScreen = ({
             setDuration(dur);
         },
         [setDuration],
+    );
+
+    const onClickPlay = useCallback(
+        () => {
+            play();
+        },
+        [play],
+    );
+
+    const onClickPause = useCallback(
+        () => {
+            pause();
+        },
+        [pause],
     );
 
     const onPlay = useCallback(
@@ -273,30 +278,25 @@ const VideoScreen = ({
 
     const onVideoReady = useCallback(() => {
         setReady(true);
+    }, [setReady]);
 
-        // @todo the battery-saving play button issue
-        if (autoPlay && suspended) {
-            setShouldCatchFirstTapToPlay(true);
-        }
-    }, [setReady, autoPlay, suspended, setShouldCatchFirstTapToPlay]);
-
-    const onSuspended = useCallback(() => {
-        if (autoPlay && suspended) {
-            setShouldCatchFirstTapToPlay(true);
-        }
-    }, [autoPlay, suspended, setShouldCatchFirstTapToPlay]);
+    // const onSuspended = useCallback(() => {
+    //     if (autoPlay && suspended) {
+    //         setShouldCatchFirstTapToPlay(true);
+    //     }
+    // }, [autoPlay, suspended, setShouldCatchFirstTapToPlay]);
 
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
     const items = [
-        (shouldCatchFirstTapToPlay && suspended) ? (
-            <button
-                key="tap-catcher-button"
-                type="button"
-                onTouchStart={() => play()}
-                className={styles.unmuteAndPlayButton}
-            />
-        ): null,
+        // shouldCatchFirstTapToPlay && suspended ? (
+        //     <button
+        //         key="tap-catcher-button"
+        //         type="button"
+        //         onTouchStart={() => play()}
+        //         className={styles.unmuteAndPlayButton}
+        //     />
+        // ) : null,
 
         <ScreenElement
             key="video"
@@ -345,7 +345,7 @@ const VideoScreen = ({
                             onDurationChanged={onDurationChanged}
                             onSeeked={onSeeked}
                             onEnded={onEnded}
-                            onSuspended={onSuspended}
+                            // onSuspended={onSuspended}
                             muted={muted}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}
@@ -394,8 +394,8 @@ const VideoScreen = ({
                                     playing={playing}
                                     currentTime={currentTime}
                                     duration={duration}
-                                    // @todo: change `onTogglePlay` to onPlay, onPause, onMute
-                                    onTogglePlay={togglePlay}
+                                    onPlay={onClickPlay}
+                                    onPause={onClickPause}
                                     onToggleMute={onToggleMute}
                                     onSeek={onSeek}
                                     focusable={current && isView}
@@ -407,7 +407,7 @@ const VideoScreen = ({
                                         onTouchStart={onShowControls}
                                         className={styles.showControlsButton}
                                     />
-                                ): null}
+                                ) : null}
                             </div>
                         ) : null}
                         {hasCallToAction ? (

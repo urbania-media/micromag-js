@@ -47,17 +47,6 @@ const useMediaApi = ({
         }
     }, []);
 
-    const togglePlay = useCallback(() => {
-        const { current: media } = ref;
-        if (media !== null) {
-            if (playing) {
-                media.pause();
-            } else {
-                media.play();
-            }
-        }
-    }, [playing]);
-
     const stop = useCallback(() => {
         const { current: media } = ref;
         if (media !== null) {
@@ -349,7 +338,6 @@ const useMediaApi = ({
         ref,
         play,
         pause,
-        togglePlay,
         stop,
         seek,
         currentTime,

@@ -169,11 +169,10 @@ export const MultipleVideos = () => (
                     type: 'video',
                     video: {
                         media: bigVideoMediaWithSound(),
-                        withSeekBar: false,
-                        withControls: false,
+                        withSeekBar: true,
+                        withControls: true,
                         loop: true,
-                        autoPlay: false,
-                        muted: true,
+                        autoPlay: true,
                     },
                     background: {
                         color: { alpha: 1, color: '#FFFF00' },
