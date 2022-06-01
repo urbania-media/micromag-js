@@ -142,7 +142,18 @@
 
     .authorBackground {
         background-color: #161719;
+
+        p {
+            font-weight: normal;
+            text-transform: none;
+        }
     }
+}
+
+.emptyText {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
 }
 
 // CSS TRANSITIONS
