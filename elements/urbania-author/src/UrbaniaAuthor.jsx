@@ -26,6 +26,8 @@ const propTypes = {
     isSmall: PropTypes.bool,
     linkUnderlineColor: PropTypes.string,
     className: PropTypes.string,
+    backgroundClassName: PropTypes.string,
+    collaboratorClassName: PropTypes.string,
     shouldLoad: PropTypes.bool,
 };
 
@@ -37,6 +39,8 @@ const defaultProps = {
     isSmall: false,
     linkUnderlineColor: null,
     className: null,
+    backgroundClassName: null,
+    collaboratorClassName: null,
     shouldLoad: true,
 };
 
@@ -48,6 +52,8 @@ const UrbaniaAuthor = ({
     isSmall,
     linkUnderlineColor,
     className,
+    backgroundClassName,
+    collaboratorClassName,
     shouldLoad,
 }) => {
     const intl = useIntl();
@@ -58,7 +64,17 @@ const UrbaniaAuthor = ({
         description: 'Author label',
     });
 
-    const authorText = isTextFilled(name) ? <Text className={styles.name} {...name} /> : null;
+    const authorText = isTextFilled(name) ? (
+        <Text
+            className={classNames([
+                styles.name,
+                {
+                    [backgroundClassName]: backgroundClassName
+                }
+            ])}
+            {...name}
+        />
+    ): null;
     const collaboratorText = isTextFilled(collaborator) ? (
         <Text className={styles.collaboratorText} {...collaborator} inline />
     ) : null;
@@ -76,7 +92,16 @@ const UrbaniaAuthor = ({
             ])}
         >
             {!withoutPrefix ? (
-                <Text {...name} className={styles.prefix} body={`<span>${prefix}<span>`} />
+                <Text
+                    {...name}
+                    className={classNames([
+                        styles.prefix,
+                        {
+                            [backgroundClassName]: backgroundClassName
+                        }
+                    ])}
+                    body={`<span>${prefix}<span>`}
+                />
             ) : null}
             {withAvatar ? (
                 <Avatar className={styles.image} image={image} shouldLoad={shouldLoad} />
@@ -100,7 +125,12 @@ const UrbaniaAuthor = ({
                     <div>{authorText}</div>
                 )}
                 {collaboratorText !== null ? (
-                    <div className={styles.collaborator}>
+                    <div className={classNames([
+                        styles.collaborator,
+                        {
+                            [collaboratorClassName]: collaboratorClassName
+                        }
+                    ])}>
                         {collaboratorText !== null ? collaboratorText : null}
                     </div>
                 ) : null}

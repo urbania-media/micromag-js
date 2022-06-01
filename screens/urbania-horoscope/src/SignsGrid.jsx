@@ -196,19 +196,35 @@ const SignsGrid = ({
                                             </ScreenElement>
                                         );
                                     })}
+
+                                    {/* Author + Collaborator credit */}
+                                    {currentSign === null ? (
+                                        <ScreenElement
+                                            key="author"
+                                            emptyLabel={
+                                                <FormattedMessage defaultMessage="Author" description="Author placeholder" />
+                                            }
+                                            emptyClassName={styles.emptyText}
+                                            isEmpty={!hasAuthor}
+                                        >
+                                            {hasAuthor && !isPlaceholder ? (
+                                                <Author
+                                                    author={author}
+                                                    className={styles.author}
+                                                    collaboratorClassName={styles.collaborator}
+                                                    backgroundClassName={styles.authorBackground}
+                                                    shouldLoad={mediaShouldLoad}
+                                                />
+                                            ) : null}
+                                        </ScreenElement>
+                                    ): null}
                                 </div>
                             </CSSTransition>
                         ) : (
                             <CSSTransition key="modal" classNames={styles} timeout={500}>
                                 <div className={styles.modalContainer}>
-                                    <Button onClick={onClickClose} className={styles.backButton}>
-                                        <span className={styles.arrow}>←</span>
-                                        <span className={styles.backLabel}>
-                                            <FormattedMessage
-                                                defaultMessage="Back to the Signs"
-                                                description="Horoscope Back Button"
-                                            />
-                                        </span>
+                                    <Button onClick={onClickClose} className={styles.closeButton}>
+                                        <Close className={styles.close} />
                                     </Button>
                                     <SignModal
                                         width={width}
@@ -221,26 +237,6 @@ const SignsGrid = ({
                                 </div>
                             </CSSTransition>
                         )}
-
-                        {/* Author + Collaborator credit */}
-                        {currentSign === null ? (
-                            <ScreenElement
-                                key="author"
-                                emptyLabel={
-                                    <FormattedMessage defaultMessage="Author" description="Author placeholder" />
-                                }
-                                emptyClassName={styles.emptyText}
-                                isEmpty={!hasAuthor}
-                            >
-                                {hasAuthor && !isPlaceholder ? (
-                                    <Author
-                                        author={author}
-                                        className={styles.author}
-                                        shouldLoad={mediaShouldLoad}
-                                    />
-                                ) : null}
-                            </ScreenElement>
-                        ): null}
                     </TransitionGroup>
                 </Layout>
             </Container>

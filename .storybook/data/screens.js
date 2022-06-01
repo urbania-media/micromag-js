@@ -367,9 +367,10 @@ export const allScreens = [
         type: 'urbania-horoscope',
         description: { body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?' },
         author: {
-            name: { body: 'Robert Léponge' },
-            avatar: imageMedia(),
-            collaborator: { body: 'Paul Lee' }
+            name: { body: '<p>Somebody Whowrites</p>' },
+            image: imageMedia(),
+            collaborator: { body: '<p>illustrated by <strong>PAUL LEE</strong></p>' },
+            isSmall: true,
         },
         button: {
             body: '<span>Découvrir</span>',
