@@ -1,16 +1,16 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import isEqual from 'lodash/isEqual';
+import PropTypes from 'prop-types';
 import React, { useMemo, useCallback } from 'react';
 import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import Select from 'react-select';
-import isEqual from 'lodash/isEqual';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
-import { selectTheme } from '../utils/selectTheme';
 import getSelectOptions from '../utils/getSelectOptions';
+import { selectTheme } from '../utils/selectTheme';
 
 const propTypes = {
+    name: PropTypes.string,
     value: PropTypes.string,
     options: MicromagPropTypes.selectOptions,
     withoutReset: PropTypes.bool,
@@ -20,6 +20,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    name: null,
     value: null,
     options: [],
     withoutReset: false,
@@ -28,7 +29,16 @@ const defaultProps = {
     onChange: null,
 };
 
-const SelectAdvancedField = ({ value, options, withoutReset, disabled, className, onChange, ...props }) => {
+const SelectAdvancedField = ({
+    name,
+    value,
+    options,
+    withoutReset,
+    disabled,
+    className,
+    onChange,
+    ...props
+}) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     const intl = useIntl();
     const translatedOptions = useMemo(() =>
@@ -62,6 +72,8 @@ const SelectAdvancedField = ({ value, options, withoutReset, disabled, className
             ])}
             isClearable={!withoutReset}
             {...props}
+            id={name}
+            name={name}
             value={optionValue || value || null}
             options={translatedOptions}
             disabled={disabled}
