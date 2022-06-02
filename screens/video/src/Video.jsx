@@ -109,7 +109,7 @@ const VideoScreen = ({
 
     useEffect(() => {
         if (!current) {
-            return;
+            return () => {};
         }
         if (withControls || withSeekBar) {
             setControls(true);
@@ -121,17 +121,22 @@ const VideoScreen = ({
         } else {
             setControls(false);
         }
+        return () => {
+            if (withControls || withSeekBar) {
+                setControls(false);
+            }
+        }
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
-    // useEffect(() => {
-    //     if (!current) {
-    //         return;
-    //     }
-    //     setMedia(mediaRef.current);
-    // }, [current]);
     useEffect(() => {
-        setMedia(current ? mediaRef.current : null);
-    }, [current, setMedia]);
+        if (!current) {
+            return () => {};
+        }
+        setMedia(mediaRef.current);
+        return () => {
+            setMedia(null);
+        };
+    }, [current]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
@@ -150,10 +155,13 @@ const VideoScreen = ({
         timeout: 2000,
     });
     useEffect(() => {
+        if (!current) {
+            return;
+        }
         if (activityDetected) {
             showControls();
         } else {
-            hideControls();
+            // hideControls();
         }
     }, [activityDetected, showControls, hideControls]);
 

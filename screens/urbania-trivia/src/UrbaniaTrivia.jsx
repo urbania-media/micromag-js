@@ -156,8 +156,14 @@ const UrbaniaTrivia = ({
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
     useEffect(() => {
-        setMedia(current ? mediaRef.current : null);
-    }, [current, setMedia]);
+        if (!current) {
+            return () => {};
+        }
+        setMedia(mediaRef.current);
+        return () => {
+            setMedia(null);
+        };
+    }, [current]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
@@ -231,10 +237,13 @@ const UrbaniaTrivia = ({
         timeout: 2000,
     });
     useEffect(() => {
+        if (!current) {
+            return;
+        }
         if (activityDetected) {
             showControls();
         } else {
-            hideControls();
+            // hideControls();
         }
     }, [activityDetected, showControls, hideControls]);
 

@@ -83,6 +83,9 @@ export const PlaybackProvider = ({
         [setControlsTheme],
     );
 
+    const showControls = useCallback(() => setControlsVisible(true), [setControlsVisible]);
+    const hideControls = useCallback(() => setControlsVisible(false), [setControlsVisible]);
+
     const value = useMemo(
         () => ({
             muted,
@@ -95,8 +98,8 @@ export const PlaybackProvider = ({
             setControls: finalSetControls,
             setControlsVisible,
             setControlsTheme: finalSetControlsTheme,
-            showControls: () => setControlsVisible(true),
-            hideControls: () => setControlsVisible(false),
+            showControls,
+            hideControls,
             setMedia,
         }),
         [
@@ -112,6 +115,8 @@ export const PlaybackProvider = ({
             finalSetControlsTheme,
             setControlsVisible,
             setControlsTheme,
+            showControls,
+            hideControls,
             setMedia,
         ],
     );

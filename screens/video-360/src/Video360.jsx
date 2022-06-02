@@ -120,6 +120,7 @@ const Video360Screen = ({
             return;
         }
         if (withControls || withSeekBar) {
+            setControls(true);
             setControlsTheme({
                 seekBarOnly: withSeekBar && !withControls,
                 color,
@@ -131,8 +132,14 @@ const Video360Screen = ({
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
     useEffect(() => {
-        setMedia(current ? mediaRef.current : null);
-    }, [current, setMedia]);
+        if (!current) {
+            return () => {};
+        }
+        setMedia(mediaRef.current);
+        return () => {
+            setMedia(null);
+        };
+    }, [current]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
@@ -151,6 +158,9 @@ const Video360Screen = ({
         timeout: 2000,
     });
     useEffect(() => {
+        if (!current) {
+            return;
+        }
         if (activityDetected) {
             showControls();
         } else {

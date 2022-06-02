@@ -127,8 +127,14 @@ const AudioScreen = ({
     }, [current, withPlayPause, setControls, color, progressColor]);
 
     useEffect(() => {
-        setMedia(current ? mediaRef.current : null);
-    }, [current, setMedia]);
+        if (!current) {
+            return () => {};
+        }
+        setMedia(mediaRef.current);
+        return () => {
+            setMedia(null);
+        };
+    }, [current]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
