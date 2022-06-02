@@ -17,7 +17,7 @@ const propTypes = {
     onNext: PropTypes.func,
     enableInteraction: PropTypes.func,
     disableInteraction: PropTypes.func,
-    getMediaRef: PropTypes.func,
+    mediaRef: PropTypes.func,
 };
 
 const defaultProps = {
@@ -30,7 +30,7 @@ const defaultProps = {
     onNext: null,
     enableInteraction: null,
     disableInteraction: null,
-    getMediaRef: null,
+    mediaRef: null,
 };
 
 const ViewerScreen = ({
@@ -43,7 +43,7 @@ const ViewerScreen = ({
     onNext,
     enableInteraction,
     disableInteraction,
-    getMediaRef,
+    mediaRef,
 }) =>
     screen !== null ? (
         <div
@@ -66,7 +66,7 @@ const ViewerScreen = ({
                 onNext={onNext}
                 enableInteraction={enableInteraction}
                 disableInteraction={disableInteraction}
-                getMediaRef={getMediaRef}
+                mediaRef={mediaRef}
             />
         </div>
     ) : null;

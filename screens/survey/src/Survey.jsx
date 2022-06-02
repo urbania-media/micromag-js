@@ -5,15 +5,17 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
 import {
-    getLargestRemainderRound,
-    getStyleFromColor,
-    isTextFilled,
-} from '@micromag/core/utils';
+    useScreenRenderContext,
+    useScreenSize,
+    useViewer,
+    useViewerInteraction,
+} from '@micromag/core/contexts';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { getLargestRemainderRound, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import { useQuiz, useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -22,6 +24,7 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -47,8 +50,6 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resultTransitionDuration: PropTypes.number,
     type: PropTypes.string,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -72,8 +73,6 @@ const defaultProps = {
     transitionStagger: 100,
     resultTransitionDuration: 500,
     type: null,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -97,14 +96,13 @@ const SurveyScreen = ({
     transitionStagger,
     resultTransitionDuration,
     type,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight } = useViewer();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { create: submitQuiz } = useQuizCreate({
         screenId,
     });
@@ -467,8 +465,7 @@ const SurveyScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop:
-                                      (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                               }
                             : null
                     }

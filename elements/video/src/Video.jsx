@@ -1,10 +1,17 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useCallback } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useMediaThumbnail } from '@micromag/core/hooks';
+import {
+    useMediaThumbnail,
+    useMediaCurrentTime,
+    useMediaDuration,
+    useMediaReady,
+    useProgressSteps,
+    useMediaLoad,
+} from '@micromag/core/hooks';
 import { getMediaFilesAsArray } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
@@ -36,9 +43,9 @@ const propTypes = {
     onSeeked: PropTypes.func,
     onTimeUpdate: PropTypes.func,
     onProgressStep: PropTypes.func,
-    onDurationChanged: PropTypes.func,
-    onVolumeChanged: PropTypes.func,
-    onSuspended: PropTypes.func,
+    onDurationChange: PropTypes.func,
+    onVolumeChange: PropTypes.func,
+    onSuspend: PropTypes.func,
     focusable: PropTypes.bool,
     supportedMimes: PropTypes.arrayOf(PropTypes.string),
     withPoster: PropTypes.bool,
@@ -67,9 +74,9 @@ const defaultProps = {
     onSeeked: null,
     onTimeUpdate: null,
     onProgressStep: null,
-    onDurationChanged: null,
-    onVolumeChanged: null,
-    onSuspended: null,
+    onDurationChange: null,
+    onVolumeChange: null,
+    onSuspend: null,
     focusable: true,
     supportedMimes: ['video/mp4', 'video/webm', 'video/ogg'],
     withPoster: false,
@@ -98,9 +105,9 @@ const Video = ({
     onSeeked,
     onTimeUpdate,
     onProgressStep,
-    onDurationChanged,
-    onVolumeChanged,
-    onSuspended,
+    onDurationChange: customOnDurationChange,
+    onVolumeChange: customOnVolumeChange,
+    onSuspend,
     focusable,
     supportedMimes,
     withPoster,
@@ -110,6 +117,22 @@ const Video = ({
     const { description = null, mime: mediaMime = null } = metadata || {};
     const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
     const thumbnailUrl = useMediaThumbnail(media, thumbnailFile);
+
+    const ref = useRef(null);
+    const currentTime = useMediaCurrentTime(ref.current, {
+        id: mediaUrl,
+        disabled: paused || onProgressStep === null,
+    });
+    const duration = useMediaDuration(ref.current, {
+        id: mediaUrl,
+    });
+    const ready = useMediaReady(ref.current, {
+        id: mediaUrl,
+    });
+    useMediaLoad(ref.current, {
+        preload,
+        shouldLoad,
+    });
 
     // Get source files with supported mimes
     const sourceFiles = useMemo(() => {
@@ -152,12 +175,28 @@ const Video = ({
 
     const withSize = width !== null && height !== null;
 
+    useEffect(() => {
+        if (duration > 0 && customOnDurationChange !== null) {
+            customOnDurationChange(duration);
+        }
+    }, [duration, customOnDurationChange]);
+
+    const onVolumeChange = useCallback(() => {
+        const { current: element = null } = ref;
+        if (element === null) {
+            return;
+        }
+        if (customOnVolumeChange !== null) {
+            customOnVolumeChange(element.volume);
+        }
+    }, [customOnVolumeChange]);
+
     // Ensure load if preload value change over time
     const firstPreloadRef = useRef(preload);
     const firstShouldLoadRef = useRef(shouldLoad);
     const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata' && shouldLoad);
     useEffect(() => {
-        const { current: videoElement = null } = mediaRef || {};
+        const { current: element = null } = ref;
         const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad; // @todo
         const preloadHasChanged = firstPreloadRef.current !== preload;
         const shouldLoadHasChanged = firstShouldLoadRef.current !== shouldLoad;
@@ -165,26 +204,39 @@ const Video = ({
             canLoad &&
             (preloadHasChanged || shouldLoadHasChanged) &&
             !hasLoadedRef.current &&
-            videoElement !== null &&
-            typeof videoElement.load !== 'undefined'
+            element !== null &&
+            typeof element.load !== 'undefined'
         ) {
             hasLoadedRef.current = true;
-            videoElement.load();
+            element.load();
         }
     }, [shouldLoad, preload]);
 
     useEffect(() => {
-        const { current: videoElement = null } = mediaRef || {};
-        if (videoElement === null) {
+        if (ready && onReady !== null) {
+            onReady();
+        }
+    }, [ready, onReady]);
+
+    useEffect(() => {
+        const { current: element = null } = ref;
+        if (element === null) {
             return;
         }
-        const { paused: isPaused } = videoElement;
+        const { paused: isPaused } = element;
         if (paused && !isPaused) {
-            videoElement.pause();
+            element.pause();
         } else if (!paused && isPaused) {
-            videoElement.play();
+            element.play();
         }
     }, [paused]);
+
+    useProgressSteps({
+        currentTime,
+        duration,
+        disabled: paused,
+        onStep: onProgressStep,
+    });
 
     return (
         <div
@@ -210,7 +262,12 @@ const Video = ({
             {!isImageWithoutSourceFile ? (
                 <video
                     key={mediaUrl}
-                    ref={mediaRef}
+                    ref={(newRef) => {
+                        ref.current = newRef;
+                        if (mediaRef !== null) {
+                            mediaRef.current = newRef;
+                        }
+                    }}
                     src={sourceFiles === null || sourceFiles.length === 0 ? mediaUrl : null}
                     autoPlay={autoPlay}
                     loop={loop}
@@ -225,8 +282,9 @@ const Video = ({
                     onPause={onPause}
                     onEnded={onEnded}
                     onSeeked={onSeeked}
-                    onVolumeChange={onVolumeChanged}
+                    onVolumeChange={onVolumeChange}
                     onTimeUpdate={onTimeUpdate}
+                    onSuspend={onSuspend}
                 >
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
                         <source

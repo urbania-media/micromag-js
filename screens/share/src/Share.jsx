@@ -5,7 +5,7 @@ import React, { useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FormattedMessage } from 'react-intl';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewer, useViewerInteraction } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -27,8 +27,6 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -45,8 +43,6 @@ const defaultProps = {
     active: true,
     transitions: null,
     transitionStagger: 100,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -63,12 +59,11 @@ const ShareScreen = ({
     active,
     transitions,
     transitionStagger,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight } = useViewer();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();

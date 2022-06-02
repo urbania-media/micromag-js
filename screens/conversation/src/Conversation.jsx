@@ -4,9 +4,15 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { v1 as uuid } from 'uuid';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
+import {
+    useScreenRenderContext,
+    useScreenSize,
+    useViewer,
+    useViewerInteraction,
+} from '@micromag/core/contexts';
 import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
@@ -15,7 +21,9 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
+
 import ConversationMessage from './ConversationMessage';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -31,8 +39,6 @@ const propTypes = {
     type: PropTypes.string,
     conversation: MicromagPropTypes.conversation,
     transitions: MicromagPropTypes.transitions,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -48,8 +54,6 @@ const defaultProps = {
     type: null,
     conversation: null,
     transitions: null,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -65,12 +69,11 @@ const ConversationScreen = ({
     type,
     conversation,
     transitions,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight } = useViewer();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
     const trackScreenEvent = useTrackScreenEvent(type);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -194,9 +197,7 @@ const ConversationScreen = ({
                                 !isPlaceholder
                                     ? {
                                           padding: spacing,
-                                          paddingTop:
-                                              (!isPreview ? viewerTopHeight : 0) +
-                                              spacing,
+                                          paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                       }
                                     : null
                             }

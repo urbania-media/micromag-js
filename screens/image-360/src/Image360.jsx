@@ -17,7 +17,7 @@ import { FormattedMessage } from 'react-intl';
 import 'whatwg-fetch';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewerInteraction } from '@micromag/core/contexts';
 import { useAnimationFrame, useTrackScreenEvent } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -38,8 +38,6 @@ const propTypes = {
     onNext: PropTypes.func,
     type: PropTypes.string,
     spacing: PropTypes.number,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -55,8 +53,6 @@ const defaultProps = {
     onNext: null,
     type: null,
     spacing: 20,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -72,14 +68,13 @@ const Image360Screen = ({
     onNext,
     type,
     spacing,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
 
     const { width, height, landscape, resolution } = useScreenSize();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();

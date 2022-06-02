@@ -6,13 +6,13 @@ const useMediaApi = ({
     url = null,
     onTimeUpdate = null,
     onProgressStep = null,
-    onDurationChanged = null,
-    onVolumeChanged = null,
+    onDurationChange = null,
+    onVolumeChange = null,
     onPlay = null,
     onPause = null,
     onEnded = null,
     onSeeked = null,
-    onSuspended = null,
+    onSuspend = null,
     onLoadStart = null,
     onCanPlayThough = null,
     onCanPlay = null,
@@ -147,11 +147,11 @@ const useMediaApi = ({
 
             setDuration(eventMedia.duration);
 
-            if (onDurationChanged !== null) {
-                onDurationChanged(eventMedia.duration);
+            if (onDurationChange !== null) {
+                onDurationChange(eventMedia.duration);
             }
         },
-        [setDuration, onDurationChanged],
+        [setDuration, onDurationChange],
     );
 
     const onCustomSeeked = useCallback(
@@ -170,11 +170,11 @@ const useMediaApi = ({
             const { currentTarget: eventMedia } = e;
 
             // setMuted(eventMedia.muted);
-            if (onVolumeChanged !== null) {
-                onVolumeChanged(eventMedia.volume);
+            if (onVolumeChange !== null) {
+                onVolumeChange(eventMedia.volume);
             }
         },
-        [onVolumeChanged],
+        [onVolumeChange],
     );
 
     const onCustomLoadStart = useCallback(() => {
@@ -218,8 +218,8 @@ const useMediaApi = ({
     const onCustomSuspended = useCallback(() => {
         setSuspended(true);
 
-        if (onSuspended !== null) {
-            onSuspended();
+        if (onSuspend !== null) {
+            onSuspend();
         }
     }, [setDataReady, onLoadedData]);
 

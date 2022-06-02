@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     Transitions,
@@ -18,6 +19,7 @@ import {
 import {
     useScreenSize,
     useScreenRenderContext, // useViewerNavigation,
+    useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
@@ -28,8 +30,10 @@ import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 import UrbaniaAuthor from '@micromag/element-urbania-author';
 import Visual from '@micromag/element-visual';
+
 import ArrowIcon from './icons/ArrowIcon';
 import WatchIcon from './icons/WatchIcon';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -50,8 +54,6 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -73,8 +75,6 @@ const defaultProps = {
     active: true,
     transitions: null,
     spacing: 20,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -96,12 +96,11 @@ const UrbaniaArticle = ({
     active,
     transitions,
     spacing,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { color: backgroundColor = null } = background || {};
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const {
         ref: contentRef,

@@ -5,9 +5,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewer,
+    useViewerInteraction,
+} from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
@@ -17,6 +23,7 @@ import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -43,8 +50,6 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -65,8 +70,6 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -87,8 +90,6 @@ const ImageScreen = ({
     current,
     active,
     transitions,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const finalImageFit = useMemo(
@@ -99,6 +100,7 @@ const ImageScreen = ({
     const { width, height, resolution } = useScreenSize();
 
     const { topHeight: viewerTopHeight } = useViewer();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();

@@ -1,33 +1,30 @@
 /* eslint-disable react/jsx-props-no-spreading */
-// import {
-//     Scene,
-//     PerspectiveCamera,
-//     SphereBufferGeometry,
-//     VideoTexture,
-//     MeshBasicMaterial,
-//     Mesh,
-//     WebGLRenderer,
-//     MathUtils,
-// } from 'three';
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import 'whatwg-fetch';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    usePlaybackContext,
+    useViewerInteraction,
+} from '@micromag/core/contexts';
 import { useAnimationFrame, useTrackScreenEvent, useTrackScreenMedia } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
-import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
-import styles from './styles.module.scss';
+
 import useThree from './useThree';
+
+import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['full']),
@@ -41,8 +38,7 @@ const propTypes = {
     onNext: PropTypes.func,
     type: PropTypes.string,
     spacing: PropTypes.number,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
+    mediaRef: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -58,8 +54,7 @@ const defaultProps = {
     onNext: null,
     type: null,
     spacing: 20,
-    enableInteraction: null,
-    disableInteraction: null,
+    mediaRef: null,
     className: null,
 };
 
@@ -75,13 +70,13 @@ const Video360Screen = ({
     onNext,
     type,
     spacing,
-    enableInteraction,
-    disableInteraction,
+    mediaRef: customMediaRef,
     className,
 }) => {
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
     const trackScreenMedia = useTrackScreenMedia('video_360');
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { width, height, landscape, resolution } = useScreenSize();
 
@@ -89,15 +84,51 @@ const Video360Screen = ({
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
+    const {
+        media: videoMedia = null,
+        closedCaptions = null,
+        withSeekBar = false,
+        withControls = false,
+        autoPlay = true,
+        color = null,
+        progressColor = null,
+    } = video || {};
 
     const videoContainerRef = useRef();
-    const apiRef = useRef();
-    const { togglePlay, toggleMute, seek, play, pause } = apiRef.current || {};
+
+    const { playing, muted, setControls, setControlsTheme, setMedia } = usePlaybackContext();
+    const mediaRef = useRef(null);
+
+    useEffect(() => {
+        if (!current) {
+            return;
+        }
+        if (withControls || withSeekBar) {
+            setControlsTheme({
+                seekBarOnly: withSeekBar && !withControls,
+                color,
+                progressColor,
+            });
+        } else {
+            setControls(false);
+        }
+    }, [current, withControls, setControls, withSeekBar, color, progressColor]);
+
+    useEffect(() => {
+        if (!current) {
+            return;
+        }
+        setMedia(mediaRef.current);
+    }, [current]);
+
+    useEffect(() => {
+        if (customMediaRef !== null) {
+            customMediaRef(mediaRef.current);
+        }
+    }, [mediaRef.current]);
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
-    const [playing, setPlaying] = useState(false);
-    const [muted, setMuted] = useState(false);
 
     const onTimeUpdate = useCallback(
         (time) => {
@@ -113,7 +144,7 @@ const Video360Screen = ({
         [trackScreenMedia, video],
     );
 
-    const onDurationChanged = useCallback(
+    const onDurationChange = useCallback(
         (dur) => {
             setDuration(dur);
         },
@@ -122,7 +153,6 @@ const Video360Screen = ({
 
     const onPlay = useCallback(
         ({ initial }) => {
-            setPlaying(true);
             trackScreenMedia(video, initial ? 'play' : 'resume');
         },
         [trackScreenMedia, video],
@@ -130,16 +160,7 @@ const Video360Screen = ({
 
     const onPause = useCallback(
         ({ midway }) => {
-            setPlaying(false);
             trackScreenMedia(video, midway ? 'pause' : 'ended');
-        },
-        [trackScreenMedia, video],
-    );
-
-    const onVolumeChanged = useCallback(
-        (isMuted) => {
-            setMuted(isMuted);
-            trackScreenMedia(video, isMuted ? 'mute' : 'unmute');
         },
         [trackScreenMedia, video],
     );
@@ -153,19 +174,6 @@ const Video360Screen = ({
         [trackScreenMedia, video],
     );
 
-    const onToggleMute = useCallback(() => {
-        if (muted && !playing) {
-            play();
-        }
-        toggleMute();
-    }, [muted, toggleMute]);
-
-    useEffect(() => {
-        if (!current && playing) {
-            pause();
-        }
-    }, [playing, current]);
-
     // ------------------------------------
 
     const hasVideo = video !== null;
@@ -175,13 +183,6 @@ const Video360Screen = ({
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
-    const {
-        media: videoMedia = null,
-        closedCaptions = null,
-        withSeekBar = false,
-        withControls = false,
-        autoPlay = true,
-    } = video || {};
     const finalVideo = hasVideo
         ? {
               ...video,
@@ -283,8 +284,7 @@ const Video360Screen = ({
             const geometry = new SphereBufferGeometry(500, 60, 40);
             geometry.scale(-1, 1, 1);
 
-            const { mediaRef: videoMediaRef = null } = apiRef.current || {};
-            const { current: videoElement = null } = videoMediaRef || {};
+            const { current: videoElement = null } = mediaRef || {};
 
             const videoTexture = new VideoTexture(videoElement);
 
@@ -331,15 +331,17 @@ const Video360Screen = ({
             pointerDownY.current = e.clientY;
             pointerLon.current = lon.current;
             pointerLat.current = lat.current;
-            if (togglePlayTimeout.current !== null) {
-                clearTimeout(togglePlayTimeout.current);
-            }
-            togglePlayTimeout.current = setTimeout(() => {
-                togglePlay();
-                togglePlayTimeout.current = null;
-            }, 300);
+            // if (togglePlayTimeout.current !== null) {
+            //     clearTimeout(togglePlayTimeout.current);
+            // }
+            // togglePlayTimeout.current = setTimeout(() => {
+            //     togglePlay();
+            //     togglePlayTimeout.current = null;
+            // }, 300);
         },
-        [togglePlay],
+        [
+            /* togglePlay */
+        ],
     );
 
     const pixelsMoved = useRef(0);
@@ -490,21 +492,6 @@ const Video360Screen = ({
                             currentTime={currentTime}
                         />
                     ) : null}
-                    {withVideoSphere ? (
-                        <MediaControls
-                            className={styles.mediaControls}
-                            withSeekBar={withSeekBar}
-                            withControls={withControls}
-                            playing={playing}
-                            muted={muted}
-                            currentTime={currentTime}
-                            duration={duration}
-                            onTogglePlay={togglePlay}
-                            onToggleMute={onToggleMute}
-                            onSeek={seek}
-                            focusable={current && isView}
-                        />
-                    ) : null}
                     {hasCallToAction ? (
                         <div style={{ marginTop: -spacing / 2 }}>
                             <CallToAction
@@ -557,17 +544,18 @@ const Video360Screen = ({
                     >
                         <Video
                             {...finalVideo}
-                            ref={apiRef}
+                            ref={mediaRef}
                             className={styles.video}
+                            paused={!current || !playing}
+                            muted={muted}
                             withoutCors
                             onReady={onVideoReady}
                             onPlay={onPlay}
                             onPause={onPause}
                             onTimeUpdate={onTimeUpdate}
                             onProgressStep={onProgressStep}
-                            onDurationChanged={onDurationChanged}
+                            onDurationChange={onDurationChange}
                             onSeeked={onSeeked}
-                            onVolumeChanged={onVolumeChanged}
                             onPosterLoaded={onPosterLoaded}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}

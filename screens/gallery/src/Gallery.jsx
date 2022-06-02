@@ -4,9 +4,15 @@ import isPlainObject from 'lodash/isPlainObject';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
+import {
+    useScreenRenderContext,
+    useScreenSize,
+    useViewer,
+    useViewerInteraction,
+} from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
@@ -15,7 +21,9 @@ import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
+
 import layoutProps from './layouts';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -52,8 +60,6 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -69,8 +75,6 @@ const defaultProps = {
     active: true,
     transitions: null,
     transitionStagger: 50,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -86,12 +90,11 @@ const GalleryScreen = ({
     captionMaxLines,
     transitions,
     transitionStagger,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight } = useViewer();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -115,7 +118,7 @@ const GalleryScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const onImageLoaded = useCallback(() => {
-        setImagesLoaded(count => count + 1);
+        setImagesLoaded((count) => count + 1);
     }, [setImagesLoaded]);
 
     const imagesEl = useRef([]);

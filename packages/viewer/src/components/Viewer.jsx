@@ -523,8 +523,8 @@ const Viewer = ({
                                         onNext={gotoNextScreen}
                                         enableInteraction={enableInteraction}
                                         disableInteraction={disableInteraction}
-                                        getMediaRef={(mediaRef) => {
-                                            screensMediasRef.current[i] = mediaRef;
+                                        mediaRef={(ref) => {
+                                            screensMediasRef.current[i] = ref;
                                         }}
                                     />
                                 );

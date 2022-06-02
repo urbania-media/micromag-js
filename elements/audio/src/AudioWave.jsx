@@ -223,8 +223,8 @@ function AudioWave({
     // User events
     const seekFromX = useCallback(
         (x) => {
-            const elX = elRef.current.getBoundingClientRect().left;
-            const progress = Math.max(0, Math.min(1, (x - elX) / elWidth));
+            const { left: elX, width } = elRef.current.getBoundingClientRect();
+            const progress = Math.max(0, Math.min(1, (x - elX) / width));
             if (onSeek !== null && duration !== null) {
                 onSeek(progress * duration);
             }

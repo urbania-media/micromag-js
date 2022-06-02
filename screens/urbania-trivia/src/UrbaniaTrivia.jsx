@@ -19,6 +19,7 @@ import {
     useScreenRenderContext,
     useScreenSize,
     useViewerNavigation,
+    usePlaybackContext,
 } from '@micromag/core/contexts';
 import { useLongPress, useTrackScreenMedia, useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
@@ -28,7 +29,6 @@ import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
-import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
 import AnimeLinesGrey from './images/anime-lines-grey.svg';
 import AnimeLines from './images/anime-lines.svg';
@@ -66,7 +66,7 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
     padding: PropTypes.number,
-    getMediaRef: PropTypes.func,
+    mediaRef: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -82,7 +82,7 @@ const defaultProps = {
     transitions: null,
     spacing: 20,
     padding: 20,
-    getMediaRef: null,
+    mediaRef: null,
     className: null,
 };
 
@@ -98,7 +98,7 @@ const UrbaniaTrivia = ({
     transitions,
     spacing,
     padding,
-    getMediaRef,
+    mediaRef: customMediaRef,
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
@@ -123,23 +123,39 @@ const UrbaniaTrivia = ({
         closedCaptions = null,
         withSeekBar = false,
         withControls = false,
+        color = null,
+        progressColor = null,
     } = video || {};
 
-    const apiRef = useRef();
-    const {
-        togglePlay,
-        toggleMute,
-        seek,
-        play,
-        pause,
-        mediaRef: apiMediaRef = null,
-    } = apiRef.current || {};
+    const { playing, muted, setControls, setControlsTheme, setMedia } = usePlaybackContext();
+    const mediaRef = useRef(null);
 
     useEffect(() => {
-        if (apiMediaRef !== null && getMediaRef !== null) {
-            getMediaRef(apiMediaRef.current);
+        if (!current) {
+            return;
         }
-    }, [apiMediaRef, getMediaRef]);
+        if (withControls || withSeekBar) {
+            setControls(true);
+            setControlsTheme({
+                seekBarOnly: withSeekBar && !withControls,
+            });
+        } else {
+            setControls(false);
+        }
+    }, [current, withControls, setControls, withSeekBar, color, progressColor]);
+
+    useEffect(() => {
+        if (!current) {
+            return;
+        }
+        setMedia(mediaRef.current);
+    }, [current]);
+
+    useEffect(() => {
+        if (customMediaRef !== null) {
+            customMediaRef(mediaRef.current);
+        }
+    }, [mediaRef.current]);
 
     const mouseMoveRef = useRef(null);
     const [showMediaControls, setShowMediaControls] = useState(false);
@@ -147,8 +163,6 @@ const UrbaniaTrivia = ({
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
-    const [playing, setPlaying] = useState(false);
-    const [muted, setMuted] = useState(false);
 
     const onTimeUpdate = useCallback(
         (time) => {
@@ -164,7 +178,7 @@ const UrbaniaTrivia = ({
         [trackScreenMedia, video],
     );
 
-    const onDurationChanged = useCallback(
+    const onDurationChange = useCallback(
         (dur) => {
             setDuration(dur);
         },
@@ -173,7 +187,6 @@ const UrbaniaTrivia = ({
 
     const onPlay = useCallback(
         ({ initial }) => {
-            setPlaying(true);
             trackScreenMedia(video, initial ? 'play' : 'resume');
         },
         [trackScreenMedia, video],
@@ -181,16 +194,7 @@ const UrbaniaTrivia = ({
 
     const onPause = useCallback(
         ({ midway }) => {
-            setPlaying(false);
             trackScreenMedia(video, midway ? 'pause' : 'ended');
-        },
-        [trackScreenMedia, video],
-    );
-
-    const onVolumeChanged = useCallback(
-        (isMuted) => {
-            setMuted(isMuted);
-            trackScreenMedia(video, isMuted ? 'mute' : 'unmute');
         },
         [trackScreenMedia, video],
     );
@@ -212,24 +216,11 @@ const UrbaniaTrivia = ({
         [trackScreenMedia, video],
     );
 
-    const onToggleMute = useCallback(() => {
-        if (muted && !playing) {
-            play();
-        }
-        toggleMute();
-    }, [muted, toggleMute]);
-
     const onEnded = useCallback(() => {
         if (shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }
     }, [shouldGotoNextScreenOnEnd, seek, gotoNextScreen]);
-
-    useEffect(() => {
-        if (!current && playing) {
-            pause();
-        }
-    }, [playing, current]);
 
     const onMouseMove = useCallback(
         (e, time = 1800) => {
@@ -246,14 +237,14 @@ const UrbaniaTrivia = ({
     );
 
     const onLongPress = useCallback(() => {
-        if (!playing) {
-            play();
-        } else if (withControls) {
-            onMouseMove(null, 3000);
-        } else {
-            pause();
-        }
-    }, [play, playing, pause, onMouseMove, withControls, setShowMediaControls]);
+        // if (!playing) {
+        //     play();
+        // } else if (withControls) {
+        //     onMouseMove(null, 3000);
+        // } else {
+        //     pause();
+        // }
+    }, [/* play, playing, pause, onMouseMove, withControls, setShowMediaControls */]);
 
     const longPressBind = useLongPress({ onLongPress, onClick: onMouseMove });
 
@@ -336,7 +327,6 @@ const UrbaniaTrivia = ({
         setReady(true);
     }, [setReady]);
 
-    const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
     const items = [
         <Container className={styles.itemsContainer} style={{ marginTop: -spacing / 2 }}>
             <ScreenElement
@@ -415,7 +405,9 @@ const UrbaniaTrivia = ({
                         ) : (
                             <Video
                                 {...finalVideo}
-                                ref={apiRef}
+                                ref={mediaRef}
+                                paused={!current || !playing}
+                                muted={muted}
                                 width={resizedVideoWidth}
                                 height={resizedVideoHeight}
                                 className={styles.video}
@@ -424,10 +416,9 @@ const UrbaniaTrivia = ({
                                 onPause={onPause}
                                 onTimeUpdate={onTimeUpdate}
                                 onProgressStep={onProgressStep}
-                                onDurationChanged={onDurationChanged}
+                                onDurationChange={onDurationChange}
                                 onSeeked={onSeeked}
                                 onEnded={onEnded}
-                                onVolumeChanged={onVolumeChanged}
                                 focusable={current && isView}
                                 shouldLoad={mediaShouldLoad}
                             />
@@ -450,48 +441,6 @@ const UrbaniaTrivia = ({
                                             currentTime={currentTime}
                                         />
                                     ) : null}
-                                    <div
-                                        className={classNames([
-                                            styles.bottom,
-                                            {
-                                                [styles.visible]: visibleControls,
-                                                [styles.withGradient]:
-                                                    withSeekBar || withControls || muted,
-                                            },
-                                        ])}
-                                    >
-                                        {hasVideoUrl ? (
-                                            <MediaControls
-                                                className={classNames([
-                                                    styles.mediaControls,
-                                                    {
-                                                        [styles.visible]: visibleControls,
-                                                    },
-                                                ])}
-                                                withSeekBar={withSeekBar}
-                                                withControls={withControls}
-                                                playing={playing}
-                                                muted={muted}
-                                                currentTime={currentTime}
-                                                duration={duration}
-                                                onTogglePlay={togglePlay}
-                                                onToggleMute={onToggleMute}
-                                                onSeek={onSeek}
-                                                focusable={current && isView}
-                                            />
-                                        ) : null}
-                                        {/* {hasCallToAction ? (
-                                            <div style={{ marginTop: -spacing / 2 }}>
-                                                <CallToAction
-                                                    className={styles.callToAction}
-                                                    callToAction={callToAction}
-                                                    animationDisabled={isPreview}
-                                                    focusable={current && isView}
-                                                    screenSize={{ width, height }}
-                                                />
-                                            </div>
-                                        ) : null} */}
-                                    </div>
                                 </Transitions>
                             </div>
                         ) : null}

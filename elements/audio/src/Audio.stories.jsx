@@ -11,6 +11,6 @@ export default {
 
 export const Normal = () => <Audio media={audioMedia()} />;
 
-export const NormalWithWaveform = () => <Audio media={audioMedia({ withWaveform: true })} />;
+export const NormalWithWaveform = () => <Audio media={audioMedia({ withWaveform: true })} withWave />;
 
 export const Autoplay = () => <Audio media={audioMedia()} autoPlay loop />;

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
+import { useScreenRenderContext, useScreenSize, useViewer, useViewerInteraction } from '@micromag/core/contexts';
 import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
@@ -34,8 +34,6 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -58,8 +56,6 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 100,
     type: null,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -82,14 +78,13 @@ const QuizScreen = ({
     transitions,
     transitionStagger,
     type,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight } = useViewer();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 

@@ -16,6 +16,7 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useViewerNavigation,
+    useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useTrackScreenMedia, useLongPress, useMediaThumbnail } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
@@ -37,9 +38,7 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
-    getMediaRef: PropTypes.func,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
+    mediaRef: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -53,9 +52,7 @@ const defaultProps = {
     active: true,
     transitions: null,
     spacing: 20,
-    getMediaRef: null,
-    enableInteraction: null,
-    disableInteraction: null,
+    mediaRef: null,
     className: null,
 };
 
@@ -69,9 +66,7 @@ const VideoScreen = ({
     active,
     transitions,
     spacing,
-    getMediaRef,
-    enableInteraction,
-    disableInteraction,
+    mediaRef: customMediaRef,
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
@@ -80,7 +75,8 @@ const VideoScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
-    const { playing, muted, setControls, setControlsTheme, setMedia } = usePlaybackContext();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
+
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
@@ -97,6 +93,7 @@ const VideoScreen = ({
         progressColor = null,
     } = video || {};
 
+    const { playing, muted, setControls, setControlsTheme, setMedia } = usePlaybackContext();
     const mediaRef = useRef(null);
 
     useEffect(() => {
@@ -119,16 +116,14 @@ const VideoScreen = ({
         if (!current) {
             return;
         }
-        console.log(mediaRef.current);
         setMedia(mediaRef.current);
     }, [current]);
 
     useEffect(() => {
-        if (!current) {
-            return;
+        if (customMediaRef !== null) {
+            customMediaRef(mediaRef.current);
         }
-        getMediaRef(mediaRef.current);
-    }, [mediaRef.current, getMediaRef]);
+    }, [mediaRef.current]);
 
     const mouseMoveRef = useRef(null);
     const [, setShowMediaControls] = useState(false);
@@ -152,7 +147,7 @@ const VideoScreen = ({
         [trackScreenMedia, video],
     );
 
-    const onDurationChanged = useCallback(
+    const onDurationChange = useCallback(
         (dur) => {
             setDuration(dur);
         },
@@ -308,6 +303,7 @@ const VideoScreen = ({
                         <Video
                             {...finalVideo}
                             paused={!current || !playing}
+                            muted={muted}
                             ref={mediaRef}
                             className={styles.video}
                             onReady={onVideoReady}
@@ -315,11 +311,10 @@ const VideoScreen = ({
                             onPause={onPause}
                             onTimeUpdate={onTimeUpdate}
                             onProgressStep={onProgressStep}
-                            onDurationChanged={onDurationChanged}
+                            onDurationChange={onDurationChange}
                             onSeeked={onSeeked}
                             onEnded={onEnded}
-                            // onSuspended={onSuspended}
-                            muted={muted}
+                            // onSuspend={onSuspend}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}
                         />

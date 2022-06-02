@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     // PlaceholderText,
@@ -16,6 +17,7 @@ import {
     useScreenRenderContext,
     useScreenState,
     useViewer,
+    useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
@@ -27,10 +29,13 @@ import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Author from '@micromag/element-urbania-author';
+
 import SignsGrid from './SignsGrid';
-import Astrologie from './images/astrologie-text.svg';
 import signsList from './signs';
+
 import styles from './styles.module.scss';
+
+import Astrologie from './images/astrologie-text.svg';
 
 const propTypes = {
     defaultSigns: PropTypes.arrayOf(
@@ -57,8 +62,6 @@ const propTypes = {
     popupBackground: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -79,8 +82,6 @@ const defaultProps = {
     current: true,
     active: true,
     type: 'horoscope',
-    enableInteraction: null,
-    disableInteraction: null,
     transitions: null,
     transitionStagger: 100,
     className: null,
@@ -99,8 +100,6 @@ const Horoscope = ({
     popupBackground,
     current,
     active,
-    enableInteraction,
-    disableInteraction,
     transitions,
     transitionStagger,
     type,
@@ -108,6 +107,7 @@ const Horoscope = ({
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
     const [hasPopup, setHasPopup] = useState(false);
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const signs = useMemo(
         () =>
@@ -135,10 +135,13 @@ const Horoscope = ({
         trackScreenEvent('close');
     }, [hasPopup, setHasPopup, enableInteraction]);
 
-    const onClickSign = useCallback((signId) => {
-        setCurrentSign(signId);
-        trackScreenEvent(`open_sign_${signId}`);
-    }, [setCurrentSign, trackScreenEvent]);
+    const onClickSign = useCallback(
+        (signId) => {
+            setCurrentSign(signId);
+            trackScreenEvent(`open_sign_${signId}`);
+        },
+        [setCurrentSign, trackScreenEvent],
+    );
 
     const onClickCloseSign = useCallback(() => {
         setCurrentSign(null);
@@ -221,7 +224,11 @@ const Horoscope = ({
                 isEmpty={!hasAuthor}
             >
                 {hasAuthor && !isPlaceholder ? (
-                    <Author author={author} className={styles.author} shouldLoad={mediaShouldLoad} />
+                    <Author
+                        author={author}
+                        className={styles.author}
+                        shouldLoad={mediaShouldLoad}
+                    />
                 ) : null}
             </ScreenElement>
         </div>,
@@ -295,8 +302,7 @@ const Horoscope = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop:
-                                          (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                   }
                                 : null
                         }
