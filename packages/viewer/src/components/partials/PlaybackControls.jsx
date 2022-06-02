@@ -5,7 +5,7 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons/faVolumeUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
 import { usePlaybackContext } from '@micromag/core/contexts';

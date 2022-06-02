@@ -167,6 +167,7 @@ export const MultipleVideos = () => (
                 {
                     id: '1',
                     type: 'video',
+                    layout: 'full',
                     video: {
                         media: bigVideoMediaWithSound(),
                         withSeekBar: true,
@@ -181,7 +182,6 @@ export const MultipleVideos = () => (
                 {
                     id: '2',
                     type: 'video',
-                    layout: 'full',
                     video: {
                         withSeekBar: true,
                         withControls: true,
@@ -189,6 +189,9 @@ export const MultipleVideos = () => (
                         autoPlay: true,
                         color: { alpha: 1, color: '#012400' },
                         progressColor: { alpha: 1, color: '#8891cc' },
+                    },
+                    background: {
+                        color: { alpha: 1, color: '#123456' },
                     },
                     gotoNextScreenOnEnd: true,
                 },
