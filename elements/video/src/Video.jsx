@@ -269,7 +269,7 @@ const Video = ({
                         }
                     }}
                     src={sourceFiles === null || sourceFiles.length === 0 ? mediaUrl : null}
-                    autoPlay={autoPlay}
+                    autoPlay={autoPlay && !paused}
                     loop={loop}
                     muted={muted}
                     poster={shouldLoad && withPoster ? thumbnailUrl : null}

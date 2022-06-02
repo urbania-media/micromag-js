@@ -1,9 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { faPause } from '@fortawesome/free-solid-svg-icons/faPause';
+import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons/faVolumeUp';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useCallback } from 'react';
+import { useIntl } from 'react-intl';
 
 import { usePlaybackContext } from '@micromag/core/contexts';
+import { useMediaDuration, useMediaCurrentTime } from '@micromag/core/hooks';
+
+import SeekBar from './SeekBar';
 
 import styles from '../../styles/partials/playback-controls.module.scss';
 
@@ -16,33 +24,94 @@ const defaultProps = {
 };
 
 function PlaybackControls({ className }) {
-    const { media: mediaElement = null } = usePlaybackContext();
-    const [progress, setProgress] = useState(0);
-    const mediaElementRef = useRef(mediaElement);
-    const mediaElementChanged = mediaElementRef.current !== mediaElement;
+    const intl = useIntl();
+    const {
+        media: mediaElement = null,
+        playing = false,
+        muted = true,
+        setPlaying,
+        setMuted,
+        controlsVisible,
+    } = usePlaybackContext();
+    const duration = useMediaDuration(mediaElement);
+    const currentTime = useMediaCurrentTime(mediaElement, {
+        disabled: !playing,
+        updateInterval: 100
+    });
 
-    const finalProgress = mediaElementChanged ? 0 : progress;
+    const onPlay = useCallback(() => {
+        setPlaying(true);
+    });
 
-    useEffect(() => {
-        if (mediaElement === null) {
-            return () => {};
-        }
-        function updateProgress() {
-            setProgress(mediaElement.currentTime / (mediaElement.duration || 0));
-        }
-        function onTimeUpdate() {
-            updateProgress();
-        }
-        mediaElement.addEventListener('timeupdate', onTimeUpdate);
-        mediaElementRef.current = mediaElement;
-        updateProgress();
-        return () => {
-            mediaElement.removeEventListener('timeupdate', onTimeUpdate);
-        };
-    }, [mediaElement]);
+    const onPause = useCallback(() => {
+        setPlaying(false);
+    });
+
+    const onMute = useCallback(() => {
+        setMuted(true);
+    });
+
+    const onUnmute = useCallback(() => {
+        setMuted(false);
+    });
+
+    const onSeek = useCallback((time) => {
+        mediaElement.currentTime = time;
+    });
+
     return (
-        <div className={classNames([styles.container, { [className]: className !== null }])}>
-            <div className={styles.bar}>Controls {finalProgress * 100}%</div>
+        <div className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+                [styles.controlsVisible]: controlsVisible,
+            }
+        ])}>
+            <button
+                type="button"
+                className={styles.playPauseButton}
+                onClick={playing ? onPause : onPlay}
+                title={intl.formatMessage({
+                    defaultMessage: 'Play',
+                    description: 'Button label',
+                })}
+                aria-label={intl.formatMessage({
+                    defaultMessage: 'Play',
+                    description: 'Button label',
+                })}
+                tabIndex={controlsVisible ? '0' : '-1'}
+            >
+                <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />
+            </button>
+
+            <SeekBar
+                className={styles.seekBar}
+                duration={duration}
+                currentTime={currentTime}
+                playing={playing}
+                onSeek={onSeek}
+                focusable={playing}
+                withSeekHead={controlsVisible}
+                // backgroundColor={color}
+                // progressColor={progressColor}
+            />
+
+            <button
+                type="button"
+                className={styles.muteButton}
+                onClick={muted ? onUnmute : onMute}
+                title={intl.formatMessage({
+                    defaultMessage: 'Mute',
+                    description: 'Button label',
+                })}
+                aria-label={intl.formatMessage({
+                    defaultMessage: 'Mute',
+                    description: 'Button label',
+                })}
+                tabIndex={controlsVisible ? '0' : '-1'}
+            >
+                <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
+            </button>
         </div>
     );
 }

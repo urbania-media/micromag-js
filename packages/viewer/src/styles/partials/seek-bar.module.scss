@@ -1,0 +1,54 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.inner {
+    position: relative;
+    flex-grow: 1;
+
+    .withSeekHead & {
+        height: 16px;
+    }
+}
+
+.progressBar {
+    position: relative;
+    top: 7px;
+    background-color: rgba($white, 0.5);
+}
+
+.progress,
+.track {
+    @extend %fullscreen;
+}
+
+.progress {
+    position: relative;
+    height: 4px;
+    transform-origin: left center;
+    background-color: $purple;
+}
+
+.playHead {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: $purple;
+}
+
+.track {
+    @extend %reset-button;
+
+    height: 100%;
+    background-color: transparent;
+    touch-action: 'none';
+}
+
+.time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+}

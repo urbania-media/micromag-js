@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     GoogleMapsClientProvider,
@@ -18,11 +19,15 @@ import {
 import fieldsManager from '@micromag/fields/manager';
 import { IntlProvider } from '@micromag/intl';
 import { ScreensProvider } from '@micromag/screens';
-import defaultRoutes from '../data/routes.json';
+
 import * as ViewerPropTypes from '../lib/PropTypes';
-import '../styles/styles.global.scss';
+
 import Viewer from './Viewer';
 import ViewerRoutes from './ViewerRoutes';
+
+import '../styles/styles.global.scss';
+
+import defaultRoutes from '../data/routes.json';
 
 const propTypes = {
     story: MicromagPropTypes.story,

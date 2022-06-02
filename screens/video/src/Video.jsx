@@ -93,7 +93,8 @@ const VideoScreen = ({
         progressColor = null,
     } = video || {};
 
-    const { playing, muted, setControls, setControlsTheme, setMedia } = usePlaybackContext();
+    const { playing, muted, setControls, setControlsTheme, setMedia, setPlaying } =
+        usePlaybackContext();
     const mediaRef = useRef(null);
 
     useEffect(() => {
@@ -125,9 +126,14 @@ const VideoScreen = ({
         }
     }, [mediaRef.current]);
 
+    useEffect(() => {
+        if (current && autoPlay) {
+            setPlaying(true);
+        }
+    }, [current, autoPlay]);
+
     const mouseMoveRef = useRef(null);
     const [, setShowMediaControls] = useState(false);
-    // const [shouldCatchFirstTapToPlay, setShouldCatchFirstTapToPlay] = useState(false);
 
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
@@ -181,6 +187,7 @@ const VideoScreen = ({
         if (shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }
+        setPlaying(false);
     }, [current, shouldGotoNextScreenOnEnd, gotoNextScreen]);
 
     const onMouseMove = useCallback(

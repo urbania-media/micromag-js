@@ -2,6 +2,69 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
+    display: flex;
     position: relative;
-    height: 100px; // TEST
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.playPauseButton,
+.muteButton {
+    @extend %reset-button;
+    display: flex;
+
+    position: relative;
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    pointer-events: auto;
+}
+
+.playPauseButton {
+    border: 2px solid currentColor;
+    border-radius: 50%;
+
+    .icon {
+        display: block;
+        width: 40%;
+        height: 40%;
+        transform: translateX(5%);
+    }
+}
+
+.muteButton {
+    .icon {
+        display: block;
+        width: 70%;
+        height: 70%;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        margin-left: -1px;
+        transform: rotate(-45deg);
+        background-color: currentColor;
+    }
+}
+
+.seekBar {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+
+    .controlsVisible & {
+        bottom: 50%;
+        padding: 0 70px;
+        transform: translateY(50%);
+    }
 }

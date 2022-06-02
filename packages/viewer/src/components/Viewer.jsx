@@ -639,32 +639,27 @@ const Viewer = ({
                                     </React.Fragment>
                                 );
                             })}
-                            {/* <button
-                                    type="button"
-                                    onClick={gotoPreviousScreen}
-                                    className={classNames([styles.navButton, styles.previous])}
-                                />
-                                <button
-                                    type="button"
-                                    onClick={gotoNextScreen}
-                                    className={classNames([styles.navButton, styles.next])}
-                                /> */}
+                            <div
+                                className={classNames([
+                                    styles.playbackControls,
+                                    {
+                                        [styles.visible]: playbackControlsVisible,
+                                    },
+                                ])}
+                                ref={playbackControlsContainerRef}
+                            >
+                                <div
+                                    className={styles.playbackControlsContainer}
+                                    style={{width: screenContainerWidth}}
+                                >
+                                    <PlaybackControls
+                                        visible={playbackControlsVisible}
+                                        className={styles.controls}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     ) : null}
-                    <div
-                        className={classNames([
-                            styles.playbackControls,
-                            {
-                                [styles.visible]: playbackControlsVisible,
-                            },
-                        ])}
-                        ref={playbackControlsContainerRef}
-                    >
-                        <PlaybackControls
-                            visible={playbackControlsVisible}
-                            className={styles.controls}
-                        />
-                    </div>
                 </div>
             </ViewerProvider>
         </ScreenSizeProvider>

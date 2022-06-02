@@ -171,7 +171,7 @@ export const MultipleVideos = () => (
                         media: bigVideoMediaWithSound(),
                         withSeekBar: true,
                         withControls: true,
-                        loop: true,
+                        loop: false,
                         autoPlay: true,
                     },
                     background: {
