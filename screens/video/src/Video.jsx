@@ -125,7 +125,7 @@ const VideoScreen = ({
             if (withControls || withSeekBar) {
                 setControls(false);
             }
-        }
+        };
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
     useEffect(() => {
@@ -161,7 +161,7 @@ const VideoScreen = ({
         if (activityDetected) {
             showControls();
         } else {
-            // hideControls();
+            hideControls();
         }
     }, [activityDetected, showControls, hideControls]);
 

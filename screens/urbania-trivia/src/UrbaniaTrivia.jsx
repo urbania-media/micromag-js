@@ -243,7 +243,7 @@ const UrbaniaTrivia = ({
         if (activityDetected) {
             showControls();
         } else {
-            // hideControls();
+             hideControls();
         }
     }, [activityDetected, showControls, hideControls]);
 

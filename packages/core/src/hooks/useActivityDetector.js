@@ -16,7 +16,7 @@ function useActivityDetector({ disabled = false, timeout: timeoutDelay = 2000 } 
                 timeout = null;
             }
             setDetected(true);
-            setTimeout(() => {
+            timeout = setTimeout(() => {
                 setDetected(false);
             }, timeoutDelay);
         }
@@ -24,6 +24,7 @@ function useActivityDetector({ disabled = false, timeout: timeoutDelay = 2000 } 
         return () => {
             if (timeout !== null) {
                 clearTimeout(timeout);
+                timeout = null;
             }
             element.removeEventListener('mousemove', onMove);
         };
