@@ -33,7 +33,6 @@ const Modal = ({ id, children, position, title }) => {
             <div
                 className={classNames([
                     styles.container,
-
                     {
                         [styles[position]]: position !== null,
                     },
