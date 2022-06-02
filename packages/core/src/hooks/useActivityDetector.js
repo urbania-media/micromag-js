@@ -20,12 +20,12 @@ function useActivityDetector({ disabled = false, timeout: timeoutDelay = 2000 } 
                 setDetected(false);
             }, timeoutDelay);
         }
-        ref.addEventListener('mousemove', onMove);
+        element.addEventListener('mousemove', onMove);
         return () => {
             if (timeout !== null) {
                 clearTimeout(timeout);
             }
-            ref.removeEventListener('mousemove', onMove);
+            element.removeEventListener('mousemove', onMove);
         };
     }, [disabled, timeoutDelay]);
 
