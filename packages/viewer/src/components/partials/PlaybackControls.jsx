@@ -34,6 +34,7 @@ function PlaybackControls({ className }) {
         controls,
         controlsVisible,
         controlsTheme,
+        showControls,
     } = usePlaybackContext();
     const duration = useMediaDuration(mediaElement);
     const currentTime = useMediaCurrentTime(mediaElement, {
@@ -43,32 +44,45 @@ function PlaybackControls({ className }) {
 
     const onPlay = useCallback(() => {
         setPlaying(true);
-    });
+        if (!controlsVisible) {
+            showControls();
+        }
+    }, [setPlaying, controlsVisible, showControls]);
 
     const onPause = useCallback(() => {
         setPlaying(false);
-    });
+        if (!controlsVisible) {
+            showControls();
+        }
+    }, [setPlaying, controlsVisible, showControls]);
 
     const onMute = useCallback(() => {
         setMuted(true);
-    });
+        if (!controlsVisible) {
+            showControls();
+        }
+    }, [setMuted, controlsVisible, showControls]);
 
     const onUnmute = useCallback(() => {
         setMuted(false);
-    });
+        if (!controlsVisible) {
+            showControls();
+        }
+    }, [setMuted, controlsVisible, showControls]);
 
     const onSeek = useCallback((time) => {
         mediaElement.currentTime = time;
     });
 
     const { color, progressColor, seekBarOnly } = controlsTheme || {};
+    const finalControlsVisible = controlsVisible || !playing;
 
     return (
         <div className={classNames([
             styles.container,
             {
                 [className]: className !== null,
-                [styles.controlsVisible]: controlsVisible,
+                [styles.controlsVisible]: finalControlsVisible,
                 [styles.hasControls]: mediaElement !== null && controls,
                 [styles.seekBarOnly]: seekBarOnly
             }

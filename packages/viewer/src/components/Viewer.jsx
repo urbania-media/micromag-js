@@ -163,7 +163,7 @@ const Viewer = ({
 
     const withoutScreensTransforms = isStatic || isCapture;
 
-    const { controlsVisible: playbackControlsVisible = false, setControlsVisible } = usePlaybackContext();
+    const { playing, controlsVisible: playbackControlsVisible = false } = usePlaybackContext();
 
     const trackScreenView = useTrackScreenView();
 
@@ -351,10 +351,6 @@ const Viewer = ({
         [landscape],
     );
 
-    const onShowControls = useCallback(() => {
-        setControlsVisible(true);
-    }, [setControlsVisible]);
-
     const overscrollStyle = (
         <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
     );
@@ -446,7 +442,7 @@ const Viewer = ({
                 menuVisible={menuVisible}
                 menuOverScreen={menuOverScreen}
                 topHeight={menuOverScreen ? menuDotsContainerHeight : 0}
-                bottomHeight={playbackControlsVisible ? playbackControlsContainerHeight : 0}
+                bottomHeight={playbackControlsVisible || !playing ? playbackControlsContainerHeight : 0}
                 gotoPreviousScreen={gotoPreviousScreen}
                 gotoNextScreen={gotoNextScreen}
                 disableInteraction={disableInteraction}
@@ -644,14 +640,8 @@ const Viewer = ({
                                 );
                             })}
                             <div
-                                className={classNames([
-                                    styles.playbackControls,
-                                    {
-                                        [styles.visible]: playbackControlsVisible,
-                                    },
-                                ])}
+                                className={styles.playbackControls}
                                 ref={playbackControlsContainerRef}
-                                onTouchStart={onShowControls}
                             >
                                 <div
                                     className={styles.playbackControlsContainer}
