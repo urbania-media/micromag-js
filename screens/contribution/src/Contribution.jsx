@@ -7,9 +7,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewer,
+    useViewerInteraction,
+} from '@micromag/core/contexts';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled, isLabelFilled, getStyleFromColor } from '@micromag/core/utils';
 import { useContributions, useContributionCreate } from '@micromag/data';
@@ -21,6 +27,7 @@ import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import TextInput from '@micromag/element-text-input';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -41,8 +48,6 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
     type: PropTypes.string,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -64,8 +69,6 @@ const defaultProps = {
     transitionStagger: 100,
     resizeTransitionDuration: 750,
     type: null,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -87,8 +90,6 @@ const ContributionScreen = ({
     transitionStagger,
     resizeTransitionDuration,
     type,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const screenId = id || 'screen-id';
@@ -99,6 +100,7 @@ const ContributionScreen = ({
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
@@ -449,8 +451,7 @@ const ContributionScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop:
-                                      (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                               }
                             : null
                     }
