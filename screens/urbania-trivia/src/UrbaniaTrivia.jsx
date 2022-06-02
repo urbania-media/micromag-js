@@ -7,6 +7,7 @@ import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     Empty,
@@ -20,19 +21,21 @@ import {
     useScreenSize,
     useViewerNavigation,
     usePlaybackContext,
+    useViewerContext,
 } from '@micromag/core/contexts';
-import { useLongPress, useTrackScreenMedia, useResizeObserver } from '@micromag/core/hooks';
+import { useTrackScreenMedia, useResizeObserver, useActivityDetector } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
+
+import styles from './styles.module.scss';
+
 import AnimeLinesGrey from './images/anime-lines-grey.svg';
 import AnimeLines from './images/anime-lines.svg';
-import styles from './styles.module.scss';
 
 const defaultBackground = {
     image: {
@@ -106,6 +109,7 @@ const UrbaniaTrivia = ({
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const { bottomHeight: viewerBottomHeight } = useViewerContext();
     const { gotoNextScreen } = useViewerNavigation();
 
     const hasTitle = isTextFilled(title);
@@ -113,8 +117,6 @@ const UrbaniaTrivia = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
-
-    const { body = '' } = title || {};
 
     // get resized video style props
     const {
@@ -127,7 +129,16 @@ const UrbaniaTrivia = ({
         progressColor = null,
     } = video || {};
 
-    const { playing, muted, setControls, setControlsTheme, setMedia } = usePlaybackContext();
+    const {
+        playing,
+        muted,
+        setControls,
+        setControlsTheme,
+        setMedia,
+        setPlaying,
+        showControls,
+        hideControls,
+    } = usePlaybackContext();
     const mediaRef = useRef(null);
 
     useEffect(() => {
@@ -145,11 +156,8 @@ const UrbaniaTrivia = ({
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
     useEffect(() => {
-        if (!current) {
-            return;
-        }
-        setMedia(mediaRef.current);
-    }, [current]);
+        setMedia(current ? mediaRef.current : null);
+    }, [current, setMedia]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
@@ -157,12 +165,15 @@ const UrbaniaTrivia = ({
         }
     }, [mediaRef.current]);
 
-    const mouseMoveRef = useRef(null);
-    const [showMediaControls, setShowMediaControls] = useState(false);
-
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
+
+    useEffect(() => {
+        if (current && autoPlay && !playing) {
+            setPlaying(true);
+        }
+    }, [current, autoPlay]);
 
     const onTimeUpdate = useCallback(
         (time) => {
@@ -199,14 +210,6 @@ const UrbaniaTrivia = ({
         [trackScreenMedia, video],
     );
 
-    const onSeek = useCallback(
-        (e) => {
-            seek(e);
-            play();
-        },
-        [seek, play],
-    );
-
     const onSeeked = useCallback(
         (time) => {
             if (time > 0) {
@@ -220,33 +223,20 @@ const UrbaniaTrivia = ({
         if (shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }
-    }, [shouldGotoNextScreenOnEnd, seek, gotoNextScreen]);
+        setPlaying(false);
+    }, [shouldGotoNextScreenOnEnd, gotoNextScreen, setPlaying]);
 
-    const onMouseMove = useCallback(
-        (e, time = 1800) => {
-            setShowMediaControls(true);
-            if (mouseMoveRef.current !== null) {
-                clearTimeout(mouseMoveRef.current);
-            }
-            mouseMoveRef.current = setTimeout(() => {
-                setShowMediaControls(false);
-                mouseMoveRef.current = null;
-            }, time);
-        },
-        [setShowMediaControls],
-    );
-
-    const onLongPress = useCallback(() => {
-        // if (!playing) {
-        //     play();
-        // } else if (withControls) {
-        //     onMouseMove(null, 3000);
-        // } else {
-        //     pause();
-        // }
-    }, [/* play, playing, pause, onMouseMove, withControls, setShowMediaControls */]);
-
-    const longPressBind = useLongPress({ onLongPress, onClick: onMouseMove });
+    const { ref: activityDetectorRef, detected: activityDetected } = useActivityDetector({
+        disabled: !current || !isView,
+        timeout: 2000,
+    });
+    useEffect(() => {
+        if (activityDetected) {
+            showControls();
+        } else {
+            hideControls();
+        }
+    }, [activityDetected, showControls, hideControls]);
 
     const fullscreen = layout === 'full';
 
@@ -405,7 +395,7 @@ const UrbaniaTrivia = ({
                         ) : (
                             <Video
                                 {...finalVideo}
-                                ref={mediaRef}
+                                mediaRef={mediaRef}
                                 paused={!current || !playing}
                                 muted={muted}
                                 width={resizedVideoWidth}
@@ -425,7 +415,13 @@ const UrbaniaTrivia = ({
                         )}
                         {/* </Transitions> */}
                         {!isPlaceholder ? (
-                            <div key="bottom-content" className={styles.bottomContent}>
+                            <div
+                                key="bottom-content"
+                                className={styles.bottomContent}
+                                style={{
+                                    transform: `translate(0, ${viewerBottomHeight}px)`,
+                                }}
+                            >
                                 <Transitions
                                     playing={transitionPlaying}
                                     transitions={transitions}
@@ -460,8 +456,7 @@ const UrbaniaTrivia = ({
                 },
             ])}
             data-screen-ready={isStatic || isCapture || ready}
-            {...longPressBind}
-            onMouseMove={onMouseMove}
+            ref={activityDetectorRef}
         >
             {!isPlaceholder ? (
                 <Background

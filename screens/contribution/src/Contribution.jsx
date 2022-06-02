@@ -13,7 +13,7 @@ import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
-    useViewer,
+    useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
@@ -96,7 +96,7 @@ const ContributionScreen = ({
     const trackScreenEvent = useTrackScreenEvent(type);
 
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight } = useViewer();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -452,6 +452,7 @@ const ContributionScreen = ({
                             ? {
                                   padding: spacing,
                                   paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }

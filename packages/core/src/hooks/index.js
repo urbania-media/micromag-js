@@ -1,3 +1,4 @@
+export { default as useActivityDetector } from './useActivityDetector';
 export { default as useAnimationFrame } from './useAnimationFrame';
 export * from './useDates';
 export { default as useDocumentEvent } from './useDocumentEvent';

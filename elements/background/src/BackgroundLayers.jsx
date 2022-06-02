@@ -4,9 +4,12 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getLayersFromBackground } from '@micromag/core/utils';
+
 import Background from './Background';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -23,6 +26,13 @@ const propTypes = {
     layerClassName: PropTypes.string,
     backgroundClassName: PropTypes.string,
     loadingMode: PropTypes.string,
+    mediaRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            // eslint-disable-next-line react/forbid-prop-types
+            current: PropTypes.any,
+        }),
+    ]),
     shouldLoad: PropTypes.bool,
 };
 
@@ -37,6 +47,7 @@ const defaultProps = {
     layerClassName: null,
     backgroundClassName: null,
     loadingMode: 'lazy',
+    mediaRef: null,
     shouldLoad: true,
 };
 
@@ -51,6 +62,7 @@ const BackgroundLayers = ({
     layerClassName,
     backgroundClassName,
     loadingMode,
+    mediaRef,
     shouldLoad,
 }) => {
     const hasSize = width > 0 && height > 0;
@@ -113,6 +125,7 @@ const BackgroundLayers = ({
                                 verticalAlign={verticalAlign}
                                 loadingMode={loadingMode}
                                 shouldLoad={shouldLoad}
+                                mediaRef={mediaRef}
                                 {...layer}
                             />
                         </div>

@@ -11,7 +11,7 @@ import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
     useScreenRenderContext,
     useScreenSize,
-    useViewer,
+    useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
@@ -101,7 +101,7 @@ const SurveyScreen = ({
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight } = useViewer();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { create: submitQuiz } = useQuizCreate({
         screenId,
@@ -466,6 +466,7 @@ const SurveyScreen = ({
                             ? {
                                   padding: spacing,
                                   paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }

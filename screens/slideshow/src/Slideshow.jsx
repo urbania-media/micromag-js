@@ -9,7 +9,7 @@ import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
     useScreenRenderContext,
     useScreenSize,
-    useViewer,
+    useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
@@ -67,7 +67,7 @@ const SlideshowScreen = ({
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight } = useViewer();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -208,7 +208,9 @@ const SlideshowScreen = ({
                     className={styles.content}
                     style={{
                         paddingTop: !isPreview ? viewerTopHeight : null,
-                        paddingBottom: hasCallToAction ? callToActionHeight - finalSpacing : 0,
+                        paddingBottom:
+                            (hasCallToAction ? callToActionHeight - finalSpacing : 0) +
+                            (!isPreview ? viewerBottomHeight : 0),
                     }}
                 >
                     {items}

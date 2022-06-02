@@ -3,11 +3,12 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState, useMemo, useRef } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     useScreenRenderContext,
     useScreenSize,
-    useViewer,
+    useViewerContext,
     useScreenState,
 } from '@micromag/core/contexts';
 import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
@@ -15,9 +16,11 @@ import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+
 import Question from './Question';
 import Results from './Results';
 import Title from './Title';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -116,7 +119,7 @@ const QuizMultipleScreen = ({
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight } = useViewer();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const screenState = useScreenState();
@@ -357,6 +360,9 @@ const QuizMultipleScreen = ({
                                                   padding: spacing,
                                                   paddingTop:
                                                       (!isPreview ? viewerTopHeight : 0) + spacing,
+                                                  paddingBottom:
+                                                      (!isPreview ? viewerBottomHeight : 0) +
+                                                      spacing,
                                               }
                                             : null
                                     }

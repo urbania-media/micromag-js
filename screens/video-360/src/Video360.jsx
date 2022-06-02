@@ -13,8 +13,14 @@ import {
     useScreenRenderContext,
     usePlaybackContext,
     useViewerInteraction,
+    useViewerContext,
 } from '@micromag/core/contexts';
-import { useAnimationFrame, useTrackScreenEvent, useTrackScreenMedia } from '@micromag/core/hooks';
+import {
+    useAnimationFrame,
+    useTrackScreenEvent,
+    useTrackScreenMedia,
+    useActivityDetector,
+} from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -77,6 +83,7 @@ const Video360Screen = ({
     const trackScreenEvent = useTrackScreenEvent(type);
     const trackScreenMedia = useTrackScreenMedia('video_360');
     const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const { bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { width, height, landscape, resolution } = useScreenSize();
 
@@ -96,7 +103,16 @@ const Video360Screen = ({
 
     const videoContainerRef = useRef();
 
-    const { playing, muted, setControls, setControlsTheme, setMedia } = usePlaybackContext();
+    const {
+        playing,
+        muted,
+        setControls,
+        setControlsTheme,
+        setMedia,
+        setPlaying,
+        showControls,
+        hideControls,
+    } = usePlaybackContext();
     const mediaRef = useRef(null);
 
     useEffect(() => {
@@ -115,17 +131,32 @@ const Video360Screen = ({
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
     useEffect(() => {
-        if (!current) {
-            return;
-        }
-        setMedia(mediaRef.current);
-    }, [current]);
+        setMedia(current ? mediaRef.current : null);
+    }, [current, setMedia]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
             customMediaRef(mediaRef.current);
         }
     }, [mediaRef.current]);
+
+    useEffect(() => {
+        if (current && autoPlay && !playing) {
+            setPlaying(true);
+        }
+    }, [current, autoPlay]);
+
+    const { ref: activityDetectorRef, detected: activityDetected } = useActivityDetector({
+        disabled: !current || !isView,
+        timeout: 2000,
+    });
+    useEffect(() => {
+        if (activityDetected) {
+            showControls();
+        } else {
+            hideControls();
+        }
+    }, [activityDetected, showControls, hideControls]);
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
@@ -173,6 +204,10 @@ const Video360Screen = ({
         },
         [trackScreenMedia, video],
     );
+
+    const onEnded = useCallback(() => {
+        setPlaying(false);
+    }, [setPlaying]);
 
     // ------------------------------------
 
@@ -479,7 +514,13 @@ const Video360Screen = ({
             </Transitions>
         </ScreenElement>,
         !isPlaceholder ? (
-            <div key="bottom-content" className={styles.bottomContent}>
+            <div
+                key="bottom-content"
+                className={styles.bottomContent}
+                style={{
+                    transform: `translate(0, ${viewerBottomHeight}px)`,
+                }}
+            >
                 <Transitions
                     playing={transitionPlaying}
                     transitions={transitions}
@@ -518,6 +559,7 @@ const Video360Screen = ({
                     [styles.showVideo]: isPreview || isStatic || isCapture,
                 },
             ])}
+            ref={activityDetectorRef}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
         >
             {!isPlaceholder ? (
@@ -544,7 +586,7 @@ const Video360Screen = ({
                     >
                         <Video
                             {...finalVideo}
-                            ref={mediaRef}
+                            mediaRef={mediaRef}
                             className={styles.video}
                             paused={!current || !playing}
                             muted={muted}
@@ -556,6 +598,7 @@ const Video360Screen = ({
                             onProgressStep={onProgressStep}
                             onDurationChange={onDurationChange}
                             onSeeked={onSeeked}
+                            onEnded={onEnded}
                             onPosterLoaded={onPosterLoaded}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}

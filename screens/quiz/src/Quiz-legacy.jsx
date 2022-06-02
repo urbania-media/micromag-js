@@ -8,9 +8,10 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
+import { useScreenRenderContext, useScreenSize, useViewerContext } from '@micromag/core/contexts';
 import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { getStyleFromBox, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
@@ -21,6 +22,7 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
+
 import styles from './styles-legacy.module.scss';
 
 const propTypes = {
@@ -94,7 +96,7 @@ const QuizScreen = ({
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight } = useViewer();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
@@ -450,8 +452,8 @@ const QuizScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop:
-                                      (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }

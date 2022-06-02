@@ -3,9 +3,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer, useViewerInteraction } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewerContext,
+    useViewerInteraction,
+} from '@micromag/core/contexts';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -13,6 +19,7 @@ import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Quote from '@micromag/element-quote';
 import Text from '@micromag/element-text';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -57,7 +64,7 @@ const QuoteScreen = ({
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight } = useViewer();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -156,8 +163,8 @@ const QuoteScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop:
-                                      (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }

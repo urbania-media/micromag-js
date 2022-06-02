@@ -11,7 +11,7 @@ import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
-    useViewer,
+    useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
@@ -99,7 +99,7 @@ const ImageScreen = ({
 
     const { width, height, resolution } = useScreenSize();
 
-    const { topHeight: viewerTopHeight } = useViewer();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -283,16 +283,17 @@ const ImageScreen = ({
         );
     }
 
-    let paddingBottom = finalSpacing / 2;
+    let paddingBottom = (!isPreview ? viewerBottomHeight : 0) + finalSpacing / 2;
     let paddingTop = (!isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
 
     if (isCard || isFullscreen) {
         paddingTop = 0;
+        paddingBottom = 0;
     }
 
     if (isCardReverse) {
-        paddingTop = viewerTopHeight;
-        paddingBottom = 0;
+        paddingTop = (!isPreview ? viewerTopHeight : 0);
+        paddingBottom = (!isPreview ? viewerBottomHeight : 0);
     }
 
     return (

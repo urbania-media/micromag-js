@@ -15,10 +15,10 @@ const defaultValue = {
 
 export const ViewerContext = React.createContext(defaultValue);
 
-export const useViewer = () => useContext(ViewerContext);
+export const useViewerContext = () => useContext(ViewerContext);
 
 export const useViewerNavigation = () => {
-    const { gotoNextScreen, gotoPreviousScreen } = useViewer();
+    const { gotoNextScreen, gotoPreviousScreen } = useViewerContext();
     return {
         gotoNextScreen,
         gotoPreviousScreen,
@@ -26,12 +26,12 @@ export const useViewerNavigation = () => {
 };
 
 export const useViewerEvents = () => {
-    const { events } = useViewer();
+    const { events } = useViewerContext();
     return events;
 };
 
 export const useViewerInteraction = () => {
-    const { disableInteraction, enableInteraction } = useViewer();
+    const { disableInteraction, enableInteraction } = useViewerContext();
     return { disableInteraction, enableInteraction };
 };
 

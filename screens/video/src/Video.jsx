@@ -17,8 +17,9 @@ import {
     useScreenRenderContext,
     useViewerNavigation,
     useViewerInteraction,
+    useViewerContext,
 } from '@micromag/core/contexts';
-import { useTrackScreenMedia, useLongPress, useMediaThumbnail } from '@micromag/core/hooks';
+import { useTrackScreenMedia, useMediaThumbnail, useActivityDetector } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -75,6 +76,7 @@ const VideoScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
+    const { bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const backgroundPlaying = current && (isView || isEdit);
@@ -93,8 +95,16 @@ const VideoScreen = ({
         progressColor = null,
     } = video || {};
 
-    const { playing, muted, setControls, setControlsTheme, setMedia, setPlaying } =
-        usePlaybackContext();
+    const {
+        playing,
+        muted,
+        setControls,
+        setControlsTheme,
+        setMedia,
+        setPlaying,
+        showControls,
+        hideControls,
+    } = usePlaybackContext();
     const mediaRef = useRef(null);
 
     useEffect(() => {
@@ -113,12 +123,15 @@ const VideoScreen = ({
         }
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
+    // useEffect(() => {
+    //     if (!current) {
+    //         return;
+    //     }
+    //     setMedia(mediaRef.current);
+    // }, [current]);
     useEffect(() => {
-        if (!current) {
-            return;
-        }
-        setMedia(mediaRef.current);
-    }, [current]);
+        setMedia(current ? mediaRef.current : null);
+    }, [current, setMedia]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
@@ -127,13 +140,22 @@ const VideoScreen = ({
     }, [mediaRef.current]);
 
     useEffect(() => {
-        if (current && autoPlay) {
+        if (current && autoPlay && !playing) {
             setPlaying(true);
         }
     }, [current, autoPlay]);
 
-    const mouseMoveRef = useRef(null);
-    const [, setShowMediaControls] = useState(false);
+    const { ref: activityDetectorRef, detected: activityDetected } = useActivityDetector({
+        disabled: !current || !isView,
+        timeout: 2000,
+    });
+    useEffect(() => {
+        if (activityDetected) {
+            showControls();
+        } else {
+            hideControls();
+        }
+    }, [activityDetected, showControls, hideControls]);
 
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
@@ -189,31 +211,6 @@ const VideoScreen = ({
         }
         setPlaying(false);
     }, [current, shouldGotoNextScreenOnEnd, gotoNextScreen]);
-
-    const onMouseMove = useCallback(
-        (e, time = 1800) => {
-            setShowMediaControls(true);
-            if (mouseMoveRef.current !== null) {
-                clearTimeout(mouseMoveRef.current);
-            }
-            mouseMoveRef.current = setTimeout(() => {
-                setShowMediaControls(false);
-                mouseMoveRef.current = null;
-            }, time);
-        },
-        [setShowMediaControls],
-    );
-
-    // const onShowControls = useCallback(
-    //     (e) => {
-    //         onMouseMove(e, 3000);
-    //     },
-    //     [play, onMouseMove],
-    // );
-
-    const onLongPress = useCallback(() => {}, []);
-
-    const longPressBind = useLongPress({ onLongPress, onClick: onMouseMove });
 
     const fullscreen = layout === 'full';
 
@@ -311,7 +308,7 @@ const VideoScreen = ({
                             {...finalVideo}
                             paused={!current || !playing}
                             muted={muted}
-                            ref={mediaRef}
+                            mediaRef={mediaRef}
                             className={styles.video}
                             onReady={onVideoReady}
                             onPlay={onPlay}
@@ -331,7 +328,13 @@ const VideoScreen = ({
         </ScreenElement>,
 
         !isPlaceholder ? (
-            <div key="bottom-content" className={styles.bottomContent}>
+            <div
+                key="bottom-content"
+                className={styles.bottomContent}
+                style={{
+                    transform: `translate(0, ${viewerBottomHeight}px)`,
+                }}
+            >
                 <Transitions
                     playing={transitionPlaying}
                     transitions={transitions}
@@ -374,8 +377,7 @@ const VideoScreen = ({
                 },
             ])}
             data-screen-ready={isStatic || isCapture || ready}
-            {...longPressBind}
-            onMouseMove={onMouseMove}
+            ref={activityDetectorRef}
         >
             {!isPlaceholder ? (
                 <Background

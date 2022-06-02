@@ -9,7 +9,7 @@ import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
-    useViewer,
+    useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
 import { isTextFilled } from '@micromag/core/utils';
@@ -67,7 +67,7 @@ const TextScreen = ({
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight } = useViewer();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -176,6 +176,7 @@ const TextScreen = ({
                             ? {
                                   padding: spacing,
                                   paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }

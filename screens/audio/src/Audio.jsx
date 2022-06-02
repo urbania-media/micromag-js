@@ -13,7 +13,7 @@ import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
-    useViewer,
+    useViewerContext,
     usePlaybackContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
@@ -76,7 +76,7 @@ const AudioScreen = ({
     const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
-    const { topHeight: viewerTopHeight } = useViewer();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const [ready, setReady] = useState(isStatic || isPlaceholder);
@@ -107,7 +107,8 @@ const AudioScreen = ({
         : null;
     const hasClosedCaptions = closedCaptions !== null;
 
-    const { playing, muted, setControls, setControlsTheme, setMedia } = usePlaybackContext();
+    const { playing, muted, setControls, setControlsTheme, setMedia, setPlaying } =
+        usePlaybackContext();
     const mediaRef = useRef(null);
 
     useEffect(() => {
@@ -126,11 +127,8 @@ const AudioScreen = ({
     }, [current, withPlayPause, setControls, color, progressColor]);
 
     useEffect(() => {
-        if (!current) {
-            return;
-        }
-        setMedia(mediaRef.current);
-    }, [current]);
+        setMedia(current ? mediaRef.current : null);
+    }, [current, setMedia]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
@@ -146,6 +144,12 @@ const AudioScreen = ({
     const [duration, setDuration] = useState(null);
 
     const isIOS = useMemo(() => isIos(), [isIos]);
+
+    useEffect(() => {
+        if (current && autoPlay && !playing) {
+            setPlaying(true);
+        }
+    }, [current, autoPlay]);
 
     const onTimeUpdate = useCallback(
         (time) => {
@@ -181,6 +185,10 @@ const AudioScreen = ({
         },
         [trackScreenMedia, audio],
     );
+
+    const onEnded = useCallback(() => {
+        setPlaying(false);
+    }, [setPlaying]);
 
     const onSeeked = useCallback(
         (time) => {
@@ -221,7 +229,7 @@ const AudioScreen = ({
             >
                 <Audio
                     {...finalAudio}
-                    ref={mediaRef}
+                    mediaRef={mediaRef}
                     waveFake={isIOS || isPreview}
                     waveProps={
                         isPreview
@@ -244,13 +252,20 @@ const AudioScreen = ({
                     onProgressStep={onProgressStep}
                     onDurationChange={onDurationChange}
                     onSeeked={onSeeked}
+                    onEnded={onEnded}
                     withWave={showWave}
                 />
             </Transitions>
         </ScreenElement>,
         <Spacer key="spacer-middle" />,
         !isPlaceholder ? (
-            <div key="controls" className={styles.bottomContent}>
+            <div
+                key="controls"
+                className={styles.bottomContent}
+                style={{
+                    transform: `translate(0, ${viewerBottomHeight}px)`,
+                }}
+            >
                 {hasClosedCaptions && !isPreview && !isCapture && !isStatic ? (
                     <ClosedCaptions
                         className={styles.closedCaptions}

@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
 import classNames from 'classnames';
+import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef, useCallback } from 'react';
 
@@ -264,7 +265,9 @@ const Video = ({
                     key={mediaUrl}
                     ref={(newRef) => {
                         ref.current = newRef;
-                        if (mediaRef !== null) {
+                        if (mediaRef !== null && isFunction(mediaRef)) {
+                            mediaRef(newRef);
+                        } else if (mediaRef !== null) {
                             mediaRef.current = newRef;
                         }
                     }}

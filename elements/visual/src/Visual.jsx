@@ -3,13 +3,22 @@ import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo, useCallback } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.media,
+    mediaRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            // eslint-disable-next-line react/forbid-prop-types
+            current: PropTypes.any,
+        }),
+    ]),
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     resolution: PropTypes.number,
@@ -25,6 +34,7 @@ const propTypes = {
 
 const defaultProps = {
     media: null,
+    mediaRef: null,
     width: null,
     height: null,
     resolution: 1,
@@ -40,6 +50,7 @@ const defaultProps = {
 
 const Visual = ({
     media,
+    mediaRef,
     width,
     height,
     resolution,
@@ -122,6 +133,7 @@ const Visual = ({
                     >
                         <Video
                             {...elProps}
+                            mediaRef={mediaRef}
                             width={objectFit === null ? width : null}
                             height={objectFit === null ? height : null}
                             autoPlay={playing}

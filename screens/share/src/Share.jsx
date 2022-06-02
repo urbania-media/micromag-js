@@ -2,16 +2,23 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FormattedMessage } from 'react-intl';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer, useViewerInteraction } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewerContext,
+    useViewerInteraction,
+} from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
-import Layout, { Spacer } from '@micromag/element-layout';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
+import Layout, { Spacer } from '@micromag/element-layout';
 import ShareOptions from '@micromag/element-share-options';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -62,7 +69,7 @@ const ShareScreen = ({
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight } = useViewer();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -82,35 +89,25 @@ const ShareScreen = ({
     }, []);
     const finalShareURL = shareUrl || currentUrl;
 
-    const defaultOptions = options === true
-        ? ['email', 'facebook', 'twitter', 'linkedin']
-        : [];
-    const selectedOptions = options !== null
-        ? Object.keys(options).reduce((acc, key) => {
-            if (!options[key]) return acc;
-            return [...acc, key];
-        }, [])
-        : defaultOptions;
+    const defaultOptions = options === true ? ['email', 'facebook', 'twitter', 'linkedin'] : [];
+    const selectedOptions =
+        options !== null
+            ? Object.keys(options).reduce((acc, key) => {
+                  if (!options[key]) return acc;
+                  return [...acc, key];
+              }, [])
+            : defaultOptions;
 
     // Create elements
     const items = [
         <ScreenElement
             key="title"
             placeholder="title"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-            }
+            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
             emptyClassName={styles.emptyHeading}
             isEmpty={!heading}
         >
-            {heading ? (
-                <Heading
-                    className={classNames([
-                        styles.heading,
-                    ])}
-                    {...heading}
-                />
-            ) : null}
+            {heading ? <Heading className={classNames([styles.heading])} {...heading} /> : null}
         </ScreenElement>,
 
         <Spacer size={20} />,
@@ -125,10 +122,7 @@ const ShareScreen = ({
             isEmpty={!options}
         >
             <ShareOptions
-                className={classNames([
-                    styles.shareOptions,
-                    { [styles.isCentered]: centered },
-                ])}
+                className={classNames([styles.shareOptions, { [styles.isCentered]: centered }])}
                 labelClassName={styles.shareLabel}
                 url={finalShareURL}
                 options={selectedOptions}
@@ -179,8 +173,8 @@ const ShareScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop:
-                                      (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }
