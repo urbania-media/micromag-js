@@ -5,7 +5,7 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons/faVolumeUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import { usePlaybackContext } from '@micromag/core/contexts';
@@ -31,7 +31,9 @@ function PlaybackControls({ className }) {
         muted = true,
         setPlaying,
         setMuted,
+        controls,
         controlsVisible,
+        controlsTheme,
     } = usePlaybackContext();
     const duration = useMediaDuration(mediaElement);
     const currentTime = useMediaCurrentTime(mediaElement, {
@@ -59,12 +61,16 @@ function PlaybackControls({ className }) {
         mediaElement.currentTime = time;
     });
 
+    const { color, progressColor, seekBarOnly } = controlsTheme || {};
+
     return (
         <div className={classNames([
             styles.container,
             {
                 [className]: className !== null,
                 [styles.controlsVisible]: controlsVisible,
+                [styles.hasControls]: mediaElement !== null && controls,
+                [styles.seekBarOnly]: seekBarOnly
             }
         ])}>
             <button
@@ -91,14 +97,19 @@ function PlaybackControls({ className }) {
                 playing={playing}
                 onSeek={onSeek}
                 focusable={playing}
-                withSeekHead={controlsVisible}
-                // backgroundColor={color}
-                // progressColor={progressColor}
+                withSeekHead={controlsVisible && !seekBarOnly}
+                backgroundColor={color}
+                progressColor={progressColor}
             />
 
             <button
                 type="button"
-                className={styles.muteButton}
+                className={classNames([
+                    styles.muteButton,
+                    {
+                        [styles.isMuted]: muted
+                    }
+                ])}
                 onClick={muted ? onUnmute : onMute}
                 title={intl.formatMessage({
                     defaultMessage: 'Mute',

@@ -163,7 +163,7 @@ const Viewer = ({
 
     const withoutScreensTransforms = isStatic || isCapture;
 
-    const { controlsVisible: playbackControlsVisible = false } = usePlaybackContext();
+    const { controlsVisible: playbackControlsVisible = false, setControlsVisible } = usePlaybackContext();
 
     const trackScreenView = useTrackScreenView();
 
@@ -350,6 +350,10 @@ const Viewer = ({
         },
         [landscape],
     );
+
+    const onShowControls = useCallback(() => {
+        setControlsVisible(true);
+    }, [setControlsVisible]);
 
     const overscrollStyle = (
         <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
@@ -647,6 +651,7 @@ const Viewer = ({
                                     },
                                 ])}
                                 ref={playbackControlsContainerRef}
+                                onTouchStart={onShowControls}
                             >
                                 <div
                                     className={styles.playbackControlsContainer}

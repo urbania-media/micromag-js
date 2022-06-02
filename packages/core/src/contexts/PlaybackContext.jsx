@@ -79,7 +79,9 @@ export const PlaybackProvider = ({
     );
 
     const finalSetControlsTheme = useCallback(
-        (newTheme) => setControlsTheme({ ...defaultControlsThemeValue, ...newTheme }),
+        (newTheme) => {
+            setControlsTheme({ ...defaultControlsThemeValue, ...newTheme });
+        },
         [setControlsTheme],
     );
 
@@ -93,6 +95,7 @@ export const PlaybackProvider = ({
             controls,
             controlsVisible,
             media,
+            controlsTheme,
             setMuted,
             setPlaying,
             setControls: finalSetControls,

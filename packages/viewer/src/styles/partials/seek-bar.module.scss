@@ -4,15 +4,9 @@
 .inner {
     position: relative;
     flex-grow: 1;
-
-    .withSeekHead & {
-        height: 16px;
-    }
 }
 
 .progressBar {
-    position: relative;
-    top: 7px;
     background-color: rgba($white, 0.5);
 }
 
@@ -34,17 +28,29 @@
     left: 0;
     width: 20px;
     height: 20px;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease-out;
     border-radius: 50%;
     background-color: $purple;
+
+    .withSeekHead & {
+        transform: translate(-50%, -50%) scale(1);
+        transition: transform 0.2s 0.2s ease-out;
+    }
 }
 
 .track {
     @extend %reset-button;
 
-    height: 100%;
+    display: none;
+    height: 50px;
+    transform: translateY(-50%);
     background-color: transparent;
-    touch-action: 'none';
+    touch-action: none;
+
+    .withSeekHead & {
+        display: block;
+    }
 }
 
 .time {

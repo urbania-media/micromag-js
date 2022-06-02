@@ -75,7 +75,7 @@ const SeekBar = ({
         if (currentTime === null || duration === null) {
             return;
         }
-        const progress = currentTime / duration;
+        const progress = duration > 0 ? currentTime / duration : 0;
         setSpringProps.start({
             reset: true,
             // immediate: !playing,
