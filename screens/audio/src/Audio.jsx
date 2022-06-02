@@ -275,7 +275,7 @@ const AudioScreen = ({
                 key="controls"
                 className={styles.bottomContent}
                 style={{
-                    transform: `translate(0, ${viewerBottomHeight}px)`,
+                    transform: `translate(0, -${viewerBottomHeight}px)`,
                 }}
             >
                 {hasClosedCaptions && !isPreview && !isCapture && !isStatic ? (

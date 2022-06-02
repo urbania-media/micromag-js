@@ -441,8 +441,12 @@ const Viewer = ({
                 events={eventsManager}
                 menuVisible={menuVisible}
                 menuOverScreen={menuOverScreen}
-                topHeight={menuOverScreen ? menuDotsContainerHeight : 0}
-                bottomHeight={playbackControlsVisible || !playing ? playbackControlsContainerHeight : 0}
+                topHeight={menuOverScreen && currentScreenInteractionEnabled ? menuDotsContainerHeight / screenScale : 0}
+                bottomHeight={
+                    (playbackControlsVisible || !playing) && currentScreenInteractionEnabled
+                        ? playbackControlsContainerHeight / screenScale
+                        : 0
+                }
                 gotoPreviousScreen={gotoPreviousScreen}
                 gotoNextScreen={gotoNextScreen}
                 disableInteraction={disableInteraction}
@@ -645,7 +649,7 @@ const Viewer = ({
                             >
                                 <div
                                     className={styles.playbackControlsContainer}
-                                    style={{width: screenContainerWidth}}
+                                    style={{ width: screenContainerWidth }}
                                 >
                                     <PlaybackControls
                                         visible={playbackControlsVisible}

@@ -533,7 +533,7 @@ const Video360Screen = ({
                 key="bottom-content"
                 className={styles.bottomContent}
                 style={{
-                    transform: `translate(0, ${viewerBottomHeight}px)`,
+                    transform: `translate(0, -${viewerBottomHeight}px)`,
                 }}
             >
                 <Transitions

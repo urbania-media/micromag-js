@@ -12,6 +12,7 @@ import {
     webfont2Files,
     webfont3Files,
     webfontFiles,
+    callToAction,
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import basic from '../../../../.storybook/data/stories/basic.json';
@@ -178,6 +179,7 @@ export const MultipleVideos = () => (
                     background: {
                         color: { alpha: 1, color: '#FFFF00' },
                     },
+                    callToAction: callToAction(),
                 },
                 {
                     id: '2',
