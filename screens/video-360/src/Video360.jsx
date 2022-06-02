@@ -117,7 +117,7 @@ const Video360Screen = ({
 
     useEffect(() => {
         if (!current) {
-            return;
+            return () => {};
         }
         if (withControls || withSeekBar) {
             setControls(true);
@@ -128,6 +128,11 @@ const Video360Screen = ({
             });
         } else {
             setControls(false);
+        }
+        return () => {
+            if (withControls || withSeekBar) {
+                setControls(false);
+            }
         }
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 

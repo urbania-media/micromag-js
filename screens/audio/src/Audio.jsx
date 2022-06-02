@@ -113,7 +113,7 @@ const AudioScreen = ({
 
     useEffect(() => {
         if (!current) {
-            return;
+            return () => {};
         }
         if (withPlayPause) {
             setControls(true);
@@ -123,6 +123,12 @@ const AudioScreen = ({
             });
         } else {
             setControls(false);
+        }
+
+        return () => {
+            if (withPlayPause) {
+                setControls(false);
+            }
         }
     }, [current, withPlayPause, setControls, color, progressColor]);
 
