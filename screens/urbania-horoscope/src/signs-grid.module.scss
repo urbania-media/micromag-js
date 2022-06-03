@@ -141,11 +141,11 @@
     }
 
     .authorBackground {
-        background-color: #161719;
+        background-color: #161719 !important;
 
         p {
-            font-weight: normal;
-            text-transform: none;
+            font-weight: normal !important; // @todo: because “fuck you!”
+            text-transform: none !important;
         }
     }
 }
