@@ -1,0 +1,1343 @@
+{
+    "id": "401962",
+    "type": "article",
+    "title": "Étudier en génie, une histoire d’amour",
+    "subtitle": "Petite virée sur le campus de l’ÉTS.",
+    "image": {
+      "id": "403418",
+      "url": "https://cdn.urbania.ca/media/2022/04/ETS2.jpg",
+      "title": null,
+      "description": null,
+      "width": 1920,
+      "height": 1080,
+      "sizes": {
+        "original": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg",
+          "width": 1920,
+          "height": 1080
+        },
+        "original_webp": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumbnail": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=crop&crop=faces%2Cedges&w=200&h=200",
+          "width": 200,
+          "height": 200
+        },
+        "thumbnail_webp": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+          "width": 200,
+          "height": 200
+        },
+        "small": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=max&w=400&h=400",
+          "width": 400,
+          "height": 225
+        },
+        "small_webp": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75&fit=max&w=400&h=400",
+          "width": 400,
+          "height": 225
+        },
+        "medium": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=max&w=700&h=700",
+          "width": 700,
+          "height": 394
+        },
+        "medium_webp": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75&fit=max&w=700&h=700",
+          "width": 700,
+          "height": 394
+        },
+        "large": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=max&w=1400",
+          "width": 1920,
+          "height": 1080
+        },
+        "large_webp": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75&fit=max&w=1400",
+          "width": 1920,
+          "height": 1080
+        },
+        "cover": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=max&w=1400&h=1400",
+          "width": 1400,
+          "height": 788
+        },
+        "cover_webp": {
+          "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75&fit=max&w=1400&h=1400",
+          "width": 1400,
+          "height": 788
+        }
+      },
+      "credits": {
+        "name": "Cloé Giroux",
+        "url": null,
+        "role": "visuel"
+      }
+    },
+    "slug": "genie-reconnaitre-la-passion-quand-on-la-croise",
+    "url": "/article/genie-reconnaitre-la-passion-quand-on-la-croise",
+    "metadata": {
+      "title": "Étudier en génie, une histoire d’amour",
+      "description": "Petite virée sur le campus de l’ÉTS.",
+      "image": {
+        "id": "403418",
+        "url": "https://cdn.urbania.ca/media/2022/04/ETS2.jpg",
+        "title": null,
+        "description": null,
+        "width": 1920,
+        "height": 1080,
+        "sizes": {
+          "original": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg",
+            "width": 1920,
+            "height": 1080
+          },
+          "original_webp": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75",
+            "width": 1920,
+            "height": 1080
+          },
+          "thumbnail": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=crop&crop=faces%2Cedges&w=200&h=200",
+            "width": 200,
+            "height": 200
+          },
+          "thumbnail_webp": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+            "width": 200,
+            "height": 200
+          },
+          "small": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=max&w=400&h=400",
+            "width": 400,
+            "height": 225
+          },
+          "small_webp": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75&fit=max&w=400&h=400",
+            "width": 400,
+            "height": 225
+          },
+          "medium": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=max&w=700&h=700",
+            "width": 700,
+            "height": 394
+          },
+          "medium_webp": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75&fit=max&w=700&h=700",
+            "width": 700,
+            "height": 394
+          },
+          "large": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=max&w=1400",
+            "width": 1920,
+            "height": 1080
+          },
+          "large_webp": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75&fit=max&w=1400",
+            "width": 1920,
+            "height": 1080
+          },
+          "cover": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=max&w=1400&h=1400",
+            "width": 1400,
+            "height": 788
+          },
+          "cover_webp": {
+            "url": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=webp&q=75&fit=max&w=1400&h=1400",
+            "width": 1400,
+            "height": 788
+          }
+        },
+        "credits": {
+          "name": "Cloé Giroux",
+          "url": null,
+          "role": "visuel"
+        }
+      },
+      "customDimensions": {
+        "pageType": "article",
+        "postType": "article",
+        "section": "ets",
+        "categories": [
+          "ets",
+          "universites"
+        ],
+        "keywords": [
+          "clubs-etudiants",
+          "comets",
+          "ets",
+          "exclusif",
+          "genie",
+          "ingenieur",
+          "omer",
+          "rockets"
+        ],
+        "isCollection": false,
+        "publishedDate": "2022-04-19",
+        "postAuthors": [
+          "cloegiroux"
+        ],
+        "postId": "401962",
+        "isSponsored": true,
+        "sponsorName": "ÉTS"
+      },
+      "adsTargeting": {
+        "postID": "401962",
+        "section": "ets",
+        "categories": [
+          "ets",
+          "universites"
+        ],
+        "tags": [
+          "clubs-etudiants",
+          "comets",
+          "ets",
+          "exclusif",
+          "genie",
+          "ingenieur",
+          "omer",
+          "rockets"
+        ],
+        "authors": [
+          "cloegiroux"
+        ],
+        "sponsors": [
+          "ÉTS"
+        ],
+        "GoogleSafeTargeting": true
+      },
+      "createdAt": "2022-04-19 09:00:27",
+      "site": "universities",
+      "canonical": "https://universites.urbania.ca/article/genie-reconnaitre-la-passion-quand-on-la-croise",
+      "readerUrl": "https://simple.urbania.ca/article/genie-reconnaitre-la-passion-quand-on-la-croise",
+      "authors": [
+        {
+          "id": "11203",
+          "type": "author",
+          "slug": "cloegiroux",
+          "name": "Cloé Giroux",
+          "url": "/auteurs/cloegiroux",
+          "description": null,
+          "avatar": {
+            "id": "196984",
+            "url": "https://cdn.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png",
+            "title": null,
+            "description": null,
+            "width": 714,
+            "height": 706,
+            "sizes": {
+              "original": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=png",
+                "width": 714,
+                "height": 706
+              },
+              "original_webp": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=webp&q=75",
+                "width": 714,
+                "height": 706
+              },
+              "thumbnail": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=png&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                "width": 200,
+                "height": 200
+              },
+              "thumbnail_webp": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                "width": 200,
+                "height": 200
+              },
+              "small": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=png&fit=max&w=400&h=400",
+                "width": 400,
+                "height": 396
+              },
+              "small_webp": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=webp&q=75&fit=max&w=400&h=400",
+                "width": 400,
+                "height": 396
+              },
+              "medium": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=png&fit=max&w=700&h=700",
+                "width": 700,
+                "height": 692
+              },
+              "medium_webp": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=webp&q=75&fit=max&w=700&h=700",
+                "width": 700,
+                "height": 692
+              },
+              "large": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=png&fit=max&w=1400",
+                "width": 714,
+                "height": 706
+              },
+              "large_webp": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=webp&q=75&fit=max&w=1400",
+                "width": 714,
+                "height": 706
+              },
+              "cover": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=png&fit=max&w=1400&h=1400",
+                "width": 714,
+                "height": 706
+              },
+              "cover_webp": {
+                "url": "https://img.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png?fm=webp&q=75&fit=max&w=1400&h=1400",
+                "width": 714,
+                "height": 706
+              }
+            },
+            "credits": null
+          }
+        }
+      ],
+      "section": {
+        "id": "ets",
+        "name": "École de technologie supérieure",
+        "shortName": "ÉTS",
+        "slug": "ets",
+        "url": "/ets",
+        "color": "#333366",
+        "theme": null,
+        "categories": [
+          {
+            "id": "35467",
+            "name": "ÉTS",
+            "slug": "ets",
+            "url": "/sujets/ets"
+          }
+        ],
+        "image": "static/media/facebook/universities/ets.jpg",
+        "university": {
+          "id": "ets",
+          "name": "École de technologie supérieure",
+          "shortName": "ÉTS",
+          "url": "/ets",
+          "scoresUrl": "/indice/ets",
+          "primaryColor": "#333366",
+          "secondaryColor": "#CCCCCC",
+          "score": 127,
+          "ranking": 2,
+          "difference": 0,
+          "scores": [
+            {
+              "id": "engagement",
+              "name": "Mobilisation",
+              "description": "Présence des étudiants et interactions sur les médias sociaux universitaires. Cet indice peut être modifié par votre participation. #AllezLikerLeDernierPostDuRecteur<small>* Nombre d’interactions sur les médias sociaux des universités.</small>",
+              "value": "15",
+              "score": 1
+            },
+            {
+              "id": "culture",
+              "name": "Culture",
+              "description": "Nombre d’événements culturels près de l’université. Excluant la pièce weird de 3 heures où un groupe d’étudiants revisite Molière en foufounes (tu sais très bien de quel groupe on parle).<small>* Événements culturels par région selon l’API de Ticketmaster</small>",
+              "value": "1 753",
+              "score": 1
+            },
+            {
+              "id": "food",
+              "name": "Repas chaud",
+              "description": "Nombre de restos cheap et moyen-cheap dans un rayon de 15km de l’université. Parce qu’on est vite à boutte de la cafétéria pis qu’on a pas les moyens d’aller dans un 4 étoiles (c’est d’ailleurs pour ça qu’on va à l’université).<small>* Nombre de restaurants dénombrés par le système de Foursquare.</small>",
+              "value": "208",
+              "score": 0.9846153846153847
+            },
+            {
+              "id": "housing",
+              "name": "4 ½",
+              "description": "Prix moyen du loyer dans les environs du campus. Autrement dit, avec combien de gens devrez-vous partager la salle de bain de votre appart pour les années à venir.<small>* Statistiques Canada</small>",
+              "value": "885 $",
+              "score": 0.74
+            },
+            {
+              "id": "party",
+              "name": "5@7",
+              "description": "Nombre de bars cotés $ et $$ dans un rayon de 15km de l’université. As-tu vraiment besoin qu’on t’explique ici? C’est bien ce qu’on croyait.<small>* Nombre de bars dénombrés par le système de Foursquare.</small>",
+              "value": "126",
+              "score": 0.976
+            },
+            {
+              "id": "love",
+              "name": "Rencontres",
+              "description": "Potentiel du bassin de célibataires dans les villes étudiantes. Ensuite, se référer à l’indice « 5@7 ».<small>* Pourcentage de célibataires par ville, Statistiques Canada</small>",
+              "value": "52,4 %",
+              "score": 1
+            },
+            {
+              "id": "sports",
+              "name": "Sport",
+              "description": "Points obtenus par les différentes équipes sportives de l’université. C’est le temps de faire un shoutout à votre club de Quidditch.<small>* Résultats sportifs des équipes universitaires</small>",
+              "value": "129",
+              "score": 0.018218968159373405
+            },
+            {
+              "id": "transport",
+              "name": "Mobilité",
+              "description": "Temps de déplacement pour se rendre du point A au point B dans la ville. Important pour savoir combien de snoozes vous pourrez vous permettre chaque matin.<small>* Données Statistiques Canada</small>",
+              "value": "88 min",
+              "score": 0.85
+            },
+            {
+              "id": "security",
+              "name": "Sécurité",
+              "description": "Probabilité de ne pas vous faire voler quand vous ne verrouillez pas la porte de votre appart et tranquillité d’esprit pour revenir seul à la maison après une soirée arrosée. Également à considérer : l’agressivité des Gardas lorsqu’ils vous expulsent de la bibliothèque à 23h.<small>* Statistiques Canada.</small>",
+              "value": "79,1",
+              "score": 0
+            },
+            {
+              "id": "environment",
+              "name": "Environnement",
+              "description": "Importance accordée par l’université à son plan environnemental. Ex : a-t-elle signé le Pacte?<small>* Données récoltées par nos espions sur place.</small>",
+              "value": "Excellent",
+              "score": 1
+            },
+            {
+              "id": "weather",
+              "name": "Météo",
+              "description": "Variation de température à laquelle on doit s’adapter sur les différents campus. Aurez-vous besoin d’investir sur des bottes d’hiver cette année ou vos Vans feront l’affaire? Cet indice vous donne la réponse.<small>* Moyenne des précipitations annuelles, Environnement Québec</small>",
+              "value": "6 mm",
+              "score": 0.2
+            }
+          ]
+        }
+      },
+      "categories": [
+        {
+          "id": "35467",
+          "name": "ÉTS",
+          "slug": "ets",
+          "url": "/sujets/ets"
+        }
+      ],
+      "sponsors": [
+        {
+          "name": "ÉTS",
+          "url": "https://www.etsmtl.ca/etudes",
+          "logo": {
+            "id": "401963",
+            "url": "https://cdn.urbania.ca/media/2022/04/Logo_ETS_V2.png",
+            "title": null,
+            "description": null,
+            "width": 446,
+            "height": 451,
+            "sizes": {
+              "original": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=png",
+                "width": 446,
+                "height": 451
+              },
+              "original_webp": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=webp&q=75",
+                "width": 446,
+                "height": 451
+              },
+              "thumbnail": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=png&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                "width": 200,
+                "height": 200
+              },
+              "thumbnail_webp": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                "width": 200,
+                "height": 200
+              },
+              "small": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=png&fit=max&w=400&h=400",
+                "width": 396,
+                "height": 400
+              },
+              "small_webp": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=webp&q=75&fit=max&w=400&h=400",
+                "width": 396,
+                "height": 400
+              },
+              "medium": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=png&fit=max&w=700&h=700",
+                "width": 446,
+                "height": 451
+              },
+              "medium_webp": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=webp&q=75&fit=max&w=700&h=700",
+                "width": 446,
+                "height": 451
+              },
+              "large": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=png&fit=max&w=1400",
+                "width": 446,
+                "height": 451
+              },
+              "large_webp": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=webp&q=75&fit=max&w=1400",
+                "width": 446,
+                "height": 451
+              },
+              "cover": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=png&fit=max&w=1400&h=1400",
+                "width": 446,
+                "height": 451
+              },
+              "cover_webp": {
+                "url": "https://img.urbania.ca/media/2022/04/Logo_ETS_V2.png?fm=webp&q=75&fit=max&w=1400&h=1400",
+                "width": 446,
+                "height": 451
+              }
+            },
+            "credits": null
+          }
+        }
+      ],
+      "tags": [
+        {
+          "id": "42561",
+          "name": "clubs étudiants",
+          "slug": "clubs-etudiants",
+          "url": "/mots-cles/clubs-etudiants"
+        },
+        {
+          "id": "42559",
+          "name": "COMETS",
+          "slug": "comets",
+          "url": "/mots-cles/comets"
+        },
+        {
+          "id": "35521",
+          "name": "ETS",
+          "slug": "ets",
+          "url": "/mots-cles/ets"
+        },
+        {
+          "id": "35797",
+          "name": "exclusif",
+          "slug": "exclusif",
+          "url": "/mots-cles/exclusif"
+        },
+        {
+          "id": "3282",
+          "name": "génie",
+          "slug": "genie",
+          "url": "/mots-cles/genie"
+        },
+        {
+          "id": "41809",
+          "name": "ingénieur",
+          "slug": "ingenieur",
+          "url": "/mots-cles/ingenieur"
+        },
+        {
+          "id": "42558",
+          "name": "OMER",
+          "slug": "omer",
+          "url": "/mots-cles/omer"
+        },
+        {
+          "id": "42560",
+          "name": "RockETS",
+          "slug": "rockets",
+          "url": "/mots-cles/rockets"
+        }
+      ],
+      "color": "#3399FF",
+      "commentsCount": 0,
+      "duration": 380,
+      "pixels": [
+
+      ],
+      "locations": [
+
+      ],
+      "microformats": [
+        {
+          "@type": "Article",
+          "@context": "http://schema.org",
+          "identifier": "401962",
+          "url": "https://universites.urbania.ca/article/genie-reconnaitre-la-passion-quand-on-la-croise",
+          "headline": "Étudier en génie, une histoire d’amour",
+          "description": "Petite virée sur le campus de l’ÉTS.",
+          "articleSection": "École de technologie supérieure",
+          "keywords": [
+            "clubs-etudiants",
+            "comets",
+            "ets",
+            "exclusif",
+            "genie",
+            "ingenieur",
+            "omer",
+            "rockets"
+          ],
+          "image": {
+            "@type": "Image",
+            "@context": "http://schema.org",
+            "identifier": "403418",
+            "url": "https://cdn.urbania.ca/media/2022/04/ETS2.jpg",
+            "width": 1920,
+            "height": 1080
+          },
+          "thumbnailUrl": "https://img.urbania.ca/media/2022/04/ETS2.jpg?fm=jpg&fit=crop&crop=faces%2Cedges&w=200&h=200",
+          "author": {
+            "@type": "Person",
+            "@context": "http://schema.org",
+            "identifier": "11203",
+            "url": "https://universites.urbania.ca/auteurs/cloegiroux",
+            "image": {
+              "@type": "Image",
+              "@context": "http://schema.org",
+              "identifier": "196984",
+              "url": "https://cdn.urbania.ca/media/2015/02/1794716_10152546819144139_7356897203639778486_n.png",
+              "width": 714,
+              "height": 706
+            },
+            "name": "Cloé Giroux"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "@context": "http://schema.org",
+            "identifier": "universities",
+            "url": "https://universites.urbania.ca",
+            "name": "Guide des Universités",
+            "image": {
+              "@type": "Image",
+              "@context": "http://schema.org",
+              "identifier": "https://universites.urbania.ca/static/media/facebook/universities/default.jpg",
+              "url": "https://universites.urbania.ca/static/media/facebook/universities/default.jpg",
+              "width": 1910,
+              "height": 1000
+            }
+          },
+          "sponsor": {
+            "@type": "Organization",
+            "@context": "http://schema.org",
+            "identifier": "ÉTS",
+            "url": "https://www.etsmtl.ca/etudes",
+            "name": "ÉTS",
+            "image": {
+              "@type": "Image",
+              "@context": "http://schema.org",
+              "identifier": "401963",
+              "url": "https://cdn.urbania.ca/media/2022/04/Logo_ETS_V2.png",
+              "width": 446,
+              "height": 451
+            }
+          },
+          "sourceOrganization": "Urbania",
+          "dateCreated": "2022-04-19T09:00:27-04:00",
+          "datePublished": "2022-04-19T09:00:27-04:00",
+          "dateModified": "2022-05-03T14:54:07-04:00"
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "id": "0",
+        "type": "text",
+        "body": "<p><em><strong>URBANIA et l’École de technologie supérieure (ÉTS) s’unissent pour vous faire rencontrer des humains derrière le génie.</strong></em></p>",
+        "withBox": false
+      },
+      {
+        "id": "1",
+        "type": "text",
+        "body": "<p>Si l’on peut affirmer quelque chose au sujet des étudiant.e.s en génie, c’est que ce sont des passionné.e.s. Je suis allée me promener dans les pavillons D (pavillon des regroupements et des clubs étudiants) et E (maison des étudiant.e.s) de l’ÉTS, à Montréal, pour provoquer des rencontres et associer des visages et des histoires à l’amour du domaine.</p>",
+        "withBox": false
+      },
+      {
+        "id": "2",
+        "type": "image",
+        "image": {
+          "id": "401968",
+          "url": "https://cdn.urbania.ca/media/2022/04/ETS_1.gif",
+          "title": null,
+          "description": null,
+          "width": 1220,
+          "height": 1500,
+          "sizes": {
+            "original": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=gif",
+              "width": 1220,
+              "height": 1500
+            },
+            "original_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=webp&q=75",
+              "width": 1220,
+              "height": 1500
+            },
+            "thumbnail": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=gif&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "thumbnail_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "small": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=gif&fit=max&w=400&h=400",
+              "width": 325,
+              "height": 400
+            },
+            "small_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=webp&q=75&fit=max&w=400&h=400",
+              "width": 325,
+              "height": 400
+            },
+            "medium": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=gif&fit=max&w=700&h=700",
+              "width": 569,
+              "height": 700
+            },
+            "medium_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=webp&q=75&fit=max&w=700&h=700",
+              "width": 569,
+              "height": 700
+            },
+            "large": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=gif&fit=max&w=1400",
+              "width": 1220,
+              "height": 1500
+            },
+            "large_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=webp&q=75&fit=max&w=1400",
+              "width": 1220,
+              "height": 1500
+            },
+            "cover": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=gif&fit=max&w=1400&h=1400",
+              "width": 1139,
+              "height": 1400
+            },
+            "cover_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_1.gif?fm=webp&q=75&fit=max&w=1400&h=1400",
+              "width": 1139,
+              "height": 1400
+            }
+          },
+          "credits": null
+        },
+        "caption": null,
+        "fullWidth": false
+      },
+      {
+        "id": "3",
+        "type": "heading",
+        "body": "FEMMES ET GÉNIE",
+        "size": "h4"
+      },
+      {
+        "id": "4",
+        "type": "text",
+        "body": "<p>Pour être honnête, en m’en allant à l’ÉTS, je ne m’attendais pas à croiser beaucoup de femmes; je pensais atterrir au beau milieu d’un <em>boys’ club</em>. J’avais tort – pour mon plus grand bonheur! Les femmes se taillent progressivement une place importante en génie, et ça se remarque.</p>",
+        "withBox": false
+      },
+      {
+        "id": "5",
+        "type": "text",
+        "body": "<p>J’ai eu la chance de jaser avec Alice, une des membres du comité exécutif des Ingénieuses, un regroupement qui favorise l’intégration et le sentiment de légitimité des femmes dans le domaine du génie au sein de l’ÉTS.</p>",
+        "withBox": false
+      },
+      {
+        "id": "6",
+        "type": "image",
+        "image": {
+          "id": "401965",
+          "url": "https://cdn.urbania.ca/media/2022/04/ETS_2.png",
+          "title": null,
+          "description": null,
+          "width": 1500,
+          "height": 1200,
+          "sizes": {
+            "original": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=png",
+              "width": 1500,
+              "height": 1200
+            },
+            "original_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=webp&q=75",
+              "width": 1500,
+              "height": 1200
+            },
+            "thumbnail": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=png&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "thumbnail_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "small": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=png&fit=max&w=400&h=400",
+              "width": 400,
+              "height": 320
+            },
+            "small_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=webp&q=75&fit=max&w=400&h=400",
+              "width": 400,
+              "height": 320
+            },
+            "medium": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=png&fit=max&w=700&h=700",
+              "width": 700,
+              "height": 560
+            },
+            "medium_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=webp&q=75&fit=max&w=700&h=700",
+              "width": 700,
+              "height": 560
+            },
+            "large": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=png&fit=max&w=1400",
+              "width": 1500,
+              "height": 1200
+            },
+            "large_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=webp&q=75&fit=max&w=1400",
+              "width": 1500,
+              "height": 1200
+            },
+            "cover": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=png&fit=max&w=1400&h=1400",
+              "width": 1400,
+              "height": 1120
+            },
+            "cover_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_2.png?fm=webp&q=75&fit=max&w=1400&h=1400",
+              "width": 1400,
+              "height": 1120
+            }
+          },
+          "credits": null
+        },
+        "caption": null,
+        "fullWidth": false
+      },
+      {
+        "id": "7",
+        "type": "text",
+        "body": "<p>« Je viens de France, je suis arrivée à Montréal en janvier 2021 », raconte Alice. Je reprenais les études après 15 ans de travail dans le domaine de la construction. Je ne m’étais jamais rendu compte à quel point la place des femmes en génie n’était pas chose acquise, puisque je n’avais jamais pris le temps de m’interroger sur le fait que nous sommes moins nombreuses dans le domaine : dans ma tête, c’était normal. »</p>",
+        "withBox": false
+      },
+      {
+        "id": "8",
+        "type": "quote",
+        "body": " <p>«Je souhaite contribuer à ce que le nombre de femmes en génie se multiplie.»</p> ",
+        "provider": null,
+        "cite": null
+      },
+      {
+        "id": "9",
+        "type": "text",
+        "body": "<p>Alice avoue avoir d’abord porté un jugement sur les femmes qui s’impliquaient au sein des Ingénieuses, puisqu’elle ne comprenait pas ce que ça pouvait réellement changer. C’est par curiosité et par désir de créer des liens avec d’autres étudiantes qu’elle a décidé d’intégrer l’association. « C’est à ce moment-là que j’ai eu une réelle prise de conscience, dit-elle. En m’impliquant, je souhaite contribuer à ce que le nombre de femmes en génie se multiplie, et à ce que ces dernières se sentent bien au sein de leur programme. »</p>",
+        "withBox": false
+      },
+      {
+        "id": "10",
+        "type": "text",
+        "body": "<p>Les Ingénieuses ont mis sur pied un programme de marrainage dans le but de favoriser l’intégration des nouvelles étudiantes de l’ÉTS. Ce programme leur offre la possibilité d’être jumelées avec une personne-ressource, qui deviendra en quelque sorte un point de repère tout au long de leur parcours.</p>",
+        "withBox": false
+      },
+      {
+        "id": "11",
+        "type": "heading",
+        "body": "C’EST UNANIME",
+        "size": "h4"
+      },
+      {
+        "id": "12",
+        "type": "text",
+        "body": "<p>Je poursuis ma balade dans le pavillon et je croise Huguette, une étudiante à la maîtrise en génie de l’environnement qui profite des petits cubicules douillets et vitrés pour avancer ses travaux en compagnie d’un de ses bons amis. Huguette m’explique qu’elle est arrivée au Québec à l’automne 2020, juste après avoir obtenu sa licence en génie de l’environnement au Bénin (l’équivalent d’un baccalauréat).</p>",
+        "withBox": false
+      },
+      {
+        "id": "13",
+        "type": "image",
+        "image": {
+          "id": "401966",
+          "url": "https://cdn.urbania.ca/media/2022/04/ETS_3.png",
+          "title": null,
+          "description": null,
+          "width": 1402,
+          "height": 1800,
+          "sizes": {
+            "original": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=png",
+              "width": 1402,
+              "height": 1800
+            },
+            "original_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=webp&q=75",
+              "width": 1402,
+              "height": 1800
+            },
+            "thumbnail": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=png&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "thumbnail_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "small": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=png&fit=max&w=400&h=400",
+              "width": 312,
+              "height": 400
+            },
+            "small_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=webp&q=75&fit=max&w=400&h=400",
+              "width": 312,
+              "height": 400
+            },
+            "medium": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=png&fit=max&w=700&h=700",
+              "width": 545,
+              "height": 700
+            },
+            "medium_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=webp&q=75&fit=max&w=700&h=700",
+              "width": 545,
+              "height": 700
+            },
+            "large": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=png&fit=max&w=1400",
+              "width": 1402,
+              "height": 1800
+            },
+            "large_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=webp&q=75&fit=max&w=1400",
+              "width": 1402,
+              "height": 1800
+            },
+            "cover": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=png&fit=max&w=1400&h=1400",
+              "width": 1090,
+              "height": 1400
+            },
+            "cover_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_3.png?fm=webp&q=75&fit=max&w=1400&h=1400",
+              "width": 1090,
+              "height": 1400
+            }
+          },
+          "credits": null
+        },
+        "caption": null,
+        "fullWidth": false
+      },
+      {
+        "id": "14",
+        "type": "text",
+        "body": "<p>« Je remarque qu’ici, on est amenés à faire plus de recherche par nous-mêmes, on est plus autonomes. J’apprécie beaucoup le fait que mes études ne soient pas que théoriques; j’aime être dans l’action », raconte Huguette.</p>",
+        "withBox": false
+      },
+      {
+        "id": "15",
+        "type": "quote",
+        "body": " <p>«J’apprécie beaucoup le fait que mes études ne soient pas que théoriques; j’aime être dans l’action.»</p> ",
+        "provider": null,
+        "cite": null
+      },
+      {
+        "id": "16",
+        "type": "text",
+        "body": "<p>Cette phrase m’a chatouillé les oreilles à plusieurs reprises cette journée-là, puisque lorsqu’on demande aux étudiant.e.s de l’ÉTS pourquoi ils ou elles ont choisi cette école, la réponse est pas mal unanime (sans blague, c’est comme s’ils s’étaient tous passé le mot) : l’ÉTS pousse ses étudiant.e.s à développer des compétences opérationnelles, communicationnelles, relationnelles et de logistique grâce à leur participation aux clubs et aux regroupements étudiants, aux activités extrascolaires et aux stages coop (stages s’inscrivant dans la formation).</p>",
+        "withBox": false
+      },
+      {
+        "id": "17",
+        "type": "text",
+        "body": "<p>Personnellement, j’ai suivi mes derniers cours de sciences et de mathématiques en secondaire 5 : on en déduit facilement que je n’étudie pas en génie. Mais si j’avais à choisir une école pour ses beaux pavillons, j’aurais un petit faible pour l’ÉTS.</p>",
+        "withBox": false
+      },
+      {
+        "id": "18",
+        "type": "text",
+        "body": "<p>« Les installations de l’ÉTS et l’environnement scolaire me donnent envie de venir à l’école, me confie Huguette. J’aime aller à la bibliothèque ou dans les espaces d’étude du pavillon D, c’est vraiment confortable et lumineux. On peut facilement trouver un endroit pour s’allonger si on est fatigué! »</p>",
+        "withBox": false
+      },
+      {
+        "id": "19",
+        "type": "image",
+        "image": {
+          "id": "401967",
+          "url": "https://cdn.urbania.ca/media/2022/04/ETS_4.png",
+          "title": null,
+          "description": null,
+          "width": 1402,
+          "height": 1800,
+          "sizes": {
+            "original": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=png",
+              "width": 1402,
+              "height": 1800
+            },
+            "original_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=webp&q=75",
+              "width": 1402,
+              "height": 1800
+            },
+            "thumbnail": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=png&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "thumbnail_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "small": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=png&fit=max&w=400&h=400",
+              "width": 312,
+              "height": 400
+            },
+            "small_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=webp&q=75&fit=max&w=400&h=400",
+              "width": 312,
+              "height": 400
+            },
+            "medium": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=png&fit=max&w=700&h=700",
+              "width": 545,
+              "height": 700
+            },
+            "medium_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=webp&q=75&fit=max&w=700&h=700",
+              "width": 545,
+              "height": 700
+            },
+            "large": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=png&fit=max&w=1400",
+              "width": 1402,
+              "height": 1800
+            },
+            "large_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=webp&q=75&fit=max&w=1400",
+              "width": 1402,
+              "height": 1800
+            },
+            "cover": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=png&fit=max&w=1400&h=1400",
+              "width": 1090,
+              "height": 1400
+            },
+            "cover_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_4.png?fm=webp&q=75&fit=max&w=1400&h=1400",
+              "width": 1090,
+              "height": 1400
+            }
+          },
+          "credits": null
+        },
+        "caption": null,
+        "fullWidth": false
+      },
+      {
+        "id": "20",
+        "type": "heading",
+        "body": "LÀ OÙ LES CHOSES SE PASSENT",
+        "size": "h4"
+      },
+      {
+        "id": "21",
+        "type": "text",
+        "body": "<p>J’ai terminé ma visite dans les ateliers des clubs étudiants, là où les idées sont en effervescence, où des liens se créent et où les choses se passent.</p>",
+        "withBox": false
+      },
+      {
+        "id": "22",
+        "type": "text",
+        "body": "<p>Les ateliers des clubs se cachent derrière de grandes portes de garage alignées les unes à côté des autres le long d’un long corridor, un peu à la manière des commerces de la rue Saint-Hubert à Montréal : parfait pour faire du lèche-vitrine. J’avais un peu l’impression de magasiner mon prochain bolide (si j’avais mon permis d’aéronef ou de sous-marin, bien sûr).</p>",
+        "withBox": false
+      },
+      {
+        "id": "23",
+        "type": "image",
+        "image": {
+          "id": "401972",
+          "url": "https://cdn.urbania.ca/media/2022/04/ETS_5.png",
+          "title": null,
+          "description": null,
+          "width": 1500,
+          "height": 1200,
+          "sizes": {
+            "original": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=png",
+              "width": 1500,
+              "height": 1200
+            },
+            "original_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=webp&q=75",
+              "width": 1500,
+              "height": 1200
+            },
+            "thumbnail": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=png&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "thumbnail_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "small": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=png&fit=max&w=400&h=400",
+              "width": 400,
+              "height": 320
+            },
+            "small_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=webp&q=75&fit=max&w=400&h=400",
+              "width": 400,
+              "height": 320
+            },
+            "medium": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=png&fit=max&w=700&h=700",
+              "width": 700,
+              "height": 560
+            },
+            "medium_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=webp&q=75&fit=max&w=700&h=700",
+              "width": 700,
+              "height": 560
+            },
+            "large": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=png&fit=max&w=1400",
+              "width": 1500,
+              "height": 1200
+            },
+            "large_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=webp&q=75&fit=max&w=1400",
+              "width": 1500,
+              "height": 1200
+            },
+            "cover": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=png&fit=max&w=1400&h=1400",
+              "width": 1400,
+              "height": 1120
+            },
+            "cover_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_5.png?fm=webp&q=75&fit=max&w=1400&h=1400",
+              "width": 1400,
+              "height": 1120
+            }
+          },
+          "credits": null
+        },
+        "caption": null,
+        "fullWidth": false
+      },
+      {
+        "id": "24",
+        "type": "text",
+        "body": "<p>Trois clubs m’ont accueillie dans leur atelier pour me faire vivre leur passion le temps d’une jasette.</p>",
+        "withBox": false
+      },
+      {
+        "id": "25",
+        "type": "text",
+        "body": "<p>Le club OMER conceptualise et fabrique un sous-marin à propulsion humaine, avec lequel ses membres compétitionneront en Angleterre en juillet prochain à 5 m sous l’eau (il ne faut pas être claustrophobe…). Camille, la capitaine, s’implique dans le club depuis le début de son bac. « C’est vraiment un beau défi d’ingénierie, dit-elle. On est champions du monde depuis quelques années, on bat nos propres records. Ça nous rend fiers! »</p>",
+        "withBox": false
+      },
+      {
+        "id": "26",
+        "type": "image",
+        "image": {
+          "id": "401971",
+          "url": "https://cdn.urbania.ca/media/2022/04/ETS_6.gif",
+          "title": null,
+          "description": null,
+          "width": 1220,
+          "height": 1500,
+          "sizes": {
+            "original": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=gif",
+              "width": 1220,
+              "height": 1500
+            },
+            "original_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=webp&q=75",
+              "width": 1220,
+              "height": 1500
+            },
+            "thumbnail": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=gif&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "thumbnail_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "small": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=gif&fit=max&w=400&h=400",
+              "width": 325,
+              "height": 400
+            },
+            "small_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=webp&q=75&fit=max&w=400&h=400",
+              "width": 325,
+              "height": 400
+            },
+            "medium": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=gif&fit=max&w=700&h=700",
+              "width": 569,
+              "height": 700
+            },
+            "medium_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=webp&q=75&fit=max&w=700&h=700",
+              "width": 569,
+              "height": 700
+            },
+            "large": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=gif&fit=max&w=1400",
+              "width": 1220,
+              "height": 1500
+            },
+            "large_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=webp&q=75&fit=max&w=1400",
+              "width": 1220,
+              "height": 1500
+            },
+            "cover": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=gif&fit=max&w=1400&h=1400",
+              "width": 1139,
+              "height": 1400
+            },
+            "cover_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_6.gif?fm=webp&q=75&fit=max&w=1400&h=1400",
+              "width": 1139,
+              "height": 1400
+            }
+          },
+          "credits": null
+        },
+        "caption": null,
+        "fullWidth": false
+      },
+      {
+        "id": "27",
+        "type": "text",
+        "body": "<p>De son côté, COMETS conçoit et fabrique une moto électrique de course. Le club a vu le jour il y a deux mois et une trentaine de personnes en font déjà partie. « Ici, il y a une grande communauté de motocyclistes. Grâce au club, on souhaite faciliter l’entrée dans le loisir et permettre aux gens de s’épanouir au sein du seul club de deux-roues de l’ÉTS », mentionne Julien, un des fondateurs. COMETS songe à compétitionner au New Jersey en juin 2023 et espère atteindre les 250 km/h avec son bolide.</p>",
+        "withBox": false
+      },
+      {
+        "id": "28",
+        "type": "image",
+        "image": {
+          "id": "401969",
+          "url": "https://cdn.urbania.ca/media/2022/04/ETS_7.png",
+          "title": null,
+          "description": null,
+          "width": 1402,
+          "height": 1800,
+          "sizes": {
+            "original": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=png",
+              "width": 1402,
+              "height": 1800
+            },
+            "original_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=webp&q=75",
+              "width": 1402,
+              "height": 1800
+            },
+            "thumbnail": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=png&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "thumbnail_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+              "width": 200,
+              "height": 200
+            },
+            "small": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=png&fit=max&w=400&h=400",
+              "width": 312,
+              "height": 400
+            },
+            "small_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=webp&q=75&fit=max&w=400&h=400",
+              "width": 312,
+              "height": 400
+            },
+            "medium": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=png&fit=max&w=700&h=700",
+              "width": 545,
+              "height": 700
+            },
+            "medium_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=webp&q=75&fit=max&w=700&h=700",
+              "width": 545,
+              "height": 700
+            },
+            "large": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=png&fit=max&w=1400",
+              "width": 1402,
+              "height": 1800
+            },
+            "large_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=webp&q=75&fit=max&w=1400",
+              "width": 1402,
+              "height": 1800
+            },
+            "cover": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=png&fit=max&w=1400&h=1400",
+              "width": 1090,
+              "height": 1400
+            },
+            "cover_webp": {
+              "url": "https://img.urbania.ca/media/2022/04/ETS_7.png?fm=webp&q=75&fit=max&w=1400&h=1400",
+              "width": 1090,
+              "height": 1400
+            }
+          },
+          "credits": null
+        },
+        "caption": null,
+        "fullWidth": false
+      },
+      {
+        "id": "29",
+        "type": "text",
+        "body": "<p>RockETS (vous remarquez probablement la tendance du jeu de mots avec ÉTS dans les noms des clubs, c’est astucieux!) est quant à lui un club scientifique de fuséonautique rassemblant un peu plus de 40 étudiant.e.s passionné.e.s par l’espace et les sciences aérospatiales. « On est le club le plus rapide de l’ÉTS! », me lance Rose, la capitaine du club. RockETS participe chaque année à la plus grosse compétition de fusée-sonde aux côtés de 150 autres universités de partout dans le monde.</p>",
+        "withBox": false
+      },
+      {
+        "id": "30",
+        "type": "text",
+        "body": "<p>En sortant des pavillons de l’ÉTS, j’avais déjà envie qu’on me réinvite. Rencontrer des humains qui ont autant d’étoiles dans les yeux m’a réénergisée, et ça m’a rappelé que c’est hot de chérir ce qui nous passionne et de s’y lancer à fond.</p>",
+        "withBox": false
+      },
+      {
+        "id": "31",
+        "type": "text",
+        "body": "<p>***</p>",
+        "withBox": false
+      },
+      {
+        "id": "32",
+        "type": "text",
+        "body": "<p><strong>Vous aussi, vous en voulez, des étoiles dans les yeux? Découvrez le génie autrement grâce à l’ÉTS. Pour en savoir plus sur ses programmes, <a href=\"https://www.etsmtl.ca/etudes\" target=\"_blank\" rel=\"noreferrer noopener\">c’est par ici</a>.</strong></p>",
+        "withBox": false
+      },
+      {
+        "id": "33",
+        "type": "text",
+        "body": "<p>– – – – –</p>",
+        "withBox": false
+      },
+      {
+        "id": "34",
+        "type": "text",
+        "body": "<p><strong>Texte et photos :</strong> Cloé Giroux<br /> <strong>Design :</strong> Mathilde Bonin Leblanc</p>",
+        "withBox": false
+      }
+    ],
+    "pageType": "article"
+}
