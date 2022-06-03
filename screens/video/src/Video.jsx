@@ -288,7 +288,7 @@ const VideoScreen = ({
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
     const items = [
-        (autoPlay && suspended && !withControls) ? (
+        (autoPlay && suspended && !playing && !withControls) ? (
             <button
                 key="tap-catcher-button"
                 type="button"

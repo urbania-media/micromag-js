@@ -107,6 +107,7 @@ const useMediaApi = ({
             setInitialPlay(false);
         }
         setPlaying(true);
+        setSuspended(false);
     }, [initialPlay, setPlaying, onPlay]);
 
     const onCustomPause = useCallback(
@@ -235,13 +236,13 @@ const useMediaApi = ({
         }
     }, [setDataReady, onLoadedData]);
 
-    const onCustomSuspended = useCallback(() => {
+    const onCustomSuspended = useCallback((e) => {
         setSuspended(true);
 
         if (onSuspended !== null) {
             onSuspended();
         }
-    }, [setDataReady, onLoadedData]);
+    }, [setSuspended, onSuspended]);
 
     useEffect(() => {
         const { current: media = null } = ref;
