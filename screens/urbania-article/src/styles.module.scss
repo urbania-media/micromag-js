@@ -105,6 +105,10 @@ $color-universities-text: #f33;
 
         .authors {
             margin-bottom: 6px;
+
+            &.isAboveDescription {
+                margin-bottom: 0;
+            }
         }
 
         .sponsors {

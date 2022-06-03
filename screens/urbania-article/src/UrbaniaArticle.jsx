@@ -188,28 +188,26 @@ const UrbaniaArticle = ({
         >
             {hasTitle ? <Heading className={classNames([styles.title])} {...title} /> : null}
         </ScreenElement>,
-        !hasDescription ? (
-            <ScreenElement
-                key="authors"
-                empty={
-                    <div className={styles.emptyContainer}>
-                        <Empty className={styles.empty}>
-                            <FormattedMessage
-                                defaultMessage="Authors"
-                                description="Authors placeholder"
-                            />
-                        </Empty>
-                    </div>
-                }
-                isEmpty={!hasAuthor}
-            >
-                {hasAuthor ? (
-                    <div className={classNames([styles.authors])}>
-                        <UrbaniaAuthor author={author} shouldLoad={mediaShouldLoad} />
-                    </div>
-                ) : null}
-            </ScreenElement>
-        ) : null,
+        <ScreenElement
+            key="authors"
+            empty={
+                <div className={styles.emptyContainer}>
+                    <Empty className={styles.empty}>
+                        <FormattedMessage
+                            defaultMessage="Authors"
+                            description="Authors placeholder"
+                        />
+                    </Empty>
+                </div>
+            }
+            isEmpty={!hasAuthor}
+        >
+            {hasAuthor ? (
+                <div className={classNames([styles.authors, { [styles.isAboveDescription]: hasDescription }])}>
+                    <UrbaniaAuthor author={author} shouldLoad={mediaShouldLoad} />
+                </div>
+            ) : null}
+        </ScreenElement>,
         hasDescription ? (
             <ScreenElement
                 key="description"
