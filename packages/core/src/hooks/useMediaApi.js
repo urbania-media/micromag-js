@@ -216,7 +216,7 @@ const useMediaApi = ({
         }
     }, [setDataReady, onLoadedData]);
 
-    const onCustomSuspended = useCallback((e) => {
+    const onCustomSuspended = useCallback(() => {
         setSuspended(true);
 
         if (onSuspend !== null) {
