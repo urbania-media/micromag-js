@@ -945,7 +945,7 @@ msgstr "Balance"
 #: MBgLeH
 msgctxt "MBgLeH"
 msgid "July 23 - Aug 22"
-msgstr ""
+msgstr "23 juil au 22 août"
 
 # Audio placeholder
 #: MYZwSA
@@ -2047,6 +2047,12 @@ msgstr "Enregistrer"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
+
+# Field no value label
+#: qTdBzB
+msgctxt "qTdBzB"
+msgid "No thumbnail"
+msgstr "Aucune image"
 
 # Field label
 #: qhjeuO
