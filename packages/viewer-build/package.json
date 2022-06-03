@@ -38,7 +38,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "ce3010e26225f1d4129b3d702e4344a9b5b7c440",
+    "gitHead": "cb23d834eb67394258cbd77657a4f744d7c0b2de",
     "devDependencies": {
         "@folklore/cli": "^0.0.42",
         "@micromag/core": "^0.3.142",
