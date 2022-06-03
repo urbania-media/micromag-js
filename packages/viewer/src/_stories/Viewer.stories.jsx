@@ -4,6 +4,7 @@
 import React, { useCallback, useState } from 'react';
 import {
     audioMedia,
+    callToAction,
     imageMedia,
     video360Media,
     videoMedia,
@@ -171,10 +172,10 @@ export const MultipleVideos = () => (
                     type: 'video',
                     video: {
                         media: bigVideoMediaWithSound(),
-                        withSeekBar: false,
-                        withControls: false,
+                        withSeekBar: true,
+                        withControls: true,
                         loop: true,
-                        autoPlay: false,
+                        autoPlay: true,
                         muted: true,
                     },
                     background: {
