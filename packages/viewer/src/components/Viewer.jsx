@@ -20,6 +20,9 @@ import {
     useTrackScreenView,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
 import styles from '../styles/viewer.module.scss';
@@ -448,7 +451,6 @@ const Viewer = ({
                         screenSize.screens.map((screenName) => `story-screen-${screenName}`),
                         {
                             [styles.landscape]: landscape,
-
                             [styles.withSiblings]: withLandscapeSiblingsScreens,
                             [styles.hideMenu]: !menuVisible,
                             [styles.ready]: ready || withoutScreensTransforms,
@@ -528,19 +530,6 @@ const Viewer = ({
                                 }
                                 return (
                                     <React.Fragment key={key}>
-                                        {current && screenIndex > 0 ? (
-                                            <button
-                                                type="button"
-                                                className="sr-only"
-                                                onClick={gotoPreviousScreen}
-                                                tabIndex="-1"
-                                            >
-                                                <FormattedMessage
-                                                    defaultMessage="Go to previous screen"
-                                                    description="Button label"
-                                                />
-                                            </button>
-                                        ) : null}
                                         <div
                                             ref={current ? currentScreenRef : null}
                                             style={{
@@ -600,7 +589,39 @@ const Viewer = ({
                                                         screenScale !== null ? '0 0' : null,
                                                 }}
                                             >
+                                                {current && screenIndex > 0 ? (
+                                                    <button
+                                                        type="button"
+                                                        className={classNames([styles.navButton, styles.previous])}
+                                                        onClick={gotoPreviousScreen}
+                                                    >
+                                                        <FontAwesomeIcon className={styles.arrow} icon={faArrowLeft} />
+                                                        <span className="sr-only">
+                                                            <FormattedMessage
+                                                                defaultMessage="Go to previous screen"
+                                                                description="Button label"
+                                                            />
+                                                        </span>
+                                                    </button>
+                                                ) : null}
+
                                                 {viewerScreen}
+
+                                                {current && screenIndex < screens.length ? (
+                                                    <button
+                                                        type="button"
+                                                        className={classNames([styles.navButton, styles.next])}
+                                                        onClick={gotoNextScreen}
+                                                    >
+                                                        <FontAwesomeIcon className={styles.arrow} icon={faArrowRight} />
+                                                        <span className="sr-only">
+                                                            <FormattedMessage
+                                                                defaultMessage="Go to next screen"
+                                                                description="Button label"
+                                                            />
+                                                        </span>
+                                                    </button>
+                                                ) : null}
                                             </div>
                                             {withNavigationHint &&
                                             !withLandscapeSiblingsScreens &&
@@ -609,32 +630,9 @@ const Viewer = ({
                                                 <HandTap className={styles.handTap} />
                                             ) : null}
                                         </div>
-                                        {current && screenIndex < screens.length ? (
-                                            <button
-                                                type="button"
-                                                className="sr-only"
-                                                onClick={gotoNextScreen}
-                                                tabIndex="-1"
-                                            >
-                                                <FormattedMessage
-                                                    defaultMessage="Go to next screen"
-                                                    description="Button label"
-                                                />
-                                            </button>
-                                        ) : null}
                                     </React.Fragment>
                                 );
                             })}
-                            {/* <button
-                                type="button"
-                                onClick={gotoPreviousScreen}
-                                className={classNames([styles.navButton, styles.previous])}
-                            />
-                            <button
-                                type="button"
-                                onClick={gotoNextScreen}
-                                className={classNames([styles.navButton, styles.next])}
-                            /> */}
                         </div>
                     ) : null}
                 </div>
