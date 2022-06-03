@@ -81,7 +81,6 @@ const defaultProps = {
     focusable: true,
     supportedMimes: ['video/mp4', 'video/webm', 'video/ogg'],
     withPoster: false,
-    // onPosterLoaded: null,
 };
 
 const Video = ({
@@ -112,7 +111,6 @@ const Video = ({
     focusable,
     supportedMimes,
     withPoster,
-    // onPosterLoaded,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
     const { description = null, mime: mediaMime = null } = metadata || {};

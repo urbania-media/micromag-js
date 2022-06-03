@@ -157,6 +157,7 @@ const VideoScreen = ({
         }
     }, [activityDetected, showControls, hideControls]);
 
+
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
