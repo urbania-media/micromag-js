@@ -461,6 +461,9 @@
     "M/FGRs": {
         "defaultMessage": "Balance"
     },
+    "MBgLeH": {
+        "defaultMessage": "23 juil au 22 août"
+    },
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
@@ -883,9 +886,6 @@
     },
     "kBz8vF": {
         "defaultMessage": "Nom"
-    },
-    "keK5s0": {
-        "defaultMessage": "Retourner aux signes"
     },
     "kf/5Tw": {
         "defaultMessage": "Droite"

@@ -619,6 +619,10 @@
     "defaultMessage": "Libra",
     "description": "Horoscope sign"
   },
+  "MBgLeH": {
+    "defaultMessage": "July 23 - Aug 22",
+    "description": "Horoscope date"
+  },
   "MYZwSA": {
     "defaultMessage": "Audio",
     "description": "Audio placeholder"
@@ -1189,10 +1193,6 @@
   "kBz8vF": {
     "defaultMessage": "Name",
     "description": "Name in Media Gallery"
-  },
-  "keK5s0": {
-    "defaultMessage": "Back to the Signs",
-    "description": "Horoscope Back Button"
   },
   "kf/5Tw": {
     "defaultMessage": "Right",
