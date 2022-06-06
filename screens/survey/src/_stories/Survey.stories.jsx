@@ -27,6 +27,7 @@ export default {
     parameters: {
         intl: true,
         screenDefinition: definition,
+        withVisitor: true,
     },
 };
 
