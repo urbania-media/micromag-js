@@ -97,6 +97,24 @@ export default {
                         description: 'Field label',
                     }),
                 },
+                {
+                    name: 'facebookMessenger',
+                    type: 'toggle',
+                    defaultValue: true,
+                    label: defineMessage({
+                        defaultMessage: 'Facebook Messenger',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'whatsapp',
+                    type: 'toggle',
+                    defaultValue: true,
+                    label: defineMessage({
+                        defaultMessage: 'Whatsapp',
+                        description: 'Field label',
+                    }),
+                },
             ],
         },
         {
