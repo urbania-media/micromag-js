@@ -668,10 +668,8 @@ const Viewer = ({
                                                             </span>
                                                         </button>
                                                     ) : null}
-
                                                     {viewerScreen}
-
-                                                    {current && screenIndex < screens.length ? (
+                                                    {current && screenIndex < screens.length - 1 ? (
                                                         <button
                                                             type="button"
                                                             className={classNames([
@@ -684,6 +682,12 @@ const Viewer = ({
                                                                 className={styles.arrow}
                                                                 icon={faArrowRight}
                                                             />
+                                                            <span className="sr-only">
+                                                                <FormattedMessage
+                                                                    defaultMessage="Go to next screen"
+                                                                    description="Button label"
+                                                                />
+                                                            </span>
                                                             <span className="sr-only">
                                                                 <FormattedMessage
                                                                     defaultMessage="Go to next screen"
