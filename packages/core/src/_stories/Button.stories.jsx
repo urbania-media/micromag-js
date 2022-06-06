@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { MemoryRouter } from 'react-router';
-
-import { RoutesProvider } from '../contexts/RoutesContext';
 import Button from '../components/buttons/Button';
+import { RoutesProvider } from '../contexts/RoutesContext';
 
 const link = {
     href: '/cool',

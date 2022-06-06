@@ -1804,12 +1804,6 @@ msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Name"
 
-# Horoscope Back Button
-#: keK5s0
-msgctxt "keK5s0"
-msgid "Back to the Signs"
-msgstr "Back to the Signs"
-
 # Direction
 #: kf/5Tw
 msgctxt "kf/5Tw"
