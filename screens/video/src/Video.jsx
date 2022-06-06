@@ -105,7 +105,6 @@ const VideoScreen = ({
         seek,
         play,
         pause,
-        suspended,
         mediaRef: apiMediaRef = null,
     } = apiRef.current || {};
 
@@ -286,18 +285,16 @@ const VideoScreen = ({
         setReady(true);
     }, [setReady]);
 
-    // @todo trying to see if it's a better strategy than using `onSuspended`
-    const AUTOPLAY_CHECK_DELAY = 1000; // @todo check if a timeout is needed?
-
     const onCanPlay = useCallback(() => {
-        const autoplayCheckTimeout = setTimeout( () => {
-            if (current && autoPlay && !playing) {
-                setAllowManualPlayOnTap(true)
-            }
-        }, AUTOPLAY_CHECK_DELAY);
-
-        return () => clearTimeout(autoplayCheckTimeout);
+        if (current && autoPlay && !playing) {
+            setAllowManualPlayOnTap(true)
+        }
     }, [current, autoPlay, playing, play, allowManualPlayOnTap, setAllowManualPlayOnTap]);
+
+    const onForcePlay = useCallback(() => {
+        setAllowManualPlayOnTap(false);
+        play();
+    }, [setAllowManualPlayOnTap, play]);
 
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
@@ -306,7 +303,7 @@ const VideoScreen = ({
             <button
                 key="tap-catcher-button"
                 type="button"
-                onTouchStart={play}
+                onTouchStart={onForcePlay}
                 className={styles.unmuteAndPlayButton}
             />
         ): null,
