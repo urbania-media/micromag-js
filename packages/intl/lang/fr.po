@@ -941,6 +941,12 @@ msgctxt "M/FGRs"
 msgid "Libra"
 msgstr "Balance"
 
+# Horoscope date
+#: MBgLeH
+msgctxt "MBgLeH"
+msgid "July 23 - Aug 22"
+msgstr ""
+
 # Audio placeholder
 #: MYZwSA
 msgctxt "MYZwSA"
@@ -1797,12 +1803,6 @@ msgstr "Style du texte"
 msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Nom"
-
-# Horoscope Back Button
-#: keK5s0
-msgctxt "keK5s0"
-msgid "Back to the Signs"
-msgstr "Retourner aux signes"
 
 # Direction
 #: kf/5Tw
