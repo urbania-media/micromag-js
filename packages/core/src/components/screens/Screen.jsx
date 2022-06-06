@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ScreenProvider, useScreenComponent } from '../../contexts';
+import { ScreenProvider, useScreenComponent, VisitorProvider } from '../../contexts';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import styles from '../../styles/screens/screen.module.scss';
 import { getComponentFromName } from '../../utils';
@@ -61,29 +61,31 @@ const Screen = ({
 
     return (
         <ScreenProvider data={screen} renderContext={renderContext} screenState={screenState}>
-            {ScreenComponent !== null ? (
-                <div
-                    className={classNames([
-                        styles.container,
-                        {
-                            [className]: className !== null,
-                        },
-                    ])}
-                >
-                    <ScreenComponent
-                        {...screen}
-                        active={active}
-                        current={current}
-                        onPrevious={onPrevious}
-                        onNext={onNext}
-                        enableInteraction={enableInteraction}
-                        disableInteraction={disableInteraction}
-                        getMediaRef={getMediaRef}
-                    />
-                </div>
-            ) : (
-                <div className={className}>{component}</div>
-            )}
+            <VisitorProvider visitor={{ id: 'editor' }}>
+                {ScreenComponent !== null ? (
+                    <div
+                        className={classNames([
+                            styles.container,
+                            {
+                                [className]: className !== null,
+                            },
+                        ])}
+                    >
+                        <ScreenComponent
+                            {...screen}
+                            active={active}
+                            current={current}
+                            onPrevious={onPrevious}
+                            onNext={onNext}
+                            enableInteraction={enableInteraction}
+                            disableInteraction={disableInteraction}
+                            getMediaRef={getMediaRef}
+                        />
+                    </div>
+                ) : (
+                    <div className={className}>{component}</div>
+                )}
+            </VisitorProvider>
         </ScreenProvider>
     );
 };
