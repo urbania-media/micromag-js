@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.145",
+    "version": "0.3.146",
     "description": "",
     "keywords": [
         "javascript"
@@ -75,7 +75,7 @@
         "@micromag/screen-urbania-horoscope": "^0.3.144",
         "@micromag/screen-urbania-recommendation": "^0.3.144",
         "@micromag/screen-urbania-trivia": "^0.3.144",
-        "@micromag/screen-video": "^0.3.145",
+        "@micromag/screen-video": "^0.3.146",
         "@micromag/screen-video-360": "^0.3.144",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
