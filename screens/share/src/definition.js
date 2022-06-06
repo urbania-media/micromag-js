@@ -97,17 +97,45 @@ export default {
                         description: 'Field label',
                     }),
                 },
+                {
+                    name: 'facebookMessenger',
+                    type: 'toggle',
+                    defaultValue: true,
+                    label: defineMessage({
+                        defaultMessage: 'Facebook Messenger',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'whatsapp',
+                    type: 'toggle',
+                    defaultValue: true,
+                    label: defineMessage({
+                        defaultMessage: 'Whatsapp',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'copylink',
+                    type: 'toggle',
+                    defaultValue: true,
+                    label: defineMessage({
+                        defaultMessage: 'Link to copy',
+                        description: 'Field label',
+                    }),
+                },
             ],
         },
-        {
-            name: 'centered',
-            type: 'toggle',
-            defaultValue: true,
-            label: defineMessage({
-                defaultMessage: 'Align to center',
-                description: 'Field label',
-            }),
-        },
+        // @todo: delete if unused (commented out june 6, 2022)
+        // {
+        //     name: 'centered',
+        //     type: 'toggle',
+        //     defaultValue: true,
+        //     label: defineMessage({
+        //         defaultMessage: 'Align to center',
+        //         description: 'Field label',
+        //     }),
+        // },
         {
             name: 'background',
             type: 'background',

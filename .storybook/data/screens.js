@@ -347,7 +347,9 @@ export const allScreens = [
         },
         options: {
             facebook: true,
-            twitter: true
+            twitter: true,
+            facebookMessenger: true,
+            copylink: true
         },
         background: {
             color: { alpha: 1, color: '#00c28e' },
