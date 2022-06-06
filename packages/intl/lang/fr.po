@@ -339,7 +339,7 @@ msgstr "Vignette"
 #: 4y3gAI
 msgctxt "4y3gAI"
 msgid "Result percentage text"
-msgstr ""
+msgstr "Pourcentage de résultat"
 
 # Description placeholder
 #: 507VAi
@@ -945,7 +945,7 @@ msgstr "Balance"
 #: MBgLeH
 msgctxt "MBgLeH"
 msgid "July 23 - Aug 22"
-msgstr ""
+msgstr "23 juil - 22 août"
 
 # Audio placeholder
 #: MYZwSA
@@ -1718,7 +1718,7 @@ msgstr "Photo de profil"
 #: hvxkzE
 msgctxt "hvxkzE"
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 # No value label
 #: i+3ZrF
@@ -1742,7 +1742,7 @@ msgstr "Aucune d’entrée..."
 #: iL9RLu
 msgctxt "iL9RLu"
 msgid "Collaborator"
-msgstr ""
+msgstr "Collaborateur"
 
 # Field label
 #: iipV5Q
@@ -1866,7 +1866,7 @@ msgstr "Précédent"
 #: mlucL+
 msgctxt "mlucL+"
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 # Field label
 #: muPX/j
@@ -2082,7 +2082,7 @@ msgstr "Marqueur"
 #: r+bcpa
 msgctxt "r+bcpa"
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 # Horoscope date
 #: rAkTvt

@@ -117,7 +117,6 @@ const VideoScreen = ({
 
     const mouseMoveRef = useRef(null);
     const [showMediaControls, setShowMediaControls] = useState(false);
-    const [shouldCatchFirstTapToPlay, setShouldCatchFirstTapToPlay] = useState(false);
 
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
@@ -284,27 +283,16 @@ const VideoScreen = ({
 
     const onVideoReady = useCallback(() => {
         setReady(true);
-
-        // @todo the battery-saving play button issue
-        if (autoPlay && suspended) {
-            setShouldCatchFirstTapToPlay(true);
-        }
-    }, [setReady, autoPlay, suspended, setShouldCatchFirstTapToPlay]);
-
-    const onSuspended = useCallback(() => {
-        if (autoPlay && suspended) {
-            setShouldCatchFirstTapToPlay(true);
-        }
-    }, [autoPlay, suspended, setShouldCatchFirstTapToPlay]);
+    }, [setReady]);
 
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
     const items = [
-        (shouldCatchFirstTapToPlay && suspended) ? (
+        (autoPlay && suspended && !playing && !withControls) ? (
             <button
                 key="tap-catcher-button"
                 type="button"
-                onTouchStart={() => play()}
+                onTouchStart={play}
                 className={styles.unmuteAndPlayButton}
             />
         ): null,
@@ -356,7 +344,6 @@ const VideoScreen = ({
                             onDurationChanged={onDurationChanged}
                             onSeeked={onSeeked}
                             onEnded={onEnded}
-                            onSuspended={onSuspended}
                             onVolumeChanged={onVolumeChanged}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}

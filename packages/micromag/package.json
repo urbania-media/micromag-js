@@ -1,6 +1,6 @@
 {
     "name": "micromag",
-    "version": "0.3.138",
+    "version": "0.3.143",
     "description": "",
     "keywords": [
         "javascript"
@@ -53,10 +53,10 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.138",
-        "@micromag/editor": "^0.3.138",
-        "@micromag/viewer": "^0.3.138",
+        "@micromag/core": "^0.3.143",
+        "@micromag/editor": "^0.3.143",
+        "@micromag/viewer": "^0.3.143",
         "bootstrap": "5.2.0-beta1"
     },
-    "gitHead": "0163dd0b8c8146af1fbd14e92c6ccc111d4c2ee1"
+    "gitHead": "cb23d834eb67394258cbd77657a4f744d7c0b2de"
 }

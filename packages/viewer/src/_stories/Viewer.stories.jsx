@@ -4,6 +4,7 @@
 import React, { useCallback, useState } from 'react';
 import {
     audioMedia,
+    callToAction,
     imageMedia,
     video360Media,
     videoMedia,
@@ -14,6 +15,8 @@ import {
     webfontFiles,
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
+import article from '../../../../.storybook/data/stories/article.json';
+import article2 from '../../../../.storybook/data/stories/article2.json';
 import basic from '../../../../.storybook/data/stories/basic.json';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
@@ -169,10 +172,10 @@ export const MultipleVideos = () => (
                     type: 'video',
                     video: {
                         media: bigVideoMediaWithSound(),
-                        withSeekBar: false,
-                        withControls: false,
+                        withSeekBar: true,
+                        withControls: true,
                         loop: true,
-                        autoPlay: false,
+                        autoPlay: true,
                         muted: true,
                     },
                     background: {
@@ -396,5 +399,48 @@ export const WithMenuTheme = () => (
     <Viewer
         {...twoScreensProps}
         theme={{ ...viewerTheme, menuTheme: { colors: { primary: '#F00', secondary: '#00F' } } }}
+    />
+);
+
+export const MultipleArticles = () => (
+    <Viewer
+        screenId="42"
+        story={{
+            components: [
+                {
+                    id: '1',
+                    type: 'urbania-article',
+                    article,
+                    background: {
+                        color: { alpha: 1, color: '#FF00FF' },
+                    },
+                },
+                {
+                    id: '2',
+                    type: 'urbania-article',
+                    article: article2,
+                    overTitle: {
+                        body: 'Guide des universités',
+                        textStyle: {
+                            color: { alpha: 1, color: '#ff0000' }
+                        }
+                    },
+                    description: {
+                        body: 'Petite virée sur le campus de l\'École de technologie supérieure (ÉTS)',
+                        textStyle: {
+                            fontStyle: {
+                                italic: true,
+                                bold: false,
+                            },
+                            fontSize: 13,
+                            color: { alpha: 1, color: '#ff0000' }
+                        }
+                    },
+                    background: {
+                        color: { alpha: 1, color: '#ffffff' },
+                    },
+                },
+            ]
+        }}
     />
 );
