@@ -144,7 +144,7 @@
         background-color: #161719 !important;
 
         p {
-            font-weight: normal !important; // @todo: because “fuck you!”
+            font-weight: normal !important; // @todo: make sure it's not getting overwritten by other styles when pushed to production
             text-transform: none !important;
         }
     }
