@@ -15,6 +15,7 @@ import {
     useViewerWebView,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useVisitor
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
 import { getLargestRemainderRound, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
@@ -102,8 +103,14 @@ const SurveyScreen = ({
     className,
 }) => {
     const screenId = id || 'screen-id';
+    const visitor = useVisitor();
+    const { id: visitorId = null } = visitor || {};
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
+    const { create: submitQuiz } = useQuizCreate({
+        screenId,
+        visitorId,
+    });
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const {
@@ -114,10 +121,6 @@ const SurveyScreen = ({
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
-
-    const { create: submitQuiz } = useQuizCreate({
-        screenId,
-    });
 
     const { quiz: allQuizAnswers = [] } = useQuiz({ screenId, opts: { autoload: !isPlaceholder } });
     const quizAnswers = allQuizAnswers.filter((item) => {
