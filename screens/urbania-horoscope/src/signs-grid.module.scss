@@ -18,11 +18,14 @@
         z-index: 5;
         top: 5px;
         right: 5px;
+        transform: translateZ(1px); // prevents glitch when hovering signs on Safari (maybe?)
         color: #222;
     }
 
     .gridContainer {
         display: flex;
+        position: relative;
+        z-index: 4;
         flex-wrap: wrap;
         justify-content: space-between;
         padding: 5px 20px 0;
@@ -41,6 +44,8 @@
 
     .gridElement {
         display: flex;
+        position: relative;
+        z-index: 4;
         flex-direction: column;
         align-items: center;
         width: 90px;
@@ -50,9 +55,9 @@
         transition: 0.2s all ease-in-out;
         border: 0;
         border-radius: 10px;
-        filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
 
         background-color: #1d3af2;
+        filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
 
         &:hover {
             transform: scale(1.05);
@@ -124,6 +129,7 @@
 
     .modalContainer {
         position: absolute;
+        z-index: 6;
         top: 0;
         right: 0;
         left: 0;
