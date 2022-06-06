@@ -15,11 +15,7 @@ import {
     useScreenRenderContext,
     useViewerNavigation,
 } from '@micromag/core/contexts';
-import {
-    useTrackScreenMedia,
-    useLongPress,
-    useMediaThumbnail,
-} from '@micromag/core/hooks';
+import { useTrackScreenMedia, useLongPress, useMediaThumbnail } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -285,16 +281,28 @@ const VideoScreen = ({
         setReady(true);
     }, [setReady]);
 
+    /**
+     * if video can play, but:
+     * - it's the current screen
+     * - the video doesn't provide visual controls
+     * - the video is set to play automatically
+     * - and it's **not** playing
+     * -> then set up a button that catches a click and plays the video
+     */
     const onCanPlay = useCallback(() => {
-        if (current && autoPlay && !playing) {
-            setAllowManualPlayOnTap(true)
+        if (current && !withControls && autoPlay && !playing) {
+            setAllowManualPlayOnTap(true);
         }
-    }, [current, autoPlay, playing, play, allowManualPlayOnTap, setAllowManualPlayOnTap]);
+    }, [current, withControls, autoPlay, playing, play, allowManualPlayOnTap, setAllowManualPlayOnTap]);
 
-    const onForcePlay = useCallback(() => {
-        setAllowManualPlayOnTap(false);
-        play();
-    }, [setAllowManualPlayOnTap, play]);
+    const onForcePlay = useCallback(
+        (e) => {
+            e.stopPropagation();
+            setAllowManualPlayOnTap(false);
+            play();
+        },
+        [setAllowManualPlayOnTap, play],
+    );
 
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
@@ -303,10 +311,10 @@ const VideoScreen = ({
             <button
                 key="tap-catcher-button"
                 type="button"
-                onTouchStart={onForcePlay}
+                onClick={onForcePlay}
                 className={styles.unmuteAndPlayButton}
             />
-        ): null,
+        ) : null,
 
         <ScreenElement
             key="video"
@@ -416,7 +424,7 @@ const VideoScreen = ({
                                         onTouchStart={onShowControls}
                                         className={styles.showControlsButton}
                                     />
-                                ): null}
+                                ) : null}
                             </div>
                         ) : null}
                         {hasCallToAction ? (
