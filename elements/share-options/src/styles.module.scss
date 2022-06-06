@@ -1,13 +1,13 @@
 /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
 
-// @import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/variables';
 
-.container {
+.options {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .item {
@@ -15,6 +15,7 @@
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     text-align: center;
+    white-space: break-spaces;
 
     &:last-child {
         margin-right: 0;
@@ -26,4 +27,63 @@
     color: $gray-600;
     font-size: 0.75rem;
     font-weight: normal;
+}
+
+.copyLink {
+    display: flex;
+    position: relative;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid currentColor;
+    border-radius: 0.5rem;
+    background-color: $white;
+    color: $black;
+}
+
+.screenUrlInput {
+    @extend %reset-input;
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 0;
+    border-right: 1px solid currentColor;
+    border-radius: 0.5rem 0 0 0.5rem;
+    background-color: $white;
+    line-height: 1;
+}
+
+.copyUrlButton {
+    @extend %reset-button;
+    padding: 0.5rem;
+    border: 0;
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: $black;
+
+    &:hover {
+        color: $black;
+    }
+}
+
+.linkIcon {
+    padding: 0.25rem;
+}
+
+.successfulCopyMessage {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    padding: 0.25rem 0.5rem;
+    transform: translate(-50%, 100%);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    border: 1px solid currentColor;
+    border-radius: 0.5rem;
+    opacity: 0;
+    background-color: $white;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+
+    .isLinkCopied & {
+        transform: translate(-50%, 75%);
+        opacity: 1;
+    }
 }

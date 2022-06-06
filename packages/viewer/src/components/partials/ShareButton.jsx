@@ -35,7 +35,7 @@ const ShareButton = ({ title, url, className, buttonClassName, onShare, children
 
     const onShareIconClick = useCallback(() => {
         setStoryShareModalOpened((opened) => !opened);
-    }, [setStoryShareModalOpened]);
+    }, [setStoryShareModalOpened, storyShareModalOpened]);
 
     const onStoryShared = useCallback(
         (type) => {
