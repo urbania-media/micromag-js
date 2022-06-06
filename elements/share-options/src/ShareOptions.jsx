@@ -12,6 +12,10 @@ import {
     TwitterIcon,
     LinkedinShareButton,
     LinkedinIcon,
+    WhatsappShareButton,
+    WhatsappIcon,
+    FacebookMessengerShareButton,
+    FacebookMessengerIcon,
 } from 'react-share';
 import styles from './styles.module.scss';
 
@@ -71,7 +75,7 @@ const ShareOptions = ({
         [url, onClose],
     );
 
-    const shareIconProps = useMemo(() => ({ size: 64, round: true }), []);
+    const shareIconProps = useMemo(() => ({ size: 50, round: true }), []);
 
     const shareOptions = [
         {
@@ -133,13 +137,48 @@ const ShareOptions = ({
                     {...shareButtonProps}
                     title={title}
                     beforeOnClick={() => {
-                        onShareButtonClick('LinkedIns');
+                        onShareButtonClick('LinkedIn');
                         return Promise.resolve();
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
                     <LinkedinIcon {...shareIconProps} />
                 </LinkedinShareButton>
+            )
+        },
+        {
+            id: 'whatsapp',
+            label: 'Whatsapp',
+            icon: (
+                <WhatsappShareButton
+                    {...shareButtonProps}
+                    title={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('Whatsapp');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={focusable ? null : '-1'}
+                >
+                    <WhatsappIcon {...shareIconProps} />
+                </WhatsappShareButton>
+            )
+        },
+        {
+            id: 'facebookMessenger',
+            label: 'Facebook Messenger',
+            icon: (
+                <FacebookMessengerShareButton
+                    {...shareButtonProps}
+                    title={title}
+                    appId={`@todo FIX ME - appId`}
+                    beforeOnClick={() => {
+                        onShareButtonClick('Whatsapp');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={focusable ? null : '-1'}
+                >
+                    <FacebookMessengerIcon {...shareIconProps} />
+                </FacebookMessengerShareButton>
             )
         },
     ];

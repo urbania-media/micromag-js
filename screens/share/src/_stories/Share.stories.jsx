@@ -58,6 +58,21 @@ export const WithCentered = (storyProps) => <ShareScreen
     centered
 />;
 
+export const WithAllPlatforms = (storyProps) => <ShareScreen
+    {...storyProps}
+    {...props}
+    options={{
+        email: true,
+        facebook: true,
+        twitter: true,
+        linkedin: true,
+        facebookMessenger: true,
+        whatsapp: true,
+    }}
+/>;
+
+
+
 // export const WithCallToAction = (storyProps) => (
 //     <ShareScreen {...storyProps} {...props} callToAction={callToAction()} />
 // );
