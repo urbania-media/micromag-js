@@ -38,10 +38,10 @@ const propTypes = {
     answers: MicromagPropTypes.answers,
     buttonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
-    percentageResultTextStyle: MicromagPropTypes.textStyle,
     resultsStyle: PropTypes.shape({
         barColor: MicromagPropTypes.color,
         textColor: MicromagPropTypes.color,
+        percentageTextStyle: MicromagPropTypes.textStyle,
     }),
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -65,7 +65,6 @@ const defaultProps = {
     buttonsStyle: null,
     buttonsTextStyle: null,
     resultsStyle: null,
-    percentageResultTextStyle: null,
     spacing: 20,
     background: null,
     callToAction: null,
@@ -88,7 +87,6 @@ const SurveyScreen = ({
     buttonsStyle,
     buttonsTextStyle,
     resultsStyle,
-    percentageResultTextStyle,
     spacing,
     background,
     callToAction,
@@ -276,8 +274,11 @@ const SurveyScreen = ({
 
     const finalTransitionDuration = showInstantAnswer ? 0 : `${resultTransitionDuration}ms`;
 
-    const { barColor: resultsBarColor = null, textColor: resultsTextColor = null } =
-        resultsStyle || {};
+    const {
+        barColor: resultsBarColor = null,
+        textColor: resultsTextColor = null,
+        percentageTextColor = null
+    } = resultsStyle || {};
 
     items.push(
         <div key="answers" className={styles.answers}>
@@ -396,7 +397,7 @@ const SurveyScreen = ({
                                                                             ...buttonsTextStyle,
                                                                             ...resultsTextColor,
                                                                             ...answerResultTextColor,
-                                                                            ...percentageResultTextStyle,
+                                                                            ...percentageTextColor,
                                                                         }}
                                                                         inline
                                                                         className={

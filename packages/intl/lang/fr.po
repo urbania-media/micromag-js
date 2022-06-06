@@ -209,12 +209,6 @@ msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Ligne du temps avec images"
 
-# Field label
-#: 3B9cb3
-msgctxt "3B9cb3"
-msgid "Whatsapp"
-msgstr "Whatsapp"
-
 # Label when there is no item in markers field
 #: 3E57H7
 msgctxt "3E57H7"
@@ -340,12 +334,6 @@ msgstr "Options de partage"
 msgctxt "4kSwvn"
 msgid "Thumbnail"
 msgstr "Vignette"
-
-# Field label
-#: 4y3gAI
-msgctxt "4y3gAI"
-msgid "Result percentage text"
-msgstr ""
 
 # Description placeholder
 #: 507VAi
@@ -484,12 +472,6 @@ msgstr "Bordure"
 msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Citation"
-
-# Field label
-#: 88kexp
-msgctxt "88kexp"
-msgid "Facebook Messenger"
-msgstr "Facebook Messenger"
 
 # field label
 #: 8A8cuq
@@ -957,7 +939,7 @@ msgstr "Balance"
 #: MBgLeH
 msgctxt "MBgLeH"
 msgid "July 23 - Aug 22"
-msgstr "23 juil au 22 août"
+msgstr "23 juil - 22 août"
 
 # Audio placeholder
 #: MYZwSA
@@ -1138,6 +1120,12 @@ msgctxt "RucIeL"
 msgid "Share options"
 msgstr "Options de partage"
 
+# Field label
+#: S+WiGT
+msgctxt "S+WiGT"
+msgid "Percentage Text"
+msgstr ""
+
 # Text and Images screen group
 #: S/mavZ
 msgctxt "S/mavZ"
@@ -1251,12 +1239,6 @@ msgstr "Questions"
 msgctxt "VspZp9"
 msgid "Upload an image"
 msgstr "Téléverser une image"
-
-# Field label
-#: Vv05Q4
-msgctxt "Vv05Q4"
-msgid "Link to copy"
-msgstr "Lien à copier"
 
 # Field label
 #: W5qWPj
@@ -1485,6 +1467,12 @@ msgstr "Arrière-plan"
 msgctxt "cGItoy"
 msgid "List"
 msgstr "Liste"
+
+# Field label
+#: cNLZOF
+msgctxt "cNLZOF"
+msgid "Align to center"
+msgstr "Aligner au centre"
 
 # Sign placeholder
 #: ceaRdq
@@ -1730,7 +1718,7 @@ msgstr "Photo de profil"
 #: hvxkzE
 msgctxt "hvxkzE"
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 # No value label
 #: i+3ZrF
@@ -1754,7 +1742,7 @@ msgstr "Aucune d’entrée..."
 #: iL9RLu
 msgctxt "iL9RLu"
 msgid "Collaborator"
-msgstr ""
+msgstr "Collaborateur"
 
 # Field label
 #: iipV5Q
@@ -1878,7 +1866,7 @@ msgstr "Précédent"
 #: mlucL+
 msgctxt "mlucL+"
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 # Field label
 #: muPX/j
@@ -2094,7 +2082,7 @@ msgstr "Marqueur"
 #: r+bcpa
 msgctxt "r+bcpa"
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 # Horoscope date
 #: rAkTvt
