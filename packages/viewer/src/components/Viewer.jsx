@@ -1,4 +1,6 @@
-/* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+
+/* eslint-disable jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -613,21 +615,26 @@ const Viewer = ({
                                                             </span>
                                                         </button>
                                                     ) : null}
-
                                                     {viewerScreen}
-
-                                                {current && screenIndex < (screens.length - 1) ? (
-                                                    <button
-                                                        type="button"
-                                                        className={classNames([styles.navButton, styles.next])}
-                                                        onClick={gotoNextScreen}
-                                                    >
-                                                        <FontAwesomeIcon className={styles.arrow} icon={faArrowRight} />
-                                                        <span className="sr-only">
-                                                            <FormattedMessage
-                                                                defaultMessage="Go to next screen"
-                                                                description="Button label"
+                                                    {current && screenIndex < screens.length - 1 ? (
+                                                        <button
+                                                            type="button"
+                                                            className={classNames([
+                                                                styles.navButton,
+                                                                styles.next,
+                                                            ])}
+                                                            onClick={gotoNextScreen}
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                className={styles.arrow}
+                                                                icon={faArrowRight}
                                                             />
+                                                            <span className="sr-only">
+                                                                <FormattedMessage
+                                                                    defaultMessage="Go to next screen"
+                                                                    description="Button label"
+                                                                />
+                                                            </span>
                                                             <span className="sr-only">
                                                                 <FormattedMessage
                                                                     defaultMessage="Go to next screen"
