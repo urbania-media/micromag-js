@@ -15,11 +15,7 @@ import {
     useScreenRenderContext,
     useViewerNavigation,
 } from '@micromag/core/contexts';
-import {
-    useTrackScreenMedia,
-    useLongPress,
-    useMediaThumbnail,
-} from '@micromag/core/hooks';
+import { useTrackScreenMedia, useLongPress, useMediaThumbnail } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -105,7 +101,6 @@ const VideoScreen = ({
         seek,
         play,
         pause,
-        suspended,
         mediaRef: apiMediaRef = null,
     } = apiRef.current || {};
 
@@ -123,6 +118,7 @@ const VideoScreen = ({
     const [duration, setDuration] = useState(null);
     const [playing, setPlaying] = useState(false);
     const [muted, setMuted] = useState(false);
+    const [allowManualPlayOnTap, setAllowManualPlayOnTap] = useState(false);
 
     const onTimeUpdate = useCallback(
         (time) => {
@@ -285,17 +281,40 @@ const VideoScreen = ({
         setReady(true);
     }, [setReady]);
 
+    /**
+     * if video can play, but:
+     * - it's the current screen
+     * - the video doesn't provide visual controls
+     * - the video is set to play automatically
+     * - and it's **not** playing
+     * -> then set up a button that catches a click and plays the video
+     */
+    const onCanPlay = useCallback(() => {
+        if (current && !withControls && autoPlay && !playing) {
+            setAllowManualPlayOnTap(true);
+        }
+    }, [current, withControls, autoPlay, playing, play, allowManualPlayOnTap, setAllowManualPlayOnTap]);
+
+    const onForcePlay = useCallback(
+        (e) => {
+            e.stopPropagation();
+            setAllowManualPlayOnTap(false);
+            play();
+        },
+        [setAllowManualPlayOnTap, play],
+    );
+
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
     const items = [
-        (autoPlay && suspended && !playing && !withControls) ? (
+        allowManualPlayOnTap ? (
             <button
                 key="tap-catcher-button"
                 type="button"
-                onTouchStart={play}
+                onClick={onForcePlay}
                 className={styles.unmuteAndPlayButton}
             />
-        ): null,
+        ) : null,
 
         <ScreenElement
             key="video"
@@ -338,6 +357,7 @@ const VideoScreen = ({
                             className={styles.video}
                             onReady={onVideoReady}
                             onPlay={onPlay}
+                            onCanPlay={onCanPlay}
                             onPause={onPause}
                             onTimeUpdate={onTimeUpdate}
                             onProgressStep={onProgressStep}
@@ -404,7 +424,7 @@ const VideoScreen = ({
                                         onTouchStart={onShowControls}
                                         className={styles.showControlsButton}
                                     />
-                                ): null}
+                                ) : null}
                             </div>
                         ) : null}
                         {hasCallToAction ? (
