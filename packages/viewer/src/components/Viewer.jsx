@@ -607,7 +607,7 @@ const Viewer = ({
 
                                                 {viewerScreen}
 
-                                                {current && screenIndex < screens.length ? (
+                                                {current && screenIndex < (screens.length - 1) ? (
                                                     <button
                                                         type="button"
                                                         className={classNames([styles.navButton, styles.next])}
