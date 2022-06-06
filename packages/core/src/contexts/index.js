@@ -17,3 +17,4 @@ export * from './TrackingContext';
 export * from './UppyContext';
 export * from './UserInteractionContext';
 export * from './ViewerContext';
+export * from './VisitorContext';

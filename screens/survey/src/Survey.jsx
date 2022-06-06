@@ -7,13 +7,14 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
 import {
-    getLargestRemainderRound,
-    getStyleFromColor,
-    isTextFilled,
-} from '@micromag/core/utils';
+    useScreenRenderContext,
+    useScreenSize,
+    useViewer,
+    useVisitor,
+} from '@micromag/core/contexts';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { getLargestRemainderRound, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import { useQuiz, useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -102,11 +103,14 @@ const SurveyScreen = ({
     className,
 }) => {
     const screenId = id || 'screen-id';
+    const visitor = useVisitor();
+    const { id: visitorId = null } = visitor || {};
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, menuOverScreen, resolution } = useScreenSize();
     const { menuSize } = useViewer();
     const { create: submitQuiz } = useQuizCreate({
         screenId,
+        visitorId,
     });
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =

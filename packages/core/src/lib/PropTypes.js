@@ -739,3 +739,8 @@ export const authorElement = PropTypes.shape({
         url: PropTypes.string,
     }),
 });
+
+export const visitor = PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    name: PropTypes.string,
+});
