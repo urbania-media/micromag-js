@@ -161,9 +161,6 @@
     "4kSwvn": {
         "defaultMessage": "Thumbnail"
     },
-    "4y3gAI": {
-        "defaultMessage": "Result percentage text"
-    },
     "507VAi": {
         "defaultMessage": "Description"
     },
@@ -556,6 +553,9 @@
     },
     "RucIeL": {
         "defaultMessage": "Share options"
+    },
+    "S+WiGT": {
+        "defaultMessage": "Percentage Text"
     },
     "S/mavZ": {
         "defaultMessage": "Text and Images"

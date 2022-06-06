@@ -335,12 +335,6 @@ msgctxt "4kSwvn"
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-# Field label
-#: 4y3gAI
-msgctxt "4y3gAI"
-msgid "Result percentage text"
-msgstr "Result percentage text"
-
 # Description placeholder
 #: 507VAi
 msgctxt "507VAi"
@@ -1125,6 +1119,12 @@ msgstr "Controls color"
 msgctxt "RucIeL"
 msgid "Share options"
 msgstr "Share options"
+
+# Field label
+#: S+WiGT
+msgctxt "S+WiGT"
+msgid "Percentage Text"
+msgstr "Percentage Text"
 
 # Text and Images screen group
 #: S/mavZ
