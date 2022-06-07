@@ -31,7 +31,6 @@ function PlaybackControls({ className }) {
         muted = true,
         setPlaying,
         setMuted,
-        controls,
         controlsVisible,
         controlsTheme,
         showControls,
@@ -75,15 +74,15 @@ function PlaybackControls({ className }) {
     });
 
     const { color, progressColor, seekBarOnly } = controlsTheme || {};
-    const finalControlsVisible = controlsVisible || !playing;
 
     return (
         <div className={classNames([
             styles.container,
             {
                 [className]: className !== null,
-                [styles.controlsVisible]: finalControlsVisible,
-                [styles.hasControls]: mediaElement !== null && controls,
+                [styles.hasMedia]: mediaElement !== null,
+                [styles.controlsVisible]: controlsVisible,
+                [styles.playing]: playing,
                 [styles.seekBarOnly]: seekBarOnly
             }
         ])}>

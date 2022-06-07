@@ -3,18 +3,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
+    usePlaybackContext,
     useScreenSize,
     useScreenRenderContext,
     useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
-import { useResizeObserver } from '@micromag/core/hooks';
+import { useResizeObserver, useActivityDetector } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -139,6 +140,50 @@ const ImageScreen = ({
         : `0 ${-finalSpacing / 2}px ${finalSpacing / 2}px`;
 
     const imageMargin = isCard || isCardReverse ? cardImageMargin : finalSpacing / 2;
+
+    const {
+        // setControls,
+        setMedia,
+        showControls,
+        hideControls,
+    } = usePlaybackContext();
+    const mediaRef = useRef(null);
+
+    useEffect(() => {
+        if (!current) {
+            return () => {};
+        }
+        if (mediaRef.current) {
+            hideControls();
+        }
+        return () => {
+        };
+    }, [current, hideControls]);
+
+    useEffect(() => {
+        if (!current) {
+            return () => {};
+        }
+        setMedia(mediaRef.current);
+        return () => {
+            setMedia(null);
+        };
+    }, [current, setMedia]);
+
+    const { ref: activityDetectorRef, detected: activityDetected } = useActivityDetector({
+        disabled: !current || !isView,
+        timeout: 2000,
+    });
+    useEffect(() => {
+        if (!current) {
+            return;
+        }
+        if (activityDetected) {
+            showControls();
+        } else {
+            hideControls();
+        }
+    }, [activityDetected, showControls, hideControls]);
 
     const items = [
         <div
@@ -309,6 +354,7 @@ const ImageScreen = ({
                     [styles.isFullscreen]: isFullscreen,
                 },
             ])}
+            ref={activityDetectorRef}
             data-screen-ready={ready}
         >
             {!isPlaceholder ? (
@@ -319,6 +365,7 @@ const ImageScreen = ({
                     resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>

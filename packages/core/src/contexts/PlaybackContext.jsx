@@ -54,7 +54,7 @@ export const PlaybackProvider = ({
     muted: initialMuted,
     playing: initialPlaying,
     controls: initialControls,
-    controlsVisible: initialControlsVisible,
+    controlsVisible: initialcontrolsVisible,
     controlsTheme: initialControlsTheme,
     children,
 }) => {
@@ -62,7 +62,7 @@ export const PlaybackProvider = ({
     const [playing, setPlaying] = useState(initialPlaying);
     const [media, setMedia] = useState(null);
     const [controls, setControls] = useState(initialControls);
-    const [controlsVisible, setControlsVisible] = useState(initialControlsVisible);
+    const [controlsVisible, setControlsVisible] = useState(initialcontrolsVisible);
     const [controlsTheme, setControlsTheme] = useState(initialControlsTheme);
 
     const finalSetControls = useCallback(

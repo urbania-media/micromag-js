@@ -21,16 +21,7 @@
     width: 40px;
     height: 40px;
     transition: opacity 0.5s ease-out;
-    opacity: 0;
     pointer-events: auto;
-
-    .hasControls & {
-        opacity: 0.5;
-    }
-
-    .controlsVisible & {
-        opacity: 1;
-    }
 }
 
 .playPauseButton {
@@ -38,6 +29,7 @@
     border: 2px solid currentColor;
     border-radius: 50%;
     opacity: 0;
+    pointer-events: none;
 
     .icon {
         display: block;
@@ -46,12 +38,21 @@
         transform: translateX(5%);
     }
 
+    .controlsVisible & {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
     .seekBarOnly & {
         opacity: 0;
+        pointer-events: none;
     }
 }
 
 .muteButton {
+    opacity: 0;
+    pointer-events: none;
+
     .icon {
         display: block;
         width: 70%;
@@ -71,6 +72,11 @@
             background-color: currentColor;
         }
     }
+
+    .hasMedia & {
+        opacity: 1;
+        pointer-events: auto;
+    }
 }
 
 .seekBar {
@@ -85,7 +91,7 @@
         bottom 0.2s ease-in-out,
         padding 0.2s 0.2s ease-in-out;
 
-    .hasControls & {
+    .isMinified & {
         transform: translateY(0);
     }
 

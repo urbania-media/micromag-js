@@ -12,6 +12,7 @@ import {
     subtitle,
     audioMedia,
     videoMedia, // video360Media,
+    bigVideoMediaWithSound,
     markers,
     quote,
     author,
@@ -99,7 +100,8 @@ export const allScreens = [
         layout: 'normal',
         image: videoMedia(),
         background: {
-            color: { alpha: 1, color: '#FF00FF' },
+            color: { alpha: 1, color: '#123b0b' },
+            video: bigVideoMediaWithSound(),
         },
         callToAction: callToAction(),
     },
@@ -235,7 +237,7 @@ export const allScreens = [
         layout: 'middle',
         text: text(),
         background: {
-            color: { alpha: 1, color: '#0000FF' },
+            color: { alpha: 1, color: '#0f00f7' },
         },
         callToAction: callToAction(),
     },

@@ -4,7 +4,7 @@
     "private": true,
     "description": "",
     "scripts": {
-        "storybook": "NODE_TLS_REJECT_UNAUTHORIZED=0 start-storybook --port 58800 --host localhost",
+        "storybook": "NODE_TLS_REJECT_UNAUTHORIZED=0 start-storybook --port 58800",
         "start": "npm run storybook",
         "server": "npm run storybook",
         "intl:tx-config": "./scripts/tx-config.js",

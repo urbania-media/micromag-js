@@ -164,7 +164,7 @@ const Viewer = ({
 
     const withoutScreensTransforms = isStatic || isCapture;
 
-    const { playing, controlsVisible: playbackControlsVisible = false } = usePlaybackContext();
+    const { playing, controlsVisible: playbackcontrolsVisible = false } = usePlaybackContext();
 
     const trackScreenView = useTrackScreenView();
 
@@ -491,7 +491,7 @@ const Viewer = ({
                         : 0
                 }
                 bottomHeight={
-                    (playbackControlsVisible || !playing) && currentScreenInteractionEnabled
+                    (playbackcontrolsVisible || !playing) && currentScreenInteractionEnabled
                         ? playbackControlsContainerHeight / screenScale
                         : 0
                 }
@@ -674,10 +674,7 @@ const Viewer = ({
                                     className={styles.playbackControlsContainer}
                                     style={{ width: screenContainerWidth }}
                                 >
-                                    <PlaybackControls
-                                        visible={playbackControlsVisible}
-                                        className={styles.controls}
-                                    />
+                                    <PlaybackControls className={styles.controls} />
                                 </div>
                             </div>
                         </div>
