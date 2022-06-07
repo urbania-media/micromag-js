@@ -322,7 +322,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        callToAction: callToAction(),
     },
     {
         id: uuid(),

@@ -2,7 +2,7 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
-import React, { useContext, useState, useMemo, useCallback } from 'react';
+import React, { useContext, useState, useMemo, useCallback, useRef, useEffect } from 'react';
 
 const defaultControlsThemeValue = {
     seekBarOnly: false,
@@ -28,10 +28,27 @@ export const PlaybackContext = React.createContext({
     setControlsTheme: () => {},
     showControls: () => {},
     hideControls: () => {},
-    setMediaElement: () => {},
+    setMedia: () => {},
 });
 
 export const usePlaybackContext = () => useContext(PlaybackContext);
+
+export const usePlaybackMediaRef = active => {
+    const { setMedia } = usePlaybackContext();
+    const mediaRef = useRef(null);
+
+    useEffect(() => {
+        if (!active) {
+            return () => {};
+        }
+        setMedia(mediaRef.current);
+        return () => {
+            setMedia(null);
+        };
+    }, [setMedia, active]);
+
+    return mediaRef;
+};
 
 const propTypes = {
     children: PropTypes.node.isRequired,
@@ -54,7 +71,7 @@ export const PlaybackProvider = ({
     muted: initialMuted,
     playing: initialPlaying,
     controls: initialControls,
-    controlsVisible: initialcontrolsVisible,
+    controlsVisible: initialControlsVisible,
     controlsTheme: initialControlsTheme,
     children,
 }) => {
@@ -62,7 +79,7 @@ export const PlaybackProvider = ({
     const [playing, setPlaying] = useState(initialPlaying);
     const [media, setMedia] = useState(null);
     const [controls, setControls] = useState(initialControls);
-    const [controlsVisible, setControlsVisible] = useState(initialcontrolsVisible);
+    const [controlsVisible, setControlsVisible] = useState(initialControlsVisible);
     const [controlsTheme, setControlsTheme] = useState(initialControlsTheme);
 
     const finalSetControls = useCallback(

@@ -24,6 +24,7 @@ const propTypes = {
     resolution: PropTypes.number,
     objectFit: MicromagPropTypes.objectFit,
     playing: PropTypes.bool,
+    muted: PropTypes.bool,
     shouldLoad: PropTypes.bool,
     videoLoop: PropTypes.bool,
     videoInitialMuted: PropTypes.bool,
@@ -40,6 +41,7 @@ const defaultProps = {
     resolution: 1,
     objectFit: null,
     playing: true,
+    muted: true,
     shouldLoad: true,
     videoLoop: true,
     videoInitialMuted: true,
@@ -56,6 +58,7 @@ const Visual = ({
     resolution,
     objectFit,
     playing,
+    muted,
     shouldLoad,
     videoLoop,
     videoInitialMuted,
@@ -136,11 +139,12 @@ const Visual = ({
                             mediaRef={mediaRef}
                             width={objectFit === null ? width : null}
                             height={objectFit === null ? height : null}
-                            autoPlay={playing}
+                            paused={!playing}
+                            muted={muted}
                             loop={videoLoop}
                             shouldLoad={shouldLoad}
-                            initialMuted={videoInitialMuted}
                             onReady={onLoaded}
+                            autoPlay
                         />
                     </div>
                 </div>

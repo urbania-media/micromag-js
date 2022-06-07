@@ -21,6 +21,7 @@ const propTypes = {
         PropTypes.arrayOf(MicromagPropTypes.backgroundElement),
     ]),
     playing: PropTypes.bool,
+    muted: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
     layerClassName: PropTypes.string,
@@ -42,6 +43,7 @@ const defaultProps = {
     resolution: 1,
     background: [],
     playing: false,
+    muted: false,
     children: null,
     className: null,
     layerClassName: null,
@@ -57,6 +59,7 @@ const BackgroundLayers = ({
     resolution,
     background,
     playing,
+    muted,
     children,
     className,
     layerClassName,
@@ -121,6 +124,7 @@ const BackgroundLayers = ({
                                     },
                                 ])}
                                 playing={playing}
+                                muted={muted}
                                 horizontalAlign={horizontalAlign}
                                 verticalAlign={verticalAlign}
                                 loadingMode={loadingMode}

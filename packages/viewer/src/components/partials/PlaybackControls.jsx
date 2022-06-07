@@ -31,6 +31,7 @@ function PlaybackControls({ className }) {
         muted = true,
         setPlaying,
         setMuted,
+        controls,
         controlsVisible,
         controlsTheme,
         showControls,
@@ -57,21 +58,21 @@ function PlaybackControls({ className }) {
 
     const onMute = useCallback(() => {
         setMuted(true);
-        if (!controlsVisible) {
+        if (!controlsVisible && controls) {
             showControls();
         }
     }, [setMuted, controlsVisible, showControls]);
 
     const onUnmute = useCallback(() => {
         setMuted(false);
-        if (!controlsVisible) {
+        if (!controlsVisible && controls) {
             showControls();
         }
     }, [setMuted, controlsVisible, showControls]);
 
     const onSeek = useCallback((time) => {
         mediaElement.currentTime = time;
-    });
+    }, [mediaElement]);
 
     const { color, progressColor, seekBarOnly } = controlsTheme || {};
 
@@ -80,10 +81,10 @@ function PlaybackControls({ className }) {
             styles.container,
             {
                 [className]: className !== null,
-                [styles.hasMedia]: mediaElement !== null,
-                [styles.controlsVisible]: controlsVisible,
-                [styles.playing]: playing,
-                [styles.seekBarOnly]: seekBarOnly
+                [styles.withPlayPause]: controls && !seekBarOnly,
+                [styles.withMute]: mediaElement !== null || controls,
+                [styles.withSeekBar]: controls,
+                [styles.isCollapsed]: controls && !controlsVisible && playing,
             }
         ])}>
             <button

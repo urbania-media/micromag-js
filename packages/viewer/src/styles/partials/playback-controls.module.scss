@@ -38,14 +38,13 @@
         transform: translateX(5%);
     }
 
-    .controlsVisible & {
+    .withPlayPause & {
         opacity: 1;
         pointer-events: auto;
     }
 
-    .seekBarOnly & {
-        opacity: 0;
-        pointer-events: none;
+    .isCollapsed & {
+        opacity: 0.5;
     }
 }
 
@@ -73,7 +72,15 @@
         }
     }
 
-    .hasMedia & {
+    .isCollapsed & {
+        opacity: 0.5;
+
+        &.isMuted {
+            opacity: 1;
+        }
+    }
+
+    .withMute & {
         opacity: 1;
         pointer-events: auto;
     }
@@ -91,11 +98,7 @@
         bottom 0.2s ease-in-out,
         padding 0.2s 0.2s ease-in-out;
 
-    .isMinified & {
-        transform: translateY(0);
-    }
-
-    .controlsVisible & {
+    .withSeekBar & {
         bottom: 50%;
         padding: 0 70px;
         transform: translateY(50%);
@@ -104,5 +107,11 @@
             bottom 0.2s 0.2s ease-in-out,
             padding 0.2s ease-in-out;
         opacity: 1;
+    }
+
+    .isCollapsed & {
+        bottom: 0;
+        padding: 0;
+        transform: translateY(0);
     }
 }

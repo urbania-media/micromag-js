@@ -6,13 +6,14 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
 import {
     usePlaybackContext,
+    usePlaybackMediaRef,
     useScreenSize,
     useScreenRenderContext,
     useViewerNavigation,
@@ -79,7 +80,6 @@ const VideoScreen = ({
     const { bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
-    const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
@@ -100,12 +100,14 @@ const VideoScreen = ({
         muted,
         setControls,
         setControlsTheme,
-        setMedia,
         setPlaying,
         showControls,
         hideControls,
     } = usePlaybackContext();
-    const mediaRef = useRef(null);
+    const mediaRef = usePlaybackMediaRef(current);
+
+    const backgroundPlaying = current && (isView || isEdit);
+    const videoPlaying = current && (isView || isEdit) && playing;
 
     useEffect(() => {
         if (!current) {
@@ -128,15 +130,6 @@ const VideoScreen = ({
         };
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
-    useEffect(() => {
-        if (!current) {
-            return () => {};
-        }
-        setMedia(mediaRef.current);
-        return () => {
-            setMedia(null);
-        };
-    }, [current]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
@@ -314,7 +307,7 @@ const VideoScreen = ({
                     ) : (
                         <Video
                             {...finalVideo}
-                            paused={!current || !playing}
+                            paused={!videoPlaying}
                             muted={muted}
                             mediaRef={mediaRef}
                             className={styles.video}

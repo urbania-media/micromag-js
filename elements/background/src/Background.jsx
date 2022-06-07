@@ -29,6 +29,7 @@ const propTypes = {
     ]),
     className: PropTypes.string,
     playing: PropTypes.bool,
+    muted: PropTypes.bool,
     children: PropTypes.node,
     loadingMode: PropTypes.string,
     shouldLoad: PropTypes.bool,
@@ -47,6 +48,7 @@ const defaultProps = {
     mediaRef: null,
     className: null,
     playing: false,
+    muted: false,
     children: null,
     loadingMode: 'lazy',
     shouldLoad: true,
@@ -65,6 +67,7 @@ const Background = ({
     mediaRef,
     className,
     playing,
+    muted,
     children,
     loadingMode,
     shouldLoad,
@@ -151,10 +154,11 @@ const Background = ({
                         className={styles.video}
                         media={media}
                         mediaRef={mediaRef}
-                        autoPlay={playing}
-                        initialMuted
-                        loop
+                        paused={!playing}
+                        muted={muted}
                         shouldLoad={shouldLoad}
+                        autoPlay
+                        loop
                     />
                 </div>
             ) : null}
