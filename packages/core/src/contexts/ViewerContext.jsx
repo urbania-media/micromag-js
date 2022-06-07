@@ -9,8 +9,8 @@ const defaultValue = {
     menuOverScreen: false,
     topHeight: 0,
     bottomHeight: 0,
-    disableInteraction: null,
-    enableInteraction: null,
+    disableInteraction: () => {},
+    enableInteraction: () => {},
 };
 
 export const ViewerContext = React.createContext(defaultValue);

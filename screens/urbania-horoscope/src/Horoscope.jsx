@@ -185,10 +185,12 @@ const Horoscope = ({
 
     // Create elements
     const items = [
-        <div className={styles.headerContainer}>
+        <div
+            key="title"
+            className={styles.headerContainer}
+        >
             {/* TITLE */}
             <ScreenElement
-                key="title"
                 // emptyLabel={
                 //     <FormattedMessage defaultMessage="Title" description="Title placeholder" />
                 // }
