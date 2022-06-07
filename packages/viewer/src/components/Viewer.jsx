@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 
 /* eslint-disable jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
+import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { useDrag } from '@use-gesture/react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 
@@ -42,7 +42,6 @@ const propTypes = {
     screenState: PropTypes.string,
     deviceScreens: MicromagPropTypes.deviceScreens,
     renderContext: MicromagPropTypes.renderContext,
-    onScreenChange: PropTypes.func,
     tapNextScreenWidthPercent: PropTypes.number,
     neighborScreensActive: PropTypes.number,
     neighborScreensMounted: PropTypes.number,
@@ -60,6 +59,7 @@ const propTypes = {
     onInteraction: PropTypes.func,
     onEnd: PropTypes.func,
     onViewModeChange: PropTypes.func,
+    onScreenChange: PropTypes.func,
     currentScreenMedia: MicromagPropTypes.ref,
     menuIsScreenWidth: PropTypes.bool,
     screensMedias: MicromagPropTypes.ref,
@@ -116,7 +116,6 @@ const Viewer = ({
     screenState,
     deviceScreens,
     renderContext,
-    onScreenChange,
     tapNextScreenWidthPercent,
     neighborScreensActive,
     neighborScreensMounted,
@@ -135,6 +134,7 @@ const Viewer = ({
     onInteraction,
     onEnd,
     onViewModeChange,
+    onScreenChange,
     currentScreenMedia,
     screensMedias,
     screenSizeOptions,
@@ -196,9 +196,9 @@ const Viewer = ({
 
     useEffect(() => {
         if (ready && onViewModeChange !== null) {
-            onViewModeChange({ landscape });
+            onViewModeChange({ landscape, menuOverScreen });
         }
-    }, [ready, landscape, onViewModeChange]);
+    }, [ready, landscape, menuOverScreen, onViewModeChange]);
 
     const screensMediasRef = useRef([]);
 
@@ -213,7 +213,7 @@ const Viewer = ({
     );
 
     if (currentScreenMedia !== null) {
-        currentScreenMedia.current = screensMediasRef.current[screenIndex];
+        currentScreenMedia.current = screensMediasRef.current[screenIndex] || null;
     }
 
     if (screensMedias !== null) {
@@ -270,8 +270,29 @@ const Viewer = ({
         }
     }, [onInteraction, hasInteracted, setHasInteracted]);
 
+    const onScreenNavigate = useCallback(
+        ({ index, newIndex, end, direction }) => {
+            if (end && onEnd !== null) {
+                onEnd();
+            }
+            changeIndex(newIndex);
+            eventsManager.emit('navigate', {
+                newIndex,
+                index,
+                direction,
+                end,
+            });
+            if (end) {
+                eventsManager.emit('navigate_end');
+            } else {
+                eventsManager.emit(`navigate_${direction}`, newIndex);
+            }
+        },
+        [onEnd, changeIndex],
+    );
+
     const {
-        onClick: onScreenClick,
+        interact: interactWithScreen,
         currentScreenInteractionEnabled,
         enableInteraction,
         disableInteraction,
@@ -279,51 +300,64 @@ const Viewer = ({
         screens,
         screenIndex,
         screenWidth: screenContainerWidth,
-        isView,
+        disableCurrentScreenNavigation: !isView,
         clickOnSiblings: landscape && withLandscapeSiblingsScreens,
         nextScreenWidthPercent: tapNextScreenWidthPercent,
-        eventsManager,
-        onClick: onInteractionPrivate,
-        onEnd,
-        onChangeScreen: changeIndex,
+        onInteract: onInteractionPrivate,
+        onNavigate: onScreenNavigate,
     });
 
-    const onDrag = useCallback(({ event, tap }) => {
-        if (tap) {
-            onScreenClick(event, screenIndex);
-        }
-    }, [onScreenClick, screenIndex]);
-    const dragBind = useDrag(onDrag, {
-        filterTaps: true
+    // Handle tap on screens
+    const onDragScreen = useCallback(
+        ({ args: [tapScreenIndex], event, target, currentTarget, tap, xy: [x, y] }) => {
+            if (tap) {
+                interactWithScreen({
+                    event,
+                    target,
+                    currentTarget,
+                    index: tapScreenIndex,
+                    x,
+                    y,
+                });
+            }
+        },
+        [interactWithScreen],
+    );
+    const dragScreenBind = useDrag(onDragScreen, {
+        filterTaps: true,
     });
 
-    const onClickContent = useCallback(
-        (e) => {
-            if (withLandscapeSiblingsScreens || e.target !== contentRef.current) {
+    // Handles tap when landscape (space around current screen)
+    const onDragContent = useCallback(
+        ({ tap, target, currentTarget, xy: [x] }) => {
+            if (!landscape || withLandscapeSiblingsScreens || target !== contentRef.current) {
                 return;
             }
+            if (tap) {
+                const { left: contentX = 0, width: contentWidth = 0 } =
+                    currentTarget.getBoundingClientRect();
+                const hasTappedLeft = x - contentX < contentWidth * 0.5;
+                const nextIndex = hasTappedLeft
+                    ? Math.max(0, screenIndex - 1)
+                    : Math.min(screensCount - 1, screenIndex + 1);
 
-            const { left: contentX = 0, width: contentWidth = 0 } =
-                e.currentTarget.getBoundingClientRect();
-            const tapX = e.clientX;
-            const hasTappedLeft = tapX - contentX < contentWidth * 0.5;
-            const nextIndex = hasTappedLeft
-                ? Math.max(0, screenIndex - 1)
-                : Math.min(screensCount - 1, screenIndex + 1);
-            if (eventsManager !== null) {
-                eventsManager.emit('change_screen', nextIndex);
+                onScreenNavigate({
+                    index: screenIndex,
+                    newIndex: nextIndex,
+                });
             }
-            changeIndex(nextIndex);
         },
-        [
-            withLandscapeSiblingsScreens,
-            screenIndex,
-            tapNextScreenWidthPercent,
-            changeIndex,
-            eventsManager,
-            screensCount,
-        ],
+        [screenIndex, screensCount, landscape, withLandscapeSiblingsScreens],
     );
+    const dragContentBind = useDrag(onDragContent, {
+        filterTaps: true,
+    });
+
+    const onScreenKeyUp = useCallback((e, i) => {
+        if (e.key === 'Enter' && withLandscapeSiblingsScreens && landscape && i !== screenIndex) {
+            changeIndex(i);
+        }
+    }, [withLandscapeSiblingsScreens, changeIndex, landscape, screenIndex]);
 
     // swipe menu open
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
@@ -451,7 +485,11 @@ const Viewer = ({
                 events={eventsManager}
                 menuVisible={menuVisible}
                 menuOverScreen={menuOverScreen}
-                topHeight={menuOverScreen && currentScreenInteractionEnabled ? menuDotsContainerHeight / screenScale : 0}
+                topHeight={
+                    menuOverScreen && currentScreenInteractionEnabled
+                        ? menuDotsContainerHeight / screenScale
+                        : 0
+                }
                 bottomHeight={
                     (playbackControlsVisible || !playing) && currentScreenInteractionEnabled
                         ? playbackControlsContainerHeight / screenScale
@@ -512,14 +550,7 @@ const Viewer = ({
                         />
                     ) : null}
                     {ready || withoutScreensTransforms ? (
-                        <div
-                            ref={contentRef}
-                            className={styles.content}
-                            onClick={onClickContent}
-                            {...dragBind()}
-                            // onPointerDown={detectPointerEvents.hasApi ? onClickContent : null}
-                            // onMouseDown={detectPointerEvents.hasApi ? onClickContent : null}
-                        >
+                        <div ref={contentRef} className={styles.content} {...dragContentBind()}>
                             {mountedScreens.map((scr, mountedIndex) => {
                                 const i = mountedScreenStartIndex + mountedIndex;
                                 const current = i === parseInt(screenIndex, 10);
@@ -534,10 +565,6 @@ const Viewer = ({
                                         index={i}
                                         current={current}
                                         active={active}
-                                        onPrevious={gotoPreviousScreen}
-                                        onNext={gotoNextScreen}
-                                        enableInteraction={enableInteraction}
-                                        disableInteraction={disableInteraction}
                                         mediaRef={(ref) => {
                                             screensMediasRef.current[i] = ref;
                                         }}
@@ -598,24 +625,8 @@ const Viewer = ({
                                                 },
                                                 { index: i + 1 },
                                             )}
-                                            onKeyUp={(e) => {
-                                                if (e.key === 'Enter') {
-                                                    onScreenClick(e, i);
-                                                }
-                                            }}
-                                            // onClick={(e) => onScreenClick(e, i)}
-                                            {...(current ? dragBind() : null)}
-                                            // @todo: this was to make the experience “snappier” when switching screens
-                                            // onPointerDown={
-                                            //     detectPointerEvents.hasApi
-                                            //         ? (e) => onScreenClick(e, i)
-                                            //         : null
-                                            // }
-                                            // onMouseDown={
-                                            //     !detectPointerEvents.hasApi
-                                            //         ? (e) => onScreenClick(e, i)
-                                            //         : null
-                                            // }
+                                            onKeyUp={(e) => onScreenKeyUp(e, i)}
+                                            {...dragScreenBind(i)}
                                         >
                                             <div
                                                 className={styles.scaler}

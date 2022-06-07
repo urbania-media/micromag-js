@@ -1,30 +1,28 @@
 /* eslint-disable react/jsx-props-no-spreading */
-// import {
-//     Scene,
-//     PerspectiveCamera,
-//     SphereBufferGeometry,
-//     VideoTexture,
-//     MeshBasicMaterial,
-//     Mesh,
-//     WebGLRenderer,
-//     MathUtils,
-// } from 'three';
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import 'whatwg-fetch';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewerInteraction } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewerInteraction,
+    useViewerNavigation,
+} from '@micromag/core/contexts';
 import { useAnimationFrame, useTrackScreenEvent } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
-import styles from './styles.module.scss';
+
 import useThree from './useThree';
+
+import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['full']),
@@ -34,8 +32,6 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    onPrevious: PropTypes.func,
-    onNext: PropTypes.func,
     type: PropTypes.string,
     spacing: PropTypes.number,
     className: PropTypes.string,
@@ -49,8 +45,6 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
-    onPrevious: null,
-    onNext: null,
     type: null,
     spacing: 20,
     className: null,
@@ -64,8 +58,6 @@ const Image360Screen = ({
     current,
     active,
     transitions,
-    onPrevious,
-    onNext,
     type,
     spacing,
     className,
@@ -75,6 +67,7 @@ const Image360Screen = ({
 
     const { width, height, landscape, resolution } = useScreenSize();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const { gotoPreviousScreen, gotoNextScreen } = useViewerNavigation();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -302,11 +295,11 @@ const Image360Screen = ({
                         e.clientX - containerX < containerWidth * (1 - tapNextScreenWidthPercent);
 
                     if (hasTappedLeft) {
-                        if (onPrevious !== null) {
-                            onPrevious();
+                        if (gotoPreviousScreen !== null) {
+                            gotoPreviousScreen();
                         }
-                    } else if (onNext !== null) {
-                        onNext();
+                    } else if (gotoNextScreen !== null) {
+                        gotoNextScreen();
                     }
                 }
 
@@ -317,7 +310,7 @@ const Image360Screen = ({
             }
             pointerDown.current = false;
         },
-        [onPrevious, onNext, landscape],
+        [gotoPreviousScreen, gotoNextScreen, landscape],
     );
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;

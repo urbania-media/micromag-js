@@ -1,17 +1,15 @@
 import { useState, useCallback } from 'react';
+
 import checkClickable from '../lib/checkClickable';
 
 function useScreenInteraction({
     screens,
     screenIndex,
-    screenWidth,
-    isView = false,
+    disableCurrentScreenNavigation = false,
     clickOnSiblings = false,
     nextScreenWidthPercent = 0.5,
-    eventsManager = null,
-    onClick = null,
-    onEnd = null,
-    onChangeScreen = null,
+    onInteract = null,
+    onNavigate = null,
 } = {}) {
     const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(
         screens.reduce(
@@ -54,80 +52,63 @@ function useScreenInteraction({
     const enableInteraction = useCallback(() => updateInteraction(true), [updateInteraction]);
     const disableInteraction = useCallback(() => updateInteraction(false), [updateInteraction]);
 
-    const onScreenClick = useCallback(
-        (e, index) => {
-            if (onClick !== null) {
-                onClick(e, index);
+    const interact = useCallback(
+        ({ event, target, currentTarget, x, y, index }) => {
+            if (onInteract !== null) {
+                onInteract({ event, target, currentTarget, index, x, y });
             }
 
             const screensCount = screens.length;
             const tappedCurrent = screenIndex === index;
 
-            if (eventsManager !== null) {
-                eventsManager.emit('tap', e, index);
-            }
-
             if (
-                (!isView && tappedCurrent) ||
-                checkClickable(e.target) ||
+                (disableCurrentScreenNavigation && tappedCurrent) ||
+                checkClickable(target) ||
                 (tappedCurrent && !currentScreenInteractionEnabled)
             ) {
                 return;
             }
 
-            let nextIndex = screenIndex;
+            const { left, width } = currentTarget.getBoundingClientRect();
+            const relativeX = x - left;
+            const direction =
+                relativeX < width * (1 - nextScreenWidthPercent) ? 'previous' : 'next';
 
-            const { left: contentX = 0 } = e.currentTarget.getBoundingClientRect();
-            const tapX = e.clientX;
-            // console.log(e.clientX, contentX, screenWidth);
-            const hasTappedLeft = tappedCurrent
-                ? tapX - contentX < screenWidth * (1 - nextScreenWidthPercent)
-                : screenIndex > index;
+                console.log({ left, x, direction, width})
 
-            if (hasTappedLeft) {
-                nextIndex = clickOnSiblings ? index : Math.max(0, screenIndex - 1);
-                if (eventsManager !== null) {
-                    eventsManager.emit('tap_previous', nextIndex);
-                }
-            } else {
-                nextIndex = clickOnSiblings ? index : Math.min(screensCount - 1, screenIndex + 1);
-
-                const isLastScreen = screenIndex === screensCount - 1;
-                if (isLastScreen && onEnd !== null) {
-                    onEnd();
-                    if (eventsManager !== null) {
-                        eventsManager.emit('tap_end');
-                    }
-                } else if (eventsManager) {
-                    eventsManager.emit('tap_next', nextIndex);
-                }
+            const lastIndex = screensCount - 1;
+            let nextIndex = index;
+            if (direction === 'previous' && !clickOnSiblings) {
+                nextIndex = Math.max(0, screenIndex - 1);
+            } else if (direction === 'next' && !clickOnSiblings) {
+                nextIndex = Math.min(lastIndex, screenIndex + 1);
             }
 
-            if (eventsManager !== null) {
-                eventsManager.emit('change_screen', nextIndex);
+            if (onNavigate !== null) {
+                onNavigate({
+                    index,
+                    newIndex: nextIndex,
+                    direction,
+                    end: index === nextIndex && nextIndex === lastIndex,
+                });
             }
-
-            onChangeScreen(nextIndex);
         },
         [
-            screenWidth,
             screens,
             screenIndex,
-            eventsManager,
-            onClick,
-            onEnd,
-            onChangeScreen,
             screenIndex,
             screensInteractionEnabled,
             currentScreenInteractionEnabled,
             nextScreenWidthPercent,
-            isView,
+            disableCurrentScreenNavigation,
             clickOnSiblings,
+            onInteract,
+            onNavigate,
         ],
     );
 
     return {
-        onClick: onScreenClick,
+        interact,
         currentScreenInteractionEnabled,
         enableInteraction,
         disableInteraction,

@@ -14,6 +14,7 @@ import {
     usePlaybackContext,
     useViewerInteraction,
     useViewerContext,
+    useViewerNavigation,
 } from '@micromag/core/contexts';
 import {
     useAnimationFrame,
@@ -40,8 +41,6 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    onPrevious: PropTypes.func,
-    onNext: PropTypes.func,
     type: PropTypes.string,
     spacing: PropTypes.number,
     mediaRef: PropTypes.func,
@@ -56,8 +55,6 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
-    onPrevious: null,
-    onNext: null,
     type: null,
     spacing: 20,
     mediaRef: null,
@@ -72,8 +69,6 @@ const Video360Screen = ({
     current,
     active,
     transitions,
-    onPrevious,
-    onNext,
     type,
     spacing,
     mediaRef: customMediaRef,
@@ -83,6 +78,7 @@ const Video360Screen = ({
     const trackScreenEvent = useTrackScreenEvent(type);
     const trackScreenMedia = useTrackScreenMedia('video_360');
     const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const { gotoPreviousScreen, gotoNextScreen } = useViewerNavigation();
     const { bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { width, height, landscape, resolution } = useScreenSize();
@@ -133,7 +129,7 @@ const Video360Screen = ({
             if (withControls || withSeekBar) {
                 setControls(false);
             }
-        }
+        };
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
     useEffect(() => {
@@ -451,11 +447,11 @@ const Video360Screen = ({
                         e.clientX - containerX < containerWidth * (1 - tapNextScreenWidthPercent);
 
                     if (hasTappedLeft) {
-                        if (onPrevious !== null) {
-                            onPrevious();
+                        if (gotoPreviousScreen !== null) {
+                            gotoPreviousScreen();
                         }
-                    } else if (onNext !== null) {
-                        onNext();
+                    } else if (gotoNextScreen !== null) {
+                        gotoNextScreen();
                     }
                 }
 
@@ -466,7 +462,7 @@ const Video360Screen = ({
             }
             pointerDown.current = false;
         },
-        [onPrevious, onNext, landscape],
+        [gotoPreviousScreen, gotoNextScreen, landscape],
     );
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
