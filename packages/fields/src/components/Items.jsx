@@ -178,6 +178,7 @@ const ItemsField = ({
             {hasItems ? (
                 <div>
                     <ReactSortable
+                        className="list-group"
                         list={sortableItems}
                         setList={onOrderChange}
                         disabled={finalWithoutSort}
@@ -189,13 +190,11 @@ const ItemsField = ({
                                     <div
                                         className={classNames([
                                             'btn',
-                                            'ps-2',
-                                            'pe-1',
+                                            'px-2',
                                             'border',
                                             'border-dark',
                                             'border-right-0',
                                             'rounded-0',
-                                            'text-dark',
                                             {
                                                 'border-top-0': index > 0,
                                             },
