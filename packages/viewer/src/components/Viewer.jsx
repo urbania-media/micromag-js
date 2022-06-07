@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { useDrag } from '@use-gesture/react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 
@@ -287,6 +288,15 @@ const Viewer = ({
         onChangeScreen: changeIndex,
     });
 
+    const onDrag = useCallback(({ event, tap }) => {
+        if (tap) {
+            onScreenClick(event, screenIndex);
+        }
+    }, [onScreenClick, screenIndex]);
+    const dragBind = useDrag(onDrag, {
+        filterTaps: true
+    });
+
     const onClickContent = useCallback(
         (e) => {
             if (withLandscapeSiblingsScreens || e.target !== contentRef.current) {
@@ -506,6 +516,7 @@ const Viewer = ({
                             ref={contentRef}
                             className={styles.content}
                             onClick={onClickContent}
+                            {...dragBind()}
                             // onPointerDown={detectPointerEvents.hasApi ? onClickContent : null}
                             // onMouseDown={detectPointerEvents.hasApi ? onClickContent : null}
                         >
@@ -592,7 +603,8 @@ const Viewer = ({
                                                     onScreenClick(e, i);
                                                 }
                                             }}
-                                            onClick={(e) => onScreenClick(e, i)}
+                                            // onClick={(e) => onScreenClick(e, i)}
+                                            {...(current ? dragBind() : null)}
                                             // @todo: this was to make the experience “snappier” when switching screens
                                             // onPointerDown={
                                             //     detectPointerEvents.hasApi
