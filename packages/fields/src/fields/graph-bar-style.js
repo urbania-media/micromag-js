@@ -22,7 +22,7 @@ export default {
         },
         {
             name: 'percentageTextStyle',
-            type: 'text-style',
+            type: 'text-style-form',
             label: defineMessage({
                 defaultMessage: 'Percentage Text',
                 description: 'Field label',

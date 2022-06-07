@@ -33,6 +33,7 @@ export { default as fontSize } from './font-size';
 export { default as fontWeight } from './font-weight';
 export { default as geoPosition } from './geo-position';
 export { default as graphBarStyle } from './graph-bar-style';
+export { default as graphBarStyleForm } from './graph-bar-style-form';
 export { default as headingElement } from './heading-element';
 export { default as imageWithCaption } from './image-with-caption';
 export { default as image } from './image';

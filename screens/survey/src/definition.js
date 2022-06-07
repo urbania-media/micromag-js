@@ -52,24 +52,6 @@ export default {
             }),
         },
         {
-            name: 'withoutPercentage',
-            type: 'toggle',
-            defaultValue: false,
-            label: defineMessage({
-                defaultMessage: 'Without percentage',
-                description: 'Field label',
-            }),
-        },
-        {
-            name: 'withoutBar',
-            type: 'toggle',
-            defaultValue: false,
-            label: defineMessage({
-                defaultMessage: 'Without bar',
-                description: 'Field label',
-            }),
-        },
-        {
             type: 'fields',
             isList: true,
             label: defineMessage({
@@ -77,6 +59,24 @@ export default {
                 description: 'Field section label',
             }),
             fields: [
+                {
+                    name: 'withoutPercentage',
+                    type: 'toggle',
+                    defaultValue: false,
+                    label: defineMessage({
+                        defaultMessage: 'Without percentage',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'withoutBar',
+                    type: 'toggle',
+                    defaultValue: false,
+                    label: defineMessage({
+                        defaultMessage: 'Without bar',
+                        description: 'Field label',
+                    }),
+                },
                 {
                     name: 'buttonsStyle',
                     type: 'box-style-form',
@@ -95,7 +95,7 @@ export default {
                 },
                 {
                     name: 'resultsStyle',
-                    type: 'field-with-form',
+                    type: 'graph-bar-style-form',
                     label: defineMessage({
                         defaultMessage: 'Results',
                         description: 'Field label',
@@ -104,13 +104,9 @@ export default {
                         defaultMessage: 'Edit style...',
                         description: 'No value field label',
                     }),
-                    field: {
-                        type: 'graph-bar-style',
-                    },
                 },
             ],
         },
-
         {
             name: 'background',
             type: 'background',
