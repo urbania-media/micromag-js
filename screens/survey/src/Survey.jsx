@@ -252,7 +252,7 @@ const SurveyScreen = ({
     const {
         barColor: resultsBarColor = null,
         textColor: resultsTextColor = null,
-        percentageTextColor = null
+        percentageTextStyle: resultsPercentageTextStyle = null,
     } = resultsStyle || {};
 
     items.push(
@@ -270,6 +270,7 @@ const SurveyScreen = ({
                         const {
                             barColor: answerResultBarColor = null,
                             textColor: answerResultTextColor,
+                            percentageTextStyle: answerResultPercentageTextStyle = null,
                         } = answerResultStyle || {};
                         const { body = null } = label || {};
                         const { percent = 0 } =
@@ -371,8 +372,9 @@ const SurveyScreen = ({
                                                                             ...textStyle,
                                                                             ...buttonsTextStyle,
                                                                             ...resultsTextColor,
+                                                                            ...resultsPercentageTextStyle,
                                                                             ...answerResultTextColor,
-                                                                            ...percentageTextColor,
+                                                                            ...answerResultPercentageTextStyle,
                                                                         }}
                                                                         inline
                                                                         className={
