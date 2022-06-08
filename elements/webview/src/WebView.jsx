@@ -2,8 +2,10 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '@micromag/element-button';
+
 import { Close } from '@micromag/core/components';
+import Button from '@micromag/element-button';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -52,7 +54,12 @@ function WebView({ iframeRef, url, width, height, closeable, onClose, hidden, cl
                     </Button>
                 </div>
             ) : null}
-            <iframe className={styles.iframe} ref={iframeRef} title="Popup" src={url} />
+            <iframe
+                className={styles.iframe}
+                ref={iframeRef}
+                title="Popup"
+                src={url || 'about:blank'}
+            />
         </div>
     );
 }

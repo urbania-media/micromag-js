@@ -74,8 +74,6 @@ function useScreenInteraction({
             const direction =
                 relativeX < width * (1 - nextScreenWidthPercent) ? 'previous' : 'next';
 
-                console.log({ left, x, direction, width})
-
             const lastIndex = screensCount - 1;
             let nextIndex = index;
             if (direction === 'previous' && !clickOnSiblings) {

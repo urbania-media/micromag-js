@@ -6,7 +6,10 @@
     position: relative;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
+
+    &.isCollapsed {
+        height: 0;
+    }
 }
 
 .playPauseButton,
@@ -18,10 +21,16 @@
     z-index: 2;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
     transition: opacity 0.5s ease-out;
     pointer-events: auto;
+
+    .isCollapsed & {
+        position: absolute;
+        bottom: 0;
+    }
 }
 
 .playPauseButton {
@@ -38,12 +47,16 @@
         transform: translateX(5%);
     }
 
+    .isCollapsed & {
+        left: 0;
+    }
+
     .withPlayPause & {
         opacity: 1;
         pointer-events: auto;
     }
 
-    .isCollapsed & {
+    .withPlayPause.isCollapsed & {
         opacity: 0.5;
     }
 }
@@ -73,16 +86,20 @@
     }
 
     .isCollapsed & {
-        opacity: 0.5;
-
-        &.isMuted {
-            opacity: 1;
-        }
+        right: 0;
     }
 
     .withMute & {
         opacity: 1;
         pointer-events: auto;
+    }
+
+    .withMute.isCollapsed & {
+        opacity: 0.5;
+
+        &.isMuted {
+            opacity: 1;
+        }
     }
 }
 
@@ -93,18 +110,13 @@
     left: 0;
     width: 100%;
     transform: translateY(100%);
-    transition:
-        transform 0.2s ease-in-out,
-        bottom 0.2s ease-in-out,
-        padding 0.2s 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, bottom 0.2s ease-in-out, padding 0.2s 0.2s ease-in-out;
 
     .withSeekBar & {
         bottom: 50%;
         padding: 0 70px;
         transform: translateY(50%);
-        transition:
-            transform 0.2s ease-in-out,
-            bottom 0.2s 0.2s ease-in-out,
+        transition: transform 0.2s ease-in-out, bottom 0.2s 0.2s ease-in-out,
             padding 0.2s ease-in-out;
         opacity: 1;
     }
@@ -112,6 +124,9 @@
     .isCollapsed & {
         bottom: 0;
         padding: 0;
+    }
+
+    .isCollapsed.withSeekBar & {
         transform: translateY(0);
     }
 }

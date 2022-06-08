@@ -20,8 +20,7 @@ const defaultValue = {
 export const ViewerContext = React.createContext({
     ...defaultValue,
     webView: null,
-    openWebView: () => {},
-    closeWebView: () => {},
+    setWebView: () => {},
 });
 
 export const useViewerContext = () => useContext(ViewerContext);

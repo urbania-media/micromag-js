@@ -29,6 +29,7 @@ import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
 import HandTap from './partials/HandTap';
 import PlaybackControls from './partials/PlaybackControls';
+import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
 
@@ -681,6 +682,12 @@ const Viewer = ({
                             </div>
                         </div>
                     ) : null}
+                    <WebView
+                        className={styles.webView}
+                        style={{
+                            maxWidth: Math.max(screenContainerWidth, 600),
+                        }}
+                    />
                 </div>
             </ViewerProvider>
         </ScreenSizeProvider>

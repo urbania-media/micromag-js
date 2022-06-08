@@ -22,6 +22,14 @@
         height: 50px;
     }
 
+    .callToAction {
+        transition: opacity 0.2 ease-out;
+
+        &.disabled {
+            opacity: 0;
+        }
+    }
+
     .textCard {
         display: flex;
         flex-direction: column;

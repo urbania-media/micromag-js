@@ -84,7 +84,7 @@ function PlaybackControls({ className }) {
                 [styles.withPlayPause]: controls && !seekBarOnly,
                 [styles.withMute]: mediaElement !== null || controls,
                 [styles.withSeekBar]: controls,
-                [styles.isCollapsed]: controls && !controlsVisible && playing,
+                [styles.isCollapsed]: (controls && !controlsVisible && playing) || (!controls && mediaElement !== null),
             }
         ])}>
             <button

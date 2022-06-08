@@ -327,6 +327,12 @@ const Recommendation = ({
         !isPlaceholder ? <Spacer key="spacer-cta-bottom" /> : null,
         !isPlaceholder && hasCallToAction ? (
             <div
+                className={classNames([
+                    styles.callToAction,
+                    {
+                        [styles.disabled]: !scrolledBottom,
+                    },
+                ])}
                 style={{
                     paddingTop: spacing,
                     paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
