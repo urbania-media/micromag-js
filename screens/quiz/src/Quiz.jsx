@@ -8,13 +8,16 @@ import {
     useScreenRenderContext,
     useScreenSize,
     useViewerContext,
-    useViewerInteraction,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+    useViewerWebView,
 } from '@micromag/core/contexts';
-import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Scroll from '@micromag/element-scroll';
 
 import Question from './Question';
 
@@ -91,10 +94,16 @@ const QuizScreen = ({
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
@@ -102,14 +111,8 @@ const QuizScreen = ({
     const mediaShouldLoad = current || active;
 
     // Call to Action
-
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
-
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
+    const { active: hasCallToAction = false } = callToAction || {};
+    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const showInstantAnswer = isStatic || isCapture;
     const goodAnswerIndex =
@@ -153,6 +156,26 @@ const QuizScreen = ({
         }
     }, [userAnswerIndex, answers, submitQuiz]);
 
+    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
+    const [scrolledBottom, setScrolledBottom] = useState(false);
+
+    const onScrolledBottom = useCallback(
+        ({ initial }) => {
+            if (initial) {
+                trackScreenEvent('scroll', 'Screen');
+            }
+            setScrolledBottom(true);
+        },
+        [trackScreenEvent],
+    );
+
+    const onScrolledNotBottom = useCallback(() => {
+        setScrolledBottom(false);
+    }, [setScrolledBottom]);
+
+    const isSplitted = layout === 'split';
+    const verticalAlign = isSplitted ? null : layout;
+
     return (
         <div
             className={classNames([
@@ -170,52 +193,75 @@ const QuizScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
-                <Question
-                    question={question}
-                    answers={answers}
-                    result={result}
-                    answeredIndex={userAnswerIndex}
-                    buttonsStyle={buttonsStyle}
-                    buttonsTextStyle={buttonsTextStyle}
-                    goodAnswerColor={goodAnswerColor}
-                    badAnswerColor={badAnswerColor}
-                    withoutTrueFalse={withoutTrueFalse}
-                    focusable={current && isView}
-                    showInstantAnswer={showInstantAnswer}
-                    withResult
-                    layout={layout}
-                    callToActionHeight={callToActionHeight}
-                    transitions={transitions}
-                    transitionPlaying={transitionPlaying}
-                    transitionStagger={transitionStagger}
-                    transitionDisabled={transitionDisabled}
-                    onAnswerClick={onAnswerClick}
-                    className={styles.question}
-                    style={
-                        !isPlaceholder
-                            ? {
-                                  padding: spacing,
-                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
-                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
-                              }
-                            : null
-                    }
-                />
-                {!isPlaceholder && hasCallToAction ? (
-                    <CallToAction
-                        ref={callToActionRef}
-                        className={styles.callToAction}
-                        callToAction={callToAction}
-                        animationDisabled={isPreview}
+                <Scroll
+                    verticalAlign={verticalAlign}
+                    disabled={scrollingDisabled}
+                    onScrolledBottom={onScrolledBottom}
+                    onScrolledNotBottom={onScrolledNotBottom}
+                >
+                    <Question
+                        question={question}
+                        answers={answers}
+                        result={result}
+                        answeredIndex={userAnswerIndex}
+                        buttonsStyle={buttonsStyle}
+                        buttonsTextStyle={buttonsTextStyle}
+                        goodAnswerColor={goodAnswerColor}
+                        badAnswerColor={badAnswerColor}
+                        withoutTrueFalse={withoutTrueFalse}
                         focusable={current && isView}
-                        screenSize={{ width, height }}
-                        enableInteraction={enableInteraction}
-                        disableInteraction={disableInteraction}
+                        showInstantAnswer={showInstantAnswer}
+                        withResult
+                        layout={layout}
+                        transitions={transitions}
+                        transitionPlaying={transitionPlaying}
+                        transitionStagger={transitionStagger}
+                        transitionDisabled={transitionDisabled}
+                        onAnswerClick={onAnswerClick}
+                        className={styles.question}
+                        style={
+                            !isPlaceholder
+                                ? {
+                                      padding: spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingBottom:
+                                          (!isPreview ? viewerBottomHeight : 0) +
+                                          (callToActionHeight || spacing),
+                                  }
+                                : null
+                        }
                     />
+                </Scroll>
+                {!isPlaceholder && hasCallToAction ? (
+                    <div
+                        ref={callToActionRef}
+                        className={classNames([
+                            styles.callToAction,
+                            {
+                                [styles.disabled]: !scrolledBottom,
+                            },
+                        ])}
+                        style={{
+                            transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                            paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingTop: spacing / 2,
+                            paddingBottom: spacing / 2,
+                        }}
+                    >
+                        <CallToAction
+                            {...callToAction}
+                            animationDisabled={isPreview}
+                            focusable={current && isView}
+                            openWebView={openWebView}
+                        />
+                    </div>
                 ) : null}
             </Container>
         </div>

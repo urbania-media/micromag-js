@@ -10,7 +10,9 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useViewerContext,
-    useViewerInteraction,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { isTextFilled, getStyleFromBox } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
@@ -84,11 +86,16 @@ const TitleScreen = ({
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
-
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const hasTitle = isTextFilled(title);
     const hasSubtitle = isTextFilled(subtitle);
@@ -183,7 +190,9 @@ const TitleScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={backgroundShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -298,14 +307,19 @@ const TitleScreen = ({
                     ) : null}
 
                     {!isPlaceholder && hasCallToAction ? (
-                        <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
+                        <div
+                            key="call-to-action"
+                            style={{
+                                paddingTop: spacing,
+                                paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
+                                paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
+                            }}
+                        >
                             <CallToAction
-                                callToAction={callToAction}
+                                {...callToAction}
                                 animationDisabled={isPreview}
                                 focusable={current && isView}
-                                screenSize={{ width, height }}
-                                enableInteraction={enableInteraction}
-                                disableInteraction={disableInteraction}
+                                openWebView={openWebView}
                             />
                         </div>
                     ) : null}

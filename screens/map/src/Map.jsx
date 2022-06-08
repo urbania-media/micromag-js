@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderMap, Transitions, ScreenElement, Button } from '@micromag/core/components';
 import {
@@ -10,8 +11,10 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useScreenState,
+    usePlaybackContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import { Background } from '@micromag/element-background';
 import ButtonElement from '@micromag/element-button';
@@ -21,6 +24,7 @@ import ImageElement from '@micromag/element-image';
 import Map from '@micromag/element-map';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
+
 import styles from './styles.module.scss';
 
 const defaultCenter = {
@@ -104,6 +108,8 @@ function MapScreen({
     const lastRenderedMarker = useRef(null);
 
     const { width, height, resolution } = useScreenSize();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const { color: backgroundColor } = background || {};
     const markerOverlayContentStyle = getStyleFromColor(backgroundColor);
@@ -206,11 +212,8 @@ function MapScreen({
         [trackScreenEvent, markers, selectedMarkerIndex],
     );
 
-    const {
-        ref: markerOverContentInnerRef,
-        entry: { contentRect: markerOverContentInnerRect },
-    } = useResizeObserver({ disabled: !isView });
-    const { width: markerOverContentInnerWidth = '100%' } = markerOverContentInnerRect || {};
+    const { ref: markerOverContentInnerRef, width: markerOverContentInnerWidth = '100%' } =
+        useDimensionObserver({ disabled: !isView });
 
     const [markerImagesLoaded, setMarkerImagesLoaded] = useState(0);
     const allMarkersImagesLoaded = markerImagesLoaded === (markers || []).length;
@@ -341,7 +344,9 @@ function MapScreen({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={backgroundShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>

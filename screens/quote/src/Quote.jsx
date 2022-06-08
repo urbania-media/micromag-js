@@ -10,7 +10,9 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useViewerContext,
-    useViewerInteraction,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
@@ -64,11 +66,16 @@ const QuoteScreen = ({
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
-
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const hasQuote = isTextFilled(quote);
     const hasAuthor = isTextFilled(author);
@@ -84,7 +91,7 @@ const QuoteScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const { active: hasCallToAction = false } = callToAction || {};
 
     const items = [
         !isPlaceholder && hasCallToAction && isMiddleLayout ? (
@@ -120,14 +127,19 @@ const QuoteScreen = ({
             <Spacer key="spacer-cta-bottom" />
         ) : null,
         !isPlaceholder && hasCallToAction ? (
-            <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
+            <div
+                style={{
+                    paddingTop: spacing,
+                    paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
+                    paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
+                }}
+                key="call-to-action"
+            >
                 <CallToAction
-                    callToAction={callToAction}
+                    {...callToAction}
                     animationDisabled={isPreview}
                     focusable={current && isView}
-                    screenSize={{ width, height }}
-                    enableInteraction={enableInteraction}
-                    disableInteraction={disableInteraction}
+                    openWebView={openWebView}
                 />
             </div>
         ) : null,
@@ -151,7 +163,9 @@ const QuoteScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>

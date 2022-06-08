@@ -62,6 +62,7 @@
         "@micromag/core": "^0.3.135",
         "@micromag/element-scroll": "^0.3.135",
         "@micromag/element-share-options": "^0.3.135",
+        "@micromag/element-webview": "^0.3.135",
         "@micromag/elements": "^0.3.136",
         "@micromag/fields": "^0.3.135",
         "@micromag/intl": "^0.3.135",

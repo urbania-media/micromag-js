@@ -5,7 +5,9 @@ import { useScroll } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
-import { useResizeObserver } from '@micromag/core/hooks';
+
+import { useDimensionObserver } from '@micromag/core/hooks';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -53,21 +55,13 @@ function Scroll({
 
     const [withArrow, setWithArrow] = useState(false);
 
-    const {
-        ref: scrollableRef,
-        entry: { contentRect: scrollableRect },
-    } = useResizeObserver();
-    const { height: scrollableHeight } = scrollableRect || {};
+    const { ref: scrollableRef, height: scrollableHeight } = useDimensionObserver();
 
     if (scrollContainerRef !== null) {
         scrollContainerRef.current = scrollableRef.current; // eslint-disable-line
     }
 
-    const {
-        ref: scrolleeRef,
-        entry: { contentRect: scrolleeRect },
-    } = useResizeObserver();
-    const { height: scrolleeHeight } = scrolleeRect || {};
+    const { ref: scrolleeRef, height: scrolleeHeight } = useDimensionObserver();
 
     const scrolledBottomOnce = useRef(false);
     const scrolledNotBottomOnce = useRef(false);

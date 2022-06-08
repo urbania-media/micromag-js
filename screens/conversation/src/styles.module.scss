@@ -25,10 +25,21 @@
     }
 
     .callToAction {
+        transition: opacity 0.2s ease-out;
+
         a {
             padding: 0;
         }
+
+        &.disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
     }
+}
+
+.layout {
+    transition: padding 0.2s ease-out;
 }
 
 .messageContainer {
@@ -65,6 +76,14 @@
 
         &.last {
             margin: 1px 0 16px;
+        }
+    }
+
+    &:last-child {
+        .message {
+            &.last {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -169,6 +188,7 @@
             transform: translateY(-2px);
             opacity: 0.5;
         }
+
         100% {
             transform: translateY(2px);
             opacity: 1;

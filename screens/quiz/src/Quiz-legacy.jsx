@@ -12,7 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext, useScreenSize, useViewerContext } from '@micromag/core/contexts';
-import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { getStyleFromBox, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
@@ -130,12 +130,7 @@ const QuizScreen = ({
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
+    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const { create: submitQuiz } = useQuizCreate({
         screenId,
@@ -182,23 +177,9 @@ const QuizScreen = ({
     // we get .answer's current and future height to animate its height
     // we also get the right answer's Y to animate its position
 
-    const {
-        ref: answerRef,
-        entry: { contentRect: answerContentRect },
-    } = useResizeObserver();
-    const { height: answerHeight } = answerContentRect || {};
-
-    const {
-        ref: rightAnswerRef,
-        entry: { contentRect: rightAnswerContentRect },
-    } = useResizeObserver();
-    const { height: rightAnswerHeight } = rightAnswerContentRect || {};
-
-    const {
-        ref: resultRef,
-        entry: { contentRect: resultContentRect },
-    } = useResizeObserver();
-    const { height: resultHeight } = resultContentRect || {};
+    const { ref: answerRef, height: answerHeight } = useDimensionObserver();
+    const { ref: rightAnswerRef, height: rightAnswerHeight } = useDimensionObserver();
+    const { ref: resultRef, height: resultHeight } = useDimensionObserver();
 
     const [rightAnswerTop, setRightAnswerTop] = useState(0);
 

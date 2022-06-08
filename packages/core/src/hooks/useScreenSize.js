@@ -1,7 +1,7 @@
 import { match as matchMediaQuery } from 'css-mediaquery';
 import { useEffect, useMemo, useState } from 'react';
 
-import { useResizeObserver } from './useObserver';
+import { useDimensionObserver } from './useObserver';
 
 const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
 
@@ -47,9 +47,9 @@ const useScreenSize = ({
 export const useScreenSizeFromElement = ({ width = null, height = null, ...opts } = {}) => {
     const {
         ref,
-        entry: { contentRect },
-    } = useResizeObserver();
-    const { width: calculatedWidth = 0, height: calculatedHeight = 0 } = contentRect || {};
+        width: calculatedWidth = 0,
+        height: calculatedHeight = 0,
+    } = useDimensionObserver();
     const fullWidth = width !== null ? width : calculatedWidth;
     const fullHeight = height !== null ? height : calculatedHeight;
 

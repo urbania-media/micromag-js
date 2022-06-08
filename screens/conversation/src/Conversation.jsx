@@ -11,9 +11,11 @@ import {
     useScreenRenderContext,
     useScreenSize,
     useViewerContext,
-    useViewerInteraction,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -72,9 +74,15 @@ const ConversationScreen = ({
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
     const trackScreenEvent = useTrackScreenEvent(type);
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -91,9 +99,8 @@ const ConversationScreen = ({
 
     const {
         ref: contentRef,
-        entry: { contentRect: scrollContentRect },
-    } = useResizeObserver();
-    const { height: scrollHeight } = scrollContentRect || {};
+        height: scrollHeight
+    } = useDimensionObserver();
 
     const scrollRef = useRef(null);
     useEffect(() => {
@@ -140,14 +147,10 @@ const ConversationScreen = ({
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     // CTA
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const { active: hasCallToAction = false } = callToAction || {};
     const [scrolledBottom, setScrolledBottom] = useState(false);
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
-    const viewCTA = (animationFinished && !isPlaceholder && hasCallToAction) || !withAnimation;
+    const showCallToAction =
+        (animationFinished && !isPlaceholder && hasCallToAction) || !withAnimation;
     const onScrolledBottom = useCallback(
         ({ initial }) => {
             if (initial) {
@@ -179,7 +182,9 @@ const ConversationScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
 
@@ -198,7 +203,8 @@ const ConversationScreen = ({
                                     ? {
                                           padding: spacing,
                                           paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
-                                          paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
+                                          paddingBottom:
+                                              (!isPreview ? viewerBottomHeight : 0) + spacing,
                                       }
                                     : null
                             }
@@ -273,18 +279,31 @@ const ConversationScreen = ({
                                             );
                                         })}
                                     </div>
-                                    {viewCTA ? (
-                                        <div style={{ minHeight: callToActionHeight }}>
+                                    {showCallToAction ? (
+                                        <div
+                                            className={classNames([
+                                                styles.callToAction,
+                                                {
+                                                    [styles.disabled]: !scrolledBottom,
+                                                },
+                                            ])}
+                                            style={{
+                                                paddingLeft: Math.max(
+                                                    viewerBottomSidesWidth - spacing,
+                                                    0,
+                                                ),
+                                                paddingRight: Math.max(
+                                                    viewerBottomSidesWidth - spacing,
+                                                    0,
+                                                ),
+                                                paddingTop: spacing,
+                                            }}
+                                        >
                                             <CallToAction
-                                                ref={callToActionRef}
-                                                className={styles.callToAction}
-                                                disabled={!scrolledBottom}
+                                                {...callToAction}
                                                 animationDisabled={isPreview}
-                                                callToAction={callToAction}
                                                 focusable={current && isView}
-                                                screenSize={{ width, height }}
-                                                enableInteraction={enableInteraction}
-                                                disableInteraction={disableInteraction}
+                                                openWebView={openWebView}
                                             />
                                         </div>
                                     ) : null}

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
@@ -11,10 +12,13 @@ import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
+
 import SignModal from './SignModal';
 import Close from './icons/Close';
-import horoscopeBackground from './images/horoscope-background.png';
+
 import styles from './signs-grid.module.scss';
+
+import horoscopeBackground from './images/horoscope-background.png';
 
 const defaultBackground = {
     image: {
@@ -46,6 +50,14 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitionDisabled: PropTypes.bool,
+    mediaRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            // eslint-disable-next-line react/forbid-prop-types
+            current: PropTypes.any,
+        }),
+    ]),
+    muted: PropTypes.bool,
     onClickSign: PropTypes.func,
     onClickClose: PropTypes.func,
     className: PropTypes.string,
@@ -62,6 +74,8 @@ const defaultProps = {
     current: true,
     active: true,
     transitionDisabled: false,
+    muted: false,
+    mediaRef: null,
     onClickSign: null,
     onClickClose: null,
     className: null,
@@ -78,6 +92,8 @@ const SignsGrid = ({
     current,
     active,
     transitionDisabled,
+    muted,
+    mediaRef,
     onClickSign,
     onClickClose,
     className,
@@ -101,6 +117,8 @@ const SignsGrid = ({
                     fit="cover"
                     playing={backgroundPlaying}
                     shouldLoad={mediaShouldLoad}
+                    muted={muted}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>

@@ -1,19 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useEffect, useCallback, useMemo } from 'react';
-import { useIntl } from 'react-intl';
-import isString from 'lodash/isString';
 import { useGesture } from '@use-gesture/react';
+import classNames from 'classnames';
+import isString from 'lodash/isString';
+import PropTypes from 'prop-types';
+import React, { useEffect, useCallback, useMemo, useRef } from 'react';
+import { useIntl } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver } from '@micromag/core/hooks';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { getContrastingColor } from '@micromag/core/utils';
 
 import styles from '../../styles/partials/seek-bar.module.scss';
 
 const propTypes = {
+    media: PropTypes.node,
     currentTime: PropTypes.number,
     duration: PropTypes.number,
     playing: PropTypes.bool,
@@ -26,6 +28,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    media: null,
     currentTime: null,
     duration: null,
     playing: false,
@@ -38,6 +41,7 @@ const defaultProps = {
 };
 
 const SeekBar = ({
+    media,
     currentTime,
     duration,
     playing,
@@ -49,7 +53,9 @@ const SeekBar = ({
     withSeekHead,
 }) => {
     const intl = useIntl();
-    const fullColor = isString(backgroundColor) ? { color: backgroundColor, alpha: 1 } : backgroundColor;
+    const fullColor = isString(backgroundColor)
+        ? { color: backgroundColor, alpha: 1 }
+        : backgroundColor;
     const { color: finalBackgroundColor = 'white' } = fullColor || {};
     const fullProgressColor = isString(progressColor) ? { progressColor, alpha: 1 } : progressColor;
     const alternateColor = useMemo(
@@ -65,11 +71,11 @@ const SeekBar = ({
         },
     }));
 
-    const {
-        ref: elRef,
-        entry: { contentRect: elContentRect },
-    } = useResizeObserver();
-    const { width: elWidth = null } = elContentRect || {};
+    const lastMediaRef = useRef(media);
+    const mediaChanged = lastMediaRef.current !== media;
+    lastMediaRef.current = media;
+
+    const { ref: elRef, width: elWidth = null } = useDimensionObserver();
 
     useEffect(() => {
         if (currentTime === null || duration === null) {
@@ -78,7 +84,7 @@ const SeekBar = ({
         const progress = duration > 0 ? currentTime / duration : 0;
         setSpringProps.start({
             reset: true,
-            // immediate: !playing,
+            immediate: !playing || mediaChanged,
             from: {
                 x: progress,
             },
@@ -89,7 +95,7 @@ const SeekBar = ({
                 duration: (duration - currentTime) * 1000,
             },
         });
-    }, [playing, duration, currentTime, setSpringProps]);
+    }, [playing, duration, currentTime, mediaChanged, setSpringProps]);
 
     // User events
     const seekFromX = useCallback(
@@ -134,7 +140,10 @@ const SeekBar = ({
             ])}
         >
             <div className={styles.inner}>
-                <div className={styles.progressBar} style={{ backgroundColor: finalBackgroundColor }}>
+                <div
+                    className={styles.progressBar}
+                    style={{ backgroundColor: finalBackgroundColor }}
+                >
                     <animated.div
                         className={styles.playHead}
                         style={{

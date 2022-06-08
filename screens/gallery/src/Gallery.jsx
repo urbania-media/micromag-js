@@ -11,9 +11,11 @@ import {
     useScreenRenderContext,
     useScreenSize,
     useViewerContext,
-    useViewerInteraction,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useResizeObserver } from '@micromag/core/hooks';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -93,8 +95,14 @@ const GalleryScreen = ({
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -126,10 +134,9 @@ const GalleryScreen = ({
 
     const {
         ref: contentRef,
-        entry: { contentRect },
-    } = useResizeObserver();
-
-    const { width: contentWidth = null, height: contentHeight = null } = contentRect || {};
+        width: contentWidth = null,
+        height: contentHeight = null,
+    } = useDimensionObserver();
 
     useEffect(() => {
         if (imagesEl.current.length) {
@@ -147,15 +154,10 @@ const GalleryScreen = ({
     }, [contentWidth, contentHeight, layout, setImagesSizes]);
 
     // Call to Action
+    const { active: hasCallToAction = false } = callToAction || {};
+    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
-
+    // items
     const items = [...Array(gridSpaces)].map((item, itemI) => {
         const image = images !== null ? images[itemI] : null;
         const imageSize = imagesSizes[itemI] || {};
@@ -260,7 +262,9 @@ const GalleryScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -269,23 +273,31 @@ const GalleryScreen = ({
                     style={{
                         paddingTop: !isPreview ? viewerTopHeight : null,
                         paddingBottom:
-                            (hasCallToAction ? callToActionHeight - finalSpacing : 0) +
+                            (hasCallToAction ? callToActionHeight : 0) +
                             (!isPreview ? viewerBottomHeight : 0),
                     }}
                     ref={contentRef}
                 >
                     <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
                     {!isPlaceholder && hasCallToAction ? (
-                        <div style={{ marginTop: -finalSpacing }}>
+                        <div
+                            className={styles.callToAction}
+                            ref={callToActionRef}
+                            style={{
+                                paddingLeft: Math.max(finalSpacing / 2, viewerBottomSidesWidth),
+                                paddingRight: Math.max(finalSpacing / 2, viewerBottomSidesWidth),
+                                paddingTop: finalSpacing / 2,
+                                paddingBottom: finalSpacing / 2,
+                                transform: !isPreview
+                                    ? `translate(0, -${viewerBottomHeight}px)`
+                                    : null,
+                            }}
+                        >
                             <CallToAction
-                                ref={callToActionRef}
-                                className={styles.callToAction}
-                                callToAction={callToAction}
+                                {...callToAction}
                                 animationDisabled={isPreview}
                                 focusable={current && isView}
-                                screenSize={{ width, height }}
-                                enableInteraction={enableInteraction}
-                                disableInteraction={disableInteraction}
+                                openWebView={openWebView}
                             />
                         </div>
                     ) : null}

@@ -33,7 +33,7 @@ export const PlaybackContext = React.createContext({
 
 export const usePlaybackContext = () => useContext(PlaybackContext);
 
-export const usePlaybackMediaRef = active => {
+export const usePlaybackMediaRef = (active) => {
     const { setMedia } = usePlaybackContext();
     const mediaRef = useRef(null);
 
@@ -41,7 +41,9 @@ export const usePlaybackMediaRef = active => {
         if (!active) {
             return () => {};
         }
-        setMedia(mediaRef.current);
+        if (mediaRef.current !== null) {
+            setMedia(mediaRef.current);
+        }
         return () => {
             setMedia(null);
         };

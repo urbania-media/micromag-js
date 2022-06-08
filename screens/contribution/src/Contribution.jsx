@@ -14,9 +14,11 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useViewerContext,
-    useViewerInteraction,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
 import { isTextFilled, isLabelFilled, getStyleFromColor } from '@micromag/core/utils';
 import { useContributions, useContributionCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
@@ -96,11 +98,16 @@ const ContributionScreen = ({
     const trackScreenEvent = useTrackScreenEvent(type);
 
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
-
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
@@ -108,6 +115,7 @@ const ContributionScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
+    const { active: hasCallToAction = false } = callToAction || {};
     const hasTitle = isTextFilled(title);
     const hasNameLabel = isLabelFilled(name);
     const hasMessageLabel = isLabelFilled(message);
@@ -177,16 +185,9 @@ const ContributionScreen = ({
     );
 
     // Call to Action
-
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
     const [scrolledBottom, setScrolledBottom] = useState(false);
     const swipeUpLinkActive = scrolledBottom && submitState === 4;
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
+    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -441,7 +442,9 @@ const ContributionScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -466,17 +469,27 @@ const ContributionScreen = ({
                         {items}
                     </Scroll>
                     {!isPlaceholder && hasCallToAction ? (
-                        <CallToAction
+                        <div
                             ref={callToActionRef}
-                            className={styles.callToAction}
-                            disabled={!swipeUpLinkActive}
-                            animationDisabled={isPreview}
-                            callToAction={callToAction}
-                            focusable={current && isView}
-                            screenSize={{ width, height }}
-                            enableInteraction={enableInteraction}
-                            disableInteraction={disableInteraction}
-                        />
+                            className={classNames([
+                                styles.callToAction,
+                                {
+                                    [styles.disabled]: !swipeUpLinkActive,
+                                },
+                            ])}
+                            style={{
+                                padding: Math.max(viewerBottomSidesWidth, spacing / 2),
+                                paddingTop: 0,
+                                paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing / 2,
+                            }}
+                        >
+                            <CallToAction
+                                {...callToAction}
+                                animationDisabled={isPreview}
+                                focusable={current && isView}
+                                openWebView={openWebView}
+                            />
+                        </div>
                     ) : null}
                 </div>
             </Container>

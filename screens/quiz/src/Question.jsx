@@ -8,7 +8,6 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
-import { useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -122,12 +121,6 @@ const Question = ({
 
     const answered = answeredIndex !== null;
 
-    const {
-        ref: resultRef,
-        entry: { contentRect: resultContentRect },
-    } = useResizeObserver();
-    const { height: resultHeight } = resultContentRect || {}; // eslint-disable-line
-
     const onAnswersCollapse = useCallback(() => {
         setResultVisible(true);
     }, [setResultVisible]);
@@ -144,7 +137,6 @@ const Question = ({
                     [className]: className !== null,
                 },
             ])}
-            fullscreen
             verticalAlign={verticalAlign}
             style={style}
         >
@@ -215,7 +207,7 @@ const Question = ({
                     onTransitionEnd={onAnswerTransitionEnd}
                 />,
                 withResult ? (
-                    <div className={styles.result} key="results" ref={resultRef}>
+                    <div className={styles.result} key="results">
                         <div className={styles.resultContent}>
                             <ScreenElement
                                 emptyLabel={

@@ -17,7 +17,7 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useViewerNavigation,
-    useViewerInteraction,
+    useViewerWebView,
     useViewerContext,
 } from '@micromag/core/contexts';
 import { useTrackScreenMedia, useMediaThumbnail, useActivityDetector } from '@micromag/core/hooks';
@@ -77,8 +77,8 @@ const VideoScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
-    const { bottomHeight: viewerBottomHeight } = useViewerContext();
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const { bottomHeight: viewerBottomHeight, bottomSidesWidth: viewerBottomSidesWidth } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
 
     const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
@@ -129,7 +129,6 @@ const VideoScreen = ({
             }
         };
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
-
 
     useEffect(() => {
         if (customMediaRef !== null) {
@@ -207,10 +206,10 @@ const VideoScreen = ({
     );
 
     const onEnded = useCallback(() => {
+        setPlaying(false);
         if (shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }
-        setPlaying(false);
     }, [current, shouldGotoNextScreenOnEnd, gotoNextScreen]);
 
     const fullscreen = layout === 'full';
@@ -331,9 +330,13 @@ const VideoScreen = ({
         !isPlaceholder ? (
             <div
                 key="bottom-content"
-                className={styles.bottomContent}
+                className={styles.bottom}
                 style={{
-                    transform: `translate(0, -${viewerBottomHeight}px)`,
+                    transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingBottom: spacing / 2,
+                    paddingTop: 0,
                 }}
             >
                 <Transitions
@@ -348,21 +351,15 @@ const VideoScreen = ({
                             currentTime={currentTime}
                         />
                     ) : null}
-                    <div className={classNames([styles.bottom])}>
-                        {hasCallToAction ? (
-                            <div style={{ marginTop: -spacing / 2 }}>
-                                <CallToAction
-                                    className={styles.callToAction}
-                                    callToAction={callToAction}
-                                    animationDisabled={isPreview}
-                                    focusable={current && isView}
-                                    screenSize={{ width, height }}
-                                    enableInteraction={enableInteraction}
-                                    disableInteraction={disableInteraction}
-                                />
-                            </div>
-                        ) : null}
-                    </div>
+                    {hasCallToAction ? (
+                        <CallToAction
+                            {...callToAction}
+                            className={styles.callToAction}
+                            animationDisabled={isPreview}
+                            focusable={current && isView}
+                            openWebView={openWebView}
+                        />
+                    ) : null}
                 </Transitions>
             </div>
         ) : null,

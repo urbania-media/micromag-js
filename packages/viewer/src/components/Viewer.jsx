@@ -16,7 +16,7 @@ import {
     useFullscreen,
     useLoadedFonts,
     useParsedStory,
-    useResizeObserver,
+    useDimensionObserver,
     useScreenSizeFromElement,
     useTrackScreenView,
 } from '@micromag/core/hooks';
@@ -249,12 +249,12 @@ const Viewer = ({
 
     const gotoPreviousScreen = useCallback(() => {
         changeIndex(Math.max(0, screenIndex - 1));
-        currentScreenRef.current.focus();
+        // currentScreenRef.current.focus();
     }, [changeIndex]);
 
     const gotoNextScreen = useCallback(() => {
         changeIndex(Math.min(screens.length - 1, screenIndex + 1));
-        currentScreenRef.current.focus();
+        // currentScreenRef.current.focus();
     }, [changeIndex]);
 
     const screensCount = screens.length;
@@ -353,11 +353,19 @@ const Viewer = ({
         filterTaps: true,
     });
 
-    const onScreenKeyUp = useCallback((e, i) => {
-        if (e.key === 'Enter' && withLandscapeSiblingsScreens && landscape && i !== screenIndex) {
-            changeIndex(i);
-        }
-    }, [withLandscapeSiblingsScreens, changeIndex, landscape, screenIndex]);
+    const onScreenKeyUp = useCallback(
+        (e, i) => {
+            if (
+                e.key === 'Enter' &&
+                withLandscapeSiblingsScreens &&
+                landscape &&
+                i !== screenIndex
+            ) {
+                changeIndex(i);
+            }
+        },
+        [withLandscapeSiblingsScreens, changeIndex, landscape, screenIndex],
+    );
 
     // swipe menu open
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
@@ -434,17 +442,11 @@ const Viewer = ({
     );
 
     // Get element height
-    const {
-        ref: menuDotsContainerRef,
-        entry: { contentRect: menuDotsContainerRect },
-    } = useResizeObserver();
-    const { height: menuDotsContainerHeight = 0 } = menuDotsContainerRect || {};
+    const { ref: menuDotsContainerRef, height: menuDotsContainerHeight = 0 } =
+        useDimensionObserver();
 
-    const {
-        ref: playbackControlsContainerRef,
-        entry: { contentRect: playbackControlsContainerRect },
-    } = useResizeObserver();
-    const { height: playbackControlsContainerHeight = 0 } = playbackControlsContainerRect || {};
+    const { ref: playbackControlsContainerRef, height: playbackControlsContainerHeight = 0 } =
+        useDimensionObserver();
 
     const { startIndex: mountedScreenStartIndex, endIndex: mountedScreenEndIndex } = useMemo(
         () =>

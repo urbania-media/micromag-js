@@ -10,9 +10,11 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useViewerContext,
-    useViewerInteraction,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -73,8 +75,14 @@ const GalleryFeedScreen = ({
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -99,11 +107,7 @@ const GalleryFeedScreen = ({
     const editImages = isEdit && imagesCount === 0 ? [null] : images;
     const finalImages = isPlaceholder ? [...Array(5)] : editImages;
 
-    const {
-        ref: firstImageRef,
-        entry: { contentRect },
-    } = useResizeObserver();
-    const { width: firstImageRefWidth } = contentRect || {};
+    const { ref: firstImageRef, width: firstImageRefWidth } = useDimensionObserver();
 
     (finalImages || []).forEach((image, index) => {
         const finalImage = withCaptions ? image : { media: image };
@@ -188,19 +192,8 @@ const GalleryFeedScreen = ({
     });
 
     // Call to Action
-
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const { active: hasCallToAction = false } = callToAction || {};
     const [scrolledBottom, setScrolledBottom] = useState(false);
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
-
-    if (!isPlaceholder && hasCallToAction) {
-        items.push(<div key="cta-spacer" style={{ height: callToActionHeight }} />);
-    }
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -234,7 +227,9 @@ const GalleryFeedScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -250,7 +245,8 @@ const GalleryFeedScreen = ({
                                 ? {
                                       padding: spacing,
                                       paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
-                                      paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
+                                      paddingBottom:
+                                          (!isPreview ? viewerBottomHeight : 0) + spacing,
                                   }
                                 : null
                         }
@@ -263,21 +259,31 @@ const GalleryFeedScreen = ({
                         >
                             {items}
                         </TransitionsStagger>
+                        {!isPlaceholder && hasCallToAction ? (
+                            <div
+                                className={classNames([
+                                    styles.callToAction,
+                                    {
+                                        [styles.disabled]: !scrolledBottom,
+                                    },
+                                ])}
+                                style={{
+                                    paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
+                                    paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
+                                    paddingTop: spacing,
+                                }}
+                            >
+                                <CallToAction
+                                    {...callToAction}
+                                    className={styles.callToAction}
+                                    animationDisabled={isPreview}
+                                    focusable={current && isView}
+                                    openWebView={openWebView}
+                                />
+                            </div>
+                        ) : null}
                     </Layout>
                 </Scroll>
-                {!isPlaceholder && hasCallToAction ? (
-                    <CallToAction
-                        ref={callToActionRef}
-                        className={styles.callToAction}
-                        disabled={!scrolledBottom}
-                        animationDisabled={isPreview}
-                        callToAction={callToAction}
-                        focusable={current && isView}
-                        screenSize={{ width, height }}
-                        enableInteraction={enableInteraction}
-                        disableInteraction={disableInteraction}
-                    />
-                ) : null}
             </Container>
         </div>
     );

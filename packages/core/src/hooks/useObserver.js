@@ -1,3 +1,4 @@
+import isArray from 'lodash/isArray';
 import { useEffect, useState, useRef } from 'react';
 
 const buildThresholdArray = () => [0, 1.0];
@@ -182,4 +183,23 @@ const resizeObserverInitialEntry = {
     borderBoxSize: null,
 };
 export const useResizeObserver = ({ disabled = false } = {}) =>
-    useObserver(typeof window !== 'undefined' ? ResizeObserver : null, { disabled }, resizeObserverInitialEntry);
+    useObserver(
+        typeof window !== 'undefined' ? ResizeObserver : null,
+        { disabled },
+        resizeObserverInitialEntry,
+    );
+
+export const useDimensionObserver = (...args) => {
+    const { entry, ...rest } = useResizeObserver(...args);
+    const { contentRect = null, borderBoxSize = null } = entry || {};
+    const { width = 0, height = 0 } = contentRect || {};
+    const { blockSize = null, inlineSize = null } = isArray(borderBoxSize)
+        ? borderBoxSize[0] || {}
+        : borderBoxSize || {};
+    return {
+        ...rest,
+        entry,
+        width: inlineSize || width,
+        height: blockSize || height,
+    };
+};

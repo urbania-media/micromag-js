@@ -22,8 +22,13 @@ import {
     useViewerNavigation,
     usePlaybackContext,
     useViewerContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenMedia, useResizeObserver, useActivityDetector } from '@micromag/core/hooks';
+import {
+    useTrackScreenMedia,
+    useDimensionObserver,
+    useActivityDetector,
+} from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -63,7 +68,6 @@ const propTypes = {
     video: MicromagPropTypes.videoElement,
     gotoNextScreenOnEnd: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -79,7 +83,6 @@ const defaultProps = {
     video: null,
     gotoNextScreenOnEnd: false,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
     transitions: null,
@@ -95,7 +98,6 @@ const UrbaniaTrivia = ({
     video,
     gotoNextScreenOnEnd,
     background,
-    callToAction,
     current,
     active,
     transitions,
@@ -139,7 +141,7 @@ const UrbaniaTrivia = ({
         showControls,
         hideControls,
     } = usePlaybackContext();
-    const mediaRef = useRef(null);
+    const mediaRef = usePlaybackMediaRef(current);
 
     useEffect(() => {
         if (!current) {
@@ -157,18 +159,8 @@ const UrbaniaTrivia = ({
             if (withControls || withSeekBar) {
                 setControls(false);
             }
-        }
-    }, [current, withControls, setControls, withSeekBar, color, progressColor]);
-
-    useEffect(() => {
-        if (!current) {
-            return () => {};
-        }
-        setMedia(mediaRef.current);
-        return () => {
-            setMedia(null);
         };
-    }, [current]);
+    }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
@@ -248,7 +240,7 @@ const UrbaniaTrivia = ({
         if (activityDetected) {
             showControls();
         } else {
-             hideControls();
+            hideControls();
         }
     }, [activityDetected, showControls, hideControls]);
 
@@ -286,12 +278,7 @@ const UrbaniaTrivia = ({
 
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
-    const {
-        ref: titleRef,
-        entry: { contentRect = null },
-    } = useResizeObserver();
-
-    const { height: titleHeight = 0 } = contentRect || {};
+    const { ref: titleRef, height: titleHeight = 0 } = useDimensionObserver();
 
     const videoMaxHeight = height - titleHeight - (padding ? padding * 2 : 40);
     const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(

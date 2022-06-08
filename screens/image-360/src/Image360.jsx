@@ -11,8 +11,11 @@ import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/
 import {
     useScreenSize,
     useScreenRenderContext,
-    useViewerInteraction,
     useViewerNavigation,
+    useViewerContext,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+    useViewerWebView,
 } from '@micromag/core/contexts';
 import { useAnimationFrame, useTrackScreenEvent } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
@@ -65,12 +68,16 @@ const Image360Screen = ({
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
 
-    const { width, height, landscape, resolution } = useScreenSize();
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
-    const { gotoPreviousScreen, gotoNextScreen } = useViewerNavigation();
-
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const { width, height, landscape, resolution } = useScreenSize();
+    const { gotoPreviousScreen, gotoNextScreen } = useViewerNavigation();
+    const { open: openWebView } = useViewerWebView();
+    const { bottomHeight: viewerBottomHeight, bottomSidesWidth: viewerBottomSidesWidth } =
+        useViewerContext();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
+
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
 
@@ -79,6 +86,7 @@ const Image360Screen = ({
     // ------------------------------------
 
     const hasMedia = image !== null;
+    const { active: hasCallToAction = false } = callToAction || {};
 
     const [ready, setReady] = useState(!hasMedia);
 
@@ -313,8 +321,6 @@ const Image360Screen = ({
         [gotoPreviousScreen, gotoNextScreen, landscape],
     );
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
-
     // Building elements ------------------
 
     const items = [
@@ -373,26 +379,24 @@ const Image360Screen = ({
                 )}
             </Transitions>
         </ScreenElement>,
-        !isPlaceholder ? (
-            <div key="bottom-content" className={styles.bottomContent}>
-                <Transitions
-                    playing={transitionPlaying}
-                    transitions={transitions}
-                    disabled={transitionDisabled}
-                >
-                    {hasCallToAction ? (
-                        <div style={{ marginTop: -spacing / 2 }}>
-                            <CallToAction
-                                callToAction={callToAction}
-                                animationDisabled={isPreview}
-                                focusable={current && isView}
-                                screenSize={{ width, height }}
-                                enableInteraction={enableInteraction}
-                                disableInteraction={disableInteraction}
-                            />
-                        </div>
-                    ) : null}
-                </Transitions>
+        !isPlaceholder && hasCallToAction ? (
+            <div
+                key="callToAction"
+                className={styles.callToAction}
+                style={{
+                    transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingBottom: spacing / 2,
+                    paddingTop: 0,
+                }}
+            >
+                <CallToAction
+                    {...callToAction}
+                    animationDisabled={isPreview}
+                    focusable={current && isView}
+                    openWebView={openWebView}
+                />
             </div>
         ) : null,
     ];
@@ -415,7 +419,9 @@ const Image360Screen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>

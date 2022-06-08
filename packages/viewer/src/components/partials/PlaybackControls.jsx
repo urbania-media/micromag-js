@@ -109,6 +109,7 @@ function PlaybackControls({ className }) {
                 duration={duration}
                 currentTime={currentTime}
                 playing={playing}
+                media={mediaElement}
                 onSeek={onSeek}
                 focusable={playing}
                 withSeekHead={controlsVisible && !seekBarOnly}

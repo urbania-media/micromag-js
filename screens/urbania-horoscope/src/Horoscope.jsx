@@ -18,6 +18,8 @@ import {
     useScreenState,
     useViewerContext,
     useViewerInteraction,
+    usePlaybackContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
@@ -108,6 +110,8 @@ const Horoscope = ({
     const trackScreenEvent = useTrackScreenEvent(type);
     const [hasPopup, setHasPopup] = useState(false);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const signs = useMemo(
         () =>
@@ -185,10 +189,7 @@ const Horoscope = ({
 
     // Create elements
     const items = [
-        <div
-            key="title"
-            className={styles.headerContainer}
-        >
+        <div key="title" className={styles.headerContainer}>
             {/* TITLE */}
             <ScreenElement
                 // emptyLabel={
@@ -293,7 +294,9 @@ const Horoscope = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -305,7 +308,8 @@ const Horoscope = ({
                                 ? {
                                       padding: spacing,
                                       paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
-                                      paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
+                                      paddingBottom:
+                                          (!isPreview ? viewerBottomHeight : 0) + spacing,
                                   }
                                 : null
                         }
@@ -329,6 +333,8 @@ const Horoscope = ({
                                     className={styles.signsGrid}
                                     closeButton={closePopup}
                                     background={popupBackground}
+                                    muted={muted}
+                                    mediaRef={mediaRef}
                                     signs={signs}
                                     signSubtitle={signSubtitle}
                                     currentSign={currentSign}

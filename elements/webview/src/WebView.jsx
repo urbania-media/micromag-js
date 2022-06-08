@@ -13,7 +13,7 @@ const propTypes = {
             current: PropTypes.any, // eslint-disable-line
         }),
     ]),
-    src: PropTypes.string,
+    url: PropTypes.string,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     closeable: PropTypes.bool,
@@ -24,7 +24,7 @@ const propTypes = {
 
 const defaultProps = {
     iframeRef: null,
-    src: null,
+    url: null,
     width: null,
     height: null,
     closeable: false,
@@ -33,7 +33,7 @@ const defaultProps = {
     className: null,
 };
 
-function WebView({ iframeRef, src, width, height, closeable, onClose, hidden, className }) {
+function WebView({ iframeRef, url, width, height, closeable, onClose, hidden, className }) {
     return (
         <div
             className={classNames([
@@ -52,9 +52,7 @@ function WebView({ iframeRef, src, width, height, closeable, onClose, hidden, cl
                     </Button>
                 </div>
             ) : null}
-            {!hidden ? (
-                <iframe className={styles.iframe} ref={iframeRef} title="Popup" src={src} />
-            ) : null}
+            <iframe className={styles.iframe} ref={iframeRef} title="Popup" src={url} />
         </div>
     );
 }

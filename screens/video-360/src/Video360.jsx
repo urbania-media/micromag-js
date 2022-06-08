@@ -15,6 +15,7 @@ import {
     useViewerInteraction,
     useViewerContext,
     useViewerNavigation,
+    useViewerWebView,
 } from '@micromag/core/contexts';
 import {
     useAnimationFrame,
@@ -79,12 +80,13 @@ const Video360Screen = ({
     const trackScreenMedia = useTrackScreenMedia('video_360');
     const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { gotoPreviousScreen, gotoNextScreen } = useViewerNavigation();
-    const { bottomHeight: viewerBottomHeight } = useViewerContext();
-
+    const { bottomHeight: viewerBottomHeight, bottomSidesWidth: viewerBottomSidesWidth } =
+        useViewerContext();
     const { width, height, landscape, resolution } = useScreenSize();
-
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const { open: openWebView } = useViewerWebView();
+
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
     const {
@@ -228,6 +230,7 @@ const Video360Screen = ({
 
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
+    const { active: hasCallToAction = false } = callToAction || {};
 
     const finalVideo = hasVideo
         ? {
@@ -465,8 +468,6 @@ const Video360Screen = ({
         [gotoPreviousScreen, gotoNextScreen, landscape],
     );
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
-
     // Building elements ------------------
 
     const items = [
@@ -527,9 +528,13 @@ const Video360Screen = ({
         !isPlaceholder ? (
             <div
                 key="bottom-content"
-                className={styles.bottomContent}
+                className={styles.bottom}
                 style={{
-                    transform: `translate(0, -${viewerBottomHeight}px)`,
+                    transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingBottom: spacing / 2,
+                    paddingTop: 0,
                 }}
             >
                 <Transitions
@@ -545,16 +550,15 @@ const Video360Screen = ({
                         />
                     ) : null}
                     {hasCallToAction ? (
-                        <div style={{ marginTop: -spacing / 2 }}>
-                            <CallToAction
-                                callToAction={callToAction}
-                                animationDisabled={isPreview}
-                                focusable={current && isView}
-                                screenSize={{ width, height }}
-                                enableInteraction={enableInteraction}
-                                disableInteraction={disableInteraction}
-                            />
-                        </div>
+                        <CallToAction
+                            {...callToAction}
+                            className={styles.callToAction}
+                            animationDisabled={isPreview}
+                            focusable={current && isView}
+                            enableInteraction={enableInteraction}
+                            disableInteraction={disableInteraction}
+                            openWebView={openWebView}
+                        />
                     ) : null}
                 </Transitions>
             </div>

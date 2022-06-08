@@ -12,7 +12,7 @@ import {
     useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
-import { useResizeObserver } from '@micromag/core/hooks';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -92,12 +92,7 @@ const SlideshowScreen = ({
     // Call to Action
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
+    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const items = (slides || []).map((item, itemI) => {
         const { visual = null, caption = null } = item || {};

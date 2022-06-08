@@ -15,7 +15,8 @@ import {
     useScreenRenderContext,
     useViewerContext,
     usePlaybackContext,
-    useViewerInteraction,
+    usePlaybackMediaRef,
+    useViewerWebView,
 } from '@micromag/core/contexts';
 import { useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
 import { isIos } from '@micromag/core/utils';
@@ -69,15 +70,17 @@ const AudioScreen = ({
     showWave,
     className,
 }) => {
-    const trackScreenMedia = useTrackScreenMedia('audio');
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
-
     const { width, height, resolution } = useScreenSize();
     const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
 
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const trackScreenMedia = useTrackScreenMedia('audio');
 
     const [ready, setReady] = useState(isStatic || isPlaceholder);
 
@@ -86,6 +89,7 @@ const AudioScreen = ({
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
+    const { active: hasCallToAction = false } = callToAction || {};
     const hasAudio = audio !== null;
     const {
         media: audioMedia = null,
@@ -109,7 +113,7 @@ const AudioScreen = ({
 
     const { playing, muted, setControls, setControlsTheme, setMedia, setPlaying } =
         usePlaybackContext();
-    const mediaRef = useRef(null);
+    const mediaRef = usePlaybackMediaRef(current);
 
     useEffect(() => {
         if (!current) {
@@ -129,18 +133,8 @@ const AudioScreen = ({
             if (withPlayPause) {
                 setControls(false);
             }
-        }
-    }, [current, withPlayPause, setControls, color, progressColor]);
-
-    useEffect(() => {
-        if (!current) {
-            return () => {};
-        }
-        setMedia(mediaRef.current);
-        return () => {
-            setMedia(null);
         };
-    }, [current]);
+    }, [current, withPlayPause, setControls, color, progressColor]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
@@ -211,20 +205,6 @@ const AudioScreen = ({
         [trackScreenMedia, audio],
     );
 
-    const cta =
-        !isPlaceholder && hasCallToAction ? (
-            <div style={{ marginTop: -spacing / 2 }} key="call-to-action">
-                <CallToAction
-                    callToAction={callToAction}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                    screenSize={{ width, height }}
-                    enableInteraction={enableInteraction}
-                    disableInteraction={disableInteraction}
-                />
-            </div>
-        ) : null;
-
     const elements = [
         <Spacer key="spacer-top" />,
         <ScreenElement
@@ -272,10 +252,14 @@ const AudioScreen = ({
         <Spacer key="spacer-middle" />,
         !isPlaceholder ? (
             <div
-                key="controls"
-                className={styles.bottomContent}
+                key="bottom"
+                className={styles.bottom}
                 style={{
-                    transform: `translate(0, -${viewerBottomHeight}px)`,
+                    transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingBottom: spacing / 2,
+                    paddingTop: 0,
                 }}
             >
                 {hasClosedCaptions && !isPreview && !isCapture && !isStatic ? (
@@ -285,7 +269,15 @@ const AudioScreen = ({
                         currentTime={currentTime}
                     />
                 ) : null}
-                {cta}
+                {hasCallToAction ? (
+                    <CallToAction
+                        {...callToAction}
+                        className={styles.callToAction}
+                        animationDisabled={isPreview}
+                        focusable={current && isView}
+                        openWebView={openWebView}
+                    />
+                ) : null}
             </div>
         ) : null,
     ].filter((el) => el !== null);

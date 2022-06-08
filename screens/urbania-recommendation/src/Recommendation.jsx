@@ -15,7 +15,9 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useViewerContext,
-    useViewerInteraction,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
@@ -82,8 +84,14 @@ const Recommendation = ({
     const trackScreenEvent = useTrackScreenEvent();
 
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
-    const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -110,7 +118,7 @@ const Recommendation = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const { active: hasCallToAction = false } = callToAction || {};
     const [scrolledBottom, setScrolledBottom] = useState(false);
 
     useEffect(() => {
@@ -318,15 +326,19 @@ const Recommendation = ({
         ) : null,
         !isPlaceholder ? <Spacer key="spacer-cta-bottom" /> : null,
         !isPlaceholder && hasCallToAction ? (
-            <div style={{ margin: -spacing, marginTop: '10px' }} key="call-to-action">
+            <div
+                style={{
+                    paddingTop: spacing,
+                    paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
+                    paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
+                }}
+                key="call-to-action"
+            >
                 <CallToAction
-                    callToAction={callToAction}
-                    disabled={!scrolledBottom}
+                    {...callToAction}
                     animationDisabled={isPreview}
                     focusable={current && isView}
-                    screenSize={{ width, height }}
-                    enableInteraction={enableInteraction}
-                    disableInteraction={disableInteraction}
+                    openWebView={openWebView}
                 />
             </div>
         ) : null,
@@ -350,8 +362,10 @@ const Recommendation = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
                     backgroundClassName={finalAnimateBackground ? styles.background : null}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
