@@ -1,8 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Audio from './Audio';
-
 import { audioMedia } from '../../../.storybook/data';
+import Audio from './Audio';
 
 export default {
     component: Audio,

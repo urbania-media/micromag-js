@@ -1,14 +1,14 @@
-import alias from '@rollup/plugin-alias';
+// import alias from '@rollup/plugin-alias';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
-import image from '@rollup/plugin-image';
+// import image from '@rollup/plugin-image';
 // import svgo from 'rollup-plugin-svgo';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import url from '@rollup/plugin-url';
 import path from 'path';
-import copy from 'rollup-plugin-copy';
+// import copy from 'rollup-plugin-copy';
 import postcss from 'rollup-plugin-postcss';
 import generateScopedName from './scripts/lib/generateScopedName';
 import imageAssets from './scripts/rollup-image-assets';
