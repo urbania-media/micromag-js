@@ -165,7 +165,11 @@ const Viewer = ({
 
     const withoutScreensTransforms = isStatic || isCapture;
 
-    const { playing, controlsVisible: playbackcontrolsVisible = false } = usePlaybackContext();
+    const {
+        playing,
+        controlsVisible: playbackcontrolsVisible = false,
+        media: playbackMedia = null,
+    } = usePlaybackContext();
 
     const trackScreenView = useTrackScreenView();
 
@@ -496,6 +500,12 @@ const Viewer = ({
                 bottomHeight={
                     (playbackcontrolsVisible || !playing) && currentScreenInteractionEnabled
                         ? playbackControlsContainerHeight / screenScale
+                        : 0
+                }
+                bottomSidesWidth={
+                    (playbackcontrolsVisible || !playing || playbackMedia !== null) &&
+                    currentScreenInteractionEnabled
+                        ? 60 / screenScale
                         : 0
                 }
                 gotoPreviousScreen={gotoPreviousScreen}
