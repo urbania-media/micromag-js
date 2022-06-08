@@ -131,6 +131,10 @@
     "defaultMessage": "Timeline with images",
     "description": "TimelineIllustrated screen title"
   },
+  "3B9cb3": {
+    "defaultMessage": "Whatsapp",
+    "description": "Field label"
+  },
   "3E57H7": {
     "defaultMessage": "No marker...",
     "description": "Label when there is no item in markers field"
@@ -310,6 +314,10 @@
   "88/Ge8": {
     "defaultMessage": "Quote",
     "description": "Quote field label"
+  },
+  "88kexp": {
+    "defaultMessage": "Facebook Messenger",
+    "description": "Field label"
   },
   "8A8cuq": {
     "defaultMessage": "Parameters",
@@ -818,6 +826,10 @@
     "defaultMessage": "Upload an image",
     "description": "Upload button label in Media Gallery"
   },
+  "Vv05Q4": {
+    "defaultMessage": "Link to copy",
+    "description": "Field label"
+  },
   "W5qWPj": {
     "defaultMessage": "Center",
     "description": "Field label"
@@ -969,10 +981,6 @@
   "cGItoy": {
     "defaultMessage": "List",
     "description": "List screen group"
-  },
-  "cNLZOF": {
-    "defaultMessage": "Align to center",
-    "description": "Field label"
   },
   "ceaRdq": {
     "defaultMessage": "Horoscope sign",

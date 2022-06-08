@@ -209,6 +209,12 @@ msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Timeline with images"
 
+# Field label
+#: 3B9cb3
+msgctxt "3B9cb3"
+msgid "Whatsapp"
+msgstr "Whatsapp"
+
 # Label when there is no item in markers field
 #: 3E57H7
 msgctxt "3E57H7"
@@ -478,6 +484,12 @@ msgstr "Border"
 msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Quote"
+
+# Field label
+#: 88kexp
+msgctxt "88kexp"
+msgid "Facebook Messenger"
+msgstr "Facebook Messenger"
 
 # field label
 #: 8A8cuq
@@ -1241,6 +1253,12 @@ msgid "Upload an image"
 msgstr "Upload an image"
 
 # Field label
+#: Vv05Q4
+msgctxt "Vv05Q4"
+msgid "Link to copy"
+msgstr "Link to copy"
+
+# Field label
 #: W5qWPj
 msgctxt "W5qWPj"
 msgid "Center"
@@ -1467,12 +1485,6 @@ msgstr "Background"
 msgctxt "cGItoy"
 msgid "List"
 msgstr "List"
-
-# Field label
-#: cNLZOF
-msgctxt "cNLZOF"
-msgid "Align to center"
-msgstr "Align to center"
 
 # Sign placeholder
 #: ceaRdq
