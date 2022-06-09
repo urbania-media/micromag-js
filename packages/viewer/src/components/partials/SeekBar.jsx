@@ -53,16 +53,6 @@ const SeekBar = ({
     withSeekHead,
 }) => {
     const intl = useIntl();
-    const fullColor = isString(backgroundColor)
-        ? { color: backgroundColor, alpha: 1 }
-        : backgroundColor;
-    const { color: finalBackgroundColor = 'white' } = fullColor || {};
-    const fullProgressColor = isString(progressColor) ? { progressColor, alpha: 1 } : progressColor;
-    const alternateColor = useMemo(
-        () => fullProgressColor || getContrastingColor(fullProgressColor),
-        [fullProgressColor, fullColor],
-    );
-    const { color: finalProgressColor = null } = alternateColor || {};
 
     const [springProps, setSpringProps] = useSpring(() => ({
         x: currentTime !== null && duration !== null ? currentTime / duration : 0,
@@ -142,20 +132,20 @@ const SeekBar = ({
             <div className={styles.inner}>
                 <div
                     className={styles.progressBar}
-                    style={{ backgroundColor: finalBackgroundColor }}
+                    style={{ backgroundColor }}
                 >
                     <animated.div
                         className={styles.playHead}
                         style={{
                             left: springProps.x.to((x) => `${x * 100}%`),
-                            backgroundColor: finalProgressColor,
+                            backgroundColor: progressColor,
                         }}
                     />
                     <animated.div
                         className={styles.progress}
                         style={{
                             transform: springProps.x.to((x) => `scaleX(${x})`),
-                            backgroundColor: finalProgressColor,
+                            backgroundColor: progressColor,
                         }}
                     />
                 </div>

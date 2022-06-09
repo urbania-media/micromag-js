@@ -139,6 +139,10 @@
         }
     }
 
+    .playbackControlsContainer {
+        margin: 0 auto;
+    }
+
     .playbackControls {
         position: absolute;
         z-index: 5;
@@ -146,14 +150,14 @@
         left: 0;
         width: 100%;
         background-image: linear-gradient(to bottom, rgba($black, 0) 25%, rgba($black, 0.2));
+
+        &.isCollapsed {
+            pointer-events: none;
+        }
     }
 
     .webView {
         z-index: 10;
-    }
-
-    .playbackControlsContainer {
-        margin: 0 auto;
     }
 
     &.hideMenu {
@@ -165,16 +169,6 @@
             opacity: 0;
         }
     }
-
-    // &.hideMenu:not(.landscape) {
-    //     .menuDotsContainer {
-    //         pointer-events: none;
-    //     }
-
-    //     .menuDots {
-    //         opacity: 0;
-    //     }
-    // }
 
     &.ready {
         .menuDotsContainer,
