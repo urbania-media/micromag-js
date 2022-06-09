@@ -3,14 +3,12 @@ import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
-import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
-import React, { useEffect, useCallback, useMemo, useRef } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { getContrastingColor } from '@micromag/core/utils';
 
 import styles from '../../styles/partials/seek-bar.module.scss';
 
@@ -22,6 +20,8 @@ const propTypes = {
     backgroundColor: MicromagPropTypes.color,
     progressColor: MicromagPropTypes.color,
     onSeek: PropTypes.func,
+    onSeekStart: PropTypes.func,
+    onSeekEnd: PropTypes.func,
     focusable: PropTypes.bool,
     className: PropTypes.string,
     withSeekHead: PropTypes.bool,
@@ -35,6 +35,8 @@ const defaultProps = {
     backgroundColor: null,
     progressColor: null,
     onSeek: null,
+    onSeekStart: null,
+    onSeekEnd: null,
     focusable: true,
     className: null,
     withSeekHead: true,
@@ -48,6 +50,8 @@ const SeekBar = ({
     backgroundColor,
     progressColor,
     onSeek,
+    onSeekStart,
+    onSeekEnd,
     focusable,
     className,
     withSeekHead,
@@ -115,6 +119,16 @@ const SeekBar = ({
                 }
                 seekFromX(x);
             },
+            onPointerDown: () => {
+                if (onSeekStart !== null) {
+                    onSeekStart();
+                }
+            },
+            onPointerUp: () => {
+                if (onSeekEnd !== null) {
+                    onSeekEnd();
+                }
+            }
         },
         { drag: { axis: 'x', filterTaps: true } },
     );

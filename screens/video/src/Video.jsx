@@ -260,15 +260,6 @@ const VideoScreen = ({
     }, [setReady]);
 
     const items = [
-        // shouldCatchFirstTapToPlay && suspended ? (
-        //     <button
-        //         key="tap-catcher-button"
-        //         type="button"
-        //         onTouchStart={() => play()}
-        //         className={styles.unmuteAndPlayButton}
-        //     />
-        // ) : null,
-
         <ScreenElement
             key="video"
             placeholder={<PlaceholderVideo className={styles.placeholder} {...placeholderProps} />}
@@ -318,7 +309,6 @@ const VideoScreen = ({
                             onDurationChange={onDurationChange}
                             onSeeked={onSeeked}
                             onEnded={onEnded}
-                            // onSuspend={onSuspend}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}
                         />

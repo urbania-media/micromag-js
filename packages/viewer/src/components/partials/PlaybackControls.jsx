@@ -43,6 +43,7 @@ function PlaybackControls({ className }) {
         updateInterval: 100,
     });
     const [customControlsTheme, setCustomControlsTheme] = useState(null);
+    const [wasPlaying, setWasPlaying] = useState(false);
 
     useEffect(() => {
         const { color, progressColor, seekBarOnly } = controlsTheme || {};
@@ -81,14 +82,26 @@ function PlaybackControls({ className }) {
         }
     }, [setMuted, controlsVisible, showControls]);
 
+    const onSeekStart = useCallback(() => {
+        setWasPlaying(playing);
+        if (playing) setPlaying(false);
+    }, [playing, setWasPlaying]);
+
     const onSeek = useCallback(
         (time) => {
             mediaElement.currentTime = time;
+            showControls();
         },
-        [mediaElement],
+        [mediaElement, setWasPlaying, playing, setPlaying, showControls],
     );
 
+    const onSeekEnd = useCallback(() => {
+        if (wasPlaying) setPlaying(true);
+    }, [playing, setPlaying, wasPlaying]);
+
     const { color, progressColor, seekBarOnly } = customControlsTheme || {};
+    const isCollapsed =
+        (controls && !controlsVisible && playing) || (!controls && mediaElement !== null);
 
     return (
         <div
@@ -99,9 +112,7 @@ function PlaybackControls({ className }) {
                     [styles.withPlayPause]: controls && !seekBarOnly,
                     [styles.withMute]: mediaElement !== null || controls,
                     [styles.withSeekBar]: controls,
-                    [styles.isCollapsed]:
-                        (controls && !controlsVisible && playing) ||
-                        (!controls && mediaElement !== null),
+                    [styles.isCollapsed]: isCollapsed,
                 },
             ])}
         >
@@ -132,7 +143,10 @@ function PlaybackControls({ className }) {
                 playing={playing}
                 media={mediaElement}
                 onSeek={onSeek}
+                onSeekStart={onSeekStart}
+                onSeekEnd={onSeekEnd}
                 focusable={playing}
+                isCollapsed={isCollapsed}
                 withSeekHead={controlsVisible && !seekBarOnly}
                 backgroundColor={color}
                 progressColor={progressColor}

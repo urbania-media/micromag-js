@@ -6,13 +6,6 @@
     position: relative;
     align-items: center;
     justify-content: space-between;
-    // height: 100%;
-    // transition: height 0.2s ease-in-out;
-
-    &.isCollapsed {
-        // height: 0;
-        // pointer-events: none;
-    }
 }
 
 .playPauseButton,
@@ -34,9 +27,6 @@
     .isCollapsed & {
         pointer-events: auto;
     }
-    //     position: absolute;
-    //     bottom: 0;
-    // }
 }
 
 .playPauseButton {
@@ -134,6 +124,7 @@
     }
 
     .isCollapsed.withSeekBar & {
+        bottom: 0;
         transform: translateY(0);
         transition: transform 0.2s ease-in-out, bottom 0.2s ease-in-out,
             padding 0.4s 0.2s ease-in-out;
