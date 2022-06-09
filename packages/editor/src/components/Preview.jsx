@@ -3,17 +3,21 @@ import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useMemo } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
-import { useResizeObserver, useParsedStory } from '@micromag/core/hooks';
+import { useDimensionObserver, useParsedStory } from '@micromag/core/hooks';
 // import { getDeviceScreens } from '@micromag/core/utils';
 import { Viewer } from '@micromag/viewer';
+
 import useRouteParams from '../hooks/useRouteParams';
 import useScreenStates from '../hooks/useScreenStates';
 import useThemeValue from '../hooks/useThemeValue';
-import styles from '../styles/preview.module.scss';
+
 import DevicesMenu from './menus/Devices';
 import ScreenStates from './partials/ScreenStates';
+
+import styles from '../styles/preview.module.scss';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -75,8 +79,9 @@ const EditorPreview = ({
     // Calculate preview style
     const {
         ref: bottomRef,
-        entry: { contentRect },
-    } = useResizeObserver();
+        width: bottomWidth = 0,
+        height: bottomHeight = 0,
+    } = useDimensionObserver();
 
     const previewStyle = useMemo(() => {
         if (withoutDevicesSizes && initialDevice === null) {
@@ -84,7 +89,6 @@ const EditorPreview = ({
         }
 
         const { width: deviceWidth, height: deviceHeight } = device;
-        const { width: bottomWidth = 0, height: bottomHeight = 0 } = contentRect || {};
         const maxWidth = screen === 'mobile' ? bottomWidth : deviceWidth;
         const maxHeight = screen === 'mobile' ? bottomHeight : deviceHeight;
         const { scale: previewScale } = getSizeWithinBounds(
@@ -98,7 +102,7 @@ const EditorPreview = ({
             height: maxHeight,
             transform: `scale(${previewScale}, ${previewScale})`,
         };
-    }, [device, contentRect, screen, withoutDevicesSizes, initialDevice]);
+    }, [device, bottomWidth, bottomHeight, screen, withoutDevicesSizes, initialDevice]);
 
     const currentScreen = useMemo(() => {
         const { components = [] } = valueParsed || {};

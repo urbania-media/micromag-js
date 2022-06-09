@@ -54,6 +54,7 @@ const ModalDialog = ({
                 <div
                     className={classNames([
                         'modal-header',
+                        'p-2',
                         styles.header,
                         {
                             // 'bg-dark': theme === 'dark',
@@ -70,16 +71,18 @@ const ModalDialog = ({
                         className="btn-close"
                         aria-label="Close"
                         onClick={onClickClose}
-                    ></button>
+                    />
                 </div>
             )}
             <div
                 className={classNames([
                     'modal-body',
+                    'p-2',
                     styles.body,
                     {
                         // [`bg-${theme}`]: theme !== null,
                         // 'text-light': theme === 'dark',
+                        // 'bg-dark': theme === 'dark',
                     },
                 ])}
             >

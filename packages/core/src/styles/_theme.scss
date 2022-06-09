@@ -1,4 +1,5 @@
 $white: #fff;
+$black: #1C1C1C;
 $font-weight-normal: 400;
 $purple: #A13DFF;
 $primary: $purple;
@@ -19,6 +20,8 @@ $red: #ff2945;
 $yellow: #ffe535;
 $blue: #2151ff;
 $info: $blue;
+$light: $white;
+$dark: #343434;
 $btn-disabled-opacity: .4;
 $input-disabled-bg: rgba($white, 0.04);
 $input-placeholder-color: $gray-500;
@@ -31,7 +34,7 @@ $badge-font-weight: $font-weight-normal;
 $badge-padding-x: .8em;
 $badge-padding-y: .4em;
 $badge-pill-padding-x: .8em;
-$black: #1C1C1C;
+
 $body-bg: $black;
 $input-border-width: 0;
 $body-color: $gray-100;
@@ -74,6 +77,10 @@ $dropdown-link-hover-bg: $primary;
 $dropdown-link-hover-color: $body-color;
 $btn-close-color: $body-color;
 
+$navbar-link-color: $primary;
+$navbar-brand-color: $primary;
+$navbar-light-brand-color: $primary;
+$navbar-dark-brand-color: $primary;
 
 $btn-active-bg-shade-amount: 50% !default;
 $btn-active-bg-tint-amount: 50% !default;

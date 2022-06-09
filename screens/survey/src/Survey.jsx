@@ -5,15 +5,20 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
 import {
-    getLargestRemainderRound,
-    getStyleFromColor,
-    isTextFilled,
-} from '@micromag/core/utils';
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+    useVisitor
+} from '@micromag/core/contexts';
+import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
+import { getLargestRemainderRound, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import { useQuiz, useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -21,7 +26,9 @@ import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
+import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -31,10 +38,10 @@ const propTypes = {
     answers: MicromagPropTypes.answers,
     buttonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
-    percentageResultTextStyle: MicromagPropTypes.textStyle,
     resultsStyle: PropTypes.shape({
         barColor: MicromagPropTypes.color,
         textColor: MicromagPropTypes.color,
+        percentageTextStyle: MicromagPropTypes.textStyle,
     }),
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -47,8 +54,6 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resultTransitionDuration: PropTypes.number,
     type: PropTypes.string,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -60,7 +65,6 @@ const defaultProps = {
     buttonsStyle: null,
     buttonsTextStyle: null,
     resultsStyle: null,
-    percentageResultTextStyle: null,
     spacing: 20,
     background: null,
     callToAction: null,
@@ -72,8 +76,6 @@ const defaultProps = {
     transitionStagger: 100,
     resultTransitionDuration: 500,
     type: null,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -85,7 +87,6 @@ const SurveyScreen = ({
     buttonsStyle,
     buttonsTextStyle,
     resultsStyle,
-    percentageResultTextStyle,
     spacing,
     background,
     callToAction,
@@ -97,22 +98,27 @@ const SurveyScreen = ({
     transitionStagger,
     resultTransitionDuration,
     type,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const screenId = id || 'screen-id';
+    const visitor = useVisitor();
+    const { id: visitorId = null } = visitor || {};
     const trackScreenEvent = useTrackScreenEvent(type);
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
+    const { width, height, resolution } = useScreenSize();
     const { create: submitQuiz } = useQuizCreate({
         screenId,
+        visitorId,
     });
-
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const { quiz: allQuizAnswers = [] } = useQuiz({ screenId, opts: { autoload: !isPlaceholder } });
     const quizAnswers = allQuizAnswers.filter((item) => {
@@ -218,6 +224,27 @@ const SurveyScreen = ({
         }
     }, [isEdit, current, userAnswerIndex, setUserAnswerIndex]);
 
+    // Call to Action
+    const { active: hasCallToAction = false } = callToAction || {};
+    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+
+    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
+    const [scrolledBottom, setScrolledBottom] = useState(false);
+
+    const onScrolledBottom = useCallback(
+        ({ initial }) => {
+            if (initial) {
+                trackScreenEvent('scroll', 'Screen');
+            }
+            setScrolledBottom(true);
+        },
+        [trackScreenEvent],
+    );
+
+    const onScrolledNotBottom = useCallback(() => {
+        setScrolledBottom(false);
+    }, [setScrolledBottom]);
+
     // Question
     const items = [
         <ScreenElement
@@ -247,8 +274,11 @@ const SurveyScreen = ({
 
     const finalTransitionDuration = showInstantAnswer ? 0 : `${resultTransitionDuration}ms`;
 
-    const { barColor: resultsBarColor = null, textColor: resultsTextColor = null } =
-        resultsStyle || {};
+    const {
+        barColor: resultsBarColor = null,
+        textColor: resultsTextColor = null,
+        percentageTextStyle: resultsPercentageTextStyle = null,
+    } = resultsStyle || {};
 
     items.push(
         <div key="answers" className={styles.answers}>
@@ -265,6 +295,7 @@ const SurveyScreen = ({
                         const {
                             barColor: answerResultBarColor = null,
                             textColor: answerResultTextColor,
+                            percentageTextStyle: answerResultPercentageTextStyle = null,
                         } = answerResultStyle || {};
                         const { body = null } = label || {};
                         const { percent = 0 } =
@@ -366,8 +397,9 @@ const SurveyScreen = ({
                                                                             ...textStyle,
                                                                             ...buttonsTextStyle,
                                                                             ...resultsTextColor,
+                                                                            ...resultsPercentageTextStyle,
                                                                             ...answerResultTextColor,
-                                                                            ...percentageResultTextStyle,
+                                                                            ...answerResultPercentageTextStyle,
                                                                         }}
                                                                         inline
                                                                         className={
@@ -416,26 +448,6 @@ const SurveyScreen = ({
         </div>,
     );
 
-    // Call to Action
-    if (!isPlaceholder && hasCallToAction) {
-        if (isTopLayout || isMiddleLayout) {
-            items.push(<Spacer key="spacer-cta-bottom" />);
-        }
-        items.push(
-            <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
-                <CallToAction
-                    callToAction={callToAction}
-                    disabled={!answered}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                    screenSize={{ width, height }}
-                    enableInteraction={enableInteraction}
-                    disableInteraction={disableInteraction}
-                />
-            </div>,
-        );
-    }
-
     return (
         <div
             className={classNames([
@@ -455,26 +467,61 @@ const SurveyScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
-                <Layout
-                    className={styles.layout}
-                    fullscreen
+                <Scroll
                     verticalAlign={verticalAlign}
-                    style={
-                        !isPlaceholder
-                            ? {
-                                  padding: spacing,
-                                  paddingTop:
-                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
-                              }
-                            : null
-                    }
+                    disabled={scrollingDisabled}
+                    onScrolledBottom={onScrolledBottom}
+                    onScrolledNotBottom={onScrolledNotBottom}
                 >
-                    {items}
-                </Layout>
+                    <Layout
+                        className={styles.layout}
+                        verticalAlign={verticalAlign}
+                        style={
+                            !isPlaceholder
+                                ? {
+                                      padding: spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingBottom:
+                                          (!isPreview ? viewerBottomHeight : 0) +
+                                          (callToActionHeight + spacing),
+                                  }
+                                : null
+                        }
+                    >
+                        {items}
+                    </Layout>
+                </Scroll>
+                {!isPlaceholder && hasCallToAction ? (
+                    <div
+                        ref={callToActionRef}
+                        className={classNames([
+                            styles.callToAction,
+                            {
+                                [styles.disabled]: !scrolledBottom,
+                            },
+                        ])}
+                        style={{
+                            transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                            paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingTop: spacing / 2,
+                            paddingBottom: spacing / 2,
+                        }}
+                    >
+                        <CallToAction
+                            {...callToAction}
+                            animationDisabled={isPreview}
+                            focusable={current && isView}
+                            openWebView={openWebView}
+                        />
+                    </div>
+                ) : null}
             </Container>
         </div>
     );

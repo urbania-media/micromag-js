@@ -4,9 +4,12 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getLayersFromBackground } from '@micromag/core/utils';
+
 import Background from './Background';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -18,11 +21,19 @@ const propTypes = {
         PropTypes.arrayOf(MicromagPropTypes.backgroundElement),
     ]),
     playing: PropTypes.bool,
+    muted: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
     layerClassName: PropTypes.string,
     backgroundClassName: PropTypes.string,
     loadingMode: PropTypes.string,
+    mediaRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            // eslint-disable-next-line react/forbid-prop-types
+            current: PropTypes.any,
+        }),
+    ]),
     shouldLoad: PropTypes.bool,
 };
 
@@ -32,11 +43,13 @@ const defaultProps = {
     resolution: 1,
     background: [],
     playing: false,
+    muted: false,
     children: null,
     className: null,
     layerClassName: null,
     backgroundClassName: null,
     loadingMode: 'lazy',
+    mediaRef: null,
     shouldLoad: true,
 };
 
@@ -46,11 +59,13 @@ const BackgroundLayers = ({
     resolution,
     background,
     playing,
+    muted,
     children,
     className,
     layerClassName,
     backgroundClassName,
     loadingMode,
+    mediaRef,
     shouldLoad,
 }) => {
     const hasSize = width > 0 && height > 0;
@@ -109,10 +124,12 @@ const BackgroundLayers = ({
                                     },
                                 ])}
                                 playing={playing}
+                                muted={muted}
                                 horizontalAlign={horizontalAlign}
                                 verticalAlign={verticalAlign}
                                 loadingMode={loadingMode}
                                 shouldLoad={shouldLoad}
+                                mediaRef={mediaRef}
                                 {...layer}
                             />
                         </div>

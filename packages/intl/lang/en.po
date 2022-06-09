@@ -209,6 +209,12 @@ msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Timeline with images"
 
+# Field label
+#: 3B9cb3
+msgctxt "3B9cb3"
+msgid "Whatsapp"
+msgstr "Whatsapp"
+
 # Label when there is no item in markers field
 #: 3E57H7
 msgctxt "3E57H7"
@@ -478,6 +484,12 @@ msgstr "Border"
 msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Quote"
+
+# Field label
+#: 88kexp
+msgctxt "88kexp"
+msgid "Facebook Messenger"
+msgstr "Facebook Messenger"
 
 # field label
 #: 8A8cuq
@@ -941,6 +953,12 @@ msgctxt "M/FGRs"
 msgid "Libra"
 msgstr "Libra"
 
+# Horoscope date
+#: MBgLeH
+msgctxt "MBgLeH"
+msgid "July 23 - Aug 22"
+msgstr "July 23 - Aug 22"
+
 # Audio placeholder
 #: MYZwSA
 msgctxt "MYZwSA"
@@ -1120,6 +1138,12 @@ msgctxt "RucIeL"
 msgid "Share options"
 msgstr "Share options"
 
+# Field label
+#: S+WiGT
+msgctxt "S+WiGT"
+msgid "Percentage Text"
+msgstr "Percentage Text"
+
 # Text and Images screen group
 #: S/mavZ
 msgctxt "S/mavZ"
@@ -1233,6 +1257,12 @@ msgstr "Questions"
 msgctxt "VspZp9"
 msgid "Upload an image"
 msgstr "Upload an image"
+
+# Field label
+#: Vv05Q4
+msgctxt "Vv05Q4"
+msgid "Link to copy"
+msgstr "Link to copy"
 
 # Field label
 #: W5qWPj
@@ -1461,12 +1491,6 @@ msgstr "Background"
 msgctxt "cGItoy"
 msgid "List"
 msgstr "List"
-
-# Field label
-#: cNLZOF
-msgctxt "cNLZOF"
-msgid "Align to center"
-msgstr "Align to center"
 
 # Sign placeholder
 #: ceaRdq
@@ -1798,12 +1822,6 @@ msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Name"
 
-# Horoscope Back Button
-#: keK5s0
-msgctxt "keK5s0"
-msgid "Back to the Signs"
-msgstr "Back to the Signs"
-
 # Direction
 #: kf/5Tw
 msgctxt "kf/5Tw"
@@ -2047,12 +2065,6 @@ msgstr "Save"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Add a marker"
-
-# Field no value label
-#: qTdBzB
-msgctxt "qTdBzB"
-msgid "No thumbnail"
-msgstr "No thumbnail"
 
 # Field label
 #: qhjeuO

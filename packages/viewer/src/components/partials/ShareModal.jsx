@@ -1,13 +1,11 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDocumentEvent } from '@micromag/core/hooks';
-import { copyToClipboard } from '@micromag/core/utils';
 import { Button, Close } from '@micromag/core/components';
 import ShareOptions from '@micromag/element-share-options';
-import LinkIcon from '../icons/Link';
 import styles from '../../styles/partials/share-modal.module.scss';
 
 const propTypes = {
@@ -30,23 +28,6 @@ const defaultProps = {
 
 const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
     const modalRef = useRef();
-    const [linkCopied, setLinkCopied] = useState(false);
-
-    const onClickCopy = useCallback(() => {
-        copyToClipboard(url)
-            .then(() => {
-                setLinkCopied(true);
-                setTimeout(() => {
-                    setLinkCopied(false);
-                }, 2000);
-            });
-    }, [setLinkCopied]);
-
-    const onClickLinkInput = useCallback(e => {
-        const { target } = e;
-
-        target.setSelectionRange(0, target.value.length);
-    }, []);
 
     const onDocumentClick = useCallback(
         (e) => {
@@ -93,32 +74,6 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                         onShare={onShare}
                         onClose={onCancel}
                     />
-
-                    <div className={styles.otherOptions}>
-                        <div
-                            className={classNames([
-                                styles.copyLink,
-                                { [styles.isLinkCopied]: linkCopied },
-                            ])}
-                        >
-                            <input
-                                className={styles.screenUrlInput}
-                                type="text"
-                                value={url}
-                                onClick={onClickLinkInput}
-                                readOnly
-                            />
-                            <Button className={styles.copyUrlButton} onClick={onClickCopy} focusable={opened}>
-                                <LinkIcon className={styles.linkIcon} />
-                            </Button>
-                            <div className={styles.successfulCopyMessage}>
-                                <FormattedMessage
-                                    defaultMessage="Link copied to clipboard!"
-                                    description="Message displayed once text was copied successfully."
-                                />
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

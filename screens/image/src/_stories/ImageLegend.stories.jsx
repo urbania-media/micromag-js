@@ -15,7 +15,7 @@ import definition from '../definition';
 
 const props = {
     image: imageMedia(),
-    imageFit: { fit: 'cover' },
+    imageFit: 'cover',
     legend: text(),
     background: backgroundColor(),
     transitions: transitions(),

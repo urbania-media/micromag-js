@@ -209,6 +209,12 @@ msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Ligne du temps avec images"
 
+# Field label
+#: 3B9cb3
+msgctxt "3B9cb3"
+msgid "Whatsapp"
+msgstr ""
+
 # Label when there is no item in markers field
 #: 3E57H7
 msgctxt "3E57H7"
@@ -478,6 +484,12 @@ msgstr "Bordure"
 msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Citation"
+
+# Field label
+#: 88kexp
+msgctxt "88kexp"
+msgid "Facebook Messenger"
+msgstr ""
 
 # field label
 #: 8A8cuq
@@ -941,6 +953,12 @@ msgctxt "M/FGRs"
 msgid "Libra"
 msgstr "Balance"
 
+# Horoscope date
+#: MBgLeH
+msgctxt "MBgLeH"
+msgid "July 23 - Aug 22"
+msgstr "23 juil - 22 août"
+
 # Audio placeholder
 #: MYZwSA
 msgctxt "MYZwSA"
@@ -1120,6 +1138,12 @@ msgctxt "RucIeL"
 msgid "Share options"
 msgstr "Options de partage"
 
+# Field label
+#: S+WiGT
+msgctxt "S+WiGT"
+msgid "Percentage Text"
+msgstr ""
+
 # Text and Images screen group
 #: S/mavZ
 msgctxt "S/mavZ"
@@ -1233,6 +1257,12 @@ msgstr "Questions"
 msgctxt "VspZp9"
 msgid "Upload an image"
 msgstr "Téléverser une image"
+
+# Field label
+#: Vv05Q4
+msgctxt "Vv05Q4"
+msgid "Link to copy"
+msgstr ""
 
 # Field label
 #: W5qWPj
@@ -1461,12 +1491,6 @@ msgstr "Arrière-plan"
 msgctxt "cGItoy"
 msgid "List"
 msgstr "Liste"
-
-# Field label
-#: cNLZOF
-msgctxt "cNLZOF"
-msgid "Align to center"
-msgstr "Aligner au centre"
 
 # Sign placeholder
 #: ceaRdq
@@ -1712,7 +1736,7 @@ msgstr "Photo de profil"
 #: hvxkzE
 msgctxt "hvxkzE"
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 # No value label
 #: i+3ZrF
@@ -1736,7 +1760,7 @@ msgstr "Aucune d’entrée..."
 #: iL9RLu
 msgctxt "iL9RLu"
 msgid "Collaborator"
-msgstr ""
+msgstr "Collaborateur"
 
 # Field label
 #: iipV5Q
@@ -1797,12 +1821,6 @@ msgstr "Style du texte"
 msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Nom"
-
-# Horoscope Back Button
-#: keK5s0
-msgctxt "keK5s0"
-msgid "Back to the Signs"
-msgstr "Retourner aux signes"
 
 # Direction
 #: kf/5Tw
@@ -1866,7 +1884,7 @@ msgstr "Précédent"
 #: mlucL+
 msgctxt "mlucL+"
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 # Field label
 #: muPX/j
@@ -2048,12 +2066,6 @@ msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
 
-# Field no value label
-#: qTdBzB
-msgctxt "qTdBzB"
-msgid "No thumbnail"
-msgstr "Aucune image"
-
 # Field label
 #: qhjeuO
 msgctxt "qhjeuO"
@@ -2082,7 +2094,7 @@ msgstr "Marqueur"
 #: r+bcpa
 msgctxt "r+bcpa"
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 # Horoscope date
 #: rAkTvt

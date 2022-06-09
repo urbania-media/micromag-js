@@ -16,6 +16,23 @@
         position: relative;
     }
 
+    .callToAction {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transition: opacity 0.2s ease-out;
+
+        a {
+            padding: 0;
+        }
+
+        &.disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
     .item {
         padding: 5px 0;
 

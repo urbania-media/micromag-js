@@ -3,10 +3,18 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo, useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
-import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import {
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+} from '@micromag/core/contexts';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -16,6 +24,7 @@ import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -39,8 +48,6 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -60,8 +67,6 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 75,
     type: null,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -81,17 +86,25 @@ const Timeline = ({
     transitions,
     transitionStagger,
     type,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
+    const { width, height, resolution } = useScreenSize();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-    const finalItems = useMemo(() => isPlaceholder ? [...new Array(5)].map(() => ({})) : items || [null], [isPlaceholder, items]);
+    const finalItems = useMemo(
+        () => (isPlaceholder ? [...new Array(5)].map(() => ({})) : items || [null]),
+        [isPlaceholder, items],
+    );
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
     const hasItems = finalItems !== null && itemsCount;
@@ -111,7 +124,7 @@ const Timeline = ({
     const mediaShouldLoad = current || active;
 
     const onImageLoaded = useCallback(() => {
-        setImagesLoaded(count => count + 1);
+        setImagesLoaded((count) => count + 1);
     }, [setImagesLoaded]);
 
     const firstLineRef = useRef(null);
@@ -224,9 +237,11 @@ const Timeline = ({
                                             {hasElement ? (
                                                 <Text
                                                     {...description}
-                                                    textStyle={getStyleFromColor(descriptionTextStyle)}
+                                                    textStyle={getStyleFromColor(
+                                                        descriptionTextStyle,
+                                                    )}
                                                 />
-                                            ): null}
+                                            ) : null}
                                         </ScreenElement>
                                     </div>
                                 );
@@ -313,14 +328,9 @@ const Timeline = ({
 
     // Call to Action
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const { active: hasCallToAction = false } = callToAction || {};
     const [scrolledBottom, setScrolledBottom] = useState(false);
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
+    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -356,7 +366,9 @@ const Timeline = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -372,30 +384,41 @@ const Timeline = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop:
-                                          (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingBottom:
+                                          (!isPreview ? viewerBottomHeight : 0) +
+                                          (callToActionHeight || spacing),
                                   }
                                 : null
                         }
                     >
                         {timelineElements}
-                        {!isPlaceholder && hasCallToAction ? (
-                            <div style={{ height: callToActionHeight }} />
-                        ) : null}
                     </Layout>
                 </Scroll>
                 {!isPlaceholder && hasCallToAction ? (
-                    <CallToAction
+                    <div
                         ref={callToActionRef}
-                        className={styles.callToAction}
-                        disabled={!scrolledBottom}
-                        animationDisabled={isPreview}
-                        callToAction={callToAction}
-                        focusable={current && isView}
-                        screenSize={{ width, height }}
-                        enableInteraction={enableInteraction}
-                        disableInteraction={disableInteraction}
-                    />
+                        className={classNames([
+                            styles.callToAction,
+                            {
+                                [styles.disabled]: !scrolledBottom,
+                            },
+                        ])}
+                        style={{
+                            transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                            paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingTop: spacing / 2,
+                            paddingBottom: spacing / 2,
+                        }}
+                    >
+                        <CallToAction
+                            {...callToAction}
+                            animationDisabled={isPreview}
+                            focusable={current && isView}
+                            openWebView={openWebView}
+                        />
+                    </div>
                 ) : null}
             </Container>
         </div>

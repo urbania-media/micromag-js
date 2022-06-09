@@ -3,34 +3,35 @@
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
+import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useTrackEvent } from '@micromag/core/hooks';
 import { getStyleFromColor, isIos, isValidUrl } from '@micromag/core/utils';
 import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
-import WebView from '@micromag/element-webview';
-import isString from 'lodash/isString';
+
 import ArrowIcon from './ArrowIcon';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
+    type: PropTypes.oneOf(['click', 'swipe-up', null]),
+    url: PropTypes.string,
+    label: MicromagPropTypes.textElement,
+    boxStyle: MicromagPropTypes.boxStyle,
+    inWebView: PropTypes.bool,
     elRef: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({
             current: PropTypes.any, // eslint-disable-line
         }),
     ]),
-    disabled: PropTypes.bool,
     animationDisabled: PropTypes.bool,
-    callToAction: MicromagPropTypes.callToAction,
     icon: PropTypes.node,
     arrow: PropTypes.node,
-    screenSize: PropTypes.shape({
-        width: PropTypes.number,
-        height: PropTypes.number,
-    }),
     dragAmount: PropTypes.number,
     className: PropTypes.string,
     buttonClassName: PropTypes.string,
@@ -38,19 +39,20 @@ const propTypes = {
     labelClassName: PropTypes.string,
     arrowClassName: PropTypes.string,
     focusable: PropTypes.bool,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
+    openWebView: PropTypes.func,
     onClick: PropTypes.func,
 };
 
 const defaultProps = {
+    type: null,
+    url: null,
+    label: null,
+    boxStyle: null,
+    inWebView: false,
     elRef: null,
-    disabled: false,
     animationDisabled: false,
-    callToAction: null,
     icon: null,
     arrow: null,
-    screenSize: null,
     dragAmount: 50,
     className: null,
     buttonClassName: null,
@@ -58,19 +60,21 @@ const defaultProps = {
     labelClassName: null,
     arrowClassName: null,
     focusable: true,
-    enableInteraction: null,
-    disableInteraction: null,
+    openWebView: null,
     onClick: null,
 };
 
 function CallToAction({
+    type,
+    url,
+    label,
+    boxStyle,
+    inWebView,
     elRef,
     disabled,
     animationDisabled,
-    callToAction,
     icon,
     arrow,
-    screenSize,
     dragAmount,
     className,
     buttonClassName,
@@ -78,22 +82,10 @@ function CallToAction({
     labelClassName,
     arrowClassName,
     focusable,
-    enableInteraction,
-    disableInteraction,
+    openWebView,
     onClick,
 }) {
-    const {
-        active = false,
-        type = null,
-        url = null,
-        label = null,
-        boxStyle = null,
-        inWebView = false,
-    } = callToAction || {};
     const trackEvent = useTrackEvent();
-
-    const [showWebView, setShowWebView] = useState(false);
-    const [disableWebView, setDisabledWebView] = useState(true);
 
     const swipeUpEnabled = type === null || type === 'swipe-up';
     const validUrl = useMemo(() => isValidUrl(url), [url]);
@@ -119,22 +111,21 @@ function CallToAction({
 
     // On click
     const onClickLink = useCallback(
-        (action = 'click') => {
+        (e, action = 'click') => {
+            if (inWebView && openWebView !== null) {
+                openWebView({
+                    url,
+                });
+            }
+            if (onClick !== null && action === 'cllick') {
+                onClick(e);
+            }
             if (trackEvent !== null) {
                 trackEvent('call_to_action', isString(action) ? action : 'click', url);
             }
-            if (onClick !== null) {
-                onClick();
-            }
         },
-        [url, onClick, trackEvent],
+        [url, onClick, trackEvent, inWebView],
     );
-
-    const onClickClose = useCallback(() => {
-        if (trackEvent !== null) {
-            trackEvent('call_to_action', 'close', url);
-        }
-    }, [url, trackEvent]);
 
     const bind = useGesture({
         onDrag: ({ event }) => {
@@ -144,19 +135,14 @@ function CallToAction({
         onDragEnd: ({ movement: [, my] }) => {
             if (my < -dragAmount) {
                 if (inWebView) {
-                    setShowWebView(true);
-                    setDisabledWebView(false);
-                    onClickLink('swipe');
-                    if (disableInteraction !== null) {
-                        disableInteraction();
-                    }
+                    onClickLink(null, 'swipe');
                 } else if (isIos() && selfTargetLinkRef.current !== null) {
                     selfTargetLinkRef.current.click();
                     setLeaving(true);
-                    onClickLink('swipe');
+                    onClickLink(null, 'swipe');
                 } else if (buttonRef.current) {
                     buttonRef.current.click();
-                    onClickLink('swipe');
+                    onClickLink(null, 'swipe');
                 }
             }
         },
@@ -172,158 +158,85 @@ function CallToAction({
         };
     }, [setLeaving]);
 
-    useEffect(() => {
-        let id = null;
-        if (inWebView) {
-            if (showWebView) {
-                setDisabledWebView(false);
-            } else {
-                id = setTimeout(() => {
-                    setDisabledWebView(true);
-                }, 300);
-            }
-        }
-        return () => {
-            clearTimeout(id);
-        };
-    }, [showWebView, setDisabledWebView]);
-
-    const onOpenWebView = useCallback(() => {
-        setShowWebView(true);
-        setDisabledWebView(false);
-        if (disableInteraction !== null) {
-            disableInteraction();
-        }
-        onClickLink('click');
-    }, [setShowWebView, setDisabledWebView, disableInteraction, onClickLink]);
-
-    const onCloseWebView = useCallback(() => {
-        setShowWebView(false);
-        if (enableInteraction !== null) {
-            enableInteraction();
-        }
-        onClickClose();
-    }, [setShowWebView, enableInteraction, onClickClose]);
-
-    const ArrowElement =
-        arrow !== null ? (
-            <div
-                className={classNames([
-                    styles.arrow,
-                    {
-                        [arrowClassName]: arrowClassName !== null,
-                    },
-                ])}
-                style={arrowStyle}
-            >
-                {arrow}
-            </div>
-        ) : (
-            <div
-                className={classNames([
-                    styles.arrow,
-                    {
-                        [arrowClassName]: arrowClassName !== null,
-                    },
-                ])}
-                style={arrowStyle}
-            >
-                <ArrowIcon />
-            </div>
-        );
-
-    return active ? (
-        <>
-            <div
-                className={classNames([
-                    styles.container,
-                    {
-                        [className]: className !== null,
-                        [styles.disabled]: disabled,
-                        [styles.animationDisabled]: animationDisabled,
-                        [styles.invalidUrl]: !validUrl,
-                        [styles.inWebView]: inWebView,
-                    },
-                ])}
-                ref={elRef}
-            >
-                {leaving ? <div className={styles.leavingFrame} /> : null}
-                {!inWebView && swipeUpEnabled ? (
-                    <a
-                        className={styles.selfTargetLink}
-                        href={url}
-                        ref={selfTargetLinkRef}
-                        tabIndex={focusable ? '0' : '-1'}
-                    />
-                ) : null}
-                {swipeUpEnabled ? ArrowElement : null}
-                <div
-                    className={classNames([
-                        styles.buttonBorder,
-                        {
-                            [buttonBorderClassName]: buttonBorderClassName !== null,
-                        },
-                    ])}
-                >
-                    <Button
-                        className={classNames([
-                            styles.button,
-                            {
-                                [buttonClassName]: buttonClassName !== null,
-                            },
-                        ])}
-                        refButton={buttonRef}
-                        focusable={focusable}
-                        buttonStyle={{
-                            marginBottom: 10,
-                            ...boxStyle,
-                        }}
-                        inline
-                        {...(swipeUpEnabled && !disabled ? bind() : null)}
-                        {...(inWebView
-                            ? { onClick: onOpenWebView }
-                            : {
-                                  href: url,
-                                  external: true,
-                                  onClick: onClickLink,
-                              })}
-                    >
-                        <span
-                            className={classNames([
-                                styles.label,
-                                {
-                                    [labelClassName]: labelClassName !== null,
-                                },
-                            ])}
-                        >
-                            {icon !== null ? <div className={styles.icon}>{icon}</div> : null}
-                            <Text
-                                {...label}
-                                textStyle={{ ...textStyle, lineHeight: lineHeight || 1 }}
-                                inline
-                            />
-                        </span>
-                    </Button>
-                </div>
-            </div>
-            {inWebView ? (
-                <WebView
-                    className={classNames([
-                        styles.webView,
-                        {
-                            [styles.visible]: showWebView,
-                        },
-                    ])}
-                    src={url}
-                    disabled={!showWebView}
-                    closeable
-                    hidden={disableWebView}
-                    onClose={onCloseWebView}
-                    {...screenSize}
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.disabled]: disabled,
+                    [styles.animationDisabled]: animationDisabled,
+                    [styles.invalidUrl]: !validUrl,
+                    [styles.inWebView]: inWebView,
+                },
+            ])}
+            ref={elRef}
+        >
+            {leaving ? <div className={styles.leavingFrame} /> : null}
+            {!inWebView && swipeUpEnabled ? (
+                <a
+                    className={styles.selfTargetLink}
+                    href={url}
+                    ref={selfTargetLinkRef}
+                    tabIndex={focusable ? '0' : '-1'}
                 />
             ) : null}
-        </>
-    ) : null;
+            {swipeUpEnabled ? (
+                <div
+                    className={classNames([
+                        styles.arrow,
+                        {
+                            [arrowClassName]: arrowClassName !== null,
+                        },
+                    ])}
+                    style={arrowStyle}
+                >
+                    {arrow || <ArrowIcon />}
+                </div>
+            ) : null}
+            <div
+                className={classNames([
+                    styles.buttonBorder,
+                    {
+                        [buttonBorderClassName]: buttonBorderClassName !== null,
+                    },
+                ])}
+            >
+                <Button
+                    className={classNames([
+                        styles.button,
+                        {
+                            [buttonClassName]: buttonClassName !== null,
+                        },
+                    ])}
+                    refButton={buttonRef}
+                    focusable={focusable}
+                    buttonStyle={boxStyle}
+                    inline
+                    href={!inWebView ? url : null}
+                    external
+                    onClick={onClickLink}
+                    {...(swipeUpEnabled && !disabled ? bind() : null)}
+                >
+                    <span
+                        className={classNames([
+                            styles.label,
+                            {
+                                [labelClassName]: labelClassName !== null,
+                            },
+                        ])}
+                    >
+                        {icon !== null ? <div className={styles.icon}>{icon}</div> : null}
+                        <Text
+                            {...label}
+                            textStyle={{ ...textStyle, lineHeight: lineHeight || 1 }}
+                            inline
+                        />
+                    </span>
+                </Button>
+            </div>
+        </div>
+    );
 }
 
 CallToAction.propTypes = propTypes;

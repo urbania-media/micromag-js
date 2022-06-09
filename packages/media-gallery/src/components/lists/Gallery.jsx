@@ -1,11 +1,14 @@
 /* eslint-disable react/no-array-index-key */
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver } from '@micromag/core/hooks';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import styles from '../../styles/lists/gallery.module.scss';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useDimensionObserver } from '@micromag/core/hooks';
+
 import GalleryItem from '../items/GalleryItem';
+
+import styles from '../../styles/lists/gallery.module.scss';
 
 const propTypes = {
     items: MicromagPropTypes.medias,
@@ -39,11 +42,7 @@ function Gallery({
     onClickItem,
     onClickItemInfo,
 }) {
-    const {
-        ref,
-        entry: { contentRect },
-    } = useResizeObserver();
-    const { width } = contentRect || {};
+    const { ref, width } = useDimensionObserver();
 
     const finalItems = useMemo(() => {
         if (selectedFirst && selectedItem !== null && typeof selectedItem.id !== 'undefined') {

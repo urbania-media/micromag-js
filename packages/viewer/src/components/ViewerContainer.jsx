@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     GoogleMapsClientProvider,
@@ -12,16 +13,21 @@ import {
     FieldsProvider,
     UserInteractionProvider,
     ComponentsProvider,
+    PlaybackProvider,
     SCREENS_NAMESPACE,
 } from '@micromag/core/contexts';
 import fieldsManager from '@micromag/fields/manager';
 import { IntlProvider } from '@micromag/intl';
 import { ScreensProvider } from '@micromag/screens';
-import defaultRoutes from '../data/routes.json';
+
 import * as ViewerPropTypes from '../lib/PropTypes';
-import '../styles/styles.global.scss';
+
 import Viewer from './Viewer';
 import ViewerRoutes from './ViewerRoutes';
+
+import '../styles/styles.global.scss';
+
+import defaultRoutes from '../data/routes.json';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -103,22 +109,24 @@ const ViewerContainer = ({
                                 components={screenComponents || {}}
                             >
                                 <UserInteractionProvider>
-                                    <TrackingProvider variables={finalTrackingVariables}>
-                                        {withoutRouter ? (
-                                            <Viewer
-                                                story={story}
-                                                basePath={basePath}
-                                                {...otherProps}
-                                            />
-                                        ) : (
-                                            <ViewerRoutes
-                                                story={story}
-                                                basePath={basePath}
-                                                pathWithIndex={pathWithIndex}
-                                                {...otherProps}
-                                            />
-                                        )}
-                                    </TrackingProvider>
+                                    <PlaybackProvider>
+                                        <TrackingProvider variables={finalTrackingVariables}>
+                                            {withoutRouter ? (
+                                                <Viewer
+                                                    story={story}
+                                                    basePath={basePath}
+                                                    {...otherProps}
+                                                />
+                                            ) : (
+                                                <ViewerRoutes
+                                                    story={story}
+                                                    basePath={basePath}
+                                                    pathWithIndex={pathWithIndex}
+                                                    {...otherProps}
+                                                />
+                                            )}
+                                        </TrackingProvider>
+                                    </PlaybackProvider>
                                 </UserInteractionProvider>
                             </ComponentsProvider>
                         </ScreensProvider>

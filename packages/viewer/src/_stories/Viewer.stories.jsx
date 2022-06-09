@@ -4,6 +4,7 @@
 import React, { useCallback, useState } from 'react';
 import {
     audioMedia,
+    callToAction,
     imageMedia,
     video360Media,
     videoMedia,
@@ -14,6 +15,8 @@ import {
     webfontFiles,
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
+import article from '../../../../.storybook/data/stories/article.json';
+import article2 from '../../../../.storybook/data/stories/article2.json';
 import basic from '../../../../.storybook/data/stories/basic.json';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
@@ -71,7 +74,8 @@ export const Custom = () => (
     />
 );
 
-export const Basic = () => <Viewer story={basic} ç />;
+export const Basic = () => <Viewer story={basic} />;
+export const WithSibblings = () => <Viewer story={basic} withLandscapeSiblingsScreens />;
 
 export const Integrated = () => {
     const [fullscreen, setFullscreen] = useState(false);
@@ -167,29 +171,33 @@ export const MultipleVideos = () => (
                 {
                     id: '1',
                     type: 'video',
+                    layout: 'full',
                     video: {
                         media: bigVideoMediaWithSound(),
-                        withSeekBar: false,
-                        withControls: false,
-                        loop: true,
-                        autoPlay: false,
-                        muted: true,
+                        withSeekBar: true,
+                        withControls: true,
+                        loop: false,
+                        autoPlay: true,
+
                     },
                     background: {
                         color: { alpha: 1, color: '#FFFF00' },
                     },
+                    callToAction: callToAction(),
                 },
                 {
                     id: '2',
                     type: 'video',
-                    layout: 'full',
                     video: {
                         withSeekBar: true,
                         withControls: true,
                         media: gifVideoMedia(),
                         autoPlay: true,
-                        color: { alpha: 1, color: '#000000' },
-                        progressColor: { alpha: 1, color: '#FF0000' },
+                        color: { alpha: 1, color: '#012400' },
+                        progressColor: { alpha: 1, color: '#8891cc' },
+                    },
+                    background: {
+                        color: { alpha: 1, color: '#123456' },
                     },
                     gotoNextScreenOnEnd: true,
                 },
@@ -210,8 +218,8 @@ export const MultipleVideos = () => (
                     type: 'video',
                     video: {
                         media: videoMedia({ big: true }),
-                        withSeekBar: true,
-                        withControls: true,
+                        withSeekBar: false,
+                        withControls: false,
                         autoPlay: true,
                         color: { alpha: 1, color: '#000000' },
                         progressColor: { alpha: 1, color: '#0000FF' },
@@ -230,7 +238,7 @@ export const MultipleVideos = () => (
                         withSeekBar: true,
                         withControls: true,
                         autoPlay: true,
-                        color: { alpha: 1, color: '#000000' },
+                        color: { alpha: 1, color: '#00ffff' },
                         progressColor: { alpha: 1, color: '#FF0000' },
                     },
                     background: {
@@ -396,5 +404,48 @@ export const WithMenuTheme = () => (
     <Viewer
         {...twoScreensProps}
         theme={{ ...viewerTheme, menuTheme: { colors: { primary: '#F00', secondary: '#00F' } } }}
+    />
+);
+
+export const MultipleArticles = () => (
+    <Viewer
+        screenId="42"
+        story={{
+            components: [
+                {
+                    id: '1',
+                    type: 'urbania-article',
+                    article,
+                    background: {
+                        color: { alpha: 1, color: '#FF00FF' },
+                    },
+                },
+                {
+                    id: '2',
+                    type: 'urbania-article',
+                    article: article2,
+                    overTitle: {
+                        body: 'Guide des universités',
+                        textStyle: {
+                            color: { alpha: 1, color: '#ff0000' }
+                        }
+                    },
+                    description: {
+                        body: 'Petite virée sur le campus de l\'École de technologie supérieure (ÉTS)',
+                        textStyle: {
+                            fontStyle: {
+                                italic: true,
+                                bold: false,
+                            },
+                            fontSize: 13,
+                            color: { alpha: 1, color: '#ff0000' }
+                        }
+                    },
+                    background: {
+                        color: { alpha: 1, color: '#ffffff' },
+                    },
+                },
+            ]
+        }}
     />
 );

@@ -1,9 +1,9 @@
-import withIntlProvider from './decorators/withIntlProvider';
-import withScreenSize from './decorators/withScreenSize';
-import withScreenDefinition from './decorators/withScreenDefinition';
-import withGoogleKeys from './decorators/withGoogleKeys';
-
 import '../packages/core/src/styles/vendor.scss';
+import withGoogleKeys from './decorators/withGoogleKeys';
+import withIntlProvider from './decorators/withIntlProvider';
+import withScreenDefinition from './decorators/withScreenDefinition';
+import withScreenSize from './decorators/withScreenSize';
+import withVisitor from './decorators/withVisitor';
 import './fonts/fonts.scss';
 
 export const parameters = {
@@ -69,4 +69,10 @@ export const parameters = {
     },
 };
 
-export const decorators = [withIntlProvider, withScreenSize, withScreenDefinition, withGoogleKeys];
+export const decorators = [
+    withIntlProvider,
+    withScreenSize,
+    withScreenDefinition,
+    withGoogleKeys,
+    withVisitor,
+];

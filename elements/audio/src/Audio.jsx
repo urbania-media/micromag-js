@@ -1,31 +1,44 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
 import classNames from 'classnames';
+import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useUserInteracted } from '@micromag/core/contexts';
-import { useMediaApi } from '@micromag/core/hooks';
+import {
+    useMediaCurrentTime,
+    useMediaReady,
+    useMediaDuration,
+    useMediaLoad,
+    useMediaWaveform,
+    useProgressSteps,
+} from '@micromag/core/hooks';
+
 import AudioWave from './AudioWave';
+
 import styles from './styles/audio.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.audioMedia,
-    apiRef: PropTypes.oneOfType([
+    mediaRef: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({
             current: PropTypes.any,
         }),
     ]),
-    initialMuted: PropTypes.oneOf(['auto', true, false]),
+    muted: PropTypes.bool,
     autoPlay: PropTypes.bool,
+    paused: PropTypes.bool,
     loop: PropTypes.bool,
+    preload: PropTypes.oneOf(['auto', 'none', 'metadata']),
+    shouldLoad: PropTypes.bool,
     waveFake: PropTypes.bool,
     waveProps: PropTypes.shape({
         sampleWidth: PropTypes.number,
         sampleMargin: PropTypes.number,
         minSampleHeight: PropTypes.number,
     }),
-    showWave: PropTypes.bool,
+    withWave: PropTypes.bool,
     reduceBufferFactor: PropTypes.number,
     className: PropTypes.string,
     onReady: PropTypes.func,
@@ -35,19 +48,22 @@ const propTypes = {
     onSeeked: PropTypes.func,
     onTimeUpdate: PropTypes.func,
     onProgressStep: PropTypes.func,
-    onDurationChanged: PropTypes.func,
-    onVolumeChanged: PropTypes.func,
+    onDurationChange: PropTypes.func,
+    onVolumeChange: PropTypes.func,
 };
 
 const defaultProps = {
     media: null,
-    apiRef: null,
-    initialMuted: 'auto',
+    mediaRef: null,
+    muted: false,
     autoPlay: false,
+    paused: false,
     loop: false,
+    preload: 'auto',
+    shouldLoad: true,
     waveFake: false,
     waveProps: null,
-    showWave: false,
+    withWave: false,
     reduceBufferFactor: 100,
     className: null,
     onReady: null,
@@ -57,19 +73,22 @@ const defaultProps = {
     onSeeked: null,
     onTimeUpdate: null,
     onProgressStep: null,
-    onDurationChanged: null,
-    onVolumeChanged: null,
+    onDurationChange: null,
+    onVolumeChange: null,
 };
 
 const Audio = ({
     media,
-    apiRef,
-    initialMuted,
+    mediaRef,
+    muted,
     autoPlay,
+    paused,
     loop,
+    preload,
+    shouldLoad,
     waveFake,
     waveProps,
-    showWave,
+    withWave,
     reduceBufferFactor,
     className,
     onReady,
@@ -79,120 +98,90 @@ const Audio = ({
     onSeeked,
     onTimeUpdate,
     onProgressStep,
-    onDurationChanged,
-    onVolumeChanged,
+    onDurationChange: customOnDurationChange,
+    onVolumeChange: customOnVolumeChange,
 }) => {
-    const { url = null, metadata = null } = media || {};
-    const { waveform = null } = metadata || {};
-    const userInteracted = useUserInteracted();
-    const finalInitialMuted =
-        initialMuted === true || (initialMuted === 'auto' && autoPlay && !userInteracted);
+    const { url = null } = media || {};
 
-    const { ref, ...api } = useMediaApi({
-        url,
-        initialMuted: finalInitialMuted,
-        onPlay,
-        onPause,
-        onEnded,
-        onSeeked,
-        onTimeUpdate,
-        onProgressStep,
-        onDurationChanged,
-        onVolumeChanged,
+    const ref = useRef(null);
+    const currentTime = useMediaCurrentTime(ref.current, {
+        id: url,
+        disabled: paused || (!withWave && onProgressStep === null),
+    });
+    const ready = useMediaReady(ref.current, {
+        id: url,
+    });
+    const duration = useMediaDuration(ref.current, {
+        id: url,
+    });
+    const audioLevels = useMediaWaveform(media, {
+        fake: waveFake,
+        reduceBufferFactor,
+    });
+    useMediaLoad(ref.current, {
+        preload,
+        shouldLoad,
     });
 
-    if (apiRef !== null) {
-        apiRef.current = api;
-        apiRef.current.mediaRef = ref;
-    }
-
-    const {
-        currentTime,
-        duration,
-        playing,
-        seek,
-        ready: audioReady,
-        play,
-        pause,
-        muted,
-        unMute,
-    } = api;
-
-    const [audioLevels, setAudioLevels] = useState(null);
-    const [blobUrl, setBlobUrl] = useState(null);
+    const waveReady = waveFake || ready;
 
     useEffect(() => {
-        let canceled = false;
-        const AudioContext =
-            typeof window !== 'undefined' ? window.AudioContext || window.webkitAudioContext : null;
-        if (waveform !== null) {
-            setAudioLevels(waveform.map((it) => (it + 256 / 2) / 256));
-        } else if (url !== null && waveFake) {
-            const fakeLength = 1000;
-            setAudioLevels([...new Array(fakeLength)].map(() => Math.random()));
-        } else if (url !== null && AudioContext !== null) {
-            fetch(url, {
-                mode: 'cors',
-            })
-                .then((response) => {
-                    if (canceled) {
-                        throw new Error('Audio loading canceled');
-                    }
-                    return response.arrayBuffer();
-                })
-                .then((arrayBuffer) => {
-                    if (canceled) {
-                        throw new Error('Audio loading canceled');
-                    }
-                    setBlobUrl(URL.createObjectURL(new Blob([arrayBuffer])));
-                    const audioCtx = new AudioContext();
-                    return audioCtx.decodeAudioData(arrayBuffer);
-                })
-                .then((buffer) => {
-                    const channelsCount = buffer.numberOfChannels;
-                    if (channelsCount > 0) {
-                        const leftChannelData = buffer.getChannelData(0);
-                        setAudioLevels(
-                            leftChannelData.reduce((newArray, level, levelIndex) => {
-                                // if (levelIndex % reduceBufferFactor === 0) {
-                                //     console.log(level, (level + 1) / 2);
-                                newArray[newArray.length] = Math.abs(level);
-                                // }
-                                return newArray;
-                            }, []),
-                        );
-                    }
-                })
-                .catch((e) => {
-                    throw e;
-                });
+        if (duration > 0 && customOnDurationChange !== null) {
+            customOnDurationChange(duration);
         }
+    }, [duration, customOnDurationChange]);
 
-        return () => {
-            if (url === null) {
-                canceled = true;
-            }
-        };
-    }, [url, waveform, setAudioLevels, setBlobUrl, reduceBufferFactor, waveFake]);
+    const onVolumeChange = useCallback(() => {
+        const { current: element = null } = ref;
+        if (element === null) {
+            return;
+        }
+        if (customOnVolumeChange !== null) {
+            customOnVolumeChange(element.volume);
+        }
+    }, [customOnVolumeChange]);
 
-    const ready = waveFake || (audioReady && blobUrl !== null);
+    const onWavePlay = useCallback(() => {
+        const { current: element = null } = ref;
+        if (element === null) {
+            return;
+        }
+        element.play();
+    }, []);
+
+    const onWaveSeek = useCallback((newTime) => {
+        const { current: element = null } = ref;
+        if (element === null) {
+            return;
+        }
+        element.currentTime = newTime;
+    }, []);
 
     useEffect(() => {
-        if (ready && onReady !== null) {
+        if (waveReady && onReady !== null) {
             onReady();
         }
-    }, [ready, onReady]);
+    }, [waveReady, onReady]);
 
     useEffect(() => {
-        if (autoPlay) {
-            play();
-            if (initialMuted === 'auto' && muted && userInteracted) {
-                unMute();
-            }
-        } else {
-            pause();
+        const { current: element = null } = ref;
+        if (element === null) {
+            return;
         }
-    }, [autoPlay]);
+        const { paused: isPaused } = element;
+        if (paused && !isPaused) {
+            element.pause();
+        } else if (!paused && isPaused) {
+            element.play();
+        }
+    }, [paused, media]);
+
+    useProgressSteps({
+        currentTime,
+        duration,
+        disabled: paused,
+        onStep: onProgressStep,
+    });
 
     return (
         <div
@@ -205,24 +194,38 @@ const Audio = ({
         >
             <audio
                 key={url}
-                ref={ref}
-                src={waveFake ? url : blobUrl}
+                ref={(newRef) => {
+                    ref.current = newRef;
+
+                    if (mediaRef !== null && isFunction(mediaRef)) {
+                        mediaRef(newRef);
+                    } else if (mediaRef !== null) {
+                        mediaRef.current = newRef;
+                    }
+                }}
+                src={url}
                 autoPlay={autoPlay}
                 muted={muted}
                 loop={loop}
                 crossOrigin="anonymous"
-                preload="none"
+                preload={preload}
+                onPlay={onPlay}
+                onPause={onPause}
+                onEnded={onEnded}
+                onSeeked={onSeeked}
+                onTimeUpdate={onTimeUpdate}
+                onVolumeChange={onVolumeChange}
             />
-            {showWave ? (
+            {withWave ? (
                 <AudioWave
                     className={styles.wave}
                     media={media}
                     currentTime={currentTime}
                     {...waveProps}
                     duration={duration}
-                    playing={playing}
-                    onSeek={seek}
-                    onResume={play}
+                    playing={!paused}
+                    onSeek={onWaveSeek}
+                    onResume={onWavePlay}
                     audioLevels={audioLevels}
                 />
             ) : null}
@@ -233,4 +236,4 @@ const Audio = ({
 Audio.propTypes = propTypes;
 Audio.defaultProps = defaultProps;
 
-export default React.forwardRef((props, ref) => <Audio apiRef={ref} {...props} />);
+export default React.forwardRef((props, ref) => <Audio mediaRef={ref} {...props} />);

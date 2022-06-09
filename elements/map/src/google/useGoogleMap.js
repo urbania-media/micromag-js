@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
+
 import { useGoogleMapsClient } from '@micromag/core/contexts';
-import { useResizeObserver } from '@micromag/core/hooks';
+import { useDimensionObserver } from '@micromag/core/hooks';
 
 import styles from './styles';
 
@@ -33,11 +34,7 @@ export default function useGoogleMap({
     const containerRef = useRef(null);
     const mapRef = useRef(null);
 
-    const {
-        ref: resizeRef,
-        entry: { contentRect: elContentRect },
-    } = useResizeObserver();
-    const { width = null, height = null } = elContentRect || {};
+    const { ref: resizeRef, width = null, height = null } = useDimensionObserver();
 
     useEffect(() => {
         const { current: map } = mapRef;
@@ -123,10 +120,7 @@ export default function useGoogleMap({
         setReady(true);
 
         return () => {};
-    }, [
-        client,
-        setReady,
-    ]);
+    }, [client, setReady]);
 
     const finalRef = useCallback((ref) => {
         resizeRef.current = ref;

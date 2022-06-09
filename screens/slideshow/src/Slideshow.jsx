@@ -3,16 +3,23 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
-import { useResizeObserver } from '@micromag/core/hooks';
+import {
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerInteraction,
+} from '@micromag/core/contexts';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -27,8 +34,6 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     // transitionStagger: PropTypes.number,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -44,8 +49,6 @@ const defaultProps = {
     active: true,
     transitions: null,
     // transitionStagger: 50,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -61,12 +64,11 @@ const SlideshowScreen = ({
     captionMaxLines,
     transitions,
     // transitionStagger,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
+    const { width, height, resolution } = useScreenSize();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -90,12 +92,7 @@ const SlideshowScreen = ({
     // Call to Action
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
+    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const items = (slides || []).map((item, itemI) => {
         const { visual = null, caption = null } = item || {};
@@ -205,8 +202,10 @@ const SlideshowScreen = ({
                 <div
                     className={styles.content}
                     style={{
-                        paddingTop: menuOverScreen && !isPreview ? menuSize : null,
-                        paddingBottom: hasCallToAction ? callToActionHeight - finalSpacing : 0,
+                        paddingTop: !isPreview ? viewerTopHeight : null,
+                        paddingBottom:
+                            (hasCallToAction ? callToActionHeight - finalSpacing : 0) +
+                            (!isPreview ? viewerBottomHeight : 0),
                     }}
                 >
                     {items}

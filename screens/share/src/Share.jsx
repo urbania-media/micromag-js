@@ -1,17 +1,26 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FormattedMessage } from 'react-intl';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewerContext,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+} from '@micromag/core/contexts';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
-import Layout, { Spacer } from '@micromag/element-layout';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
+import Layout, { Spacer } from '@micromag/element-layout';
 import ShareOptions from '@micromag/element-share-options';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -27,8 +36,6 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -45,8 +52,6 @@ const defaultProps = {
     active: true,
     transitions: null,
     transitionStagger: 100,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -63,15 +68,19 @@ const ShareScreen = ({
     active,
     transitions,
     transitionStagger,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
-
+    const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
@@ -87,35 +96,39 @@ const ShareScreen = ({
     }, []);
     const finalShareURL = shareUrl || currentUrl;
 
-    const defaultOptions = options === true
-        ? ['email', 'facebook', 'twitter', 'linkedin']
-        : [];
-    const selectedOptions = options !== null
-        ? Object.keys(options).reduce((acc, key) => {
-            if (!options[key]) return acc;
-            return [...acc, key];
-        }, [])
-        : defaultOptions;
+    const defaultOptions = options === true ? ['email', 'facebook', 'twitter', 'linkedin'] : [];
+    const selectedOptions =
+        options !== null
+            ? Object.keys(options).reduce((acc, key) => {
+                  if (!options[key]) return acc;
+                  return [...acc, key];
+              }, [])
+            : defaultOptions;
+
+
+    const trackingEnabled = isView;
+    const trackEvent = useTrackScreenEvent('share');
+    const onClickShare = useCallback(
+        (type) => {
+            if (trackingEnabled) {
+                trackEvent('click_share', type, {
+                    shareUrl
+                });
+            }
+        },
+        [trackEvent],
+    );
 
     // Create elements
     const items = [
         <ScreenElement
             key="title"
             placeholder="title"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-            }
+            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
             emptyClassName={styles.emptyHeading}
             isEmpty={!heading}
         >
-            {heading ? (
-                <Heading
-                    className={classNames([
-                        styles.heading,
-                    ])}
-                    {...heading}
-                />
-            ) : null}
+            {heading ? <Heading className={classNames([styles.heading])} {...heading} /> : null}
         </ScreenElement>,
 
         <Spacer size={20} />,
@@ -130,25 +143,28 @@ const ShareScreen = ({
             isEmpty={!options}
         >
             <ShareOptions
-                className={classNames([
-                    styles.shareOptions,
-                    { [styles.isCentered]: centered },
-                ])}
+                className={classNames([styles.shareOptions, { [styles.isCentered]: centered }])}
                 labelClassName={styles.shareLabel}
                 url={finalShareURL}
                 options={selectedOptions}
+                onShare={onClickShare}
             />
         </ScreenElement>,
 
         !isPlaceholder && hasCallToAction ? (
-            <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
+            <div
+                style={{
+                    paddingTop: spacing,
+                    paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
+                    paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
+                }}
+                key="call-to-action"
+            >
                 <CallToAction
-                    callToAction={callToAction}
+                    {...callToAction}
                     animationDisabled={isPreview}
                     focusable={current && isView}
-                    screenSize={{ width, height }}
-                    enableInteraction={enableInteraction}
-                    disableInteraction={disableInteraction}
+                    openWebView={openWebView}
                 />
             </div>
         ) : null,
@@ -172,7 +188,9 @@ const ShareScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={backgroundShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -184,8 +202,8 @@ const ShareScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop:
-                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }

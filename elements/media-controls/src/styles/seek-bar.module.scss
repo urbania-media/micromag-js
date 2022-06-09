@@ -3,51 +3,41 @@
 
 .container {
     position: relative;
+}
 
-    .inner {
-        position: relative;
-        flex-grow: 1;
-        height: 16px;
-    }
+.inner {
+    position: relative;
+    flex-grow: 1;
+    height: 16px;
+}
 
-    .progressBar {
-        position: relative;
-        top: 7px;
-        background-color: rgba($white, 0.5);
-    }
+.progressBar {
+    position: relative;
+    top: 7px;
+    background-color: rgba($white, 0.5);
+}
 
-    .progress,
-    .button {
-        @extend %fullscreen;
-    }
+.progress,
+.button {
+    @extend %fullscreen;
+}
 
-    .progress {
-        position: relative;
-        height: 4px;
-        transform-origin: left center;
-        background-color: $purple;
-    }
+.progress {
+    position: relative;
+    height: 4px;
+    transform-origin: left center;
+    background-color: $purple;
+}
 
-    .button {
-        @extend %reset-button;
+.button {
+    @extend %reset-button;
 
-        height: 100%;
-        background-color: transparent;
-    }
+    height: 100%;
+    background-color: transparent;
+}
 
-    .time {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.8em;
-    }
-
-    &.isSmall {
-        .inner {
-            height: auto;
-        }
-
-        .progressBar {
-            top: auto;
-        }
-    }
+.time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
 }

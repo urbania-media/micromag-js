@@ -1,4 +1,7 @@
-import React from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState } from 'react';
+
+import WebView from '../../webview/src/WebView';
 import CallToAction from './CallToAction';
 
 export default {
@@ -13,7 +16,8 @@ const callToActionProps = {
 };
 
 const CTAContainer = (props = null) => {
-    const { width = 320, height = 480, callToAction = null } = props || {};
+    const [webView, setWebView] = useState(null);
+    const { width = 320, height = 480, ...otherProps } = props || {};
     return (
         <div
             style={{
@@ -27,7 +31,15 @@ const CTAContainer = (props = null) => {
                 border: '1px solid white',
             }}
         >
-            <CallToAction callToAction={callToAction} />
+            <CallToAction {...otherProps} openWebView={setWebView} />
+            {webView !== null ? (
+                <WebView
+                    {...webView}
+                    width={width}
+                    height={height}
+                    onClose={() => setWebView(null)}
+                />
+            ) : null}
         </div>
     );
 };
@@ -35,28 +47,24 @@ const CTAContainer = (props = null) => {
 export const normal = () => (
     <>
         <div style={{ height: 300 }} />
-        <CallToAction callToAction={callToActionProps} />
+        <CallToAction {...callToActionProps} />
     </>
 );
 
 export const animationDisabled = () => (
     <>
         <div style={{ height: 300 }} />
-        <CallToAction callToAction={callToActionProps} animationDisabled />
+        <CallToAction {...callToActionProps} animationDisabled />
     </>
 );
 
 export const noSwipe = () => (
     <>
         <div style={{ height: 300 }} />
-        <CallToAction callToAction={{ ...callToActionProps, type: 'button' }} />
+        <CallToAction {...callToActionProps} type="button" />
     </>
 );
 
-export const buttonWebView = () => (
-    <CTAContainer callToAction={{ ...callToActionProps, type: 'button', inWebView: true }} />
-);
+export const buttonWebView = () => <CTAContainer {...callToActionProps} type="button" inWebView />;
 
-export const swipeWebView = () => (
-    <CTAContainer callToAction={{ ...callToActionProps, type: 'swipe-up', inWebView: true }} />
-);
+export const swipeWebView = () => <CTAContainer {...callToActionProps} type="swipe-up" inWebView />;

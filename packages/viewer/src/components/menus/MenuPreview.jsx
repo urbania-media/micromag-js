@@ -10,14 +10,17 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState, useMemo } from 'react';
 import { useIntl } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, ScreenPreview } from '@micromag/core/components';
-import { useResizeObserver } from '@micromag/core/hooks';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
-import styles from '../../styles/menus/menu-preview.module.scss';
+
 import StackIcon from '../icons/Stack';
 import ShareButton from '../partials/ShareButton';
+
+import styles from '../../styles/menus/menu-preview.module.scss';
 
 const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
@@ -76,16 +79,8 @@ const ViewerMenuPreview = ({
 }) => {
     const intl = useIntl();
     const { width: screenWidth, height: screenHeight } = screenSize || {};
-    const {
-        ref: firstScreenContainerRef,
-        entry: { contentRect: firstScreenContentRect },
-    } = useResizeObserver();
-    const {
-        ref: containerRef,
-        entry: { contentRect: containerRect },
-    } = useResizeObserver();
-    const { width: thumbWidth = 0 } = firstScreenContentRect || {};
-    const { width: contentWidth = 0 } = containerRect || {};
+    const { ref: firstScreenContainerRef, width: thumbWidth = 0 } = useDimensionObserver();
+    const { ref: containerRef, width: contentWidth = 0 } = useDimensionObserver();
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3);
 
     // Viewer theme
@@ -132,7 +127,7 @@ const ViewerMenuPreview = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
-    const finalItems = useMemo(() => !focusable ? items.slice(0, 3) : items, [items, focusable]);
+    const finalItems = useMemo(() => (!focusable ? items.slice(0, 3) : items), [items, focusable]);
 
     return (
         <div
@@ -251,9 +246,11 @@ const ViewerMenuPreview = ({
                                                         <span className={styles.subScreenCount}>
                                                             {count}
                                                         </span>
-                                                        <StackIcon className={styles.subScreenIcon}/>
+                                                        <StackIcon
+                                                            className={styles.subScreenIcon}
+                                                        />
                                                     </div>
-                                                ): null}
+                                                ) : null}
                                                 {screenWidth > 0 && screenHeight > 0 ? (
                                                     <ScreenPreview
                                                         screenWidth={screenWidth}

@@ -10,7 +10,7 @@ const defaultProps = {
     className: null,
 };
 
-const LinkIcon = ({ className }) => (
+const ShareLinkIcon = ({ className }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"
@@ -38,7 +38,7 @@ const LinkIcon = ({ className }) => (
     </svg>
 );
 
-LinkIcon.propTypes = propTypes;
-LinkIcon.defaultProps = defaultProps;
+ShareLinkIcon.propTypes = propTypes;
+ShareLinkIcon.defaultProps = defaultProps;
 
-export default LinkIcon;
+export default ShareLinkIcon;

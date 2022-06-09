@@ -4,10 +4,18 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { v1 as uuid } from 'uuid';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
-import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import {
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+} from '@micromag/core/contexts';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -15,7 +23,9 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
+
 import ConversationMessage from './ConversationMessage';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -31,8 +41,6 @@ const propTypes = {
     type: PropTypes.string,
     conversation: MicromagPropTypes.conversation,
     transitions: MicromagPropTypes.transitions,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -48,8 +56,6 @@ const defaultProps = {
     type: null,
     conversation: null,
     transitions: null,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -65,13 +71,18 @@ const ConversationScreen = ({
     type,
     conversation,
     transitions,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
+    const { width, height, resolution } = useScreenSize();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
     const trackScreenEvent = useTrackScreenEvent(type);
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -88,9 +99,8 @@ const ConversationScreen = ({
 
     const {
         ref: contentRef,
-        entry: { contentRect: scrollContentRect },
-    } = useResizeObserver();
-    const { height: scrollHeight } = scrollContentRect || {};
+        height: scrollHeight
+    } = useDimensionObserver();
 
     const scrollRef = useRef(null);
     useEffect(() => {
@@ -137,14 +147,10 @@ const ConversationScreen = ({
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     // CTA
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const { active: hasCallToAction = false } = callToAction || {};
     const [scrolledBottom, setScrolledBottom] = useState(false);
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
-    const viewCTA = (animationFinished && !isPlaceholder && hasCallToAction) || !withAnimation;
+    const showCallToAction =
+        (animationFinished && !isPlaceholder && hasCallToAction) || !withAnimation;
     const onScrolledBottom = useCallback(
         ({ initial }) => {
             if (initial) {
@@ -176,7 +182,9 @@ const ConversationScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
 
@@ -194,9 +202,9 @@ const ConversationScreen = ({
                                 !isPlaceholder
                                     ? {
                                           padding: spacing,
-                                          paddingTop:
-                                              (menuOverScreen && !isPreview ? menuSize : 0) +
-                                              spacing,
+                                          paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                          paddingBottom:
+                                              (!isPreview ? viewerBottomHeight : 0) + spacing,
                                       }
                                     : null
                             }
@@ -271,18 +279,31 @@ const ConversationScreen = ({
                                             );
                                         })}
                                     </div>
-                                    {viewCTA ? (
-                                        <div style={{ minHeight: callToActionHeight }}>
+                                    {showCallToAction ? (
+                                        <div
+                                            className={classNames([
+                                                styles.callToAction,
+                                                {
+                                                    [styles.disabled]: !scrolledBottom,
+                                                },
+                                            ])}
+                                            style={{
+                                                paddingLeft: Math.max(
+                                                    viewerBottomSidesWidth - spacing,
+                                                    0,
+                                                ),
+                                                paddingRight: Math.max(
+                                                    viewerBottomSidesWidth - spacing,
+                                                    0,
+                                                ),
+                                                paddingTop: spacing,
+                                            }}
+                                        >
                                             <CallToAction
-                                                ref={callToActionRef}
-                                                className={styles.callToAction}
-                                                disabled={!scrolledBottom}
+                                                {...callToAction}
                                                 animationDisabled={isPreview}
-                                                callToAction={callToAction}
                                                 focusable={current && isView}
-                                                screenSize={{ width, height }}
-                                                enableInteraction={enableInteraction}
-                                                disableInteraction={disableInteraction}
+                                                openWebView={openWebView}
                                             />
                                         </div>
                                     ) : null}

@@ -3,9 +3,17 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewerContext,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+} from '@micromag/core/contexts';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -13,6 +21,7 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -27,8 +36,6 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -44,8 +51,6 @@ const defaultProps = {
     active: true,
     transitions: null,
     transitionStagger: 100,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -61,15 +66,19 @@ const TextScreen = ({
     active,
     transitions,
     transitionStagger,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
-
+    const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const hasTitle = isTextFilled(title);
     const hasText = isTextFilled(text);
@@ -86,7 +95,7 @@ const TextScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active;
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const { active: hasCallToAction = false } = callToAction || {};
 
     // Create elements
     const items = [
@@ -130,14 +139,19 @@ const TextScreen = ({
             <Spacer key="spacer-cta-bottom" />
         ) : null,
         !isPlaceholder && hasCallToAction ? (
-            <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
+            <div
+                key="call-to-action"
+                style={{
+                    paddingTop: spacing,
+                    paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
+                    paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
+                }}
+            >
                 <CallToAction
-                    callToAction={callToAction}
+                    {...callToAction}
                     animationDisabled={isPreview}
                     focusable={current && isView}
-                    screenSize={{ width, height }}
-                    enableInteraction={enableInteraction}
-                    disableInteraction={disableInteraction}
+                    openWebView={openWebView}
                 />
             </div>
         ) : null,
@@ -161,7 +175,9 @@ const TextScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={backgroundShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -173,8 +189,8 @@ const TextScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop:
-                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }

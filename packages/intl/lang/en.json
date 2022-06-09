@@ -98,6 +98,9 @@
     "33UbSd": {
         "defaultMessage": "Timeline with images"
     },
+    "3B9cb3": {
+        "defaultMessage": "Whatsapp"
+    },
     "3E57H7": {
         "defaultMessage": "No marker..."
     },
@@ -232,6 +235,9 @@
     },
     "88/Ge8": {
         "defaultMessage": "Quote"
+    },
+    "88kexp": {
+        "defaultMessage": "Facebook Messenger"
     },
     "8A8cuq": {
         "defaultMessage": "Parameters"
@@ -464,6 +470,9 @@
     "M/FGRs": {
         "defaultMessage": "Libra"
     },
+    "MBgLeH": {
+        "defaultMessage": "July 23 - Aug 22"
+    },
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
@@ -554,6 +563,9 @@
     "RucIeL": {
         "defaultMessage": "Share options"
     },
+    "S+WiGT": {
+        "defaultMessage": "Percentage Text"
+    },
     "S/mavZ": {
         "defaultMessage": "Text and Images"
     },
@@ -610,6 +622,9 @@
     },
     "VspZp9": {
         "defaultMessage": "Upload an image"
+    },
+    "Vv05Q4": {
+        "defaultMessage": "Link to copy"
     },
     "W5qWPj": {
         "defaultMessage": "Center"
@@ -724,9 +739,6 @@
     },
     "cGItoy": {
         "defaultMessage": "List"
-    },
-    "cNLZOF": {
-        "defaultMessage": "Align to center"
     },
     "ceaRdq": {
         "defaultMessage": "Horoscope sign"
@@ -893,9 +905,6 @@
     "kBz8vF": {
         "defaultMessage": "Name"
     },
-    "keK5s0": {
-        "defaultMessage": "Back to the Signs"
-    },
     "kf/5Tw": {
         "defaultMessage": "Right"
     },
@@ -1018,9 +1027,6 @@
     },
     "qKQCxc": {
         "defaultMessage": "Add a marker"
-    },
-    "qTdBzB": {
-        "defaultMessage": "No thumbnail"
     },
     "qhjeuO": {
         "defaultMessage": "Padding"

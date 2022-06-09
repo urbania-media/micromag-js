@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import { useCallback } from 'react';
-
 import { useScreen, useTracking } from '../contexts';
 
 const getScreenOptions = (screenContext, opts) => {
@@ -38,7 +37,7 @@ export const useTrackScreenEvent = (type = null) => {
         return () => {};
     }
 
-    const screenContext = useScreen();    
+    const screenContext = useScreen();
 
     if (screenContext.renderContext !== 'view') {
         return () => {};
@@ -63,7 +62,7 @@ export const useTrackScreenMedia = (type = null) => {
     if (!hasTracking(tracking)) {
         return () => {};
     }
- 
+
     const screenContext = useScreen();
 
     if (screenContext.renderContext !== 'view') {
@@ -74,7 +73,7 @@ export const useTrackScreenMedia = (type = null) => {
         (media = null, action = null, opts) => {
             if (type !== null && media !== null && action !== null) {
                 tracking.trackMedia(`screen_${type}`, media, action, {
-                    ...opts,                    
+                    ...opts,
                     ...getScreenOptions(screenContext, opts),
                 });
             }

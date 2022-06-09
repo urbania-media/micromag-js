@@ -8,21 +8,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import SeekBar from './SeekBar';
 import styles from './styles/media-controls.module.scss';
 
 const propTypes = {
     playing: PropTypes.bool,
     muted: PropTypes.bool,
-    currentTime: PropTypes.number,
-    duration: PropTypes.number,
-    onTogglePlay: PropTypes.func,
+    onPlay: PropTypes.func,
+    onPause: PropTypes.func,
     onToggleMute: PropTypes.func,
-    onSeek: PropTypes.func,
     withSeekBar: PropTypes.bool,
     withControls: PropTypes.bool,
     color: MicromagPropTypes.color,
-    progressColor: MicromagPropTypes.color,
     className: PropTypes.string,
     focusable: PropTypes.bool,
 };
@@ -30,15 +26,12 @@ const propTypes = {
 const defaultProps = {
     playing: false,
     muted: false,
-    currentTime: 0,
-    duration: 0,
-    onTogglePlay: null,
+    onPlay: null,
+    onPause: null,
     onToggleMute: null,
-    onSeek: null,
     withSeekBar: false,
     withControls: false,
     color: null,
-    progressColor: null,
     className: null,
     focusable: true,
 };
@@ -46,15 +39,12 @@ const defaultProps = {
 const MediaControls = ({
     playing,
     muted,
-    currentTime,
-    duration,
-    onTogglePlay,
+    onPlay,
+    onPause,
     onToggleMute,
-    onSeek,
     withSeekBar,
     withControls,
     color,
-    progressColor,
     className,
     focusable,
 }) => {
@@ -81,7 +71,7 @@ const MediaControls = ({
                 <button
                     type="button"
                     className={styles.playPauseButton}
-                    onClick={onTogglePlay}
+                    onClick={playing ? onPause : onPlay}
                     title={intl.formatMessage({
                         defaultMessage: 'Play',
                         description: 'Button label',
@@ -111,18 +101,6 @@ const MediaControls = ({
                     <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
                 </button>
             </div>
-            {withSeekBar ? (
-                <SeekBar
-                    className={styles.seekBar}
-                    currentTime={currentTime}
-                    duration={duration}
-                    playing={playing}
-                    onSeek={onSeek}
-                    focusable={focusable}
-                    backgroundColor={color}
-                    progressColor={progressColor}
-                />
-            ) : null}
         </div>
     );
 };

@@ -11,7 +11,7 @@ export default {
 
 export const Normal = () => <Video media={videoMedia()} autoPlay loop />;
 
-export const Paused = () => <Video media={videoMedia()} loop shouldLoad />;
+export const Paused = () => <Video media={videoMedia()} loop shouldLoad paused />;
 
 export const Gif = () => (
     <div>

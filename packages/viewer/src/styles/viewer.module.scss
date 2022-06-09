@@ -15,7 +15,7 @@
     color: $white;
 
     .content {
-        position: relative;
+        position: absolute;
         z-index: 1;
         width: 100%;
         height: 100%;
@@ -23,31 +23,27 @@
         user-select: none;
     }
 
-    .screen {
-        // z-index: 2;
-    }
-
     .navButton {
         @extend %reset-button;
         display: none;
         visibility: hidden;
         position: absolute;
-        z-index: 0;
-        top: 0;
-        bottom: 0;
-        width: 50%;
+        top: 50%;
+        width: 50px;
+        height: 50px;
         border: 0;
-        cursor: auto;
 
         &.previous {
             left: 0;
+            transform: translate(-100%, -50%);
         }
 
         &.next {
             right: 0;
+            transform: translate(100%, -50%);
         }
 
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: 1024px) {
             display: block;
             visibility: visible;
         }
@@ -139,6 +135,27 @@
         }
     }
 
+    .playbackControlsContainer {
+        margin: 0 auto;
+    }
+
+    .playbackControls {
+        position: absolute;
+        z-index: 5;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-image: linear-gradient(to bottom, rgba($black, 0) 25%, rgba($black, 0.2));
+
+        &.isCollapsed {
+            pointer-events: none;
+        }
+    }
+
+    .webView {
+        z-index: 10;
+    }
+
     &.hideMenu {
         .menuDotsContainer {
             pointer-events: none;
@@ -148,16 +165,6 @@
             opacity: 0;
         }
     }
-
-    // &.hideMenu:not(.landscape) {
-    //     .menuDotsContainer {
-    //         pointer-events: none;
-    //     }
-
-    //     .menuDots {
-    //         opacity: 0;
-    //     }
-    // }
 
     &.ready {
         .menuDotsContainer,

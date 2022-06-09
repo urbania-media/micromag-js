@@ -4,11 +4,14 @@ import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useMemo } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver, useTrackEvent } from '@micromag/core/hooks';
-import styles from '../styles/viewer.module.scss';
+import { useDimensionObserver, useTrackEvent } from '@micromag/core/hooks';
+
 import MenuDots from './menus/MenuDots';
 import MenuPreview from './menus/MenuPreview';
+
+import styles from '../styles/viewer.module.scss';
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
@@ -139,12 +142,8 @@ const ViewerMenu = ({
         setMenuSpring.start({ y: opened ? 1 : 0 });
     }, [opened]);
 
-    const {
-        ref: menuPreviewContainerRef,
-        entry: { contentRect: menuPreviewContainerRect },
-    } = useResizeObserver();
-
-    const { height: menuPreviewContainerHeight = 0 } = menuPreviewContainerRect || {};
+    const { ref: menuPreviewContainerRef, height: menuPreviewContainerHeight = 0 } =
+        useDimensionObserver();
 
     const menuPreviewStyle = {
         transform: menuY.to((y) => `translateY(${y * menuPreviewContainerHeight}px)`),

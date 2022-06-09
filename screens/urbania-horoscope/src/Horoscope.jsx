@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     ScreenElement,
@@ -13,7 +14,10 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useScreenState,
-    useViewer,
+    useViewerContext,
+    useViewerInteraction,
+    usePlaybackContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
@@ -25,9 +29,11 @@ import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import SignsGrid from './SignsGrid';
-import Astrologie from './images/astrologie-text.svg';
 import signsList from './signs';
+
 import styles from './styles.module.scss';
+
+import Astrologie from './images/astrologie-text.svg';
 
 const propTypes = {
     defaultSigns: PropTypes.arrayOf(
@@ -54,8 +60,6 @@ const propTypes = {
     popupBackground: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -76,8 +80,6 @@ const defaultProps = {
     current: true,
     active: true,
     type: 'horoscope',
-    enableInteraction: null,
-    disableInteraction: null,
     transitions: null,
     transitionStagger: 100,
     className: null,
@@ -96,8 +98,6 @@ const Horoscope = ({
     popupBackground,
     current,
     active,
-    enableInteraction,
-    disableInteraction,
     transitions,
     transitionStagger,
     type,
@@ -105,6 +105,9 @@ const Horoscope = ({
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
     const [hasPopup, setHasPopup] = useState(false);
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const signs = useMemo(
         () =>
@@ -132,10 +135,13 @@ const Horoscope = ({
         trackScreenEvent('close');
     }, [hasPopup, setHasPopup, enableInteraction]);
 
-    const onClickSign = useCallback((signId) => {
-        setCurrentSign(signId);
-        trackScreenEvent(`open_sign_${signId}`);
-    }, [setCurrentSign, trackScreenEvent]);
+    const onClickSign = useCallback(
+        (signId) => {
+            setCurrentSign(signId);
+            trackScreenEvent(`open_sign_${signId}`);
+        },
+        [setCurrentSign, trackScreenEvent],
+    );
 
     const onClickCloseSign = useCallback(() => {
         setCurrentSign(null);
@@ -159,8 +165,8 @@ const Horoscope = ({
         }
     }, [screenState]);
 
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
+    const { width, height, resolution } = useScreenSize();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -178,10 +184,9 @@ const Horoscope = ({
 
     // Create elements
     const items = [
-        <div className={styles.headerContainer}>
+        <div key="title" className={styles.headerContainer}>
             {/* TITLE */}
             <ScreenElement
-                key="title"
                 // emptyLabel={
                 //     <FormattedMessage defaultMessage="Title" description="Title placeholder" />
                 // }
@@ -266,7 +271,9 @@ const Horoscope = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -277,8 +284,9 @@ const Horoscope = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop:
-                                          (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingBottom:
+                                          (!isPreview ? viewerBottomHeight : 0) + spacing,
                                   }
                                 : null
                         }
@@ -303,6 +311,8 @@ const Horoscope = ({
                                     author={author}
                                     closeButton={closePopup}
                                     background={popupBackground}
+                                    muted={muted}
+                                    mediaRef={mediaRef}
                                     signs={signs}
                                     signSubtitle={signSubtitle}
                                     currentSign={currentSign}
