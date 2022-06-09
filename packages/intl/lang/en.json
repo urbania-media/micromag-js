@@ -164,6 +164,9 @@
     "4kSwvn": {
         "defaultMessage": "Thumbnail"
     },
+    "4y3gAI": {
+        "defaultMessage": "Result percentage text"
+    },
     "507VAi": {
         "defaultMessage": "Description"
     },
@@ -1024,9 +1027,6 @@
     },
     "qKQCxc": {
         "defaultMessage": "Add a marker"
-    },
-    "qTdBzB": {
-        "defaultMessage": "No thumbnail"
     },
     "qhjeuO": {
         "defaultMessage": "Padding"

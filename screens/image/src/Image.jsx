@@ -5,10 +5,18 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useResizeObserver } from '@micromag/core/hooks';
+import {
+    usePlaybackContext,
+    usePlaybackMediaRef,
+    useScreenSize,
+    useScreenRenderContext,
+    useViewerContext,
+    useViewerWebView,
+} from '@micromag/core/contexts';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -17,6 +25,7 @@ import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -43,8 +52,6 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -65,8 +72,6 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -87,23 +92,19 @@ const ImageScreen = ({
     current,
     active,
     transitions,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
-    const finalImageFit = useMemo(
-        () => ({ fit: imageFit || defaultImageFit }),
-        [imageFit, defaultImageFit],
-    );
-
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-
-    const { menuSize } = useViewer();
-
+    const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-    const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const hasImage = image !== null;
     const hasTitle = isTextFilled(title);
@@ -111,12 +112,19 @@ const ImageScreen = ({
     const hasLegend = isTextFilled(legend);
 
     const [ready, setReady] = useState(!hasImage);
+    const backgroundPlaying = current && (isView || isEdit);
+    const mediaShouldLoad = current || active;
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const onImageLoaded = useCallback(() => {
         setReady(true);
     }, [setReady]);
+
+    const finalImageFit = useMemo(
+        () => ({ fit: imageFit || defaultImageFit }),
+        [imageFit, defaultImageFit],
+    );
 
     const isReversed = layout === 'reverse' || layout === 'card-reverse';
     const isTitleTop = layout === 'title-top';
@@ -126,11 +134,7 @@ const ImageScreen = ({
 
     const finalSpacing = !isFullscreen && !isPlaceholder ? spacing : 0;
 
-    const {
-        ref: imageCntRef,
-        entry: { contentRect },
-    } = useResizeObserver();
-    const { width: imageWidth, height: imageHeight } = contentRect || {};
+    const { ref: imageCntRef, width: imageWidth, height: imageHeight } = useDimensionObserver();
 
     const cardImageMargin = isCardReverse
         ? `${finalSpacing / 2}px ${-finalSpacing / 2}px 0`
@@ -175,6 +179,7 @@ const ImageScreen = ({
                             height={imageHeight}
                             resolution={resolution}
                             playing={backgroundPlaying}
+                            muted={muted}
                             active={active}
                             shouldLoad={mediaShouldLoad}
                             onLoaded={onImageLoaded}
@@ -267,30 +272,49 @@ const ImageScreen = ({
     const hasCallToAction = callToAction !== null && callToAction.active === true;
     if (!isPlaceholder && hasCallToAction) {
         items.push(
-            <div style={{ margin: -finalSpacing / 2, marginTop: 5 }} key="call-to-action">
+            <div
+                className={styles.callToAction}
+                style={
+                    isFullscreen || isCardReverse
+                        ? {
+                              paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                              paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                              paddingTop: spacing / 2,
+                              paddingBottom: spacing / 2,
+                              transform: !isPreview
+                                  ? `translate(0, -${viewerBottomHeight}px)`
+                                  : null,
+                          }
+                        : {
+                              paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
+                              paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
+                              paddingTop: isCard ? spacing / 2 : null,
+                              paddingBottom: isCard ? spacing / 2 : null,
+                          }
+                }
+                key="call-to-action"
+            >
                 <CallToAction
-                    className={styles.callToAction}
-                    callToAction={callToAction}
+                    {...callToAction}
                     animationDisabled={isPreview}
                     focusable={current && isView}
-                    screenSize={{ width, height }}
-                    enableInteraction={enableInteraction}
-                    disableInteraction={disableInteraction}
+                    openWebView={openWebView}
                 />
             </div>,
         );
     }
 
-    let paddingBottom = finalSpacing / 2;
-    let paddingTop = (menuOverScreen && !isPreview ? menuSize : 0) + finalSpacing / 2;
+    let paddingBottom = (!isPreview ? viewerBottomHeight : 0) + finalSpacing / 2;
+    let paddingTop = (!isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
 
     if (isCard || isFullscreen) {
         paddingTop = 0;
+        paddingBottom = 0;
     }
 
     if (isCardReverse) {
-        paddingTop = menuOverScreen ? menuSize : finalSpacing / 2;
-        paddingBottom = 0;
+        paddingTop = !isPreview ? viewerTopHeight : 0;
+        paddingBottom = !isPreview ? viewerBottomHeight : 0;
     }
 
     return (
@@ -315,7 +339,9 @@ const ImageScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>

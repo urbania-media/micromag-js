@@ -7,9 +7,17 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewerContext,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+    useViewerWebView,
+} from '@micromag/core/contexts';
 import { useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
 import { isIos } from '@micromag/core/utils';
 import Audio from '@micromag/element-audio';
@@ -18,7 +26,7 @@ import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
-import MediaControls from '@micromag/element-media-controls';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -30,10 +38,8 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    getMediaRef: PropTypes.func,
+    mediaRef: PropTypes.func,
     showWave: PropTypes.bool,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -46,10 +52,8 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
-    getMediaRef: null,
+    mediaRef: null,
     showWave: false,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -62,20 +66,21 @@ const AudioScreen = ({
     current,
     active,
     transitions,
-    getMediaRef,
+    mediaRef: customMediaRef,
     showWave,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
-    const trackScreenMedia = useTrackScreenMedia('audio');
-
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
+    const { width, height, resolution } = useScreenSize();
     const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
 
-    const { menuSize } = useViewer();
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const trackScreenMedia = useTrackScreenMedia('audio');
 
     const [ready, setReady] = useState(isStatic || isPlaceholder);
 
@@ -84,6 +89,7 @@ const AudioScreen = ({
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
+    const { active: hasCallToAction = false } = callToAction || {};
     const hasAudio = audio !== null;
     const {
         media: audioMedia = null,
@@ -105,32 +111,51 @@ const AudioScreen = ({
         : null;
     const hasClosedCaptions = closedCaptions !== null;
 
+    const { playing, muted, setControls, setControlsTheme, setMedia, setPlaying } =
+        usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
+
+    useEffect(() => {
+        if (!current) {
+            return () => {};
+        }
+        if (withPlayPause) {
+            setControls(true);
+            setControlsTheme({
+                color,
+                progressColor,
+            });
+        } else {
+            setControls(false);
+        }
+
+        return () => {
+            if (withPlayPause) {
+                setControls(false);
+            }
+        };
+    }, [current, withPlayPause, setControls, color, progressColor]);
+
+    useEffect(() => {
+        if (customMediaRef !== null) {
+            customMediaRef(mediaRef.current);
+        }
+    }, [mediaRef.current]);
+
     const onAudioReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
 
-    const apiRef = useRef();
-    const {
-        togglePlay,
-        toggleMute,
-        play,
-        pause,
-        seek,
-        mediaRef: apiMediaRef = null,
-    } = apiRef.current || {};
-
-    useEffect(() => {
-        if (apiMediaRef !== null && getMediaRef !== null) {
-            getMediaRef(apiMediaRef.current);
-        }
-    }, [apiMediaRef, getMediaRef]);
-
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
-    const [playing, setPlaying] = useState(false);
-    const [muted, setMuted] = useState(false);
 
     const isIOS = useMemo(() => isIos(), [isIos]);
+
+    useEffect(() => {
+        if (current && autoPlay && !playing) {
+            setPlaying(true);
+        }
+    }, [current, autoPlay]);
 
     const onTimeUpdate = useCallback(
         (time) => {
@@ -146,7 +171,7 @@ const AudioScreen = ({
         [trackScreenMedia, audio],
     );
 
-    const onDurationChanged = useCallback(
+    const onDurationChange = useCallback(
         (dur) => {
             setDuration(dur);
         },
@@ -155,7 +180,6 @@ const AudioScreen = ({
 
     const onPlay = useCallback(
         ({ initial }) => {
-            setPlaying(true);
             trackScreenMedia(audio, initial ? 'play' : 'resume');
         },
         [trackScreenMedia, audio],
@@ -163,27 +187,14 @@ const AudioScreen = ({
 
     const onPause = useCallback(
         ({ midway }) => {
-            setPlaying(false);
             trackScreenMedia(audio, midway ? 'pause' : 'ended');
         },
         [trackScreenMedia, audio],
     );
 
-    const onSeek = useCallback(
-        (e) => {
-            seek(e);
-            play();
-        },
-        [seek, play],
-    );
-
-    const onVolumeChanged = useCallback(
-        (isMuted) => {
-            setMuted(isMuted);
-            trackScreenMedia(audio, isMuted ? 'mute' : 'unmute');
-        },
-        [trackScreenMedia, audio],
-    );
+    const onEnded = useCallback(() => {
+        setPlaying(false);
+    }, [setPlaying]);
 
     const onSeeked = useCallback(
         (time) => {
@@ -193,35 +204,6 @@ const AudioScreen = ({
         },
         [trackScreenMedia, audio],
     );
-
-    const onToggleMute = useCallback(() => {
-        if (muted && !playing) {
-            play();
-        }
-        toggleMute();
-    }, [muted, toggleMute]);
-
-    useEffect(() => {
-        if (!current && playing) {
-            pause();
-        }
-    }, [playing, current]);
-
-    const longPressBind = useLongPress({ onLongPress: togglePlay });
-
-    const cta =
-        !isPlaceholder && hasCallToAction ? (
-            <div style={{ marginTop: -spacing / 2 }} key="call-to-action">
-                <CallToAction
-                    callToAction={callToAction}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                    screenSize={{ width, height }}
-                    enableInteraction={enableInteraction}
-                    disableInteraction={disableInteraction}
-                />
-            </div>
-        ) : null;
 
     const elements = [
         <Spacer key="spacer-top" />,
@@ -239,7 +221,7 @@ const AudioScreen = ({
             >
                 <Audio
                     {...finalAudio}
-                    ref={apiRef}
+                    mediaRef={mediaRef}
                     waveFake={isIOS || isPreview}
                     waveProps={
                         isPreview
@@ -252,22 +234,34 @@ const AudioScreen = ({
                               }
                             : { backgroundColor: color, progressColor }
                     }
+                    paused={!current || !playing}
+                    muted={muted}
                     className={styles.audio}
                     onReady={onAudioReady}
                     onPlay={onPlay}
                     onPause={onPause}
                     onTimeUpdate={onTimeUpdate}
                     onProgressStep={onProgressStep}
-                    onDurationChanged={onDurationChanged}
+                    onDurationChange={onDurationChange}
                     onSeeked={onSeeked}
-                    onVolumeChanged={onVolumeChanged}
-                    showWave={showWave}
+                    onEnded={onEnded}
+                    withWave={showWave}
                 />
             </Transitions>
         </ScreenElement>,
         <Spacer key="spacer-middle" />,
         !isPlaceholder ? (
-            <div key="controls" className={styles.bottomContent}>
+            <div
+                key="bottom"
+                className={styles.bottom}
+                style={{
+                    transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingBottom: spacing / 2,
+                    paddingTop: 0,
+                }}
+            >
                 {hasClosedCaptions && !isPreview && !isCapture && !isStatic ? (
                     <ClosedCaptions
                         className={styles.closedCaptions}
@@ -275,22 +269,15 @@ const AudioScreen = ({
                         currentTime={currentTime}
                     />
                 ) : null}
-                {hasAudioUrl && (isView || isEdit) ? (
-                    <MediaControls
-                        className={styles.mediaControls}
-                        withControls={withPlayPause}
-                        playing={playing}
-                        muted={muted}
-                        onTogglePlay={togglePlay}
-                        onToggleMute={onToggleMute}
+                {hasCallToAction ? (
+                    <CallToAction
+                        {...callToAction}
+                        className={styles.callToAction}
+                        animationDisabled={isPreview}
                         focusable={current && isView}
-                        withSeekBar={!showWave}
-                        duration={duration}
-                        currentTime={currentTime}
-                        onSeek={onSeek}
+                        openWebView={openWebView}
                     />
                 ) : null}
-                {cta}
             </div>
         ) : null,
     ].filter((el) => el !== null);
@@ -306,7 +293,6 @@ const AudioScreen = ({
                 },
             ])}
             data-screen-ready={ready}
-            {...longPressBind}
         >
             {!isPlaceholder ? (
                 <Background
@@ -325,8 +311,7 @@ const AudioScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop:
-                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                               }
                             : null
                     }

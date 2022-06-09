@@ -341,6 +341,12 @@ msgctxt "4kSwvn"
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
+# Field label
+#: 4y3gAI
+msgctxt "4y3gAI"
+msgid "Result percentage text"
+msgstr "Result percentage text"
+
 # Description placeholder
 #: 507VAi
 msgctxt "507VAi"
@@ -2059,12 +2065,6 @@ msgstr "Save"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Add a marker"
-
-# Field no value label
-#: qTdBzB
-msgctxt "qTdBzB"
-msgid "No thumbnail"
-msgstr "No thumbnail"
 
 # Field label
 #: qhjeuO

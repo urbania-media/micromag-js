@@ -2,7 +2,9 @@
 @import '~@micromag/core/scss/variables';
 
 .container {
-    display: flex;
+    .radios {
+        display: flex;
+    }
 
     .thumbnail {
         width: 100%;

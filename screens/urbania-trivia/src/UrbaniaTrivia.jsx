@@ -7,6 +7,7 @@ import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     Empty,
@@ -19,20 +20,27 @@ import {
     useScreenRenderContext,
     useScreenSize,
     useViewerNavigation,
+    usePlaybackContext,
+    useViewerContext,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useLongPress, useTrackScreenMedia, useResizeObserver } from '@micromag/core/hooks';
+import {
+    useTrackScreenMedia,
+    useDimensionObserver,
+    useActivityDetector,
+} from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
-import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
+
+import styles from './styles.module.scss';
+
 import AnimeLinesGrey from './images/anime-lines-grey.svg';
 import AnimeLines from './images/anime-lines.svg';
-import styles from './styles.module.scss';
 
 const defaultBackground = {
     image: {
@@ -60,13 +68,12 @@ const propTypes = {
     video: MicromagPropTypes.videoElement,
     gotoNextScreenOnEnd: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
     padding: PropTypes.number,
-    getMediaRef: PropTypes.func,
+    mediaRef: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -76,13 +83,12 @@ const defaultProps = {
     video: null,
     gotoNextScreenOnEnd: false,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
     transitions: null,
     spacing: 20,
     padding: 20,
-    getMediaRef: null,
+    mediaRef: null,
     className: null,
 };
 
@@ -92,13 +98,12 @@ const UrbaniaTrivia = ({
     video,
     gotoNextScreenOnEnd,
     background,
-    callToAction,
     current,
     active,
     transitions,
     spacing,
     padding,
-    getMediaRef,
+    mediaRef: customMediaRef,
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
@@ -106,6 +111,7 @@ const UrbaniaTrivia = ({
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const { bottomHeight: viewerBottomHeight } = useViewerContext();
     const { gotoNextScreen } = useViewerNavigation();
 
     const hasTitle = isTextFilled(title);
@@ -114,8 +120,6 @@ const UrbaniaTrivia = ({
     const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
-    const { body = '' } = title || {};
-
     // get resized video style props
     const {
         autoPlay = true,
@@ -123,32 +127,56 @@ const UrbaniaTrivia = ({
         closedCaptions = null,
         withSeekBar = false,
         withControls = false,
+        color = null,
+        progressColor = null,
     } = video || {};
 
-    const apiRef = useRef();
     const {
-        togglePlay,
-        toggleMute,
-        seek,
-        play,
-        pause,
-        mediaRef: apiMediaRef = null,
-    } = apiRef.current || {};
+        playing,
+        muted,
+        setControls,
+        setControlsTheme,
+        setMedia,
+        setPlaying,
+        showControls,
+        hideControls,
+    } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     useEffect(() => {
-        if (apiMediaRef !== null && getMediaRef !== null) {
-            getMediaRef(apiMediaRef.current);
+        if (!current) {
+            return () => {};
         }
-    }, [apiMediaRef, getMediaRef]);
+        if (withControls || withSeekBar) {
+            setControls(true);
+            setControlsTheme({
+                seekBarOnly: withSeekBar && !withControls,
+            });
+        } else {
+            setControls(false);
+        }
+        return () => {
+            if (withControls || withSeekBar) {
+                setControls(false);
+            }
+        };
+    }, [current, withControls, setControls, withSeekBar, color, progressColor]);
 
-    const mouseMoveRef = useRef(null);
-    const [showMediaControls, setShowMediaControls] = useState(false);
+    useEffect(() => {
+        if (customMediaRef !== null) {
+            customMediaRef(mediaRef.current);
+        }
+    }, [mediaRef.current]);
 
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
-    const [playing, setPlaying] = useState(false);
-    const [muted, setMuted] = useState(false);
+
+    useEffect(() => {
+        if (current && autoPlay && !playing) {
+            setPlaying(true);
+        }
+    }, [current, autoPlay]);
 
     const onTimeUpdate = useCallback(
         (time) => {
@@ -164,7 +192,7 @@ const UrbaniaTrivia = ({
         [trackScreenMedia, video],
     );
 
-    const onDurationChanged = useCallback(
+    const onDurationChange = useCallback(
         (dur) => {
             setDuration(dur);
         },
@@ -173,7 +201,6 @@ const UrbaniaTrivia = ({
 
     const onPlay = useCallback(
         ({ initial }) => {
-            setPlaying(true);
             trackScreenMedia(video, initial ? 'play' : 'resume');
         },
         [trackScreenMedia, video],
@@ -181,26 +208,9 @@ const UrbaniaTrivia = ({
 
     const onPause = useCallback(
         ({ midway }) => {
-            setPlaying(false);
             trackScreenMedia(video, midway ? 'pause' : 'ended');
         },
         [trackScreenMedia, video],
-    );
-
-    const onVolumeChanged = useCallback(
-        (isMuted) => {
-            setMuted(isMuted);
-            trackScreenMedia(video, isMuted ? 'mute' : 'unmute');
-        },
-        [trackScreenMedia, video],
-    );
-
-    const onSeek = useCallback(
-        (e) => {
-            seek(e);
-            play();
-        },
-        [seek, play],
     );
 
     const onSeeked = useCallback(
@@ -212,50 +222,27 @@ const UrbaniaTrivia = ({
         [trackScreenMedia, video],
     );
 
-    const onToggleMute = useCallback(() => {
-        if (muted && !playing) {
-            play();
-        }
-        toggleMute();
-    }, [muted, toggleMute]);
-
     const onEnded = useCallback(() => {
         if (shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }
-    }, [shouldGotoNextScreenOnEnd, seek, gotoNextScreen]);
+        setPlaying(false);
+    }, [shouldGotoNextScreenOnEnd, gotoNextScreen, setPlaying]);
 
+    const { ref: activityDetectorRef, detected: activityDetected } = useActivityDetector({
+        disabled: !current || !isView,
+        timeout: 2000,
+    });
     useEffect(() => {
-        if (!current && playing) {
-            pause();
+        if (!current) {
+            return;
         }
-    }, [playing, current]);
-
-    const onMouseMove = useCallback(
-        (e, time = 1800) => {
-            setShowMediaControls(true);
-            if (mouseMoveRef.current !== null) {
-                clearTimeout(mouseMoveRef.current);
-            }
-            mouseMoveRef.current = setTimeout(() => {
-                setShowMediaControls(false);
-                mouseMoveRef.current = null;
-            }, time);
-        },
-        [setShowMediaControls],
-    );
-
-    const onLongPress = useCallback(() => {
-        if (!playing) {
-            play();
-        } else if (withControls) {
-            onMouseMove(null, 3000);
+        if (activityDetected) {
+            showControls();
         } else {
-            pause();
+            hideControls();
         }
-    }, [play, playing, pause, onMouseMove, withControls, setShowMediaControls]);
-
-    const longPressBind = useLongPress({ onLongPress, onClick: onMouseMove });
+    }, [activityDetected, showControls, hideControls]);
 
     const fullscreen = layout === 'full';
 
@@ -291,12 +278,7 @@ const UrbaniaTrivia = ({
 
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
-    const {
-        ref: titleRef,
-        entry: { contentRect = null },
-    } = useResizeObserver();
-
-    const { height: titleHeight = 0 } = contentRect || {};
+    const { ref: titleRef, height: titleHeight = 0 } = useDimensionObserver();
 
     const videoMaxHeight = height - titleHeight - (padding ? padding * 2 : 40);
     const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
@@ -336,7 +318,6 @@ const UrbaniaTrivia = ({
         setReady(true);
     }, [setReady]);
 
-    const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
     const items = [
         <Container className={styles.itemsContainer} style={{ marginTop: -spacing / 2 }}>
             <ScreenElement
@@ -415,7 +396,9 @@ const UrbaniaTrivia = ({
                         ) : (
                             <Video
                                 {...finalVideo}
-                                ref={apiRef}
+                                mediaRef={mediaRef}
+                                paused={!current || !playing}
+                                muted={muted}
                                 width={resizedVideoWidth}
                                 height={resizedVideoHeight}
                                 className={styles.video}
@@ -424,17 +407,22 @@ const UrbaniaTrivia = ({
                                 onPause={onPause}
                                 onTimeUpdate={onTimeUpdate}
                                 onProgressStep={onProgressStep}
-                                onDurationChanged={onDurationChanged}
+                                onDurationChange={onDurationChange}
                                 onSeeked={onSeeked}
                                 onEnded={onEnded}
-                                onVolumeChanged={onVolumeChanged}
                                 focusable={current && isView}
                                 shouldLoad={mediaShouldLoad}
                             />
                         )}
                         {/* </Transitions> */}
                         {!isPlaceholder ? (
-                            <div key="bottom-content" className={styles.bottomContent}>
+                            <div
+                                key="bottom-content"
+                                className={styles.bottomContent}
+                                style={{
+                                    transform: `translate(0, -${viewerBottomHeight}px)`,
+                                }}
+                            >
                                 <Transitions
                                     playing={transitionPlaying}
                                     transitions={transitions}
@@ -450,48 +438,6 @@ const UrbaniaTrivia = ({
                                             currentTime={currentTime}
                                         />
                                     ) : null}
-                                    <div
-                                        className={classNames([
-                                            styles.bottom,
-                                            {
-                                                [styles.visible]: visibleControls,
-                                                [styles.withGradient]:
-                                                    withSeekBar || withControls || muted,
-                                            },
-                                        ])}
-                                    >
-                                        {hasVideoUrl ? (
-                                            <MediaControls
-                                                className={classNames([
-                                                    styles.mediaControls,
-                                                    {
-                                                        [styles.visible]: visibleControls,
-                                                    },
-                                                ])}
-                                                withSeekBar={withSeekBar}
-                                                withControls={withControls}
-                                                playing={playing}
-                                                muted={muted}
-                                                currentTime={currentTime}
-                                                duration={duration}
-                                                onTogglePlay={togglePlay}
-                                                onToggleMute={onToggleMute}
-                                                onSeek={onSeek}
-                                                focusable={current && isView}
-                                            />
-                                        ) : null}
-                                        {/* {hasCallToAction ? (
-                                            <div style={{ marginTop: -spacing / 2 }}>
-                                                <CallToAction
-                                                    className={styles.callToAction}
-                                                    callToAction={callToAction}
-                                                    animationDisabled={isPreview}
-                                                    focusable={current && isView}
-                                                    screenSize={{ width, height }}
-                                                />
-                                            </div>
-                                        ) : null} */}
-                                    </div>
                                 </Transitions>
                             </div>
                         ) : null}
@@ -511,8 +457,7 @@ const UrbaniaTrivia = ({
                 },
             ])}
             data-screen-ready={isStatic || isCapture || ready}
-            {...longPressBind}
-            onMouseMove={onMouseMove}
+            ref={activityDetectorRef}
         >
             {!isPlaceholder ? (
                 <Background

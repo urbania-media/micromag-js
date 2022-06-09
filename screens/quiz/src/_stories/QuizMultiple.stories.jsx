@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { subtitle, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import { subtitle, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import QuizMultipleScreen from '../QuizMultiple';
 import definition from '../definition';
 
@@ -11,11 +11,17 @@ const props = {
         {
             text: { body: 'Question 1?' },
             answers: [
-                { id: 1, label: { body: subtitle() }, points: 0 },
+                {
+                    id: 1,
+                    label: {
+                        body: subtitle(),
+                    },
+                    points: 0,
+                },
                 { id: 2, label: { body: subtitle() }, points: 1 },
                 { id: 3, label: { body: subtitle() }, points: 2 },
                 { id: 4, label: { body: subtitle() }, points: 3 },
-            ]
+            ],
         },
         {
             text: { body: 'Question 2?' },
@@ -26,19 +32,19 @@ const props = {
                 { id: 4, label: { body: subtitle() }, points: 3 },
             ],
             background: backgroundColor(),
-        }
+        },
     ],
     results: [
         {
             title: { body: subtitle() },
             description: { body: subtitle() },
-            points: 3
+            points: 3,
         },
         {
             title: { body: subtitle() },
             description: { body: subtitle() },
-            points: 8
-        }
+            points: 8,
+        },
     ],
     background: backgroundColor(),
     transitions: transitions(),

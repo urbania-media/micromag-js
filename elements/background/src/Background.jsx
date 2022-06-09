@@ -3,9 +3,11 @@ import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getOptimalImageUrl, getStyleFromColor } from '@micromag/core/utils';
 import Video from '@micromag/element-video';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -18,8 +20,16 @@ const propTypes = {
     repeat: PropTypes.bool,
     color: MicromagPropTypes.color,
     media: PropTypes.oneOfType([MicromagPropTypes.imageMedia, MicromagPropTypes.videoMedia]),
+    mediaRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            // eslint-disable-next-line react/forbid-prop-types
+            current: PropTypes.any,
+        }),
+    ]),
     className: PropTypes.string,
     playing: PropTypes.bool,
+    muted: PropTypes.bool,
     children: PropTypes.node,
     loadingMode: PropTypes.string,
     shouldLoad: PropTypes.bool,
@@ -35,8 +45,10 @@ const defaultProps = {
     repeat: false,
     color: null,
     media: null,
+    mediaRef: null,
     className: null,
     playing: false,
+    muted: false,
     children: null,
     loadingMode: 'lazy',
     shouldLoad: true,
@@ -52,8 +64,10 @@ const Background = ({
     repeat,
     color,
     media,
+    mediaRef,
     className,
     playing,
+    muted,
     children,
     loadingMode,
     shouldLoad,
@@ -139,10 +153,12 @@ const Background = ({
                     <Video
                         className={styles.video}
                         media={media}
-                        autoPlay={playing}
-                        initialMuted
-                        loop
+                        mediaRef={mediaRef}
+                        paused={!playing}
+                        muted={muted}
                         shouldLoad={shouldLoad}
+                        autoPlay
+                        loop
                     />
                 </div>
             ) : null}

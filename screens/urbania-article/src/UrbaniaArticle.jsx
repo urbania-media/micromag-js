@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     Transitions,
@@ -18,8 +19,12 @@ import {
 import {
     useScreenSize,
     useScreenRenderContext, // useViewerNavigation,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+    useViewerContext,
 } from '@micromag/core/contexts';
-import { useResizeObserver } from '@micromag/core/hooks';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -28,8 +33,10 @@ import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 import UrbaniaAuthor from '@micromag/element-urbania-author';
 import Visual from '@micromag/element-visual';
+
 import ArrowIcon from './icons/ArrowIcon';
 import WatchIcon from './icons/WatchIcon';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -50,8 +57,6 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -73,8 +78,6 @@ const defaultProps = {
     active: true,
     transitions: null,
     spacing: 20,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -96,18 +99,23 @@ const UrbaniaArticle = ({
     active,
     transitions,
     spacing,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
     const { color: backgroundColor = null } = background || {};
+    const { open: openWebView } = useViewerWebView();
+    const { bottomSidesWidth: viewerBottomSidesWidth } = useViewerContext();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const {
         ref: contentRef,
         entry: { contentRect },
-    } = useResizeObserver();
-    const { height: contentHeight, top: contentTop } = contentRect || {};
+        height: contentHeight,
+    } = useDimensionObserver();
+    const { top: contentTop } = contentRect || {};
 
     const {
         minContentHeight = null,
@@ -126,9 +134,6 @@ const UrbaniaArticle = ({
         // const finalMaxContentHeight = height - defaultImageHeight;
         // return { imageHeight: defaultImageHeight, maxContentHeight: finalMaxContentHeight };
     }, [contentTop, contentHeight, width, height]);
-
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
 
     const isVideo = type === 'video';
     const hasOverTitle = isTextFilled(overTitle);
@@ -270,7 +275,9 @@ const UrbaniaArticle = ({
                 height={height}
                 resolution={resolution}
                 playing={backgroundPlaying}
+                muted={muted}
                 shouldLoad={mediaShouldLoad}
+                mediaRef={mediaRef}
             />
             <Container className={styles.inner} width={width} height={height}>
                 <div
@@ -338,24 +345,29 @@ const UrbaniaArticle = ({
                             ) : null}
                         </ScreenElement>
                         {!isPlaceholder && hasCallToAction ? (
-                            <div key="call-to-action">
+                            <div
+                                style={{
+                                    paddingTop: spacing,
+                                    paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
+                                    paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
+                                }}
+                                key="call-to-action"
+                            >
                                 <CallToAction
+                                    {...callToAction}
                                     className={styles.callToAction}
                                     buttonClassName={styles.button}
                                     labelClassName={styles.label}
                                     arrowClassName={styles.arrow}
-                                    callToAction={callToAction}
                                     animationDisabled={isPreview}
                                     focusable={current && isView}
-                                    screenSize={{ width, height }}
                                     arrow={<ArrowIcon />}
-                                    enableInteraction={enableInteraction}
-                                    disableInteraction={disableInteraction}
                                     icon={
                                         type === 'video' ? (
                                             <WatchIcon className={styles.icon} />
                                         ) : null
                                     }
+                                    openWebView={openWebView}
                                 />
                             </div>
                         ) : null}

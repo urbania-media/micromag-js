@@ -8,7 +8,7 @@ import definition from '../definition';
 
 const props = {
     image: imageMedia(),
-    imageFit: { fit: 'cover' },
+    imageFit: 'cover',
     background: backgroundColor(),
     transitions: transitions(),
 };

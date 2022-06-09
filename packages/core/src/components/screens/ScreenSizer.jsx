@@ -3,9 +3,12 @@ import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
+
+import { useDimensionObserver } from '../../hooks';
+
 // import { PropTypes as MicromagPropTypes } from '../../lib';
 import { ScreenSizeProvider } from '../../contexts';
-import { useResizeObserver } from '../../hooks';
+
 import styles from '../../styles/screens/screen-sizer.module.scss';
 
 const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
@@ -34,9 +37,9 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
 
     const {
         ref: refContainer,
-        entry: { contentRect },
-    } = useResizeObserver();
-    const { width: calculatedWidth = 0, height: calculatedHeight = 0 } = contentRect || {};
+        width: calculatedWidth = 0,
+        height: calculatedHeight = 0,
+    } = useDimensionObserver();
 
     const {
         width: frameWidth = null,

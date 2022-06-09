@@ -8,13 +8,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
-import { useResizeObserver } from '@micromag/core/hooks';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
+
 import styles from './answers.module.scss';
 
 const propTypes = {
@@ -95,17 +97,8 @@ const Answers = ({
     // we get .answer's current and future height to animate its height
     // we also get the right answer's Y to animate its position
 
-    const {
-        ref: answerRef,
-        entry: { contentRect: answerContentRect },
-    } = useResizeObserver();
-    const { height: answerHeight } = answerContentRect || {};
-
-    const {
-        ref: rightAnswerRef,
-        entry: { contentRect: rightAnswerContentRect },
-    } = useResizeObserver();
-    const { height: rightAnswerHeight } = rightAnswerContentRect || {};
+    const { ref: answerRef, height: answerHeight } = useDimensionObserver();
+    const { ref: rightAnswerRef, height: rightAnswerHeight } = useDimensionObserver();
     const rightAnswerTop = useMemo(
         () => (rightAnswerRef.current !== null ? rightAnswerRef.current.offsetTop : 0),
         [rightAnswerHeight],

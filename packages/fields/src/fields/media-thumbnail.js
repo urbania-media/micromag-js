@@ -1,4 +1,4 @@
 export default {
     id: 'media-thumbnail',
-    component: 'thumbnail-file',
+    component: 'media-thumbnail',
 };

@@ -219,6 +219,10 @@
     "defaultMessage": "Thumbnail",
     "description": "Field label"
   },
+  "4y3gAI": {
+    "defaultMessage": "Result percentage text",
+    "description": "Field label"
+  },
   "507VAi": {
     "defaultMessage": "Description",
     "description": "Description placeholder"
@@ -1363,10 +1367,6 @@
   "qKQCxc": {
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
-  },
-  "qTdBzB": {
-    "defaultMessage": "No thumbnail",
-    "description": "Field no value label"
   },
   "qhjeuO": {
     "defaultMessage": "Padding",

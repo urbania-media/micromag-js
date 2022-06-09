@@ -341,6 +341,12 @@ msgctxt "4kSwvn"
 msgid "Thumbnail"
 msgstr "Vignette"
 
+# Field label
+#: 4y3gAI
+msgctxt "4y3gAI"
+msgid "Result percentage text"
+msgstr ""
+
 # Description placeholder
 #: 507VAi
 msgctxt "507VAi"
@@ -951,7 +957,11 @@ msgstr "Balance"
 #: MBgLeH
 msgctxt "MBgLeH"
 msgid "July 23 - Aug 22"
+<<<<<<< HEAD
 msgstr "23 juil - 22 août"
+=======
+msgstr ""
+>>>>>>> feature/global-playback-context
 
 # Audio placeholder
 #: MYZwSA
@@ -2059,12 +2069,6 @@ msgstr "Enregistrer"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
-
-# Field no value label
-#: qTdBzB
-msgctxt "qTdBzB"
-msgid "No thumbnail"
-msgstr "Aucune image"
 
 # Field label
 #: qhjeuO

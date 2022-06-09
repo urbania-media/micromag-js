@@ -1,30 +1,31 @@
 /* eslint-disable react/jsx-props-no-spreading */
-// import {
-//     Scene,
-//     PerspectiveCamera,
-//     SphereBufferGeometry,
-//     VideoTexture,
-//     MeshBasicMaterial,
-//     Mesh,
-//     WebGLRenderer,
-//     MathUtils,
-// } from 'three';
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import 'whatwg-fetch';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewerNavigation,
+    useViewerContext,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+    useViewerWebView,
+} from '@micromag/core/contexts';
 import { useAnimationFrame, useTrackScreenEvent } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
-import styles from './styles.module.scss';
+
 import useThree from './useThree';
+
+import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['full']),
@@ -34,12 +35,8 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    onPrevious: PropTypes.func,
-    onNext: PropTypes.func,
     type: PropTypes.string,
     spacing: PropTypes.number,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -51,12 +48,8 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
-    onPrevious: null,
-    onNext: null,
     type: null,
     spacing: 20,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -68,21 +61,23 @@ const Image360Screen = ({
     current,
     active,
     transitions,
-    onPrevious,
-    onNext,
     type,
     spacing,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
 
-    const { width, height, landscape, resolution } = useScreenSize();
-
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const { width, height, landscape, resolution } = useScreenSize();
+    const { gotoPreviousScreen, gotoNextScreen } = useViewerNavigation();
+    const { open: openWebView } = useViewerWebView();
+    const { bottomHeight: viewerBottomHeight, bottomSidesWidth: viewerBottomSidesWidth } =
+        useViewerContext();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
+
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
 
@@ -91,6 +86,7 @@ const Image360Screen = ({
     // ------------------------------------
 
     const hasMedia = image !== null;
+    const { active: hasCallToAction = false } = callToAction || {};
 
     const [ready, setReady] = useState(!hasMedia);
 
@@ -307,11 +303,11 @@ const Image360Screen = ({
                         e.clientX - containerX < containerWidth * (1 - tapNextScreenWidthPercent);
 
                     if (hasTappedLeft) {
-                        if (onPrevious !== null) {
-                            onPrevious();
+                        if (gotoPreviousScreen !== null) {
+                            gotoPreviousScreen();
                         }
-                    } else if (onNext !== null) {
-                        onNext();
+                    } else if (gotoNextScreen !== null) {
+                        gotoNextScreen();
                     }
                 }
 
@@ -322,10 +318,8 @@ const Image360Screen = ({
             }
             pointerDown.current = false;
         },
-        [onPrevious, onNext, landscape],
+        [gotoPreviousScreen, gotoNextScreen, landscape],
     );
-
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     // Building elements ------------------
 
@@ -385,26 +379,24 @@ const Image360Screen = ({
                 )}
             </Transitions>
         </ScreenElement>,
-        !isPlaceholder ? (
-            <div key="bottom-content" className={styles.bottomContent}>
-                <Transitions
-                    playing={transitionPlaying}
-                    transitions={transitions}
-                    disabled={transitionDisabled}
-                >
-                    {hasCallToAction ? (
-                        <div style={{ marginTop: -spacing / 2 }}>
-                            <CallToAction
-                                callToAction={callToAction}
-                                animationDisabled={isPreview}
-                                focusable={current && isView}
-                                screenSize={{ width, height }}
-                                enableInteraction={enableInteraction}
-                                disableInteraction={disableInteraction}
-                            />
-                        </div>
-                    ) : null}
-                </Transitions>
+        !isPlaceholder && hasCallToAction ? (
+            <div
+                key="callToAction"
+                className={styles.callToAction}
+                style={{
+                    transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                    paddingBottom: spacing / 2,
+                    paddingTop: 0,
+                }}
+            >
+                <CallToAction
+                    {...callToAction}
+                    animationDisabled={isPreview}
+                    focusable={current && isView}
+                    openWebView={openWebView}
+                />
             </div>
         ) : null,
     ];
@@ -427,7 +419,9 @@ const Image360Screen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>

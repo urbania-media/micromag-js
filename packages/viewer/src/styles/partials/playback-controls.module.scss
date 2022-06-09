@@ -1,0 +1,132 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.playPauseButton,
+.muteButton {
+    @extend %reset-button;
+    display: flex;
+
+    position: relative;
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+    width: 50px; // @todo standardize icon sizes, variable, theme-controlled, etc.
+    height: 50px;
+    margin: 10px;
+    padding: 5px;
+    transition: opacity 0.1s ease-out;
+    pointer-events: auto;
+
+    .isCollapsed & {
+        pointer-events: auto;
+    }
+}
+
+.playPauseButton {
+    transition: opacity 0.5s ease-out;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+
+    .icon {
+        display: block;
+        width: 40%;
+        height: 40%;
+        transform: translateX(5%);
+    }
+
+    .isCollapsed & {
+        left: 0;
+    }
+
+    .withPlayPause & {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .withPlayPause.isCollapsed & {
+        opacity: 0.5;
+    }
+}
+
+.muteButton {
+    opacity: 0;
+    pointer-events: none;
+
+    .icon {
+        display: block;
+        width: 70%;
+        height: 70%;
+        color: currentColor;
+    }
+
+    &.isMuted {
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            margin-left: -1px;
+            transform: rotate(-45deg);
+            background-color: currentColor;
+        }
+    }
+
+    .isCollapsed & {
+        right: 0;
+    }
+
+    .withMute & {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .withMute.isCollapsed & {
+        opacity: 0.5;
+
+        &.isMuted {
+            opacity: 1;
+        }
+    }
+}
+
+.seekBar {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(100%);
+    transition: transform 0.2s ease-in-out, bottom 0.2s 0.2s ease-in-out, padding 0.2s ease-in-out;
+
+    .withSeekBar & {
+        bottom: 50%;
+        padding: 0 70px;
+        transform: translateY(50%);
+        opacity: 1;
+    }
+
+    .isCollapsed & {
+        bottom: 0;
+        padding: 0;
+        transition: transform 0.2s ease-in-out, bottom 0.2s ease-in-out,
+            padding 0.4s 0.2s ease-in-out;
+    }
+
+    .isCollapsed.withSeekBar & {
+        bottom: 0;
+        transform: translateY(0);
+        transition: transform 0.2s ease-in-out, bottom 0.2s ease-in-out,
+            padding 0.4s 0.2s ease-in-out;
+    }
+}

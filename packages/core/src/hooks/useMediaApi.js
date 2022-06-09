@@ -4,16 +4,15 @@ const progressSteps = [0.1, 0.25, 0.5, 0.75, 0.9];
 
 const useMediaApi = ({
     url = null,
-    initialMuted = false,
     onTimeUpdate = null,
     onProgressStep = null,
-    onDurationChanged = null,
-    onVolumeChanged = null,
+    onDurationChange = null,
+    onVolumeChange = null,
     onPlay = null,
     onPause = null,
     onEnded = null,
     onSeeked = null,
-    onSuspended = null,
+    onSuspend = null,
     onLoadStart = null,
     onCanPlayThough = null,
     onCanPlay = null,
@@ -21,7 +20,6 @@ const useMediaApi = ({
     onLoadedMetadata = null,
 } = {}) => {
     const ref = useRef(null);
-    const [muted, setMuted] = useState(initialMuted);
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
     const [playing, setPlaying] = useState(false);
@@ -49,17 +47,6 @@ const useMediaApi = ({
         }
     }, []);
 
-    const togglePlay = useCallback(() => {
-        const { current: media } = ref;
-        if (media !== null) {
-            if (playing) {
-                media.pause();
-            } else {
-                media.play();
-            }
-        }
-    }, [playing]);
-
     const stop = useCallback(() => {
         const { current: media } = ref;
         if (media !== null) {
@@ -75,26 +62,19 @@ const useMediaApi = ({
         }
     }, []);
 
-    const mute = useCallback(() => {
-        const { current: media } = ref;
-        if (media !== null) {
-            media.muted = true;
-        }
-    }, []);
+    // const mute = useCallback(() => {
+    //     const { current: media } = ref;
+    //     if (media !== null) {
+    //         media.muted = true;
+    //     }
+    // }, []);
 
-    const unMute = useCallback(() => {
-        const { current: media } = ref;
-        if (media !== null) {
-            media.muted = false;
-        }
-    }, []);
-
-    const toggleMute = useCallback(() => {
-        const { current: media } = ref;
-        if (media !== null) {
-            media.muted = !muted;
-        }
-    }, [muted]);
+    // const unMute = useCallback(() => {
+    //     const { current: media } = ref;
+    //     if (media !== null) {
+    //         media.muted = false;
+    //     }
+    // }, []);
 
     // Media events callbacks
 
@@ -168,11 +148,11 @@ const useMediaApi = ({
 
             setDuration(eventMedia.duration);
 
-            if (onDurationChanged !== null) {
-                onDurationChanged(eventMedia.duration);
+            if (onDurationChange !== null) {
+                onDurationChange(eventMedia.duration);
             }
         },
-        [setDuration, onDurationChanged],
+        [setDuration, onDurationChange],
     );
 
     const onCustomSeeked = useCallback(
@@ -190,12 +170,12 @@ const useMediaApi = ({
         (e) => {
             const { currentTarget: eventMedia } = e;
 
-            setMuted(eventMedia.muted);
-            if (onVolumeChanged !== null) {
-                onVolumeChanged(eventMedia.muted, eventMedia.volume);
+            // setMuted(eventMedia.muted);
+            if (onVolumeChange !== null) {
+                onVolumeChange(eventMedia.volume);
             }
         },
-        [setMuted, onVolumeChanged],
+        [onVolumeChange],
     );
 
     const onCustomLoadStart = useCallback(() => {
@@ -239,8 +219,8 @@ const useMediaApi = ({
     const onCustomSuspended = useCallback(() => {
         setSuspended(true);
 
-        if (onSuspended !== null) {
-            onSuspended();
+        if (onSuspend !== null) {
+            onSuspend();
         }
     }, [setSuspended, onSuspended]);
 
@@ -359,13 +339,8 @@ const useMediaApi = ({
         ref,
         play,
         pause,
-        togglePlay,
         stop,
         seek,
-        mute,
-        unMute,
-        toggleMute,
-        muted,
         currentTime,
         duration,
         playing,

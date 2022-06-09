@@ -16,7 +16,8 @@ const propTypes = {
     muted: PropTypes.bool,
     currentTime: PropTypes.number,
     duration: PropTypes.number,
-    onTogglePlay: PropTypes.func,
+    onPlay: PropTypes.func,
+    onPause: PropTypes.func,
     onToggleMute: PropTypes.func,
     onSeek: PropTypes.func,
     withSeekBar: PropTypes.bool,
@@ -32,7 +33,8 @@ const defaultProps = {
     muted: false,
     currentTime: 0,
     duration: 0,
-    onTogglePlay: null,
+    onPlay: null,
+    onPause: null,
     onToggleMute: null,
     onSeek: null,
     withSeekBar: false,
@@ -48,7 +50,8 @@ const MediaControls = ({
     muted,
     currentTime,
     duration,
-    onTogglePlay,
+    onPlay,
+    onPause,
     onToggleMute,
     onSeek,
     withSeekBar,
@@ -81,7 +84,7 @@ const MediaControls = ({
                 <button
                     type="button"
                     className={styles.playPauseButton}
-                    onClick={onTogglePlay}
+                    onClick={playing ? onPause : onPlay}
                     title={intl.formatMessage({
                         defaultMessage: 'Play',
                         description: 'Button label',

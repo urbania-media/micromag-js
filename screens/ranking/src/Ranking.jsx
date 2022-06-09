@@ -3,10 +3,18 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewerContext,
+    useViewerWebView,
+    usePlaybackContext,
+    usePlaybackMediaRef,
+} from '@micromag/core/contexts';
+import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -15,6 +23,7 @@ import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -30,8 +39,6 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -48,8 +55,6 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 75,
     type: null,
-    enableInteraction: null,
-    disableInteraction: null,
     className: null,
 };
 
@@ -66,13 +71,18 @@ const RankingScreen = ({
     transitions,
     transitionStagger,
     type,
-    enableInteraction,
-    disableInteraction,
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
-    const { width, height, menuOverScreen, resolution } = useScreenSize();
-    const { menuSize } = useViewer();
+    const { width, height, resolution } = useScreenSize();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -176,18 +186,9 @@ const RankingScreen = ({
 
     // Call to Action
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const { active: hasCallToAction = false } = callToAction || {};
     const [scrolledBottom, setScrolledBottom] = useState(false);
-    const {
-        ref: callToActionRef,
-        entry: { contentRect: callToActionRect },
-    } = useResizeObserver();
-
-    const { height: callToActionHeight = 0 } = callToActionRect || {};
-
-    if (hasCallToAction) {
-        elements.push(<div key="call-to-action-spacer" style={{ height: callToActionHeight }} />);
-    }
+    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -222,7 +223,9 @@ const RankingScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -239,8 +242,10 @@ const RankingScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop:
-                                          (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingBottom:
+                                          (!isPreview ? viewerBottomHeight : 0) +
+                                          (callToActionHeight || spacing),
                                   }
                                 : null
                         }
@@ -249,17 +254,29 @@ const RankingScreen = ({
                     </Layout>
                 </Scroll>
                 {!isPlaceholder && hasCallToAction ? (
-                    <CallToAction
+                    <div
                         ref={callToActionRef}
-                        className={styles.callToAction}
-                        disabled={!scrolledBottom}
-                        animationDisabled={isPreview}
-                        callToAction={callToAction}
-                        focusable={current && isView}
-                        screenSize={{ width, height }}
-                        enableInteraction={enableInteraction}
-                        disableInteraction={disableInteraction}
-                    />
+                        className={classNames([
+                            styles.callToAction,
+                            {
+                                [styles.disabled]: !scrolledBottom,
+                            },
+                        ])}
+                        style={{
+                            transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                            paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingTop: spacing / 2,
+                            paddingBottom: spacing / 2,
+                        }}
+                    >
+                        <CallToAction
+                            {...callToAction}
+                            animationDisabled={isPreview}
+                            focusable={current && isView}
+                            openWebView={openWebView}
+                        />
+                    </div>
                 ) : null}
             </Container>
         </div>

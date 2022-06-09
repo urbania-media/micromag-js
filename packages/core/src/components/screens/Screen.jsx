@@ -16,11 +16,7 @@ const propTypes = {
     component: PropTypes.node,
     components: MicromagPropTypes.components,
     className: PropTypes.string,
-    onPrevious: PropTypes.func,
-    onNext: PropTypes.func,
-    enableInteraction: PropTypes.func,
-    disableInteraction: PropTypes.func,
-    getMediaRef: PropTypes.func,
+    mediaRef: PropTypes.func,
 };
 
 const defaultProps = {
@@ -31,11 +27,7 @@ const defaultProps = {
     component: null,
     components: null,
     className: null,
-    onPrevious: null,
-    onNext: null,
-    enableInteraction: null,
-    disableInteraction: null,
-    getMediaRef: null,
+    mediaRef: null,
 };
 
 const Screen = ({
@@ -47,11 +39,7 @@ const Screen = ({
     components,
     component,
     className,
-    onPrevious,
-    onNext,
-    enableInteraction,
-    disableInteraction,
-    getMediaRef,
+    mediaRef,
 }) => {
     const { type = null } = screen || {};
     const CustomScreenComponent =
@@ -75,11 +63,7 @@ const Screen = ({
                             {...screen}
                             active={active}
                             current={current}
-                            onPrevious={onPrevious}
-                            onNext={onNext}
-                            enableInteraction={enableInteraction}
-                            disableInteraction={disableInteraction}
-                            getMediaRef={getMediaRef}
+                            mediaRef={mediaRef}
                         />
                     </div>
                 ) : (

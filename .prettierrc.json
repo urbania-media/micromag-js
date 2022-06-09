@@ -4,5 +4,13 @@
     "trailingComma": "all",
     "tabWidth": 4,
     "semi": true,
-    "importOrder": ["<THIRD_PARTY_MODULES>", "^@micromag/(.*)$", "^[./]"]
+    "importOrder": [
+        "<THIRD_PARTY_MODULES>",
+        "^@micromag/(.*)$",
+        "^[./](.*)?/(utils|hooks|lib)",
+        "^[./].*(?<!(\\.[a-z]+))$",
+        "\\.scss$",
+        "\\.[a-z]+$"
+    ],
+    "importOrderSeparation": true
 }

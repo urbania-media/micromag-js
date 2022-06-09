@@ -2,8 +2,10 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '@micromag/element-button';
+
 import { Close } from '@micromag/core/components';
+import Button from '@micromag/element-button';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -13,7 +15,7 @@ const propTypes = {
             current: PropTypes.any, // eslint-disable-line
         }),
     ]),
-    src: PropTypes.string,
+    url: PropTypes.string,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     closeable: PropTypes.bool,
@@ -24,7 +26,7 @@ const propTypes = {
 
 const defaultProps = {
     iframeRef: null,
-    src: null,
+    url: null,
     width: null,
     height: null,
     closeable: false,
@@ -33,7 +35,7 @@ const defaultProps = {
     className: null,
 };
 
-function WebView({ iframeRef, src, width, height, closeable, onClose, hidden, className }) {
+function WebView({ iframeRef, url, width, height, closeable, onClose, hidden, className }) {
     return (
         <div
             className={classNames([
@@ -52,9 +54,12 @@ function WebView({ iframeRef, src, width, height, closeable, onClose, hidden, cl
                     </Button>
                 </div>
             ) : null}
-            {!hidden ? (
-                <iframe className={styles.iframe} ref={iframeRef} title="Popup" src={src} />
-            ) : null}
+            <iframe
+                className={styles.iframe}
+                ref={iframeRef}
+                title="Popup"
+                src={url || 'about:blank'}
+            />
         </div>
     );
 }

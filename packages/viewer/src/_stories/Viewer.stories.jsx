@@ -74,7 +74,8 @@ export const Custom = () => (
     />
 );
 
-export const Basic = () => <Viewer story={basic} ç />;
+export const Basic = () => <Viewer story={basic} />;
+export const WithSibblings = () => <Viewer story={basic} withLandscapeSiblingsScreens />;
 
 export const Integrated = () => {
     const [fullscreen, setFullscreen] = useState(false);
@@ -170,29 +171,32 @@ export const MultipleVideos = () => (
                 {
                     id: '1',
                     type: 'video',
+                    layout: 'full',
                     video: {
                         media: bigVideoMediaWithSound(),
                         withSeekBar: true,
                         withControls: true,
-                        loop: true,
+                        loop: false,
                         autoPlay: true,
-                        muted: true,
                     },
                     background: {
                         color: { alpha: 1, color: '#FFFF00' },
                     },
+                    callToAction: callToAction(),
                 },
                 {
                     id: '2',
                     type: 'video',
-                    layout: 'full',
                     video: {
                         withSeekBar: true,
                         withControls: true,
                         media: gifVideoMedia(),
                         autoPlay: true,
-                        color: { alpha: 1, color: '#000000' },
-                        progressColor: { alpha: 1, color: '#FF0000' },
+                        color: { alpha: 1, color: '#012400' },
+                        progressColor: { alpha: 1, color: '#8891cc' },
+                    },
+                    background: {
+                        color: { alpha: 1, color: '#123456' },
                     },
                     gotoNextScreenOnEnd: true,
                 },
@@ -213,8 +217,8 @@ export const MultipleVideos = () => (
                     type: 'video',
                     video: {
                         media: videoMedia({ big: true }),
-                        withSeekBar: true,
-                        withControls: true,
+                        withSeekBar: false,
+                        withControls: false,
                         autoPlay: true,
                         color: { alpha: 1, color: '#000000' },
                         progressColor: { alpha: 1, color: '#0000FF' },
@@ -233,7 +237,7 @@ export const MultipleVideos = () => (
                         withSeekBar: true,
                         withControls: true,
                         autoPlay: true,
-                        color: { alpha: 1, color: '#000000' },
+                        color: { alpha: 1, color: '#00ffff' },
                         progressColor: { alpha: 1, color: '#FF0000' },
                     },
                     background: {

@@ -9,9 +9,11 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 import 'whatwg-fetch';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver } from '@micromag/core/hooks';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { getContrastingColor } from '@micromag/core/utils';
+
 import styles from './styles/audio-wave.module.scss';
 
 const propTypes = {
@@ -74,11 +76,7 @@ function AudioWave({
         [progressColor, backgroundColor],
     );
 
-    const {
-        ref: elRef,
-        entry: { contentRect: elContentRect },
-    } = useResizeObserver();
-    const { width: elWidth = null, height: elHeight } = elContentRect || {};
+    const { ref: elRef, width: elWidth = null, height: elHeight } = useDimensionObserver();
 
     // Linear animation for progress bar
 
@@ -223,8 +221,8 @@ function AudioWave({
     // User events
     const seekFromX = useCallback(
         (x) => {
-            const elX = elRef.current.getBoundingClientRect().left;
-            const progress = Math.max(0, Math.min(1, (x - elX) / elWidth));
+            const { left: elX, width } = elRef.current.getBoundingClientRect();
+            const progress = Math.max(0, Math.min(1, (x - elX) / width));
             if (onSeek !== null && duration !== null) {
                 onSeek(progress * duration);
             }

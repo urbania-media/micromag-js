@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import { subtitle, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import QuizScreen from '../Quiz';
