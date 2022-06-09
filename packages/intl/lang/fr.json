@@ -98,9 +98,6 @@
     "33UbSd": {
         "defaultMessage": "Ligne du temps avec images"
     },
-    "3B9cb3": {
-        "defaultMessage": "Whatsapp"
-    },
     "3E57H7": {
         "defaultMessage": "Aucun marqueur..."
     },
@@ -232,9 +229,6 @@
     },
     "88/Ge8": {
         "defaultMessage": "Citation"
-    },
-    "88kexp": {
-        "defaultMessage": "Facebook Messenger"
     },
     "8A8cuq": {
         "defaultMessage": "Paramètres"
@@ -468,7 +462,7 @@
         "defaultMessage": "Balance"
     },
     "MBgLeH": {
-        "defaultMessage": "23 juil au 22 août"
+        "defaultMessage": "23 juil - 22 août"
     },
     "MYZwSA": {
         "defaultMessage": "Audio"
@@ -616,9 +610,6 @@
     },
     "VspZp9": {
         "defaultMessage": "Téléverser une image"
-    },
-    "Vv05Q4": {
-        "defaultMessage": "Lien à copier"
     },
     "W5qWPj": {
         "defaultMessage": "Centrer"
@@ -854,6 +845,9 @@
     "hqOIl4": {
         "defaultMessage": "Photo de profil"
     },
+    "hvxkzE": {
+        "defaultMessage": "LinkedIn"
+    },
     "i+3ZrF": {
         "defaultMessage": "Sélectionnez une police..."
     },
@@ -862,6 +856,9 @@
     },
     "iHV3W3": {
         "defaultMessage": "Aucune d’entrée..."
+    },
+    "iL9RLu": {
+        "defaultMessage": "Collaborateur"
     },
     "iipV5Q": {
         "defaultMessage": "Type"
@@ -922,6 +919,9 @@
     },
     "menus.pagination.previous": {
         "defaultMessage": "Précédent"
+    },
+    "mlucL+": {
+        "defaultMessage": "Twitter"
     },
     "muPX/j": {
         "defaultMessage": "Interlocuteur"
@@ -1024,6 +1024,9 @@
     },
     "qroLmS": {
         "defaultMessage": "Marqueur"
+    },
+    "r+bcpa": {
+        "defaultMessage": "Facebook"
     },
     "rAkTvt": {
         "defaultMessage": "22 déc au 20 jan"

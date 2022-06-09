@@ -13,7 +13,6 @@ import {
     webfont2Files,
     webfont3Files,
     webfontFiles,
-    callToAction,
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import article from '../../../../.storybook/data/stories/article.json';
