@@ -341,12 +341,6 @@ msgctxt "4kSwvn"
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-# Field label
-#: 4y3gAI
-msgctxt "4y3gAI"
-msgid "Result percentage text"
-msgstr "Result percentage text"
-
 # Description placeholder
 #: 507VAi
 msgctxt "507VAi"
