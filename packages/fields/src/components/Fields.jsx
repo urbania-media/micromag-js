@@ -3,11 +3,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { FieldsValueContextProvider } from '@micromag/core/contexts';
 import { createNullableOnChange } from '@micromag/core/utils';
-import styles from '../styles/fields.module.scss';
+
 import Field from './Field';
 import FieldRow from './FieldRow';
+
+import styles from '../styles/fields.module.scss';
 
 const propTypes = {
     name: PropTypes.string,
@@ -188,41 +192,43 @@ const Fields = ({
                 },
             ])}
         >
-            <div
-                className={classNames([
-                    styles.fields,
-                    {
-                        'list-group': isList,
-                        'list-group-flush': isFlushList,
-                    },
-                ])}
-            >
-                {normalFieldsIndex.map((index) => fieldsElements[index])}
-            </div>
-            {advancedFieldsIndex.length > 0 ? (
-                <FieldRow
-                    label={
-                        <FormattedMessage
-                            defaultMessage="Advanced"
-                            description="Name of the section in Fields"
-                        />
-                    }
-                    isSection
-                    className={styles.advanced}
+            <FieldsValueContextProvider value={value}>
+                <div
+                    className={classNames([
+                        styles.fields,
+                        {
+                            'list-group': isList,
+                            'list-group-flush': isFlushList,
+                        },
+                    ])}
                 >
-                    <div
-                        className={classNames([
-                            styles.fields,
-                            {
-                                'list-group': isList,
-                                'list-group-flush': isFlushList,
-                            },
-                        ])}
+                    {normalFieldsIndex.map((index) => fieldsElements[index])}
+                </div>
+                {advancedFieldsIndex.length > 0 ? (
+                    <FieldRow
+                        label={
+                            <FormattedMessage
+                                defaultMessage="Advanced"
+                                description="Name of the section in Fields"
+                            />
+                        }
+                        isSection
+                        className={styles.advanced}
                     >
-                        {advancedFieldsIndex.map((index) => fieldsElements[index])}
-                    </div>
-                </FieldRow>
-            ) : null}
+                        <div
+                            className={classNames([
+                                styles.fields,
+                                {
+                                    'list-group': isList,
+                                    'list-group-flush': isFlushList,
+                                },
+                            ])}
+                        >
+                            {advancedFieldsIndex.map((index) => fieldsElements[index])}
+                        </div>
+                    </FieldRow>
+                ) : null}
+            </FieldsValueContextProvider>
         </div>
     );
 };

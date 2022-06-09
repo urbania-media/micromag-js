@@ -87,7 +87,7 @@ const VideoScreen = ({
     const {
         autoPlay = true,
         media: videoMedia = null,
-        thumbnailFile = null,
+        thumbnail = null,
         closedCaptions = null,
         withSeekBar = false,
         withControls = false,
@@ -233,7 +233,7 @@ const VideoScreen = ({
     );
 
     const { metadata: videoMetadata = null, url: videoUrl = null } = videoMedia || {};
-    const thumbnailUrl = useMediaThumbnail(videoMedia, thumbnailFile);
+    const finalThumbnail = useMediaThumbnail(videoMedia, thumbnail);
 
     const hasVideoUrl = videoUrl !== null;
 
@@ -294,12 +294,12 @@ const VideoScreen = ({
                     {isPreview || isCapture ? (
                         <Image
                             className={styles.image}
-                            media={{
-                                url: thumbnailUrl,
-                                metadata: { width: videoWidth, height: videoHeight },
-                            }}
+                            media={finalThumbnail}
                             width={resizedVideoWidth}
                             height={resizedVideoHeight}
+                            objectFit={{
+                                fit: 'cover',
+                            }}
                             resolution={resolution}
                             shouldLoad={mediaShouldLoad}
                         />

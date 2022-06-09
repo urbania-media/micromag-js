@@ -1360,10 +1360,6 @@
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
   },
-  "qTdBzB": {
-    "defaultMessage": "No thumbnail",
-    "description": "Field no value label"
-  },
   "qhjeuO": {
     "defaultMessage": "Padding",
     "description": "Field label"

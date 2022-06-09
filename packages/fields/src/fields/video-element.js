@@ -50,7 +50,7 @@ export default {
             }),
         },
         {
-            fieldName: 'thumbnailFile',
+            name: 'thumbnail',
             type: 'media-thumbnail',
             label: defineMessage({
                 defaultMessage: 'Thumbnail',

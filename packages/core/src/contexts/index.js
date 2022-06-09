@@ -1,6 +1,7 @@
 export * from './ComponentsContext';
 export * from './EditorContext';
 export * from './FieldsContext';
+export * from './FieldsValueContext';
 export * from './FieldContext';
 export * from './FontsContext';
 export * from './GoogleApiClientContext';

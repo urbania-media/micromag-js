@@ -2054,12 +2054,6 @@ msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Add a marker"
 
-# Field no value label
-#: qTdBzB
-msgctxt "qTdBzB"
-msgid "No thumbnail"
-msgstr "No thumbnail"
-
 # Field label
 #: qhjeuO
 msgctxt "qhjeuO"

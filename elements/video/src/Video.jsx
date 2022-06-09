@@ -19,7 +19,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.videoMedia,
-    thumbnailFile: PropTypes.string,
+    thumbnail: PropTypes.oneOf([PropTypes.string, MicromagPropTypes.imageMedia]),
     width: PropTypes.number,
     height: PropTypes.number,
     mediaRef: PropTypes.oneOfType([
@@ -55,7 +55,7 @@ const propTypes = {
 
 const defaultProps = {
     media: null,
-    thumbnailFile: null,
+    thumbnail: null,
     width: null,
     height: null,
     mediaRef: null,
@@ -86,7 +86,7 @@ const defaultProps = {
 
 const Video = ({
     media,
-    thumbnailFile,
+    thumbnail,
     width,
     height,
     mediaRef,
@@ -117,7 +117,7 @@ const Video = ({
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
     const { description = null, mime: mediaMime = null } = metadata || {};
     const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
-    const thumbnailUrl = useMediaThumbnail(media, thumbnailFile);
+    const thumbnailUrl = useMediaThumbnail(media, thumbnail);
 
     const ref = useRef(null);
     const currentTime = useMediaCurrentTime(ref.current, {
