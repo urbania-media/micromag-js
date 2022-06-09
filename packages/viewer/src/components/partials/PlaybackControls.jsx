@@ -146,8 +146,7 @@ function PlaybackControls({ className }) {
                 onSeekStart={onSeekStart}
                 onSeekEnd={onSeekEnd}
                 focusable={playing}
-                isCollapsed={isCollapsed}
-                withSeekHead={controlsVisible && !seekBarOnly}
+                withSeekHead={!isCollapsed && !seekBarOnly}
                 backgroundColor={color}
                 progressColor={progressColor}
             />
