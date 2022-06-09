@@ -6,9 +6,12 @@
     position: relative;
     align-items: center;
     justify-content: space-between;
+    // height: 100%;
+    // transition: height 0.2s ease-in-out;
 
     &.isCollapsed {
-        height: 0;
+        // height: 0;
+        // pointer-events: none;
     }
 }
 
@@ -21,16 +24,19 @@
     z-index: 2;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
-    padding: 10px;
-    transition: opacity 0.5s ease-out;
+    width: 50px; // @todo standardize icon sizes, variable, theme-controlled, etc.
+    height: 50px;
+    margin: 10px;
+    padding: 5px;
+    transition: opacity 0.1s ease-out;
     pointer-events: auto;
 
     .isCollapsed & {
-        position: absolute;
-        bottom: 0;
+        pointer-events: auto;
     }
+    //     position: absolute;
+    //     bottom: 0;
+    // }
 }
 
 .playPauseButton {
@@ -69,6 +75,7 @@
         display: block;
         width: 70%;
         height: 70%;
+        color: currentColor;
     }
 
     &.isMuted {
@@ -110,23 +117,25 @@
     left: 0;
     width: 100%;
     transform: translateY(100%);
-    transition: transform 0.2s ease-in-out, bottom 0.2s ease-in-out, padding 0.2s 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, bottom 0.2s 0.2s ease-in-out, padding 0.2s ease-in-out;
 
     .withSeekBar & {
         bottom: 50%;
         padding: 0 70px;
         transform: translateY(50%);
-        transition: transform 0.2s ease-in-out, bottom 0.2s 0.2s ease-in-out,
-            padding 0.2s ease-in-out;
         opacity: 1;
     }
 
     .isCollapsed & {
         bottom: 0;
         padding: 0;
+        transition: transform 0.2s ease-in-out, bottom 0.2s ease-in-out,
+            padding 0.4s 0.2s ease-in-out;
     }
 
     .isCollapsed.withSeekBar & {
         transform: translateY(0);
+        transition: transform 0.2s ease-in-out, bottom 0.2s ease-in-out,
+            padding 0.4s 0.2s ease-in-out;
     }
 }

@@ -318,6 +318,8 @@ export const allScreens = [
             loop: false,
             withSeekBar: true,
             withControls: true,
+            color: { alpha: 1, color: '#69ffdd' },
+            progressColor: { alpha: 1, color: '#029c6b' },
         },
         background: {
             color: { alpha: 1, color: '#FF00FF' },

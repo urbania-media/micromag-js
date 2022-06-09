@@ -680,7 +680,12 @@ const Viewer = ({
                                 );
                             })}
                             <div
-                                className={styles.playbackControls}
+                                className={classNames([
+                                    styles.playbackControls,
+                                    {
+                                        [styles.isCollapsed]: !playbackcontrolsVisible
+                                    }
+                                ])}
                                 ref={playbackControlsContainerRef}
                             >
                                 <div

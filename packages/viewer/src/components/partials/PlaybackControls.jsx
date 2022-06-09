@@ -5,11 +5,12 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons/faVolumeUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { usePlaybackContext } from '@micromag/core/contexts';
 import { useMediaDuration, useMediaCurrentTime } from '@micromag/core/hooks';
+import { getColorAsString } from '@micromag/core/utils';
 
 import SeekBar from './SeekBar';
 
@@ -39,8 +40,18 @@ function PlaybackControls({ className }) {
     const duration = useMediaDuration(mediaElement);
     const currentTime = useMediaCurrentTime(mediaElement, {
         disabled: !playing,
-        updateInterval: 100
+        updateInterval: 100,
     });
+    const [customControlsTheme, setCustomControlsTheme] = useState(null);
+
+    useEffect(() => {
+        const { color, progressColor, seekBarOnly } = controlsTheme || {};
+        setCustomControlsTheme({
+            color: getColorAsString(color),
+            progressColor: getColorAsString(progressColor),
+            seekBarOnly,
+        });
+    }, [controlsTheme, setCustomControlsTheme]);
 
     const onPlay = useCallback(() => {
         setPlaying(true);
@@ -70,26 +81,36 @@ function PlaybackControls({ className }) {
         }
     }, [setMuted, controlsVisible, showControls]);
 
-    const onSeek = useCallback((time) => {
-        mediaElement.currentTime = time;
-    }, [mediaElement]);
+    const onSeek = useCallback(
+        (time) => {
+            mediaElement.currentTime = time;
+        },
+        [mediaElement],
+    );
 
-    const { color, progressColor, seekBarOnly } = controlsTheme || {};
+    const { color, progressColor, seekBarOnly } = customControlsTheme || {};
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.withPlayPause]: controls && !seekBarOnly,
-                [styles.withMute]: mediaElement !== null || controls,
-                [styles.withSeekBar]: controls,
-                [styles.isCollapsed]: (controls && !controlsVisible && playing) || (!controls && mediaElement !== null),
-            }
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.withPlayPause]: controls && !seekBarOnly,
+                    [styles.withMute]: mediaElement !== null || controls,
+                    [styles.withSeekBar]: controls,
+                    [styles.isCollapsed]:
+                        (controls && !controlsVisible && playing) ||
+                        (!controls && mediaElement !== null),
+                },
+            ])}
+        >
             <button
                 type="button"
                 className={styles.playPauseButton}
+                style={{
+                    color,
+                }}
                 onClick={playing ? onPause : onPlay}
                 title={intl.formatMessage({
                     defaultMessage: 'Play',
@@ -122,9 +143,12 @@ function PlaybackControls({ className }) {
                 className={classNames([
                     styles.muteButton,
                     {
-                        [styles.isMuted]: muted
-                    }
+                        [styles.isMuted]: muted,
+                    },
                 ])}
+                style={{
+                    color,
+                }}
                 onClick={muted ? onUnmute : onMute}
                 title={intl.formatMessage({
                     defaultMessage: 'Mute',
