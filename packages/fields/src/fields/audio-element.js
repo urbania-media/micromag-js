@@ -26,10 +26,18 @@ export default {
             }),
         },
         {
-            name: 'withPlayPause',
+            name: 'withControls',
             type: 'toggle',
             label: defineMessage({
-                defaultMessage: 'With play/pause button',
+                defaultMessage: 'With controls button',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'withSeekBar',
+            type: 'toggle',
+            label: defineMessage({
+                defaultMessage: 'With seek bar',
                 description: 'Field label',
             }),
         },
@@ -38,6 +46,22 @@ export default {
             type: 'closed-captions',
             label: defineMessage({
                 defaultMessage: 'Closed captions',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'color',
+            type: 'color',
+            label: defineMessage({
+                defaultMessage: 'Controls color',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'progressColor',
+            type: 'color',
+            label: defineMessage({
+                defaultMessage: 'Progress bar color',
                 description: 'Field label',
             }),
         },

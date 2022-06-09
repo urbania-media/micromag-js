@@ -95,7 +95,8 @@ const AudioScreen = ({
         media: audioMedia = null,
         autoPlay = true,
         closedCaptions = null,
-        withPlayPause = false,
+        withControls = false,
+        withSeekBar = false,
         color = null,
         progressColor = null,
     } = audio || {};
@@ -119,9 +120,10 @@ const AudioScreen = ({
         if (!current) {
             return () => {};
         }
-        if (withPlayPause) {
+        if (withControls || withSeekBar) {
             setControls(true);
             setControlsTheme({
+                seekBarOnly: withSeekBar,
                 color,
                 progressColor,
             });
@@ -130,11 +132,11 @@ const AudioScreen = ({
         }
 
         return () => {
-            if (withPlayPause) {
+            if (withControls || withSeekBar) {
                 setControls(false);
             }
         };
-    }, [current, withPlayPause, setControls, color, progressColor]);
+    }, [current, withControls, withSeekBar, setControls, color, progressColor]);
 
     useEffect(() => {
         if (customMediaRef !== null) {
