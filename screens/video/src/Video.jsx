@@ -113,13 +113,15 @@ const VideoScreen = ({
         if (!current) {
             return () => {};
         }
+
+        setControlsTheme({
+            seekBarOnly: withSeekBar && !withControls,
+            color,
+            progressColor,
+        });
+
         if (withControls || withSeekBar) {
             setControls(true);
-            setControlsTheme({
-                seekBarOnly: withSeekBar && !withControls,
-                color,
-                progressColor,
-            });
         } else {
             setControls(false);
         }
