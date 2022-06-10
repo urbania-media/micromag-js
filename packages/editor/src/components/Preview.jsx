@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useCallback, useMemo } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
+import { useScreenSize, PlaybackProvider } from '@micromag/core/contexts';
 import { useDimensionObserver, useParsedStory } from '@micromag/core/hooks';
 // import { getDeviceScreens } from '@micromag/core/utils';
 import { Viewer } from '@micromag/viewer';
@@ -98,9 +98,9 @@ const EditorPreview = ({
             bottomHeight,
         );
         return {
-            width: maxWidth,
-            height: maxHeight,
-            transform: `scale(${previewScale}, ${previewScale})`,
+            width: maxWidth * previewScale,
+            height: maxHeight * previewScale,
+            // transform: `scale(${previewScale}, ${previewScale})`,
         };
     }, [device, bottomWidth, bottomHeight, screen, withoutDevicesSizes, initialDevice]);
 
@@ -152,17 +152,19 @@ const EditorPreview = ({
                     <div className={styles.inner} ref={bottomRef}>
                         <div className={styles.preview} style={previewStyle}>
                             <div className={styles.viewerContainer}>
-                                <Viewer
-                                    story={valueParsed}
-                                    storyIsParsed
-                                    screen={screenId}
-                                    screenState={currentScreenStateId}
-                                    className={styles.story}
-                                    theme={viewerTheme}
-                                    interactions={null}
-                                    renderContext="edit"
-                                    onScreenChange={onScreenChange}
-                                />
+                                <PlaybackProvider>
+                                    <Viewer
+                                        story={valueParsed}
+                                        storyIsParsed
+                                        screen={screenId}
+                                        screenState={currentScreenStateId}
+                                        className={styles.story}
+                                        theme={viewerTheme}
+                                        interactions={null}
+                                        renderContext="edit"
+                                        onScreenChange={onScreenChange}
+                                    />
+                                </PlaybackProvider>
                             </div>
                         </div>
                     </div>
