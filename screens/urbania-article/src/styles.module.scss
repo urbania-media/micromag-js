@@ -290,10 +290,29 @@ $color-universities-text: #f33;
     }
 }
 
+.visual {
+    height: 100%;
+}
+
+
 .image {
+    // @todo don't manage my size!
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+
     .isCurrent & {
         animation: slowZoom 15s 1 ease-out forwards;
     }
+}
+
+.img {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
 }
 
 @keyframes slowZoom {

@@ -30,6 +30,7 @@ const propTypes = {
     videoInitialMuted: PropTypes.bool,
     onLoaded: PropTypes.func,
     className: PropTypes.string,
+    imageClassName: PropTypes.string,
     videoClassName: PropTypes.string,
 };
 
@@ -47,6 +48,7 @@ const defaultProps = {
     videoInitialMuted: true,
     onLoaded: null,
     className: null,
+    imageClassName: null,
     videoClassName: null,
 };
 
@@ -64,6 +66,7 @@ const Visual = ({
     videoInitialMuted,
     onLoaded: onParentLoaded,
     className,
+    imageClassName,
     videoClassName,
     ...props
 }) => {
@@ -120,6 +123,7 @@ const Visual = ({
                     shouldLoad={shouldLoad}
                     onLoaded={onLoaded}
                     className={classNames([styles.container, { [className]: className !== null }])}
+                    imageClassName={imageClassName}
                 />
             ) : null}
             {type === 'video' && shouldLoad ? (

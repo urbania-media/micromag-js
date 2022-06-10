@@ -327,9 +327,10 @@ const UrbaniaArticle = ({
                             {hasImage && !isVideo ? (
                                 <Visual
                                     className={styles.image}
+                                    imageClassName={styles.img}
                                     media={image}
                                     width={width}
-                                    height={imageHeight}
+                                    height={height}
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
                                     shouldLoad={mediaShouldLoad}
