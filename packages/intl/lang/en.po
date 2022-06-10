@@ -341,12 +341,6 @@ msgctxt "4kSwvn"
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-# Field label
-#: 4y3gAI
-msgctxt "4y3gAI"
-msgid "Result percentage text"
-msgstr "Result percentage text"
-
 # Description placeholder
 #: 507VAi
 msgctxt "507VAi"
@@ -496,12 +490,6 @@ msgstr "Facebook Messenger"
 msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Parameters"
-
-# Field label
-#: 8EI08h
-msgctxt "8EI08h"
-msgid "With play/pause button"
-msgstr "With play/pause button"
 
 # Button label
 #: 8oczXQ

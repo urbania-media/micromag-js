@@ -32,7 +32,6 @@ const propTypes = {
     badAnswerColor: MicromagPropTypes.color,
     focusable: PropTypes.bool,
     layout: PropTypes.string,
-    callToActionHeight: PropTypes.number,
     showInstantAnswer: PropTypes.bool,
     withResult: PropTypes.bool,
     withoutGoodAnswer: PropTypes.bool,
@@ -62,7 +61,6 @@ const defaultProps = {
     badAnswerColor: null,
     focusable: false,
     layout: null,
-    callToActionHeight: null,
     showInstantAnswer: false,
     withResult: false,
     withoutGoodAnswer: false,
@@ -97,7 +95,6 @@ const Question = ({
     withoutTrueFalse,
     withoutIndex,
     layout,
-    callToActionHeight,
     transitions,
     transitionPlaying,
     transitionStagger,
@@ -229,9 +226,6 @@ const Question = ({
                                         disabled={transitionDisabled}
                                     >
                                         <Text {...result} className={styles.resultText} />
-                                        {callToActionHeight !== null ? (
-                                            <div style={{ height: callToActionHeight }} />
-                                        ) : null}
                                     </Transitions>
                                 ) : null}
                             </ScreenElement>

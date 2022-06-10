@@ -341,12 +341,6 @@ msgctxt "4kSwvn"
 msgid "Thumbnail"
 msgstr "Vignette"
 
-# Field label
-#: 4y3gAI
-msgctxt "4y3gAI"
-msgid "Result percentage text"
-msgstr ""
-
 # Description placeholder
 #: 507VAi
 msgctxt "507VAi"
@@ -496,12 +490,6 @@ msgstr ""
 msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Paramètres"
-
-# Field label
-#: 8EI08h
-msgctxt "8EI08h"
-msgid "With play/pause button"
-msgstr "Avec bouton de lecture"
 
 # Button label
 #: 8oczXQ

@@ -103,6 +103,7 @@ const Answers = ({
         () => (rightAnswerRef.current !== null ? rightAnswerRef.current.offsetTop : 0),
         [rightAnswerHeight],
     );
+    console.log(answerHeight, rightAnswerHeight);
 
     const shouldCollapse = !withoutGoodAnswer || (showUserAnswer && answeredIndex !== null);
     const [answersCollapsed, setAnswersCollapsed] = useState(answeredIndex !== null);
