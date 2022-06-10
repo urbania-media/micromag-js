@@ -159,6 +159,7 @@ const Background = ({
                         shouldLoad={shouldLoad}
                         autoPlay
                         loop
+                        withPoster
                     />
                 </div>
             ) : null}
