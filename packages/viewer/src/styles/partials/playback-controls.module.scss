@@ -23,10 +23,6 @@
     padding: 5px;
     transition: opacity 0.1s ease-out;
     pointer-events: auto;
-
-    .isCollapsed & {
-        pointer-events: auto;
-    }
 }
 
 .playPauseButton {
@@ -38,20 +34,18 @@
 
     .icon {
         display: block;
-        width: 40%;
-        height: 40%;
+        width: 50%;
+        height: 50%;
         transform: translateX(5%);
     }
 
-    .isCollapsed & {
-        left: 0;
-    }
-
+    // display the Play/Pause button
     .withPlayPause & {
         opacity: 1;
         pointer-events: auto;
     }
 
+    // display the play/pause button, but faded because the controls are collapsed
     .withPlayPause.isCollapsed & {
         opacity: 0.5;
     }
@@ -80,10 +74,6 @@
             transform: rotate(-45deg);
             background-color: currentColor;
         }
-    }
-
-    .isCollapsed & {
-        right: 0;
     }
 
     .withMute & {
@@ -125,6 +115,7 @@
 
     .isCollapsed.withSeekBar & {
         bottom: 0;
+        padding: 0;
         transform: translateY(0);
         transition: transform 0.2s ease-in-out, bottom 0.2s ease-in-out,
             padding 0.4s 0.2s ease-in-out;
