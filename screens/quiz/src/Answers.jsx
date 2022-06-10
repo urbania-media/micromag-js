@@ -108,8 +108,9 @@ const Answers = ({
     items !== null && !isPlaceholder
         ? items.reduce((hasGood, { good = false }) => hasGood || good, false)
         : false;
+    const finalShowUserAnswer = showUserAnswer || !hasRightAnswer;
 
-    const shouldCollapse = !withoutGoodAnswer || (showUserAnswer && answeredIndex !== null);
+    const shouldCollapse = !withoutGoodAnswer || (finalShowUserAnswer && answeredIndex !== null);
     const [answersCollapsed, setAnswersCollapsed] = useState(answeredIndex !== null);
     const [answersDidCollapsed, setAnswersDidCollapsed] = useState(
         initialCollapsed || answeredIndex !== null,
@@ -125,7 +126,7 @@ const Answers = ({
                         onCollapse();
                     }
                 },
-                hasAnsweredRight || showUserAnswer ? 500 : answersCollapseDelay,
+                hasAnsweredRight || finalShowUserAnswer ? 500 : answersCollapseDelay,
             );
         }
 
@@ -141,7 +142,7 @@ const Answers = ({
         onCollapse,
         answersCollapseDelay,
         hasAnsweredRight,
-        showUserAnswer,
+        finalShowUserAnswer,
     ]);
 
     const onAnswerTransitionEnd = useCallback(() => {
@@ -170,8 +171,8 @@ const Answers = ({
                 styles.container,
                 {
                     [styles.answered]: answered,
-                    [styles.withoutGoodAnswer]: withoutGoodAnswer,
-                    [styles.withGoodAnswer]: !withoutGoodAnswer,
+                    [styles.withoutGoodAnswer]: withoutGoodAnswer || !hasRightAnswer,
+                    [styles.withGoodAnswer]: !withoutGoodAnswer && hasRightAnswer,
                     [styles.willCollapse]: shouldCollapse && answersCollapsed,
                     [styles.didCollapsed]: shouldCollapse && answersDidCollapsed,
                     [styles.isPlaceholder]: isPlaceholder,
@@ -202,24 +203,20 @@ const Answers = ({
                         } = answer || {};
                         const { textStyle = null } = label || {};
                         const hasAnswer = isTextFilled(label);
-                        const hasFinalUserAnswer = showUserAnswer && answeredIndex !== null;
+                        const hasFinalUserAnswer = finalShowUserAnswer && answeredIndex !== null;
 
                         // Hide bad answers
-                        if (!showUserAnswer && answersDidCollapsed && !rightAnswer) {
+                        if (answersDidCollapsed && !rightAnswer && (hasRightAnswer || !userAnswer)) {
                             return null;
                         }
 
-                        // Only show user answer
-                        if (hasFinalUserAnswer && answersCollapsed && !userAnswer) {
-                            return null;
-                        }
+                        const answerToShow = (rightAnswer && hasRightAnswer) || (!hasRightAnswer && userAnswer && finalShowUserAnswer);
 
                         return (
                             <div
                                 key={`answer-${answerI}`}
                                 ref={
-                                    (rightAnswer && hasRightAnswer) ||
-                                    (!hasRightAnswer && userAnswer)
+                                    answerToShow
                                         ? rightAnswerRef
                                         : null
                                 }
@@ -227,13 +224,14 @@ const Answers = ({
                                     styles.item,
                                     {
                                         [styles.rightAnswer]: rightAnswer && !withoutGoodAnswer,
-                                        [styles.userAnswer]: userAnswer && !showUserAnswer,
+                                        [styles.userAnswer]: userAnswer && !finalShowUserAnswer,
                                         [styles.isUserAnswer]: userAnswer && hasFinalUserAnswer,
+                                        [styles.answerToSlide]: answerToShow,
                                     },
                                 ])}
                                 style={
                                     answersCollapsed &&
-                                    rightAnswer &&
+                                    answerToShow &&
                                     !answersDidCollapsed &&
                                     shouldCollapse
                                         ? {
@@ -242,9 +240,7 @@ const Answers = ({
                                         : null
                                 }
                                 onTransitionEnd={
-                                    rightAnswer ||
-                                    (withoutGoodAnswer && userAnswer) ||
-                                    (showUserAnswer && userAnswer)
+                                    answerToShow
                                         ? onAnswerTransitionEnd
                                         : null
                                 }

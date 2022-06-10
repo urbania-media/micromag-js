@@ -13,6 +13,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
     useViewerWebView,
+    useVisitor,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { useQuizCreate } from '@micromag/data';
@@ -262,8 +263,11 @@ const QuizMultipleScreen = ({
     const { background: resultBackground = null, layout: resultLayout = null } =
         currentResult || {};
 
+    const visitor = useVisitor();
+    const { id: visitorId = null } = visitor || {};
     const { create: submitQuiz } = useQuizCreate({
         screenId,
+        visitorId,
     });
 
     useEffect(() => {

@@ -17,6 +17,7 @@ const props = {
     result: {
         body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?',
     },
+    // withoutTrueFalse: true,
     background: backgroundColor(),
     transitions: transitions(),
 };

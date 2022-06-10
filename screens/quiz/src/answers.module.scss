@@ -26,7 +26,7 @@
     transition-duration: 0.5s;
     transition-timing-function: ease;
 
-    &.rightAnswer {
+    &.answerToSlide {
         transition-property: transform;
         transition-duration: 1s;
     }
@@ -54,14 +54,14 @@
             opacity: 0;
         }
 
-        &.rightAnswer {
+        &.answerToSlide {
             transition-duration: 1s;
             opacity: 1;
         }
     }
 
     .didCollapsed & {
-        &.rightAnswer {
+        &.answerToSlide {
             transition: none;
         }
     }
