@@ -203,7 +203,12 @@ const UrbaniaArticle = ({
             isEmpty={!hasAuthor}
         >
             {hasAuthor ? (
-                <div className={classNames([styles.authors, { [styles.isAboveDescription]: hasDescription }])}>
+                <div
+                    className={classNames([
+                        styles.authors,
+                        { [styles.isAboveDescription]: hasDescription },
+                    ])}
+                >
                     <UrbaniaAuthor author={author} shouldLoad={mediaShouldLoad} />
                 </div>
             ) : null}
@@ -341,6 +346,8 @@ const UrbaniaArticle = ({
                                     objectFit={{ fit: 'cover' }}
                                     shouldLoad={mediaShouldLoad}
                                     playing={backgroundPlaying}
+                                    muted={muted}
+                                    mediaRef={mediaRef}
                                 />
                             ) : null}
                         </ScreenElement>
