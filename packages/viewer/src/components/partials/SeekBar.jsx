@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useCallback, useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
 
 import styles from '../../styles/partials/seek-bar.module.scss';
@@ -17,8 +16,8 @@ const propTypes = {
     currentTime: PropTypes.number,
     duration: PropTypes.number,
     playing: PropTypes.bool,
-    backgroundColor: MicromagPropTypes.color,
-    progressColor: MicromagPropTypes.color,
+    backgroundColor: PropTypes.string,
+    progressColor: PropTypes.string,
     onSeek: PropTypes.func,
     onSeekStart: PropTypes.func,
     onSeekEnd: PropTypes.func,
