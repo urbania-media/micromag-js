@@ -6,6 +6,7 @@
     position: relative;
     align-items: center;
     justify-content: space-between;
+    pointer-events: none; // @todo?
 }
 
 .playPauseButton,
@@ -98,12 +99,15 @@
     width: 100%;
     transform: translateY(100%);
     transition: transform 0.2s ease-in-out, bottom 0.2s 0.2s ease-in-out, padding 0.2s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
 
     .withSeekBar.withPlayPause & {
         bottom: 50%;
         padding: 0 70px;
         transform: translateY(50%);
         opacity: 1;
+        pointer-events: auto;
     }
 
     .isCollapsed & {
