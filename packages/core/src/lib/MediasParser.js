@@ -164,7 +164,7 @@ class MediasParser {
                 const value = data[key];
                 let newValue;
                 if (patternMatch) {
-                    newValue = isObject(value) ? value : medias[value] || null;
+                    newValue = isObject(value) ? value : medias[value] || value;
                 } else {
                     newValue =
                         isObject(value) || isArray(value)
