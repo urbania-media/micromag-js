@@ -28,6 +28,7 @@ function PlaybackControls({ className }) {
     const intl = useIntl();
     const {
         media: mediaElement = null,
+        hasAudio = null,
         playing = false,
         muted = true,
         setPlaying,
@@ -56,17 +57,17 @@ function PlaybackControls({ className }) {
 
     const onPlay = useCallback(() => {
         setPlaying(true);
-        if (!controlsVisible) {
+        if (!controlsVisible && controls) {
             showControls();
         }
     }, [setPlaying, controlsVisible, showControls]);
 
     const onPause = useCallback(() => {
         setPlaying(false);
-        if (!controlsVisible) {
+        if (!controlsVisible && controls) {
             showControls();
         }
-    }, [setPlaying, controlsVisible, showControls]);
+    }, [setPlaying, controlsVisible, controls, showControls]);
 
     const onMute = useCallback(() => {
         setMuted(true);
@@ -89,19 +90,24 @@ function PlaybackControls({ className }) {
 
     const onSeek = useCallback(
         (time) => {
-            mediaElement.currentTime = time;
-            showControls();
+            if (mediaElement !== null) {
+                mediaElement.currentTime = time;
+            }
+            if (!controlsVisible && controls) {
+                showControls();
+            }
         },
-        [mediaElement, setWasPlaying, playing, setPlaying, showControls],
+        [mediaElement, controlsVisible, controls, setWasPlaying, playing, setPlaying, showControls],
     );
 
     const onSeekEnd = useCallback(() => {
         if (wasPlaying) setPlaying(true);
     }, [playing, setPlaying, wasPlaying]);
 
+    const mediaHasAudio = mediaElement !== null && (hasAudio === null || hasAudio === true)
     const { color, progressColor, seekBarOnly } = customControlsTheme || {};
     const isCollapsed =
-        (controls && !controlsVisible && playing) || (!controls && mediaElement !== null);
+        (controls && !controlsVisible && playing) || (!controls && mediaHasAudio);
 
     return (
         <div
@@ -110,7 +116,7 @@ function PlaybackControls({ className }) {
                 {
                     [className]: className !== null,
                     [styles.withPlayPause]: controls && !seekBarOnly,
-                    [styles.withMute]: mediaElement !== null || controls,
+                    [styles.withMute]: mediaHasAudio || controls,
                     [styles.withSeekBar]: controls,
                     [styles.isCollapsed]: isCollapsed,
                 },
@@ -171,7 +177,7 @@ function PlaybackControls({ className }) {
                     defaultMessage: 'Mute',
                     description: 'Button label',
                 })}
-                tabIndex={controlsVisible ? '0' : '-1'}
+                tabIndex={controlsVisible || mediaHasAudio ? '0' : '-1'}
             >
                 <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
             </button>

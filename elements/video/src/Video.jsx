@@ -113,7 +113,7 @@ const Video = ({
     withPoster,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
-    const { description = null, mime: mediaMime = null } = metadata || {};
+    const { description = null, mime: mediaMime = null, has_audio: hasAudio = null } = metadata || {};
     const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
     const finalThumbnail = useMediaThumbnail(media, thumbnail);
 
@@ -286,6 +286,7 @@ const Video = ({
                     onVolumeChange={onVolumeChange}
                     onTimeUpdate={onTimeUpdate}
                     onSuspend={onSuspend}
+                    data-has-audio={hasAudio}
                 >
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
                         <source

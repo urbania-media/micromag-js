@@ -107,6 +107,16 @@ export const PlaybackProvider = ({
     const showControls = useCallback(() => setControlsVisible(true), [setControlsVisible]);
     const hideControls = useCallback(() => setControlsVisible(false), [setControlsVisible]);
 
+    const hasAudio = useMemo(() => {
+        if (media === null || media.tagName.toLowerCase() !== 'video') {
+            return false;
+        }
+        if (media.tagName.toLowerCase() === 'audio') {
+            return true;
+        }
+        return typeof media.dataset.hasAudio !== 'undefined' ? media.dataset.hasAudio : null;
+    }, [media]);
+
     const value = useMemo(
         () => ({
             muted,
@@ -114,6 +124,7 @@ export const PlaybackProvider = ({
             controls,
             controlsVisible,
             media,
+            hasAudio,
             controlsTheme,
             setMuted,
             setPlaying,
@@ -131,6 +142,7 @@ export const PlaybackProvider = ({
             controlsVisible,
             controlsTheme,
             media,
+            hasAudio,
             setMuted,
             setPlaying,
             finalSetControls,
