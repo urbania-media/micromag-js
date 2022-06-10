@@ -712,7 +712,7 @@ const Viewer = ({
                                     className={classNames([
                                         styles.playbackControls,
                                         {
-                                            [styles.isCollapsed]: !playbackcontrolsVisible,
+                                            [styles.isCollapsed]: playbackControls && (!playbackcontrolsVisible && playing),
                                         },
                                     ])}
                                     ref={playbackControlsContainerRef}
