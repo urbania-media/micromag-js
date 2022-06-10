@@ -115,7 +115,7 @@ const Video = ({
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
     const { description = null, mime: mediaMime = null } = metadata || {};
     const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
-    const thumbnailUrl = useMediaThumbnail(media, thumbnail);
+    const thumbnail = useMediaThumbnail(media, thumbnail);
 
     const ref = useRef(null);
     const currentTime = useMediaCurrentTime(ref.current, {
@@ -273,7 +273,7 @@ const Video = ({
                     autoPlay={autoPlay && !paused}
                     loop={loop}
                     muted={muted}
-                    poster={shouldLoad && withPoster ? thumbnailUrl : null}
+                    poster={shouldLoad && withPoster && thumbnail !== null ? thumbnail.url || null : null}
                     preload={shouldLoad ? preload : 'none'}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
