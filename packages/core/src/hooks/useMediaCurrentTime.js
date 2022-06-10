@@ -15,7 +15,7 @@ function useMediaCurrentTime(
     const lastIdRef = useRef(id);
     const idChanged = lastIdRef.current !== id;
     if (idChanged) {
-        realCurrentTime.current = 0;
+        realCurrentTime.current = element !== null ? element.currentTime || 0 : 0;
         lastIdRef.current = id;
     }
 
@@ -25,7 +25,7 @@ function useMediaCurrentTime(
             return () => {};
         }
         let canceled = false;
-        const updateTime = (time) => {
+        function updateTime(time) {
             if (canceled) {
                 return;
             }
@@ -36,14 +36,16 @@ function useMediaCurrentTime(
                 customOnUpdate(time);
             }
         };
-        const interval = setInterval(() => {
+        function onInterval() {
             const time = element.currentTime;
             if (typeof time.then !== 'undefined') {
                 time.then(updateTime);
             } else {
                 updateTime(time);
             }
-        }, updateInterval);
+        };
+        const interval = setInterval(onInterval, updateInterval);
+        onInterval();
         return () => {
             canceled = true;
             clearInterval(interval);
