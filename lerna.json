@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-    "version": "0.3.137",
-=======
     "version": "0.3.152",
->>>>>>> 23db6c104c10cc70a73366c8b04576a312a36206
     "packages": [
         "elements/*",
         "packages/*",

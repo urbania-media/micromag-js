@@ -173,6 +173,7 @@ const Viewer = ({
 
     const {
         playing,
+        controls: playbackControls = false,
         controlsVisible: playbackcontrolsVisible = false,
         media: playbackMedia = null,
     } = usePlaybackContext();
@@ -505,7 +506,7 @@ const Viewer = ({
                             : 0
                     }
                     bottomHeight={
-                        (playbackcontrolsVisible || !playing) && currentScreenInteractionEnabled
+                        playbackControls && (playbackcontrolsVisible || !playing) && currentScreenInteractionEnabled
                             ? playbackControlsContainerHeight / screenScale
                             : 0
                     }
