@@ -190,7 +190,7 @@ export const MultipleVideos = () => (
                     type: 'video',
                     video: {
                         withSeekBar: true,
-                        withControls: true,
+                        withControls: false,
                         media: gifVideoMedia(),
                         autoPlay: true,
                         color: { alpha: 1, color: '#012400' },
@@ -251,7 +251,7 @@ export const MultipleVideos = () => (
                     type: 'video',
                     video: {
                         media: videoMedia({ big: true }),
-                        withSeekBar: true,
+                        withSeekBar: false,
                         withControls: true,
                         autoPlay: true,
                         color: { alpha: 1, color: '#000000' },

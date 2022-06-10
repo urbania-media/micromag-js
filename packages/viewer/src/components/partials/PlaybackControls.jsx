@@ -118,6 +118,7 @@ function PlaybackControls({ className }) {
                     [styles.withPlayPause]: controls && !seekBarOnly,
                     [styles.withMute]: mediaHasAudio || controls,
                     [styles.withSeekBar]: controls,
+                    [styles.withSeekBarOnly]: seekBarOnly,
                     [styles.isCollapsed]: isCollapsed,
                 },
             ])}
