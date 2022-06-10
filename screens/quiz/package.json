@@ -60,6 +60,7 @@
         "@micromag/element-container": "^0.3.152",
         "@micromag/element-heading": "^0.3.152",
         "@micromag/element-layout": "^0.3.152",
+        "@micromag/element-scroll": "^0.3.152",
         "@micromag/element-text": "^0.3.152",
         "@micromag/transforms": "^0.3.152",
         "classnames": "^2.2.6",

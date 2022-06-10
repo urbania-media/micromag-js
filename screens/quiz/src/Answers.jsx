@@ -103,7 +103,11 @@ const Answers = ({
         () => (rightAnswerRef.current !== null ? rightAnswerRef.current.offsetTop : 0),
         [rightAnswerHeight],
     );
-    console.log(answerHeight, rightAnswerHeight);
+
+    const hasRightAnswer =
+    items !== null && !isPlaceholder
+        ? items.reduce((hasGood, { good = false }) => hasGood || good, false)
+        : false;
 
     const shouldCollapse = !withoutGoodAnswer || (showUserAnswer && answeredIndex !== null);
     const [answersCollapsed, setAnswersCollapsed] = useState(answeredIndex !== null);
@@ -213,7 +217,12 @@ const Answers = ({
                         return (
                             <div
                                 key={`answer-${answerI}`}
-                                ref={rightAnswer ? rightAnswerRef : null}
+                                ref={
+                                    (rightAnswer && hasRightAnswer) ||
+                                    (!hasRightAnswer && userAnswer)
+                                        ? rightAnswerRef
+                                        : null
+                                }
                                 className={classNames([
                                     styles.item,
                                     {
