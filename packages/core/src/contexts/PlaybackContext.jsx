@@ -114,7 +114,10 @@ export const PlaybackProvider = ({
         if (media.tagName.toLowerCase() === 'audio') {
             return true;
         }
-        return typeof media.dataset.hasAudio !== 'undefined' ? media.dataset.hasAudio : null;
+        if (typeof media.dataset.hasAudio === 'undefined') {
+            return null;
+        }
+        return media.dataset.hasAudio === 'true' || media.dataset.hasAudio === true;
     }, [media]);
 
     const value = useMemo(
