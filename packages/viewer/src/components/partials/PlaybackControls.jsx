@@ -5,11 +5,10 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons/faVolumeUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { usePlaybackContext } from '@micromag/core/contexts';
-import { useMediaDuration, useMediaCurrentTime } from '@micromag/core/hooks';
 import { getColorAsString } from '@micromag/core/utils';
 
 import SeekBar from './SeekBar';
@@ -38,19 +37,8 @@ function PlaybackControls({ className }) {
         controlsTheme,
         showControls,
     } = usePlaybackContext();
-    const [instantSeek, setInstantSeek] = useState(false);
-    const duration = useMediaDuration(mediaElement);
-    const currentTime = useMediaCurrentTime(mediaElement, {
-        disabled: !playing || instantSeek,
-    });
     const [customControlsTheme, setCustomControlsTheme] = useState(null);
     const [wasPlaying, setWasPlaying] = useState(false);
-
-    useEffect(() => {
-        if (instantSeek) {
-            setInstantSeek(false);
-        }
-    }, [instantSeek, setInstantSeek]);
 
     useEffect(() => {
         const { color, progressColor, seekBarOnly } = controlsTheme || {};
@@ -91,14 +79,13 @@ function PlaybackControls({ className }) {
 
     const onSeekStart = useCallback(() => {
         setWasPlaying(playing);
-        if (playing) setPlaying(false);
-    }, [playing, setWasPlaying]);
+        if (playing) {
+            setPlaying(false);
+        }
+    }, [playing, setWasPlaying, setPlaying]);
 
     const onSeek = useCallback(
-        (time, instant = false) => {
-            if (instant) {
-                setInstantSeek(true);
-            }
+        (time) => {
             if (mediaElement !== null) {
                 mediaElement.currentTime = time;
             }
@@ -106,12 +93,14 @@ function PlaybackControls({ className }) {
                 showControls();
             }
         },
-        [mediaElement, controlsVisible, controls, setWasPlaying, playing, setPlaying, showControls],
+        [mediaElement, controlsVisible, controls, showControls],
     );
 
     const onSeekEnd = useCallback(() => {
-        if (wasPlaying) setPlaying(true);
-    }, [playing, setPlaying, wasPlaying]);
+        if (wasPlaying) {
+            setPlaying(true);
+        }
+    }, [setPlaying, wasPlaying]);
 
     const mediaHasAudio = mediaElement !== null && (hasAudio === null || hasAudio === true);
     const { color, progressColor, seekBarOnly } = customControlsTheme || {};
@@ -153,10 +142,8 @@ function PlaybackControls({ className }) {
 
             <SeekBar
                 className={styles.seekBar}
-                duration={duration}
-                currentTime={currentTime}
-                playing={playing}
                 media={mediaElement}
+                playing={playing}
                 onSeek={onSeek}
                 onSeekStart={onSeekStart}
                 onSeekEnd={onSeekEnd}
