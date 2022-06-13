@@ -29,11 +29,11 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
         if (media === null) {
             return () => {}
         }
-        function onResume(e) {
+        function onResume() {
             setPlaying(true);
             updateProgress(media.currentTime / media.duration);
         }
-        function onPause(e) {
+        function onPause() {
             setPlaying(false);
             updateProgress(media.currentTime / media.duration);
         }
