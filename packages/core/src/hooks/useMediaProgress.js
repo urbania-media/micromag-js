@@ -27,14 +27,13 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
 
     useEffect(() => {
         if (media === null) {
-            setPlaying(false);
             return () => {}
         }
-        function onResume() {
+        function onResume(e) {
             setPlaying(true);
             updateProgress(media.currentTime / media.duration);
         }
-        function onPause() {
+        function onPause(e) {
             setPlaying(false);
             updateProgress(media.currentTime / media.duration);
         }
@@ -46,7 +45,12 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
         media.addEventListener('waiting', onPause);
         media.addEventListener('stalled', onPause);
         media.addEventListener('seeking', onPause);
-        media.addEventListener('suspend', onPause);
+        // media.addEventListener('suspend', onPause);
+        // if (media.paused) {
+        //     onPause();
+        // } else {
+        //     onResume();
+        // }
         return () => {
             media.removeEventListener('play', onResume);
             media.removeEventListener('seeked', onResume);
@@ -56,10 +60,9 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
             media.removeEventListener('waiting', onPause);
             media.removeEventListener('stalled', onPause);
             media.removeEventListener('seeking', onPause);
-            media.removeEventListener('suspend', onPause);
+            // media.removeEventListener('suspend', onPause);
         }
     }, [media, updateProgress]);
-
 
     useEffect(() => {
         if (media === null) {
@@ -68,7 +71,6 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
         if (!playing || disabled) {
             return () => {};
         }
-
         let handle;
         let canceled = false;
         function tick() {
@@ -92,11 +94,7 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
         };
     }, [media, playing, disabled, duration, updateProgress]);
 
-    return {
-        progress: realProgressRef.current,
-        duration,
-        currentTime,
-    };
+    return realProgressRef.current;
 }
 
 export default useMediaProgress;

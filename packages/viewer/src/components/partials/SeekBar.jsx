@@ -48,7 +48,7 @@ const SeekBar = ({
     withSeekHead,
 }) => {
     const intl = useIntl();
-    const { progress, duration } = useMediaProgress(media, {
+    const progress = useMediaProgress(media, {
         disabled: !playing,
     });
 
@@ -61,11 +61,11 @@ const SeekBar = ({
             const { left: elX, width: elWidth } = currentTarget.getBoundingClientRect();
             const newProgress = Math.max(0, Math.min(1, (x - elX) / elWidth));
 
-            if (onSeek !== null && duration !== null) {
-                onSeek(newProgress * duration, tap);
+            if (onSeek !== null) {
+                onSeek(newProgress, tap);
             }
         },
-        [duration, onSeek],
+        [onSeek],
     );
 
     const onDragStart = useCallback(() => {

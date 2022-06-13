@@ -85,9 +85,9 @@ function PlaybackControls({ className }) {
     }, [playing, setWasPlaying, setPlaying]);
 
     const onSeek = useCallback(
-        (time) => {
+        (progress) => {
             if (mediaElement !== null) {
-                mediaElement.currentTime = time;
+                mediaElement.currentTime = progress * mediaElement.duration;
             }
             if (!controlsVisible && controls) {
                 showControls();
