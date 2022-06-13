@@ -16,6 +16,7 @@ import {
     useViewerContext,
     useViewerNavigation,
     useViewerWebView,
+    useViewerContainer,
 } from '@micromag/core/contexts';
 import {
     useAnimationFrame,
@@ -156,7 +157,9 @@ const Video360Screen = ({
         }
     }, [current, autoPlay]);
 
-    const { ref: activityDetectorRef, detected: activityDetected } = useActivityDetector({
+    const viewerContainer = useViewerContainer();
+    const { detected: activityDetected } = useActivityDetector({
+        element: viewerContainer,
         disabled: !current || !isView,
         timeout: 2000,
     });
@@ -574,7 +577,6 @@ const Video360Screen = ({
                     [styles.showVideo]: isPreview || isStatic || isCapture,
                 },
             ])}
-            ref={activityDetectorRef}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
         >
             {!isPlaceholder ? (

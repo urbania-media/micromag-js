@@ -5,7 +5,7 @@ import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -28,6 +28,7 @@ import {
     useTrackScreenMedia,
     useDimensionObserver,
     useActivityDetector,
+    useViewerContainer,
 } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
@@ -136,7 +137,6 @@ const UrbaniaTrivia = ({
         muted,
         setControls,
         setControlsTheme,
-        setMedia,
         setPlaying,
         showControls,
         hideControls,
@@ -229,7 +229,9 @@ const UrbaniaTrivia = ({
         setPlaying(false);
     }, [shouldGotoNextScreenOnEnd, gotoNextScreen, setPlaying]);
 
-    const { ref: activityDetectorRef, detected: activityDetected } = useActivityDetector({
+    const viewerContainer = useViewerContainer();
+    const { detected: activityDetected } = useActivityDetector({
+        element: viewerContainer,
         disabled: !current || !isView,
         timeout: 2000,
     });
@@ -457,7 +459,6 @@ const UrbaniaTrivia = ({
                 },
             ])}
             data-screen-ready={isStatic || isCapture || ready}
-            ref={activityDetectorRef}
         >
             {!isPlaceholder ? (
                 <Background

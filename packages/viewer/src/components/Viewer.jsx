@@ -497,6 +497,7 @@ const Viewer = ({
         <VisitorProvider visitor={visitor}>
             <ScreenSizeProvider size={screenSize}>
                 <ViewerProvider
+                    containerRef={containerRef}
                     events={eventsManager}
                     menuVisible={menuVisible}
                     menuOverScreen={menuOverScreen}

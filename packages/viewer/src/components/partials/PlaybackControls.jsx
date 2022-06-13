@@ -5,7 +5,7 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons/faVolumeUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import { usePlaybackContext } from '@micromag/core/contexts';
@@ -38,13 +38,19 @@ function PlaybackControls({ className }) {
         controlsTheme,
         showControls,
     } = usePlaybackContext();
+    const [instantSeek, setInstantSeek] = useState(false);
     const duration = useMediaDuration(mediaElement);
     const currentTime = useMediaCurrentTime(mediaElement, {
-        disabled: !playing,
-        updateInterval: 100,
+        disabled: !playing || instantSeek,
     });
     const [customControlsTheme, setCustomControlsTheme] = useState(null);
     const [wasPlaying, setWasPlaying] = useState(false);
+
+    useEffect(() => {
+        if (instantSeek) {
+            setInstantSeek(false);
+        }
+    }, [instantSeek, setInstantSeek]);
 
     useEffect(() => {
         const { color, progressColor, seekBarOnly } = controlsTheme || {};
@@ -89,7 +95,10 @@ function PlaybackControls({ className }) {
     }, [playing, setWasPlaying]);
 
     const onSeek = useCallback(
-        (time) => {
+        (time, instant = false) => {
+            if (instant) {
+                setInstantSeek(true);
+            }
             if (mediaElement !== null) {
                 mediaElement.currentTime = time;
             }
@@ -104,10 +113,9 @@ function PlaybackControls({ className }) {
         if (wasPlaying) setPlaying(true);
     }, [playing, setPlaying, wasPlaying]);
 
-    const mediaHasAudio = mediaElement !== null && (hasAudio === null || hasAudio === true)
+    const mediaHasAudio = mediaElement !== null && (hasAudio === null || hasAudio === true);
     const { color, progressColor, seekBarOnly } = customControlsTheme || {};
-    const isCollapsed =
-        (controls && !controlsVisible && playing) || (!controls && mediaHasAudio);
+    const isCollapsed = (controls && !controlsVisible && playing) || (!controls && mediaHasAudio);
 
     return (
         <div

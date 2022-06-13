@@ -10,9 +10,12 @@ function useMediaCurrentTime(
     const finalId = id || element;
     const lastIdRef = useRef(finalId);
     const idChanged = lastIdRef.current !== finalId;
-    if (idChanged) {
+    const disabledRef = useRef(disabled);
+    const disabledChanged = disabledRef.current !== disabled;
+    if (idChanged || disabledChanged) {
         realCurrentTime.current = element !== null ? element.currentTime || 0 : 0;
         lastIdRef.current = finalId;
+        disabledRef.current = disabled;
     }
 
     // Check time update
@@ -21,7 +24,7 @@ function useMediaCurrentTime(
             return () => {};
         }
         function updateTime() {
-            const time = element.currentTime;
+            const time = element.currentTime || 0;
             if (time !== realCurrentTime.current) {
                 realCurrentTime.current = time;
                 setCurrentTime(time);
@@ -38,12 +41,19 @@ function useMediaCurrentTime(
         }
         let timeout = null;
         function loop() {
+            const { duration = 0 } = element;
             const time = updateTime();
-            const remainingTime = Math.floor((element.duration - time) * 1000);
-            timeout = setTimeout(loop, Math.min(updateInterval, remainingTime));
+            const remainingTime = Math.floor(((duration || 0) - time) * 1000);
+            timeout = setTimeout(
+                loop,
+                Math.max(Math.min(updateInterval, remainingTime), updateInterval),
+            );
         }
         loop();
         return () => {
+            if (element !== null) {
+                realCurrentTime.current = element.currentTime;
+            }
             if (timeout !== null) {
                 clearInterval(timeout);
             }

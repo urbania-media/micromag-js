@@ -18,6 +18,7 @@ export { default as useMediaThumbnail } from './useMediaThumbnail';
 export { default as useMediaWaveform } from './useMediaWaveform';
 export * from './useObserver';
 export { default as useParsedStory } from './useParsedStory';
+export { default as useProgress } from './useProgress';
 export { default as useProgressSteps } from './useProgressSteps';
 export * from './useScreenSize';
 export * from './useSwipe';

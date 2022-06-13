@@ -38,6 +38,11 @@ export const useViewerEvents = () => {
     return events;
 };
 
+export const useViewerContainer = () => {
+    const { containerRef = null } = useViewerContext();
+    return containerRef !== null ? containerRef.current : null;
+};
+
 export const useViewerInteraction = () => {
     const { disableInteraction, enableInteraction } = useViewerContext();
     return { disableInteraction, enableInteraction };
@@ -72,6 +77,13 @@ export const useViewerWebView = () => {
 const propTypes = {
     children: PropTypes.node.isRequired,
     events: PropTypes.instanceOf(EventEmitter),
+    containerRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            // eslint-disable-next-line react/forbid-prop-types
+            current: PropTypes.any,
+        }),
+    ]),
     menuVisible: PropTypes.bool,
     menuOverScreen: PropTypes.bool,
     topHeight: PropTypes.number,
@@ -87,6 +99,7 @@ const defaultProps = { ...defaultValue };
 
 export const ViewerProvider = ({
     children,
+    containerRef,
     events,
     menuVisible,
     menuOverScreen,
@@ -102,6 +115,7 @@ export const ViewerProvider = ({
 
     const value = useMemo(
         () => ({
+            containerRef,
             events,
             menuVisible,
             menuOverScreen,
@@ -116,6 +130,7 @@ export const ViewerProvider = ({
             setWebView,
         }),
         [
+            containerRef,
             events,
             menuVisible,
             menuOverScreen,

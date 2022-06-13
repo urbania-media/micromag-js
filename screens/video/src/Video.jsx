@@ -19,6 +19,7 @@ import {
     useViewerNavigation,
     useViewerWebView,
     useViewerContext,
+    useViewerContainer,
 } from '@micromag/core/contexts';
 import { useTrackScreenMedia, useMediaThumbnail, useActivityDetector } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
@@ -144,7 +145,9 @@ const VideoScreen = ({
         }
     }, [current, autoPlay]);
 
-    const { ref: activityDetectorRef, detected: activityDetected } = useActivityDetector({
+    const viewerContainer = useViewerContainer();
+    const { detected: activityDetected } = useActivityDetector({
+        element: viewerContainer,
         disabled: !current || !isView,
         timeout: 2000,
     });
@@ -368,7 +371,6 @@ const VideoScreen = ({
                 },
             ])}
             data-screen-ready={isStatic || isCapture || ready}
-            ref={activityDetectorRef}
         >
             {!isPlaceholder ? (
                 <Background

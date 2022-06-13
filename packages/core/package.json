@@ -117,6 +117,7 @@
         "lodash": "^4.17.21",
         "param-case": "^3.0.4",
         "prop-types": "^15.7.2",
+        "raf": "^3.4.1",
         "react-helmet": "^6.1.0",
         "react-intl": "^5.12.1",
         "react-router": "^5.2.0",

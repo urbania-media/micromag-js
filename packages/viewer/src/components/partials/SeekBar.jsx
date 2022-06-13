@@ -4,10 +4,10 @@ import { animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useCallback, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { useDimensionObserver } from '@micromag/core/hooks';
+import { useDimensionObserver, useProgress } from '@micromag/core/hooks';
 
 import styles from '../../styles/partials/seek-bar.module.scss';
 
@@ -56,81 +56,86 @@ const SeekBar = ({
     withSeekHead,
 }) => {
     const intl = useIntl();
-
-    const [springProps, setSpringProps] = useSpring(() => ({
-        x: currentTime !== null && duration !== null ? currentTime / duration : 0,
-        config: {
-            duration: 0,
-        },
-    }));
-
-    const lastMediaRef = useRef(media);
-    const mediaChanged = lastMediaRef.current !== media;
-    lastMediaRef.current = media;
+    const [seekProgress, setSeekProgress] = useState(null);
+    const [instantSeek, setInstantSeek] = useState(false);
+    const progress = useProgress(seekProgress !== null ? seekProgress : currentTime / duration, {
+        id: media,
+        duration: duration * 1000,
+        disabled: !playing || instantSeek,
+    });
 
     const { ref: elRef, width: elWidth = null } = useDimensionObserver();
 
-    useEffect(() => {
-        if (currentTime === null || duration === null) {
-            return;
-        }
-        const progress = duration > 0 ? currentTime / duration : 0;
-        setSpringProps.start({
-            reset: true,
-            immediate: !playing || mediaChanged,
-            from: {
-                x: progress,
-            },
-            to: {
-                x: playing ? 1 : progress,
-            },
-            config: {
-                duration: (duration - currentTime) * 1000,
-            },
-        });
-    }, [playing, duration, currentTime, mediaChanged, setSpringProps]);
+    const onDrag = useCallback(
+        ({ xy: [x], elapsedTime, active, tap }) => {
+            if (!active && elapsedTime > 300) {
+                return;
+            }
 
-    // User events
-    const seekFromX = useCallback(
-        (x) => {
             const elX = elRef.current.getBoundingClientRect().left;
-            const progress = Math.max(0, Math.min(1, (x - elX) / elWidth));
+            const newProgress = Math.max(0, Math.min(1, (x - elX) / elWidth));
 
-            setSpringProps.start({
-                immediate: true,
-                to: {
-                    x: progress,
-                },
-            });
+            if (tap) {
+                setInstantSeek(true);
+            }
+
+            if (duration !== null) {
+                setSeekProgress(newProgress);
+            }
 
             if (onSeek !== null && duration !== null) {
-                onSeek(progress * duration);
+                onSeek(newProgress * duration, tap);
             }
         },
-        [duration, playing, onSeek],
+        [duration, onSeek, setSeekProgress, elWidth],
     );
+
+    const seekPlayingRef = useRef(null);
+    const onDragStart = useCallback(() => {
+        seekPlayingRef.current = playing;
+        if (onSeekStart !== null) {
+            onSeekStart();
+        }
+    }, [playing, onSeekStart, progress]);
+
+    const onDragEnd = useCallback(() => {
+        if (seekPlayingRef.current) {
+            setSeekProgress(null);
+        }
+        seekPlayingRef.current = null;
+        if (onSeekEnd !== null) {
+            onSeekEnd();
+        }
+    }, [setSeekProgress, onSeekEnd, playing]);
+
+    useEffect(() => {
+        if (seekProgress !== null) {
+            setSeekProgress(null);
+        }
+    }, [media]);
+
+    useEffect(() => {
+        if (playing && seekPlayingRef.current === null && seekProgress !== null) {
+            setSeekProgress(null);
+        }
+    }, [media, playing, duration, seekProgress]);
+
+    useEffect(() => {
+        if (instantSeek) {
+            setInstantSeek(false);
+        }
+    }, [instantSeek, setInstantSeek]);
 
     const bind = useGesture(
         {
-            onDrag: ({ xy: [x], elapsedTime, active }) => {
-                if (!active && elapsedTime > 300) {
-                    return;
-                }
-                seekFromX(x);
-            },
-            onPointerDown: () => {
-                if (onSeekStart !== null) {
-                    onSeekStart();
-                }
-            },
-            onPointerUp: () => {
-                if (onSeekEnd !== null) {
-                    onSeekEnd();
-                }
-            }
+            onDrag,
+            onDragStart,
+            onDragEnd,
         },
         { drag: { axis: 'x', filterTaps: true } },
     );
+
+    const finalProgress = seekProgress !== null ? seekProgress : progress;
 
     return (
         <div
@@ -143,11 +148,22 @@ const SeekBar = ({
             ])}
         >
             <div className={styles.inner}>
-                <div
-                    className={styles.progressBar}
-                    style={{ backgroundColor }}
-                >
-                    <animated.div
+                <div className={styles.progressBar} style={{ backgroundColor }}>
+                    <div
+                        className={styles.playHead}
+                        style={{
+                            left: `${finalProgress * 100}%`,
+                            backgroundColor: progressColor,
+                        }}
+                    />
+                    <div
+                        className={styles.progress}
+                        style={{
+                            transform: `scaleX(${finalProgress})`,
+                            backgroundColor: progressColor,
+                        }}
+                    />
+                    {/* <animated.div
                         className={styles.playHead}
                         style={{
                             left: springProps.x.to((x) => `${x * 100}%`),
@@ -160,7 +176,7 @@ const SeekBar = ({
                             transform: springProps.x.to((x) => `scaleX(${x})`),
                             backgroundColor: progressColor,
                         }}
-                    />
+                    /> */}
                 </div>
                 <button
                     ref={elRef}
