@@ -17,13 +17,15 @@ import styles from '../../styles/partials/playback-controls.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
+    collapsedClassName: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
+    collapsedClassName: null,
 };
 
-function PlaybackControls({ className }) {
+function PlaybackControls({ className, collapsedClassName }) {
     const intl = useIntl();
     const {
         media: mediaElement = null,
@@ -117,6 +119,7 @@ function PlaybackControls({ className }) {
                     [styles.withSeekBar]: controls,
                     [styles.withSeekBarOnly]: seekBarOnly,
                     [styles.isCollapsed]: isCollapsed,
+                    [collapsedClassName]: collapsedClassName !== null && isCollapsed,
                 },
             ])}
         >

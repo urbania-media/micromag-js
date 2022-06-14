@@ -14,7 +14,12 @@ import EventEmitter from 'wolfy87-eventemitter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FontFaces, Meta } from '@micromag/core/components';
-import { ScreenSizeProvider, ViewerProvider, usePlaybackContext, VisitorProvider } from '@micromag/core/contexts';
+import {
+    ScreenSizeProvider,
+    ViewerProvider,
+    usePlaybackContext,
+    VisitorProvider,
+} from '@micromag/core/contexts';
 import {
     useFullscreen,
     useLoadedFonts,
@@ -507,7 +512,9 @@ const Viewer = ({
                             : 0
                     }
                     bottomHeight={
-                        playbackControls && (playbackcontrolsVisible || !playing) && currentScreenInteractionEnabled
+                        playbackControls &&
+                        (playbackcontrolsVisible || !playing) &&
+                        currentScreenInteractionEnabled
                             ? playbackControlsContainerHeight / screenScale
                             : 0
                     }
@@ -596,9 +603,9 @@ const Viewer = ({
                                     if (landscape) {
                                         screenTransform = withLandscapeSiblingsScreens
                                             ? `translateX(calc(${
-                                                (screenContainerWidth + landscapeScreenMargin) *
-                                                (i - screenIndex)
-                                            }px - 50%)) scale(${current ? 1 : 0.9})`
+                                                  (screenContainerWidth + landscapeScreenMargin) *
+                                                  (i - screenIndex)
+                                              }px - 50%)) scale(${current ? 1 : 0.9})`
                                             : null;
                                     } else {
                                         screenTransform = `translateX(${current ? 0 : '100%'})`;
@@ -624,7 +631,9 @@ const Viewer = ({
                                                             current || withLandscapeSiblingsScreens,
                                                     },
                                                 ])}
-                                                tabIndex={active ? '0' : '-1'} /* eslint-disable-line */
+                                                tabIndex={
+                                                    active ? '0' : '-1'
+                                                } /* eslint-disable-line */
                                                 aria-hidden={current ? null : 'true'}
                                                 aria-label={intl.formatMessage(
                                                     {
@@ -710,12 +719,7 @@ const Viewer = ({
                                     );
                                 })}
                                 <div
-                                    className={classNames([
-                                        styles.playbackControls,
-                                        {
-                                            [styles.isCollapsed]: playbackControls && (!playbackcontrolsVisible && playing),
-                                        },
-                                    ])}
+                                    className={styles.playbackControls}
                                     ref={playbackControlsContainerRef}
                                 >
                                     <div
