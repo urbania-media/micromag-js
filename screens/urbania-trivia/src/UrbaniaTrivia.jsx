@@ -23,12 +23,12 @@ import {
     usePlaybackContext,
     useViewerContext,
     usePlaybackMediaRef,
+    useViewerContainer,
 } from '@micromag/core/contexts';
 import {
     useTrackScreenMedia,
     useDimensionObserver,
     useActivityDetector,
-    useViewerContainer,
 } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
