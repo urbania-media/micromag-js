@@ -124,28 +124,32 @@ function CallToAction({
                 trackEvent('call_to_action', isString(action) ? action : 'click', url);
             }
         },
-        [url, onClick, trackEvent, inWebView],
+        [url, onClick, trackEvent, inWebView, openWebView],
     );
 
-    const bind = useGesture({
-        onDrag: ({ event }) => {
-            // fix firefox https://use-gesture.netlify.app/docs/faq/#why-cant-i-properly-drag-an-image-or-a-link
-            event.preventDefault();
-        },
-        onDragEnd: ({ movement: [, my] }) => {
-            if (my < -dragAmount) {
-                if (inWebView) {
-                    onClickLink(null, 'swipe');
-                } else if (isIos() && selfTargetLinkRef.current !== null) {
-                    selfTargetLinkRef.current.click();
-                    setLeaving(true);
-                    onClickLink(null, 'swipe');
-                } else if (buttonRef.current) {
-                    buttonRef.current.click();
-                    onClickLink(null, 'swipe');
-                }
+    const onDrag = useCallback(({ event }) => {
+        // fix firefox https://use-gesture.netlify.app/docs/faq/#why-cant-i-properly-drag-an-image-or-a-link
+        event.preventDefault();
+    }, []);
+
+    const onDragEnd = useCallback(({ movement: [, my] }) => {
+        if (my < -dragAmount) {
+            if (inWebView) {
+                onClickLink(null, 'swipe');
+            } else if (isIos() && selfTargetLinkRef.current !== null) {
+                selfTargetLinkRef.current.click();
+                setLeaving(true);
+                onClickLink(null, 'swipe');
+            } else if (buttonRef.current) {
+                buttonRef.current.click();
+                onClickLink(null, 'swipe');
             }
-        },
+        }
+    }, [dragAmount, inWebView, onClickLink, setLeaving]);
+
+    const bind = useGesture({
+        onDrag,
+        onDragEnd,
     });
 
     useEffect(() => {

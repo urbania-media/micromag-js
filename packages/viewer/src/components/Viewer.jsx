@@ -631,9 +631,8 @@ const Viewer = ({
                                                             current || withLandscapeSiblingsScreens,
                                                     },
                                                 ])}
-                                                tabIndex={
-                                                    active ? '0' : '-1'
-                                                } /* eslint-disable-line */
+                                                // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+                                                tabIndex={!active ? -1 : null}
                                                 aria-hidden={current ? null : 'true'}
                                                 aria-label={intl.formatMessage(
                                                     {

@@ -3,9 +3,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 
-import { useViewerInteraction, useViewerWebView } from '@micromag/core/contexts';
+import { useViewerInteraction, useViewerWebView, usePlaybackContext } from '@micromag/core/contexts';
 import WebView from '@micromag/element-webview';
 
 import styles from '../../styles/partials/web-view.module.scss';
@@ -23,22 +23,34 @@ const defaultProps = {
 function WebViewContainer({ className, style }) {
     const { opened, close, open, update, url = null, ...webViewProps } = useViewerWebView();
     const { disableInteraction, enableInteraction } = useViewerInteraction();
+    const { playing, setPlaying } = usePlaybackContext();
+    const wasPlayingRef = useRef(playing);
+
     const [currentUrl, setCurrentUrl] = useState(url);
     useEffect(() => {
         if (url !== null) {
             setCurrentUrl(url);
         }
     }, [url, setCurrentUrl]);
+
     useEffect(() => {
         if (opened) {
             disableInteraction();
+
+            wasPlayingRef.current = playing;
+            if (playing) {
+                setPlaying(false);
+            }
         } else {
             enableInteraction();
+
+            if (wasPlayingRef.current && !playing) {
+                wasPlayingRef.current = false;
+                setPlaying(true);
+            }
         }
-        return () => {
-            enableInteraction();
-        };
     }, [opened]);
+
     const onTransitionEnd = useCallback(() => {
         if (url === null) {
             setCurrentUrl(null);
