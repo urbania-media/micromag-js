@@ -258,16 +258,12 @@ const Viewer = ({
     }, [currentScreen, trackScreenView, trackingEnabled]);
 
     // Handle interaction enable
-    const currentScreenRef = useRef(null);
-
     const gotoPreviousScreen = useCallback(() => {
         changeIndex(Math.max(0, screenIndex - 1));
-        // currentScreenRef.current.focus();
     }, [changeIndex]);
 
     const gotoNextScreen = useCallback(() => {
         changeIndex(Math.min(screens.length - 1, screenIndex + 1));
-        // currentScreenRef.current.focus();
     }, [changeIndex]);
 
     const screensCount = screens.length;
@@ -367,13 +363,8 @@ const Viewer = ({
     });
 
     const onScreenKeyUp = useCallback(
-        (e, i) => {
-            if (
-                e.key === 'Enter' &&
-                withLandscapeSiblingsScreens &&
-                landscape &&
-                i !== screenIndex
-            ) {
+        ({ key }, i) => {
+            if (key === 'Enter' && withLandscapeSiblingsScreens && landscape && i !== screenIndex) {
                 changeIndex(i);
             }
         },
@@ -451,7 +442,7 @@ const Viewer = ({
     const finalMetadata = useMemo(
         () =>
             screenDescription !== null ? { ...metadata, description: screenDescription } : metadata,
-        [metadata],
+        [metadata, screenDescription],
     );
 
     // Get element height
@@ -597,7 +588,6 @@ const Viewer = ({
                                             key={`screen-viewer-${mountedScreen.id || ''}-${i + 1}`}
                                         >
                                             <div
-                                                ref={current ? currentScreenRef : null}
                                                 style={{
                                                     width: screenContainerWidth,
                                                     height: screenContainerHeight,
