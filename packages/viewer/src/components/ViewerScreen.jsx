@@ -58,21 +58,24 @@ function ViewerScreen({
                     [className]: className !== null,
                 },
             ])}
-            style={{
-                width,
-                height,
-                transform: scale !== null ? `scale(${scale})` : null,
-                transformOrigin: scale !== null ? '0 0' : null,
-            }}
         >
-            <Screen
-                screen={screen}
-                renderContext={renderContext}
-                screenState={screenState}
-                active={active}
-                current={current}
-                mediaRef={mediaRef}
-            />
+            <div
+                style={{
+                    width,
+                    height,
+                    transform: scale !== null ? `scale(${scale})` : null,
+                    transformOrigin: scale !== null ? '0 0' : null,
+                }}
+            >
+                <Screen
+                    screen={screen}
+                    renderContext={renderContext}
+                    screenState={screenState}
+                    active={active}
+                    current={current}
+                    mediaRef={mediaRef}
+                />
+            </div>
             {withNavigationHint ? <HandTap className={styles.handTap} /> : null}
         </div>
     );
