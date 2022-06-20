@@ -239,7 +239,7 @@ const Viewer = ({
                 return;
             }
             if (currentScreenMedia !== null) {
-                currentScreenMedia.current = screensMediasRef.current[index];
+                currentScreenMedia.current = screensMediasRef.current[index] || null;
             }
             if (onScreenChange !== null) {
                 onScreenChange(screens[index], index);
