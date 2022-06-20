@@ -4,9 +4,10 @@
 .container {
     position: relative;
     height: 100%;
-    pointer-events: none;
 
-    &.current {
-        pointer-events: auto;
+    .handTap {
+        position: absolute;
+        top: 50%;
+        right: 10%;
     }
 }

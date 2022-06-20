@@ -24,15 +24,23 @@ function WebViewContainer({ className, style }) {
     const { opened, close, open, update, url = null, ...webViewProps } = useViewerWebView();
     const { disableInteraction, enableInteraction } = useViewerInteraction();
     const { playing, setPlaying } = usePlaybackContext();
-    const wasPlayingRef = useRef(playing);
 
+    const wasPlayingRef = useRef(playing);
     const [currentUrl, setCurrentUrl] = useState(url);
+
+    // Handle current webview url
     useEffect(() => {
         if (url !== null) {
             setCurrentUrl(url);
         }
     }, [url, setCurrentUrl]);
+    const onTransitionEnd = useCallback(() => {
+        if (url === null) {
+            setCurrentUrl(null);
+        }
+    }, [url]);
 
+    // Disable interaction and pause playback
     useEffect(() => {
         if (opened) {
             disableInteraction();
@@ -50,12 +58,6 @@ function WebViewContainer({ className, style }) {
             }
         }
     }, [opened]);
-
-    const onTransitionEnd = useCallback(() => {
-        if (url === null) {
-            setCurrentUrl(null);
-        }
-    }, [url]);
     return (
         <div
             className={classNames([

@@ -1,9 +1,4 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-
-/* eslint-disable jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+/* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -36,6 +31,7 @@ import useScreenInteraction from '../hooks/useScreenInteraction';
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
 import HandTap from './partials/HandTap';
+import NavigationButton from './partials/NavigationButton';
 import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
 
@@ -579,26 +575,12 @@ const Viewer = ({
                         ) : null}
                         {ready || withoutScreensTransforms ? (
                             <div ref={contentRef} className={styles.content} {...dragContentBind()}>
-                                {mountedScreens.map((scr, mountedIndex) => {
+                                {mountedScreens.map((mountedScreen, mountedIndex) => {
                                     const i = mountedScreenStartIndex + mountedIndex;
                                     const current = i === parseInt(screenIndex, 10);
                                     const active =
                                         i >= screenIndex - neighborScreensActive &&
                                         i <= screenIndex + neighborScreensActive;
-                                    const viewerScreen = (
-                                        <ViewerScreen
-                                            screen={scr}
-                                            screenState={current ? screenState : null}
-                                            renderContext={renderContext}
-                                            index={i}
-                                            current={current}
-                                            active={active}
-                                            mediaRef={(ref) => {
-                                                screensMediasRef.current[i] = ref;
-                                            }}
-                                        />
-                                    );
-                                    const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
                                     let screenTransform = null;
                                     if (landscape) {
                                         screenTransform = withLandscapeSiblingsScreens
@@ -611,12 +593,12 @@ const Viewer = ({
                                         screenTransform = `translateX(${current ? 0 : '100%'})`;
                                     }
                                     return (
-                                        <React.Fragment key={key}>
+                                        <React.Fragment
+                                            key={`screen-viewer-${mountedScreen.id || ''}-${i + 1}`}
+                                        >
                                             <div
                                                 ref={current ? currentScreenRef : null}
                                                 style={{
-                                                    // width: landscape ? screenWidth : null,
-                                                    // height: landscape ? screenHeight : null,
                                                     width: screenContainerWidth,
                                                     height: screenContainerHeight,
                                                     transform: !withoutScreensTransforms
@@ -624,7 +606,7 @@ const Viewer = ({
                                                         : null,
                                                 }}
                                                 className={classNames([
-                                                    styles.screen,
+                                                    styles.screenContainer,
                                                     {
                                                         [styles.current]: current,
                                                         [styles.visible]:
@@ -633,7 +615,7 @@ const Viewer = ({
                                                 ])}
                                                 // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                                                 tabIndex={!active ? -1 : null}
-                                                aria-hidden={current ? null : 'true'}
+                                                aria-hidden={!current}
                                                 aria-label={intl.formatMessage(
                                                     {
                                                         defaultMessage: 'Screen {index}',
@@ -644,74 +626,49 @@ const Viewer = ({
                                                 onKeyUp={(e) => onScreenKeyUp(e, i)}
                                                 {...dragScreenBind(i)}
                                             >
-                                                <div
-                                                    className={styles.scaler}
-                                                    style={{
-                                                        width: screenWidth,
-                                                        height: screenHeight,
-                                                        transform:
-                                                            screenScale !== null
-                                                                ? `scale(${screenScale})`
-                                                                : null,
-                                                        transformOrigin:
-                                                            screenScale !== null ? '0 0' : null,
-                                                    }}
-                                                >
-                                                    {current && screenIndex > 0 ? (
-                                                        <button
-                                                            type="button"
-                                                            className={classNames([
-                                                                styles.navButton,
-                                                                styles.previous,
-                                                            ])}
-                                                            onClick={gotoPreviousScreen}
-                                                        >
-                                                            <FontAwesomeIcon
-                                                                className={styles.arrow}
-                                                                icon={faArrowLeft}
-                                                            />
-                                                            <span className="sr-only">
-                                                                <FormattedMessage
-                                                                    defaultMessage="Go to previous screen"
-                                                                    description="Button label"
-                                                                />
-                                                            </span>
-                                                        </button>
-                                                    ) : null}
-                                                    {viewerScreen}
-                                                    {current && screenIndex < screens.length - 1 ? (
-                                                        <button
-                                                            type="button"
-                                                            className={classNames([
-                                                                styles.navButton,
-                                                                styles.next,
-                                                            ])}
-                                                            onClick={gotoNextScreen}
-                                                        >
-                                                            <FontAwesomeIcon
-                                                                className={styles.arrow}
-                                                                icon={faArrowRight}
-                                                            />
-                                                            <span className="sr-only">
-                                                                <FormattedMessage
-                                                                    defaultMessage="Go to next screen"
-                                                                    description="Button label"
-                                                                />
-                                                            </span>
-                                                            <span className="sr-only">
-                                                                <FormattedMessage
-                                                                    defaultMessage="Go to next screen"
-                                                                    description="Button label"
-                                                                />
-                                                            </span>
-                                                        </button>
-                                                    ) : null}
-                                                </div>
-                                                {withNavigationHint &&
-                                                !withLandscapeSiblingsScreens &&
-                                                current &&
-                                                screenIndex === 0 ? (
-                                                    <HandTap className={styles.handTap} />
+                                                {current && screenIndex > 0 ? (
+                                                    <NavigationButton
+                                                        direction="previous"
+                                                        className={classNames([
+                                                            styles.navButton,
+                                                            styles.previous,
+                                                        ])}
+                                                        onClick={gotoPreviousScreen}
+                                                    />
+                                                ) : null}
+                                                {mountedScreen !== null ? (
+                                                    <ViewerScreen
+                                                        className={styles.screen}
+                                                        screen={mountedScreen}
+                                                        screenState={current ? screenState : null}
+                                                        renderContext={renderContext}
+                                                        index={i}
+                                                        current={current}
+                                                        active={active}
+                                                        mediaRef={(ref) => {
+                                                            screensMediasRef.current[i] = ref;
+                                                        }}
+                                                        width={screenWidth}
+                                                        height={screenHeight}
+                                                        scale={screenScale}
+                                                        withNavigationHint={
+                                                            withNavigationHint &&
+                                                            !withLandscapeSiblingsScreens &&
+                                                            current &&
+                                                            screenIndex === 0 &&
+                                                            !hasInteracted
+                                                        }
+                                                    />
+                                                ) : null}
+                                                {current && screenIndex < screens.length - 1 ? (
+                                                    <NavigationButton
+                                                        direction="next"
+                                                        className={classNames([
+                                                            styles.navButton,
+                                                            styles.next,
+                                                        ])}
+                                                        onClick={gotoNextScreen}
+                                                    />
                                                 ) : null}
                                             </div>
                                         </React.Fragment>

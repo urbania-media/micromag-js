@@ -1,0 +1,7 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %reset-button;
+    border: 0;
+}
