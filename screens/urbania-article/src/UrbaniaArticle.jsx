@@ -107,7 +107,7 @@ const UrbaniaArticle = ({
     const { color: backgroundColor = null } = background || {};
     const { open: openWebView } = useViewerWebView();
     const { bottomSidesWidth: viewerBottomSidesWidth } = useViewerContext();
-    const { muted } = usePlaybackContext();
+    const { muted, playing } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
     const {
@@ -334,7 +334,7 @@ const UrbaniaArticle = ({
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
                                     shouldLoad={mediaShouldLoad}
-                                    playing={backgroundPlaying}
+                                    playing={backgroundPlaying && playing}
                                 />
                             ) : null}
                             {hasImage && isVideo ? (
@@ -346,7 +346,7 @@ const UrbaniaArticle = ({
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
                                     shouldLoad={mediaShouldLoad}
-                                    playing={backgroundPlaying}
+                                    playing={backgroundPlaying && playing}
                                     muted={muted}
                                     mediaRef={mediaRef}
                                 />
