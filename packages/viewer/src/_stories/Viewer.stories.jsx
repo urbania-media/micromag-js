@@ -17,6 +17,7 @@ import {
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import article from '../../../../.storybook/data/stories/article.json';
 import article2 from '../../../../.storybook/data/stories/article2.json';
+import articleVideo from '../../../../.storybook/data/stories/article-video.json';
 import basic from '../../../../.storybook/data/stories/basic.json';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
@@ -443,6 +444,14 @@ export const MultipleArticles = () => (
                     },
                     background: {
                         color: { alpha: 1, color: '#ffffff' },
+                    },
+                },
+                {
+                    id: '3',
+                    type: 'urbania-article',
+                    article: articleVideo,
+                    background: {
+                        color: { alpha: 1, color: '#123456' },
                     },
                 },
             ]
