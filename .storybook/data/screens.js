@@ -372,9 +372,8 @@ export const allScreens = [
         type: 'urbania-horoscope',
         description: { body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?' },
         author: {
-            name: { body: '<p>Somebody Whowrites</p>' },
+            name: { body: '<strong>MIMO</strong>, illustrated by <strong>YOLLEMA</strong>' },
             image: imageMedia(),
-            collaborator: { body: '<p>illustrated by <strong>PAUL LEE</strong></p>' },
             isSmall: true,
         },
         button: {
