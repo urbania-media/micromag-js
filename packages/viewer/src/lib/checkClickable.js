@@ -7,14 +7,13 @@ function checkClickable(el, options = {}, parentDistance = 1) {
     }
 
     // Check if video is suspended
-    console.log(tagName, dataset);
-    if (
-        tagName === 'VIDEO' &&
-        typeof dataset.isSuspended !== 'undefined' &&
-        (dataset.isSuspended === 'true' || dataset.isSuspended === true)
-    ) {
-        return true;
-    }
+    // if (
+    //     tagName === 'VIDEO' &&
+    //     typeof dataset.isSuspended !== 'undefined' &&
+    //     (dataset.isSuspended === 'true' || dataset.isSuspended === true)
+    // ) {
+    //     return true;
+    // }
 
     if (tags.map((it) => it.toLowerCase()).indexOf(tagName.toLowerCase()) !== -1) {
         return true;
