@@ -47,6 +47,7 @@ const propTypes = {
     onDurationChange: PropTypes.func,
     onVolumeChange: PropTypes.func,
     onSuspend: PropTypes.func,
+    onSuspended: PropTypes.func,
     focusable: PropTypes.bool,
     supportedMimes: PropTypes.arrayOf(PropTypes.string),
     withPoster: PropTypes.bool,
@@ -78,6 +79,7 @@ const defaultProps = {
     onDurationChange: null,
     onVolumeChange: null,
     onSuspend: null,
+    onSuspended: null,
     focusable: true,
     supportedMimes: ['video/mp4', 'video/webm', 'video/ogg'],
     withPoster: false,
@@ -108,6 +110,7 @@ const Video = ({
     onDurationChange: customOnDurationChange,
     onVolumeChange: customOnVolumeChange,
     onSuspend: customOnSuspend,
+    onSuspended,
     focusable,
     supportedMimes,
     withPoster,
@@ -190,6 +193,7 @@ const Video = ({
         }
     }, [customOnVolumeChange]);
 
+    // Manage suspend
     const [isSuspended, setIsSuspended] = useState(false);
     const onPlay = useCallback((e) => {
         if (isSuspended) {
@@ -205,11 +209,17 @@ const Video = ({
         }
     }, [isSuspended, setIsSuspended]);
     const onSuspend = useCallback((e) => {
-        setIsSuspended(true);
+        if (e.currentTarget.paused && !paused && !isSuspended) {
+            setIsSuspended(true);
+
+            if (onSuspended !== null) {
+                onSuspended();
+            }
+        }
         if (customOnSuspend !== null) {
             customOnSuspend(e);
         }
-    }, [setIsSuspended, customOnSuspend]);
+    }, [isSuspended, paused, setIsSuspended, customOnSuspend, onSuspended]);
 
     // Ensure load if preload value change over time
     const firstPreloadRef = useRef(preload);
