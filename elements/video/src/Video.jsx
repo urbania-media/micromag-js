@@ -192,7 +192,6 @@ const Video = ({
 
     const [isSuspended, setIsSuspended] = useState(false);
     const onPlay = useCallback((e) => {
-        console.log('PLAY');
         if (isSuspended) {
             setIsSuspended(false);
         }
@@ -200,14 +199,12 @@ const Video = ({
             customOnPlay(e);
         }
     }, [isSuspended, setIsSuspended, customOnPlay]);
-    const onPlaying = useCallback((e) => {
-        console.log('PLAYing');
+    const onPlaying = useCallback(() => {
         if (isSuspended) {
             setIsSuspended(false);
         }
     }, [isSuspended, setIsSuspended]);
     const onSuspend = useCallback((e) => {
-        console.log('suspend');
         setIsSuspended(true);
         if (customOnSuspend !== null) {
             customOnSuspend(e);
