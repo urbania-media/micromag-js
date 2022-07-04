@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { isString } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useContext, useState, useEffect, useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '../lib';
@@ -29,17 +30,19 @@ const defaultProps = {
     visitor: null,
 };
 
-export const VisitorProvider = ({ visitor: initialVisitor, children }) => {
-    const [visitor, setVisitor] = useState(initialVisitor);
+export const VisitorProvider = ({ visitor: providedVisitor, children }) => {
+    const [visitor, setVisitor] = useState(providedVisitor);
 
     useEffect(() => {
-        setVisitor(initialVisitor);
-    }, [initialVisitor, setVisitor]);
+        if (providedVisitor !== visitor) {
+            setVisitor(providedVisitor);
+        }
+    }, [providedVisitor, setVisitor]);
 
     const value = useMemo(
         () => ({
             visitor,
-            setVisitor,
+            setVisitor: newVisitor => isString(newVisitor) ? { id: newVisitor } : newVisitor,
         }),
         [visitor, setVisitor],
     );
