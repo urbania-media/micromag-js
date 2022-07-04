@@ -2,6 +2,7 @@
 import { isString } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useContext, useState, useEffect, useMemo } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '../lib';
 
 export const VisitorContext = React.createContext();
@@ -42,7 +43,7 @@ export const VisitorProvider = ({ visitor: providedVisitor, children }) => {
     const value = useMemo(
         () => ({
             visitor,
-            setVisitor: newVisitor => isString(newVisitor) ? { id: newVisitor } : newVisitor,
+            setVisitor: (newVisitor) => (isString(newVisitor) ? { id: newVisitor } : newVisitor),
         }),
         [visitor, setVisitor],
     );

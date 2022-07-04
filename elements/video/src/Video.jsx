@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
-import React, { useEffect, useMemo, useRef, useCallback } from 'react';
+import React, { useEffect, useMemo, useRef, useCallback, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
@@ -99,7 +99,7 @@ const Video = ({
     withoutCors,
     className,
     onReady,
-    onPlay,
+    onPlay: customOnPlay,
     onPause,
     onEnded,
     onSeeked,
@@ -107,7 +107,7 @@ const Video = ({
     onProgressStep,
     onDurationChange: customOnDurationChange,
     onVolumeChange: customOnVolumeChange,
-    onSuspend,
+    onSuspend: customOnSuspend,
     focusable,
     supportedMimes,
     withPoster,
@@ -189,6 +189,30 @@ const Video = ({
             customOnVolumeChange(element.volume);
         }
     }, [customOnVolumeChange]);
+
+    const [isSuspended, setIsSuspended] = useState(false);
+    const onPlay = useCallback((e) => {
+        console.log('PLAY');
+        if (isSuspended) {
+            setIsSuspended(false);
+        }
+        if (customOnPlay !== null) {
+            customOnPlay(e);
+        }
+    }, [isSuspended, setIsSuspended, customOnPlay]);
+    const onPlaying = useCallback((e) => {
+        console.log('PLAYing');
+        if (isSuspended) {
+            setIsSuspended(false);
+        }
+    }, [isSuspended, setIsSuspended]);
+    const onSuspend = useCallback((e) => {
+        console.log('suspend');
+        setIsSuspended(true);
+        if (customOnSuspend !== null) {
+            customOnSuspend(e);
+        }
+    }, [setIsSuspended, customOnSuspend]);
 
     // Ensure load if preload value change over time
     const firstPreloadRef = useRef(preload);
@@ -280,6 +304,7 @@ const Video = ({
                     tabIndex={focusable ? '0' : '-1'}
                     className={classNames(styles.video)}
                     onPlay={onPlay}
+                    onPlaying={onPlaying}
                     onPause={onPause}
                     onEnded={onEnded}
                     onSeeked={onSeeked}
@@ -287,6 +312,7 @@ const Video = ({
                     onTimeUpdate={onTimeUpdate}
                     onSuspend={onSuspend}
                     data-has-audio={hasAudio}
+                    data-is-suspended={isSuspended}
                 >
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
                         <source
