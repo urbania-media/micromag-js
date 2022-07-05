@@ -5,7 +5,10 @@ import React, { useContext, useState, useEffect, useMemo } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '../lib';
 
-export const VisitorContext = React.createContext();
+export const VisitorContext = React.createContext({
+    visitor: null,
+    setVisitor: () => {},
+});
 
 export const useVisitorContext = () => {
     const { visitor, setVisitor } = useContext(VisitorContext);
