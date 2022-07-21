@@ -21,4 +21,4 @@
 
 * push all changes to `develop` and `master` branches
 * `git checkout master` !
-* `lerna publish` (most of the time, choose to bump the `minor` version)
+* `lerna publish` (most of the time, the version bump is a `patch`)
