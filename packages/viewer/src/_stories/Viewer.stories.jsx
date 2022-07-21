@@ -2,6 +2,7 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback, useState } from 'react';
+
 import {
     audioMedia,
     callToAction,
@@ -15,16 +16,17 @@ import {
     webfontFiles,
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
-import article from '../../../../.storybook/data/stories/article.json';
-import article2 from '../../../../.storybook/data/stories/article2.json';
-import articleVideo from '../../../../.storybook/data/stories/article-video.json';
-import basic from '../../../../.storybook/data/stories/basic.json';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import Viewer from '../components/ViewerContainer';
+
+import article2 from '../../../../.storybook/data/stories/article2.json';
+import articleVideo from '../../../../.storybook/data/stories/article-video.json';
+import article from '../../../../.storybook/data/stories/article.json';
+import basic from '../../../../.storybook/data/stories/basic.json';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -179,7 +181,6 @@ export const MultipleVideos = () => (
                         withControls: true,
                         loop: false,
                         autoPlay: true,
-
                     },
                     background: {
                         color: { alpha: 1, color: '#FFFF00' },
@@ -408,6 +409,16 @@ export const WithMenuTheme = () => (
     />
 );
 
+export const WithoutPlaybackControlsNorMenu = () => (
+    <Viewer
+        story={videoAudio}
+        neighborScreensMounted={null}
+        memoryRouter
+        withoutMenu
+        withoutPlaybackControls
+    />
+);
+
 export const MultipleArticles = () => (
     <Viewer
         screenId="42"
@@ -428,19 +439,19 @@ export const MultipleArticles = () => (
                     overTitle: {
                         body: 'Guide des universités',
                         textStyle: {
-                            color: { alpha: 1, color: '#ff0000' }
-                        }
+                            color: { alpha: 1, color: '#ff0000' },
+                        },
                     },
                     description: {
-                        body: 'Petite virée sur le campus de l\'École de technologie supérieure (ÉTS)',
+                        body: "Petite virée sur le campus de l'École de technologie supérieure (ÉTS)",
                         textStyle: {
                             fontStyle: {
                                 italic: true,
                                 bold: false,
                             },
                             fontSize: 13,
-                            color: { alpha: 1, color: '#ff0000' }
-                        }
+                            color: { alpha: 1, color: '#ff0000' },
+                        },
                     },
                     background: {
                         color: { alpha: 1, color: '#ffffff' },
@@ -454,7 +465,7 @@ export const MultipleArticles = () => (
                         color: { alpha: 1, color: '#123456' },
                     },
                 },
-            ]
+            ],
         }}
     />
 );

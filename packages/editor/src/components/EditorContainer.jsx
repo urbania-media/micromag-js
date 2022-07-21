@@ -4,6 +4,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     ComponentsContext,
@@ -15,14 +16,18 @@ import {
     RoutesProvider,
     StoryProvider,
     UppyProvider,
+    VisitorProvider,
 } from '@micromag/core/contexts';
 import { slug } from '@micromag/core/utils';
 import { FieldsProvider } from '@micromag/fields';
 import { ScreensProvider } from '@micromag/screens';
-import defaultRoutes from '../data/routes.json';
+
 import * as EditorPropTypes from '../lib/PropTypes';
+
 import Editor from './Editor';
 import FormsProvider from './forms/FormsProvider';
+
+import defaultRoutes from '../data/routes.json';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -79,33 +84,40 @@ const EditorContainer = ({
                                     <FieldsProvider>
                                         <FormsProvider>
                                             <EditorProvider>
-                                                <ComponentsContext.Consumer>
-                                                    {(manager) => {
-                                                        const formComponents =
-                                                            manager.getComponents(FORMS_NAMESPACE);
-                                                        const formRegEx =
-                                                            formComponents !== null
-                                                                ? Object.keys(formComponents)
-                                                                      .map((name) => slug(name))
-                                                                      .join('|')
-                                                                : null;
-                                                        return (
-                                                            <RoutesProvider
-                                                                routes={{
-                                                                    ...routes,
-                                                                    'screen.field.form': routes[
-                                                                        'screen.field.form'
-                                                                    ].replace(
-                                                                        /:form$/,
-                                                                        `:form(${formRegEx})`,
-                                                                    ),
-                                                                }}
-                                                            >
-                                                                <Editor value={value} {...props} />
-                                                            </RoutesProvider>
-                                                        );
-                                                    }}
-                                                </ComponentsContext.Consumer>
+                                                <VisitorProvider visitor="editor">
+                                                    <ComponentsContext.Consumer>
+                                                        {(manager) => {
+                                                            const formComponents =
+                                                                manager.getComponents(
+                                                                    FORMS_NAMESPACE,
+                                                                );
+                                                            const formRegEx =
+                                                                formComponents !== null
+                                                                    ? Object.keys(formComponents)
+                                                                          .map((name) => slug(name))
+                                                                          .join('|')
+                                                                    : null;
+                                                            return (
+                                                                <RoutesProvider
+                                                                    routes={{
+                                                                        ...routes,
+                                                                        'screen.field.form': routes[
+                                                                            'screen.field.form'
+                                                                        ].replace(
+                                                                            /:form$/,
+                                                                            `:form(${formRegEx})`,
+                                                                        ),
+                                                                    }}
+                                                                >
+                                                                    <Editor
+                                                                        value={value}
+                                                                        {...props}
+                                                                    />
+                                                                </RoutesProvider>
+                                                            );
+                                                        }}
+                                                    </ComponentsContext.Consumer>
+                                                </VisitorProvider>
                                             </EditorProvider>
                                         </FormsProvider>
                                     </FieldsProvider>

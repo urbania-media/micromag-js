@@ -2,10 +2,13 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ScreenProvider, useScreenComponent, VisitorProvider } from '../../contexts';
+
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import styles from '../../styles/screens/screen.module.scss';
 import { getComponentFromName } from '../../utils';
+
+import { ScreenProvider, useScreenComponent, VisitorProvider } from '../../contexts';
+
+import styles from '../../styles/screens/screen.module.scss';
 
 const propTypes = {
     screen: MicromagPropTypes.storyComponent.isRequired,
@@ -49,27 +52,25 @@ const Screen = ({
 
     return (
         <ScreenProvider data={screen} renderContext={renderContext} screenState={screenState}>
-            <VisitorProvider visitor={{ id: 'editor' }}>
-                {ScreenComponent !== null ? (
-                    <div
-                        className={classNames([
-                            styles.container,
-                            {
-                                [className]: className !== null,
-                            },
-                        ])}
-                    >
-                        <ScreenComponent
-                            {...screen}
-                            active={active}
-                            current={current}
-                            mediaRef={mediaRef}
-                        />
-                    </div>
-                ) : (
-                    <div className={className}>{component}</div>
-                )}
-            </VisitorProvider>
+            {ScreenComponent !== null ? (
+                <div
+                    className={classNames([
+                        styles.container,
+                        {
+                            [className]: className !== null,
+                        },
+                    ])}
+                >
+                    <ScreenComponent
+                        {...screen}
+                        active={active}
+                        current={current}
+                        mediaRef={mediaRef}
+                    />
+                </div>
+            ) : (
+                <div className={className}>{component}</div>
+            )}
         </ScreenProvider>
     );
 };

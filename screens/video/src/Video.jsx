@@ -265,6 +265,12 @@ const VideoScreen = ({
         setReady(true);
     }, [setReady]);
 
+    const onSuspended = useCallback(() => {
+        if (playing) {
+            setPlaying(false);
+        }
+    }, [playing, setPlaying]);
+
     const items = [
         <ScreenElement
             key="video"
@@ -315,6 +321,7 @@ const VideoScreen = ({
                             onDurationChange={onDurationChange}
                             onSeeked={onSeeked}
                             onEnded={onEnded}
+                            onSuspended={onSuspended}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}
                         />
