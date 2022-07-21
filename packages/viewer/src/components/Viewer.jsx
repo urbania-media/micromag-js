@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -30,7 +30,6 @@ import useScreenInteraction from '../hooks/useScreenInteraction';
 
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
-import HandTap from './partials/HandTap';
 import NavigationButton from './partials/NavigationButton';
 import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
@@ -61,6 +60,7 @@ const propTypes = {
     withoutFullscreen: PropTypes.bool,
     withLandscapeSiblingsScreens: PropTypes.bool,
     withNavigationHint: PropTypes.bool,
+    withoutPlaybackControls: PropTypes.bool,
     closeable: PropTypes.bool,
     onClose: PropTypes.func,
     onInteraction: PropTypes.func,
@@ -101,6 +101,7 @@ const defaultProps = {
     withoutFullscreen: false,
     withLandscapeSiblingsScreens: false,
     withNavigationHint: false,
+    withoutPlaybackControls: false,
     menuIsScreenWidth: false,
     closeable: false,
     onClose: null,
