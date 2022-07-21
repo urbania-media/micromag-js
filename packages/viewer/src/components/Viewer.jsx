@@ -136,6 +136,7 @@ const Viewer = ({
     withoutFullscreen, // eslint-disable-line no-unused-vars
     withLandscapeSiblingsScreens,
     withNavigationHint,
+    withoutPlaybackControls,
     menuIsScreenWidth,
     closeable,
     onClose: onCloseViewer,
@@ -664,17 +665,19 @@ const Viewer = ({
                                         </React.Fragment>
                                     );
                                 })}
-                                <div
-                                    className={styles.playbackControls}
-                                    ref={playbackControlsContainerRef}
-                                >
+                                {!withoutPlaybackControls ? (
                                     <div
-                                        className={styles.playbackControlsContainer}
-                                        style={{ width: screenContainerWidth }}
+                                        className={styles.playbackControls}
+                                        ref={playbackControlsContainerRef}
                                     >
-                                        <PlaybackControls className={styles.controls} />
+                                        <div
+                                            className={styles.playbackControlsContainer}
+                                            style={{ width: screenContainerWidth }}
+                                        >
+                                            <PlaybackControls className={styles.controls} />
+                                        </div>
                                     </div>
-                                </div>
+                                ):null}
                             </div>
                         ) : null}
                         <WebView
