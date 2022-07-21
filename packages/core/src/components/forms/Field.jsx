@@ -6,8 +6,6 @@ import { useFieldsManager, useFieldComponent, FieldContextProvider } from '../..
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import { getComponentFromName, setFieldValue, getFieldFromPath } from '../../utils';
 
-// console.log('hey');
-
 const propTypes = {
     name: PropTypes.string, // .isRequired,
     value: MicromagPropTypes.component,
