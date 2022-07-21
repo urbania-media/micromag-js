@@ -236,6 +236,9 @@ const ViewerMenu = ({
                     direction="horizontal"
                     withShadow={withShadow}
                     items={items}
+                    title={title}
+                    shareUrl={shareUrl}
+                    onShare={onClickShare}
                     onClickItem={onClickItem}
                     onClickMenu={onClickMenu}
                     closeable={closeable}
@@ -252,8 +255,6 @@ const ViewerMenu = ({
             >
                 <MenuPreview
                     viewerTheme={viewerTheme}
-                    title={title}
-                    shareUrl={shareUrl}
                     className={styles.menuPreview}
                     screenSize={screenSize}
                     menuWidth={menuWidth}
@@ -261,7 +262,6 @@ const ViewerMenu = ({
                     items={items}
                     onClickItem={onClickItem}
                     onClose={onClickClose}
-                    onShare={onClickShare}
                     toggleFullscreen={toggleFullscreen}
                     fullscreenActive={fullscreenActive}
                     fullscreenEnabled={fullscreenEnabled}

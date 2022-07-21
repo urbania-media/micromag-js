@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -9,11 +10,15 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from '../../styles/menus/menu-dots.module.scss';
 import MenuDot from './MenuDot';
 import MenuIcon from './MenuIcon';
+import ShareButton from '../partials/ShareButton';
 
 const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
     withShadow: PropTypes.bool,
+    title: PropTypes.string,
     items: MicromagPropTypes.menuItems,
+    shareUrl: PropTypes.string,
+    onShare: PropTypes.func,
     onClickItem: PropTypes.func,
     onClickMenu: PropTypes.func,
     colors: PropTypes.shape({
@@ -30,7 +35,10 @@ const propTypes = {
 const defaultProps = {
     direction: 'horizontal',
     withShadow: false,
+    title: null,
     items: [],
+    shareUrl: null,
+    onShare: null,
     onClickItem: null,
     onClickMenu: null,
     colors: null,
@@ -44,7 +52,10 @@ const defaultProps = {
 const ViewerMenuDots = ({
     direction,
     withShadow,
+    title,
     items,
+    shareUrl,
+    onShare,
     onClickItem,
     onClickMenu,
     colors,
@@ -101,6 +112,19 @@ const ViewerMenuDots = ({
                         />
                     );
                 })}
+
+                <li className={styles.menu}>
+                    <ShareButton
+                        className={styles.shareButton}
+                        buttonClassName={styles.menuButton}
+                        onShare={onShare}
+                        url={shareUrl}
+                        title={title}
+                    >
+                        <FontAwesomeIcon className={styles.icon} icon={faShare} />
+                    </ShareButton>
+                </li>
+
                 {!withoutScreensMenu ? (
                     <li className={styles.menu}>
                         <MenuIcon className={styles.menuIcon} color={primary} />

@@ -2,7 +2,6 @@
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import { faCompress } from '@fortawesome/free-solid-svg-icons/faCompress';
 import { faExpand } from '@fortawesome/free-solid-svg-icons/faExpand';
-import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDrag } from '@use-gesture/react';
@@ -18,7 +17,6 @@ import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
 
 import StackIcon from '../icons/Stack';
-import ShareButton from '../partials/ShareButton';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
 
@@ -27,13 +25,11 @@ const propTypes = {
     screenSize: MicromagPropTypes.screenSize,
     menuWidth: PropTypes.number,
     title: PropTypes.string,
-    shareUrl: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     focusable: PropTypes.bool,
     shouldLoad: PropTypes.bool,
     onClickItem: PropTypes.func,
     onClose: PropTypes.func,
-    onShare: PropTypes.func,
     maxThumbsWidth: PropTypes.number,
     toggleFullscreen: PropTypes.func,
     fullscreenActive: PropTypes.bool,
@@ -46,13 +42,11 @@ const defaultProps = {
     screenSize: null,
     menuWidth: null,
     title: null,
-    shareUrl: null,
     items: [],
     focusable: true,
     shouldLoad: true,
     onClickItem: null,
     onClose: null,
-    onShare: null,
     maxThumbsWidth: 140,
     toggleFullscreen: null,
     fullscreenActive: false,
@@ -65,12 +59,10 @@ const ViewerMenuPreview = ({
     screenSize,
     menuWidth,
     title,
-    shareUrl,
     items,
     focusable,
     onClickItem,
     onClose,
-    onShare,
     maxThumbsWidth,
     toggleFullscreen,
     fullscreenActive,
@@ -152,16 +144,6 @@ const ViewerMenuPreview = ({
                     {title}
                 </div>
                 <div className={styles.buttons} style={colorSecondaryColorStyle}>
-                    <ShareButton
-                        className={styles.shareButton}
-                        buttonClassName={styles.button}
-                        onShare={onShare}
-                        url={shareUrl}
-                        title={title}
-                        focusable={focusable}
-                    >
-                        <FontAwesomeIcon className={styles.icon} icon={faShare} />
-                    </ShareButton>
                     {fullscreenEnabled ? (
                         <Button
                             className={styles.button}
