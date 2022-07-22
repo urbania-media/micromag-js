@@ -29,6 +29,7 @@ const propTypes = {
     menuWidth: PropTypes.number,
     withDotItemClick: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
+    withoutShareMenu: PropTypes.bool,
     onRequestOpen: PropTypes.func,
     onRequestClose: PropTypes.func,
     onClickItem: PropTypes.func,
@@ -54,6 +55,7 @@ const defaultProps = {
     menuWidth: null,
     withDotItemClick: false,
     withoutScreensMenu: false,
+    withoutShareMenu: false,
     onRequestOpen: null,
     onRequestClose: null,
     onClickItem: null,
@@ -78,6 +80,7 @@ const ViewerMenu = ({
     menuWidth,
     withDotItemClick,
     withoutScreensMenu,
+    withoutShareMenu,
     onRequestOpen,
     onRequestClose,
     onClickItem: customOnClickItem,
@@ -244,6 +247,7 @@ const ViewerMenu = ({
                     closeable={closeable}
                     withItemClick={withDotItemClick}
                     withoutScreensMenu={withoutScreensMenu}
+                    withoutShareMenu={withoutShareMenu}
                     onClose={onClickCloseViewer}
                     className={styles.menuDots}
                 />

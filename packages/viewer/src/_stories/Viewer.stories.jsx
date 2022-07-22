@@ -78,7 +78,20 @@ export const Custom = () => (
 );
 
 export const Basic = () => <Viewer story={basic} withNavigationHint />;
-export const WithSibblings = () => <Viewer story={basic} withLandscapeSiblingsScreens />;
+
+export const WithComplexSibblings = () => (
+    <Viewer
+        {...faceAFaceProps}
+        withLandscapeSiblingsScreens
+        landscapeScreenMargin={40}
+        landscapeSmallScreenScale={0.5}
+        withoutScreensMenu
+        withoutMenuShadow
+        neighborScreensActive={3}
+        neighborScreensMounted={3}
+        withoutShareMenu
+    />
+);
 
 export const Integrated = () => {
     const [fullscreen, setFullscreen] = useState(false);
