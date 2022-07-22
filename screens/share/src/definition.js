@@ -126,6 +126,22 @@ export default {
                 },
             ],
         },
+        {
+            name: 'buttonsTextStyle',
+            type: 'text-style-form',
+            label: defineMessage({
+                defaultMessage: 'Buttons text',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'buttonsStyle',
+            type: 'box-style-form',
+            label: defineMessage({
+                defaultMessage: 'Buttons',
+                description: 'Field label',
+            }),
+        },
         // @todo: delete if unused (commented out june 6, 2022)
         // {
         //     name: 'centered',

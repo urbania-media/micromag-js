@@ -3,68 +3,31 @@
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/variables';
 
-.options {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
+.item {
+    + .item {
+        margin-top: 0.5rem;
+    }
 }
 
-.item {
-    max-width: 64px;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
-    white-space: break-spaces;
+.shareButton {
+    @extend %reset-button;
+    width: 100%;
+    position: relative;
+}
 
-    &:last-child {
-        margin-right: 0;
-    }
+.shareButtonInner {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    color: $white;
+    background-color: $black;
 }
 
 .label {
-    margin-top: 0.5rem;
-    color: $gray-600;
-    font-size: 0.75rem;
-    font-weight: normal;
-}
-
-.copyLink {
-    display: flex;
-    position: relative;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid currentColor;
-    border-radius: 0.5rem;
-    background-color: $white;
-    color: $black;
-}
-
-.screenUrlInput {
-    @extend %reset-input;
+    display: block;
     flex-grow: 1;
-    padding: 0.75rem;
-    border: 0;
-    border-right: 1px solid currentColor;
-    border-radius: 0.5rem 0 0 0.5rem;
-    background-color: $white;
-    line-height: 1;
-}
-
-.copyUrlButton {
-    @extend %reset-button;
     padding: 0.5rem;
-    border: 0;
-    border-radius: 0 0.5rem 0.5rem 0;
-    color: $black;
-
-    &:hover {
-        color: $black;
-    }
-}
-
-.linkIcon {
-    padding: 0.25rem;
+    font-weight: normal;
 }
 
 .successfulCopyMessage {

@@ -1,34 +1,35 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
 
 const propTypes = {
     className: PropTypes.string,
+    size: PropTypes.number,
 };
 
 const defaultProps = {
     className: null,
+    size: 50,
 };
 
-const ShareLinkIcon = ({ className }) => (
+const ShareLinkIcon = ({ className, size }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        viewBox="0 0 32 32"
-        className={classNames([
-            { [className]: className !== null },
-        ])}
+        width={size}
+        height={size}
+        viewBox="0 0 64 64"
+        className={classNames([{ [className]: className !== null }])}
     >
         <path
-            d="M13.13,17.44a7.18,7.18,0,0,0,10,1.45,6.34,6.34,0,0,0,.78-.68l4.31-4.31A7.18,7.18,0,0,0,18.2,3.65l-.09.09L15.65,6.2"
+            d="M29.1,33.4a7.19,7.19,0,0,0,10.1,1.4,5,5,0,0,0,.8-.7l4.3-4.3a7.24,7.24,0,0,0,.1-10.2,7.34,7.34,0,0,0-10.2.1l-.1.1-2.5,2.5"
             fill="none"
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="3"
         />
-        <path d="M18.87,14.56a7.19,7.19,0,0,0-10-1.45,6.34,6.34,0,0,0-.78.68L3.73,18.1A7.18,7.18,0,1,0,13.8,28.35l.09-.09,2.45-2.46"
+        <path
+            d="M34.9,30.6a7.19,7.19,0,0,0-10.1-1.4,5,5,0,0,0-.8.7l-4.3,4.3a7.24,7.24,0,0,0-.1,10.2,7.15,7.15,0,0,0,10.2.1l.1-.1,2.5-2.5"
             fill="none"
             stroke="currentColor"
             strokeLinecap="round"

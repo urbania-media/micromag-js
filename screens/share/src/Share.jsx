@@ -2,8 +2,9 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FormattedMessage } from 'react-intl';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import {
     useScreenSize,
@@ -27,7 +28,9 @@ const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
     heading: MicromagPropTypes.headingElement,
     shareUrl: PropTypes.string,
-    options: PropTypes.any, // eslint-disable-line
+    options: PropTypes.objectOf(PropTypes.bool),
+    buttonsStyle: MicromagPropTypes.boxStyle,
+    buttonsTextStyle: MicromagPropTypes.textStyle,
     centered: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -44,6 +47,8 @@ const defaultProps = {
     heading: null,
     shareUrl: null,
     options: null,
+    buttonsStyle: null,
+    buttonsTextStyle: null,
     centered: false,
     spacing: 20,
     background: null,
@@ -60,6 +65,8 @@ const ShareScreen = ({
     heading,
     shareUrl,
     options,
+    buttonsStyle,
+    buttonsTextStyle,
     centered,
     spacing,
     background,
@@ -96,7 +103,10 @@ const ShareScreen = ({
     }, []);
     const finalShareURL = shareUrl || currentUrl;
 
-    const defaultOptions = options === true ? ['email', 'facebook', 'twitter', 'linkedin'] : [];
+    const defaultOptions =
+        options !== null
+            ? ['email', 'facebook', 'twitter', 'linkedin', 'whatsapp', 'facebookMessenger']
+            : [];
     const selectedOptions =
         options !== null
             ? Object.keys(options).reduce((acc, key) => {
@@ -105,14 +115,13 @@ const ShareScreen = ({
               }, [])
             : defaultOptions;
 
-
     const trackingEnabled = isView;
     const trackEvent = useTrackScreenEvent('share');
     const onClickShare = useCallback(
         (type) => {
             if (trackingEnabled) {
                 trackEvent('click_share', type, {
-                    shareUrl
+                    shareUrl,
                 });
             }
         },
@@ -148,6 +157,8 @@ const ShareScreen = ({
                 url={finalShareURL}
                 options={selectedOptions}
                 onShare={onClickShare}
+                buttonsStyle={buttonsStyle}
+                buttonsTextStyle={buttonsTextStyle}
             />
         </ScreenElement>,
 

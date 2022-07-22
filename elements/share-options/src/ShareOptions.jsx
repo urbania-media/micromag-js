@@ -17,9 +17,13 @@ import {
     FacebookMessengerShareButton,
     FacebookMessengerIcon,
 } from 'react-share';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
-import { copyToClipboard } from '@micromag/core/utils';
+import { getStyleFromText, getStyleFromBox, copyToClipboard } from '@micromag/core/utils';
+
 import ShareLinkIcon from './ShareLinkIcon';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -29,6 +33,8 @@ const propTypes = {
     title: PropTypes.string,
     url: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
+    buttonsStyle: MicromagPropTypes.boxStyle,
+    buttonsTextStyle: MicromagPropTypes.textStyle,
     onShare: PropTypes.func,
     onClose: PropTypes.func,
     focusable: PropTypes.bool,
@@ -41,6 +47,8 @@ const defaultProps = {
     title: null,
     url: null,
     options: null,
+    buttonsStyle: null,
+    buttonsTextStyle: null,
     onShare: null,
     onClose: null,
     focusable: true,
@@ -53,10 +61,28 @@ const ShareOptions = ({
     title,
     url,
     options,
+    buttonsStyle,
+    buttonsTextStyle,
     onShare,
     onClose,
     focusable,
 }) => {
+    let finalStyles = null;
+
+    if (buttonsTextStyle !== null) {
+        finalStyles = {
+            ...finalStyles,
+            ...getStyleFromText(buttonsTextStyle),
+        };
+    }
+
+    if (buttonsStyle !== null) {
+        finalStyles = {
+            ...finalStyles,
+            ...getStyleFromBox(buttonsStyle),
+        };
+    }
+
     const [linkCopied, setLinkCopied] = useState(false);
 
     const onClickCopy = useCallback(() => {
@@ -67,12 +93,6 @@ const ShareOptions = ({
             }, 2000);
         });
     }, [setLinkCopied]);
-
-    const onClickLinkInput = useCallback((e) => {
-        const { target } = e;
-
-        target.setSelectionRange(0, target.value.length);
-    }, []);
 
     const onShareButtonClick = useCallback(
         (type) => {
@@ -85,6 +105,7 @@ const ShareOptions = ({
 
     const shareButtonProps = useMemo(
         () => ({
+            className: styles.shareButton,
             url,
             onShareWindowClose: () => {
                 if (onClose !== null) {
@@ -95,13 +116,21 @@ const ShareOptions = ({
         [url, onClose],
     );
 
-    const shareIconProps = useMemo(() => ({ size: 50, round: true }), []);
+    const shareIconProps = useMemo(
+        () => ({
+            size: 50,
+            bgStyle: {
+                fill: 'none',
+            },
+            iconFillColor: 'currentColor',
+        }),
+        [],
+    );
 
     const shareOptions = [
         {
             id: 'email',
-            label: <FormattedMessage defaultMessage="Email" description="Share option label" />,
-            icon: (
+            button: (
                 <EmailShareButton
                     {...shareButtonProps}
                     subject={title}
@@ -111,14 +140,26 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <EmailIcon {...shareIconProps} />
+                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                        <div
+                            className={classNames([
+                                styles.label,
+                                { [labelClassName]: labelClassName !== null },
+                            ])}
+                        >
+                            <FormattedMessage
+                                defaultMessage="Email"
+                                description="Share option label"
+                            />
+                        </div>
+                        <EmailIcon {...shareIconProps} />
+                    </div>
                 </EmailShareButton>
             ),
         },
         {
             id: 'facebook',
-            label: 'Facebook',
-            icon: (
+            button: (
                 <FacebookShareButton
                     {...shareButtonProps}
                     quote={title}
@@ -128,14 +169,23 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <FacebookIcon {...shareIconProps} />
+                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                        <div
+                            className={classNames([
+                                styles.label,
+                                { [labelClassName]: labelClassName !== null },
+                            ])}
+                        >
+                            Facebook
+                        </div>
+                        <FacebookIcon {...shareIconProps} />
+                    </div>
                 </FacebookShareButton>
             ),
         },
         {
             id: 'twitter',
-            label: 'Twitter',
-            icon: (
+            button: (
                 <TwitterShareButton
                     {...shareButtonProps}
                     title={title}
@@ -145,14 +195,23 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <TwitterIcon {...shareIconProps} />
+                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                        <div
+                            className={classNames([
+                                styles.label,
+                                { [labelClassName]: labelClassName !== null },
+                            ])}
+                        >
+                            Twitter
+                        </div>
+                        <TwitterIcon {...shareIconProps} />
+                    </div>
                 </TwitterShareButton>
             ),
         },
         {
             id: 'linkedin',
-            label: 'LinkedIn',
-            icon: (
+            button: (
                 <LinkedinShareButton
                     {...shareButtonProps}
                     title={title}
@@ -162,14 +221,23 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <LinkedinIcon {...shareIconProps} />
+                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                        <div
+                            className={classNames([
+                                styles.label,
+                                { [labelClassName]: labelClassName !== null },
+                            ])}
+                        >
+                            LinkedIn
+                        </div>
+                        <LinkedinIcon {...shareIconProps} />
+                    </div>
                 </LinkedinShareButton>
             ),
         },
         {
             id: 'whatsapp',
-            label: 'Whatsapp',
-            icon: (
+            button: (
                 <WhatsappShareButton
                     {...shareButtonProps}
                     title={title}
@@ -179,14 +247,23 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <WhatsappIcon {...shareIconProps} />
+                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                        <div
+                            className={classNames([
+                                styles.label,
+                                { [labelClassName]: labelClassName !== null },
+                            ])}
+                        >
+                            Whatsapp
+                        </div>
+                        <WhatsappIcon {...shareIconProps} />
+                    </div>
                 </WhatsappShareButton>
             ),
         },
         {
             id: 'facebookMessenger',
-            label: 'Facebook Messenger',
-            icon: (
+            button: (
                 <FacebookMessengerShareButton
                     {...shareButtonProps}
                     title={title}
@@ -197,11 +274,22 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <FacebookMessengerIcon {...shareIconProps} />
+                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                        <div
+                            className={classNames([
+                                styles.label,
+                                { [labelClassName]: labelClassName !== null },
+                            ])}
+                        >
+                            Facebook Messenger
+                        </div>
+                        <FacebookMessengerIcon {...shareIconProps} />
+                    </div>
                 </FacebookMessengerShareButton>
             ),
         },
     ];
+
     const hasShareLink = options !== null ? options.includes('copylink') : true; // default is true
     const selectedOptions =
         options !== null ? shareOptions.filter((opt) => options.includes(opt.id)) : shareOptions;
@@ -209,7 +297,40 @@ const ShareOptions = ({
     return (
         <div className={classNames([styles.container, { [className]: className !== null }])}>
             <div className={styles.options}>
-                {selectedOptions.map(({ id, label, icon }) => (
+                {hasShareLink ? (
+                    <div
+                        className={classNames([styles.item, { [styles.isLinkCopied]: linkCopied }])}
+                    >
+                        <Button
+                            className={styles.shareButton}
+                            onClick={onClickCopy}
+                            focusable={focusable}
+                        >
+                            <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                                <div
+                                    className={classNames([
+                                        styles.label,
+                                        { [labelClassName]: labelClassName !== null },
+                                    ])}
+                                >
+                                    <FormattedMessage
+                                        defaultMessage="Copy link"
+                                        description="Share button label"
+                                    />
+                                </div>
+                                <ShareLinkIcon {...shareIconProps} />
+                            </div>
+                        </Button>
+
+                        <div className={styles.successfulCopyMessage}>
+                            <FormattedMessage
+                                defaultMessage="Link copied to clipboard!"
+                                description="Message displayed once text was copied successfully."
+                            />
+                        </div>
+                    </div>
+                ) : null}
+                {selectedOptions.map(({ id, button }) => (
                     <div
                         key={id}
                         className={classNames([
@@ -217,43 +338,10 @@ const ShareOptions = ({
                             { [itemClassName]: itemClassName !== null },
                         ])}
                     >
-                        {icon}
-                        <div
-                            className={classNames([
-                                styles.label,
-                                { [labelClassName]: labelClassName !== null },
-                            ])}
-                        >
-                            {label}
-                        </div>
+                        {button}
                     </div>
                 ))}
             </div>
-
-            {hasShareLink ? (
-                <div className={classNames([styles.copyLink, { [styles.isLinkCopied]: linkCopied }])}>
-                    <input
-                        className={styles.screenUrlInput}
-                        type="text"
-                        value={url}
-                        onClick={onClickLinkInput}
-                        readOnly
-                    />
-                    <Button
-                        className={styles.copyUrlButton}
-                        onClick={onClickCopy}
-                        focusable={focusable}
-                    >
-                        <ShareLinkIcon className={styles.linkIcon} />
-                    </Button>
-                    <div className={styles.successfulCopyMessage}>
-                        <FormattedMessage
-                            defaultMessage="Link copied to clipboard!"
-                            description="Message displayed once text was copied successfully."
-                        />
-                    </div>
-                </div>
-            ): null}
         </div>
     );
 };
