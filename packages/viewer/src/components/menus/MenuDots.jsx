@@ -1,16 +1,19 @@
 /* eslint-disable react/no-array-index-key */
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import styles from '../../styles/menus/menu-dots.module.scss';
+
+import ShareButton from '../partials/ShareButton';
 import MenuDot from './MenuDot';
 import MenuIcon from './MenuIcon';
-import ShareButton from '../partials/ShareButton';
+
+import styles from '../../styles/menus/menu-dots.module.scss';
 
 const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
@@ -28,6 +31,7 @@ const propTypes = {
     closeable: PropTypes.bool,
     withItemClick: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
+    withoutShareMenu: PropTypes.bool,
     onClose: PropTypes.func,
     className: PropTypes.string,
 };
@@ -45,6 +49,7 @@ const defaultProps = {
     closeable: false,
     withItemClick: false,
     withoutScreensMenu: false,
+    withoutShareMenu: false,
     onClose: null,
     className: null,
 };
@@ -62,6 +67,7 @@ const ViewerMenuDots = ({
     closeable,
     withItemClick,
     withoutScreensMenu,
+    withoutShareMenu,
     onClose,
     className,
 }) => {
@@ -113,17 +119,19 @@ const ViewerMenuDots = ({
                     );
                 })}
 
-                <li className={styles.menu}>
-                    <ShareButton
-                        className={styles.shareButton}
-                        buttonClassName={styles.menuButton}
-                        onShare={onShare}
-                        url={shareUrl}
-                        title={title}
-                    >
-                        <FontAwesomeIcon className={styles.icon} icon={faShare} />
-                    </ShareButton>
-                </li>
+                {!withoutShareMenu ? (
+                    <li className={styles.menu}>
+                        <ShareButton
+                            className={styles.shareButton}
+                            buttonClassName={styles.menuButton}
+                            onShare={onShare}
+                            url={shareUrl}
+                            title={title}
+                        >
+                            <FontAwesomeIcon className={styles.icon} icon={faShare} />
+                        </ShareButton>
+                    </li>
+                ) : null}
 
                 {!withoutScreensMenu ? (
                     <li className={styles.menu}>

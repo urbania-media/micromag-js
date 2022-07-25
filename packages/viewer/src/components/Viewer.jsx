@@ -53,9 +53,11 @@ const propTypes = {
     neighborScreensMounted: PropTypes.number,
     storyIsParsed: PropTypes.bool,
     landscapeScreenMargin: PropTypes.number,
+    landscapeSmallScreenScale: PropTypes.number,
     withMetadata: PropTypes.bool,
     withoutMenu: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
+    withoutShareMenu: PropTypes.bool,
     withoutMenuShadow: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
     withLandscapeSiblingsScreens: PropTypes.bool,
@@ -94,9 +96,11 @@ const defaultProps = {
     neighborScreensMounted: 1,
     storyIsParsed: false,
     landscapeScreenMargin: 20,
+    landscapeSmallScreenScale: 0.9,
     withMetadata: false,
     withoutMenu: false,
     withoutScreensMenu: false,
+    withoutShareMenu: false,
     withoutMenuShadow: false,
     withoutFullscreen: false,
     withLandscapeSiblingsScreens: false,
@@ -130,9 +134,11 @@ const Viewer = ({
     neighborScreensMounted,
     storyIsParsed,
     landscapeScreenMargin,
+    landscapeSmallScreenScale,
     withMetadata,
     withoutMenu,
     withoutScreensMenu,
+    withoutShareMenu,
     withoutMenuShadow,
     withoutFullscreen, // eslint-disable-line no-unused-vars
     withLandscapeSiblingsScreens,
@@ -563,6 +569,7 @@ const Viewer = ({
                                 onRequestClose={onMenuRequestClose}
                                 withDotItemClick={screenContainerWidth > 400}
                                 withoutScreensMenu={withoutScreensMenu}
+                                withoutShareMenu={withoutShareMenu}
                                 refDots={menuDotsContainerRef}
                             />
                         ) : null}
@@ -575,16 +582,33 @@ const Viewer = ({
                                         i >= screenIndex - neighborScreensActive &&
                                         i <= screenIndex + neighborScreensActive;
                                     let screenTransform = null;
+
                                     if (landscape) {
+                                        const max = i - screenIndex;
+                                        let distance =
+                                            (screenContainerWidth + landscapeScreenMargin) * max;
+                                        // Compensates for scaling
+                                        if (max !== 0) {
+                                            const halfMargin =
+                                                (screenContainerWidth *
+                                                    (1 - landscapeSmallScreenScale)) /
+                                                2;
+                                            distance -= halfMargin * max;
+                                            if (max < -1) {
+                                                distance -= halfMargin * (max + 1);
+                                            } else if (max > 1) {
+                                                distance -= halfMargin * (max - 1);
+                                            }
+                                        }
                                         screenTransform = withLandscapeSiblingsScreens
-                                            ? `translateX(calc(${
-                                                  (screenContainerWidth + landscapeScreenMargin) *
-                                                  (i - screenIndex)
-                                              }px - 50%)) scale(${current ? 1 : 0.9})`
+                                            ? `translateX(calc(${distance}px - 50%)) scale(${
+                                                  current ? 1 : landscapeSmallScreenScale
+                                              })`
                                             : null;
                                     } else {
                                         screenTransform = `translateX(${current ? 0 : '100%'})`;
                                     }
+
                                     return (
                                         <React.Fragment
                                             key={`screen-viewer-${mountedScreen.id || ''}-${i + 1}`}
@@ -678,7 +702,7 @@ const Viewer = ({
                                             <PlaybackControls className={styles.controls} />
                                         </div>
                                     </div>
-                                ):null}
+                                ) : null}
                             </div>
                         ) : null}
                         <WebView
