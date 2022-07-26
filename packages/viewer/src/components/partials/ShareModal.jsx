@@ -79,44 +79,46 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel, currentS
                 </div>
                 <div className={styles.content}>
                     <div className={styles.preview}>
-                        <div className={styles.cover}>{shareUrl}</div>
+                        {/* <div className={styles.cover}>{shareUrl}</div> */}
 
                         {currentScreenIndex !== 0 ? (
-                            <div className={styles.previewChoice}>
-                                <h3 className={styles.previewHeading}>
+                            <div className={styles.mode}>
+                                <h3>
                                     <FormattedMessage
                                         defaultMessage="Start from:"
                                         description="Share Modal heading"
                                     />
                                 </h3>
 
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="[onlyScreen]"
-                                        value={shareCurrentScreen}
-                                        onChange={() => setShareCurrentScreen(true)}
-                                        checked={shareCurrentScreen}
-                                    />
-                                    <FormattedMessage
-                                        defaultMessage="Current screen"
-                                        description="Share mode"
-                                    />
-                                </label>
+                                <div className={styles.modeOptions}>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="[onlyScreen]"
+                                            value={shareCurrentScreen}
+                                            onChange={() => setShareCurrentScreen(true)}
+                                            checked={shareCurrentScreen}
+                                        />
+                                        <FormattedMessage
+                                            defaultMessage="Current screen"
+                                            description="Share mode"
+                                        />
+                                    </label>
 
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="[onlyScreen]"
-                                        value={shareCurrentScreen}
-                                        onChange={() => setShareCurrentScreen(false)}
-                                        checked={!shareCurrentScreen}
-                                    />
-                                    <FormattedMessage
-                                        defaultMessage="First screen"
-                                        description="Share mode"
-                                    />
-                                </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="[onlyScreen]"
+                                            value={shareCurrentScreen}
+                                            onChange={() => setShareCurrentScreen(false)}
+                                            checked={!shareCurrentScreen}
+                                        />
+                                        <FormattedMessage
+                                            defaultMessage="First screen"
+                                            description="Share mode"
+                                        />
+                                    </label>
+                                </div>
                             </div>
                         ) : null}
                     </div>
