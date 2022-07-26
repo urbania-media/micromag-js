@@ -59,6 +59,12 @@ msgctxt "+TPjd4"
 msgid "Presented by"
 msgstr "Presented by"
 
+# Share Modal heading
+#: +kLDTY
+msgctxt "+kLDTY"
+msgid "Start from:"
+msgstr "Start from:"
+
 # Label when there is no item
 #: +nhSvj
 msgctxt "+nhSvj"
@@ -658,6 +664,12 @@ msgstr "Grid"
 msgctxt "CrzYgw"
 msgid "Quote"
 msgstr "Quote"
+
+# Share button label
+#: D21uVQ
+msgctxt "D21uVQ"
+msgid "Copy link"
+msgstr "Copy link"
 
 # Screen button label
 #: D7LIZQ
@@ -1934,6 +1946,12 @@ msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Button style"
 
+# Share mode
+#: oACeXM
+msgctxt "oACeXM"
+msgid "Current screen"
+msgstr "Current screen"
+
 # Header placeholder
 #: oAtOlP
 msgctxt "oAtOlP"
@@ -2083,6 +2101,12 @@ msgstr "Marker"
 msgctxt "r+bcpa"
 msgid "Facebook"
 msgstr "Facebook"
+
+# Share mode
+#: rAgbU1
+msgctxt "rAgbU1"
+msgid "First screen"
+msgstr "First screen"
 
 # Horoscope date
 #: rAkTvt

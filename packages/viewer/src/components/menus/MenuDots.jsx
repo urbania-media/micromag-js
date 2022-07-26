@@ -16,6 +16,7 @@ import MenuIcon from './MenuIcon';
 import styles from '../../styles/menus/menu-dots.module.scss';
 
 const propTypes = {
+    currentScreenIndex: PropTypes.number,
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
     withShadow: PropTypes.bool,
     title: PropTypes.string,
@@ -37,6 +38,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    currentScreenIndex: 0,
     direction: 'horizontal',
     withShadow: false,
     title: null,
@@ -55,6 +57,7 @@ const defaultProps = {
 };
 
 const ViewerMenuDots = ({
+    currentScreenIndex,
     direction,
     withShadow,
     title,
@@ -126,6 +129,7 @@ const ViewerMenuDots = ({
                             buttonClassName={styles.menuButton}
                             onShare={onShare}
                             url={shareUrl}
+                            currentScreenIndex={currentScreenIndex}
                             title={title}
                         >
                             <FontAwesomeIcon className={styles.icon} icon={faShare} />

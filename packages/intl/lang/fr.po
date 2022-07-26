@@ -59,6 +59,12 @@ msgctxt "+TPjd4"
 msgid "Presented by"
 msgstr "Présenté par"
 
+# Share Modal heading
+#: +kLDTY
+msgctxt "+kLDTY"
+msgid "Start from:"
+msgstr "Commencer à partir de:"
+
 # Label when there is no item
 #: +nhSvj
 msgctxt "+nhSvj"
@@ -659,6 +665,12 @@ msgctxt "CrzYgw"
 msgid "Quote"
 msgstr "Citation"
 
+# Share button label
+#: D21uVQ
+msgctxt "D21uVQ"
+msgid "Copy link"
+msgstr "Copier le lien"
+
 # Screen button label
 #: D7LIZQ
 msgctxt "D7LIZQ"
@@ -1130,7 +1142,7 @@ msgstr "Options de partage"
 #: S+WiGT
 msgctxt "S+WiGT"
 msgid "Percentage Text"
-msgstr ""
+msgstr "Texte du pourcentage"
 
 # Text and Images screen group
 #: S/mavZ
@@ -1250,7 +1262,7 @@ msgstr "Téléverser une image"
 #: Vv05Q4
 msgctxt "Vv05Q4"
 msgid "Link to copy"
-msgstr ""
+msgstr "Lien à copier"
 
 # Field label
 #: W5qWPj
@@ -1934,6 +1946,12 @@ msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Style du bouton"
 
+# Share mode
+#: oACeXM
+msgctxt "oACeXM"
+msgid "Current screen"
+msgstr "Écran en cours"
+
 # Header placeholder
 #: oAtOlP
 msgctxt "oAtOlP"
@@ -2083,6 +2101,12 @@ msgstr "Marqueur"
 msgctxt "r+bcpa"
 msgid "Facebook"
 msgstr "Facebook"
+
+# Share mode
+#: rAgbU1
+msgctxt "rAgbU1"
+msgid "First screen"
+msgstr "Premier écran"
 
 # Horoscope date
 #: rAkTvt

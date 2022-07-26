@@ -31,6 +31,10 @@
     "defaultMessage": "Presented by",
     "description": "Sponsor label"
   },
+  "+kLDTY": {
+    "defaultMessage": "Start from:",
+    "description": "Share Modal heading"
+  },
   "+nhSvj": {
     "defaultMessage": "No speaker...",
     "description": "Label when there is no item"
@@ -430,6 +434,10 @@
   "CrzYgw": {
     "defaultMessage": "Quote",
     "description": "Quote placeholder"
+  },
+  "D21uVQ": {
+    "defaultMessage": "Copy link",
+    "description": "Share button label"
   },
   "D7LIZQ": {
     "defaultMessage": "Start",
@@ -1280,6 +1288,10 @@
     "defaultMessage": "Button style",
     "description": "Field label"
   },
+  "oACeXM": {
+    "defaultMessage": "Current screen",
+    "description": "Share mode"
+  },
   "oAtOlP": {
     "defaultMessage": "Heading",
     "description": "Header placeholder"
@@ -1379,6 +1391,10 @@
   "r+bcpa": {
     "defaultMessage": "Facebook",
     "description": "Field label"
+  },
+  "rAgbU1": {
+    "defaultMessage": "First screen",
+    "description": "Share mode"
   },
   "rAkTvt": {
     "defaultMessage": "Dec 22 - Jan 20",

@@ -11,6 +11,7 @@
 
 .shareButton {
     @extend %reset-button;
+    display: block;
     width: 100%;
     position: relative;
 }

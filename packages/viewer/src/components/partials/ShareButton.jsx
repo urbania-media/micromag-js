@@ -1,7 +1,7 @@
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import { Button } from '@micromag/core/components';
 
@@ -15,6 +15,7 @@ const propTypes = {
     className: PropTypes.string,
     buttonClassName: PropTypes.string,
     onShare: PropTypes.func,
+    currentScreenIndex: PropTypes.number,
     children: PropTypes.node,
     focusable: PropTypes.bool,
 };
@@ -25,11 +26,21 @@ const defaultProps = {
     className: null,
     buttonClassName: null,
     onShare: null,
+    currentScreenIndex: 0,
     children: null,
     focusable: false,
 };
 
-const ShareButton = ({ title, url, className, buttonClassName, onShare, children, focusable }) => {
+const ShareButton = ({
+    title,
+    url,
+    className,
+    buttonClassName,
+    onShare,
+    currentScreenIndex,
+    children,
+    focusable,
+}) => {
     const intl = useIntl();
     const [storyShareModalOpened, setStoryShareModalOpened] = useState(false);
 
@@ -81,6 +92,7 @@ const ShareButton = ({ title, url, className, buttonClassName, onShare, children
                 title={title}
                 url={url}
                 onShare={onStoryShared}
+                currentScreenIndex={currentScreenIndex}
                 onCancel={onStoryShareCanceled}
             />
         </div>

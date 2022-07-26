@@ -236,6 +236,7 @@ const ViewerMenu = ({
             >
                 <MenuDots
                     {...menuTheme}
+                    currentScreenIndex={currentScreenIndex}
                     direction="horizontal"
                     withShadow={withShadow}
                     items={items}

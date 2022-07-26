@@ -30,6 +30,7 @@ const propTypes = {
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     labelClassName: PropTypes.string,
+    buttonInnerClassName: PropTypes.string,
     title: PropTypes.string,
     url: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
@@ -44,6 +45,7 @@ const defaultProps = {
     className: null,
     itemClassName: null,
     labelClassName: null,
+    buttonInnerClassName: null,
     title: null,
     url: null,
     options: null,
@@ -58,6 +60,7 @@ const ShareOptions = ({
     className,
     itemClassName,
     labelClassName,
+    buttonInnerClassName,
     title,
     url,
     options,
@@ -92,7 +95,7 @@ const ShareOptions = ({
                 setLinkCopied(false);
             }, 2000);
         });
-    }, [setLinkCopied]);
+    }, [url, setLinkCopied]);
 
     const onShareButtonClick = useCallback(
         (type) => {
@@ -129,35 +132,6 @@ const ShareOptions = ({
 
     const shareOptions = [
         {
-            id: 'email',
-            button: (
-                <EmailShareButton
-                    {...shareButtonProps}
-                    subject={title}
-                    beforeOnClick={() => {
-                        onShareButtonClick('Email');
-                        return Promise.resolve();
-                    }}
-                    tabIndex={focusable ? null : '-1'}
-                >
-                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
-                        <div
-                            className={classNames([
-                                styles.label,
-                                { [labelClassName]: labelClassName !== null },
-                            ])}
-                        >
-                            <FormattedMessage
-                                defaultMessage="Email"
-                                description="Share option label"
-                            />
-                        </div>
-                        <EmailIcon {...shareIconProps} />
-                    </div>
-                </EmailShareButton>
-            ),
-        },
-        {
             id: 'facebook',
             button: (
                 <FacebookShareButton
@@ -169,7 +143,14 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                    <div
+                        className={classNames([
+                            styles.shareButtonInner,
+                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                        ])}
+                        style={finalStyles}
+                    >
+                        <FacebookIcon {...shareIconProps} />
                         <div
                             className={classNames([
                                 styles.label,
@@ -178,7 +159,6 @@ const ShareOptions = ({
                         >
                             Facebook
                         </div>
-                        <FacebookIcon {...shareIconProps} />
                     </div>
                 </FacebookShareButton>
             ),
@@ -195,7 +175,14 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                    <div
+                        className={classNames([
+                            styles.shareButtonInner,
+                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                        ])}
+                        style={finalStyles}
+                    >
+                        <TwitterIcon {...shareIconProps} />
                         <div
                             className={classNames([
                                 styles.label,
@@ -204,7 +191,6 @@ const ShareOptions = ({
                         >
                             Twitter
                         </div>
-                        <TwitterIcon {...shareIconProps} />
                     </div>
                 </TwitterShareButton>
             ),
@@ -221,7 +207,14 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                    <div
+                        className={classNames([
+                            styles.shareButtonInner,
+                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                        ])}
+                        style={finalStyles}
+                    >
+                        <LinkedinIcon {...shareIconProps} />
                         <div
                             className={classNames([
                                 styles.label,
@@ -230,7 +223,6 @@ const ShareOptions = ({
                         >
                             LinkedIn
                         </div>
-                        <LinkedinIcon {...shareIconProps} />
                     </div>
                 </LinkedinShareButton>
             ),
@@ -247,7 +239,14 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                    <div
+                        className={classNames([
+                            styles.shareButtonInner,
+                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                        ])}
+                        style={finalStyles}
+                    >
+                        <WhatsappIcon {...shareIconProps} />
                         <div
                             className={classNames([
                                 styles.label,
@@ -256,7 +255,6 @@ const ShareOptions = ({
                         >
                             Whatsapp
                         </div>
-                        <WhatsappIcon {...shareIconProps} />
                     </div>
                 </WhatsappShareButton>
             ),
@@ -274,7 +272,14 @@ const ShareOptions = ({
                     }}
                     tabIndex={focusable ? null : '-1'}
                 >
-                    <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                    <div
+                        className={classNames([
+                            styles.shareButtonInner,
+                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                        ])}
+                        style={finalStyles}
+                    >
+                        <FacebookMessengerIcon {...shareIconProps} />
                         <div
                             className={classNames([
                                 styles.label,
@@ -283,9 +288,43 @@ const ShareOptions = ({
                         >
                             Facebook Messenger
                         </div>
-                        <FacebookMessengerIcon {...shareIconProps} />
                     </div>
                 </FacebookMessengerShareButton>
+            ),
+        },
+        {
+            id: 'email',
+            button: (
+                <EmailShareButton
+                    {...shareButtonProps}
+                    subject={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('Email');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={focusable ? null : '-1'}
+                >
+                    <div
+                        className={classNames([
+                            styles.shareButtonInner,
+                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                        ])}
+                        style={finalStyles}
+                    >
+                        <EmailIcon {...shareIconProps} />
+                        <div
+                            className={classNames([
+                                styles.label,
+                                { [labelClassName]: labelClassName !== null },
+                            ])}
+                        >
+                            <FormattedMessage
+                                defaultMessage="Email"
+                                description="Share option label"
+                            />
+                        </div>
+                    </div>
+                </EmailShareButton>
             ),
         },
     ];
@@ -299,14 +338,27 @@ const ShareOptions = ({
             <div className={styles.options}>
                 {hasShareLink ? (
                     <div
-                        className={classNames([styles.item, { [styles.isLinkCopied]: linkCopied }])}
+                        className={classNames([
+                            styles.item,
+                            {
+                                [itemClassName]: itemClassName !== null,
+                                [styles.isLinkCopied]: linkCopied,
+                            },
+                        ])}
                     >
                         <Button
                             className={styles.shareButton}
                             onClick={onClickCopy}
                             focusable={focusable}
                         >
-                            <div className={classNames([styles.shareButtonInner])} style={finalStyles}>
+                            <div
+                                className={classNames([
+                                    styles.shareButtonInner,
+                                    { [buttonInnerClassName]: buttonInnerClassName !== null },
+                                ])}
+                                style={finalStyles}
+                            >
+                                <ShareLinkIcon {...shareIconProps} />
                                 <div
                                     className={classNames([
                                         styles.label,
@@ -318,7 +370,6 @@ const ShareOptions = ({
                                         description="Share button label"
                                     />
                                 </div>
-                                <ShareLinkIcon {...shareIconProps} />
                             </div>
                         </Button>
 

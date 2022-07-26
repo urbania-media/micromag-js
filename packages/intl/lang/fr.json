@@ -23,6 +23,9 @@
     "+TPjd4": {
         "defaultMessage": "Présenté par"
     },
+    "+kLDTY": {
+        "defaultMessage": "Commencer à partir de:"
+    },
     "+nhSvj": {
         "defaultMessage": "Pas d'interlocuteur..."
     },
@@ -317,6 +320,9 @@
     "CrzYgw": {
         "defaultMessage": "Citation"
     },
+    "D21uVQ": {
+        "defaultMessage": "Copier le lien"
+    },
     "D7LIZQ": {
         "defaultMessage": "Démarrer"
     },
@@ -551,6 +557,9 @@
     "RucIeL": {
         "defaultMessage": "Options de partage"
     },
+    "S+WiGT": {
+        "defaultMessage": "Texte du pourcentage"
+    },
     "S/mavZ": {
         "defaultMessage": "Texte et images"
     },
@@ -607,6 +616,9 @@
     },
     "VspZp9": {
         "defaultMessage": "Téléverser une image"
+    },
+    "Vv05Q4": {
+        "defaultMessage": "Lien à copier"
     },
     "W5qWPj": {
         "defaultMessage": "Centrer"
@@ -950,6 +962,9 @@
     "nno1Pq": {
         "defaultMessage": "Style du bouton"
     },
+    "oACeXM": {
+        "defaultMessage": "Écran en cours"
+    },
     "oAtOlP": {
         "defaultMessage": "En-tête"
     },
@@ -1024,6 +1039,9 @@
     },
     "r+bcpa": {
         "defaultMessage": "Facebook"
+    },
+    "rAgbU1": {
+        "defaultMessage": "Premier écran"
     },
     "rAkTvt": {
         "defaultMessage": "22 déc au 20 jan"

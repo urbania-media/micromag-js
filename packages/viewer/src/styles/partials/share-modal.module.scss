@@ -14,7 +14,7 @@
     pointer-events: none;
 
     &.opened {
-        background-color: rgba($black, 0.85);
+        background-color: rgba($black, 0.5);
         pointer-events: auto;
     }
 }
@@ -24,14 +24,16 @@
     z-index: 2;
     top: 50%;
     left: 50%;
+    overflow: hidden;
     width: calc(100% - 1rem);
     max-width: 500px;
     transform: translate(-50%, -50%) translateY(1rem);
     transition: opacity 0.2s ease-out, transform 0.2s ease-out;
     border-radius: 1.5rem;
     opacity: 0;
-    background-color: $gray-200;
-    color: $black;
+    background-color: rgba($gray-800, 0.5);
+    color: $white;
+    backdrop-filter: blur(1rem);
 
     .opened & {
         transform: translate(-50%, -50%) translateY(0);
@@ -59,10 +61,39 @@
     padding: 0;
 }
 
-.closeIcon {
-    color: $black;
+.content {
+    padding: 0 1rem;
+}
+
+.previewHeading {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
 .shareOptions {
-    padding: 0 1rem;
+    margin-top: 1.5rem;
+}
+
+.shareOptionsItem {
+    border-top: 1px solid $gray-800;
+
+    + .shareOptionsItem {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        .shareOptionsInner {
+            padding-bottom: 0.5rem;
+        }
+    }
+}
+
+.shareOptionsInner {
+    background-color: transparent;
+    padding: 0 0.25rem;
+
+    &:hover {
+        background-color: $black;
+    }
 }

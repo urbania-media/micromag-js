@@ -23,6 +23,9 @@
     "+TPjd4": {
         "defaultMessage": "Presented by"
     },
+    "+kLDTY": {
+        "defaultMessage": "Start from:"
+    },
     "+nhSvj": {
         "defaultMessage": "No speaker..."
     },
@@ -322,6 +325,9 @@
     },
     "CrzYgw": {
         "defaultMessage": "Quote"
+    },
+    "D21uVQ": {
+        "defaultMessage": "Copy link"
     },
     "D7LIZQ": {
         "defaultMessage": "Start"
@@ -962,6 +968,9 @@
     "nno1Pq": {
         "defaultMessage": "Button style"
     },
+    "oACeXM": {
+        "defaultMessage": "Current screen"
+    },
     "oAtOlP": {
         "defaultMessage": "Heading"
     },
@@ -1036,6 +1045,9 @@
     },
     "r+bcpa": {
         "defaultMessage": "Facebook"
+    },
+    "rAgbU1": {
+        "defaultMessage": "First screen"
     },
     "rAkTvt": {
         "defaultMessage": "Dec 22 - Jan 20"
