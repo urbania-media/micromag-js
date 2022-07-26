@@ -65,20 +65,23 @@
     padding: 0 1rem;
 }
 
-.mode {
-    h3 {
-        margin-bottom: 0.5rem;
-        font-size: 14px;
-        font-weight: 700;
-    }
+// @todo fix specificity issues?
+.preview {
+    .mode {
+        h3 {
+            margin-bottom: 0.5rem;
+            font-size: 14px;
+            font-weight: 700;
+        }
 
-    label {
-        margin-right: 1.5rem;
-        font-size: 14px;
-    }
+        label {
+            margin-right: 1.5rem;
+            font-size: 14px;
+        }
 
-    input {
-        margin-right: 0.25rem;
+        input {
+            margin-right: 0.25rem;
+        }
     }
 }
 

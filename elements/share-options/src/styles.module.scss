@@ -20,6 +20,7 @@
     display: flex;
     align-items: center;
     text-align: left;
+    font-weight: 400;
     color: $white;
     background-color: $black;
 }
@@ -28,7 +29,6 @@
     display: block;
     flex-grow: 1;
     padding: 0.5rem 0.25rem;
-    font-weight: normal;
 }
 
 .successfulCopyMessage {

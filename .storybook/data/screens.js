@@ -1,9 +1,9 @@
 import { v1 as uuid } from 'uuid';
+
 import { signs } from '../../screens/urbania-horoscope';
 import {
     medias,
-    mediasWithCaptions,
-    // images,
+    mediasWithCaptions, // images,
     // imagesWithCaptions,
     imageMedia,
     backgroundImage,
@@ -21,6 +21,7 @@ import {
     callToAction,
     conversation, // color,
 } from '../data';
+
 import article from './stories/article.json';
 
 export const allScreens = [
@@ -348,11 +349,24 @@ export const allScreens = [
             body: 'Share this micromag!',
             textStyle: { textAlign: 'center' },
         },
+        buttonsStyle: {
+            borderRadius: 4,
+            shadowAngle: -45,
+            shadowColor: { alpha: 1, color: '#f5ff00' },
+            shadowDistance: 5,
+        },
+        buttonsTextStyle: {
+            fontFamily: "Courier New",
+            fontStyle: {
+                bold: true,
+                transform: "uppercase"
+            }
+        },
         options: {
             facebook: true,
             twitter: true,
             facebookMessenger: true,
-            copylink: true
+            copylink: true,
         },
         background: {
             color: { alpha: 1, color: '#00c28e' },
@@ -379,13 +393,13 @@ export const allScreens = [
         button: {
             body: '<span>Découvrir</span>',
         },
-        signs: signs.map(sign => ({
+        signs: signs.map((sign) => ({
             ...sign,
             word: { body: title() },
             description: text('long'),
         })),
         background: backgroundVideo(),
-    }
+    },
 ];
 
 export default allScreens;
