@@ -365,20 +365,22 @@ const ShareOptions = ({
                                         { [labelClassName]: labelClassName !== null },
                                     ])}
                                 >
-                                    <FormattedMessage
-                                        defaultMessage="Copy link"
-                                        description="Share button label"
-                                    />
+                                    {!linkCopied ? (
+                                        <FormattedMessage
+                                            defaultMessage="Copy link"
+                                            description="Share button label"
+                                        />
+                                    ): null}
+                                    {linkCopied ? (
+                                        <FormattedMessage
+                                            defaultMessage="Link copied to clipboard!"
+                                            description="Message displayed once text was copied successfully."
+                                        />
+                                    ):null}
                                 </div>
                             </div>
                         </Button>
 
-                        <div className={styles.successfulCopyMessage}>
-                            <FormattedMessage
-                                defaultMessage="Link copied to clipboard!"
-                                description="Message displayed once text was copied successfully."
-                            />
-                        </div>
                     </div>
                 ) : null}
                 {selectedOptions.map(({ id, button }) => (

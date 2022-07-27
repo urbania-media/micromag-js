@@ -77,11 +77,11 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel, currentS
                         <Close className={styles.closeIcon} border="none" fill="transparent" />
                     </Button>
                 </div>
-                <div className={styles.content}>
-                    <div className={styles.preview}>
-                        {/* <div className={styles.cover}>{shareUrl}</div> */}
 
-                        {currentScreenIndex !== 0 ? (
+                {currentScreenIndex !== 0 ? (
+                    <div className={styles.content}>
+                        <div className={styles.preview}>
+                            {/* <div className={styles.cover}>{shareUrl}</div> */}
                             <div className={styles.mode}>
                                 <h3>
                                     <FormattedMessage
@@ -120,9 +120,9 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel, currentS
                                     </label>
                                 </div>
                             </div>
-                        ) : null}
+                        </div>
                     </div>
-                </div>
+                ) : null}
 
                 <ShareOptions
                     className={styles.shareOptions}
