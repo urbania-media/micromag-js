@@ -88,7 +88,8 @@ const ViewerMenu = ({
     onClickCloseViewer,
     refDots,
 }) => {
-    const { components: screens = [], title = null } = story;
+    const { components: screens = [], title = null, metadata = null } = story;
+    const { description = null } = metadata || {};
     const currentScreen = screens !== null ? screens[currentScreenIndex] || null : null;
     const { id: screenId = null, type: screenType = null } = currentScreen || {};
 
@@ -241,6 +242,7 @@ const ViewerMenu = ({
                     withShadow={withShadow}
                     items={items}
                     title={title}
+                    description={description}
                     shareUrl={shareUrl}
                     onShare={onClickShare}
                     onClickItem={onClickItem}

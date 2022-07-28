@@ -4,15 +4,18 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Button, Close } from '@micromag/core/components';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { ScreenPreview, Button, Close } from '@micromag/core/components';
 import { useDocumentEvent } from '@micromag/core/hooks';
 import ShareOptions from '@micromag/element-share-options';
 
 import styles from '../../styles/partials/share-modal.module.scss';
 
 const propTypes = {
+    items: MicromagPropTypes.menuItems,
     url: PropTypes.string,
     title: PropTypes.string,
+    description: PropTypes.string,
     opened: PropTypes.bool,
     className: PropTypes.string,
     onShare: PropTypes.func,
@@ -21,8 +24,10 @@ const propTypes = {
 };
 
 const defaultProps = {
+    items: null,
     url: null,
     title: null,
+    description: null,
     opened: false,
     className: null,
     onShare: null,
@@ -30,9 +35,19 @@ const defaultProps = {
     onCancel: null,
 };
 
-const ShareModal = ({ url, title, opened, className, onShare, onCancel, currentScreenIndex }) => {
+const ShareModal = ({
+    items,
+    url,
+    title,
+    description,
+    opened,
+    className,
+    onShare,
+    onCancel,
+    currentScreenIndex,
+}) => {
     const modalRef = useRef();
-    const [shareCurrentScreen, setShareCurrentScreen] = useState(true);
+    const [shareCurrentScreen, setShareCurrentScreen] = useState(false);
     const [shareUrl, setShareUrl] = useState(url);
 
     const onDocumentClick = useCallback(
@@ -48,6 +63,10 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel, currentS
         [opened, onCancel],
     );
 
+    const onShareModeChange = useCallback(() => {
+        setShareCurrentScreen((value) => !value);
+    }, [setShareCurrentScreen]);
+
     useDocumentEvent('click', onDocumentClick, opened);
 
     useEffect(() => {
@@ -55,6 +74,9 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel, currentS
             shareCurrentScreen && currentScreenIndex !== 0 ? `${url}/${currentScreenIndex}` : url,
         );
     }, [shareCurrentScreen, currentScreenIndex, setShareUrl]);
+
+    const sharedScreen =
+        items !== null ? items[shareCurrentScreen ? currentScreenIndex : 0].screen : null;
 
     return (
         <div
@@ -78,51 +100,40 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel, currentS
                     </Button>
                 </div>
 
-                {currentScreenIndex !== 0 ? (
-                    <div className={styles.content}>
-                        <div className={styles.preview}>
-                            {/* <div className={styles.cover}>{shareUrl}</div> */}
-                            <div className={styles.mode}>
-                                <h3>
-                                    <FormattedMessage
-                                        defaultMessage="Start from:"
-                                        description="Share Modal heading"
-                                    />
-                                </h3>
-
-                                <div className={styles.modeOptions}>
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            name="[onlyScreen]"
-                                            value={shareCurrentScreen}
-                                            onChange={() => setShareCurrentScreen(true)}
-                                            checked={shareCurrentScreen}
-                                        />
-                                        <FormattedMessage
-                                            defaultMessage="Current screen"
-                                            description="Share mode"
-                                        />
-                                    </label>
-
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            name="[onlyScreen]"
-                                            value={shareCurrentScreen}
-                                            onChange={() => setShareCurrentScreen(false)}
-                                            checked={!shareCurrentScreen}
-                                        />
-                                        <FormattedMessage
-                                            defaultMessage="First screen"
-                                            description="Share mode"
-                                        />
-                                    </label>
-                                </div>
-                            </div>
+                <div className={styles.content}>
+                    <div className={styles.preview}>
+                        <div className={styles.previewCover}>
+                            <ScreenPreview
+                                screen={sharedScreen}
+                                width={100}
+                                height={150}
+                                withSize
+                            />
+                        </div>
+                        <div className={styles.previewInfo}>
+                            <h3>{title}</h3>
+                            <p>{description}</p>
                         </div>
                     </div>
-                ) : null}
+
+                    {currentScreenIndex !== 0 ? (
+                        <div className={styles.mode}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="currentScreen"
+                                    value="currentScreen"
+                                    onChange={onShareModeChange}
+                                    checked={shareCurrentScreen}
+                                />
+                                <FormattedMessage
+                                    defaultMessage="Start from the current screen"
+                                    description="Share mode"
+                                />
+                            </label>
+                        </div>
+                    ) : null}
+                </div>
 
                 <ShareOptions
                     className={styles.shareOptions}

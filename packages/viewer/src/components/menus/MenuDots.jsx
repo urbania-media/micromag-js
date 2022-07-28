@@ -20,6 +20,7 @@ const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
     withShadow: PropTypes.bool,
     title: PropTypes.string,
+    description: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     shareUrl: PropTypes.string,
     onShare: PropTypes.func,
@@ -42,6 +43,7 @@ const defaultProps = {
     direction: 'horizontal',
     withShadow: false,
     title: null,
+    description: null,
     items: [],
     shareUrl: null,
     onShare: null,
@@ -61,6 +63,7 @@ const ViewerMenuDots = ({
     direction,
     withShadow,
     title,
+    description,
     items,
     shareUrl,
     onShare,
@@ -127,10 +130,12 @@ const ViewerMenuDots = ({
                         <ShareButton
                             className={styles.shareButton}
                             buttonClassName={styles.menuButton}
-                            onShare={onShare}
-                            url={shareUrl}
-                            currentScreenIndex={currentScreenIndex}
                             title={title}
+                            description={description}
+                            url={shareUrl}
+                            items={items}
+                            currentScreenIndex={currentScreenIndex}
+                            onShare={onShare}
                         >
                             <FontAwesomeIcon className={styles.icon} icon={faShare} />
                         </ShareButton>

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import { Button } from '@micromag/core/components';
 
 import ShareModal from './ShareModal';
@@ -10,7 +12,9 @@ import ShareModal from './ShareModal';
 import styles from '../../styles/partials/share-button.module.scss';
 
 const propTypes = {
+    items: MicromagPropTypes.menuItems,
     title: PropTypes.string,
+    description: PropTypes.string,
     url: PropTypes.string,
     className: PropTypes.string,
     buttonClassName: PropTypes.string,
@@ -21,7 +25,9 @@ const propTypes = {
 };
 
 const defaultProps = {
+    items: null,
     title: null,
+    description: null,
     url: null,
     className: null,
     buttonClassName: null,
@@ -32,7 +38,9 @@ const defaultProps = {
 };
 
 const ShareButton = ({
+    items,
     title,
+    description,
     url,
     className,
     buttonClassName,
@@ -88,12 +96,14 @@ const ShareButton = ({
             </Button>
             <ShareModal
                 className={styles.shareModal}
-                opened={storyShareModalOpened}
                 title={title}
+                description={description}
                 url={url}
-                onShare={onStoryShared}
+                items={items}
                 currentScreenIndex={currentScreenIndex}
+                onShare={onStoryShared}
                 onCancel={onStoryShareCanceled}
+                opened={storyShareModalOpened}
             />
         </div>
     );
