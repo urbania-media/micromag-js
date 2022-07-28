@@ -138,7 +138,7 @@ const ShareModal = ({
                 <ShareOptions
                     className={styles.shareOptions}
                     itemClassName={styles.shareOptionsItem}
-                    buttonInnerClassName={styles.shareOptionsInner}
+                    buttonClassName={styles.shareOptionsButton}
                     title={title}
                     url={shareUrl}
                     focusable={opened}

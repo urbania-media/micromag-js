@@ -30,7 +30,7 @@ const propTypes = {
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     labelClassName: PropTypes.string,
-    buttonInnerClassName: PropTypes.string,
+    buttonClassName: PropTypes.string,
     title: PropTypes.string,
     url: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
@@ -45,7 +45,7 @@ const defaultProps = {
     className: null,
     itemClassName: null,
     labelClassName: null,
-    buttonInnerClassName: null,
+    buttonClassName: null,
     title: null,
     url: null,
     options: null,
@@ -60,7 +60,7 @@ const ShareOptions = ({
     className,
     itemClassName,
     labelClassName,
-    buttonInnerClassName,
+    buttonClassName,
     title,
     url,
     options,
@@ -108,7 +108,10 @@ const ShareOptions = ({
 
     const shareButtonProps = useMemo(
         () => ({
-            className: styles.shareButton,
+            className: classNames([
+                styles.shareButton,
+                { [buttonClassName]: buttonClassName !== null },
+            ]),
             url,
             onShareWindowClose: () => {
                 if (onClose !== null) {
@@ -302,7 +305,10 @@ const ShareOptions = ({
                         ])}
                     >
                         <Button
-                            className={styles.shareButton}
+                            className={classNames([
+                                styles.shareButton,
+                                { [buttonClassName]: buttonClassName !== null },
+                            ])}
                             onClick={onClickCopy}
                             focusable={focusable}
                             style={finalStyles}
