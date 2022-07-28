@@ -142,23 +142,16 @@ const ShareOptions = ({
                         return Promise.resolve();
                     }}
                     tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
                 >
+                    <FacebookIcon {...shareIconProps} />
                     <div
                         className={classNames([
-                            styles.shareButtonInner,
-                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
                         ])}
-                        style={finalStyles}
                     >
-                        <FacebookIcon {...shareIconProps} />
-                        <div
-                            className={classNames([
-                                styles.label,
-                                { [labelClassName]: labelClassName !== null },
-                            ])}
-                        >
-                            Facebook
-                        </div>
+                        Facebook
                     </div>
                 </FacebookShareButton>
             ),
@@ -174,23 +167,16 @@ const ShareOptions = ({
                         return Promise.resolve();
                     }}
                     tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
                 >
+                    <TwitterIcon {...shareIconProps} />
                     <div
                         className={classNames([
-                            styles.shareButtonInner,
-                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
                         ])}
-                        style={finalStyles}
                     >
-                        <TwitterIcon {...shareIconProps} />
-                        <div
-                            className={classNames([
-                                styles.label,
-                                { [labelClassName]: labelClassName !== null },
-                            ])}
-                        >
-                            Twitter
-                        </div>
+                        Twitter
                     </div>
                 </TwitterShareButton>
             ),
@@ -206,23 +192,16 @@ const ShareOptions = ({
                         return Promise.resolve();
                     }}
                     tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
                 >
+                    <LinkedinIcon {...shareIconProps} />
                     <div
                         className={classNames([
-                            styles.shareButtonInner,
-                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
                         ])}
-                        style={finalStyles}
                     >
-                        <LinkedinIcon {...shareIconProps} />
-                        <div
-                            className={classNames([
-                                styles.label,
-                                { [labelClassName]: labelClassName !== null },
-                            ])}
-                        >
-                            LinkedIn
-                        </div>
+                        LinkedIn
                     </div>
                 </LinkedinShareButton>
             ),
@@ -238,23 +217,16 @@ const ShareOptions = ({
                         return Promise.resolve();
                     }}
                     tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
                 >
+                    <WhatsappIcon {...shareIconProps} />
                     <div
                         className={classNames([
-                            styles.shareButtonInner,
-                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
                         ])}
-                        style={finalStyles}
                     >
-                        <WhatsappIcon {...shareIconProps} />
-                        <div
-                            className={classNames([
-                                styles.label,
-                                { [labelClassName]: labelClassName !== null },
-                            ])}
-                        >
-                            Whatsapp
-                        </div>
+                        Whatsapp
                     </div>
                 </WhatsappShareButton>
             ),
@@ -271,23 +243,16 @@ const ShareOptions = ({
                         return Promise.resolve();
                     }}
                     tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
                 >
+                    <FacebookMessengerIcon {...shareIconProps} />
                     <div
                         className={classNames([
-                            styles.shareButtonInner,
-                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
                         ])}
-                        style={finalStyles}
                     >
-                        <FacebookMessengerIcon {...shareIconProps} />
-                        <div
-                            className={classNames([
-                                styles.label,
-                                { [labelClassName]: labelClassName !== null },
-                            ])}
-                        >
-                            Facebook Messenger
-                        </div>
+                        Facebook Messenger
                     </div>
                 </FacebookMessengerShareButton>
             ),
@@ -303,26 +268,16 @@ const ShareOptions = ({
                         return Promise.resolve();
                     }}
                     tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
                 >
+                    <EmailIcon {...shareIconProps} />
                     <div
                         className={classNames([
-                            styles.shareButtonInner,
-                            { [buttonInnerClassName]: buttonInnerClassName !== null },
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
                         ])}
-                        style={finalStyles}
                     >
-                        <EmailIcon {...shareIconProps} />
-                        <div
-                            className={classNames([
-                                styles.label,
-                                { [labelClassName]: labelClassName !== null },
-                            ])}
-                        >
-                            <FormattedMessage
-                                defaultMessage="Email"
-                                description="Share option label"
-                            />
-                        </div>
+                        <FormattedMessage defaultMessage="Email" description="Share option label" />
                     </div>
                 </EmailShareButton>
             ),
@@ -350,37 +305,29 @@ const ShareOptions = ({
                             className={styles.shareButton}
                             onClick={onClickCopy}
                             focusable={focusable}
+                            style={finalStyles}
                         >
+                            <ShareLinkIcon {...shareIconProps} />
                             <div
                                 className={classNames([
-                                    styles.shareButtonInner,
-                                    { [buttonInnerClassName]: buttonInnerClassName !== null },
+                                    styles.label,
+                                    { [labelClassName]: labelClassName !== null },
                                 ])}
-                                style={finalStyles}
                             >
-                                <ShareLinkIcon {...shareIconProps} />
-                                <div
-                                    className={classNames([
-                                        styles.label,
-                                        { [labelClassName]: labelClassName !== null },
-                                    ])}
-                                >
-                                    {!linkCopied ? (
-                                        <FormattedMessage
-                                            defaultMessage="Copy link"
-                                            description="Share button label"
-                                        />
-                                    ): null}
-                                    {linkCopied ? (
-                                        <FormattedMessage
-                                            defaultMessage="Link copied to clipboard!"
-                                            description="Message displayed once text was copied successfully."
-                                        />
-                                    ):null}
-                                </div>
+                                {!linkCopied ? (
+                                    <FormattedMessage
+                                        defaultMessage="Copy link"
+                                        description="Share button label"
+                                    />
+                                ) : null}
+                                {linkCopied ? (
+                                    <FormattedMessage
+                                        defaultMessage="Link copied to clipboard!"
+                                        description="Message displayed once text was copied successfully."
+                                    />
+                                ) : null}
                             </div>
                         </Button>
-
                     </div>
                 ) : null}
                 {selectedOptions.map(({ id, button }) => (

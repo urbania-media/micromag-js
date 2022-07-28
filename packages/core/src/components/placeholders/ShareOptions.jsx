@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/placeholders.module.scss';
+import styles from '../../styles/placeholders/share-options.module.scss';
 
 export const Title = (props) => (
     <PlaceholderBlock
@@ -18,10 +18,17 @@ export const Title = (props) => (
                 [props.className]: props.className !== null,
             }
         ])}
+        boxClassName={styles.box}
     >
-        <FontAwesomeIcon icon={faCircle} className={styles.icon} />
-        <FontAwesomeIcon icon={faCircle} className={styles.icon} />
-        <FontAwesomeIcon icon={faCircle} className={styles.icon} />
+        <div className={styles.item}>
+            <FontAwesomeIcon icon={faCircle} className={styles.icon} />
+        </div>
+        <div className={styles.item}>
+            <FontAwesomeIcon icon={faCircle} className={styles.icon} />
+        </div>
+        <div className={styles.item}>
+            <FontAwesomeIcon icon={faCircle} className={styles.icon} />
+        </div>
     </PlaceholderBlock>
 );
 

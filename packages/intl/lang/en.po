@@ -59,12 +59,6 @@ msgctxt "+TPjd4"
 msgid "Presented by"
 msgstr "Presented by"
 
-# Share Modal heading
-#: +kLDTY
-msgctxt "+kLDTY"
-msgid "Start from:"
-msgstr "Start from:"
-
 # Label when there is no item
 #: +nhSvj
 msgctxt "+nhSvj"
@@ -1259,12 +1253,6 @@ msgid "Upload an image"
 msgstr "Upload an image"
 
 # Field label
-#: Vv05Q4
-msgctxt "Vv05Q4"
-msgid "Link to copy"
-msgstr "Link to copy"
-
-# Field label
 #: W5qWPj
 msgctxt "W5qWPj"
 msgid "Center"
@@ -1299,6 +1287,12 @@ msgstr "Repeat"
 msgctxt "Wr9olU"
 msgid "Typography"
 msgstr "Typography"
+
+# Heading placeholder
+#: X7kRRa
+msgctxt "X7kRRa"
+msgid "Heading"
+msgstr "Heading"
 
 # Breadcrumb field label
 #: X97njD
@@ -1946,12 +1940,6 @@ msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Button style"
 
-# Share mode
-#: oACeXM
-msgctxt "oACeXM"
-msgid "Current screen"
-msgstr "Current screen"
-
 # Header placeholder
 #: oAtOlP
 msgctxt "oAtOlP"
@@ -2102,12 +2090,6 @@ msgctxt "r+bcpa"
 msgid "Facebook"
 msgstr "Facebook"
 
-# Share mode
-#: rAgbU1
-msgctxt "rAgbU1"
-msgid "First screen"
-msgstr "First screen"
-
 # Horoscope date
 #: rAkTvt
 msgctxt "rAkTvt"
@@ -2119,6 +2101,12 @@ msgstr "Dec 22 - Jan 20"
 msgctxt "rBPIgw"
 msgid "Conversation"
 msgstr "Conversation"
+
+# Field label
+#: rKuiKj
+msgctxt "rKuiKj"
+msgid "Copy link"
+msgstr "Copy link"
 
 # Horoscope date
 #: raUY02
@@ -2419,6 +2407,12 @@ msgstr "Image"
 msgctxt "xuEZXD"
 msgid "Edit"
 msgstr "Edit"
+
+# Share mode
+#: xuPbeq
+msgctxt "xuPbeq"
+msgid "Start from the current screen"
+msgstr "Start from the current screen"
 
 # Fields section label
 #: y7xsPe

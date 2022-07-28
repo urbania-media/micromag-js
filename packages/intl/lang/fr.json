@@ -23,9 +23,6 @@
     "+TPjd4": {
         "defaultMessage": "Présenté par"
     },
-    "+kLDTY": {
-        "defaultMessage": "Commencer à partir de:"
-    },
     "+nhSvj": {
         "defaultMessage": "Pas d'interlocuteur..."
     },
@@ -617,9 +614,6 @@
     "VspZp9": {
         "defaultMessage": "Téléverser une image"
     },
-    "Vv05Q4": {
-        "defaultMessage": "Lien à copier"
-    },
     "W5qWPj": {
         "defaultMessage": "Centrer"
     },
@@ -637,6 +631,9 @@
     },
     "Wr9olU": {
         "defaultMessage": "Typographie"
+    },
+    "X7kRRa": {
+        "defaultMessage": "Titre"
     },
     "X97njD": {
         "defaultMessage": "Entrée"
@@ -962,9 +959,6 @@
     "nno1Pq": {
         "defaultMessage": "Style du bouton"
     },
-    "oACeXM": {
-        "defaultMessage": "Écran en cours"
-    },
     "oAtOlP": {
         "defaultMessage": "En-tête"
     },
@@ -1040,14 +1034,14 @@
     "r+bcpa": {
         "defaultMessage": "Facebook"
     },
-    "rAgbU1": {
-        "defaultMessage": "Premier écran"
-    },
     "rAkTvt": {
         "defaultMessage": "22 déc au 20 jan"
     },
     "rBPIgw": {
         "defaultMessage": "Conversation"
+    },
+    "rKuiKj": {
+        "defaultMessage": "Copier le lien"
     },
     "raUY02": {
         "defaultMessage": "20 avr au 20 mai"
@@ -1198,6 +1192,9 @@
     },
     "xuEZXD": {
         "defaultMessage": "Modifier"
+    },
+    "xuPbeq": {
+        "defaultMessage": "Commencer à l'écran en cours"
     },
     "y7xsPe": {
         "defaultMessage": "Paramètres avancés"

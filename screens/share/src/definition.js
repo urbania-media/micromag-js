@@ -62,11 +62,11 @@ export default {
             }),
             fields: [
                 {
-                    name: 'email',
+                    name: 'copylink',
                     type: 'toggle',
                     defaultValue: true,
                     label: defineMessage({
-                        defaultMessage: 'Email',
+                        defaultMessage: 'Copy link',
                         description: 'Field label',
                     }),
                 },
@@ -98,15 +98,6 @@ export default {
                     }),
                 },
                 {
-                    name: 'facebookMessenger',
-                    type: 'toggle',
-                    defaultValue: true,
-                    label: defineMessage({
-                        defaultMessage: 'Facebook Messenger',
-                        description: 'Field label',
-                    }),
-                },
-                {
                     name: 'whatsapp',
                     type: 'toggle',
                     defaultValue: true,
@@ -116,11 +107,20 @@ export default {
                     }),
                 },
                 {
-                    name: 'copylink',
+                    name: 'facebookMessenger',
                     type: 'toggle',
                     defaultValue: true,
                     label: defineMessage({
-                        defaultMessage: 'Link to copy',
+                        defaultMessage: 'Facebook Messenger',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'email',
+                    type: 'toggle',
+                    defaultValue: true,
+                    label: defineMessage({
+                        defaultMessage: 'Email',
                         description: 'Field label',
                     }),
                 },
@@ -142,16 +142,6 @@ export default {
                 description: 'Field label',
             }),
         },
-        // @todo: delete if unused (commented out june 6, 2022)
-        // {
-        //     name: 'centered',
-        //     type: 'toggle',
-        //     defaultValue: true,
-        //     label: defineMessage({
-        //         defaultMessage: 'Align to center',
-        //         description: 'Field label',
-        //     }),
-        // },
         {
             name: 'background',
             type: 'background',

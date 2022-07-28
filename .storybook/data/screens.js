@@ -185,6 +185,19 @@ export const allScreens = [
             { id: '3', label: { body: subtitle() } },
             { id: '4', label: { body: subtitle() } },
         ],
+        buttonsStyle: {
+            borderRadius: 4,
+            shadowAngle: -45,
+            shadowColor: { alpha: 1, color: '#ff00ff' },
+            shadowDistance: 5,
+            backgroundColor: { alpha: 1, color: '#001133' },
+        },
+        buttonsTextStyle: {
+            fontFamily: "Courier New",
+            fontStyle: {
+                bold: true,
+            }
+        },
         result: {
             body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?',
         },
@@ -354,6 +367,7 @@ export const allScreens = [
             shadowAngle: -45,
             shadowColor: { alpha: 1, color: '#f5ff00' },
             shadowDistance: 5,
+            backgroundColor: { alpha: 1, color: '#001133' },
         },
         buttonsTextStyle: {
             fontFamily: "Courier New",

@@ -23,9 +23,6 @@
     "+TPjd4": {
         "defaultMessage": "Presented by"
     },
-    "+kLDTY": {
-        "defaultMessage": "Start from:"
-    },
     "+nhSvj": {
         "defaultMessage": "No speaker..."
     },
@@ -623,9 +620,6 @@
     "VspZp9": {
         "defaultMessage": "Upload an image"
     },
-    "Vv05Q4": {
-        "defaultMessage": "Link to copy"
-    },
     "W5qWPj": {
         "defaultMessage": "Center"
     },
@@ -643,6 +637,9 @@
     },
     "Wr9olU": {
         "defaultMessage": "Typography"
+    },
+    "X7kRRa": {
+        "defaultMessage": "Heading"
     },
     "X97njD": {
         "defaultMessage": "Entry"
@@ -968,9 +965,6 @@
     "nno1Pq": {
         "defaultMessage": "Button style"
     },
-    "oACeXM": {
-        "defaultMessage": "Current screen"
-    },
     "oAtOlP": {
         "defaultMessage": "Heading"
     },
@@ -1046,14 +1040,14 @@
     "r+bcpa": {
         "defaultMessage": "Facebook"
     },
-    "rAgbU1": {
-        "defaultMessage": "First screen"
-    },
     "rAkTvt": {
         "defaultMessage": "Dec 22 - Jan 20"
     },
     "rBPIgw": {
         "defaultMessage": "Conversation"
+    },
+    "rKuiKj": {
+        "defaultMessage": "Copy link"
     },
     "raUY02": {
         "defaultMessage": "Apr 20 - May 20"
@@ -1204,6 +1198,9 @@
     },
     "xuEZXD": {
         "defaultMessage": "Edit"
+    },
+    "xuPbeq": {
+        "defaultMessage": "Start from the current screen"
     },
     "y7xsPe": {
         "defaultMessage": "Advanced settings"

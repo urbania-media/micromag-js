@@ -31,10 +31,6 @@
     "defaultMessage": "Presented by",
     "description": "Sponsor label"
   },
-  "+kLDTY": {
-    "defaultMessage": "Start from:",
-    "description": "Share Modal heading"
-  },
   "+nhSvj": {
     "defaultMessage": "No speaker...",
     "description": "Label when there is no item"
@@ -830,10 +826,6 @@
     "defaultMessage": "Upload an image",
     "description": "Upload button label in Media Gallery"
   },
-  "Vv05Q4": {
-    "defaultMessage": "Link to copy",
-    "description": "Field label"
-  },
   "W5qWPj": {
     "defaultMessage": "Center",
     "description": "Field label"
@@ -857,6 +849,10 @@
   "Wr9olU": {
     "defaultMessage": "Typography",
     "description": "Fields section label"
+  },
+  "X7kRRa": {
+    "defaultMessage": "Heading",
+    "description": "Heading placeholder"
   },
   "X97njD": {
     "defaultMessage": "Entry",
@@ -1288,10 +1284,6 @@
     "defaultMessage": "Button style",
     "description": "Field label"
   },
-  "oACeXM": {
-    "defaultMessage": "Current screen",
-    "description": "Share mode"
-  },
   "oAtOlP": {
     "defaultMessage": "Heading",
     "description": "Header placeholder"
@@ -1392,10 +1384,6 @@
     "defaultMessage": "Facebook",
     "description": "Field label"
   },
-  "rAgbU1": {
-    "defaultMessage": "First screen",
-    "description": "Share mode"
-  },
   "rAkTvt": {
     "defaultMessage": "Dec 22 - Jan 20",
     "description": "Horoscope date"
@@ -1403,6 +1391,10 @@
   "rBPIgw": {
     "defaultMessage": "Conversation",
     "description": "Conversation screen title"
+  },
+  "rKuiKj": {
+    "defaultMessage": "Copy link",
+    "description": "Field label"
   },
   "raUY02": {
     "defaultMessage": "Apr 20 - May 20",
@@ -1603,6 +1595,10 @@
   "xuEZXD": {
     "defaultMessage": "Edit",
     "description": "Items edit button label"
+  },
+  "xuPbeq": {
+    "defaultMessage": "Start from the current screen",
+    "description": "Share mode"
   },
   "y7xsPe": {
     "defaultMessage": "Advanced settings",

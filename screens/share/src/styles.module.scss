@@ -8,12 +8,13 @@
 }
 
 .layout {
-    .isPlaceholder & {
-        padding: 10px;
-    }
+    overflow-y: auto;
+    padding: 10px;
 }
 
 .shareOptions {
+    margin-top: 10px;
+
     &.isCentered {
         justify-content: center;
     }

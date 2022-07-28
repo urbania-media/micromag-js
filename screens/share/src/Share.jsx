@@ -133,14 +133,14 @@ const ShareScreen = ({
         <ScreenElement
             key="title"
             placeholder="title"
-            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
+            emptyLabel={<FormattedMessage defaultMessage="Heading" description="Heading placeholder" />}
             emptyClassName={styles.emptyHeading}
-            isEmpty={!heading}
+            isEmpty={!heading || heading?.body === ''}
         >
             {heading ? <Heading className={classNames([styles.heading])} {...heading} /> : null}
         </ScreenElement>,
 
-        <Spacer size={20} />,
+        <Spacer size={5} />,
 
         <ScreenElement
             key="share-options"
