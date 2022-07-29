@@ -23,7 +23,7 @@
         user-select: none;
     }
 
-    .menuDotsContainer {
+    .menuNavContainer {
         visibility: hidden;
         position: absolute;
         z-index: 2;
@@ -32,11 +32,65 @@
         width: 100%;
         transform: translateX(50%);
         touch-action: none;
+
+        &.withShadow {
+            background: linear-gradient(rgb(0 0 0 / 0.4), rgb(0 0 0 / 0));
+        }
     }
+
+    .menuTopContainer {
+        display: flex;
+        align-items: center;
+        padding: 8px 10px 0;
+    }
+
+    .menuItem {
+        display: block;
+    }
+
+    .menuIcon {
+        display: block;
+        width: 1rem;
+        height: auto;
+    }
+
+    .icon {
+        width: 100%;
+        height: 100%;
+    }
+
+    .menuButton {
+        @extend %reset-button;
+        @extend %focus-outline;
+
+        display: flex;
+        align-items: center;
+    }
+
+    .menuLabel {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .menuScreens {
+        .menuIcon {
+            margin-right: 0.5rem;
+        }
+    }
+
+    .menuShare {
+        margin-left: auto;
+
+        .menuIcon {
+            margin-left: 0.5rem;
+        }
+    }
+
 
     .menuDots {
         position: relative;
-        padding: 8px 10px;
+        padding: 5px 10px;
         transition: opacity 0.25s ease;
     }
 
@@ -153,7 +207,7 @@
     }
 
     &.hideMenu {
-        .menuDotsContainer {
+        .menuNavContainer {
             pointer-events: none;
         }
 
@@ -163,7 +217,7 @@
     }
 
     &.ready {
-        .menuDotsContainer,
+        .menuNavContainer,
         .menuPreviewContainer {
             visibility: visible;
         }

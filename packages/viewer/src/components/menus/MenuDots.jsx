@@ -1,5 +1,4 @@
 /* eslint-disable react/no-array-index-key */
-import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
@@ -9,21 +8,14 @@ import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import ShareButton from '../partials/ShareButton';
 import MenuDot from './MenuDot';
-import MenuIcon from './MenuIcon';
 
 import styles from '../../styles/menus/menu-dots.module.scss';
 
 const propTypes = {
-    currentScreenIndex: PropTypes.number,
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
     withShadow: PropTypes.bool,
-    title: PropTypes.string,
-    description: PropTypes.string,
     items: MicromagPropTypes.menuItems,
-    shareUrl: PropTypes.string,
-    onShare: PropTypes.func,
     onClickItem: PropTypes.func,
     onClickMenu: PropTypes.func,
     colors: PropTypes.shape({
@@ -33,47 +25,34 @@ const propTypes = {
     closeable: PropTypes.bool,
     withItemClick: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
-    withoutShareMenu: PropTypes.bool,
     onClose: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    currentScreenIndex: 0,
     direction: 'horizontal',
     withShadow: false,
-    title: null,
-    description: null,
     items: [],
-    shareUrl: null,
-    onShare: null,
     onClickItem: null,
     onClickMenu: null,
     colors: null,
     closeable: false,
     withItemClick: false,
     withoutScreensMenu: false,
-    withoutShareMenu: false,
     onClose: null,
     className: null,
 };
 
 const ViewerMenuDots = ({
-    currentScreenIndex,
     direction,
     withShadow,
-    title,
-    description,
     items,
-    shareUrl,
-    onShare,
     onClickItem,
     onClickMenu,
     colors,
     closeable,
     withItemClick,
     withoutScreensMenu,
-    withoutShareMenu,
     onClose,
     className,
 }) => {
@@ -125,41 +104,6 @@ const ViewerMenuDots = ({
                     );
                 })}
 
-                {!withoutShareMenu ? (
-                    <li className={styles.menu}>
-                        <ShareButton
-                            className={styles.shareButton}
-                            buttonClassName={styles.menuButton}
-                            title={title}
-                            description={description}
-                            url={shareUrl}
-                            items={items}
-                            currentScreenIndex={currentScreenIndex}
-                            onShare={onShare}
-                        >
-                            <FontAwesomeIcon className={styles.icon} icon={faShare} />
-                        </ShareButton>
-                    </li>
-                ) : null}
-
-                {!withoutScreensMenu ? (
-                    <li className={styles.menu}>
-                        <MenuIcon className={styles.menuIcon} color={primary} />
-                        <button
-                            type="button"
-                            title={intl.formatMessage({
-                                defaultMessage: 'Menu',
-                                description: 'Button label',
-                            })}
-                            aria-label={intl.formatMessage({
-                                defaultMessage: 'Menu',
-                                description: 'Button label',
-                            })}
-                            className={styles.menuButton}
-                            onClick={onClickMenu}
-                        />
-                    </li>
-                ) : null}
                 {closeable ? (
                     <li className={styles.closeButton} style={{ color: primary }}>
                         <button

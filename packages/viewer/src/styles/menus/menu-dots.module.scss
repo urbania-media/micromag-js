@@ -21,32 +21,6 @@
         width: 100%;
     }
 
-    .menu {
-        display: flex;
-        position: relative;
-        box-sizing: content-box;
-        flex-wrap: wrap;
-        width: 16px;
-        height: 16px;
-        padding-left: 10px;
-    }
-
-    .icon {
-        width: 100%;
-        height: 100%;
-    }
-
-    .menuIcon {
-        display: block;
-        height: 100%;
-    }
-
-    .menuButton {
-        @extend %fullscreen;
-        @extend %reset-button;
-        @extend %focus-outline;
-    }
-
     .closeButton {
         @extend %reset-button;
         @extend %focus-outline;
@@ -66,16 +40,5 @@
             width: auto;
             height: 100%;
         }
-
-        .menu {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding-left: 0;
-        }
-    }
-
-    &.withShadow {
-        background: linear-gradient(rgb(0 0 0 / 0.4), rgb(0 0 0 / 0));
     }
 }

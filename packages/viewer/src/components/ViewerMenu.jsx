@@ -1,15 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { config, useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useMemo } from 'react';
+import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver, useTrackEvent } from '@micromag/core/hooks';
 
 import MenuDots from './menus/MenuDots';
+import MenuIcon from './menus/MenuIcon';
 import MenuPreview from './menus/MenuPreview';
+import ShareButton from './partials/ShareButton';
 
 import styles from '../styles/viewer.module.scss';
 
@@ -88,6 +94,7 @@ const ViewerMenu = ({
     onClickCloseViewer,
     refDots,
 }) => {
+    const intl = useIntl();
     const { components: screens = [], title = null, metadata = null } = story;
     const { description = null } = metadata || {};
     const currentScreen = screens !== null ? screens[currentScreenIndex] || null : null;
@@ -230,16 +237,69 @@ const ViewerMenu = ({
     return (
         <>
             <div
-                className={styles.menuDotsContainer}
+                className={classNames([
+                    styles.menuNavContainer,
+                    { [styles.withShadow]: withShadow },
+                ])}
                 ref={refDots}
                 style={{ width: menuWidth }}
                 {...menuDragBind()}
             >
+                <nav className={styles.menuTopContainer}>
+                    {!withoutScreensMenu ? (
+                        <div className={classNames([styles.menuItem, styles.menuScreens])}>
+                            <button
+                                type="button"
+                                title={intl.formatMessage({
+                                    defaultMessage: 'Menu',
+                                    description: 'Button label',
+                                })}
+                                aria-label={intl.formatMessage({
+                                    defaultMessage: 'Menu',
+                                    description: 'Button label',
+                                })}
+                                className={styles.menuButton}
+                                onClick={onClickMenu}
+                            >
+                                <MenuIcon className={styles.menuIcon} {...menuTheme} />
+                                <div className={styles.menuLabel}>
+                                    {intl.formatMessage({
+                                        defaultMessage: 'Menu',
+                                        description: 'Button label',
+                                    })}
+                                </div>
+                            </button>
+                        </div>
+                    ) : null}
+
+                    {!withoutShareMenu ? (
+                        <div className={classNames([styles.menuItem, styles.menuShare])}>
+                            <ShareButton
+                                className={styles.shareButton}
+                                buttonClassName={styles.menuButton}
+                                title={title}
+                                description={description}
+                                url={shareUrl}
+                                items={items}
+                                currentScreenIndex={currentScreenIndex}
+                                onShare={onClickShare}
+                            >
+                                <div className={styles.menuLabel}>
+                                    {intl.formatMessage({
+                                        defaultMessage: 'Share',
+                                        description: 'Button label',
+                                    })}
+                                </div>
+                                <MenuIcon className={styles.menuIcon} {...menuTheme} />
+                            </ShareButton>
+                        </div>
+                    ) : null}
+                </nav>
+
                 <MenuDots
                     {...menuTheme}
                     currentScreenIndex={currentScreenIndex}
                     direction="horizontal"
-                    withShadow={withShadow}
                     items={items}
                     title={title}
                     description={description}
