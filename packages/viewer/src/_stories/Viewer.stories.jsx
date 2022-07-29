@@ -16,6 +16,7 @@ import {
     webfontFiles,
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
+import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
@@ -41,6 +42,11 @@ const faceAFaceProps = {
 const twoScreensProps = {
     ...faceAFaceProps,
     story: { ...faceAFace.story, components: faceAFace.components.slice(0, 2) },
+};
+
+const shareScreenProps = {
+    screenId: shareScreensStory.components[0].id,
+    story: shareScreensStory,
 };
 
 export default {
@@ -146,6 +152,7 @@ export const WithScroll = () => (
 );
 
 export const AllScreens = () => <Viewer {...props} />;
+export const ShareScreens = () => <Viewer {...shareScreenProps} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint />;
 export const Empty = () => <Viewer basePath="/story-path" />;
 export const TwoScreens = () => <Viewer {...twoScreensProps} />;
