@@ -1,6 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { config, useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
@@ -312,7 +310,7 @@ const ViewerMenu = ({
                     withoutScreensMenu={withoutScreensMenu}
                     withoutShareMenu={withoutShareMenu}
                     onClose={onClickCloseViewer}
-                    className={styles.menuDots}
+                    className={styles.dots}
                 />
             </div>
             <animated.div

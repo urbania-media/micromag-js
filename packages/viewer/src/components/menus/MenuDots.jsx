@@ -14,7 +14,6 @@ import styles from '../../styles/menus/menu-dots.module.scss';
 
 const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
-    withShadow: PropTypes.bool,
     items: MicromagPropTypes.menuItems,
     onClickItem: PropTypes.func,
     onClickMenu: PropTypes.func,
@@ -31,7 +30,6 @@ const propTypes = {
 
 const defaultProps = {
     direction: 'horizontal',
-    withShadow: false,
     items: [],
     onClickItem: null,
     onClickMenu: null,
@@ -45,7 +43,6 @@ const defaultProps = {
 
 const ViewerMenuDots = ({
     direction,
-    withShadow,
     items,
     onClickItem,
     onClickMenu,
@@ -67,7 +64,6 @@ const ViewerMenuDots = ({
                 {
                     [className]: className !== null,
                     [styles.vertical]: direction === 'vertical',
-                    [styles.withShadow]: withShadow,
                 },
             ])}
             aria-label={intl.formatMessage(
