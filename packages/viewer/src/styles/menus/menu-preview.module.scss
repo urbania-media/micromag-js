@@ -10,12 +10,13 @@
     flex-direction: column;
     height: 100%;
     padding: 10px;
-    background-color: #000;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    color: #fff;
     touch-action: none;
+    background-color: rgba($gray-800, 0.5);
+    color: $white;
+    backdrop-filter: blur(1rem);
 
     .screenButton {
         @extend %reset-button;
@@ -40,8 +41,7 @@
         align-items: center;
         margin-bottom: 20px;
 
-        .button,
-        .shareButton {
+        .button {
             @extend %focus-outline;
 
             display: inline-block;
@@ -56,31 +56,25 @@
             vertical-align: middle;
             cursor: pointer;
             user-select: none;
-        }
-
-        .button {
-            width: 20px;
-            margin-left: 10px;
+            width: 1rem;
             padding: 0;
-
-            &:first-child {
-                margin-left: 0;
-            }
         }
 
-        .shareButton {
+        .closeButton {
             z-index: 1;
+            margin-left: auto;
         }
 
         .icon {
             display: block;
             width: 100%;
-            height: 100%;
+            height: auto;
         }
     }
 
     .buttons {
-        display: inline-flex;
+        display: flex;
+        flex-grow: 1;
         position: relative;
         z-index: 3; // above `.subScreenBadge`
         align-items: center;

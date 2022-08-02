@@ -18,18 +18,15 @@
     z-index: 2;
     align-items: center;
     justify-content: center;
-    width: 50px; // @todo standardize icon sizes, variable, theme-controlled, etc.
-    height: 50px;
+    width: 20px;
+    height: 32px;
     margin: 10px;
-    padding: 5px;
     transition: opacity 0.1s ease-out;
     pointer-events: auto;
 }
 
 .playPauseButton {
     transition: opacity 0.5s ease-out;
-    border: 2px solid currentColor;
-    border-radius: 50%;
     opacity: 0;
     pointer-events: none;
 
@@ -37,9 +34,8 @@
         display: block;
         position: relative;
         z-index: 1;
-        width: 50%;
-        height: 50%;
-        transform: translateX(5%);
+        width: 100%;
+        height: auto;
     }
 
     // display the Play/Pause button
@@ -115,7 +111,7 @@
 
     .withSeekBar.withPlayPause & {
         bottom: 50%;
-        padding: 0 70px;
+        padding: 0 40px;
         transform: translateY(50%);
         opacity: 1;
         pointer-events: auto;

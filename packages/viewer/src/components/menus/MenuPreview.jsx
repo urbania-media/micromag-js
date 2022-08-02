@@ -1,9 +1,5 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, react/jsx-props-no-spreading, arrow-body-style */
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
-import { faCompress } from '@fortawesome/free-solid-svg-icons/faCompress';
-import { faExpand } from '@fortawesome/free-solid-svg-icons/faExpand';
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -13,10 +9,12 @@ import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, ScreenPreview } from '@micromag/core/components';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
+import { getStyleFromColor } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
 
 import StackIcon from '../icons/Stack';
+import MicromagPreview from '../partials/MicromagPreview';
+import Share from '../partials/Share';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
 
@@ -25,13 +23,18 @@ const propTypes = {
     screenSize: MicromagPropTypes.screenSize,
     menuWidth: PropTypes.number,
     title: PropTypes.string,
+    description: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     focusable: PropTypes.bool,
     shouldLoad: PropTypes.bool,
+    currentScreenIndex: PropTypes.number,
+    shareUrl: PropTypes.string,
+    onShare: PropTypes.func,
     onClickItem: PropTypes.func,
     onClose: PropTypes.func,
     maxThumbsWidth: PropTypes.number,
     toggleFullscreen: PropTypes.func,
+    showShare: PropTypes.bool,
     fullscreenActive: PropTypes.bool,
     fullscreenEnabled: PropTypes.bool,
     className: PropTypes.string,
@@ -42,9 +45,14 @@ const defaultProps = {
     screenSize: null,
     menuWidth: null,
     title: null,
+    description: null,
     items: [],
     focusable: true,
+    currentScreenIndex: 0,
     shouldLoad: true,
+    showShare: false,
+    shareUrl: null,
+    onShare: null,
     onClickItem: null,
     onClose: null,
     maxThumbsWidth: 140,
@@ -59,8 +67,13 @@ const ViewerMenuPreview = ({
     screenSize,
     menuWidth,
     title,
+    description,
     items,
     focusable,
+    currentScreenIndex,
+    showShare,
+    shareUrl,
+    onShare,
     onClickItem,
     onClose,
     maxThumbsWidth,
@@ -76,13 +89,7 @@ const ViewerMenuPreview = ({
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3);
 
     // Viewer theme
-    const {
-        colors = null,
-        background = null,
-        textStyles = null,
-        logo: brandLogo = null,
-    } = viewerTheme || {};
-    const { title: brandTextStyle = null } = textStyles || {};
+    const { colors = null, background = null, logo: brandLogo = null } = viewerTheme || {};
     const { primary: brandPrimaryColor = null, secondary: brandSecondaryColor = null } =
         colors || {};
     const { color: brandBackgroundColor = null, image = null } = background || {};
@@ -98,8 +105,6 @@ const ViewerMenuPreview = ({
                   backgroundImage: `url(${brandImageUrl})`,
               }
             : null;
-
-    const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
 
     const [scrolledBottom, setScrolledBottom] = useState(false);
     const dragBind = useDrag(
@@ -120,6 +125,10 @@ const ViewerMenuPreview = ({
     }, [setScrolledBottom]);
 
     const finalItems = useMemo(() => (!focusable ? items.slice(0, 3) : items), [items, focusable]);
+    const coverScreen = useMemo(() => {
+        const { screen = null } = finalItems[0] || {};
+        return screen;
+    }, [finalItems]);
 
     return (
         <div
@@ -140,9 +149,6 @@ const ViewerMenuPreview = ({
                         style={{ backgroundImage: `url(${brandLogoUrl})` }}
                     />
                 ) : null}
-                <div className={styles.title} style={titleStyle}>
-                    {title}
-                </div>
                 <div className={styles.buttons} style={colorSecondaryColorStyle}>
                     {fullscreenEnabled ? (
                         <Button
@@ -158,26 +164,58 @@ const ViewerMenuPreview = ({
                             })}
                             focusable={focusable}
                         >
-                            <FontAwesomeIcon
-                                className={styles.icon}
-                                icon={fullscreenActive ? faCompress : faExpand}
-                            />
+                            {fullscreenActive ? (
+                                <svg
+                                    className={styles.icon}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="10"
+                                    height="16"
+                                    viewBox="0 0 10 16"
+                                    fill="currentColor"
+                                >
+                                    <polygon points="2.5 13.5 2.5 16 4 16 4 12 0 12 0 13.5 2.5 13.5" />
+                                    <polygon points="7.5 13.5 10 13.5 10 12 6 12 6 16 7.5 16 7.5 13.5" />
+                                    <polygon points="2.5 2.5 0 2.5 0 4 4 4 4 0 2.5 0 2.5 2.5" />
+                                    <polygon points="7.5 2.5 7.5 0 6 0 6 4 10 4 10 2.5 7.5 2.5" />
+                                </svg>
+                            ) : (
+                                <svg
+                                    className={styles.icon}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="10"
+                                    height="16"
+                                    viewBox="0 0 10 16"
+                                    fill="currentColor"
+                                >
+                                    <polygon points="1.5 14.5 1.5 12 0 12 0 16 4 16 4 14.5 1.5 14.5" />
+                                    <polygon points="8.5 14.5 6 14.5 6 16 10 16 10 12 8.5 12 8.5 14.5" />
+                                    <polygon points="1.5 1.5 4 1.5 4 0 0 0 0 4 1.5 4 1.5 1.5" />
+                                    <polygon points="8.5 1.5 8.5 4 10 4 10 0 6 0 6 1.5 8.5 1.5" />
+                                </svg>
+                            )}
                         </Button>
                     ) : null}
                     <Button
-                        className={styles.button}
+                        className={classNames([styles.button, styles.closeButton])}
                         onClick={onClose}
-                        title={intl.formatMessage({
-                            defaultMessage: 'Close',
-                            description: 'Button label',
-                        })}
-                        aria-label={intl.formatMessage({
-                            defaultMessage: 'Close',
-                            description: 'Button label',
-                        })}
                         focusable={focusable}
                     >
-                        <FontAwesomeIcon className={styles.icon} icon={faTimes} />
+                        <div className={styles.menuLabel}>
+                            {intl.formatMessage({
+                                defaultMessage: 'Close',
+                                description: 'Button label',
+                            })}
+                        </div>
+                        <svg
+                            className={styles.icon}
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="10"
+                            height="16"
+                            viewBox="0 0 10 16"
+                            fill="currentColor"
+                        >
+                            <polygon points="9.95 4.11 8.89 3.05 5 6.94 1.11 3.05 0.05 4.11 3.94 8 0.05 11.89 1.11 12.95 5 9.06 8.89 12.95 9.95 11.89 6.06 8 9.95 4.11" />
+                        </svg>
                     </Button>
                 </div>
             </div>
@@ -187,6 +225,25 @@ const ViewerMenuPreview = ({
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                 >
+                    <MicromagPreview
+                        className={styles.info}
+                        screen={coverScreen}
+                        title={title}
+                        description={description}
+                    />
+
+                    {showShare ? (
+                        <Share
+                            className={styles.shareModal}
+                            title={title}
+                            description={description}
+                            url={shareUrl}
+                            items={items}
+                            currentScreenIndex={currentScreenIndex}
+                            onShare={onShare}
+                        />
+                    ) : null}
+
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
                             {finalItems.map((item, index) => {

@@ -357,7 +357,7 @@ msgstr "Images"
 #: 5mk1b+
 msgctxt "5mk1b+"
 msgid "Share"
-msgstr "Partage"
+msgstr "Partager"
 
 # Submit placeholder
 #: 5uH4x7

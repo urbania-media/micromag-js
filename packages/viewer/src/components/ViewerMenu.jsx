@@ -4,16 +4,15 @@ import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useMemo } from 'react';
+import React, { useCallback, useEffect, useRef, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button } from '@micromag/core/components';
 import { useDimensionObserver, useTrackEvent } from '@micromag/core/hooks';
 
 import MenuDots from './menus/MenuDots';
-import MenuIcon from './menus/MenuIcon';
 import MenuPreview from './menus/MenuPreview';
-import ShareButton from './partials/ShareButton';
 
 import styles from '../styles/viewer.module.scss';
 
@@ -38,6 +37,7 @@ const propTypes = {
     onRequestClose: PropTypes.func,
     onClickItem: PropTypes.func,
     onClickMenu: PropTypes.func,
+    onClickShare: PropTypes.func,
     onClickCloseViewer: PropTypes.func,
     refDots: PropTypes.shape({
         current: PropTypes.any, // eslint-disable-line
@@ -64,6 +64,7 @@ const defaultProps = {
     onRequestClose: null,
     onClickItem: null,
     onClickMenu: null,
+    onClickShare: null,
     onClickCloseViewer: null,
     refDots: null,
 };
@@ -89,6 +90,7 @@ const ViewerMenu = ({
     onRequestClose,
     onClickItem: customOnClickItem,
     onClickMenu: customOnClickMenu,
+    onClickShare: customOnClickShare,
     onClickCloseViewer,
     refDots,
 }) => {
@@ -223,11 +225,24 @@ const ViewerMenu = ({
         trackScreenEvent('viewer_menu', 'click_close', 'Close icon');
     }, [onRequestClose, trackScreenEvent]);
 
-    // Handle preview menu share click
-
+    const [showShare, setShowShare] = useState(false);
     const onClickShare = useCallback(
-        (type) => trackScreenEvent('viewer_menu', 'click_share', type),
-        [trackScreenEvent],
+        () => {
+            if (customOnClickShare !== null) {
+                customOnClickShare();
+            }
+            setShowShare(true);
+            trackScreenEvent('viewer_menu', 'click_share');
+        },
+        [customOnClickShare, setShowShare, trackScreenEvent],
+    );
+
+    const onStoryShared = useCallback(
+        (type) => {
+            setShowShare(false);
+            trackScreenEvent('viewer_menu', 'shared_story', type)
+        },
+        [setShowShare, trackScreenEvent],
     );
 
     const { menuTheme = null } = viewerTheme || {};
@@ -246,63 +261,65 @@ const ViewerMenu = ({
                 <nav className={styles.menuTopContainer}>
                     {!withoutScreensMenu ? (
                         <div className={classNames([styles.menuItem, styles.menuScreens])}>
-                            <button
-                                type="button"
-                                title={intl.formatMessage({
-                                    defaultMessage: 'Menu',
-                                    description: 'Button label',
-                                })}
-                                aria-label={intl.formatMessage({
-                                    defaultMessage: 'Menu',
-                                    description: 'Button label',
-                                })}
+                            <Button
                                 className={styles.menuButton}
+                                href={shareUrl}
+                                label={intl.formatMessage({
+                                    defaultMessage: 'Menu',
+                                    description: 'Button label',
+                                })}
+                                icon={
+                                    <svg
+                                        className={styles.menuIcon}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="10"
+                                        height="16"
+                                        viewBox="0 0 10 16"
+                                        fill="currentColor"
+                                        {...menuTheme}
+                                    >
+                                        <rect width="10" height="16" />
+                                    </svg>
+                                }
                                 onClick={onClickMenu}
-                            >
-                                <MenuIcon className={styles.menuIcon} {...menuTheme} />
-                                <div className={styles.menuLabel}>
-                                    {intl.formatMessage({
-                                        defaultMessage: 'Menu',
-                                        description: 'Button label',
-                                    })}
-                                </div>
-                            </button>
+                            />
                         </div>
                     ) : null}
 
                     {!withoutShareMenu ? (
                         <div className={classNames([styles.menuItem, styles.menuShare])}>
-                            <ShareButton
-                                className={styles.shareButton}
-                                buttonClassName={styles.menuButton}
-                                title={title}
-                                description={description}
-                                url={shareUrl}
+                            <Button
+                                className={styles.menuButton}
                                 items={items}
-                                currentScreenIndex={currentScreenIndex}
-                                onShare={onClickShare}
-                            >
-                                <div className={styles.menuLabel}>
-                                    {intl.formatMessage({
-                                        defaultMessage: 'Share',
-                                        description: 'Button label',
-                                    })}
-                                </div>
-                                <MenuIcon className={styles.menuIcon} {...menuTheme} />
-                            </ShareButton>
+                                onClick={onClickShare}
+                                label={intl.formatMessage({
+                                    defaultMessage: 'Share',
+                                    description: 'Button label',
+                                })}
+                                iconPosition="right"
+                                icon={
+                                    <svg
+                                        className={styles.menuIcon}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="10"
+                                        height="16"
+                                        viewBox="0 0 10 16"
+                                        fill="currentColor"
+                                        {...menuTheme}
+                                    >
+                                        <polygon points="8.5 14.5 1.5 14.5 1.5 8 0 8 0 16 10 16 10 8 8.5 8 8.5 14.5" />
+                                        <polygon points="9.62 4.62 5 0 0.38 4.62 1.44 5.68 4.25 2.87 4.25 11.26 5.75 11.26 5.75 2.87 8.56 5.68 9.62 4.62" />
+                                    </svg>
+                                }
+                            />
                         </div>
                     ) : null}
                 </nav>
 
                 <MenuDots
                     {...menuTheme}
-                    currentScreenIndex={currentScreenIndex}
                     direction="horizontal"
                     items={items}
-                    title={title}
-                    description={description}
-                    shareUrl={shareUrl}
-                    onShare={onClickShare}
                     onClickItem={onClickItem}
                     onClickMenu={onClickMenu}
                     closeable={closeable}
@@ -322,9 +339,15 @@ const ViewerMenu = ({
                     viewerTheme={viewerTheme}
                     className={styles.menuPreview}
                     screenSize={screenSize}
+                    title={title}
+                    description={description}
                     menuWidth={menuWidth}
                     focusable={opened}
                     items={items}
+                    currentScreenIndex={currentScreenIndex}
+                    showShare={showShare}
+                    shareUrl={shareUrl}
+                    onShare={onStoryShared}
                     onClickItem={onClickItem}
                     onClose={onClickClose}
                     toggleFullscreen={toggleFullscreen}

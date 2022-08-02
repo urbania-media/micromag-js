@@ -564,6 +564,7 @@ const Viewer = ({
                                 trackingEnabled={trackingEnabled}
                                 onClickItem={onClickMenuItem}
                                 onClickMenu={onClickMenu}
+                                onClickShare={onClickMenu}
                                 onClickCloseViewer={onCloseViewer}
                                 onRequestOpen={onMenuRequestOpen}
                                 onRequestClose={onMenuRequestClose}

@@ -140,7 +140,30 @@ function PlaybackControls({ className, collapsedClassName }) {
                 })}
                 tabIndex={controlsVisible ? '0' : '-1'}
             >
-                <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />
+                {playing ? (
+                    <svg
+                        className={styles.icon}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="16"
+                        viewBox="0 0 10 16"
+                        fill="currentColor"
+                    >
+                        <rect x="2.24" y="4.33" width="2" height="7.34" />
+                        <rect x="5.71" y="4.33" width="2" height="7.34" />
+                    </svg>
+                ) : (
+                    <svg
+                        className={styles.icon}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="16"
+                        viewBox="0 0 10 16"
+                        fill="currentColor"
+                    >
+                        <polyline points="2.67 3.92 7.33 8 2.67 12.08" />
+                    </svg>
+                )}
             </button>
 
             <SeekBar
@@ -158,12 +181,7 @@ function PlaybackControls({ className, collapsedClassName }) {
 
             <button
                 type="button"
-                className={classNames([
-                    styles.muteButton,
-                    {
-                        [styles.isMuted]: muted,
-                    },
-                ])}
+                className={styles.muteButton}
                 style={{
                     color,
                 }}
@@ -178,7 +196,33 @@ function PlaybackControls({ className, collapsedClassName }) {
                 })}
                 tabIndex={controlsVisible || mediaHasAudio ? '0' : '-1'}
             >
-                <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
+                {muted ? (
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="16"
+                        viewBox="0 0 10 16"
+                        className={styles.icon}
+                        fill="currentColor"
+                    >
+                        <rect y="6" width="2" height="4" />
+                        <polygon points="5 13 2 10 2 6 3.37 4.63 5 3 5 13" />
+                        <path d="M5.63,9.5l1,1.22a4.69,4.69,0,0,0,0-5.44l-1,1.22a3.15,3.15,0,0,1,0,3Z" />
+                        <path d="M7.46,11l1,1.19a6.58,6.58,0,0,0,0-8.34L7.46,5a5,5,0,0,1,0,6Z" />
+                    </svg>
+                ) : (
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="16"
+                        viewBox="0 0 10 16"
+                        className={styles.icon}
+                        fill="currentColor"
+                    >
+                        <polygon points="3.37 4.63 2 6 0 6 0 10 2 10 5 13 5 3 3.37 4.63" />
+                        <polygon points="9.97 6.64 8.91 5.58 7.55 6.94 6.18 5.58 5.12 6.64 6.49 8 5.12 9.36 6.18 10.43 7.55 9.06 8.91 10.43 9.97 9.36 8.61 8 9.97 6.64" />
+                    </svg>
+                )}
             </button>
         </div>
     );

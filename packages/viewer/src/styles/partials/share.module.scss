@@ -1,0 +1,48 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.content {
+    padding: 0 1rem;
+
+    .mode {
+        margin-bottom: 1rem;
+
+        label {
+            font-size: 14px;
+        }
+
+        input {
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+.preview {
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.shareOptionsItem {
+    border-top: 1px solid $gray-600;
+
+    + .shareOptionsItem {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        .shareOptionsButton {
+            padding-bottom: 0.5rem;
+        }
+    }
+}
+
+.container { // @tody wacky specificity
+    .shareOptionsButton {
+        background-color: transparent;
+        padding: 0 0.25rem;
+
+        &:hover {
+            background-color: $black !important;
+        }
+    }
+}
