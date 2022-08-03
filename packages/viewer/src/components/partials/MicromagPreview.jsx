@@ -35,7 +35,7 @@ const MicromagExample = ({ screen, title, description, className }) => (
             <ScreenPreview screen={screen} width={100} height={150} withSize />
         </div>
         <div className={styles.info}>
-            <h3>{title}</h3>
+            <h3 className={styles.title}>{title}</h3>
             <p>{description}</p>
         </div>
     </div>

@@ -13,8 +13,10 @@
 
 .info {
     white-space: normal;
+}
 
-    h3 {
+.container { // @todo specificity clash
+    .title {
         font-size: 1.1rem;
         font-weight: 700;
         margin-bottom: 0.25rem;

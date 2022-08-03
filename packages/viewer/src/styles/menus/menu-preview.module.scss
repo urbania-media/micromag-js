@@ -76,6 +76,15 @@
         margin-bottom: 2rem;
     }
 
+    .shareUrl {
+        margin: 1rem 0;
+        padding: 0.5rem;
+        background-color: rgba($white, 0.1);
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 14px;
+    }
+
     .shareMode {
         display: flex;
         align-items: center;
@@ -88,6 +97,30 @@
 
         input {
             margin-right: 0.5rem;
+        }
+    }
+
+    .shareOptionsItem {
+        border-top: 1px solid $gray-600;
+
+        + .shareOptionsItem {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            .shareOptionsButton {
+                padding-bottom: 0.5rem;
+            }
+        }
+    }
+
+    .shareOptionsButton {
+        border-radius: 0;
+        background-color: transparent;
+        padding: 0 0.25rem;
+
+        &:hover {
+            background-color: $black !important;
         }
     }
 
@@ -111,11 +144,16 @@
         background-size: contain;
     }
 
-    .title {
-        margin-right: auto;
-        color: #fff;
-        font-family: Helvetica, Arial, sans-serif;
+    .heading {
+        font-size: 1.25rem;
+        font-weight: 700;
     }
+
+    // .title {
+    //     margin-right: auto;
+    //     color: #fff;
+    //     font-family: Helvetica, Arial, sans-serif;
+    // }
 
     .content {
         position: relative;

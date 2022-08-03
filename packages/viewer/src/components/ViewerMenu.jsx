@@ -99,6 +99,7 @@ const ViewerMenu = ({
     const { description = null } = metadata || {};
     const currentScreen = screens !== null ? screens[currentScreenIndex] || null : null;
     const { id: screenId = null, type: screenType = null } = currentScreen || {};
+    const [showShare, setShowShare] = useState(false);
 
     const items = useMemo(
         () =>
@@ -134,10 +135,14 @@ const ViewerMenu = ({
     );
 
     const shareUrl = useMemo(() => {
-        const origin =
-            typeof window !== 'undefined' ? window.location.origin.replace(/\/+$/, '') : '';
-        const path = shareBasePath !== null ? `${origin}${shareBasePath}` : origin;
-        return path;
+        // @todo validate this
+        // const base =
+        //     typeof window !== 'undefined' ? window.location.origin.replace(/\/+$/, '') : '';
+        // const path = shareBasePath !== null ? `${base}${shareBasePath}` : base;
+        const base =
+            typeof window !== 'undefined' ? window.location.host : '';
+        const path = shareBasePath !== null ? `${base}${shareBasePath}` : base;
+        return path
     }, [shareBasePath]);
 
     const [{ y: menuY }, setMenuSpring] = useSpring(() => ({
@@ -222,10 +227,10 @@ const ViewerMenu = ({
         if (onRequestClose !== null) {
             onRequestClose();
         }
+        setShowShare(false);
         trackScreenEvent('viewer_menu', 'click_close', 'Close icon');
-    }, [onRequestClose, trackScreenEvent]);
+    }, [onRequestClose, setShowShare, trackScreenEvent]);
 
-    const [showShare, setShowShare] = useState(false);
     const onClickShare = useCallback(
         () => {
             if (customOnClickShare !== null) {
