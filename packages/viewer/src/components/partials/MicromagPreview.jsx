@@ -22,7 +22,7 @@ const defaultProps = {
     className: null,
 };
 
-const MicromagExample = ({ screen, title, description, className }) => (
+const MicromagPreview = ({ screen, title, description, className }) => (
     <div
         className={classNames([
             styles.container,
@@ -41,7 +41,7 @@ const MicromagExample = ({ screen, title, description, className }) => (
     </div>
 );
 
-MicromagExample.propTypes = propTypes;
-MicromagExample.defaultProps = defaultProps;
+MicromagPreview.propTypes = propTypes;
+MicromagPreview.defaultProps = defaultProps;
 
-export default MicromagExample;
+export default MicromagPreview;

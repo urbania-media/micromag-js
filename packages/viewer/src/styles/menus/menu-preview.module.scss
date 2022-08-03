@@ -9,7 +9,6 @@
     position: relative;
     flex-direction: column;
     height: 100%;
-    padding: 10px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -67,17 +66,16 @@
     }
 
     .micromagPreview {
+        padding: 10px;
         margin-top: 3rem;
-        margin-bottom: 2rem;
     }
 
-    .micromagShare {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+    .shareHeader {
+        padding: 10px;
     }
 
     .shareUrl {
-        margin: 1rem 0;
+        margin: 0.5rem 0;
         padding: 0.5rem;
         background-color: rgba($white, 0.1);
         border-radius: 4px;
@@ -98,6 +96,10 @@
         input {
             margin-right: 0.5rem;
         }
+    }
+
+    .shareOptions {
+        margin-bottom: 5rem;
     }
 
     .shareOptionsItem {
@@ -168,6 +170,7 @@
         position: relative;
         flex-grow: 1;
         overflow: hidden;
+        padding: 10px 10px 5rem;
     }
 
     .items,
@@ -185,8 +188,11 @@
 
     .item {
         position: relative;
+        width: 33.333%;
 
         &.active {
+            z-index: 2;
+
             .screenButton {
                 pointer-events: none;
             }
@@ -239,11 +245,20 @@
     .activeScreenBorder {
         @extend %fullscreen;
 
-        border: 2px solid #fff;
+        animation: borderBounce 0.8s $ease-in-out-soft-sine infinite alternate-reverse;
     }
 
     .screenContent {
         transform-origin: left top;
         background-color: $gray-900;
+    }
+}
+
+@keyframes borderBounce {
+    from {
+        outline: 2px solid $white;
+    }
+    to {
+        outline: 10px solid $white;
     }
 }

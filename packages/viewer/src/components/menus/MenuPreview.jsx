@@ -130,12 +130,16 @@ const ViewerMenuPreview = ({
         return screen;
     }, [finalItems]);
     const currentScreen = useMemo(
-        () =>
-            items.find((item) => {
+        () => {
+            const found = items.find((item) => {
                 const { current = false } = item || {};
                 return current;
-            }),
-        [items, focusable],
+            });
+            const { screen = null } = found || {};
+
+            return screen;
+        },
+        [items, currentScreenIndex, focusable],
     );
 
     const [shareCurrentScreen, setShareCurrentScreen] = useState(false);
@@ -246,37 +250,39 @@ const ViewerMenuPreview = ({
                 >
                     <MicromagPreview
                         className={styles.micromagPreview}
-                        screen={shareCurrentScreen ? currentScreen : coverScreen}
+                        screen={showShare && shareCurrentScreen ? currentScreen : coverScreen}
                         title={title}
                         description={description}
                     />
 
                     {showShare ? (
-                        <div className={styles.micromagShare}>
-                            <h3 className={styles.heading}>
-                                <FormattedMessage
-                                    defaultMessage="Share"
-                                    description="Share screen title"
-                                />
-                            </h3>
-                            {currentScreenIndex !== 0 ? (
-                                <div className={styles.shareMode}>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            name="currentScreen"
-                                            value="currentScreen"
-                                            onChange={onShareModeChange}
-                                            checked={shareCurrentScreen}
-                                        />
-                                        <FormattedMessage
-                                            defaultMessage="Start from the current screen"
-                                            description="Share mode"
-                                        />
-                                    </label>
-                                </div>
-                            ) : null}
-                            <div className={styles.shareUrl}>{finalShareUrl}</div>
+                        <>
+                            <div className={styles.shareHeader}>
+                                <h3 className={styles.heading}>
+                                    <FormattedMessage
+                                        defaultMessage="Share"
+                                        description="Share screen title"
+                                    />
+                                </h3>
+                                {currentScreenIndex !== 0 ? (
+                                    <div className={styles.shareMode}>
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                name="currentScreen"
+                                                value="currentScreen"
+                                                onChange={onShareModeChange}
+                                                checked={shareCurrentScreen}
+                                            />
+                                            <FormattedMessage
+                                                defaultMessage="Start from the current screen"
+                                                description="Share mode"
+                                            />
+                                        </label>
+                                    </div>
+                                ) : null}
+                                <div className={styles.shareUrl}>{finalShareUrl}</div>
+                            </div>
                             <ShareOptions
                                 className={styles.shareOptions}
                                 itemClassName={styles.shareOptionsItem}
@@ -287,99 +293,97 @@ const ViewerMenuPreview = ({
                                 onShare={onShare}
                                 shareCurrentScreen={shareCurrentScreen}
                             />
-                        </div>
+                        </>
                     ) : null}
 
-                    {!showShare ? (
-                        <nav className={styles.nav}>
-                            <ul className={styles.items}>
-                                {finalItems.map((item, index) => {
-                                    const { screenId, current = false, screen, count = 1 } = item;
-                                    const screenAriaLabel = `${intl.formatMessage(
-                                        {
-                                            defaultMessage: 'Screen {index}',
-                                            description: 'Button label',
-                                        },
-                                        { index: index + 1 },
-                                    )}${
-                                        current
-                                            ? ` ${intl.formatMessage({
-                                                  defaultMessage: '(current screen)',
-                                                  description: 'Button label',
-                                              })}`
-                                            : ''
-                                    }`;
-                                    return (
-                                        <li
-                                            className={classNames([
-                                                styles.item,
-                                                {
-                                                    [styles.active]: current,
-                                                },
-                                            ])}
-                                            key={`item-${screenId}`}
-                                            style={{
-                                                width: `${100 / thumbsPerLine}%`,
-                                            }}
-                                        >
-                                            <div className={styles.itemContent}>
-                                                <div
-                                                    className={styles.screenContainer}
-                                                    ref={
-                                                        index === 0 ? firstScreenContainerRef : null
-                                                    }
-                                                >
-                                                    {count > 1 ? (
-                                                        <div className={styles.subScreenBadge}>
-                                                            <span className={styles.subScreenCount}>
-                                                                {count}
-                                                            </span>
-                                                            <StackIcon
-                                                                className={styles.subScreenIcon}
-                                                            />
-                                                        </div>
-                                                    ) : null}
-                                                    {screenWidth > 0 && screenHeight > 0 ? (
-                                                        <ScreenPreview
-                                                            screenWidth={screenWidth}
-                                                            screenHeight={screenHeight}
-                                                            width={thumbWidth}
-                                                            screen={screen}
-                                                            focusable={focusable}
-                                                            active={focusable}
-                                                            withSize
+                    <nav className={styles.nav}>
+                        <ul className={styles.items}>
+                            {finalItems.map((item, index) => {
+                                const { screenId, current = false, screen, count = 1 } = item;
+                                const screenAriaLabel = `${intl.formatMessage(
+                                    {
+                                        defaultMessage: 'Screen {index}',
+                                        description: 'Button label',
+                                    },
+                                    { index: index + 1 },
+                                )}${
+                                    current
+                                        ? ` ${intl.formatMessage({
+                                                defaultMessage: '(current screen)',
+                                                description: 'Button label',
+                                            })}`
+                                        : ''
+                                }`;
+                                return (
+                                    <li
+                                        className={classNames([
+                                            styles.item,
+                                            {
+                                                [styles.active]: current,
+                                            },
+                                        ])}
+                                        key={`item-${screenId}`}
+                                        style={{
+                                            width: `${100 / thumbsPerLine}%`,
+                                        }}
+                                    >
+                                        <div className={styles.itemContent}>
+                                            <div
+                                                className={styles.screenContainer}
+                                                ref={
+                                                    index === 0 ? firstScreenContainerRef : null
+                                                }
+                                            >
+                                                {count > 1 ? (
+                                                    <div className={styles.subScreenBadge}>
+                                                        <span className={styles.subScreenCount}>
+                                                            {count}
+                                                        </span>
+                                                        <StackIcon
+                                                            className={styles.subScreenIcon}
                                                         />
-                                                    ) : null}
-                                                    {current ? (
-                                                        <div
-                                                            className={styles.activeScreenBorder}
-                                                            style={borderPrimaryColorStyle}
-                                                        />
-                                                    ) : null}
-                                                </div>
+                                                    </div>
+                                                ) : null}
+                                                {screenWidth > 0 && screenHeight > 0 ? (
+                                                    <ScreenPreview
+                                                        screenWidth={screenWidth}
+                                                        screenHeight={screenHeight}
+                                                        width={thumbWidth}
+                                                        screen={screen}
+                                                        focusable={focusable}
+                                                        active={focusable}
+                                                        withSize
+                                                    />
+                                                ) : null}
+                                                {current ? (
+                                                    <div
+                                                        className={styles.activeScreenBorder}
+                                                        style={borderPrimaryColorStyle}
+                                                    />
+                                                ) : null}
                                             </div>
-                                            <button
-                                                type="button"
-                                                className={styles.screenButton}
-                                                onClick={() => {
-                                                    if (onClickItem !== null) {
-                                                        onClickItem(item);
-                                                    }
-                                                }}
-                                                aria-label={screenAriaLabel}
-                                                onKeyUp={(e) => {
-                                                    if (e.key === 'Enter' && onClickItem !== null) {
-                                                        onClickItem(item);
-                                                    }
-                                                }}
-                                                tabIndex={focusable ? '0' : '-1'}
-                                            />
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </nav>
-                    ) : null}
+                                        </div>
+                                        <button
+                                            type="button"
+                                            className={styles.screenButton}
+                                            onClick={() => {
+                                                if (onClickItem !== null) {
+                                                    onClickItem(item);
+                                                }
+                                            }}
+                                            aria-label={screenAriaLabel}
+                                            onKeyUp={(e) => {
+                                                if (e.key === 'Enter' && onClickItem !== null) {
+                                                    onClickItem(item);
+                                                }
+                                            }}
+                                            tabIndex={focusable ? '0' : '-1'}
+                                        />
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </nav>
                 </Scroll>
             </div>
         </div>

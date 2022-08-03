@@ -268,7 +268,6 @@ const ViewerMenu = ({
                         <div className={classNames([styles.menuItem, styles.menuScreens])}>
                             <Button
                                 className={styles.menuButton}
-                                href={shareUrl}
                                 label={intl.formatMessage({
                                     defaultMessage: 'Menu',
                                     description: 'Button label',
