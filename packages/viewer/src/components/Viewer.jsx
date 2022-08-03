@@ -644,14 +644,21 @@ const Viewer = ({
                                                 {...dragScreenBind(i)}
                                             >
                                                 {current && screenIndex > 0 ? (
-                                                    <NavigationButton
-                                                        direction="previous"
+                                                    <div
                                                         className={classNames([
-                                                            styles.navButton,
+                                                            styles.navButtonContainer,
                                                             styles.previous,
                                                         ])}
-                                                        onClick={gotoPreviousScreen}
-                                                    />
+                                                    >
+                                                        <NavigationButton
+                                                            direction="previous"
+                                                            className={classNames([
+                                                                styles.navButton,
+                                                                styles.previous,
+                                                            ])}
+                                                            onClick={gotoPreviousScreen}
+                                                        />
+                                                    </div>
                                                 ) : null}
                                                 {mountedScreen !== null ? (
                                                     <ViewerScreen
@@ -678,14 +685,21 @@ const Viewer = ({
                                                     />
                                                 ) : null}
                                                 {current && screenIndex < screens.length - 1 ? (
-                                                    <NavigationButton
-                                                        direction="next"
+                                                    <div
                                                         className={classNames([
-                                                            styles.navButton,
+                                                            styles.navButtonContainer,
                                                             styles.next,
                                                         ])}
-                                                        onClick={gotoNextScreen}
-                                                    />
+                                                    >
+                                                        <NavigationButton
+                                                            direction="next"
+                                                            className={classNames([
+                                                                styles.navButton,
+                                                                styles.next,
+                                                            ])}
+                                                            onClick={gotoNextScreen}
+                                                        />
+                                                    </div>
                                                 ) : null}
                                             </div>
                                         </React.Fragment>

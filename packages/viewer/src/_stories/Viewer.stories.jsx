@@ -17,6 +17,7 @@ import {
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
+import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
@@ -102,6 +103,10 @@ export const WithComplexSiblings = () => (
 
 export const MicromagExample = () => (
     <Viewer {...micromagExample} />
+);
+
+export const LesPlanetes = () => (
+    <Viewer {...planetsStory} />
 );
 
 export const Integrated = () => {

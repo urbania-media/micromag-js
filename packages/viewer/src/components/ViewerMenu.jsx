@@ -139,10 +139,9 @@ const ViewerMenu = ({
         // const base =
         //     typeof window !== 'undefined' ? window.location.origin.replace(/\/+$/, '') : '';
         // const path = shareBasePath !== null ? `${base}${shareBasePath}` : base;
-        const base =
-            typeof window !== 'undefined' ? window.location.host : '';
+        const base = typeof window !== 'undefined' ? window.location.host : '';
         const path = shareBasePath !== null ? `${base}${shareBasePath}` : base;
-        return path
+        return path;
     }, [shareBasePath]);
 
     const [{ y: menuY }, setMenuSpring] = useSpring(() => ({
@@ -231,21 +230,18 @@ const ViewerMenu = ({
         trackScreenEvent('viewer_menu', 'click_close', 'Close icon');
     }, [onRequestClose, setShowShare, trackScreenEvent]);
 
-    const onClickShare = useCallback(
-        () => {
-            if (customOnClickShare !== null) {
-                customOnClickShare();
-            }
-            setShowShare(true);
-            trackScreenEvent('viewer_menu', 'click_share');
-        },
-        [customOnClickShare, setShowShare, trackScreenEvent],
-    );
+    const onClickShare = useCallback(() => {
+        if (customOnClickShare !== null) {
+            customOnClickShare();
+        }
+        setShowShare(true);
+        trackScreenEvent('viewer_menu', 'click_share');
+    }, [customOnClickShare, setShowShare, trackScreenEvent]);
 
     const onStoryShared = useCallback(
         (type) => {
             setShowShare(false);
-            trackScreenEvent('viewer_menu', 'shared_story', type)
+            trackScreenEvent('viewer_menu', 'shared_story', type);
         },
         [setShowShare, trackScreenEvent],
     );
@@ -282,7 +278,7 @@ const ViewerMenu = ({
                                         fill="currentColor"
                                         {...menuTheme}
                                     >
-                                        <rect width="10" height="16" />
+                                        <path d="M8.5,1.5V14.5H1.5V1.5h7m1.5-1.5H0V16H10V0h0Z" />
                                     </svg>
                                 }
                                 onClick={onClickMenu}

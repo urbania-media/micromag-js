@@ -305,3 +305,20 @@
         outline: 3px solid $purple;
     }
 }
+
+%hover-bounce {
+    transition: transform 0.3s $ease-in-bump;
+
+    &:hover {
+        transform: scale(1.15);
+    }
+}
+
+%active-bounce {
+    transition: transform 0.2s $ease-in-bump;
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+

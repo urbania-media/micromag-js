@@ -74,6 +74,29 @@
         padding: 10px;
     }
 
+    .shareMode {
+        label {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        input {
+            margin-right: 0.5rem;
+            appearance: none;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 2px;
+            border: 2px solid $white;
+            background-color: $white;
+
+            &:checked {
+                background-color: $purple;
+            }
+        }
+    }
+
     .shareUrl {
         margin: 0.5rem 0;
         padding: 0.5rem;
@@ -81,21 +104,6 @@
         border-radius: 4px;
         font-family: monospace;
         font-size: 14px;
-    }
-
-    .shareMode {
-        display: flex;
-        align-items: center;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-
-        label {
-            font-size: 14px;
-        }
-
-        input {
-            margin-right: 0.5rem;
-        }
     }
 
     .shareOptions {
@@ -146,16 +154,11 @@
         background-size: contain;
     }
 
-    .heading {
-        font-size: 1.25rem;
-        font-weight: 700;
+    .title {
+        margin-right: auto;
+        color: #fff;
+        font-family: Helvetica, Arial, sans-serif;
     }
-
-    // .title {
-    //     margin-right: auto;
-    //     color: #fff;
-    //     font-family: Helvetica, Arial, sans-serif;
-    // }
 
     .content {
         position: relative;

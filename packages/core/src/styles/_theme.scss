@@ -87,9 +87,12 @@ $btn-active-bg-tint-amount: 50% !default;
 $btn-active-border-shade-amount: 50% !default;
 $btn-active-border-tint-amount: 25% !default;
 
-$ease-in-out-bounce: cubic-bezier(.075,1.5,.35,.95);
+$ease-in-bounce: cubic-bezier(.075,1.5,.35,.95);
+$ease-in-out-bounce: cubic-bezier(.9,-0.5,.1,1.5);
 $ease-in-out-soft-sine: cubic-bezier(.4,0,.6,1);
 $ease-in-out-sine: cubic-bezier(.6,0,.4,1);
 $ease-in-out-hard-sine: cubic-bezier(.9,0,.1,1);
 $ease-in-ramp: cubic-bezier(.6,0,1,.5);
 $ease-out-ramp: cubic-bezier(0,.6,.5,1);
+$ease-in-kickback: cubic-bezier(.41,1.69,.04,.67);
+$ease-in-bump: cubic-bezier(.4,1.69,0,1);

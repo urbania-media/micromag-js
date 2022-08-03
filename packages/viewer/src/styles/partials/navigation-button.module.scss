@@ -3,5 +3,20 @@
 
 .container {
     @extend %reset-button;
+    @extend %hover-bounce;
+    @extend %active-bounce;
     border: 0;
+}
+
+.arrow {
+    width: 1rem;
+    height: auto;
+
+    .next & {
+        transform: rotate(90deg);
+    }
+
+    .previous & {
+        transform: rotate(-90deg);
+    }
 }
