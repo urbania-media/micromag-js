@@ -16,8 +16,8 @@ import {
     webfontFiles,
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
-import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
+import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
@@ -28,6 +28,7 @@ import article2 from '../../../../.storybook/data/stories/article2.json';
 import articleVideo from '../../../../.storybook/data/stories/article-video.json';
 import article from '../../../../.storybook/data/stories/article.json';
 import basic from '../../../../.storybook/data/stories/basic.json';
+import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -85,7 +86,7 @@ export const Custom = () => (
 
 export const Basic = () => <Viewer story={basic} withNavigationHint />;
 
-export const WithComplexSibblings = () => (
+export const WithComplexSiblings = () => (
     <Viewer
         {...faceAFaceProps}
         withLandscapeSiblingsScreens
@@ -97,6 +98,10 @@ export const WithComplexSibblings = () => (
         neighborScreensMounted={3}
         withoutShareMenu
     />
+);
+
+export const MicromagExample = () => (
+    <Viewer {...micromagExample} />
 );
 
 export const Integrated = () => {

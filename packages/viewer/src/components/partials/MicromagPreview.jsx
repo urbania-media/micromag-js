@@ -22,7 +22,7 @@ const defaultProps = {
     className: null,
 };
 
-const ShareModal = ({ screen, title, description, className }) => (
+const MicromagExample = ({ screen, title, description, className }) => (
     <div
         className={classNames([
             styles.container,
@@ -41,7 +41,7 @@ const ShareModal = ({ screen, title, description, className }) => (
     </div>
 );
 
-ShareModal.propTypes = propTypes;
-ShareModal.defaultProps = defaultProps;
+MicromagExample.propTypes = propTypes;
+MicromagExample.defaultProps = defaultProps;
 
-export default ShareModal;
+export default MicromagExample;

@@ -1,20 +1,20 @@
-/* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, react/jsx-props-no-spreading, arrow-body-style */
+/* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading, arrow-body-style */
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState, useMemo } from 'react';
-import { useIntl } from 'react-intl';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, ScreenPreview } from '@micromag/core/components';
 import { useDimensionObserver } from '@micromag/core/hooks';
 import { getStyleFromColor } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
+import ShareOptions from '@micromag/element-share-options';
 
 import StackIcon from '../icons/Stack';
 import MicromagPreview from '../partials/MicromagPreview';
-import Share from '../partials/Share';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
 
@@ -129,6 +129,28 @@ const ViewerMenuPreview = ({
         const { screen = null } = finalItems[0] || {};
         return screen;
     }, [finalItems]);
+    const currentScreen = useMemo(
+        () =>
+            items.find((item) => {
+                const { current = false } = item || {};
+                return current;
+            }),
+        [items, focusable],
+    );
+
+    const [shareCurrentScreen, setShareCurrentScreen] = useState(false);
+    const onShareModeChange = useCallback(() => {
+        setShareCurrentScreen((value) => !value);
+    }, [setShareCurrentScreen]);
+
+    const [finalShareUrl, setFinalShareUrl] = useState(shareUrl);
+    useEffect(() => {
+        setFinalShareUrl(
+            shareCurrentScreen && currentScreenIndex !== 0
+                ? `${shareUrl}/${currentScreenIndex}`
+                : shareUrl,
+        );
+    }, [shareCurrentScreen, currentScreenIndex, setFinalShareUrl]);
 
     return (
         <div
@@ -154,69 +176,66 @@ const ViewerMenuPreview = ({
                         <Button
                             className={styles.button}
                             onClick={toggleFullscreen}
-                            title={intl.formatMessage({
-                                defaultMessage: 'Fullscreen',
-                                description: 'Button label',
-                            })}
-                            aria-label={intl.formatMessage({
+                            label={intl.formatMessage({
                                 defaultMessage: 'Fullscreen',
                                 description: 'Button label',
                             })}
                             focusable={focusable}
-                        >
-                            {fullscreenActive ? (
-                                <svg
-                                    className={styles.icon}
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="10"
-                                    height="16"
-                                    viewBox="0 0 10 16"
-                                    fill="currentColor"
-                                >
-                                    <polygon points="2.5 13.5 2.5 16 4 16 4 12 0 12 0 13.5 2.5 13.5" />
-                                    <polygon points="7.5 13.5 10 13.5 10 12 6 12 6 16 7.5 16 7.5 13.5" />
-                                    <polygon points="2.5 2.5 0 2.5 0 4 4 4 4 0 2.5 0 2.5 2.5" />
-                                    <polygon points="7.5 2.5 7.5 0 6 0 6 4 10 4 10 2.5 7.5 2.5" />
-                                </svg>
-                            ) : (
-                                <svg
-                                    className={styles.icon}
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="10"
-                                    height="16"
-                                    viewBox="0 0 10 16"
-                                    fill="currentColor"
-                                >
-                                    <polygon points="1.5 14.5 1.5 12 0 12 0 16 4 16 4 14.5 1.5 14.5" />
-                                    <polygon points="8.5 14.5 6 14.5 6 16 10 16 10 12 8.5 12 8.5 14.5" />
-                                    <polygon points="1.5 1.5 4 1.5 4 0 0 0 0 4 1.5 4 1.5 1.5" />
-                                    <polygon points="8.5 1.5 8.5 4 10 4 10 0 6 0 6 1.5 8.5 1.5" />
-                                </svg>
-                            )}
-                        </Button>
+                            icon={
+                                fullscreenActive ? (
+                                    <svg
+                                        className={styles.icon}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="10"
+                                        height="16"
+                                        viewBox="0 0 10 16"
+                                        fill="currentColor"
+                                    >
+                                        <polygon points="2.5 13.5 2.5 16 4 16 4 12 0 12 0 13.5 2.5 13.5" />
+                                        <polygon points="7.5 13.5 10 13.5 10 12 6 12 6 16 7.5 16 7.5 13.5" />
+                                        <polygon points="2.5 2.5 0 2.5 0 4 4 4 4 0 2.5 0 2.5 2.5" />
+                                        <polygon points="7.5 2.5 7.5 0 6 0 6 4 10 4 10 2.5 7.5 2.5" />
+                                    </svg>
+                                ) : (
+                                    <svg
+                                        className={styles.icon}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="10"
+                                        height="16"
+                                        viewBox="0 0 10 16"
+                                        fill="currentColor"
+                                    >
+                                        <polygon points="1.5 14.5 1.5 12 0 12 0 16 4 16 4 14.5 1.5 14.5" />
+                                        <polygon points="8.5 14.5 6 14.5 6 16 10 16 10 12 8.5 12 8.5 14.5" />
+                                        <polygon points="1.5 1.5 4 1.5 4 0 0 0 0 4 1.5 4 1.5 1.5" />
+                                        <polygon points="8.5 1.5 8.5 4 10 4 10 0 6 0 6 1.5 8.5 1.5" />
+                                    </svg>
+                                )
+                            }
+                        />
                     ) : null}
                     <Button
                         className={classNames([styles.button, styles.closeButton])}
                         onClick={onClose}
                         focusable={focusable}
-                    >
-                        <div className={styles.menuLabel}>
-                            {intl.formatMessage({
-                                defaultMessage: 'Close',
-                                description: 'Button label',
-                            })}
-                        </div>
-                        <svg
-                            className={styles.icon}
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="10"
-                            height="16"
-                            viewBox="0 0 10 16"
-                            fill="currentColor"
-                        >
-                            <polygon points="9.95 4.11 8.89 3.05 5 6.94 1.11 3.05 0.05 4.11 3.94 8 0.05 11.89 1.11 12.95 5 9.06 8.89 12.95 9.95 11.89 6.06 8 9.95 4.11" />
-                        </svg>
-                    </Button>
+                        label={intl.formatMessage({
+                            defaultMessage: 'Close',
+                            description: 'Button label',
+                        })}
+                        iconPosition="right"
+                        icon={
+                            <svg
+                                className={styles.icon}
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="10"
+                                height="16"
+                                viewBox="0 0 10 16"
+                                fill="currentColor"
+                            >
+                                <polygon points="9.95 4.11 8.89 3.05 5 6.94 1.11 3.05 0.05 4.11 3.94 8 0.05 11.89 1.11 12.95 5 9.06 8.89 12.95 9.95 11.89 6.06 8 9.95 4.11" />
+                            </svg>
+                        }
+                    />
                 </div>
             </div>
             <div className={styles.content} ref={containerRef}>
@@ -226,22 +245,42 @@ const ViewerMenuPreview = ({
                     onScrolledNotBottom={onScrolledNotBottom}
                 >
                     <MicromagPreview
-                        className={styles.info}
-                        screen={coverScreen}
+                        className={styles.micromagPreview}
+                        screen={shareCurrentScreen ? currentScreen : coverScreen}
                         title={title}
                         description={description}
                     />
 
                     {showShare ? (
-                        <Share
-                            className={styles.shareModal}
-                            title={title}
-                            description={description}
-                            url={shareUrl}
-                            items={items}
-                            currentScreenIndex={currentScreenIndex}
-                            onShare={onShare}
-                        />
+                        <div className={styles.micromagShare}>
+                            {currentScreenIndex !== 0 ? (
+                                <div className={styles.shareMode}>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="currentScreen"
+                                            value="currentScreen"
+                                            onChange={onShareModeChange}
+                                            checked={shareCurrentScreen}
+                                        />
+                                        <FormattedMessage
+                                            defaultMessage="Start from the current screen"
+                                            description="Share mode"
+                                        />
+                                    </label>
+                                </div>
+                            ) : null}
+                            <ShareOptions
+                                className={styles.shareOptions}
+                                itemClassName={styles.shareOptionsItem}
+                                buttonClassName={styles.shareOptionsButton}
+                                title={title}
+                                url={finalShareUrl}
+                                focusable={focusable}
+                                onShare={onShare}
+                                shareCurrentScreen={shareCurrentScreen}
+                            />
+                        </div>
                     ) : null}
 
                     <nav className={styles.nav}>

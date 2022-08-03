@@ -1952,12 +1952,6 @@ msgctxt "oCBQKV"
 msgid "Text with title"
 msgstr "Text with title"
 
-# Modal heading
-#: oL4ueH
-msgctxt "oL4ueH"
-msgid "Share"
-msgstr "Share"
-
 # Video 360 placeholder
 #: oLtEu6
 msgctxt "oLtEu6"

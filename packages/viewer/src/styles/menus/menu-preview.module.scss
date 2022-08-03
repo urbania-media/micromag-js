@@ -37,27 +37,21 @@
     }
 
     .header {
+        position: fixed;
+        z-index: 200;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: 10px;
         display: flex;
         align-items: center;
-        margin-bottom: 20px;
 
         .button {
+            @extend %reset-button;
             @extend %focus-outline;
 
-            display: inline-block;
-            border: 0;
-            border-radius: 0;
-            background-color: transparent;
-            color: inherit;
-            font-size: 0.9rem;
-            font-weight: 600;
-            line-height: 1.4;
-            text-align: center;
-            vertical-align: middle;
-            cursor: pointer;
-            user-select: none;
-            width: 1rem;
-            padding: 0;
+            display: flex;
+            align-items: center;
         }
 
         .closeButton {
@@ -67,8 +61,33 @@
 
         .icon {
             display: block;
-            width: 100%;
+            width: 1rem;
             height: auto;
+        }
+    }
+
+    .micromagPreview {
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .micromagShare {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .shareMode {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+        label {
+            font-size: 14px;
+        }
+
+        input {
+            margin-right: 0.5rem;
         }
     }
 
