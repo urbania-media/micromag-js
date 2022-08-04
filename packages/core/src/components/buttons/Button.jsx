@@ -29,6 +29,7 @@ const propTypes = {
     withShadow: PropTypes.bool,
     withoutStyle: PropTypes.bool,
     withoutTheme: PropTypes.bool,
+    withAnimations: PropTypes.bool,
     outline: PropTypes.bool,
     asLink: PropTypes.bool,
     className: PropTypes.string,
@@ -65,6 +66,7 @@ const defaultProps = {
     withShadow: false,
     withoutStyle: false,
     withoutTheme: false,
+    withAnimations: true, // @todo should be false by default, probably
     outline: false,
     asLink: false,
     className: null,
@@ -96,6 +98,7 @@ const Button = ({
     withShadow,
     withoutStyle,
     withoutTheme,
+    withAnimations,
     asLink,
     outline,
     onClick,
@@ -143,6 +146,7 @@ const Button = ({
                 <>
                     <span
                         className={classNames([
+                            styles.icon,
                             styles.left,
                             {
                                 [iconClassName]: iconClassName !== null && iconPosition === 'left',
@@ -154,6 +158,7 @@ const Button = ({
                     <span
                         className={classNames([
                             styles.center,
+                            styles.label,
                             {
                                 [labelClassName]: labelClassName !== null,
                             },
@@ -163,6 +168,7 @@ const Button = ({
                     </span>
                     <span
                         className={classNames([
+                            styles.icon,
                             styles.right,
                             {
                                 [iconClassName]: iconClassName !== null && iconPosition === 'right',
@@ -189,12 +195,14 @@ const Button = ({
             active: !withoutStyle && active,
         },
         styles.container,
+        styles[`icon-${iconPosition}`],
         {
             [styles.withoutStyle]: withoutStyle,
             [styles.withIcon]: hasIcon,
             [styles.withIconColumns]: hasIconColumns,
             [styles.withText]: text !== null,
             [styles.withShadow]: withShadow,
+            [styles.withAnimations]: withAnimations,
             [styles.isSmall]: small,
             [styles.isBig]: big,
             [styles.isLink]: href !== null,

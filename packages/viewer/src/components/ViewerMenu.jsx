@@ -264,6 +264,7 @@ const ViewerMenu = ({
                         <div className={classNames([styles.menuItem, styles.menuScreens])}>
                             <Button
                                 className={styles.menuButton}
+                                labelClassName={styles.menuLabel}
                                 label={intl.formatMessage({
                                     defaultMessage: 'Menu',
                                     description: 'Button label',
@@ -290,7 +291,7 @@ const ViewerMenu = ({
                         <div className={classNames([styles.menuItem, styles.menuShare])}>
                             <Button
                                 className={styles.menuButton}
-                                items={items}
+                                labelClassName={styles.menuLabel}
                                 onClick={onClickShare}
                                 label={intl.formatMessage({
                                     defaultMessage: 'Share',

@@ -7,9 +7,14 @@
     &:focus {
         box-shadow: none;
     }
-    
+
     .icon {
+        @extend %transition-bump;
         display: block;
+    }
+
+    .label {
+        @extend %transition-bump;
     }
 
     &.withoutStyle {
@@ -36,6 +41,35 @@
             margin-left: 0.5em;
         }
         /* stylelint-enable */
+    }
+
+    &.withIcon.withAnimations {
+        @media (hover: hover) {
+            &:hover {
+                .icon {
+                    transform: scale(1.2);
+                }
+                .label {
+                    transform: translateX(0.25rem);
+                }
+            }
+        }
+
+        &:active {
+            .icon {
+                transform: scale(0.9);
+            }
+        }
+    }
+
+    &.withIcon.withAnimations.icon-right {
+        @media (hover: hover) {
+            &:hover {
+                .label {
+                    transform: translateX(-0.25rem);
+                }
+            }
+        }
     }
 
     &.withIconColumns {

@@ -303,22 +303,36 @@
 %focus-outline {
     &:focus-visible {
         outline: 3px solid $purple;
+        outline-offset: 4px;
     }
 }
 
-%hover-bounce {
+/**
+ * Work in progress:
+ * - trying to set up sensible defaults for animating UI elements
+ */
+%transition-bump {
     transition: transform 0.3s $ease-in-bump;
+}
+%transition-bounce {
+    transition: transform 0.3s $ease-in-bounce;
+}
+%transition-kickback {
+    transition: transform 0.5s $ease-in-yo;
+}
+
+%hover-bump {
+    @extend %transition-bump;
 
     &:hover {
         transform: scale(1.15);
     }
 }
 
-%active-bounce {
-    transition: transform 0.2s $ease-in-bump;
+%active-bump {
+    @extend %transition-bump;
 
     &:active {
         transform: scale(0.95);
     }
 }
-

@@ -14,151 +14,6 @@
     background-color: $black;
     color: $white;
 
-    .content {
-        position: absolute;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        user-select: none;
-    }
-
-    .menuNavContainer {
-        visibility: hidden;
-        position: absolute;
-        z-index: 2;
-        top: 0;
-        right: 50%;
-        width: 100%;
-        transform: translateX(50%);
-        touch-action: none;
-
-        &.withShadow {
-            background: linear-gradient(rgb(0 0 0 / 0.4), rgb(0 0 0 / 0));
-        }
-    }
-
-    .menuTopContainer {
-        display: flex;
-        align-items: center;
-        padding: 8px 10px 0;
-        transition: opacity 0.25s ease;
-    }
-
-    .menuItem {
-        display: block;
-    }
-
-    .menuIcon {
-        display: block;
-        width: 1rem;
-        height: auto;
-    }
-
-    .icon {
-        width: 100%;
-        height: 100%;
-    }
-
-    .menuButton {
-        @extend %reset-button;
-        @extend %focus-outline;
-        @extend %hover-bounce;
-        @extend %active-bounce;
-
-        display: flex;
-        align-items: center;
-        transform-origin: 0 50%;
-    }
-
-    .menuLabel {
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 1;
-    }
-
-    .menuShare {
-        margin-left: auto;
-
-        .menuButton {
-            transform-origin: 100% 50%;
-        }
-    }
-
-    .dots {
-        position: relative;
-        padding: 0 8px;
-        transition: opacity 0.25s ease;
-    }
-
-    .menuPreviewContainer {
-        @extend %fullscreen;
-        visibility: hidden;
-
-        z-index: 3;
-        top: -100%;
-    }
-
-    .menuPreview {
-        @extend %fullscreen;
-
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .navButtonContainer {
-        display: none;
-        visibility: hidden;
-        position: absolute;
-        top: 50%;
-        width: 50px;
-        height: 50px;
-        border: 0;
-
-        &.previous {
-            left: 0;
-            transform: translate(-100%, -50%);
-        }
-
-        &.next {
-            right: 0;
-            transform: translate(100%, -50%);
-        }
-
-        @media screen and (min-width: 1024px) {
-            display: block;
-            visibility: visible;
-        }
-    }
-
-    .navButton {
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-
-    .screenContainer {
-        @extend %fullscreen;
-        @extend %focus-outline;
-
-        display: flex;
-        height: 100%;
-        opacity: 0;
-
-        .screen {
-            @extend %fullscreen;
-            pointer-events: none;
-        }
-
-        &.current {
-            opacity: 1;
-
-            .screen {
-                pointer-events: auto;
-            }
-        }
-    }
-
     &.landscape {
         .screenContainer {
             top: 0;
@@ -188,25 +43,7 @@
 
         &.withSiblings .screenContainer {
             transition: transform 0.3s ease, opacity 0.3s ease;
-
         }
-    }
-
-    .playbackControlsContainer {
-        margin: 0 auto;
-    }
-
-    .playbackControls {
-        position: absolute;
-        z-index: 5;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        pointer-events: none;
-    }
-
-    .webView {
-        z-index: 10;
     }
 
     &.hideMenu {
@@ -226,4 +63,162 @@
             visibility: visible;
         }
     }
+}
+
+.content {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+}
+
+.menuNavContainer {
+    visibility: hidden;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 50%;
+    width: 100%;
+    transform: translateX(50%);
+    touch-action: none;
+
+    &.withShadow {
+        background: linear-gradient(rgb(0 0 0 / 0.4), rgb(0 0 0 / 0));
+    }
+}
+
+.menuTopContainer {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px 0;
+    transition: opacity 0.25s ease;
+}
+
+.menuItem {
+    display: block;
+}
+
+.menuButton {
+    @extend %reset-button;
+    @extend %focus-outline;
+
+    display: flex;
+    align-items: center;
+    transform-origin: 0 50%;
+    border-radius: 0;
+}
+
+.menuIcon {
+    display: block;
+    width: 1rem;
+    height: auto;
+}
+
+.menuLabel {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.menuShare {
+    margin-left: auto;
+
+    .menuButton {
+        transform-origin: 100% 50%;
+    }
+}
+
+.dots {
+    position: relative;
+    padding: 0 8px;
+    transition: opacity 0.25s ease;
+}
+
+.menuPreviewContainer {
+    @extend %fullscreen;
+    visibility: hidden;
+
+    z-index: 3;
+    top: -100%;
+}
+
+.menuPreview {
+    @extend %fullscreen;
+
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navButtonContainer {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    border: 0;
+
+    &.previous {
+        left: 0;
+        transform: translate(-100%, -50%);
+    }
+
+    &.next {
+        right: 0;
+        transform: translate(100%, -50%);
+    }
+
+    @media screen and (min-width: 1024px) {
+        display: block;
+        visibility: visible;
+    }
+}
+
+.navButton {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.screenContainer {
+    @extend %fullscreen;
+    @extend %focus-outline;
+
+    display: flex;
+    height: 100%;
+    opacity: 0;
+
+    .screen {
+        @extend %fullscreen;
+        pointer-events: none;
+    }
+
+    &.current {
+        opacity: 1;
+
+        .screen {
+            pointer-events: auto;
+        }
+    }
+}
+
+// Playback Controls for Video/Audio screen types
+.playbackControlsContainer {
+    margin: 0 auto;
+}
+
+.playbackControls {
+    position: absolute;
+    z-index: 5;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+// Embedded webpage in iframe (article screen)
+.webView {
+    z-index: 10;
 }

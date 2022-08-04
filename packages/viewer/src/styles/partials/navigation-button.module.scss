@@ -3,8 +3,9 @@
 
 .container {
     @extend %reset-button;
-    @extend %hover-bounce;
-    @extend %active-bounce;
+    @extend %focus-outline;
+    @extend %hover-bump;
+    @extend %active-bump;
     border: 0;
 }
 

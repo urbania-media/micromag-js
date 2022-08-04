@@ -27,6 +27,15 @@
             border: 4px solid $purple;
             outline: none;
         }
+
+        @media (hover: hover) {
+            transition: border 0.2s $ease-in-out-soft-sine;
+
+            &:hover {
+                border: 4px solid $white;
+                outline: none;
+            }
+        }
     }
 
     &.disabled {

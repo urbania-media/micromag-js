@@ -30,13 +30,28 @@
     display: block;
     width: 100%;
     padding: 10px 2px;
+
+    @media (hover: hover) {
+        &:hover {
+            .dot {
+                transform: scaleY(4);
+            }
+        }
+    }
+
+    &:active {
+        .dot {
+            transform: scale(0.9);
+        }
+    }
 }
 
 .dot {
+    @extend %transition-bump;
     display: block;
     width: 100%;
     height: 2px;
-    border-radius: 2px;
+    // border-radius: 2px;
 
     .active & {
         animation: outlineBounce 0.2s $ease-out-ramp alternate-reverse 1 forwards;
@@ -55,24 +70,23 @@
         width: 1px;
         height: 100%;
         background-color: inherit;
-        // background-color: $black;
     }
 
-    &:first-child {
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-    }
+    // &:first-child {
+    //     border-top-left-radius: 2px;
+    //     border-bottom-left-radius: 2px;
+    // }
 
-    &:last-child {
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
+    // &:last-child {
+    //     border-top-right-radius: 2px;
+    //     border-bottom-right-radius: 2px;
 
-        &::after {
-            left: 0;
-            width: 0;
-            background-color: transparent;
-        }
-    }
+    //     &::after {
+    //         left: 0;
+    //         width: 0;
+    //         background-color: transparent;
+    //     }
+    // }
 }
 
 .dots {
@@ -83,10 +97,7 @@
 }
 
 @keyframes outlineBounce {
-    from {
-        outline: 0 solid $white;
-    }
     to {
-        outline: 0.5rem solid $white;
+        transform: scaleY(4);
     }
 }
