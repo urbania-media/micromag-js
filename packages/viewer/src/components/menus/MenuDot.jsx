@@ -3,6 +3,7 @@ import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
+
 import styles from '../../styles/menus/menu-dot.module.scss';
 
 const propTypes = {
@@ -45,58 +46,64 @@ const ViewerMenuDot = ({
     const playing = true;
     const animation = false;
 
-    const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(200, 200, 200, 0.5)' } =
+    const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(255, 255, 255, 0.6)' } =
         colors || {};
 
     // TODO: if approved animate progress
     const [springProps, setSpringProps] = useSpring(() => ({
         x: 0,
-        config: {
-            duration: 0,
-        },
+        // config: {
+        //     duration: 0,
+        // },
     }));
 
-    useEffect(() => {
-        if (currentTime === null || duration === null) {
-            return;
-        }
-        const progress = currentTime / duration;
-        setSpringProps.start({
-            reset: true,
-            immediate: !playing,
-            from: {
-                x: progress,
-            },
-            to: {
-                x: playing ? 1 : progress,
-            },
-            config: {
-                duration: (duration - currentTime) * 1000,
-            },
-        });
-    }, [playing, duration, currentTime, setSpringProps]);
+    console.log({active, subIndex, current, count});
 
-    const inner =
-        current && count > 1 ? (
-            <span className={styles.dots}>
-                {[...Array(count).keys()].map((i) => (
-                    <span
-                        className={classNames([styles.dot, styles.subDot])}
-                        style={{
-                            width: `${parseFloat((1 / count) * 100).toFixed(2)}%`,
-                            backgroundColor: active && i <= subIndex ? primary : secondary,
-                        }}
-                    />
-                ))}
-            </span>
-        ) : (
-            <span
-                className={styles.dot}
-                style={{
-                    backgroundColor: active ? primary : secondary,
-                }}
-            />
-        );
+    // useEffect(() => {
+    //     setSpringProps.start({
+    //         x: count
+    // }, [current, count, setSpringProps]);
+    // useEffect(() => {
+    //     if (currentTime === null || duration === null) {
+    //         return;
+    //     }
+    //     const progress = currentTime / duration;
+    //     setSpringProps.start({
+    //         reset: true,
+    //         immediate: !playing,
+    //         from: {
+    //             x: progress,
+    //         },
+    //         to: {
+    //             x: playing ? 1 : progress,
+    //         },
+    //         config: {
+    //             duration: (duration - currentTime) * 1000,
+    //         },
+    //     });
+    // }, [playing, duration, currentTime, setSpringProps]);
+
+    // const inner =
+    //     current && count > 1 ? (
+    //         <span className={styles.dots}>
+    //             {[...Array(count).keys()].map((i) => (
+    //                 <span
+    //                     className={classNames([styles.dot, styles.subDot])}
+    //                     style={{
+    //                         width: `${parseFloat((1 / count) * 100).toFixed(2)}%`,
+    //                         backgroundColor: active && i <= subIndex ? primary : secondary,
+    //                     }}
+    //                 />
+    //             ))}
+    //         </span>
+    //     ) : (
+    //         <span
+    //             className={styles.dot}
+    //             style={{
+    //                 backgroundColor: active ? primary : secondary,
+    //             }}
+    //         />
+    //     );
 
     return (
         <li
@@ -111,7 +118,7 @@ const ViewerMenuDot = ({
             aria-hidden="true"
         >
             <button type="button" className={styles.button} onClick={onClick} tabIndex="-1">
-                {animation ? (
+                {/* {animation ? (
                     <animated.div
                         className={styles.progress}
                         style={{
@@ -121,7 +128,21 @@ const ViewerMenuDot = ({
                     />
                 ) : (
                     inner
-                )}
+                )} */}
+                <animated.div
+                    className={styles.progress}
+                    style={{
+                        transform: springProps.x.to((x) => `scaleX(${x})`),
+                        backgroundColor: primary,
+                    }}
+                >
+                    <span
+                        className={styles.dot}
+                        style={{
+                            backgroundColor: active ? primary : secondary,
+                        }}
+                    />
+                </animated.div>
             </button>
         </li>
     );
