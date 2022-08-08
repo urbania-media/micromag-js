@@ -22,17 +22,32 @@
         bottom: 0;
         left: 0;
         width: 100%;
+        height: 5rem;
         transition: opacity 0.3s ease;
         opacity: 0;
         text-align: center;
         pointer-events: none;
+
+        &::after {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to bottom, rgba($black, 0), rgba($black, 0.85));
+        }
     }
 
     .arrow {
+        position: relative;
+        top: 1rem;
+        z-index: 2;
         display: inline-block;
-        width: 20px;
-        height: 20px;
-        animation: upAndDown 0.75s alternate infinite ease-in-out;
+        width: 1rem;
+        height: auto;
+        animation: upAndDown 0.75s alternate infinite $ease-in-out-sine;
         color: $white;
 
         path {
@@ -82,11 +97,11 @@
 
     @keyframes upAndDown {
         from {
-            transform: translateY(-100%);
+            transform: translateY(-50%);
         }
 
         to {
-            transform: translateY(0%);
+            transform: translateY(50%);
         }
     }
 }

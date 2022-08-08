@@ -134,7 +134,17 @@ function Scroll({
             </div>
             {!disabled ? (
                 <div className={styles.arrowContainer}>
-                    <FontAwesomeIcon className={styles.arrow} icon={faArrowDown} />
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="16"
+                        viewBox="0 0 10 16"
+                        className={styles.arrow}
+                        fill="currentColor"
+                    >
+                        <polygon points=".38 11.38 5 16 9.62 11.38 8.56 10.32 5.75 13.13 5.75 1.61 4.25 1.61 4.25 13.13 1.44 10.32 .38 11.38"/>
+                    </svg>
+                    {/* <FontAwesomeIcon className={styles.arrow} icon={faArrowDown} /> */}
                 </div>
             ) : null}
         </div>

@@ -260,33 +260,6 @@ const ViewerMenu = ({
                 {...menuDragBind()}
             >
                 <nav className={styles.menuTopContainer}>
-                    {!withoutScreensMenu ? (
-                        <div className={classNames([styles.menuItem, styles.menuScreens])}>
-                            <Button
-                                className={styles.menuButton}
-                                labelClassName={styles.menuLabel}
-                                label={intl.formatMessage({
-                                    defaultMessage: 'Menu',
-                                    description: 'Button label',
-                                })}
-                                icon={
-                                    <svg
-                                        className={styles.menuIcon}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="10"
-                                        height="16"
-                                        viewBox="0 0 10 16"
-                                        fill="currentColor"
-                                        {...menuTheme}
-                                    >
-                                        <path d="M8.5,1.5V14.5H1.5V1.5h7m1.5-1.5H0V16H10V0h0Z" />
-                                    </svg>
-                                }
-                                onClick={onClickMenu}
-                            />
-                        </div>
-                    ) : null}
-
                     {!withoutShareMenu ? (
                         <div className={classNames([styles.menuItem, styles.menuShare])}>
                             <Button
@@ -297,7 +270,6 @@ const ViewerMenu = ({
                                     defaultMessage: 'Share',
                                     description: 'Button label',
                                 })}
-                                iconPosition="right"
                                 icon={
                                     <svg
                                         className={styles.menuIcon}
@@ -312,6 +284,34 @@ const ViewerMenu = ({
                                         <polygon points="9.62 4.62 5 0 0.38 4.62 1.44 5.68 4.25 2.87 4.25 11.26 5.75 11.26 5.75 2.87 8.56 5.68 9.62 4.62" />
                                     </svg>
                                 }
+                            />
+                        </div>
+                    ) : null}
+
+                    {!withoutScreensMenu ? (
+                        <div className={classNames([styles.menuItem, styles.menuScreens])}>
+                            <Button
+                                className={styles.menuButton}
+                                labelClassName={styles.menuLabel}
+                                label={intl.formatMessage({
+                                    defaultMessage: 'Menu',
+                                    description: 'Button label',
+                                })}
+                                iconPosition="right"
+                                icon={
+                                    <svg
+                                        className={styles.menuIcon}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="10"
+                                        height="16"
+                                        viewBox="0 0 10 16"
+                                        fill="currentColor"
+                                        {...menuTheme}
+                                    >
+                                        <rect width="10" height="16"/>
+                                    </svg>
+                                }
+                                onClick={onClickMenu}
                             />
                         </div>
                     ) : null}
