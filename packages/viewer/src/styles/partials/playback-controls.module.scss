@@ -85,10 +85,9 @@
 
     .withMute.isCollapsed & {
         opacity: 0.25;
-
-        &.isMuted {
-            opacity: 1;
-        }
+    }
+    .withMute.isCollapsed.isMuted & {
+        opacity: 1
     }
 }
 

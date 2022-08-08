@@ -115,6 +115,7 @@ function PlaybackControls({ className, collapsedClassName }) {
                     [styles.withSeekBar]: controls,
                     [styles.withSeekBarOnly]: seekBarOnly,
                     [styles.isCollapsed]: isCollapsed,
+                    [styles.isMuted]: muted,
                     [collapsedClassName]: collapsedClassName !== null && isCollapsed,
                 },
             ])}
