@@ -705,19 +705,18 @@ const Viewer = ({
                                         </React.Fragment>
                                     );
                                 })}
-                                {!withoutPlaybackControls ? (
-                                    <div
-                                        className={styles.playbackControls}
-                                        ref={playbackControlsContainerRef}
-                                    >
-                                        <div
-                                            className={styles.playbackControlsContainer}
-                                            style={{ width: screenContainerWidth }}
-                                        >
-                                            <PlaybackControls className={styles.controls} />
-                                        </div>
-                                    </div>
-                                ) : null}
+                            </div>
+                        ) : null}
+                        {!withoutPlaybackControls ? (
+                            <div
+                                className={styles.playbackControls}
+                                ref={playbackControlsContainerRef}
+                            >
+                                <div
+                                    className={styles.playbackControlsContainer}
+                                >
+                                    <PlaybackControls className={styles.controls} />
+                                </div>
                             </div>
                         ) : null}
                         <WebView

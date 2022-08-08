@@ -8,7 +8,7 @@
 .inner {
     position: relative;
     flex-grow: 1;
-    height: 16px;
+    height: 2rem;
 }
 
 .progressBar {
@@ -24,7 +24,6 @@
 
 .progress {
     position: relative;
-    height: 4px;
     transform-origin: left center;
     background-color: $purple;
 }
