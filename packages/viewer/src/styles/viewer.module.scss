@@ -83,6 +83,12 @@
     width: 100%;
     transform: translateX(50%);
     touch-action: none;
+    transition: opacity 0.5s $ease-in-out-sine;
+
+    // if playing a media and the controls are "collapsed", fade the buttons, too
+    .fadeMenu & {
+        opacity: 0.25;
+    }
 
     &.withShadow {
         background: linear-gradient(rgb(0 0 0 / 0.4), rgb(0 0 0 / 0));
@@ -108,12 +114,6 @@
     align-items: center;
     transform-origin: 0 50%;
     border-radius: 0;
-    transition: opacity 0.5s $ease-in-out-sine;
-
-    // if playing a media and the controls are "collapsed", fade the buttons, too
-    .fadeMenu & {
-        opacity: 0.25;
-    }
 }
 
 .menuIcon {
