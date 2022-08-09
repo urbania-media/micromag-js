@@ -46,23 +46,28 @@ const ViewerMenuDot = ({
     const playing = true;
     const animation = false;
 
-    const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(255, 255, 255, 0.6)' } =
+    const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(255, 255, 255, 0.25)' } =
         colors || {};
 
     // TODO: if approved animate progress
-    const [springProps, setSpringProps] = useSpring(() => ({
-        x: 0,
-        // config: {
-        //     duration: 0,
-        // },
+    const [dotSpringStyles, setDotSpringProps] = useSpring(() => ({
+        scaleX: 0,
+        config: {
+            tension: 200,
+            friction: 30,
+        },
     }));
 
-    console.log({active, subIndex, current, count});
+    useEffect(() => {
+        const activeRatio = active ? 1 : 0;
+        const ratio = count > 1 && current ? (subIndex + 1) / count : activeRatio;
+        const scaleX = ratio;
 
-    // useEffect(() => {
-    //     setSpringProps.start({
-    //         x: count
-    // }, [current, count, setSpringProps]);
+        console.log({ subIndex, count, current, active, scaleX });
+
+        setDotSpringProps.start({ scaleX, immediate: !current });
+    }, [active, current, subIndex, count, setDotSpringProps]);
+
     // useEffect(() => {
     //     if (currentTime === null || duration === null) {
     //         return;
@@ -118,31 +123,20 @@ const ViewerMenuDot = ({
             aria-hidden="true"
         >
             <button type="button" className={styles.button} onClick={onClick} tabIndex="-1">
-                {/* {animation ? (
+                <div
+                    className={styles.dot}
+                    style={{
+                        backgroundColor: secondary,
+                    }}
+                >
                     <animated.div
                         className={styles.progress}
                         style={{
-                            transform: springProps.x.to((x) => `scaleX(${x})`),
+                            ...dotSpringStyles,
                             backgroundColor: primary,
                         }}
                     />
-                ) : (
-                    inner
-                )} */}
-                <animated.div
-                    className={styles.progress}
-                    style={{
-                        transform: springProps.x.to((x) => `scaleX(${x})`),
-                        backgroundColor: primary,
-                    }}
-                >
-                    <span
-                        className={styles.dot}
-                        style={{
-                            backgroundColor: active ? primary : secondary,
-                        }}
-                    />
-                </animated.div>
+                </div>
             </button>
         </li>
     );

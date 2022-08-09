@@ -35,13 +35,13 @@
         &:hover {
             .dot {
                 transform: scaleY(4);
+                background-color: $white !important;
             }
         }
     }
 
     &:active {
         .dot {
-            // transform: scale(0.9);
             transform: scaleY(6);
         }
     }
@@ -49,15 +49,22 @@
 
 .dot {
     @extend %transition-bump;
+    position: relative;
     display: block;
     width: 100%;
     height: 3px;
     transform-origin: 50% 0;
-    // border-radius: 2px;
+    border-radius: 2px;
+    background-color: rgba($white, 0.15);
 
     // .active & {
     //     animation: outlineBounce 0.2s $ease-out-ramp alternate-reverse 1 forwards;
     // }
+}
+
+.progress {
+    @extend %fullscreen;
+    transform-origin: 0 50%;
 }
 
 .subDot {
