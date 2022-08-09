@@ -43,6 +43,29 @@
     }
 }
 
+.scrubbedTime {
+    position: absolute;
+    z-index: 2;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: $black;
+    background-color: $white;
+    transition: opacity 0.5s $ease-in-bump, transform 0.5s $ease-in-bump;
+
+    .showTimestamp & {
+        opacity: 1;
+        transform: translate(-50%, -0.5rem);
+    }
+}
+
 .track {
     @extend %reset-button;
 
@@ -50,15 +73,8 @@
     height: 4rem;
     transform: translateY(-50%);
     background-color: transparent;
-    touch-action: none;
 
     .withSeekHead & {
         display: block;
     }
-}
-
-.time {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8em;
 }

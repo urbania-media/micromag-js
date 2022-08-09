@@ -120,7 +120,6 @@
     }
 
     .shareOptionsButton {
-        @extend %active-bump;
         border-radius: 0;
         background-color: transparent;
         padding: 0 0.25rem;

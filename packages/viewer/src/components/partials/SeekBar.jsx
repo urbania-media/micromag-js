@@ -2,12 +2,16 @@
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { useMediaProgress } from '@micromag/core/hooks';
 
 import styles from '../../styles/partials/seek-bar.module.scss';
+
+function getFormattedTimestamp(s) {
+    return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + ~~(s); // eslint-disable-line
+}
 
 const propTypes = {
     media: PropTypes.node,
@@ -51,6 +55,8 @@ const SeekBar = ({
     const progress = useMediaProgress(media, {
         disabled: !playing,
     });
+    const { currentTime = null } = media || {};
+    const [showTimestamp, setShowTimestamp] = useState(false);
 
     const onDrag = useCallback(
         ({ xy: [x], elapsedTime, active, tap, currentTarget }) => {
@@ -69,16 +75,19 @@ const SeekBar = ({
     );
 
     const onDragStart = useCallback(() => {
+        setShowTimestamp(true);
+
         if (onSeekStart !== null) {
             onSeekStart();
         }
-    }, [onSeekStart]);
+    }, [onSeekStart, setShowTimestamp]);
 
     const onDragEnd = useCallback(() => {
         if (onSeekEnd !== null) {
+            setShowTimestamp(false);
             onSeekEnd();
         }
-    }, [onSeekEnd]);
+    }, [onSeekEnd, setShowTimestamp]);
 
     const bind = useGesture(
         {
@@ -96,6 +105,7 @@ const SeekBar = ({
                 {
                     [className]: className !== null,
                     [styles.withSeekHead]: withSeekHead,
+                    [styles.showTimestamp]: showTimestamp
                 },
             ])}
         >
@@ -107,7 +117,16 @@ const SeekBar = ({
                             left: `${progress * 100}%`,
                             backgroundColor: progressColor,
                         }}
-                    />
+                    >
+                        <div
+                            className={styles.scrubbedTime}
+                            style={{
+                                borderColor: progressColor,
+                            }}
+                        >
+                            {getFormattedTimestamp(currentTime)}
+                        </div>
+                    </div>
                     <div
                         className={styles.progress}
                         style={{
