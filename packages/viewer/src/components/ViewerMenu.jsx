@@ -148,12 +148,12 @@ const ViewerMenu = ({
 
     const [{ y: menuY }, setMenuSpring] = useSpring(() => ({
         y: 0,
-        config: { tension: 300, friction: 40 },
+        config: { tension: 400, friction: 35 },
     }));
     const [{ y: menuInnerY, opacity: menuInnerOpacity }, setMenuInnerSpring] = useSpring(() => ({
         y: MENU_INNER_OFFSET,
         opacity: 0,
-        config: { tension: 200, friction: 40 },
+        config: { tension: 200, friction: 30 },
     }));
     const refOpened = useRef(opened);
     if (refOpened.current !== opened) {

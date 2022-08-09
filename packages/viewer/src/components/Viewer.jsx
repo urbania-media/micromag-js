@@ -540,6 +540,7 @@ const Viewer = ({
                                 [styles.landscape]: landscape,
                                 [styles.withSiblings]: withLandscapeSiblingsScreens,
                                 [styles.hideMenu]: !menuVisible,
+                                [styles.fadeMenu]: playing && playbackControls && !playbackcontrolsVisible,
                                 [styles.ready]: ready || withoutScreensTransforms,
                                 [styles.hasInteracted]: hasInteracted,
                                 [className]: className,
