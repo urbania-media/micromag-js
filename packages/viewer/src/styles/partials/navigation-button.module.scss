@@ -4,8 +4,6 @@
 .container {
     @extend %reset-button;
     @extend %focus-outline;
-    @extend %hover-bump;
-    @extend %active-bump;
     border: 0;
 }
 

@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
+import { useSpring } from '@react-spring/core';
+import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -52,8 +54,8 @@ const propTypes = {
     neighborScreensActive: PropTypes.number,
     neighborScreensMounted: PropTypes.number,
     storyIsParsed: PropTypes.bool,
-    landscapeScreenMargin: PropTypes.number,
-    landscapeSmallScreenScale: PropTypes.number,
+    // landscapeScreenMargin: PropTypes.number,
+    // landscapeSmallScreenScale: PropTypes.number,
     withMetadata: PropTypes.bool,
     withoutMenu: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
@@ -95,8 +97,8 @@ const defaultProps = {
     neighborScreensActive: 1,
     neighborScreensMounted: 1,
     storyIsParsed: false,
-    landscapeScreenMargin: 20,
-    landscapeSmallScreenScale: 0.9,
+    // landscapeScreenMargin: 20,
+    // landscapeSmallScreenScale: 0.9,
     withMetadata: false,
     withoutMenu: false,
     withoutScreensMenu: false,
@@ -133,8 +135,8 @@ const Viewer = ({
     neighborScreensActive,
     neighborScreensMounted,
     storyIsParsed,
-    landscapeScreenMargin,
-    landscapeSmallScreenScale,
+    // landscapeScreenMargin,
+    // landscapeSmallScreenScale,
     withMetadata,
     withoutMenu,
     withoutScreensMenu,
@@ -223,6 +225,74 @@ const Viewer = ({
 
     const screensMediasRef = useRef([]);
 
+    /**
+     * Screen Transitions
+     */
+    const [previousScreenSpringStyles, previousScreenSpringApi] = useSpring(() => ({
+        x: '0%',
+        scale: 0.8,
+        blurRadius: 1,
+        config: { tension: 250, friction: 30 },
+    }));
+    const [currentScreenSpringStyles, currentScreenSpringApi] = useSpring(() => ({
+        x: '0%',
+        scale: 1,
+        blurRadius: 0,
+        config: { tension: 250, friction: 30 },
+    }));
+    const [nextScreenSpringStyles, nextScreenSpringApi] = useSpring(() => ({
+        x: '100%',
+        scale: 1,
+        blurRadius: 0,
+        config: { tension: 200, friction: 30 },
+    }));
+
+    const transitionScreens = useCallback(() => {
+        previousScreenSpringApi.start({
+            x: '0%',
+            scale: 0.8,
+            blurRadius: 0.5,
+        });
+        currentScreenSpringApi.start({
+            x: '0%',
+            scale: 1,
+            blurRadius: 0,
+        });
+        nextScreenSpringApi.start({
+            x: '100%',
+            scale: 1,
+            blurRadius: 0,
+        });
+    }, [previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi]);
+
+    const changeScreenPositions = useCallback(
+        (direction) => {
+            const previous = direction === 'previous';
+
+            previousScreenSpringApi.start({
+                immediate: true,
+                x: '0%',
+                scale: previous ? 0.8 : 1,
+                blurRadius: 0.5,
+            });
+            currentScreenSpringApi.start({
+                immediate: true,
+                x: previous ? '0%' : '100%',
+                scale: previous ? 0.8 : 1,
+                blurRadius: previous ? 0.5 : 0,
+                zIndex: 1,
+            });
+            nextScreenSpringApi.start({
+                immediate: true,
+                x: previous ? '0%' : '100%',
+                scale: 1,
+                blurRadius: 0,
+                zIndex: 2,
+            });
+        },
+        [previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi],
+    );
+
     // Screen index
     const screenIndex = useMemo(
         () =>
@@ -249,6 +319,11 @@ const Viewer = ({
             if (currentScreenMedia !== null) {
                 currentScreenMedia.current = screensMediasRef.current[index] || null;
             }
+
+            const direction = index > screenIndex ? 'next' : 'previous';
+            changeScreenPositions(direction);
+            transitionScreens();
+
             if (onScreenChange !== null) {
                 onScreenChange(screens[index], index);
             }
@@ -577,51 +652,75 @@ const Viewer = ({
                         ) : null}
                         {ready || withoutScreensTransforms ? (
                             <div ref={contentRef} className={styles.content} {...dragContentBind()}>
+                                {screenIndex > 0 && screens.length > 1 ? (
+                                    <NavigationButton
+                                        direction="previous"
+                                        className={classNames([styles.navButton, styles.previous])}
+                                        onClick={gotoPreviousScreen}
+                                    />
+                                ) : null}
                                 {mountedScreens.map((mountedScreen, mountedIndex) => {
                                     const i = mountedScreenStartIndex + mountedIndex;
                                     const current = i === parseInt(screenIndex, 10);
                                     const active =
                                         i >= screenIndex - neighborScreensActive &&
                                         i <= screenIndex + neighborScreensActive;
-                                    let screenTransform = null;
 
-                                    if (landscape) {
-                                        const max = i - screenIndex;
-                                        let distance =
-                                            (screenContainerWidth + landscapeScreenMargin) * max;
-                                        // Compensates for scaling
-                                        if (max !== 0) {
-                                            const halfMargin =
-                                                (screenContainerWidth *
-                                                    (1 - landscapeSmallScreenScale)) /
-                                                2;
-                                            distance -= halfMargin * max;
-                                            if (max < -1) {
-                                                distance -= halfMargin * (max + 1);
-                                            } else if (max > 1) {
-                                                distance -= halfMargin * (max - 1);
-                                            }
-                                        }
-                                        screenTransform = withLandscapeSiblingsScreens
-                                            ? `translateX(calc(${distance}px - 50%)) scale(${
-                                                  current ? 1 : landscapeSmallScreenScale
-                                              })`
-                                            : null;
-                                    } else {
-                                        screenTransform = `translateX(${current ? 0 : '100%'})`;
-                                    }
+                                    // @todo abandoning landscape mode eventually or not?
+                                    // let screenTransform = null;
+
+                                    // if (landscape) {
+                                    //     const max = i - screenIndex;
+                                    //     let distance =
+                                    //         (screenContainerWidth + landscapeScreenMargin) * max;
+                                    //     // Compensates for scaling
+                                    //     if (max !== 0) {
+                                    //         const halfMargin =
+                                    //             (screenContainerWidth *
+                                    //                 (1 - landscapeSmallScreenScale)) /
+                                    //             2;
+                                    //         distance -= halfMargin * max;
+                                    //         if (max < -1) {
+                                    //             distance -= halfMargin * (max + 1);
+                                    //         } else if (max > 1) {
+                                    //             distance -= halfMargin * (max - 1);
+                                    //         }
+                                    //     }
+                                    //     screenTransform = withLandscapeSiblingsScreens
+                                    //         ? `translateX(calc(${distance}px - 50%)) scale(${
+                                    //               current ? 1 : landscapeSmallScreenScale
+                                    //           })`
+                                    //         : null;
+                                    // } else {
+                                    //     screenTransform = `translateX(${current ? 0 : '100%'})`;
+                                    // }
+
+                                    const nextOrPreviousStyles =
+                                        i < parseInt(screenIndex, 10)
+                                            ? previousScreenSpringStyles
+                                            : nextScreenSpringStyles;
+                                    const currentOrAdjacentStyles = current
+                                        ? currentScreenSpringStyles
+                                        : nextOrPreviousStyles;
+                                    const { blurRadius = null } = currentOrAdjacentStyles || {};
+                                    const finalStyles = {
+                                        ...currentOrAdjacentStyles,
+                                        filter: blurRadius.to((r) => `blur(${r}rem)`),
+                                    };
 
                                     return (
-                                        <React.Fragment
+                                        <animated.div
                                             key={`screen-viewer-${mountedScreen.id || ''}-${i + 1}`}
+                                            className={styles.transitionContainer}
+                                            style={finalStyles}
                                         >
                                             <div
                                                 style={{
                                                     width: screenContainerWidth,
                                                     height: screenContainerHeight,
-                                                    transform: !withoutScreensTransforms
-                                                        ? screenTransform
-                                                        : null,
+                                                    // transform: !withoutScreensTransforms
+                                                    //     ? screenTransform
+                                                    //     : null,
                                                 }}
                                                 className={classNames([
                                                     styles.screenContainer,
@@ -644,23 +743,6 @@ const Viewer = ({
                                                 onKeyUp={(e) => onScreenKeyUp(e, i)}
                                                 {...dragScreenBind(i)}
                                             >
-                                                {current && screenIndex > 0 ? (
-                                                    <div
-                                                        className={classNames([
-                                                            styles.navButtonContainer,
-                                                            styles.previous,
-                                                        ])}
-                                                    >
-                                                        <NavigationButton
-                                                            direction="previous"
-                                                            className={classNames([
-                                                                styles.navButton,
-                                                                styles.previous,
-                                                            ])}
-                                                            onClick={gotoPreviousScreen}
-                                                        />
-                                                    </div>
-                                                ) : null}
                                                 {mountedScreen !== null ? (
                                                     <ViewerScreen
                                                         className={styles.screen}
@@ -685,39 +767,30 @@ const Viewer = ({
                                                         }
                                                     />
                                                 ) : null}
-                                                {current && screenIndex < screens.length - 1 ? (
-                                                    <div
-                                                        className={classNames([
-                                                            styles.navButtonContainer,
-                                                            styles.next,
-                                                        ])}
-                                                    >
-                                                        <NavigationButton
-                                                            direction="next"
-                                                            className={classNames([
-                                                                styles.navButton,
-                                                                styles.next,
-                                                            ])}
-                                                            onClick={gotoNextScreen}
-                                                        />
-                                                    </div>
-                                                ) : null}
                                             </div>
-                                        </React.Fragment>
+                                        </animated.div>
                                     );
                                 })}
-                            </div>
-                        ) : null}
-                        {!withoutPlaybackControls ? (
-                            <div
-                                className={styles.playbackControls}
-                                ref={playbackControlsContainerRef}
-                            >
-                                <div
-                                    className={styles.playbackControlsContainer}
-                                >
-                                    <PlaybackControls className={styles.controls} />
-                                </div>
+                                {screenIndex < screens.length - 1 ? (
+                                    <NavigationButton
+                                        direction="next"
+                                        className={classNames([styles.navButton, styles.next])}
+                                        onClick={gotoNextScreen}
+                                    />
+                                ) : null}
+                                {!withoutPlaybackControls ? (
+                                    <div
+                                        className={styles.playbackControls}
+                                        ref={playbackControlsContainerRef}
+                                    >
+                                        <div
+                                            className={styles.playbackControlsContainer}
+                                            style={{ width: screenContainerWidth }}
+                                        >
+                                            <PlaybackControls className={styles.controls} />
+                                        </div>
+                                    </div>
+                                ) : null}
                             </div>
                         ) : null}
                         <WebView
