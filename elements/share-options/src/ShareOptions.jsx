@@ -124,6 +124,7 @@ const ShareOptions = ({
 
     const shareIconProps = useMemo(
         () => ({
+            className: styles.icon,
             size: 50,
             bgStyle: {
                 fill: 'none',
@@ -320,19 +321,21 @@ const ShareOptions = ({
                                     { [labelClassName]: labelClassName !== null },
                                 ])}
                             >
-                                <FormattedMessage
-                                    defaultMessage="Copy link"
-                                    description="Share button label"
-                                />
-                                <div className={styles.shareUrl}>
-                                    {!linkCopied ? `https://${url}` : null}
+                                <span className={styles.labelText}>
+                                    {!linkCopied ? (
+                                        <FormattedMessage
+                                            defaultMessage="Copy link"
+                                            description="Share button label"
+                                        />
+                                    ) : null}
                                     {linkCopied ? (
                                         <FormattedMessage
-                                            defaultMessage="Link copied to clipboard!"
+                                            defaultMessage="Link copied!"
                                             description="Message displayed once text was copied successfully."
                                         />
                                     ) : null}
-                                </div>
+                                </span>
+                                <span className={styles.shareUrl}>{url}</span>
                             </div>
                         </Button>
                     </div>

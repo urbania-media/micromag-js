@@ -19,24 +19,33 @@
     font-weight: 400;
     color: $white;
     background-color: $black;
+}
 
+.icon {
+    flex-shrink: 0;
 }
 
 .label {
-    display: block;
+    display: flex;
+    align-items: center;
     flex-grow: 1;
     padding: 0.5rem 0.25rem;
 }
 
+.labelText {
+    flex-shrink: 0;
+    margin-right: 1rem;
+}
+
 .shareUrl {
     display: inline-block;
-    padding: 0.25rem 0.5rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     background-color: rgba($white, 0.1);
+    padding: 0.25rem 0.5rem;
     border-radius: 4px;
-    font-family: monospace;
+    margin-left: auto;
+    word-break: break-all;
+    transform-origin: 100% 50%;
 
     .isLinkCopied & {
         animation: bump 0.5s 1 $ease-in-out-sine alternate-reverse forwards;
@@ -48,4 +57,3 @@
         transform: scale(1.2);
     }
 }
-
