@@ -129,9 +129,15 @@
 .menuPreviewContainer {
     @extend %fullscreen;
     visibility: hidden;
-
     z-index: 3;
     top: -100%;
+    color: $white;
+    background-color: rgba($gray-800, 0.5);
+    backdrop-filter: blur(1rem);
+}
+
+.menuPreviewInner {
+    @extend %fullscreen;
 }
 
 .menuPreview {

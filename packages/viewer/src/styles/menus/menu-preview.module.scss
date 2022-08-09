@@ -13,9 +13,6 @@
     background-position: center;
     background-size: cover;
     touch-action: none;
-    background-color: rgba($gray-800, 0.5);
-    color: $white;
-    backdrop-filter: blur(1rem);
 
     .screenButton {
         @extend %reset-button;

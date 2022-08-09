@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { config, useSpring } from '@react-spring/core';
+import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
@@ -15,6 +15,8 @@ import MenuDots from './menus/MenuDots';
 import MenuPreview from './menus/MenuPreview';
 
 import styles from '../styles/viewer.module.scss';
+
+const MENU_INNER_OFFSET = -10;
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
@@ -146,7 +148,12 @@ const ViewerMenu = ({
 
     const [{ y: menuY }, setMenuSpring] = useSpring(() => ({
         y: 0,
-        config: { ...config.stiff, clamp: true },
+        config: { tension: 300, friction: 40 },
+    }));
+    const [{ y: menuInnerY, opacity: menuInnerOpacity }, setMenuInnerSpring] = useSpring(() => ({
+        y: MENU_INNER_OFFSET,
+        opacity: 0,
+        config: { tension: 200, friction: 40 },
     }));
     const refOpened = useRef(opened);
     if (refOpened.current !== opened) {
@@ -155,13 +162,19 @@ const ViewerMenu = ({
 
     useEffect(() => {
         setMenuSpring.start({ y: opened ? 1 : 0 });
+        setMenuInnerSpring.start({ opacity: opened ? 1 : 0, y: opened ? 0 : MENU_INNER_OFFSET });
     }, [opened]);
 
     const { ref: menuPreviewContainerRef, height: menuPreviewContainerHeight = 0 } =
         useDimensionObserver();
+    const menuPreviewInnerRef = useRef();
 
-    const menuPreviewStyle = {
+    const menuPreviewStyles = {
         transform: menuY.to((y) => `translateY(${y * menuPreviewContainerHeight}px)`),
+    };
+    const menuInnerStyles = {
+        opacity: menuInnerOpacity,
+        transform: menuInnerY.to((y) => `translateY(${y}rem)`),
     };
 
     const menuDragBind = useDrag(
@@ -188,13 +201,22 @@ const ViewerMenu = ({
                 const menuNowOpened = dy > 0 && yProgress > 0.1;
                 refOpened.current = menuNowOpened;
                 setMenuSpring.start({ y: menuNowOpened ? 1 : 0 });
+                setMenuInnerSpring.start({
+                    opacity: menuNowOpened ? 1 : 0,
+                    y: menuNowOpened ? 0 : MENU_INNER_OFFSET,
+                });
                 if (menuNowOpened && onRequestOpen !== null) {
                     onRequestOpen();
                 } else if (!menuNowOpened && onRequestClose !== null) {
                     onRequestClose();
                 }
             } else {
-                setMenuSpring.start({ y: yProgress });
+                setMenuSpring.start({ y: yProgress, immediate: true });
+                setMenuInnerSpring.start({
+                    opacity: yProgress,
+                    y: MENU_INNER_OFFSET * (1 - yProgress),
+                    immediate: true,
+                });
             }
         },
         { axis: 'y', filterTaps: true },
@@ -308,7 +330,7 @@ const ViewerMenu = ({
                                         fill="currentColor"
                                         {...menuTheme}
                                     >
-                                        <rect width="10" height="16"/>
+                                        <rect width="10" height="16" />
                                     </svg>
                                 }
                                 onClick={onClickMenu}
@@ -333,28 +355,34 @@ const ViewerMenu = ({
             </div>
             <animated.div
                 className={styles.menuPreviewContainer}
-                style={menuPreviewStyle}
+                style={menuPreviewStyles}
                 ref={menuPreviewContainerRef}
             >
-                <MenuPreview
-                    viewerTheme={viewerTheme}
-                    className={styles.menuPreview}
-                    screenSize={screenSize}
-                    title={title}
-                    description={description}
-                    menuWidth={menuWidth}
-                    focusable={opened}
-                    items={items}
-                    currentScreenIndex={currentScreenIndex}
-                    showShare={showShare}
-                    shareUrl={shareUrl}
-                    onShare={onStoryShared}
-                    onClickItem={onClickItem}
-                    onClose={onClickClose}
-                    toggleFullscreen={toggleFullscreen}
-                    fullscreenActive={fullscreenActive}
-                    fullscreenEnabled={fullscreenEnabled}
-                />
+                <animated.div
+                    className={styles.menuPreviewInner}
+                    style={menuInnerStyles}
+                    ref={menuPreviewInnerRef}
+                >
+                    <MenuPreview
+                        viewerTheme={viewerTheme}
+                        className={styles.menuPreview}
+                        screenSize={screenSize}
+                        title={title}
+                        description={description}
+                        menuWidth={menuWidth}
+                        focusable={opened}
+                        items={items}
+                        currentScreenIndex={currentScreenIndex}
+                        showShare={showShare}
+                        shareUrl={shareUrl}
+                        onShare={onStoryShared}
+                        onClickItem={onClickItem}
+                        onClose={onClickClose}
+                        toggleFullscreen={toggleFullscreen}
+                        fullscreenActive={fullscreenActive}
+                        fullscreenEnabled={fullscreenEnabled}
+                    />
+                </animated.div>
             </animated.div>
         </>
     );
