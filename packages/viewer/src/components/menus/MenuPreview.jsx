@@ -275,7 +275,6 @@ const ViewerMenuPreview = ({
                                         </label>
                                     </div>
                                 ) : null}
-                                <div className={styles.shareUrl}>{finalShareUrl}</div>
                             </div>
                             <ShareOptions
                                 className={styles.shareOptions}

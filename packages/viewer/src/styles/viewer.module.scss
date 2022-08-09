@@ -77,7 +77,7 @@
 .menuNavContainer {
     visibility: hidden;
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     top: 0;
     right: 50%;
     width: 100%;
@@ -201,7 +201,7 @@
 
 .playbackControls {
     position: absolute;
-    z-index: 5;
+    z-index: 2;
     bottom: 0;
     left: 0;
     width: 100%;

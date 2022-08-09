@@ -30,6 +30,7 @@ import articleVideo from '../../../../.storybook/data/stories/article-video.json
 import article from '../../../../.storybook/data/stories/article.json';
 import basic from '../../../../.storybook/data/stories/basic.json';
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
+import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -103,6 +104,10 @@ export const WithComplexSiblings = () => (
 
 export const MicromagExample = () => (
     <Viewer {...micromagExample} />
+);
+
+export const MicromagExample2 = () => (
+    <Viewer {...micromagExample2} />
 );
 
 export const LesPlanetes = () => (

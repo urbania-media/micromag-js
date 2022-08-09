@@ -33,7 +33,6 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    // transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -48,7 +47,6 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
-    // transitionStagger: 50,
     className: null,
 };
 
@@ -63,7 +61,6 @@ const SlideshowScreen = ({
     spacing,
     captionMaxLines,
     transitions,
-    // transitionStagger,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
@@ -90,7 +87,6 @@ const SlideshowScreen = ({
     const imagesEl = useRef([]);
 
     // Call to Action
-
     const hasCallToAction = callToAction !== null && callToAction.active === true;
     const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
@@ -188,6 +184,7 @@ const SlideshowScreen = ({
             ])}
             data-screen-ready={ready}
         >
+            <h1>HELLO WORLD! SLIDESHOW</h1>
             {!isPlaceholder ? (
                 <Background
                     background={background}

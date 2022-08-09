@@ -320,18 +320,19 @@ const ShareOptions = ({
                                     { [labelClassName]: labelClassName !== null },
                                 ])}
                             >
-                                {!linkCopied ? (
-                                    <FormattedMessage
-                                        defaultMessage="Copy link"
-                                        description="Share button label"
-                                    />
-                                ) : null}
-                                {linkCopied ? (
-                                    <FormattedMessage
-                                        defaultMessage="Link copied to clipboard!"
-                                        description="Message displayed once text was copied successfully."
-                                    />
-                                ) : null}
+                                <FormattedMessage
+                                    defaultMessage="Copy link"
+                                    description="Share button label"
+                                />
+                                <div className={styles.shareUrl}>
+                                    {!linkCopied ? `https://${url}` : null}
+                                    {linkCopied ? (
+                                        <FormattedMessage
+                                            defaultMessage="Link copied to clipboard!"
+                                            description="Message displayed once text was copied successfully."
+                                        />
+                                    ) : null}
+                                </div>
                             </div>
                         </Button>
                     </div>
