@@ -38,6 +38,9 @@ import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
 
+const springConfig = { tension: 250, friction: 30 };
+// const springConfig = { tension: 150, friction: 50 };
+
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
     basePath: PropTypes.string,
@@ -231,67 +234,88 @@ const Viewer = ({
     const [previousScreenSpringStyles, previousScreenSpringApi] = useSpring(() => ({
         x: '0%',
         scale: 0.8,
-        blurRadius: 1,
-        config: { tension: 250, friction: 30 },
+        filterAmount: 1,
+        config: springConfig,
     }));
     const [currentScreenSpringStyles, currentScreenSpringApi] = useSpring(() => ({
         x: '0%',
         scale: 1,
-        blurRadius: 0,
-        config: { tension: 250, friction: 30 },
+        filterAmount: 0,
+        config: springConfig,
     }));
     const [nextScreenSpringStyles, nextScreenSpringApi] = useSpring(() => ({
         x: '100%',
         scale: 1,
-        blurRadius: 0,
-        config: { tension: 200, friction: 30 },
+        filterAmount: 0,
+        config: springConfig,
     }));
 
-    const transitionScreens = useCallback(() => {
+    const transitionScreens = useCallback((direction) => {
+        const previous = direction === 'previous';
+
         previousScreenSpringApi.start({
-            x: '0%',
-            scale: 0.8,
-            blurRadius: 0.5,
+            from: {
+                x: '0%',
+                scale: previous ? 0.8 : 1,
+                filterAmount: 1,
+            },
+            to: {
+                scale: 0.8,
+            }
         });
         currentScreenSpringApi.start({
-            x: '0%',
-            scale: 1,
-            blurRadius: 0,
+            from: {
+                x: previous ? '0%' : '100%',
+                scale: previous ? 0.8 : 1,
+                filterAmount: previous ? 1 : 0,
+                zIndex: 1, // @todo?
+            },
+            to: {
+                x: '0%',
+                scale: 1,
+                filterAmount: 0,
+            }
         });
         nextScreenSpringApi.start({
-            x: '100%',
-            scale: 1,
-            blurRadius: 0,
+            from: {
+                x: previous ? '0%' : '100%',
+                scale: 1,
+                filterAmount: 0,
+                zIndex: 2,
+            },
+            to: {
+                x: '100%',
+            },
         });
     }, [previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi]);
 
-    const changeScreenPositions = useCallback(
-        (direction) => {
-            const previous = direction === 'previous';
+    // const changeScreenPositions = useCallback(
+    //     (direction) => {
+    //         const previous = direction === 'previous';
 
-            previousScreenSpringApi.start({
-                immediate: true,
-                x: '0%',
-                scale: previous ? 0.8 : 1,
-                blurRadius: 0.5,
-            });
-            currentScreenSpringApi.start({
-                immediate: true,
-                x: previous ? '0%' : '100%',
-                scale: previous ? 0.8 : 1,
-                blurRadius: previous ? 0.5 : 0,
-                zIndex: 1,
-            });
-            nextScreenSpringApi.start({
-                immediate: true,
-                x: previous ? '0%' : '100%',
-                scale: 1,
-                blurRadius: 0,
-                zIndex: 2,
-            });
-        },
-        [previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi],
-    );
+    //         previousScreenSpringApi.start({
+    //             immediate: true,
+    //             x: '0%',
+    //             scale: previous ? 0.8 : 1,
+    //             filterAmount: 1,
+    //         });
+    //         currentScreenSpringApi.start({
+    //             immediate: true,
+    //             x: previous ? '0%' : '100%',
+    //             scale: previous ? 0.8 : 1,
+    //             filterAmount: previous ? 1 : 0,
+    //             zIndex: 1,
+    //         });
+    //         nextScreenSpringApi.start({
+    //             immediate: true,
+    //             x: previous ? '0%' : '100%',
+    //             scale: 1,
+    //             filterAmount: 0,
+    //             zIndex: 2,
+    //         });
+    //     },
+    //     [previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi],
+    // );
 
     // Screen index
     const screenIndex = useMemo(
@@ -320,9 +344,10 @@ const Viewer = ({
                 currentScreenMedia.current = screensMediasRef.current[index] || null;
             }
 
-            const direction = index > screenIndex ? 'next' : 'previous';
-            changeScreenPositions(direction);
-            transitionScreens();
+            // const direction = index > screenIndex ? 'next' : 'previous';
+            // changeScreenPositions(direction);
+            // transitionScreens();
+            transitionScreens(index > screenIndex ? 'next' : 'previous');
 
             if (onScreenChange !== null) {
                 onScreenChange(screens[index], index);
@@ -702,10 +727,10 @@ const Viewer = ({
                                     const currentOrAdjacentStyles = current
                                         ? currentScreenSpringStyles
                                         : nextOrPreviousStyles;
-                                    const { blurRadius = null } = currentOrAdjacentStyles || {};
+                                    const { filterAmount = null } = currentOrAdjacentStyles || {};
                                     const finalStyles = {
                                         ...currentOrAdjacentStyles,
-                                        filter: blurRadius.to((r) => `blur(${r}rem)`),
+                                        filter: filterAmount.to((r) => `grayscale(${r})`),
                                     };
 
                                     return (
@@ -783,12 +808,7 @@ const Viewer = ({
                                         className={styles.playbackControls}
                                         ref={playbackControlsContainerRef}
                                     >
-                                        <div
-                                            className={styles.playbackControlsContainer}
-                                            style={{ width: screenContainerWidth }}
-                                        >
-                                            <PlaybackControls className={styles.controls} />
-                                        </div>
+                                        <PlaybackControls className={styles.controls} />
                                     </div>
                                 ) : null}
                             </div>

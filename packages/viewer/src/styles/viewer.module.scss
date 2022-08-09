@@ -17,34 +17,36 @@
     &.landscape {
         .screenContainer {
             top: 0;
-            right: auto;
+            // right: auto;
             bottom: 0;
             left: 50%;
             margin: auto;
-            transform: translate(50vw, 0);
-            opacity: 0.2;
-            cursor: pointer;
-
-            &:hover,
-            &:focus-visible {
-                opacity: 0.3;
-            }
-
-            &.visible {
-                transform: translate(0, 0);
-            }
-
-            &.current {
-                transform: translate(-50%, 0);
-                opacity: 1;
-                cursor: auto;
-            }
-        }
-
-        &.withSiblings .screenContainer {
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: translate(-50%, 0);
         }
     }
+            // opacity: 0.2;
+    //         cursor: pointer;
+
+    //         &:hover,
+    //         &:focus-visible {
+    //             opacity: 0.3;
+    //         }
+
+    //         &.visible {
+    //             transform: translate(0, 0);
+    //         }
+
+    //         &.current {
+    //             transform: translate(-50%, 0);
+    //             opacity: 1;
+    //             cursor: auto;
+    //         }
+    //     }
+
+    //     &.withSiblings .screenContainer {
+    //         transition: transform 0.3s ease, opacity 0.3s ease;
+    //     }
+    // }
 
     &.hideMenu {
         .menuNavContainer {
@@ -153,15 +155,6 @@
     transform: translateX(-50%);
 }
 
-.navButtonContainer {
-
-
-    @media screen and (min-width: 1024px) {
-        display: block;
-        visibility: visible;
-    }
-}
-
 .navButton {
     display: none;
     visibility: hidden;
@@ -210,10 +203,6 @@
 }
 
 // Playback Controls for Video/Audio screen types
-.playbackControlsContainer {
-    margin: 0 auto;
-}
-
 .playbackControls {
     position: absolute;
     z-index: 2;

@@ -1,12 +1,6 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
-.container {
-    @extend %reset-button;
-    @extend %focus-outline;
-    border: 0;
-}
-
 .arrow {
     width: 1rem;
     height: auto;

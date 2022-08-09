@@ -232,6 +232,7 @@ const Button = ({
             </a>
         ) : (
             <Link
+                {...props}
                 to={href}
                 className={linkClassNames}
                 onClick={onClick}

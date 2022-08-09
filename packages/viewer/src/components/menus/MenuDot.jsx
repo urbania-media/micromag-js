@@ -41,15 +41,9 @@ const ViewerMenuDot = ({
     onClick,
     className,
 }) => {
-    const currentTime = 0;
-    const duration = 1;
-    const playing = true;
-    const animation = false;
-
     const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(255, 255, 255, 0.25)' } =
         colors || {};
 
-    // TODO: if approved animate progress
     const [dotSpringStyles, setDotSpringProps] = useSpring(() => ({
         scaleX: 0,
         config: {
@@ -62,53 +56,8 @@ const ViewerMenuDot = ({
         const activeRatio = active ? 1 : 0;
         const ratio = count > 1 && current ? (subIndex + 1) / count : activeRatio;
         const scaleX = ratio;
-
-        console.log({ subIndex, count, current, active, scaleX });
-
         setDotSpringProps.start({ scaleX, immediate: !current });
     }, [active, current, subIndex, count, setDotSpringProps]);
-
-    // useEffect(() => {
-    //     if (currentTime === null || duration === null) {
-    //         return;
-    //     }
-    //     const progress = currentTime / duration;
-    //     setSpringProps.start({
-    //         reset: true,
-    //         immediate: !playing,
-    //         from: {
-    //             x: progress,
-    //         },
-    //         to: {
-    //             x: playing ? 1 : progress,
-    //         },
-    //         config: {
-    //             duration: (duration - currentTime) * 1000,
-    //         },
-    //     });
-    // }, [playing, duration, currentTime, setSpringProps]);
-
-    // const inner =
-    //     current && count > 1 ? (
-    //         <span className={styles.dots}>
-    //             {[...Array(count).keys()].map((i) => (
-    //                 <span
-    //                     className={classNames([styles.dot, styles.subDot])}
-    //                     style={{
-    //                         width: `${parseFloat((1 / count) * 100).toFixed(2)}%`,
-    //                         backgroundColor: active && i <= subIndex ? primary : secondary,
-    //                     }}
-    //                 />
-    //             ))}
-    //         </span>
-    //     ) : (
-    //         <span
-    //             className={styles.dot}
-    //             style={{
-    //                 backgroundColor: active ? primary : secondary,
-    //             }}
-    //         />
-    //     );
 
     return (
         <li

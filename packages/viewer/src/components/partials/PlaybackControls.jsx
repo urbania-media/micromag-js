@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { Button } from '@micromag/core/components';
 import { usePlaybackContext } from '@micromag/core/contexts';
 import { getColorAsString } from '@micromag/core/utils';
 
@@ -120,48 +121,51 @@ function PlaybackControls({ className, collapsedClassName }) {
                 },
             ])}
         >
-            <button
-                type="button"
+            <Button
                 className={styles.playPauseButton}
                 style={{
                     color,
                 }}
                 onClick={playing ? onPause : onPlay}
-                title={intl.formatMessage({
-                    defaultMessage: 'Play',
-                    description: 'Button label',
-                })}
-                aria-label={intl.formatMessage({
-                    defaultMessage: 'Play',
-                    description: 'Button label',
-                })}
-                tabIndex={controlsVisible ? '0' : '-1'}
-            >
-                {playing ? (
-                    <svg
-                        className={styles.icon}
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="16"
-                        viewBox="0 0 10 16"
-                        fill="currentColor"
-                    >
-                        <rect x="2.24" y="4.33" width="2" height="7.34" />
-                        <rect x="5.71" y="4.33" width="2" height="7.34" />
-                    </svg>
-                ) : (
-                    <svg
-                        className={styles.icon}
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="16"
-                        viewBox="0 0 10 16"
-                        fill="currentColor"
-                    >
-                        <polyline points="2.67 3.92 7.33 8 2.67 12.08" />
-                    </svg>
-                )}
-            </button>
+                focusable={controlsVisible}
+                icon={
+                    playing ? (
+                        <svg
+                            className={styles.icon}
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="10"
+                            height="16"
+                            viewBox="0 0 10 16"
+                            fill="currentColor"
+                        >
+                            <rect x="1" y="3.27" width="3" height="9.69" />
+                            <rect x="6" y="3.27" width="3" height="9.69" />
+                        </svg>
+                    ) : (
+                        <svg
+                            className={styles.icon}
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="10"
+                            height="16"
+                            viewBox="0 0 10 16"
+                            fill="currentColor"
+                        >
+                            <path d="M1,3.16V12.84l8-4.84L1,3.16" />
+                        </svg>
+                    )
+                }
+                aria-label={
+                    playing
+                        ? intl.formatMessage({
+                              defaultMessage: 'Pause',
+                              description: 'Button label',
+                          })
+                        : intl.formatMessage({
+                              defaultMessage: 'Play',
+                              description: 'Button label',
+                          })
+                }
+            />
 
             <SeekBar
                 className={styles.seekBar}
@@ -176,51 +180,53 @@ function PlaybackControls({ className, collapsedClassName }) {
                 progressColor={progressColor}
             />
 
-            <button
-                type="button"
+            <Button
                 className={styles.muteButton}
                 style={{
                     color,
                 }}
                 onClick={muted ? onUnmute : onMute}
-                title={intl.formatMessage({
-                    defaultMessage: 'Mute',
-                    description: 'Button label',
-                })}
-                aria-label={intl.formatMessage({
-                    defaultMessage: 'Mute',
-                    description: 'Button label',
-                })}
-                tabIndex={controlsVisible || mediaHasAudio ? '0' : '-1'}
-            >
-                {muted ? (
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="16"
-                        viewBox="0 0 10 16"
-                        className={styles.icon}
-                        fill="currentColor"
-                    >
-                        <polygon points="3.37 4.63 2 6 0 6 0 10 2 10 5 13 5 3 3.37 4.63" />
-                        <polygon points="9.97 6.64 8.91 5.58 7.55 6.94 6.18 5.58 5.12 6.64 6.49 8 5.12 9.36 6.18 10.43 7.55 9.06 8.91 10.43 9.97 9.36 8.61 8 9.97 6.64" />
-                    </svg>
-                ) : (
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="16"
-                        viewBox="0 0 10 16"
-                        className={styles.icon}
-                        fill="currentColor"
-                    >
-                        <rect y="6" width="2" height="4" />
-                        <polygon points="5 13 2 10 2 6 3.37 4.63 5 3 5 13" />
-                        <path d="M5.63,9.5l1,1.22a4.69,4.69,0,0,0,0-5.44l-1,1.22a3.15,3.15,0,0,1,0,3Z" />
-                        <path d="M7.46,11l1,1.19a6.58,6.58,0,0,0,0-8.34L7.46,5a5,5,0,0,1,0,6Z" />
-                    </svg>
-                )}
-            </button>
+                focusable={controlsVisible || mediaHasAudio}
+                icon={
+                    muted ? (
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="10"
+                            height="16"
+                            viewBox="0 0 10 16"
+                            className={styles.icon}
+                            fill="currentColor"
+                        >
+                            <polygon points="2.75 4.63 1.24 6 0 6 0 10 1.24 10 4.54 13 4.54 3 2.75 4.63" />
+                            <polygon points="10 6.63 8.94 5.57 7.58 6.93 6.21 5.57 5.15 6.63 6.52 7.99 5.15 9.35 6.21 10.43 7.58 9.06 8.94 10.43 10 9.35 8.64 7.99 10 6.63" />
+                        </svg>
+                    ) : (
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="10"
+                            height="16"
+                            viewBox="0 0 10 16"
+                            className={styles.icon}
+                            fill="currentColor"
+                        >
+                            <polygon points="2.75 4.63 1.24 6 0 6 0 10 1.24 10 4.54 13 4.54 3 2.75 4.63" />
+                            <circle cx="6.14" cy="8" r=".99" />
+                            <path d="M6.14,11.88v-1.5c1.31,0,2.38-1.07,2.38-2.38s-1.07-2.38-2.38-2.38v-1.5c2.14,0,3.88,1.74,3.88,3.88s-1.74,3.88-3.88,3.88Z" />
+                        </svg>
+                    )
+                }
+                aria-label={
+                    muted
+                        ? intl.formatMessage({
+                              defaultMessage: 'Unmute',
+                              description: 'Button label',
+                          })
+                        : intl.formatMessage({
+                              defaultMessage: 'Mute',
+                              description: 'Button label',
+                          })
+                }
+            />
         </div>
     );
 }

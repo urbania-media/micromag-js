@@ -13,30 +13,29 @@
 .muteButton {
     @extend %reset-button;
     display: flex;
-
     position: relative;
     z-index: 2;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: auto;
-    margin: 10px;
     transition: opacity 0.5s $ease-in-out-sine;
     pointer-events: auto;
+    padding: 1rem;
+}
+
+// @todo placeholder or special react comp for that?
+.icon {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 1.5rem;
+    height: auto;
+    color: currentColor;
 }
 
 .playPauseButton {
     transition: opacity 0.5s $ease-in-out-sine;
     opacity: 0;
     pointer-events: none;
-
-    .icon {
-        display: block;
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        height: auto;
-    }
 
     // display the Play/Pause button
     .withPlayPause & {
@@ -53,15 +52,6 @@
 .muteButton {
     opacity: 0;
     pointer-events: none;
-
-    .icon {
-        display: block;
-        position: relative;
-        z-index: 1;
-        width: 70%;
-        height: 70%;
-        color: currentColor;
-    }
 
     &.isMuted {
         &::after {

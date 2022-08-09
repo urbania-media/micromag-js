@@ -120,12 +120,15 @@
     }
 
     .shareOptionsButton {
+        @extend %active-bump;
         border-radius: 0;
         background-color: transparent;
         padding: 0 0.25rem;
 
-        &:hover {
-            background-color: $black !important;
+        @media (hover: hover) {
+            &:hover {
+                background-color: $black !important;
+            }
         }
     }
 
