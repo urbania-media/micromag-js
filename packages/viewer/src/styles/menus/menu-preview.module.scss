@@ -75,7 +75,7 @@
     }
 
     .shareHeader {
-        padding: 10px;
+        padding: 0 10px 10px 12px;
     }
 
     .shareMode {
@@ -89,14 +89,12 @@
         input {
             margin-right: 0.5rem;
             appearance: none;
-            width: 0.75rem;
-            height: 0.75rem;
-            border-radius: 2px;
+            width: 1.1rem;
+            height: 1.1rem;
             border: 2px solid $white;
-            background-color: $white;
 
             &:checked {
-                background-color: $purple;
+                background-color: $white;
             }
         }
     }
