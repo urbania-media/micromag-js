@@ -38,8 +38,8 @@ import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
 
-const springConfig = { tension: 250, friction: 30 };
-// const springConfig = { tension: 150, friction: 50 };
+const springConfig = { tension: 250, friction: 30 }; // tight
+// const springConfig = { tension: 150, friction: 50 }; // sluggish
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -288,34 +288,6 @@ const Viewer = ({
             },
         });
     }, [previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi]);
-
-    // const changeScreenPositions = useCallback(
-    //     (direction) => {
-    //         const previous = direction === 'previous';
-
-    //         previousScreenSpringApi.start({
-    //             immediate: true,
-    //             x: '0%',
-    //             scale: previous ? 0.8 : 1,
-    //             filterAmount: 1,
-    //         });
-    //         currentScreenSpringApi.start({
-    //             immediate: true,
-    //             x: previous ? '0%' : '100%',
-    //             scale: previous ? 0.8 : 1,
-    //             filterAmount: previous ? 1 : 0,
-    //             zIndex: 1,
-    //         });
-    //         nextScreenSpringApi.start({
-    //             immediate: true,
-    //             x: previous ? '0%' : '100%',
-    //             scale: 1,
-    //             filterAmount: 0,
-    //             zIndex: 2,
-    //         });
-    //     },
-    //     [previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi],
-    // );
 
     // Screen index
     const screenIndex = useMemo(
@@ -728,9 +700,12 @@ const Viewer = ({
                                         ? currentScreenSpringStyles
                                         : nextOrPreviousStyles;
                                     const { filterAmount = null } = currentOrAdjacentStyles || {};
+                                    /**
+                                     * CSS is here basically
+                                     */
                                     const finalStyles = {
                                         ...currentOrAdjacentStyles,
-                                        filter: filterAmount.to((r) => `grayscale(${r})`),
+                                        filter: filterAmount.to((r) => `saturate(${1 - (r * 0.5)})`),
                                     };
 
                                     return (
