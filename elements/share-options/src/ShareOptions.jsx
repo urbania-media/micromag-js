@@ -335,7 +335,6 @@ const ShareOptions = ({
                                         />
                                     ) : null}
                                 </span>
-                                <span className={styles.shareUrl}>{url}</span>
                             </div>
                         </Button>
                     </div>

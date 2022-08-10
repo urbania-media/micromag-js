@@ -13,6 +13,7 @@
     background-position: center;
     background-size: cover;
     touch-action: none;
+    padding-top: 3rem;
 
     .screenButton {
         @extend %reset-button;
@@ -69,29 +70,58 @@
         }
     }
 
-    .micromagPreview {
-        padding: 10px;
-        margin-top: 3rem;
+    .shareHeader {
+        max-width: 600px;
+        margin: 1rem 0.5rem;
+        padding: 1rem;
+        border: 1px solid rgba($white, 0.25);
+        border-radius: 0.5rem;
+        background-color: rgba(0, 0, 0, 0.1);
     }
 
-    .shareHeader {
-        padding: 0 10px 10px 12px;
+    .shareUrl {
+        font-size: 0.9rem;
+        letter-spacing: 0.03rem;
+        background-color: rgba($white, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        word-break: break-all;
+        transform-origin: 100% 50%;
+
+        .isLinkCopied & {
+            animation: bump 0.5s 1 $ease-in-out-sine alternate-reverse forwards;
+        }
+    }
+
+    .sharePreview {
+        margin-top: 1rem;
     }
 
     .shareMode {
+        margin-top: 1rem;
+
         label {
             display: flex;
             align-items: center;
             font-size: 14px;
             line-height: 1.4;
+            user-select: none;
         }
 
         input {
             margin-right: 0.5rem;
             appearance: none;
-            width: 1.1rem;
-            height: 1.1rem;
+            width: 1rem;
+            height: 1rem;
             border: 2px solid $white;
+            transition: transform 0.3s $ease-out-ramp;
+            animation: bump 0.5s 1 $ease-in-out-sine alternate-reverse forwards;
+            border-radius: 4px;
+
+            &:active {
+                transition: transform 0.3s $ease-in-kickback;
+                transform: scale(1.3);
+            }
 
             &:checked {
                 background-color: $white;
@@ -100,7 +130,7 @@
     }
 
     .shareOptions {
-        margin-bottom: 5rem;
+        margin-bottom: 3rem;
     }
 
     .shareOptionsItem {
@@ -111,6 +141,8 @@
         }
 
         &:last-child {
+            border-bottom: 1px solid rgba($white, 0.25);
+
             .shareOptionsButton {
                 padding-bottom: 0.5rem;
             }
@@ -190,10 +222,6 @@
 
         &.active {
             z-index: 2;
-
-            .screenButton {
-                pointer-events: none;
-            }
         }
     }
 
@@ -224,7 +252,7 @@
         top: 50%;
         left: 50%;
         text-align: center;
-        transform: translate(-50%,-50%) translate(-0.1rem, -0.1rem);
+        transform: translate(-50%, -50%) translate(-0.1rem, -0.1rem);
     }
 
     .subScreenIcon {

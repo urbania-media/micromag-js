@@ -19,6 +19,13 @@
     font-weight: 400;
     color: $white;
     background-color: $black;
+    transition: transform 0.3s $ease-out-ramp;
+    transform-origin: 0 50%;
+
+    &:active {
+        transition: transform 0.3s $ease-in-kickback;
+        transform: scale(0.95);
+    }
 }
 
 .icon {
@@ -35,25 +42,4 @@
 .labelText {
     flex-shrink: 0;
     margin-right: 1rem;
-}
-
-.shareUrl {
-    display: inline-block;
-    font-size: 0.8rem;
-    background-color: rgba($white, 0.1);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    margin-left: auto;
-    word-break: break-all;
-    transform-origin: 100% 50%;
-
-    .isLinkCopied & {
-        animation: bump 0.5s 1 $ease-in-out-sine alternate-reverse forwards;
-    }
-}
-
-@keyframes bump {
-    to {
-        transform: scale(1.2);
-    }
 }

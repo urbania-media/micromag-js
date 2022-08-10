@@ -248,16 +248,18 @@ const ViewerMenuPreview = ({
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                 >
-                    <MicromagPreview
-                        className={styles.micromagPreview}
-                        screen={showShare && shareCurrentScreen ? currentScreen : coverScreen}
-                        title={title}
-                        description={description}
-                    />
-
                     {showShare ? (
                         <>
                             <div className={styles.shareHeader}>
+                                <div className={styles.shareUrl}>
+                                    {finalShareUrl}
+                                </div>
+                                <MicromagPreview
+                                    className={styles.sharePreview}
+                                    screen={showShare && shareCurrentScreen ? currentScreen : coverScreen}
+                                    title={title}
+                                    description={description}
+                                />
                                 {currentScreenIndex !== 0 ? (
                                     <div className={styles.shareMode}>
                                         <label>
