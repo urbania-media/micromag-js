@@ -418,7 +418,9 @@ const Viewer = ({
 
     // Handles tap when landscape (space around current screen)
     const onDragContent = useCallback(
-        ({ tap, target, currentTarget, xy: [x] }) => {
+        ({ tap, target, currentTarget, xy: [x], movement: [mx, my] }) => {
+            // console.log({mx, my});
+
             if (!landscape || withLandscapeSiblingsScreens || target !== contentRef.current) {
                 return;
             }

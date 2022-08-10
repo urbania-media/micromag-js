@@ -326,7 +326,12 @@ const ViewerMenuPreview = ({
                                         >
                                             <div className={styles.itemContent}>
                                                 <div
-                                                    className={styles.screenContainer}
+                                                    className={classNames([
+                                                        styles.screenContainer,
+                                                        {
+                                                            [styles.isCurrentScreen]: current
+                                                        }
+                                                    ])}
                                                     ref={
                                                         index === 0 ? firstScreenContainerRef : null
                                                     }
@@ -352,12 +357,12 @@ const ViewerMenuPreview = ({
                                                             withSize
                                                         />
                                                     ) : null}
-                                                    {current ? (
+                                                    {/* {current ? (
                                                         <div
                                                             className={styles.activeScreenBorder}
                                                             style={borderPrimaryColorStyle}
                                                         />
-                                                    ) : null}
+                                                    ) : null} */}
                                                 </div>
                                             </div>
                                             <button

@@ -79,9 +79,8 @@
         max-width: 600px;
         margin: 3rem 0.5rem 1rem;
         padding: 0.5rem;
-        border: 1px solid rgba($white, 0.25);
         border-radius: 0.5rem;
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0.15);
     }
 
     .shareMode {
@@ -219,6 +218,10 @@
     .screenContainer {
         position: relative;
         width: 100%;
+
+        &.isCurrentScreen {
+            animation: pulse 1s $ease-in-out-soft-sine infinite alternate-reverse;
+        }
     }
 
     .subScreenBadge {
@@ -249,24 +252,15 @@
         height: auto;
         fill: $white;
     }
-
-    .activeScreenBorder {
-        @extend %fullscreen;
-
-        animation: borderBounce 0.8s $ease-in-out-soft-sine infinite alternate-reverse;
-    }
-
-    .screenContent {
-        transform-origin: left top;
-        background-color: $gray-900;
-    }
 }
 
-@keyframes borderBounce {
+@keyframes pulse {
     from {
-        outline: 2px solid $white;
+        transform: scale(1);
+        outline: 0.1rem solid $white;
     }
     to {
-        outline: 10px solid $white;
+        transform: scale(0.95);
+        outline: 0.5rem solid $white;
     }
 }
