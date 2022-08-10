@@ -73,7 +73,7 @@
         pointer-events: auto;
     }
 
-    .withMute.isCollapsed & {
+    .withSeekBar.withMute.isCollapsed & {
         opacity: 0.25;
     }
     .withMute.isCollapsed.isMuted & {
