@@ -48,56 +48,44 @@
         padding: 10px;
         display: flex;
         align-items: center;
+    }
 
-        .button {
-            @extend %reset-button;
-            @extend %focus-outline;
+    .button {
+        @extend %reset-button;
+        @extend %focus-outline;
 
-            display: flex;
-            align-items: center;
-        }
+        display: flex;
+        align-items: center;
+    }
 
+    .closeButton {
+        z-index: 1;
+        margin-left: auto;
+    }
+
+    &.showShare {
         .closeButton {
-            z-index: 1;
-            margin-left: auto;
+            margin-left: 0;
         }
+    }
 
-        .icon {
-            display: block;
-            width: 1rem;
-            height: auto;
-        }
+    .icon {
+        display: block;
+        width: 1rem;
+        height: auto;
     }
 
     .shareHeader {
         max-width: 600px;
         margin: 3rem 0.5rem 1rem;
-        padding: 1rem;
+        padding: 0.5rem;
         border: 1px solid rgba($white, 0.25);
         border-radius: 0.5rem;
         background-color: rgba(0, 0, 0, 0.1);
     }
 
-    .shareUrl {
-        font-size: 0.9rem;
-        letter-spacing: 0.03rem;
-        background-color: rgba($white, 0.1);
-        padding: 0.5rem 1rem;
-        border-radius: 1rem;
-        word-break: break-all;
-        transform-origin: 100% 50%;
-
-        .isLinkCopied & {
-            animation: bump 0.5s 1 $ease-in-out-sine alternate-reverse forwards;
-        }
-    }
-
-    .sharePreview {
-        margin-top: 1rem;
-    }
-
     .shareMode {
-        margin-top: 1rem;
+        margin-top: 0.5rem;
 
         label {
             display: flex;

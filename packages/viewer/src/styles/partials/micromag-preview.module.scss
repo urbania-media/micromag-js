@@ -8,11 +8,16 @@
 }
 
 .cover {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 }
 
 .info {
     white-space: normal;
+}
+
+.url {
+    margin: 0.5rem 0;
+    font-size: 0.75rem;
 }
 
 .container { // @todo specificity clash

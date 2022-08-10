@@ -11,6 +11,7 @@ import styles from '../../styles/partials/micromag-preview.module.scss';
 const propTypes = {
     screen: MicromagPropTypes.item,
     title: PropTypes.string,
+    url: PropTypes.string,
     description: PropTypes.string,
     className: PropTypes.string,
 };
@@ -18,11 +19,12 @@ const propTypes = {
 const defaultProps = {
     screen: null,
     title: null,
+    url: null,
     description: null,
     className: null,
 };
 
-const MicromagPreview = ({ screen, title, description, className }) => (
+const MicromagPreview = ({ screen, title, url, description, className }) => (
     <div
         className={classNames([
             styles.container,
@@ -36,6 +38,7 @@ const MicromagPreview = ({ screen, title, description, className }) => (
         </div>
         <div className={styles.info}>
             <h3 className={styles.title}>{title}</h3>
+            {url ? <div className={styles.url}>{url}</div> : null}
             <p>{description}</p>
         </div>
     </div>
