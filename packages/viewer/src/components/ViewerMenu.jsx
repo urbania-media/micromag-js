@@ -170,7 +170,8 @@ const ViewerMenu = ({
     const menuPreviewInnerRef = useRef();
 
     const menuPreviewStyles = {
-        transform: menuY.to((y) => `translateY(${y * menuPreviewContainerHeight}px)`),
+        // transform: menuY.to((y) => `translateY(${y * menuPreviewContainerHeight}px)`),
+        transform: menuY.to((y) => `translateY(${y * 100}%)`),
     };
     const menuInnerStyles = {
         opacity: menuInnerOpacity,
@@ -275,7 +276,10 @@ const ViewerMenu = ({
             <div
                 className={classNames([
                     styles.menuNavContainer,
-                    { [styles.withShadow]: withShadow },
+                    {
+                        [styles.withShadow]: withShadow,
+                        [styles.isMenuOpened]: opened,
+                    },
                 ])}
                 ref={refDots}
                 style={{ width: menuWidth }}
