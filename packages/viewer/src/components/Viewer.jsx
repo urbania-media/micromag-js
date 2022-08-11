@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading, no-nested-ternary */
 import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
@@ -228,67 +228,6 @@ const Viewer = ({
 
     const screensMediasRef = useRef([]);
 
-    /**
-     * Screen Transitions
-     */
-    const [previousScreenSpringStyles, previousScreenSpringApi] = useSpring(() => ({
-        x: '0%',
-        scale: 0.8,
-        filterAmount: 1,
-        config: springConfig,
-    }));
-    const [currentScreenSpringStyles, currentScreenSpringApi] = useSpring(() => ({
-        x: '0%',
-        scale: 1,
-        filterAmount: 0,
-        config: springConfig,
-    }));
-    const [nextScreenSpringStyles, nextScreenSpringApi] = useSpring(() => ({
-        x: '100%',
-        scale: 1,
-        filterAmount: 0,
-        config: springConfig,
-    }));
-
-    const transitionScreens = useCallback((direction) => {
-        const previous = direction === 'previous';
-
-        previousScreenSpringApi.start({
-            from: {
-                x: '0%',
-                scale: previous ? 0.8 : 1,
-                filterAmount: 1,
-            },
-            to: {
-                scale: 0.8,
-            }
-        });
-        currentScreenSpringApi.start({
-            from: {
-                x: previous ? '0%' : '100%',
-                scale: previous ? 0.8 : 1,
-                filterAmount: previous ? 1 : 0,
-                zIndex: 1, // @todo?
-            },
-            to: {
-                x: '0%',
-                scale: 1,
-                filterAmount: 0,
-            }
-        });
-        nextScreenSpringApi.start({
-            from: {
-                x: previous ? '0%' : '100%',
-                scale: 1,
-                filterAmount: 0,
-                zIndex: 2,
-            },
-            to: {
-                x: '100%',
-            },
-        });
-    }, [previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi]);
-
     // Screen index
     const screenIndex = useMemo(
         () =>
@@ -307,25 +246,87 @@ const Viewer = ({
         screensMedias.current = screensMediasRef.current;
     }
 
+    /**
+     * Screen Transitions
+     */
+    const [dragRatio, setDragRatio] = useState(0);
+
+    const [previousScreenSpringStyles, previousScreenSpringApi] = useSpring(() => ({
+        x: '0%',
+        scale: 0.8,
+        config: springConfig,
+    }));
+    const [currentScreenSpringStyles, currentScreenSpringApi] = useSpring(() => ({
+        x: '0%',
+        scale: 1,
+        config: springConfig,
+    }));
+    const [nextScreenSpringStyles, nextScreenSpringApi] = useSpring(() => ({
+        x: '100%',
+        scale: 1,
+        config: springConfig,
+    }));
+
+    const transitionScreens = useCallback((forward) => {
+        // console.log({dragRatio});
+        previousScreenSpringApi.start({
+            from: {
+                scale: forward ? 1 : 0.8
+            },
+            to: {
+                scale: 0.8,
+            }
+        });
+        currentScreenSpringApi.start({
+            from: {
+                x: forward ? '100%' : '0%',
+                scale: forward ? 1 : 0.8,
+                zIndex: 1,
+            },
+            to: {
+                x: '0%',
+                scale: 1,
+            }
+        });
+        nextScreenSpringApi.start({
+            from: {
+                x: forward ? '100%' : dragRatio ? `${(1 - dragRatio) * 100}%` : '0%',
+                zIndex: 2,
+            },
+            x: '100%',
+        });
+    }, [dragRatio, previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi]);
+
+    const resetScreens = useCallback(() => {
+        previousScreenSpringApi.start({
+            scale: 0.8,
+        });
+        currentScreenSpringApi.start({
+            x: '0%',
+            scale: 1,
+        });
+        nextScreenSpringApi.start({
+            x: '100%',
+        });
+    }, [previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi]);
+
     const changeIndex = useCallback(
         (index) => {
             if (index === screenIndex) {
                 return;
             }
+
             if (currentScreenMedia !== null) {
                 currentScreenMedia.current = screensMediasRef.current[index] || null;
             }
 
-            // const direction = index > screenIndex ? 'next' : 'previous';
-            // changeScreenPositions(direction);
-            // transitionScreens();
-            transitionScreens(index > screenIndex ? 'next' : 'previous');
-
             if (onScreenChange !== null) {
                 onScreenChange(screens[index], index);
             }
+
+            transitionScreens(index > screenIndex);
         },
-        [screenIndex, screens, onScreenChange],
+        [screenIndex, screens, transitionScreens, onScreenChange],
     );
 
     // Track screen view
@@ -418,12 +419,7 @@ const Viewer = ({
 
     // Handles tap when landscape (space around current screen)
     const onDragContent = useCallback(
-        ({ tap, target, currentTarget, xy: [x], movement: [mx, my] }) => {
-            // console.log({mx, my});
-
-            if (!landscape || withLandscapeSiblingsScreens || target !== contentRef.current) {
-                return;
-            }
+        ({ active, velocity: [vx], movement: [mx], tap, currentTarget, xy: [x] }) => {
             if (tap) {
                 const { left: contentX = 0, width: contentWidth = 0 } =
                     currentTarget.getBoundingClientRect();
@@ -436,9 +432,58 @@ const Viewer = ({
                     index: screenIndex,
                     newIndex: nextIndex,
                 });
+
+                return;
+            }
+
+            const forward = mx < 0;
+            const ratio = Math.min(1, Math.abs(mx / screenContainerWidth));
+
+            if (!tap) {
+                previousScreenSpringApi.start({
+                    immediate: true,
+                    scale: forward ? 0.8 : 0.8 + (1 - 0.8) * ratio,
+                });
+                currentScreenSpringApi.start({
+                    immediate: true,
+                    x: `${forward ? 0 : ratio * 100}%`,
+                    scale: forward ? 1 - (1 - 0.8) * ratio : 1,
+                });
+                nextScreenSpringApi.start({
+                    immediate: true,
+                    x: `${forward ? (1 - ratio) * 100 : 100}%`,
+                });
+            }
+
+            if (!active) {
+                if (vx > 0.3 || ratio > 0.3) {
+                    const nextIndex = !forward
+                        ? Math.max(0, screenIndex - 1)
+                        : Math.min(screensCount - 1, screenIndex + 1);
+
+                    setDragRatio(ratio);
+
+                    onScreenNavigate({
+                        index: screenIndex,
+                        newIndex: nextIndex,
+                    });
+                } else {
+                    resetScreens();
+                }
             }
         },
-        [screenIndex, screensCount, landscape, withLandscapeSiblingsScreens],
+        [
+            screenIndex,
+            screensCount,
+            landscape,
+            withLandscapeSiblingsScreens,
+            screenContainerWidth,
+            previousScreenSpringApi,
+            currentScreenSpringApi,
+            nextScreenSpringApi,
+            transitionScreens,
+            setDragRatio,
+        ],
     );
     const dragContentBind = useDrag(onDragContent, {
         filterTaps: true,
@@ -614,7 +659,8 @@ const Viewer = ({
                                 [styles.landscape]: landscape,
                                 [styles.withSiblings]: withLandscapeSiblingsScreens,
                                 [styles.hideMenu]: !menuVisible,
-                                [styles.fadeMenu]: playing && playbackControls && !playbackcontrolsVisible,
+                                [styles.fadeMenu]:
+                                    playing && playbackControls && !playbackcontrolsVisible,
                                 [styles.ready]: ready || withoutScreensTransforms,
                                 [styles.hasInteracted]: hasInteracted,
                                 [className]: className,
@@ -701,13 +747,11 @@ const Viewer = ({
                                     const currentOrAdjacentStyles = current
                                         ? currentScreenSpringStyles
                                         : nextOrPreviousStyles;
-                                    const { filterAmount = null } = currentOrAdjacentStyles || {};
                                     /**
                                      * CSS is here basically
                                      */
                                     const finalStyles = {
                                         ...currentOrAdjacentStyles,
-                                        filter: filterAmount.to((r) => `saturate(${1 - (r * 0.5)})`),
                                     };
 
                                     return (
@@ -745,7 +789,7 @@ const Viewer = ({
                                                 onKeyUp={(e) => onScreenKeyUp(e, i)}
                                                 {...dragScreenBind(i)}
                                             >
-                                                {mountedScreen !== null ? (
+                                                {active && mountedScreen !== null ? (
                                                     <ViewerScreen
                                                         className={styles.screen}
                                                         screen={mountedScreen}
