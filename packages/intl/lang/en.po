@@ -587,12 +587,6 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Edit call to action..."
 
-# Button label
-#: AuxqcG
-msgctxt "AuxqcG"
-msgid "Fullscreen"
-msgstr "Fullscreen"
-
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -1114,6 +1108,12 @@ msgctxt "RHMS2f"
 msgid "Line color"
 msgstr "Line color"
 
+# Button label
+#: RK/QEY
+msgctxt "RK/QEY"
+msgid "Unmute"
+msgstr "Unmute"
+
 # Message field label
 #: RcLsua
 msgctxt "RcLsua"
@@ -1311,12 +1311,6 @@ msgstr "Answer"
 msgctxt "XKcyqx"
 msgid "Taurus"
 msgstr "Taurus"
-
-# Message displayed once text was copied successfully.
-#: XRmkEh
-msgctxt "XRmkEh"
-msgid "Link copied to clipboard!"
-msgstr "Link copied to clipboard!"
 
 #  Horoscope state
 #: XS4j3F
@@ -1858,6 +1852,12 @@ msgctxt "mOSkbf"
 msgid "Usage"
 msgstr "Usage"
 
+# Button label
+#: mTqcmA
+msgctxt "mTqcmA"
+msgid "Pause"
+msgstr "Pause"
+
 # Field label
 #: mXeSkg
 msgctxt "mXeSkg"
@@ -2365,6 +2365,12 @@ msgstr "All sources"
 msgctxt "xCj1gI"
 msgid "Add a message"
 msgstr "Add a message"
+
+# Message displayed once text was copied successfully.
+#: xFlbR7
+msgctxt "xFlbR7"
+msgid "Link copied!"
+msgstr "Link copied!"
 
 # Field label
 #: xKG76H

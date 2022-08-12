@@ -98,6 +98,9 @@
     "33UbSd": {
         "defaultMessage": "Ligne du temps avec images"
     },
+    "3B9cb3": {
+        "defaultMessage": "Whatsapp"
+    },
     "3E57H7": {
         "defaultMessage": "Aucun marqueur..."
     },
@@ -230,6 +233,9 @@
     "88/Ge8": {
         "defaultMessage": "Citation"
     },
+    "88kexp": {
+        "defaultMessage": "Facebook Messenger"
+    },
     "8A8cuq": {
         "defaultMessage": "Paramètres"
     },
@@ -280,9 +286,6 @@
     },
     "AV6gfh": {
         "defaultMessage": "Modifier l'action..."
-    },
-    "AuxqcG": {
-        "defaultMessage": "Plein écran"
     },
     "B1MeY+": {
         "defaultMessage": "Sélectionnez une image..."
@@ -545,6 +548,9 @@
     "RHMS2f": {
         "defaultMessage": "Couleur de la ligne"
     },
+    "RK/QEY": {
+        "defaultMessage": "Activer le son"
+    },
     "RcLsua": {
         "defaultMessage": "Message"
     },
@@ -643,9 +649,6 @@
     },
     "XKcyqx": {
         "defaultMessage": "Taureau"
-    },
-    "XRmkEh": {
-        "defaultMessage": "Copié dans le presse-papier!"
     },
     "XS4j3F": {
         "defaultMessage": "Intro"
@@ -917,6 +920,9 @@
     "mOSkbf": {
         "defaultMessage": "Utilisation"
     },
+    "mTqcmA": {
+        "defaultMessage": "Pause"
+    },
     "mXeSkg": {
         "defaultMessage": "Lien"
     },
@@ -1152,7 +1158,7 @@
         "defaultMessage": "Image d’arrière-plan"
     },
     "vzg8Es": {
-        "defaultMessage": "Sans son"
+        "defaultMessage": "Désactiver le son"
     },
     "wChc+A": {
         "defaultMessage": "Modifier le style..."
@@ -1171,6 +1177,9 @@
     },
     "xCj1gI": {
         "defaultMessage": "Ajouter un message"
+    },
+    "xFlbR7": {
+        "defaultMessage": "Lien copié!"
     },
     "xKG76H": {
         "defaultMessage": "Coins arrondis"

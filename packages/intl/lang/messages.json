@@ -383,10 +383,6 @@
     "defaultMessage": "Edit call to action...",
     "description": "No value label"
   },
-  "AuxqcG": {
-    "defaultMessage": "Fullscreen",
-    "description": "Button label"
-  },
   "B1MeY+": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
@@ -734,6 +730,10 @@
     "defaultMessage": "Line color",
     "description": "Field label"
   },
+  "RK/QEY": {
+    "defaultMessage": "Unmute",
+    "description": "Button label"
+  },
   "RcLsua": {
     "defaultMessage": "Message",
     "description": "Message field label"
@@ -865,10 +865,6 @@
   "XKcyqx": {
     "defaultMessage": "Taurus",
     "description": "Horoscope sign"
-  },
-  "XRmkEh": {
-    "defaultMessage": "Link copied to clipboard!",
-    "description": "Message displayed once text was copied successfully."
   },
   "XS4j3F": {
     "defaultMessage": "Intro",
@@ -1230,6 +1226,10 @@
     "defaultMessage": "Usage",
     "description": "Media label"
   },
+  "mTqcmA": {
+    "defaultMessage": "Pause",
+    "description": "Button label"
+  },
   "mXeSkg": {
     "defaultMessage": "Link",
     "description": "Field label"
@@ -1567,6 +1567,10 @@
   "xCj1gI": {
     "defaultMessage": "Add a message",
     "description": "Button label"
+  },
+  "xFlbR7": {
+    "defaultMessage": "Link copied!",
+    "description": "Message displayed once text was copied successfully."
   },
   "xKG76H": {
     "defaultMessage": "Rounded corners",

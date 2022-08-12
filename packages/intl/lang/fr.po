@@ -213,7 +213,7 @@ msgstr "Ligne du temps avec images"
 #: 3B9cb3
 msgctxt "3B9cb3"
 msgid "Whatsapp"
-msgstr ""
+msgstr "Whatsapp"
 
 # Label when there is no item in markers field
 #: 3E57H7
@@ -483,7 +483,7 @@ msgstr "Citation"
 #: 88kexp
 msgctxt "88kexp"
 msgid "Facebook Messenger"
-msgstr ""
+msgstr "Facebook Messenger"
 
 # field label
 #: 8A8cuq
@@ -586,12 +586,6 @@ msgstr "Utilisé"
 msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Modifier l'action..."
-
-# Button label
-#: AuxqcG
-msgctxt "AuxqcG"
-msgid "Fullscreen"
-msgstr "Plein écran"
 
 # Label when no value is provided to Image field
 #: B1MeY+
@@ -1114,6 +1108,12 @@ msgctxt "RHMS2f"
 msgid "Line color"
 msgstr "Couleur de la ligne"
 
+# Button label
+#: RK/QEY
+msgctxt "RK/QEY"
+msgid "Unmute"
+msgstr "Activer le son"
+
 # Message field label
 #: RcLsua
 msgctxt "RcLsua"
@@ -1311,12 +1311,6 @@ msgstr "Réponse"
 msgctxt "XKcyqx"
 msgid "Taurus"
 msgstr "Taureau"
-
-# Message displayed once text was copied successfully.
-#: XRmkEh
-msgctxt "XRmkEh"
-msgid "Link copied to clipboard!"
-msgstr "Copié dans le presse-papier!"
 
 #  Horoscope state
 #: XS4j3F
@@ -1858,6 +1852,12 @@ msgctxt "mOSkbf"
 msgid "Usage"
 msgstr "Utilisation"
 
+# Button label
+#: mTqcmA
+msgctxt "mTqcmA"
+msgid "Pause"
+msgstr "Pause"
+
 # Field label
 #: mXeSkg
 msgctxt "mXeSkg"
@@ -2328,7 +2328,7 @@ msgstr "Image d’arrière-plan"
 #: vzg8Es
 msgctxt "vzg8Es"
 msgid "Mute"
-msgstr "Sans son"
+msgstr "Désactiver le son"
 
 # No value label
 #: wChc+A
@@ -2365,6 +2365,12 @@ msgstr "Toutes les sources"
 msgctxt "xCj1gI"
 msgid "Add a message"
 msgstr "Ajouter un message"
+
+# Message displayed once text was copied successfully.
+#: xFlbR7
+msgctxt "xFlbR7"
+msgid "Link copied!"
+msgstr "Lien copié!"
 
 # Field label
 #: xKG76H

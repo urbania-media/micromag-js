@@ -287,9 +287,6 @@
     "AV6gfh": {
         "defaultMessage": "Edit call to action..."
     },
-    "AuxqcG": {
-        "defaultMessage": "Fullscreen"
-    },
     "B1MeY+": {
         "defaultMessage": "Select an image..."
     },
@@ -551,6 +548,9 @@
     "RHMS2f": {
         "defaultMessage": "Line color"
     },
+    "RK/QEY": {
+        "defaultMessage": "Unmute"
+    },
     "RcLsua": {
         "defaultMessage": "Message"
     },
@@ -649,9 +649,6 @@
     },
     "XKcyqx": {
         "defaultMessage": "Taurus"
-    },
-    "XRmkEh": {
-        "defaultMessage": "Link copied to clipboard!"
     },
     "XS4j3F": {
         "defaultMessage": "Intro"
@@ -923,6 +920,9 @@
     "mOSkbf": {
         "defaultMessage": "Usage"
     },
+    "mTqcmA": {
+        "defaultMessage": "Pause"
+    },
     "mXeSkg": {
         "defaultMessage": "Link"
     },
@@ -1177,6 +1177,9 @@
     },
     "xCj1gI": {
         "defaultMessage": "Add a message"
+    },
+    "xFlbR7": {
+        "defaultMessage": "Link copied!"
     },
     "xKG76H": {
         "defaultMessage": "Rounded corners"

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading, no-nested-ternary */
-import { useSpring } from '@react-spring/core';
+import { useSprings } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
@@ -165,6 +165,52 @@ const Viewer = ({
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
 
+    const screensCount = screens.length;
+
+    // Screen index
+    const screenIndex = useMemo(
+        () =>
+            Math.max(
+                0,
+                screens.findIndex((it) => `${it.id}` === `${screenId}`),
+            ),
+        [screenId, screens],
+    );
+
+    const { startIndex: mountedScreenStartIndex, endIndex: mountedScreenEndIndex } = useMemo(
+        () =>
+            neighborScreensMounted !== null
+                ? {
+                      startIndex: Math.max(
+                          screenIndex - (neighborScreensActive + neighborScreensMounted),
+                          0,
+                      ),
+                      endIndex: Math.min(
+                          screenIndex + (neighborScreensActive + neighborScreensMounted),
+                          screensCount,
+                      ),
+                  }
+                : {
+                      startIndex: 0,
+                      endIndex: screensCount - 1,
+                  },
+        [screenIndex, neighborScreensActive, neighborScreensMounted, screensCount],
+    );
+
+    const mountedScreens = useMemo(
+        () =>
+            neighborScreensMounted != null
+                ? screens.slice(mountedScreenStartIndex, mountedScreenEndIndex)
+                : screens,
+        [
+            screens,
+            mountedScreenStartIndex,
+            mountedScreenEndIndex,
+            neighborScreensActive,
+            neighborScreensMounted,
+        ],
+    );
+
     const eventsManager = useMemo(() => new EventEmitter(), [parsedStory]);
 
     // Viewer Theme
@@ -228,16 +274,6 @@ const Viewer = ({
 
     const screensMediasRef = useRef([]);
 
-    // Screen index
-    const screenIndex = useMemo(
-        () =>
-            Math.max(
-                0,
-                screens.findIndex((it) => `${it.id}` === `${screenId}`),
-            ),
-        [screenId, screens],
-    );
-
     if (currentScreenMedia !== null) {
         currentScreenMedia.current = screensMediasRef.current[screenIndex] || null;
     }
@@ -249,72 +285,54 @@ const Viewer = ({
     /**
      * Screen Transitions
      */
-    const [dragRatio, setDragRatio] = useState(0);
-
-    const [previousScreenSpringStyles, previousScreenSpringApi] = useSpring(() => ({
-        x: '0%',
-        scale: 0.8,
-        config: springConfig,
-    }));
-    const [currentScreenSpringStyles, currentScreenSpringApi] = useSpring(() => ({
-        x: '0%',
+    const [screenSprings, transition] = useSprings(mountedScreens.length, () => ({
         scale: 1,
-        config: springConfig,
-    }));
-    const [nextScreenSpringStyles, nextScreenSpringApi] = useSpring(() => ({
-        x: '100%',
-        scale: 1,
+        x: '0%',
         config: springConfig,
     }));
 
-    const transitionScreens = useCallback((forward) => {
-        // console.log({dragRatio});
-        previousScreenSpringApi.start({
-            from: {
-                scale: forward ? 1 : 0.8
-            },
-            to: {
-                scale: 0.8,
-            }
-        });
-        currentScreenSpringApi.start({
-            from: {
-                x: forward ? '100%' : '0%',
-                scale: forward ? 1 : 0.8,
-                zIndex: 1,
-            },
-            to: {
-                x: '0%',
-                scale: 1,
-            }
-        });
-        nextScreenSpringApi.start({
-            from: {
-                x: forward ? '100%' : dragRatio ? `${(1 - dragRatio) * 100}%` : '0%',
-                zIndex: 2,
-            },
-            x: '100%',
-        });
-    }, [dragRatio, previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi]);
+    const transitionScreens = useCallback(
+        (targetIndex = 0, initialRatio = null) => {
+            const immediate = initialRatio !== null;
+            const ratio = initialRatio || 0;
 
-    const resetScreens = useCallback(() => {
-        previousScreenSpringApi.start({
-            scale: 0.8,
-        });
-        currentScreenSpringApi.start({
-            x: '0%',
-            scale: 1,
-        });
-        nextScreenSpringApi.start({
-            x: '100%',
-        });
-    }, [previousScreenSpringApi, currentScreenSpringApi, nextScreenSpringApi]);
+            transition.start((i) => {
+                // next screens
+                if (i > targetIndex) {
+                    return {
+                        immediate,
+                        scale: 1,
+                        x: `${100 + (ratio * 100)}%`,
+                    };
+                }
+                // current screen
+                if (i === targetIndex) {
+                    return {
+                        immediate,
+                        scale: 1 + (Math.min(0, ratio) * 0.2),
+                        x: `${0 + (Math.max(0, ratio) * 100)}%`,
+                    };
+                }
+                // previous screens
+                if (i < targetIndex) {
+                    return {
+                        immediate,
+                        scale: 0.8 + (Math.min(1, ratio) * 0.2),
+                        x: '0%',
+                    };
+                }
+            });
+        },
+        [transition, screenIndex],
+    );
 
     const changeIndex = useCallback(
         (index) => {
             if (index === screenIndex) {
                 return;
             }
+
+            transitionScreens(index);
 
             if (currentScreenMedia !== null) {
                 currentScreenMedia.current = screensMediasRef.current[index] || null;
@@ -323,8 +341,6 @@ const Viewer = ({
             if (onScreenChange !== null) {
                 onScreenChange(screens[index], index);
             }
-
-            transitionScreens(index > screenIndex);
         },
         [screenIndex, screens, transitionScreens, onScreenChange],
     );
@@ -346,8 +362,6 @@ const Viewer = ({
     const gotoNextScreen = useCallback(() => {
         changeIndex(Math.min(screens.length - 1, screenIndex + 1));
     }, [changeIndex]);
-
-    const screensCount = screens.length;
 
     const [hasInteracted, setHasInteracted] = useState(false);
 
@@ -400,16 +414,16 @@ const Viewer = ({
     // Handle tap on screens
     const onDragScreen = useCallback(
         ({ args: [tapScreenIndex], event, target, currentTarget, tap, xy: [x, y] }) => {
-            if (tap) {
-                interactWithScreen({
-                    event,
-                    target,
-                    currentTarget,
-                    index: tapScreenIndex,
-                    x,
-                    y,
-                });
-            }
+            // if (tap) {
+            //     interactWithScreen({
+            //         event,
+            //         target,
+            //         currentTarget,
+            //         index: tapScreenIndex,
+            //         x,
+            //         y,
+            //     });
+            // }
         },
         [interactWithScreen],
     );
@@ -436,39 +450,25 @@ const Viewer = ({
                 return;
             }
 
-            const forward = mx < 0;
-            const ratio = Math.min(1, Math.abs(mx / screenContainerWidth));
+            // const ratio = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
+            const ratio = Math.min(1, Math.max(-1, mx / screenContainerWidth)); // drag "ratio": how much of the screen width has been swiped?
+            const forward = mx < 0; // true if swiping to left (to navigate forward)
+            const nextIndex = !forward
+                ? Math.max(0, screenIndex - 1)
+                : Math.min(screensCount - 1, screenIndex + 1);
 
             if (!tap) {
-                previousScreenSpringApi.start({
-                    immediate: true,
-                    scale: forward ? 0.8 : 0.8 + (1 - 0.8) * ratio,
-                });
-                currentScreenSpringApi.start({
-                    immediate: true,
-                    x: `${forward ? 0 : ratio * 100}%`,
-                    scale: forward ? 1 - (1 - 0.8) * ratio : 1,
-                });
-                nextScreenSpringApi.start({
-                    immediate: true,
-                    x: `${forward ? (1 - ratio) * 100 : 100}%`,
-                });
+                transitionScreens(screenIndex, ratio);
             }
 
             if (!active) {
                 if (vx > 0.3 || ratio > 0.3) {
-                    const nextIndex = !forward
-                        ? Math.max(0, screenIndex - 1)
-                        : Math.min(screensCount - 1, screenIndex + 1);
-
-                    setDragRatio(ratio);
-
                     onScreenNavigate({
                         index: screenIndex,
                         newIndex: nextIndex,
                     });
                 } else {
-                    resetScreens();
+                    transitionScreens(screenIndex);
                 }
             }
         },
@@ -478,11 +478,7 @@ const Viewer = ({
             landscape,
             withLandscapeSiblingsScreens,
             screenContainerWidth,
-            previousScreenSpringApi,
-            currentScreenSpringApi,
-            nextScreenSpringApi,
             transitionScreens,
-            setDragRatio,
         ],
     );
     const dragContentBind = useDrag(onDragContent, {
@@ -578,39 +574,6 @@ const Viewer = ({
 
     const { ref: playbackControlsContainerRef, height: playbackControlsContainerHeight = 0 } =
         useDimensionObserver();
-
-    const { startIndex: mountedScreenStartIndex, endIndex: mountedScreenEndIndex } = useMemo(
-        () =>
-            neighborScreensMounted !== null
-                ? {
-                      startIndex: Math.max(
-                          screenIndex - (neighborScreensActive + neighborScreensMounted),
-                          0,
-                      ),
-                      endIndex: Math.min(
-                          screenIndex + (neighborScreensActive + neighborScreensMounted),
-                          screensCount,
-                      ),
-                  }
-                : {
-                      startIndex: 0,
-                      endIndex: screensCount - 1,
-                  },
-        [screenIndex, neighborScreensActive, neighborScreensMounted, screensCount],
-    );
-    const mountedScreens = useMemo(
-        () =>
-            neighborScreensMounted != null
-                ? screens.slice(mountedScreenStartIndex, mountedScreenEndIndex)
-                : screens,
-        [
-            screens,
-            mountedScreenStartIndex,
-            mountedScreenEndIndex,
-            neighborScreensActive,
-            neighborScreensMounted,
-        ],
-    );
 
     return (
         <VisitorProvider visitor={visitor}>
@@ -740,19 +703,34 @@ const Viewer = ({
                                     //     screenTransform = `translateX(${current ? 0 : '100%'})`;
                                     // }
 
-                                    const nextOrPreviousStyles =
-                                        i < parseInt(screenIndex, 10)
-                                            ? previousScreenSpringStyles
-                                            : nextScreenSpringStyles;
-                                    const currentOrAdjacentStyles = current
-                                        ? currentScreenSpringStyles
-                                        : nextOrPreviousStyles;
-                                    /**
-                                     * CSS is here basically
-                                     */
+                                    // const nextOrPreviousStyles =
+                                    //     i < parseInt(screenIndex, 10)
+                                    //         ? previousScreenSpringStyles
+                                    //         : nextScreenSpringStyles;
+                                    // const currentOrAdjacentStyles = current
+                                    //     ? currentScreenSpringStyles
+                                    //     : nextOrPreviousStyles;
+                                    // /**
+                                    //  * CSS is here, basically
+                                    //  */
                                     const finalStyles = {
-                                        ...currentOrAdjacentStyles,
+                                        ...screenSprings[i],
+                                        // scale: scale.to((value) => {
+                                        //     console.log({condition: i < screenIndex });
+                                        //     console.log(`scale: ${value}`);
+                                        //     return 'none';
+                                        // }),
+                                        // transform: x.to((value) => {
+                                        //     console.log({condition: i < screenIndex });
+                                        //     console.log(`x: ${value}`);
+                                        //     return 'none';
+                                        // }),
+                                        // boxShadow: screenSprings[i].to((r) => {
+                                        //     console.log(`box-shadow:${r}`);
+                                        //     return '';
+                                        // }),
                                     };
+                                    // console.log(finalStyles);
 
                                     return (
                                         <animated.div
@@ -840,6 +818,15 @@ const Viewer = ({
                                 maxWidth: Math.max(screenContainerWidth, 600),
                             }}
                         />
+                        {/* {d !== null && Object.keys(d).length > 0 ? (
+                            <ul className={styles.debug}>
+                                {Object.keys(d).map(k => (
+                                    <li key={k}>
+                                        <strong>{k}</strong>{`: `}<span>{d[k]}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        ): null} */}
                     </div>
                 </ViewerProvider>
             </ScreenSizeProvider>

@@ -16,8 +16,6 @@ import MenuPreview from './menus/MenuPreview';
 
 import styles from '../styles/viewer.module.scss';
 
-const MENU_INNER_OFFSET = -10;
-
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
     currentScreenIndex: PropTypes.number,
@@ -150,11 +148,6 @@ const ViewerMenu = ({
         y: 0,
         config: { tension: 400, friction: 35 },
     }));
-    const [{ y: menuInnerY, opacity: menuInnerOpacity }, setMenuInnerSpring] = useSpring(() => ({
-        y: MENU_INNER_OFFSET,
-        opacity: 0,
-        config: { tension: 200, friction: 30 },
-    }));
     const refOpened = useRef(opened);
     if (refOpened.current !== opened) {
         refOpened.current = opened;
@@ -162,20 +155,13 @@ const ViewerMenu = ({
 
     useEffect(() => {
         setMenuSpring.start({ y: opened ? 1 : 0 });
-        setMenuInnerSpring.start({ opacity: opened ? 1 : 0, y: opened ? 0 : MENU_INNER_OFFSET });
     }, [opened]);
 
     const { ref: menuPreviewContainerRef, height: menuPreviewContainerHeight = 0 } =
         useDimensionObserver();
-    const menuPreviewInnerRef = useRef();
 
     const menuPreviewStyles = {
-        // transform: menuY.to((y) => `translateY(${y * menuPreviewContainerHeight}px)`),
         transform: menuY.to((y) => `translateY(${y * 100}%)`),
-    };
-    const menuInnerStyles = {
-        opacity: menuInnerOpacity,
-        transform: menuInnerY.to((y) => `translateY(${y}rem)`),
     };
 
     const menuDragBind = useDrag(
@@ -202,10 +188,6 @@ const ViewerMenu = ({
                 const menuNowOpened = dy > 0 && yProgress > 0.1;
                 refOpened.current = menuNowOpened;
                 setMenuSpring.start({ y: menuNowOpened ? 1 : 0 });
-                setMenuInnerSpring.start({
-                    opacity: menuNowOpened ? 1 : 0,
-                    y: menuNowOpened ? 0 : MENU_INNER_OFFSET,
-                });
                 if (menuNowOpened && onRequestOpen !== null) {
                     onRequestOpen();
                 } else if (!menuNowOpened && onRequestClose !== null) {
@@ -213,11 +195,6 @@ const ViewerMenu = ({
                 }
             } else {
                 setMenuSpring.start({ y: yProgress, immediate: true });
-                setMenuInnerSpring.start({
-                    opacity: yProgress,
-                    y: MENU_INNER_OFFSET * (1 - yProgress),
-                    immediate: true,
-                });
             }
         },
         { axis: 'y', filterTaps: true },
@@ -364,8 +341,7 @@ const ViewerMenu = ({
             >
                 <animated.div
                     className={styles.menuPreviewInner}
-                    style={menuInnerStyles}
-                    ref={menuPreviewInnerRef}
+                    // ref={menuPreviewInnerRef}
                 >
                     <MenuPreview
                         viewerTheme={viewerTheme}
