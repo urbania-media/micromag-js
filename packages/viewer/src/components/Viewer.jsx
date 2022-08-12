@@ -285,14 +285,15 @@ const Viewer = ({
     /**
      * Screen Transitions
      */
-    const [screenSprings, transition] = useSprings(mountedScreens.length, () => ({
-        scale: 1,
-        x: '0%',
+    const [screenSprings, transition] = useSprings(screensCount, (i) => ({
+        scale: i >= screenIndex ? 1 : 0.8,
+        x: i > screenIndex ? '100%' : '0%',
+        shadow: 0,
         config: springConfig,
     }));
 
     const transitionScreens = useCallback(
-        (targetIndex = 0, initialRatio = null) => {
+        ({targetIndex = 0, ratio: initialRatio = null}) => {
             const immediate = initialRatio !== null;
             const ratio = initialRatio || 0;
 
@@ -302,28 +303,31 @@ const Viewer = ({
                     return {
                         immediate,
                         scale: 1,
-                        x: `${100 + (ratio * 100)}%`,
+                        x: `${100 + Math.max(-1, Math.min(1, ratio)) * 100}%`,
+                        shadow: ratio < 0 ? Math.min(1, Math.max(0, ratio)) : 0,
                     };
                 }
                 // current screen
                 if (i === targetIndex) {
                     return {
                         immediate,
-                        scale: 1 + (Math.min(0, ratio) * 0.2),
-                        x: `${0 + (Math.max(0, ratio) * 100)}%`,
+                        scale: 1 + Math.min(0, ratio) * 0.2,
+                        x: `${Math.max(0, Math.min(1, ratio)) * 100}%`,
+                        shadow: ratio > 0 ? Math.min(1, ratio) : 0,
                     };
                 }
                 // previous screens
                 if (i < targetIndex) {
                     return {
                         immediate,
-                        scale: 0.8 + (Math.min(1, ratio) * 0.2),
+                        scale: 0.8 + Math.min(1, ratio) * 0.2,
+                        shadow: 0,
                         x: '0%',
                     };
                 }
             });
         },
-        [transition, screenIndex],
+        [transition],
     );
 
     const changeIndex = useCallback(
@@ -332,7 +336,7 @@ const Viewer = ({
                 return;
             }
 
-            transitionScreens(index);
+            transitionScreens({ targetIndex: index });
 
             if (currentScreenMedia !== null) {
                 currentScreenMedia.current = screensMediasRef.current[index] || null;
@@ -412,24 +416,25 @@ const Viewer = ({
     });
 
     // Handle tap on screens
-    const onDragScreen = useCallback(
-        ({ args: [tapScreenIndex], event, target, currentTarget, tap, xy: [x, y] }) => {
-            // if (tap) {
-            //     interactWithScreen({
-            //         event,
-            //         target,
-            //         currentTarget,
-            //         index: tapScreenIndex,
-            //         x,
-            //         y,
-            //     });
-            // }
-        },
-        [interactWithScreen],
-    );
-    const dragScreenBind = useDrag(onDragScreen, {
-        filterTaps: true,
-    });
+    // @todo still needed? was conflicting somewhat with tap, buttons, etc.
+    // const onDragScreen = useCallback(
+    //     ({ args: [tapScreenIndex], event, target, currentTarget, tap, xy: [x, y] }) => {
+    //         if (tap) {
+    //             interactWithScreen({
+    //                 event,
+    //                 target,
+    //                 currentTarget,
+    //                 index: tapScreenIndex,
+    //                 x,
+    //                 y,
+    //             });
+    //         }
+    //     },
+    //     [interactWithScreen],
+    // );
+    // const dragScreenBind = useDrag(onDragScreen, {
+    //     filterTaps: true,
+    // });
 
     // Handles tap when landscape (space around current screen)
     const onDragContent = useCallback(
@@ -450,25 +455,24 @@ const Viewer = ({
                 return;
             }
 
-            // const ratio = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
-            const ratio = Math.min(1, Math.max(-1, mx / screenContainerWidth)); // drag "ratio": how much of the screen width has been swiped?
+            const ratio = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
             const forward = mx < 0; // true if swiping to left (to navigate forward)
             const nextIndex = !forward
                 ? Math.max(0, screenIndex - 1)
                 : Math.min(screensCount - 1, screenIndex + 1);
 
             if (!tap) {
-                transitionScreens(screenIndex, ratio);
+                transitionScreens({ targetIndex: screenIndex, ratio });
             }
 
             if (!active) {
-                if (vx > 0.3 || ratio > 0.3) {
+                if (vx > 0.3 || Math.abs(ratio) > 0.3) {
                     onScreenNavigate({
                         index: screenIndex,
                         newIndex: nextIndex,
                     });
                 } else {
-                    transitionScreens(screenIndex);
+                    transitionScreens({ targetIndex: screenIndex });
                 }
             }
         },
@@ -667,8 +671,9 @@ const Viewer = ({
                                         onClick={gotoPreviousScreen}
                                     />
                                 ) : null}
-                                {mountedScreens.map((mountedScreen, mountedIndex) => {
-                                    const i = mountedScreenStartIndex + mountedIndex;
+                                {screens.map((mountedScreen, i) => {
+                                    // @todo make sure everything loads correctly, etc.
+                                    // const i = mountedScreenStartIndex + mountedIndex;
                                     const current = i === parseInt(screenIndex, 10);
                                     const active =
                                         i >= screenIndex - neighborScreensActive &&
@@ -703,34 +708,12 @@ const Viewer = ({
                                     //     screenTransform = `translateX(${current ? 0 : '100%'})`;
                                     // }
 
-                                    // const nextOrPreviousStyles =
-                                    //     i < parseInt(screenIndex, 10)
-                                    //         ? previousScreenSpringStyles
-                                    //         : nextScreenSpringStyles;
-                                    // const currentOrAdjacentStyles = current
-                                    //     ? currentScreenSpringStyles
-                                    //     : nextOrPreviousStyles;
-                                    // /**
-                                    //  * CSS is here, basically
-                                    //  */
+                                    const { shadow = null } = screenSprings[i];
+                                    // const { shadow = null } = ...screenSprings[i],
                                     const finalStyles = {
                                         ...screenSprings[i],
-                                        // scale: scale.to((value) => {
-                                        //     console.log({condition: i < screenIndex });
-                                        //     console.log(`scale: ${value}`);
-                                        //     return 'none';
-                                        // }),
-                                        // transform: x.to((value) => {
-                                        //     console.log({condition: i < screenIndex });
-                                        //     console.log(`x: ${value}`);
-                                        //     return 'none';
-                                        // }),
-                                        // boxShadow: screenSprings[i].to((r) => {
-                                        //     console.log(`box-shadow:${r}`);
-                                        //     return '';
-                                        // }),
+                                        boxShadow: shadow.to((v) => `0 0 ${10 * v}rem -5rem rgba(0,0,0,${v})`),
                                     };
-                                    // console.log(finalStyles);
 
                                     return (
                                         <animated.div
@@ -765,7 +748,7 @@ const Viewer = ({
                                                     { index: i + 1 },
                                                 )}
                                                 onKeyUp={(e) => onScreenKeyUp(e, i)}
-                                                {...dragScreenBind(i)}
+                                                // {...dragScreenBind(i)}
                                             >
                                                 {active && mountedScreen !== null ? (
                                                     <ViewerScreen
