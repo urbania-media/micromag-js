@@ -202,7 +202,6 @@ const Viewer = ({
 
     // @todo
     // const { startIndex: mountedScreenStartIndex, endIndex: mountedScreenEndIndex } = useMemo(
-
     //     () =>
     //         neighborScreensMounted !== null
     //             ? {
@@ -334,14 +333,14 @@ const Viewer = ({
             }
 
             transition.start((i) => {
-                // next screens
+                // all next screens
                 if (i > index) {
                     return {
                         immediate,
                         scale: 1,
                         x: `${100 + Math.max(-1, Math.min(1, ratio)) * 100}%`,
-                        shadow: ratio < 0 ? Math.min(1, Math.max(0, ratio)) : 0,
-                        zIndex: 3
+                        shadow: i === index + 1 ? Math.abs(ratio) : 0,
+                        zIndex: 3,
                     };
                 }
                 // current screen
@@ -350,8 +349,8 @@ const Viewer = ({
                         immediate,
                         scale: 1 + Math.min(0, ratio) * 0.2,
                         x: `${Math.max(0, Math.min(1, ratio)) * 100}%`,
-                        shadow: ratio > 0 ? Math.min(1, ratio) : 0,
-                        zIndex: 2
+                        shadow: Math.abs(1 - ratio),
+                        zIndex: 2,
                     };
                 }
                 // previous screens
@@ -361,13 +360,14 @@ const Viewer = ({
                         scale: 0.8 + Math.min(1, ratio) * 0.2,
                         shadow: 0,
                         x: '0%',
-                        zIndex: 1
+                        zIndex: 1,
                     };
                 }
             });
         },
         [transition],
     );
+
 
     /**
      * Screen Navigation
@@ -412,23 +412,67 @@ const Viewer = ({
         [onEnd, changeIndex],
     );
 
+    const gotoPreviousScreen = useCallback(() => {
+        changeIndex(Math.max(0, screenIndex - 1));
+    }, [changeIndex]);
+
+    const gotoNextScreen = useCallback(() => {
+        changeIndex(Math.min(screens.length - 1, screenIndex + 1));
+    }, [changeIndex]);
+
+    const [hasInteracted, setHasInteracted] = useState(false);
+
+    const onInteractionPrivate = useCallback(() => {
+        if (onInteraction !== null) {
+            onInteraction();
+        }
+        if (!hasInteracted) {
+            setHasInteracted(true);
+        }
+    }, [onInteraction, hasInteracted, setHasInteracted]);
+
+    // @todo document, educate, elucidate
+    const {
+        interact: interactWithScreen,
+        currentScreenInteractionEnabled,
+        enableInteraction,
+        disableInteraction,
+    } = useScreenInteraction({
+        screens,
+        screenIndex,
+        screenWidth: screenContainerWidth,
+        disableCurrentScreenNavigation: !isView,
+        clickOnSiblings: landscape && withLandscapeSiblingsScreens,
+        nextScreenWidthPercent: tapNextScreenWidthPercent,
+        onInteract: onInteractionPrivate,
+        onNavigate: onScreenNavigate,
+    });
+
     const onDragContent = useCallback(
-        ({ active, velocity: [vx], movement: [mx], tap, currentTarget, xy: [x] }) => {
+        ({
+            args: [tapScreenIndex],
+            active,
+            currentTarget,
+            event,
+            movement: [mx],
+            tap,
+            target,
+            velocity: [vx],
+            xy: [x, y],
+        }) => {
             if (tap) {
-                const { left: contentX = 0, width: contentWidth = 0 } =
-                    currentTarget.getBoundingClientRect();
-                const hasTappedLeft = x - contentX < contentWidth * 0.5;
-                const nextIndex = hasTappedLeft
-                    ? Math.max(0, screenIndex - 1)
-                    : Math.min(screensCount - 1, screenIndex + 1);
-
-                onScreenNavigate({
-                    index: screenIndex,
-                    newIndex: nextIndex,
+                return interactWithScreen({
+                    event,
+                    target,
+                    currentTarget,
+                    index: tapScreenIndex,
+                    x,
+                    y,
                 });
-
-                return;
             }
+            // if (!landscape || withLandscapeSiblingsScreens || target !== contentRef.current) {
+            //     return;
+            // }
 
             const ratio = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
             const forwards = mx < 0; // true if swiping to left (to navigate forwards)
@@ -441,7 +485,7 @@ const Viewer = ({
             }
 
             if (!active) {
-                if (vx > 0.3 || Math.abs(ratio) > 0.3) {
+                if (vx > 0.3 || Math.abs(ratio) > 0.3 && nextIndex !== 0 && nextIndex !== screensCount) {
                     onScreenNavigate({
                         index: screenIndex,
                         newIndex: nextIndex,
@@ -458,6 +502,7 @@ const Viewer = ({
             withLandscapeSiblingsScreens,
             screenContainerWidth,
             onScreenTransition,
+            interactWithScreen
         ],
     );
 
@@ -465,38 +510,6 @@ const Viewer = ({
         filterTaps: true,
     });
 
-    const gotoPreviousScreen = useCallback(() => {
-        changeIndex(Math.max(0, screenIndex - 1));
-    }, [changeIndex]);
-
-    const gotoNextScreen = useCallback(() => {
-        changeIndex(Math.min(screens.length - 1, screenIndex + 1));
-    }, [changeIndex]);
-
-    // Handle tap on screens
-    // @todo still needed? was conflicting somewhat with tap, buttons, etc.
-    // const onDragScreen = useCallback(
-    //     ({ args: [tapScreenIndex], event, target, currentTarget, tap, xy: [x, y] }) => {
-    //         if (tap) {
-    //             interactWithScreen({
-    //                 event,
-    //                 target,
-    //                 currentTarget,
-    //                 index: tapScreenIndex,
-    //                 x,
-    //                 y,
-    //             });
-    //         }
-    //     },
-    //     [interactWithScreen],
-    // );
-    // const dragScreenBind = useDrag(onDragScreen, {
-    //     filterTaps: true,
-    // });
-
-    /**
-     * Screen Interaction
-     */
     const {
         toggle: toggleFullscreen,
         active: fullscreenActive,
@@ -511,33 +524,6 @@ const Viewer = ({
         },
         [withLandscapeSiblingsScreens, changeIndex, landscape, screenIndex],
     );
-
-    const [hasInteracted, setHasInteracted] = useState(false);
-
-    const onInteractionPrivate = useCallback(() => {
-        if (onInteraction !== null) {
-            onInteraction();
-        }
-        if (!hasInteracted) {
-            setHasInteracted(true);
-        }
-    }, [onInteraction, hasInteracted, setHasInteracted]);
-
-    const {
-        // interact: interactWithScreen,
-        currentScreenInteractionEnabled,
-        enableInteraction,
-        disableInteraction,
-    } = useScreenInteraction({
-        screens,
-        screenIndex,
-        screenWidth: screenContainerWidth,
-        disableCurrentScreenNavigation: !isView,
-        clickOnSiblings: landscape && withLandscapeSiblingsScreens,
-        nextScreenWidthPercent: tapNextScreenWidthPercent,
-        onInteract: onInteractionPrivate,
-        onNavigate: onScreenNavigate,
-    });
 
     // swipe menu open
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
@@ -728,12 +714,11 @@ const Viewer = ({
                                     // }
 
                                     const { shadow = null } = screenSprings[i];
-                                    // const { shadow = null } = ...screenSprings[i],
                                     const finalStyles = {
                                         zIndex: 1,
                                         ...screenSprings[i],
                                         boxShadow: shadow.to(
-                                            (v) => `0 0 ${10 * v}rem -5rem rgba(0,0,0,${v})`,
+                                            (v) => `0 0 5rem -1rem rgba(0,0,0,${v})`,
                                         ),
                                     };
 
@@ -770,7 +755,6 @@ const Viewer = ({
                                                     { index: i + 1 },
                                                 )}
                                                 onKeyUp={(e) => onScreenKeyUp(e, i)}
-                                                // {...dragScreenBind(i)}
                                             >
                                                 {active && screen !== null ? (
                                                     <ViewerScreen
