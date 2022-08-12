@@ -38,7 +38,7 @@ import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
 
-const springConfig = { tension: 250, friction: 30 }; // tight
+const springConfig = { tension: 300, friction: 35 }; // tight
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -368,7 +368,6 @@ const Viewer = ({
         [transition],
     );
 
-
     /**
      * Screen Navigation
      */
@@ -414,11 +413,11 @@ const Viewer = ({
 
     const gotoPreviousScreen = useCallback(() => {
         changeIndex(Math.max(0, screenIndex - 1));
-    }, [changeIndex]);
+    }, [changeIndex, screenIndex]);
 
     const gotoNextScreen = useCallback(() => {
         changeIndex(Math.min(screens.length - 1, screenIndex + 1));
-    }, [changeIndex]);
+    }, [changeIndex, screenIndex]);
 
     const [hasInteracted, setHasInteracted] = useState(false);
 
@@ -485,7 +484,10 @@ const Viewer = ({
             }
 
             if (!active) {
-                if (vx > 0.3 || Math.abs(ratio) > 0.3 && nextIndex !== 0 && nextIndex !== screensCount) {
+                if (
+                    vx > 0.3 ||
+                    (Math.abs(ratio) > 0.3 && nextIndex !== 0 && nextIndex !== screensCount)
+                ) {
                     onScreenNavigate({
                         index: screenIndex,
                         newIndex: nextIndex,
@@ -502,7 +504,7 @@ const Viewer = ({
             withLandscapeSiblingsScreens,
             screenContainerWidth,
             onScreenTransition,
-            interactWithScreen
+            interactWithScreen,
         ],
     );
 
@@ -676,66 +678,67 @@ const Viewer = ({
                                         onClick={gotoPreviousScreen}
                                     />
                                 ) : null}
-                                {screens.map((screen, i) => {
-                                    // @todo make sure everything loads correctly, etc.
-                                    // const i = mountedScreenStartIndex + mountedIndex;
-                                    const current = i === parseInt(screenIndex, 10);
-                                    const active =
-                                        i >= screenIndex - neighborScreensActive &&
-                                        i <= screenIndex + neighborScreensActive;
+                                <div
+                                    className={styles.screensFrame}
+                                    style={{
+                                        width: screenContainerWidth,
+                                        height: screenContainerHeight,
+                                        // @todo how?
+                                        // transform: !withoutScreensTransforms
+                                        //     ? screenTransform
+                                        //     : null,
+                                    }}
+                                >
+                                    {screens.map((screen, i) => {
+                                        // @todo make sure everything loads correctly, etc.
+                                        // const i = mountedScreenStartIndex + mountedIndex;
+                                        const current = i === parseInt(screenIndex, 10);
+                                        const active =
+                                            i >= screenIndex - neighborScreensActive &&
+                                            i <= screenIndex + neighborScreensActive;
 
-                                    // @todo abandoning landscape mode eventually or not?
-                                    // let screenTransform = null;
+                                        // @todo abandoning landscape mode eventually or not?
+                                        // let screenTransform = null;
 
-                                    // if (landscape) {
-                                    //     const max = i - screenIndex;
-                                    //     let distance =
-                                    //         (screenContainerWidth + landscapeScreenMargin) * max;
-                                    //     // Compensates for scaling
-                                    //     if (max !== 0) {
-                                    //         const halfMargin =
-                                    //             (screenContainerWidth *
-                                    //                 (1 - landscapeSmallScreenScale)) /
-                                    //             2;
-                                    //         distance -= halfMargin * max;
-                                    //         if (max < -1) {
-                                    //             distance -= halfMargin * (max + 1);
-                                    //         } else if (max > 1) {
-                                    //             distance -= halfMargin * (max - 1);
-                                    //         }
-                                    //     }
-                                    //     screenTransform = withLandscapeSiblingsScreens
-                                    //         ? `translateX(calc(${distance}px - 50%)) scale(${
-                                    //               current ? 1 : landscapeSmallScreenScale
-                                    //           })`
-                                    //         : null;
-                                    // } else {
-                                    //     screenTransform = `translateX(${current ? 0 : '100%'})`;
-                                    // }
+                                        // if (landscape) {
+                                        //     const max = i - screenIndex;
+                                        //     let distance =
+                                        //         (screenContainerWidth + landscapeScreenMargin) * max;
+                                        //     // Compensates for scaling
+                                        //     if (max !== 0) {
+                                        //         const halfMargin =
+                                        //             (screenContainerWidth *
+                                        //                 (1 - landscapeSmallScreenScale)) /
+                                        //             2;
+                                        //         distance -= halfMargin * max;
+                                        //         if (max < -1) {
+                                        //             distance -= halfMargin * (max + 1);
+                                        //         } else if (max > 1) {
+                                        //             distance -= halfMargin * (max - 1);
+                                        //         }
+                                        //     }
+                                        //     screenTransform = withLandscapeSiblingsScreens
+                                        //         ? `translateX(calc(${distance}px - 50%)) scale(${
+                                        //               current ? 1 : landscapeSmallScreenScale
+                                        //           })`
+                                        //         : null;
+                                        // } else {
+                                        //     screenTransform = `translateX(${current ? 0 : '100%'})`;
+                                        // }
 
-                                    const { shadow = null } = screenSprings[i];
-                                    const finalStyles = {
-                                        zIndex: 1,
-                                        ...screenSprings[i],
-                                        boxShadow: shadow.to(
-                                            (v) => `0 0 5rem -1rem rgba(0,0,0,${v})`,
-                                        ),
-                                    };
+                                        const { shadow = null } = screenSprings[i];
+                                        const finalStyles = {
+                                            zIndex: 1,
+                                            ...screenSprings[i],
+                                            boxShadow: shadow.to(
+                                                (v) => `0 0 5rem -1rem rgba(0,0,0,${v})`,
+                                            ),
+                                        };
 
-                                    return (
-                                        <animated.div
-                                            key={`screen-viewer-${screen.id || ''}-${i + 1}`}
-                                            className={styles.transitionContainer}
-                                            style={finalStyles}
-                                        >
-                                            <div
-                                                style={{
-                                                    width: screenContainerWidth,
-                                                    height: screenContainerHeight,
-                                                    // transform: !withoutScreensTransforms
-                                                    //     ? screenTransform
-                                                    //     : null,
-                                                }}
+                                        return (
+                                            <animated.div
+                                                key={`screen-viewer-${screen.id || ''}-${i + 1}`}
+                                                style={finalStyles}
                                                 className={classNames([
                                                     styles.screenContainer,
                                                     {
@@ -744,6 +747,7 @@ const Viewer = ({
                                                             current || withLandscapeSiblingsScreens,
                                                     },
                                                 ])}
+                                                // @todo
                                                 // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                                                 tabIndex={!active ? -1 : null}
                                                 aria-hidden={!current}
@@ -780,10 +784,10 @@ const Viewer = ({
                                                         }
                                                     />
                                                 ) : null}
-                                            </div>
-                                        </animated.div>
-                                    );
-                                })}
+                                            </animated.div>
+                                        );
+                                    })}
+                                </div>
                                 {screenIndex < screens.length - 1 ? (
                                     <NavigationButton
                                         direction="next"
@@ -807,15 +811,6 @@ const Viewer = ({
                                 maxWidth: Math.max(screenContainerWidth, 600),
                             }}
                         />
-                        {/* {d !== null && Object.keys(d).length > 0 ? (
-                            <ul className={styles.debug}>
-                                {Object.keys(d).map(k => (
-                                    <li key={k}>
-                                        <strong>{k}</strong>{`: `}<span>{d[k]}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        ): null} */}
                     </div>
                 </ViewerProvider>
             </ScreenSizeProvider>

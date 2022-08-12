@@ -15,9 +15,8 @@
     color: $white;
 
     &.landscape {
-        .screenContainer {
+        .screensFrame {
             top: 0;
-            // right: auto;
             bottom: 0;
             left: 50%;
             margin: auto;
@@ -210,6 +209,11 @@
     }
 }
 
+.screensFrame {
+    @extend %fullscreen;
+    overflow: hidden;
+}
+
 .screenContainer {
     @extend %fullscreen;
     @extend %focus-outline;
@@ -228,10 +232,6 @@
             touch-action: none;
         }
     }
-}
-
-.transitionContainer {
-    @extend %fullscreen;
 }
 
 // Playback Controls for Video/Audio screen types
