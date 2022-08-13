@@ -485,8 +485,8 @@ const Viewer = ({
 
             if (!active) {
                 if (
-                    vx > 0.3 ||
-                    (Math.abs(ratio) > 0.3 && nextIndex !== 0 && nextIndex !== screensCount)
+                    (vx > 0.3 || Math.abs(ratio) > 0.3)
+                    && (nextIndex !== 0 && nextIndex + 1 !== screensCount) // @todo why nextIndex + 1 tho?
                 ) {
                     onScreenNavigate({
                         index: screenIndex,
