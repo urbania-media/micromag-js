@@ -174,8 +174,7 @@ const ViewerMenuPreview = ({
                     />
                 ) : null}
                 <div className={styles.buttons} style={colorSecondaryColorStyle}>
-                    {/* @todo find a better place for this, or move it to another component altogether? */}
-                    {/* {fullscreenEnabled ? (
+                    {fullscreenEnabled ? (
                         <Button
                             className={styles.button}
                             onClick={toggleFullscreen}
@@ -216,7 +215,7 @@ const ViewerMenuPreview = ({
                                 )
                             }
                         />
-                    ) : null} */}
+                    ) : null}
                     <Button
                         className={classNames([styles.button, styles.closeButton])}
                         onClick={onClose}
