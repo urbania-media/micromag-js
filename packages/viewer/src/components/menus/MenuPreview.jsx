@@ -174,7 +174,7 @@ const ViewerMenuPreview = ({
                     />
                 ) : null}
                 <div className={styles.buttons} style={colorSecondaryColorStyle}>
-                    {fullscreenEnabled ? (
+                    {!showShare && fullscreenEnabled ? (
                         <Button
                             className={styles.button}
                             onClick={toggleFullscreen}
