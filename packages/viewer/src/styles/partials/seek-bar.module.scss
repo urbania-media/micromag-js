@@ -2,12 +2,13 @@
 @import '~@micromag/core/scss/placeholders';
 
 .inner {
-    position: relative;
     flex-grow: 1;
 }
 
 .progressBar {
+    position: relative;
     background-color: rgba($white, 0.1);
+    height: 0.5rem;
 }
 
 .progress,
@@ -17,7 +18,6 @@
 
 .progress {
     position: relative;
-    height: 0.5rem;
     transform-origin: left center;
     background-color: $purple;
 }
@@ -70,7 +70,7 @@
     @extend %reset-button;
 
     display: none;
-    height: 4rem;
+    height: 5rem;
     transform: translateY(-50%);
     background-color: transparent;
 

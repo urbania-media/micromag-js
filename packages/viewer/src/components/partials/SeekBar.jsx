@@ -9,9 +9,14 @@ import { useMediaProgress } from '@micromag/core/hooks';
 
 import styles from '../../styles/partials/seek-bar.module.scss';
 
-function getFormattedTimestamp(s) {
-    return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + ~~(s); // eslint-disable-line
+function getFormattedTimestamp(s, withMilliseconds = false) {
+    const sparts = withMilliseconds ? `${s}`.split('.') : [];
+    const ms = sparts.length > 1 ? `:${sparts[1].substring(0, 3)}` : '';
+
+    return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + ~~(s) + ms; // eslint-disable-line
 }
+
+const SHOW_MILLISECONDS_THRESHOLD = 5; // show milliseconds when scrubbing if length of video is shorter than 5 seconds
 
 const propTypes = {
     media: PropTypes.node,
@@ -55,11 +60,13 @@ const SeekBar = ({
     const progress = useMediaProgress(media, {
         disabled: !playing,
     });
-    const { currentTime = null } = media || {};
+    const { currentTime = null, duration = null } = media || {};
     const [showTimestamp, setShowTimestamp] = useState(false);
 
     const onDrag = useCallback(
-        ({ xy: [x], elapsedTime, active, tap, currentTarget }) => {
+        ({ event, xy: [x], elapsedTime, active, tap, currentTarget }) => {
+            event.stopPropagation();
+
             if (!active && elapsedTime > 300) {
                 return;
             }
@@ -74,12 +81,12 @@ const SeekBar = ({
         [onSeek],
     );
 
-    const onDragStart = useCallback(() => {
+    const onDragStart = useCallback((event) => {
         setShowTimestamp(true);
-
         if (onSeekStart !== null) {
             onSeekStart();
         }
+        event.stopPropagation();
     }, [onSeekStart, setShowTimestamp]);
 
     const onDragEnd = useCallback(() => {
@@ -124,7 +131,7 @@ const SeekBar = ({
                                 borderColor: progressColor,
                             }}
                         >
-                            {getFormattedTimestamp(currentTime)}
+                            {getFormattedTimestamp(currentTime, duration < SHOW_MILLISECONDS_THRESHOLD)}
                         </div>
                     </div>
                     <div
