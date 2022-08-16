@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -38,7 +37,8 @@ import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
 
-const springConfig = { tension: 300, friction: 35 }; // tight
+const SPRING_CONFIG_TIGHT = { tension: 300, friction: 35 }; // tight
+const DEFAULT_TRANSITION_TYPE = 'carousel';
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -59,6 +59,7 @@ const propTypes = {
     // landscapeScreenMargin: PropTypes.number,
     // landscapeSmallScreenScale: PropTypes.number,
     withMetadata: PropTypes.bool,
+    withoutGestures: PropTypes.bool,
     withoutMenu: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
     withoutShareMenu: PropTypes.bool,
@@ -102,6 +103,7 @@ const defaultProps = {
     // landscapeScreenMargin: 20,
     // landscapeSmallScreenScale: 0.9,
     withMetadata: false,
+    withoutGestures: false,
     withoutMenu: false,
     withoutScreensMenu: false,
     withoutShareMenu: false,
@@ -140,6 +142,7 @@ const Viewer = ({
     // landscapeScreenMargin,
     // landscapeSmallScreenScale,
     withMetadata,
+    withoutGestures,
     withoutMenu,
     withoutScreensMenu,
     withoutShareMenu,
@@ -160,7 +163,6 @@ const Viewer = ({
     screenSizeOptions,
     className,
 }) => {
-    const intl = useIntl();
     const contentRef = useRef(null);
 
     /**
@@ -200,46 +202,9 @@ const Viewer = ({
         screensMedias.current = screensMediasRef.current;
     }
 
-    // @todo
-    // const { startIndex: mountedScreenStartIndex, endIndex: mountedScreenEndIndex } = useMemo(
-    //     () =>
-    //         neighborScreensMounted !== null
-    //             ? {
-    //                   startIndex: Math.max(
-    //                       screenIndex - (neighborScreensActive + neighborScreensMounted),
-    //                       0,
-    //                   ),
-    //                   endIndex: Math.min(
-    //                       screenIndex + (neighborScreensActive + neighborScreensMounted),
-    //                       screensCount,
-    //                   ),
-    //               }
-    //             : {
-    //                   startIndex: 0,
-    //                   endIndex: screensCount - 1,
-    //               },
-    //     [screenIndex, neighborScreensActive, neighborScreensMounted, screensCount],
-    // );
-
-    // @todo unused: still needed?!
-    // const mountedScreens = useMemo(
-    //     () =>
-    //         neighborScreensMounted != null
-    //             ? screens.slice(mountedScreenStartIndex, mountedScreenEndIndex)
-    //             : screens,
-    //     [
-    //         screens,
-    //         mountedScreenStartIndex,
-    //         mountedScreenEndIndex,
-    //         neighborScreensActive,
-    //         neighborScreensMounted,
-    //     ],
-    // );
-
     /**
      * Screen Layout
      */
-    // Viewer Theme
     const { textStyles } = viewerTheme || {};
     const { title: themeTextStyle = null } = textStyles || {};
     const { fontFamily: themeFont = null } = themeTextStyle || {};
@@ -310,62 +275,143 @@ const Viewer = ({
     /**
      * Screen Transitions
      */
+    const carouselTransitionFn = ({ i, currentIndex, immediate = false, progress = 0 }) => {
+        if (i > currentIndex) {
+            const nextScreens = i - 1 - currentIndex;
+
+            return {
+                immediate,
+                opacity: 0.25 + (1 - 0.25) * -progress,
+                scale: 0.8 + (1 - 0.8) * -progress,
+                x: `${105 + progress * 100 + nextScreens * 100}%`,
+                shadow: 1 + (1 - progress),
+                zIndex: 3,
+            };
+        }
+
+        if (i === currentIndex) {
+            return {
+                immediate,
+                opacity: 1 + (1 - 0.25) * -Math.abs(progress),
+                scale: 1 + (1 - 0.8) * -Math.abs(progress),
+                x: `${progress * 100}%`,
+                shadow: 1 - (1 - progress),
+                zIndex: 2,
+            };
+        }
+
+        if (i < currentIndex) {
+            const previousScreens = i + 1 - currentIndex;
+
+            return {
+                immediate,
+                opacity: 0.25 + (1 - 0.25) * progress,
+                scale: 0.8 + (1 - 0.8) * progress,
+                x: `${-105 + progress * 100 + previousScreens * 100}%`,
+                shadow: 0,
+                zIndex: 1,
+            };
+        }
+
+        return {};
+    };
+
+    const stackTransitionFn = ({ i, currentIndex, immediate = false, progress = 0 }) => {
+        if (i > currentIndex) {
+            return {
+                immediate,
+                scale: 1,
+                x: `${100 + progress * 100}%`,
+                shadow: i === currentIndex + 1 ? Math.abs(progress) : 0,
+                opacity: 1,
+                zIndex: 3,
+            };
+        }
+
+        if (i === currentIndex) {
+            return {
+                immediate,
+                scale: 1 + Math.min(0, progress) * 0.2,
+                x: `${Math.max(0, progress) * 100}%`,
+                shadow: Math.abs(1 - progress),
+                opacity: 1,
+                zIndex: 2,
+            };
+        }
+
+        if (i < currentIndex) {
+            return {
+                immediate,
+                scale: 0.8 + progress * 0.2,
+                x: '0%',
+                shadow: 0,
+                opacity: 1,
+                zIndex: 1,
+            };
+        }
+
+        return {};
+    };
+
+    const transitions = {
+        carousel: carouselTransitionFn,
+        stack: stackTransitionFn,
+    };
+
+    // apply a transition type, taken from the `transitions` object
+    const applyTransitions = ({
+        type: initialType = null,
+        i = 0,
+        currentIndex = 0,
+        immediate = false,
+        progress = 0,
+    }) => {
+        const type = initialType !== null ? initialType : 'carousel';
+        return transitions[type]({ i, currentIndex, immediate, progress });
+    };
+
+    // Bruce Screensprings
     const [screenSprings, transition] = useSprings(screensCount, (i) => ({
-        scale: i >= screenIndex ? 1 : 0.8,
-        x: i > screenIndex ? '100%' : '0%',
-        shadow: 0,
-        zIndex: i >= screenIndex ? 2 : 1,
-        config: springConfig,
+        ...applyTransitions({
+            i,
+            currentIndex: screenIndex,
+        }),
+        config: SPRING_CONFIG_TIGHT,
     }));
 
     const onScreenTransition = useCallback(
         ({
-            index = 0,
-            ratio: initialRatio = null,
+            currentIndex = 0,
             immediate: initialImmediate = false,
+            // newIndex = null, // @todo if needs newIndex for some logic?
+            progress: initialProgress = null,
+            // reachedThreshold = false, // @todo true if user has dragged enough to reach the threshold when something should happen
+            reachedBounds = false,
             reset = false,
-        }) => {
-            const immediate = initialImmediate || initialRatio !== null;
-            const ratio = initialRatio || 0;
+            type = null,
+        } = {}) => {
+            const immediate = initialImmediate || initialProgress !== null;
+            const p = initialProgress || 0;
+            const damper = reachedBounds ? 0.1 : 1;
+            const progress = Math.max(-1, Math.min(1, p * damper));
 
             if (reset) {
-                transition.start((i) => (i === index ? { immediate: true, zIndex: 4 } : null));
+                transition.start((i) =>
+                    i === currentIndex ? { immediate: true, zIndex: 4 } : null,
+                );
             }
 
-            transition.start((i) => {
-                // all next screens
-                if (i > index) {
-                    return {
-                        immediate,
-                        scale: 1,
-                        x: `${100 + Math.max(-1, Math.min(1, ratio)) * 100}%`,
-                        shadow: i === index + 1 ? Math.abs(ratio) : 0,
-                        zIndex: 3,
-                    };
-                }
-                // current screen
-                if (i === index) {
-                    return {
-                        immediate,
-                        scale: 1 + Math.min(0, ratio) * 0.2,
-                        x: `${Math.max(0, Math.min(1, ratio)) * 100}%`,
-                        shadow: Math.abs(1 - ratio),
-                        zIndex: 2,
-                    };
-                }
-                // previous screens
-                if (i < index) {
-                    return {
-                        immediate,
-                        scale: 0.8 + Math.min(1, ratio) * 0.2,
-                        shadow: 0,
-                        x: '0%',
-                        zIndex: 1,
-                    };
-                }
-            });
+            transition.start((i) =>
+                applyTransitions({
+                    i,
+                    currentIndex,
+                    immediate,
+                    progress,
+                    type,
+                }),
+            );
         },
-        [transition],
+        [screens, transition, applyTransitions],
     );
 
     /**
@@ -381,7 +427,8 @@ const Viewer = ({
                 currentScreenMedia.current = screensMediasRef.current[index] || null;
             }
 
-            onScreenTransition({ index, reset: index > screenIndex });
+            // @todo this is where you pass the transition type, I guess
+            onScreenTransition({ currentIndex: index, reset: index > screenIndex });
 
             if (onScreenChange !== null) {
                 onScreenChange(screens[index], index);
@@ -397,8 +444,8 @@ const Viewer = ({
             }
             changeIndex(newIndex);
             eventsManager.emit('navigate', {
-                newIndex,
                 index,
+                newIndex,
                 direction,
                 end,
             });
@@ -459,8 +506,13 @@ const Viewer = ({
             velocity: [vx],
             xy: [x, y],
         }) => {
+            // if (!landscape || withLandscapeSiblingsScreens || target !== contentRef.current) {
+            if (withoutGestures) {
+                return;
+            }
+
             if (tap) {
-                return interactWithScreen({
+                interactWithScreen({
                     event,
                     target,
                     currentTarget,
@@ -468,32 +520,34 @@ const Viewer = ({
                     x,
                     y,
                 });
-            }
-            // if (!landscape || withLandscapeSiblingsScreens || target !== contentRef.current) {
-            //     return;
-            // }
 
-            const ratio = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
+                return;
+            }
+
+            const progress = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
             const forwards = mx < 0; // true if swiping to left (to navigate forwards)
-            const nextIndex = !forwards
-                ? Math.max(0, screenIndex - 1)
-                : Math.min(screensCount - 1, screenIndex + 1);
+            const newIndex = !forwards ? screenIndex - 1 : screenIndex + 1;
+            const reachedThreshold = vx > 0.3 || Math.abs(progress) > 0.3; // @todo make tweakable with variables
+            const reachedBounds = newIndex < 0 || newIndex >= screensCount;
 
             if (!tap) {
-                onScreenTransition({ index: screenIndex, ratio });
+                onScreenTransition({
+                    currentIndex: screenIndex,
+                    progress,
+                    newIndex,
+                    reachedBounds,
+                    reachedThreshold,
+                });
             }
 
             if (!active) {
-                if (
-                    (vx > 0.3 || Math.abs(ratio) > 0.3)
-                    && (nextIndex !== 0 && nextIndex + 1 !== screensCount) // @todo why nextIndex + 1 tho?
-                ) {
+                if (reachedThreshold && !reachedBounds) {
                     onScreenNavigate({
                         index: screenIndex,
-                        newIndex: nextIndex,
+                        newIndex,
                     });
                 } else {
-                    onScreenTransition({ index: screenIndex });
+                    onScreenTransition({ currentIndex: screenIndex });
                 }
             }
         },
@@ -518,17 +572,8 @@ const Viewer = ({
         enabled: fullscreenEnabled,
     } = useFullscreen(containerRef.current || null);
 
-    const onScreenKeyUp = useCallback(
-        ({ key }, i) => {
-            if (key === 'Enter' && withLandscapeSiblingsScreens && landscape && i !== screenIndex) {
-                changeIndex(i);
-            }
-        },
-        [withLandscapeSiblingsScreens, changeIndex, landscape, screenIndex],
-    );
-
     // swipe menu open
-    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
+    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled; // ?
     const [menuOpened, setMenuOpened] = useState(false);
 
     // Get element height
@@ -683,58 +728,33 @@ const Viewer = ({
                                     style={{
                                         width: screenContainerWidth,
                                         height: screenContainerHeight,
-                                        // @todo how?
-                                        // transform: !withoutScreensTransforms
-                                        //     ? screenTransform
-                                        //     : null,
                                     }}
                                 >
                                     {screens.map((screen, i) => {
-                                        // @todo make sure everything loads correctly, etc.
-                                        // const i = mountedScreenStartIndex + mountedIndex;
                                         const current = i === parseInt(screenIndex, 10);
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
 
-                                        // @todo abandoning landscape mode eventually or not?
-                                        // let screenTransform = null;
-
-                                        // if (landscape) {
-                                        //     const max = i - screenIndex;
-                                        //     let distance =
-                                        //         (screenContainerWidth + landscapeScreenMargin) * max;
-                                        //     // Compensates for scaling
-                                        //     if (max !== 0) {
-                                        //         const halfMargin =
-                                        //             (screenContainerWidth *
-                                        //                 (1 - landscapeSmallScreenScale)) /
-                                        //             2;
-                                        //         distance -= halfMargin * max;
-                                        //         if (max < -1) {
-                                        //             distance -= halfMargin * (max + 1);
-                                        //         } else if (max > 1) {
-                                        //             distance -= halfMargin * (max - 1);
-                                        //         }
-                                        //     }
-                                        //     screenTransform = withLandscapeSiblingsScreens
-                                        //         ? `translateX(calc(${distance}px - 50%)) scale(${
-                                        //               current ? 1 : landscapeSmallScreenScale
-                                        //           })`
-                                        //         : null;
-                                        // } else {
-                                        //     screenTransform = `translateX(${current ? 0 : '100%'})`;
-                                        // }
-
                                         const { shadow = null } = screenSprings[i];
-                                        const finalStyles = {
-                                            zIndex: 1,
-                                            ...screenSprings[i],
-                                            boxShadow: shadow.to(
-                                                (v) => `0 0 5rem -1rem rgba(0,0,0,${v})`,
-                                            ),
-                                        };
+                                        const finalStyles = active
+                                            ? {
+                                                  zIndex: 1,
+                                                  ...screenSprings[i],
+                                                  boxShadow:
+                                                      shadow !== null
+                                                          ? shadow.to(
+                                                                (v) =>
+                                                                    `0 0 5rem -1rem rgba(0,0,0,${v})`,
+                                                            )
+                                                          : 'none',
+                                              }
+                                            : {
+                                                  pointerEvents: 'none',
+                                              };
 
+                                        // @todo maybe swap an entire <ScreenTransitioner /> comp
+                                        // to be able to have different transitions per screen type
                                         return (
                                             <animated.div
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
@@ -747,18 +767,6 @@ const Viewer = ({
                                                             current || withLandscapeSiblingsScreens,
                                                     },
                                                 ])}
-                                                // @todo
-                                                // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-                                                tabIndex={!active ? -1 : null}
-                                                aria-hidden={!current}
-                                                aria-label={intl.formatMessage(
-                                                    {
-                                                        defaultMessage: 'Screen {index}',
-                                                        description: 'Button label',
-                                                    },
-                                                    { index: i + 1 },
-                                                )}
-                                                onKeyUp={(e) => onScreenKeyUp(e, i)}
                                             >
                                                 {active && screen !== null ? (
                                                     <ViewerScreen
