@@ -40,7 +40,8 @@ import styles from '../styles/viewer.module.scss';
 const SPRING_CONFIG_TIGHT = { tension: 300, friction: 35 }; // tight
 const DRAG_PROGRESS_ACTIVATION_THRESHOLD = 0.3;
 const DRAG_VELOCITY_ACTIVATION_THRESHOLD = 0.3;
-const DEFAULT_TRANSITION_TYPE = 'carousel';
+const DEFAULT_TRANSITION_TYPE_LANDSCAPE = 'carousel';
+const DEFAULT_TRANSITION_TYPE_PORTRAIT = 'stack';
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -275,7 +276,7 @@ const Viewer = ({
     /**
      * Screen Transitions
      */
-    const carouselTransitionFn = ({ i, currentIndex, immediate = false, progress = 0 }) => {
+    const carouselTransitionFn = ({ i, currentIndex, immediate = false, progress = 0 } = {}) => {
         if (i > currentIndex) {
             const nextScreens = i - 1 - currentIndex;
 
@@ -316,7 +317,7 @@ const Viewer = ({
         return {};
     };
 
-    const stackTransitionFn = ({ i, currentIndex, immediate = false, progress = 0 }) => {
+    const stackTransitionFn = ({ i, currentIndex, immediate = false, progress = 0 } = {}) => {
         if (i > currentIndex) {
             return {
                 immediate,
@@ -353,26 +354,16 @@ const Viewer = ({
         return {};
     };
 
-    const transitions = {
-        carousel: carouselTransitionFn,
+    const transitionTypes = {
         stack: stackTransitionFn,
+        carousel: carouselTransitionFn,
     };
 
-    // apply a transition type, taken from the `transitions` object
-    const applyTransitions = ({
-        type: initialType = null,
-        i = 0,
-        currentIndex = 0,
-        immediate = false,
-        progress = 0,
-    }) => {
-        const type = initialType !== null ? initialType : 'carousel';
-        return transitions[type]({ i, currentIndex, immediate, progress });
-    };
+    const [transitionType, setTransitionType] = useState(DEFAULT_TRANSITION_TYPE_LANDSCAPE);
 
     // Bruce Screensprings
     const [screenSprings, transition] = useSprings(screensCount, (i) => ({
-        ...applyTransitions({
+        ...transitionTypes[DEFAULT_TRANSITION_TYPE_PORTRAIT]({
             i,
             currentIndex: screenIndex,
         }),
@@ -388,12 +379,13 @@ const Viewer = ({
             // reachedThreshold = false, // @todo true if user has dragged enough to reach the threshold when something should happen
             reachedBounds = false,
             reset = false,
-            type = null,
+            type: initialType = null,
         } = {}) => {
             const immediate = initialImmediate || initialProgress !== null;
             const p = initialProgress || 0;
             const damper = reachedBounds ? 0.1 : 1;
             const progress = Math.max(-1, Math.min(1, p * damper));
+            const type = initialType !== null ? initialType : transitionType;
 
             if (reset) {
                 transition.start((i) =>
@@ -402,7 +394,7 @@ const Viewer = ({
             }
 
             transition.start((i) =>
-                applyTransitions({
+            transitionTypes[type]({
                     i,
                     currentIndex,
                     immediate,
@@ -411,7 +403,7 @@ const Viewer = ({
                 }),
             );
         },
-        [screens, transition, applyTransitions],
+        [screens, transition, transitionTypes, transitionType],
     );
 
     /**
@@ -581,6 +573,24 @@ const Viewer = ({
         filterTaps: true,
     });
 
+    useEffect(() => {
+        const newType = landscape ? DEFAULT_TRANSITION_TYPE_LANDSCAPE : DEFAULT_TRANSITION_TYPE_PORTRAIT;
+
+        setTransitionType(type => {
+            if (newType !== type) {
+                onScreenTransition({
+                    currentIndex: screenIndex,
+                    immediate: true,
+                    type: newType,
+                });
+
+                return newType;
+            }
+
+            return type;
+        });
+    }, [landscape, setTransitionType, onScreenTransition]);
+
     const {
         toggle: toggleFullscreen,
         active: fullscreenActive,
@@ -615,16 +625,16 @@ const Viewer = ({
         [onInteractionPrivate, changeIndex, menuOpened, setMenuOpened],
     );
 
-    const onContextMenu = useCallback(
-        (e) => {
-            if (!landscape) {
-                e.preventDefault();
-                return false;
-            }
-            return true;
-        },
-        [landscape],
-    );
+    // const onContextMenu = useCallback(
+    //     (e) => {
+    //         if (!landscape) {
+    //             e.preventDefault();
+    //             return false;
+    //         }
+    //         return true;
+    //     },
+    //     [landscape],
+    // );
 
     const overscrollStyle = (
         <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
@@ -701,7 +711,7 @@ const Viewer = ({
                             },
                         ])}
                         ref={containerRef}
-                        onContextMenu={onContextMenu}
+                        // onContextMenu={onContextMenu}
                     >
                         {!withoutMenu ? (
                             <ViewerMenu
@@ -739,6 +749,7 @@ const Viewer = ({
                                     />
                                 ) : null}
                                 {/*
+                                @todo maybe later...?
                                 <ViewerFrame
                                     className={styles.screensFrame}
                                     style={{
@@ -797,8 +808,6 @@ const Viewer = ({
                                                   pointerEvents: 'none',
                                               };
 
-                                        // @todo maybe swap an entire <ScreenTransitioner /> comp
-                                        // to be able to have different transitions per screen type
                                         return (
                                             <animated.div
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
@@ -820,7 +829,6 @@ const Viewer = ({
                                                         index={i}
                                                         current={current}
                                                         active={active}
-
                                                         mediaRef={(ref) => {
                                                             screensMediasRef.current[i] = ref;
                                                         }}
