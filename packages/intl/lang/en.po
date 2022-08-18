@@ -587,6 +587,12 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Edit call to action..."
 
+# Button label
+#: AuxqcG
+msgctxt "AuxqcG"
+msgid "Fullscreen"
+msgstr "Fullscreen"
+
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"

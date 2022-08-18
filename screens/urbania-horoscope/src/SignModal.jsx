@@ -41,8 +41,11 @@ const defaultProps = {
 };
 
 const SignModal = ({ width, height, sign, subtitle, current, transitionDisabled, className }) => {
+    if (sign === null) {
+        return false;
+    }
     // eslint-disable-next-line no-unused-vars
-    const { label = null, image = null, date = null, word = null, description = null } = sign;
+    const { label = null, image = null, date = null, word = null, description = null } = sign || {};
     const { body: wordBody = null } = word || {};
 
     const { isEdit } = useScreenRenderContext();

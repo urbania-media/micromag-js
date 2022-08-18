@@ -1,33 +1,36 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { useSpring, useSprings } from '@react-spring/core';
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
+import { useLongPress } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
 import Author from '@micromag/element-urbania-author';
+
 import SignModal from './SignModal';
 import Close from './icons/Close';
 
 import styles from './signs-grid.module.scss';
 
-import horoscopeBackground from './images/horoscope-background.png';
+// import horoscopeBackground from './images/horoscope-background.png';
 
 const defaultBackground = {
-    image: {
-        type: 'image',
-        url: horoscopeBackground,
-        width: 2161,
-        height: 3859,
-    },
+    // image: {
+    //     type: 'image',
+    //     url: horoscopeBackground,
+    //     width: 2161,
+    //     height: 3859,
+    // },
     color: '#000F66',
 };
 
@@ -60,6 +63,7 @@ const propTypes = {
         }),
     ]),
     muted: PropTypes.bool,
+    onLongPress: PropTypes.func,
     onClickSign: PropTypes.func,
     onClickClose: PropTypes.func,
     className: PropTypes.string,
@@ -79,6 +83,7 @@ const defaultProps = {
     transitionDisabled: false,
     muted: false,
     mediaRef: null,
+    onLongPress: null,
     onClickSign: null,
     onClickClose: null,
     className: null,
@@ -98,6 +103,7 @@ const SignsGrid = ({
     transitionDisabled,
     muted,
     mediaRef,
+    onLongPress,
     onClickSign,
     onClickClose,
     className,
@@ -107,6 +113,31 @@ const SignsGrid = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
     const hasAuthor = author !== null && isTextFilled(author.name);
+
+    const [modalSpringProps, modalSpringApi] = useSpring(() => ({
+        // x: '0%',
+        // y: '0%',
+        opacity: 0,
+        config: {
+            tension: 300,
+            friction: 20,
+        }
+    }));
+
+    const onSignPointerDown = useCallback((e, id) => {
+        onClickSign(id);
+        modalSpringApi.start({ opacity: 1 });
+    }, [onClickSign]);
+
+    const onSignPointerUp = useCallback((e) => {
+        modalSpringApi.start({ opacity: 0 });
+    }, [onClickSign]);
+
+    const { opacity } = modalSpringProps || {};
+    const modalStyles = {
+        ...modalSpringProps,
+        pointerEvents: opacity.get() < 1 ? 'none' : 'auto'
+    };
 
     return (
         <div
@@ -139,122 +170,107 @@ const SignsGrid = ({
                             <Close className={styles.close} />
                         </Button>
                     ) : null}
-                    <TransitionGroup>
 
-
-                        {currentSign === null ? (
-                            <CSSTransition
-                                key="grid"
-                                classNames={styles}
-                                timeout={transitionDisabled ? 0 : 1000}
-                            >
-                                <div
-                                    className={classNames([
-                                        styles.gridContainer,
-                                        {
-                                            [styles.isPlaceholder]: isPlaceholder,
-                                        },
-                                    ])}
+                    <div
+                        className={classNames([
+                            styles.gridContainer,
+                            {
+                                [styles.isPlaceholder]: isPlaceholder,
+                            },
+                        ])}
+                    >
+                        {signs.map((sign, i) => {
+                            const {
+                                id = null,
+                                thumbnail = null,
+                                label = null,
+                                date = null,
+                            } = sign || {};
+                            return (
+                                <ScreenElement
+                                    key={id}
+                                    placeholder={
+                                        <PlaceholderTitle className={styles.signPlaceholder} />
+                                    }
+                                    emptyLabel={
+                                        <FormattedMessage
+                                            defaultMessage="Horoscope sign"
+                                            description="Sign placeholder"
+                                        />
+                                    }
+                                    emptyClassName={styles.emptyText}
+                                    isEmpty={!id}
                                 >
-                                    {signs.map((sign) => {
-                                        const {
-                                            id = null,
-                                            thumbnail = null,
-                                            label = null,
-                                            date = null,
-                                        } = sign || {};
-                                        return (
-                                            <ScreenElement
-                                                key={id}
-                                                placeholder={
-                                                    <PlaceholderTitle
-                                                        className={styles.signPlaceholder}
-                                                    />
-                                                }
-                                                emptyLabel={
-                                                    <FormattedMessage
-                                                        defaultMessage="Horoscope sign"
-                                                        description="Sign placeholder"
-                                                    />
-                                                }
-                                                emptyClassName={styles.emptyText}
-                                                isEmpty={!id}
-                                            >
-                                                <Button
-                                                    className={styles.gridElement}
-                                                    type="button"
-                                                    onClick={() => {
-                                                        if (onClickSign !== null) {
-                                                            onClickSign(id);
-                                                        }
-                                                    }}
-                                                >
-                                                    {thumbnail !== null ? (
-                                                        <img
-                                                            className={styles.thumbnail}
-                                                            src={thumbnail}
-                                                            alt={id}
-                                                            loading="lazy"
-                                                        />
-                                                    ) : null}
-                                                    <div className={styles.gridText}>
-                                                        <h2 className={styles.signName}>
-                                                            {label !== null ? (
-                                                                <FormattedMessage {...label} />
-                                                            ) : null}
-                                                        </h2>
-                                                        <p className={styles.date}>
-                                                            {date !== null ? (
-                                                                <FormattedMessage {...date} />
-                                                            ) : null}
-                                                        </p>
-                                                    </div>
-                                                </Button>
-                                            </ScreenElement>
-                                        );
-                                    })}
-
-                                    {/* Author + Collaborator credit */}
-                                    {currentSign === null ? (
-                                        <ScreenElement
-                                            key="author"
-                                            emptyLabel={
-                                                <FormattedMessage defaultMessage="Author" description="Author placeholder" />
-                                            }
-                                            emptyClassName={styles.emptyText}
-                                            isEmpty={!hasAuthor}
-                                        >
-                                            {hasAuthor && !isPlaceholder ? (
-                                                <Author
-                                                    author={author}
-                                                    className={styles.author}
-                                                    collaboratorClassName={styles.collaborator}
-                                                    backgroundClassName={styles.authorBackground}
-                                                    shouldLoad={mediaShouldLoad}
-                                                />
-                                            ) : null}
-                                        </ScreenElement>
-                                    ): null}
-                                </div>
-                            </CSSTransition>
-                        ) : (
-                            <CSSTransition key="modal" classNames={styles} timeout={500}>
-                                <div className={styles.modalContainer}>
-                                    <Button onClick={onClickClose} className={styles.closeButton}>
-                                        <Close className={styles.close} />
+                                    <Button
+                                        className={styles.gridElement}
+                                        type="button"
+                                        onPointerDown={(e) => onSignPointerDown(e, id)}
+                                        onPointerUp={onSignPointerUp}
+                                    >
+                                        {thumbnail !== null ? (
+                                            <img
+                                                className={styles.thumbnail}
+                                                src={thumbnail}
+                                                alt={id}
+                                                loading="lazy"
+                                            />
+                                        ) : null}
+                                        <div className={styles.gridText}>
+                                            <h2 className={styles.signName}>
+                                                {label !== null ? (
+                                                    <FormattedMessage {...label} />
+                                                ) : null}
+                                            </h2>
+                                            <p className={styles.date}>
+                                                {date !== null ? (
+                                                    <FormattedMessage {...date} />
+                                                ) : null}
+                                            </p>
+                                        </div>
                                     </Button>
-                                    <SignModal
-                                        width={width}
-                                        height={height}
-                                        className={styles.signModal}
-                                        sign={currentSign}
-                                        subtitle={signSubtitle}
-                                        transitionDisabled={transitionDisabled}
+                                </ScreenElement>
+                            );
+                        })}
+
+                        {/* Author + Collaborator credit */}
+                        {currentSign === null ? (
+                            <ScreenElement
+                                key="author"
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Author"
+                                        description="Author placeholder"
                                     />
-                                </div>
-                            </CSSTransition>
-                        )}
-                    </TransitionGroup>
+                                }
+                                emptyClassName={styles.emptyText}
+                                isEmpty={!hasAuthor}
+                            >
+                                {hasAuthor && !isPlaceholder ? (
+                                    <Author
+                                        author={author}
+                                        className={styles.author}
+                                        collaboratorClassName={styles.collaborator}
+                                        backgroundClassName={styles.authorBackground}
+                                        shouldLoad={mediaShouldLoad}
+                                    />
+                                ) : null}
+                            </ScreenElement>
+                        ) : null}
+                    </div>
+
+                    <animated.div className={styles.modalContainer} style={modalStyles}>
+                        {/* <Button onClick={onClickClose} className={styles.closeButton}>
+                            <Close className={styles.close} />
+                        </Button> */}
+                        <SignModal
+                            width={width}
+                            height={height}
+                            className={styles.signModal}
+                            sign={currentSign}
+                            subtitle={signSubtitle}
+                            transitionDisabled={transitionDisabled}
+                        />
+                    </animated.div>
                 </Layout>
             </Container>
         </div>

@@ -185,37 +185,37 @@
     }
 }
 
-.modalContainer {
-    &.enter {
-        .signModal {
-            z-index: 1;
-            transform: scale(20%);
-            transition: transform 0.5s ease-out;
-        }
-    }
+// .modalContainer {
+//     &.enter {
+//         .signModal {
+//             z-index: 1;
+//             transform: scale(20%);
+//             transition: transform 0.5s ease-out;
+//         }
+//     }
 
-    &.enterActive {
-        .signModal {
-            transform: scale(100%);
-        }
-    }
+//     &.enterActive {
+//         .signModal {
+//             transform: scale(100%);
+//         }
+//     }
 
-    &.exit {
-        z-index: 2;
-        transform: translateX(0);
-        transition: transform 0.5s ease-out;
+//     &.exit {
+//         z-index: 2;
+//         transform: translateX(0);
+//         transition: transform 0.5s ease-out;
 
-        .signModal {
-            z-index: 2;
-            transform: translateX(0);
-            transition: all 0.5s ease-out;
-            opacity: 1;
-        }
-    }
+//         .signModal {
+//             z-index: 2;
+//             transform: translateX(0);
+//             transition: all 0.5s ease-out;
+//             opacity: 1;
+//         }
+//     }
 
-    &.exitActive {
-        .signModal {
-            transform: translateX(-100%);
-        }
-    }
-}
+//     &.exitActive {
+//         .signModal {
+//             transform: translateX(-100%);
+//         }
+//     }
+// }

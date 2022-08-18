@@ -5,6 +5,7 @@
 
 .container {
     @extend %screen;
+    touch-action: none;
 
     .layout {
         display: flex;

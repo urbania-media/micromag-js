@@ -383,6 +383,10 @@
     "defaultMessage": "Edit call to action...",
     "description": "No value label"
   },
+  "AuxqcG": {
+    "defaultMessage": "Fullscreen",
+    "description": "Button label"
+  },
   "B1MeY+": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"

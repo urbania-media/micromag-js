@@ -1,15 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
+// import { useSpring } from '@react-spring/core';
+// import { animated } from '@react-spring/web';
+// import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import {
-    ScreenElement,
-    TransitionsStagger,
-} from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -26,8 +25,8 @@ import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
-import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
+
 import SignsGrid from './SignsGrid';
 import signsList from './signs';
 
@@ -60,8 +59,8 @@ const propTypes = {
     popupBackground: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
+    // transitions: MicromagPropTypes.transitions,
+    // transitionStagger: PropTypes.number,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -80,8 +79,8 @@ const defaultProps = {
     current: true,
     active: true,
     type: 'horoscope',
-    transitions: null,
-    transitionStagger: 100,
+    // transitions: null,
+    // transitionStagger: 100,
     className: null,
 };
 
@@ -98,13 +97,13 @@ const Horoscope = ({
     popupBackground,
     current,
     active,
-    transitions,
-    transitionStagger,
+    // transitions,
+    // transitionStagger,
     type,
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
-    const [hasPopup, setHasPopup] = useState(false);
+    const [showSignsGrid, setShowSignsGrid] = useState(false);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
@@ -124,16 +123,16 @@ const Horoscope = ({
     const [currentSign, setCurrentSign] = useState(null);
 
     const openPopup = useCallback(() => {
-        setHasPopup(true);
+        setShowSignsGrid(true);
         disableInteraction();
         trackScreenEvent('open');
-    }, [hasPopup, setHasPopup, disableInteraction, trackScreenEvent]);
+    }, [setShowSignsGrid, disableInteraction, trackScreenEvent]);
 
     const closePopup = useCallback(() => {
-        setHasPopup(false);
+        setShowSignsGrid(false);
         enableInteraction();
         trackScreenEvent('close');
-    }, [hasPopup, setHasPopup, enableInteraction]);
+    }, [showSignsGrid, setShowSignsGrid, enableInteraction]);
 
     const onClickSign = useCallback(
         (signId) => {
@@ -152,15 +151,15 @@ const Horoscope = ({
 
     useEffect(() => {
         if (screenState === 'intro') {
-            setHasPopup(false);
+            setShowSignsGrid(false);
         }
         if (screenState === 'grid') {
-            setHasPopup(true);
+            setShowSignsGrid(true);
             setCurrentSign(null);
         }
         if (screenState !== null && screenState.includes('signs')) {
             const index = screenState.split('.').pop();
-            setHasPopup(true);
+            setShowSignsGrid(true);
             setCurrentSign(signs[index].id);
         }
     }, [screenState]);
@@ -175,83 +174,12 @@ const Horoscope = ({
     const hasDescription = isTextFilled(description);
     const hasButton = isTextFilled(button);
 
-    const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
+    // const transitionPlaying = current;
+    // const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
+    // const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
-
-    // Create elements
-    const items = [
-        <div key="title" className={styles.headerContainer}>
-            {/* TITLE */}
-            <ScreenElement
-                // emptyLabel={
-                //     <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-                // }
-                emptyClassName={styles.emptyText}
-                // isEmpty={!hasTitle}
-            >
-                {hasTitle ? (
-                    <Heading className={styles.title} {...title} />
-                ) : (
-                    <img src={Astrologie} alt="" className={styles.titleImage} />
-                )}
-            </ScreenElement>
-
-            {/* DESCRIPTION */}
-            <ScreenElement
-                key="description"
-                emptyLabel={
-                    <FormattedMessage defaultMessage="Description" description="Text placeholder" />
-                }
-                emptyClassName={styles.emptyText}
-                isEmpty={!hasDescription}
-            >
-                {hasDescription ? <Text className={styles.description} {...description} /> : null}
-            </ScreenElement>
-        </div>,
-
-        // BUTTON
-        <ScreenElement
-            key="button"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Button" description="Button placeholder" />
-            }
-            emptyClassName={styles.emptyText}
-            isEmpty={!hasButton}
-        >
-            {hasButton ? (
-                <Button
-                    className={styles.button}
-                    type="button"
-                    separateBorder
-                    onClick={openPopup}
-                    {...button}
-                >
-                    <Text className={styles.buttonLabel} {...button} inline />
-                </Button>
-            ) : null}
-        </ScreenElement>,
-        // <TransitionGroup>
-        //     {hasPopup || isPlaceholder ? (
-        //         <CSSTransition key="grid" classNames={styles} timeout={500}>
-        //             <SignsGrid
-        //                 width={width}
-        //                 height={height}
-        //                 className={styles.signsGrid}
-        //                 closeButton={closePopup}
-        //                 background={popupBackground}
-        //                 signs={signs}
-        //                 signSubtitle={signSubtitle}
-        //                 activeSignId={activeSignId}
-        //                 setCurrentSign={setCurrentSign}
-        //             />
-        //         </CSSTransition>
-        //     ) : null}
-        // </TransitionGroup>,
-    ].filter((el) => el !== null);
 
     return (
         <div
@@ -277,53 +205,86 @@ const Horoscope = ({
                 />
             ) : null}
             <Container width={width} height={height}>
-                <Scroll disabled={scrollingDisabled} verticalAlign="middle">
-                    <Layout
-                        className={styles.layout}
-                        style={
-                            !isPlaceholder
-                                ? {
-                                      padding: spacing,
-                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
-                                      paddingBottom:
-                                          (!isPreview ? viewerBottomHeight : 0) + spacing,
-                                  }
-                                : null
-                        }
-                        height={height * 0.8}
-                    >
-                        <TransitionsStagger
-                            transitions={transitions}
-                            stagger={transitionStagger}
-                            disabled={transitionDisabled}
-                            playing={transitionPlaying}
-                        >
-                            {items}
-                        </TransitionsStagger>
-                    </Layout>
-                    <TransitionGroup>
-                        {hasPopup || isPlaceholder ? (
-                            <CSSTransition key="grid" classNames={styles} timeout={500}>
-                                <SignsGrid
-                                    width={width}
-                                    height={height}
-                                    className={styles.signsGrid}
-                                    author={author}
-                                    closeButton={closePopup}
-                                    background={popupBackground}
-                                    muted={muted}
-                                    mediaRef={mediaRef}
-                                    signs={signs}
-                                    signSubtitle={signSubtitle}
-                                    currentSign={currentSign}
-                                    onClickSign={onClickSign}
-                                    onClickClose={onClickCloseSign}
-                                    transitionDisabled={transitionDisabled}
+                <Layout
+                    className={styles.layout}
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
+                              }
+                            : null
+                    }
+                    height={height * 0.8}
+                >
+                    <div className={styles.headerContainer}>
+                        <ScreenElement emptyClassName={styles.emptyText}>
+                            {hasTitle ? (
+                                <Heading className={styles.title} {...title} />
+                            ) : (
+                                <img src={Astrologie} alt="" className={styles.titleImage} />
+                            )}
+                        </ScreenElement>
+
+                        <ScreenElement
+                            key="description"
+                            emptyLabel={
+                                <FormattedMessage
+                                    defaultMessage="Description"
+                                    description="Text placeholder"
                                 />
-                            </CSSTransition>
+                            }
+                            emptyClassName={styles.emptyText}
+                            isEmpty={!hasDescription}
+                        >
+                            {hasDescription ? (
+                                <Text className={styles.description} {...description} />
+                            ) : null}
+                        </ScreenElement>
+                    </div>
+
+                    <ScreenElement
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Button"
+                                description="Button placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyText}
+                        isEmpty={!hasButton}
+                    >
+                        {hasButton ? (
+                            <Button
+                                className={styles.button}
+                                type="button"
+                                separateBorder
+                                onClick={openPopup}
+                                {...button}
+                            >
+                                <Text className={styles.buttonLabel} {...button} inline />
+                            </Button>
                         ) : null}
-                    </TransitionGroup>
-                </Scroll>
+                    </ScreenElement>
+                </Layout>
+                {!isPlaceholder && showSignsGrid ? (
+                    <SignsGrid
+                        width={width}
+                        height={height}
+                        className={styles.signsGrid}
+                        author={author}
+                        closeButton={closePopup}
+                        background={popupBackground}
+                        muted={muted}
+                        mediaRef={mediaRef}
+                        signs={signs}
+                        signSubtitle={signSubtitle}
+                        currentSign={currentSign}
+                        onClickSign={onClickSign}
+                        onClickClose={onClickCloseSign}
+                        // transitionDisabled={transitionDisabled}
+                    />
+                ) : null}
             </Container>
         </div>
     );
