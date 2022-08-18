@@ -184,7 +184,6 @@ const SlideshowScreen = ({
             ])}
             data-screen-ready={ready}
         >
-            <h1>HELLO WORLD! SLIDESHOW</h1>
             {!isPlaceholder ? (
                 <Background
                     background={background}

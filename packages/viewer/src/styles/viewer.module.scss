@@ -188,6 +188,7 @@
 
 .screensFrame {
     @extend %fullscreen;
+    touch-action: none;
 }
 
 .screenContainer {

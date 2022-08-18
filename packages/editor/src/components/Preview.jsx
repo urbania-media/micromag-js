@@ -163,6 +163,9 @@ const EditorPreview = ({
                                         interactions={null}
                                         renderContext="edit"
                                         onScreenChange={onScreenChange}
+                                        withLandscapeSiblingsScreens={false}
+                                        withoutGestures
+                                        withoutMenu
                                     />
                                 </PlaybackProvider>
                             </div>

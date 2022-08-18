@@ -68,6 +68,7 @@ const propTypes = {
     withoutShareMenu: PropTypes.bool,
     withoutMenuShadow: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
+    withoutNavigationArrow: PropTypes.bool,
     withLandscapeSiblingsScreens: PropTypes.bool,
     withNavigationHint: PropTypes.bool,
     withoutPlaybackControls: PropTypes.bool,
@@ -114,6 +115,7 @@ const defaultProps = {
     withoutFullscreen: false,
     withLandscapeSiblingsScreens: false,
     withNavigationHint: false,
+    withoutNavigationArrow: false,
     withoutPlaybackControls: false,
     menuIsScreenWidth: false,
     closeable: false,
@@ -151,6 +153,7 @@ const Viewer = ({
     withoutShareMenu,
     withoutMenuShadow,
     withoutFullscreen, // eslint-disable-line no-unused-vars
+    withoutNavigationArrow,
     withLandscapeSiblingsScreens,
     withNavigationHint,
     withoutPlaybackControls,
@@ -394,7 +397,7 @@ const Viewer = ({
             }
 
             transition.start((i) =>
-            transitionTypes[type]({
+                transitionTypes[type]({
                     i,
                     currentIndex,
                     immediate,
@@ -498,6 +501,10 @@ const Viewer = ({
             velocity: [vx],
             xy: [x, y],
         }) => {
+            if (!isView) {
+                return;
+            }
+
             // handle single tap on screen
             if (tap) {
                 // onTap
@@ -559,6 +566,7 @@ const Viewer = ({
             }
         },
         [
+            isView,
             screenIndex,
             screensCount,
             landscape,
@@ -574,9 +582,11 @@ const Viewer = ({
     });
 
     useEffect(() => {
-        const newType = landscape ? DEFAULT_TRANSITION_TYPE_LANDSCAPE : DEFAULT_TRANSITION_TYPE_PORTRAIT;
+        const newType = landscape
+            ? DEFAULT_TRANSITION_TYPE_LANDSCAPE
+            : DEFAULT_TRANSITION_TYPE_PORTRAIT;
 
-        setTransitionType(type => {
+        setTransitionType((type) => {
             if (newType !== type) {
                 onScreenTransition({
                     currentIndex: screenIndex,
@@ -741,7 +751,10 @@ const Viewer = ({
                         ) : null}
                         {ready || withoutScreensTransforms ? (
                             <div className={styles.content}>
-                                {screenIndex > 0 && screens.length > 1 ? (
+                                {!withoutNavigationArrow &&
+                                withLandscapeSiblingsScreens &&
+                                screenIndex > 0 &&
+                                screens.length > 1 ? (
                                     <NavigationButton
                                         direction="previous"
                                         className={classNames([styles.navButton, styles.previous])}
@@ -792,9 +805,10 @@ const Viewer = ({
                                             i <= screenIndex + neighborScreensActive;
 
                                         const { shadow = null } = screenSprings[i];
-                                        const finalStyles = active
+                                        const zIndex = current ? 2 : 1;
+                                        const transitionStyles = active
                                             ? {
-                                                  zIndex: 1,
+                                                  zIndex,
                                                   ...screenSprings[i],
                                                   boxShadow:
                                                       shadow !== null
@@ -807,6 +821,7 @@ const Viewer = ({
                                             : {
                                                   pointerEvents: 'none',
                                               };
+                                        const finalStyles = isView ? transitionStyles : { zIndex };
 
                                         return (
                                             <animated.div
@@ -849,7 +864,9 @@ const Viewer = ({
                                         );
                                     })}
                                 </div>
-                                {screenIndex < screens.length - 1 ? (
+                                {!withoutNavigationArrow &&
+                                withLandscapeSiblingsScreens &&
+                                screenIndex < screens.length - 1 ? (
                                     <NavigationButton
                                         direction="next"
                                         className={classNames([styles.navButton, styles.next])}
