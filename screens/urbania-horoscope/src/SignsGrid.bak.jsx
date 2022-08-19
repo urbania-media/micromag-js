@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
-import { useLongPress, useYeah } from '@micromag/core/hooks';
+import { useLongPress } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -114,34 +114,34 @@ const SignsGrid = ({
     const mediaShouldLoad = !isPlaceholder && (current || active);
     const hasAuthor = author !== null && isTextFilled(author.name);
 
-    const [modalSpringProps, modalSpringApi] = useSprings(signs.length, () => ({
+    const [modalSpringProps, modalSpringApi] = useSpring(() => ({
         // x: '0%',
         // y: '0%',
         opacity: 0,
         y: '5rem',
-        pointerEvents: 'none',
         config: {
             tension: 300,
             friction: 20,
         },
     }));
 
-    const bindLongPress = useLongPress({
-        onLongPress: (e, { i: signIndex }) => {
-            modalSpringApi.start((i) =>
-                i === signIndex ? { opacity: 1, y: '0rem', pointerEvents: 'auto' } : null,
-            );
+    const {
+        bind: bindLongPress,
+        // reset,
+        // progress,
+    } = useLongPress({
+        onLongPressProgress: (progress) => {
+            console.log({progress});
+            // if (progress > 0.5) {
+            //     modalSpringApi.start({ opacity: 1, y: '0rem' });
+            // }
         },
-        onLongPressStart: (e, { id }) => {
-            onSelectSign(id);
-        },
-        delay: 350,
+        onLongPress: () => modalSpringApi.start({ opacity: 1, y: '0rem' }),
+        // onLongPressEnd: () => {
+        //     modalSpringApi.start({ opacity: 0, y: '5rem' });
+        // },
+        duration: 250,
     });
-
-    // useEffect(() => {
-    //     console.log({ currentSign, signs });
-    //     modalSpringApi.start(i => ({ opacity: 1, y: '0rem', pointerEvents: 'auto' }));
-    // }, [currentSign]);
 
     // console.log({progress, p: progress ** 2 });
 
@@ -152,12 +152,11 @@ const SignsGrid = ({
     //     [onSelectSign],
     // );
 
-    // const { opacity } = modalSpringProps || {};
-    // const modalStyles = {
-    //     ...modalSpringProps,
-    //     pointerEvents: opacity.to(o => o < 1 ? 'none' : 'auto'),
-    // };
-
+    const { opacity } = modalSpringProps || {};
+    const modalStyles = {
+        ...modalSpringProps,
+        pointerEvents: opacity.to(o => o < 1 ? 'none' : 'auto'),
+    };
 
     return (
         <div
@@ -223,7 +222,8 @@ const SignsGrid = ({
                                 >
                                     <Button
                                         className={styles.gridElement}
-                                        {...bindLongPress({ id, i })}
+                                        // onPointerDown={onSignPointerDown}
+                                        {...bindLongPress()}
                                     >
                                         {thumbnail !== null ? (
                                             <img
@@ -246,15 +246,13 @@ const SignsGrid = ({
                                             </p>
                                         </div>
                                     </Button>
-                                    <animated.div
-                                        className={styles.modalContainer}
-                                        style={modalSpringProps[i]}
-                                    >
+
+                                    <animated.div className={styles.modalContainer} style={modalStyles}>
                                         <SignModal
                                             width={width}
                                             height={height}
                                             className={styles.signModal}
-                                            sign={currentSign}
+                                            sign={sign}
                                             subtitle={signSubtitle}
                                             transitionDisabled={transitionDisabled}
                                         />
@@ -288,6 +286,10 @@ const SignsGrid = ({
                             </ScreenElement>
                         ) : null}
                     </div>
+                    {/* @todo maybe close button for the modal */}
+                    {/* <Button onClick={onCloseSign} className={styles.closeButton}>
+                        <Close className={styles.close} />
+                    </Button> */}
                 </Layout>
             </Container>
         </div>

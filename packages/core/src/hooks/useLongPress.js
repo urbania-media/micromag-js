@@ -1,59 +1,92 @@
-import { useCallback, useState } from 'react';
-import { useSpring } from '@react-spring/core';
-import { useDrag } from '@use-gesture/react';
+import { useCallback, useRef, useState } from 'react';
 
-const useLongPress = ({ duration = 500, progress: initialProgress = 0, onLongPress = null } = {}) => {
-    const [progress, setProgress] = useState(initialProgress);
-    const [pressed, setPressed] = useState(false); // @todo initial?
+const isTouchEvent = (event) => 'touches' in event;
 
-    const [longpressProps, longpressSpringApi] = useSpring(() => ({
-        progress,
-        config: {
-            duration,
-        },
-        onChange: (result) => {
-            const { value = null } = result || {};
-            const { progress: currentProgress = null } = value || {};
+const preventDefault = (event) => {
+    if (!isTouchEvent(event)) return false;
 
-            if (currentProgress >= 1) {
-                if (onLongPress !== null) {
-                    onLongPress(result);
-                }
-                setPressed(true);
-                return;
-            }
-            setProgress(currentProgress);
-            // if (onChange !== null) {
-            //     onChange(progress, result);
-            // }
-        },
-    }));
+    if (event.touches.length < 2 && event.preventDefault) {
+        event.preventDefault();
+    }
+    return false;
+};
 
-    const onDrag = useCallback(
-        ({ active: dragActive, event, tap }) => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const newProgress = tap || !dragActive ? 0 : 1;
-
-            if (!dragActive && pressed) {
-                setProgress(1);
-            } else {
-                longpressSpringApi.start({ progress: newProgress });
-                setProgress(newProgress);
-            }
-        },
-        [setProgress, pressed],
-    );
-
-    const bind = useDrag(onDrag, {});
-    const reset = () => {
-        setPressed(false);
-        setProgress(0);
-        longpressSpringApi.start({ progress: 0 });
+const preventClickDefault = (e) => {
+    if (e.preventDefault) {
+        e.preventDefault();
     }
 
-    return { bind, progress, reset };
+    if (e.stopPropagation) {
+        e.stopPropagation();
+    }
+};
+
+const useLongPress = ({
+    onLongPress = null,
+    onLongPressStart = null,
+    onLongPressEnd = null,
+    onClick = null,
+    shouldPreventDefault = true,
+    delay = 350,
+} = {}) => {
+    const [longPressTriggered, setLongPressTriggered] = useState(false);
+    const timeout = useRef(null);
+    const target = useRef(null);
+
+    const start = useCallback(
+        (event, props) => {
+            if (event.target !== null) {
+                target.current = event.target;
+            }
+            if (onLongPressStart !== null) {
+                onLongPressStart(event, props);
+            }
+            timeout.current = setTimeout(() => {
+                if (shouldPreventDefault && target.current !== null) {
+                    target.current.addEventListener('touchend', preventDefault, { passive: false });
+                    target.current.addEventListener('click', preventClickDefault, {
+                        passive: false,
+                    });
+                }
+                if (onLongPress !== null) {
+                    onLongPress(event, props);
+                }
+                setLongPressTriggered(true);
+                timeout.current = null;
+            }, delay);
+        },
+        [onLongPress, onLongPressStart, delay, shouldPreventDefault],
+    );
+
+    const clear = useCallback(
+        (event, props, shouldTriggerClick = true) => {
+            if (timeout.current !== null) {
+                clearTimeout(timeout.current);
+            } else if (shouldPreventDefault && target.current !== null) {
+                preventDefault(event);
+                target.current.removeEventListener('touchend', preventDefault);
+                setTimeout(() => {
+                    target.current.removeEventListener('click', preventClickDefault);
+                }, 10);
+            }
+            if (shouldTriggerClick && !longPressTriggered && onClick !== null) {
+                onClick(props);
+            }
+            onLongPressEnd(event, props);
+            setLongPressTriggered(false);
+        },
+        [shouldPreventDefault, onClick, onLongPressEnd, longPressTriggered],
+    );
+
+    const bind = (props = null) => ({
+        onMouseDown: (e) => start(e, props),
+        onRouchStart: (e) => start(e, props),
+        onMouseUp: (e) => clear(e, props),
+        onMouseLeave: (e) => clear(e, props, false),
+        onTouchEnd: (e) => clear(e, props),
+    });
+
+    return bind;
 };
 
 export default useLongPress;

@@ -1,0 +1,84 @@
+// stylelint-disable max-nesting-depth
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+
+}
+
+.button {
+    display: flex;
+    position: relative;
+    z-index: 4;
+    flex-direction: column;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 5px;
+    padding: 5px;
+    transition: 0.2s all ease-in-out;
+    border: 0;
+    border-radius: 10px;
+
+    background-color: #1d3af2;
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.placeholder {
+    width: 30px;
+    height: 30px;
+    margin: 1px;
+    background-color: $gray-400;
+}
+
+.thumbnail {
+    max-height: 50px;
+    padding-bottom: 4px;
+}
+
+.name {
+    width: 100%;
+    margin-bottom: 4px;
+    padding: 2px 5px 0;
+    border-radius: 24px;
+    background-color: #fffc00;
+    box-shadow: 0 0 0 2px rgba(255, 250, 0, 0.6);
+    color: #222;
+    font-family: 'Agrandir Tight', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.date {
+    color: #fffa00;
+    font-family: 'Agrandir', sans-serif;
+    font-size: 8px;
+}
+
+.arrow {
+    display: inline-block;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.modalContainer {
+    display: none;
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.emptyText {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+}

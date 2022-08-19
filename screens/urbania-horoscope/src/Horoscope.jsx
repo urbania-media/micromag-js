@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-// import { useSpring } from '@react-spring/core';
-// import { animated } from '@react-spring/web';
-// import { useDrag } from '@use-gesture/react';
+import { useSpring, useSprings } from '@react-spring/core';
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
@@ -18,7 +17,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useLongPress, useYeah } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -27,7 +26,8 @@ import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 
-import SignsGrid from './SignsGrid';
+// import SignsGrid from './SignsGrid';
+import SignCard from './SignCard';
 import signsList from './signs';
 
 import styles from './styles.module.scss';
@@ -122,30 +122,75 @@ const Horoscope = ({
 
     const [currentSign, setCurrentSign] = useState(null);
 
-    const openPopup = useCallback(() => {
-        setShowSignsGrid(true);
+    // const [signsGridSpringProps, signsGridSpringApi] = useSpring(() => ({
+    //     opacity: 0,
+    //     // y: '5rem',
+    //     config: {
+    //         tension: 300,
+    //         friction: 20,
+    //     },
+    // }));
+
+    const [signSpringProps, signSpringApi] = useSprings(signs.length, (i) => ({
+        opacity: 0,
+        pointerEvents: 'none',
+        // y: '5rem',
+        config: {
+            tension: 200,
+            friction: 30,
+            clamp: true
+        },
+    }));
+
+    const [backdropSpringProps, backdropSpringApi] = useSpring(() => ({
+        opacity: 0,
+        pointerEvents: 'none',
+        // y: '5rem',
+        config: {
+            tension: 150,
+            friction: 50,
+            clamp: true
+        },
+    }));
+
+    // const { opacity = 0 } = signsGridSpringProps || {};
+
+    // const signsGridStyles = {
+    //     ...signsGridSpringProps,
+    //     pointerEvents: opacity.to(o => o < 0.75 ? 'none' : 'auto'),
+    // };
+
+    const onOpenSignsGrid = useCallback(() => {
+        signSpringApi.start(() => ({
+            opacity: 1,
+        }));
+        backdropSpringApi.start(() => ({
+            opacity: 1,
+        }));
         disableInteraction();
         trackScreenEvent('open');
-    }, [setShowSignsGrid, disableInteraction, trackScreenEvent]);
+    }, [disableInteraction, trackScreenEvent]);
 
-    const closePopup = useCallback(() => {
-        setShowSignsGrid(false);
-        enableInteraction();
-        trackScreenEvent('close');
-    }, [showSignsGrid, setShowSignsGrid, enableInteraction]);
+    // const onCloseSignsGrid = useCallback(() => {
+    //     signSpringApi.start(() => ({
+    //         opacity: 0,
+    //     }));
+    //     enableInteraction();
+    //     trackScreenEvent('close');
+    // }, [showSignsGrid, setShowSignsGrid, enableInteraction]);
 
-    const onClickSign = useCallback(
-        (signId) => {
-            setCurrentSign(signId);
-            trackScreenEvent(`open_sign_${signId}`);
-        },
-        [setCurrentSign, trackScreenEvent],
-    );
+    // const onSelectSign = useCallback(
+    //     (signId) => {
+    //         setCurrentSign(signId);
+    //         trackScreenEvent(`open_sign_${signId}`);
+    //     },
+    //     [setCurrentSign, trackScreenEvent],
+    // );
 
-    const onClickCloseSign = useCallback(() => {
-        setCurrentSign(null);
-        trackScreenEvent('close_sign');
-    }, [setCurrentSign, trackScreenEvent]);
+    // const onCloseSign = useCallback(() => {
+    //     setCurrentSign(null);
+    //     trackScreenEvent('close_sign');
+    // }, [setCurrentSign, trackScreenEvent]);
 
     const screenState = useScreenState();
 
@@ -180,6 +225,30 @@ const Horoscope = ({
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
+
+    const springStyles = {
+        header: useYeah(showSigns, (p) => ({
+            transform: `transformY(-100 * ${p}%)`,
+            opacity: p,
+            boxShadow: `0 0 ${5 * p}rem ${-2 * p}rem black`,
+        })),
+        headerW: (p) => ({
+            y: `-100 * ${p}%`,
+            opacity: p,
+            boxShadow: `0 0 ${5 * p}rem ${-2 * p}rem black`,
+        }),
+        backdrop: (p) => ({
+            opacity: p,
+        }),
+        signs: (p) => ({
+            y: -5 * p,
+            opacity: p,
+        }),
+        button: (p) => ({
+            opacity: 1 - p,
+            y: `${-5 * p}%`,
+        }),
+    };
 
     return (
         <div
@@ -259,32 +328,50 @@ const Horoscope = ({
                                 className={styles.button}
                                 type="button"
                                 separateBorder
-                                onClick={openPopup}
+                                onClick={onOpenSignsGrid}
                                 {...button}
                             >
                                 <Text className={styles.buttonLabel} {...button} inline />
                             </Button>
                         ) : null}
                     </ScreenElement>
+
+                    {!isPlaceholder ? (
+                        <div className={styles.signsGridContainer}>
+                            {signs.map((sign, i) => {
+                                const { id = null } = sign || {};
+                                return (
+                                    <animated.div
+                                        className={styles.sign}
+                                        style={{
+                                            ...signSpringProps[i],
+                                            pointerEvents: screenState === 'grid' ? 'auto' : 'none',
+                                        }}
+                                    >
+                                        <SignCard key={id} sign={sign} />
+                                    </animated.div>
+                                );
+                            })}
+                            <animated.div className={styles.backdrop} style={backdropSpringProps} />
+                            {/* <SignsGrid
+                                width={width}
+                                height={height}
+                                className={styles.signsGrid}
+                                author={author}
+                                background={popupBackground}
+                                muted={muted}
+                                mediaRef={mediaRef}
+                                signs={signs}
+                                signSubtitle={signSubtitle}
+                                currentSign={currentSign}
+                                onClose={onCloseSignsGrid}
+                                onSelectSign={onSelectSign}
+                                onCloseSign={onCloseSign}
+                                // transitionDisabled={transitionDisabled}
+                            /> */}
+                        </div>
+                    ) : null}
                 </Layout>
-                {!isPlaceholder && showSignsGrid ? (
-                    <SignsGrid
-                        width={width}
-                        height={height}
-                        className={styles.signsGrid}
-                        author={author}
-                        closeButton={closePopup}
-                        background={popupBackground}
-                        muted={muted}
-                        mediaRef={mediaRef}
-                        signs={signs}
-                        signSubtitle={signSubtitle}
-                        currentSign={currentSign}
-                        onClickSign={onClickSign}
-                        onClickClose={onClickCloseSign}
-                        // transitionDisabled={transitionDisabled}
-                    />
-                ) : null}
             </Container>
         </div>
     );
