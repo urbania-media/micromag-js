@@ -1,13 +1,7 @@
-// stylelint-disable max-nesting-depth
-
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-
-}
-
-.button {
     display: flex;
     position: relative;
     z-index: 4;
@@ -20,7 +14,8 @@
     transition: 0.2s all ease-in-out;
     border: 0;
     border-radius: 10px;
-
+    user-select: none;
+    -webkit-touch-callout: none;
     background-color: #1d3af2;
     filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
 
@@ -39,6 +34,7 @@
 .thumbnail {
     max-height: 50px;
     padding-bottom: 4px;
+    pointer-events: none;
 }
 
 .name {
@@ -66,15 +62,6 @@
     padding-bottom: 2px;
     font-size: 20px;
     vertical-align: middle;
-}
-
-.modalContainer {
-    display: none;
-    position: absolute;
-    z-index: 6;
-    top: 0;
-    right: 0;
-    left: 0;
 }
 
 .emptyText {

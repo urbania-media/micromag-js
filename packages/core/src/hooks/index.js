@@ -25,3 +25,4 @@ export * from './useSwipe';
 export { default as useThemeParser } from './useThemeParser';
 export * from './useTracking';
 export { default as useWindowEvent } from './useWindowEvent';
+export { default as useYeah } from './useYeah';

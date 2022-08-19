@@ -80,7 +80,7 @@ const useLongPress = ({
 
     const bind = (props = null) => ({
         onMouseDown: (e) => start(e, props),
-        onRouchStart: (e) => start(e, props),
+        onTouchStart: (e) => start(e, props),
         onMouseUp: (e) => clear(e, props),
         onMouseLeave: (e) => clear(e, props, false),
         onTouchEnd: (e) => clear(e, props),

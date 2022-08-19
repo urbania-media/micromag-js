@@ -8,21 +8,21 @@
     position: relative;
     z-index: 4;
 
-    .backButton {
-        position: absolute;
-        top: 7px;
-        // left: -15px;
-        left: 5px;
-        height: 36px;
-        padding-left: 10%;
-        border-radius: 25px;
-        background-color: #fff;
-        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 4px (#010f66);
-        color: #010f66;
-        font-family: 'Agrandir Tight', sans-serif;
-        font-weight: 400;
-        line-height: 1;
-    }
+    // .backButton {
+    //     position: absolute;
+    //     top: 7px;
+    //     // left: -15px;
+    //     left: 5px;
+    //     height: 36px;
+    //     padding-left: 10%;
+    //     border-radius: 25px;
+    //     background-color: #fff;
+    //     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 4px (#010f66);
+    //     color: #010f66;
+    //     font-family: 'Agrandir Tight', sans-serif;
+    //     font-weight: 400;
+    //     line-height: 1;
+    // }
 
     .arrow {
         padding-right: 5px;
@@ -92,5 +92,6 @@
         width: 75%;
         height: auto;
         margin: 0 auto;
+        pointer-events: none;
     }
 }

@@ -3,34 +3,39 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 // import { animated } from '@react-spring/web';
 
-const useYeah = (toggler = 1, fn = null, springConfig = {}) => {
+const useYeah = (toggler = 1, fn = null, extras = {}) => {
     if (fn === null) {
         return {};
     }
-    const [value = {}, setValue] = useState(fn(toggler));
-    const [_, api] = useSpring({
-        toggler,
-        config: {
-            ...springConfig,
-            immediate: true,
-            onChange: (result) => {
-                const { value: springValue = null } = result || {};
-                const { toggler: currentTogglerValue = true } = springValue || {};
-                const oneIfTrue = currentTogglerValue === true ? 1 : currentTogglerValue;
-                const x = oneIfTrue === false ? 0 : oneIfTrue;
 
-                setValue(fn(x));
-            },
-        },
-    });
+    const castToNumber = t => {
+        const isNumber = typeof(t) === 'number';
+        const fromBool = t === true ? 1 : 0;
+        const x = !isNumber ? fromBool : t;
+
+        return x;
+    };
+
+    const getValueFromSpring = (s) => {
+        const { value: v = null } = s || {};
+        const { toggler: t } = v || {};
+
+        return t;
+    };
+
+    const [styles, setStyles] = useState( fn(castToNumber(toggler)) );
+    const [props, api] = useSpring(() => ({
+        toggler: castToNumber(toggler),
+        onChange: s => setStyles(fn(getValueFromSpring(s))),
+        ...extras,
+    }));
 
     useEffect(() => {
-        api.start({ toggler, config: springConfig });
-    }, [toggler, springConfig]);
+        api.start({ toggler: castToNumber(toggler), ...extras });
+    }, [toggler, fn, extras]);
 
-    return value;
+    return styles;
 };
-
 
 // const useFuck = ({
 //     onClick = null,

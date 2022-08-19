@@ -26,8 +26,8 @@ import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 
-// import SignsGrid from './SignsGrid';
 import SignCard from './SignCard';
+import SignModal from './SignModal';
 import signsList from './signs';
 
 import styles from './styles.module.scss';
@@ -120,78 +120,43 @@ const Horoscope = ({
         [],
     );
 
-    const [currentSign, setCurrentSign] = useState(null);
-
-    // const [signsGridSpringProps, signsGridSpringApi] = useSpring(() => ({
-    //     opacity: 0,
-    //     // y: '5rem',
-    //     config: {
-    //         tension: 300,
-    //         friction: 20,
-    //     },
-    // }));
-
-    const [signSpringProps, signSpringApi] = useSprings(signs.length, (i) => ({
-        opacity: 0,
-        pointerEvents: 'none',
-        // y: '5rem',
-        config: {
-            tension: 200,
-            friction: 30,
-            clamp: true
-        },
-    }));
-
-    const [backdropSpringProps, backdropSpringApi] = useSpring(() => ({
-        opacity: 0,
-        pointerEvents: 'none',
-        // y: '5rem',
-        config: {
-            tension: 150,
-            friction: 50,
-            clamp: true
-        },
-    }));
-
-    // const { opacity = 0 } = signsGridSpringProps || {};
-
-    // const signsGridStyles = {
-    //     ...signsGridSpringProps,
-    //     pointerEvents: opacity.to(o => o < 0.75 ? 'none' : 'auto'),
-    // };
+    const [selectedSign, setSelectedSign] = useState(null);
 
     const onOpenSignsGrid = useCallback(() => {
-        signSpringApi.start(() => ({
-            opacity: 1,
-        }));
-        backdropSpringApi.start(() => ({
-            opacity: 1,
-        }));
+        setShowSignsGrid(true);
+        // signSpringApi.start(() => ({
+        //     opacity: 1,
+        // }));
+        // backdropSpringApi.start(() => ({
+        //     opacity: 1,
+        // }));
         disableInteraction();
         trackScreenEvent('open');
     }, [disableInteraction, trackScreenEvent]);
 
-    // const onCloseSignsGrid = useCallback(() => {
-    //     signSpringApi.start(() => ({
-    //         opacity: 0,
-    //     }));
-    //     enableInteraction();
-    //     trackScreenEvent('close');
-    // }, [showSignsGrid, setShowSignsGrid, enableInteraction]);
+    const onCloseSignsGrid = useCallback(() => {
+        setShowSignsGrid(false);
+        // signSpringApi.start(() => ({
+        //     opacity: 0,
+        // }));
+        enableInteraction();
+        trackScreenEvent('close');
+    }, [showSignsGrid, setShowSignsGrid, enableInteraction]);
 
-    // const onSelectSign = useCallback(
-    //     (signId) => {
-    //         setCurrentSign(signId);
-    //         trackScreenEvent(`open_sign_${signId}`);
-    //     },
-    //     [setCurrentSign, trackScreenEvent],
-    // );
+    const onSelectSign = useCallback(
+        (signId) => {
+            setSelectedSign(signId);
+            trackScreenEvent(`open_sign_${signId}`);
+        },
+        [setSelectedSign, trackScreenEvent],
+    );
 
-    // const onCloseSign = useCallback(() => {
-    //     setCurrentSign(null);
-    //     trackScreenEvent('close_sign');
-    // }, [setCurrentSign, trackScreenEvent]);
+    const onCloseSign = useCallback(() => {
+        setSelectedSign(null);
+        trackScreenEvent('close_sign');
+    }, [setSelectedSign, trackScreenEvent]);
 
+    // @todo when viewing in editor?
     const screenState = useScreenState();
 
     useEffect(() => {
@@ -200,12 +165,12 @@ const Horoscope = ({
         }
         if (screenState === 'grid') {
             setShowSignsGrid(true);
-            setCurrentSign(null);
+            setSelectedSign(null);
         }
         if (screenState !== null && screenState.includes('signs')) {
             const index = screenState.split('.').pop();
             setShowSignsGrid(true);
-            setCurrentSign(signs[index].id);
+            setSelectedSign(signs[index].id);
         }
     }, [screenState]);
 
@@ -226,29 +191,78 @@ const Horoscope = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
 
-    const springStyles = {
-        header: useYeah(showSigns, (p) => ({
-            transform: `transformY(-100 * ${p}%)`,
-            opacity: p,
-            boxShadow: `0 0 ${5 * p}rem ${-2 * p}rem black`,
-        })),
-        headerW: (p) => ({
-            y: `-100 * ${p}%`,
-            opacity: p,
-            boxShadow: `0 0 ${5 * p}rem ${-2 * p}rem black`,
-        }),
-        backdrop: (p) => ({
-            opacity: p,
-        }),
-        signs: (p) => ({
-            y: -5 * p,
-            opacity: p,
-        }),
-        button: (p) => ({
+    const headerStyles = useYeah(
+        showSignsGrid,
+        (p) => ({
+            transform: `translateY(${-100 * p}%)`,
             opacity: 1 - p,
-            y: `${-5 * p}%`,
+            boxShadow: `0 0 ${5 * p}rem ${-2 * p}rem black`,
         }),
-    };
+        {
+            config: {
+                tension: 400,
+                friction: 25,
+            },
+        },
+    );
+    const signsStyles = signs.map((s, i) =>
+        useYeah(
+            showSignsGrid,
+            (p) => ({
+                transform: `translateY(${5 * (1 - p)}rem)`,
+                opacity: p,
+                pointerEvents: p < 0.75 ? 'none' : 'auto',
+            }),
+            {
+                delay: 40 * i,
+                config: {
+                    tension: 300,
+                    friction: 22,
+                },
+            },
+        ),
+    );
+    const backdropStyles = useYeah(
+        showSignsGrid,
+        (p) => ({
+            opacity: p,
+            backdropFilter: `blur(${0.5 * p}rem)`,
+        }),
+        {
+            config: {
+                tension: 100,
+                friction: 25,
+            },
+        },
+    );
+
+    const [showModal, setShowModal] = useState(false);
+    const modalStyles = useYeah(
+        showModal,
+        (p) => ({
+            opacity: p,
+            transform: `translateY(${5 * (1 - p)}rem)`,
+            pointerEvents: p < 0.75 ? 'none' : 'auto',
+        }),
+        {
+            config: { tension: 300, friction: 20 },
+        },
+    );
+
+    const onLongPressStart = useCallback((e, id) => {
+        const foundSign = signs.find(s => s.id === id);
+        setSelectedSign(foundSign);
+        setShowModal(0.4);
+    }, [signs, showModal, setSelectedSign, setShowModal]);
+
+    const onLongPress = useCallback((e, id) => {
+        setShowModal(true);
+        trackScreenEvent(`open_sign_${id}`);
+    }, [showModal, setShowModal, trackScreenEvent]);
+
+    const onLongPressEnd = useCallback(() => {
+        setShowModal(false);
+    }, [showModal, setShowModal]);
 
     return (
         <div
@@ -287,7 +301,7 @@ const Horoscope = ({
                     }
                     height={height * 0.8}
                 >
-                    <div className={styles.headerContainer}>
+                    <div className={styles.headerContainer} style={headerStyles}>
                         <ScreenElement emptyClassName={styles.emptyText}>
                             {hasTitle ? (
                                 <Heading className={styles.title} {...title} />
@@ -341,35 +355,32 @@ const Horoscope = ({
                             {signs.map((sign, i) => {
                                 const { id = null } = sign || {};
                                 return (
-                                    <animated.div
-                                        className={styles.sign}
-                                        style={{
-                                            ...signSpringProps[i],
-                                            pointerEvents: screenState === 'grid' ? 'auto' : 'none',
-                                        }}
-                                    >
-                                        <SignCard key={id} sign={sign} />
-                                    </animated.div>
+                                    <div className={styles.sign} style={signsStyles[i]}>
+                                        <SignCard
+                                            key={id}
+                                            sign={sign}
+                                            onLongPress={onLongPress}
+                                            onLongPressStart={onLongPressStart}
+                                            onLongPressEnd={onLongPressEnd}
+                                        />
+                                    </div>
                                 );
                             })}
-                            <animated.div className={styles.backdrop} style={backdropSpringProps} />
-                            {/* <SignsGrid
-                                width={width}
-                                height={height}
-                                className={styles.signsGrid}
-                                author={author}
-                                background={popupBackground}
-                                muted={muted}
-                                mediaRef={mediaRef}
-                                signs={signs}
-                                signSubtitle={signSubtitle}
-                                currentSign={currentSign}
-                                onClose={onCloseSignsGrid}
-                                onSelectSign={onSelectSign}
-                                onCloseSign={onCloseSign}
-                                // transitionDisabled={transitionDisabled}
-                            /> */}
                         </div>
+                    ) : null}
+
+                    <div className={styles.modal} style={modalStyles}>
+                        <SignModal
+                            width={width}
+                            height={height}
+                            sign={selectedSign}
+                            subtitle={signSubtitle}
+                            // transitionDisabled={transitionDisabled}
+                        />
+                    </div>
+
+                    {!isPlaceholder ? (
+                        <div className={styles.backdrop} style={backdropStyles} />
                     ) : null}
                 </Layout>
             </Container>
