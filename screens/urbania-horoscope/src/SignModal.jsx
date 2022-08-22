@@ -41,8 +41,6 @@ const defaultProps = {
 };
 
 const SignModal = ({ width, height, sign, subtitle, current, transitionDisabled, className }) => {
-    console.log({sign});
-
     if (sign === null) {
         return false;
     }

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useSpring, useSprings } from '@react-spring/core';
+import { useSpring, useSprings, easings } from '@react-spring/core';
 import { animated } from '@react-spring/web';
+import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
@@ -17,7 +18,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useLongPress, useYeah } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useLongPress, useTransitionStyles } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -121,40 +122,18 @@ const Horoscope = ({
     );
 
     const [selectedSign, setSelectedSign] = useState(null);
+    // const onSelectSign = useCallback(
+    //     (signId) => {
+    //         setSelectedSign(signId);
+    //         trackScreenEvent(`open_sign_${signId}`);
+    //     },
+    //     [setSelectedSign, trackScreenEvent],
+    // );
 
-    const onOpenSignsGrid = useCallback(() => {
-        setShowSignsGrid(true);
-        // signSpringApi.start(() => ({
-        //     opacity: 1,
-        // }));
-        // backdropSpringApi.start(() => ({
-        //     opacity: 1,
-        // }));
-        disableInteraction();
-        trackScreenEvent('open');
-    }, [disableInteraction, trackScreenEvent]);
-
-    const onCloseSignsGrid = useCallback(() => {
-        setShowSignsGrid(false);
-        // signSpringApi.start(() => ({
-        //     opacity: 0,
-        // }));
-        enableInteraction();
-        trackScreenEvent('close');
-    }, [showSignsGrid, setShowSignsGrid, enableInteraction]);
-
-    const onSelectSign = useCallback(
-        (signId) => {
-            setSelectedSign(signId);
-            trackScreenEvent(`open_sign_${signId}`);
-        },
-        [setSelectedSign, trackScreenEvent],
-    );
-
-    const onCloseSign = useCallback(() => {
-        setSelectedSign(null);
-        trackScreenEvent('close_sign');
-    }, [setSelectedSign, trackScreenEvent]);
+    // const onCloseSign = useCallback(() => {
+    //     setSelectedSign(null);
+    //     trackScreenEvent('close_sign');
+    // }, [setSelectedSign, trackScreenEvent]);
 
     // @todo when viewing in editor?
     const screenState = useScreenState();
@@ -191,78 +170,175 @@ const Horoscope = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
 
-    const headerStyles = useYeah(
+    const [showModal, setShowModal] = useState(false);
+
+    const onOpenSignsGrid = useCallback(() => {
+        setShowSignsGrid(true);
+        disableInteraction();
+        trackScreenEvent('open');
+    }, [disableInteraction, trackScreenEvent]);
+
+    const onCloseSignsGrid = useCallback(() => {
+        setShowSignsGrid(false);
+        setShowModal(0); // can't have a modal if signs are closed
+        enableInteraction();
+        trackScreenEvent('close');
+    }, [showSignsGrid, setShowSignsGrid, setShowModal, enableInteraction]);
+
+    const onLongPressStart = useCallback(
+        (e, id) => {
+            const foundSign = signs.find((s) => s.id === id);
+            setSelectedSign(foundSign);
+            setShowModal(0.4);
+        },
+        [signs, showModal, setSelectedSign, setShowModal],
+    );
+
+    const onLongPress = useCallback(
+        (e, id) => {
+            setShowModal(1);
+            trackScreenEvent(`open_sign_${id}`);
+        },
+        [showModal, setShowModal, trackScreenEvent],
+    );
+
+    const onLongPressEnd = useCallback(() => {
+        setShowModal(false);
+    }, [showModal, setShowModal]);
+
+    const [isDragging, setIsDragging] = useState(false);
+
+    const onDragContent = useCallback(
+        ({ active: dragActive, event, movement: [mx, my], tap, velocity: [vx, vy] }) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (!isView) {
+                return;
+            }
+            // what about reachedBounds ???
+
+            // handle single tap on screen
+            if (tap) {
+                // onTap();
+                return;
+            }
+
+            const progress = Math.max(0, my) / height; // drag "ratio": how much of the screen width has been swiped?
+            // const forwards = my < 0; // true if swiping to left (to navigate forwards)
+            const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
+
+            // it's not a tap, it's a drag event
+            if (!tap) {
+                // onDrag
+                // pass all the props defined above to this function so that it moves everything accordingly
+                // onDrag();
+                setShowSignsGrid(1 - progress);
+                setShowModal(1 - progress);
+                setIsDragging(true);
+            }
+
+            // user has released drag
+            if (!dragActive) {
+                setIsDragging(false);
+                // onRelease();
+
+                // drag/swipe has reached the activation threshold and hasn't yet reached the beginning/end of the stack
+                // if (reachedThreshold) {
+                if (reachedThreshold) {
+                    // onReachedThreshold();
+                    onCloseSignsGrid();
+                } else {
+                    setShowSignsGrid(1);
+                    setShowModal(selectedSign !== null);
+                    // transition back to the current index
+                    // onReset();
+                }
+            }
+        },
+        [onCloseSignsGrid, setShowSignsGrid, setIsDragging, selectedSign, isView, height],
+    );
+
+    const bindSignsDrag = useDrag(onDragContent, {
+        filterTaps: true,
+    });
+
+    const headerStyles = useTransitionStyles(
         showSignsGrid,
         (p) => ({
-            transform: `translateY(${-100 * p}%)`,
-            opacity: 1 - p,
-            boxShadow: `0 0 ${5 * p}rem ${-2 * p}rem black`,
+            transform: `translateY(${-100 * p * (1 - p)}%)`,
+            opacity: p > 0.25 ? 1 - p : 1,
+            boxShadow: `0 0 ${5 * p}rem ${0.5 * p}rem black`,
         }),
         {
+            immediate: isDragging,
             config: {
-                tension: 400,
-                friction: 25,
+                tension: 300,
+                friction: 30,
+            },
+        },
+    );
+    const signsContainerStyles = useTransitionStyles(
+        showSignsGrid,
+        (p) => ({
+            opacity: p,
+            pointerEvents: p < 0.25 ? 'none' : 'auto',
+        }),
+        {
+            immediate: isDragging,
+            delay: 100,
+            config: {
+                tension: 300,
+                friction: 30,
             },
         },
     );
     const signsStyles = signs.map((s, i) =>
-        useYeah(
+        useTransitionStyles(
             showSignsGrid,
             (p) => ({
-                transform: `translateY(${5 * (1 - p)}rem)`,
-                opacity: p,
-                pointerEvents: p < 0.75 ? 'none' : 'auto',
+                transform: `translateY(${2 * (1 - p)}rem)`,
             }),
             {
-                delay: 40 * i,
+                immediate: isDragging,
+                delay: !isDragging ? 40 * i : 0,
                 config: {
                     tension: 300,
-                    friction: 22,
+                    friction: 30,
                 },
             },
         ),
     );
-    const backdropStyles = useYeah(
+    const backdropStyles = useTransitionStyles(
         showSignsGrid,
         (p) => ({
             opacity: p,
             backdropFilter: `blur(${0.5 * p}rem)`,
         }),
         {
+            immediate: isDragging,
             config: {
-                tension: 100,
-                friction: 25,
+                tension: 200,
+                friction: 30,
             },
         },
     );
 
-    const [showModal, setShowModal] = useState(false);
-    const modalStyles = useYeah(
+    const modalStyles = useTransitionStyles(
         showModal,
         (p) => ({
-            opacity: p,
-            transform: `translateY(${5 * (1 - p)}rem)`,
+            opacity: (p > 0.25 ? p : 0),
+            transform: `translateY(${5 * (1 - (p > 0.25 ? p : 0))}rem)`,
             pointerEvents: p < 0.75 ? 'none' : 'auto',
         }),
         {
-            config: { tension: 300, friction: 20 },
+            immediate: isDragging,
+            config: {
+                tension: 300,
+                friction: 30,
+            },
         },
     );
-
-    const onLongPressStart = useCallback((e, id) => {
-        const foundSign = signs.find(s => s.id === id);
-        setSelectedSign(foundSign);
-        setShowModal(0.4);
-    }, [signs, showModal, setSelectedSign, setShowModal]);
-
-    const onLongPress = useCallback((e, id) => {
-        setShowModal(true);
-        trackScreenEvent(`open_sign_${id}`);
-    }, [showModal, setShowModal, trackScreenEvent]);
-
-    const onLongPressEnd = useCallback(() => {
-        setShowModal(false);
-    }, [showModal, setShowModal]);
 
     return (
         <div
@@ -351,7 +427,11 @@ const Horoscope = ({
                     </ScreenElement>
 
                     {!isPlaceholder ? (
-                        <div className={styles.signsGridContainer}>
+                        <div
+                            className={styles.signsGridContainer}
+                            style={signsContainerStyles}
+                            {...bindSignsDrag()}
+                        >
                             {signs.map((sign, i) => {
                                 const { id = null } = sign || {};
                                 return (

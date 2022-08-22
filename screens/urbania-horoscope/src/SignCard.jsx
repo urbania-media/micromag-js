@@ -1,14 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useSpring, useSprings } from '@react-spring/core';
-import { animated } from '@react-spring/web';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
-import { useLongPress, useYeah } from '@micromag/core/hooks';
+import { useLongPress } from '@micromag/core/hooks';
 import Button from '@micromag/element-button';
 
 // import Close from './icons/Close';
@@ -44,6 +41,7 @@ const SignCard = ({ sign, onLongPress, onLongPressStart, onLongPressEnd }) => {
         onLongPressStart,
         onLongPress,
         onLongPressEnd,
+        shouldPreventDefault: false,
         delay: 500,
     });
 
