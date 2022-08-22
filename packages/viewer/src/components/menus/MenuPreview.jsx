@@ -89,6 +89,7 @@ const ViewerMenuPreview = ({
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3);
 
     // Viewer theme
+    // @todo room for improvement here probably
     const { colors = null, background = null, logo: brandLogo = null } = viewerTheme || {};
     const { primary: brandPrimaryColor = null, secondary: brandSecondaryColor = null } =
         colors || {};

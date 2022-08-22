@@ -3,7 +3,7 @@ import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
@@ -24,6 +24,7 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
+import Author from '@micromag/element-urbania-author';
 
 import SignCard from './SignCard';
 import SignModal from './SignModal';
@@ -101,11 +102,13 @@ const Horoscope = ({
     type,
     className,
 }) => {
+    const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
     const [showSignsGrid, setShowSignsGrid] = useState(false);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
+    const hasAuthor = author !== null && isTextFilled(author.name);
 
     const signs = useMemo(
         () =>
@@ -154,8 +157,8 @@ const Horoscope = ({
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
+    // const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasTitle = isTextFilled(title);
     const hasDescription = isTextFilled(description);
@@ -189,7 +192,7 @@ const Horoscope = ({
             setSelectedSign(foundSign);
             setShowModal(0.25);
         },
-        [signs, showModal, setSelectedSign],
+        [signs, setSelectedSign],
     );
 
     const onLongPress = useCallback(
@@ -197,19 +200,19 @@ const Horoscope = ({
             setShowModal(1);
             trackScreenEvent(`open_sign_${id}`);
         },
-        [showModal, setShowModal, trackScreenEvent],
+        [setShowModal, trackScreenEvent],
     );
 
-    const onLongPressEnd = useCallback(() => {
-        setShowModal(false);
+    const onLongPressEnd = useCallback( (e, extras, triggered) => {
+        setShowModal(triggered ? 1 : 0);
     }, [showModal, setShowModal]);
 
     const [isDragging, setIsDragging] = useState(false);
 
     const onDragContent = useCallback(
-        ({ active: dragActive, event, movement: [mx, my], tap, velocity: [vx, vy] }) => {
+        ({ active: dragActive, event, movement: [, my], tap, velocity: [, vy] }) => {
+            // event.stopPropagation();
             event.preventDefault();
-            event.stopPropagation();
 
             if (!isView) {
                 return;
@@ -254,7 +257,15 @@ const Horoscope = ({
                 }
             }
         },
-        [onCloseSignsGrid, setShowSignsGrid, setIsDragging, showModal, selectedSign, isView, height],
+        [
+            onCloseSignsGrid,
+            setShowSignsGrid,
+            setIsDragging,
+            showModal,
+            selectedSign,
+            isView,
+            height,
+        ],
     );
 
     const bindSignsDrag = useDrag(onDragContent, {
@@ -266,7 +277,6 @@ const Horoscope = ({
         (p) => ({
             transform: `translateY(${-100 * p * (1 - p)}%)`,
             opacity: p > 0.25 ? 1 - p : 1,
-            boxShadow: `0 0 ${5 * p}rem ${0.5 * p}rem black`,
         }),
         {
             immediate: isDragging,
@@ -284,7 +294,6 @@ const Horoscope = ({
         }),
         {
             immediate: isDragging,
-            // delay: 100,
             config: {
                 tension: 300,
                 friction: 30,
@@ -295,7 +304,8 @@ const Horoscope = ({
         useTransitionStyles(
             showSignsGrid,
             (p) => ({
-                transform: `translateY(${2 * (1 - p)}rem)`,
+                opacity: p,
+                transform: `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`,
             }),
             {
                 immediate: isDragging,
@@ -307,6 +317,22 @@ const Horoscope = ({
             },
         ),
     );
+    const authorStyles = useTransitionStyles(
+        showSignsGrid,
+        (p) => ({
+            transform: `translateY(${2 * (1 - p)}rem)`,
+            opacity: p,
+        }),
+        {
+            immediate: isDragging,
+            delay: isDragging ? 0 : signs.length * 30, // @todo sign stagger value
+            config: {
+                tension: 420,
+                friction: 25,
+            },
+        },
+    );
+
     const backdropStyles = useTransitionStyles(
         showSignsGrid,
         (p) => ({
@@ -325,7 +351,7 @@ const Horoscope = ({
     const modalStyles = useTransitionStyles(
         showModal,
         (p) => ({
-            transform: `translateY(${100 * (1 - p)}%)`,
+            transform: `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
             pointerEvents: p < 0.75 ? 'none' : 'auto',
         }),
         {
@@ -428,20 +454,79 @@ const Horoscope = ({
                             style={signsContainerStyles}
                             {...bindSignsDrag()}
                         >
-                            {signs.map((sign, i) => {
-                                const { id = null } = sign || {};
-                                return (
-                                    <div className={styles.sign} style={signsStyles[i]}>
-                                        <SignCard
-                                            key={id}
-                                            sign={sign}
-                                            onLongPress={onLongPress}
-                                            onLongPressStart={onLongPressStart}
-                                            onLongPressEnd={onLongPressEnd}
-                                        />
-                                    </div>
-                                );
-                            })}
+                            <div className={styles.header}>
+                                <div className={styles.buttons}>
+                                    <Button
+                                        className={styles.close}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            e.stopImmediatePropagation();
+
+                                            onCloseSignsGrid(e);
+                                        }}
+                                        label={intl.formatMessage({
+                                            defaultMessage: 'Close',
+                                            description: 'Button label',
+                                        })}
+                                        iconPosition="right"
+                                        icon={
+                                            <svg
+                                                className={styles.closeIcon}
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="10"
+                                                height="16"
+                                                viewBox="0 0 10 16"
+                                                fill="currentColor"
+                                            >
+                                                <polygon points="9.95 4.11 8.89 3.05 5 6.94 1.11 3.05 0.05 4.11 3.94 8 0.05 11.89 1.11 12.95 5 9.06 8.89 12.95 9.95 11.89 6.06 8 9.95 4.11" />
+                                            </svg>
+                                        }
+                                        withoutStyle
+                                    />
+                                </div>
+                            </div>
+
+                            <div className={styles.signs}>
+                                {signs.map((sign, i) => {
+                                    const { id = null } = sign || {};
+                                    return (
+                                        <div className={styles.sign} style={signsStyles[i]}>
+                                            <SignCard
+                                                key={id}
+                                                sign={sign}
+                                                onLongPress={onLongPress}
+                                                onLongPressStart={onLongPressStart}
+                                                onLongPressEnd={onLongPressEnd}
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Author + Collaborator credit */}
+                            <ScreenElement
+                                key="author"
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Author"
+                                        description="Author placeholder"
+                                    />
+                                }
+                                emptyClassName={styles.emptyText}
+                                isEmpty={!hasAuthor}
+                            >
+                                {hasAuthor && !isPlaceholder ? (
+                                    <Author
+                                        author={author}
+                                        className={styles.author}
+                                        collaboratorClassName={styles.collaborator}
+                                        backgroundClassName={styles.authorBackground}
+                                        shouldLoad={mediaShouldLoad}
+                                        style={authorStyles}
+                                    />
+                                ) : null}
+                            </ScreenElement>
                         </div>
                     ) : null}
 
@@ -451,6 +536,7 @@ const Horoscope = ({
                             height={height}
                             sign={selectedSign}
                             subtitle={signSubtitle}
+                            onClose={() => setShowModal(0)}
                             // transitionDisabled={transitionDisabled}
                         />
                     </div>

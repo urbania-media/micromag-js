@@ -78,11 +78,13 @@
     }
 
     .button {
+        position: relative;
         padding: 8px 15px 4px;
         transition: all 0.2s ease-in-out;
         border-radius: 24px;
         background-color: #fffc00;
         box-shadow: 0 0 0 6px rgba(255, 250, 0, 0.6);
+        z-index: 1;
 
         .buttonLabel {
             color: #000;
@@ -91,20 +93,9 @@
             font-weight: 700;
             letter-spacing: 0.03rem;
         }
-    }
 
-    .signsGridContainer {
-        @extend %fullscreen;
-
-        touch-action: none;
-        display: flex;
-        z-index: 4;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        padding: 3rem 1rem;
-
-        &.isPlaceholder {
-            padding: 0;
+        &:active {
+            z-index: 2;
         }
     }
 
@@ -112,6 +103,73 @@
         .layout {
             padding: 10px;
         }
+    }
+}
+
+.header {
+    position: fixed;
+    z-index: 4;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgb(0, 0, 0, 0));
+}
+
+.buttons {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    align-items: center;
+}
+
+.close {
+    @extend %reset-button;
+    @extend %focus-outline;
+
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    font-weight: bold;
+}
+
+.signsGridContainer {
+    @extend %fullscreen;
+
+    touch-action: none;
+    z-index: 3;
+    padding: 2.5rem 1rem;
+
+    &.isPlaceholder {
+        padding: 0;
+    }
+}
+
+.signs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.author {
+    width: fit-content;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.7));
+    color: #0ff;
+}
+
+.collaborator {
+    color: #0ff;
+}
+
+.authorBackground {
+    background-color: #161719 !important;
+
+    p {
+        font-weight: normal !important; // @todo: make sure it's not getting overwritten by other styles when pushed to production
+        text-transform: none !important;
     }
 }
 
@@ -128,6 +186,6 @@
 .backdrop {
     @extend %fullscreen;
     z-index: 1;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     pointer-events: none;
 }

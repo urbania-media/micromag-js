@@ -28,14 +28,15 @@
 
 .thumbnail {
     max-height: 50px;
-    padding-bottom: 4px;
+    // padding-bottom: 0;
     pointer-events: none;
+    user-select: none;
 }
 
 .name {
     width: 100%;
-    margin-bottom: 4px;
-    padding: 2px 5px 0;
+    margin-bottom: 0.4rem !important; // @todo fighting specificity because of Viewer styles
+    padding: 2px 5px 0 !important;
     border-radius: 24px;
     background-color: #fffc00;
     box-shadow: 0 0 0 2px rgba(255, 250, 0, 0.6);

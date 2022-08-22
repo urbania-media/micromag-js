@@ -27,14 +27,19 @@ const useLongPress = ({
     onLongPressEnd = null,
     onClick = null,
     shouldPreventDefault = true,
+    preventClick = false,
+    // lockOnceTriggered = false,
     delay = 350,
 } = {}) => {
-    const [longPressTriggered, setLongPressTriggered] = useState(false);
+    const [pressed, setPressed] = useState(false);
+    const [triggered, setTriggered] = useState(false);
     const timeout = useRef(null);
     const target = useRef(null);
 
     const start = useCallback(
         (event, props) => {
+            setPressed(true);
+
             if (event.target !== null) {
                 target.current = event.target;
             }
@@ -48,18 +53,26 @@ const useLongPress = ({
                         passive: false,
                     });
                 }
+                setTriggered(true);
+
                 if (onLongPress !== null) {
                     onLongPress(event, props);
+                    setPressed(false);
                 }
-                setLongPressTriggered(true);
                 timeout.current = null;
             }, delay);
         },
-        [onLongPress, onLongPressStart, delay, shouldPreventDefault],
+        [onLongPress, onLongPressStart, delay, setPressed, shouldPreventDefault],
     );
 
     const clear = useCallback(
         (event, props, shouldTriggerClick = true) => {
+            setPressed(false);
+
+            if (preventClick && triggered) {
+                return;
+            }
+
             if (timeout.current !== null) {
                 clearTimeout(timeout.current);
             } else if (shouldPreventDefault && target.current !== null) {
@@ -69,13 +82,13 @@ const useLongPress = ({
                     target.current.removeEventListener('click', preventClickDefault);
                 }, 10);
             }
-            if (shouldTriggerClick && !longPressTriggered && onClick !== null) {
+            if (shouldTriggerClick && !triggered && onClick !== null) {
                 onClick(props);
             }
-            onLongPressEnd(event, props);
-            setLongPressTriggered(false);
+            onLongPressEnd(event, props, triggered);
+            setTriggered(false);
         },
-        [shouldPreventDefault, onClick, onLongPressEnd, longPressTriggered],
+        [shouldPreventDefault, onClick, onLongPressEnd, setPressed, triggered, preventClick],
     );
 
     const bind = (props = null) => ({
@@ -86,7 +99,11 @@ const useLongPress = ({
         onTouchEnd: (e) => clear(e, props),
     });
 
-    return bind;
+    return {
+        bind,
+        pressed,
+        triggered,
+    };
 };
 
 export default useLongPress;

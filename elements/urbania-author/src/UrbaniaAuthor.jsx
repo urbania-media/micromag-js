@@ -55,6 +55,7 @@ const UrbaniaAuthor = ({
     backgroundClassName,
     collaboratorClassName,
     shouldLoad,
+    ...otherProps
 }) => {
     const intl = useIntl();
     const { name = null, image = null, url = null, collaborator = null } = author || {};
@@ -90,6 +91,7 @@ const UrbaniaAuthor = ({
                     [className]: className !== null,
                 },
             ])}
+            {...otherProps}
         >
             {!withoutPrefix ? (
                 <Text

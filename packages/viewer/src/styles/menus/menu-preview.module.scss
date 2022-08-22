@@ -51,6 +51,26 @@
         background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgb(0, 0, 0, 0));
     }
 
+    .buttons {
+        display: flex;
+        flex-grow: 1;
+        position: relative;
+        z-index: 3; // above `.subScreenBadge`
+        align-items: center;
+    }
+
+    .organisation {
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        border-radius: 50%;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
     .button {
         @extend %reset-button;
         @extend %focus-outline;
@@ -146,26 +166,6 @@
                 background-color: $black !important;
             }
         }
-    }
-
-    .buttons {
-        display: flex;
-        flex-grow: 1;
-        position: relative;
-        z-index: 3; // above `.subScreenBadge`
-        align-items: center;
-    }
-
-    .organisation {
-        flex-shrink: 0;
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
-        border-radius: 50%;
-        background-color: #fff;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
     }
 
     .title {

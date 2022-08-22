@@ -1,17 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import classNames from 'classnames';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
 import { useTransitionStyles, useLongPress } from '@micromag/core/hooks';
-import Button from '@micromag/element-button';
 
 // import Close from './icons/Close';
 import styles from './sign-card.module.scss';
 
 const propTypes = {
+    className: PropTypes.string,
     sign: PropTypes.shape({
         id: PropTypes.string,
         label: PropTypes.string,
@@ -20,52 +21,38 @@ const propTypes = {
         word: MicromagPropTypes.headingElement,
         description: MicromagPropTypes.textElement,
     }),
-    // className: PropTypes.string,
     onLongPress: PropTypes.func,
     onLongPressStart: PropTypes.func,
     onLongPressEnd: PropTypes.func,
 };
 
 const defaultProps = {
+    className: null,
     sign: null,
-    // className: null,
     onLongPress: null,
     onLongPressStart: null,
     onLongPressEnd: null,
 };
 
-const SignCard = ({ sign, onLongPress, onLongPressStart, onLongPressEnd }) => {
+const SignCard = ({ className, sign, onLongPress, onLongPressStart, onLongPressEnd }) => {
     const { id = null, thumbnail = null, label = null, date = null } = sign || {};
-    const [pressed, setPressed] = useState(0);
 
-    const onSignLongPressStart = useCallback( (e, extras) => {
-        setPressed(1);
-        if (onLongPress !== null) {
-            onLongPressStart(e, extras);
-        }
-    }, [setPressed])
-
-    const onSignLongPressEnd = useCallback( (e, extras) => {
-        setPressed(0);
-        if (onLongPress !== null) {
-            onLongPressEnd(e, extras);
-        }
-    }, [setPressed]);
-
-    const bindLongPress = useLongPress({
+    const { bind, pressed } = useLongPress({
         onLongPress,
-        onLongPressStart: onSignLongPressStart,
-        onLongPressEnd: onSignLongPressEnd,
+        onLongPressStart,
+        onLongPressEnd,
         shouldPreventDefault: false,
+        preventClick: true,
+        // lockOnceTriggered: true,
         delay: 200,
     });
 
-    const ease = x => 1 - (1 - x) * (1 - x);
     const buttonStyles = useTransitionStyles(
         pressed,
         (p) => ({
-            transform: `scale(${1 + 0.15 * ease(p)})`,
+            transform: `scale(${1 + 0.15 * p})`,
             boxShadow: `0 0 ${1 * p}rem ${-0.25 * p}rem black`,
+            zIndex: p > 0 ? 2 : 1
         }),
         {
             config: {
@@ -84,10 +71,13 @@ const SignCard = ({ sign, onLongPress, onLongPressStart, onLongPressEnd }) => {
             isEmpty={!id}
         >
             <button
-                className={styles.container}
+                className={classNames([
+                    styles.container,
+                    { [className]: className !== null }
+                ])}
                 type="button"
                 style={buttonStyles}
-                {...bindLongPress(id)}
+                {...bind(id)}
             >
                 {thumbnail !== null ? (
                     <img className={styles.thumbnail} src={thumbnail} alt={id} loading="lazy" />
