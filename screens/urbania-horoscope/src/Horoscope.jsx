@@ -59,8 +59,6 @@ const propTypes = {
     popupBackground: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    // transitions: MicromagPropTypes.transitions,
-    // transitionStagger: PropTypes.number,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -79,8 +77,6 @@ const defaultProps = {
     current: true,
     active: true,
     type: 'horoscope',
-    // transitions: null,
-    // transitionStagger: 100,
     className: null,
 };
 
@@ -97,8 +93,6 @@ const Horoscope = ({
     popupBackground,
     current,
     active,
-    // transitions,
-    // transitionStagger,
     type,
     className,
 }) => {
@@ -123,18 +117,6 @@ const Horoscope = ({
     );
 
     const [selectedSign, setSelectedSign] = useState(null);
-    // const onSelectSign = useCallback(
-    //     (signId) => {
-    //         setSelectedSign(signId);
-    //         trackScreenEvent(`open_sign_${signId}`);
-    //     },
-    //     [setSelectedSign, trackScreenEvent],
-    // );
-
-    // const onCloseSign = useCallback(() => {
-    //     setSelectedSign(null);
-    //     trackScreenEvent('close_sign');
-    // }, [setSelectedSign, trackScreenEvent]);
 
     // @todo when viewing in editor?
     const screenState = useScreenState();
@@ -157,16 +139,11 @@ const Horoscope = ({
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
-    // const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasTitle = isTextFilled(title);
     const hasDescription = isTextFilled(description);
     const hasButton = isTextFilled(button);
-
-    // const transitionPlaying = current;
-    // const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-    // const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
@@ -203,57 +180,36 @@ const Horoscope = ({
         [setShowModal, trackScreenEvent],
     );
 
-    const onLongPressEnd = useCallback( (e, extras, triggered) => {
-        setShowModal(triggered ? 1 : 0);
-    }, [showModal, setShowModal]);
+    const onLongPressEnd = useCallback(
+        (e, extras, triggered) => {
+            setShowModal(triggered ? 1 : 0);
+        },
+        [showModal, showSignsGrid, setShowModal],
+    );
 
     const [isDragging, setIsDragging] = useState(false);
 
+    // @todo either switch to useSwipe properly or extra to some new hook?
     const onDragContent = useCallback(
         ({ active: dragActive, event, movement: [, my], tap, velocity: [, vy] }) => {
-            // event.stopPropagation();
-            event.preventDefault();
+            event.stopPropagation();
 
-            if (!isView) {
-                return;
-            }
-            // what about reachedBounds ???
+            if (!isView || tap || showModal) return;
 
-            // handle single tap on screen
-            if (tap) {
-                // onTap();
-                return;
-            }
-
-            const progress = Math.max(0, my) / height; // drag "ratio": how much of the screen width has been swiped?
-            // const forwards = my < 0; // true if swiping to left (to navigate forwards)
+            const progress = Math.max(0, my) / height;
             const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
 
-            // it's not a tap, it's a drag event
             if (!tap) {
-                // onDrag
-                // pass all the props defined above to this function so that it moves everything accordingly
-                // onDrag();
                 setShowSignsGrid(1 - progress);
-                // setShowModal(showModal - progress/100);
                 setIsDragging(true);
             }
 
-            // user has released drag
             if (!dragActive) {
                 setIsDragging(false);
-                // onRelease();
-
-                // drag/swipe has reached the activation threshold and hasn't yet reached the beginning/end of the stack
-                // if (reachedThreshold) {
                 if (reachedThreshold) {
-                    // onReachedThreshold();
                     onCloseSignsGrid();
                 } else {
                     setShowSignsGrid(1);
-                    setShowModal(selectedSign !== null);
-                    // transition back to the current index
-                    // onReset();
                 }
             }
         },
@@ -272,6 +228,7 @@ const Horoscope = ({
         filterTaps: true,
     });
 
+    // @todo trying this thing :)
     const headerStyles = useTransitionStyles(
         showSignsGrid,
         (p) => ({
@@ -337,7 +294,6 @@ const Horoscope = ({
         showSignsGrid,
         (p) => ({
             opacity: p,
-            backdropFilter: `blur(${0.5 * p}rem)`,
         }),
         {
             immediate: isDragging,
@@ -356,8 +312,8 @@ const Horoscope = ({
         }),
         {
             config: {
-                tension: 250,
-                friction: 20,
+                tension: 300,
+                friction: 30,
             },
         },
     );
@@ -449,44 +405,40 @@ const Horoscope = ({
                     </ScreenElement>
 
                     {!isPlaceholder ? (
+                        <div className={styles.header} style={signsContainerStyles}>
+                            <div className={styles.buttons}>
+                                <Button
+                                    className={styles.close}
+                                    onClick={onCloseSignsGrid}
+                                    label={intl.formatMessage({
+                                        defaultMessage: 'Close',
+                                        description: 'Button label',
+                                    })}
+                                    iconPosition="right"
+                                    icon={
+                                        <svg
+                                            className={styles.closeIcon}
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="10"
+                                            height="16"
+                                            viewBox="0 0 10 16"
+                                            fill="currentColor"
+                                        >
+                                            <polygon points="9.95 4.11 8.89 3.05 5 6.94 1.11 3.05 0.05 4.11 3.94 8 0.05 11.89 1.11 12.95 5 9.06 8.89 12.95 9.95 11.89 6.06 8 9.95 4.11" />
+                                        </svg>
+                                    }
+                                    withoutStyle
+                                />
+                            </div>
+                        </div>
+                    ) : null}
+
+                    {!isPlaceholder ? (
                         <div
                             className={styles.signsGridContainer}
                             style={signsContainerStyles}
                             {...bindSignsDrag()}
                         >
-                            <div className={styles.header}>
-                                <div className={styles.buttons}>
-                                    <Button
-                                        className={styles.close}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            e.stopImmediatePropagation();
-
-                                            onCloseSignsGrid(e);
-                                        }}
-                                        label={intl.formatMessage({
-                                            defaultMessage: 'Close',
-                                            description: 'Button label',
-                                        })}
-                                        iconPosition="right"
-                                        icon={
-                                            <svg
-                                                className={styles.closeIcon}
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="10"
-                                                height="16"
-                                                viewBox="0 0 10 16"
-                                                fill="currentColor"
-                                            >
-                                                <polygon points="9.95 4.11 8.89 3.05 5 6.94 1.11 3.05 0.05 4.11 3.94 8 0.05 11.89 1.11 12.95 5 9.06 8.89 12.95 9.95 11.89 6.06 8 9.95 4.11" />
-                                            </svg>
-                                        }
-                                        withoutStyle
-                                    />
-                                </div>
-                            </div>
-
                             <div className={styles.signs}>
                                 {signs.map((sign, i) => {
                                     const { id = null } = sign || {};
@@ -536,7 +488,10 @@ const Horoscope = ({
                             height={height}
                             sign={selectedSign}
                             subtitle={signSubtitle}
-                            onClose={() => setShowModal(0)}
+                            onClose={(e) => {
+                                e.stopPropagation();
+                                setShowModal(0);
+                            }}
                             // transitionDisabled={transitionDisabled}
                         />
                     </div>

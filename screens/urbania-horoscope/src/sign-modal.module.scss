@@ -8,9 +8,11 @@
     position: relative;
 }
 
-.modal {
+.modalButton {
     @extend %reset-button;
+}
 
+.modal {
     margin: 52px 18px 30px;
     margin-right: 18px;
     margin-left: 18px;

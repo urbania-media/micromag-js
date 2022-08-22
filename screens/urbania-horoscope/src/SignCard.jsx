@@ -24,6 +24,7 @@ const propTypes = {
     onLongPress: PropTypes.func,
     onLongPressStart: PropTypes.func,
     onLongPressEnd: PropTypes.func,
+    longPressDelay: PropTypes.number,
 };
 
 const defaultProps = {
@@ -32,31 +33,30 @@ const defaultProps = {
     onLongPress: null,
     onLongPressStart: null,
     onLongPressEnd: null,
+    longPressDelay: 500
 };
 
-const SignCard = ({ className, sign, onLongPress, onLongPressStart, onLongPressEnd }) => {
+const SignCard = ({ className, sign, onLongPress, onLongPressStart, onLongPressEnd, longPressDelay }) => {
     const { id = null, thumbnail = null, label = null, date = null } = sign || {};
 
     const { bind, pressed } = useLongPress({
         onLongPress,
         onLongPressStart,
         onLongPressEnd,
-        shouldPreventDefault: false,
         preventClick: true,
-        // lockOnceTriggered: true,
-        delay: 200,
+        delay: longPressDelay,
     });
 
     const buttonStyles = useTransitionStyles(
         pressed,
         (p) => ({
-            transform: `scale(${1 + 0.15 * p})`,
+            transform: `scale(${1 + 0.15 * p * p * p * p})`, // quad damage
             boxShadow: `0 0 ${1 * p}rem ${-0.25 * p}rem black`,
             zIndex: p > 0 ? 2 : 1
         }),
         {
             config: {
-                duration: 200,
+                duration: longPressDelay,
             },
         },
     );

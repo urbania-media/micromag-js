@@ -1,10 +1,12 @@
 # CHANGELOG
 
-This is rather free form for now, but eventually this will be properly timestamped, and will mention the version the changes apply to!
+This is rather free-form for now, but eventually this will be properly timestamped, and will mention the version the changes apply to!
 
 2022-08-22 Fred Mercy <fred@folkloreinc.ca>
 
     * Added new hook `useTransitionStyles` to help when working with `use-spring` and `use-gesture`
+    * Added new gestures and transitions to `Horoscope` screen type
+    * Added more options to `useLongPress` hook
 
 2022-08-11 Fred Mercy <fred@folkloreinc.ca>
 

@@ -357,6 +357,47 @@ const Viewer = ({
         return {};
     };
 
+    // @todo how to leverage the new hook for screen transitions?
+    // const stackTransitionStyles = screens.map((s, i) => useTransitionStyles(
+    //     transitionProgress,
+    //     (p) => {
+    //         if (i > screenIndex) {
+    //             return {
+    //                 scale: 1,
+    //                 x: `${100 + p * 100}%`,
+    //                 shadow: i === screenIndex + 1 ? Math.abs(p) : 0,
+    //                 opacity: 1,
+    //                 zIndex: 3,
+    //             };
+    //         }
+
+    //         if (i === screenIndex) {
+    //             return {
+    //                 scale: 1 + Math.min(0, p) * 0.2,
+    //                 x: `${Math.max(0, p) * 100}%`,
+    //                 shadow: Math.abs(1 - p),
+    //                 opacity: 1,
+    //                 zIndex: 2,
+    //             };
+    //         }
+
+    //         if (i < screenIndex) {
+    //             return {
+    //                 scale: 0.8 + p * 0.2,
+    //                 x: '0%',
+    //                 shadow: 0,
+    //                 opacity: 1,
+    //                 zIndex: 1,
+    //             };
+    //         }
+
+    //         return {};
+    //     },
+    //     {
+    //         // immediate: true,
+    //     }
+    // ));
+
     const transitionTypes = {
         stack: stackTransitionFn,
         carousel: carouselTransitionFn,
@@ -507,7 +548,6 @@ const Viewer = ({
 
             // handle single tap on screen
             if (tap) {
-                // onTap
                 interactWithScreen({
                     event,
                     target,
@@ -520,7 +560,6 @@ const Viewer = ({
                 return;
             }
 
-            // if gestures are disabled (NOTE: currently not in use)
             if (withoutGestures) {
                 return;
             }
@@ -535,8 +574,6 @@ const Viewer = ({
 
             // it's not a tap, it's a drag event
             if (!tap) {
-                // onDrag
-                // pass all the props defined above to this function so that it moves everything accordingly
                 onScreenTransition({
                     currentIndex: screenIndex,
                     progress,
@@ -581,6 +618,7 @@ const Viewer = ({
         filterTaps: true,
     });
 
+    // @todo doesn't work yet...
     useEffect(() => {
         const newType = landscape
             ? DEFAULT_TRANSITION_TYPE_LANDSCAPE

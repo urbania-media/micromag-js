@@ -80,39 +80,44 @@ const SignModal = ({
                 },
             ])}
         >
-            <Scroll disabled={scrollingDisabled} verticalAlign="middle">
-                <button type="button" className={styles.modal} onPointerUp={onClose}>
-                    <ScreenElement>
-                        <h2 className={styles.name}>
-                            <FormattedMessage {...label} />
-                        </h2>
-                    </ScreenElement>
+            <button
+                type="button"
+                className={styles.modalButton}
+                onClick={(e) => e.preventDefault()}
+                onPointerUp={onClose}
+            >
+                <Scroll disabled={scrollingDisabled} verticalAlign="middle">
+                    <div className={styles.modal}>
+                        <ScreenElement>
+                            <h2 className={styles.name}>
+                                <FormattedMessage {...label} />
+                            </h2>
+                        </ScreenElement>
 
-                    {hasWord ? (
-                        <div className={styles.wordContainer}>
-                            {hasSubtitle ? (
-                                <Heading className={styles.wordOfTheWeek} {...subtitle} />
-                            ) : (
-                                <h3 className={styles.wordOfTheWeek}>
-                                    <FormattedMessage
-                                        defaultMessage="Word of the Week"
-                                        description="Horoscope Subtitle"
-                                    />
-                                </h3>
-                            )}
-                            <Text className={styles.word} body={wordBody} />
-                        </div>
-                    ) : null}
+                        {hasWord ? (
+                            <div className={styles.wordContainer}>
+                                {hasSubtitle ? (
+                                    <Heading className={styles.wordOfTheWeek} {...subtitle} />
+                                ) : (
+                                    <h3 className={styles.wordOfTheWeek}>
+                                        <FormattedMessage
+                                            defaultMessage="Word of the Week"
+                                            description="Horoscope Subtitle"
+                                        />
+                                    </h3>
+                                )}
+                                <Text className={styles.word} body={wordBody} />
+                            </div>
+                        ) : null}
 
-                    {description ? <Text className={styles.description} {...description} /> : null}
+                        {description ? (
+                            <Text className={styles.description} {...description} />
+                        ) : null}
 
-                    <img
-                        className={styles.illustration}
-                        src={image}
-                        alt={label}
-                    />
-                </button>
-            </Scroll>
+                        <img className={styles.illustration} src={image} alt={label} />
+                    </div>
+                </Scroll>
+            </button>
         </Container>
     );
 };

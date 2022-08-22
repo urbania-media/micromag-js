@@ -27,6 +27,7 @@ const useLongPress = ({
     onLongPressEnd = null,
     onClick = null,
     shouldPreventDefault = true,
+    shouldStopPropagation = false,
     preventClick = false,
     // lockOnceTriggered = false,
     delay = 350,
@@ -40,6 +41,9 @@ const useLongPress = ({
         (event, props) => {
             setPressed(true);
 
+            if(shouldStopPropagation) {
+                event.stopPropagation();
+            }
             if (event.target !== null) {
                 target.current = event.target;
             }
