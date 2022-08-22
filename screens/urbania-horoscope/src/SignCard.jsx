@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
-import { useLongPress } from '@micromag/core/hooks';
+import { useTransitionStyles, useLongPress } from '@micromag/core/hooks';
 import Button from '@micromag/element-button';
 
 // import Close from './icons/Close';
@@ -36,14 +36,43 @@ const defaultProps = {
 
 const SignCard = ({ sign, onLongPress, onLongPressStart, onLongPressEnd }) => {
     const { id = null, thumbnail = null, label = null, date = null } = sign || {};
+    const [pressed, setPressed] = useState(0);
+
+    const onSignLongPressStart = useCallback( (e, extras) => {
+        setPressed(1);
+        if (onLongPress !== null) {
+            onLongPressStart(e, extras);
+        }
+    }, [setPressed])
+
+    const onSignLongPressEnd = useCallback( (e, extras) => {
+        setPressed(0);
+        if (onLongPress !== null) {
+            onLongPressEnd(e, extras);
+        }
+    }, [setPressed]);
 
     const bindLongPress = useLongPress({
-        onLongPressStart,
         onLongPress,
-        onLongPressEnd,
+        onLongPressStart: onSignLongPressStart,
+        onLongPressEnd: onSignLongPressEnd,
         shouldPreventDefault: false,
-        delay: 500,
+        delay: 200,
     });
+
+    const ease = x => 1 - (1 - x) * (1 - x);
+    const buttonStyles = useTransitionStyles(
+        pressed,
+        (p) => ({
+            transform: `scale(${1 + 0.15 * ease(p)})`,
+            boxShadow: `0 0 ${1 * p}rem ${-0.25 * p}rem black`,
+        }),
+        {
+            config: {
+                duration: 200,
+            },
+        },
+    );
 
     return (
         <ScreenElement
@@ -54,7 +83,12 @@ const SignCard = ({ sign, onLongPress, onLongPressStart, onLongPressEnd }) => {
             emptyClassName={styles.emptyText}
             isEmpty={!id}
         >
-            <Button className={styles.container} {...bindLongPress(id)}>
+            <button
+                className={styles.container}
+                type="button"
+                style={buttonStyles}
+                {...bindLongPress(id)}
+            >
                 {thumbnail !== null ? (
                     <img className={styles.thumbnail} src={thumbnail} alt={id} loading="lazy" />
                 ) : null}
@@ -66,7 +100,7 @@ const SignCard = ({ sign, onLongPress, onLongPressStart, onLongPressEnd }) => {
                         {date !== null ? <FormattedMessage {...date} /> : null}
                     </p>
                 </div>
-            </Button>
+            </button>
         </ScreenElement>
     );
 };

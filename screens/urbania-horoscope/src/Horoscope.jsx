@@ -1,6 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useSpring, useSprings, easings } from '@react-spring/core';
-import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -18,7 +16,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useLongPress, useTransitionStyles } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useTransitionStyles } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -189,9 +187,9 @@ const Horoscope = ({
         (e, id) => {
             const foundSign = signs.find((s) => s.id === id);
             setSelectedSign(foundSign);
-            setShowModal(0.4);
+            setShowModal(0.25);
         },
-        [signs, showModal, setSelectedSign, setShowModal],
+        [signs, showModal, setSelectedSign],
     );
 
     const onLongPress = useCallback(
@@ -234,7 +232,7 @@ const Horoscope = ({
                 // pass all the props defined above to this function so that it moves everything accordingly
                 // onDrag();
                 setShowSignsGrid(1 - progress);
-                setShowModal(1 - progress);
+                // setShowModal(showModal - progress/100);
                 setIsDragging(true);
             }
 
@@ -256,7 +254,7 @@ const Horoscope = ({
                 }
             }
         },
-        [onCloseSignsGrid, setShowSignsGrid, setIsDragging, selectedSign, isView, height],
+        [onCloseSignsGrid, setShowSignsGrid, setIsDragging, showModal, selectedSign, isView, height],
     );
 
     const bindSignsDrag = useDrag(onDragContent, {
@@ -286,7 +284,7 @@ const Horoscope = ({
         }),
         {
             immediate: isDragging,
-            delay: 100,
+            // delay: 100,
             config: {
                 tension: 300,
                 friction: 30,
@@ -301,7 +299,7 @@ const Horoscope = ({
             }),
             {
                 immediate: isDragging,
-                delay: !isDragging ? 40 * i : 0,
+                delay: !isDragging ? 25 * i : 0,
                 config: {
                     tension: 300,
                     friction: 30,
@@ -327,15 +325,13 @@ const Horoscope = ({
     const modalStyles = useTransitionStyles(
         showModal,
         (p) => ({
-            opacity: (p > 0.25 ? p : 0),
-            transform: `translateY(${5 * (1 - (p > 0.25 ? p : 0))}rem)`,
+            transform: `translateY(${100 * (1 - p)}%)`,
             pointerEvents: p < 0.75 ? 'none' : 'auto',
         }),
         {
-            immediate: isDragging,
             config: {
-                tension: 300,
-                friction: 30,
+                tension: 250,
+                friction: 20,
             },
         },
     );

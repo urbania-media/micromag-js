@@ -1,6 +1,12 @@
-# Change Log
+# CHANGELOG
 
-2022-08-11  Fred Mercy  <fred@folkloreinc.ca>
+This is rather free form for now, but eventually this will be properly timestamped, and will mention the version the changes apply to!
+
+2022-08-22 Fred Mercy <fred@folkloreinc.ca>
+
+    * Added new hook `useTransitionStyles` to help when working with `use-spring` and `use-gesture`
+
+2022-08-11 Fred Mercy <fred@folkloreinc.ca>
 
     * Added a CHANGELOG.md file to document the project's evolution
     * Added animated hover/active states to buttons, navigation elements, etc.
