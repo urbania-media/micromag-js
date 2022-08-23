@@ -120,7 +120,7 @@ const UrbaniaArticle = ({
     const {
         minContentHeight = null,
         // maxContentHeight = null,
-        imageHeight = null,
+        // imageHeight = null,
     } = useMemo(() => {
         const defaultImageHeight = width * 0.8;
         const difference = height - contentHeight - contentTop + 1;

@@ -26,10 +26,9 @@ import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Author from '@micromag/element-urbania-author';
 
+import signsList from './data/signs';
 import SignCard from './partials/SignCard';
 import SignModal from './partials/SignModal';
-
-import signsList from './data/signs';
 
 import styles from './urbania-horoscope.module.scss';
 
@@ -118,24 +117,6 @@ const Horoscope = ({
     );
 
     const [selectedSign, setSelectedSign] = useState(null);
-
-    // @todo when viewing in editor?
-    const screenState = useScreenState();
-
-    useEffect(() => {
-        if (screenState === 'intro') {
-            setShowSignsGrid(false);
-        }
-        if (screenState === 'grid') {
-            setShowSignsGrid(true);
-            setSelectedSign(null);
-        }
-        if (screenState !== null && screenState.includes('signs')) {
-            const index = screenState.split('.').pop();
-            setShowSignsGrid(true);
-            setSelectedSign(signs[index].id);
-        }
-    }, [screenState]);
 
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
@@ -318,6 +299,28 @@ const Horoscope = ({
             },
         },
     );
+
+    // for editor purposes
+    const screenState = useScreenState();
+
+    useEffect(() => {
+        if (screenState === null) return;
+        if (screenState === 'intro') {
+            setShowSignsGrid(false);
+            setShowModal(0);
+        }
+        if (screenState === 'grid') {
+            setShowSignsGrid(true);
+            setSelectedSign(null);
+            setShowModal(0);
+        }
+        if (screenState !== null && screenState.includes('signs')) {
+            const index = screenState.split('.').pop();
+            setShowSignsGrid(true);
+            setShowModal(1);
+            setSelectedSign(signs[index]);
+        }
+    }, [screenState, setShowModal]);
 
     return (
         <div

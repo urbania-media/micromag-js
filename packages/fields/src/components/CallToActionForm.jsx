@@ -55,13 +55,15 @@ const CallToActionForm = ({ value, className, onChange, ...props }) => {
         [onChange, value],
     );
 
+    // eslint-disable-next-line
+    const {paddingTop = null, paddingLeft = null, paddingRight, paddingBottom, ...stylesWithoutPadding } = getStyleFromBox(value);
     const previewElement =
         value !== null ? (
             <span className={styles.preview}>
                 <span
                     className={styles.box}
                     style={{
-                        ...getStyleFromBox(value),
+                        ...stylesWithoutPadding,
                         padding: 0,
                     }}
                 />

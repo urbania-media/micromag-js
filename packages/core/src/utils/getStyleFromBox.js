@@ -3,6 +3,7 @@ import getStyleFromBorder from './getStyleFromBorder';
 import getStyleFromColor from './getStyleFromColor';
 import getStyleFromShadow from './getStyleFromShadow';
 
+// @todo hmm, gotta find a better way to handle this
 const getStyleFromBox = (value) => {
     if (value === null) {
         return null;
