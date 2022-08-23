@@ -103,8 +103,8 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             author: { ...finalArticleAuthor, ...author },
             sponsor:
                 defaultSponsor !== null && !hasSponsorProps
-                    ? { ...sponsor, body: `<strong>${defaultSponsor}</strong>` }
-                    : sponsor,
+                    ? [{ ...sponsor, body: `<strong>${defaultSponsor}</strong>` }]
+                    : [sponsor],
             sponsorPrefix,
             site,
             image:

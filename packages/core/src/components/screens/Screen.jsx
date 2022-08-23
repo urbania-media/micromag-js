@@ -6,7 +6,7 @@ import React from 'react';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import { getComponentFromName } from '../../utils';
 
-import { ScreenProvider, useScreenComponent, VisitorProvider } from '../../contexts';
+import { ScreenProvider, useScreenComponent } from '../../contexts';
 
 import styles from '../../styles/screens/screen.module.scss';
 

@@ -38,13 +38,13 @@ const propTypes = {
     defaultSigns: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string,
-            label: PropTypes.string,
+            label: MicromagPropTypes.textElement,
         }),
     ),
     signs: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string,
-            label: PropTypes.string,
+            label: MicromagPropTypes.textElement,
             word: MicromagPropTypes.headingElement,
             description: MicromagPropTypes.textElement,
         }),
@@ -52,7 +52,7 @@ const propTypes = {
     title: MicromagPropTypes.headingElement,
     description: MicromagPropTypes.textElement,
     author: MicromagPropTypes.authorElement,
-    button: MicromagPropTypes.buttonElement,
+    button: MicromagPropTypes.button,
     signSubtitle: MicromagPropTypes.headingElement,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -80,7 +80,7 @@ const defaultProps = {
     className: null,
 };
 
-const Horoscope = ({
+const UrbaniaHoroscope = ({
     defaultSigns,
     signs: signsValue,
     title,
@@ -399,7 +399,6 @@ const Horoscope = ({
                             <Button
                                 className={styles.button}
                                 type="button"
-                                separateBorder
                                 onClick={onOpenSignsGrid}
                                 {...button}
                             >
@@ -447,7 +446,11 @@ const Horoscope = ({
                                 {signs.map((sign, i) => {
                                     const { id = null } = sign || {};
                                     return (
-                                        <div className={styles.sign} style={signsStyles[i]}>
+                                        <div
+                                            key={id}
+                                            className={styles.sign}
+                                            style={signsStyles[i]}
+                                        >
                                             <SignCard
                                                 key={id}
                                                 sign={sign}
@@ -509,7 +512,7 @@ const Horoscope = ({
     );
 };
 
-Horoscope.propTypes = propTypes;
-Horoscope.defaultProps = defaultProps;
+UrbaniaHoroscope.propTypes = propTypes;
+UrbaniaHoroscope.defaultProps = defaultProps;
 
-export default React.memo(Horoscope);
+export default React.memo(UrbaniaHoroscope);

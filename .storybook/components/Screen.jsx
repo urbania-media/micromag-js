@@ -52,8 +52,6 @@ function Screen({
         screens: getDeviceScreens(),
     });
 
-    // console.log(width, height, screenSize);
-
     return (
         <div
             className={classNames([

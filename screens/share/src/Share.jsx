@@ -140,7 +140,7 @@ const ShareScreen = ({
             {heading ? <Heading className={classNames([styles.heading])} {...heading} /> : null}
         </ScreenElement>,
 
-        <Spacer size={5} />,
+        <Spacer key="spacer" size={5} />,
 
         <ScreenElement
             key="share-options"

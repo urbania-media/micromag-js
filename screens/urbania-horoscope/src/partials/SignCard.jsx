@@ -8,14 +8,13 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
 import { useTransitionStyles, useLongPress } from '@micromag/core/hooks';
 
-// import Close from './icons/Close';
 import styles from './sign-card.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
     sign: PropTypes.shape({
         id: PropTypes.string,
-        label: PropTypes.string,
+        label: MicromagPropTypes.textElement,
         date: MicromagPropTypes.message,
         thumbnail: PropTypes.string,
         word: MicromagPropTypes.headingElement,

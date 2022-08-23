@@ -734,7 +734,7 @@ export const pageMetadata = PropTypes.shape({
 });
 
 export const authorElement = PropTypes.shape({
-    name: PropTypes.string,
+    name: textElement,
     avatar: PropTypes.shape({
         url: PropTypes.string,
     }),

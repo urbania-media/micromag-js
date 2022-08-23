@@ -20,7 +20,7 @@ const propTypes = {
     height: PropTypes.number,
     sign: PropTypes.shape({
         id: PropTypes.string,
-        label: PropTypes.string,
+        label: MicromagPropTypes.textElement,
         date: MicromagPropTypes.message,
         image: PropTypes.string,
         word: MicromagPropTypes.headingElement,
