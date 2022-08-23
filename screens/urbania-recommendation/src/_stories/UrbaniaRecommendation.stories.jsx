@@ -2,13 +2,13 @@
 import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
-    text,
-    title,
+    // text,
+    // title,
     backgroundImage,
     transitions,
     callToAction,
 } from '../../../../.storybook/data';
-import Recommendation from '../Recommendation';
+import UrbaniaRecommendation from '../UrbaniaRecommendation';
 import definition from '../definition';
 
 const props = {
@@ -30,26 +30,26 @@ const props = {
 };
 
 export default {
-    title: 'Urbania Screens/Recommendation',
-    component: Recommendation,
+    title: 'Urbania Screens/UrbaniaRecommendation',
+    component: UrbaniaRecommendation,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === Recommendation),
+        screenDefinition: definition.find((it) => it.component === UrbaniaRecommendation),
     },
 };
 
-export const Placeholder = (storyProps) => <Recommendation {...storyProps} />;
+export const Placeholder = (storyProps) => <UrbaniaRecommendation {...storyProps} />;
 
-export const Preview = (storyProps) => <Recommendation {...storyProps} {...props} />;
-export const Static = (storyProps) => <Recommendation {...storyProps} {...props} />;
-export const Capture = (storyProps) => <Recommendation {...storyProps} {...props} />;
+export const Preview = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
+export const Static = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
+export const Capture = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <Recommendation {...storyProps} />;
+export const Edit = (storyProps) => <UrbaniaRecommendation {...storyProps} />;
 
-export const Normal = (storyProps) => <Recommendation {...storyProps} {...props} />;
+export const Normal = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
 
 export const WithCallToAction = (storyProps) => (
-    <Recommendation {...storyProps} {...props} callToAction={callToAction()} />
+    <UrbaniaRecommendation {...storyProps} {...props} callToAction={callToAction()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

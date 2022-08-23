@@ -26,7 +26,7 @@ import Scroll from '@micromag/element-scroll';
 
 import ConversationMessage from './ConversationMessage';
 
-import styles from './styles.module.scss';
+import styles from './conversation.module.scss';
 
 const propTypes = {
     // id: PropTypes.string,

@@ -26,11 +26,12 @@ import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Author from '@micromag/element-urbania-author';
 
-import SignCard from './SignCard';
-import SignModal from './SignModal';
-import signsList from './signs';
+import SignCard from './partials/SignCard';
+import SignModal from './partials/SignModal';
 
-import styles from './styles.module.scss';
+import signsList from './data/signs';
+
+import styles from './urbania-horoscope.module.scss';
 
 import Astrologie from './images/astrologie-text.svg';
 

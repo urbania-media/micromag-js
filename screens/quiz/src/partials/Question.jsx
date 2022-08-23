@@ -13,6 +13,7 @@ import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Answers from './Answers';
+
 import styles from './question.module.scss';
 
 const propTypes = {

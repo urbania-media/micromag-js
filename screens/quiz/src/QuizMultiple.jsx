@@ -22,11 +22,11 @@ import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Scroll from '@micromag/element-scroll';
 
-import Question from './Question';
-import Results from './Results';
-import Title from './Title';
+import Question from './partials/Question';
+import Results from './partials/Results';
+import Title from './partials/Title';
 
-import styles from './styles.module.scss';
+import styles from './quiz.module.scss';
 
 const propTypes = {
     id: PropTypes.string,

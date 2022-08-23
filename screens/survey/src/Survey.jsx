@@ -29,7 +29,7 @@ import Layout, { Spacer } from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 
-import styles from './styles.module.scss';
+import styles from './survey.module.scss';
 
 const propTypes = {
     id: PropTypes.string,

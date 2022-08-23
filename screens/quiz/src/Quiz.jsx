@@ -20,9 +20,9 @@ import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Scroll from '@micromag/element-scroll';
 
-import Question from './Question';
+import Question from './partials/Question';
 
-import styles from './styles.module.scss';
+import styles from './quiz.module.scss';
 
 const propTypes = {
     id: PropTypes.string,

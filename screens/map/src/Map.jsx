@@ -25,7 +25,7 @@ import Map from '@micromag/element-map';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 
-import styles from './styles.module.scss';
+import styles from './map.module.scss';
 
 const defaultCenter = {
     lat: 45.5,

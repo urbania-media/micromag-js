@@ -20,7 +20,7 @@ import Container from '@micromag/element-container';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './styles.module.scss';
+import styles from './slideshow.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),

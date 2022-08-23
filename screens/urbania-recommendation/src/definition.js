@@ -1,5 +1,5 @@
 import { defineMessage } from 'react-intl';
-import Recommendation from './Recommendation';
+import UrbaniaRecommendation from './UrbaniaRecommendation';
 
 export default [
     {
@@ -17,7 +17,7 @@ export default [
             defaultMessage: 'Urbania recommendation',
             description: 'Urbania screen title',
         }),
-        component: Recommendation,
+        component: UrbaniaRecommendation,
         fields: [
             {
                 name: 'category',

@@ -19,7 +19,7 @@ const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     scale: PropTypes.number,
-    withNavigationHint: PropTypes.func,
+    withNavigationHint: PropTypes.bool,
     className: PropTypes.string,
 };
 

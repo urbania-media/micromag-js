@@ -27,7 +27,7 @@ import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
 
-import styles from './styles.module.scss';
+import styles from './audio.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle']),

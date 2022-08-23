@@ -38,7 +38,7 @@ import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 
-import styles from './styles.module.scss';
+import styles from './urbania-trivia.module.scss';
 
 import AnimeLinesGrey from './images/anime-lines-grey.svg';
 import AnimeLines from './images/anime-lines.svg';

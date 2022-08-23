@@ -54,9 +54,6 @@ const SignModal = ({
     onClose,
     className,
 }) => {
-    if (sign === null) {
-        return false;
-    }
     // eslint-disable-next-line no-unused-vars
     const { label = null, image = null, date = null, word = null, description = null } = sign || {};
     const { body: wordBody = null } = word || {};
@@ -88,11 +85,13 @@ const SignModal = ({
             >
                 <Scroll disabled={scrollingDisabled} verticalAlign="middle">
                     <div className={styles.modal}>
-                        <ScreenElement>
-                            <h2 className={styles.name}>
-                                <FormattedMessage {...label} />
-                            </h2>
-                        </ScreenElement>
+                        {label !== null ? (
+                            <ScreenElement>
+                                <h2 className={styles.name}>
+                                    <FormattedMessage {...label} />
+                                </h2>
+                            </ScreenElement>
+                        ) : null}
 
                         {hasWord ? (
                             <div className={styles.wordContainer}>
@@ -114,7 +113,9 @@ const SignModal = ({
                             <Text className={styles.description} {...description} />
                         ) : null}
 
-                        <img className={styles.illustration} src={image} alt={label} />
+                        {image ? (
+                            <img className={styles.illustration} src={image} alt={label} />
+                        ) : null}
                     </div>
                 </Scroll>
             </button>

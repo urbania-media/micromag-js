@@ -24,7 +24,7 @@ import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 
-import styles from './styles.module.scss';
+import styles from './ranking.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['side', 'over']),

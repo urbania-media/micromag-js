@@ -10,7 +10,7 @@ import treeTheme from '../../../../.storybook/data/themes/tree';
 import { theme as backgroundTheme } from '../../../../.storybook/data/themes/with-background';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import withUppy from '../../../../.storybook/decorators/withUppy';
-import signs from '../../../../screens/urbania-horoscope/src/signs';
+import signs from '../../../../screens/urbania-horoscope/src/data/signs';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import Editor from '../components/EditorContainer';
 

@@ -29,7 +29,7 @@ import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 
-import styles from './styles.module.scss';
+import styles from './video.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle', 'full']),

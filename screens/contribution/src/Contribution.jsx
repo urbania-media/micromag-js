@@ -30,7 +30,7 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import TextInput from '@micromag/element-text-input';
 
-import styles from './styles.module.scss';
+import styles from './contribution.module.scss';
 
 const propTypes = {
     id: PropTypes.string,
@@ -453,7 +453,8 @@ const ContributionScreen = ({
                     style={
                         !isPlaceholder
                             ? {
-                                  padding: spacing,
+                                  paddingLeft: spacing,
+                                  paddingRight: spacing,
                                   paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                   paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
                               }

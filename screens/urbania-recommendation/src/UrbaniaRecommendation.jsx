@@ -29,7 +29,7 @@ import Layout, { Spacer } from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 
-import styles from './styles.module.scss';
+import styles from './urbania-recommendation.module.scss';
 
 const propTypes = {
     category: MicromagPropTypes.headingElement,
@@ -65,7 +65,7 @@ const defaultProps = {
     className: null,
 };
 
-const Recommendation = ({
+const UrbaniaRecommendation = ({
     category,
     date,
     title,
@@ -409,7 +409,7 @@ const Recommendation = ({
     );
 };
 
-Recommendation.propTypes = propTypes;
-Recommendation.defaultProps = defaultProps;
+UrbaniaRecommendation.propTypes = propTypes;
+UrbaniaRecommendation.defaultProps = defaultProps;
 
-export default React.memo(Recommendation);
+export default React.memo(UrbaniaRecommendation);

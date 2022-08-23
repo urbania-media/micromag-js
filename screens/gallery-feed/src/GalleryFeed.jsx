@@ -24,7 +24,7 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './styles.module.scss';
+import styles from './gallery-feed.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal', 'reverse']),

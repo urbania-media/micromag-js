@@ -1,3 +1,3 @@
 export { default } from './definition';
-export { default as signs } from './signs';
-export { default as Horoscope } from './Horoscope';
+export { default as signs } from './data/signs';
+export { default as UrbaniaHoroscope } from './UrbaniaHoroscope';

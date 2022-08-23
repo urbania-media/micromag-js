@@ -26,7 +26,7 @@ import Visual from '@micromag/element-visual';
 
 import layoutProps from './layouts';
 
-import styles from './styles.module.scss';
+import styles from './gallery.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf([

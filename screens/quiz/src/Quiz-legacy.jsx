@@ -23,7 +23,7 @@ import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 
-import styles from './styles-legacy.module.scss';
+import styles from './quiz-legacy.module.scss';
 
 const propTypes = {
     id: PropTypes.string,

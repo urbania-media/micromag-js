@@ -1,2 +1,2 @@
 export { default } from './definition';
-export { default as Recommendation } from './Recommendation';
+export { default as UrbaniaRecommendation } from './UrbaniaRecommendation';

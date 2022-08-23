@@ -7,7 +7,8 @@ import { getStyleFromColor } from '@micromag/core/utils';
 // import { Label } from '@micromag/core/components';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
-import styles from './styles.module.scss';
+
+import styles from './conversation.module.scss';
 
 const propTypes = {
     message: MicromagPropTypes.conversationMessage,

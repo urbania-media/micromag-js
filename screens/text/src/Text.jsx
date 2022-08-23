@@ -22,7 +22,7 @@ import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 
-import styles from './styles.module.scss';
+import styles from './text.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),

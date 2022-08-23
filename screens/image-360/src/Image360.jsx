@@ -25,7 +25,7 @@ import Image from '@micromag/element-image';
 
 import useThree from './useThree';
 
-import styles from './styles.module.scss';
+import styles from './image-360.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['full']),

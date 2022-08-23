@@ -1,6 +1,6 @@
 import { defineMessage } from 'react-intl';
-import Horoscope from './Horoscope';
-import signs from './signs';
+import UrbaniaHoroscope from './UrbaniaHoroscope';
+import signs from './data/signs';
 
 export default [
     {
@@ -18,11 +18,11 @@ export default [
             defaultMessage: 'Urbania horoscope',
             description: 'Urbania screen title',
         }),
-        component: Horoscope,
+        component: UrbaniaHoroscope,
         states: [
             {
                 id: 'intro',
-                label: defineMessage({ defaultMessage: 'Intro', description: ' Horoscope state' }),
+                label: defineMessage({ defaultMessage: 'Intro', description: ' UrbaniaHoroscope state' }),
                 fields: [
                     {
                         name: 'title',
@@ -60,7 +60,7 @@ export default [
             },
             {
                 id: 'grid',
-                label: defineMessage({ defaultMessage: 'Grid', description: 'Horoscope state' }),
+                label: defineMessage({ defaultMessage: 'Grid', description: 'UrbaniaHoroscope state' }),
                 fields: [
                     {
                         name: 'popupBackground',
@@ -82,7 +82,7 @@ export default [
             },
             {
                 id: 'signs',
-                label: defineMessage({ defaultMessage: 'Signs', description: 'Horoscope state' }),
+                label: defineMessage({ defaultMessage: 'Signs', description: 'UrbaniaHoroscope state' }),
                 defaultValue: signs,
                 repeatable: true,
                 withoutCreate: true,
