@@ -23,6 +23,7 @@ import {
     useDimensionObserver,
     useScreenSizeFromElement,
     useTrackScreenView,
+    useTransitionStyles,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
 
@@ -279,176 +280,100 @@ const Viewer = ({
     /**
      * Screen Transitions
      */
-    const carouselTransitionFn = ({ i, currentIndex, immediate = false, progress = 0 } = {}) => {
-        if (i > currentIndex) {
-            const nextScreens = i - 1 - currentIndex;
-
-            return {
-                immediate,
-                opacity: 0.25 + (1 - 0.25) * -progress,
-                scale: 0.8 + (1 - 0.8) * -progress,
-                x: `${105 + progress * 100 + nextScreens * 100}%`,
-                shadow: 1 + (1 - progress),
-                zIndex: 3,
-            };
-        }
-
-        if (i === currentIndex) {
-            return {
-                immediate,
-                opacity: 1 + (1 - 0.25) * -Math.abs(progress),
-                scale: 1 + (1 - 0.8) * -Math.abs(progress),
-                x: `${progress * 100}%`,
-                shadow: 1 - (1 - progress),
-                zIndex: 2,
-            };
-        }
-
-        if (i < currentIndex) {
-            const previousScreens = i + 1 - currentIndex;
-
-            return {
-                immediate,
-                opacity: 0.25 + (1 - 0.25) * progress,
-                scale: 0.8 + (1 - 0.8) * progress,
-                x: `${-105 + progress * 100 + previousScreens * 100}%`,
-                shadow: 0,
-                zIndex: 1,
-            };
-        }
-
-        return {};
-    };
-
-    const stackTransitionFn = ({ i, currentIndex, immediate = false, progress = 0 } = {}) => {
-        if (i > currentIndex) {
-            return {
-                immediate,
-                scale: 1,
-                x: `${100 + progress * 100}%`,
-                shadow: i === currentIndex + 1 ? Math.abs(progress) : 0,
-                opacity: 1,
-                zIndex: 3,
-            };
-        }
-
-        if (i === currentIndex) {
-            return {
-                immediate,
-                scale: 1 + Math.min(0, progress) * 0.2,
-                x: `${Math.max(0, progress) * 100}%`,
-                shadow: Math.abs(1 - progress),
-                opacity: 1,
-                zIndex: 2,
-            };
-        }
-
-        if (i < currentIndex) {
-            return {
-                immediate,
-                scale: 0.8 + progress * 0.2,
-                x: '0%',
-                shadow: 0,
-                opacity: 1,
-                zIndex: 1,
-            };
-        }
-
-        return {};
-    };
-
-    // @todo how to leverage the new hook for screen transitions?
-    // const stackTransitionStyles = screens.map((s, i) => useTransitionStyles(
-    //     transitionProgress,
-    //     (p) => {
-    //         if (i > screenIndex) {
-    //             return {
-    //                 scale: 1,
-    //                 x: `${100 + p * 100}%`,
-    //                 shadow: i === screenIndex + 1 ? Math.abs(p) : 0,
-    //                 opacity: 1,
-    //                 zIndex: 3,
-    //             };
-    //         }
-
-    //         if (i === screenIndex) {
-    //             return {
-    //                 scale: 1 + Math.min(0, p) * 0.2,
-    //                 x: `${Math.max(0, p) * 100}%`,
-    //                 shadow: Math.abs(1 - p),
-    //                 opacity: 1,
-    //                 zIndex: 2,
-    //             };
-    //         }
-
-    //         if (i < screenIndex) {
-    //             return {
-    //                 scale: 0.8 + p * 0.2,
-    //                 x: '0%',
-    //                 shadow: 0,
-    //                 opacity: 1,
-    //                 zIndex: 1,
-    //             };
-    //         }
-
-    //         return {};
-    //     },
-    //     {
-    //         // immediate: true,
-    //     }
-    // ));
-
-    const transitionTypes = {
-        stack: stackTransitionFn,
-        carousel: carouselTransitionFn,
-    };
-
+    const [isDragging, setIsDragging] = useState(false);
+    const [screenTransition, setScreenTransition] = useState(0);
     const [transitionType, setTransitionType] = useState(DEFAULT_TRANSITION_TYPE_LANDSCAPE);
 
-    // Bruce Screensprings
-    const [screenSprings, transition] = useSprings(screensCount, (i) => ({
-        ...transitionTypes[DEFAULT_TRANSITION_TYPE_PORTRAIT]({
-            i,
-            currentIndex: screenIndex,
-        }),
-        config: SPRING_CONFIG_TIGHT,
-    }));
+    /**
+     * WARNING: MATH AHEAD!
+     * Also: very very Work In Progress
+     */
+    const [carouselTransitionStyles, setCarouselTransitionStyles] = useState({});
+    const onProgressChange = useCallback(
+        (p) => {
+            if (transitionType !== 'carousel') return;
 
-    const onScreenTransition = useCallback(
-        ({
-            currentIndex = 0,
-            immediate: initialImmediate = false,
-            // newIndex = null, // @todo if needs newIndex for some logic?
-            progress: initialProgress = null,
-            // reachedThreshold = false, // @todo true if user has dragged enough to reach the threshold when something should happen
-            reachedBounds = false,
-            reset = false,
-            type: initialType = null,
-        } = {}) => {
-            const immediate = initialImmediate || initialProgress !== null;
-            const p = initialProgress || 0;
-            const damper = reachedBounds ? 0.1 : 1;
-            const progress = Math.max(-1, Math.min(1, p * damper));
-            const type = initialType !== null ? initialType : transitionType;
-
-            if (reset) {
-                transition.start((i) =>
-                    i === currentIndex ? { immediate: true, zIndex: 4 } : null,
-                );
-            }
-
-            transition.start((i) =>
-                transitionTypes[type]({
-                    i,
-                    currentIndex,
-                    immediate,
-                    progress,
-                    type,
+            setCarouselTransitionStyles(
+                screens.map((s, i) => {
+                    const t = i - p;
+                    return {
+                        opacity: 0.25 + (1 - 0.25) * (1 - Math.abs(t)),
+                        transform: `translateX(${t * 105}%) scale(${
+                            1 - Math.abs(0.2 * Math.min(1, Math.max(-1, t)))
+                        })`,
+                        boxShadow: `0 0 ${2 * (1 + (1 - t))}rem ${0.25 * (1 - t)}rem black`,
+                        zIndex: Math.abs(p),
+                    };
                 }),
             );
         },
-        [screens, transition, transitionTypes, transitionType],
+        [screens, setCarouselTransitionStyles, transitionType],
     );
+    useTransitionStyles(screenTransition, onProgressChange, {
+        immediate: isDragging,
+        config: SPRING_CONFIG_TIGHT,
+    });
+
+    const [stackTransitionStyles, setStackTransitionStyles] = useState({});
+    const onStackProgressChange = useCallback(
+        (p) => {
+            if (transitionType !== 'stack') return;
+
+            setStackTransitionStyles(
+                screens.map((s, i) => {
+                    const t = i - p;
+                    const current = t < 1 && t > -1;
+                    const prev = !current && t < 1;
+                    const next = !current && t > -1;
+
+                    if (next) {
+                        return {
+                            transform: `translateX(${t * 100}%) scale(1)`,
+                            boxShadow: `0 0 ${t === current + 1 ? Math.abs(t) : 0}rem ${
+                                0.25 * t === current + 1 ? Math.abs(t) : 0
+                            }rem black`,
+                            opacity: 1,
+                            zIndex: 3,
+                        };
+                    }
+
+                    if (current) {
+                        return {
+                            transform: `translateX(${Math.max(0, t) * 100}%) scale(${
+                                1 + Math.min(0, t) * 0.2
+                            })`,
+                            boxShadow: `0 0 ${Math.abs(1 - t)}rem ${
+                                0.25 * Math.abs(1 - t)
+                            }rem black`,
+                            opacity: 1,
+                            zIndex: 2,
+                        };
+                    }
+
+                    if (prev) {
+                        return {
+                            transform: `translateX(0%) scale(${0.8 + t * 0.2})`,
+                            boxShadow: `0 0 0rem 0rem black`,
+                            opacity: 1,
+                            zIndex: 1,
+                        };
+                    }
+
+                    return {};
+                }),
+            );
+        },
+        [screens, setStackTransitionStyles, transitionType]
+    );
+    useTransitionStyles(screenTransition, onStackProgressChange, {
+        immediate: isDragging,
+        config: SPRING_CONFIG_TIGHT,
+    });
+
+    const transitionTypes = {
+        stack: stackTransitionStyles || {},
+        carousel: carouselTransitionStyles || {},
+    };
 
     /**
      * Screen Navigation
@@ -463,14 +388,11 @@ const Viewer = ({
                 currentScreenMedia.current = screensMediasRef.current[index] || null;
             }
 
-            // @todo this is where you pass the transition type, I guess
-            onScreenTransition({ currentIndex: index, reset: index > screenIndex });
-
             if (onScreenChange !== null) {
                 onScreenChange(screens[index], index);
             }
         },
-        [screenIndex, screens, onScreenTransition, onScreenChange],
+        [screenIndex, screens, onScreenChange],
     );
 
     const onScreenNavigate = useCallback(
@@ -546,7 +468,6 @@ const Viewer = ({
                 return;
             }
 
-            // handle single tap on screen
             if (tap) {
                 interactWithScreen({
                     event,
@@ -564,41 +485,30 @@ const Viewer = ({
                 return;
             }
 
-            const progress = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
+            const p = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
             const forwards = mx < 0; // true if swiping to left (to navigate forwards)
             const newIndex = !forwards ? screenIndex - 1 : screenIndex + 1; // which item index are we moving towards?
             const reachedThreshold =
                 vx > DRAG_VELOCITY_ACTIVATION_THRESHOLD ||
-                Math.abs(progress) > DRAG_PROGRESS_ACTIVATION_THRESHOLD;
+                Math.abs(p) > DRAG_PROGRESS_ACTIVATION_THRESHOLD;
             const reachedBounds = newIndex < 0 || newIndex >= screensCount; // have we reached the end of the stack?
+            const damper = reachedBounds ? 0.1 : 1;
+            const progress = Math.max(-1, Math.min(1, p * damper));
 
-            // it's not a tap, it's a drag event
             if (!tap) {
-                onScreenTransition({
-                    currentIndex: screenIndex,
-                    progress,
-                    newIndex,
-                    reachedBounds,
-                    reachedThreshold,
-                });
+                setIsDragging(true);
+                setScreenTransition(screenIndex - progress);
             }
 
-            // user has released drag
             if (!active) {
-                // onRelease
-
-                // drag/swipe has reached the activation threshold and hasn't yet reached the beginning/end of the stack
+                setIsDragging(false);
                 if (reachedThreshold && !reachedBounds) {
-                    // onActivation
-                    // navigate to the new index
                     onScreenNavigate({
                         index: screenIndex,
                         newIndex,
                     });
                 } else {
-                    // onReset
-                    // transition back to the current index
-                    onScreenTransition({ currentIndex: screenIndex });
+                    setScreenTransition(screenIndex);
                 }
             }
         },
@@ -609,8 +519,9 @@ const Viewer = ({
             landscape,
             withLandscapeSiblingsScreens,
             screenContainerWidth,
-            onScreenTransition,
             interactWithScreen,
+            setScreenTransition,
+            setIsDragging,
         ],
     );
 
@@ -618,26 +529,28 @@ const Viewer = ({
         filterTaps: true,
     });
 
-    // @todo doesn't work yet...
+    useEffect(() => {
+        setScreenTransition(screenIndex);
+    }, [screenIndex, setScreenTransition]);
+
+    // @todo Work In Progress
     useEffect(() => {
         const newType = landscape
             ? DEFAULT_TRANSITION_TYPE_LANDSCAPE
             : DEFAULT_TRANSITION_TYPE_PORTRAIT;
 
         setTransitionType((type) => {
+            console.log({type, m: 'setTransitionType'});
             if (newType !== type) {
-                onScreenTransition({
-                    currentIndex: screenIndex,
-                    immediate: true,
-                    type: newType,
-                });
-
+                console.log({type, m: 'new type'});
+                // update position if type is new?
+                setScreenTransition(screenIndex);
                 return newType;
             }
 
             return type;
         });
-    }, [landscape, setTransitionType, onScreenTransition]);
+    }, [landscape, setScreenTransition, setTransitionType]);
 
     const {
         toggle: toggleFullscreen,
@@ -799,35 +712,6 @@ const Viewer = ({
                                         onClick={gotoPreviousScreen}
                                     />
                                 ) : null}
-                                {/*
-                                @todo maybe later...?
-                                <ViewerFrame
-                                    className={styles.screensFrame}
-                                    style={{
-                                        width: screenContainerWidth,
-                                        height: screenContainerHeight,
-                                    }}
-                                    screenState={screenState}
-                                    viewerScreenComponent={ViewerScreen}
-                                    viewerScreenProps={
-                                        mediaRef: {(ref) => {
-                                            screensMediasRef.current[i] = ref;
-                                        }},
-                                        renderContext,
-                                        width: screenWidth,
-                                        height: screenHeight,
-                                        scale: screenScale,
-                                        withNavigationHint:
-                                            withNavigationHint &&
-                                            !withLandscapeSiblingsScreens &&
-                                            current &&
-                                            screenIndex === 0 &&
-                                            !hasInteracted
-                                    }
-                                    withLandscapeSiblingsScreens={withLandscapeSiblingsScreens}
-                                    withoutGestures={withoutGestures}
-                                />
-                                */}
                                 <div
                                     className={styles.screensFrame}
                                     style={{
@@ -842,29 +726,14 @@ const Viewer = ({
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
 
-                                        const { shadow = null } = screenSprings[i];
-                                        const zIndex = current ? 2 : 1;
-                                        const transitionStyles = active
-                                            ? {
-                                                  zIndex,
-                                                  ...screenSprings[i],
-                                                  boxShadow:
-                                                      shadow !== null
-                                                          ? shadow.to(
-                                                                (v) =>
-                                                                    `0 0 5rem -1rem rgba(0,0,0,${v})`,
-                                                            )
-                                                          : 'none',
-                                              }
-                                            : {
-                                                  pointerEvents: 'none',
-                                              };
-                                        const finalStyles = isView ? transitionStyles : { zIndex };
+                                        const screenStyles = isView && active
+                                            ? transitionTypes[transitionType][i]
+                                            : {};
 
                                         return (
-                                            <animated.div
+                                            <div
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
-                                                style={finalStyles}
+                                                style={screenStyles}
                                                 className={classNames([
                                                     styles.screenContainer,
                                                     {
@@ -898,7 +767,7 @@ const Viewer = ({
                                                         }
                                                     />
                                                 ) : null}
-                                            </animated.div>
+                                            </div>
                                         );
                                     })}
                                 </div>

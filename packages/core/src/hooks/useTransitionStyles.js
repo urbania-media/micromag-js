@@ -1,21 +1,6 @@
 import { useSpring } from '@react-spring/core';
 import { useEffect, useState, useCallback } from 'react';
 
-const castToNumber = (t) => {
-    const isNumber = typeof t === 'number';
-    const fromBool = t === true ? 1 : 0;
-    const x = !isNumber ? fromBool : t;
-
-    return x;
-};
-
-const getValueFromSpring = (s) => {
-    const { value: v = null } = s || {};
-    const { progress: p } = v || {};
-
-    return p;
-};
-
 /* eslint-disable */
 export const easings = {
     linear: (x) => x,
@@ -71,13 +56,27 @@ export const easings = {
 };
 /* eslint-enable */
 
+const castToNumber = (t) => {
+    const isNumber = typeof t === 'number';
+    const fromBool = t === true ? 1 : 0;
+    const x = !isNumber ? fromBool : t;
+
+    return x;
+};
+
+const getValueFromSpring = (s) => {
+    const { value: v = null } = s || {};
+    const { progress: p } = v || {};
+
+    return p;
+};
+
 const useTransitionStyles = (progress = 1, fn = null, extras = {}) => {
     if (fn === null) {
-        return {};
+        return;
     }
 
-    const [styles, setStyles] = useState(fn(castToNumber(progress)));
-    const onChange = useCallback((spring) => setStyles(fn(getValueFromSpring(spring))), []);
+    const onChange = useCallback((spring) => fn(getValueFromSpring(spring)));
     const [, api] = useSpring(() => ({
         progress: castToNumber(progress),
         onChange,
@@ -87,8 +86,6 @@ const useTransitionStyles = (progress = 1, fn = null, extras = {}) => {
     useEffect(() => {
         api.start({ progress: castToNumber(progress), ...extras });
     }, [progress, fn, extras]);
-
-    return styles;
 };
 
 export default useTransitionStyles;
