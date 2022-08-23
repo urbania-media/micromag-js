@@ -19,7 +19,10 @@ function getFormattedTimestamp(s, withMilliseconds = false) {
 const SHOW_MILLISECONDS_THRESHOLD = 5; // show milliseconds when scrubbing if length of video is shorter than 5 seconds
 
 const propTypes = {
-    media: PropTypes.node,
+    media: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.any }) // eslint-disable-line
+    ]),
     playing: PropTypes.bool,
     backgroundColor: PropTypes.string,
     progressColor: PropTypes.string,

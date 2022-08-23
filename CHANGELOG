@@ -7,6 +7,8 @@ This is rather free-form for now, but eventually this will be properly timestamp
     * Added new hook `useTransitionStyles` to help when working with `use-spring` and `use-gesture`
     * Added new gestures and transitions to `Horoscope` screen type
     * Added more options to `useLongPress` hook
+    * Renamed all the screens' `styles.module.scss` to reflect their screen name
+    * Suppress errors
 
 2022-08-11 Fred Mercy <fred@folkloreinc.ca>
 

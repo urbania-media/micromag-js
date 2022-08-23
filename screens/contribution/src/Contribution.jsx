@@ -479,7 +479,8 @@ const ContributionScreen = ({
                                 },
                             ])}
                             style={{
-                                padding: Math.max(viewerBottomSidesWidth, spacing / 2),
+                                paddingLeft: Math.max(viewerBottomSidesWidth, spacing / 2),
+                                paddingRight: Math.max(viewerBottomSidesWidth, spacing / 2),
                                 paddingTop: 0,
                                 paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing / 2,
                             }}

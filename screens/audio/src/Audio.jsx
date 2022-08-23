@@ -160,10 +160,10 @@ const AudioScreen = ({
     }, [current, autoPlay]);
 
     const onTimeUpdate = useCallback(
-        (time) => {
-            setCurrentTime(time);
+        ({timeStamp = 0}) => {
+            setCurrentTime(timeStamp);
         },
-        [setDuration, duration],
+        [setCurrentTime, setDuration, duration],
     );
 
     const onProgressStep = useCallback(
