@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
-import { useTransitionStyles, useLongPress } from '@micromag/core/hooks';
+import { useProgressTransition, useLongPress } from '@micromag/core/hooks';
 
 import styles from './sign-card.module.scss';
 
@@ -53,20 +53,17 @@ const SignCard = ({
         delay: longPressDelay,
     });
 
-    const [buttonStyles, setButtonStyles] = useState({});
-    const onLongPressProgress = useCallback(
-        (p) => {
-            setButtonStyles({
-                transform: `scale(${1 + 0.15 * p * p * p * p})`, // quad damage
-                boxShadow: `0 0 ${1 * p}rem ${-0.25 * p}rem black`,
-                zIndex: p > 0 ? 2 : 1,
-            });
-        },
-        [setButtonStyles],
-    );
-    useTransitionStyles(pressed, onLongPressProgress, {
+    const { styles: buttonStyles = {} } = useProgressTransition({
+        value: pressed,
+        fn: (p) => ({
+            transform: `scale(${1 + 0.15 * p * p * p * p})`, // quad damage
+            boxShadow: `0 0 ${1 * p}rem ${-0.25 * p}rem black`,
+            zIndex: p > 0 ? 2 : 1,
+        }),
         config: {
-            duration: longPressDelay,
+            config: {
+                duration: longPressDelay,
+            }
         },
     });
 

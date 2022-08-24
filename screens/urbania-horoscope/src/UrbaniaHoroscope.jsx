@@ -16,7 +16,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useTransitionStyles, useProgressTransition } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useProgressTransition } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -212,78 +212,110 @@ const UrbaniaHoroscope = ({
         filterTaps: true,
     });
 
-    /**
-     * Begin `useTransitionStyles` transitions
-     */
+    const onDragModal = useCallback(
+        ({ active: dragActive, event, movement: [, my], tap, velocity: [, vy] }) => {
+            event.stopPropagation();
 
-    // const headerStylesCallback = useCallback(p => ({
-    //     transform: `translateY(${-100 * p * (1 - p)}%)`,
-    //     opacity: p > 0.25 ? 1 - p : 1,
-    // }));
+            if (!isView) return;
+
+            if (tap) {
+                setShowModal(0);
+            }
+
+            const damper = 0.5;
+            const progress = Math.max(0, my) / height * damper;
+            const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
+
+            if (!tap) {
+                setShowModal(1 - progress);
+                setIsDragging(true);
+            }
+
+            if (!dragActive) {
+                setIsDragging(false);
+                if (reachedThreshold) {
+                    setShowModal(0);
+                } else {
+                    setShowModal(1);
+                }
+            }
+        },
+        [
+            setIsDragging,
+            showModal,
+            isView,
+            height,
+        ],
+    );
+    const bindModalDrag = useDrag(onDragModal, {
+        filterTaps: true,
+    });
+
     const { styles: headerStyles = {} } = useProgressTransition({
         value: showSignsGrid,
-        fn: p => ({
+        fn: (p) => ({
             transform: `translateY(${-100 * p * (1 - p)}%)`,
             opacity: p > 0.25 ? 1 - p : 1,
         }),
         config: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
-        }
+        },
     });
     const { styles: signsContainerStyles = {} } = useProgressTransition({
         value: showSignsGrid,
-        fn: p => ({
+        fn: (p) => ({
             opacity: p,
             pointerEvents: p < 0.25 ? 'none' : 'auto',
         }),
         config: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
-        }
+        },
     });
     const { styles: signsStyles = {} } = useProgressTransition({
         value: showSignsGrid,
-        fn: p => signs.map((s, i) => ({
-            opacity: p,
-            transform: `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`,
-        })),
+        fn: (p) =>
+            signs.map((s, i) => ({
+                opacity: p,
+                transform: `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`,
+            })),
         config: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
-        }
+        },
     });
     const { styles: authorStyles = {} } = useProgressTransition({
         value: showSignsGrid,
-        fn: p => ({
+        fn: (p) => ({
             transform: `translateY(${2 * (1 - p)}rem)`,
             opacity: p,
         }),
         config: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
-        }
+        },
     });
     const { styles: backdropStyles = {} } = useProgressTransition({
         value: showSignsGrid,
-        fn: p => ({
+        fn: (p) => ({
             opacity: p,
         }),
         config: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
-        }
+        },
     });
     const { styles: modalStyles = {} } = useProgressTransition({
         value: showModal,
-        fn: p => ({
+        fn: (p) => ({
             transform: `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
-            pointerEvents: p < 0.75 ? 'none' : 'auto',
+            pointerEvents: p < 0.1 ? 'none' : 'auto',
         }),
         config: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
-        }
+        },
     });
 
     // for editor purposes
@@ -476,16 +508,12 @@ const UrbaniaHoroscope = ({
                         </div>
                     ) : null}
 
-                    <div className={styles.modal} style={modalStyles}>
+                    <div className={styles.modal} style={modalStyles} {...bindModalDrag()}>
                         <SignModal
                             width={width}
                             height={height}
                             sign={selectedSign}
                             subtitle={signSubtitle}
-                            onClose={(e) => {
-                                e.stopPropagation();
-                                setShowModal(0);
-                            }}
                             // transitionDisabled={transitionDisabled}
                         />
                     </div>

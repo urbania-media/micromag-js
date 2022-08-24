@@ -7,11 +7,13 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
+import { useProgressTransition } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
+
 
 import styles from './sign-modal.module.scss';
 
