@@ -125,7 +125,14 @@ const ViewerMenuPreview = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    // @todo could probably use some work to avoid the visual jump from 3 screens to all of them
     const finalItems = useMemo(() => (!focusable ? items.slice(0, 3) : items), [items, focusable]);
+    const bookmarks = finalItems.reduce((acc, it) => {
+        const { screen = null } = it || {};
+        const { bookmark = null } = screen || {};
+        return bookmark !== null ? [...acc, bookmark] : acc; // merge with array or return original array
+    }, []);
+
     const coverScreen = useMemo(() => {
         const { screen = null } = finalItems[0] || {};
         return screen;
@@ -311,77 +318,99 @@ const ViewerMenuPreview = ({
                                               })}`
                                             : ''
                                     }`;
+                                    const { bookmark = null } = screen || {};
+                                    const { label: bookmarkLabel = null } = bookmark || {};
+
                                     return (
-                                        <li
-                                            className={classNames([
-                                                styles.item,
-                                                {
-                                                    [styles.active]: current,
-                                                },
-                                            ])}
-                                            key={`item-${screenId}`}
-                                            style={{
-                                                width: `${100 / thumbsPerLine}%`,
-                                            }}
-                                        >
-                                            <div className={styles.itemContent}>
-                                                <div
-                                                    className={classNames([
-                                                        styles.screenContainer,
-                                                        {
-                                                            [styles.isCurrentScreen]: current
+                                        <>
+                                            {bookmarkLabel ? (
+                                                <li className={styles.bookmark}>
+                                                    <h2 className={styles.bookmarkLabel}>
+                                                        {bookmarkLabel}
+                                                    </h2>
+                                                </li>
+                                            ) : null}
+                                            <li
+                                                className={classNames([
+                                                    styles.item,
+                                                    {
+                                                        [styles.active]: current,
+                                                        [styles.hasLabel]: bookmarkLabel,
+                                                    },
+                                                ])}
+                                                key={`item-${screenId}`}
+                                                style={{
+                                                    width: `${100 / thumbsPerLine}%`,
+                                                }}
+                                            >
+                                                <div className={styles.itemContent}>
+                                                    <div
+                                                        className={classNames([
+                                                            styles.screenContainer,
+                                                            {
+                                                                [styles.isCurrentScreen]: current,
+                                                            },
+                                                        ])}
+                                                        ref={
+                                                            index === 0
+                                                                ? firstScreenContainerRef
+                                                                : null
                                                         }
-                                                    ])}
-                                                    ref={
-                                                        index === 0 ? firstScreenContainerRef : null
-                                                    }
-                                                >
-                                                    {count > 1 ? (
-                                                        <div className={styles.subScreenBadge}>
-                                                            <span className={styles.subScreenCount}>
-                                                                {count}
-                                                            </span>
-                                                            <StackIcon
-                                                                className={styles.subScreenIcon}
+                                                    >
+                                                        {count > 1 ? (
+                                                            <div className={styles.subScreenBadge}>
+                                                                <span
+                                                                    className={
+                                                                        styles.subScreenCount
+                                                                    }
+                                                                >
+                                                                    {count}
+                                                                </span>
+                                                                <StackIcon
+                                                                    className={styles.subScreenIcon}
+                                                                />
+                                                            </div>
+                                                        ) : null}
+                                                        {screenWidth > 0 && screenHeight > 0 ? (
+                                                            <ScreenPreview
+                                                                screenWidth={screenWidth}
+                                                                screenHeight={screenHeight}
+                                                                width={thumbWidth}
+                                                                screen={screen}
+                                                                focusable={focusable}
+                                                                active={focusable}
+                                                                withSize
                                                             />
-                                                        </div>
-                                                    ) : null}
-                                                    {screenWidth > 0 && screenHeight > 0 ? (
-                                                        <ScreenPreview
-                                                            screenWidth={screenWidth}
-                                                            screenHeight={screenHeight}
-                                                            width={thumbWidth}
-                                                            screen={screen}
-                                                            focusable={focusable}
-                                                            active={focusable}
-                                                            withSize
-                                                        />
-                                                    ) : null}
-                                                    {/* {current ? (
+                                                        ) : null}
+                                                        {/* {current ? (
                                                         <div
                                                             className={styles.activeScreenBorder}
                                                             style={borderPrimaryColorStyle}
                                                         />
                                                     ) : null} */}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <button
-                                                type="button"
-                                                className={styles.screenButton}
-                                                onClick={() => {
-                                                    if (onClickItem !== null) {
-                                                        onClickItem(item);
-                                                    }
-                                                }}
-                                                aria-label={screenAriaLabel}
-                                                onKeyUp={(e) => {
-                                                    if (e.key === 'Enter' && onClickItem !== null) {
-                                                        onClickItem(item);
-                                                    }
-                                                }}
-                                                tabIndex={focusable ? '0' : '-1'}
-                                            />
-                                        </li>
+                                                <button
+                                                    type="button"
+                                                    className={styles.screenButton}
+                                                    onClick={() => {
+                                                        if (onClickItem !== null) {
+                                                            onClickItem(item);
+                                                        }
+                                                    }}
+                                                    aria-label={screenAriaLabel}
+                                                    onKeyUp={(e) => {
+                                                        if (
+                                                            e.key === 'Enter' &&
+                                                            onClickItem !== null
+                                                        ) {
+                                                            onClickItem(item);
+                                                        }
+                                                    }}
+                                                    tabIndex={focusable ? '0' : '-1'}
+                                                />
+                                            </li>
+                                        </>
                                     );
                                 })}
                             </ul>

@@ -531,6 +531,10 @@
                 "id": "8204d270-1357-11ed-96c4-bb045acedd00",
                 "type": "title",
                 "layout": "middle",
+                "bookmark": {
+                    "id": "venus",
+                    "label": "Venus"
+                },
                 "title": {
                     "body": "<span><strong>Venus</strong></span>",
                     "textStyle": {
@@ -1141,6 +1145,10 @@
                 "id": "c0430c30-1359-11ed-96c4-bb045acedd00",
                 "type": "text",
                 "layout": "bottom",
+                "bookmark": {
+                    "id": "jupiter",
+                    "label": "Jupiter"
+                },
                 "text": {
                     "body": "<p><strong>Jupiter</strong></p>",
                     "textStyle": {
