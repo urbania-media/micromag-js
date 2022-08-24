@@ -36,6 +36,7 @@ import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
 
+// @todo export from somewhere else
 const SPRING_CONFIG_TIGHT = { tension: 300, friction: 35 }; // tight
 const DRAG_PROGRESS_ACTIVATION_THRESHOLD = 0.3;
 const DRAG_VELOCITY_ACTIVATION_THRESHOLD = 0.3;
@@ -293,13 +294,10 @@ const Viewer = ({
                 screens.map((s, i) => {
                     const t = i - p;
                     if (Math.abs(t) > 4) return {};
-                    const clamped = Math.max(1, Math.abs(t));
-                    const absoluteClamped = Math.min(1, Math.max(0, Math.abs(t)));
+                    const clamped = Math.min(1, Math.max(0, Math.abs(t)));
                     return {
-                        opacity: 1 - 0.75 * absoluteClamped,
-                        transform: `translateX(${t * 105}%) scale(${
-                            1 - 0.2 * absoluteClamped
-                        })`,
+                        opacity: 1 - 0.75 * clamped,
+                        transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
                         zIndex: i,
                     };
                 }),
@@ -325,7 +323,7 @@ const Viewer = ({
                         opacity: 1 - 0.75 * invert,
                         transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
                         boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
-                        zIndex: Math.abs(clamped+1),
+                        zIndex: Math.abs(clamped + 1),
                     };
                 }),
             );

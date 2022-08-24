@@ -56,14 +56,6 @@ export const easings = {
 };
 /* eslint-enable */
 
-const castToNumber = (t) => {
-    const isNumber = typeof t === 'number';
-    const fromBool = t === true ? 1 : 0;
-    const x = !isNumber ? fromBool : t;
-
-    return x;
-};
-
 const getValueFromSpring = (s) => {
     const { value: v = null } = s || {};
     const { progress: p } = v || {};
@@ -73,19 +65,20 @@ const getValueFromSpring = (s) => {
 
 const useTransitionStyles = (progress = 1, fn = null, extras = {}) => {
     if (fn === null) {
-        return;
+        return progress;
     }
-
     const onChange = useCallback((spring) => fn(getValueFromSpring(spring)));
     const [, api] = useSpring(() => ({
-        progress: castToNumber(progress),
+        progress,
         onChange,
         ...extras,
     }));
 
     useEffect(() => {
-        api.start({ progress: castToNumber(progress), ...extras });
+        api.start({ progress, ...extras });
     }, [progress, fn, extras]);
+
+    return progress;
 };
 
 export default useTransitionStyles;

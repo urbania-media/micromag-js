@@ -20,6 +20,7 @@ export { default as useMediaWaveform } from './useMediaWaveform';
 export * from './useObserver';
 export { default as useParsedStory } from './useParsedStory';
 export { default as useProgressSteps } from './useProgressSteps';
+export { default as useProgressTransition } from './useProgressTransition';
 export * from './useScreenSize';
 export * from './useSwipe';
 export { default as useThemeParser } from './useThemeParser';

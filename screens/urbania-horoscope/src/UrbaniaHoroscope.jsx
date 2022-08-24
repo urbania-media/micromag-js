@@ -16,7 +16,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useTransitionStyles } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useTransitionStyles, useProgressTransition } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -33,6 +33,8 @@ import SignModal from './partials/SignModal';
 import styles from './urbania-horoscope.module.scss';
 
 import Astrologie from './images/astrologie-text.svg';
+
+const SPRING_CONFIG_TIGHT = { tension: 300, friction: 35 }; // tight
 
 const propTypes = {
     defaultSigns: PropTypes.arrayOf(
@@ -166,7 +168,7 @@ const UrbaniaHoroscope = ({
         (e, extras, triggered) => {
             setShowModal(triggered ? 1 : 0);
         },
-        [showModal, showSignsGrid, setShowModal],
+        [showSignsGrid, setShowModal],
     );
 
     const [isDragging, setIsDragging] = useState(false);
@@ -210,102 +212,87 @@ const UrbaniaHoroscope = ({
         filterTaps: true,
     });
 
-    // @todo trying this thing :)
-    const headerStyles = useTransitionStyles(
-        showSignsGrid,
-        (p) => ({
+    /**
+     * Begin `useTransitionStyles` transitions
+     */
+
+    // const headerStylesCallback = useCallback(p => ({
+    //     transform: `translateY(${-100 * p * (1 - p)}%)`,
+    //     opacity: p > 0.25 ? 1 - p : 1,
+    // }));
+    const { styles: headerStyles = {} } = useProgressTransition({
+        value: showSignsGrid,
+        fn: p => ({
             transform: `translateY(${-100 * p * (1 - p)}%)`,
             opacity: p > 0.25 ? 1 - p : 1,
         }),
-        {
+        config: {
             immediate: isDragging,
-            config: {
-                tension: 300,
-                friction: 30,
-            },
-        },
-    );
-    const signsContainerStyles = useTransitionStyles(
-        showSignsGrid,
-        (p) => ({
+            config: SPRING_CONFIG_TIGHT,
+        }
+    });
+    const { styles: signsContainerStyles = {} } = useProgressTransition({
+        value: showSignsGrid,
+        fn: p => ({
             opacity: p,
             pointerEvents: p < 0.25 ? 'none' : 'auto',
         }),
-        {
+        config: {
             immediate: isDragging,
-            config: {
-                tension: 300,
-                friction: 30,
-            },
-        },
-    );
-    const signsStyles = signs.map((s, i) =>
-        useTransitionStyles(
-            showSignsGrid,
-            (p) => ({
-                opacity: p,
-                transform: `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`,
-            }),
-            {
-                immediate: isDragging,
-                delay: !isDragging ? 25 * i : 0,
-                config: {
-                    tension: 300,
-                    friction: 30,
-                },
-            },
-        ),
-    );
-    const authorStyles = useTransitionStyles(
-        showSignsGrid,
-        (p) => ({
+            config: SPRING_CONFIG_TIGHT,
+        }
+    });
+    const { styles: signsStyles = {} } = useProgressTransition({
+        value: showSignsGrid,
+        fn: p => signs.map((s, i) => ({
+            opacity: p,
+            transform: `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`,
+        })),
+        config: {
+            immediate: isDragging,
+            config: SPRING_CONFIG_TIGHT,
+        }
+    });
+    const { styles: authorStyles = {} } = useProgressTransition({
+        value: showSignsGrid,
+        fn: p => ({
             transform: `translateY(${2 * (1 - p)}rem)`,
             opacity: p,
         }),
-        {
+        config: {
             immediate: isDragging,
-            delay: isDragging ? 0 : signs.length * 30, // @todo sign stagger value
-            config: {
-                tension: 420,
-                friction: 25,
-            },
-        },
-    );
-
-    const backdropStyles = useTransitionStyles(
-        showSignsGrid,
-        (p) => ({
+            config: SPRING_CONFIG_TIGHT,
+        }
+    });
+    const { styles: backdropStyles = {} } = useProgressTransition({
+        value: showSignsGrid,
+        fn: p => ({
             opacity: p,
         }),
-        {
+        config: {
             immediate: isDragging,
-            config: {
-                tension: 200,
-                friction: 30,
-            },
-        },
-    );
-
-    const modalStyles = useTransitionStyles(
-        showModal,
-        (p) => ({
+            config: SPRING_CONFIG_TIGHT,
+        }
+    });
+    const { styles: modalStyles = {} } = useProgressTransition({
+        value: showModal,
+        fn: p => ({
             transform: `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
             pointerEvents: p < 0.75 ? 'none' : 'auto',
         }),
-        {
-            config: {
-                tension: 300,
-                friction: 30,
-            },
-        },
-    );
+        config: {
+            immediate: isDragging,
+            config: SPRING_CONFIG_TIGHT,
+        }
+    });
 
     // for editor purposes
     const screenState = useScreenState();
 
     useEffect(() => {
-        if (screenState === null) return;
-        if (screenState === 'intro') {
+        setShowSignsGrid(0);
+
+        if (screenState === null || screenState === 'intro') {
             setShowSignsGrid(false);
             setShowModal(0);
         }
@@ -320,7 +307,7 @@ const UrbaniaHoroscope = ({
             setShowModal(1);
             setSelectedSign(signs[index]);
         }
-    }, [screenState, setShowModal]);
+    }, [screenState]);
 
     return (
         <div

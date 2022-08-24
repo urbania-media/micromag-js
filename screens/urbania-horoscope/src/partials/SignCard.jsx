@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import React from 'react';
+import PropTypes from 'prop-types';
+import React, { useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -32,10 +32,17 @@ const defaultProps = {
     onLongPress: null,
     onLongPressStart: null,
     onLongPressEnd: null,
-    longPressDelay: 500
+    longPressDelay: 500,
 };
 
-const SignCard = ({ className, sign, onLongPress, onLongPressStart, onLongPressEnd, longPressDelay }) => {
+const SignCard = ({
+    className,
+    sign,
+    onLongPress,
+    onLongPressStart,
+    onLongPressEnd,
+    longPressDelay,
+}) => {
     const { id = null, thumbnail = null, label = null, date = null } = sign || {};
 
     const { bind, pressed } = useLongPress({
@@ -46,19 +53,22 @@ const SignCard = ({ className, sign, onLongPress, onLongPressStart, onLongPressE
         delay: longPressDelay,
     });
 
-    const buttonStyles = useTransitionStyles(
-        pressed,
-        (p) => ({
-            transform: `scale(${1 + 0.15 * p * p * p * p})`, // quad damage
-            boxShadow: `0 0 ${1 * p}rem ${-0.25 * p}rem black`,
-            zIndex: p > 0 ? 2 : 1
-        }),
-        {
-            config: {
-                duration: longPressDelay,
-            },
+    const [buttonStyles, setButtonStyles] = useState({});
+    const onLongPressProgress = useCallback(
+        (p) => {
+            setButtonStyles({
+                transform: `scale(${1 + 0.15 * p * p * p * p})`, // quad damage
+                boxShadow: `0 0 ${1 * p}rem ${-0.25 * p}rem black`,
+                zIndex: p > 0 ? 2 : 1,
+            });
         },
+        [setButtonStyles],
     );
+    useTransitionStyles(pressed, onLongPressProgress, {
+        config: {
+            duration: longPressDelay,
+        },
+    });
 
     return (
         <ScreenElement
@@ -70,10 +80,7 @@ const SignCard = ({ className, sign, onLongPress, onLongPressStart, onLongPressE
             isEmpty={!id}
         >
             <button
-                className={classNames([
-                    styles.container,
-                    { [className]: className !== null }
-                ])}
+                className={classNames([styles.container, { [className]: className !== null }])}
                 type="button"
                 style={buttonStyles}
                 {...bind(id)}
