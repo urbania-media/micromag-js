@@ -1,5 +1,5 @@
 import { useSpring } from '@react-spring/core';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 
 /* eslint-disable */
 export const easings = {

@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading, no-nested-ternary */
-import { useSprings } from '@react-spring/core';
-import { animated } from '@react-spring/web';
+/* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, no-nested-ternary, react/jsx-props-no-spreading */
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -102,7 +100,7 @@ const defaultProps = {
     visitor: null,
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.8,
-    neighborScreensActive: 1,
+    neighborScreensActive: 2,
     neighborScreensMounted: 1,
     storyIsParsed: false,
     // landscapeScreenMargin: 20,
@@ -263,12 +261,6 @@ const Viewer = ({
     const hasSize = screenWidth > 0 && screenHeight > 0;
     const ready = hasSize; // && fontsLoaded;
 
-    useEffect(() => {
-        if (ready && onViewModeChange !== null) {
-            onViewModeChange({ landscape, menuOverScreen });
-        }
-    }, [ready, landscape, menuOverScreen, onViewModeChange]);
-
     // Track screen view
     const trackingEnabled = isView;
     useEffect(() => {
@@ -284,30 +276,36 @@ const Viewer = ({
     const [screenTransition, setScreenTransition] = useState(0);
     const [transitionType, setTransitionType] = useState(DEFAULT_TRANSITION_TYPE_LANDSCAPE);
 
-    /**
-     * WARNING: MATH AHEAD!
-     * Also: very very Work In Progress
-     */
+    useEffect(() => {
+        if (ready && onViewModeChange !== null) {
+            onViewModeChange({ landscape, menuOverScreen });
+        }
+        const newType = landscape
+            ? DEFAULT_TRANSITION_TYPE_LANDSCAPE
+            : DEFAULT_TRANSITION_TYPE_PORTRAIT;
+        setTransitionType(newType);
+    }, [ready, landscape, menuOverScreen, onViewModeChange, setTransitionType]);
+
     const [carouselTransitionStyles, setCarouselTransitionStyles] = useState({});
     const onProgressChange = useCallback(
         (p) => {
-            if (transitionType !== 'carousel') return;
-
             setCarouselTransitionStyles(
                 screens.map((s, i) => {
                     const t = i - p;
+                    if (Math.abs(t) > 4) return {};
+                    const clamped = Math.max(1, Math.abs(t));
+                    const absoluteClamped = Math.min(1, Math.max(0, Math.abs(t)));
                     return {
-                        opacity: 0.25 + (1 - 0.25) * (1 - Math.abs(t)),
+                        opacity: 1 - 0.75 * absoluteClamped,
                         transform: `translateX(${t * 105}%) scale(${
-                            1 - Math.abs(0.2 * Math.min(1, Math.max(-1, t)))
+                            1 - 0.2 * absoluteClamped
                         })`,
-                        boxShadow: `0 0 ${2 * (1 + (1 - t))}rem ${0.25 * (1 - t)}rem black`,
-                        zIndex: Math.abs(p),
+                        zIndex: i,
                     };
                 }),
             );
         },
-        [screens, setCarouselTransitionStyles, transitionType],
+        [screens, setCarouselTransitionStyles],
     );
     useTransitionStyles(screenTransition, onProgressChange, {
         immediate: isDragging,
@@ -317,60 +315,29 @@ const Viewer = ({
     const [stackTransitionStyles, setStackTransitionStyles] = useState({});
     const onStackProgressChange = useCallback(
         (p) => {
-            if (transitionType !== 'stack') return;
-
             setStackTransitionStyles(
                 screens.map((s, i) => {
                     const t = i - p;
-                    const current = t < 1 && t > -1;
-                    const prev = !current && t < 1;
-                    const next = !current && t > -1;
-
-                    if (next) {
-                        return {
-                            transform: `translateX(${t * 100}%) scale(1)`,
-                            boxShadow: `0 0 ${t === current + 1 ? Math.abs(t) : 0}rem ${
-                                0.25 * t === current + 1 ? Math.abs(t) : 0
-                            }rem black`,
-                            opacity: 1,
-                            zIndex: 3,
-                        };
-                    }
-
-                    if (current) {
-                        return {
-                            transform: `translateX(${Math.max(0, t) * 100}%) scale(${
-                                1 + Math.min(0, t) * 0.2
-                            })`,
-                            boxShadow: `0 0 ${Math.abs(1 - t)}rem ${
-                                0.25 * Math.abs(1 - t)
-                            }rem black`,
-                            opacity: 1,
-                            zIndex: 2,
-                        };
-                    }
-
-                    if (prev) {
-                        return {
-                            transform: `translateX(0%) scale(${0.8 + t * 0.2})`,
-                            boxShadow: `0 0 0rem 0rem black`,
-                            opacity: 1,
-                            zIndex: 1,
-                        };
-                    }
-
-                    return {};
+                    if (Math.abs(t) > 4) return {};
+                    const clamped = Math.min(1, Math.max(0, t));
+                    const invert = Math.min(1, Math.max(0, -t));
+                    return {
+                        opacity: 1 - 0.75 * invert,
+                        transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
+                        boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
+                        zIndex: Math.abs(clamped+1),
+                    };
                 }),
             );
         },
-        [screens, setStackTransitionStyles, transitionType]
+        [screens, setStackTransitionStyles],
     );
     useTransitionStyles(screenTransition, onStackProgressChange, {
         immediate: isDragging,
         config: SPRING_CONFIG_TIGHT,
     });
 
-    const transitionTypes = {
+    const TRANSITION_TYPES = {
         stack: stackTransitionStyles || {},
         carousel: carouselTransitionStyles || {},
     };
@@ -531,26 +498,11 @@ const Viewer = ({
 
     useEffect(() => {
         setScreenTransition(screenIndex);
-    }, [screenIndex, setScreenTransition]);
-
-    // @todo Work In Progress
-    useEffect(() => {
         const newType = landscape
             ? DEFAULT_TRANSITION_TYPE_LANDSCAPE
             : DEFAULT_TRANSITION_TYPE_PORTRAIT;
-
-        setTransitionType((type) => {
-            console.log({type, m: 'setTransitionType'});
-            if (newType !== type) {
-                console.log({type, m: 'new type'});
-                // update position if type is new?
-                setScreenTransition(screenIndex);
-                return newType;
-            }
-
-            return type;
-        });
-    }, [landscape, setScreenTransition, setTransitionType]);
+        setTransitionType(newType);
+    }, [screenIndex, transitionType, setScreenTransition]);
 
     const {
         toggle: toggleFullscreen,
@@ -586,16 +538,16 @@ const Viewer = ({
         [onInteractionPrivate, changeIndex, menuOpened, setMenuOpened],
     );
 
-    // const onContextMenu = useCallback(
-    //     (e) => {
-    //         if (!landscape) {
-    //             e.preventDefault();
-    //             return false;
-    //         }
-    //         return true;
-    //     },
-    //     [landscape],
-    // );
+    const onContextMenu = useCallback(
+        (e) => {
+            if (!landscape) {
+                e.preventDefault();
+                return false;
+            }
+            return true;
+        },
+        [landscape],
+    );
 
     const overscrollStyle = (
         <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
@@ -672,7 +624,7 @@ const Viewer = ({
                             },
                         ])}
                         ref={containerRef}
-                        // onContextMenu={onContextMenu}
+                        onContextMenu={onContextMenu}
                     >
                         {!withoutMenu ? (
                             <ViewerMenu
@@ -726,9 +678,10 @@ const Viewer = ({
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
 
-                                        const screenStyles = isView && active
-                                            ? transitionTypes[transitionType][i]
-                                            : {};
+                                        const screenStyles =
+                                            isView && active
+                                                ? TRANSITION_TYPES[transitionType][i]
+                                                : {};
 
                                         return (
                                             <div
