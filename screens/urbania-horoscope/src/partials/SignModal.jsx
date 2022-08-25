@@ -7,7 +7,6 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
-import { useProgressTransition } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
@@ -31,7 +30,7 @@ const propTypes = {
     subtitle: MicromagPropTypes.headingElement,
     current: PropTypes.bool,
     transitionDisabled: PropTypes.bool,
-    onClose: PropTypes.func,
+    onClick: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -42,7 +41,7 @@ const defaultProps = {
     subtitle: null,
     current: true,
     transitionDisabled: false,
-    onClose: null,
+    onClick: null,
     className: null,
 };
 
@@ -53,7 +52,7 @@ const SignModal = ({
     subtitle,
     current,
     transitionDisabled,
-    onClose,
+    onClick,
     className,
 }) => {
     // eslint-disable-next-line no-unused-vars
@@ -82,8 +81,7 @@ const SignModal = ({
             <button
                 type="button"
                 className={styles.modalButton}
-                onClick={(e) => e.preventDefault()}
-                onPointerUp={onClose}
+                onClick={onClick}
             >
                 <Scroll disabled={scrollingDisabled} verticalAlign="middle">
                     <div className={styles.modal}>

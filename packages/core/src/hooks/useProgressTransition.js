@@ -10,7 +10,7 @@ const castToNumber = (t) => {
     return x;
 };
 
-const useProgressTransition = ({ value = 0, fn: callbackFn = null, config = {} } = {}) => {
+const useProgressTransition = ({ value = 0, fn: callbackFn = null, params = {} } = {}) => {
     if (callbackFn === null) {
         return { styles: {}, progress: value };
     }
@@ -22,7 +22,7 @@ const useProgressTransition = ({ value = 0, fn: callbackFn = null, config = {} }
         },
         [setStyles, callbackFn],
     );
-    const progress = useTransitionStyles(castToNumber(value), fn, config);
+    const progress = useTransitionStyles(castToNumber(value), fn, params);
 
     return { styles, progress };
 };

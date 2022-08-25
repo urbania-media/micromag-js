@@ -10,6 +10,12 @@
 
 .modalButton {
     @extend %reset-button;
+
+    transition: transform 0.3s $ease-in-kickback;
+
+    &:active {
+        transform: scale(0.95);
+    }
 }
 
 .modal {
