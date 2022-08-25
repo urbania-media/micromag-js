@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
-import { useProgressTransition, useLongPress } from '@micromag/core/hooks';
 
 import styles from './sign-card.module.scss';
 
@@ -20,52 +19,21 @@ const propTypes = {
         word: MicromagPropTypes.headingElement,
         description: MicromagPropTypes.textElement,
     }),
-    onLongPress: PropTypes.func,
-    onLongPressStart: PropTypes.func,
-    onLongPressEnd: PropTypes.func,
-    longPressDelay: PropTypes.number,
+    onClick: PropTypes.func
 };
 
 const defaultProps = {
     className: null,
     sign: null,
-    onLongPress: null,
-    onLongPressStart: null,
-    onLongPressEnd: null,
-    longPressDelay: 500,
+    onClick: null,
 };
 
 const SignCard = ({
     className,
     sign,
-    onLongPress,
-    onLongPressStart,
-    onLongPressEnd,
-    longPressDelay,
+    onClick
 }) => {
     const { id = null, thumbnail = null, label = null, date = null } = sign || {};
-
-    const { bind, pressed } = useLongPress({
-        onLongPress,
-        onLongPressStart,
-        onLongPressEnd,
-        preventClick: true,
-        delay: longPressDelay,
-    });
-
-    const { styles: buttonStyles = {} } = useProgressTransition({
-        value: pressed,
-        fn: (p) => ({
-            transform: `scale(${1 + 0.15 * p * p * p * p})`, // quad damage
-            boxShadow: `0 0 ${1 * p}rem ${-0.25 * p}rem black`,
-            zIndex: p > 0 ? 2 : 1,
-        }),
-        config: {
-            config: {
-                duration: longPressDelay,
-            }
-        },
-    });
 
     return (
         <ScreenElement
@@ -79,8 +47,7 @@ const SignCard = ({
             <button
                 className={classNames([styles.container, { [className]: className !== null }])}
                 type="button"
-                style={buttonStyles}
-                {...bind(id)}
+                onClick={onClick}
             >
                 {thumbnail !== null ? (
                     <img className={styles.thumbnail} src={thumbnail} alt={id} loading="lazy" />

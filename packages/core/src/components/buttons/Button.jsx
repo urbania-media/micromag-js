@@ -3,9 +3,12 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import styles from '../../styles/buttons/button.module.scss';
+
 import Label from '../partials/Label';
+
+import styles from '../../styles/buttons/button.module.scss';
 
 const propTypes = {
     type: PropTypes.string,
@@ -28,6 +31,7 @@ const propTypes = {
     big: PropTypes.bool,
     withShadow: PropTypes.bool,
     withoutStyle: PropTypes.bool,
+    withoutBootstrapStyles: PropTypes.bool,
     withoutTheme: PropTypes.bool,
     withAnimations: PropTypes.bool,
     outline: PropTypes.bool,
@@ -65,6 +69,7 @@ const defaultProps = {
     big: false,
     withShadow: false,
     withoutStyle: false,
+    withoutBootstrapStyles: false,
     withoutTheme: false,
     withAnimations: true, // @todo should be false by default, probably
     outline: false,
@@ -97,6 +102,7 @@ const Button = ({
     big,
     withShadow,
     withoutStyle,
+    withoutBootstrapStyles,
     withoutTheme,
     withAnimations,
     asLink,
@@ -188,12 +194,14 @@ const Button = ({
     const withStyle = !withoutTheme && !withoutStyle && !asLink;
 
     const buttonClassNames = classNames([
-        {
-            btn: withStyle,
-            [`btn-${outline ? 'outline-' : ''}${theme}`]: withStyle && theme !== null,
-            [`btn-${size}`]: withStyle && size !== null,
-            active: !withoutStyle && active,
-        },
+        !withoutBootstrapStyles
+            ? {
+                  btn: withStyle,
+                  [`btn-${outline ? 'outline-' : ''}${theme}`]: withStyle && theme !== null,
+                  [`btn-${size}`]: withStyle && size !== null,
+                  active: !withoutStyle && active,
+              }
+            : null,
         styles.container,
         styles[`icon-${iconPosition}`],
         {

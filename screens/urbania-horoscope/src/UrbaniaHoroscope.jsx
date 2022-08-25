@@ -147,37 +147,29 @@ const UrbaniaHoroscope = ({
         trackScreenEvent('close');
     }, [showSignsGrid, setShowSignsGrid, setShowModal, enableInteraction]);
 
-    const onLongPressStart = useCallback(
+    const onSelectSign = useCallback(
         (e, id) => {
+            e.stopPropagation();
             const foundSign = signs.find((s) => s.id === id);
             setSelectedSign(foundSign);
-            setShowModal(0.25);
+            setShowModal(true);
         },
         [signs, setSelectedSign],
     );
 
-    const onLongPress = useCallback(
-        (e, id) => {
-            setShowModal(1);
-            trackScreenEvent(`open_sign_${id}`);
+    const onCloseModal = useCallback(
+        (e) => {
+            e.stopPropagation();
+            setShowModal(0);
         },
-        [setShowModal, trackScreenEvent],
-    );
-
-    const onLongPressEnd = useCallback(
-        (e, extras, triggered) => {
-            setShowModal(triggered ? 1 : 0);
-        },
-        [showSignsGrid, setShowModal],
+        [setShowModal],
     );
 
     const [isDragging, setIsDragging] = useState(false);
 
     // @todo either switch to useSwipe properly or extra to some new hook?
     const onDragContent = useCallback(
-        ({ active: dragActive, event, movement: [, my], tap, velocity: [, vy] }) => {
-            event.stopPropagation();
-
+        ({ active: dragActive, movement: [, my], tap, velocity: [, vy] }) => {
             if (!isView || tap || showModal) return;
 
             const progress = Math.max(0, my) / height;
@@ -213,9 +205,7 @@ const UrbaniaHoroscope = ({
     });
 
     const onDragModal = useCallback(
-        ({ active: dragActive, event, movement: [, my], tap, velocity: [, vy] }) => {
-            event.stopPropagation();
-
+        ({ active: dragActive, movement: [, my], tap, velocity: [, vy] }) => {
             if (!isView) return;
 
             if (tap) {
@@ -223,7 +213,7 @@ const UrbaniaHoroscope = ({
             }
 
             const damper = 0.5;
-            const progress = Math.max(0, my) / height * damper;
+            const progress = (Math.max(0, my) / height) * damper;
             const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
 
             if (!tap) {
@@ -240,12 +230,7 @@ const UrbaniaHoroscope = ({
                 }
             }
         },
-        [
-            setIsDragging,
-            showModal,
-            isView,
-            height,
-        ],
+        [setIsDragging, showModal, isView, height],
     );
     const bindModalDrag = useDrag(onDragModal, {
         filterTaps: true,
@@ -257,7 +242,7 @@ const UrbaniaHoroscope = ({
             transform: `translateY(${-100 * p * (1 - p)}%)`,
             opacity: p > 0.25 ? 1 - p : 1,
         }),
-        config: {
+        params: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
         },
@@ -268,7 +253,7 @@ const UrbaniaHoroscope = ({
             opacity: p,
             pointerEvents: p < 0.25 ? 'none' : 'auto',
         }),
-        config: {
+        params: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
         },
@@ -276,11 +261,11 @@ const UrbaniaHoroscope = ({
     const { styles: signsStyles = {} } = useProgressTransition({
         value: showSignsGrid,
         fn: (p) =>
-            signs.map((s, i) => ({
+            signs.map(() => ({
                 opacity: p,
                 transform: `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`,
             })),
-        config: {
+        params: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
         },
@@ -291,7 +276,7 @@ const UrbaniaHoroscope = ({
             transform: `translateY(${2 * (1 - p)}rem)`,
             opacity: p,
         }),
-        config: {
+        params: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
         },
@@ -301,7 +286,7 @@ const UrbaniaHoroscope = ({
         fn: (p) => ({
             opacity: p,
         }),
-        config: {
+        params: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
         },
@@ -312,7 +297,7 @@ const UrbaniaHoroscope = ({
             transform: `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
             pointerEvents: p < 0.1 ? 'none' : 'auto',
         }),
-        config: {
+        params: {
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
         },
@@ -419,6 +404,7 @@ const UrbaniaHoroscope = ({
                                 className={styles.button}
                                 type="button"
                                 onClick={onOpenSignsGrid}
+                                withoutBootstrapStyles
                                 {...button}
                             >
                                 <Text className={styles.buttonLabel} {...button} inline />
@@ -473,16 +459,13 @@ const UrbaniaHoroscope = ({
                                             <SignCard
                                                 key={id}
                                                 sign={sign}
-                                                onLongPress={onLongPress}
-                                                onLongPressStart={onLongPressStart}
-                                                onLongPressEnd={onLongPressEnd}
+                                                onClick={(e) => onSelectSign(e, id)}
                                             />
                                         </div>
                                     );
                                 })}
                             </div>
 
-                            {/* Author + Collaborator credit */}
                             <ScreenElement
                                 key="author"
                                 emptyLabel={
@@ -514,7 +497,7 @@ const UrbaniaHoroscope = ({
                             height={height}
                             sign={selectedSign}
                             subtitle={signSubtitle}
-                            // transitionDisabled={transitionDisabled}
+                            onClick={onCloseModal}
                         />
                     </div>
 

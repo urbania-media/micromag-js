@@ -22,6 +22,7 @@ import {
     useScreenSizeFromElement,
     useTrackScreenView,
     useTransitionStyles,
+    useProgressTransition,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
 
@@ -287,52 +288,45 @@ const Viewer = ({
         setTransitionType(newType);
     }, [ready, landscape, menuOverScreen, onViewModeChange, setTransitionType]);
 
-    const [carouselTransitionStyles, setCarouselTransitionStyles] = useState({});
-    const onProgressChange = useCallback(
-        (p) => {
-            setCarouselTransitionStyles(
-                screens.map((s, i) => {
-                    const t = i - p;
-                    if (Math.abs(t) > 4) return {};
-                    const clamped = Math.min(1, Math.max(0, Math.abs(t)));
-                    return {
-                        opacity: 1 - 0.75 * clamped,
-                        transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
-                        zIndex: i,
-                    };
-                }),
-            );
+    const { styles: carouselTransitionStyles = {} } = useProgressTransition({
+        value: screenTransition,
+        fn: (p) =>
+            screens.map((s, i) => {
+                const t = i - p;
+                if (Math.abs(t) > 4) return {};
+                const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+                return {
+                    opacity: 1 - 0.75 * clamped,
+                    transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
+                    zIndex: i,
+                };
+            }),
+        params: {
+            immediate: isDragging,
+            config: SPRING_CONFIG_TIGHT,
         },
-        [screens, setCarouselTransitionStyles],
-    );
-    useTransitionStyles(screenTransition, onProgressChange, {
-        immediate: isDragging,
-        config: SPRING_CONFIG_TIGHT,
     });
 
-    const [stackTransitionStyles, setStackTransitionStyles] = useState({});
-    const onStackProgressChange = useCallback(
-        (p) => {
-            setStackTransitionStyles(
-                screens.map((s, i) => {
-                    const t = i - p;
-                    if (Math.abs(t) > 4) return {};
-                    const clamped = Math.min(1, Math.max(0, t));
-                    const invert = Math.min(1, Math.max(0, -t));
-                    return {
-                        opacity: 1 - 0.75 * invert,
-                        transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
-                        boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
-                        zIndex: Math.abs(clamped + 1),
-                    };
-                }),
-            );
+    const { styles: stackTransitionStyles = {} } = useProgressTransition({
+        value: screenTransition,
+        fn: (p) =>
+            screens.map((s, i) => {
+                const t = i - p;
+                if (Math.abs(t) > 4) return {};
+                const clamped = Math.min(1, Math.max(0, t));
+                const invert = Math.min(1, Math.max(0, -t));
+                const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
+                return {
+                    opacity,
+                    transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
+                    boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
+                    zIndex: Math.abs(clamped + 1),
+                };
+            }),
+        params: {
+            immediate: isDragging,
+            config: SPRING_CONFIG_TIGHT,
         },
-        [screens, setStackTransitionStyles],
-    );
-    useTransitionStyles(screenTransition, onStackProgressChange, {
-        immediate: isDragging,
-        config: SPRING_CONFIG_TIGHT,
     });
 
     const TRANSITION_TYPES = {

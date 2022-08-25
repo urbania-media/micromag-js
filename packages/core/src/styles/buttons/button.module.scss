@@ -3,9 +3,9 @@
 @import '../mixins';
 
 .container {
-    &:focus {
-        box-shadow: none;
-    }
+    // &:focus {
+    //     box-shadow: none;
+    // }
 
     .icon {
         position: relative;
