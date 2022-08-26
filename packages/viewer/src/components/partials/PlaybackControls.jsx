@@ -101,7 +101,8 @@ function PlaybackControls({ className, collapsedClassName }) {
         }
     }, [setPlaying, wasPlaying]);
 
-    const mediaHasAudio = mediaElement !== null && (hasAudio === null || hasAudio === true);
+    const hasMedia = mediaElement !== null;
+    const mediaHasAudio = hasMedia && (hasAudio === null || hasAudio === true);
     const { color, progressColor, seekBarOnly } = customControlsTheme || {};
     const isCollapsed = (controls && !controlsVisible && playing) || (!controls && mediaHasAudio);
 
@@ -112,7 +113,7 @@ function PlaybackControls({ className, collapsedClassName }) {
                 {
                     [className]: className !== null,
                     [styles.withPlayPause]: controls && !seekBarOnly,
-                    [styles.withMute]: mediaHasAudio || controls,
+                    [styles.withMute]: hasMedia || controls,
                     [styles.withSeekBar]: controls,
                     [styles.withSeekBarOnly]: seekBarOnly,
                     [styles.isCollapsed]: isCollapsed,

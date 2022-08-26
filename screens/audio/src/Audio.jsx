@@ -1,11 +1,7 @@
-/* eslint-disable no-unused-vars */
-
-/* eslint-disable no-param-reassign */
-
-/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
+/* eslint-disable no-unused-vars, no-param-reassign, jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -160,7 +156,7 @@ const AudioScreen = ({
     }, [current, autoPlay]);
 
     const onTimeUpdate = useCallback(
-        ({timeStamp = 0}) => {
+        ({ timeStamp = 0 }) => {
             setCurrentTime(timeStamp);
         },
         [setCurrentTime, setDuration, duration],
