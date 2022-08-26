@@ -201,6 +201,7 @@ const UrbaniaHoroscope = ({
     );
 
     const bindSignsDrag = useDrag(onDragContent, {
+        axis: 'y',
         filterTaps: true,
     });
 
@@ -233,6 +234,7 @@ const UrbaniaHoroscope = ({
         [setIsDragging, showModal, isView, height],
     );
     const bindModalDrag = useDrag(onDragModal, {
+        axis: 'y',
         filterTaps: true,
     });
 

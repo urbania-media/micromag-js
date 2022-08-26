@@ -1,6 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useSpring } from '@react-spring/core';
-import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -9,7 +7,7 @@ import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
-import { useDimensionObserver, useTrackEvent } from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackEvent, useProgressTransition } from '@micromag/core/hooks';
 
 import MenuDots from './menus/MenuDots';
 import MenuPreview from './menus/MenuPreview';
@@ -100,6 +98,8 @@ const ViewerMenu = ({
     const currentScreen = screens !== null ? screens[currentScreenIndex] || null : null;
     const { id: screenId = null, type: screenType = null } = currentScreen || {};
     const [showShare, setShowShare] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
+    const [menuTransitionProgress, setMenuTransitionProgress] = useState(0);
 
     const items = useMemo(
         () =>
@@ -144,61 +144,53 @@ const ViewerMenu = ({
         return path;
     }, [shareBasePath]);
 
-    const [{ y: menuY }, setMenuSpring] = useSpring(() => ({
-        y: 0,
-        config: { tension: 400, friction: 35 },
-    }));
-    const refOpened = useRef(opened);
-    if (refOpened.current !== opened) {
-        refOpened.current = opened;
-    }
-
-    useEffect(() => {
-        setMenuSpring.start({ y: opened ? 1 : 0 });
-    }, [opened]);
-
-    const { ref: menuPreviewContainerRef, height: menuPreviewContainerHeight = 0 } =
-        useDimensionObserver();
-
-    const menuPreviewStyles = {
-        transform: menuY.to((y) => `translateY(${y * 100}%)`),
-    };
-
-    const menuDragBind = useDrag(
-        ({ movement: [, my], first, last, direction: [, dy], cancel, canceled, tap }) => {
+    const onDrag = useCallback(
+        ({ active, delta, movement: [, my], velocity: [, vy], canceled, tap }) => {
             if (canceled || tap) {
                 return;
             }
 
-            const isMenuOpened = refOpened.current;
+            const up = delta < 0;
+            const progress = Math.max(0, my) / window.innerHeight;
+            const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
 
-            if (first) {
-                if (isMenuOpened) {
-                    cancel();
-                    return;
-                }
+            if (!tap) {
+                setIsDragging(true);
+                setMenuTransitionProgress(progress);
             }
 
-            const yProgress = Math.max(
-                0,
-                Math.min(1, my / menuPreviewContainerHeight + (isMenuOpened ? 1 : 0)),
-            );
-
-            if (last) {
-                const menuNowOpened = dy > 0 && yProgress > 0.1;
-                refOpened.current = menuNowOpened;
-                setMenuSpring.start({ y: menuNowOpened ? 1 : 0 });
-                if (menuNowOpened && onRequestOpen !== null) {
-                    onRequestOpen();
-                } else if (!menuNowOpened && onRequestClose !== null) {
-                    onRequestClose();
+            if (!active) {
+                setIsDragging(false);
+                if (reachedThreshold) {
+                    if (up) {
+                        onRequestClose();
+                    } else {
+                        onRequestOpen();
+                    }
+                } else {
+                    setMenuTransitionProgress(0);
                 }
-            } else {
-                setMenuSpring.start({ y: yProgress, immediate: true });
             }
         },
-        { axis: 'y', filterTaps: true },
+        [setMenuTransitionProgress, setIsDragging, onRequestOpen, onRequestClose],
     );
+    const menuDragBind = useDrag(onDrag, { axis: 'y', filterTaps: true });
+
+    const { styles: menuPreviewStyles = {} } = useProgressTransition({
+        value: menuTransitionProgress,
+        fn: (p) => ({
+            height: `${p * 100}%`,
+            pointerEvents: p < 0.25 ? 'none' : 'auto',
+        }),
+        params: {
+            immediate: isDragging,
+            config: { tension: 400, friction: 35 },
+        },
+    });
+
+    useEffect(() => {
+        setMenuTransitionProgress(opened ? 1 : 0);
+    }, [opened, setMenuTransitionProgress]);
 
     // handle preview menu item click
     const onClickMenu = useCallback(
@@ -206,7 +198,7 @@ const ViewerMenu = ({
             if (customOnClickMenu !== null) {
                 customOnClickMenu(index);
             }
-            trackScreenEvent('viewer_menu', 'click_open', 'Menu icon');
+            trackScreenEvent('viewer_menu', 'click_open');
         },
         [customOnClickMenu, trackScreenEvent],
     );
@@ -226,21 +218,18 @@ const ViewerMenu = ({
         if (onRequestClose !== null) {
             onRequestClose();
         }
-        setShowShare(false);
-        trackScreenEvent('viewer_menu', 'click_close', 'Close icon');
+        trackScreenEvent('viewer_menu', 'click_close');
     }, [onRequestClose, setShowShare, trackScreenEvent]);
 
     const onClickShare = useCallback(() => {
         if (customOnClickShare !== null) {
             customOnClickShare();
         }
-        setShowShare(true);
         trackScreenEvent('viewer_menu', 'click_share');
     }, [customOnClickShare, setShowShare, trackScreenEvent]);
 
     const onStoryShared = useCallback(
         (type) => {
-            setShowShare(false);
             trackScreenEvent('viewer_menu', 'shared_story', type);
         },
         [setShowShare, trackScreenEvent],
@@ -334,15 +323,9 @@ const ViewerMenu = ({
                     className={styles.dots}
                 />
             </div>
-            <animated.div
-                className={styles.menuPreviewContainer}
-                style={menuPreviewStyles}
-                ref={menuPreviewContainerRef}
-            >
-                <animated.div
-                    className={styles.menuPreviewInner}
-                    // ref={menuPreviewInnerRef}
-                >
+
+            <div className={styles.menuPreviewContainer} style={{pointerEvents: 'none'}}>
+                <div className={styles.menuPreviewInner} style={menuPreviewStyles}>
                     <MenuPreview
                         viewerTheme={viewerTheme}
                         className={styles.menuPreview}
@@ -361,9 +344,10 @@ const ViewerMenu = ({
                         toggleFullscreen={toggleFullscreen}
                         fullscreenActive={fullscreenActive}
                         fullscreenEnabled={fullscreenEnabled}
+                        style={menuPreviewStyles}
                     />
-                </animated.div>
-            </animated.div>
+                </div>
+            </div>
         </>
     );
 };

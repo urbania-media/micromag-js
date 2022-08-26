@@ -14,259 +14,178 @@
     background-size: cover;
     touch-action: none;
 
-    .screenButton {
-        @extend %reset-button;
-        @extend %fullscreen;
-
-        display: block;
-
-        &:focus-visible {
-            border: 4px solid $purple;
-            outline: none;
-        }
-
-        @media (hover: hover) {
-            &:hover {
-                border: 4px solid $white;
-                outline: none;
-            }
-        }
-    }
-
     &.disabled {
         .screenButton {
             pointer-events: none;
         }
     }
 
-    .header {
-        position: fixed;
-        z-index: 200;
-        width: 100%;
-        top: 0;
-        left: 0;
-        padding: 10px;
+    // &.showShare {
+    //     .closeButton {
+    //         margin-left: 0;
+    //     }
+    // }
+}
+
+// @todo might not end up in there anymore
+// .header {
+//     position: fixed;
+//     z-index: 200;
+//     width: 100%;
+//     top: 0;
+//     left: 0;
+//     padding: 10px;
+//     display: flex;
+//     align-items: center;
+//     background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgb(0, 0, 0, 0));
+// }
+
+// .button {
+//     @extend %reset-button;
+//     @extend %focus-outline;
+
+//     display: flex;
+//     align-items: center;
+// }
+
+.buttons {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    z-index: 3; // above `.subScreenBadge`
+    align-items: center;
+}
+
+.organisation {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.icon {
+    display: block;
+    width: 1rem;
+    height: auto;
+}
+
+.shareHeader {
+    max-width: 600px;
+    margin: 3rem 0.5rem 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.shareMode {
+    margin-top: 0.5rem;
+
+    label {
         display: flex;
         align-items: center;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgb(0, 0, 0, 0));
+        font-size: 14px;
+        line-height: 1.4;
+        user-select: none;
     }
 
-    .buttons {
-        display: flex;
-        flex-grow: 1;
-        position: relative;
-        z-index: 3; // above `.subScreenBadge`
-        align-items: center;
-    }
-
-    .organisation {
-        flex-shrink: 0;
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
-        border-radius: 50%;
-        background-color: #fff;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-    }
-
-    .button {
-        @extend %reset-button;
-        @extend %focus-outline;
-
-        display: flex;
-        align-items: center;
-    }
-
-    .closeButton {
-        z-index: 1;
-        margin-left: auto;
-    }
-
-    &.showShare {
-        .closeButton {
-            margin-left: 0;
-        }
-    }
-
-    .icon {
-        display: block;
+    input {
+        margin-right: 0.5rem;
+        appearance: none;
         width: 1rem;
-        height: auto;
-    }
+        height: 1rem;
+        border: 2px solid $white;
+        transition: transform 0.3s $ease-out-ramp;
+        animation: bump 0.5s 1 $ease-in-out-sine alternate-reverse forwards;
+        border-radius: 4px;
 
-    .shareHeader {
-        max-width: 600px;
-        margin: 3rem 0.5rem 1rem;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        background-color: rgba(0, 0, 0, 0.15);
-    }
-
-    .shareMode {
-        margin-top: 0.5rem;
-
-        label {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            line-height: 1.4;
-            user-select: none;
+        &:active {
+            transition: transform 0.3s $ease-in-kickback;
+            transform: scale(1.3);
         }
 
-        input {
-            margin-right: 0.5rem;
-            appearance: none;
-            width: 1rem;
-            height: 1rem;
-            border: 2px solid $white;
-            transition: transform 0.3s $ease-out-ramp;
-            animation: bump 0.5s 1 $ease-in-out-sine alternate-reverse forwards;
-            border-radius: 4px;
-
-            &:active {
-                transition: transform 0.3s $ease-in-kickback;
-                transform: scale(1.3);
-            }
-
-            &:checked {
-                background-color: $white;
-            }
+        &:checked {
+            background-color: $white;
         }
-    }
-
-    .shareOptions {
-        margin-bottom: 3rem;
-    }
-
-    .shareOptionsItem {
-        border-top: 1px solid rgba($white, 0.25);
-
-        + .shareOptionsItem {
-            margin-top: 0;
-        }
-
-        &:last-child {
-            border-bottom: 1px solid rgba($white, 0.25);
-
-            .shareOptionsButton {
-                padding-bottom: 0.5rem;
-            }
-        }
-    }
-
-    .shareOptionsButton {
-        border-radius: 0;
-        background-color: transparent;
-        padding: 0 0.25rem;
-
-        @media (hover: hover) {
-            &:hover {
-                background-color: $black !important;
-            }
-        }
-    }
-
-    .title {
-        margin-right: auto;
-        color: #fff;
-        font-family: Helvetica, Arial, sans-serif;
-    }
-
-    .content {
-        position: relative;
-        flex-grow: 1;
-    }
-
-    .scroll {
-        @extend %fullscreen;
-    }
-
-    .nav {
-        position: relative;
-        flex-grow: 1;
-        overflow: hidden;
-        padding: 3rem 10px 5rem;
-    }
-
-    .items,
-    .item {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    .items {
-        display: flex;
-        position: relative;
-        flex-wrap: wrap;
-    }
-
-    .item {
-        position: relative;
-        width: 33.333%;
-
-        &.active {
-            z-index: 2;
-        }
-    }
-
-    .bookmark {
-        width: 100%;
-        padding: 1.5rem 0 0.25rem;
-    }
-
-    .itemContent {
-        padding: 2px;
-    }
-
-    .screenContainer {
-        position: relative;
-        width: 100%;
-
-        &.isCurrentScreen {
-            animation: pulse 1s $ease-in-out-soft-sine infinite alternate-reverse;
-        }
-    }
-
-    .subScreenBadge {
-        position: absolute;
-        z-index: 2;
-        bottom: 0.15rem;
-        right: 0.15rem;
-        font-size: 1rem;
-        font-weight: bold;
-        pointer-events: none;
-    }
-
-    .subScreenCount {
-        position: absolute;
-        z-index: 2;
-        color: $gray-800;
-        letter-spacing: -0.05rem;
-        top: 50%;
-        left: 50%;
-        text-align: center;
-        transform: translate(-50%, -50%) translate(-0.1rem, -0.1rem);
-    }
-
-    .subScreenIcon {
-        position: relative;
-        z-index: 1;
-        width: 1.15rem;
-        height: auto;
-        fill: $white;
     }
 }
 
-@keyframes pulse {
-    from {
-        transform: scale(1);
-        outline: 0.1rem solid $white;
+.shareOptions {
+    margin-bottom: 3rem;
+}
+
+.shareOptionsItem {
+    border-top: 1px solid rgba($white, 0.25);
+
+    + .shareOptionsItem {
+        margin-top: 0;
     }
-    to {
-        transform: scale(0.95);
-        outline: 0.5rem solid $white;
+
+    &:last-child {
+        border-bottom: 1px solid rgba($white, 0.25);
+
+        .shareOptionsButton {
+            padding-bottom: 0.5rem;
+        }
+    }
+}
+
+.shareOptionsButton {
+    border-radius: 0;
+    background-color: transparent;
+    padding: 0 0.25rem;
+
+    @media (hover: hover) {
+        &:hover {
+            background-color: $black !important;
+        }
+    }
+}
+
+.title {
+    margin-right: auto;
+    color: #fff;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.content {
+    position: relative;
+    flex-grow: 1;
+}
+
+.scroll {
+    @extend %fullscreen;
+}
+
+.nav {
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+    // padding: 0.5rem;
+}
+
+.items,
+.item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.items {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.item {
+    position: relative;
+    width: 33.333%;
+
+    &.active {
+        z-index: 2;
     }
 }

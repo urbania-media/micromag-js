@@ -8,6 +8,8 @@
     .img {
         display: block;
         position: relative;
+        user-select: none;
+        pointer-events: none;
     }
 
     .showEmpty {

@@ -3,11 +3,14 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenPlaceholder, ScreenPreview } from '@micromag/core/components';
 import { isMessage } from '@micromag/core/utils';
-import styles from '../../styles/buttons/screen-with-preview.module.scss';
+
 import ScreenButton from './Screen';
+
+import styles from '../../styles/buttons/screen-with-preview.module.scss';
 
 const propTypes = {
     screen: MicromagPropTypes.screenComponent,

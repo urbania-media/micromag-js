@@ -21,7 +21,6 @@ import {
     useDimensionObserver,
     useScreenSizeFromElement,
     useTrackScreenView,
-    useTransitionStyles,
     useProgressTransition,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
@@ -510,12 +509,14 @@ const Viewer = ({
     const { ref: menuDotsContainerRef, height: menuDotsContainerHeight = 0 } =
         useDimensionObserver();
 
-    const onMenuRequestOpen = useCallback(() => setMenuOpened(true), [setMenuOpened]);
+    const onMenuRequestOpen = useCallback(() => {
+        setMenuOpened(true);
+    }, [setMenuOpened]);
     const onMenuRequestClose = useCallback(() => setMenuOpened(false), [setMenuOpened]);
 
     const onClickMenu = useCallback(() => {
         onInteractionPrivate();
-        setMenuOpened(true);
+        setMenuOpened((o) => !o);
     }, [changeIndex, onInteractionPrivate, setMenuOpened]);
 
     const onClickMenuItem = useCallback(
@@ -612,6 +613,7 @@ const Viewer = ({
                                     playing && playbackControls && !playbackcontrolsVisible,
                                 [styles.ready]: ready || withoutScreensTransforms,
                                 [styles.hasInteracted]: hasInteracted,
+                                [styles.isDragging]: isDragging,
                                 [className]: className,
                             },
                         ])}

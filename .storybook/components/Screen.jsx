@@ -1,12 +1,14 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { ScreenProvider } from '../../packages/core/src/contexts/ScreenContext';
 import { ScreenSizeProvider } from '../../packages/core/src/contexts/ScreenSizeContext';
 import { useScreenSizeFromElement } from '../../packages/core/src/hooks';
 import * as MicromagPropTypes from '../../packages/core/src/lib/PropTypes';
 import { getDeviceScreens } from '../../packages/core/src/utils';
 import { ApiProvider } from '../../packages/data/src/contexts/ApiContext';
+
 import styles from './styles/screen.module.scss';
 
 const propTypes = {
@@ -52,6 +54,8 @@ function Screen({
         screens: getDeviceScreens(),
     });
 
+    console.log(screen);
+
     return (
         <div
             className={classNames([
@@ -78,6 +82,7 @@ function Screen({
                 ])}
             >
                 {screenSize.width > 0 && screenSize.height > 0 ? (
+                    // @todo from config? env
                     <ApiProvider baseUrl="http://localhost:58800">
                         <ScreenSizeProvider size={screenSize}>
                             <ScreenProvider

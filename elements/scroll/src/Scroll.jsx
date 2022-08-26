@@ -1,6 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useScroll } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -144,7 +142,6 @@ function Scroll({
                     >
                         <polygon points=".38 11.38 5 16 9.62 11.38 8.56 10.32 5.75 13.13 5.75 1.61 4.25 1.61 4.25 13.13 1.44 10.32 .38 11.38"/>
                     </svg>
-                    {/* <FontAwesomeIcon className={styles.arrow} icon={faArrowDown} /> */}
                 </div>
             ) : null}
         </div>

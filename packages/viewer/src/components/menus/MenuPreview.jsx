@@ -7,14 +7,13 @@ import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, ScreenPreview } from '@micromag/core/components';
 import { useDimensionObserver } from '@micromag/core/hooks';
 import { getStyleFromColor } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
 import ShareOptions from '@micromag/element-share-options';
 
-import StackIcon from '../icons/Stack';
 import MicromagPreview from '../partials/MicromagPreview';
+import MenuScreen from './MenuScreen';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
 
@@ -83,8 +82,7 @@ const ViewerMenuPreview = ({
     className,
 }) => {
     const intl = useIntl();
-    const { width: screenWidth, height: screenHeight } = screenSize || {};
-    const { ref: firstScreenContainerRef, width: thumbWidth = 0 } = useDimensionObserver();
+    // const { ref: firstScreenContainerRef, width: thumbWidth = 0 } = useDimensionObserver();
     const { ref: containerRef, width: contentWidth = 0 } = useDimensionObserver();
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3);
 
@@ -96,10 +94,10 @@ const ViewerMenuPreview = ({
     const { color: brandBackgroundColor = null, image = null } = background || {};
     const { url: brandImageUrl = null } = image || {};
 
-    const borderPrimaryColorStyle = getStyleFromColor(brandPrimaryColor, 'borderColor');
-    const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');
+    // const borderPrimaryColorStyle = getStyleFromColor(brandPrimaryColor, 'borderColor');
+    // const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
-    const { url: brandLogoUrl = null } = brandLogo || {};
+    // const { url: brandLogoUrl = null } = brandLogo || {};
     const brandImageStyle =
         brandImageUrl !== null
             ? {
@@ -107,31 +105,17 @@ const ViewerMenuPreview = ({
               }
             : null;
 
-    const [scrolledBottom, setScrolledBottom] = useState(false);
-    const dragBind = useDrag(
-        ({ direction: [, dy], last, tap }) => {
-            if (!tap && last && scrolledBottom && dy < 0 && onClose !== null) {
-                onClose();
-            }
-        },
-        { filterTaps: true, eventOptions: { capture: true } },
-    );
-
-    const onScrolledBottom = useCallback(() => {
-        setScrolledBottom(true);
-    }, [setScrolledBottom]);
-
-    const onScrolledNotBottom = useCallback(() => {
-        setScrolledBottom(false);
-    }, [setScrolledBottom]);
-
     // @todo could probably use some work to avoid the visual jump from 3 screens to all of them
-    const finalItems = useMemo(() => (!focusable ? items.slice(0, 3) : items), [items, focusable]);
-    const bookmarks = finalItems.reduce((acc, it) => {
-        const { screen = null } = it || {};
-        const { bookmark = null } = screen || {};
-        return bookmark !== null ? [...acc, bookmark] : acc; // merge with array or return original array
-    }, []);
+    const finalItems = useMemo(
+        () => (!focusable ? items.map((s, i) => (i > 3 ? { screenId: s.screenId } : s)) : items),
+        [items, focusable],
+    );
+    // @todo bookmarks
+    // const bookmarks = finalItems.reduce((acc, it) => {
+    //     const { screen = null } = it || {};
+    //     const { bookmark = null } = screen || {};
+    //     return bookmark !== null ? [...acc, bookmark] : acc; // merge with array or return original array
+    // }, []);
 
     const coverScreen = useMemo(() => {
         const { screen = null } = finalItems[0] || {};
@@ -172,9 +156,8 @@ const ViewerMenuPreview = ({
             ])}
             style={{ ...backgroundColorStyle, ...brandImageStyle, width: menuWidth }}
             aria-hidden={focusable ? null : 'true'}
-            {...dragBind()}
         >
-            <div className={styles.header}>
+            {/* <div className={styles.header}>
                 {brandLogoUrl !== null ? (
                     <div
                         className={styles.organisation}
@@ -247,13 +230,9 @@ const ViewerMenuPreview = ({
                         }
                     />
                 </div>
-            </div>
+            </div> */}
             <div className={styles.content} ref={containerRef}>
-                <Scroll
-                    className={styles.scroll}
-                    onScrolledBottom={onScrolledBottom}
-                    onScrolledNotBottom={onScrolledNotBottom}
-                >
+                <Scroll className={styles.scroll}>
                     {showShare ? (
                         <>
                             <div className={styles.shareHeader}>
@@ -303,114 +282,34 @@ const ViewerMenuPreview = ({
                         <nav className={styles.nav}>
                             <ul className={styles.items}>
                                 {finalItems.map((item, index) => {
-                                    const { screenId, current = false, screen, count = 1 } = item;
-                                    const screenAriaLabel = `${intl.formatMessage(
-                                        {
-                                            defaultMessage: 'Screen {index}',
-                                            description: 'Button label',
-                                        },
-                                        { index: index + 1 },
-                                    )}${
-                                        current
-                                            ? ` ${intl.formatMessage({
-                                                  defaultMessage: '(current screen)',
-                                                  description: 'Button label',
-                                              })}`
-                                            : ''
-                                    }`;
-                                    const { bookmark = null } = screen || {};
-                                    const { label: bookmarkLabel = null } = bookmark || {};
+                                    const { screenId, current = false } = item || {};
 
                                     return (
-                                        <>
-                                            {bookmarkLabel ? (
-                                                <li className={styles.bookmark}>
-                                                    <h2 className={styles.bookmarkLabel}>
-                                                        {bookmarkLabel}
-                                                    </h2>
-                                                </li>
-                                            ) : null}
-                                            <li
-                                                className={classNames([
-                                                    styles.item,
-                                                    {
-                                                        [styles.active]: current,
-                                                        [styles.hasLabel]: bookmarkLabel,
-                                                    },
-                                                ])}
-                                                key={`item-${screenId}`}
-                                                style={{
-                                                    width: `${100 / thumbsPerLine}%`,
-                                                }}
-                                            >
-                                                <div className={styles.itemContent}>
-                                                    <div
-                                                        className={classNames([
-                                                            styles.screenContainer,
-                                                            {
-                                                                [styles.isCurrentScreen]: current,
-                                                            },
-                                                        ])}
-                                                        ref={
-                                                            index === 0
-                                                                ? firstScreenContainerRef
-                                                                : null
-                                                        }
-                                                    >
-                                                        {count > 1 ? (
-                                                            <div className={styles.subScreenBadge}>
-                                                                <span
-                                                                    className={
-                                                                        styles.subScreenCount
-                                                                    }
-                                                                >
-                                                                    {count}
-                                                                </span>
-                                                                <StackIcon
-                                                                    className={styles.subScreenIcon}
-                                                                />
-                                                            </div>
-                                                        ) : null}
-                                                        {screenWidth > 0 && screenHeight > 0 ? (
-                                                            <ScreenPreview
-                                                                screenWidth={screenWidth}
-                                                                screenHeight={screenHeight}
-                                                                width={thumbWidth}
-                                                                screen={screen}
-                                                                focusable={focusable}
-                                                                active={focusable}
-                                                                withSize
-                                                            />
-                                                        ) : null}
-                                                        {/* {current ? (
-                                                        <div
-                                                            className={styles.activeScreenBorder}
-                                                            style={borderPrimaryColorStyle}
-                                                        />
-                                                    ) : null} */}
-                                                    </div>
-                                                </div>
-                                                <button
-                                                    type="button"
-                                                    className={styles.screenButton}
-                                                    onClick={() => {
-                                                        if (onClickItem !== null) {
-                                                            onClickItem(item);
-                                                        }
-                                                    }}
-                                                    aria-label={screenAriaLabel}
-                                                    onKeyUp={(e) => {
-                                                        if (
-                                                            e.key === 'Enter' &&
-                                                            onClickItem !== null
-                                                        ) {
-                                                            onClickItem(item);
-                                                        }
-                                                    }}
-                                                    tabIndex={focusable ? '0' : '-1'}
+                                        <li
+                                            className={classNames([
+                                                styles.item,
+                                                {
+                                                    [styles.active]: current,
+                                                },
+                                            ])}
+                                            key={`item-${screenId}`}
+                                            style={{
+                                                width: `${100 / thumbsPerLine}%`,
+                                            }}
+                                        >
+                                            {item === null ? (
+                                                'loading'
+                                            ) : (
+                                                <MenuScreen
+                                                    className={styles.screenPreview}
+                                                    item={item}
+                                                    index={index}
+                                                    screenSize={screenSize}
+                                                    onClick={onClickItem}
+                                                    focusable={focusable}
                                                 />
-                                            </li>
-                                        </>
+                                            )}
+                                        </li>
                                     );
                                 })}
                             </ul>
