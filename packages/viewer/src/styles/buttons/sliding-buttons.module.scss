@@ -1,0 +1,12 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    overflow: hidden;
+    position: relative;
+}
+
+.additional {
+    position: absolute;
+    left: 0;
+}

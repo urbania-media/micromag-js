@@ -1,15 +1,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useMemo, useState } from 'react';
-import { useIntl } from 'react-intl';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button } from '@micromag/core/components';
-import { useDimensionObserver, useTrackEvent, useProgressTransition } from '@micromag/core/hooks';
+import { useTrackEvent, useVerticalDrag } from '@micromag/core/hooks';
+import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 
+import CloseButton from './buttons/CloseButton';
+import MenuButton from './buttons/MenuButton';
+import ShareButton from './buttons/ShareButton';
+import SlidingButtons from './buttons/SlidingButtons';
+import MenuContainer from './menus/MenuContainer';
 import MenuDots from './menus/MenuDots';
+import MenuShare from './menus/MenuShare';
 import MenuPreview from './menus/MenuPreview';
 
 import styles from '../styles/viewer.module.scss';
@@ -31,11 +35,8 @@ const propTypes = {
     withDotItemClick: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
     withoutShareMenu: PropTypes.bool,
-    onRequestOpen: PropTypes.func,
-    onRequestClose: PropTypes.func,
-    onClickItem: PropTypes.func,
+    onClickScreen: PropTypes.func,
     onClickMenu: PropTypes.func,
-    onClickShare: PropTypes.func,
     onClickCloseViewer: PropTypes.func,
     refDots: PropTypes.shape({
         current: PropTypes.any, // eslint-disable-line
@@ -58,11 +59,8 @@ const defaultProps = {
     withDotItemClick: false,
     withoutScreensMenu: false,
     withoutShareMenu: false,
-    onRequestOpen: null,
-    onRequestClose: null,
-    onClickItem: null,
+    onClickScreen: null,
     onClickMenu: null,
-    onClickShare: null,
     onClickCloseViewer: null,
     refDots: null,
 };
@@ -84,22 +82,19 @@ const ViewerMenu = ({
     withDotItemClick,
     withoutScreensMenu,
     withoutShareMenu,
-    onRequestOpen,
-    onRequestClose,
-    onClickItem: customOnClickItem,
+    onClickScreen: customOnClickScreen,
     onClickMenu: customOnClickMenu,
-    onClickShare: customOnClickShare,
     onClickCloseViewer,
     refDots,
 }) => {
-    const intl = useIntl();
     const { components: screens = [], title = null, metadata = null } = story;
     const { description = null } = metadata || {};
     const currentScreen = screens !== null ? screens[currentScreenIndex] || null : null;
     const { id: screenId = null, type: screenType = null } = currentScreen || {};
-    const [showShare, setShowShare] = useState(false);
-    const [isDragging, setIsDragging] = useState(false);
-    const [menuTransitionProgress, setMenuTransitionProgress] = useState(0);
+    const { menuTheme = null } = viewerTheme || {};
+
+    const [menuOpened, setMenuOpened] = useState(false);
+    const [shareOpened, setShareOpened] = useState(false);
 
     const items = useMemo(
         () =>
@@ -144,98 +139,81 @@ const ViewerMenu = ({
         return path;
     }, [shareBasePath]);
 
-    const onDrag = useCallback(
-        ({ active, delta, movement: [, my], velocity: [, vy], canceled, tap }) => {
-            if (canceled || tap) {
-                return;
-            }
+    // @todo sorta not super good here
+    const onOpenMenu = useCallback(() => {
+        setMenuOpened(true);
+        setShareOpened(false);
+        trackScreenEvent('viewer_menu', 'open_screens_menu');
+    }, [setMenuOpened, setShareOpened, trackScreenEvent]);
 
-            const up = delta < 0;
-            const progress = Math.max(0, my) / window.innerHeight;
-            const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
+    const onCloseMenu = useCallback(() => {
+        setMenuOpened(false);
+        setShareOpened(false);
+        trackScreenEvent('viewer_menu', 'close_screens_menu');
+    }, [setMenuOpened, setShareOpened, trackScreenEvent]);
 
-            if (!tap) {
-                setIsDragging(true);
-                setMenuTransitionProgress(progress);
-            }
+    const onOpenShare = useCallback(() => {
+        setShareOpened(true);
+        setMenuOpened(false);
+        trackScreenEvent('viewer_menu', 'open_share_menu');
+    }, [setShareOpened, setMenuOpened, trackScreenEvent]);
 
-            if (!active) {
-                setIsDragging(false);
-                if (reachedThreshold) {
-                    if (up) {
-                        onRequestClose();
-                    } else {
-                        onRequestOpen();
-                    }
-                } else {
-                    setMenuTransitionProgress(0);
-                }
-            }
-        },
-        [setMenuTransitionProgress, setIsDragging, onRequestOpen, onRequestClose],
-    );
-    const menuDragBind = useDrag(onDrag, { axis: 'y', filterTaps: true });
+    const onCloseShare = useCallback(() => {
+        setShareOpened(false);
+        setMenuOpened(false);
+        trackScreenEvent('viewer_menu', 'close_share_menu');
+    }, [setShareOpened, setMenuOpened, trackScreenEvent]);
 
-    const { styles: menuPreviewStyles = {} } = useProgressTransition({
-        value: menuTransitionProgress,
-        fn: (p) => ({
-            height: `${p * 100}%`,
-            pointerEvents: p < 0.25 ? 'none' : 'auto',
-        }),
-        params: {
-            immediate: isDragging,
-            config: { tension: 400, friction: 35 },
-        },
-    });
-
-    useEffect(() => {
-        setMenuTransitionProgress(opened ? 1 : 0);
-    }, [opened, setMenuTransitionProgress]);
-
-    // handle preview menu item click
-    const onClickMenu = useCallback(
-        (index) => {
-            if (customOnClickMenu !== null) {
-                customOnClickMenu(index);
-            }
-            trackScreenEvent('viewer_menu', 'click_open');
-        },
-        [customOnClickMenu, trackScreenEvent],
-    );
-
-    const onClickItem = useCallback(
-        (item) => {
-            if (customOnClickItem !== null) {
-                customOnClickItem(item);
+    const onClickScreen = useCallback(
+        (screen) => {
+            setMenuOpened(false);
+            if (customOnClickScreen !== null) {
+                customOnClickScreen(screen);
             }
             const index = items.findIndex(({ id }) => id === screenId);
             trackScreenEvent('viewer_menu', 'click_screen_change', `Screen ${index + 1}`);
         },
-        [customOnClickItem, items, screenId, trackScreenEvent],
+        [customOnClickScreen, setMenuOpened, items, screenId, trackScreenEvent],
     );
 
-    const onClickClose = useCallback(() => {
-        if (onRequestClose !== null) {
-            onRequestClose();
-        }
-        trackScreenEvent('viewer_menu', 'click_close');
-    }, [onRequestClose, setShowShare, trackScreenEvent]);
-
-    const onClickShare = useCallback(() => {
-        if (customOnClickShare !== null) {
-            customOnClickShare();
-        }
-        trackScreenEvent('viewer_menu', 'click_share');
-    }, [customOnClickShare, setShowShare, trackScreenEvent]);
-
-    const onStoryShared = useCallback(
+    const onShare = useCallback(
         (type) => {
+            // @todo display something to say thanks for sharing?
             trackScreenEvent('viewer_menu', 'shared_story', type);
         },
-        [setShowShare, trackScreenEvent],
+        [trackScreenEvent],
     );
 
-    const { menuTheme = null } = viewerTheme || {};
+    const {
+        bind: bindMenuDrag,
+        dragging: isDraggingMenu,
+        progress: menuProgress,
+    } = useVerticalDrag({
+        value: menuOpened ? 1 : 0,
+        disabled: menuOpened,
+        onSwipeUp: onCloseMenu,
+        onSwipeDown: onOpenMenu,
+    });
+
+    const {
+        bind: bindShareDrag,
+        dragging: isDraggingShare,
+        progress: shareProgress,
+    } = useVerticalDrag({
+        value: shareOpened ? 1 : 0,
+        disabled: shareOpened,
+        onSwipeUp: onCloseShare,
+        onSwipeDown: onOpenShare,
+    });
+
+    const keyboardShortcuts = useMemo(
+        () => ({
+            m: () => !menuOpened ? onOpenMenu() : onCloseMenu(),
+            escape: () => onCloseMenu(),
+        }),
+        [menuOpened, onOpenMenu, onCloseMenu],
+    );
+    useKeyboardShortcuts(keyboardShortcuts);
 
     return (
         <>
@@ -249,61 +227,62 @@ const ViewerMenu = ({
                 ])}
                 ref={refDots}
                 style={{ width: menuWidth }}
-                {...menuDragBind()}
             >
                 <nav className={styles.menuTopContainer}>
                     {!withoutShareMenu ? (
-                        <div className={classNames([styles.menuItem, styles.menuShare])}>
-                            <Button
-                                className={styles.menuButton}
-                                labelClassName={styles.menuLabel}
-                                onClick={onClickShare}
-                                label={intl.formatMessage({
-                                    defaultMessage: 'Share',
-                                    description: 'Button label',
-                                })}
-                                icon={
-                                    <svg
-                                        className={styles.menuIcon}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="10"
-                                        height="16"
-                                        viewBox="0 0 10 16"
-                                        fill="currentColor"
-                                        {...menuTheme}
-                                    >
-                                        <polygon points="8.5 14.5 1.5 14.5 1.5 8 0 8 0 16 10 16 10 8 8.5 8 8.5 14.5" />
-                                        <polygon points="9.62 4.62 5 0 0.38 4.62 1.44 5.68 4.25 2.87 4.25 11.26 5.75 11.26 5.75 2.87 8.56 5.68 9.62 4.62" />
-                                    </svg>
-                                }
+                        <div
+                            className={classNames([styles.menuItem, styles.menuShare])}
+                            {...bindShareDrag()}
+                        >
+                            <SlidingButtons
+                                className={styles.slidingButton}
+                                current={shareProgress}
+                                immediate={isDraggingShare}
+                                buttons={[ShareButton, CloseButton]}
+                                buttonsProps={[
+                                    {
+                                        key: 'share',
+                                        className: styles.menuButton,
+                                        onClick: onOpenShare,
+                                        theme: menuTheme,
+                                    },
+                                    {
+                                        key: 'close-share',
+                                        className: styles.menuButton,
+                                        onClick: onCloseShare,
+                                        theme: menuTheme,
+                                        iconPosition: 'left',
+                                    },
+                                ]}
                             />
                         </div>
                     ) : null}
 
                     {!withoutScreensMenu ? (
-                        <div className={classNames([styles.menuItem, styles.menuScreens])}>
-                            <Button
-                                className={styles.menuButton}
-                                labelClassName={styles.menuLabel}
-                                label={intl.formatMessage({
-                                    defaultMessage: 'Menu',
-                                    description: 'Button label',
-                                })}
-                                iconPosition="right"
-                                icon={
-                                    <svg
-                                        className={styles.menuIcon}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="10"
-                                        height="16"
-                                        viewBox="0 0 10 16"
-                                        fill="currentColor"
-                                        {...menuTheme}
-                                    >
-                                        <rect width="10" height="16" />
-                                    </svg>
-                                }
-                                onClick={onClickMenu}
+                        <div
+                            className={classNames([styles.menuItem, styles.menuScreens])}
+                            {...bindMenuDrag()}
+                        >
+                            <SlidingButtons
+                                className={styles.slidingButton}
+                                current={menuProgress}
+                                immediate={isDraggingMenu}
+                                buttons={[MenuButton, CloseButton]}
+                                buttonsProps={[
+                                    {
+                                        key: 'menu',
+                                        className: styles.menuButton,
+                                        onClick: onOpenMenu,
+                                        theme: menuTheme,
+                                    },
+                                    {
+                                        key: 'close-menu',
+                                        className: styles.menuButton,
+                                        onClick: onCloseMenu,
+                                        theme: menuTheme,
+                                        iconPosition: 'right',
+                                    },
+                                ]}
                             />
                         </div>
                     ) : null}
@@ -313,8 +292,8 @@ const ViewerMenu = ({
                     {...menuTheme}
                     direction="horizontal"
                     items={items}
-                    onClickItem={onClickItem}
-                    onClickMenu={onClickMenu}
+                    onClickDot={onClickScreen}
+                    onClickMenu={onOpenMenu}
                     closeable={closeable}
                     withItemClick={withDotItemClick}
                     withoutScreensMenu={withoutScreensMenu}
@@ -324,30 +303,46 @@ const ViewerMenu = ({
                 />
             </div>
 
-            <div className={styles.menuPreviewContainer} style={{pointerEvents: 'none'}}>
-                <div className={styles.menuPreviewInner} style={menuPreviewStyles}>
-                    <MenuPreview
-                        viewerTheme={viewerTheme}
-                        className={styles.menuPreview}
-                        screenSize={screenSize}
-                        title={title}
-                        description={description}
-                        menuWidth={menuWidth}
-                        focusable={opened}
-                        items={items}
-                        currentScreenIndex={currentScreenIndex}
-                        showShare={showShare}
-                        shareUrl={shareUrl}
-                        onShare={onStoryShared}
-                        onClickItem={onClickItem}
-                        onClose={onClickClose}
-                        toggleFullscreen={toggleFullscreen}
-                        fullscreenActive={fullscreenActive}
-                        fullscreenEnabled={fullscreenEnabled}
-                        style={menuPreviewStyles}
-                    />
-                </div>
-            </div>
+            <MenuContainer
+                className={styles.menuContainerScreens}
+                transitionProgress={menuProgress}
+                immediate={isDraggingMenu}
+            >
+                <MenuPreview
+                    viewerTheme={viewerTheme}
+                    className={styles.menuPreview}
+                    screenSize={screenSize}
+                    menuWidth={menuWidth}
+                    focusable={opened}
+                    items={items}
+                    currentScreenIndex={currentScreenIndex}
+                    shareUrl={shareUrl}
+                    onShare={onShare}
+                    onClickScreen={onClickScreen}
+                    onClose={onCloseMenu}
+                    toggleFullscreen={toggleFullscreen}
+                    fullscreenActive={fullscreenActive}
+                    fullscreenEnabled={fullscreenEnabled}
+                />
+            </MenuContainer>
+
+            <MenuContainer className={styles.menuContainerShare} transitionProgress={shareProgress}
+                immediate={isDraggingMenu}
+            >
+                <MenuShare
+                    viewerTheme={viewerTheme}
+                    className={styles.menuShare}
+                    title={title}
+                    description={description}
+                    menuWidth={menuWidth}
+                    focusable={opened}
+                    items={items}
+                    currentScreenIndex={currentScreenIndex}
+                    shareUrl={shareUrl}
+                    onShare={onShare}
+                    onClose={onCloseShare}
+                />
+            </MenuContainer>
         </>
     );
 };

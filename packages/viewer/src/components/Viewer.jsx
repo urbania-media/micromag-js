@@ -30,7 +30,7 @@ import useScreenInteraction from '../hooks/useScreenInteraction';
 
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
-import NavigationButton from './partials/NavigationButton';
+import NavigationButton from './buttons/NavigationButton';
 import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
 
@@ -142,7 +142,7 @@ const Viewer = ({
     visitor,
     tapNextScreenWidthPercent,
     neighborScreensActive,
-    neighborScreensMounted,
+    // neighborScreensMounted,
     storyIsParsed,
     // landscapeScreenMargin,
     // landscapeSmallScreenScale,
@@ -260,9 +260,8 @@ const Viewer = ({
     const screenContainerHeight = screenScale !== null ? screenHeight * screenScale : screenHeight;
 
     const hasSize = screenWidth > 0 && screenHeight > 0;
-    const ready = hasSize; // && fontsLoaded;
+    const ready = hasSize;
 
-    // Track screen view
     const trackingEnabled = isView;
     useEffect(() => {
         if (trackingEnabled && currentScreen !== null) {
@@ -501,34 +500,19 @@ const Viewer = ({
         enabled: fullscreenEnabled,
     } = useFullscreen(containerRef.current || null);
 
-    // swipe menu open
-    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled; // ?
-    const [menuOpened, setMenuOpened] = useState(false);
+    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
 
     // Get element height
     const { ref: menuDotsContainerRef, height: menuDotsContainerHeight = 0 } =
         useDimensionObserver();
 
-    const onMenuRequestOpen = useCallback(() => {
-        setMenuOpened(true);
-    }, [setMenuOpened]);
-    const onMenuRequestClose = useCallback(() => setMenuOpened(false), [setMenuOpened]);
-
-    const onClickMenu = useCallback(() => {
-        onInteractionPrivate();
-        setMenuOpened((o) => !o);
-    }, [changeIndex, onInteractionPrivate, setMenuOpened]);
-
-    const onClickMenuItem = useCallback(
+    const onClickScreen = useCallback(
         ({ screenId: itemScreenId }) => {
             onInteractionPrivate();
             const index = screens.findIndex(({ id }) => id === itemScreenId);
             changeIndex(index);
-            if (menuOpened) {
-                setMenuOpened(false);
-            }
         },
-        [onInteractionPrivate, changeIndex, menuOpened, setMenuOpened],
+        [onInteractionPrivate, changeIndex],
     );
 
     const onContextMenu = useCallback(
@@ -542,21 +526,19 @@ const Viewer = ({
         [landscape],
     );
 
+    // hmm?
     const overscrollStyle = (
         <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
     );
 
-    // Keyboard Event
     const keyboardShortcuts = useMemo(
         () => ({
             f: () => toggleFullscreen(),
-            m: () => setMenuOpened(!menuOpened),
-            escape: () => setMenuOpened(false),
             arrowleft: () => gotoPreviousScreen(),
             arrowright: () => gotoNextScreen(),
             ' ': () => gotoNextScreen(),
         }),
-        [menuOpened, setMenuOpened, gotoPreviousScreen, gotoNextScreen],
+        [gotoPreviousScreen, gotoNextScreen],
     );
     useKeyboardShortcuts(keyboardShortcuts, {
         disabled: renderContext !== 'view',
@@ -624,7 +606,6 @@ const Viewer = ({
                             <ViewerMenu
                                 story={parsedStory}
                                 currentScreenIndex={screenIndex}
-                                opened={menuOpened}
                                 withShadow={menuOverScreen && !withoutMenuShadow}
                                 toggleFullscreen={toggleFullscreen}
                                 fullscreenActive={fullscreenActive}
@@ -634,12 +615,8 @@ const Viewer = ({
                                 screenSize={screenSize}
                                 menuWidth={menuIsScreenWidth ? screenContainerWidth : null}
                                 trackingEnabled={trackingEnabled}
-                                onClickItem={onClickMenuItem}
-                                onClickMenu={onClickMenu}
-                                onClickShare={onClickMenu}
+                                onClickScreen={onClickScreen}
                                 onClickCloseViewer={onCloseViewer}
-                                onRequestOpen={onMenuRequestOpen}
-                                onRequestClose={onMenuRequestClose}
                                 withDotItemClick={screenContainerWidth > 400}
                                 withoutScreensMenu={withoutScreensMenu}
                                 withoutShareMenu={withoutShareMenu}

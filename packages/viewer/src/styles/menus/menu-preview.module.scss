@@ -19,41 +19,14 @@
             pointer-events: none;
         }
     }
-
-    // &.showShare {
-    //     .closeButton {
-    //         margin-left: 0;
-    //     }
-    // }
 }
 
-// @todo might not end up in there anymore
-// .header {
-//     position: fixed;
-//     z-index: 200;
-//     width: 100%;
-//     top: 0;
-//     left: 0;
-//     padding: 10px;
-//     display: flex;
-//     align-items: center;
-//     background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgb(0, 0, 0, 0));
-// }
-
-// .button {
-//     @extend %reset-button;
-//     @extend %focus-outline;
-
-//     display: flex;
-//     align-items: center;
-// }
-
 .buttons {
-    display: flex;
-    flex-grow: 1;
     position: relative;
-    z-index: 3; // above `.subScreenBadge`
+    z-index: 3;
+    display: flex;
     align-items: center;
+    flex-grow: 1;
 }
 
 .organisation {
@@ -72,78 +45,6 @@
     display: block;
     width: 1rem;
     height: auto;
-}
-
-.shareHeader {
-    max-width: 600px;
-    margin: 3rem 0.5rem 1rem;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.15);
-}
-
-.shareMode {
-    margin-top: 0.5rem;
-
-    label {
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-        line-height: 1.4;
-        user-select: none;
-    }
-
-    input {
-        margin-right: 0.5rem;
-        appearance: none;
-        width: 1rem;
-        height: 1rem;
-        border: 2px solid $white;
-        transition: transform 0.3s $ease-out-ramp;
-        animation: bump 0.5s 1 $ease-in-out-sine alternate-reverse forwards;
-        border-radius: 4px;
-
-        &:active {
-            transition: transform 0.3s $ease-in-kickback;
-            transform: scale(1.3);
-        }
-
-        &:checked {
-            background-color: $white;
-        }
-    }
-}
-
-.shareOptions {
-    margin-bottom: 3rem;
-}
-
-.shareOptionsItem {
-    border-top: 1px solid rgba($white, 0.25);
-
-    + .shareOptionsItem {
-        margin-top: 0;
-    }
-
-    &:last-child {
-        border-bottom: 1px solid rgba($white, 0.25);
-
-        .shareOptionsButton {
-            padding-bottom: 0.5rem;
-        }
-    }
-}
-
-.shareOptionsButton {
-    border-radius: 0;
-    background-color: transparent;
-    padding: 0 0.25rem;
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: $black !important;
-        }
-    }
 }
 
 .title {

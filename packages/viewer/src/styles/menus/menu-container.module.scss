@@ -1,0 +1,21 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %fullscreen;
+    z-index: 3;
+    top: 0;
+    color: $white;
+    padding: 3rem 0.5rem 0.5rem;
+}
+
+.heightContainer {
+    overflow: hidden;
+}
+
+.inner {
+    height: 100%;
+    padding: 0.5rem;
+    background-color: rgba($black, 0.5);
+    backdrop-filter: blur(0.75rem);
+}

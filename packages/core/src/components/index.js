@@ -1,6 +1,7 @@
 export { default as Button } from './buttons/Button';
 export { default as Buttons } from './buttons/Buttons';
 export { default as BackButton } from './buttons/Back';
+export { default as IconButton } from './buttons/IconButton';
 
 export { default as Form } from './forms/Form';
 export { default as FormPanel } from './forms/FormPanel';

@@ -25,5 +25,6 @@ export * from './useScreenSize';
 export * from './useSwipe';
 export { default as useThemeParser } from './useThemeParser';
 export * from './useTracking';
-export { default as useWindowEvent } from './useWindowEvent';
 export { default as useTransitionStyles } from './useTransitionStyles';
+export { default as useVerticalDrag } from './useVerticalDrag';
+export { default as useWindowEvent } from './useWindowEvent';

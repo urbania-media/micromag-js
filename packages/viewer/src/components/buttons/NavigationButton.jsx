@@ -5,11 +5,11 @@ import { FormattedMessage } from 'react-intl';
 
 import { Button } from '@micromag/core/components';
 
-import styles from '../../styles/partials/navigation-button.module.scss';
+import styles from '../../styles/buttons/navigation-button.module.scss';
 
 const propTypes = {
     direction: PropTypes.oneOf(['previous', 'next']),
-    onClick: null,
+    onClick: PropTypes.func,
     className: PropTypes.string,
 };
 

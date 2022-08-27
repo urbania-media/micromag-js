@@ -35,13 +35,6 @@
             opacity: 0;
         }
     }
-
-    // &.ready {
-    //     .menuNavContainer,
-    //     .menuPreviewContainer {
-    //         visibility: visible;
-    //     }
-    // }
 }
 
 .content {
@@ -54,15 +47,11 @@
 }
 
 // Viewer Menu: Two buttons, the "menu dots", the menu overlays
-
 .menuNavContainer {
-    // visibility: hidden;
     position: absolute;
     z-index: 4;
     top: 0;
-    // right: 50%;
     width: 100%;
-    // transform: translateX(50%);
     touch-action: none;
     transition:
         opacity 0.5s $ease-in-out-sine,
@@ -93,32 +82,24 @@
 .menuTopContainer {
     display: flex;
     align-items: center;
-    padding: 8px 10px 0;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.2s $ease-in-out-sine;
 }
 
 .menuItem {
     display: block;
+    width: 50%;
+}
+
+.menuScreens {
+    text-align: right;
+}
+
+.slidingButton {
+    display: inline-block;
 }
 
 .menuButton {
-    @extend %reset-button;
-    @extend %focus-outline;
-
-    display: flex;
-    align-items: center;
-    transform-origin: 0 50%;
-    border-radius: 0;
-}
-
-.menuIcon {
-    display: block;
-    width: 1rem;
-    height: auto;
-}
-
-.menuShare {
-    margin-right: auto;
+    padding: 0.5rem;
 }
 
 .dots {
@@ -133,27 +114,19 @@
     }
 }
 
-.menuPreviewContainer {
-    @extend %fullscreen;
-    z-index: 3;
-    top: 0;
-    color: $white;
-    padding: 3rem 0.5rem 0.5rem;
+.menuContainerShare,
+.menuContainerScreens {
+    @media screen and (min-width: 1024px) {
+        max-width: 50vw;
+    }
 }
 
-.menuPreviewInner {
-    // @extend %fullscreen;
-    overflow: hidden;
-}
-
-.menuPreview {
-    padding: 0.5rem;
-    background-color: rgba($black, 0.5);
-    backdrop-filter: blur(0.75rem);
+.menuContainerScreens {
+    left: auto;
+    right: 0;
 }
 
 // Viewer Navigation: Left/Right icons on desktop
-
 .navButton {
     display: none;
     visibility: hidden;
@@ -208,7 +181,6 @@
 }
 
 // Playback Controls for Video/Audio screen types
-
 .playbackControls {
     position: absolute;
     z-index: 2;

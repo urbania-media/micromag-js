@@ -1,0 +1,43 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %reset-button;
+    @extend %focus-outline;
+
+    display: flex;
+    align-items: center;
+    transform-origin: 0 50%;
+    border-radius: 0;
+
+    @media (hover: hover) {
+        &:hover {
+            .icon,
+            .label {
+                transform: scale(1.1);
+                transition: transform 0.3s $ease-in-yo;
+            }
+        }
+    }
+
+    &:active {
+        .icon,
+        .label {
+            transform: scale(1);
+            transition: transform 0.3s $ease-in-kickback;
+        }
+    }
+}
+
+.label {
+    font-weight: bold;
+    user-select: none;
+}
+
+.icon {
+    svg {
+        display: block;
+        width: 1rem;
+        height: auto;
+    }
+}

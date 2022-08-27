@@ -50,26 +50,6 @@
         }
     }
 
-    &.withIcon.withAnimations {
-        @media (hover: hover) {
-            &:hover {
-                .icon,
-                .label {
-                    transform: scale(1.1);
-                    transition: transform 0.3s $ease-in-yo;
-                }
-            }
-        }
-
-        &:active {
-            .icon,
-            .label {
-                transform: scale(1);
-                transition: transform 0.3s $ease-in-kickback;
-            }
-        }
-    }
-
     &.withIconColumns {
         display: inline-flex;
         flex-direction: row;

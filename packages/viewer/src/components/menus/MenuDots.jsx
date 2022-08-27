@@ -15,7 +15,7 @@ import styles from '../../styles/menus/menu-dots.module.scss';
 const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
     items: MicromagPropTypes.menuItems,
-    onClickItem: PropTypes.func,
+    onClickDot: PropTypes.func,
     onClickMenu: PropTypes.func,
     colors: PropTypes.shape({
         primary: PropTypes.string,
@@ -31,7 +31,7 @@ const propTypes = {
 const defaultProps = {
     direction: 'horizontal',
     items: [],
-    onClickItem: null,
+    onClickDot: null,
     onClickMenu: null,
     colors: null,
     closeable: false,
@@ -44,7 +44,7 @@ const defaultProps = {
 const ViewerMenuDots = ({
     direction,
     items,
-    onClickItem,
+    onClickDot,
     onClickMenu,
     colors,
     closeable,
@@ -89,8 +89,8 @@ const ViewerMenuDots = ({
                             count={count}
                             subIndex={subIndex}
                             onClick={() => {
-                                if ((withItemClick || withoutScreensMenu) && onClickItem !== null) {
-                                    onClickItem(item);
+                                if ((withItemClick || withoutScreensMenu) && onClickDot !== null) {
+                                    onClickDot(item);
                                 } else if (!withItemClick && onClickMenu !== null) {
                                     onClickMenu();
                                 }

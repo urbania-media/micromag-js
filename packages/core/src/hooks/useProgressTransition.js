@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { useTransitionStyles } from './index';
+import useTransitionStyles from './useTransitionStyles';
 
 const castToNumber = (t) => {
     const isNumber = typeof t === 'number';
