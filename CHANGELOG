@@ -2,6 +2,14 @@
 
 This is rather free-form for now, but eventually this will be properly timestamped, and will mention the version the changes apply to!
 
+2022-08-27 Fred Mercy <fred@folkloreinc.ca>
+
+    * Added a new hook `useProgressTransition` which leverages the `useTransitionStyles` and `useSpring` hooks, and allows for tweening styles that follow the value of a state variable
+    * Added a new hook `useVerticalDrag`
+    * Changed the way the main navigation menu is triggered and animated to leverage these new hooks
+    * Added gestures for share menu (MenuShare.jsx) as well as for the screens menu (MenuPreview.jsx)
+    * Fixed issue with mute button not appearing on an `Audio` type screen
+
 2022-08-22 Fred Mercy <fred@folkloreinc.ca>
 
     * Added new hook `useTransitionStyles` to help when working with `use-spring` and `use-gesture`
