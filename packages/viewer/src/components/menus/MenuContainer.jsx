@@ -25,6 +25,7 @@ const ViewerMenuContainer = ({ className, transitionProgress, immediate, childre
         value: transitionProgress,
         fn: (p) => ({
             height: `${p * 100}%`,
+            padding: `${p * 0.5}rem 0.5rem`,
             pointerEvents: p < 0.25 ? 'none' : 'auto',
         }),
         params: {

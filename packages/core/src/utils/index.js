@@ -2,6 +2,7 @@ export { default as convertStyleToString } from './convertStyleToString';
 export { default as copyToClipboard } from './copyToClipboard';
 export { default as createNullableOnChange } from './createNullableOnChange';
 export { default as createUseEvent } from './createUseEvent';
+export { default as easings } from './easings';
 export { default as getColorAsString } from './getColorAsString';
 export { default as getComponentFromName } from './getComponentFromName';
 export { default as getDeviceScreens } from './getDeviceScreens';

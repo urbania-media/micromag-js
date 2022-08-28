@@ -53,9 +53,7 @@
     top: 0;
     width: 100%;
     touch-action: none;
-    transition:
-        opacity 0.5s $ease-in-out-sine,
-        background-image 0.5s $ease-in-out-sine;
+    transition: opacity 0.5s $ease-in-out-sine, background-image 0.5s $ease-in-out-sine;
 
     // if playing a media and the controls are "collapsed", fade the buttons, too
     .fadeMenu & {
@@ -153,11 +151,6 @@
 .screensFrame {
     @extend %fullscreen;
     touch-action: none;
-    cursor: grab;
-
-    .isDragging & {
-        cursor: grabbing;
-    }
 }
 
 .screenContainer {
@@ -166,17 +159,23 @@
 
     display: flex;
     height: 100%;
+    opacity: 0; // transitions styles will override this one
+    cursor: grab;
 
-    .screen {
-        @extend %fullscreen;
-        pointer-events: none;
+    .isDragging & {
+        cursor: grabbing;
     }
 
-    &.current {
-        .screen {
-            pointer-events: auto;
-            touch-action: none;
-        }
+    .withoutGestures & {
+        cursor: inherit;
+    }
+}
+
+.screen {
+    pointer-events: none;
+
+    .current & {
+        pointer-events: auto;
     }
 }
 

@@ -190,6 +190,7 @@ const ViewerMenu = ({
         progress: menuProgress,
     } = useVerticalDrag({
         value: menuOpened ? 1 : 0,
+        maxDistance: window.innerHeight * 0.75,
         disabled: menuOpened,
         onSwipeUp: onCloseMenu,
         onSwipeDown: onOpenMenu,
@@ -201,6 +202,7 @@ const ViewerMenu = ({
         progress: shareProgress,
     } = useVerticalDrag({
         value: shareOpened ? 1 : 0,
+        maxDistance: window.innerHeight * 0.75,
         disabled: shareOpened,
         onSwipeUp: onCloseShare,
         onSwipeDown: onOpenShare,
@@ -306,14 +308,13 @@ const ViewerMenu = ({
             <MenuContainer
                 className={styles.menuContainerScreens}
                 transitionProgress={menuProgress}
-                immediate={isDraggingMenu}
-            >
+                immediate={isDraggingMenu}>
                 <MenuPreview
                     viewerTheme={viewerTheme}
                     className={styles.menuPreview}
                     screenSize={screenSize}
                     menuWidth={menuWidth}
-                    focusable={opened}
+                    focusable={menuOpened}
                     items={items}
                     currentScreenIndex={currentScreenIndex}
                     shareUrl={shareUrl}
@@ -335,7 +336,7 @@ const ViewerMenu = ({
                     title={title}
                     description={description}
                     menuWidth={menuWidth}
-                    focusable={opened}
+                    focusable={shareOpened}
                     items={items}
                     currentScreenIndex={currentScreenIndex}
                     shareUrl={shareUrl}

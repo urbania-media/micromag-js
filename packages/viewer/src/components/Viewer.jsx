@@ -69,6 +69,8 @@ const propTypes = {
     withoutMenuShadow: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
     withoutNavigationArrow: PropTypes.bool,
+    withoutNeighborScreens: PropTypes.bool,
+    withoutTransitions: PropTypes.bool,
     withLandscapeSiblingsScreens: PropTypes.bool,
     withNavigationHint: PropTypes.bool,
     withoutPlaybackControls: PropTypes.bool,
@@ -113,7 +115,9 @@ const defaultProps = {
     withoutShareMenu: false,
     withoutMenuShadow: false,
     withoutFullscreen: false,
-    withLandscapeSiblingsScreens: false,
+    withoutNeighborScreens: false,
+    withoutTransitions: false,
+    withLandscapeSiblingsScreens: false, // @todo investigate possible refac'
     withNavigationHint: false,
     withoutNavigationArrow: false,
     withoutPlaybackControls: false,
@@ -154,6 +158,8 @@ const Viewer = ({
     withoutMenuShadow,
     withoutFullscreen, // eslint-disable-line no-unused-vars
     withoutNavigationArrow,
+    withoutNeighborScreens,
+    withoutTransitions,
     withLandscapeSiblingsScreens,
     withNavigationHint,
     withoutPlaybackControls,
@@ -296,7 +302,7 @@ const Viewer = ({
                 return {
                     opacity: 1 - 0.75 * clamped,
                     transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
-                    zIndex: i,
+                    zIndex: screens.length - i,
                 };
             }),
         params: {
@@ -317,8 +323,9 @@ const Viewer = ({
                 return {
                     opacity,
                     transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
-                    boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
-                    zIndex: Math.abs(clamped + 1),
+                    // boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
+                    // zIndex: Math.abs(clamped + 1),
+                    zIndex: i,
                 };
             }),
         params: {
@@ -590,6 +597,7 @@ const Viewer = ({
                             {
                                 [styles.landscape]: landscape,
                                 [styles.withSiblings]: withLandscapeSiblingsScreens,
+                                [styles.withoutGestures]: withoutGestures,
                                 [styles.hideMenu]: !menuVisible,
                                 [styles.fadeMenu]:
                                     playing && playbackControls && !playbackcontrolsVisible,
@@ -647,12 +655,14 @@ const Viewer = ({
                                         const current = i === parseInt(screenIndex, 10);
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
-                                            i <= screenIndex + neighborScreensActive;
+                                            i <= screenIndex + neighborScreensActive &&
+                                            !withoutTransitions;
 
-                                        const screenStyles =
-                                            isView && active
-                                                ? TRANSITION_TYPES[transitionType][i]
-                                                : {};
+                                        const screenStyles = active
+                                            ? TRANSITION_TYPES[transitionType][i]
+                                            : {
+                                                opacity: current ? 1 : 0,
+                                            };
 
                                         return (
                                             <div
@@ -662,12 +672,11 @@ const Viewer = ({
                                                     styles.screenContainer,
                                                     {
                                                         [styles.current]: current,
-                                                        [styles.visible]:
-                                                            current || withLandscapeSiblingsScreens,
+                                                        [styles.active]: active,
                                                     },
                                                 ])}
                                             >
-                                                {active && screen !== null ? (
+                                                {screen !== null ? (
                                                     <ViewerScreen
                                                         className={styles.screen}
                                                         screen={screen}

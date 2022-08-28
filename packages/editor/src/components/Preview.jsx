@@ -163,7 +163,9 @@ const EditorPreview = ({
                                         interactions={null}
                                         renderContext="edit"
                                         onScreenChange={onScreenChange}
+                                        neighborScreensActive={0}
                                         withLandscapeSiblingsScreens={false}
+                                        withoutTransitions
                                         withoutGestures
                                         withoutMenu
                                     />
