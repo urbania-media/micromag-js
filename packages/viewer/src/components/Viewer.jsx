@@ -292,7 +292,7 @@ const Viewer = ({
 
     const springParams = useMemo(
         () => ({
-            immediate: isDragging,
+            // immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
         }),
         [isDragging],
@@ -704,7 +704,7 @@ const Viewer = ({
                                                   opacity: current ? 1 : 0,
                                               };
 
-                                        console.log({ screenStyles, active, index: i });
+                                        {/* console.log({ screenStyles, active, index: i }); */}
 
                                         return (
                                             <div
@@ -714,7 +714,6 @@ const Viewer = ({
                                                     styles.screenContainer,
                                                     {
                                                         [styles.current]: current,
-                                                        [styles.active]: active && withNeighborScreens,
                                                     },
                                                 ])}
                                             >
