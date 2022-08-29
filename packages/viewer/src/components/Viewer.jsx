@@ -290,30 +290,26 @@ const Viewer = ({
         setTransitionType(newType);
     }, [ready, landscape, menuOverScreen, onViewModeChange, setTransitionType]);
 
-    const { styles: carouselTransitionStyles = {} } = useProgressTransition({
-        value: screenTransition,
-        fn: (p) =>
-            screens.map((s, i) => {
-                const t = i - p;
-                if (Math.abs(t) > 4) return {};
-                const clamped = Math.min(1, Math.max(0, Math.abs(t)));
-                return {
-                    opacity: 1 - 0.75 * clamped,
-                    transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
-                    zIndex: screens.length - i,
-                };
-            }),
-        params: {
+    const springParams = useMemo(
+        () => ({
             immediate: isDragging,
             config: SPRING_CONFIG_TIGHT,
-        },
-    });
-
-    const springParams = useMemo(() => ({
-        immediate: isDragging,
-        config: SPRING_CONFIG_TIGHT,
-    }), [isDragging]);
+        }),
+        [isDragging],
+    );
     const screenProgress = useSpringProgress(screenTransition, springParams);
+
+    // const carouselTransitionStyles
+    // const { styles:  = {} } = useProgressTransition({
+    //     value: screenTransition,
+    //     fn: (p) =>
+    //         ,
+    //     params: {
+    //         immediate: isDragging,
+    //         config: SPRING_CONFIG_TIGHT,
+    //     },
+    // });
+
     // const { styles: stackTransitionStyles = {} } = useProgressTransition({
     //     value: screenTransition,
     //     fn: computeScreensStyles,
@@ -322,11 +318,39 @@ const Viewer = ({
     //         config: SPRING_CONFIG_TIGHT,
     //     },
     // });
-    const stackTransitionStyles = useMemo(
-        () =>
-            screens.map((s, i) => {
-                const t = i - screenProgress;
-                if (Math.abs(t) > 4) return {};
+    // const screenTransitionStyles = useMemo(
+    //     () =>
+    //     transitionType === 'stack' ? screens.map((s, i) => {
+    //             const t = i - screenProgress;
+    //             if (Math.abs(t) > 4) return {};
+    //             const clamped = Math.min(1, Math.max(0, t));
+    //             const invert = Math.min(1, Math.max(0, -t));
+    //             const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
+    //             return {
+    //                 opacity,
+    //                 transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
+    //                 // boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
+    //                 // zIndex: Math.abs(clamped + 1),
+    //                 zIndex: i,
+    //             };
+    //         }) : screens.map((s, i) => {
+    //             const t = i - screenProgress;
+    //             if (Math.abs(t) > 4) return {};
+    //             const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+    //             return {
+    //                 opacity: 1 - 0.75 * clamped,
+    //                 transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
+    //                 zIndex: screens.length - i,
+    //             };
+    //         }),
+    //     [screens, screenProgress],
+    // );
+
+    const computeScreenStyle = useCallback(
+        (index, progress) => {
+            if (transitionType === 'stack') {
+                const t = index - progress;
+                // if (Math.abs(t) > 4) return {};
                 const clamped = Math.min(1, Math.max(0, t));
                 const invert = Math.min(1, Math.max(0, -t));
                 const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
@@ -335,16 +359,25 @@ const Viewer = ({
                     transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
                     // boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
                     // zIndex: Math.abs(clamped + 1),
-                    zIndex: i,
+                    zIndex: index,
                 };
-            }),
-        [screens, screenProgress],
+            }
+            const t = index - progress;
+            // if (Math.abs(t) > 4) return {};
+            const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+            return {
+                opacity: 1 - 0.75 * clamped,
+                transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
+                zIndex: screens.length - index,
+            };
+        },
+        [screens, transitionType],
     );
 
-    const TRANSITION_TYPES = {
-        stack: stackTransitionStyles || {},
-        carousel: carouselTransitionStyles || {},
-    };
+    // const TRANSITION_TYPES = {
+    //     stack: stackTransitionStyles || {},
+    //     carousel: carouselTransitionStyles || {},
+    // };
 
     /**
      * Screen Navigation
@@ -666,7 +699,7 @@ const Viewer = ({
                                             !withoutTransitions;
 
                                         const screenStyles = active
-                                            ? TRANSITION_TYPES[transitionType][i]
+                                            ? computeScreenStyle(i, screenProgress)
                                             : {
                                                   opacity: current ? 1 : 0,
                                               };
