@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { useProgressTransition } from '@micromag/core/hooks';
+import useProgressTransition from '../../hooks/useProgressTransition';
 
 import styles from '../../styles/buttons/sliding-buttons.module.scss';
 

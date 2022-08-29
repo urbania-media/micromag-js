@@ -5,12 +5,12 @@ import React, { useCallback, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useTrackEvent, useVerticalDrag } from '@micromag/core/hooks';
+// import { useViewerInteraction } from '@micromag/core/contexts';
+import { CloseButton, SlidingButtons } from '@micromag/core/components';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 
-import CloseButton from './buttons/CloseButton';
 import MenuButton from './buttons/MenuButton';
 import ShareButton from './buttons/ShareButton';
-import SlidingButtons from './buttons/SlidingButtons';
 import MenuContainer from './menus/MenuContainer';
 import MenuDots from './menus/MenuDots';
 import MenuShare from './menus/MenuShare';
