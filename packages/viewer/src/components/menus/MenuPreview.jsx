@@ -61,6 +61,7 @@ const ViewerMenuPreview = ({
 
     // Viewer theme
     // @todo room for improvement here probably
+    // @todo also re-implement!!
     const { colors = null, background = null, logo: brandLogo = null } = viewerTheme || {};
     const { primary: brandPrimaryColor = null, secondary: brandSecondaryColor = null } =
         colors || {};
@@ -103,26 +104,21 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.content} ref={containerRef}>
                 <Scroll className={styles.scroll}>
-
-
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
                             {finalItems.map((item, index) => {
-                                const { screenId, current = false } = item || {};
+                                const { screenId } = item || {};
+                                const itemStyles = {
+                                    width: `${100 / thumbsPerLine}%`,
+                                };
 
                                 return (
                                     <li
-                                        className={classNames([
-                                            styles.item,
-                                            {
-                                                [styles.active]: current,
-                                            },
-                                        ])}
                                         key={`item-${screenId}`}
-                                        style={{
-                                            width: `${100 / thumbsPerLine}%`,
-                                        }}
+                                        className={styles.item}
+                                        style={itemStyles}
                                     >
+                                        {/* @todo gotta figure out some loading thing, inside of MenuScreen tho */}
                                         {item === null ? (
                                             'loading'
                                         ) : (

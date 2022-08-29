@@ -106,22 +106,10 @@
     padding: 0 8px;
     transition: opacity 0.3s $ease-out-ramp;
 
-    .isMenuOpened & {
+    &.isHidden {
         opacity: 0;
         pointer-events: none;
     }
-}
-
-.menuContainerShare,
-.menuContainerScreens {
-    @media screen and (min-width: 1024px) {
-        max-width: 50vw;
-    }
-}
-
-.menuContainerScreens {
-    left: auto;
-    right: 0;
 }
 
 // Viewer Navigation: Left/Right icons on desktop

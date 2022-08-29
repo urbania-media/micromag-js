@@ -59,6 +59,17 @@ const ViewerMenuScreen = ({ className, item, index, onClick, screenSize, focusab
                 },
             ])}
         >
+            <button
+                type="button"
+                className={styles.button}
+                onClick={() => {
+                    if (onClick !== null) {
+                        onClick(item);
+                    }
+                }}
+                aria-label={screenAriaLabel}
+                tabIndex={focusable ? '0' : '-1'}
+            />
             <div className={styles.inner}>
                 {count > 1 ? (
                     <div className={styles.subScreenBadge}>
@@ -68,6 +79,7 @@ const ViewerMenuScreen = ({ className, item, index, onClick, screenSize, focusab
                 ) : null}
                 {screenWidth > 0 && screenHeight > 0 ? (
                     <ScreenPreview
+                        className={styles.screen}
                         screenWidth={screenWidth}
                         screenHeight={screenHeight}
                         screen={screen}
@@ -77,22 +89,6 @@ const ViewerMenuScreen = ({ className, item, index, onClick, screenSize, focusab
                     />
                 ) : null}
             </div>
-            <button
-                type="button"
-                className={styles.screenButton}
-                onClick={() => {
-                    if (onClick !== null) {
-                        onClick(item);
-                    }
-                }}
-                aria-label={screenAriaLabel}
-                // onKeyUp={(e) => {
-                //     if (e.key === 'Enter' && onClick !== null) {
-                //         onClick(item);
-                //     }
-                // }}
-                tabIndex={focusable ? '0' : '-1'}
-            />
         </div>
     );
 };

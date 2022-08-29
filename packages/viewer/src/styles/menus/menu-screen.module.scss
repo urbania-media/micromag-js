@@ -8,33 +8,37 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-
-    &.isCurrent {
-        animation: pulse 1s $ease-in-out-soft-sine infinite alternate-reverse;
-    }
-}
-
-.inner {
     padding: 2px;
 }
 
-.screenButton {
-    @extend %reset-button;
+.button {
     @extend %fullscreen;
+    @extend %reset-button;
 
     display: block;
+    z-index: 2;
+    transition: border-width 0.4s $ease-in-bump;
+    border: 0 solid $white;
 
     &:focus-visible {
-        border: 4px solid $purple;
-        outline: none;
+        outline: 0.25rem solid $purple;
+        outline-offset: 0.25rem;
+    }
+
+    .isCurrent & {
+        animation: pulse 0.75s $ease-in-out-soft-sine infinite alternate-reverse;
     }
 
     @media (hover: hover) {
         &:hover {
-            border: 4px solid $white;
-            outline: none;
+            border: 0.25rem solid $white;
         }
     }
+}
+
+.inner {
+    z-index: 1;
+    pointer-events: none;
 }
 
 .subScreenBadge {
@@ -68,11 +72,9 @@
 
 @keyframes pulse {
     from {
-        transform: scale(1);
-        outline: 0.1rem solid $white;
+        border-width: 0.25rem;
     }
     to {
-        transform: scale(0.95);
-        outline: 0.5rem solid $white;
+        border-width: 0.5rem;
     }
 }
