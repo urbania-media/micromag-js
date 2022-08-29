@@ -290,14 +290,19 @@ const Viewer = ({
         setTransitionType(newType);
     }, [ready, landscape, menuOverScreen, onViewModeChange, setTransitionType]);
 
+    const wasDragging = useRef(isDragging);
     const springParams = useMemo(
         () => ({
-            // immediate: isDragging,
+            immediate: wasDragging.current,
             config: SPRING_CONFIG_TIGHT,
         }),
-        [isDragging],
+        [wasDragging.current],
     );
-    const screenProgress = useSpringProgress(screenTransition, springParams);
+    const isNotDragging = !isDragging || !wasDragging.current;
+    const screenProgress = useSpringProgress(isNotDragging ? screenTransition : null, springParams);
+    if (wasDragging.current !== isDragging) {
+        wasDragging.current = isDragging;
+    }
 
     // const carouselTransitionStyles
     // const { styles:  = {} } = useProgressTransition({
@@ -699,7 +704,7 @@ const Viewer = ({
                                             i <= screenIndex + neighborScreensActive;
 
                                         const screenStyles = active
-                                            ? computeScreenStyle(i, screenProgress)
+                                            ? computeScreenStyle(i, isDragging ? screenTransition : screenProgress)
                                             : {
                                                   opacity: current ? 1 : 0,
                                               };
