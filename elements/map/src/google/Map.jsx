@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -5,6 +6,15 @@ import classNames from 'classnames';
 import useGoogleMap from './useGoogleMap';
 
 import styles from './styles.module.scss';
+
+const stopDragEventsPropagation = {
+    onTouchMove: e => e.stopPropagation(),
+    onTouchStart: e => e.stopPropagation(),
+    onTouchEnd: e => e.stopPropagation(),
+    onPointerMove: e => e.stopPropagation(),
+    onPointerUp: e => e.stopPropagation(),
+    onPointerDown: e => e.stopPropagation(),
+}
 
 const propTypes = {
     center: PropTypes.shape({
@@ -95,6 +105,7 @@ const Map = ({
                     [styles.preventScroll]: !draggable,
                 },
             ])}
+            {...stopDragEventsPropagation}
         >
             <div ref={mapRef} className={styles.map} tabIndex={focusable ? '0' : '-1'} />{/* eslint-disable-line jsx-a11y/no-noninteractive-tabindex */}
             {React.Children.map(children, (child) => React.cloneElement(child, { map }))}

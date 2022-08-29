@@ -22,6 +22,7 @@ const propTypes = {
     onReady: PropTypes.func,
     onCenterChanged: PropTypes.func,
     onBoundsChanged: PropTypes.func,
+    onDrag: PropTypes.func,
     onDragEnd: PropTypes.func,
     withoutStyle: PropTypes.bool,
     fitBounds: PropTypes.bool,
@@ -45,6 +46,7 @@ const defaultProps = {
     onReady: null,
     onCenterChanged: null,
     onBoundsChanged: null,
+    onDrag: null,
     onDragEnd: null,
     withoutStyle: false,
     fitBounds: false,
@@ -68,6 +70,7 @@ const Map = ({
     onReady,
     onCenterChanged,
     onBoundsChanged,
+    onDrag,
     onDragEnd,
     withoutStyle,
     fitBounds,
@@ -122,10 +125,11 @@ const Map = ({
             onClick,
             onCenterChanged,
             onBoundsChanged,
+            onDrag,
             onDragEnd,
             onTilesLoaded,
         }),
-        [onClick, onCenterChanged, onBoundsChanged, onDragEnd, onTilesLoaded],
+        [onClick, onCenterChanged, onBoundsChanged, onDrag, onDragEnd, onTilesLoaded],
     );
 
     return (
