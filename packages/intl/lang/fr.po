@@ -143,12 +143,6 @@ msgctxt "0acGK7"
 msgid "Cancer"
 msgstr "Cancer"
 
-# Breadcrumb field label
-#: 12wlTR
-msgctxt "12wlTR"
-msgid "Sign"
-msgstr "Signe"
-
 # Horoscope date
 #: 142Fjj
 msgctxt "142Fjj"
@@ -184,6 +178,12 @@ msgstr "#{index}"
 msgctxt "2J05S0"
 msgid "Images"
 msgstr "Images"
+
+# UrbaniaHoroscope date
+#: 2Q/wGq
+msgctxt "2Q/wGq"
+msgid "Jan 21 - Feb 18"
+msgstr ""
 
 # Title placeholder
 #: 2ZOPe+
@@ -238,6 +238,12 @@ msgstr "Bonne réponse"
 msgctxt "3OS3Ms"
 msgid "Legend"
 msgstr "Légende"
+
+# UrbaniaHoroscope date
+#: 3YruaX
+msgctxt "3YruaX"
+msgid "May 21 - June 20"
+msgstr ""
 
 # Video placeholder
 #: 3ext9Q
@@ -299,6 +305,12 @@ msgctxt "4YiKNK"
 msgid "Select a color..."
 msgstr "Sélectionnez une couleur..."
 
+# UrbaniaHoroscope sign
+#: 4bHk4B
+msgctxt "4bHk4B"
+msgid "Scorpio"
+msgstr ""
+
 # Gallery Feed screen title
 #: 4bHvRS
 msgctxt "4bHvRS"
@@ -328,6 +340,12 @@ msgstr "Catégorie"
 msgctxt "4iBXj2"
 msgid "Layout"
 msgstr "Disposition"
+
+# UrbaniaHoroscope sign
+#: 4jR88b
+msgctxt "4jR88b"
+msgid "Libra"
+msgstr ""
 
 # Field label
 #: 4js1kW
@@ -467,6 +485,12 @@ msgctxt "7uyslu"
 msgid "Description"
 msgstr "Description"
 
+#  UrbaniaHoroscope state
+#: 82g1F5
+msgctxt "82g1F5"
+msgid "Intro"
+msgstr ""
+
 # Field label
 #: 862eE3
 msgctxt "862eE3"
@@ -490,6 +514,12 @@ msgstr "Facebook Messenger"
 msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Paramètres"
+
+# UrbaniaHoroscope sign
+#: 8gQ1oW
+msgctxt "8gQ1oW"
+msgid "Pisces"
+msgstr ""
 
 # Button label
 #: 8oczXQ
@@ -532,6 +562,12 @@ msgstr "Bibliothèque pour"
 msgctxt "9a5s+m"
 msgid "Title with box"
 msgstr "Titre avec encadré"
+
+# UrbaniaHoroscope date
+#: 9mSXOP
+msgctxt "9mSXOP"
+msgid "June 23 - Aug 22"
+msgstr ""
 
 # Button label in images with caption field
 #: 9n9+yP
@@ -587,12 +623,6 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Modifier l'action..."
 
-# Button label
-#: AuxqcG
-msgctxt "AuxqcG"
-msgid "Fullscreen"
-msgstr ""
-
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -647,17 +677,17 @@ msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image avec texte"
 
-# Horoscope state
-#: CMNP2S
-msgctxt "CMNP2S"
-msgid "Grid"
-msgstr "Grille"
-
 # Quote placeholder
 #: CrzYgw
 msgctxt "CrzYgw"
 msgid "Quote"
 msgstr "Citation"
+
+# UrbaniaHoroscope date
+#: CuR6TQ
+msgctxt "CuR6TQ"
+msgid "Oct 23 - Nov 22"
+msgstr ""
 
 # Share button label
 #: D21uVQ
@@ -851,12 +881,6 @@ msgctxt "ICXTfR"
 msgid "Links"
 msgstr "Liens"
 
-# State label
-#: J6cnbt
-msgctxt "J6cnbt"
-msgid "Signs"
-msgstr "Signes"
-
 # Type field label
 #: J9e9Qb
 msgctxt "J9e9Qb"
@@ -953,6 +977,12 @@ msgctxt "MBgLeH"
 msgid "July 23 - Aug 22"
 msgstr "23 juil - 22 août"
 
+# UrbaniaHoroscope sign
+#: MRawqs
+msgctxt "MRawqs"
+msgid "Virgo"
+msgstr ""
+
 # Audio placeholder
 #: MYZwSA
 msgctxt "MYZwSA"
@@ -982,6 +1012,12 @@ msgstr "Titre"
 msgctxt "NVUpOG"
 msgid "Map fit markers"
 msgstr "Ajuster la carte selon les marqueurs"
+
+# UrbaniaHoroscope sign
+#: NcGcbY
+msgctxt "NcGcbY"
+msgid "Capricorn"
+msgstr ""
 
 # Conversation placeholder
 #: NmCfTO
@@ -1066,6 +1102,12 @@ msgstr "Audios"
 msgctxt "PyxZY2"
 msgid "Cancel"
 msgstr "Annuler"
+
+# UrbaniaHoroscope sign
+#: Q2lZvi
+msgctxt "Q2lZvi"
+msgid "Gemini"
+msgstr ""
 
 # Title of the screen types selection dialog
 #: QBaiO0
@@ -1186,6 +1228,12 @@ msgctxt "TZUu3s"
 msgid "Blur"
 msgstr "Flou"
 
+# UrbaniaHoroscope sign
+#: TmV8Ob
+msgctxt "TmV8Ob"
+msgid "Cancer"
+msgstr ""
+
 # Button label
 #: Tol+/U
 msgctxt "Tol+/U"
@@ -1251,6 +1299,12 @@ msgstr "Google Fonts"
 msgctxt "VMd1oG"
 msgid "Questions"
 msgstr "Questions"
+
+# UrbaniaHoroscope date
+#: VS7hGL
+msgctxt "VS7hGL"
+msgid "June 21 - July 22"
+msgstr ""
 
 # Upload button label in Media Gallery
 #: VspZp9
@@ -1318,12 +1372,6 @@ msgctxt "XKcyqx"
 msgid "Taurus"
 msgstr "Taureau"
 
-#  Horoscope state
-#: XS4j3F
-msgctxt "XS4j3F"
-msgid "Intro"
-msgstr "Intro"
-
 # GalleryFeedCaptions screen title
 #: XTJGzY
 msgctxt "XTJGzY"
@@ -1377,6 +1425,12 @@ msgstr "Interlettrage"
 msgctxt "ZCe0r4"
 msgid "Description"
 msgstr "Description"
+
+# UrbaniaHoroscope date
+#: ZDhS1K
+msgctxt "ZDhS1K"
+msgid "Nov 23 - Dec 21"
+msgstr ""
 
 # Submit form button
 #: ZLDmja
@@ -1437,6 +1491,12 @@ msgstr "Ajustement"
 msgctxt "aovRFH"
 msgid "Filename"
 msgstr "Nom du fichier"
+
+# UrbaniaHoroscope state
+#: ap68Fp
+msgctxt "ap68Fp"
+msgid "Signs"
+msgstr ""
 
 # Nav ARIA label
 #: bLYuuN
@@ -1576,6 +1636,12 @@ msgctxt "e6+aGf"
 msgid "Select a media..."
 msgstr "Sélectionnez un média..."
 
+# UrbaniaHoroscope date
+#: e9tPoV
+msgctxt "e9tPoV"
+msgid "Apr 20 - May 20"
+msgstr ""
+
 # Field label
 #: eBFxNl
 msgctxt "eBFxNl"
@@ -1689,6 +1755,12 @@ msgstr "Contribution"
 msgctxt "gRxcTc"
 msgid "Delete screen"
 msgstr "Supprimer l’écran"
+
+# UrbaniaHoroscope date
+#: giHj1W
+msgctxt "giHj1W"
+msgid "Aug 23 - Sept 22"
+msgstr ""
 
 # Input placeholder
 #: gprXiG
@@ -1928,6 +2000,12 @@ msgctxt "nJgzwC"
 msgid "Urbania article"
 msgstr "Urbania Article"
 
+# UrbaniaHoroscope date
+#: nP1L8v
+msgctxt "nP1L8v"
+msgid "Mar 21 - Apr 19"
+msgstr ""
+
 # Name field label
 #: nXVNeg
 msgctxt "nXVNeg"
@@ -1939,6 +2017,12 @@ msgstr "Nom"
 msgctxt "nc8LF0"
 msgid "Metadata"
 msgstr "Métadonnées"
+
+# UrbaniaHoroscope date
+#: nlnDFI
+msgctxt "nlnDFI"
+msgid "Sept 23 - Oct 22"
+msgstr ""
 
 # Field label
 #: nno1Pq
@@ -2018,17 +2102,23 @@ msgctxt "pRzSQ7"
 msgid "Overtitle"
 msgstr "Surtitre"
 
+# UrbaniaHoroscope sign
+#: pSpaGF
+msgctxt "pSpaGF"
+msgid "Sagittarius"
+msgstr ""
+
+# UrbaniaHoroscope sign
+#: pY/uB8
+msgctxt "pY/uB8"
+msgid "Taurus"
+msgstr ""
+
 # Media label
 #: pfvDzR
 msgctxt "pfvDzR"
 msgid "Added by"
 msgstr "Ajouté par"
-
-# Horoscope date
-#: pnT3od
-msgctxt "pnT3od"
-msgid "June 23 - Aug 22"
-msgstr "23 juin au 22 août"
 
 # Type field label
 #: ppq6CK
@@ -2138,12 +2228,6 @@ msgctxt "rzdds2"
 msgid "Speaker"
 msgstr "Interlocuteur"
 
-# Horoscope state
-#: s5cvZR
-msgctxt "s5cvZR"
-msgid "Signs"
-msgstr "Signes astrologiques"
-
 # Entries field label
 #: sESmah
 msgctxt "sESmah"
@@ -2185,6 +2269,12 @@ msgstr "Filtres actifs"
 msgctxt "tAYwqp"
 msgid "Add a slide"
 msgstr "Ajouter une diapositive"
+
+# UrbaniaHoroscope date
+#: tFy+7Z
+msgctxt "tFy+7Z"
+msgid "Dec 22 - Jan 20"
+msgstr ""
 
 # Field label
 #: tYGev7
@@ -2245,6 +2335,12 @@ msgstr "Titre"
 msgctxt "uNpHnA"
 msgid "Bullet color"
 msgstr "Couleur du point"
+
+# UrbaniaHoroscope sign
+#: uS3Zpq
+msgctxt "uS3Zpq"
+msgid "Aries"
+msgstr ""
 
 # Dropdown select label
 #: uSpItE
@@ -2402,6 +2498,18 @@ msgctxt "xYqGzM"
 msgid "Author"
 msgstr "Auteur"
 
+# UrbaniaHoroscope sign
+#: xhP0oH
+msgctxt "xhP0oH"
+msgid "Aquarius"
+msgstr ""
+
+# UrbaniaHoroscope state
+#: xj0o1v
+msgctxt "xj0o1v"
+msgid "Grid"
+msgstr ""
+
 # Visual field label
 #: xsipID
 msgctxt "xsipID"
@@ -2432,6 +2540,12 @@ msgctxt "yCXMzz"
 msgid "Close"
 msgstr "Fermer"
 
+# UrbaniaHoroscope sign
+#: yCbYhr
+msgctxt "yCbYhr"
+msgid "Leo"
+msgstr ""
+
 # Horoscope date
 #: yCj5uv
 msgctxt "yCj5uv"
@@ -2461,6 +2575,12 @@ msgstr "Surtitre"
 msgctxt "z4CiV1"
 msgid "Text"
 msgstr "Texte"
+
+# UrbaniaHoroscope date
+#: zD2Q5Y
+msgctxt "zD2Q5Y"
+msgid "Feb 19 - Mar 20"
+msgstr ""
 
 # Latitude description
 #: zDH24s

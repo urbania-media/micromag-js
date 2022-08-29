@@ -22,6 +22,7 @@ import {
     useScreenSizeFromElement,
     useTrackScreenView,
     useProgressTransition,
+    useSpringProgress,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
 
@@ -311,11 +312,23 @@ const Viewer = ({
         },
     });
 
-    const { styles: stackTransitionStyles = {} } = useProgressTransition({
-        value: screenTransition,
-        fn: (p) =>
+    const springParams = useMemo(() => ({
+        immediate: isDragging,
+        config: SPRING_CONFIG_TIGHT,
+    }), [isDragging]);
+    const screenProgress = useSpringProgress(screenTransition, springParams);
+    // const { styles: stackTransitionStyles = {} } = useProgressTransition({
+    //     value: screenTransition,
+    //     fn: computeScreensStyles,
+    //     params: {
+    //         immediate: isDragging,
+    //         config: SPRING_CONFIG_TIGHT,
+    //     },
+    // });
+    const stackTransitionStyles = useMemo(
+        () =>
             screens.map((s, i) => {
-                const t = i - p;
+                const t = i - screenProgress;
                 if (Math.abs(t) > 4) return {};
                 const clamped = Math.min(1, Math.max(0, t));
                 const invert = Math.min(1, Math.max(0, -t));
@@ -328,11 +341,8 @@ const Viewer = ({
                     zIndex: i,
                 };
             }),
-        params: {
-            immediate: isDragging,
-            config: SPRING_CONFIG_TIGHT,
-        },
-    });
+        [screens, screenProgress],
+    );
 
     const TRANSITION_TYPES = {
         stack: stackTransitionStyles || {},
@@ -661,8 +671,8 @@ const Viewer = ({
                                         const screenStyles = active
                                             ? TRANSITION_TYPES[transitionType][i]
                                             : {
-                                                opacity: current ? 1 : 0,
-                                            };
+                                                  opacity: current ? 1 : 0,
+                                              };
 
                                         return (
                                             <div

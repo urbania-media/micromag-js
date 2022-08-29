@@ -22,6 +22,7 @@ export { default as useParsedStory } from './useParsedStory';
 export { default as useProgressSteps } from './useProgressSteps';
 export { default as useProgressTransition } from './useProgressTransition';
 export * from './useScreenSize';
+export { default as useSpringProgress} from './useSpringProgress';
 export * from './useSwipe';
 export { default as useThemeParser } from './useThemeParser';
 export * from './useTracking';

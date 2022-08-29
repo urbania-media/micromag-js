@@ -65,9 +65,6 @@
     "0acGK7": {
         "defaultMessage": "Cancer"
     },
-    "12wlTR": {
-        "defaultMessage": "Sign"
-    },
     "142Fjj": {
         "defaultMessage": "May 21 - June 20"
     },
@@ -85,6 +82,9 @@
     },
     "2J05S0": {
         "defaultMessage": "Images"
+    },
+    "2Q/wGq": {
+        "defaultMessage": "Jan 21 - Feb 18"
     },
     "2ZOPe+": {
         "defaultMessage": "Title"
@@ -112,6 +112,9 @@
     },
     "3OS3Ms": {
         "defaultMessage": "Legend"
+    },
+    "3YruaX": {
+        "defaultMessage": "May 21 - June 20"
     },
     "3ext9Q": {
         "defaultMessage": "Video"
@@ -143,6 +146,9 @@
     "4YiKNK": {
         "defaultMessage": "Select a color..."
     },
+    "4bHk4B": {
+        "defaultMessage": "Scorpio"
+    },
     "4bHvRS": {
         "defaultMessage": "Gallery Feed"
     },
@@ -157,6 +163,9 @@
     },
     "4iBXj2": {
         "defaultMessage": "Layout"
+    },
+    "4jR88b": {
+        "defaultMessage": "Libra"
     },
     "4js1kW": {
         "defaultMessage": "Share Options"
@@ -227,6 +236,9 @@
     "7uyslu": {
         "defaultMessage": "Description"
     },
+    "82g1F5": {
+        "defaultMessage": "Intro"
+    },
     "862eE3": {
         "defaultMessage": "Border"
     },
@@ -238,6 +250,9 @@
     },
     "8A8cuq": {
         "defaultMessage": "Parameters"
+    },
+    "8gQ1oW": {
+        "defaultMessage": "Pisces"
     },
     "8oczXQ": {
         "defaultMessage": "Add a marker"
@@ -259,6 +274,9 @@
     },
     "9a5s+m": {
         "defaultMessage": "Title with box"
+    },
+    "9mSXOP": {
+        "defaultMessage": "June 23 - Aug 22"
     },
     "9n9+yP": {
         "defaultMessage": "Add an image"
@@ -287,9 +305,6 @@
     "AV6gfh": {
         "defaultMessage": "Edit call to action..."
     },
-    "AuxqcG": {
-        "defaultMessage": "Fullscreen"
-    },
     "B1MeY+": {
         "defaultMessage": "Select an image..."
     },
@@ -317,11 +332,11 @@
     "CJmQeh": {
         "defaultMessage": "Image with text"
     },
-    "CMNP2S": {
-        "defaultMessage": "Grid"
-    },
     "CrzYgw": {
         "defaultMessage": "Quote"
+    },
+    "CuR6TQ": {
+        "defaultMessage": "Oct 23 - Nov 22"
     },
     "D21uVQ": {
         "defaultMessage": "Copy link"
@@ -419,9 +434,6 @@
     "ICXTfR": {
         "defaultMessage": "Links"
     },
-    "J6cnbt": {
-        "defaultMessage": "Signs"
-    },
     "J9e9Qb": {
         "defaultMessage": "Video"
     },
@@ -470,6 +482,9 @@
     "MBgLeH": {
         "defaultMessage": "July 23 - Aug 22"
     },
+    "MRawqs": {
+        "defaultMessage": "Virgo"
+    },
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
@@ -484,6 +499,9 @@
     },
     "NVUpOG": {
         "defaultMessage": "Map fit markers"
+    },
+    "NcGcbY": {
+        "defaultMessage": "Capricorn"
     },
     "NmCfTO": {
         "defaultMessage": "Conversation"
@@ -526,6 +544,9 @@
     },
     "PyxZY2": {
         "defaultMessage": "Cancel"
+    },
+    "Q2lZvi": {
+        "defaultMessage": "Gemini"
     },
     "QBaiO0": {
         "defaultMessage": "Add a screen"
@@ -587,6 +608,9 @@
     "TZUu3s": {
         "defaultMessage": "Blur"
     },
+    "TmV8Ob": {
+        "defaultMessage": "Cancer"
+    },
     "Tol+/U": {
         "defaultMessage": "Clear"
     },
@@ -619,6 +643,9 @@
     },
     "VMd1oG": {
         "defaultMessage": "Questions"
+    },
+    "VS7hGL": {
+        "defaultMessage": "June 21 - July 22"
     },
     "VspZp9": {
         "defaultMessage": "Upload an image"
@@ -653,9 +680,6 @@
     "XKcyqx": {
         "defaultMessage": "Taurus"
     },
-    "XS4j3F": {
-        "defaultMessage": "Intro"
-    },
     "XTJGzY": {
         "defaultMessage": "Gallery feed with captions"
     },
@@ -682,6 +706,9 @@
     },
     "ZCe0r4": {
         "defaultMessage": "Description"
+    },
+    "ZDhS1K": {
+        "defaultMessage": "Nov 23 - Dec 21"
     },
     "ZLDmja": {
         "defaultMessage": "Submit"
@@ -712,6 +739,9 @@
     },
     "aovRFH": {
         "defaultMessage": "Filename"
+    },
+    "ap68Fp": {
+        "defaultMessage": "Signs"
     },
     "bLYuuN": {
         "defaultMessage": "You are on screen {current} of {total}."
@@ -782,6 +812,9 @@
     "e6+aGf": {
         "defaultMessage": "Select a media..."
     },
+    "e9tPoV": {
+        "defaultMessage": "Apr 20 - May 20"
+    },
     "eBFxNl": {
         "defaultMessage": "Call to Action"
     },
@@ -838,6 +871,9 @@
     },
     "gRxcTc": {
         "defaultMessage": "Delete screen"
+    },
+    "giHj1W": {
+        "defaultMessage": "Aug 23 - Sept 22"
     },
     "gprXiG": {
         "defaultMessage": "Search..."
@@ -959,11 +995,17 @@
     "nJgzwC": {
         "defaultMessage": "Urbania article"
     },
+    "nP1L8v": {
+        "defaultMessage": "Mar 21 - Apr 19"
+    },
     "nXVNeg": {
         "defaultMessage": "Name"
     },
     "nc8LF0": {
         "defaultMessage": "Metadata"
+    },
+    "nlnDFI": {
+        "defaultMessage": "Sept 23 - Oct 22"
     },
     "nno1Pq": {
         "defaultMessage": "Button style"
@@ -1004,11 +1046,14 @@
     "pRzSQ7": {
         "defaultMessage": "Overtitle"
     },
+    "pSpaGF": {
+        "defaultMessage": "Sagittarius"
+    },
+    "pY/uB8": {
+        "defaultMessage": "Taurus"
+    },
     "pfvDzR": {
         "defaultMessage": "Added by"
-    },
-    "pnT3od": {
-        "defaultMessage": "June 23 - Aug 22"
     },
     "ppq6CK": {
         "defaultMessage": "Type"
@@ -1064,9 +1109,6 @@
     "rzdds2": {
         "defaultMessage": "Speaker"
     },
-    "s5cvZR": {
-        "defaultMessage": "Signs"
-    },
     "sESmah": {
         "defaultMessage": "Entries"
     },
@@ -1087,6 +1129,9 @@
     },
     "tAYwqp": {
         "defaultMessage": "Add a slide"
+    },
+    "tFy+7Z": {
+        "defaultMessage": "Dec 22 - Jan 20"
     },
     "tYGev7": {
         "defaultMessage": "Font size"
@@ -1117,6 +1162,9 @@
     },
     "uNpHnA": {
         "defaultMessage": "Bullet color"
+    },
+    "uS3Zpq": {
+        "defaultMessage": "Aries"
     },
     "uSpItE": {
         "defaultMessage": "Add tags..."
@@ -1196,6 +1244,12 @@
     "xYqGzM": {
         "defaultMessage": "Author"
     },
+    "xhP0oH": {
+        "defaultMessage": "Aquarius"
+    },
+    "xj0o1v": {
+        "defaultMessage": "Grid"
+    },
     "xsipID": {
         "defaultMessage": "Image"
     },
@@ -1211,6 +1265,9 @@
     "yCXMzz": {
         "defaultMessage": "Close"
     },
+    "yCbYhr": {
+        "defaultMessage": "Leo"
+    },
     "yCj5uv": {
         "defaultMessage": "Nov 23 - Dec 21"
     },
@@ -1225,6 +1282,9 @@
     },
     "z4CiV1": {
         "defaultMessage": "Text"
+    },
+    "zD2Q5Y": {
+        "defaultMessage": "Feb 19 - Mar 20"
     },
     "zDH24s": {
         "defaultMessage": "Latitude"

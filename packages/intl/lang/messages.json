@@ -87,10 +87,6 @@
     "defaultMessage": "Cancer",
     "description": "Horoscope sign"
   },
-  "12wlTR": {
-    "defaultMessage": "Sign",
-    "description": "Breadcrumb field label"
-  },
   "142Fjj": {
     "defaultMessage": "May 21 - June 20",
     "description": "Horoscope date"
@@ -114,6 +110,10 @@
   "2J05S0": {
     "defaultMessage": "Images",
     "description": "Media label"
+  },
+  "2Q/wGq": {
+    "defaultMessage": "Jan 21 - Feb 18",
+    "description": "UrbaniaHoroscope date"
   },
   "2ZOPe+": {
     "defaultMessage": "Title",
@@ -150,6 +150,10 @@
   "3OS3Ms": {
     "defaultMessage": "Legend",
     "description": "Legend field label"
+  },
+  "3YruaX": {
+    "defaultMessage": "May 21 - June 20",
+    "description": "UrbaniaHoroscope date"
   },
   "3ext9Q": {
     "defaultMessage": "Video",
@@ -191,6 +195,10 @@
     "defaultMessage": "Select a color...",
     "description": "No value label"
   },
+  "4bHk4B": {
+    "defaultMessage": "Scorpio",
+    "description": "UrbaniaHoroscope sign"
+  },
   "4bHvRS": {
     "defaultMessage": "Gallery Feed",
     "description": "Gallery Feed screen title"
@@ -210,6 +218,10 @@
   "4iBXj2": {
     "defaultMessage": "Layout",
     "description": "Layout field label"
+  },
+  "4jR88b": {
+    "defaultMessage": "Libra",
+    "description": "UrbaniaHoroscope sign"
   },
   "4js1kW": {
     "defaultMessage": "Share Options",
@@ -303,6 +315,10 @@
     "defaultMessage": "Description",
     "description": "Label in Media Gallery"
   },
+  "82g1F5": {
+    "defaultMessage": "Intro",
+    "description": " UrbaniaHoroscope state"
+  },
   "862eE3": {
     "defaultMessage": "Border",
     "description": "Field label"
@@ -318,6 +334,10 @@
   "8A8cuq": {
     "defaultMessage": "Parameters",
     "description": "field label"
+  },
+  "8gQ1oW": {
+    "defaultMessage": "Pisces",
+    "description": "UrbaniaHoroscope sign"
   },
   "8oczXQ": {
     "defaultMessage": "Add a marker",
@@ -346,6 +366,10 @@
   "9a5s+m": {
     "defaultMessage": "Title with box",
     "description": "Dcreen title"
+  },
+  "9mSXOP": {
+    "defaultMessage": "June 23 - Aug 22",
+    "description": "UrbaniaHoroscope date"
   },
   "9n9+yP": {
     "defaultMessage": "Add an image",
@@ -383,10 +407,6 @@
     "defaultMessage": "Edit call to action...",
     "description": "No value label"
   },
-  "AuxqcG": {
-    "defaultMessage": "Fullscreen",
-    "description": "Button label"
-  },
   "B1MeY+": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
@@ -423,13 +443,13 @@
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
   },
-  "CMNP2S": {
-    "defaultMessage": "Grid",
-    "description": "Horoscope state"
-  },
   "CrzYgw": {
     "defaultMessage": "Quote",
     "description": "Quote placeholder"
+  },
+  "CuR6TQ": {
+    "defaultMessage": "Oct 23 - Nov 22",
+    "description": "UrbaniaHoroscope date"
   },
   "D21uVQ": {
     "defaultMessage": "Copy link",
@@ -559,10 +579,6 @@
     "defaultMessage": "Links",
     "description": "Fields section label"
   },
-  "J6cnbt": {
-    "defaultMessage": "Signs",
-    "description": "State label"
-  },
   "J9e9Qb": {
     "defaultMessage": "Video",
     "description": "Type field label"
@@ -627,6 +643,10 @@
     "defaultMessage": "July 23 - Aug 22",
     "description": "Horoscope date"
   },
+  "MRawqs": {
+    "defaultMessage": "Virgo",
+    "description": "UrbaniaHoroscope sign"
+  },
   "MYZwSA": {
     "defaultMessage": "Audio",
     "description": "Audio placeholder"
@@ -646,6 +666,10 @@
   "NVUpOG": {
     "defaultMessage": "Map fit markers",
     "description": "Field label"
+  },
+  "NcGcbY": {
+    "defaultMessage": "Capricorn",
+    "description": "UrbaniaHoroscope sign"
   },
   "NmCfTO": {
     "defaultMessage": "Conversation",
@@ -702,6 +726,10 @@
   "PyxZY2": {
     "defaultMessage": "Cancel",
     "description": "Button label"
+  },
+  "Q2lZvi": {
+    "defaultMessage": "Gemini",
+    "description": "UrbaniaHoroscope sign"
   },
   "QBaiO0": {
     "defaultMessage": "Add a screen",
@@ -782,6 +810,10 @@
     "defaultMessage": "Blur",
     "description": "Field label"
   },
+  "TmV8Ob": {
+    "defaultMessage": "Cancer",
+    "description": "UrbaniaHoroscope sign"
+  },
   "Tol+/U": {
     "defaultMessage": "Clear",
     "description": "Button label"
@@ -825,6 +857,10 @@
   "VMd1oG": {
     "defaultMessage": "Questions",
     "description": "State label"
+  },
+  "VS7hGL": {
+    "defaultMessage": "June 21 - July 22",
+    "description": "UrbaniaHoroscope date"
   },
   "VspZp9": {
     "defaultMessage": "Upload an image",
@@ -870,10 +906,6 @@
     "defaultMessage": "Taurus",
     "description": "Horoscope sign"
   },
-  "XS4j3F": {
-    "defaultMessage": "Intro",
-    "description": " Horoscope state"
-  },
   "XTJGzY": {
     "defaultMessage": "Gallery feed with captions",
     "description": "GalleryFeedCaptions screen title"
@@ -909,6 +941,10 @@
   "ZCe0r4": {
     "defaultMessage": "Description",
     "description": "Field label"
+  },
+  "ZDhS1K": {
+    "defaultMessage": "Nov 23 - Dec 21",
+    "description": "UrbaniaHoroscope date"
   },
   "ZLDmja": {
     "defaultMessage": "Submit",
@@ -949,6 +985,10 @@
   "aovRFH": {
     "defaultMessage": "Filename",
     "description": "Label in Media Gallery"
+  },
+  "ap68Fp": {
+    "defaultMessage": "Signs",
+    "description": "UrbaniaHoroscope state"
   },
   "bLYuuN": {
     "defaultMessage": "You are on screen {current} of {total}.",
@@ -1042,6 +1082,10 @@
     "defaultMessage": "Select a media...",
     "description": "Label when no value is provided to Media field"
   },
+  "e9tPoV": {
+    "defaultMessage": "Apr 20 - May 20",
+    "description": "UrbaniaHoroscope date"
+  },
   "eBFxNl": {
     "defaultMessage": "Call to Action",
     "description": "Field label"
@@ -1117,6 +1161,10 @@
   "gRxcTc": {
     "defaultMessage": "Delete screen",
     "description": "Delete screen button label"
+  },
+  "giHj1W": {
+    "defaultMessage": "Aug 23 - Sept 22",
+    "description": "UrbaniaHoroscope date"
   },
   "gprXiG": {
     "defaultMessage": "Search...",
@@ -1276,6 +1324,10 @@
     "defaultMessage": "Urbania article",
     "description": "Urbania screen title"
   },
+  "nP1L8v": {
+    "defaultMessage": "Mar 21 - Apr 19",
+    "description": "UrbaniaHoroscope date"
+  },
   "nXVNeg": {
     "defaultMessage": "Name",
     "description": "Name field label"
@@ -1283,6 +1335,10 @@
   "nc8LF0": {
     "defaultMessage": "Metadata",
     "description": "field label"
+  },
+  "nlnDFI": {
+    "defaultMessage": "Sept 23 - Oct 22",
+    "description": "UrbaniaHoroscope date"
   },
   "nno1Pq": {
     "defaultMessage": "Button style",
@@ -1336,13 +1392,17 @@
     "defaultMessage": "Overtitle",
     "description": "Title placeholder"
   },
+  "pSpaGF": {
+    "defaultMessage": "Sagittarius",
+    "description": "UrbaniaHoroscope sign"
+  },
+  "pY/uB8": {
+    "defaultMessage": "Taurus",
+    "description": "UrbaniaHoroscope sign"
+  },
   "pfvDzR": {
     "defaultMessage": "Added by",
     "description": "Media label"
-  },
-  "pnT3od": {
-    "defaultMessage": "June 23 - Aug 22",
-    "description": "Horoscope date"
   },
   "ppq6CK": {
     "defaultMessage": "Type",
@@ -1416,10 +1476,6 @@
     "defaultMessage": "Speaker",
     "description": "Breadcrumb field label"
   },
-  "s5cvZR": {
-    "defaultMessage": "Signs",
-    "description": "Horoscope state"
-  },
   "sESmah": {
     "defaultMessage": "Entries",
     "description": "Entries field label"
@@ -1447,6 +1503,10 @@
   "tAYwqp": {
     "defaultMessage": "Add a slide",
     "description": "Button label in slides field"
+  },
+  "tFy+7Z": {
+    "defaultMessage": "Dec 22 - Jan 20",
+    "description": "UrbaniaHoroscope date"
   },
   "tYGev7": {
     "defaultMessage": "Font size",
@@ -1487,6 +1547,10 @@
   "uNpHnA": {
     "defaultMessage": "Bullet color",
     "description": "Field label"
+  },
+  "uS3Zpq": {
+    "defaultMessage": "Aries",
+    "description": "UrbaniaHoroscope sign"
   },
   "uSpItE": {
     "defaultMessage": "Add tags...",
@@ -1592,6 +1656,14 @@
     "defaultMessage": "Author",
     "description": "Author placeholder"
   },
+  "xhP0oH": {
+    "defaultMessage": "Aquarius",
+    "description": "UrbaniaHoroscope sign"
+  },
+  "xj0o1v": {
+    "defaultMessage": "Grid",
+    "description": "UrbaniaHoroscope state"
+  },
   "xsipID": {
     "defaultMessage": "Image",
     "description": "Visual field label"
@@ -1612,6 +1684,10 @@
     "defaultMessage": "Close",
     "description": "Close button label in Media Gallery"
   },
+  "yCbYhr": {
+    "defaultMessage": "Leo",
+    "description": "UrbaniaHoroscope sign"
+  },
   "yCj5uv": {
     "defaultMessage": "Nov 23 - Dec 21",
     "description": "Horoscope date"
@@ -1631,6 +1707,10 @@
   "z4CiV1": {
     "defaultMessage": "Text",
     "description": "Text placeholder"
+  },
+  "zD2Q5Y": {
+    "defaultMessage": "Feb 19 - Mar 20",
+    "description": "UrbaniaHoroscope date"
   },
   "zDH24s": {
     "defaultMessage": "Latitude",
