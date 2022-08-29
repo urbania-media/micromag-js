@@ -16,7 +16,7 @@ const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
     items: MicromagPropTypes.menuItems,
     onClickDot: PropTypes.func,
-    onClickMenu: PropTypes.func,
+    onClickScreensMenu: PropTypes.func,
     colors: PropTypes.shape({
         primary: PropTypes.string,
         secondary: PropTypes.string,
@@ -32,7 +32,7 @@ const defaultProps = {
     direction: 'horizontal',
     items: [],
     onClickDot: null,
-    onClickMenu: null,
+    onClickScreensMenu: null,
     colors: null,
     closeable: false,
     withItemClick: false,
@@ -45,7 +45,7 @@ const ViewerMenuDots = ({
     direction,
     items,
     onClickDot,
-    onClickMenu,
+    onClickScreensMenu,
     colors,
     closeable,
     withItemClick,
@@ -91,8 +91,8 @@ const ViewerMenuDots = ({
                             onClick={() => {
                                 if ((withItemClick || withoutScreensMenu) && onClickDot !== null) {
                                     onClickDot(item);
-                                } else if (!withItemClick && onClickMenu !== null) {
-                                    onClickMenu();
+                                } else if (!withItemClick && onClickScreensMenu !== null) {
+                                    onClickScreensMenu();
                                 }
                             }}
                             vertical={direction === 'vertical'}

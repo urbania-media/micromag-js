@@ -6,7 +6,6 @@
     z-index: 3;
     top: 0;
     color: $white;
-    padding: 3rem 0.5rem 0.5rem;
 }
 
 .heightContainer {
@@ -15,7 +14,8 @@
 
 .inner {
     height: 100%;
-    padding: 0.5rem;
+    padding: 3rem 0.5rem 0.5rem;
+    // padding: 0.5rem;
     background-color: rgba($black, 0.5);
     backdrop-filter: blur(0.75rem);
 }

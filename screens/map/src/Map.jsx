@@ -13,6 +13,7 @@ import {
     useScreenState,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
@@ -33,6 +34,15 @@ const defaultCenter = {
 };
 const defaultZoom = 10;
 
+const stopDragEventsPropagation = {
+    onTouchMove: (e) => e.stopPropagation(),
+    onTouchStart: (e) => e.stopPropagation(),
+    onTouchEnd: (e) => e.stopPropagation(),
+    onPointerMove: (e) => e.stopPropagation(),
+    onPointerUp: (e) => e.stopPropagation(),
+    onPointerDown: (e) => e.stopPropagation(),
+};
+
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
     draggable: PropTypes.bool,
@@ -49,8 +59,8 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    enableInteractions: PropTypes.func,
-    disableInteraction: PropTypes.func,
+    // enableInteractions: PropTypes.func,
+    // disableInteraction: PropTypes.func,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -71,8 +81,6 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
-    enableInteractions: null,
-    disableInteraction: null,
     type: null,
     className: null,
 };
@@ -93,8 +101,8 @@ function MapScreen({
     current,
     active,
     transitions,
-    enableInteractions,
-    disableInteraction,
+    // enableInteractions,
+    // disableInteraction,
     type,
     className,
 }) {
@@ -126,6 +134,7 @@ function MapScreen({
     // const backgroundShouldLoad = current || active;
     const backgroundShouldLoad = current || active;
     const [opened, setOpened] = useState(isStatic || isCapture);
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const onMapReady = useCallback(() => setReady(true), [setReady]);
 
@@ -172,6 +181,7 @@ function MapScreen({
     const onButtonClick = useCallback(() => {
         setOpened(true);
         if (disableInteraction !== null) {
+            console.log('yo');
             disableInteraction();
         }
         trackScreenEvent('click_button', button.body);
@@ -179,12 +189,12 @@ function MapScreen({
 
     const onCloseClick = useCallback(() => {
         setOpened(false);
-        if (enableInteractions !== null) {
-            enableInteractions();
+        if (enableInteraction !== null) {
+            enableInteraction();
         }
         trackScreenEvent('click_close', 'Close icon');
         closeMarker();
-    }, [setOpened, enableInteractions, trackScreenEvent]);
+    }, [setOpened, enableInteraction, trackScreenEvent]);
 
     const onMapDragEnd = useCallback(
         (newCenter) => {
@@ -391,7 +401,11 @@ function MapScreen({
                             />
                         )}
 
-                        <div key="marker-overlay" className={styles.markerOverlayContainer}>
+                        <div
+                            key="marker-overlay"
+                            className={styles.markerOverlayContainer}
+                            {...stopDragEventsPropagation}
+                        >
                             <div className={styles.markerOverlayScrollable}>
                                 <Scroll
                                     fullscreen

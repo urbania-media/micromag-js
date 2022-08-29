@@ -70,9 +70,8 @@ const propTypes = {
     withoutMenuShadow: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
     withoutNavigationArrow: PropTypes.bool,
-    withoutNeighborScreens: PropTypes.bool,
     withoutTransitions: PropTypes.bool,
-    withLandscapeSiblingsScreens: PropTypes.bool,
+    withNeighborScreens: PropTypes.bool,
     withNavigationHint: PropTypes.bool,
     withoutPlaybackControls: PropTypes.bool,
     closeable: PropTypes.bool,
@@ -110,16 +109,15 @@ const defaultProps = {
     // landscapeScreenMargin: 20,
     // landscapeSmallScreenScale: 0.9,
     withMetadata: false,
+    withNeighborScreens: false,
+    withNavigationHint: false,
     withoutGestures: false,
     withoutMenu: false,
     withoutScreensMenu: false,
     withoutShareMenu: false,
     withoutMenuShadow: false,
     withoutFullscreen: false,
-    withoutNeighborScreens: false,
     withoutTransitions: false,
-    withLandscapeSiblingsScreens: false, // @todo investigate possible refac'
-    withNavigationHint: false,
     withoutNavigationArrow: false,
     withoutPlaybackControls: false,
     menuIsScreenWidth: false,
@@ -159,9 +157,8 @@ const Viewer = ({
     withoutMenuShadow,
     withoutFullscreen, // eslint-disable-line no-unused-vars
     withoutNavigationArrow,
-    withoutNeighborScreens,
     withoutTransitions,
-    withLandscapeSiblingsScreens,
+    withNeighborScreens,
     withNavigationHint,
     withoutPlaybackControls,
     menuIsScreenWidth,
@@ -420,8 +417,8 @@ const Viewer = ({
         screenIndex,
         screenWidth: screenContainerWidth,
         disableCurrentScreenNavigation: !isView,
-        clickOnSiblings: landscape && withLandscapeSiblingsScreens,
         nextScreenWidthPercent: tapNextScreenWidthPercent,
+        clickOnSiblings: landscape && withNeighborScreens,
         onInteract: onInteractionPrivate,
         onNavigate: onScreenNavigate,
     });
@@ -491,7 +488,7 @@ const Viewer = ({
             screenIndex,
             screensCount,
             landscape,
-            withLandscapeSiblingsScreens,
+            withNeighborScreens,
             screenContainerWidth,
             interactWithScreen,
             setScreenTransition,
@@ -606,7 +603,6 @@ const Viewer = ({
                             screenSize.screens.map((screenName) => `story-screen-${screenName}`),
                             {
                                 [styles.landscape]: landscape,
-                                [styles.withSiblings]: withLandscapeSiblingsScreens,
                                 [styles.withoutGestures]: withoutGestures,
                                 [styles.hideMenu]: !menuVisible,
                                 [styles.fadeMenu]:
@@ -644,7 +640,7 @@ const Viewer = ({
                         {ready || withoutScreensTransforms ? (
                             <div className={styles.content}>
                                 {!withoutNavigationArrow &&
-                                withLandscapeSiblingsScreens &&
+                                !withNeighborScreens &&
                                 screenIndex > 0 &&
                                 screens.length > 1 ? (
                                     <NavigationButton
@@ -666,6 +662,7 @@ const Viewer = ({
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive &&
+                                            withNeighborScreens &&
                                             !withoutTransitions;
 
                                         const screenStyles = active
@@ -703,7 +700,7 @@ const Viewer = ({
                                                         scale={screenScale}
                                                         withNavigationHint={
                                                             withNavigationHint &&
-                                                            !withLandscapeSiblingsScreens &&
+                                                            !withNeighborScreens &&
                                                             current &&
                                                             screenIndex === 0 &&
                                                             !hasInteracted
@@ -715,7 +712,7 @@ const Viewer = ({
                                     })}
                                 </div>
                                 {!withoutNavigationArrow &&
-                                withLandscapeSiblingsScreens &&
+                                !withNeighborScreens &&
                                 screenIndex < screens.length - 1 ? (
                                     <NavigationButton
                                         direction="next"

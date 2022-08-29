@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { IconButton } from '@micromag/core/components';
+import { viewerTheme } from '../../lib/PropTypes';
+import IconButton from './IconButton';
 
 const propTypes = {
     className: PropTypes.string,
     onClick: PropTypes.func,
-    theme: MicromagPropTypes.viewerTheme,
+    theme: viewerTheme,
 };
 
 const defaultProps = {
