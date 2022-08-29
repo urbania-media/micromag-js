@@ -13,7 +13,7 @@ const useSpringProgress = (initialProgress = 1, extras = {}) => {
     const [progress, setProgress] = useState(initialProgress);
     const onChange = useCallback((spring) => setProgress(getValueFromSpring(spring)), [setProgress]);
     const [, api] = useSpring(() => ({
-        progress,
+        progress: initialProgress,
         onChange,
         ...extras,
     }));

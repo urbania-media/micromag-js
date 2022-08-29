@@ -535,11 +535,11 @@ const Viewer = ({
 
     useEffect(() => {
         setScreenTransition(screenIndex);
-        const newType = landscape
+        const newType = landscape && withNeighborScreens
             ? DEFAULT_TRANSITION_TYPE_LANDSCAPE
             : DEFAULT_TRANSITION_TYPE_PORTRAIT;
         setTransitionType(newType);
-    }, [screenIndex, transitionType, setScreenTransition]);
+    }, [landscape, withNeighborScreens, screenIndex, transitionType, setScreenTransition]);
 
     const {
         toggle: toggleFullscreen,
@@ -687,22 +687,24 @@ const Viewer = ({
                                     style={{
                                         width: screenContainerWidth,
                                         height: screenContainerHeight,
+                                        overflow: !withNeighborScreens ? 'hidden' : null,
                                     }}
+
                                     {...dragContentBind()}
                                 >
                                     {screens.map((screen, i) => {
                                         const current = i === parseInt(screenIndex, 10);
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
-                                            i <= screenIndex + neighborScreensActive &&
-                                            withNeighborScreens &&
-                                            !withoutTransitions;
+                                            i <= screenIndex + neighborScreensActive;
 
                                         const screenStyles = active
                                             ? computeScreenStyle(i, screenProgress)
                                             : {
                                                   opacity: current ? 1 : 0,
                                               };
+
+                                        console.log({ screenStyles, active, index: i });
 
                                         return (
                                             <div
@@ -712,11 +714,11 @@ const Viewer = ({
                                                     styles.screenContainer,
                                                     {
                                                         [styles.current]: current,
-                                                        [styles.active]: active,
+                                                        [styles.active]: active && withNeighborScreens,
                                                     },
                                                 ])}
                                             >
-                                                {screen !== null ? (
+                                                {screen !== null && active ? (
                                                     <ViewerScreen
                                                         className={styles.screen}
                                                         screen={screen}
