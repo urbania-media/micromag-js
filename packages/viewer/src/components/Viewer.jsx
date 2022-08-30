@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, no-nested-ternary, react/jsx-props-no-spreading */
-import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -21,8 +20,7 @@ import {
     useDimensionObserver,
     useScreenSizeFromElement,
     useTrackScreenView,
-    useProgressTransition,
-    useSpringProgress,
+    useDragProgress,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
 
@@ -43,6 +41,8 @@ const DRAG_PROGRESS_ACTIVATION_THRESHOLD = 0.3;
 const DRAG_VELOCITY_ACTIVATION_THRESHOLD = 0.3;
 const DEFAULT_TRANSITION_TYPE_LANDSCAPE = 'carousel';
 const DEFAULT_TRANSITION_TYPE_PORTRAIT = 'stack';
+
+
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -273,61 +273,19 @@ const Viewer = ({
         }
     }, [currentScreen, trackScreenView, trackingEnabled]);
 
-    /**
-     * Screen Transitions
-     */
-    const [transitionType, setTransitionType] = useState(DEFAULT_TRANSITION_TYPE_LANDSCAPE);
-
     useEffect(() => {
         if (ready && onViewModeChange !== null) {
             onViewModeChange({ landscape, menuOverScreen });
         }
-        const newType = landscape
+    }, [ready, landscape, menuOverScreen, onViewModeChange]);
+
+    /**
+     * Screen Transitions
+     */
+    const transitionType =
+        landscape && withNeighborScreens
             ? DEFAULT_TRANSITION_TYPE_LANDSCAPE
             : DEFAULT_TRANSITION_TYPE_PORTRAIT;
-        setTransitionType(newType);
-    }, [ready, landscape, menuOverScreen, onViewModeChange, setTransitionType]);
-
-    const [screenTransitionIndex, setScreenTransitionIndex] = useState(0);
-    const [isDragging, setIsDragging] = useState(0);
-    const wasDragging = useRef(isDragging);
-    const springParams = useMemo(
-        () => ({
-            immediate: wasDragging.current,
-            config: SPRING_CONFIG_TIGHT,
-        }),
-        [wasDragging.current],
-    );
-    const isNotDragging = !isDragging || !wasDragging.current;
-    const screenTransitionProgress = useSpringProgress(isNotDragging ? screenTransitionIndex : null, springParams);
-    if (wasDragging.current !== isDragging) {
-        wasDragging.current = isDragging;
-    }
-
-    const computeScreenStyle = useCallback(
-        (index, progress) => {
-            if (transitionType === 'stack') {
-                const t = index - progress;
-                const clamped = Math.min(1, Math.max(0, t));
-                const invert = Math.min(1, Math.max(0, -t));
-                const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
-                return {
-                    opacity,
-                    transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
-                    boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
-                    zIndex: index,
-                };
-            }
-            const t = index - progress;
-            const clamped = Math.min(1, Math.max(0, Math.abs(t)));
-            return {
-                opacity: 1 - 0.75 * clamped,
-                transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
-                zIndex: screens.length - index,
-            };
-        },
-        [screens, transitionType],
-    );
 
     /**
      * Screen Navigation
@@ -406,38 +364,22 @@ const Viewer = ({
         onNavigate: onScreenNavigate,
     });
 
-    const onDragContent = useCallback(
-        ({
-            active,
-            currentTarget,
-            event,
-            movement: [mx],
-            tap,
-            target,
-            velocity: [vx],
-            xy: [x, y],
-        }) => {
-            if (!isView) {
-                return;
-            }
+    const onTap = useCallback(
+        ({ currentTarget, event, target, xy: [x, y] }) => {
+            interactWithScreen({
+                event,
+                target,
+                currentTarget,
+                index: screenIndex,
+                x,
+                y,
+            });
+        },
+        [interactWithScreen, screenIndex],
+    );
 
-            if (tap) {
-                interactWithScreen({
-                    event,
-                    target,
-                    currentTarget,
-                    index: screenIndex,
-                    x,
-                    y,
-                });
-
-                return;
-            }
-
-            if (withoutGestures) {
-                return;
-            }
-
+    const computeScreenProgress = useCallback(
+        ({ active, movement: [mx], velocity: [vx] }) => {
             const p = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
             const forwards = mx < 0; // true if swiping to left (to navigate forwards)
             const newIndex = !forwards ? screenIndex - 1 : screenIndex + 1; // which item index are we moving towards?
@@ -448,48 +390,66 @@ const Viewer = ({
             const damper = reachedBounds ? 0.1 : 1;
             const progress = Math.max(-1, Math.min(1, p * damper));
 
-            if (!tap) {
-                setIsDragging(true);
-                setScreenTransitionIndex(screenIndex - progress);
-            }
-
             if (!active) {
-                setIsDragging(false);
-                if (reachedThreshold && !reachedBounds) {
-                    onScreenNavigate({
-                        index: screenIndex,
-                        newIndex,
-                    });
-                } else {
-                    setScreenTransitionIndex(screenIndex);
-                }
+                return reachedThreshold && !reachedBounds ? newIndex : screenIndex;
             }
+            return screenIndex - progress;
         },
-        [
-            isView,
-            screenIndex,
-            screensCount,
-            landscape,
-            withNeighborScreens,
-            screenContainerWidth,
-            interactWithScreen,
-            setScreenTransitionIndex,
-            setIsDragging,
-        ],
+        [screenContainerWidth, screenIndex],
     );
 
-    const dragContentBind = useDrag(onDragContent, {
-        filterTaps: true,
+    const onScreenProgress = useCallback(
+        (progress, { active }) => {
+            const delta = Math.abs(progress - screenIndex);
+            const reachedBounds = progress < 0 || progress >= screensCount; // have we reached the end of the stack?
+            if (!active && delta === 1 && !reachedBounds) {
+                onScreenNavigate({
+                    index: screenIndex,
+                    newIndex: progress,
+                });
+            }
+        },
+        [onScreenNavigate, screenIndex],
+    );
+
+    const {
+        dragging: isDragging,
+        progress: screenIndexProgress,
+        bind: dragContentBind,
+    } = useDragProgress({
+        progress: screenIndex,
+        disabled: !isView,
+        dragDisabled: withoutGestures,
+        onTap,
+        computeProgress: computeScreenProgress,
+        onProgress: onScreenProgress,
+        springConfig: SPRING_CONFIG_TIGHT,
     });
 
-    useEffect(() => {
-        setScreenTransitionIndex(screenIndex);
-        const newType =
-            landscape && withNeighborScreens
-                ? DEFAULT_TRANSITION_TYPE_LANDSCAPE
-                : DEFAULT_TRANSITION_TYPE_PORTRAIT;
-        setTransitionType(newType);
-    }, [landscape, withNeighborScreens, screenIndex, transitionType, setScreenTransitionIndex]);
+    const computeScreenStyle = useCallback(
+        (index, progress) => {
+            if (transitionType === 'stack') {
+                const t = index - progress;
+                const clamped = Math.min(1, Math.max(0, t));
+                const invert = Math.min(1, Math.max(0, -t));
+                const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
+                return {
+                    opacity,
+                    transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
+                    boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
+                    zIndex: index,
+                };
+            }
+            const t = index - progress;
+            const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+            return {
+                opacity: 1 - 0.75 * clamped,
+                transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
+                zIndex: screens.length - index,
+            };
+        },
+        [screens, transitionType],
+    );
 
     const {
         toggle: toggleFullscreen,
@@ -647,10 +607,7 @@ const Viewer = ({
                                             i <= screenIndex + neighborScreensActive;
 
                                         const screenStyles = active
-                                            ? computeScreenStyle(
-                                                  i,
-                                                  isDragging ? screenTransitionIndex : screenTransitionProgress,
-                                              )
+                                            ? computeScreenStyle(i, screenIndexProgress)
                                             : {
                                                   opacity: current ? 1 : 0,
                                               };
