@@ -34,6 +34,7 @@ import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
+import { round } from 'lodash';
 
 // @todo export from somewhere else
 const SPRING_CONFIG_TIGHT = { tension: 300, friction: 35 }; // tight
@@ -58,7 +59,6 @@ const propTypes = {
     onScreenChange: PropTypes.func,
     tapNextScreenWidthPercent: PropTypes.number,
     neighborScreensActive: PropTypes.number,
-    neighborScreensMounted: PropTypes.number,
     storyIsParsed: PropTypes.bool,
     // landscapeScreenMargin: PropTypes.number,
     // landscapeSmallScreenScale: PropTypes.number,
@@ -103,8 +103,7 @@ const defaultProps = {
     visitor: null,
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.8,
-    neighborScreensActive: 2,
-    neighborScreensMounted: 1,
+    neighborScreensActive: 1,
     storyIsParsed: false,
     // landscapeScreenMargin: 20,
     // landscapeSmallScreenScale: 0.9,
@@ -601,7 +600,8 @@ const Viewer = ({
                                     }}
                                 >
                                     {screens.map((screen, i) => {
-                                        const current = i === parseInt(screenIndex, 10);
+                                        // const current = i === parseInt(screenIndex, 10);
+                                        const current = i === Math.round(screenIndexProgress); // base current on transition
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
