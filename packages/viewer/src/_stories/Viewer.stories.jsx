@@ -166,7 +166,7 @@ export const WithScroll = () => (
     </div>
 );
 
-export const AllScreens = () => <Viewer {...props} />;
+export const AllScreens = () => <Viewer {...props} withNeighborScreens />;
 export const ShareScreens = () => <Viewer {...shareScreenProps} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint />;
 export const Empty = () => <Viewer basePath="/story-path" />;

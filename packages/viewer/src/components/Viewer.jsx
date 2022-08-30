@@ -276,8 +276,6 @@ const Viewer = ({
     /**
      * Screen Transitions
      */
-    const [isDragging, setIsDragging] = useState(false);
-    const [screenTransition, setScreenTransition] = useState(0);
     const [transitionType, setTransitionType] = useState(DEFAULT_TRANSITION_TYPE_LANDSCAPE);
 
     useEffect(() => {
@@ -290,6 +288,8 @@ const Viewer = ({
         setTransitionType(newType);
     }, [ready, landscape, menuOverScreen, onViewModeChange, setTransitionType]);
 
+    const [screenTransitionIndex, setScreenTransitionIndex] = useState(0);
+    const [isDragging, setIsDragging] = useState(0);
     const wasDragging = useRef(isDragging);
     const springParams = useMemo(
         () => ({
@@ -299,76 +299,26 @@ const Viewer = ({
         [wasDragging.current],
     );
     const isNotDragging = !isDragging || !wasDragging.current;
-    const screenProgress = useSpringProgress(isNotDragging ? screenTransition : null, springParams);
+    const screenTransitionProgress = useSpringProgress(isNotDragging ? screenTransitionIndex : null, springParams);
     if (wasDragging.current !== isDragging) {
         wasDragging.current = isDragging;
     }
-
-    // const carouselTransitionStyles
-    // const { styles:  = {} } = useProgressTransition({
-    //     value: screenTransition,
-    //     fn: (p) =>
-    //         ,
-    //     params: {
-    //         immediate: isDragging,
-    //         config: SPRING_CONFIG_TIGHT,
-    //     },
-    // });
-
-    // const { styles: stackTransitionStyles = {} } = useProgressTransition({
-    //     value: screenTransition,
-    //     fn: computeScreensStyles,
-    //     params: {
-    //         immediate: isDragging,
-    //         config: SPRING_CONFIG_TIGHT,
-    //     },
-    // });
-    // const screenTransitionStyles = useMemo(
-    //     () =>
-    //     transitionType === 'stack' ? screens.map((s, i) => {
-    //             const t = i - screenProgress;
-    //             if (Math.abs(t) > 4) return {};
-    //             const clamped = Math.min(1, Math.max(0, t));
-    //             const invert = Math.min(1, Math.max(0, -t));
-    //             const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
-    //             return {
-    //                 opacity,
-    //                 transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
-    //                 // boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
-    //                 // zIndex: Math.abs(clamped + 1),
-    //                 zIndex: i,
-    //             };
-    //         }) : screens.map((s, i) => {
-    //             const t = i - screenProgress;
-    //             if (Math.abs(t) > 4) return {};
-    //             const clamped = Math.min(1, Math.max(0, Math.abs(t)));
-    //             return {
-    //                 opacity: 1 - 0.75 * clamped,
-    //                 transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
-    //                 zIndex: screens.length - i,
-    //             };
-    //         }),
-    //     [screens, screenProgress],
-    // );
 
     const computeScreenStyle = useCallback(
         (index, progress) => {
             if (transitionType === 'stack') {
                 const t = index - progress;
-                // if (Math.abs(t) > 4) return {};
                 const clamped = Math.min(1, Math.max(0, t));
                 const invert = Math.min(1, Math.max(0, -t));
                 const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
                 return {
                     opacity,
                     transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
-                    // boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
-                    // zIndex: Math.abs(clamped + 1),
+                    boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
                     zIndex: index,
                 };
             }
             const t = index - progress;
-            // if (Math.abs(t) > 4) return {};
             const clamped = Math.min(1, Math.max(0, Math.abs(t)));
             return {
                 opacity: 1 - 0.75 * clamped,
@@ -378,11 +328,6 @@ const Viewer = ({
         },
         [screens, transitionType],
     );
-
-    // const TRANSITION_TYPES = {
-    //     stack: stackTransitionStyles || {},
-    //     carousel: carouselTransitionStyles || {},
-    // };
 
     /**
      * Screen Navigation
@@ -463,7 +408,6 @@ const Viewer = ({
 
     const onDragContent = useCallback(
         ({
-            args: [tapScreenIndex],
             active,
             currentTarget,
             event,
@@ -482,7 +426,7 @@ const Viewer = ({
                     event,
                     target,
                     currentTarget,
-                    index: tapScreenIndex,
+                    index: screenIndex,
                     x,
                     y,
                 });
@@ -506,7 +450,7 @@ const Viewer = ({
 
             if (!tap) {
                 setIsDragging(true);
-                setScreenTransition(screenIndex - progress);
+                setScreenTransitionIndex(screenIndex - progress);
             }
 
             if (!active) {
@@ -517,7 +461,7 @@ const Viewer = ({
                         newIndex,
                     });
                 } else {
-                    setScreenTransition(screenIndex);
+                    setScreenTransitionIndex(screenIndex);
                 }
             }
         },
@@ -529,7 +473,7 @@ const Viewer = ({
             withNeighborScreens,
             screenContainerWidth,
             interactWithScreen,
-            setScreenTransition,
+            setScreenTransitionIndex,
             setIsDragging,
         ],
     );
@@ -539,12 +483,13 @@ const Viewer = ({
     });
 
     useEffect(() => {
-        setScreenTransition(screenIndex);
-        const newType = landscape && withNeighborScreens
-            ? DEFAULT_TRANSITION_TYPE_LANDSCAPE
-            : DEFAULT_TRANSITION_TYPE_PORTRAIT;
+        setScreenTransitionIndex(screenIndex);
+        const newType =
+            landscape && withNeighborScreens
+                ? DEFAULT_TRANSITION_TYPE_LANDSCAPE
+                : DEFAULT_TRANSITION_TYPE_PORTRAIT;
         setTransitionType(newType);
-    }, [landscape, withNeighborScreens, screenIndex, transitionType, setScreenTransition]);
+    }, [landscape, withNeighborScreens, screenIndex, transitionType, setScreenTransitionIndex]);
 
     const {
         toggle: toggleFullscreen,
@@ -676,7 +621,7 @@ const Viewer = ({
                             />
                         ) : null}
                         {ready || withoutScreensTransforms ? (
-                            <div className={styles.content}>
+                            <div className={styles.content} {...dragContentBind()}>
                                 {!withoutNavigationArrow &&
                                 !withNeighborScreens &&
                                 screenIndex > 0 &&
@@ -694,8 +639,6 @@ const Viewer = ({
                                         height: screenContainerHeight,
                                         overflow: !withNeighborScreens ? 'hidden' : null,
                                     }}
-
-                                    {...dragContentBind()}
                                 >
                                     {screens.map((screen, i) => {
                                         const current = i === parseInt(screenIndex, 10);
@@ -704,12 +647,13 @@ const Viewer = ({
                                             i <= screenIndex + neighborScreensActive;
 
                                         const screenStyles = active
-                                            ? computeScreenStyle(i, isDragging ? screenTransition : screenProgress)
+                                            ? computeScreenStyle(
+                                                  i,
+                                                  isDragging ? screenTransitionIndex : screenTransitionProgress,
+                                              )
                                             : {
                                                   opacity: current ? 1 : 0,
                                               };
-
-                                        {/* console.log({ screenStyles, active, index: i }); */}
 
                                         return (
                                             <div

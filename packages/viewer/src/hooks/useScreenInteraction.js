@@ -76,9 +76,9 @@ function useScreenInteraction({
 
             const lastIndex = screensCount - 1;
             let nextIndex = index;
-            if (direction === 'previous' && !clickOnSiblings) {
+            if (direction === 'previous' && clickOnSiblings) {
                 nextIndex = Math.max(0, screenIndex - 1);
-            } else if (direction === 'next' && !clickOnSiblings) {
+            } else if (direction === 'next' && clickOnSiblings) {
                 nextIndex = Math.min(lastIndex, screenIndex + 1);
             }
 
