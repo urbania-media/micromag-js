@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, no-nested-ternary, react/jsx-props-no-spreading */
 import classNames from 'classnames';
+import { round } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -34,7 +35,6 @@ import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
-import { round } from 'lodash';
 
 // @todo export from somewhere else
 const SPRING_CONFIG_TIGHT = { tension: 300, friction: 35 }; // tight
@@ -42,8 +42,6 @@ const DRAG_PROGRESS_ACTIVATION_THRESHOLD = 0.3;
 const DRAG_VELOCITY_ACTIVATION_THRESHOLD = 0.3;
 const DEFAULT_TRANSITION_TYPE_LANDSCAPE = 'carousel';
 const DEFAULT_TRANSITION_TYPE_PORTRAIT = 'stack';
-
-
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -425,30 +423,27 @@ const Viewer = ({
         springConfig: SPRING_CONFIG_TIGHT,
     });
 
-    const computeScreenStyle = useCallback(
-        (index, progress) => {
-            if (transitionType === 'stack') {
-                const t = index - progress;
-                const clamped = Math.min(1, Math.max(0, t));
-                const invert = Math.min(1, Math.max(0, -t));
-                const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
-                return {
-                    opacity,
-                    transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
-                    boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
-                    zIndex: index,
-                };
-            }
+    const computeScreenStyle = (index, progress) => {
+        if (transitionType === 'stack') {
             const t = index - progress;
-            const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+            const clamped = Math.min(1, Math.max(0, t));
+            const invert = Math.min(1, Math.max(0, -t));
+            const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
             return {
-                opacity: 1 - 0.75 * clamped,
-                transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
-                zIndex: screens.length - index,
+                opacity,
+                transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
+                boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
+                zIndex: index,
             };
-        },
-        [screens, transitionType],
-    );
+        }
+        const t = index - progress;
+        const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+        return {
+            opacity: 1 - 0.75 * clamped,
+            transform: `translateX(${t * 105}%) scale(${1 - 0.2 * clamped})`,
+            zIndex: screensCount - index,
+        };
+    };
 
     const {
         toggle: toggleFullscreen,
