@@ -183,7 +183,7 @@ msgstr "Images"
 #: 2Q/wGq
 msgctxt "2Q/wGq"
 msgid "Jan 21 - Feb 18"
-msgstr ""
+msgstr "21 jan au 18 fév"
 
 # Title placeholder
 #: 2ZOPe+
@@ -243,7 +243,7 @@ msgstr "Légende"
 #: 3YruaX
 msgctxt "3YruaX"
 msgid "May 21 - June 20"
-msgstr ""
+msgstr "21 mai au 20 juin"
 
 # Video placeholder
 #: 3ext9Q
@@ -309,7 +309,7 @@ msgstr "Sélectionnez une couleur..."
 #: 4bHk4B
 msgctxt "4bHk4B"
 msgid "Scorpio"
-msgstr ""
+msgstr "Scorpion"
 
 # Gallery Feed screen title
 #: 4bHvRS
@@ -345,7 +345,7 @@ msgstr "Disposition"
 #: 4jR88b
 msgctxt "4jR88b"
 msgid "Libra"
-msgstr ""
+msgstr "Balance"
 
 # Field label
 #: 4js1kW
@@ -489,7 +489,7 @@ msgstr "Description"
 #: 82g1F5
 msgctxt "82g1F5"
 msgid "Intro"
-msgstr ""
+msgstr "Intro"
 
 # Field label
 #: 862eE3
@@ -519,7 +519,7 @@ msgstr "Paramètres"
 #: 8gQ1oW
 msgctxt "8gQ1oW"
 msgid "Pisces"
-msgstr ""
+msgstr "Poissons"
 
 # Button label
 #: 8oczXQ
@@ -567,7 +567,7 @@ msgstr "Titre avec encadré"
 #: 9mSXOP
 msgctxt "9mSXOP"
 msgid "June 23 - Aug 22"
-msgstr ""
+msgstr "23 juin au 22 août"
 
 # Button label in images with caption field
 #: 9n9+yP
@@ -687,7 +687,7 @@ msgstr "Citation"
 #: CuR6TQ
 msgctxt "CuR6TQ"
 msgid "Oct 23 - Nov 22"
-msgstr ""
+msgstr "23 oct au 22 nov"
 
 # Share button label
 #: D21uVQ
@@ -981,7 +981,7 @@ msgstr "23 juil - 22 août"
 #: MRawqs
 msgctxt "MRawqs"
 msgid "Virgo"
-msgstr ""
+msgstr "Vierge"
 
 # Audio placeholder
 #: MYZwSA
@@ -1017,7 +1017,7 @@ msgstr "Ajuster la carte selon les marqueurs"
 #: NcGcbY
 msgctxt "NcGcbY"
 msgid "Capricorn"
-msgstr ""
+msgstr "Capricorne"
 
 # Conversation placeholder
 #: NmCfTO
@@ -1107,7 +1107,7 @@ msgstr "Annuler"
 #: Q2lZvi
 msgctxt "Q2lZvi"
 msgid "Gemini"
-msgstr ""
+msgstr "Gémeaux"
 
 # Title of the screen types selection dialog
 #: QBaiO0
@@ -1232,7 +1232,7 @@ msgstr "Flou"
 #: TmV8Ob
 msgctxt "TmV8Ob"
 msgid "Cancer"
-msgstr ""
+msgstr "Cancer"
 
 # Button label
 #: Tol+/U
@@ -1304,7 +1304,7 @@ msgstr "Questions"
 #: VS7hGL
 msgctxt "VS7hGL"
 msgid "June 21 - July 22"
-msgstr ""
+msgstr "21 juin au 22 juil"
 
 # Upload button label in Media Gallery
 #: VspZp9
@@ -1430,7 +1430,7 @@ msgstr "Description"
 #: ZDhS1K
 msgctxt "ZDhS1K"
 msgid "Nov 23 - Dec 21"
-msgstr ""
+msgstr "23 nov au 21 déc"
 
 # Submit form button
 #: ZLDmja
@@ -1496,7 +1496,7 @@ msgstr "Nom du fichier"
 #: ap68Fp
 msgctxt "ap68Fp"
 msgid "Signs"
-msgstr ""
+msgstr "Signes"
 
 # Nav ARIA label
 #: bLYuuN
@@ -1640,7 +1640,7 @@ msgstr "Sélectionnez un média..."
 #: e9tPoV
 msgctxt "e9tPoV"
 msgid "Apr 20 - May 20"
-msgstr ""
+msgstr "20 avr au 20 mai"
 
 # Field label
 #: eBFxNl
@@ -1760,7 +1760,7 @@ msgstr "Supprimer l’écran"
 #: giHj1W
 msgctxt "giHj1W"
 msgid "Aug 23 - Sept 22"
-msgstr ""
+msgstr "23 août au 22 sept"
 
 # Input placeholder
 #: gprXiG
@@ -2004,7 +2004,7 @@ msgstr "Urbania Article"
 #: nP1L8v
 msgctxt "nP1L8v"
 msgid "Mar 21 - Apr 19"
-msgstr ""
+msgstr "21 mars au 19 avr"
 
 # Name field label
 #: nXVNeg
@@ -2022,7 +2022,7 @@ msgstr "Métadonnées"
 #: nlnDFI
 msgctxt "nlnDFI"
 msgid "Sept 23 - Oct 22"
-msgstr ""
+msgstr "23 sept au 22 oct"
 
 # Field label
 #: nno1Pq
@@ -2106,13 +2106,13 @@ msgstr "Surtitre"
 #: pSpaGF
 msgctxt "pSpaGF"
 msgid "Sagittarius"
-msgstr ""
+msgstr "Sagittaire"
 
 # UrbaniaHoroscope sign
 #: pY/uB8
 msgctxt "pY/uB8"
 msgid "Taurus"
-msgstr ""
+msgstr "Taureau"
 
 # Media label
 #: pfvDzR
@@ -2274,7 +2274,7 @@ msgstr "Ajouter une diapositive"
 #: tFy+7Z
 msgctxt "tFy+7Z"
 msgid "Dec 22 - Jan 20"
-msgstr ""
+msgstr "22 déc au 20 jan"
 
 # Field label
 #: tYGev7
@@ -2340,7 +2340,7 @@ msgstr "Couleur du point"
 #: uS3Zpq
 msgctxt "uS3Zpq"
 msgid "Aries"
-msgstr ""
+msgstr "Bélier"
 
 # Dropdown select label
 #: uSpItE
@@ -2502,13 +2502,13 @@ msgstr "Auteur"
 #: xhP0oH
 msgctxt "xhP0oH"
 msgid "Aquarius"
-msgstr ""
+msgstr "Verseau"
 
 # UrbaniaHoroscope state
 #: xj0o1v
 msgctxt "xj0o1v"
 msgid "Grid"
-msgstr ""
+msgstr "Grille"
 
 # Visual field label
 #: xsipID
@@ -2544,7 +2544,7 @@ msgstr "Fermer"
 #: yCbYhr
 msgctxt "yCbYhr"
 msgid "Leo"
-msgstr ""
+msgstr "Lion"
 
 # Horoscope date
 #: yCj5uv
@@ -2580,7 +2580,7 @@ msgstr "Texte"
 #: zD2Q5Y
 msgctxt "zD2Q5Y"
 msgid "Feb 19 - Mar 20"
-msgstr ""
+msgstr "19 fév au 20 mars"
 
 # Latitude description
 #: zDH24s

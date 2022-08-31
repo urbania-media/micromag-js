@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef } from 'react';
 
 import styles from '../../styles/buttons/sliding-buttons.module.scss';
 

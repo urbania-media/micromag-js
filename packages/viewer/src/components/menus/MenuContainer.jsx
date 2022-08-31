@@ -31,10 +31,15 @@ const ViewerMenuContainer = ({ className, transitionProgress, children }) => (
             style={{
                 height: `${transitionProgress * 100}%`,
                 pointerEvents: transitionProgress < 0.25 ? 'none' : 'auto',
-                zIndex: Math.round(2 - transitionProgress),
+                zIndex: Math.round(1 + transitionProgress),
             }}
         >
-            <div className={styles.inner}>{children}</div>
+            <div className={styles.inner}
+                style={{
+                    paddingTop: `${3 * transitionProgress}rem`,
+                    paddingBottom: `${0.5 * transitionProgress}rem`,
+                }}
+            >{children}</div>
         </div>
     </div>
 );
