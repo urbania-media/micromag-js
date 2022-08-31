@@ -3,8 +3,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import useProgressTransition from '../../hooks/useProgressTransition';
-
 import styles from '../../styles/buttons/sliding-buttons.module.scss';
 
 const propTypes = {
@@ -12,7 +10,6 @@ const propTypes = {
     current: PropTypes.number,
     buttons: PropTypes.arrayOf(PropTypes.node),
     buttonsProps: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)), // eslint-disable-line
-    immediate: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -20,26 +17,17 @@ const defaultProps = {
     current: 0,
     buttons: null,
     buttonsProps: null,
-    immediate: false,
 };
 
-const SlidingButtons = ({ className, current, buttons, buttonsProps, immediate }) => {
+const SlidingButtons = ({ className, current, buttons, buttonsProps }) => {
     if (buttons === null) return false;
 
-    const { styles: slidingStyles = {} } = useProgressTransition({
-        value: current,
-        fn: (p) =>
-            buttons.map((_, i) => {
-                const t = i - p;
-                return {
-                    transform: `translateY(${t * -100}%)`,
-                };
-            }),
-        params: {
-            immediate,
-            config: { tension: 300, friction: 30 },
-        },
-    });
+    const getSlidingButtonStyles = (p, i) => {
+        const t = i - p;
+        return {
+            transform: `translateY(${t * -100}%)`,
+        };
+    };
 
     return (
         <div
@@ -66,7 +54,7 @@ const SlidingButtons = ({ className, current, buttons, buttonsProps, immediate }
                                 [styles.additional]: i > 0,
                             },
                         ])}
-                        style={slidingStyles[i]}
+                        style={getSlidingButtonStyles(current, i)}
                     />
                 );
             })}

@@ -68,8 +68,13 @@
         }
     }
 
-    &.isMenuOpened {
-        opacity: 1;
+    &.isOpened {
+        opacity: 1; // don't fade (even if video is playing in background)
+        // @todo maybe just stop videos when pulling up screens menu?
+
+        .dots {
+            opacity: 0;
+        }
 
         &.withShadow {
             background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgb(0, 0, 0, 0));

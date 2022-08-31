@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, no-nested-ternary, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import { round } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -344,7 +343,6 @@ const Viewer = ({
         }
     }, [onInteraction, hasInteracted, setHasInteracted]);
 
-    // @todo document, educate, elucidate
     const {
         interact: interactWithScreen,
         currentScreenInteractionEnabled,
@@ -356,7 +354,6 @@ const Viewer = ({
         screenWidth: screenContainerWidth,
         disableCurrentScreenNavigation: !isView,
         nextScreenWidthPercent: tapNextScreenWidthPercent,
-        clickOnSiblings: landscape && withNeighborScreens,
         onInteract: onInteractionPrivate,
         onNavigate: onScreenNavigate,
     });
@@ -409,6 +406,7 @@ const Viewer = ({
         [onScreenNavigate, screenIndex],
     );
 
+    const springParams = useMemo(() => ({ config: SPRING_CONFIG_TIGHT }), []);
     const {
         dragging: isDragging,
         progress: screenIndexProgress,
@@ -417,13 +415,13 @@ const Viewer = ({
         progress: screenIndex,
         disabled: !isView,
         dragDisabled: withoutGestures,
-        onTap,
         computeProgress: computeScreenProgress,
         onProgress: onScreenProgress,
-        springConfig: SPRING_CONFIG_TIGHT,
+        onTap,
+        springParams,
     });
 
-    const computeScreenStyle = (index, progress) => {
+    const getScreenStylesByIndex = (index, progress) => {
         if (transitionType === 'stack') {
             const t = index - progress;
             const clamped = Math.min(1, Math.max(0, t));
@@ -600,12 +598,10 @@ const Viewer = ({
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
-
+                                        const defaultStyles = { opacity: current ? 1 : 0 };
                                         const screenStyles = active
-                                            ? computeScreenStyle(i, screenIndexProgress)
-                                            : {
-                                                  opacity: current ? 1 : 0,
-                                              };
+                                            ? getScreenStylesByIndex(i, screenIndexProgress)
+                                            : defaultStyles;
 
                                         return (
                                             <div

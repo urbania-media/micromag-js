@@ -8,7 +8,7 @@ const getValueFromSpring = (s) => {
     return p;
 };
 
-function useSpringValue (wantedProgress, immediate, config) {
+function useSpringValue(wantedProgress, immediate, params) {
     const [progress, setProgress] = useState(wantedProgress);
     const onChange = useCallback(
         (spring) => setProgress(getValueFromSpring(spring)),
@@ -16,18 +16,18 @@ function useSpringValue (wantedProgress, immediate, config) {
     );
     const [, api] = useSpring(() => ({
         progress: wantedProgress,
-        immediate,
         onChange,
-        ...config,
+        immediate,
+        ...params,
     }));
 
     useEffect(() => {
         if (wantedProgress !== null) {
-            api.start({ progress: wantedProgress, immediate, ...config });
+            api.start({ progress: wantedProgress, immediate, ...params });
         }
-    }, [wantedProgress, immediate, config, api]);
+    }, [wantedProgress, immediate, params, api]);
 
     return immediate ? wantedProgress : progress;
-};
+}
 
 export default useSpringValue;

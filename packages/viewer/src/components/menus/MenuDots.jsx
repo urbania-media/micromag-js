@@ -52,10 +52,12 @@ const ViewerMenuDots = ({
     withoutScreensMenu,
     onClose,
     className,
+    ...props
 }) => {
     const { primary = 'rgba(255, 255, 255, 1)' } = colors || {};
     const intl = useIntl();
     const currentIndex = items.findIndex(({ current = false }) => current);
+    const { style } = props || {};
 
     return (
         <nav
@@ -76,6 +78,7 @@ const ViewerMenuDots = ({
                     total: items.length,
                 },
             )}
+            style={style}
         >
             <ul className={styles.items}>
                 {items.map((item, index) => {

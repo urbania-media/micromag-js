@@ -2,6 +2,14 @@
 
 This is rather free-form for now, but eventually this will be properly timestamped, and will mention the version the changes apply to!
 
+2022-08-30 Fred Mercy <fred@folkloreinc.ca>
+
+    * Changed recent hooks to consolidate into new hooks:
+        - `useDragProgress` allows for getting a drag event and binding a function on it
+        - it uses `useSpringValue` to tween any numeric value
+        - it allows for animating styles on state changes
+    * Reimplemented menus, horoscope screen (UrbaniaHoroscope) and screen transitions to leverage the new hooks
+
 2022-08-27 Fred Mercy <fred@folkloreinc.ca>
 
     * Added a new hook `useProgressTransition` which leverages the `useTransitionStyles` and `useSpring` hooks, and allows for tweening styles that follow the value of a state variable

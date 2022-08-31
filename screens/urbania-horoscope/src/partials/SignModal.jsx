@@ -13,7 +13,6 @@ import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 
-
 import styles from './sign-modal.module.scss';
 
 const propTypes = {
@@ -81,7 +80,11 @@ const SignModal = ({
             <button
                 type="button"
                 className={styles.modalButton}
-                onClick={onClick}
+                onClick={e => {
+                    if (onClick !== null) {
+                        onClick(e);
+                    }
+                }}
             >
                 <Scroll disabled={scrollingDisabled} verticalAlign="middle">
                     <div className={styles.modal}>

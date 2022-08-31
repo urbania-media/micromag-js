@@ -1,6 +1,6 @@
 import { defineMessage } from 'react-intl';
 import Horoscope from './Horoscope';
-import signs from './signs';
+import signs from './data/signs';
 
 export default [
     {

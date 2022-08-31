@@ -4,24 +4,23 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useTrackEvent, useVerticalDrag } from '@micromag/core/hooks';
-// import { useViewerInteraction } from '@micromag/core/contexts';
 import { CloseButton, SlidingButtons } from '@micromag/core/components';
+import { useTrackEvent, useDragProgress } from '@micromag/core/hooks';
+
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 
 import MenuButton from './buttons/MenuButton';
 import ShareButton from './buttons/ShareButton';
 import MenuContainer from './menus/MenuContainer';
 import MenuDots from './menus/MenuDots';
-import MenuShare from './menus/MenuShare';
 import MenuPreview from './menus/MenuPreview';
+import MenuShare from './menus/MenuShare';
 
 import styles from '../styles/viewer.module.scss';
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
     currentScreenIndex: PropTypes.number,
-    opened: PropTypes.bool,
     toggleFullscreen: PropTypes.func,
     fullscreenActive: PropTypes.bool,
     fullscreenEnabled: PropTypes.bool,
@@ -45,7 +44,6 @@ const propTypes = {
 
 const defaultProps = {
     currentScreenIndex: 0,
-    opened: false,
     toggleFullscreen: null,
     fullscreenActive: false,
     fullscreenEnabled: false,
@@ -68,7 +66,6 @@ const defaultProps = {
 const ViewerMenu = ({
     story,
     currentScreenIndex,
-    opened,
     toggleFullscreen,
     fullscreenActive,
     fullscreenEnabled,
@@ -184,38 +181,65 @@ const ViewerMenu = ({
         [trackScreenEvent],
     );
 
-    const {
-        bind: bindMenuDrag,
-        dragging: isDraggingMenu,
-        progress: menuProgress,
-    } = useVerticalDrag({
-        value: menuOpened ? 1 : 0,
-        maxDistance: window.innerHeight * 0.75,
-        disabled: menuOpened,
-        onSwipeUp: onCloseMenu,
-        onSwipeDown: onOpenMenu,
-    });
+    const computeShareProgress = useCallback(
+        ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
+            const progress = Math.max(0, my) / (window.innerHeight * 0.8);
+            const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
+            if (!active) {
+                if (reachedThreshold) onOpenShare();
+                return reachedThreshold ? 1 : 0;
+            }
+            return progress;
+        },
+        [menuOpened, onOpenShare],
+    );
 
     const {
         bind: bindShareDrag,
         dragging: isDraggingShare,
-        progress: shareProgress,
-    } = useVerticalDrag({
-        value: shareOpened ? 1 : 0,
-        maxDistance: window.innerHeight * 0.75,
-        disabled: shareOpened,
-        onSwipeUp: onCloseShare,
-        onSwipeDown: onOpenShare,
+        progress: shareOpenedProgress,
+    } = useDragProgress({
+        progress: shareOpened ? 1 : 0,
+        computeProgress: computeShareProgress,
+        springParams: {
+            config: { tension: 300, friction: 30 },
+        },
+    });
+
+    const computeMenuProgress = useCallback(
+        ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
+            const progress = Math.max(0, my) / (window.innerHeight * 0.8);
+            const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
+            if (!active) {
+                if (reachedThreshold) onOpenMenu();
+                return reachedThreshold ? 1 : 0;
+            }
+            return progress;
+        },
+        [menuOpened, onOpenMenu],
+    );
+
+    const {
+        bind: bindMenuDrag,
+        dragging: isDraggingMenu,
+        progress: menuOpenedProgress,
+    } = useDragProgress({
+        progress: menuOpened ? 1 : 0,
+        computeProgress: computeMenuProgress,
+        springParams: { config: { tension: 300, friction: 30 } },
     });
 
     const keyboardShortcuts = useMemo(
         () => ({
-            m: () => !menuOpened ? onOpenMenu() : onCloseMenu(),
+            m: () => (!menuOpened ? onOpenMenu() : onCloseMenu()),
             escape: () => onCloseMenu(),
         }),
         [menuOpened, onOpenMenu, onCloseMenu],
     );
     useKeyboardShortcuts(keyboardShortcuts);
+
+    // should be zero if either screens menu or share menu is opened
+    const dotsOpacity = Math.min(1, Math.max(0, 1 - (menuOpenedProgress + shareOpenedProgress)));
 
     return (
         <>
@@ -224,7 +248,7 @@ const ViewerMenu = ({
                     styles.menuNavContainer,
                     {
                         [styles.withShadow]: withShadow,
-                        [styles.isMenuOpened]: opened,
+                        [styles.isOpened]: menuOpened || shareOpened,
                     },
                 ])}
                 ref={refDots}
@@ -238,7 +262,7 @@ const ViewerMenu = ({
                         >
                             <SlidingButtons
                                 className={styles.slidingButton}
-                                current={shareProgress}
+                                current={shareOpenedProgress}
                                 immediate={isDraggingShare}
                                 buttons={[ShareButton, CloseButton]}
                                 buttonsProps={[
@@ -267,7 +291,7 @@ const ViewerMenu = ({
                         >
                             <SlidingButtons
                                 className={styles.slidingButton}
-                                current={menuProgress}
+                                current={menuOpenedProgress}
                                 immediate={isDraggingMenu}
                                 buttons={[MenuButton, CloseButton]}
                                 buttonsProps={[
@@ -302,13 +326,35 @@ const ViewerMenu = ({
                     withoutShareMenu={withoutShareMenu}
                     onClose={onClickCloseViewer}
                     className={styles.dots}
+                    style={{
+                        opacity: dotsOpacity,
+                    }}
                 />
             </div>
 
             <MenuContainer
+                className={styles.menuContainerShare}
+                transitionProgress={shareOpenedProgress}
+            >
+                <MenuShare
+                    viewerTheme={viewerTheme}
+                    className={styles.menuShare}
+                    title={title}
+                    description={description}
+                    menuWidth={menuWidth}
+                    focusable={shareOpened}
+                    items={items}
+                    currentScreenIndex={currentScreenIndex}
+                    shareUrl={shareUrl}
+                    onShare={onShare}
+                    onClose={onCloseShare}
+                />
+            </MenuContainer>
+
+            <MenuContainer
                 className={styles.menuContainerScreens}
-                transitionProgress={menuProgress}
-                immediate={isDraggingMenu}>
+                transitionProgress={menuOpenedProgress}
+            >
                 <MenuPreview
                     viewerTheme={viewerTheme}
                     className={styles.menuPreview}
@@ -324,24 +370,6 @@ const ViewerMenu = ({
                     toggleFullscreen={toggleFullscreen}
                     fullscreenActive={fullscreenActive}
                     fullscreenEnabled={fullscreenEnabled}
-                />
-            </MenuContainer>
-
-            <MenuContainer className={styles.menuContainerShare} transitionProgress={shareProgress}
-                immediate={isDraggingMenu}
-            >
-                <MenuShare
-                    viewerTheme={viewerTheme}
-                    className={styles.menuShare}
-                    title={title}
-                    description={description}
-                    menuWidth={menuWidth}
-                    focusable={shareOpened}
-                    items={items}
-                    currentScreenIndex={currentScreenIndex}
-                    shareUrl={shareUrl}
-                    onShare={onShare}
-                    onClose={onCloseShare}
                 />
             </MenuContainer>
         </>

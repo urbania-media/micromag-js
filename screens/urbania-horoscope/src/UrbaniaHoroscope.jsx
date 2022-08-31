@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
@@ -16,7 +15,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useProgressTransition } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useDragProgress} from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -34,7 +33,14 @@ import styles from './urbania-horoscope.module.scss';
 
 import Astrologie from './images/astrologie-text.svg';
 
-const SPRING_CONFIG_TIGHT = { tension: 300, friction: 35 }; // tight
+const stopDragEventsPropagation = {
+    onTouchMove: e => e.stopPropagation(),
+    onTouchStart: e => e.stopPropagation(),
+    onTouchEnd: e => e.stopPropagation(),
+    onPointerMove: e => e.stopPropagation(),
+    onPointerUp: e => e.stopPropagation(),
+    onPointerDown: e => e.stopPropagation(),
+}
 
 const propTypes = {
     defaultSigns: PropTypes.arrayOf(
@@ -100,7 +106,6 @@ const UrbaniaHoroscope = ({
 }) => {
     const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
-    const [showSignsGrid, setShowSignsGrid] = useState(false);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
@@ -118,8 +123,6 @@ const UrbaniaHoroscope = ({
         [],
     );
 
-    const [selectedSign, setSelectedSign] = useState(null);
-
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
@@ -132,20 +135,23 @@ const UrbaniaHoroscope = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
 
+    // @note sign selection, transitions
+    const [showSignsGrid, setShowSignsGrid] = useState(false);
+    const [selectedSign, setSelectedSign] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
     const onOpenSignsGrid = useCallback(() => {
         setShowSignsGrid(true);
         disableInteraction();
-        trackScreenEvent('open');
+        trackScreenEvent('UrbaniaHoroscope', 'open_signs_grid');
     }, [disableInteraction, trackScreenEvent]);
 
     const onCloseSignsGrid = useCallback(() => {
         setShowSignsGrid(false);
         setShowModal(0); // can't have a modal if signs are closed
         enableInteraction();
-        trackScreenEvent('close');
-    }, [showSignsGrid, setShowSignsGrid, setShowModal, enableInteraction]);
+        trackScreenEvent('UrbaniaHoroscope', 'close_signs_grid');
+    }, [setShowSignsGrid, setShowModal, enableInteraction, trackScreenEvent]);
 
     const onSelectSign = useCallback(
         (e, id) => {
@@ -153,156 +159,94 @@ const UrbaniaHoroscope = ({
             const foundSign = signs.find((s) => s.id === id);
             setSelectedSign(foundSign);
             setShowModal(true);
+            trackScreenEvent('UrbaniaHoroscope', 'select_sign', foundSign);
         },
-        [signs, setSelectedSign],
+        [signs, setSelectedSign, trackScreenEvent],
     );
 
     const onCloseModal = useCallback(
-        (e) => {
-            e.stopPropagation();
+        () => {
             setShowModal(0);
+            trackScreenEvent('UrbaniaHoroscope', 'close_sign_modal');
         },
-        [setShowModal],
+        [setShowModal, trackScreenEvent],
     );
 
-    const [isDragging, setIsDragging] = useState(false);
-
-    // @todo either switch to useSwipe properly or extra to some new hook?
-    const onDragContent = useCallback(
-        ({ active: dragActive, movement: [, my], tap, velocity: [, vy] }) => {
-            if (!isView || tap || showModal) return;
-
-            const progress = Math.max(0, my) / height;
+    const computeSignsGridProgress = useCallback(
+        ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
+            const progress = Math.max(0, my) / (window.innerHeight * 0.8);
             const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
-
-            if (!tap) {
-                setShowSignsGrid(1 - progress);
-                setIsDragging(true);
-            }
-
             if (!dragActive) {
-                setIsDragging(false);
                 if (reachedThreshold) {
                     onCloseSignsGrid();
-                } else {
-                    setShowSignsGrid(1);
                 }
+                return reachedThreshold ? 0 : 1;
             }
+            return 1 - progress;
         },
-        [
-            onCloseSignsGrid,
-            setShowSignsGrid,
-            setIsDragging,
-            showModal,
-            selectedSign,
-            isView,
-            height,
-        ],
+        [onOpenSignsGrid, onCloseSignsGrid],
     );
 
-    const bindSignsDrag = useDrag(onDragContent, {
-        axis: 'y',
-        filterTaps: true,
+    const {
+        bind: bindSignsDrag,
+        progress: showSignsGridProgress,
+    } = useDragProgress({
+        disabled: !isView,
+        progress: showSignsGrid ? 1 : 0,
+        computeProgress: computeSignsGridProgress,
+        springParams: { config: { tension: 300, friction: 30 } },
     });
 
-    const onDragModal = useCallback(
-        ({ active: dragActive, movement: [, my], tap, velocity: [, vy] }) => {
-            if (!isView) return;
-
-            if (tap) {
-                setShowModal(0);
-            }
-
+    const computeModalProgress = useCallback(
+        ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
             const damper = 0.5;
-            const progress = (Math.max(0, my) / height) * damper;
-            const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
-
-            if (!tap) {
-                setShowModal(1 - progress);
-                setIsDragging(true);
-            }
+            const p = Math.max(0, my) / window.innerHeight;
+            const progress = p * damper;
+            const reachedThreshold = vy > 0.3 || Math.abs(p) > 0.3;
 
             if (!dragActive) {
-                setIsDragging(false);
                 if (reachedThreshold) {
-                    setShowModal(0);
-                } else {
-                    setShowModal(1);
+                    onCloseModal();
                 }
+                return reachedThreshold ? 0 : 1;
             }
+            return 1 - progress;
         },
-        [setIsDragging, showModal, isView, height],
+        [onCloseModal],
     );
-    const bindModalDrag = useDrag(onDragModal, {
-        axis: 'y',
-        filterTaps: true,
+
+    const {
+        bind: bindModalDrag,
+        progress: showModalProgress,
+    } = useDragProgress({
+        disabled: !isView,
+        progress: showModal ? 1 : 0,
+        computeProgress: computeModalProgress,
+        springParams: { config: { tension: 300, friction: 30 } },
     });
 
-    const { styles: headerStyles = {} } = useProgressTransition({
-        value: showSignsGrid,
-        fn: (p) => ({
-            transform: `translateY(${-100 * p * (1 - p)}%)`,
-            opacity: p > 0.25 ? 1 - p : 1,
-        }),
-        params: {
-            immediate: isDragging,
-            config: SPRING_CONFIG_TIGHT,
-        },
+    const getHeaderStyles = (p) => ({
+        transform: `translateY(${-100 * p * (1 - p)}%)`,
+        opacity: p > 0.25 ? 1 - p : 1,
     });
-    const { styles: signsContainerStyles = {} } = useProgressTransition({
-        value: showSignsGrid,
-        fn: (p) => ({
-            opacity: p,
-            pointerEvents: p < 0.25 ? 'none' : 'auto',
-        }),
-        params: {
-            immediate: isDragging,
-            config: SPRING_CONFIG_TIGHT,
-        },
+    const getSignsContainerStyles = (p) => ({
+        opacity: p,
+        pointerEvents: p < 0.25 ? 'none' : 'auto',
     });
-    const { styles: signsStyles = {} } = useProgressTransition({
-        value: showSignsGrid,
-        fn: (p) =>
-            signs.map(() => ({
-                opacity: p,
-                transform: `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`,
-            })),
-        params: {
-            immediate: isDragging,
-            config: SPRING_CONFIG_TIGHT,
-        },
+    const getSignStyles = (i, p) => ({
+        opacity: p,
+        transform: `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`,
     });
-    const { styles: authorStyles = {} } = useProgressTransition({
-        value: showSignsGrid,
-        fn: (p) => ({
-            transform: `translateY(${2 * (1 - p)}rem)`,
-            opacity: p,
-        }),
-        params: {
-            immediate: isDragging,
-            config: SPRING_CONFIG_TIGHT,
-        },
+    const getAuthorStyles = (p) => ({
+        transform: `translateY(${2 * (1 - p)}rem)`,
+        opacity: p,
     });
-    const { styles: backdropStyles = {} } = useProgressTransition({
-        value: showSignsGrid,
-        fn: (p) => ({
-            opacity: p,
-        }),
-        params: {
-            immediate: isDragging,
-            config: SPRING_CONFIG_TIGHT,
-        },
+    const getBackdropStyles = (p) => ({
+        opacity: p,
     });
-    const { styles: modalStyles = {} } = useProgressTransition({
-        value: showModal,
-        fn: (p) => ({
-            transform: `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
-            pointerEvents: p < 0.1 ? 'none' : 'auto',
-        }),
-        params: {
-            immediate: isDragging,
-            config: SPRING_CONFIG_TIGHT,
-        },
+    const getModalStyles = (p) => ({
+        transform: `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
+        pointerEvents: p < 0.1 ? 'none' : 'auto',
     });
 
     // for editor purposes
@@ -312,21 +256,38 @@ const UrbaniaHoroscope = ({
         setShowSignsGrid(0);
 
         if (screenState === null || screenState === 'intro') {
-            setShowSignsGrid(false);
+            setShowSignsGrid(0);
             setShowModal(0);
         }
         if (screenState === 'grid') {
-            setShowSignsGrid(true);
+            setShowSignsGrid(1);
             setSelectedSign(null);
             setShowModal(0);
         }
         if (screenState !== null && screenState.includes('signs')) {
             const index = screenState.split('.').pop();
-            setShowSignsGrid(true);
+            setShowSignsGrid(1);
             setShowModal(1);
             setSelectedSign(signs[index]);
         }
     }, [screenState]);
+
+    // @todo implement escape to close modal (maybe in "swipe to close" hook, so that pressing escape always closes it)
+    // const keyboardShortcuts = useMemo(
+    //     () => ({
+    //         escape: () => {
+    //             if (showModal) {
+    //                 return onCloseModal();
+    //             }
+    //             if (showSignsGrid) {
+    //                 return onCloseSignsGrid();
+    //             }
+    //             return null;
+    //         }
+    //     }),
+    //     [showModal, onCloseModal, showSignsGrid, onCloseSignsGrid],
+    // );
+    // useKeyboardShortcuts(keyboardShortcuts);
 
     return (
         <div
@@ -338,6 +299,7 @@ const UrbaniaHoroscope = ({
                 },
             ])}
             data-screen-ready
+            {...(showSignsGrid ? stopDragEventsPropagation : null)}
         >
             {!isPlaceholder ? (
                 <Background
@@ -365,7 +327,10 @@ const UrbaniaHoroscope = ({
                     }
                     height={height * 0.8}
                 >
-                    <div className={styles.headerContainer} style={headerStyles}>
+                    <div
+                        className={styles.headerContainer}
+                        style={getHeaderStyles(showSignsGridProgress)}
+                    >
                         <ScreenElement emptyClassName={styles.emptyText}>
                             {hasTitle ? (
                                 <Heading className={styles.title} {...title} />
@@ -415,7 +380,10 @@ const UrbaniaHoroscope = ({
                     </ScreenElement>
 
                     {!isPlaceholder ? (
-                        <div className={styles.header} style={signsContainerStyles}>
+                        <div
+                            className={styles.header}
+                            style={getSignsContainerStyles(showSignsGridProgress)}
+                        >
                             <div className={styles.buttons}>
                                 <Button
                                     className={styles.close}
@@ -446,7 +414,7 @@ const UrbaniaHoroscope = ({
                     {!isPlaceholder ? (
                         <div
                             className={styles.signsGridContainer}
-                            style={signsContainerStyles}
+                            style={getSignsContainerStyles(showSignsGridProgress)}
                             {...bindSignsDrag()}
                         >
                             <div className={styles.signs}>
@@ -456,7 +424,7 @@ const UrbaniaHoroscope = ({
                                         <div
                                             key={id}
                                             className={styles.sign}
-                                            style={signsStyles[i]}
+                                            style={getSignStyles(i, showSignsGridProgress)}
                                         >
                                             <SignCard
                                                 key={id}
@@ -486,14 +454,18 @@ const UrbaniaHoroscope = ({
                                         collaboratorClassName={styles.collaborator}
                                         backgroundClassName={styles.authorBackground}
                                         shouldLoad={mediaShouldLoad}
-                                        style={authorStyles}
+                                        style={getAuthorStyles(showSignsGridProgress)}
                                     />
                                 ) : null}
                             </ScreenElement>
                         </div>
                     ) : null}
 
-                    <div className={styles.modal} style={modalStyles} {...bindModalDrag()}>
+                    <div
+                        className={styles.modal}
+                        style={getModalStyles(showModalProgress)}
+                        {...bindModalDrag()}
+                    >
                         <SignModal
                             width={width}
                             height={height}
@@ -504,7 +476,10 @@ const UrbaniaHoroscope = ({
                     </div>
 
                     {!isPlaceholder ? (
-                        <div className={styles.backdrop} style={backdropStyles} />
+                        <div
+                            className={styles.backdrop}
+                            style={getBackdropStyles(showSignsGridProgress)}
+                        />
                     ) : null}
                 </Layout>
             </Container>

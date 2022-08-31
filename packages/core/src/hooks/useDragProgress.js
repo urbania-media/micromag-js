@@ -10,7 +10,7 @@ function useDragProgress ({
     dragDisabled = false,
     computeProgress = null,
     onProgress = null,
-    springConfig = undefined,
+    springParams = undefined,
 } = {}) {
     const [{ dragging, progress }, setDragState] = useState({
         dragging: false,
@@ -23,8 +23,8 @@ function useDragProgress ({
             }
             const { active, tap } = gestureState;
 
-            if (tap && onTap !== null) {
-                onTap(gestureState);
+            if (tap) {
+                if (onTap !== null) onTap(gestureState);
                 return;
             }
 
@@ -48,7 +48,7 @@ function useDragProgress ({
         filterTaps: true,
     });
 
-    const springedProgress = useSpringValue(progress, dragging, springConfig);
+    const springedProgress = useSpringValue(progress, dragging || disabled, springParams);
 
     useEffect(() => {
         if (wantedProgress !== progress && !dragging) {
