@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Button } from '@micromag/core/components';
+import IconButton from './IconButton';
 
 import styles from '../../styles/buttons/navigation-button.module.scss';
 
@@ -20,7 +20,7 @@ const defaultProps = {
 };
 
 const NavigationButton = ({ direction, onClick, className }) => (
-    <Button
+    <IconButton
         className={classNames([
             styles.container,
             styles[direction],

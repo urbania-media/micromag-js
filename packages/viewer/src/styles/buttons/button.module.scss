@@ -1,0 +1,57 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %reset-button;
+
+    .icon {
+        position: relative;
+        display: block;
+    }
+
+    .icon,
+    .label {
+        transition: transform 0.3s $ease-out-ramp;
+    }
+
+    &.asLink {
+        @extend %reset-button;
+        color: $primary;
+        font-weight: bold;
+    }
+
+    &.withIcon {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+
+        /* stylelint-disable */
+        .label {
+            margin-left: 0.5em;
+            transform-origin: 0 50%;
+        }
+
+        .right {
+            margin-left: 0.5em;
+        }
+        /* stylelint-enable */
+    }
+
+    &.withIcon.icon-right {
+        .label {
+            transform-origin: 100% 50%;
+        }
+    }
+
+    &.withIconColumns {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &.linkDisabled {
+        opacity: 0.4;
+        text-decoration: none;
+        pointer-events: none;
+    }
+}

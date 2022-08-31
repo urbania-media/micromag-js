@@ -5,7 +5,8 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { IconButton } from '@micromag/core/components';
+
+import IconButton from './IconButton';
 
 const propTypes = {
     className: PropTypes.string,

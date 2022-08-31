@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { PropTypes as MicromagPropTypes } from '../../lib';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Button from './Button';
 
@@ -38,7 +38,6 @@ const IconButton = ({ className, onClick, label, icon, theme, ...props }) => (
         label={label}
         icon={icon}
         onClick={onClick}
-        withoutBootstrapStyles
         {...props}
     />
 );

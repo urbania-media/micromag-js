@@ -3,9 +3,11 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PropTypes as MicromagPropTypes } from '../../lib';
+
+import { Label } from '@micromag/core/components';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import styles from '../../styles/buttons/button.module.scss';
-import Label from '../partials/Label';
 
 const propTypes = {
     type: PropTypes.string,
@@ -24,12 +26,7 @@ const propTypes = {
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
     disableOnLoading: PropTypes.bool,
-    small: PropTypes.bool,
-    big: PropTypes.bool,
-    withShadow: PropTypes.bool,
-    withoutStyle: PropTypes.bool,
     withoutTheme: PropTypes.bool,
-    outline: PropTypes.bool,
     asLink: PropTypes.bool,
     className: PropTypes.string,
     iconClassName: PropTypes.string,
@@ -60,12 +57,7 @@ const defaultProps = {
     disabled: false,
     loading: false,
     disableOnLoading: true,
-    small: false,
-    big: false,
-    withShadow: false,
-    withoutStyle: false,
     withoutTheme: false,
-    outline: false,
     asLink: false,
     className: null,
     iconClassName: null,
@@ -91,13 +83,8 @@ const Button = ({
     disabled,
     loading,
     disableOnLoading,
-    small,
-    big,
-    withShadow,
-    withoutStyle,
     withoutTheme,
     asLink,
-    outline,
     onClick,
     className,
     iconClassName,
@@ -141,19 +128,24 @@ const Button = ({
             ) : null}
             {hasIconColumns ? (
                 <>
-                    <span
-                        className={classNames([
-                            styles.left,
-                            {
-                                [iconClassName]: iconClassName !== null && iconPosition === 'left',
-                            },
-                        ])}
-                    >
-                        {iconPosition === 'left' ? icon : null}
-                    </span>
+                    {iconPosition === 'left' ? (
+                        <span
+                            className={classNames([
+                                styles.icon,
+                                styles.left,
+                                {
+                                    [iconClassName]:
+                                        iconClassName !== null && iconPosition === 'left',
+                                },
+                            ])}
+                        >
+                            {icon}
+                        </span>
+                    ) : null}
                     <span
                         className={classNames([
                             styles.center,
+                            styles.label,
                             {
                                 [labelClassName]: labelClassName !== null,
                             },
@@ -161,16 +153,19 @@ const Button = ({
                     >
                         {text}
                     </span>
-                    <span
-                        className={classNames([
-                            styles.right,
-                            {
-                                [iconClassName]: iconClassName !== null && iconPosition === 'right',
-                            },
-                        ])}
-                    >
-                        {iconPosition === 'right' ? icon : null}
-                    </span>
+                    {iconPosition === 'right' ? (
+                        <span
+                            className={classNames([
+                                styles.icon,
+                                styles.right,
+                                {
+                                    [iconClassName]: iconClassName !== null && iconPosition === 'right',
+                                },
+                            ])}
+                        >
+                            {icon}
+                        </span>
+                    ) : null}
                     {hasChildren ? children : null}
                 </>
             ) : null}
@@ -179,24 +174,13 @@ const Button = ({
         </>
     );
 
-    const withStyle = !withoutTheme && !withoutStyle && !asLink;
-
     const buttonClassNames = classNames([
-        {
-            btn: withStyle,
-            [`btn-${outline ? 'outline-' : ''}${theme}`]: withStyle && theme !== null,
-            [`btn-${size}`]: withStyle && size !== null,
-            active: !withoutStyle && active,
-        },
         styles.container,
+        styles[`icon-${iconPosition}`],
         {
-            [styles.withoutStyle]: withoutStyle,
             [styles.withIcon]: hasIcon,
             [styles.withIconColumns]: hasIconColumns,
             [styles.withText]: text !== null,
-            [styles.withShadow]: withShadow,
-            [styles.isSmall]: small,
-            [styles.isBig]: big,
             [styles.isLink]: href !== null,
             [styles.asLink]: asLink,
             [styles.isDisabled]: disabled,
@@ -224,6 +208,7 @@ const Button = ({
             </a>
         ) : (
             <Link
+                {...props}
                 to={href}
                 className={linkClassNames}
                 onClick={onClick}

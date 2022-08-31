@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { CloseButton, SlidingButtons } from '@micromag/core/components';
 import { useTrackEvent, useDragProgress } from '@micromag/core/hooks';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 
+import CloseButton from './buttons/CloseButton';
+import SlidingButtons from './buttons/SlidingButtons';
 import MenuButton from './buttons/MenuButton';
 import ShareButton from './buttons/ShareButton';
 import MenuContainer from './menus/MenuContainer';
