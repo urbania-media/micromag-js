@@ -192,15 +192,25 @@ const ViewerMenu = ({
             }
             return progress;
         },
-        [shareOpened, onOpenShare],
+        [onOpenShare],
     );
 
-    const {
-        bind: bindShareDrag,
-        progress: shareOpenedProgress,
-    } = useDragProgress({
+    const computeShareProgressClose = useCallback(
+        ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
+            const progress = Math.max(0, my) / (window.innerHeight * 0.8);
+            const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
+            if (!active) {
+                if (reachedThreshold) onCloseShare();
+                return reachedThreshold ? 0 : 1;
+            }
+            return 1 - progress;
+        },
+        [onCloseShare],
+    );
+
+    const { bind: bindShareDrag, progress: shareOpenedProgress } = useDragProgress({
         progress: shareOpened ? 1 : 0,
-        computeProgress: computeShareProgress,
+        computeProgress: shareOpened ? computeShareProgressClose : computeShareProgress,
         springParams: {
             config: { tension: 300, friction: 30 },
         },
@@ -216,15 +226,24 @@ const ViewerMenu = ({
             }
             return progress;
         },
-        [menuOpened, onOpenMenu],
+        [onOpenMenu],
+    );
+    const computeMenuProgressClose = useCallback(
+        ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
+            const progress = Math.max(0, my) / (window.innerHeight * 0.8);
+            const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
+            if (!active) {
+                if (reachedThreshold) onCloseMenu();
+                return reachedThreshold ? 0 : 1;
+            }
+            return 1 - progress;
+        },
+        [onCloseMenu],
     );
 
-    const {
-        bind: bindMenuDrag,
-        progress: menuOpenedProgress,
-    } = useDragProgress({
+    const { bind: bindMenuDrag, progress: menuOpenedProgress } = useDragProgress({
         progress: menuOpened ? 1 : 0,
-        computeProgress: computeMenuProgress,
+        computeProgress: menuOpened ? computeMenuProgressClose : computeMenuProgress,
         springParams: { config: { tension: 300, friction: 30 } },
     });
 
