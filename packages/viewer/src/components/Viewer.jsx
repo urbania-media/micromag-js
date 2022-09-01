@@ -563,6 +563,7 @@ const Viewer = ({
                                 shareBasePath={basePath}
                                 screenSize={screenSize}
                                 menuWidth={menuIsScreenWidth ? screenContainerWidth : null}
+                                theme={viewerTheme}
                                 trackingEnabled={trackingEnabled}
                                 onClickScreen={onClickScreen}
                                 onClickCloseViewer={onCloseViewer}
@@ -593,7 +594,6 @@ const Viewer = ({
                                     }}
                                 >
                                     {screens.map((screen, i) => {
-                                        // const current = i === parseInt(screenIndex, 10);
                                         const current = i === Math.round(screenIndexProgress); // base current on transition
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&

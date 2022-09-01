@@ -103,6 +103,7 @@ const Button = ({
             refButton={refButton}
             type={type}
             focusable={focusable}
+            withoutBoostrapStyles // @todo viewer should not be embarking any BS styles
             {...otherProps}
         >
             {children}

@@ -4,23 +4,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
 import IconButton from './IconButton';
 
 const propTypes = {
     className: PropTypes.string,
-    onClick: PropTypes.func,
-    theme: MicromagPropTypes.viewerTheme,
 };
 
 const defaultProps = {
     className: null,
-    onClick: null,
-    theme: null,
 };
 
-const MenuButton = ({ className, onClick, theme, ...props }) => {
+const MenuButton = ({ className, ...props }) => {
     const intl = useIntl();
 
     return (
@@ -42,12 +36,10 @@ const MenuButton = ({ className, onClick, theme, ...props }) => {
                     height="16"
                     viewBox="0 0 10 16"
                     fill="currentColor"
-                    {...theme}
                 >
                     <rect width="10" height="16" />
                 </svg>
             }
-            onClick={onClick}
             {...props}
         />
     );

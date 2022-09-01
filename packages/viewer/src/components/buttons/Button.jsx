@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Label } from '@micromag/core/components';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Label } from '@micromag/core/components';
+import { getStyleFromColor } from '@micromag/core/utils';
 
 import styles from '../../styles/buttons/button.module.scss';
 
@@ -98,6 +99,27 @@ const Button = ({
     const hasIcon = icon !== null;
     const hasInlineIcon = hasIcon && (iconPosition === 'inline' || text === null);
     const hasIconColumns = hasIcon && !hasInlineIcon;
+
+    const buttonClassNames = classNames([
+        styles.container,
+        styles[`icon-${iconPosition}`],
+        {
+            [styles.withIcon]: hasIcon,
+            [styles.withIconColumns]: hasIconColumns,
+            [styles.withText]: text !== null,
+            [styles.isLink]: href !== null,
+            [styles.asLink]: asLink,
+            [styles.isDisabled]: disabled,
+            [styles.isLoading]: loading,
+            [className]: className !== null,
+        },
+    ]);
+
+    const { colors = null } = theme || {};
+    const { primary: brandPrimaryColor = null } = colors || {};
+    const primaryColor = getStyleFromColor(brandPrimaryColor, 'color');
+    const buttonStyles = { ...primaryColor };
+
     const content = (
         <>
             {hasInlineIcon ? (
@@ -159,7 +181,8 @@ const Button = ({
                                 styles.icon,
                                 styles.right,
                                 {
-                                    [iconClassName]: iconClassName !== null && iconPosition === 'right',
+                                    [iconClassName]:
+                                        iconClassName !== null && iconPosition === 'right',
                                 },
                             ])}
                         >
@@ -174,21 +197,6 @@ const Button = ({
         </>
     );
 
-    const buttonClassNames = classNames([
-        styles.container,
-        styles[`icon-${iconPosition}`],
-        {
-            [styles.withIcon]: hasIcon,
-            [styles.withIconColumns]: hasIconColumns,
-            [styles.withText]: text !== null,
-            [styles.isLink]: href !== null,
-            [styles.asLink]: asLink,
-            [styles.isDisabled]: disabled,
-            [styles.isLoading]: loading,
-            [className]: className !== null,
-        },
-    ]);
-
     if (href !== null) {
         const linkClassNames = classNames([
             buttonClassNames,
@@ -199,6 +207,7 @@ const Button = ({
                 {...props}
                 href={disabled ? null : href}
                 className={linkClassNames}
+                style={buttonStyles}
                 onClick={onClick}
                 target={external ? target : null}
                 ref={refButton}
@@ -211,6 +220,7 @@ const Button = ({
                 {...props}
                 to={href}
                 className={linkClassNames}
+                style={buttonStyles}
                 onClick={onClick}
                 ref={refButton}
                 tabIndex={focusable ? '' : '-1'}
@@ -225,6 +235,7 @@ const Button = ({
             {...props}
             type={type}
             className={buttonClassNames}
+            style={buttonStyles}
             onClick={onClick}
             disabled={disabled || (disableOnLoading && loading)}
             ref={refButton}

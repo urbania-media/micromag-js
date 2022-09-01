@@ -2,6 +2,14 @@
 
 This is rather free-form for now, but eventually this will be properly timestamped, and will mention the version the changes apply to!
 
+2022-09-01 Fred Mercy <fred@folkloreinc.ca>
+
+    * Fixes:
+        - Navigation buttons on desktop now using IconButton (adds hover and active states, and fixes styles)
+        - SlidingButtons renamed to ToggleButton with different props to simplify it somewhat
+        - Clicking on the MenuDots toggles the Screens menu again, on mobile
+        - Re-implemented the custom ViewerMenu styles, for buttons and menu dots
+
 2022-08-30 Fred Mercy <fred@folkloreinc.ca>
 
     * Changed recent hooks to consolidate into new hooks:

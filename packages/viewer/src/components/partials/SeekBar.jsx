@@ -9,11 +9,20 @@ import { useMediaProgress } from '@micromag/core/hooks';
 
 import styles from '../../styles/partials/seek-bar.module.scss';
 
+const stopDragEventsPropagation = {
+    onTouchMove: e => e.stopPropagation(),
+    onTouchStart: e => e.stopPropagation(),
+    onTouchEnd: e => e.stopPropagation(),
+    onPointerMove: e => e.stopPropagation(),
+    onPointerUp: e => e.stopPropagation(),
+    onPointerDown: e => e.stopPropagation(),
+}
+
 function getFormattedTimestamp(s, withMilliseconds = false) {
     const sparts = withMilliseconds ? `${s}`.split('.') : [];
     const ms = sparts.length > 1 ? `:${sparts[1].substring(0, 3)}` : '';
 
-    return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + ~~(s) + ms; // eslint-disable-line
+    return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + ~~s + ms; // eslint-disable-line
 }
 
 const SHOW_MILLISECONDS_THRESHOLD = 5; // show milliseconds when scrubbing if length of video is shorter than 5 seconds
@@ -21,7 +30,7 @@ const SHOW_MILLISECONDS_THRESHOLD = 5; // show milliseconds when scrubbing if le
 const propTypes = {
     media: PropTypes.oneOfType([
         PropTypes.func,
-        PropTypes.shape({ current: PropTypes.any }) // eslint-disable-line
+        PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line
     ]),
     playing: PropTypes.bool,
     backgroundColor: PropTypes.string,
@@ -68,8 +77,6 @@ const SeekBar = ({
 
     const onDrag = useCallback(
         ({ event, xy: [x], elapsedTime, active, tap, currentTarget }) => {
-            event.stopPropagation();
-
             if (!active && elapsedTime > 300) {
                 return;
             }
@@ -84,13 +91,15 @@ const SeekBar = ({
         [onSeek],
     );
 
-    const onDragStart = useCallback((event) => {
-        setShowTimestamp(true);
-        if (onSeekStart !== null) {
-            onSeekStart();
-        }
-        event.stopPropagation();
-    }, [onSeekStart, setShowTimestamp]);
+    const onDragStart = useCallback(
+        () => {
+            setShowTimestamp(true);
+            if (onSeekStart !== null) {
+                onSeekStart();
+            }
+        },
+        [onSeekStart, setShowTimestamp],
+    );
 
     const onDragEnd = useCallback(() => {
         if (onSeekEnd !== null) {
@@ -115,9 +124,10 @@ const SeekBar = ({
                 {
                     [className]: className !== null,
                     [styles.withSeekHead]: withSeekHead,
-                    [styles.showTimestamp]: showTimestamp
+                    [styles.showTimestamp]: showTimestamp,
                 },
             ])}
+            {...stopDragEventsPropagation}
         >
             <div className={styles.inner}>
                 <div className={styles.progressBar} style={{ backgroundColor }}>
@@ -134,7 +144,10 @@ const SeekBar = ({
                                 borderColor: progressColor,
                             }}
                         >
-                            {getFormattedTimestamp(currentTime, duration < SHOW_MILLISECONDS_THRESHOLD)}
+                            {getFormattedTimestamp(
+                                currentTime,
+                                duration < SHOW_MILLISECONDS_THRESHOLD,
+                            )}
                         </div>
                     </div>
                     <div

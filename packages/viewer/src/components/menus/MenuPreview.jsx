@@ -59,25 +59,18 @@ const ViewerMenuPreview = ({
     const { ref: containerRef, width: contentWidth = 0 } = useDimensionObserver();
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3);
 
-    // Viewer theme
-    // @todo room for improvement here probably
-    // @todo also re-implement!!
-    const { colors = null, background = null, logo: brandLogo = null } = viewerTheme || {};
-    const { primary: brandPrimaryColor = null, secondary: brandSecondaryColor = null } =
-        colors || {};
+    const { background = null, logo: brandLogo = null } = viewerTheme || {};
     const { color: brandBackgroundColor = null, image = null } = background || {};
     const { url: brandImageUrl = null } = image || {};
-
-    // const borderPrimaryColorStyle = getStyleFromColor(brandPrimaryColor, 'borderColor');
-    // const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
-    // const { url: brandLogoUrl = null } = brandLogo || {};
     const brandImageStyle =
         brandImageUrl !== null
             ? {
                   backgroundImage: `url(${brandImageUrl})`,
               }
             : null;
+    // @todo reimplement the brand logo
+    // const { url: brandLogoUrl = null } = brandLogo || {};
 
     // @todo could probably use some work to avoid the visual jump from 3 screens to all of them
     const finalItems = useMemo(
