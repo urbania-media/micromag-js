@@ -55,17 +55,10 @@ const ViewerMenuShare = ({
 }) => {
     // Viewer theme
     // @todo room for improvement here probably
-    const { colors = null, background = null, logo: brandLogo = null } = viewerTheme || {};
-    // @todo could get from theme provider? need to re-implement
-    const { primary: brandPrimaryColor = null, secondary: brandSecondaryColor = null } =
-        colors || {};
+    const { background = null } = viewerTheme || {};
     const { color: brandBackgroundColor = null, image = null } = background || {};
     const { url: brandImageUrl = null } = image || {};
-
-    // const borderPrimaryColorStyle = getStyleFromColor(brandPrimaryColor, 'borderColor');
-    // const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
-    // const { url: brandLogoUrl = null } = brandLogo || {};
     const brandImageStyle =
         brandImageUrl !== null
             ? {
@@ -151,6 +144,7 @@ const ViewerMenuShare = ({
                         url={finalShareUrl}
                         focusable={focusable}
                         onShare={onShare}
+                        theme={viewerTheme}
                         shareCurrentScreen={shareCurrentScreen}
                     />
                 </Scroll>

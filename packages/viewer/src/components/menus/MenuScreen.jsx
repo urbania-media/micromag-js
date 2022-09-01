@@ -49,6 +49,7 @@ const ViewerMenuScreen = ({ className, item, index, onClick, screenSize, focusab
             : ''
     }`;
 
+
     return (
         <div
             className={classNames([

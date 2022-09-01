@@ -2,6 +2,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { easings } from '@micromag/core/utils';
+
 import styles from '../../styles/menus/menu-container.module.scss';
 
 const propTypes = {
@@ -34,13 +36,22 @@ const ViewerMenuContainer = ({ className, transitionProgress, children }) => (
                 zIndex: Math.round(1 + transitionProgress),
             }}
         >
-            <div className={styles.inner}
+            <div
+                className={styles.inner}
                 style={{
                     paddingTop: `${3 * transitionProgress}rem`,
                     paddingBottom: `${0.5 * transitionProgress}rem`,
                 }}
-            >{children}</div>
+            >
+                {children}
+            </div>
         </div>
+        <div
+            className={styles.backdrop}
+            style={{
+                opacity: easings.easeOutQuint(transitionProgress),
+            }}
+        />
     </div>
 );
 ViewerMenuContainer.propTypes = propTypes;

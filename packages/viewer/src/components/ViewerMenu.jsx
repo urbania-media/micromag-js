@@ -353,41 +353,44 @@ const ViewerMenu = ({
                 className={styles.menuContainerShare}
                 transitionProgress={shareOpenedProgress}
             >
-                <MenuShare
-                    viewerTheme={viewerTheme}
-                    className={styles.menuShare}
-                    title={title}
-                    description={description}
-                    menuWidth={menuWidth}
-                    focusable={shareOpened}
-                    items={items}
-                    currentScreenIndex={currentScreenIndex}
-                    shareUrl={shareUrl}
-                    onShare={onShare}
-                    onClose={onCloseShare}
-                />
+                {shareOpenedProgress > 0 ? (
+                    <MenuShare
+                        viewerTheme={viewerTheme}
+                        className={styles.menuShare}
+                        title={title}
+                        description={description}
+                        menuWidth={menuWidth}
+                        focusable={shareOpened}
+                        items={items}
+                        currentScreenIndex={currentScreenIndex}
+                        shareUrl={shareUrl}
+                        onShare={onShare}
+                        onClose={onCloseShare}
+                    />
+                ): null}
             </MenuContainer>
 
             <MenuContainer
                 className={styles.menuContainerScreens}
                 transitionProgress={menuOpenedProgress}
             >
-                <MenuPreview
-                    viewerTheme={viewerTheme}
-                    className={styles.menuPreview}
-                    screenSize={screenSize}
-                    menuWidth={menuWidth}
-                    focusable={menuOpened}
-                    items={items}
-                    currentScreenIndex={currentScreenIndex}
-                    shareUrl={shareUrl}
-                    onShare={onShare}
-                    onClickScreen={onClickScreen}
-                    onClose={onCloseMenu}
-                    toggleFullscreen={toggleFullscreen}
-                    fullscreenActive={fullscreenActive}
-                    fullscreenEnabled={fullscreenEnabled}
-                />
+                {menuOpenedProgress > 0 ? (
+                    <MenuPreview
+                        viewerTheme={viewerTheme}
+                        className={styles.menuPreview}
+                        screenSize={screenSize}
+                        menuWidth={menuWidth}
+                        items={items}
+                        currentScreenIndex={currentScreenIndex}
+                        shareUrl={shareUrl}
+                        onShare={onShare}
+                        onClickScreen={onClickScreen}
+                        onClose={onCloseMenu}
+                        toggleFullscreen={toggleFullscreen}
+                        fullscreenActive={fullscreenActive}
+                        fullscreenEnabled={fullscreenEnabled}
+                    />
+                ) : null}
             </MenuContainer>
         </>
     );

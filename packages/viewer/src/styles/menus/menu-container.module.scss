@@ -9,12 +9,21 @@
 }
 
 .heightContainer {
-    backdrop-filter: blur(0.75rem);
-    background-color: rgba($black, 0.95);
+    overflow: hidden; // ?
 }
 
 .inner {
+    position: relative;
+    z-index: 2;
     height: 100%;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+}
+
+.backdrop {
+    @extend %fullscreen;
+
+    z-index: 1;
+    backdrop-filter: blur(0.75rem);
+    background-color: rgba($black, 0.95);
 }

@@ -44,6 +44,15 @@
     height: 100%;
     overflow: hidden;
     user-select: none;
+    cursor: grab;
+
+    &:active {
+        cursor: grabbing;
+    }
+
+    .withoutGestures & {
+        cursor: inherit;
+    }
 }
 
 // Viewer Menu: Two buttons, the "menu dots", the menu overlays
@@ -160,15 +169,6 @@
     display: flex;
     height: 100%;
     opacity: 0; // transitions styles will override this one
-    cursor: grab;
-
-    .isDragging & {
-        cursor: grabbing;
-    }
-
-    .withoutGestures & {
-        cursor: inherit;
-    }
 }
 
 .screen {

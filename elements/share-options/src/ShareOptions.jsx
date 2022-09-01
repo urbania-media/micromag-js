@@ -20,7 +20,12 @@ import {
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
-import { getStyleFromText, getStyleFromBox, copyToClipboard } from '@micromag/core/utils';
+import {
+    getStyleFromText,
+    getStyleFromColor,
+    getStyleFromBox,
+    copyToClipboard,
+} from '@micromag/core/utils';
 
 import ShareLinkIcon from './ShareLinkIcon';
 
@@ -36,6 +41,7 @@ const propTypes = {
     options: PropTypes.arrayOf(PropTypes.string),
     buttonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
+    theme: MicromagPropTypes.viewerTheme,
     onShare: PropTypes.func,
     onClose: PropTypes.func,
     focusable: PropTypes.bool,
@@ -51,6 +57,7 @@ const defaultProps = {
     options: null,
     buttonsStyle: null,
     buttonsTextStyle: null,
+    theme: null,
     onShare: null,
     onClose: null,
     focusable: true,
@@ -66,11 +73,17 @@ const ShareOptions = ({
     options,
     buttonsStyle,
     buttonsTextStyle,
+    theme,
     onShare,
     onClose,
     focusable,
 }) => {
-    let finalStyles = null;
+    const { menuTheme = null } = theme || {};
+    const { colors = null } = menuTheme || {};
+    const { primary: brandPrimaryColor = null } = colors || {};
+    const colorStyles = getStyleFromColor(brandPrimaryColor, 'color');
+
+    let finalStyles = colorStyles;
 
     if (buttonsTextStyle !== null) {
         finalStyles = {
@@ -85,6 +98,8 @@ const ShareOptions = ({
             ...getStyleFromBox(buttonsStyle),
         };
     }
+
+
 
     const [linkCopied, setLinkCopied] = useState(false);
 
@@ -108,10 +123,7 @@ const ShareOptions = ({
 
     const shareButtonProps = useMemo(
         () => ({
-            className: classNames([
-                styles.button,
-                { [buttonClassName]: buttonClassName !== null },
-            ]),
+            className: classNames([styles.button, { [buttonClassName]: buttonClassName !== null }]),
             url,
             onShareWindowClose: () => {
                 if (onClose !== null) {
@@ -313,6 +325,7 @@ const ShareOptions = ({
                             onClick={onClickCopy}
                             focusable={focusable}
                             style={finalStyles}
+                            withoutBootstrapStyles
                         >
                             <ShareLinkIcon {...shareIconProps} />
                             <div

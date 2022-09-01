@@ -1,5 +1,4 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading, arrow-body-style */
-// stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
@@ -57,7 +56,7 @@ const ViewerMenuPreview = ({
     className,
 }) => {
     const { ref: containerRef, width: contentWidth = 0 } = useDimensionObserver();
-    const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3);
+    const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3); // @note cool, should be in recipes
 
     const { background = null, logo: brandLogo = null } = viewerTheme || {};
     const { color: brandBackgroundColor = null, image = null } = background || {};
@@ -72,17 +71,11 @@ const ViewerMenuPreview = ({
     // @todo reimplement the brand logo
     // const { url: brandLogoUrl = null } = brandLogo || {};
 
-    // @todo could probably use some work to avoid the visual jump from 3 screens to all of them
-    const finalItems = useMemo(
-        () => (!focusable ? items.map((s, i) => (i > 3 ? { screenId: s.screenId } : s)) : items),
-        [items, focusable],
-    );
-    // @todo bookmarks
-    // const bookmarks = finalItems.reduce((acc, it) => {
-    //     const { screen = null } = it || {};
-    //     const { bookmark = null } = screen || {};
-    //     return bookmark !== null ? [...acc, bookmark] : acc; // merge with array or return original array
-    // }, []);
+    // @todo optimize all of this the proper way
+    // const finalItems = useMemo(
+    //     () => (!focusable ? items.map((s, i) => (i > 6 ? { screenId: s.screenId } : s)) : items),
+    //     [items, focusable],
+    // );
 
     return (
         <div
@@ -99,8 +92,8 @@ const ViewerMenuPreview = ({
                 <Scroll className={styles.scroll}>
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
-                            {finalItems.map((item, index) => {
-                                const { screenId } = item || {};
+                            {items.map((item, index) => {
+                                const { screenId, screen = null } = item || {};
                                 const itemStyles = {
                                     width: `${100 / thumbsPerLine}%`,
                                 };
@@ -111,19 +104,28 @@ const ViewerMenuPreview = ({
                                         className={styles.item}
                                         style={itemStyles}
                                     >
-                                        {/* @todo gotta figure out some loading thing, inside of MenuScreen tho */}
-                                        {item === null ? (
-                                            'loading'
-                                        ) : (
-                                            <MenuScreen
-                                                className={styles.screenPreview}
-                                                item={item}
-                                                index={index}
-                                                screenSize={screenSize}
-                                                onClick={onClickScreen}
-                                                focusable={focusable}
-                                            />
-                                        )}
+                                        <div className={styles.screen}>
+                                            {screen === null ? (
+                                                <svg
+                                                    className={styles.loading}
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="10"
+                                                    height="16"
+                                                    viewBox="0 0 10 16"
+                                                    style={{animationDelay: `${index * -50}ms`}}
+                                                >
+                                                    <rect width="10" height="16" />
+                                                </svg>
+                                            ) : (
+                                                <MenuScreen
+                                                    item={item}
+                                                    index={index}
+                                                    screenSize={screenSize}
+                                                    onClick={onClickScreen}
+                                                    focusable={focusable}
+                                                />
+                                            )}
+                                        </div>
                                     </li>
                                 );
                             })}

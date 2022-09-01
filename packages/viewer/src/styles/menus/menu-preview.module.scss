@@ -1,6 +1,3 @@
-// stylelint-disable max-nesting-depth
-// stylelint-disable no-descending-specificity
-
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
@@ -66,7 +63,6 @@
     position: relative;
     flex-grow: 1;
     overflow: hidden;
-    // padding: 0.5rem;
 }
 
 .items,
@@ -85,8 +81,23 @@
 .item {
     position: relative;
     width: 33.333%;
+}
 
-    // &.active {
-    //     z-index: 2;
-    // }
+.screen {
+    padding: 2px;
+}
+
+.loading {
+    width: 100%;
+    height: auto;
+    animation: fillPulse 1s infinite alternate-reverse $ease-in-out-soft-sine;
+}
+
+@keyframes fillPulse {
+    from {
+        fill: rgba($white, 0.1);
+    }
+    to {
+        fill: rgba($white, 0.15);
+    }
 }

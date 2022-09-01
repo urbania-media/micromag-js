@@ -153,7 +153,7 @@ const ShareScreen = ({
         >
             <ShareOptions
                 className={classNames([styles.shareOptions, { [styles.isCentered]: centered }])}
-                labelClassName={styles.shareLabel}
+                buttonClassName={styles.shareButton}
                 url={finalShareURL}
                 options={selectedOptions}
                 onShare={onClickShare}

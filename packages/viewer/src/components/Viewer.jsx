@@ -100,7 +100,7 @@ const defaultProps = {
     visitor: null,
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.8,
-    neighborScreensActive: 1,
+    neighborScreensActive: 2,
     storyIsParsed: false,
     // landscapeScreenMargin: 20,
     // landscapeSmallScreenScale: 0.9,
