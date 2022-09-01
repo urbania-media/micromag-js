@@ -9,9 +9,9 @@ import { useTrackEvent, useDragProgress } from '@micromag/core/hooks';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 
 import CloseButton from './buttons/CloseButton';
-import SlidingButtons from './buttons/SlidingButtons';
 import MenuButton from './buttons/MenuButton';
 import ShareButton from './buttons/ShareButton';
+import ToggleButton from './buttons/ToggleButton';
 import MenuContainer from './menus/MenuContainer';
 import MenuDots from './menus/MenuDots';
 import MenuPreview from './menus/MenuPreview';
@@ -197,7 +197,6 @@ const ViewerMenu = ({
 
     const {
         bind: bindShareDrag,
-        dragging: isDraggingShare,
         progress: shareOpenedProgress,
     } = useDragProgress({
         progress: shareOpened ? 1 : 0,
@@ -222,7 +221,6 @@ const ViewerMenu = ({
 
     const {
         bind: bindMenuDrag,
-        dragging: isDraggingMenu,
         progress: menuOpenedProgress,
     } = useDragProgress({
         progress: menuOpened ? 1 : 0,
@@ -261,55 +259,53 @@ const ViewerMenu = ({
                             className={classNames([styles.menuItem, styles.menuShare])}
                             {...bindShareDrag()}
                         >
-                            <SlidingButtons
+                            <ToggleButton
                                 className={styles.slidingButton}
-                                current={shareOpenedProgress}
-                                immediate={isDraggingShare}
-                                buttons={[ShareButton, CloseButton]}
-                                buttonsProps={[
-                                    {
-                                        key: 'share',
-                                        className: styles.menuButton,
-                                        onClick: onOpenShare,
-                                        theme: menuTheme,
-                                    },
-                                    {
-                                        key: 'close-share',
-                                        className: styles.menuButton,
-                                        onClick: onCloseShare,
-                                        theme: menuTheme,
-                                        iconPosition: 'left',
-                                    },
-                                ]}
+                                button={
+                                    <ShareButton
+                                        className={styles.menuButton}
+                                        onClick={onOpenShare}
+                                        theme={menuTheme}
+                                        iconPosition="left"
+                                    />
+                                }
+                                toggledButton={
+                                    <CloseButton
+                                        className={styles.menuButton}
+                                        onClick={onCloseShare}
+                                        theme={menuTheme}
+                                        iconPosition="left"
+                                    />
+                                }
+                                toggled={shareOpenedProgress}
                             />
                         </div>
                     ) : null}
 
                     {!withoutScreensMenu ? (
                         <div
-                            className={classNames([styles.menuItem, styles.menuScreens])}
+                            className={classNames([styles.menuItem, styles.menuItemScreens])}
                             {...bindMenuDrag()}
                         >
-                            <SlidingButtons
+                            <ToggleButton
                                 className={styles.slidingButton}
-                                current={menuOpenedProgress}
-                                immediate={isDraggingMenu}
-                                buttons={[MenuButton, CloseButton]}
-                                buttonsProps={[
-                                    {
-                                        key: 'menu',
-                                        className: styles.menuButton,
-                                        onClick: onOpenMenu,
-                                        theme: menuTheme,
-                                    },
-                                    {
-                                        key: 'close-menu',
-                                        className: styles.menuButton,
-                                        onClick: onCloseMenu,
-                                        theme: menuTheme,
-                                        iconPosition: 'right',
-                                    },
-                                ]}
+                                button={
+                                    <MenuButton
+                                        className={styles.menuButton}
+                                        onClick={onOpenMenu}
+                                        theme={menuTheme}
+                                    />
+                                }
+                                toggledButton={
+                                    <CloseButton
+                                        className={styles.menuButton}
+                                        onClick={onCloseMenu}
+                                        theme={menuTheme}
+                                        iconPosition="right"
+                                    />
+                                }
+                                toggled={menuOpenedProgress}
+                                toggledButtonClassName={styles.screensMenuButtonToggled}
                             />
                         </div>
                     ) : null}

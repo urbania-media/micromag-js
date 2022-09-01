@@ -93,16 +93,21 @@
     width: 50%;
 }
 
-.menuScreens {
+.menuItemScreens {
     text-align: right;
+}
+
+.menuButton {
+    padding: 0.5rem 0.75rem;
 }
 
 .slidingButton {
     display: inline-block;
 }
 
-.menuButton {
-    padding: 0.5rem;
+.screensMenuButtonToggled {
+    left: auto;
+    right: 0;
 }
 
 .dots {

@@ -3,8 +3,13 @@
     position: relative;
 }
 
-.additional {
+.normal {
+    position: relative;
+}
+
+.toggled {
     position: absolute;
     white-space: nowrap;
+    top: 0;
     left: 0;
 }
