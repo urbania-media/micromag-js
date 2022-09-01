@@ -137,7 +137,7 @@ const ViewerMenu = ({
         return path;
     }, [shareBasePath]);
 
-    // @todo sorta not super good here
+    // @note possible to extract some of that logic
     const onOpenMenu = useCallback(() => {
         setMenuOpened(true);
         setShareOpened(false);

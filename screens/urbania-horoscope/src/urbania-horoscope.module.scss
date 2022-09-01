@@ -169,7 +169,8 @@
     background-color: #161719 !important;
 
     p {
-        font-weight: normal !important; // @todo: make sure it's not getting overwritten by other styles when pushed to production
+        // @todo: makes sure it's not getting overwritten by other styles when pushed to production
+        font-weight: normal !important;
         text-transform: none !important;
     }
 }

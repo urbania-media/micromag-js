@@ -227,7 +227,7 @@ const Video = ({
     const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata' && shouldLoad);
     useEffect(() => {
         const { current: element = null } = ref;
-        const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad; // @todo
+        const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad;
         const preloadHasChanged = firstPreloadRef.current !== preload;
         const shouldLoadHasChanged = firstShouldLoadRef.current !== shouldLoad;
         if (

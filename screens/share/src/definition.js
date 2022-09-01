@@ -10,7 +10,7 @@ export default {
             defaultMessage: 'Share',
             description: 'Share screen group',
         }),
-        order: 12, // @todo how?
+        order: 12,
     },
     title: defineMessage({
         defaultMessage: 'Share',

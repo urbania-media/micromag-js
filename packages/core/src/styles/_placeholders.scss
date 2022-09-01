@@ -306,33 +306,3 @@
         outline-offset: 4px;
     }
 }
-
-/**
- * Work in progress:
- * - trying to set up sensible defaults for animating UI elements
- */
-%transition-bump {
-    transition: transform 0.3s $ease-in-bump;
-}
-%transition-bounce {
-    transition: transform 0.3s $ease-in-bounce;
-}
-%transition-kickback {
-    transition: transform 0.5s $ease-in-kickback;
-}
-
-%hover-bump {
-    @extend %transition-kickback;
-
-    &:hover {
-        transform: scale(1.1);
-    }
-}
-
-%active-bump {
-    @extend %transition-bounce;
-
-    &:active {
-        transform: scale(0.95);
-    }
-}

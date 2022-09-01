@@ -6,7 +6,7 @@
     position: relative;
     align-items: center;
     justify-content: space-between;
-    pointer-events: none; // @todo?
+    pointer-events: none;
 }
 
 .playPauseButton,
@@ -22,7 +22,6 @@
     padding: 1rem;
 }
 
-// @todo placeholder or special react comp for that?
 .icon {
     display: block;
     position: relative;

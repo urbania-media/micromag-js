@@ -1,7 +1,7 @@
 /*! clipboard-copy. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
-// @todo vendoring this: https://github.com/feross/clipboard-copy/blob/master/index.js
-// we might want to add that to the npm deps and just use it?
+// @note vendoring this: https://github.com/feross/clipboard-copy/blob/master/index.js
+// we might want to add that to the npm deps and just use it
 
 function makeError () {
   return new DOMException('The request is not allowed', 'NotAllowedError')

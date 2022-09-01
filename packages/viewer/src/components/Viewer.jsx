@@ -35,7 +35,7 @@ import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
 
-// @todo export from somewhere else
+// @todo export from somewhere else; or use as props in possible component for screen transitions
 const SPRING_CONFIG_TIGHT = { tension: 300, friction: 35 }; // tight
 const DRAG_PROGRESS_ACTIVATION_THRESHOLD = 0.3;
 const DRAG_VELOCITY_ACTIVATION_THRESHOLD = 0.3;

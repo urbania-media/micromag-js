@@ -5,7 +5,7 @@ function useMediaLoad(element, { preload = 'auto', shouldLoad = false } = {}) {
     const firstShouldLoadRef = useRef(shouldLoad);
     const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata' && shouldLoad);
     useEffect(() => {
-        const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad; // @todo
+        const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad;
         const preloadHasChanged = firstPreloadRef.current !== preload;
         const shouldLoadHasChanged = firstShouldLoadRef.current !== shouldLoad;
         if (

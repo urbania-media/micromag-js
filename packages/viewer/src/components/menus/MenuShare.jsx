@@ -54,7 +54,6 @@ const ViewerMenuShare = ({
     className,
 }) => {
     // Viewer theme
-    // @todo room for improvement here probably
     const { background = null } = viewerTheme || {};
     const { color: brandBackgroundColor = null, image = null } = background || {};
     const { url: brandImageUrl = null } = image || {};

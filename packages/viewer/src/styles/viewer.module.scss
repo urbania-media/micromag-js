@@ -78,8 +78,7 @@
     }
 
     &.isOpened {
-        opacity: 1; // don't fade (even if video is playing in background)
-        // @todo maybe just stop videos when pulling up screens menu?
+        opacity: 1; // don't fade, even if video is playing in background
 
         .dots {
             opacity: 0;

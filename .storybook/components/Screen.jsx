@@ -82,7 +82,6 @@ function Screen({
                 ])}
             >
                 {screenSize.width > 0 && screenSize.height > 0 ? (
-                    // @todo from config? env
                     <ApiProvider baseUrl="http://localhost:58800">
                         <ScreenSizeProvider size={screenSize}>
                             <ScreenProvider

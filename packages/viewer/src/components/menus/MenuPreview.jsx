@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading, arrow-body-style */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
@@ -20,7 +20,8 @@ const propTypes = {
     focusable: PropTypes.bool,
     onClickScreen: PropTypes.func,
     maxThumbsWidth: PropTypes.number,
-    // shouldLoad: PropTypes.bool, // @todo still needed? to re-implement?
+    // @todo to reimplement:
+    // shouldLoad: PropTypes.bool,
     // toggleFullscreen: PropTypes.func,
     // fullscreenActive: PropTypes.bool,
     // fullscreenEnabled: PropTypes.bool,
