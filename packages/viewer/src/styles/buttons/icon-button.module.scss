@@ -3,7 +3,7 @@
 
 .container {
     @extend %reset-button;
-    @extend %focus-outline;
+    @extend %focus-outline; // @todo still used and relevant? investigate
 
     display: flex;
     align-items: center;

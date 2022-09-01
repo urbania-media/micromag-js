@@ -109,7 +109,7 @@ const ShareOptions = ({
     const shareButtonProps = useMemo(
         () => ({
             className: classNames([
-                styles.shareButton,
+                styles.button,
                 { [buttonClassName]: buttonClassName !== null },
             ]),
             url,
@@ -307,7 +307,7 @@ const ShareOptions = ({
                     >
                         <Button
                             className={classNames([
-                                styles.shareButton,
+                                styles.button,
                                 { [buttonClassName]: buttonClassName !== null },
                             ])}
                             onClick={onClickCopy}

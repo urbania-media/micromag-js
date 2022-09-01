@@ -9,34 +9,55 @@
     }
 }
 
-.shareButton {
+.button {
     @extend %reset-button;
-    width: 100%;
-    position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     text-align: left;
     font-weight: 400;
     color: $white;
-    background-color: $black;
     transition: transform 0.3s $ease-out-ramp;
     transform-origin: 0 50%;
 
+    @media (hover: hover) {
+        &:hover {
+            .icon,
+            .label {
+                transform: scale(1.1);
+                transition: transform 0.3s $ease-in-yo;
+            }
+        }
+    }
+
     &:active {
-        transition: transform 0.3s $ease-in-kickback;
-        transform: scale(0.95);
+        .icon,
+        .label {
+            transform: scale(1);
+            transition: transform 0.3s $ease-in-kickback;
+        }
     }
 }
 
+// @note there is repetition from the styles used in Button & IconButton from the Viewer package
 .icon {
+    position: relative;
+    display: block;
     flex-shrink: 0;
+}
+
+.icon,
+.label {
+    transition: transform 0.3s $ease-out-ramp;
 }
 
 .label {
     display: flex;
     align-items: center;
     flex-grow: 1;
+    font-weight: bold;
     padding: 0.5rem 0.25rem;
+    margin-left: 0.5em;
+    transform-origin: 0 50%;
 }
 
 .labelText {
