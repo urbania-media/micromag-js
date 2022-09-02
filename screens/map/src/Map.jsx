@@ -181,7 +181,6 @@ function MapScreen({
     const onButtonClick = useCallback(() => {
         setOpened(true);
         if (disableInteraction !== null) {
-            console.log('yo');
             disableInteraction();
         }
         trackScreenEvent('click_button', button.body);
