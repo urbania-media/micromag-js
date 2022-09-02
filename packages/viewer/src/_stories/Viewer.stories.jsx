@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback, useState } from 'react';
 
@@ -17,7 +15,6 @@ import {
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
-import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
@@ -29,8 +26,9 @@ import article2 from '../../../../.storybook/data/stories/article2.json';
 import articleVideo from '../../../../.storybook/data/stories/article-video.json';
 import article from '../../../../.storybook/data/stories/article.json';
 import basic from '../../../../.storybook/data/stories/basic.json';
-import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
+import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
+import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -45,11 +43,6 @@ const faceAFaceProps = {
 const twoScreensProps = {
     ...faceAFaceProps,
     story: { ...faceAFace.story, components: faceAFace.components.slice(0, 2) },
-};
-
-const shareScreenProps = {
-    screenId: shareScreensStory.components[0].id,
-    story: shareScreensStory,
 };
 
 export default {
@@ -77,100 +70,43 @@ export default {
     },
 };
 
-const customScreen = () => <div>Custom</div>;
-
+export const Basic = () => <Viewer story={basic} withNavigationHint />;
+export const Empty = () => <Viewer basePath="/story-path" />;
+export const TwoScreens = () => <Viewer {...twoScreensProps} />;
+export const Tree = () => <Viewer story={treeTheme} withNavigationHint />;
 export const Custom = () => (
     <Viewer
         story={{ components: [{ id: '1324', type: 'custom' }] }}
-        screenComponents={{ custom: customScreen }}
+        screenComponents={{
+            custom: (
+                <div style={{ padding: '5rem 1rem', textAlign: 'center' }}>
+                    <div>
+                        <h1>Custom screen</h1>
+                        <p>
+                            This is a plain HTML component used as a <em>custom</em> type screen.
+                        </p>
+                    </div>
+                </div>
+            ),
+        }}
     />
 );
 
-export const Basic = () => <Viewer story={basic} withNavigationHint />;
-
-export const WithComplexSiblings = () => (
-    <Viewer
-        {...faceAFaceProps}
-        withLandscapeSiblingsScreens
-        landscapeScreenMargin={40}
-        landscapeSmallScreenScale={0.5}
-        withoutScreensMenu
-        withoutMenuShadow
-        neighborScreensActive={3}
-        neighborScreensMounted={3}
-        withoutShareMenu
-    />
-);
-
-export const MicromagExample = () => (
-    <Viewer {...micromagExample} />
-);
-
-export const MicromagExample2 = () => (
-    <Viewer {...micromagExample2} />
-);
-
-export const LesPlanetes = () => (
-    <Viewer {...planetsStory} />
-);
-
-export const Integrated = () => {
-    const [fullscreen, setFullscreen] = useState(false);
-    const [viewMode, setViewMode] = useState(null);
-    const { landscape = false } = viewMode || {};
-
-    const onClose = useCallback(() => {
-        setFullscreen(false);
-    }, [setFullscreen]);
-
-    const onInteraction = useCallback(() => {
-        setFullscreen(true);
-    }, [setFullscreen]);
-
-    const onEnd = useCallback(() => {
-        setFullscreen(false);
-    }, [setFullscreen]);
-
-    return (
-        <Viewer
-            {...faceAFaceProps}
-            closeable={fullscreen && !landscape}
-            onClose={onClose}
-            onInteraction={onInteraction}
-            onEnd={onEnd}
-            onViewModeChange={setViewMode}
-        />
-    );
-};
-
-export const Tree = () => <Viewer story={treeTheme} withNavigationHint />;
-
-export const VideoAudio = () => <Viewer story={videoAudio} />;
-
-export const WithScroll = () => (
-    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'scroll' }}>
-        <div style={{ position: 'relative', width: '100%', height: 2000 }}>
-            <div style={{ position: 'relative', width: '100%', height: 560 }}>
-                <Viewer
-                    {...faceAFaceProps}
-                    closeable
-                    onClose={() => console.log('close')}
-                    onStart={() => console.log('start')}
-                    onEnd={() => console.log('end')}
-                    onViewModeChange={(viewMode) => {
-                        console.log(viewMode);
-                    }}
-                />
-            </div>
-        </div>
-    </div>
-);
+export const MicromagExample = () => <Viewer {...micromagExample} />;
+export const MicromagExample2 = () => <Viewer {...micromagExample2} />;
+export const LesPlanetes = () => <Viewer {...planetsStory} />;
+export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint />;
 
 export const AllScreens = () => <Viewer {...props} withNeighborScreens />;
+
+const shareScreenProps = {
+    screenId: shareScreensStory.components[0].id,
+    story: shareScreensStory,
+};
+export const VideoAudio = () => <Viewer story={videoAudio} />;
+
 export const ShareScreens = () => <Viewer {...shareScreenProps} />;
-export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint />;
-export const Empty = () => <Viewer basePath="/story-path" />;
-export const TwoScreens = () => <Viewer {...twoScreensProps} />;
+
 export const MultipleAudios = () => (
     <Viewer
         screenId="1"
@@ -335,7 +271,58 @@ export const MultipleVideos360 = () => (
         }}
     />
 );
-export const CustomFonts = () => (
+export const MultipleArticles = () => (
+    <Viewer
+        screenId="42"
+        story={{
+            components: [
+                {
+                    id: '1',
+                    type: 'urbania-article',
+                    article,
+                    background: {
+                        color: { alpha: 1, color: '#FF00FF' },
+                    },
+                },
+                {
+                    id: '2',
+                    type: 'urbania-article',
+                    article: article2,
+                    overTitle: {
+                        body: 'Guide des universités',
+                        textStyle: {
+                            color: { alpha: 1, color: '#ff0000' },
+                        },
+                    },
+                    description: {
+                        body: "Petite virée sur le campus de l'École de technologie supérieure (ÉTS)",
+                        textStyle: {
+                            fontStyle: {
+                                italic: true,
+                                bold: false,
+                            },
+                            fontSize: 13,
+                            color: { alpha: 1, color: '#ff0000' },
+                        },
+                    },
+                    background: {
+                        color: { alpha: 1, color: '#ffffff' },
+                    },
+                },
+                {
+                    id: '3',
+                    type: 'urbania-article',
+                    article: articleVideo,
+                    background: {
+                        color: { alpha: 1, color: '#123456' },
+                    },
+                },
+            ],
+        }}
+    />
+);
+
+export const WithCustomFonts = () => (
     <Viewer
         story={{
             components: [
@@ -401,11 +388,6 @@ export const CustomFonts = () => (
                             fontStyle: { bold: true, italic: true },
                             fontSize: 32,
                             lineHeight: 1,
-                            // fontFamily: {
-                            //     type: 'custom',
-                            //     name: 'MonumentExtended Black',
-                            //     media: 'media://1',
-                            // },
                         },
                     },
                     background: {
@@ -434,73 +416,115 @@ export const CustomFonts = () => (
         screenId="1"
     />
 );
-
 export const WithTheme = () => <Viewer {...twoScreensProps} theme={viewerTheme} />;
-
 export const WithMenuTheme = () => (
     <Viewer
         {...twoScreensProps}
         theme={{ ...viewerTheme, menuTheme: { colors: { primary: '#F00', secondary: '#00F' } } }}
     />
 );
+export const WithScroll = () => (
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'scroll' }}>
+        <div style={{ position: 'relative', width: '100%', height: 2000 }}>
+            <div style={{ position: 'relative', width: '100%', height: 560 }}>
+                <Viewer
+                    {...faceAFaceProps}
+                    closeable
+                    onClose={() => console.log('close')}
+                    onStart={() => console.log('start')}
+                    onEnd={() => console.log('end')}
+                    onViewModeChange={(viewMode) => {
+                        console.log(viewMode);
+                    }}
+                />
+            </div>
+        </div>
+    </div>
+);
+export const WithNeighborScreens = () => (
+    <Viewer
+        {...faceAFaceProps}
+        withNeighborScreens
+    />
+);
+export const WithCustomNeighborScreens = () => (
+    <Viewer
+        {...faceAFaceProps}
+        neighborScreensActive={3}
+        neighborScreenOffset={75}
+        neighborScreenScale={0.4}
+        withNeighborScreens
+        withoutScreensMenu
+        withoutShareMenu
+        withoutMenuShadow
+    />
+);
 
-export const WithoutPlaybackControlsNorMenu = () => (
+export const WithoutGestures = () => (
+    <Viewer
+        story={faceAFace}
+        withoutGestures
+    />
+);
+export const WithoutNavigationArrows = () => (
+    <Viewer
+        story={faceAFace}
+        withoutNavigationArrow
+    />
+);
+export const WithoutTransitions = () => (
+    <Viewer
+        story={faceAFace}
+        withoutTransitions
+    />
+);
+export const WithoutPlaybackControls = () => (
+    <Viewer
+        story={videoAudio}
+        withoutPlaybackControls
+    />
+);
+export const WithoutMenu = () => (
+    <Viewer
+        story={videoAudio}
+        withoutMenu
+    />
+);
+export const WithoutUserInterface = () => (
     <Viewer
         story={videoAudio}
         neighborScreensMounted={null}
         memoryRouter
         withoutMenu
         withoutPlaybackControls
+        withoutNavigationArrow
     />
 );
+export const WithViewerEvents = () => {
+    const [fullscreen, setFullscreen] = useState(false);
+    const [viewMode, setViewMode] = useState(null);
+    const { landscape = false } = viewMode || {};
 
-export const MultipleArticles = () => (
-    <Viewer
-        screenId="42"
-        story={{
-            components: [
-                {
-                    id: '1',
-                    type: 'urbania-article',
-                    article,
-                    background: {
-                        color: { alpha: 1, color: '#FF00FF' },
-                    },
-                },
-                {
-                    id: '2',
-                    type: 'urbania-article',
-                    article: article2,
-                    overTitle: {
-                        body: 'Guide des universités',
-                        textStyle: {
-                            color: { alpha: 1, color: '#ff0000' },
-                        },
-                    },
-                    description: {
-                        body: "Petite virée sur le campus de l'École de technologie supérieure (ÉTS)",
-                        textStyle: {
-                            fontStyle: {
-                                italic: true,
-                                bold: false,
-                            },
-                            fontSize: 13,
-                            color: { alpha: 1, color: '#ff0000' },
-                        },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#ffffff' },
-                    },
-                },
-                {
-                    id: '3',
-                    type: 'urbania-article',
-                    article: articleVideo,
-                    background: {
-                        color: { alpha: 1, color: '#123456' },
-                    },
-                },
-            ],
-        }}
-    />
-);
+    const onClose = useCallback(() => {
+        setFullscreen(false);
+    }, [setFullscreen]);
+
+    const onInteraction = useCallback(() => {
+        setFullscreen(true);
+    }, [setFullscreen]);
+
+    const onEnd = useCallback(() => {
+        setFullscreen(false);
+    }, [setFullscreen]);
+
+    return (
+        <Viewer
+            {...faceAFaceProps}
+            closeable={fullscreen && !landscape}
+            onClose={onClose}
+            onInteraction={onInteraction}
+            onEnd={onEnd}
+            onViewModeChange={setViewMode}
+        />
+    );
+};

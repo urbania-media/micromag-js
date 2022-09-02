@@ -164,7 +164,7 @@ const EditorPreview = ({
                                         renderContext="edit"
                                         onScreenChange={onScreenChange}
                                         neighborScreensActive={0}
-                                        withLandscapeSiblingsScreens={false}
+                                        withNeighborScreens={false}
                                         withoutTransitions
                                         withoutGestures
                                         withoutMenu
