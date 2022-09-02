@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-contribution",
-    "version": "0.3.184",
+    "version": "0.3.185",
     "description": "",
     "keywords": [
         "javascript"
@@ -59,7 +59,7 @@
         "@micromag/element-call-to-action": "^0.3.184",
         "@micromag/element-container": "^0.3.184",
         "@micromag/element-heading": "^0.3.184",
-        "@micromag/element-scroll": "^0.3.184",
+        "@micromag/element-scroll": "^0.3.185",
         "@micromag/element-text": "^0.3.184",
         "@micromag/element-text-input": "^0.3.184",
         "@micromag/transforms": "^0.3.184",
