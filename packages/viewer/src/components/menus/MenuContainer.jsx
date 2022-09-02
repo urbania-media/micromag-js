@@ -23,7 +23,7 @@ const defaultProps = {
 
 const ViewerMenuContainer = ({ className, transitionProgress, theme: viewerTheme, children }) => {
     const { background = null } = viewerTheme || {};
-    const { color: brandBackgroundColor = null, image = null } = background || {};
+    const { color: brandBackgroundColor = null } = background || {};
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
 
     return (

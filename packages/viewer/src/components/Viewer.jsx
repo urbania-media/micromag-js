@@ -238,7 +238,6 @@ const Viewer = ({
 
     const trackScreenView = useTrackScreenView();
 
-    // Get screen size
     const {
         ref: containerRef,
         screenSize,
@@ -427,6 +426,10 @@ const Viewer = ({
             const clamped = Math.min(1, Math.max(0, t));
             const invert = Math.min(1, Math.max(0, -t));
             const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
+
+            // just hide other screens
+            if (Math.abs(t) > neighborScreensActive) return { opacity: 0 };
+
             return {
                 opacity,
                 transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
@@ -600,10 +603,10 @@ const Viewer = ({
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
-                                        const defaultStyles = { opacity: current ? 1 : 0 };
-                                        const screenStyles = active
-                                            ? getScreenStylesByIndex(i, screenIndexProgress)
-                                            : defaultStyles;
+                                        const screenStyles = getScreenStylesByIndex(
+                                            i,
+                                            screenIndexProgress,
+                                        );
 
                                         return (
                                             <div
