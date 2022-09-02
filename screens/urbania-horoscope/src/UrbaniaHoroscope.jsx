@@ -379,7 +379,7 @@ const UrbaniaHoroscope = ({
                         ) : null}
                     </ScreenElement>
 
-                    {!isPlaceholder ? (
+                    {isView && !isPlaceholder ? (
                         <div
                             className={styles.header}
                             style={getSignsContainerStyles(showSignsGridProgress)}
