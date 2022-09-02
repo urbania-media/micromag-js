@@ -121,7 +121,8 @@
 .dots {
     position: relative;
     z-index: 3;
-    padding: 0 8px;
+    top: -0.25rem;
+    padding: 0 0.5rem;
     transition: opacity 0.3s $ease-out-ramp;
 
     &.isHidden {
@@ -141,11 +142,11 @@
     transform: translateY(-50%);
 
     &.previous {
-        left: 1rem;
+        left: 1.5rem;
     }
 
     &.next {
-        right: 1rem;
+        right: 1.5rem;
     }
 
     @media screen and (min-width: 1024px) {
@@ -191,7 +192,7 @@
 // Animated Arrow that points to the next screen (to hint that user needs to click/tap/swipe to go to next screen)
 .arrowHint {
     position: absolute;
-    top: 75%;
+    top: 70%;
     right: 5%;
 }
 
