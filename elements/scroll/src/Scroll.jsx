@@ -19,6 +19,7 @@ const propTypes = {
     onScrolledNotBottom: PropTypes.func,
     contain: PropTypes.bool,
     scrollContainerRef: PropTypes.any, // eslint-disable-line
+    withShadow: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -32,6 +33,7 @@ const defaultProps = {
     onScrolledNotBottom: null,
     contain: false,
     scrollContainerRef: null,
+    withShadow: false,
 };
 
 function Scroll({
@@ -45,6 +47,7 @@ function Scroll({
     onScrolledNotBottom,
     contain,
     scrollContainerRef,
+    withShadow
 }) {
     const finalStyle = {
         width,
@@ -121,6 +124,7 @@ function Scroll({
                     [className]: className !== null,
                     [styles[verticalAlign]]: verticalAlign !== null,
                     [styles.withArrow]: withArrow,
+                    [styles.withShadow]: withShadow,
                 },
             ])}
             style={finalStyle}
