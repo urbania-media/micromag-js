@@ -46,6 +46,7 @@ function useDragProgress ({
 
     const bind = useDrag(onDragContent, {
         filterTaps: true,
+        preventDefault: true,
     });
 
     const springedProgress = useSpringValue(progress, dragging || disabled, springParams);
