@@ -3,8 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from '../../styles/menus/menu-icon.module.scss';
-
 const propTypes = {
     size: PropTypes.number,
     spacing: PropTypes.number,
@@ -25,7 +23,6 @@ const MenuIcon = ({ size, spacing, color, className }) => {
     return (
         <svg
             className={classNames([
-                styles.container,
                 {
                     [className]: className !== null,
                 },

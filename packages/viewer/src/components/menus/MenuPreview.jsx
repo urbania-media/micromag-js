@@ -58,7 +58,9 @@ const ViewerMenuPreview = ({
     const { ref: containerRef, width: contentWidth = 0 } = useDimensionObserver();
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3); // @note cool, should be in recipes
 
-    const { background = null, logo: brandLogo = null } = viewerTheme || {};
+    // @todo reimplement the brand logo
+    // const { background = null, logo: brandLogo = null } = viewerTheme || {};
+    const { background = null } = viewerTheme || {};
     const { image = null } = background || {};
     const { url: brandImageUrl = null } = image || {};
     const brandImageStyle =
@@ -67,7 +69,6 @@ const ViewerMenuPreview = ({
                   backgroundImage: `url(${brandImageUrl})`,
               }
             : null;
-    // @todo reimplement the brand logo
     // const { url: brandLogoUrl = null } = brandLogo || {};
 
     // @todo optimize all of this the proper way

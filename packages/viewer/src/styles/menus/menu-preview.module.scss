@@ -53,16 +53,18 @@
 .content {
     position: relative;
     flex-grow: 1;
+    height: 100%;
 }
 
 .scroll {
-    @extend %fullscreen;
+    height: 100%;
 }
 
 .nav {
     position: relative;
     flex-grow: 1;
     overflow: hidden;
+    margin-bottom: 3rem;
 }
 
 .items,

@@ -428,7 +428,7 @@ const Viewer = ({
             const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
 
             // just hide other screens
-            if (Math.abs(t) > neighborScreensActive) return { opacity: 0 };
+            if ( Math.abs(t) > neighborScreensActive ) return { opacity: 0 };
 
             return {
                 opacity,
@@ -603,10 +603,7 @@ const Viewer = ({
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
-                                        const screenStyles = getScreenStylesByIndex(
-                                            i,
-                                            screenIndexProgress,
-                                        );
+                                        const screenStyles = getScreenStylesByIndex(i, screenIndexProgress);
 
                                         return (
                                             <div

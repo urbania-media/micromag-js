@@ -85,8 +85,9 @@
 .content {
     position: relative;
     flex-grow: 1;
+    height: 100%;
 }
 
 .scroll {
-    @extend %fullscreen;
+    height: 100%;
 }
