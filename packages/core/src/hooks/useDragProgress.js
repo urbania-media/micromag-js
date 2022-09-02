@@ -21,7 +21,7 @@ function useDragProgress ({
             if (disabled) {
                 return;
             }
-            const { active, tap, down } = gestureState;
+            const { active, tap } = gestureState;
 
             if (tap) {
                 if (onTap !== null) onTap(gestureState);
@@ -34,7 +34,7 @@ function useDragProgress ({
 
             const newProgress = computeProgress(gestureState);
             setDragState({
-                dragging: active || down,
+                dragging: active,
                 progress: newProgress,
             });
             if (onProgress !== null) {
