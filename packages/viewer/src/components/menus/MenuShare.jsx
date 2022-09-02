@@ -6,7 +6,6 @@ import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromColor } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
 import ShareOptions from '@micromag/element-share-options';
 
@@ -55,9 +54,8 @@ const ViewerMenuShare = ({
 }) => {
     // Viewer theme
     const { background = null } = viewerTheme || {};
-    const { color: brandBackgroundColor = null, image = null } = background || {};
+    const { image = null } = background || {};
     const { url: brandImageUrl = null } = image || {};
-    const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
     const brandImageStyle =
         brandImageUrl !== null
             ? {
@@ -102,7 +100,7 @@ const ViewerMenuShare = ({
                     [className]: className !== null,
                 },
             ])}
-            style={{ ...backgroundColorStyle, ...brandImageStyle, width: menuWidth }}
+            style={{ ...brandImageStyle, width: menuWidth }}
             aria-hidden={focusable ? null : 'true'}
         >
             <div className={styles.content}>

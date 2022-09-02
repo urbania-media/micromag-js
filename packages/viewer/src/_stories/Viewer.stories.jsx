@@ -423,6 +423,22 @@ export const WithMenuTheme = () => (
         theme={{ ...viewerTheme, menuTheme: { colors: { primary: '#F00', secondary: '#00F' } } }}
     />
 );
+export const WithMenuTheme2 = () => (
+    <Viewer
+        {...faceAFaceProps}
+        theme={{
+            background: {
+                color: {
+                    color: '#e4cdcf',
+                    alpha: 0.75,
+                },
+            },
+            menuTheme: {
+                colors: { primary: '#5d73fe', secondary: { color: '#5d73fe', alpha: 0.8 } },
+            },
+        }}
+    />
+);
 export const WithScroll = () => (
     <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'scroll' }}>
         <div style={{ position: 'relative', width: '100%', height: 2000 }}>
@@ -441,12 +457,7 @@ export const WithScroll = () => (
         </div>
     </div>
 );
-export const WithNeighborScreens = () => (
-    <Viewer
-        {...faceAFaceProps}
-        withNeighborScreens
-    />
-);
+export const WithNeighborScreens = () => <Viewer {...faceAFaceProps} withNeighborScreens />;
 export const WithCustomNeighborScreens = () => (
     <Viewer
         {...faceAFaceProps}
@@ -460,36 +471,11 @@ export const WithCustomNeighborScreens = () => (
     />
 );
 
-export const WithoutGestures = () => (
-    <Viewer
-        story={faceAFace}
-        withoutGestures
-    />
-);
-export const WithoutNavigationArrows = () => (
-    <Viewer
-        story={faceAFace}
-        withoutNavigationArrow
-    />
-);
-export const WithoutTransitions = () => (
-    <Viewer
-        story={faceAFace}
-        withoutTransitions
-    />
-);
-export const WithoutPlaybackControls = () => (
-    <Viewer
-        story={videoAudio}
-        withoutPlaybackControls
-    />
-);
-export const WithoutMenu = () => (
-    <Viewer
-        story={videoAudio}
-        withoutMenu
-    />
-);
+export const WithoutGestures = () => <Viewer story={faceAFace} withoutGestures />;
+export const WithoutNavigationArrows = () => <Viewer story={faceAFace} withoutNavigationArrow />;
+export const WithoutTransitions = () => <Viewer story={faceAFace} withoutTransitions />;
+export const WithoutPlaybackControls = () => <Viewer story={videoAudio} withoutPlaybackControls />;
+export const WithoutMenu = () => <Viewer story={videoAudio} withoutMenu />;
 export const WithoutUserInterface = () => (
     <Viewer
         story={videoAudio}

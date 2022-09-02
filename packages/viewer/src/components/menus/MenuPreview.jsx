@@ -5,7 +5,6 @@ import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { getStyleFromColor } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
 
 import MenuScreen from './MenuScreen';
@@ -60,9 +59,8 @@ const ViewerMenuPreview = ({
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3); // @note cool, should be in recipes
 
     const { background = null, logo: brandLogo = null } = viewerTheme || {};
-    const { color: brandBackgroundColor = null, image = null } = background || {};
+    const { image = null } = background || {};
     const { url: brandImageUrl = null } = image || {};
-    const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
     const brandImageStyle =
         brandImageUrl !== null
             ? {
@@ -86,7 +84,7 @@ const ViewerMenuPreview = ({
                     [className]: className !== null,
                 },
             ])}
-            style={{ ...backgroundColorStyle, ...brandImageStyle, width: menuWidth }}
+            style={{ ...brandImageStyle, width: menuWidth }}
             aria-hidden={focusable ? null : 'true'}
         >
             <div className={styles.content} ref={containerRef}>
