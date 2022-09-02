@@ -352,6 +352,7 @@ const ViewerMenu = ({
             <MenuContainer
                 className={styles.menuContainerShare}
                 transitionProgress={shareOpenedProgress}
+                theme={viewerTheme}
             >
                 {shareOpenedProgress > 0 ? (
                     <MenuShare
@@ -373,6 +374,7 @@ const ViewerMenu = ({
             <MenuContainer
                 className={styles.menuContainerScreens}
                 transitionProgress={menuOpenedProgress}
+                theme={viewerTheme}
             >
                 {menuOpenedProgress > 0 ? (
                     <MenuPreview

@@ -429,12 +429,12 @@ export const WithMenuTheme2 = () => (
         theme={{
             background: {
                 color: {
-                    color: '#5d6ffe',
-                    alpha: 0.5,
+                    color: '#e4cdcf',
+                    alpha: 0.75,
                 },
             },
             menuTheme: {
-                colors: { primary: '#e4e4e1', secondary: { color: '#eaa2e2', alpha: 0.75 } },
+                colors: { primary: '#5d73fe', secondary: { color: '#5d73fe', alpha: 0.8 } },
             },
         }}
     />
