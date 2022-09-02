@@ -5,7 +5,9 @@ import React from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Screen } from '@micromag/core/components';
 
-import HandTap from './partials/HandTap';
+// @todo: remove if validated with team
+// import HandTap from './partials/HandTap';
+// import ArrowHint from './partials/ArrowHint';
 
 import styles from '../styles/screen.module.scss';
 
@@ -19,7 +21,7 @@ const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     scale: PropTypes.number,
-    withNavigationHint: PropTypes.bool,
+    // withNavigationHint: PropTypes.bool,  // @todo
     className: PropTypes.string,
 };
 
@@ -33,7 +35,7 @@ const defaultProps = {
     width: null,
     height: null,
     scale: null,
-    withNavigationHint: false,
+    // withNavigationHint: false,
     className: null,
 };
 
@@ -47,7 +49,7 @@ function ViewerScreen({
     width,
     height,
     scale,
-    withNavigationHint,
+    // withNavigationHint,
     className,
 }) {
     return (
@@ -76,7 +78,8 @@ function ViewerScreen({
                     mediaRef={mediaRef}
                 />
             </div>
-            {withNavigationHint ? <HandTap className={styles.handTap} /> : null}
+            {/* {withNavigationHint ? <HandTap className={styles.navigationHint} /> : null} */}
+            {/* {withNavigationHint ? <ArrowHint className={styles.arrowHint} /> : null} */}
         </div>
     );
 }

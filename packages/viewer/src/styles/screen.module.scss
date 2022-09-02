@@ -1,10 +1,11 @@
 .container {
     position: relative;
+    width: 100%;
     height: 100%;
+}
 
-    .handTap {
-        position: absolute;
-        top: 50%;
-        right: 10%;
-    }
+.navigationHint {
+    position: absolute;
+    top: 50%;
+    right: 10%;
 }

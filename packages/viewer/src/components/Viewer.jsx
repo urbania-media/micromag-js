@@ -30,6 +30,7 @@ import useScreenInteraction from '../hooks/useScreenInteraction';
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
 import NavigationButton from './buttons/NavigationButton';
+import ArrowHint from './partials/ArrowHint';
 import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
 
@@ -437,7 +438,9 @@ const Viewer = ({
         const clamped = Math.min(1, Math.max(0, Math.abs(t)));
         return {
             opacity: 1 - 0.75 * clamped,
-            transform: `translateX(${t * neighborScreenOffset}%) scale(${1 - (1 - neighborScreenScale) * clamped})`,
+            transform: `translateX(${t * neighborScreenOffset}%) scale(${
+                1 - (1 - neighborScreenScale) * clamped
+            })`,
             zIndex: screensCount - index,
         };
     };
@@ -628,13 +631,6 @@ const Viewer = ({
                                                         width={screenWidth}
                                                         height={screenHeight}
                                                         scale={screenScale}
-                                                        withNavigationHint={
-                                                            withNavigationHint &&
-                                                            !withNeighborScreens &&
-                                                            current &&
-                                                            screenIndex === 0 &&
-                                                            !hasInteracted
-                                                        }
                                                     />
                                                 ) : null}
                                             </div>
@@ -657,6 +653,13 @@ const Viewer = ({
                                     >
                                         <PlaybackControls className={styles.controls} />
                                     </div>
+                                ) : null}
+
+                                {withNavigationHint &&
+                                !withNeighborScreens &&
+                                screenIndex === 0 &&
+                                !hasInteracted ? (
+                                    <ArrowHint className={styles.arrowHint} />
                                 ) : null}
                             </div>
                         ) : null}

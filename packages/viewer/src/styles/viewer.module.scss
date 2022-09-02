@@ -188,6 +188,13 @@
     pointer-events: none;
 }
 
+// Animated Arrow that points to the next screen (to hint that user needs to click/tap/swipe to go to next screen)
+.arrowHint {
+    position: absolute;
+    top: 75%;
+    right: 5%;
+}
+
 // Embedded webpage in iframe (article screen)
 .webView {
     z-index: 10;
