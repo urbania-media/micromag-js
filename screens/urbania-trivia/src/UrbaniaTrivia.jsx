@@ -417,7 +417,7 @@ const UrbaniaTrivia = ({
                             />
                         )}
                         {/* </Transitions> */}
-                        {!isPlaceholder ? (
+                        {current && !isPlaceholder ? (
                             <div
                                 key="bottom-content"
                                 className={styles.bottomContent}

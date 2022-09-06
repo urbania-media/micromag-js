@@ -404,10 +404,10 @@ const QuizMultipleScreen = ({
                                                 ? {
                                                       padding: spacing,
                                                       paddingTop:
-                                                          (!isPreview ? viewerTopHeight : 0) +
+                                                          (current && !isPreview ? viewerTopHeight : 0) +
                                                           spacing,
                                                       paddingBottom:
-                                                          (!isPreview ? viewerBottomHeight : 0) +
+                                                          (current && !isPreview ? viewerBottomHeight : 0) +
                                                           (callToActionHeight || spacing),
                                                   }
                                                 : null
@@ -449,10 +449,10 @@ const QuizMultipleScreen = ({
                                                 ? {
                                                       padding: spacing,
                                                       paddingTop:
-                                                          (!isPreview ? viewerTopHeight : 0) +
+                                                          (current && !isPreview ? viewerTopHeight : 0) +
                                                           spacing,
                                                       paddingBottom:
-                                                          (!isPreview ? viewerBottomHeight : 0) +
+                                                          (current && !isPreview ? viewerBottomHeight : 0) +
                                                           (callToActionHeight || spacing),
                                                   }
                                                 : null
@@ -477,10 +477,10 @@ const QuizMultipleScreen = ({
                                                 ? {
                                                       padding: spacing,
                                                       paddingTop:
-                                                          (!isPreview ? viewerTopHeight : 0) +
+                                                          (current && !isPreview ? viewerTopHeight : 0) +
                                                           spacing,
                                                       paddingBottom:
-                                                          (!isPreview ? viewerBottomHeight : 0) +
+                                                          (current && !isPreview ? viewerBottomHeight : 0) +
                                                           (callToActionHeight || spacing),
                                                   }
                                                 : null

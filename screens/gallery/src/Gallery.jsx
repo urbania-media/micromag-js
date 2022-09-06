@@ -271,10 +271,10 @@ const GalleryScreen = ({
                 <div
                     className={styles.content}
                     style={{
-                        paddingTop: !isPreview ? viewerTopHeight : null,
+                        paddingTop: current && !isPreview ? viewerTopHeight : null,
                         paddingBottom:
                             (hasCallToAction ? callToActionHeight : 0) +
-                            (!isPreview ? viewerBottomHeight : 0),
+                            (current && !isPreview ? viewerBottomHeight : 0),
                     }}
                     ref={contentRef}
                 >

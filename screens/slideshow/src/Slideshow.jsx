@@ -198,10 +198,10 @@ const SlideshowScreen = ({
                 <div
                     className={styles.content}
                     style={{
-                        paddingTop: !isPreview ? viewerTopHeight : null,
+                        paddingTop: current && !isPreview ? viewerTopHeight : null,
                         paddingBottom:
                             (hasCallToAction ? callToActionHeight - finalSpacing : 0) +
-                            (!isPreview ? viewerBottomHeight : 0),
+                            (current && !isPreview ? viewerBottomHeight : 0),
                     }}
                 >
                     {items}

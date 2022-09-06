@@ -341,7 +341,7 @@ const VideoScreen = ({
                 key="bottom-content"
                 className={styles.bottom}
                 style={{
-                    transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    transform: current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
                     paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
                     paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
                     paddingBottom: spacing / 2,

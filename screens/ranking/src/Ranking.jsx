@@ -242,9 +242,9 @@ const RankingScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
                                       paddingBottom:
-                                          (!isPreview ? viewerBottomHeight : 0) +
+                                          (current && !isPreview ? viewerBottomHeight : 0) +
                                           (callToActionHeight || spacing),
                                   }
                                 : null
@@ -263,7 +263,7 @@ const RankingScreen = ({
                             },
                         ])}
                         style={{
-                            transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                            transform: current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
                             paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
                             paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
                             paddingTop: spacing / 2,

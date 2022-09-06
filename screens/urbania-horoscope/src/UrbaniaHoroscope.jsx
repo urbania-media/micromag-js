@@ -330,8 +330,8 @@ const UrbaniaHoroscope = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
-                                  paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing,
+                                  paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom: (current && !isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }

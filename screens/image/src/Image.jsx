@@ -304,8 +304,8 @@ const ImageScreen = ({
         );
     }
 
-    let paddingBottom = (!isPreview ? viewerBottomHeight : 0) + finalSpacing / 2;
-    let paddingTop = (!isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
+    let paddingBottom = (current && !isPreview ? viewerBottomHeight : 0) + finalSpacing / 2;
+    let paddingTop = (current && !isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
 
     if (isCard || isFullscreen) {
         paddingTop = 0;
@@ -313,8 +313,8 @@ const ImageScreen = ({
     }
 
     if (isCardReverse) {
-        paddingTop = !isPreview ? viewerTopHeight : 0;
-        paddingBottom = !isPreview ? viewerBottomHeight : 0;
+        paddingTop = current && !isPreview ? viewerTopHeight : 0;
+        paddingBottom = current && !isPreview ? viewerBottomHeight : 0;
     }
 
     return (
