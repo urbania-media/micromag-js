@@ -257,7 +257,7 @@ const Video = ({
         if (paused && !isPaused) {
             element.pause();
         } else if (!paused && isPaused) {
-            element.muted = true;
+            // element.muted = muted;
             element.play();
         }
     }, [paused]);
