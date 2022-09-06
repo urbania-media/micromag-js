@@ -599,7 +599,8 @@ const Viewer = ({
                                     }}
                                 >
                                     {screens.map((screen, i) => {
-                                        const current = i === Math.round(screenIndexProgress); // base current on transition
+                                        const current = screenIndex === i;
+                                        {/* const current = i === Math.round(screenIndexProgress); // base current on transition */}
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
