@@ -114,7 +114,7 @@ const VideoScreen = ({
     // const shouldDisplayPoster =
     //     isPreview || isCapture || (isView && active && !current && !hasPlayed);
     const shouldDisplayPoster =
-        isPreview || isCapture || (isView && active && !current && !hasPlayed);
+        isPreview || isCapture;
 
     useEffect(() => {
         if (!current) {
