@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-call-to-action",
-    "version": "0.3.184",
+    "version": "0.3.185",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,10 +52,10 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.184",
-        "@micromag/element-button": "^0.3.184",
-        "@micromag/element-text": "^0.3.184",
-        "@micromag/element-webview": "^0.3.184",
+        "@micromag/core": "^0.3.185",
+        "@micromag/element-button": "^0.3.185",
+        "@micromag/element-text": "^0.3.185",
+        "@micromag/element-webview": "^0.3.185",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "@use-gesture/react": "^10.2.4",
