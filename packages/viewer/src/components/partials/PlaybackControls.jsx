@@ -166,6 +166,7 @@ function PlaybackControls({ className, collapsedClassName }) {
                               description: 'Button label',
                           })
                 }
+                withoutBootstrapStyles
             />
 
             <SeekBar
@@ -227,6 +228,7 @@ function PlaybackControls({ className, collapsedClassName }) {
                               description: 'Button label',
                           })
                 }
+                withoutBootstrapStyles
             />
         </div>
     );
