@@ -197,7 +197,7 @@ const VideoScreen = ({
             }
             trackScreenMedia(video, initial ? 'play' : 'resume');
         },
-        [trackScreenMedia, video, hasPlayed],
+        [trackScreenMedia, video, hasPlayed, setHasPlayed],
     );
 
     const onPause = useCallback(
