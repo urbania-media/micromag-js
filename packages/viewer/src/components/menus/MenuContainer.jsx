@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { getStyleFromColor, easings } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getStyleFromColor, easings } from '@micromag/core/utils';
 
 import styles from '../../styles/menus/menu-container.module.scss';
 
@@ -41,19 +41,11 @@ const ViewerMenuContainer = ({ className, transitionProgress, theme: viewerTheme
                 style={{
                     height: `${transitionProgress * 100}%`,
                     pointerEvents: transitionProgress < 0.25 ? 'none' : 'auto',
-                    zIndex: Math.round(1 + transitionProgress),
+                    zIndex: Math.round(2 + transitionProgress),
+                    ...backgroundColorStyle,
                 }}
             >
-                <div
-                    className={styles.inner}
-                    style={{
-                        ...backgroundColorStyle,
-                        paddingTop: `${3 * transitionProgress}rem`,
-                        paddingBottom: `${0.5 * transitionProgress}rem`,
-                    }}
-                >
-                    {children}
-                </div>
+                {children}
             </div>
             <div
                 className={styles.backdrop}

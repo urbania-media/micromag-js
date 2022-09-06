@@ -21,6 +21,7 @@ const propTypes = {
     items: MicromagPropTypes.menuItems,
     focusable: PropTypes.bool,
     // shouldLoad: PropTypes.bool, // @todo still needed? to re-implement?
+    paddingTop: PropTypes.number,
     currentScreenIndex: PropTypes.number,
     shareUrl: PropTypes.string,
     onShare: PropTypes.func,
@@ -34,6 +35,7 @@ const defaultProps = {
     description: null,
     items: [],
     focusable: true,
+    paddingTop: null,
     currentScreenIndex: 0,
     shareUrl: null,
     onShare: null,
@@ -47,6 +49,7 @@ const ViewerMenuShare = ({
     description,
     items,
     focusable,
+    paddingTop,
     currentScreenIndex,
     shareUrl,
     onShare,
@@ -105,45 +108,47 @@ const ViewerMenuShare = ({
         >
             <div className={styles.content}>
                 <Scroll className={styles.scroll}>
-                    <div className={styles.header}>
-                        <MicromagPreview
-                            className={styles.preview}
-                            screen={shareCurrentScreen ? currentScreen : coverScreen}
+                    <div className={styles.inner} style={{ paddingTop }}>
+                        <div className={styles.header}>
+                            <MicromagPreview
+                                className={styles.preview}
+                                screen={shareCurrentScreen ? currentScreen : coverScreen}
+                                title={title}
+                                url={finalShareUrl}
+                                description={description}
+                            />
+
+                            {currentScreenIndex !== 0 ? (
+                                <div className={styles.mode}>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="currentScreen"
+                                            value="currentScreen"
+                                            onChange={onShareModeChange}
+                                            checked={shareCurrentScreen}
+                                        />
+                                        <FormattedMessage
+                                            defaultMessage="Start from the current screen"
+                                            description="Share mode"
+                                        />
+                                    </label>
+                                </div>
+                            ) : null}
+                        </div>
+
+                        <ShareOptions
+                            className={styles.options}
+                            itemClassName={styles.optionItem}
+                            buttonClassName={styles.optionButton}
                             title={title}
                             url={finalShareUrl}
-                            description={description}
+                            focusable={focusable}
+                            onShare={onShare}
+                            theme={viewerTheme}
+                            shareCurrentScreen={shareCurrentScreen}
                         />
-
-                        {currentScreenIndex !== 0 ? (
-                            <div className={styles.mode}>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="currentScreen"
-                                        value="currentScreen"
-                                        onChange={onShareModeChange}
-                                        checked={shareCurrentScreen}
-                                    />
-                                    <FormattedMessage
-                                        defaultMessage="Start from the current screen"
-                                        description="Share mode"
-                                    />
-                                </label>
-                            </div>
-                        ) : null}
                     </div>
-
-                    <ShareOptions
-                        className={styles.options}
-                        itemClassName={styles.optionItem}
-                        buttonClassName={styles.optionButton}
-                        title={title}
-                        url={finalShareUrl}
-                        focusable={focusable}
-                        onShare={onShare}
-                        theme={viewerTheme}
-                        shareCurrentScreen={shareCurrentScreen}
-                    />
                 </Scroll>
             </div>
         </div>

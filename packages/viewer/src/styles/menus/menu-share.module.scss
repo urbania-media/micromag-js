@@ -20,6 +20,19 @@
     }
 }
 
+.content {
+    position: relative;
+    flex-grow: 1;
+}
+
+.scroll {
+    @extend %fullscreen;
+}
+
+.inner {
+    padding: 10px;
+}
+
 .organisation {
     flex-shrink: 0;
     width: 30px;
@@ -82,12 +95,3 @@
     margin-bottom: 3rem;
 }
 
-.content {
-    position: relative;
-    flex-grow: 1;
-    height: 100%;
-}
-
-.scroll {
-    height: 100%;
-}

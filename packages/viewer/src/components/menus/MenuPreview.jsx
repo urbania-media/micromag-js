@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useViewerContext } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
 import Scroll from '@micromag/element-scroll';
 
@@ -19,6 +20,7 @@ const propTypes = {
     focusable: PropTypes.bool,
     onClickScreen: PropTypes.func,
     maxThumbsWidth: PropTypes.number,
+    paddingTop: PropTypes.number,
     // @todo to reimplement:
     // shouldLoad: PropTypes.bool,
     // toggleFullscreen: PropTypes.func,
@@ -36,6 +38,7 @@ const defaultProps = {
     // shouldLoad: true,
     onClickScreen: null,
     maxThumbsWidth: 140,
+    paddingTop: null,
     // toggleFullscreen: null,
     // fullscreenActive: false,
     // fullscreenEnabled: false,
@@ -50,6 +53,7 @@ const ViewerMenuPreview = ({
     focusable,
     onClickScreen,
     maxThumbsWidth,
+    paddingTop,
     // toggleFullscreen,
     // fullscreenActive,
     // fullscreenEnabled,
@@ -90,7 +94,10 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.content} ref={containerRef}>
                 <Scroll className={styles.scroll}>
-                    <nav className={styles.nav}>
+                    <nav
+                        className={styles.nav}
+                        style={{paddingTop}}
+                    >
                         <ul className={styles.items}>
                             {items.map((item, index) => {
                                 const { screenId, screen = null } = item || {};
@@ -112,7 +119,7 @@ const ViewerMenuPreview = ({
                                                     width="10"
                                                     height="16"
                                                     viewBox="0 0 10 16"
-                                                    style={{animationDelay: `${index * -50}ms`}}
+                                                    style={{ animationDelay: `${index * -50}ms` }}
                                                 >
                                                     <rect width="10" height="16" />
                                                 </svg>

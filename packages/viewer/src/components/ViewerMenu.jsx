@@ -5,7 +5,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useViewerSize } from '@micromag/core/contexts';
-import { useTrackEvent, useDragProgress } from '@micromag/core/hooks';
+import { useTrackEvent, useDragProgress, useDimensionObserver } from '@micromag/core/hooks';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 
@@ -95,6 +95,8 @@ const ViewerMenu = ({
 
     const [menuOpened, setMenuOpened] = useState(false);
     const [shareOpened, setShareOpened] = useState(false);
+
+    const { ref: navContainerRef, height: navContainerHeight = 0 } = useDimensionObserver();
 
     const items = useMemo(
         () =>
@@ -278,7 +280,7 @@ const ViewerMenu = ({
                 ref={refDots}
                 style={{ width: menuWidth }}
             >
-                <nav className={styles.menuTopContainer}>
+                <nav className={styles.menuTopContainer} ref={navContainerRef}>
                     {!withoutShareMenu ? (
                         <div
                             className={classNames([styles.menuItem, styles.menuShare])}
@@ -356,7 +358,7 @@ const ViewerMenu = ({
             </div>
 
             <MenuContainer
-                className={styles.menuContainerShare}
+                className={styles.menuContainer}
                 transitionProgress={shareOpenedProgress}
                 theme={viewerTheme}
             >
@@ -367,6 +369,7 @@ const ViewerMenu = ({
                         title={title}
                         description={description}
                         menuWidth={menuWidth}
+                        paddingTop={navContainerHeight}
                         focusable={shareOpened}
                         items={items}
                         currentScreenIndex={currentScreenIndex}
@@ -378,7 +381,7 @@ const ViewerMenu = ({
             </MenuContainer>
 
             <MenuContainer
-                className={styles.menuContainerScreens}
+                className={styles.menuContainer}
                 transitionProgress={menuOpenedProgress}
                 theme={viewerTheme}
             >
@@ -388,6 +391,7 @@ const ViewerMenu = ({
                         className={styles.menuPreview}
                         screenSize={screenSize}
                         menuWidth={menuWidth}
+                        paddingTop={navContainerHeight}
                         items={items}
                         currentScreenIndex={currentScreenIndex}
                         shareUrl={shareUrl}

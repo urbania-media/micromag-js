@@ -133,6 +133,17 @@
     }
 }
 
+.menuContainer {
+    @extend %fullscreen;
+    z-index: 3;
+    top: 0;
+}
+
+.menuPreview {
+    @extend %fullscreen;
+    z-index: 4;
+}
+
 // Viewer Navigation: Left/Right icons on desktop
 .navButton {
     display: none;

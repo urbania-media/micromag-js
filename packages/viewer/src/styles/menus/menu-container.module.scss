@@ -2,22 +2,13 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    @extend %fullscreen;
-    z-index: 3;
-    top: 0;
     color: $white;
 }
 
 .heightContainer {
+    @extend %fullscreen;
     overflow: hidden;
-}
-
-.inner {
-    position: relative;
     z-index: 2;
-    height: 100%;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
 }
 
 .backdrop {
