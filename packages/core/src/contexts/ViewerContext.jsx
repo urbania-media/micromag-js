@@ -25,6 +25,14 @@ export const ViewerContext = React.createContext({
 
 export const useViewerContext = () => useContext(ViewerContext);
 
+export const useViewerSize = () => {
+    const { width, height } = useViewerContext();
+    return {
+        width,
+        height,
+    };
+};
+
 export const useViewerNavigation = () => {
     const { gotoNextScreen, gotoPreviousScreen } = useViewerContext();
     return {
@@ -104,6 +112,8 @@ export const ViewerProvider = ({
     events,
     menuVisible,
     menuOverScreen,
+    width,
+    height,
     topHeight,
     bottomHeight,
     bottomSidesWidth,
@@ -120,6 +130,8 @@ export const ViewerProvider = ({
             events,
             menuVisible,
             menuOverScreen,
+            width,
+            height,
             topHeight,
             bottomHeight,
             bottomSidesWidth,
@@ -135,6 +147,8 @@ export const ViewerProvider = ({
             events,
             menuVisible,
             menuOverScreen,
+            width,
+            height,
             topHeight,
             bottomHeight,
             bottomSidesWidth,

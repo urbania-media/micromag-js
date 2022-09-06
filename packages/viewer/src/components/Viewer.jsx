@@ -240,6 +240,8 @@ const Viewer = ({
 
     const {
         ref: containerRef,
+        fullWidth: viewerWidth,
+        fullHeight: viewerHeight,
         screenSize,
         scale: screenScale,
     } = useScreenSizeFromElement({
@@ -506,6 +508,8 @@ const Viewer = ({
                     events={eventsManager}
                     menuVisible={menuVisible}
                     menuOverScreen={menuOverScreen}
+                    width={viewerWidth}
+                    height={viewerHeight}
                     topHeight={
                         menuOverScreen && currentScreenInteractionEnabled
                             ? menuDotsContainerHeight / screenScale

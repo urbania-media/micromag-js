@@ -103,6 +103,8 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
 
     return {
         ref,
+        fullWidth,
+        fullHeight,
         screenSize,
         scale: !withoutScale ? scale : null,
         resolution: !withoutScale ? scale * devicePixelRatio : devicePixelRatio,

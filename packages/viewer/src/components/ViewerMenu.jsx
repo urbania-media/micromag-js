@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useViewerSize } from '@micromag/core/contexts';
 import { useTrackEvent, useDragProgress } from '@micromag/core/hooks';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
@@ -90,6 +91,7 @@ const ViewerMenu = ({
     const currentScreen = screens !== null ? screens[currentScreenIndex] || null : null;
     const { id: screenId = null, type: screenType = null } = currentScreen || {};
     const { menuTheme = null } = viewerTheme || {};
+    const { height: viewerHeight } = useViewerSize();
 
     const [menuOpened, setMenuOpened] = useState(false);
     const [shareOpened, setShareOpened] = useState(false);
@@ -184,7 +186,7 @@ const ViewerMenu = ({
 
     const computeShareProgress = useCallback(
         ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
-            const progress = Math.max(0, my) / (window.innerHeight * 0.8);
+            const progress = Math.max(0, my) / (viewerHeight * 0.8);
             const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
             if (!active) {
                 if (reachedThreshold) onOpenShare();
@@ -192,12 +194,12 @@ const ViewerMenu = ({
             }
             return progress;
         },
-        [onOpenShare],
+        [onOpenShare, viewerHeight],
     );
 
     const computeShareProgressClose = useCallback(
         ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
-            const progress = Math.max(0, my) / (window.innerHeight * 0.8);
+            const progress = Math.max(0, my) / (viewerHeight * 0.8);
             const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
             if (!active) {
                 if (reachedThreshold) onCloseShare();
@@ -205,15 +207,19 @@ const ViewerMenu = ({
             }
             return 1 - progress;
         },
-        [onCloseShare],
+        [onCloseShare, viewerHeight],
     );
 
+    const springParams = useMemo(
+        () => ({
+            config: { tension: 300, friction: 30 },
+        }),
+        [],
+    );
     const { bind: bindShareDrag, progress: shareOpenedProgress } = useDragProgress({
         progress: shareOpened ? 1 : 0,
         computeProgress: shareOpened ? computeShareProgressClose : computeShareProgress,
-        springParams: {
-            config: { tension: 300, friction: 30 },
-        },
+        springParams,
     });
 
     const computeMenuProgress = useCallback(
@@ -244,7 +250,7 @@ const ViewerMenu = ({
     const { bind: bindMenuDrag, progress: menuOpenedProgress } = useDragProgress({
         progress: menuOpened ? 1 : 0,
         computeProgress: menuOpened ? computeMenuProgressClose : computeMenuProgress,
-        springParams: { config: { tension: 300, friction: 30 } },
+        springParams,
     });
 
     const keyboardShortcuts = useMemo(
@@ -368,7 +374,7 @@ const ViewerMenu = ({
                         onShare={onShare}
                         onClose={onCloseShare}
                     />
-                ): null}
+                ) : null}
             </MenuContainer>
 
             <MenuContainer
