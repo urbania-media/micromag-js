@@ -2,6 +2,11 @@
 
 This is rather free-form for now, but eventually this will be properly timestamped, and will mention the version the changes apply to!
 
+2022-09-06 Fred Mercy <fred@folkloreinc.ca>
+
+    * Attempts at fixing the CSS clashes with Micromag.ca/Urbania.ca's stylesheets
+    * Re-implement the visual background image in "UrbaniaHoroscope" behind the signs grid
+
 2022-09-01 Fred Mercy <fred@folkloreinc.ca>
 
     * Fixes:

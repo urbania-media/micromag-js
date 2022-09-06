@@ -15,7 +15,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useDragProgress} from '@micromag/core/hooks';
+import { useTrackScreenEvent, useDragProgress } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -34,13 +34,27 @@ import styles from './urbania-horoscope.module.scss';
 import Astrologie from './images/astrologie-text.svg';
 
 const stopDragEventsPropagation = {
-    onTouchMove: e => e.stopPropagation(),
-    onTouchStart: e => e.stopPropagation(),
-    onTouchEnd: e => e.stopPropagation(),
-    onPointerMove: e => e.stopPropagation(),
-    onPointerUp: e => e.stopPropagation(),
-    onPointerDown: e => e.stopPropagation(),
-}
+    onTouchMove: (e) => e.stopPropagation(),
+    onTouchStart: (e) => e.stopPropagation(),
+    onTouchEnd: (e) => e.stopPropagation(),
+    onPointerMove: (e) => e.stopPropagation(),
+    onPointerUp: (e) => e.stopPropagation(),
+    onPointerDown: (e) => e.stopPropagation(),
+};
+
+const mouseBlocker = {
+    ...stopDragEventsPropagation,
+    onClick: (e) => e.stopPropagation(),
+    style: {
+        position: 'fixed',
+        zIndex: '1000',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        cursor: 'default',
+    },
+};
 
 const propTypes = {
     defaultSigns: PropTypes.arrayOf(
@@ -140,6 +154,9 @@ const UrbaniaHoroscope = ({
     const [selectedSign, setSelectedSign] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
+    const { video = null } = popupBackground || {};
+    const { url: popupBackgroundUrl = null } = video || {};
+
     const onOpenSignsGrid = useCallback(() => {
         setShowSignsGrid(true);
         disableInteraction();
@@ -164,13 +181,10 @@ const UrbaniaHoroscope = ({
         [signs, setSelectedSign, trackScreenEvent],
     );
 
-    const onCloseModal = useCallback(
-        () => {
-            setShowModal(0);
-            trackScreenEvent('UrbaniaHoroscope', 'close_sign_modal');
-        },
-        [setShowModal, trackScreenEvent],
-    );
+    const onCloseModal = useCallback(() => {
+        setShowModal(0);
+        trackScreenEvent('UrbaniaHoroscope', 'close_sign_modal');
+    }, [setShowModal, trackScreenEvent]);
 
     const computeSignsGridProgress = useCallback(
         ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
@@ -187,10 +201,7 @@ const UrbaniaHoroscope = ({
         [onOpenSignsGrid, onCloseSignsGrid],
     );
 
-    const {
-        bind: bindSignsDrag,
-        progress: showSignsGridProgress,
-    } = useDragProgress({
+    const { bind: bindSignsDrag, progress: showSignsGridProgress } = useDragProgress({
         disabled: !isView,
         progress: showSignsGrid ? 1 : 0,
         computeProgress: computeSignsGridProgress,
@@ -215,10 +226,7 @@ const UrbaniaHoroscope = ({
         [onCloseModal],
     );
 
-    const {
-        bind: bindModalDrag,
-        progress: showModalProgress,
-    } = useDragProgress({
+    const { bind: bindModalDrag, progress: showModalProgress } = useDragProgress({
         disabled: !isView,
         progress: showModal ? 1 : 0,
         computeProgress: computeModalProgress,
@@ -272,22 +280,23 @@ const UrbaniaHoroscope = ({
         }
     }, [screenState]);
 
-    // @todo implement escape to close modal (maybe in "swipe to close" hook, so that pressing escape always closes it)
-    // const keyboardShortcuts = useMemo(
-    //     () => ({
-    //         escape: () => {
-    //             if (showModal) {
-    //                 return onCloseModal();
-    //             }
-    //             if (showSignsGrid) {
-    //                 return onCloseSignsGrid();
-    //             }
-    //             return null;
-    //         }
-    //     }),
-    //     [showModal, onCloseModal, showSignsGrid, onCloseSignsGrid],
-    // );
-    // useKeyboardShortcuts(keyboardShortcuts);
+    useEffect(() => {
+        const keyup = (e) => {
+            if (e.key === 'Escape') {
+                if (showModal) {
+                    onCloseModal();
+                    return;
+                }
+                if (showSignsGrid) {
+                    onCloseSignsGrid();
+                }
+            }
+        };
+        document.addEventListener('keyup', keyup);
+        return () => {
+            document.removeEventListener('keyup', keyup);
+        };
+    }, [showModal, onCloseModal, showSignsGrid, onCloseSignsGrid]);
 
     return (
         <div
@@ -301,6 +310,7 @@ const UrbaniaHoroscope = ({
             data-screen-ready
             {...(showSignsGrid ? stopDragEventsPropagation : null)}
         >
+            {!isView ? <div {...mouseBlocker} /> : null}
             {!isPlaceholder ? (
                 <Background
                     background={background}
@@ -379,7 +389,7 @@ const UrbaniaHoroscope = ({
                         ) : null}
                     </ScreenElement>
 
-                    {!isPlaceholder ? (
+                    {isView && !isPlaceholder ? (
                         <div
                             className={styles.header}
                             style={getSignsContainerStyles(showSignsGridProgress)}
@@ -479,7 +489,13 @@ const UrbaniaHoroscope = ({
                         <div
                             className={styles.backdrop}
                             style={getBackdropStyles(showSignsGridProgress)}
-                        />
+                        >
+                            {popupBackgroundUrl !== null ? (
+                                <video className={styles.videoBackdrop} autoPlay muted loop>
+                                    <source src={popupBackgroundUrl} type="video/mp4" />
+                                </video>
+                            ) : null}
+                        </div>
                     ) : null}
                 </Layout>
             </Container>
