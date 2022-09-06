@@ -20,9 +20,10 @@
     font-size: 0.75rem;
 }
 
-.container { // @todo specificity clash
+.container {
     .title {
-        font-size: 1.1rem;
+        font-family: Helvetica, Arial, sans-serif !important; // @todo find a better way to avoid clashing CSS styles
+        font-size: 1.1rem !important;
         font-weight: 700;
         margin-bottom: 0.25rem;
     }

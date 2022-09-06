@@ -154,6 +154,9 @@ const UrbaniaHoroscope = ({
     const [selectedSign, setSelectedSign] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
+    const { video = null } = popupBackground || {};
+    const { url: popupBackgroundUrl = null } = video || {};
+
     const onOpenSignsGrid = useCallback(() => {
         setShowSignsGrid(true);
         disableInteraction();
@@ -278,7 +281,7 @@ const UrbaniaHoroscope = ({
     }, [screenState]);
 
     useEffect(() => {
-        const keyup = e => {
+        const keyup = (e) => {
             if (e.key === 'Escape') {
                 if (showModal) {
                     onCloseModal();
@@ -486,7 +489,13 @@ const UrbaniaHoroscope = ({
                         <div
                             className={styles.backdrop}
                             style={getBackdropStyles(showSignsGridProgress)}
-                        />
+                        >
+                            {popupBackgroundUrl !== null ? (
+                                <video className={styles.videoBackdrop} autoPlay muted loop>
+                                    <source src={popupBackgroundUrl} type="video/mp4" />
+                                </video>
+                            ) : null}
+                        </div>
                     ) : null}
                 </Layout>
             </Container>
