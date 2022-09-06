@@ -324,7 +324,7 @@ const Video = ({
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
                         <source
                             key={`${sourceUrl}-${sourceMime}`}
-                            src={sourceUrl}
+                            src={sourceUrl !== null ? `${sourceUrl}#t=0.1` : null}
                             type={sourceMime}
                         />
                     ))}
