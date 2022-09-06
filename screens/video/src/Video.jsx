@@ -83,6 +83,7 @@ const VideoScreen = ({
 
     const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
+    const [hasPlayed, setHasPlayed] = useState(false);
 
     // get resized video style props
     const {
@@ -109,6 +110,7 @@ const VideoScreen = ({
 
     const backgroundPlaying = current && (isView || isEdit);
     const videoPlaying = current && (isView || isEdit) && playing;
+    const shouldDisplayPoster = isPreview || isCapture || (isView && active && !current && !hasPlayed);
 
     useEffect(() => {
         if (!current) {
@@ -190,9 +192,12 @@ const VideoScreen = ({
 
     const onPlay = useCallback(
         ({ initial }) => {
+            if (!hasPlayed) {
+                setHasPlayed(true);
+            }
             trackScreenMedia(video, initial ? 'play' : 'resume');
         },
-        [trackScreenMedia, video],
+        [trackScreenMedia, video, hasPlayed],
     );
 
     const onPause = useCallback(
@@ -294,7 +299,7 @@ const VideoScreen = ({
                         top: resizedVideoTop,
                     }}
                 >
-                    {isPreview || isCapture ? (
+                    {shouldDisplayPoster ? (
                         <Image
                             className={styles.image}
                             media={finalThumbnail}
