@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-scroll",
-    "version": "0.3.186",
+    "version": "0.3.187",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,7 +52,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.186",
+        "@micromag/core": "^0.3.187",
         "@use-gesture/react": "^10.2.4",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
@@ -63,5 +63,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "5f49e01759f3350db673329db30ca542b9d2fa6e"
+    "gitHead": "8ea13dcc630676332303b6be0089f21002f19d5d"
 }

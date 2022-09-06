@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-visual",
-    "version": "0.3.186",
+    "version": "0.3.187",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,9 +50,9 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.20",
-        "@micromag/core": "^0.3.186",
-        "@micromag/element-image": "^0.3.186",
-        "@micromag/element-video": "^0.3.186",
+        "@micromag/core": "^0.3.187",
+        "@micromag/element-image": "^0.3.187",
+        "@micromag/element-video": "^0.3.187",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "uuid": "^8.3.2"
@@ -60,5 +60,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "5f49e01759f3350db673329db30ca542b9d2fa6e"
+    "gitHead": "8ea13dcc630676332303b6be0089f21002f19d5d"
 }
