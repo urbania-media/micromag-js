@@ -317,6 +317,8 @@ const VideoScreen = ({
                     ) : (
                         <Video
                             {...finalVideo}
+                            width={resizedVideoWidth}
+                            height={resizedVideoHeight}
                             paused={!videoPlaying}
                             muted={muted}
                             mediaRef={mediaRef}
