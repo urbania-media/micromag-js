@@ -111,6 +111,8 @@ const VideoScreen = ({
     const [hasPlayed, setHasPlayed] = useState(false);
     const backgroundPlaying = current && (isView || isEdit);
     const videoPlaying = current && (isView || isEdit) && playing;
+    // const shouldDisplayPoster =
+    //     isPreview || isCapture || (isView && active && !current && !hasPlayed);
     const shouldDisplayPoster =
         isPreview || isCapture || (isView && active && !current && !hasPlayed);
 
@@ -341,7 +343,8 @@ const VideoScreen = ({
                 key="bottom-content"
                 className={styles.bottom}
                 style={{
-                    transform: current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    transform:
+                        current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
                     paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
                     paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
                     paddingBottom: spacing / 2,

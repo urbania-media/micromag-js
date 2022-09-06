@@ -257,7 +257,6 @@ const Video = ({
         if (paused && !isPaused) {
             element.pause();
         } else if (!paused && isPaused) {
-            // element.muted = muted;
             element.play();
         }
     }, [paused]);
@@ -301,7 +300,7 @@ const Video = ({
                             mediaRef.current = newRef;
                         }
                     }}
-                    src={sourceFiles === null || sourceFiles.length === 0 ? mediaUrl : null}
+                    src={sourceFiles === null || sourceFiles.length === 0 ? `${mediaUrl}#t=0.1` : null}
                     autoPlay={autoPlay && !paused}
                     loop={loop}
                     muted={muted}
