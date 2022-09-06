@@ -1,6 +1,8 @@
 import React from 'react';
 import isObject from 'lodash/isObject';
 import { IntlProvider } from 'react-intl';
+import '../../packages/intl/locale/fr';
+import '../../packages/intl/locale/en';
 
 const withIntlProvider = (Story, { parameters: { intl = null } }) => {
     const enabled = isObject(intl) || intl === true;

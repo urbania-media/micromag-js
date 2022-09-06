@@ -1,9 +1,9 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
 import { useDrag } from '@use-gesture/react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 
 import useSpringValue from './useSpringValue';
 
-function useDragProgress ({
+function useDragProgress({
     progress: wantedProgress,
     onTap = null,
     disabled = false,
@@ -11,13 +11,17 @@ function useDragProgress ({
     computeProgress = null,
     onProgress = null,
     springParams = undefined,
+    dragOptions = {
+        filterTaps: true,
+        preventDefault: true,
+    },
 } = {}) {
     const refDragging = useRef(false);
     const [{ dragging, progress }, setDragState] = useState({
         dragging: false,
         progress: wantedProgress,
     });
-    const onDragContent = useCallback(
+    const onDrag = useCallback(
         (gestureState) => {
             if (disabled) {
                 return;
@@ -46,10 +50,7 @@ function useDragProgress ({
         [setDragState, disabled, onTap, computeProgress, setDragState, onProgress],
     );
 
-    const bind = useDrag(onDragContent, {
-        filterTaps: true,
-        preventDefault: true,
-    });
+    const bind = useDrag(onDrag, dragOptions);
 
     const springedProgress = useSpringValue(progress, dragging || disabled, springParams);
 
@@ -67,6 +68,6 @@ function useDragProgress ({
         dragging,
         progress: springedProgress,
     };
-};
+}
 
 export default useDragProgress;
