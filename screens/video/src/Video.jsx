@@ -78,7 +78,8 @@ const VideoScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
-    const { bottomHeight: viewerBottomHeight, bottomSidesWidth: viewerBottomSidesWidth } = useViewerContext();
+    const { bottomHeight: viewerBottomHeight, bottomSidesWidth: viewerBottomSidesWidth } =
+        useViewerContext();
     const { open: openWebView } = useViewerWebView();
 
     const mediaShouldLoad = current || active;
@@ -107,8 +108,11 @@ const VideoScreen = ({
     } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
+    const [hasPlayed, setHasPlayed] = useState(false);
     const backgroundPlaying = current && (isView || isEdit);
     const videoPlaying = current && (isView || isEdit) && playing;
+    const shouldDisplayPoster =
+        isPreview || isCapture || (isView && active && !current && !hasPlayed);
 
     useEffect(() => {
         if (!current) {
@@ -162,7 +166,6 @@ const VideoScreen = ({
         }
     }, [activityDetected, showControls, hideControls]);
 
-
     // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
@@ -190,6 +193,9 @@ const VideoScreen = ({
 
     const onPlay = useCallback(
         ({ initial }) => {
+            if (!hasPlayed) {
+                setHasPlayed(true);
+            }
             trackScreenMedia(video, initial ? 'play' : 'resume');
         },
         [trackScreenMedia, video],
@@ -294,7 +300,7 @@ const VideoScreen = ({
                         top: resizedVideoTop,
                     }}
                 >
-                    {isPreview || isCapture ? (
+                    {shouldDisplayPoster ? (
                         <Image
                             className={styles.image}
                             media={finalThumbnail}
