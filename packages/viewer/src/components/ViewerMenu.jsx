@@ -218,7 +218,7 @@ const ViewerMenu = ({
         }),
         [],
     );
-    const { bind: bindShareDrag, progress: shareOpenedProgress } = useDragProgress({
+    const { bind: bindShareDrag, dragging: draggingShare, progress: shareOpenedProgress } = useDragProgress({
         progress: shareOpened ? 1 : 0,
         computeProgress: shareOpened ? computeShareProgressClose : computeShareProgress,
         springParams,
@@ -249,7 +249,7 @@ const ViewerMenu = ({
         [onCloseMenu],
     );
 
-    const { bind: bindMenuDrag, progress: menuOpenedProgress } = useDragProgress({
+    const { bind: bindMenuDrag, dragging: draggingMenu, progress: menuOpenedProgress } = useDragProgress({
         progress: menuOpened ? 1 : 0,
         computeProgress: menuOpened ? computeMenuProgressClose : computeMenuProgress,
         springParams,
@@ -304,7 +304,7 @@ const ViewerMenu = ({
                                         iconPosition="left"
                                     />
                                 }
-                                toggled={shareOpenedProgress}
+                                progressSpring={shareOpenedProgress}
                             />
                         </div>
                     ) : null}
@@ -331,7 +331,7 @@ const ViewerMenu = ({
                                         iconPosition="right"
                                     />
                                 }
-                                toggled={menuOpenedProgress}
+                                progressSpring={menuOpenedProgress}
                                 toggledButtonClassName={styles.screensMenuButtonToggled}
                             />
                         </div>
@@ -359,10 +359,10 @@ const ViewerMenu = ({
 
             <MenuContainer
                 className={styles.menuContainer}
-                transitionProgress={shareOpenedProgress}
+                progressSpring={shareOpenedProgress}
                 theme={viewerTheme}
             >
-                {shareOpenedProgress > 0 ? (
+                {draggingShare || shareOpened ? (
                     <MenuShare
                         viewerTheme={viewerTheme}
                         className={styles.menuShare}
@@ -382,10 +382,10 @@ const ViewerMenu = ({
 
             <MenuContainer
                 className={styles.menuContainer}
-                transitionProgress={menuOpenedProgress}
+                progressSpring={menuOpenedProgress}
                 theme={viewerTheme}
             >
-                {menuOpenedProgress > 0 ? (
+                {draggingMenu || menuOpened ? (
                     <MenuPreview
                         viewerTheme={viewerTheme}
                         className={styles.menuPreview}

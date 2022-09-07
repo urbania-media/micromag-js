@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
@@ -233,28 +234,28 @@ const UrbaniaHoroscope = ({
         springParams: { config: { tension: 300, friction: 30 } },
     });
 
-    const getHeaderStyles = (p) => ({
-        transform: `translateY(${-100 * p * (1 - p)}%)`,
-        opacity: p > 0.25 ? 1 - p : 1,
+    const getHeaderStyles = (spring) => ({
+        transform: spring.to((p) => `translateY(${-100 * p * (1 - p)}%)`),
+        opacity: spring.to((p) => (p > 0.25 ? 1 - p : 1)),
     });
-    const getSignsContainerStyles = (p) => ({
-        opacity: p,
-        pointerEvents: p < 0.25 ? 'none' : 'auto',
+    const getSignsContainerStyles = (spring) => ({
+        opacity: spring,
+        pointerEvents: spring.to((p) => (p < 0.25 ? 'none' : 'auto')),
     });
-    const getSignStyles = (i, p) => ({
-        opacity: p,
-        transform: `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`,
+    const getSignStyles = (spring) => ({
+        opacity: spring,
+        transform: spring.to((p) => `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`),
     });
-    const getAuthorStyles = (p) => ({
-        transform: `translateY(${2 * (1 - p)}rem)`,
-        opacity: p,
+    const getAuthorStyles = (spring) => ({
+        transform: spring.to((p) => `translateY(${2 * (1 - p)}rem)`),
+        opacity: spring,
     });
-    const getBackdropStyles = (p) => ({
-        opacity: p,
+    const getBackdropStyles = (spring) => ({
+        opacity: spring,
     });
-    const getModalStyles = (p) => ({
-        transform: `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
-        pointerEvents: p < 0.1 ? 'none' : 'auto',
+    const getModalStyles = (spring) => ({
+        transform: spring.to((p) => `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`),
+        pointerEvents: spring.to((p) => (p < 0.1 ? 'none' : 'auto')),
     });
 
     // for editor purposes
@@ -330,14 +331,16 @@ const UrbaniaHoroscope = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
-                                  paddingBottom: (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                                  paddingTop:
+                                      (current && !isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }
                     height={height * 0.8}
                 >
-                    <div
+                    <animated.div
                         className={styles.headerContainer}
                         style={getHeaderStyles(showSignsGridProgress)}
                     >
@@ -364,7 +367,7 @@ const UrbaniaHoroscope = ({
                                 <Text className={styles.description} {...description} />
                             ) : null}
                         </ScreenElement>
-                    </div>
+                    </animated.div>
 
                     <ScreenElement
                         emptyLabel={
@@ -390,7 +393,7 @@ const UrbaniaHoroscope = ({
                     </ScreenElement>
 
                     {isView && !isPlaceholder ? (
-                        <div
+                        <animated.div
                             className={styles.header}
                             style={getSignsContainerStyles(showSignsGridProgress)}
                         >
@@ -418,23 +421,23 @@ const UrbaniaHoroscope = ({
                                     withoutStyle
                                 />
                             </div>
-                        </div>
+                        </animated.div>
                     ) : null}
 
                     {!isPlaceholder ? (
-                        <div
+                        <animated.div
                             className={styles.signsGridContainer}
                             style={getSignsContainerStyles(showSignsGridProgress)}
                             {...bindSignsDrag()}
                         >
                             <div className={styles.signs}>
-                                {signs.map((sign, i) => {
+                                {signs.map((sign) => {
                                     const { id = null } = sign || {};
                                     return (
                                         <div
                                             key={id}
                                             className={styles.sign}
-                                            style={getSignStyles(i, showSignsGridProgress)}
+                                            style={getSignStyles(showSignsGridProgress)}
                                         >
                                             <SignCard
                                                 key={id}
@@ -468,10 +471,10 @@ const UrbaniaHoroscope = ({
                                     />
                                 ) : null}
                             </ScreenElement>
-                        </div>
+                        </animated.div>
                     ) : null}
 
-                    <div
+                    <animated.div
                         className={styles.modal}
                         style={getModalStyles(showModalProgress)}
                         {...bindModalDrag()}
@@ -483,19 +486,25 @@ const UrbaniaHoroscope = ({
                             subtitle={signSubtitle}
                             onClick={onCloseModal}
                         />
-                    </div>
+                    </animated.div>
 
                     {!isPlaceholder ? (
-                        <div
+                        <animated.div
                             className={styles.backdrop}
                             style={getBackdropStyles(showSignsGridProgress)}
                         >
                             {popupBackgroundUrl !== null ? (
-                                <video className={styles.videoBackdrop} autoPlay muted loop playsinline>
+                                <video
+                                    className={styles.videoBackdrop}
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                >
                                     <source src={popupBackgroundUrl} type="video/mp4" />
                                 </video>
                             ) : null}
-                        </div>
+                        </animated.div>
                     ) : null}
                 </Layout>
             </Container>

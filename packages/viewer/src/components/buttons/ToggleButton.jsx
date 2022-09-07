@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -7,7 +8,7 @@ import styles from '../../styles/buttons/toggle-button.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
-    toggled: PropTypes.number,
+    progressSpring: PropTypes.number,
     button: PropTypes.node,
     toggledButton: PropTypes.node,
     toggledButtonClassName: PropTypes.string,
@@ -15,18 +16,14 @@ const propTypes = {
 
 const defaultProps = {
     className: null,
-    toggled: 0,
+    progressSpring: 0,
     button: null,
     toggledButton: null,
     toggledButtonClassName: null,
 };
 
-const ToggleButton = ({ className, toggled, button, toggledButton, toggledButtonClassName }) => {
+const ToggleButton = ({ className, progressSpring, button, toggledButton, toggledButtonClassName }) => {
     if (button === null) return false;
-
-    const getToggleButtonStyles = (t) => ({
-        transform: `translateY(${t * -100}%)`,
-    });
 
     return (
         <div
@@ -37,20 +34,24 @@ const ToggleButton = ({ className, toggled, button, toggledButton, toggledButton
                 },
             ])}
         >
-            <div className={styles.normal} style={getToggleButtonStyles(toggled)}>
+            <animated.div className={styles.normal} style={{
+                transform: progressSpring.to((p) => `translateY(${p * -100}%)`)
+            }}>
                 {button}
-            </div>
-            <div
+            </animated.div>
+            <animated.div
                 className={classNames([
                     styles.toggled,
                     {
                         [toggledButtonClassName]: toggledButtonClassName !== null,
                     },
                 ])}
-                style={getToggleButtonStyles(toggled - 1)}
+                style={{
+                    transform: progressSpring.to((p) => `translateY(${(p - 1) * -100}%)`)
+                }}
             >
                 {toggledButton}
-            </div>
+            </animated.div>
         </div>
     );
 };

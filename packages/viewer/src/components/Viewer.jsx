@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { animated } from 'react-spring';
+import { animated } from '@react-spring/web';
 import EventEmitter from 'wolfy87-eventemitter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -425,52 +425,41 @@ const Viewer = ({
 
     const getScreenStylesByIndex = (index, spring) => {
         if (transitionType === 'stack') {
-            // const t = index - progress;
-            // const clamped = Math.min(1, Math.max(0, t));
-            // const invert = Math.min(1, Math.max(0, -t));
-            // const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
-
-            // just hide other screens
-            // if (Math.abs(t) > neighborScreensActive) return { opacity: 0 };
-
             return {
                 zIndex: index,
                 opacity: spring.to((progress) => {
                     const t = index - progress;
                     const invert = Math.min(1, Math.max(0, -t));
+                    if (Math.abs(t) > neighborScreensActive) return 0;
                     return Math.max(0, 1 - 0.75 * invert + (t + 1));
                 }),
                 transform: spring.to((progress) => {
                     const t = index - progress;
                     const clamped = Math.min(1, Math.max(0, t));
                     const invert = Math.min(1, Math.max(0, -t));
-                    if (Math.abs(t) > neighborScreensActive) return null;
+                    if (Math.abs(t) > neighborScreensActive) return 'translateX(100%)';
                     return `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`;
                 }),
                 boxShadow: spring.to((progress) => {
                     const t = index - progress;
+                    if (Math.abs(t) > neighborScreensActive) return null;
                     const clamped = Math.min(1, Math.max(0, t));
                     return `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`;
                 }),
             };
-            // return {
-            //     opacity,
-            //     transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
-            //     boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
-            //     zIndex: index,
-            // };
         }
-        // const t = index - progress;
-        // const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+
         return {
             opacity: spring.to((progress) => {
                 const t = index - progress;
-                const clamped = Math.min(1, Math.max(0, t));
+                if (Math.abs(t) > neighborScreensActive) return 0;
+                const clamped = Math.min(1, Math.max(0, Math.abs(t)));
                 return 1 - 0.75 * clamped;
             }),
             transform: spring.to((progress) => {
                 const t = index - progress;
-                const clamped = Math.min(1, Math.max(0, t));
+                if (Math.abs(t) > neighborScreensActive) return `translate(100%)`;
+                const clamped = Math.min(1, Math.max(0, Math.abs(t)));
                 return `translateX(${t * neighborScreenOffset}%) scale(${
                     1 - (1 - neighborScreenScale) * clamped
                 })`;

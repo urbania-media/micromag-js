@@ -1,3 +1,4 @@
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -9,19 +10,19 @@ import styles from '../../styles/menus/menu-container.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
-    transitionProgress: PropTypes.number,
+    progressSpring: PropTypes.number,
     theme: MicromagPropTypes.viewerTheme,
     children: PropTypes.node,
 };
 
 const defaultProps = {
     className: null,
-    transitionProgress: 0,
+    progressSpring: 0,
     theme: null,
     children: null,
 };
 
-const ViewerMenuContainer = ({ className, transitionProgress, theme: viewerTheme, children }) => {
+const ViewerMenuContainer = ({ className, progressSpring, theme: viewerTheme, children }) => {
     const { background = null } = viewerTheme || {};
     const { color: brandBackgroundColor = null } = background || {};
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
@@ -36,21 +37,21 @@ const ViewerMenuContainer = ({ className, transitionProgress, theme: viewerTheme
             ])}
             style={{ pointerEvents: 'none' }}
         >
-            <div
+            <animated.div
                 className={styles.heightContainer}
                 style={{
-                    height: `${transitionProgress * 100}%`,
-                    pointerEvents: transitionProgress < 0.25 ? 'none' : 'auto',
-                    zIndex: Math.round(2 + transitionProgress),
+                    height: progressSpring.to((p) => `${p * 100}%`),
+                    pointerEvents: progressSpring.to((p) => (p < 0.25 ? 'none' : 'auto')),
+                    zIndex: progressSpring.to((p) => Math.round(2 + p)),
                     ...backgroundColorStyle,
                 }}
             >
                 {children}
-            </div>
-            <div
+            </animated.div>
+            <animated.div
                 className={styles.backdrop}
                 style={{
-                    opacity: easings.easeOutQuint(transitionProgress),
+                    opacity: progressSpring.to((p) => easings.easeOutQuint(p)),
                 }}
             />
         </div>
