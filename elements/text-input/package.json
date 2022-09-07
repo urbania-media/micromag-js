@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-text-input",
-    "version": "0.3.212",
+    "version": "0.3.213",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,12 +49,12 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.212",
+        "@micromag/core": "^0.3.213",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2"
     },
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "566740a76cdda757b5f813f0f366ab7c7a6ecd6d"
+    "gitHead": "3fb94576fbb93024e0935e6b97c2cd1b26c9779e"
 }
