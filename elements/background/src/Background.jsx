@@ -33,6 +33,7 @@ const propTypes = {
     children: PropTypes.node,
     loadingMode: PropTypes.string,
     shouldLoad: PropTypes.bool,
+    withoutVideo: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -52,6 +53,7 @@ const defaultProps = {
     children: null,
     loadingMode: 'lazy',
     shouldLoad: true,
+    withoutVideo: false,
 };
 
 const Background = ({
@@ -71,6 +73,7 @@ const Background = ({
     children,
     loadingMode,
     shouldLoad,
+    withoutVideo,
 }) => {
     const {
         type: mediaType = null,
@@ -97,7 +100,7 @@ const Background = ({
     };
 
     // image
-    if (media !== null && (isImage || (isVideo && !shouldLoad))) {
+    if (media !== null && (isImage || (isVideo && (!shouldLoad || withoutVideo)))) {
         const finalUrl = getOptimalImageUrl(
             isVideo ? { url: mediaThumbnailUrl } : media,
             width,
@@ -148,7 +151,7 @@ const Background = ({
             ])}
             style={containerStyle}
         >
-            {isVideo && shouldLoad ? (
+            {isVideo && shouldLoad && !withoutVideo ? (
                 <div className={styles.videoContainer} style={videoContainerStyle}>
                     <Video
                         className={styles.video}

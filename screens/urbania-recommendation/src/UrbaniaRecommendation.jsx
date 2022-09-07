@@ -372,6 +372,7 @@ const UrbaniaRecommendation = ({
                     shouldLoad={mediaShouldLoad}
                     backgroundClassName={finalAnimateBackground ? styles.background : null}
                     mediaRef={mediaRef}
+                    withoutVideo={isPreview}
                 />
             ) : null}
             <Container width={width} height={height}>

@@ -185,6 +185,7 @@ const ConversationScreen = ({
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
                     mediaRef={mediaRef}
+                    withoutVideo={isPreview}
                 />
             ) : null}
 

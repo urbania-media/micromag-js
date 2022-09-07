@@ -394,6 +394,7 @@ const VideoScreen = ({
                     resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={mediaShouldLoad}
+                    withoutVideo={isPreview}
                 />
             ) : null}
             <Container width={width} height={height}>

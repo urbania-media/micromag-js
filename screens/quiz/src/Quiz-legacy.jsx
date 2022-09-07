@@ -422,6 +422,7 @@ const QuizScreen = ({
                     resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
+                    withoutVideo={isPreview}
                 />
             ) : null}
             <Container width={width} height={height}>

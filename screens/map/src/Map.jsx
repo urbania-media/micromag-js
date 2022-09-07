@@ -356,6 +356,7 @@ function MapScreen({
                     muted={muted}
                     shouldLoad={backgroundShouldLoad}
                     mediaRef={mediaRef}
+                    withoutVideo={isPreview}
                 />
             ) : null}
             <Container width={width} height={height}>

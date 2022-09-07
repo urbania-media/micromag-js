@@ -478,6 +478,7 @@ const UrbaniaTrivia = ({
                     resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={mediaShouldLoad}
+                    withoutVideo={isPreview}
                 />
             ) : (
                 <Background
@@ -486,6 +487,7 @@ const UrbaniaTrivia = ({
                     width={width}
                     height={height}
                     resolution={resolution}
+                    withoutVideo={isPreview}
                 />
             )}
             <Container width={width} height={height}>

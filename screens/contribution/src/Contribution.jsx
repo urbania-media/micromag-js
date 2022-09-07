@@ -445,6 +445,7 @@ const ContributionScreen = ({
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
                     mediaRef={mediaRef}
+                    withoutVideo={isPreview}
                 />
             ) : null}
             <Container width={width} height={height}>

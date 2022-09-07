@@ -221,27 +221,6 @@ const Video = ({
         }
     }, [isSuspended, paused, setIsSuspended, customOnSuspend, onSuspended]);
 
-    // Ensure load if preload value change over time
-    const firstPreloadRef = useRef(preload);
-    const firstShouldLoadRef = useRef(shouldLoad);
-    const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata' && shouldLoad);
-    useEffect(() => {
-        const { current: element = null } = ref;
-        const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad;
-        const preloadHasChanged = firstPreloadRef.current !== preload;
-        const shouldLoadHasChanged = firstShouldLoadRef.current !== shouldLoad;
-        if (
-            canLoad &&
-            (preloadHasChanged || shouldLoadHasChanged) &&
-            !hasLoadedRef.current &&
-            element !== null &&
-            typeof element.load !== 'undefined'
-        ) {
-            hasLoadedRef.current = true;
-            element.load();
-        }
-    }, [shouldLoad, preload]);
-
     useEffect(() => {
         if (ready && onReady !== null) {
             onReady();

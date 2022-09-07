@@ -373,6 +373,7 @@ const QuizMultipleScreen = ({
                             shouldLoad={backgroundShouldLoad}
                             mediaRef={mediaRef}
                             className={styles.background}
+                            withoutVideo={isPreview}
                         />
                     </CSSTransition>
                 </TransitionGroup>
@@ -404,10 +405,13 @@ const QuizMultipleScreen = ({
                                                 ? {
                                                       padding: spacing,
                                                       paddingTop:
-                                                          (current && !isPreview ? viewerTopHeight : 0) +
-                                                          spacing,
+                                                          (current && !isPreview
+                                                              ? viewerTopHeight
+                                                              : 0) + spacing,
                                                       paddingBottom:
-                                                          (current && !isPreview ? viewerBottomHeight : 0) +
+                                                          (current && !isPreview
+                                                              ? viewerBottomHeight
+                                                              : 0) +
                                                           (callToActionHeight || spacing),
                                                   }
                                                 : null
@@ -449,10 +453,13 @@ const QuizMultipleScreen = ({
                                                 ? {
                                                       padding: spacing,
                                                       paddingTop:
-                                                          (current && !isPreview ? viewerTopHeight : 0) +
-                                                          spacing,
+                                                          (current && !isPreview
+                                                              ? viewerTopHeight
+                                                              : 0) + spacing,
                                                       paddingBottom:
-                                                          (current && !isPreview ? viewerBottomHeight : 0) +
+                                                          (current && !isPreview
+                                                              ? viewerBottomHeight
+                                                              : 0) +
                                                           (callToActionHeight || spacing),
                                                   }
                                                 : null
@@ -477,10 +484,13 @@ const QuizMultipleScreen = ({
                                                 ? {
                                                       padding: spacing,
                                                       paddingTop:
-                                                          (current && !isPreview ? viewerTopHeight : 0) +
-                                                          spacing,
+                                                          (current && !isPreview
+                                                              ? viewerTopHeight
+                                                              : 0) + spacing,
                                                       paddingBottom:
-                                                          (current && !isPreview ? viewerBottomHeight : 0) +
+                                                          (current && !isPreview
+                                                              ? viewerBottomHeight
+                                                              : 0) +
                                                           (callToActionHeight || spacing),
                                                   }
                                                 : null

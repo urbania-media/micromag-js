@@ -35,6 +35,7 @@ const propTypes = {
         }),
     ]),
     shouldLoad: PropTypes.bool,
+    withoutVideo: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -51,6 +52,7 @@ const defaultProps = {
     loadingMode: 'lazy',
     mediaRef: null,
     shouldLoad: true,
+    withoutVideo: false,
 };
 
 const BackgroundLayers = ({
@@ -67,6 +69,7 @@ const BackgroundLayers = ({
     loadingMode,
     mediaRef,
     shouldLoad,
+    withoutVideo,
 }) => {
     const hasSize = width > 0 && height > 0;
 
@@ -130,6 +133,7 @@ const BackgroundLayers = ({
                                 loadingMode={loadingMode}
                                 shouldLoad={shouldLoad}
                                 mediaRef={mediaRef}
+                                withoutVideo={withoutVideo}
                                 {...layer}
                             />
                         </div>

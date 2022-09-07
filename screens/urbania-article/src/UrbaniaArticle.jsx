@@ -283,6 +283,7 @@ const UrbaniaArticle = ({
                 muted={muted}
                 shouldLoad={mediaShouldLoad}
                 mediaRef={mediaRef}
+                withoutVideo={isPreview}
             />
             <Container className={styles.inner} width={width} height={height}>
                 <div
