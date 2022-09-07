@@ -39,6 +39,7 @@ function useMediaCurrentTime(
             updateTime();
             return () => {};
         }
+
         let timeout = null;
         function loop() {
             const { duration = 0 } = element;
