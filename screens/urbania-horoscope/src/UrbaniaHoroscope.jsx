@@ -244,7 +244,7 @@ const UrbaniaHoroscope = ({
     });
     const getSignStyles = (spring) => ({
         opacity: spring,
-        transform: spring.to((p) => `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`),
+        transform: spring.to((p) => `translateY(${3 * (1 - p) ** 5}rem) scale(${1 - 0.25 * (1 - p)})`),
     });
     const getAuthorStyles = (spring) => ({
         transform: spring.to((p) => `translateY(${2 * (1 - p)}rem)`),
@@ -434,7 +434,7 @@ const UrbaniaHoroscope = ({
                                 {signs.map((sign) => {
                                     const { id = null } = sign || {};
                                     return (
-                                        <div
+                                        <animated.div
                                             key={id}
                                             className={styles.sign}
                                             style={getSignStyles(showSignsGridProgress)}
@@ -444,7 +444,7 @@ const UrbaniaHoroscope = ({
                                                 sign={sign}
                                                 onClick={(e) => onSelectSign(e, id)}
                                             />
-                                        </div>
+                                        </animated.div>
                                     );
                                 })}
                             </div>
