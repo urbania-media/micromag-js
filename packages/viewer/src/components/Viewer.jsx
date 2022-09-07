@@ -422,33 +422,42 @@ const Viewer = ({
         springParams,
     });
 
-    const getScreenStylesByIndex = (index, progress) => {
-        if (transitionType === 'stack') {
+    const getScreenStylesByIndex = useCallback(
+        (index, progress) => {
+            if (transitionType === 'stack') {
+                const t = index - progress;
+                const clamped = Math.min(1, Math.max(0, t));
+                const invert = Math.min(1, Math.max(0, -t));
+                const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
+
+                // just hide other screens
+                if (Math.abs(t) > neighborScreensActive) return { opacity: 0, transform: `translateX(100%)` };
+
+                return {
+                    opacity,
+                    transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
+                    boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
+                    zIndex: index,
+                };
+            }
             const t = index - progress;
-            const clamped = Math.min(1, Math.max(0, t));
-            const invert = Math.min(1, Math.max(0, -t));
-            const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
-
-            // just hide other screens
-            if ( Math.abs(t) > neighborScreensActive ) return { opacity: 0 };
-
+            const clamped = Math.min(1, Math.max(0, Math.abs(t)));
             return {
-                opacity,
-                transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
-                boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
-                zIndex: index,
+                opacity: 1 - 0.75 * clamped,
+                transform: `translateX(${t * neighborScreenOffset}%) scale(${
+                    1 - (1 - neighborScreenScale) * clamped
+                })`,
+                zIndex: screensCount - index,
             };
-        }
-        const t = index - progress;
-        const clamped = Math.min(1, Math.max(0, Math.abs(t)));
-        return {
-            opacity: 1 - 0.75 * clamped,
-            transform: `translateX(${t * neighborScreenOffset}%) scale(${
-                1 - (1 - neighborScreenScale) * clamped
-            })`,
-            zIndex: screensCount - index,
-        };
-    };
+        },
+        [
+            transitionType,
+            neighborScreensActive,
+            neighborScreenOffset,
+            neighborScreenScale,
+            screensCount,
+        ],
+    );
 
     const {
         toggle: toggleFullscreen,
@@ -604,11 +613,13 @@ const Viewer = ({
                                 >
                                     {screens.map((screen, i) => {
                                         const current = screenIndex === i;
-                                        {/* const current = i === Math.round(screenIndexProgress); // base current on transition */}
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
-                                        const screenStyles = getScreenStylesByIndex(i, screenIndexProgress);
+                                        const screenStyles = getScreenStylesByIndex(
+                                            i,
+                                            screenIndexProgress,
+                                        );
 
                                         return (
                                             <div

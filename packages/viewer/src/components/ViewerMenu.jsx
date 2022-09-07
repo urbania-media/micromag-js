@@ -411,4 +411,4 @@ const ViewerMenu = ({
 ViewerMenu.propTypes = propTypes;
 ViewerMenu.defaultProps = defaultProps;
 
-export default ViewerMenu;
+export default React.memo(ViewerMenu);
