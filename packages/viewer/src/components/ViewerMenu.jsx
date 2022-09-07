@@ -398,6 +398,7 @@ const ViewerMenu = ({
                         onShare={onShare}
                         onClickScreen={onClickScreen}
                         onClose={onCloseMenu}
+                        scrollDisabled={draggingMenu}
                         toggleFullscreen={toggleFullscreen}
                         fullscreenActive={fullscreenActive}
                         fullscreenEnabled={fullscreenEnabled}

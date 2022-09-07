@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useViewerContext } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
 import Scroll from '@micromag/element-scroll';
 
@@ -21,6 +20,7 @@ const propTypes = {
     onClickScreen: PropTypes.func,
     maxThumbsWidth: PropTypes.number,
     paddingTop: PropTypes.number,
+    scrollDisabled: PropTypes.bool,
     // @todo to reimplement:
     // shouldLoad: PropTypes.bool,
     // toggleFullscreen: PropTypes.func,
@@ -39,6 +39,7 @@ const defaultProps = {
     onClickScreen: null,
     maxThumbsWidth: 140,
     paddingTop: null,
+    scrollDisabled: false,
     // toggleFullscreen: null,
     // fullscreenActive: false,
     // fullscreenEnabled: false,
@@ -54,6 +55,7 @@ const ViewerMenuPreview = ({
     onClickScreen,
     maxThumbsWidth,
     paddingTop,
+    scrollDisabled,
     // toggleFullscreen,
     // fullscreenActive,
     // fullscreenEnabled,
@@ -93,7 +95,7 @@ const ViewerMenuPreview = ({
             aria-hidden={focusable ? null : 'true'}
         >
             <div className={styles.content} ref={containerRef}>
-                <Scroll className={styles.scroll}>
+                <Scroll className={styles.scroll} disabled={scrollDisabled}>
                     <nav
                         className={styles.nav}
                         style={{paddingTop}}

@@ -17,6 +17,8 @@ import { getMediaFilesAsArray } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
+const supportVideo = document.createElement('video');
+
 const propTypes = {
     media: MicromagPropTypes.videoMedia,
     thumbnail: PropTypes.oneOf([PropTypes.string, MicromagPropTypes.imageMedia]),
@@ -116,7 +118,11 @@ const Video = ({
     withPoster,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
-    const { description = null, mime: mediaMime = null, has_audio: hasAudio = null } = metadata || {};
+    const {
+        description = null,
+        mime: mediaMime = null,
+        has_audio: hasAudio = null,
+    } = metadata || {};
     const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
     const finalThumbnail = useMediaThumbnail(media, thumbnail);
 
@@ -141,7 +147,6 @@ const Video = ({
         if (filesArray.length === 0) {
             return null;
         }
-        const supportVideo = document.createElement('video');
         const finalSupportedMimes = supportedMimes.filter(
             (mime) => supportVideo.canPlayType(mime) !== '',
         );
@@ -195,31 +200,37 @@ const Video = ({
 
     // Manage suspend
     const [isSuspended, setIsSuspended] = useState(false);
-    const onPlay = useCallback((e) => {
-        if (isSuspended) {
-            setIsSuspended(false);
-        }
-        if (customOnPlay !== null) {
-            customOnPlay(e);
-        }
-    }, [isSuspended, setIsSuspended, customOnPlay]);
+    const onPlay = useCallback(
+        (e) => {
+            if (isSuspended) {
+                setIsSuspended(false);
+            }
+            if (customOnPlay !== null) {
+                customOnPlay(e);
+            }
+        },
+        [isSuspended, setIsSuspended, customOnPlay],
+    );
     const onPlaying = useCallback(() => {
         if (isSuspended) {
             setIsSuspended(false);
         }
     }, [isSuspended, setIsSuspended]);
-    const onSuspend = useCallback((e) => {
-        if (e.currentTarget.paused && !paused && !isSuspended) {
-            setIsSuspended(true);
+    const onSuspend = useCallback(
+        (e) => {
+            if (e.currentTarget.paused && !paused && !isSuspended) {
+                setIsSuspended(true);
 
-            if (onSuspended !== null) {
-                onSuspended();
+                if (onSuspended !== null) {
+                    onSuspended();
+                }
             }
-        }
-        if (customOnSuspend !== null) {
-            customOnSuspend(e);
-        }
-    }, [isSuspended, paused, setIsSuspended, customOnSuspend, onSuspended]);
+            if (customOnSuspend !== null) {
+                customOnSuspend(e);
+            }
+        },
+        [isSuspended, paused, setIsSuspended, customOnSuspend, onSuspended],
+    );
 
     useEffect(() => {
         if (ready && onReady !== null) {
@@ -279,11 +290,19 @@ const Video = ({
                             mediaRef.current = newRef;
                         }
                     }}
-                    src={sourceFiles === null || sourceFiles.length === 0 ? `${mediaUrl}#t=0.1` : null}
+                    src={
+                        sourceFiles === null || sourceFiles.length === 0
+                            ? `${mediaUrl}#t=0.1`
+                            : null
+                    }
                     autoPlay={autoPlay && !paused}
                     loop={loop}
                     muted={muted}
-                    poster={shouldLoad && withPoster && finalThumbnail !== null ? finalThumbnail.url || null : null}
+                    poster={
+                        shouldLoad && withPoster && finalThumbnail !== null
+                            ? finalThumbnail.url || null
+                            : null
+                    }
                     preload={shouldLoad ? preload : 'none'}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
