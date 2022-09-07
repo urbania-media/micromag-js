@@ -114,8 +114,7 @@ const VideoScreen = ({
     const videoPlaying = current && (isView || isEdit) && playing;
     // const shouldDisplayPoster =
     //     isPreview || isCapture || (isView && active && !current && !hasPlayed);
-    const shouldDisplayPoster =
-        isPreview || isCapture;
+    const shouldDisplayPoster = isPreview || isCapture;
 
     useEffect(() => {
         if (!current) {
@@ -356,28 +355,22 @@ const VideoScreen = ({
                     paddingTop: 0,
                 }}
             >
-                <Transitions
-                    playing={transitionPlaying}
-                    transitions={transitions}
-                    disabled={transitionDisabled}
-                >
-                    {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
-                        <ClosedCaptions
-                            className={styles.closedCaptions}
-                            media={closedCaptions}
-                            currentTime={currentTime}
-                        />
-                    ) : null}
-                    {hasCallToAction ? (
-                        <CallToAction
-                            {...callToAction}
-                            className={styles.callToAction}
-                            animationDisabled={isPreview}
-                            focusable={current && isView}
-                            openWebView={openWebView}
-                        />
-                    ) : null}
-                </Transitions>
+                {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
+                    <ClosedCaptions
+                        className={styles.closedCaptions}
+                        media={closedCaptions}
+                        currentTime={currentTime}
+                    />
+                ) : null}
+                {hasCallToAction ? (
+                    <CallToAction
+                        {...callToAction}
+                        className={styles.callToAction}
+                        animationDisabled={isPreview}
+                        focusable={current && isView}
+                        openWebView={openWebView}
+                    />
+                ) : null}
             </div>
         ) : null,
     ];

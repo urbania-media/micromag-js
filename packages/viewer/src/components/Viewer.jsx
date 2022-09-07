@@ -444,6 +444,7 @@ const Viewer = ({
                     const t = index - progress;
                     const clamped = Math.min(1, Math.max(0, t));
                     const invert = Math.min(1, Math.max(0, -t));
+                    if (Math.abs(t) > neighborScreensActive) return null;
                     return `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`;
                 }),
                 boxShadow: spring.to((progress) => {
@@ -645,30 +646,6 @@ const Viewer = ({
                                             <animated.div
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
                                                 style={screenStyles}
-                                                // style={progressSpring.to((progress) => {
-                                                //     const t = i - progress;
-                                                //     const clamped = Math.min(1, Math.max(0, t));
-                                                //     const invert = Math.min(1, Math.max(0, -t));
-                                                //     const opacity = Math.max(
-                                                //         0,
-                                                //         1 - 0.75 * invert + (t + 1),
-                                                //     );
-
-                                                //     // just hide other screens
-                                                //     if (Math.abs(t) > neighborScreensActive)
-                                                //         return { opacity: 0 };
-
-                                                //     return {
-                                                //         opacity,
-                                                //         transform: `translateX(${
-                                                //             clamped * 100
-                                                //         }%) scale(${1 - 0.2 * invert})`,
-                                                //         boxShadow: `0 0 ${4 * (1 - clamped)}rem ${
-                                                //             -0.5 * (1 - clamped)
-                                                //         }rem black`,
-                                                //         zIndex: i,
-                                                //     };
-                                                // })}
                                                 className={classNames([
                                                     styles.screenContainer,
                                                     {

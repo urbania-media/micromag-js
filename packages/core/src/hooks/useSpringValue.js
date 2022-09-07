@@ -20,13 +20,6 @@ function useSpringValue(wantedProgress, immediate, params) {
         immediate,
         ...params,
     });
-
-    // useEffect(() => {
-    //     if (wantedProgress !== null) {
-    //         api.start({ progress: wantedProgress, immediate, ...params });
-    //     }
-    // }, [wantedProgress, immediate, params, api]);
-
     return immediate ? wantedProgress : progress;
 }
 
