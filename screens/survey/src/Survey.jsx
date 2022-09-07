@@ -15,7 +15,7 @@ import {
     useViewerWebView,
     usePlaybackContext,
     usePlaybackMediaRef,
-    useVisitor
+    useVisitor,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
 import { getLargestRemainderRound, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
@@ -487,7 +487,7 @@ const SurveyScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
                                           (callToActionHeight + spacing),

@@ -133,7 +133,9 @@ const ShareScreen = ({
         <ScreenElement
             key="title"
             placeholder="title"
-            emptyLabel={<FormattedMessage defaultMessage="Heading" description="Heading placeholder" />}
+            emptyLabel={
+                <FormattedMessage defaultMessage="Heading" description="Heading placeholder" />
+            }
             emptyClassName={styles.emptyHeading}
             isEmpty={!heading || heading?.body === ''}
         >
@@ -214,8 +216,9 @@ const ShareScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
-                                  paddingBottom: (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }

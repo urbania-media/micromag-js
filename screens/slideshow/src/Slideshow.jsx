@@ -200,7 +200,7 @@ const SlideshowScreen = ({
                 <div
                     className={styles.content}
                     style={{
-                        paddingTop: current && !isPreview ? viewerTopHeight : null,
+                        paddingTop: !isPreview ? viewerTopHeight : null,
                         paddingBottom:
                             (hasCallToAction ? callToActionHeight - finalSpacing : 0) +
                             (current && !isPreview ? viewerBottomHeight : 0),

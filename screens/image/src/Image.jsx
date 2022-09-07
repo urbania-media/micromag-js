@@ -306,7 +306,7 @@ const ImageScreen = ({
     }
 
     let paddingBottom = (current && !isPreview ? viewerBottomHeight : 0) + finalSpacing / 2;
-    let paddingTop = (current && !isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
+    let paddingTop = (!isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
 
     if (isCard || isFullscreen) {
         paddingTop = 0;

@@ -386,7 +386,7 @@ const Timeline = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
                                           (callToActionHeight || spacing),
@@ -407,7 +407,10 @@ const Timeline = ({
                             },
                         ])}
                         style={{
-                            transform: current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                            transform:
+                                current && !isPreview
+                                    ? `translate(0, -${viewerBottomHeight}px)`
+                                    : null,
                             paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
                             paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
                             paddingTop: spacing / 2,
