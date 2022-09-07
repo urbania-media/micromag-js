@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { animated } from 'react-spring';
 import EventEmitter from 'wolfy87-eventemitter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -410,7 +411,7 @@ const Viewer = ({
     const springParams = useMemo(() => ({ config: SPRING_CONFIG_TIGHT }), []);
     const {
         dragging: isDragging,
-        progress: screenIndexProgress,
+        progress: progressSpring,
         bind: dragContentBind,
     } = useDragProgress({
         progress: screenIndex,
@@ -422,30 +423,57 @@ const Viewer = ({
         springParams,
     });
 
-    const getScreenStylesByIndex = (index, progress) => {
+    const getScreenStylesByIndex = (index, spring) => {
         if (transitionType === 'stack') {
-            const t = index - progress;
-            const clamped = Math.min(1, Math.max(0, t));
-            const invert = Math.min(1, Math.max(0, -t));
-            const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
+            // const t = index - progress;
+            // const clamped = Math.min(1, Math.max(0, t));
+            // const invert = Math.min(1, Math.max(0, -t));
+            // const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
 
             // just hide other screens
-            if ( Math.abs(t) > neighborScreensActive ) return { opacity: 0 };
+            // if (Math.abs(t) > neighborScreensActive) return { opacity: 0 };
 
             return {
-                opacity,
-                transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
-                boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
                 zIndex: index,
+                opacity: spring.to((progress) => {
+                    const t = index - progress;
+                    const invert = Math.min(1, Math.max(0, -t));
+                    return Math.max(0, 1 - 0.75 * invert + (t + 1));
+                }),
+                transform: spring.to((progress) => {
+                    const t = index - progress;
+                    const clamped = Math.min(1, Math.max(0, t));
+                    const invert = Math.min(1, Math.max(0, -t));
+                    return `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`;
+                }),
+                boxShadow: spring.to((progress) => {
+                    const t = index - progress;
+                    const clamped = Math.min(1, Math.max(0, t));
+                    return `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`;
+                }),
             };
+            // return {
+            //     opacity,
+            //     transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
+            //     boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
+            //     zIndex: index,
+            // };
         }
-        const t = index - progress;
-        const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+        // const t = index - progress;
+        // const clamped = Math.min(1, Math.max(0, Math.abs(t)));
         return {
-            opacity: 1 - 0.75 * clamped,
-            transform: `translateX(${t * neighborScreenOffset}%) scale(${
-                1 - (1 - neighborScreenScale) * clamped
-            })`,
+            opacity: spring.to((progress) => {
+                const t = index - progress;
+                const clamped = Math.min(1, Math.max(0, t));
+                return 1 - 0.75 * clamped;
+            }),
+            transform: spring.to((progress) => {
+                const t = index - progress;
+                const clamped = Math.min(1, Math.max(0, t));
+                return `translateX(${t * neighborScreenOffset}%) scale(${
+                    1 - (1 - neighborScreenScale) * clamped
+                })`;
+            }),
             zIndex: screensCount - index,
         };
     };
@@ -604,16 +632,43 @@ const Viewer = ({
                                 >
                                     {screens.map((screen, i) => {
                                         const current = screenIndex === i;
-                                        {/* const current = i === Math.round(screenIndexProgress); // base current on transition */}
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
-                                        const screenStyles = getScreenStylesByIndex(i, screenIndexProgress);
+
+                                        const screenStyles = getScreenStylesByIndex(
+                                            i,
+                                            progressSpring,
+                                        );
 
                                         return (
-                                            <div
+                                            <animated.div
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
                                                 style={screenStyles}
+                                                // style={progressSpring.to((progress) => {
+                                                //     const t = i - progress;
+                                                //     const clamped = Math.min(1, Math.max(0, t));
+                                                //     const invert = Math.min(1, Math.max(0, -t));
+                                                //     const opacity = Math.max(
+                                                //         0,
+                                                //         1 - 0.75 * invert + (t + 1),
+                                                //     );
+
+                                                //     // just hide other screens
+                                                //     if (Math.abs(t) > neighborScreensActive)
+                                                //         return { opacity: 0 };
+
+                                                //     return {
+                                                //         opacity,
+                                                //         transform: `translateX(${
+                                                //             clamped * 100
+                                                //         }%) scale(${1 - 0.2 * invert})`,
+                                                //         boxShadow: `0 0 ${4 * (1 - clamped)}rem ${
+                                                //             -0.5 * (1 - clamped)
+                                                //         }rem black`,
+                                                //         zIndex: i,
+                                                //     };
+                                                // })}
                                                 className={classNames([
                                                     styles.screenContainer,
                                                     {
@@ -638,7 +693,7 @@ const Viewer = ({
                                                         scale={screenScale}
                                                     />
                                                 ) : null}
-                                            </div>
+                                            </animated.div>
                                         );
                                     })}
                                 </div>
