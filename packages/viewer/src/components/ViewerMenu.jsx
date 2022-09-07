@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useViewerSize } from '@micromag/core/contexts';
@@ -95,6 +95,7 @@ const ViewerMenu = ({
 
     const [menuOpened, setMenuOpened] = useState(false);
     const [shareOpened, setShareOpened] = useState(false);
+    const [menuMounted, setMenuMounted] = useState(false);
 
     const { ref: navContainerRef, height: navContainerHeight = 0 } = useDimensionObserver();
 
@@ -218,7 +219,11 @@ const ViewerMenu = ({
         }),
         [],
     );
-    const { bind: bindShareDrag, dragging: draggingShare, progress: shareOpenedProgress } = useDragProgress({
+    const {
+        bind: bindShareDrag,
+        dragging: draggingShare,
+        progress: shareOpenedProgress,
+    } = useDragProgress({
         progress: shareOpened ? 1 : 0,
         computeProgress: shareOpened ? computeShareProgressClose : computeShareProgress,
         springParams,
@@ -249,7 +254,11 @@ const ViewerMenu = ({
         [onCloseMenu],
     );
 
-    const { bind: bindMenuDrag, dragging: draggingMenu, progress: menuOpenedProgress } = useDragProgress({
+    const {
+        bind: bindMenuDrag,
+        dragging: draggingMenu,
+        progress: menuOpenedProgress,
+    } = useDragProgress({
         progress: menuOpened ? 1 : 0,
         computeProgress: menuOpened ? computeMenuProgressClose : computeMenuProgress,
         springParams,
@@ -266,6 +275,14 @@ const ViewerMenu = ({
 
     // should be zero if either screens menu or share menu is opened
     const dotsOpacity = Math.min(1, Math.max(0, 1 - (menuOpenedProgress + shareOpenedProgress)));
+
+    useEffect(() => {
+        if ((menuOpened || draggingMenu) && !menuMounted) {
+            setMenuMounted(true);
+        } else if (!menuOpened && !draggingMenu && menuMounted) {
+            setMenuMounted(false);
+        }
+    }, [menuOpened, draggingMenu, menuMounted, setMenuMounted]);
 
     return (
         <>
@@ -385,7 +402,7 @@ const ViewerMenu = ({
                 progressSpring={menuOpenedProgress}
                 theme={viewerTheme}
             >
-                {draggingMenu || menuOpened ? (
+                {menuMounted ? (
                     <MenuPreview
                         viewerTheme={viewerTheme}
                         className={styles.menuPreview}

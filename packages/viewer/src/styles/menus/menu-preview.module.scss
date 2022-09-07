@@ -82,21 +82,41 @@
     width: 33.333%;
 }
 
-.screen {
+.inner {
     padding: 2px;
 }
 
-.loading {
+.frame {
     width: 100%;
-    height: auto;
-    animation: fillPulse 1s infinite alternate-reverse $ease-in-out-soft-sine;
+    height: 0;
+    background-color: white;
+    animation: fillPulse 1s infinite forwards $ease-in-out-soft-sine;
+    animation-play-state: paused;
+
+    &.isLoading {
+        animation-play-state: running;
+    }
+}
+
+.screen {
+    opacity: 0;
+    animation: intro 0.4s 50ms 1 forwards $ease-in-out-soft-sine;
+}
+
+@keyframes intro {
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes fillPulse {
-    from {
-        fill: rgba($white, 0.1);
+    0% {
+        background-color: rgba($white, 0.1);
     }
-    to {
-        fill: rgba($white, 0.15);
+    50% {
+        background-color: rgba($white, 0.15);
+    }
+    100% {
+        background-color: rgba($white, 0.1);
     }
 }

@@ -12,7 +12,6 @@ function useDragProgress({
     springParams = undefined,
     dragOptions = {
         filterTaps: true,
-        preventDefault: true,
     },
 } = {}) {
     const refDragging = useRef(false);

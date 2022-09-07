@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading, arrow-body-style */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
@@ -75,13 +75,29 @@ const ViewerMenuPreview = ({
                   backgroundImage: `url(${brandImageUrl})`,
               }
             : null;
+
     // const { url: brandLogoUrl = null } = brandLogo || {};
+    const [screensMounted, setScreensMounted] = useState([]);
 
     // @todo optimize all of this the proper way
     // const finalItems = useMemo(
     //     () => (!focusable ? items.map((s, i) => (i > 6 ? { screenId: s.screenId } : s)) : items),
     //     [items, focusable],
     // );
+
+    useEffect(() => {
+        if (items.length === screensMounted.length) {
+            return null;
+        }
+
+        const timeout = setTimeout(() => {
+            setScreensMounted([...screensMounted, true]);
+        }, 40);
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [items, screensMounted, setScreensMounted]);
 
     return (
         <div
@@ -96,16 +112,16 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.content} ref={containerRef}>
                 <Scroll className={styles.scroll} disabled={scrollDisabled}>
-                    <nav
-                        className={styles.nav}
-                        style={{paddingTop}}
-                    >
+                    <nav className={styles.nav} style={{ paddingTop }}>
                         <ul className={styles.items}>
                             {items.map((item, index) => {
-                                const { screenId, screen = null } = item || {};
+                                const { screenId } = item || {};
                                 const itemStyles = {
                                     width: `${100 / thumbsPerLine}%`,
                                 };
+                                const { width: screenWidth, height: screenHeight } =
+                                    screenSize || {};
+                                const screenMounted = screensMounted[index] || false;
 
                                 return (
                                     <li
@@ -113,27 +129,31 @@ const ViewerMenuPreview = ({
                                         className={styles.item}
                                         style={itemStyles}
                                     >
-                                        <div className={styles.screen}>
-                                            {screen === null ? (
-                                                <svg
-                                                    className={styles.loading}
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width="10"
-                                                    height="16"
-                                                    viewBox="0 0 10 16"
-                                                    style={{ animationDelay: `${index * -50}ms` }}
-                                                >
-                                                    <rect width="10" height="16" />
-                                                </svg>
-                                            ) : (
-                                                <MenuScreen
-                                                    item={item}
-                                                    index={index}
-                                                    screenSize={screenSize}
-                                                    onClick={onClickScreen}
-                                                    focusable={focusable}
-                                                />
-                                            )}
+                                        <div className={styles.inner}>
+                                            <div
+                                                className={classNames([
+                                                    styles.frame,
+                                                    {
+                                                        [styles.isLoading]: !screenMounted,
+                                                    },
+                                                ])}
+                                                style={{
+                                                    paddingBottom: `${
+                                                        (screenHeight / screenWidth) * 100
+                                                    }%`,
+                                                }}
+                                            >
+                                                {screenMounted ? (
+                                                    <MenuScreen
+                                                        className={styles.screen}
+                                                        item={item}
+                                                        index={index}
+                                                        screenSize={screenSize}
+                                                        onClick={onClickScreen}
+                                                        focusable={focusable}
+                                                    />
+                                                ) : null}
+                                            </div>
                                         </div>
                                     </li>
                                 );
