@@ -491,7 +491,7 @@ const UrbaniaHoroscope = ({
                             style={getBackdropStyles(showSignsGridProgress)}
                         >
                             {popupBackgroundUrl !== null ? (
-                                <video className={styles.videoBackdrop} autoPlay muted loop>
+                                <video className={styles.videoBackdrop} autoPlay muted loop playsinline>
                                     <source src={popupBackgroundUrl} type="video/mp4" />
                                 </video>
                             ) : null}
