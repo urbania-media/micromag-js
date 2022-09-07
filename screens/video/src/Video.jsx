@@ -88,6 +88,7 @@ const VideoScreen = ({
     // get resized video style props
     const {
         autoPlay = true,
+        loop = false,
         media: videoMedia = null,
         thumbnail = null,
         closedCaptions = null,
@@ -220,11 +221,13 @@ const VideoScreen = ({
     );
 
     const onEnded = useCallback(() => {
-        setPlaying(false);
-        if (shouldGotoNextScreenOnEnd) {
+        if (current && !loop) {
+            setPlaying(false);
+        }
+        if (current && shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }
-    }, [current, shouldGotoNextScreenOnEnd, gotoNextScreen]);
+    }, [loop, current, shouldGotoNextScreenOnEnd, gotoNextScreen]);
 
     const fullscreen = layout === 'full';
 
@@ -274,10 +277,10 @@ const VideoScreen = ({
     }, [setReady]);
 
     const onSuspended = useCallback(() => {
-        if (playing) {
+        if (playing && current) {
             setPlaying(false);
         }
-    }, [playing, setPlaying]);
+    }, [current, playing, setPlaying]);
 
     const items = [
         <ScreenElement

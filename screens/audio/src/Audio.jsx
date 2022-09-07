@@ -191,8 +191,10 @@ const AudioScreen = ({
     );
 
     const onEnded = useCallback(() => {
-        setPlaying(false);
-    }, [setPlaying]);
+        if (current) {
+            setPlaying(false);
+        }
+    }, [current, setPlaying]);
 
     const onSeeked = useCallback(
         (time) => {

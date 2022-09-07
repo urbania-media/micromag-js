@@ -8,38 +8,48 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
     const [playing, setPlaying] = useState(!disabled);
     const currentTime = useMediaCurrentTime(media, {
         disabled: disabled || !playing,
-        ...props
+        ...props,
     });
     const duration = useMediaDuration(media, {
         disabled: disabled || !playing,
-        ...props
+        ...props,
     });
 
-    const [progress, setProgress] = useState(currentTime > 0 && duration > 0 ? currentTime / duration : 0);
+    const [progress, setProgress] = useState(
+        currentTime > 0 && duration > 0 ? currentTime / duration : 0,
+    );
     const realProgressRef = useRef(progress);
-    const updateTimeRef = useRef((new Date()).getTime());
+    const updateTimeRef = useRef(new Date().getTime());
 
-    const updateProgress = useCallback((newProgress) => {
-        updateTimeRef.current = (new Date()).getTime();
-        realProgressRef.current = newProgress;
-        setProgress(newProgress);
-    }, [setProgress]);
+    const updateProgress = useCallback(
+        (newProgress) => {
+            updateTimeRef.current = new Date().getTime();
+            realProgressRef.current = newProgress;
+            setProgress(newProgress);
+        },
+        [setProgress],
+    );
 
     useEffect(() => {
         if (media === null) {
-            return () => {}
+            return () => {};
         }
         function onResume() {
-            setPlaying(true);
+            if (!playing) {
+                setPlaying(true);
+            }
             updateProgress(media.currentTime / media.duration);
         }
         function onPause() {
-            setPlaying(false);
+            if (playing) {
+                setPlaying(false);
+            }
             updateProgress(media.currentTime / media.duration);
         }
         media.addEventListener('play', onResume);
         media.addEventListener('seeked', onResume);
         media.addEventListener('playing', onResume);
+        media.addEventListener('timeupdate', onResume);
         media.addEventListener('pause', onPause);
         media.addEventListener('ended', onPause);
         media.addEventListener('waiting', onPause);
@@ -55,18 +65,19 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
             media.removeEventListener('play', onResume);
             media.removeEventListener('seeked', onResume);
             media.removeEventListener('playing', onResume);
+            media.removeEventListener('timeupdate', onResume);
             media.removeEventListener('pause', onPause);
             media.removeEventListener('ended', onPause);
             media.removeEventListener('waiting', onPause);
             media.removeEventListener('stalled', onPause);
             media.removeEventListener('seeking', onPause);
             // media.removeEventListener('suspend', onPause);
-        }
-    }, [media, updateProgress]);
+        };
+    }, [media, updateProgress, setPlaying, playing]);
 
     useEffect(() => {
         if (media === null) {
-            return () => {}
+            return () => {};
         }
         if (!playing || disabled) {
             return () => {};

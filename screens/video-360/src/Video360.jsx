@@ -222,8 +222,10 @@ const Video360Screen = ({
     );
 
     const onEnded = useCallback(() => {
-        setPlaying(false);
-    }, [setPlaying]);
+        if (current) {
+            setPlaying(false);
+        }
+    }, [current, setPlaying]);
 
     // ------------------------------------
 
@@ -533,7 +535,8 @@ const Video360Screen = ({
                 key="bottom-content"
                 className={styles.bottom}
                 style={{
-                    transform: current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    transform:
+                        current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
                     paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
                     paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
                     paddingBottom: spacing / 2,

@@ -223,11 +223,13 @@ const UrbaniaTrivia = ({
     );
 
     const onEnded = useCallback(() => {
-        if (shouldGotoNextScreenOnEnd) {
+        if (current && shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }
-        setPlaying(false);
-    }, [shouldGotoNextScreenOnEnd, gotoNextScreen, setPlaying]);
+        if (current) {
+            setPlaying(false);
+        }
+    }, [current, shouldGotoNextScreenOnEnd, gotoNextScreen, setPlaying]);
 
     const viewerContainer = useViewerContainer();
     const { detected: activityDetected } = useActivityDetector({
