@@ -103,7 +103,7 @@ const defaultProps = {
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.8,
     storyIsParsed: false,
-    neighborScreensActive: 2,
+    neighborScreensActive: 1,
     neighborScreenOffset: 105,
     neighborScreenScale: 0.8,
     withMetadata: false,
@@ -642,7 +642,7 @@ const Viewer = ({
                                                     },
                                                 ])}
                                             >
-                                                {screen !== null && active ? (
+                                                {screen !== null ? (
                                                     <ViewerScreen
                                                         className={styles.screen}
                                                         screen={screen}
