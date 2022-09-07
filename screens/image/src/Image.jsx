@@ -182,6 +182,7 @@ const ImageScreen = ({
                             muted={muted}
                             active={active}
                             shouldLoad={mediaShouldLoad}
+                            withoutVideo={isPreview}
                             onLoaded={onImageLoaded}
                         />
                     </Transitions>

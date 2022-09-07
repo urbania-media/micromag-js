@@ -335,6 +335,7 @@ const UrbaniaArticle = ({
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
                                     shouldLoad={mediaShouldLoad}
+                                    withoutVideo={isPreview}
                                     playing={backgroundPlaying && playing}
                                 />
                             ) : null}
@@ -349,6 +350,7 @@ const UrbaniaArticle = ({
                                     shouldLoad={mediaShouldLoad}
                                     playing={backgroundPlaying && playing}
                                     muted={muted}
+                                    withoutVideo={isPreview}
                                     mediaRef={mediaRef}
                                 />
                             ) : null}

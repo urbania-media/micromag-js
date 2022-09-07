@@ -135,6 +135,7 @@ const GalleryFeedScreen = ({
                         playing={backgroundPlaying}
                         active={active}
                         shouldLoad={mediaShouldLoad}
+                        withoutVideo={isPreview}
                         onLoaded={onImageLoaded}
                     />
                 </div>

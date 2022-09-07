@@ -135,6 +135,7 @@ const SlideshowScreen = ({
                                     objectFit={{ fit: 'cover' }}
                                     playing={backgroundPlaying}
                                     active={active}
+                                    withoutVideo={isPreview}
                                     onLoaded={onImageLoaded}
                                 />
                             ) : null}

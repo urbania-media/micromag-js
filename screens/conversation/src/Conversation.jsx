@@ -274,6 +274,7 @@ const ConversationScreen = ({
                                                     withAnimation={withAnimation}
                                                     isPlaying={current && shouldPlay}
                                                     shouldLoad={mediaShouldLoad}
+                                                    withoutVideo={isPreview}
                                                     messageStyle={messageStyle}
                                                     speakerStyle={speakerStyle}
                                                 />

@@ -27,6 +27,7 @@ const propTypes = {
     muted: PropTypes.bool,
     shouldLoad: PropTypes.bool,
     videoLoop: PropTypes.bool,
+    withoutVideo: PropTypes.bool,
     videoInitialMuted: PropTypes.bool,
     onLoaded: PropTypes.func,
     className: PropTypes.string,
@@ -45,6 +46,7 @@ const defaultProps = {
     muted: true,
     shouldLoad: true,
     videoLoop: true,
+    withoutVideo: false,
     videoInitialMuted: true,
     onLoaded: null,
     className: null,
@@ -68,6 +70,7 @@ const Visual = ({
     className,
     imageClassName,
     videoClassName,
+    withoutVideo,
     ...props
 }) => {
     const { type = null, thumbnail_url: thumbnailUrl = null, url = null } = media || {};
@@ -76,7 +79,7 @@ const Visual = ({
 
     const imageElProps = useMemo(() => {
         const tmpProps =
-            !shouldLoad && isVideo ? { ...elProps, media: { url: thumbnailUrl } } : elProps;
+            (!shouldLoad || withoutVideo) && isVideo ? { ...elProps, media: { url: thumbnailUrl } } : elProps;
         return shouldLoad ? { ...elProps, media: { url } } : tmpProps;
     }, [isVideo, elProps, thumbnailUrl, url, shouldLoad]);
 
@@ -113,7 +116,7 @@ const Visual = ({
 
     return type !== null ? (
         <>
-            {type === 'image' || !shouldLoad ? (
+            {type === 'image' || !shouldLoad || withoutVideo ? (
                 <Image
                     {...imageElProps}
                     objectFit={objectFit}
@@ -126,7 +129,7 @@ const Visual = ({
                     imageClassName={imageClassName}
                 />
             ) : null}
-            {type === 'video' && shouldLoad ? (
+            {type === 'video' && shouldLoad && !withoutVideo ? (
                 <div
                     className={classNames([styles.container, { [className]: className !== null }])}
                     style={{ width, height }}
