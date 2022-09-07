@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-recommendation",
-    "version": "0.3.210",
+    "version": "0.3.211",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,15 +49,15 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.209",
-        "@micromag/element-background": "^0.3.210",
-        "@micromag/element-call-to-action": "^0.3.209",
-        "@micromag/element-container": "^0.3.209",
-        "@micromag/element-heading": "^0.3.209",
-        "@micromag/element-layout": "^0.3.209",
-        "@micromag/element-scroll": "^0.3.209",
-        "@micromag/element-text": "^0.3.209",
-        "@micromag/transforms": "^0.3.209",
+        "@micromag/core": "^0.3.211",
+        "@micromag/element-background": "^0.3.211",
+        "@micromag/element-call-to-action": "^0.3.211",
+        "@micromag/element-container": "^0.3.211",
+        "@micromag/element-heading": "^0.3.211",
+        "@micromag/element-layout": "^0.3.211",
+        "@micromag/element-scroll": "^0.3.211",
+        "@micromag/element-text": "^0.3.211",
+        "@micromag/transforms": "^0.3.211",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
