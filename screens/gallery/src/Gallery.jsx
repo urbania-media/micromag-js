@@ -273,7 +273,7 @@ const GalleryScreen = ({
                 <div
                     className={styles.content}
                     style={{
-                        paddingTop: current && !isPreview ? viewerTopHeight : null,
+                        paddingTop: !isPreview ? viewerTopHeight : null,
                         paddingBottom:
                             (hasCallToAction ? callToActionHeight : 0) +
                             (current && !isPreview ? viewerBottomHeight : 0),

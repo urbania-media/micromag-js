@@ -244,7 +244,9 @@ const UrbaniaHoroscope = ({
     });
     const getSignStyles = (spring) => ({
         opacity: spring,
-        transform: spring.to((p) => `translateY(${3 * (1 - p) ** 5}rem) scale(${1 - 0.25 * (1 - p)})`),
+        transform: spring.to(
+            (p) => `translateY(${3 * (1 - p) ** 5}rem) scale(${1 - 0.25 * (1 - p)})`,
+        ),
     });
     const getAuthorStyles = (spring) => ({
         transform: spring.to((p) => `translateY(${2 * (1 - p)}rem)`),
@@ -331,8 +333,7 @@ const UrbaniaHoroscope = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop:
-                                      (current && !isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                   paddingBottom:
                                       (current && !isPreview ? viewerBottomHeight : 0) + spacing,
                               }

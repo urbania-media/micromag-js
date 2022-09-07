@@ -456,7 +456,7 @@ const ContributionScreen = ({
                             ? {
                                   paddingLeft: spacing,
                                   paddingRight: spacing,
-                                  paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                   paddingBottom: (current && !isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
