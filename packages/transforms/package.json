@@ -1,6 +1,6 @@
 {
     "name": "@micromag/transforms",
-    "version": "0.3.208",
+    "version": "0.3.209",
     "description": "",
     "keywords": [
         "javascript"
@@ -62,7 +62,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.208",
+        "@micromag/core": "^0.3.209",
         "lodash": "^4.17.21",
         "object-hash": "^2.1.1",
         "prop-types": "^15.7.2",
@@ -71,5 +71,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "6611334d21b32d4882928b0bd66d98deda386702"
+    "gitHead": "566740a76cdda757b5f813f0f366ab7c7a6ecd6d"
 }
