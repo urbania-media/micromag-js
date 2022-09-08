@@ -100,6 +100,7 @@
 .menuItem {
     display: block;
     width: 50%;
+    touch-action: none;
 }
 
 .menuItemScreens {
@@ -127,8 +128,7 @@
     padding: 0 0.5rem;
     transition: opacity 0.3s $ease-out-ramp;
 
-    &.isHidden {
-        opacity: 0;
+    .hideMenu & {
         pointer-events: none;
     }
 }

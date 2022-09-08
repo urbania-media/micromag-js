@@ -78,12 +78,13 @@ function ViewerScreen({
             ])}
         >
             <div
+                className={styles.inner}
                 style={{
-                    backgroundColor: '#333',
                     width,
                     height,
                     transform: scale !== null ? `scale(${scale})` : null,
                     transformOrigin: scale !== null ? '0 0' : null,
+                    opacity: mounted ? 1 : null
                 }}
             >
                 {mounted ? (

@@ -369,7 +369,6 @@ const ViewerMenu = ({
                     className={styles.dots}
                     style={{
                         opacity: dotsOpacity ** 5, // @note this is like a "quint" easing, meaning it'll go towards 1 slowly first and then fast as it approaches 1
-                        pointerEvents: dotsOpacity < 1 ? 'none' : 'auto',
                     }}
                 />
             </div>
