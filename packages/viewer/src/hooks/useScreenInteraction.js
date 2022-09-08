@@ -5,8 +5,9 @@ import checkClickable from '../lib/checkClickable';
 function useScreenInteraction({
     screens,
     screenIndex,
+    screenWidth,
     disableCurrentScreenNavigation = false,
-    clickOnSiblings = false,
+    clickOnSiblings = false, // @note not currently used by any component
     nextScreenWidthPercent = 0.5,
     onInteract = null,
     onNavigate = null,
@@ -69,15 +70,14 @@ function useScreenInteraction({
                 return;
             }
 
-            const { left, width } = currentTarget.getBoundingClientRect();
-            const relativeX = x - left;
-            const direction =
-                relativeX < width * (1 - nextScreenWidthPercent) ? 'previous' : 'next';
-
+            const { width } = currentTarget.getBoundingClientRect();
+            const margin = (width - screenWidth) / 2;
+            const screenPreviousZone = screenWidth * (1 - nextScreenWidthPercent);
+            const previousZone = margin + screenPreviousZone;
+            const direction = x < previousZone ? 'previous' : 'next';
             const lastIndex = screensCount - 1;
             let nextIndex = index;
 
-            // @todo investigate what clickOnSiblings is doing
             if (direction === 'previous' && !clickOnSiblings) {
                 nextIndex = Math.max(0, screenIndex - 1);
             } else if (direction === 'next' && !clickOnSiblings) {
