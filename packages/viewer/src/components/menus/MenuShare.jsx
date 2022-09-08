@@ -20,7 +20,6 @@ const propTypes = {
     description: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     focusable: PropTypes.bool,
-    // shouldLoad: PropTypes.bool, // @todo still needed? to re-implement?
     paddingTop: PropTypes.number,
     currentScreenIndex: PropTypes.number,
     shareUrl: PropTypes.string,

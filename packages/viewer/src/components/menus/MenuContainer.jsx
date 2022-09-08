@@ -41,8 +41,7 @@ const ViewerMenuContainer = ({ className, progressSpring, theme: viewerTheme, ch
                 className={styles.heightContainer}
                 style={{
                     opacity: progressSpring,
-                    // transform: progressSpring.to((p) => `translateY(${(1 - p) * -100}%)`),
-                    // height: progressSpring.to((p) => `${p * 100}%`),
+                    transform: progressSpring.to((p) => `translateY(${(1 - p) * -2}rem)`),
                     pointerEvents: progressSpring.to((p) => (p < 0.25 ? 'none' : 'auto')),
                     zIndex: progressSpring.to((p) => Math.round(2 + p)),
                     ...backgroundColorStyle,

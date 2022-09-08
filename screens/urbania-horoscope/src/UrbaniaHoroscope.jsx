@@ -150,7 +150,6 @@ const UrbaniaHoroscope = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
 
-    // @note sign selection, transitions
     const [showSignsGrid, setShowSignsGrid] = useState(false);
     const [selectedSign, setSelectedSign] = useState(null);
     const [showModal, setShowModal] = useState(false);
