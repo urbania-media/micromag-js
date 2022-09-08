@@ -11,13 +11,12 @@ import {
     useMediaDuration,
     useMediaReady,
     useProgressSteps,
-    useMediaLoad,
+    // useMediaLoad,
 } from '@micromag/core/hooks';
-import { getMediaFilesAsArray } from '@micromag/core/utils';
+import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
-const supportVideo = document.createElement('video');
 
 const propTypes = {
     media: MicromagPropTypes.videoMedia,
@@ -51,7 +50,6 @@ const propTypes = {
     onSuspend: PropTypes.func,
     onSuspended: PropTypes.func,
     focusable: PropTypes.bool,
-    supportedMimes: PropTypes.arrayOf(PropTypes.string),
     withPoster: PropTypes.bool,
     // onPosterLoaded: PropTypes.func,
 };
@@ -83,7 +81,6 @@ const defaultProps = {
     onSuspend: null,
     onSuspended: null,
     focusable: true,
-    supportedMimes: ['video/mp4', 'video/webm', 'video/ogg'],
     withPoster: false,
 };
 
@@ -114,7 +111,6 @@ const Video = ({
     onSuspend: customOnSuspend,
     onSuspended,
     focusable,
-    supportedMimes,
     withPoster,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
@@ -147,16 +143,14 @@ const Video = ({
         if (filesArray.length === 0) {
             return null;
         }
-        const finalSupportedMimes = supportedMimes.filter(
-            (mime) => supportVideo.canPlayType(mime) !== '',
-        );
-        if (finalSupportedMimes.length === 0) {
+        const supportedMimes = getVideoSupportedMimes();
+        if (supportedMimes.length === 0) {
             return null;
         }
         const sourceFilesMap = filesArray
             .filter((file) => {
                 const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
-                return finalSupportedMimes.indexOf(mime) !== -1;
+                return supportedMimes.indexOf(mime) !== -1;
             })
             .reduce((filesMap, file) => {
                 const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
@@ -170,7 +164,7 @@ const Video = ({
                     : filesMap;
             }, {});
         return Object.keys(sourceFilesMap).map((mime) => sourceFilesMap[mime]);
-    }, [filesArray, supportedMimes]);
+    }, [filesArray]);
 
     // @NOTE: Media is an animated image and doesn't have source files in video formats
     const { type: originalType = null, mime: originalMime = mediaMime } =

@@ -28,6 +28,7 @@ export { default as getStyleFromLink } from './getStyleFromLink';
 export { default as getStyleFromText } from './getStyleFromText';
 export { default as getStyleFromMargin } from './getStyleFromMargin';
 export { default as getStyleFromBorder } from './getStyleFromBorder';
+export { default as getVideoSupportedMimes } from './getVideoSupportedMimes';
 export { default as getLayoutParts } from './getLayoutParts';
 export { default as isMessage } from './isMessage';
 export { default as isIos } from './isIos';
