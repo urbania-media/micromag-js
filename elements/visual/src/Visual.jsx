@@ -79,8 +79,10 @@ const Visual = ({
 
     const imageElProps = useMemo(() => {
         const tmpProps =
-            (!shouldLoad || withoutVideo) && isVideo ? { ...elProps, media: { url: thumbnailUrl } } : elProps;
-        return shouldLoad ? { ...elProps, media: { url } } : tmpProps;
+            (!shouldLoad || withoutVideo) && isVideo
+                ? { ...elProps, media: { url: thumbnailUrl } }
+                : elProps;
+        return shouldLoad && !withoutVideo ? { ...elProps, media: { url } } : tmpProps;
     }, [isVideo, elProps, thumbnailUrl, url, shouldLoad]);
 
     let videoContainerStyle = null;
