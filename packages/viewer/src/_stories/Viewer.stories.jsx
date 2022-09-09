@@ -22,13 +22,11 @@ import viewerTheme from '../../../../.storybook/data/viewerTheme';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import Viewer from '../components/ViewerContainer';
 
-import article2 from '../../../../.storybook/data/stories/article2.json';
-import articleVideo from '../../../../.storybook/data/stories/article-video.json';
-import article from '../../../../.storybook/data/stories/article.json';
 import basic from '../../../../.storybook/data/stories/basic.json';
 import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
+import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -274,51 +272,7 @@ export const MultipleVideos360 = () => (
 export const MultipleArticles = () => (
     <Viewer
         screenId="42"
-        story={{
-            components: [
-                {
-                    id: '1',
-                    type: 'urbania-article',
-                    article,
-                    background: {
-                        color: { alpha: 1, color: '#FF00FF' },
-                    },
-                },
-                {
-                    id: '2',
-                    type: 'urbania-article',
-                    article: article2,
-                    overTitle: {
-                        body: 'Guide des universités',
-                        textStyle: {
-                            color: { alpha: 1, color: '#ff0000' },
-                        },
-                    },
-                    description: {
-                        body: "Petite virée sur le campus de l'École de technologie supérieure (ÉTS)",
-                        textStyle: {
-                            fontStyle: {
-                                italic: true,
-                                bold: false,
-                            },
-                            fontSize: 13,
-                            color: { alpha: 1, color: '#ff0000' },
-                        },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#ffffff' },
-                    },
-                },
-                {
-                    id: '3',
-                    type: 'urbania-article',
-                    article: articleVideo,
-                    background: {
-                        color: { alpha: 1, color: '#123456' },
-                    },
-                },
-            ],
-        }}
+        story={multipleArticles}
     />
 );
 

@@ -4,6 +4,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { callToAction, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
+import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
 import treeTheme from '../../../../.storybook/data/themes/tree';
@@ -15,7 +16,6 @@ import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import Editor from '../components/EditorContainer';
 
 // import manager from '../../../intl/src/manager';
-
 // import createDefaultStory from '../utils/createDefaultStory';
 
 export default {
@@ -223,6 +223,11 @@ export const VideoCustom = () => (
 export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
 export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;
 export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
+export const MultipleArticles = () => (
+    <EditorContainer
+        defaultValue={multipleArticles}
+    />
+);
 export const WithTheme = () => (
     <EditorContainer
         defaultValue={{
