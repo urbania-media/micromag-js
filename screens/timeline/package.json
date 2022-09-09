@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-timeline",
-    "version": "0.3.219",
+    "version": "0.3.221",
     "description": "",
     "keywords": [
         "javascript"
@@ -57,7 +57,7 @@
         "@micromag/element-layout": "^0.3.219",
         "@micromag/element-scroll": "^0.3.219",
         "@micromag/element-text": "^0.3.219",
-        "@micromag/element-visual": "^0.3.219",
+        "@micromag/element-visual": "^0.3.221",
         "@micromag/transforms": "^0.3.219",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
