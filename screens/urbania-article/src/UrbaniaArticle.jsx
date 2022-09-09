@@ -47,7 +47,7 @@ const propTypes = {
     description: MicromagPropTypes.textElement,
     overTitle: MicromagPropTypes.headingElement,
     author: MicromagPropTypes.authorElement,
-    sponsor: PropTypes.arrayOf(PropTypes.shape({})),
+    sponsors: PropTypes.arrayOf(PropTypes.shape({})),
     sponsorPrefix: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     sponsorColor: MicromagPropTypes.color,
     site: PropTypes.string,
@@ -68,7 +68,7 @@ const defaultProps = {
     description: null,
     overTitle: null,
     author: null,
-    sponsor: null,
+    sponsors: null,
     sponsorPrefix: null,
     sponsorColor: null,
     site: null,
@@ -89,7 +89,7 @@ const UrbaniaArticle = ({
     description,
     overTitle,
     author,
-    sponsor,
+    sponsors,
     sponsorPrefix,
     sponsorColor,
     site,
@@ -138,12 +138,10 @@ const UrbaniaArticle = ({
     const isVideo = type === 'video';
     const hasOverTitle = isTextFilled(overTitle);
     const hasTitle = isTextFilled(title);
-    const hasSponsor = isTextFilled(sponsor);
-
-    const { name: authorFullName } = author || {};
     const hasDescription = isTextFilled(description);
+    const hasSponsor = (sponsors || []).length > 0 && isTextFilled(sponsors[0]);
+    const { name: authorFullName } = author || {};
     const hasAuthor = isTextFilled(authorFullName);
-
     const { url = null } = image || {};
     const hasImage = url !== null;
 
@@ -251,11 +249,18 @@ const UrbaniaArticle = ({
         >
             {hasSponsor ? (
                 <div className={styles.sponsors} style={{ ...getStyleFromColor(sponsorColor) }}>
-                    {sponsorPrefix !== null ? (
-                        <span className={styles.sponsor}>{sponsorPrefix}</span>
-                    ) : null}
-                    <span>&nbsp;</span>
-                    <Heading className={styles.sponsor} size="6" {...sponsor} />
+                    {sponsors.map((sponsor = null) => {
+                        const { body = '' } = sponsor;
+                        return (
+                            <React.Fragment key={body}>
+                                {sponsorPrefix !== null ? (
+                                    <span className={styles.sponsor}>{sponsorPrefix}</span>
+                                ) : null}
+                                <span>&nbsp;</span>
+                                <Heading className={styles.sponsor} size="6" {...sponsor} />
+                            </React.Fragment>
+                        );
+                    })}
                 </div>
             ) : null}
         </ScreenElement>,
