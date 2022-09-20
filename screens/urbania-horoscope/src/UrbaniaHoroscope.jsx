@@ -135,7 +135,7 @@ const UrbaniaHoroscope = ({
                     : null),
                 ...defaultSign,
             })),
-        [],
+        [signsValue],
     );
 
     const { width, height, resolution } = useScreenSize();
@@ -173,10 +173,10 @@ const UrbaniaHoroscope = ({
     const onSelectSign = useCallback(
         (e, id) => {
             e.stopPropagation();
-            const foundSign = signs.find((s) => s.id === id);
-            setSelectedSign(foundSign);
+            const foundSignIndex = signs.findIndex((s) => s.id === id);
+            setSelectedSign(foundSignIndex);
             setShowModal(true);
-            trackScreenEvent('UrbaniaHoroscope', 'select_sign', foundSign);
+            trackScreenEvent('UrbaniaHoroscope', 'select_sign', signs[foundSignIndex]);
         },
         [signs, setSelectedSign, trackScreenEvent],
     );
@@ -278,7 +278,7 @@ const UrbaniaHoroscope = ({
             const index = screenState.split('.').pop();
             setShowSignsGrid(1);
             setShowModal(1);
-            setSelectedSign(signs[index]);
+            setSelectedSign(index);
         }
     }, [screenState]);
 
@@ -482,7 +482,7 @@ const UrbaniaHoroscope = ({
                         <SignModal
                             width={width}
                             height={height}
-                            sign={selectedSign}
+                            sign={signs[selectedSign]}
                             subtitle={signSubtitle}
                             onClick={onCloseModal}
                         />
