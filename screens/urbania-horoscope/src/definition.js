@@ -86,6 +86,7 @@ export default [
                 defaultValue: signs,
                 repeatable: true,
                 withoutCreate: true,
+                fieldName: 'signs',
                 fields: [
                     {
                         name: 'word',

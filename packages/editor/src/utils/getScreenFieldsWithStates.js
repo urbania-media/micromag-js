@@ -3,9 +3,10 @@ function getScreenFieldsWithStates(definition) {
     if (states === null) {
         return screenFields;
     }
+
     return [
         ...states.reduce(
-            (statesFields, { id, fields = [], repeatable = false, fieldName = null, label }) => [
+            (statesFields, { id, fields = [], repeatable = false, fieldName = null, label, defaultValue = null, }) => [
                 ...statesFields,
                 ...(repeatable
                     ? [
@@ -13,6 +14,7 @@ function getScreenFieldsWithStates(definition) {
                               type: 'items',
                               name: fieldName || id,
                               label,
+                              defaultValue,
                               stateId: id,
                               itemsField: {
                                   label,
