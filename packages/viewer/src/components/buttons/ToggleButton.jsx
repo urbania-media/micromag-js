@@ -22,7 +22,13 @@ const defaultProps = {
     toggledButtonClassName: null,
 };
 
-const ToggleButton = ({ className, progressSpring, button, toggledButton, toggledButtonClassName }) => {
+const ToggleButton = ({
+    className,
+    progressSpring,
+    button,
+    toggledButton,
+    toggledButtonClassName,
+}) => {
     if (button === null) return false;
 
     return (
@@ -34,9 +40,12 @@ const ToggleButton = ({ className, progressSpring, button, toggledButton, toggle
                 },
             ])}
         >
-            <animated.div className={styles.normal} style={{
-                transform: progressSpring.to((p) => `translateY(${p * -100}%)`)
-            }}>
+            <animated.div
+                className={styles.normal}
+                style={{
+                    transform: progressSpring.to((p) => `translateY(${p * -100}%)`),
+                }}
+            >
                 {button}
             </animated.div>
             <animated.div
@@ -47,7 +56,7 @@ const ToggleButton = ({ className, progressSpring, button, toggledButton, toggle
                     },
                 ])}
                 style={{
-                    transform: progressSpring.to((p) => `translateY(${(p - 1) * -100}%)`)
+                    transform: progressSpring.to((p) => `translateY(${(p - 1) * -100}%)`),
                 }}
             >
                 {toggledButton}

@@ -298,10 +298,7 @@ const ViewerMenu = ({
             >
                 <nav className={styles.menuTopContainer} ref={navContainerRef}>
                     {!withoutShareMenu ? (
-                        <div
-                            className={classNames([styles.menuItem, styles.menuShare])}
-                            {...bindShareDrag()}
-                        >
+                        <div className={styles.menuItem} {...bindShareDrag()}>
                             <ToggleButton
                                 className={styles.slidingButton}
                                 button={
@@ -328,10 +325,7 @@ const ViewerMenu = ({
                     ) : null}
 
                     {!withoutScreensMenu ? (
-                        <div
-                            className={classNames([styles.menuItem, styles.menuItemScreens])}
-                            {...bindMenuDrag()}
-                        >
+                        <div className={styles.menuItem} {...bindMenuDrag()}>
                             <ToggleButton
                                 className={styles.slidingButton}
                                 button={
