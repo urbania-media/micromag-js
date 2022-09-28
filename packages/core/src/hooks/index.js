@@ -10,6 +10,7 @@ export { default as useIsVisible } from './useIsVisible';
 export { default as useLoadedFonts } from './useLoadedFonts';
 export { default as useLongPress } from './useLongPress';
 export { default as useMediaApi } from './useMediaApi';
+export { default as useMediaBuffered } from './useMediaBuffered';
 export { default as useMediaCurrentTime } from './useMediaCurrentTime';
 export { default as useMediaDuration } from './useMediaDuration';
 export { default as useMediaLoad } from './useMediaLoad';

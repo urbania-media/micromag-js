@@ -5,24 +5,25 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { useMediaProgress } from '@micromag/core/hooks';
+import { useMediaProgress, useMediaBuffered } from '@micromag/core/hooks';
 
 import styles from '../../styles/partials/seek-bar.module.scss';
 
 const stopDragEventsPropagation = {
-    onTouchMove: e => e.stopPropagation(),
-    onTouchStart: e => e.stopPropagation(),
-    onTouchEnd: e => e.stopPropagation(),
-    onPointerMove: e => e.stopPropagation(),
-    onPointerUp: e => e.stopPropagation(),
-    onPointerDown: e => e.stopPropagation(),
-}
+    onTouchMove: (e) => e.stopPropagation(),
+    onTouchStart: (e) => e.stopPropagation(),
+    onTouchEnd: (e) => e.stopPropagation(),
+    onPointerMove: (e) => e.stopPropagation(),
+    onPointerUp: (e) => e.stopPropagation(),
+    onPointerDown: (e) => e.stopPropagation(),
+};
 
 function getFormattedTimestamp(s, withMilliseconds = false) {
-    const sparts = withMilliseconds ? `${s}`.split('.') : [];
-    const ms = sparts.length > 1 ? `:${sparts[1].substring(0, 3)}` : '';
+    const parts = `${s}`.split('.');
+    const seconds = parts[0];
+    const ms = withMilliseconds && parts.length > 1 ? `:${parts[1].substring(0, 3)}` : '';
 
-    return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + ~~s + ms; // eslint-disable-line
+    return (s - (s %= 60)) / 60 + (9 < seconds ? ':' : ':0') + ~~s + ms; // eslint-disable-line
 }
 
 const SHOW_MILLISECONDS_THRESHOLD = 5; // show milliseconds when scrubbing if length of video is shorter than 5 seconds
@@ -72,11 +73,17 @@ const SeekBar = ({
     const progress = useMediaProgress(media, {
         disabled: !playing,
     });
+    const percentageLoaded = useMediaBuffered(media);
     const { currentTime = null, duration = null } = media || {};
+    const finalProgress =
+        progress !== null && duration !== null && !Number.isNaN(progress) && !Number.isNaN(duration)
+            ? progress
+            : 0;
     const [showTimestamp, setShowTimestamp] = useState(false);
 
+
     const onDrag = useCallback(
-        ({ event, xy: [x], elapsedTime, active, tap, currentTarget }) => {
+        ({ xy: [x], elapsedTime, active, tap, currentTarget }) => {
             if (!active && elapsedTime > 300) {
                 return;
             }
@@ -91,15 +98,12 @@ const SeekBar = ({
         [onSeek],
     );
 
-    const onDragStart = useCallback(
-        () => {
-            setShowTimestamp(true);
-            if (onSeekStart !== null) {
-                onSeekStart();
-            }
-        },
-        [onSeekStart, setShowTimestamp],
-    );
+    const onDragStart = useCallback(() => {
+        setShowTimestamp(true);
+        if (onSeekStart !== null) {
+            onSeekStart();
+        }
+    }, [onSeekStart, setShowTimestamp]);
 
     const onDragEnd = useCallback(() => {
         if (onSeekEnd !== null) {
@@ -134,7 +138,7 @@ const SeekBar = ({
                     <div
                         className={styles.playHead}
                         style={{
-                            left: `${progress * 100}%`,
+                            left: `${finalProgress * 100}%`,
                             backgroundColor: progressColor,
                         }}
                     >
@@ -154,6 +158,13 @@ const SeekBar = ({
                         className={styles.progress}
                         style={{
                             transform: `scaleX(${progress})`,
+                            backgroundColor: progressColor,
+                        }}
+                    />
+                    <div
+                        className={styles.buffered}
+                        style={{
+                            transform: `scaleX(${percentageLoaded})`,
                             backgroundColor: progressColor,
                         }}
                     />

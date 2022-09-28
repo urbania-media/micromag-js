@@ -16,7 +16,9 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
     });
 
     const [progress, setProgress] = useState(
-        media !== null && (media.currentTime || 0) > 0 && duration > 0 ? media.currentTime / duration : 0,
+        media !== null && (media.currentTime || 0) > 0 && duration > 0
+            ? media.currentTime / duration
+            : 0,
     );
     const realProgressRef = useRef(progress);
     const updateTimeRef = useRef(new Date().getTime());
@@ -46,9 +48,26 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
             }
             updateProgress(media.currentTime / media.duration);
         }
+        function onProgress(e) {
+            const { target = null } = e || {};
+            const { buffered = null, currentTime = null, duration: mediaDuration = null } = target || {};
+            if (buffered === null || currentTime === null || mediaDuration === null ) return 0;
+
+            let range = 0;
+
+            while(!(buffered.start(range) <= currentTime && currentTime <= buffered.end(range))) {
+                range += 1;
+            }
+            const start = buffered.start(range) / mediaDuration;
+            const end = buffered.end(range) / mediaDuration;
+            const loaded = start - end;
+
+            return loaded;
+        }
         media.addEventListener('play', onResume);
         media.addEventListener('seeked', onResume);
         media.addEventListener('playing', onResume);
+        media.addEventListener('progress', onProgress);
         // media.addEventListener('timeupdate', onResume);
         media.addEventListener('pause', onPause);
         media.addEventListener('ended', onPause);
@@ -65,6 +84,7 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
             media.removeEventListener('play', onResume);
             media.removeEventListener('seeked', onResume);
             media.removeEventListener('playing', onResume);
+            media.removeEventListener('progress', onProgress);
             // media.removeEventListener('timeupdate', onResume);
             media.removeEventListener('pause', onPause);
             media.removeEventListener('ended', onPause);
