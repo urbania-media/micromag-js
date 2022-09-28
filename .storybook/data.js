@@ -1,30 +1,32 @@
 import Chance from 'chance';
+
 import authors from './data/authors';
 import companies from './data/companies';
-import image360File from './data/image-360.jpg';
 import subtitles from './data/subtitles';
 import video360File from './data/test-360.mp4';
 import bigVideoFile from './data/test-apple.mp4';
 import videoWithAudio from './data/test-audio.mp4';
 import bigVideoWithAudio from './data/test-big-skate.mp4';
 import videoFileVertical from './data/test-vertical.mp4';
-import gifFile from './data/test.gif';
 import audioFile from './data/test.mp3';
 import videoFile from './data/test.mp4';
-import closedCaptionsFile from './data/test.srt';
 import titles from './data/titles';
+import webFont2WOFF2 from './data/webfont2.woff2';
+import webFontWOFF2 from './data/webfont.woff2';
+import randomWords from './data/words';
+
+import image360File from './data/image-360.jpg';
+import gifFile from './data/test.gif';
+import closedCaptionsFile from './data/test.srt';
 import webFont2EOT from './data/webfont2.eot';
 import webFont2SVG from './data/webfont2.svg';
 import webFont2TTF from './data/webfont2.ttf';
 import webFont2WOFF from './data/webfont2.woff';
-import webFont2WOFF2 from './data/webfont2.woff2';
 import webFont3OTF from './data/webfont3.otf';
 import webFontEOT from './data/webfont.eot';
 import webFontSVG from './data/webfont.svg';
 import webFontTTF from './data/webfont.ttf';
 import webFontWOFF from './data/webfont.woff';
-import webFontWOFF2 from './data/webfont.woff2';
-import randomWords from './data/words';
 
 // import { color, image } from '../packages/fields/src/fields';
 
@@ -166,12 +168,12 @@ export const videoMedia = ({ vertical = false, big = false } = {}) => ({
 
 export const videoMediaWithSound = () => ({
     ...videoMedia(),
-    url: videoWithAudio
+    url: videoWithAudio,
 });
 
 export const bigVideoMediaWithSound = () => ({
     ...videoMedia(),
-    url: bigVideoWithAudio
+    url: bigVideoWithAudio,
 });
 
 export const gifVideoMedia = ({ withoutFiles = null } = {}) => ({
@@ -240,9 +242,8 @@ export const closedCaptionsMedia = () => ({
 
 // -----------------
 export const medias = ({ count = 3, width = 800, height = 800, rand = false, gif = false } = {}) =>
-    [...Array(count)].map((_, index) => index % 3 === 0
-        ? videoMedia({ width, height })
-        : imageMedia({ width, height, rand, gif }),
+    [...Array(count)].map((_, index) =>
+        index % 3 === 0 ? videoMedia({ width, height }) : imageMedia({ width, height, rand, gif }),
     );
 
 export const mediasWithCaptions = ({
@@ -253,9 +254,10 @@ export const mediasWithCaptions = ({
     gif = false,
 } = {}) =>
     [...Array(count)].map((_, index) => ({
-        media: index % 3 === 0
-            ? videoMedia({ width, height})
-            : imageMedia({ width, height, rand, gif }),
+        media:
+            index % 3 === 0
+                ? videoMedia({ width, height })
+                : imageMedia({ width, height, rand, gif }),
         caption: index % 3 === 0 ? text() : null,
     }));
 
@@ -319,9 +321,41 @@ export const callToAction = () => ({
     label: {
         body: 'Learn moar',
     },
-    // buttonStyle: {
-    //     backgroundColor: { alpha: 1, color: '#F00' },
-    // },
+});
+
+export const callToActionWithStyles = () => ({
+    active: true,
+    inWebView: true,
+    type: 'button',
+    url: 'https://urbania.ca',
+    label: {
+        body: 'Visit website',
+        textStyle: {
+            color: {
+                alpha: 1,
+                color: '#222222',
+            },
+        },
+    },
+    boxStyle: {
+        borderWidth: 4,
+        padding: {
+            top: 8,
+            right: 20,
+            bottom: 5,
+            left: 20,
+        },
+        borderColor: {
+            alpha: 0.44,
+            color: '#fffc00',
+        },
+        backgroundColor: {
+            alpha: 1,
+            color: '#fffc00',
+        },
+        borderRadius: 40,
+        borderStyle: 'solid',
+    },
 });
 
 export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({

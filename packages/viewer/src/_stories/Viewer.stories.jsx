@@ -4,6 +4,7 @@ import React, { useCallback, useState } from 'react';
 import {
     audioMedia,
     callToAction,
+    callToActionWithStyles,
     imageMedia,
     video360Media,
     videoMedia,
@@ -154,7 +155,6 @@ export const MultipleVideos = () => (
                     background: {
                         color: { alpha: 1, color: '#FFFF00' },
                     },
-                    callToAction: callToAction(),
                 },
                 {
                     id: '2',
@@ -233,6 +233,7 @@ export const MultipleVideos = () => (
                         video: videoMedia({ big: true }),
                     },
                     gotoNextScreenOnEnd: false,
+                    callToAction: callToActionWithStyles(),
                 },
             ],
         }}

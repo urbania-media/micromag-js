@@ -10,7 +10,7 @@ import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
+import { PlaceholderVideo, ScreenElement, Empty } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -67,7 +67,6 @@ const VideoScreen = ({
     callToAction,
     current,
     active,
-    transitions,
     spacing,
     mediaRef: customMediaRef,
     className,
@@ -112,8 +111,6 @@ const VideoScreen = ({
     const [hasPlayed, setHasPlayed] = useState(false);
     const backgroundPlaying = current && (isView || isEdit);
     const videoPlaying = current && (isView || isEdit) && playing;
-    // const shouldDisplayPoster =
-    //     isPreview || isCapture || (isView && active && !current && !hasPlayed);
     const shouldDisplayPoster = isPreview || isCapture;
 
     useEffect(() => {
@@ -168,7 +165,6 @@ const VideoScreen = ({
         }
     }, [activityDetected, showControls, hideControls]);
 
-    // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
 
@@ -233,9 +229,7 @@ const VideoScreen = ({
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const hasVideo = video !== null;
-    const [ready, setReady] = useState(hasVideo); // useState(!hasVideo);
-    const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
+    const [ready, setReady] = useState(hasVideo);
 
     const finalVideo = useMemo(
         () =>
@@ -281,100 +275,6 @@ const VideoScreen = ({
         }
     }, [current, playing, setPlaying]);
 
-    const items = [
-        <ScreenElement
-            key="video"
-            placeholder={<PlaceholderVideo className={styles.placeholder} {...placeholderProps} />}
-            empty={
-                <div className={styles.emptyContainer}>
-                    <Empty className={styles.empty}>
-                        <FormattedMessage defaultMessage="Video" description="Video placeholder" />
-                    </Empty>
-                </div>
-            }
-            isEmpty={!hasVideoUrl}
-        >
-            {hasVideoUrl ? (
-                <div
-                    className={styles.videoContainer}
-                    style={{
-                        width: resizedVideoWidth,
-                        height: resizedVideoHeight,
-                        left: resizedVideoLeft,
-                        top: resizedVideoTop,
-                    }}
-                >
-                    {shouldDisplayPoster ? (
-                        <Image
-                            className={styles.image}
-                            media={finalThumbnail}
-                            width={resizedVideoWidth}
-                            height={resizedVideoHeight}
-                            objectFit={{
-                                fit: 'cover',
-                            }}
-                            resolution={resolution}
-                            shouldLoad={mediaShouldLoad}
-                        />
-                    ) : (
-                        <Video
-                            {...finalVideo}
-                            width={resizedVideoWidth}
-                            height={resizedVideoHeight}
-                            paused={!videoPlaying}
-                            muted={muted}
-                            mediaRef={mediaRef}
-                            className={styles.video}
-                            onReady={onVideoReady}
-                            onPlay={onPlay}
-                            onPause={onPause}
-                            onTimeUpdate={onTimeUpdate}
-                            onProgressStep={onProgressStep}
-                            onDurationChange={onDurationChange}
-                            onSeeked={onSeeked}
-                            onEnded={onEnded}
-                            onSuspended={onSuspended}
-                            focusable={current && isView}
-                            shouldLoad={mediaShouldLoad}
-                        />
-                    )}
-                </div>
-            ) : null}
-        </ScreenElement>,
-
-        !isPlaceholder ? (
-            <div
-                key="bottom-content"
-                className={styles.bottom}
-                style={{
-                    transform:
-                        current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
-                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
-                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
-                    paddingBottom: spacing / 2,
-                    paddingTop: 0,
-                }}
-            >
-                {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
-                    <ClosedCaptions
-                        className={styles.closedCaptions}
-                        media={closedCaptions}
-                        currentTime={currentTime}
-                    />
-                ) : null}
-                {hasCallToAction ? (
-                    <CallToAction
-                        {...callToAction}
-                        className={styles.callToAction}
-                        animationDisabled={isPreview}
-                        focusable={current && isView}
-                        openWebView={openWebView}
-                    />
-                ) : null}
-            </div>
-        ) : null,
-    ];
-
     return (
         <div
             className={classNames([
@@ -398,7 +298,109 @@ const VideoScreen = ({
                 />
             ) : null}
             <Container width={width} height={height}>
-                <div className={styles.content}>{items}</div>
+                <div className={styles.content}>
+                    <ScreenElement
+                        key="video"
+                        placeholder={
+                            <PlaceholderVideo
+                                className={styles.placeholder}
+                                {...placeholderProps}
+                            />
+                        }
+                        empty={
+                            <div className={styles.emptyContainer}>
+                                <Empty className={styles.empty}>
+                                    <FormattedMessage
+                                        defaultMessage="Video"
+                                        description="Video placeholder"
+                                    />
+                                </Empty>
+                            </div>
+                        }
+                        isEmpty={!hasVideoUrl}
+                    >
+                        {hasVideoUrl ? (
+                            <div
+                                className={styles.videoContainer}
+                                style={{
+                                    width: resizedVideoWidth,
+                                    height: resizedVideoHeight,
+                                    left: resizedVideoLeft,
+                                    top: resizedVideoTop,
+                                }}
+                            >
+                                {shouldDisplayPoster ? (
+                                    <Image
+                                        className={styles.image}
+                                        media={finalThumbnail}
+                                        width={resizedVideoWidth}
+                                        height={resizedVideoHeight}
+                                        objectFit={{
+                                            fit: 'cover',
+                                        }}
+                                        resolution={resolution}
+                                        shouldLoad={mediaShouldLoad}
+                                    />
+                                ) : (
+                                    <Video
+                                        {...finalVideo}
+                                        width={resizedVideoWidth}
+                                        height={resizedVideoHeight}
+                                        paused={!videoPlaying}
+                                        muted={muted}
+                                        mediaRef={mediaRef}
+                                        className={styles.video}
+                                        onReady={onVideoReady}
+                                        onPlay={onPlay}
+                                        onPause={onPause}
+                                        onTimeUpdate={onTimeUpdate}
+                                        onProgressStep={onProgressStep}
+                                        onDurationChange={onDurationChange}
+                                        onSeeked={onSeeked}
+                                        onEnded={onEnded}
+                                        onSuspended={onSuspended}
+                                        focusable={current && isView}
+                                        shouldLoad={mediaShouldLoad}
+                                    />
+                                )}
+                            </div>
+                        ) : null}
+                    </ScreenElement>
+
+                    {!isPlaceholder ? (
+                        <div
+                            key="bottom-content"
+                            className={styles.bottom}
+                            style={{
+                                transform:
+                                    current && !isPreview
+                                        ? `translate3d(0, -${viewerBottomHeight}px, 0)`
+                                        : null,
+                                paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                                paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                                paddingBottom: spacing / 2,
+                                paddingTop: 0,
+                            }}
+                        >
+                            {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
+                                <ClosedCaptions
+                                    className={styles.closedCaptions}
+                                    media={closedCaptions}
+                                    currentTime={currentTime}
+                                />
+                            ) : null}
+                            {hasCallToAction ? (
+                                <CallToAction
+                                    {...callToAction}
+                                    className={styles.callToAction}
+                                    animationDisabled={isPreview}
+                                    focusable={current && isView}
+                                    openWebView={openWebView}
+                                />
+                            ) : null}
+                        </div>
+                    ) : null}
+                </div>
             </Container>
         </div>
     );
