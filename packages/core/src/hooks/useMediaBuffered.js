@@ -1,5 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 
+// @todo
+// doesn't really work when skipping ahead, it seems
 function useMediaBuffered(media) {
     const [percentageLoaded, setPercentageLoaded] = useState(0);
 

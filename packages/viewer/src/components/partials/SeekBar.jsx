@@ -26,7 +26,7 @@ function getFormattedTimestamp(s, withMilliseconds = false) {
     return (s - (s %= 60)) / 60 + (9 < seconds ? ':' : ':0') + ~~s + ms; // eslint-disable-line
 }
 
-const SHOW_MILLISECONDS_THRESHOLD = 5; // show milliseconds when scrubbing if length of video is shorter than 5 seconds
+const SHOW_MILLISECONDS_THRESHOLD = 60; // show milliseconds when scrubbing if length of video is shorter than...
 
 const propTypes = {
     media: PropTypes.oneOfType([
