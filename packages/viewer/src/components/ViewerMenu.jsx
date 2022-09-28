@@ -310,6 +310,7 @@ const ViewerMenu = ({
                                         onClick={onOpenShare}
                                         theme={menuTheme}
                                         iconPosition="left"
+                                        focusable={!shareOpened}
                                     />
                                 }
                                 toggledButton={
@@ -318,6 +319,7 @@ const ViewerMenu = ({
                                         onClick={onCloseShare}
                                         theme={menuTheme}
                                         iconPosition="left"
+                                        focusable={shareOpened}
                                     />
                                 }
                                 progressSpring={shareOpenedProgress}
@@ -337,6 +339,7 @@ const ViewerMenu = ({
                                         className={styles.menuButton}
                                         onClick={onOpenMenu}
                                         theme={menuTheme}
+                                        focusable={!menuOpened}
                                     />
                                 }
                                 toggledButton={
@@ -345,6 +348,7 @@ const ViewerMenu = ({
                                         onClick={onCloseMenu}
                                         theme={menuTheme}
                                         iconPosition="right"
+                                        focusable={menuOpened}
                                     />
                                 }
                                 progressSpring={menuOpenedProgress}
