@@ -2,33 +2,30 @@ import Chance from 'chance';
 
 import authors from './data/authors';
 import companies from './data/companies';
+import video360File from './data/files/test-360.mp4';
+import bigVideoFile from './data/files/test-apple.mp4';
+import videoWithAudio from './data/files/test-audio.mp4';
+import bigVideoWithAudio from './data/files/test-big-skate.mp4';
+import videoFileVertical from './data/files/test-vertical.mp4';
+import audioFile from './data/files/test.mp3';
+import videoFile from './data/files/test.mp4';
+import webFont2WOFF2 from './data/files/webfont2.woff2';
+import webFontWOFF2 from './data/files/webfont.woff2';
 import subtitles from './data/subtitles';
-import video360File from './data/test-360.mp4';
-import bigVideoFile from './data/test-apple.mp4';
-import videoWithAudio from './data/test-audio.mp4';
-import bigVideoWithAudio from './data/test-big-skate.mp4';
-import videoFileVertical from './data/test-vertical.mp4';
-import audioFile from './data/test.mp3';
-import videoFile from './data/test.mp4';
 import titles from './data/titles';
-import webFont2WOFF2 from './data/webfont2.woff2';
-import webFontWOFF2 from './data/webfont.woff2';
 import randomWords from './data/words';
-
-import image360File from './data/image-360.jpg';
-import gifFile from './data/test.gif';
-import closedCaptionsFile from './data/test.srt';
-import webFont2EOT from './data/webfont2.eot';
-import webFont2SVG from './data/webfont2.svg';
-import webFont2TTF from './data/webfont2.ttf';
-import webFont2WOFF from './data/webfont2.woff';
-import webFont3OTF from './data/webfont3.otf';
-import webFontEOT from './data/webfont.eot';
-import webFontSVG from './data/webfont.svg';
-import webFontTTF from './data/webfont.ttf';
-import webFontWOFF from './data/webfont.woff';
-
-// import { color, image } from '../packages/fields/src/fields';
+import image360File from './data/files/image-360.jpg';
+import gifFile from './data/files/test.gif';
+import closedCaptionsFile from './data/files/test.srt';
+import webFont2EOT from './data/files/webfont2.eot';
+import webFont2SVG from './data/files/webfont2.svg';
+import webFont2TTF from './data/files/webfont2.ttf';
+import webFont2WOFF from './data/files/webfont2.woff';
+import webFont3OTF from './data/files/webfont3.otf';
+import webFontEOT from './data/files/webfont.eot';
+import webFontSVG from './data/files/webfont.svg';
+import webFontTTF from './data/files/webfont.ttf';
+import webFontWOFF from './data/files/webfont.woff';
 
 const chance = new Chance();
 
@@ -47,8 +44,6 @@ const company = (likelyhood = 100) => (likelyhood === 100 ? random(companies) : 
 const shortText = ({ likelyhood = 100, min = 10, max = 20 } = {}) => words(likelyhood, min, max);
 
 const longText = ({ likelyhood = 100, min = 30, max = 50 } = {}) => words(likelyhood, min, max);
-
-// Methods
 
 export const title = () => random(titles);
 
@@ -240,7 +235,6 @@ export const closedCaptionsMedia = () => ({
     url: closedCaptionsFile,
 });
 
-// -----------------
 export const medias = ({ count = 3, width = 800, height = 800, rand = false, gif = false } = {}) =>
     [...Array(count)].map((_, index) =>
         index % 3 === 0 ? videoMedia({ width, height }) : imageMedia({ width, height, rand, gif }),
