@@ -1,6 +1,6 @@
 {
-    "name": "@micromag/elements",
-    "version": "0.3.224",
+    "name": "@micromag/screen-grid",
+    "version": "0.3.223",
     "description": "",
     "keywords": [
         "javascript"
@@ -24,31 +24,25 @@
             "email": "nrb@folklore.email"
         },
         {
-            "name": "Julien Carignan",
-            "email": "jc@folklore.email"
+            "name": "Joseph Blais",
+            "email": "joseph@folklore.email"
+        },
+        {
+            "name": "Fred Mercy",
+            "email": "fred@folklore.email"
         }
     ],
     "license": "ISC",
     "main": "lib/index.js",
     "module": "es/index.js",
-    "exports": {
-        ".": "./lib/index.js",
-        "./all": "./lib/all.js",
-        "./scss/styles": "./scss/styles.scss"
-    },
-    "browser": {
-        ".": "./es/index.js",
-        "./all": "./es/all.js"
-    },
     "files": [
         "lib",
         "es",
-        "assets",
-        "scss",
-        "all.js"
+        "assets"
     ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh --scss"
+        "prepare": "../../scripts/prepare-package.sh",
+        "rollup": "../../node_modules/.bin/rollup --config ../../rollup.config.js"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -61,34 +55,27 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.219",
-        "@micromag/element-audio": "^0.3.219",
         "@micromag/element-background": "^0.3.219",
         "@micromag/element-button": "^0.3.219",
         "@micromag/element-call-to-action": "^0.3.219",
-        "@micromag/element-checkbox": "^0.3.219",
-        "@micromag/element-closed-captions": "^0.3.219",
         "@micromag/element-container": "^0.3.219",
         "@micromag/element-grid": "^0.3.219",
         "@micromag/element-heading": "^0.3.219",
-        "@micromag/element-image": "^0.3.219",
         "@micromag/element-keypad": "^0.3.219",
         "@micromag/element-layout": "^0.3.219",
-        "@micromag/element-link": "^0.3.219",
-        "@micromag/element-map": "^0.3.219",
-        "@micromag/element-media-controls": "^0.3.219",
-        "@micromag/element-quote": "^0.3.219",
         "@micromag/element-scroll": "^0.3.219",
-        "@micromag/element-share-options": "^0.3.224",
-        "@micromag/element-stack": "^0.3.219",
         "@micromag/element-text": "^0.3.219",
-        "@micromag/element-text-input": "^0.3.219",
         "@micromag/element-urbania-author": "^0.3.219",
-        "@micromag/element-video": "^0.3.219",
-        "@micromag/element-visual": "^0.3.221",
-        "@micromag/element-webview": "^0.3.219",
+        "@micromag/transforms": "^0.3.219",
+        "@react-spring/core": "^9.1.1",
+        "@react-spring/web": "^9.1.1",
+        "@use-gesture/react": "^10.2.4",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
-        "prop-types": "^15.7.2"
+        "prop-types": "^15.7.2",
+        "react-intl": "^5.12.1",
+        "react-transition-group": "^4.4.2",
+        "uuid": "^8.3.2"
     },
     "publishConfig": {
         "access": "public"

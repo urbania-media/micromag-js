@@ -1402,6 +1402,12 @@ msgctxt "YWcp4v"
 msgid "Bullet filled"
 msgstr "Bullet filled"
 
+# Grid screen title
+#: Yy4DRF
+msgctxt "Yy4DRF"
+msgid "Grid"
+msgstr "Grid"
+
 # Horoscope sign
 #: YyPYHk
 msgctxt "YyPYHk"
@@ -1923,6 +1929,12 @@ msgstr "Result"
 msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Size"
+
+# Grid state
+#: mOJicq
+msgctxt "mOJicq"
+msgid "Items"
+msgstr "Items"
 
 # Media label
 #: mOSkbf

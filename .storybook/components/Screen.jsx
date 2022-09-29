@@ -54,8 +54,6 @@ function Screen({
         screens: getDeviceScreens(),
     });
 
-    console.log(screen);
-
     return (
         <div
             className={classNames([

@@ -926,6 +926,10 @@
     "defaultMessage": "Bullet filled",
     "description": "Field label"
   },
+  "Yy4DRF": {
+    "defaultMessage": "Grid",
+    "description": "Grid screen title"
+  },
   "YyPYHk": {
     "defaultMessage": "Scorpio",
     "description": "Horoscope sign"
@@ -1273,6 +1277,10 @@
   "liyV7Y": {
     "defaultMessage": "Size",
     "description": "Label in Media Gallery"
+  },
+  "mOJicq": {
+    "defaultMessage": "Items",
+    "description": "Grid state"
   },
   "mOSkbf": {
     "defaultMessage": "Usage",

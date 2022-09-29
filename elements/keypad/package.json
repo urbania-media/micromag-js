@@ -1,0 +1,67 @@
+{
+    "name": "@micromag/element-keypad",
+    "version": "0.3.223",
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
+    },
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
+    },
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        },
+        {
+            "name": "Julien Carignan",
+            "email": "jc@folklore.email"
+        },
+        {
+            "name": "Fred mercy",
+            "email": "fred@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "files": [
+        "lib",
+        "es",
+        "assets"
+    ],
+    "scripts": {
+        "prepare": "../../scripts/prepare-package.sh"
+    },
+    "devDependencies": {
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+    },
+    "peerDependencies": {
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.13.10",
+        "@micromag/core": "^0.3.219",
+        "classnames": "^2.2.6",
+        "lodash": "^4.17.21",
+        "prop-types": "^15.7.2",
+        "react-intl": "^5.12.1",
+        "uuid": "^8.3.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "ae1a2d883a94e5d15c2d011bf6e7e23574b6b8a1"
+}
