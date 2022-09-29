@@ -3,13 +3,13 @@ import React, { useCallback, useState } from 'react';
 
 import {
     audioMedia,
-    callToAction,
-    callToActionWithStyles,
+    // callToAction,
+    // callToActionWithStyles,
     imageMedia,
     video360Media,
-    videoMedia,
-    bigVideoMediaWithSound,
-    gifVideoMedia,
+    // videoMedia,
+    // bigVideoMediaWithSound,
+    // gifVideoMedia,
     webfont2Files,
     webfont3Files,
     webfontFiles,
@@ -21,13 +21,15 @@ import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
-import Viewer from '../components/ViewerContainer';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
 import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
+import multipleVideosStory from '../../../../.storybook/data/stories/multipleVideosStory';
+
+import Viewer from '../components/ViewerContainer';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -139,104 +141,7 @@ export const MultipleAudios = () => (
 export const MultipleVideos = () => (
     <Viewer
         screenId="1"
-        story={{
-            components: [
-                {
-                    id: '1',
-                    type: 'video',
-                    layout: 'full',
-                    video: {
-                        media: bigVideoMediaWithSound(),
-                        withSeekBar: true,
-                        withControls: true,
-                        loop: false,
-                        autoPlay: true,
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#FFFF00' },
-                    },
-                },
-                {
-                    id: '2',
-                    type: 'video',
-                    video: {
-                        withSeekBar: true,
-                        withControls: false,
-                        media: gifVideoMedia(),
-                        autoPlay: true,
-                        color: { alpha: 1, color: '#012400' },
-                        progressColor: { alpha: 1, color: '#8891cc' },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#123456' },
-                    },
-                    gotoNextScreenOnEnd: true,
-                },
-                {
-                    id: '3',
-                    type: 'video',
-                    layout: 'full',
-                    video: {
-                        media: video360Media(),
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#00FFFF' },
-                        video: videoMedia({ big: true }),
-                    },
-                },
-                {
-                    id: '4',
-                    type: 'video',
-                    video: {
-                        media: videoMedia({ big: true }),
-                        withSeekBar: false,
-                        withControls: false,
-                        autoPlay: true,
-                        color: { alpha: 1, color: '#000000' },
-                        progressColor: { alpha: 1, color: '#0000FF' },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#00FF00' },
-                        video: videoMedia({ big: true }),
-                    },
-                    gotoNextScreenOnEnd: false,
-                },
-                {
-                    id: '5',
-                    type: 'video',
-                    video: {
-                        media: videoMedia({ big: true }),
-                        withSeekBar: true,
-                        withControls: true,
-                        autoPlay: true,
-                        color: { alpha: 1, color: '#00ffff' },
-                        progressColor: { alpha: 1, color: '#FF0000' },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#FFFF00' },
-                    },
-                    gotoNextScreenOnEnd: false,
-                },
-                {
-                    id: '6',
-                    type: 'video',
-                    video: {
-                        media: videoMedia({ big: true }),
-                        withSeekBar: false,
-                        withControls: true,
-                        autoPlay: true,
-                        color: { alpha: 1, color: '#000000' },
-                        progressColor: { alpha: 1, color: '#00FF00' },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#FF00FF' },
-                        video: videoMedia({ big: true }),
-                    },
-                    gotoNextScreenOnEnd: false,
-                    callToAction: callToActionWithStyles(),
-                },
-            ],
-        }}
+        story={multipleVideosStory}
         withNavigationHint
     />
 );

@@ -16,10 +16,10 @@ import {
 } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import Text from '@micromag/element-text';
 // import Grid from '@micromag/element-grid'; // @todo uhhh... can't really use this; overkill!
 import Keypad from '@micromag/element-keypad';
 import Layout from '@micromag/element-layout';
+import Text from '@micromag/element-text';
 
 import styles from './grid.module.scss';
 
@@ -54,6 +54,7 @@ const propTypes = {
             description: MicromagPropTypes.textElement,
         }),
     ),
+    columns: PropTypes.number,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -63,14 +64,15 @@ const propTypes = {
 
 const defaultProps = {
     items: null,
-    spacing: 20,
+    columns: 5,
+    spacing: 5,
     background: null,
     current: true,
     active: true,
     className: null,
 };
 
-const GridScreen = ({ items, spacing, background, current, active, className }) => {
+const GridScreen = ({ items, columns, spacing, background, current, active, className }) => {
     // const intl = useIntl();
     // const trackScreenEvent = useTrackScreenEvent(type);
     // const { enableInteraction, disableInteraction } = useViewerInteraction();
@@ -132,12 +134,13 @@ const GridScreen = ({ items, spacing, background, current, active, className }) 
                               }
                             : null
                     }
-                    // height={height * 0.8}
                 >
                     {!isPlaceholder ? (
                         <Keypad
                             className={styles.grid}
                             items={gridItems}
+                            columns={columns}
+                            spacing={spacing}
                         />
                     ) : null}
                 </Layout>

@@ -1,50 +1,51 @@
 function getScreenFieldsWithStates(definition) {
-    const { fields: screenFields = [], states = null } = definition || {};
+    const { fields: screenFields = null, states = null } = definition || {};
     if (states === null) {
         return screenFields;
     }
 
-    return [
-        ...states.reduce(
-            (statesFields, { id, fields = [], repeatable = false, fieldName = null, label, defaultValue = null, }) => [
-                ...statesFields,
-                ...(repeatable
-                    ? [
-                          {
-                              type: 'items',
-                              name: fieldName || id,
+    const extraFields = states.reduce(
+        (
+            statesFields,
+            { id, fields = [], repeatable = false, fieldName = null, label, defaultValue = null },
+        ) => [
+            ...statesFields,
+            ...(repeatable
+                ? [
+                      {
+                          type: 'items',
+                          name: fieldName || id,
+                          label,
+                          defaultValue,
+                          stateId: id,
+                          itemsField: {
                               label,
-                              defaultValue,
-                              stateId: id,
-                              itemsField: {
-                                  label,
-                                  type: 'fields',
-                                  fields,
-                              },
-                          },
-                      ]
-                    : []),
-                ...(!repeatable && fieldName !== null
-                    ? [
-                          {
                               type: 'fields',
-                              name: fieldName,
-                              stateId: id,
                               fields,
                           },
-                      ]
-                    : []),
-                ...(!repeatable && fieldName === null
-                    ? fields.map((it) => ({
-                          ...it,
+                      },
+                  ]
+                : []),
+            ...(!repeatable && fieldName !== null
+                ? [
+                      {
+                          type: 'fields',
+                          name: fieldName,
                           stateId: id,
-                      }))
-                    : []),
-            ],
-            [],
-        ),
-        ...screenFields,
-    ];
+                          fields,
+                      },
+                  ]
+                : []),
+            ...(!repeatable && fieldName === null
+                ? fields.map((it) => ({
+                      ...it,
+                      stateId: id,
+                  }))
+                : []),
+        ],
+        [],
+    );
+    return [...extraFields, ...screenFields];
 }
 
 export default getScreenFieldsWithStates;

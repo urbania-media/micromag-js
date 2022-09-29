@@ -1,11 +1,11 @@
 import { defineMessage } from 'react-intl';
+
 import Grid from './Grid';
 
 export default [
     {
-        id: 'urbania-horoscope',
+        id: 'grid',
         type: 'screen',
-        namespaces: ['urbania'],
         group: {
             label: defineMessage({
                 defaultMessage: 'List',
@@ -18,10 +18,38 @@ export default [
             description: 'Grid screen title',
         }),
         component: Grid,
-        fields: [
+        states: [
+            {
+                id: 'grid',
+                label: defineMessage({ defaultMessage: 'Grid', description: 'Grid state' }),
+                fields: [
+                    {
+                        name: 'columns',
+                        type: 'number',
+                        defaultValue: 3,
+                        isHorizontal: true,
+                        label: defineMessage({
+                            defaultMessage: 'Number of columns',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'spacing',
+                        type: 'number',
+                        defaultValue: 5,
+                        isHorizontal: true,
+                        label: defineMessage({
+                            defaultMessage: 'Space between items',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
+            },
             {
                 id: 'items',
-                label: defineMessage({ defaultMessage: 'Items', description: 'Grid state' }),
+                label: defineMessage({ defaultMessage: 'Items', description: 'Grid item state' }),
+                defaultValue: [],
+                repeatable: true,
                 fieldName: 'items',
                 fields: [
                     {
@@ -33,6 +61,16 @@ export default [
                         }),
                     },
                 ],
+            },
+        ],
+        fields: [
+            {
+                name: 'background',
+                type: 'background',
+                label: defineMessage({
+                    defaultMessage: 'Background',
+                    description: 'Background field label',
+                }),
             },
         ],
     },

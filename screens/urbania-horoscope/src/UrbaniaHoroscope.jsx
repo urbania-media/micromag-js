@@ -22,6 +22,7 @@ import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
+import Keypad from '@micromag/element-keypad';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Author from '@micromag/element-urbania-author';
@@ -430,6 +431,28 @@ const UrbaniaHoroscope = ({
                             style={getSignsContainerStyles(showSignsGridProgress)}
                             {...bindSignsDrag()}
                         >
+                            <Keypad
+                                columns={3}
+                                spacing={5}
+                                items={signs.map((sign) => {
+                                    const { id = null } = sign || {};
+                                    return (
+                                        <animated.div
+                                            key={id}
+                                            className={styles.sign}
+                                            style={getSignStyles(showSignsGridProgress)}
+                                        >
+                                            <SignCard
+                                                key={id}
+                                                sign={sign}
+                                                onClick={(e) => onSelectSign(e, id)}
+                                            />
+                                        </animated.div>
+                                    );
+                                })}
+                            />
+
+                            {/*
                             <div className={styles.signs}>
                                 {signs.map((sign) => {
                                     const { id = null } = sign || {};
@@ -448,6 +471,7 @@ const UrbaniaHoroscope = ({
                                     );
                                 })}
                             </div>
+                            */}
 
                             <ScreenElement
                                 key="author"
