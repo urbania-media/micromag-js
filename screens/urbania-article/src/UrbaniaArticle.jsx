@@ -1,10 +1,7 @@
-/* eslint-disable no-param-reassign */
-
-/* eslint-disable react/jsx-props-no-spreading */
-// import { getSizeWithinBounds } from '@folklore/size';
+/* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -119,8 +116,6 @@ const UrbaniaArticle = ({
 
     const {
         minContentHeight = null,
-        // maxContentHeight = null,
-        // imageHeight = null,
     } = useMemo(() => {
         const defaultImageHeight = width * 0.8;
         const difference = height - contentHeight - contentTop + 1;
@@ -130,9 +125,6 @@ const UrbaniaArticle = ({
         }
 
         return { imageHeight: difference };
-
-        // const finalMaxContentHeight = height - defaultImageHeight;
-        // return { imageHeight: defaultImageHeight, maxContentHeight: finalMaxContentHeight };
     }, [contentTop, contentHeight, width, height]);
 
     const isVideo = type === 'video';
@@ -151,6 +143,10 @@ const UrbaniaArticle = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
+
+    useEffect(() => {
+        console.log({mediaRef});
+    }, []);
 
     const items = [
         <ScreenElement
@@ -357,6 +353,7 @@ const UrbaniaArticle = ({
                                     muted={muted}
                                     withoutVideo={isPreview}
                                     mediaRef={mediaRef}
+                                    autoPlay
                                 />
                             ) : null}
                         </ScreenElement>
