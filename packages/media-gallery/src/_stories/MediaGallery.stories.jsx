@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { MemoryRouter } from 'react-router';
-import sound from '../../../../.storybook/data/test.mp3';
-import video from '../../../../.storybook/data/test.mp4';
+import sound from '../../../../.storybook/data/files/test.mp3';
+import video from '../../../../.storybook/data/files/test.mp4';
 import withUppy from '../../../../.storybook/decorators/withUppy';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import FieldsProvider from '../../../fields/src/FieldsProvider';
-// import { paragraph, image } from '../../../../.storybook/data';
 import MediaGallery from '../components/MediaGallery';
 import list from './list.json';
 
