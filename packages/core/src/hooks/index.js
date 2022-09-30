@@ -1,6 +1,7 @@
 export { default as useActivityDetector } from './useActivityDetector';
 export { default as useAnimationFrame } from './useAnimationFrame';
 export * from './useDates';
+export { default as useDebounce } from './useDebounce';
 export { default as useDocumentEvent } from './useDocumentEvent';
 export { default as useDragProgress } from './useDragProgress';
 export { default as useForm } from './useForm';

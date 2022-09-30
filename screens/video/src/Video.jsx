@@ -21,7 +21,7 @@ import {
     useViewerContext,
     useViewerContainer,
 } from '@micromag/core/contexts';
-import { useTrackScreenMedia, useMediaThumbnail, useActivityDetector } from '@micromag/core/hooks';
+import { useDebounce, useTrackScreenMedia, useMediaThumbnail, useActivityDetector } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -151,19 +151,17 @@ const VideoScreen = ({
     const viewerContainer = useViewerContainer();
     const { detected: activityDetected } = useActivityDetector({
         element: viewerContainer,
-        disabled: !current || !isView,
+        disabled: !isView,
         timeout: 2000,
     });
-    useEffect(() => {
-        if (!current) {
-            return;
-        }
+    const toggleControlsVisibility = useCallback(() => {
         if (activityDetected) {
             showControls();
         } else {
             hideControls();
         }
     }, [activityDetected, showControls, hideControls]);
+    useDebounce(toggleControlsVisibility, activityDetected, 1000);
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);

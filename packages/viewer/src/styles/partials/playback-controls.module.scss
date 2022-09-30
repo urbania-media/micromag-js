@@ -17,9 +17,9 @@
     z-index: 2;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
     transition: opacity 0.5s $ease-in-out-sine;
     pointer-events: auto;
-    padding: 1rem;
 }
 
 .icon {
@@ -75,6 +75,7 @@
     .withSeekBar.withMute.isCollapsed & {
         opacity: 0.25;
     }
+
     .withMute.isCollapsed.isMuted & {
         opacity: 1
     }
@@ -87,7 +88,7 @@
     left: 0;
     width: 100%;
     transform: translateY(100%);
-    transition: transform 0.2s ease-in-out, bottom 0.2s 0.2s ease-in-out, padding 0.2s ease-in-out;
+    transition: transform 0.2s $ease-in-out-sine, bottom 0.2s 0.2s $ease-in-out-sine, padding 0.2s $ease-in-out-sine;
     opacity: 0;
     pointer-events: none;
 
@@ -108,16 +109,16 @@
     .isCollapsed & {
         bottom: 0;
         padding: 0;
-        transition: transform 0.2s ease-in-out, bottom 0.2s ease-in-out,
-            padding 0.4s 0.2s ease-in-out;
+        transition: transform 0.5s $ease-in-out-sine, bottom 0.5s $ease-in-out-sine,
+            padding 0.5s 0.25s $ease-in-out-sine;
     }
 
     .isCollapsed.withSeekBar & {
         bottom: 0;
         padding: 0;
         transform: translateY(0);
-        transition: transform 0.2s ease-in-out, bottom 0.2s ease-in-out,
-            padding 0.4s 0.2s ease-in-out;
+        transition: transform 0.5s $ease-in-out-sine, bottom 0.5s $ease-in-out-sine,
+            padding 0.5s 0.25s $ease-in-out-sine;
     }
 }
 
@@ -130,8 +131,8 @@
             display: block;
             position: absolute;
             z-index: -1;
-            bottom: -10px;
             right: -10px;
+            bottom: -10px;
             width: 300%;
             height: 300%;
             transition: opacity 0.2s ease-out;
@@ -221,9 +222,9 @@
         left: 0;
         width: 100%;
         height: 150px;
-        pointer-events: none;
         transition: transform 0.2s ease-in-out;
         background-image: linear-gradient(180deg, rgba($black, 0) 40%, rgba($black, 0.4) 100%);
+        pointer-events: none;
     }
 
     &.isCollapsed {

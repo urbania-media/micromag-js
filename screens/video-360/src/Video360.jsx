@@ -20,6 +20,7 @@ import {
 } from '@micromag/core/contexts';
 import {
     useAnimationFrame,
+    useDebounce,
     useTrackScreenEvent,
     useTrackScreenMedia,
     useActivityDetector,
@@ -160,19 +161,17 @@ const Video360Screen = ({
     const viewerContainer = useViewerContainer();
     const { detected: activityDetected } = useActivityDetector({
         element: viewerContainer,
-        disabled: !current || !isView,
+        disabled: !isView,
         timeout: 2000,
     });
-    useEffect(() => {
-        if (!current) {
-            return;
-        }
+    const toggleControlsVisibility = useCallback(() => {
         if (activityDetected) {
             showControls();
         } else {
             hideControls();
         }
     }, [activityDetected, showControls, hideControls]);
+    useDebounce(toggleControlsVisibility, activityDetected, 1000);
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
