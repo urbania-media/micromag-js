@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
-    Transitions,
     ScreenElement,
     Empty,
     PlaceholderImage,
@@ -137,8 +136,6 @@ const UrbaniaArticle = ({
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
-    const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
@@ -150,6 +147,7 @@ const UrbaniaArticle = ({
 
     const { video: backgroundVideo = null } = background || {};
     const hasVideoBackground = backgroundVideo !== null;
+
     console.log({ hasVideoBackground, background, backgroundVideo });
 
     const items = [
