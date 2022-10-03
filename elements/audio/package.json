@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-audio",
-    "version": "0.3.236",
+    "version": "0.3.237",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,9 +52,9 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.236",
-        "@micromag/element-closed-captions": "^0.3.236",
-        "@micromag/element-media-controls": "^0.3.236",
+        "@micromag/core": "^0.3.237",
+        "@micromag/element-closed-captions": "^0.3.237",
+        "@micromag/element-media-controls": "^0.3.237",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "@use-gesture/react": "^10.2.4",
@@ -68,5 +68,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "1849b8fc36ca5b6c6a13045db441495bba22184f"
+    "gitHead": "8ef5fca04d5826f68ec3ffa8cd0065b4e776ed10"
 }
