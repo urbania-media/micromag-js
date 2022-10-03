@@ -93,7 +93,6 @@ const UrbaniaArticle = ({
     callToAction,
     current,
     active,
-    transitions,
     spacing,
     className,
 }) => {
@@ -147,8 +146,7 @@ const UrbaniaArticle = ({
 
     const { video: backgroundVideo = null } = background || {};
     const hasVideoBackground = backgroundVideo !== null;
-
-    console.log({ hasVideoBackground, background, backgroundVideo });
+    // console.log({ hasVideoBackground, background, backgroundVideo });
 
     const items = [
         <ScreenElement
@@ -290,10 +288,10 @@ const UrbaniaArticle = ({
                 mediaRef={mediaRef}
                 withoutVideo={isPreview}
             />
-            <Container className={styles.inner} width={width} height={height}>
+            <Container className={styles.content} width={width} height={height}>
                 <div
                     className={classNames([
-                        styles.content,
+                        styles.contentCard,
                         {
                             [styles[`${site}`]]: site !== null,
                         },
@@ -339,7 +337,7 @@ const UrbaniaArticle = ({
                                 playing={backgroundPlaying && playing}
                             />
                         ) : null}
-                        {hasImage && isVideo ? (
+                        {hasImage && isVideo && !hasVideoBackground ? (
                             <Visual
                                 className={styles.video}
                                 media={image}
