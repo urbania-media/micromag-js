@@ -1,6 +1,6 @@
 {
     "name": "@micromag/cli",
-    "version": "0.3.233",
+    "version": "0.3.234",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,7 +50,7 @@
         "@micromag/screens": "^0.3.233",
         "@micromag/transforms": "^0.3.233",
         "@micromag/viewer": "^0.3.233",
-        "@micromag/viewer-build": "^0.3.233",
+        "@micromag/viewer-build": "^0.3.234",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "commander": "^8.3.0",
