@@ -7,7 +7,6 @@ import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import stylelint from 'stylelint';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
