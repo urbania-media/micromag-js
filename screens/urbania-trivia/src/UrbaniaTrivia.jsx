@@ -7,6 +7,7 @@ import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import stylelint from 'stylelint';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
@@ -462,6 +463,18 @@ const UrbaniaTrivia = ({
             ])}
             data-screen-ready={isStatic || isCapture || ready}
         >
+            <Container width={width} height={height} className={styles.content}>
+                <div
+                    className={styles.inner}
+                    style={
+                        verticalVideo
+                            ? { justifyContent: 'flex-start', marginTop: spacing * 2 }
+                            : null
+                    }
+                >
+                    {items}
+                </div>
+            </Container>
             {!isPlaceholder ? (
                 <Background
                     background={finalBackground}
@@ -490,18 +503,6 @@ const UrbaniaTrivia = ({
                     withoutVideo={isPreview}
                 />
             )}
-            <Container width={width} height={height}>
-                <div
-                    className={styles.content}
-                    style={
-                        verticalVideo
-                            ? { justifyContent: 'flex-start', marginTop: spacing * 2 }
-                            : null
-                    }
-                >
-                    {items}
-                </div>
-            </Container>
         </div>
     );
 };

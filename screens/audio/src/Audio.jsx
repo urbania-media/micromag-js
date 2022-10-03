@@ -255,7 +255,8 @@ const AudioScreen = ({
                 key="bottom"
                 className={styles.bottom}
                 style={{
-                    transform: current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    transform:
+                        current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
                     paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
                     paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
                     paddingBottom: spacing / 2,
@@ -294,18 +295,7 @@ const AudioScreen = ({
             ])}
             data-screen-ready={ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    shouldLoad={mediaShouldLoad}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Layout
                     fullscreen
                     style={
@@ -320,6 +310,18 @@ const AudioScreen = ({
                     {elements}
                 </Layout>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    shouldLoad={mediaShouldLoad}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

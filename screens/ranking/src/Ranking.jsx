@@ -176,7 +176,7 @@ const RankingScreen = ({
                         </Transitions>
                     )}
                 </div>
-                <div className={styles.content}>
+                <div className={styles.label}>
                     {titleElement}
                     {descriptionElement}
                 </div>
@@ -216,20 +216,7 @@ const RankingScreen = ({
             ])}
             data-screen-ready
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Scroll
                     className={styles.scroll}
                     verticalAlign="middle"
@@ -283,6 +270,20 @@ const RankingScreen = ({
                     </div>
                 ) : null}
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

@@ -7,6 +7,15 @@
     @extend %screen;
     align-items: flex-start;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
     .emptyTitle,
     .emptyText {
         @extend %empty;

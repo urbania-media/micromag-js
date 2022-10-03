@@ -7,10 +7,19 @@
 .container {
     @extend %screen;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
     .emptyQuote,
     .emptyAuthor {
         @extend %empty;
-        width: 100%;        
+        width: 100%;
         margin: 10px auto;
     }
 
@@ -24,7 +33,7 @@
 
     .quote {
         font-size: 2em;
-        
+
         &.withMargin {
             margin-bottom: 1em;
         }

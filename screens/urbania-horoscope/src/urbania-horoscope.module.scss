@@ -7,6 +7,15 @@
     @extend %screen;
     touch-action: none;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
     &.isPlaceholder {
         .layout {
             padding: 10px;

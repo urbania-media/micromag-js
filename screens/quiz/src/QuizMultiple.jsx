@@ -360,25 +360,7 @@ const QuizMultipleScreen = ({
             ])}
             data-screen-ready
         >
-            {!isPlaceholder ? (
-                <TransitionGroup>
-                    <CSSTransition key={backgroundKey} classNames={styles} timeout={1000}>
-                        <Background
-                            background={finalBackground}
-                            width={width}
-                            height={height}
-                            resolution={resolution}
-                            playing={backgroundPlaying}
-                            muted={muted}
-                            shouldLoad={backgroundShouldLoad}
-                            mediaRef={mediaRef}
-                            className={styles.background}
-                            withoutVideo={isPreview}
-                        />
-                    </CSSTransition>
-                </TransitionGroup>
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Scroll
                     verticalAlign={verticalAlign}
                     disabled={scrollingDisabled}
@@ -524,6 +506,24 @@ const QuizMultipleScreen = ({
                     </div>
                 ) : null}
             </Container>
+            {!isPlaceholder ? (
+                <TransitionGroup>
+                    <CSSTransition key={backgroundKey} classNames={styles} timeout={1000}>
+                        <Background
+                            background={finalBackground}
+                            width={width}
+                            height={height}
+                            resolution={resolution}
+                            playing={backgroundPlaying}
+                            muted={muted}
+                            shouldLoad={backgroundShouldLoad}
+                            mediaRef={mediaRef}
+                            className={styles.background}
+                            withoutVideo={isPreview}
+                        />
+                    </CSSTransition>
+                </TransitionGroup>
+            ) : null}
         </div>
     );
 };

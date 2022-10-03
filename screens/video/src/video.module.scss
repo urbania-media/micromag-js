@@ -6,6 +6,15 @@
 .container {
     @extend %screen;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
     .emptyContainer {
         @extend %fullscreen;
 
@@ -22,7 +31,7 @@
         margin: 0;
     }
 
-    .content {
+    .inner {
         @extend %fullscreen;
 
         z-index: 1;

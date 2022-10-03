@@ -313,19 +313,7 @@ const UrbaniaHoroscope = ({
             {...(showSignsGrid ? stopDragEventsPropagation : null)}
         >
             {!isView ? <div {...mouseBlocker} /> : null}
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Layout
                     className={styles.layout}
                     style={
@@ -508,6 +496,19 @@ const UrbaniaHoroscope = ({
                     ) : null}
                 </Layout>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

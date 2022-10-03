@@ -361,21 +361,7 @@ const UrbaniaRecommendation = ({
             ])}
             data-screen-ready
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={finalBackground}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    backgroundClassName={finalAnimateBackground ? styles.background : null}
-                    mediaRef={mediaRef}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Scroll
                     disabled={animationStarted || scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
@@ -407,6 +393,21 @@ const UrbaniaRecommendation = ({
                     </Layout>
                 </Scroll>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={finalBackground}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    backgroundClassName={finalAnimateBackground ? styles.background : null}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

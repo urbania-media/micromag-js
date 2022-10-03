@@ -581,18 +581,7 @@ const Video360Screen = ({
             ])}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    shouldLoad={mediaShouldLoad}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 {withVideoSphere ? (
                     <div
                         ref={videoContainerRef}
@@ -625,8 +614,20 @@ const Video360Screen = ({
                         />
                     </div>
                 ) : null}
-                <div className={styles.content}>{items}</div>
+                <div className={styles.inner}>{items}</div>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    shouldLoad={mediaShouldLoad}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

@@ -284,19 +284,8 @@ const VideoScreen = ({
             ])}
             data-screen-ready={isStatic || isCapture || ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    shouldLoad={mediaShouldLoad}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
-                <div className={styles.content}>
+            <Container width={width} height={height} className={styles.content}>
+                <div className={styles.inner}>
                     <ScreenElement
                         key="video"
                         placeholder={
@@ -400,6 +389,17 @@ const VideoScreen = ({
                     ) : null}
                 </div>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    shouldLoad={mediaShouldLoad}
+                    withoutVideo={isPreview}
+                />
+            ) : null}
         </div>
     );
 };

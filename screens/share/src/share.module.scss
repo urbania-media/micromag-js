@@ -5,6 +5,15 @@
 
 .container {
     @extend %screen;
+
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
 }
 
 .layout {
