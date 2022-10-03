@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.3.227",
+    "version": "0.3.229",
     "description": "",
     "keywords": [
         "javascript"
@@ -62,7 +62,7 @@
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.227",
         "@micromag/element-audio": "^0.3.227",
-        "@micromag/element-background": "^0.3.227",
+        "@micromag/element-background": "^0.3.229",
         "@micromag/element-button": "^0.3.227",
         "@micromag/element-call-to-action": "^0.3.227",
         "@micromag/element-checkbox": "^0.3.227",
