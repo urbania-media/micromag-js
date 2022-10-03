@@ -2,8 +2,7 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    @extend %fullscreen;
-    z-index: 0;
+    position: relative;
     overflow: hidden;
 }
 
