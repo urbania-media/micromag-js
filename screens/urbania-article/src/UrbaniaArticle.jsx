@@ -104,7 +104,7 @@ const UrbaniaArticle = ({
     const { color: backgroundColor = null } = background || {};
     const { open: openWebView } = useViewerWebView();
     const { bottomSidesWidth: viewerBottomSidesWidth } = useViewerContext();
-    const { muted, playing } = usePlaybackContext();
+    const { muted, playing, setPlaying } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
     const {
@@ -145,8 +145,10 @@ const UrbaniaArticle = ({
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     useEffect(() => {
-        console.log({mediaRef});
-    }, []);
+        if (current && !playing) {
+            setPlaying(true);
+        }
+    }, [current, playing, setPlaying]);
 
     const items = [
         <ScreenElement

@@ -3,7 +3,7 @@
 
 .container {
     @extend %fullscreen;
-    z-index: 0;
+    // z-index: 0;
     overflow: hidden;
 
     // background-color: rgba(#000, 0.25);
@@ -17,7 +17,7 @@
 .layers,
 .layer {
     @extend %fullscreen;
-    z-index: 0;
+    // z-index: 0;
 }
 
 .background {
@@ -25,6 +25,7 @@
         right: 0;
         left: auto;
     }
+
     .bottom & {
         top: auto;
         bottom: 0;

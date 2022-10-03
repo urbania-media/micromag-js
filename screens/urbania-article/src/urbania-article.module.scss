@@ -87,7 +87,7 @@ $color-universities-text: #f33;
         .title {
             font-family: 'GarageGothic-Bold';
             line-height: 0.88;
-            text-transform: uppercase
+            text-transform: uppercase;
         }
 
         .description {
@@ -121,7 +121,8 @@ $color-universities-text: #f33;
             letter-spacing: 0.04em;
             line-height: 0.7;
 
-            p, span {
+            p,
+            span {
                 line-height: 0.7;
             }
         }
@@ -156,7 +157,7 @@ $color-universities-text: #f33;
                 color: $color-urbania-text;
             }
 
-            .sponsors  {
+            .sponsors {
                 background-color: $color-urbania-text;
                 color: $color-urbania-background;
             }
@@ -248,18 +249,18 @@ $color-universities-text: #f33;
     }
 
     &.isVideo {
-        .video {
-            @extend %fullscreen;
-        }
-
         .visual {
-            height: auto;
+            @extend %fullscreen;
+
+            z-index: 2;
         }
 
         .content {
+            position: relative;
+            z-index: 3;
             flex-grow: 1;
             justify-content: flex-end;
-            margin-bottom: 50px;
+            margin-bottom: 70px;
             background-color: transparent;
 
             .title {
@@ -293,7 +294,6 @@ $color-universities-text: #f33;
 .visual {
     height: 100%;
 }
-
 
 .image {
     // don't manage my size!
