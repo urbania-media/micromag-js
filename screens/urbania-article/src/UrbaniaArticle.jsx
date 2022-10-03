@@ -150,6 +150,9 @@ const UrbaniaArticle = ({
         }
     }, [current, playing, setPlaying]);
 
+    const { video: backgroundVideo = null } = background || {};
+    const hasVideoBackground = backgroundVideo !== null;
+
     const items = [
         <ScreenElement
             key="overTitle"
@@ -272,6 +275,7 @@ const UrbaniaArticle = ({
                     [className]: className !== null,
                     [styles.isCurrent]: current,
                     [styles.isVideo]: isVideo,
+                    [styles.hasVideoBackground]: hasVideoBackground,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
