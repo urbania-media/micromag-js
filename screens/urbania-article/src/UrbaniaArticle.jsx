@@ -114,9 +114,7 @@ const UrbaniaArticle = ({
     } = useDimensionObserver();
     const { top: contentTop } = contentRect || {};
 
-    const {
-        minContentHeight = null,
-    } = useMemo(() => {
+    const { minContentHeight = null } = useMemo(() => {
         const defaultImageHeight = width * 0.8;
         const difference = height - contentHeight - contentTop + 1;
 
@@ -152,6 +150,7 @@ const UrbaniaArticle = ({
 
     const { video: backgroundVideo = null } = background || {};
     const hasVideoBackground = backgroundVideo !== null;
+    console.log({ hasVideoBackground, background, backgroundVideo });
 
     const items = [
         <ScreenElement
@@ -282,6 +281,7 @@ const UrbaniaArticle = ({
             data-screen-ready={isStatic || isCapture}
         >
             <Background
+                className={styles.background}
                 background={background}
                 width={width}
                 height={height}
@@ -312,85 +312,79 @@ const UrbaniaArticle = ({
                     {items}
                 </div>
                 <div className={styles.visual}>
-                    <Transitions
-                        playing={transitionPlaying}
-                        transitions={transitions}
-                        disabled={transitionDisabled || true}
-                    >
-                        <ScreenElement
-                            key="image"
-                            placeholder={<PlaceholderImage className={styles.placeholder} />}
-                            empty={
-                                <div className={styles.emptyContainer}>
-                                    <Empty className={styles.empty}>
-                                        <FormattedMessage
-                                            defaultMessage="Image"
-                                            description="Image placeholder"
-                                        />
-                                    </Empty>
-                                </div>
-                            }
-                            isEmpty={!hasImage}
-                        >
-                            {hasImage && !isVideo ? (
-                                <Visual
-                                    className={styles.image}
-                                    imageClassName={styles.img}
-                                    media={image}
-                                    width={width}
-                                    height={height}
-                                    resolution={resolution}
-                                    objectFit={{ fit: 'cover' }}
-                                    shouldLoad={mediaShouldLoad}
-                                    withoutVideo={isPreview}
-                                    playing={backgroundPlaying && playing}
-                                />
-                            ) : null}
-                            {hasImage && isVideo ? (
-                                <Visual
-                                    className={styles.video}
-                                    media={image}
-                                    width={width}
-                                    height={height}
-                                    resolution={resolution}
-                                    objectFit={{ fit: 'cover' }}
-                                    shouldLoad={mediaShouldLoad}
-                                    playing={backgroundPlaying && playing}
-                                    muted={muted}
-                                    withoutVideo={isPreview}
-                                    mediaRef={mediaRef}
-                                    autoPlay
-                                />
-                            ) : null}
-                        </ScreenElement>
-                        {!isPlaceholder && hasCallToAction ? (
-                            <div
-                                style={{
-                                    paddingTop: spacing,
-                                    paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
-                                    paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
-                                }}
-                                key="call-to-action"
-                            >
-                                <CallToAction
-                                    {...callToAction}
-                                    className={styles.callToAction}
-                                    buttonClassName={styles.button}
-                                    labelClassName={styles.label}
-                                    arrowClassName={styles.arrow}
-                                    animationDisabled={isPreview}
-                                    focusable={current && isView}
-                                    arrow={<ArrowIcon />}
-                                    icon={
-                                        type === 'video' ? (
-                                            <WatchIcon className={styles.icon} />
-                                        ) : null
-                                    }
-                                    openWebView={openWebView}
-                                />
+                    <ScreenElement
+                        key="image"
+                        placeholder={<PlaceholderImage className={styles.placeholder} />}
+                        empty={
+                            <div className={styles.emptyContainer}>
+                                <Empty className={styles.empty}>
+                                    <FormattedMessage
+                                        defaultMessage="Image"
+                                        description="Image placeholder"
+                                    />
+                                </Empty>
                             </div>
+                        }
+                        isEmpty={!hasImage}
+                    >
+                        {hasImage && !isVideo ? (
+                            <Visual
+                                className={styles.image}
+                                imageClassName={styles.img}
+                                media={image}
+                                width={width}
+                                height={height}
+                                resolution={resolution}
+                                objectFit={{ fit: 'cover' }}
+                                shouldLoad={mediaShouldLoad}
+                                withoutVideo={isPreview}
+                                playing={backgroundPlaying && playing}
+                            />
                         ) : null}
-                    </Transitions>
+                        {hasImage && isVideo ? (
+                            <Visual
+                                className={styles.video}
+                                media={image}
+                                width={width}
+                                height={height}
+                                resolution={resolution}
+                                objectFit={{ fit: 'cover' }}
+                                shouldLoad={mediaShouldLoad}
+                                playing={backgroundPlaying && playing}
+                                muted={muted}
+                                withoutVideo={isPreview}
+                                mediaRef={mediaRef}
+                                autoPlay
+                            />
+                        ) : null}
+                    </ScreenElement>
+                </div>
+                <div className={styles.callToActionContainer}>
+                    {!isPlaceholder && hasCallToAction ? (
+                        <div
+                            style={{
+                                paddingTop: spacing,
+                                paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
+                                paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
+                            }}
+                            key="call-to-action"
+                        >
+                            <CallToAction
+                                {...callToAction}
+                                className={styles.callToAction}
+                                buttonClassName={styles.button}
+                                labelClassName={styles.label}
+                                arrowClassName={styles.arrow}
+                                animationDisabled={isPreview}
+                                focusable={current && isView}
+                                arrow={<ArrowIcon />}
+                                icon={
+                                    type === 'video' ? <WatchIcon className={styles.icon} /> : null
+                                }
+                                openWebView={openWebView}
+                            />
+                        </div>
+                    ) : null}
                 </div>
             </Container>
         </div>

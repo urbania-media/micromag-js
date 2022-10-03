@@ -87,23 +87,8 @@ const multipleArticles = {
                 color: { alpha: 1, color: '#ffffff' },
             },
         },
-        {
-            id: '3',
-            type: 'urbania-article',
-            article: articleVideo,
-            background: {
-                color: { alpha: 1, color: '#123456' },
-            },
-        },
+        articleVideo,
         articleVideo2,
-        // {
-        //     id: '4',
-        //     type: 'urbania-article',
-        //     article: articleVideo2,
-        //     background: {
-        //         color: { alpha: 1, color: '#654321' },
-        //     },
-        // },
     ],
 };
 
