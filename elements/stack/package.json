@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-stack",
-    "version": "0.3.235",
+    "version": "0.3.236",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.235",
+        "@micromag/core": "^0.3.236",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
@@ -60,5 +60,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "09b84178b69abaa01da5c8e22541d4ec10b5c6f1"
+    "gitHead": "1849b8fc36ca5b6c6a13045db441495bba22184f"
 }

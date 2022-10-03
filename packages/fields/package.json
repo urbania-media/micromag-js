@@ -1,6 +1,6 @@
 {
     "name": "@micromag/fields",
-    "version": "0.3.235",
+    "version": "0.3.236",
     "description": "",
     "keywords": [
         "javascript"
@@ -68,11 +68,11 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/ckeditor": "^0.3.235",
-        "@micromag/core": "^0.3.235",
-        "@micromag/element-grid": "^0.3.235",
-        "@micromag/element-map": "^0.3.235",
-        "@micromag/media-gallery": "^0.3.235",
+        "@micromag/ckeditor": "^0.3.236",
+        "@micromag/core": "^0.3.236",
+        "@micromag/element-grid": "^0.3.236",
+        "@micromag/element-map": "^0.3.236",
+        "@micromag/media-gallery": "^0.3.236",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
         "fuse.js": "^6.4.3",
@@ -90,5 +90,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "09b84178b69abaa01da5c8e22541d4ec10b5c6f1"
+    "gitHead": "1849b8fc36ca5b6c6a13045db441495bba22184f"
 }

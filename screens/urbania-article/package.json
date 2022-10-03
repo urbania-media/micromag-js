@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-article",
-    "version": "0.3.235",
+    "version": "0.3.236",
     "description": "",
     "keywords": [
         "javascript"
@@ -51,19 +51,19 @@
         "@babel/runtime": "^7.13.10",
         "@folklore/fetch": "^0.1.15",
         "@folklore/size": "^0.1.20",
-        "@micromag/core": "^0.3.235",
-        "@micromag/element-background": "^0.3.235",
-        "@micromag/element-call-to-action": "^0.3.235",
-        "@micromag/element-closed-captions": "^0.3.235",
-        "@micromag/element-container": "^0.3.235",
-        "@micromag/element-heading": "^0.3.235",
-        "@micromag/element-image": "^0.3.235",
-        "@micromag/element-media-controls": "^0.3.235",
-        "@micromag/element-text": "^0.3.235",
-        "@micromag/element-urbania-author": "^0.3.235",
-        "@micromag/element-video": "^0.3.235",
-        "@micromag/element-visual": "^0.3.235",
-        "@micromag/transforms": "^0.3.235",
+        "@micromag/core": "^0.3.236",
+        "@micromag/element-background": "^0.3.236",
+        "@micromag/element-call-to-action": "^0.3.236",
+        "@micromag/element-closed-captions": "^0.3.236",
+        "@micromag/element-container": "^0.3.236",
+        "@micromag/element-heading": "^0.3.236",
+        "@micromag/element-image": "^0.3.236",
+        "@micromag/element-media-controls": "^0.3.236",
+        "@micromag/element-text": "^0.3.236",
+        "@micromag/element-urbania-author": "^0.3.236",
+        "@micromag/element-video": "^0.3.236",
+        "@micromag/element-visual": "^0.3.236",
+        "@micromag/transforms": "^0.3.236",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -73,5 +73,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "720c626a05a0fa57d86c4dbaf0ea695333e097a3"
+    "gitHead": "1849b8fc36ca5b6c6a13045db441495bba22184f"
 }
