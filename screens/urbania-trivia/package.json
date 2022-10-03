@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-trivia",
-    "version": "0.3.230",
+    "version": "0.3.232",
     "description": "",
     "keywords": [
         "javascript"
@@ -51,7 +51,7 @@
         "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.20",
         "@micromag/core": "^0.3.230",
-        "@micromag/element-background": "^0.3.230",
+        "@micromag/element-background": "^0.3.232",
         "@micromag/element-call-to-action": "^0.3.230",
         "@micromag/element-closed-captions": "^0.3.230",
         "@micromag/element-container": "^0.3.230",
