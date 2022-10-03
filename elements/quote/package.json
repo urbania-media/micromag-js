@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-quote",
-    "version": "0.3.226",
+    "version": "0.3.227",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.226",
+        "@micromag/core": "^0.3.227",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
@@ -58,5 +58,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "ae1a2d883a94e5d15c2d011bf6e7e23574b6b8a1"
+    "gitHead": "09b84178b69abaa01da5c8e22541d4ec10b5c6f1"
 }
