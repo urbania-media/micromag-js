@@ -116,6 +116,9 @@
     "3YruaX": {
         "defaultMessage": "May 21 - June 20"
     },
+    "3bq6H9": {
+        "defaultMessage": "Grid"
+    },
     "3ext9Q": {
         "defaultMessage": "Video"
     },
@@ -175,6 +178,9 @@
     },
     "507VAi": {
         "defaultMessage": "Description"
+    },
+    "52EqEX": {
+        "defaultMessage": "Items"
     },
     "59f2bg": {
         "defaultMessage": "Images"
@@ -758,6 +764,9 @@
     "bhEaUt": {
         "defaultMessage": "Audio"
     },
+    "blWo1l": {
+        "defaultMessage": "Space between items"
+    },
     "bv3rRe": {
         "defaultMessage": "Button"
     },
@@ -959,9 +968,6 @@
     "liyV7Y": {
         "defaultMessage": "Size"
     },
-    "mOJicq": {
-        "defaultMessage": "Items"
-    },
     "mOSkbf": {
         "defaultMessage": "Usage"
     },
@@ -1141,6 +1147,9 @@
     },
     "tYGev7": {
         "defaultMessage": "Font size"
+    },
+    "ta6Tqq": {
+        "defaultMessage": "Number of columns"
     },
     "tmfbUn": {
         "defaultMessage": "Unused"

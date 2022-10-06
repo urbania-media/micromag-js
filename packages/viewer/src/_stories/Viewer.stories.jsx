@@ -2,12 +2,10 @@
 import React, { useCallback, useState } from 'react';
 
 import {
-    audioMedia,
-    // callToAction,
+    audioMedia, // callToAction,
     // callToActionWithStyles,
     imageMedia,
-    video360Media,
-    // videoMedia,
+    video360Media, // videoMedia,
     // bigVideoMediaWithSound,
     // gifVideoMedia,
     webfont2Files,
@@ -16,20 +14,19 @@ import {
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
+import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
+import multipleVideosStory from '../../../../.storybook/data/stories/multipleVideosStory';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
+import Viewer from '../components/ViewerContainer';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
 import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
-import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
-import multipleVideosStory from '../../../../.storybook/data/stories/multipleVideosStory';
-
-import Viewer from '../components/ViewerContainer';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -139,11 +136,7 @@ export const MultipleAudios = () => (
     />
 );
 export const MultipleVideos = () => (
-    <Viewer
-        screenId="1"
-        story={multipleVideosStory}
-        withNavigationHint
-    />
+    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint />
 );
 export const MultipleVideos360 = () => (
     <Viewer
@@ -175,10 +168,38 @@ export const MultipleVideos360 = () => (
         }}
     />
 );
-export const MultipleArticles = () => (
+export const MultipleArticles = () => <Viewer screenId="42" story={multipleArticles} />;
+
+export const MultipleGrids = () => (
     <Viewer
-        screenId="42"
-        story={multipleArticles}
+        screenId="420"
+        story={{
+            components: [
+                {
+                    id: '12345',
+                    type: 'grid',
+                    items: [
+                        'David Mongeau-Petitpas',
+                        'Marc-Antoine Jacques',
+                        'Nicolas Roy Bourdages',
+                        'Alexandre Lamarche',
+                        'Corentin Guérin',
+                        'Joseph Blais',
+                        'Fred Mercy',
+                    ].map((name) => ({
+                        description: {
+                            body: `<p>${name}</p>`,
+                            textStyle: {
+                                fontSize: 14,
+                            },
+                        },
+                    })),
+                    columns: 3,
+                    spacing: 5,
+                    // background: backgroundVideo(),
+                },
+            ],
+        }}
     />
 );
 

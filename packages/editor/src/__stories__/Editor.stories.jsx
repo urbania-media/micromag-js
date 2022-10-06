@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import { callToAction, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
@@ -223,11 +225,44 @@ export const VideoCustom = () => (
 export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
 export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;
 export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
-export const MultipleArticles = () => (
+export const MultipleArticles = () => <EditorContainer defaultValue={multipleArticles} />;
+
+export const MultipleGrids = () => (
     <EditorContainer
-        defaultValue={multipleArticles}
+        defaultValue={{
+            title: 'With theme (all screens)',
+            theme: defaultTheme,
+            components: [
+                {
+                    id: '12345',
+                    type: 'grid',
+                    items: [
+                        'David Mongeau-Petitpas',
+                        'Marc-Antoine Jacques',
+                        'Nicolas Roy Bourdages',
+                        'Alexandre Lamarche',
+                        'Corentin Guérin',
+                        'Joseph Blais',
+                        'Fred Mercy',
+                    ].map((name) => ({
+                        description: {
+                            body: `<p>${name}</p>`,
+                            textStyle: {
+                                fontSize: 14,
+                            },
+                        },
+                    })),
+                    verticalAlign: 'middle',
+                    columnAlign: 'middle',
+                    rowAlign: 'top',
+                    columns: 3,
+                    spacing: 5,
+                },
+            ],
+        }}
     />
 );
+
 export const WithTheme = () => (
     <EditorContainer
         defaultValue={{

@@ -245,6 +245,12 @@ msgctxt "3YruaX"
 msgid "May 21 - June 20"
 msgstr "May 21 - June 20"
 
+# Grid state
+#: 3bq6H9
+msgctxt "3bq6H9"
+msgid "Grid"
+msgstr "Grid"
+
 # Video placeholder
 #: 3ext9Q
 msgctxt "3ext9Q"
@@ -364,6 +370,12 @@ msgstr "Thumbnail"
 msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
+
+# Grid item state
+#: 52EqEX
+msgctxt "52EqEX"
+msgid "Items"
+msgstr "Items"
 
 # visualsWithCaptions field label
 #: 59f2bg
@@ -1528,6 +1540,12 @@ msgctxt "bhEaUt"
 msgid "Audio"
 msgstr "Audio"
 
+# Field label
+#: blWo1l
+msgctxt "blWo1l"
+msgid "Space between items"
+msgstr "Space between items"
+
 # Button placeholder
 #: bv3rRe
 msgctxt "bv3rRe"
@@ -1930,12 +1948,6 @@ msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Size"
 
-# Grid state
-#: mOJicq
-msgctxt "mOJicq"
-msgid "Items"
-msgstr "Items"
-
 # Media label
 #: mOSkbf
 msgctxt "mOSkbf"
@@ -2293,6 +2305,12 @@ msgstr "Dec 22 - Jan 20"
 msgctxt "tYGev7"
 msgid "Font size"
 msgstr "Font size"
+
+# Field label
+#: ta6Tqq
+msgctxt "ta6Tqq"
+msgid "Number of columns"
+msgstr "Number of columns"
 
 # Media label
 #: tmfbUn

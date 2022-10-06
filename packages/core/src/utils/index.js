@@ -19,6 +19,7 @@ export { default as getOptimalImageUrl } from './getOptimalImageUrl';
 export { default as getSecondsFromTime } from './getSecondsFromTime';
 export { default as getScreenExtraField } from './getScreenExtraField';
 export { default as getShadowCoords } from './getShadowCoords';
+export { default as getStyleFromAlignment } from './getStyleFromAlignment';
 export { default as getStyleFromBox } from './getStyleFromBox';
 export { default as getStyleFromColor } from './getStyleFromColor';
 export { default as getStyleFromContainer } from './getStyleFromContainer';

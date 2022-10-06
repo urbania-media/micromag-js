@@ -36,6 +36,7 @@ export const telephone = () => (
         columns={phoneKeyColumns}
         width={phoneKeypadWidth}
         spacing={phoneKeySpacing}
+        alignment={{ horizontal: 'middle' }}
     />
 );
 

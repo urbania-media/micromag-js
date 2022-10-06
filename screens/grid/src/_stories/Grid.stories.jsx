@@ -7,39 +7,50 @@ import Grid from '../Grid';
 // images: images({ count: 20 }),
 
 const createText = body => ({
-    body,
-    textStyle: {}
+    body: `<p>${body}</p>`,
+    textStyle: {
+        fontSize: 20,
+        fontStyle: {
+            bold: true,
+        },
+    }
 });
 
 const props = {
+    background: {
+        color: {
+            alpha: 1,
+            color: '#696942',
+        }
+    },
     items: [
         {
-            id: 'once',
-            description: createText('once'),
+            id: '1',
+            description: createText('1'),
         },
         {
-            id: 'upon',
-            description: createText('upon'),
+            id: '2',
+            description: createText('2'),
         },
         {
-            id: 'a',
-            description: createText('a'),
+            id: '3',
+            description: createText('3'),
         },
         {
-            id: 'time',
-            description: createText('time'),
+            id: '4',
+            description: createText('4'),
         },
         {
-            id: 'in a',
-            description: createText('in a'),
+            id: '5',
+            description: createText('5'),
         },
         {
-            id: 'galaxy',
-            description: createText('galaxy'),
+            id: '6',
+            description: createText('6'),
         },
         {
-            id: 'far away',
-            description: createText('far away'),
+            id: '7',
+            description: createText('7'),
         },
     ],
 };

@@ -417,10 +417,16 @@ export const allScreens = [
     {
         id: uuid(),
         type: 'grid',
-        items: signs.map(({id = ''}) => ({
+        items: signs.map(({ id = '' }) => ({
             description: {
-                body: id
-            }
+                body: `<p>${id}</p>`,
+                textStyle: {
+                    fontSize: 20,
+                    fontStyle: {
+                        bold: true,
+                    },
+                },
+            },
         })),
         columns: 3,
         spacing: 5,
