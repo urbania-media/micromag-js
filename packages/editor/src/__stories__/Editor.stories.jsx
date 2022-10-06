@@ -245,16 +245,12 @@ export const MultipleGrids = () => (
                         'Joseph Blais',
                         'Fred Mercy',
                     ].map((name) => ({
-                        description: {
-                            body: `<p>${name}</p>`,
-                            textStyle: {
-                                fontSize: 14,
-                            },
-                        },
+                        label: name,
+                        visual: null // @todo
                     })),
                     verticalAlign: 'middle',
                     columnAlign: 'middle',
-                    rowAlign: 'top',
+                    // rowAlign: 'top',
                     columns: 3,
                     spacing: 5,
                 },

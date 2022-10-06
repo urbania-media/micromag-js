@@ -31,13 +31,15 @@ const items = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0].map((number) => (
 ));
 
 export const telephone = () => (
-    <Keypad
-        items={items}
-        columns={phoneKeyColumns}
-        width={phoneKeypadWidth}
-        spacing={phoneKeySpacing}
-        alignment={{ horizontal: 'middle' }}
-    />
+    <div style={{ width: phoneKeypadWidth }}>
+        <Keypad
+            columns={phoneKeyColumns}
+            spacing={phoneKeySpacing}
+            alignment={{ horizontal: 'middle' }}
+        >
+            {items}
+        </Keypad>
+    </div>
 );
 
 const emojisColumns = 2;
@@ -64,13 +66,13 @@ const emojisItems = ['🔴', '🟠', '🟡', '🟢', '🔵', '🟣'].map((number
 ));
 
 export const emojis = () => (
-    <Keypad
-        items={emojisItems}
-        columns={emojisColumns}
-        width={emojisKeypadWidth}
-        spacing={emojisSpacing}
-    />
+    <div style={{ width: emojisKeypadWidth }}>
+        <Keypad
+            columns={emojisColumns}
+            width={emojisKeypadWidth}
+            spacing={emojisSpacing}
+        >
+            {emojisItems}
+        </Keypad>
+    </div>
 );
-
-
-

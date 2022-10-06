@@ -1,15 +1,12 @@
 // @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
-.container {
+.inner {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .slot {
     position: relative;
-}
-
-.item {
-    @extend %fullscreen;
 }

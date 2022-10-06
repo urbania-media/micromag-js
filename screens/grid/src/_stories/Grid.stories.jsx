@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { text } from '../../../../.storybook/data';
 import definition from '../definition';
 import Grid from '../Grid';
 // images: images({ count: 20 }),
@@ -26,31 +25,31 @@ const props = {
     items: [
         {
             id: '1',
-            description: createText('1'),
+            label: createText('1'),
         },
         {
             id: '2',
-            description: createText('2'),
+            label: createText('2'),
         },
         {
             id: '3',
-            description: createText('3'),
+            label: createText('3'),
         },
         {
             id: '4',
-            description: createText('4'),
+            label: createText('4'),
         },
         {
             id: '5',
-            description: createText('5'),
+            label: createText('5'),
         },
         {
             id: '6',
-            description: createText('6'),
+            label: createText('6'),
         },
         {
             id: '7',
-            description: createText('7'),
+            label: createText('7'),
         },
     ],
 };

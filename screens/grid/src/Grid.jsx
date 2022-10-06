@@ -13,8 +13,9 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { getStyleFromBox } from '@micromag/core/utils';
+import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
+import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Keypad from '@micromag/element-keypad';
@@ -64,6 +65,7 @@ const propTypes = {
     rowAlign: PropTypes.oneOf(['top', 'bottom', 'middle']),
     columns: PropTypes.number,
     spacing: PropTypes.number,
+    textStyle: MicromagPropTypes.textStyle,
     boxStyle: MicromagPropTypes.boxStyle,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -78,6 +80,7 @@ const defaultProps = {
     rowAlign: null,
     columns: 5,
     spacing: 5,
+    textStyle: null,
     boxStyle: null,
     background: null,
     current: true,
@@ -92,6 +95,7 @@ const GridScreen = ({
     rowAlign,
     columns,
     spacing,
+    textStyle,
     boxStyle,
     background,
     current,
@@ -112,31 +116,32 @@ const GridScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
 
-    console.log({columnAlign, rowAlign, layout});
-
     // @todo extract to element?
     const gridItems =
         items !== null
             ? items.map((item) => {
                   const {
-                      heading = null,
-                      description = null,
+                      label = null,
                       visual = null,
+                      textStyle: customTextStyle = null,
                       boxStyle: customBoxStyle = null,
                   } = item || {};
-                  const { body: key = null } = heading || description || {};
+                  const { body: key = null } = label || {};
+                  console.log({item});
                   return (
-                      <div
-                          key={key}
-                          className={styles.item}
-                          style={{
-                              ...getStyleFromBox(boxStyle),
-                              ...getStyleFromBox(customBoxStyle),
-                          }}
-                      >
-                          {heading !== null ? <Heading {...heading} /> : null}
-                          {description !== null ? <Text {...description} /> : null}
-                          {visual !== null ? <Visual {...visual} /> : null}
+                      <div key={key} className={styles.item}>
+                          <Button
+                              className={styles.button}
+                              style={{
+                                  ...getStyleFromBox(boxStyle),
+                                  ...getStyleFromText(textStyle),
+                                  ...getStyleFromBox(customBoxStyle),
+                                  ...getStyleFromText(customTextStyle),
+                              }}
+                          >
+                              {label !== null ? label : null}
+                              {visual !== null ? <Visual {...visual} /> : null}
+                          </Button>
                       </div>
                   );
               })
@@ -158,7 +163,8 @@ const GridScreen = ({
             ])}
             data-screen-ready
         >
-            {!isView ? <div {...mouseBlocker} /> : null}
+            {/* @todo needed? */}
+            {/* {!isView ? <div {...mouseBlocker} /> : null} */}
             {!isPlaceholder ? (
                 <Background
                     background={background}
@@ -192,10 +198,11 @@ const GridScreen = ({
                             { [styles.gridPlaceholder]: isPlaceholder },
                         ])}
                         alignment={{ horizontal: columnAlign, vertical: rowAlign }}
-                        items={isPlaceholder ? placeholderItems : gridItems}
                         columns={isPlaceholder ? 3 : columns}
                         spacing={isPlaceholder ? 2 : spacing}
-                    />
+                    >
+                        {isPlaceholder ? placeholderItems : gridItems}
+                    </Keypad>
                 </Layout>
             </Container>
         </div>

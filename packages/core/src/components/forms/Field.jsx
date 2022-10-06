@@ -45,6 +45,7 @@ const FieldForm = ({
     const fieldsManager = useFieldsManager();
 
     const field = getFieldFromPath(name.split('.'), fields, fieldsManager);
+    console.log({field, name});
 
     const { type = null, ...fieldProps } = field || {};
 

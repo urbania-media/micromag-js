@@ -42,15 +42,6 @@ export default [
                             description: 'Field label',
                         }),
                     },
-                    // {
-                    //     name: 'rowAlign',
-                    //     type: 'alignVertical',
-                    //     defaultValue: 'middle',
-                    //     label: defineMessage({
-                    //         defaultMessage: 'Row alignment',
-                    //         description: 'Field label',
-                    //     }),
-                    // },
                     {
                         name: 'columns',
                         type: 'number',
@@ -72,23 +63,31 @@ export default [
                         }),
                     },
                     {
-                        name: 'boxStyle',
-                        type: 'box-style-form',
-                        label: defineMessage({
-                            defaultMessage: 'Box',
-                            description: 'Field label',
-                        }),
-                    },
-                    {
                         name: 'items',
-                        type: 'quiz-answers',
+                        type: 'buttons',
                         theme: {
                             label: {
                                 textStyle: 'button',
                             },
                         },
                         label: defineMessage({
-                            defaultMessage: 'Answers',
+                            defaultMessage: 'Buttons',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'textStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Label style',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'boxStyle',
+                        type: 'box-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Button style',
                             description: 'Field label',
                         }),
                     },
@@ -102,34 +101,18 @@ export default [
                 fieldName: 'items',
                 fields: [
                     {
-                        name: 'heading',
-                        type: 'heading-element',
-                        label: defineMessage({
-                            defaultMessage: 'Title',
-                            description: 'Field label',
-                        }),
-                    },
-                    {
-                        name: 'description',
+                        name: 'content',
                         type: 'text-element',
                         label: defineMessage({
-                            defaultMessage: 'Description',
+                            defaultMessage: 'Content',
                             description: 'Field label',
                         }),
                     },
                     {
-                        name: 'visual',
+                        name: 'largeVisual',
                         type: 'visual',
                         label: defineMessage({
                             defaultMessage: 'Visual',
-                            description: 'Field label',
-                        }),
-                    },
-                    {
-                        name: 'boxStyle',
-                        type: 'box-style-form',
-                        label: defineMessage({
-                            defaultMessage: 'Box',
                             description: 'Field label',
                         }),
                     },
