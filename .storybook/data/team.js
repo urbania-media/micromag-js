@@ -10,11 +10,19 @@ import fred from './files/team/fred.jpg';
 export default [
     {
         label: 'David Mongeau-Petitpas',
-        visual: imageMediaFromURL(dmp)
+        visual: imageMediaFromURL(dmp),
+        content: {
+            body: '<p>David est un lorem ipsum dolor sit amet consectetur adipiscing</p>'
+        },
+        largeVisual: imageMediaFromURL(dmp),
     },
     {
         label: 'Marc-Antoine Jacques',
-        visual: imageMediaFromURL(maj)
+        visual: imageMediaFromURL(maj),
+        content: {
+            body: '<p>Marc-Antoine a toujours été dolor sit amet consectetur adipiscing elit, nunquam dolores. Errare humanum est.</p>'
+        },
+        largeVisual: imageMediaFromURL(maj),
     },
     {
         label: 'Nicolas Roy Bourdages',

@@ -15,6 +15,7 @@ import {
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
+import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
 import multipleVideosStory from '../../../../.storybook/data/stories/multipleVideosStory';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
@@ -170,38 +171,7 @@ export const MultipleVideos360 = () => (
 );
 export const MultipleArticles = () => <Viewer screenId="42" story={multipleArticles} />;
 
-export const MultipleGrids = () => (
-    <Viewer
-        screenId="420"
-        story={{
-            components: [
-                {
-                    id: '12345',
-                    type: 'grid',
-                    items: [
-                        'David Mongeau-Petitpas',
-                        'Marc-Antoine Jacques',
-                        'Nicolas Roy Bourdages',
-                        'Alexandre Lamarche',
-                        'Corentin Guérin',
-                        'Joseph Blais',
-                        'Fred Mercy',
-                    ].map((name) => ({
-                        description: {
-                            body: `<p>${name}</p>`,
-                            textStyle: {
-                                fontSize: 14,
-                            },
-                        },
-                    })),
-                    columns: 3,
-                    spacing: 5,
-                    // background: backgroundVideo(),
-                },
-            ],
-        }}
-    />
-);
+export const MultipleKeypads = () => <Viewer screenId="777" story={multipleKeypads} />;
 
 export const WithCustomFonts = () => (
     <Viewer

@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderButton } from '@micromag/core/components';
@@ -9,16 +10,19 @@ import { PlaceholderButton } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
+    useScreenState,
     useViewerContext,
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
+import { useDragProgress } from '@micromag/core/hooks';
 import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Keypad from '@micromag/element-keypad';
 import Layout from '@micromag/element-layout';
+import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
 import styles from './keypad.module.scss';
@@ -116,9 +120,50 @@ const KeypadScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
 
-    const onItemClick = useCallback((e, item) => {
-        console.log({ item });
-    }, []);
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupContent, setPopupContent] = useState(null);
+
+    const onItemClick = useCallback(
+        (e, item) => {
+            e.stopPropagation();
+            setPopupContent(item);
+            setShowPopup(1);
+            // trackScreenEvent('UrbaniaHoroscope', 'select_sign', signs[foundSignIndex]);
+        },
+        [setPopupContent],
+        // [setPopupContent, trackScreenEvent],
+    );
+
+    const onCloseModal = useCallback(() => {
+        setShowPopup(0);
+        // trackScreenEvent('UrbaniaHoroscope', 'close_sign_modal');
+        // }, [setShowPopup, trackScreenEvent]);
+    }, [setShowPopup]);
+
+    const computePopupProgress = useCallback(
+        ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
+            const damper = 0.5;
+            const p = Math.max(0, my) / window.innerHeight;
+            const progress = p * damper;
+            const reachedThreshold = vy > 0.3 || Math.abs(p) > 0.3;
+
+            if (!dragActive) {
+                if (reachedThreshold) {
+                    onCloseModal();
+                }
+                return reachedThreshold ? 0 : 1;
+            }
+            return 1 - progress;
+        },
+        [onCloseModal],
+    );
+
+    const { bind: bindPopupDrag, progress: popupSpring } = useDragProgress({
+        disabled: !isView,
+        progress: showPopup ? 1 : 0,
+        computeProgress: computePopupProgress,
+        springParams: { config: { tension: 300, friction: 30 } },
+    });
 
     // @todo extract to element?
     const gridItems =
@@ -129,6 +174,8 @@ const KeypadScreen = ({
                       visual = null,
                       textStyle: customTextStyle = null,
                       boxStyle: customBoxStyle = null,
+                      content = null,
+                      largeVisual = null,
                   } = item || {};
                   const { body: key = null } = label || {};
                   return (
@@ -149,7 +196,11 @@ const KeypadScreen = ({
                                   ...getStyleFromBox(customBoxStyle),
                                   ...getStyleFromText(customTextStyle),
                               }}
-                              onClick={(e) => onItemClick(e, item)}
+                              onClick={
+                                  content !== null && largeVisual !== null
+                                      ? (e) => onItemClick(e, item)
+                                      : false
+                              }
                           >
                               {visual !== null ? (
                                   <Visual
@@ -172,6 +223,31 @@ const KeypadScreen = ({
             <PlaceholderButton className={styles.placeholderButton} />
         </div>
     ));
+
+    const { content: popupText = null, largeVisual = null } = popupContent || {};
+
+    const hasPopupContent = (item) => {
+        const { content = null, largeVisual: popupLargeVisual = null } = item || {};
+        const { body = null } = content || {};
+        return (body !== null && body !== '') || popupLargeVisual !== null;
+    }
+
+    // for editor purposes
+    const screenState = useScreenState();
+
+    useEffect(() => {
+        if (screenState === 'keypad') {
+            setPopupContent(null);
+            setShowPopup(0);
+        }
+        if (screenState !== null && screenState.includes('items')) {
+            const index = screenState.split('.').pop();
+            const found = items[index];
+            const popupVisibility = hasPopupContent(found) ? 1 : 0;
+            setShowPopup(popupVisibility);
+            setPopupContent(found);
+        }
+    }, [screenState, items]);
 
     return (
         <div
@@ -224,6 +300,34 @@ const KeypadScreen = ({
                     >
                         {isPlaceholder ? placeholderItems : gridItems}
                     </Keypad>
+
+                    <animated.div
+                        className={styles.popup}
+                        style={{
+                            transform: popupSpring.to(
+                                (p) => `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
+                            ),
+                            pointerEvents: popupSpring.to((p) => (p < 0.1 ? 'none' : 'auto')),
+                        }}
+                        {...bindPopupDrag()}
+                    >
+                        <button
+                            type="button"
+                            className={styles.popupButton}
+                            onClick={() => {
+                                if (onCloseModal !== null) {
+                                    onCloseModal();
+                                }
+                            }}
+                        >
+                            <div className={styles.popupInner}>
+                                {popupText !== null ? <Text {...popupText} /> : null}
+                                {largeVisual !== null ? (
+                                    <Visual media={largeVisual} width="100%" />
+                                ) : null}
+                            </div>
+                        </button>
+                    </animated.div>
                 </Layout>
             </Container>
         </div>

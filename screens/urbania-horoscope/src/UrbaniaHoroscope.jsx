@@ -396,7 +396,10 @@ const UrbaniaHoroscope = ({
                     {isView && !isPlaceholder ? (
                         <animated.div
                             className={styles.header}
-                            style={getSignsContainerStyles(showSignsGridProgress)}
+                            style={{
+                                opacity: showSignsGridProgress,
+                                pointerEvents: showSignsGridProgress.to((p) => (p < 0.25 ? 'none' : 'auto')),
+                            }}
                         >
                             <div className={styles.buttons}>
                                 <Button
@@ -449,27 +452,6 @@ const UrbaniaHoroscope = ({
                                     );
                                 })}
                             </Keypad>
-
-                            {/*
-                            <div className={styles.signs}>
-                                {signs.map((sign) => {
-                                    const { id = null } = sign || {};
-                                    return (
-                                        <animated.div
-                                            key={id}
-                                            className={styles.sign}
-                                            style={getSignStyles(showSignsGridProgress)}
-                                        >
-                                            <SignCard
-                                                key={id}
-                                                sign={sign}
-                                                onClick={(e) => onSelectSign(e, id)}
-                                            />
-                                        </animated.div>
-                                    );
-                                })}
-                            </div>
-                            */}
 
                             <ScreenElement
                                 key="author"

@@ -7,6 +7,7 @@ import { callToAction, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
+import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
 import treeTheme from '../../../../.storybook/data/themes/tree';
@@ -14,7 +15,6 @@ import { theme as backgroundTheme } from '../../../../.storybook/data/themes/wit
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import withUppy from '../../../../.storybook/decorators/withUppy';
 import signs from '../../../../screens/urbania-horoscope/src/data/signs';
-import team from '../../../../.storybook/data/team';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import Editor from '../components/EditorContainer';
 
@@ -227,27 +227,7 @@ export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isThem
 export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;
 export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
 export const MultipleArticles = () => <EditorContainer defaultValue={multipleArticles} />;
-
-export const MultipleKeypads = () => (
-    <EditorContainer
-        defaultValue={{
-            title: 'With theme (all screens)',
-            theme: defaultTheme,
-            components: [
-                {
-                    id: '12345',
-                    type: 'keypad',
-                    items: team,
-                    verticalAlign: 'middle',
-                    columnAlign: 'middle',
-                    // rowAlign: 'top',
-                    columns: 3,
-                    spacing: 5,
-                },
-            ],
-        }}
-    />
-);
+export const MultipleKeypads = () => <EditorContainer defaultValue={multipleKeypads} />;
 
 export const WithTheme = () => (
     <EditorContainer
