@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -20,7 +20,7 @@ import {
     usePlaybackMediaRef,
     useViewerContext,
 } from '@micromag/core/contexts';
-import { useDimensionObserver } from '@micromag/core/hooks';
+import { useDimensionObserver, useDebounce } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -138,11 +138,13 @@ const UrbaniaArticle = ({
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
-    useEffect(() => {
+    const playIfCurrent = useCallback(() => {
         if (current && !playing) {
             setPlaying(true);
         }
     }, [current, playing, setPlaying]);
+
+    useDebounce(playIfCurrent, current, 500);
 
     const { video: backgroundVideo = null } = background || {};
     const hasVideoBackground = backgroundVideo !== null;
