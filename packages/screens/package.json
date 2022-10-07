@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.237",
+    "version": "0.3.238",
     "description": "",
     "keywords": [
         "javascript"
@@ -65,13 +65,13 @@
         "@micromag/screen-quiz": "^0.3.237",
         "@micromag/screen-quote": "^0.3.237",
         "@micromag/screen-ranking": "^0.3.237",
-        "@micromag/screen-share": "^0.3.237",
+        "@micromag/screen-share": "^0.3.238",
         "@micromag/screen-slideshow": "^0.3.237",
         "@micromag/screen-survey": "^0.3.237",
         "@micromag/screen-text": "^0.3.237",
         "@micromag/screen-timeline": "^0.3.237",
         "@micromag/screen-title": "^0.3.237",
-        "@micromag/screen-urbania-article": "^0.3.237",
+        "@micromag/screen-urbania-article": "^0.3.238",
         "@micromag/screen-urbania-horoscope": "^0.3.237",
         "@micromag/screen-urbania-recommendation": "^0.3.237",
         "@micromag/screen-urbania-trivia": "^0.3.237",
