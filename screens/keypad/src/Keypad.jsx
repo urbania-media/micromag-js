@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderButton } from '@micromag/core/components';
@@ -17,14 +17,11 @@ import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
-import Heading from '@micromag/element-heading';
 import Keypad from '@micromag/element-keypad';
-// import Grid from '@micromag/element-grid'; // @todo uhhh... can't really use this; overkill!
 import Layout from '@micromag/element-layout';
-import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './grid.module.scss';
+import styles from './keypad.module.scss';
 
 const stopDragEventsPropagation = {
     onTouchMove: (e) => e.stopPropagation(),
@@ -36,19 +33,19 @@ const stopDragEventsPropagation = {
 };
 
 // @todo is this still good? if yes, maybe extract to util?
-const mouseBlocker = {
-    ...stopDragEventsPropagation,
-    onClick: (e) => e.stopPropagation(),
-    style: {
-        position: 'fixed',
-        zIndex: '1000',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        cursor: 'default',
-    },
-};
+// const mouseBlocker = {
+//     ...stopDragEventsPropagation,
+//     onClick: (e) => e.stopPropagation(),
+//     style: {
+//         position: 'fixed',
+//         zIndex: '1000',
+//         top: 0,
+//         right: 0,
+//         bottom: 0,
+//         left: 0,
+//         cursor: 'default',
+//     },
+// };
 
 const propTypes = {
     items: PropTypes.arrayOf(
@@ -62,9 +59,10 @@ const propTypes = {
     ),
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
     columnAlign: PropTypes.oneOf(['left', 'right', 'middle']),
-    rowAlign: PropTypes.oneOf(['top', 'bottom', 'middle']),
+    // rowAlign: PropTypes.oneOf(['top', 'bottom', 'middle']),
     columns: PropTypes.number,
     spacing: PropTypes.number,
+    buttonLayout: PropTypes.string,
     textStyle: MicromagPropTypes.textStyle,
     boxStyle: MicromagPropTypes.boxStyle,
     background: MicromagPropTypes.backgroundElement,
@@ -77,9 +75,10 @@ const defaultProps = {
     items: null,
     layout: 'middle',
     columnAlign: null,
-    rowAlign: null,
+    // rowAlign: null,
     columns: 5,
     spacing: 5,
+    buttonLayout: 'label-bottom', // @todo do we need a default here?
     textStyle: null,
     boxStyle: null,
     background: null,
@@ -88,13 +87,14 @@ const defaultProps = {
     className: null,
 };
 
-const GridScreen = ({
+const KeypadScreen = ({
     items,
     layout,
     columnAlign,
-    rowAlign,
+    // rowAlign,
     columns,
     spacing,
+    buttonLayout,
     textStyle,
     boxStyle,
     background,
@@ -116,6 +116,10 @@ const GridScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
 
+    const onItemClick = useCallback((e, item) => {
+        console.log({ item });
+    }, []);
+
     // @todo extract to element?
     const gridItems =
         items !== null
@@ -127,20 +131,37 @@ const GridScreen = ({
                       boxStyle: customBoxStyle = null,
                   } = item || {};
                   const { body: key = null } = label || {};
-                  console.log({item});
                   return (
                       <div key={key} className={styles.item}>
                           <Button
-                              className={styles.button}
+                              className={classNames([
+                                  styles.button,
+                                  {
+                                      [styles.layoutLabelBottom]: buttonLayout === 'label-bottom',
+                                      [styles.layoutLabelTop]: buttonLayout === 'label-top',
+                                      [styles.layoutNoLabel]: buttonLayout === 'no-label',
+                                      [styles.layoutLabelOver]: buttonLayout === 'label-over',
+                                  },
+                              ])}
                               style={{
                                   ...getStyleFromBox(boxStyle),
                                   ...getStyleFromText(textStyle),
                                   ...getStyleFromBox(customBoxStyle),
                                   ...getStyleFromText(customTextStyle),
                               }}
+                              onClick={(e) => onItemClick(e, item)}
                           >
-                              {label !== null ? label : null}
-                              {visual !== null ? <Visual {...visual} /> : null}
+                              {visual !== null ? (
+                                  <Visual
+                                      className={styles.buttonVisual}
+                                      imageClassName={styles.thumbnail}
+                                      media={visual}
+                                      width="auto"
+                                  />
+                              ) : null}
+                              {label !== null ? (
+                                  <div className={styles.buttonLabel}>{label}</div>
+                              ) : null}
                           </Button>
                       </div>
                   );
@@ -197,7 +218,7 @@ const GridScreen = ({
                             styles.grid,
                             { [styles.gridPlaceholder]: isPlaceholder },
                         ])}
-                        alignment={{ horizontal: columnAlign, vertical: rowAlign }}
+                        align={columnAlign}
                         columns={isPlaceholder ? 3 : columns}
                         spacing={isPlaceholder ? 2 : spacing}
                     >
@@ -209,7 +230,7 @@ const GridScreen = ({
     );
 };
 
-GridScreen.propTypes = propTypes;
-GridScreen.defaultProps = defaultProps;
+KeypadScreen.propTypes = propTypes;
+KeypadScreen.defaultProps = defaultProps;
 
-export default React.memo(GridScreen);
+export default React.memo(KeypadScreen);

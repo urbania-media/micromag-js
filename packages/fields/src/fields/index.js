@@ -12,6 +12,7 @@ export { default as borderWidth } from './border-width';
 export { default as boxStyle } from './box-style';
 export { default as boxStyleForm } from './box-style-form';
 export { default as button } from './button';
+export { default as buttonLayout } from './button-layout';
 export { default as buttons } from './buttons';
 export { default as buttonElement } from './button-element';
 export { default as callToAction } from './call-to-action';

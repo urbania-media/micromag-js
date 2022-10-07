@@ -41,7 +41,6 @@ const FieldWithContexts = ({ name, form, ...props }) => {
                       fieldName !== itemName || stateId === fieldStateId || fieldStateId === null,
               )
             : screenFields;
-    console.log({finalScreenFields});
     if (currentState !== null) {
         finalNameParts =
             (repeatable || fieldName !== null) && nameParts.length <= (repeatable ? 2 : 1)

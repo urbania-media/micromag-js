@@ -139,6 +139,12 @@ export const imageMedia = ({
     ),
 });
 
+export const imageMediaFromURL = (url) => ({
+    ...imageMedia(),
+    url,
+    thumbnail_url: url,
+});
+
 export const videoMedia = ({ vertical = false, big = false } = {}) => ({
     type: 'video',
     url: vertical ? videoFileVertical : big ? bigVideoFile : videoFile, // eslint-disable-line no-nested-ternary

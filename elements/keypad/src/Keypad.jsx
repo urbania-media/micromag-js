@@ -8,10 +8,8 @@ import { getStyleFromAlignment } from '@micromag/core/utils';
 import styles from './keypad.module.scss';
 
 const propTypes = {
-    alignment: PropTypes.shape({
-        horizontal: PropTypes.oneOf(['left', 'right', 'middle']),
-        vertical: PropTypes.oneOf(['top', 'bottom', 'middle']),
-    }),
+    align: PropTypes.oneOf(['left', 'right', 'middle']),
+    // vertical: PropTypes.oneOf(['top', 'bottom', 'middle']),
     columns: PropTypes.number,
     spacing: PropTypes.number,
     className: PropTypes.string,
@@ -21,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    alignment: null,
+    align: null,
     columns: 3,
     spacing: 0,
     className: null,
@@ -32,7 +30,7 @@ const defaultProps = {
 
 function Keypad({
     children,
-    alignment,
+    align,
     columns,
     spacing,
     className,
@@ -58,9 +56,7 @@ function Keypad({
                     },
                 ])}
                 style={{
-                    marginLeft: spacing * -1,
-                    marginBottom: spacing * -1,
-                    ...getStyleFromAlignment(alignment),
+                    ...getStyleFromAlignment({ horizontal: align }),
                 }}
             >
                 {React.Children.map(children, (item) => {
@@ -76,8 +72,7 @@ function Keypad({
                             ])}
                             style={{
                                 width: itemWidth,
-                                paddingLeft: spacing,
-                                paddingBottom: spacing,
+                                padding: spacing / 2,
                             }}
                         >
                             {item}

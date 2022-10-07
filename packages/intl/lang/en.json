@@ -116,9 +116,6 @@
     "3YruaX": {
         "defaultMessage": "May 21 - June 20"
     },
-    "3bq6H9": {
-        "defaultMessage": "Grid"
-    },
     "3ext9Q": {
         "defaultMessage": "Video"
     },
@@ -179,9 +176,6 @@
     "507VAi": {
         "defaultMessage": "Description"
     },
-    "52EqEX": {
-        "defaultMessage": "Items"
-    },
     "59f2bg": {
         "defaultMessage": "Images"
     },
@@ -227,6 +221,9 @@
     "73hxYw": {
         "defaultMessage": "Author"
     },
+    "75nZbY": {
+        "defaultMessage": "Keypad"
+    },
     "7YE/VU": {
         "defaultMessage": "Sponsor"
     },
@@ -256,6 +253,9 @@
     },
     "8A8cuq": {
         "defaultMessage": "Parameters"
+    },
+    "8ELj2J": {
+        "defaultMessage": "Items"
     },
     "8gQ1oW": {
         "defaultMessage": "Pisces"
@@ -337,6 +337,9 @@
     },
     "CJmQeh": {
         "defaultMessage": "Image with text"
+    },
+    "CWnXWp": {
+        "defaultMessage": "No button yet"
     },
     "CrzYgw": {
         "defaultMessage": "Quote"
@@ -428,6 +431,9 @@
     "HseFdk": {
         "defaultMessage": "Edit"
     },
+    "HwqzVR": {
+        "defaultMessage": "Visual"
+    },
     "I2bIHm": {
         "defaultMessage": "Good answer color"
     },
@@ -479,6 +485,9 @@
     "LkVfwW": {
         "defaultMessage": "Screen {index}"
     },
+    "LrRW+9": {
+        "defaultMessage": "Add a button"
+    },
     "Lrwi2G": {
         "defaultMessage": "Email"
     },
@@ -502,6 +511,9 @@
     },
     "N25iDO": {
         "defaultMessage": "Title"
+    },
+    "NIm/GU": {
+        "defaultMessage": "Screen"
     },
     "NVUpOG": {
         "defaultMessage": "Map fit markers"
@@ -595,6 +607,9 @@
     },
     "S/mavZ": {
         "defaultMessage": "Text and Images"
+    },
+    "S1F/re": {
+        "defaultMessage": "Columns"
     },
     "S9YpbV": {
         "defaultMessage": "Text"
@@ -701,8 +716,8 @@
     "YWcp4v": {
         "defaultMessage": "Bullet filled"
     },
-    "Yy4DRF": {
-        "defaultMessage": "Grid"
+    "YwySSO": {
+        "defaultMessage": "Vertical"
     },
     "YyPYHk": {
         "defaultMessage": "Scorpio"
@@ -763,9 +778,6 @@
     },
     "bhEaUt": {
         "defaultMessage": "Audio"
-    },
-    "blWo1l": {
-        "defaultMessage": "Space between items"
     },
     "bv3rRe": {
         "defaultMessage": "Button"
@@ -851,6 +863,9 @@
     "eoW0tZ": {
         "defaultMessage": "Duration"
     },
+    "f1XHNG": {
+        "defaultMessage": "Button"
+    },
     "f5Yipd": {
         "defaultMessage": "Box"
     },
@@ -865,6 +880,9 @@
     },
     "fLdjGi": {
         "defaultMessage": "Word of the week"
+    },
+    "fOYYk7": {
+        "defaultMessage": "Align items"
     },
     "fVqgfl": {
         "defaultMessage": "[no title]"
@@ -1118,6 +1136,9 @@
     "ru3tjH": {
         "defaultMessage": "Bad answer color"
     },
+    "rzXCu2": {
+        "defaultMessage": "Label style"
+    },
     "rzdds2": {
         "defaultMessage": "Speaker"
     },
@@ -1147,9 +1168,6 @@
     },
     "tYGev7": {
         "defaultMessage": "Font size"
-    },
-    "ta6Tqq": {
-        "defaultMessage": "Number of columns"
     },
     "tmfbUn": {
         "defaultMessage": "Unused"
@@ -1189,6 +1207,9 @@
     },
     "uiTxd7": {
         "defaultMessage": "Results"
+    },
+    "uoF5Pv": {
+        "defaultMessage": "Content"
     },
     "upzOTm": {
         "defaultMessage": "Credits"
@@ -1256,6 +1277,9 @@
     "xT/onn": {
         "defaultMessage": "Image"
     },
+    "xTJlyi": {
+        "defaultMessage": "Horizontal"
+    },
     "xYqGzM": {
         "defaultMessage": "Author"
     },
@@ -1264,6 +1288,9 @@
     },
     "xj0o1v": {
         "defaultMessage": "Grid"
+    },
+    "xmp9nw": {
+        "defaultMessage": "Spacing"
     },
     "xsipID": {
         "defaultMessage": "Image"

@@ -155,10 +155,6 @@
     "defaultMessage": "May 21 - June 20",
     "description": "UrbaniaHoroscope date"
   },
-  "3bq6H9": {
-    "defaultMessage": "Grid",
-    "description": "Grid state"
-  },
   "3ext9Q": {
     "defaultMessage": "Video",
     "description": "Video placeholder"
@@ -239,10 +235,6 @@
     "defaultMessage": "Description",
     "description": "Description placeholder"
   },
-  "52EqEX": {
-    "defaultMessage": "Items",
-    "description": "Grid item state"
-  },
   "59f2bg": {
     "defaultMessage": "Images",
     "description": "visualsWithCaptions field label"
@@ -303,6 +295,10 @@
     "defaultMessage": "Author",
     "description": "Author field label"
   },
+  "75nZbY": {
+    "defaultMessage": "Keypad",
+    "description": "Keypad screen title"
+  },
   "7YE/VU": {
     "defaultMessage": "Sponsor",
     "description": "Title field label"
@@ -342,6 +338,10 @@
   "8A8cuq": {
     "defaultMessage": "Parameters",
     "description": "field label"
+  },
+  "8ELj2J": {
+    "defaultMessage": "Items",
+    "description": "Keypad item state"
   },
   "8gQ1oW": {
     "defaultMessage": "Pisces",
@@ -450,6 +450,10 @@
   "CJmQeh": {
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
+  },
+  "CWnXWp": {
+    "defaultMessage": "No button yet",
+    "description": "Label when there is no item"
   },
   "CrzYgw": {
     "defaultMessage": "Quote",
@@ -571,6 +575,10 @@
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
   },
+  "HwqzVR": {
+    "defaultMessage": "Visual",
+    "description": "Field label"
+  },
   "I2bIHm": {
     "defaultMessage": "Good answer color",
     "description": "Field label"
@@ -639,6 +647,10 @@
     "defaultMessage": "Screen {index}",
     "description": "Button label"
   },
+  "LrRW+9": {
+    "defaultMessage": "Add a button",
+    "description": "Button label"
+  },
   "Lrwi2G": {
     "defaultMessage": "Email",
     "description": "Share option label"
@@ -670,6 +682,10 @@
   "N25iDO": {
     "defaultMessage": "Title",
     "description": "Title field label"
+  },
+  "NIm/GU": {
+    "defaultMessage": "Screen",
+    "description": "Keypad state"
   },
   "NVUpOG": {
     "defaultMessage": "Map fit markers",
@@ -793,6 +809,10 @@
   "S/mavZ": {
     "defaultMessage": "Text and Images",
     "description": "Text and Images screen group"
+  },
+  "S1F/re": {
+    "defaultMessage": "Columns",
+    "description": "Field label"
   },
   "S9YpbV": {
     "defaultMessage": "Text",
@@ -934,9 +954,9 @@
     "defaultMessage": "Bullet filled",
     "description": "Field label"
   },
-  "Yy4DRF": {
-    "defaultMessage": "Grid",
-    "description": "Grid screen title"
+  "YwySSO": {
+    "defaultMessage": "Vertical",
+    "description": "Field label"
   },
   "YyPYHk": {
     "defaultMessage": "Scorpio",
@@ -1017,10 +1037,6 @@
   "bhEaUt": {
     "defaultMessage": "Audio",
     "description": "Audio screen title"
-  },
-  "blWo1l": {
-    "defaultMessage": "Space between items",
-    "description": "Field label"
   },
   "bv3rRe": {
     "defaultMessage": "Button",
@@ -1134,6 +1150,10 @@
     "defaultMessage": "Duration",
     "description": "Label in Media Gallery"
   },
+  "f1XHNG": {
+    "defaultMessage": "Button",
+    "description": "Breadcrumb field label"
+  },
   "f5Yipd": {
     "defaultMessage": "Box",
     "description": "Field label"
@@ -1152,6 +1172,10 @@
   },
   "fLdjGi": {
     "defaultMessage": "Word of the week",
+    "description": "Field label"
+  },
+  "fOYYk7": {
+    "defaultMessage": "Align items",
     "description": "Field label"
   },
   "fVqgfl": {
@@ -1488,6 +1512,10 @@
     "defaultMessage": "Bad answer color",
     "description": "Field label"
   },
+  "rzXCu2": {
+    "defaultMessage": "Label style",
+    "description": "Field label"
+  },
   "rzdds2": {
     "defaultMessage": "Speaker",
     "description": "Breadcrumb field label"
@@ -1526,10 +1554,6 @@
   },
   "tYGev7": {
     "defaultMessage": "Font size",
-    "description": "Field label"
-  },
-  "ta6Tqq": {
-    "defaultMessage": "Number of columns",
     "description": "Field label"
   },
   "tmfbUn": {
@@ -1583,6 +1607,10 @@
   "uiTxd7": {
     "defaultMessage": "Results",
     "description": "State label"
+  },
+  "uoF5Pv": {
+    "defaultMessage": "Content",
+    "description": "Field label"
   },
   "upzOTm": {
     "defaultMessage": "Credits",
@@ -1672,6 +1700,10 @@
     "defaultMessage": "Image",
     "description": "Field label"
   },
+  "xTJlyi": {
+    "defaultMessage": "Horizontal",
+    "description": "Field label"
+  },
   "xYqGzM": {
     "defaultMessage": "Author",
     "description": "Author placeholder"
@@ -1683,6 +1715,10 @@
   "xj0o1v": {
     "defaultMessage": "Grid",
     "description": "UrbaniaHoroscope state"
+  },
+  "xmp9nw": {
+    "defaultMessage": "Spacing",
+    "description": "Field label"
   },
   "xsipID": {
     "defaultMessage": "Image",

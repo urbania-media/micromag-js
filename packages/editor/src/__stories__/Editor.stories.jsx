@@ -14,6 +14,7 @@ import { theme as backgroundTheme } from '../../../../.storybook/data/themes/wit
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import withUppy from '../../../../.storybook/decorators/withUppy';
 import signs from '../../../../screens/urbania-horoscope/src/data/signs';
+import team from '../../../../.storybook/data/team';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import Editor from '../components/EditorContainer';
 
@@ -227,7 +228,7 @@ export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} 
 export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
 export const MultipleArticles = () => <EditorContainer defaultValue={multipleArticles} />;
 
-export const MultipleGrids = () => (
+export const MultipleKeypads = () => (
     <EditorContainer
         defaultValue={{
             title: 'With theme (all screens)',
@@ -235,19 +236,8 @@ export const MultipleGrids = () => (
             components: [
                 {
                     id: '12345',
-                    type: 'grid',
-                    items: [
-                        'David Mongeau-Petitpas',
-                        'Marc-Antoine Jacques',
-                        'Nicolas Roy Bourdages',
-                        'Alexandre Lamarche',
-                        'Corentin Guérin',
-                        'Joseph Blais',
-                        'Fred Mercy',
-                    ].map((name) => ({
-                        label: name,
-                        visual: null // @todo
-                    })),
+                    type: 'keypad',
+                    items: team,
                     verticalAlign: 'middle',
                     columnAlign: 'middle',
                     // rowAlign: 'top',

@@ -3,7 +3,6 @@ function getScreenFieldsWithStates(definition) {
     if (states === null) {
         return screenFields;
     }
-    // console.log({ screenFields, states });
 
     const extraFields = states.reduce(
         (
@@ -11,7 +10,6 @@ function getScreenFieldsWithStates(definition) {
             current
         ) => {
             const { id, fields = [], repeatable = false, fieldName = null, label, defaultValue = null } = current || {};
-
             return [
                 ...statesFields,
                 ...(repeatable
@@ -50,8 +48,6 @@ function getScreenFieldsWithStates(definition) {
         },
         [],
     );
-
-    console.log({extraFields, screenFields});
 
     return [...extraFields, ...screenFields];
 }

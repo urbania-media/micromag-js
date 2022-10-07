@@ -245,12 +245,6 @@ msgctxt "3YruaX"
 msgid "May 21 - June 20"
 msgstr "21 mai au 20 juin"
 
-# Grid state
-#: 3bq6H9
-msgctxt "3bq6H9"
-msgid "Grid"
-msgstr ""
-
 # Video placeholder
 #: 3ext9Q
 msgctxt "3ext9Q"
@@ -371,12 +365,6 @@ msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
 
-# Grid item state
-#: 52EqEX
-msgctxt "52EqEX"
-msgid "Items"
-msgstr ""
-
 # visualsWithCaptions field label
 #: 59f2bg
 msgctxt "59f2bg"
@@ -467,6 +455,12 @@ msgctxt "73hxYw"
 msgid "Author"
 msgstr "Auteur"
 
+# Keypad screen title
+#: 75nZbY
+msgctxt "75nZbY"
+msgid "Keypad"
+msgstr ""
+
 # Title field label
 #: 7YE/VU
 msgctxt "7YE/VU"
@@ -526,6 +520,12 @@ msgstr "Facebook Messenger"
 msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Paramètres"
+
+# Keypad item state
+#: 8ELj2J
+msgctxt "8ELj2J"
+msgid "Items"
+msgstr ""
 
 # UrbaniaHoroscope sign
 #: 8gQ1oW
@@ -688,6 +688,12 @@ msgstr "Avec les contrôles"
 msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image avec texte"
+
+# Label when there is no item
+#: CWnXWp
+msgctxt "CWnXWp"
+msgid "No button yet"
+msgstr ""
 
 # Quote placeholder
 #: CrzYgw
@@ -870,6 +876,12 @@ msgid "Edit"
 msgstr "Modifier"
 
 # Field label
+#: HwqzVR
+msgctxt "HwqzVR"
+msgid "Visual"
+msgstr ""
+
+# Field label
 #: I2bIHm
 msgctxt "I2bIHm"
 msgid "Good answer color"
@@ -971,6 +983,12 @@ msgctxt "LkVfwW"
 msgid "Screen {index}"
 msgstr "Écran {index}"
 
+# Button label
+#: LrRW+9
+msgctxt "LrRW+9"
+msgid "Add a button"
+msgstr ""
+
 # Share option label
 #: Lrwi2G
 msgctxt "Lrwi2G"
@@ -1018,6 +1036,12 @@ msgstr "Galerie avec légendes"
 msgctxt "N25iDO"
 msgid "Title"
 msgstr "Titre"
+
+# Keypad state
+#: NIm/GU
+msgctxt "NIm/GU"
+msgid "Screen"
+msgstr ""
 
 # Field label
 #: NVUpOG
@@ -1203,6 +1227,12 @@ msgstr "Texte du pourcentage"
 msgctxt "S/mavZ"
 msgid "Text and Images"
 msgstr "Texte et images"
+
+# Field label
+#: S1F/re
+msgctxt "S1F/re"
+msgid "Columns"
+msgstr ""
 
 # Text screen title
 #: S9YpbV
@@ -1414,10 +1444,10 @@ msgctxt "YWcp4v"
 msgid "Bullet filled"
 msgstr "Point rempli"
 
-# Grid screen title
-#: Yy4DRF
-msgctxt "Yy4DRF"
-msgid "Grid"
+# Field label
+#: YwySSO
+msgctxt "YwySSO"
+msgid "Vertical"
 msgstr ""
 
 # Horoscope sign
@@ -1539,12 +1569,6 @@ msgstr "Si ce champ est laissé vide, l'URL de ce Micromag sera utilisée."
 msgctxt "bhEaUt"
 msgid "Audio"
 msgstr "Audio"
-
-# Field label
-#: blWo1l
-msgctxt "blWo1l"
-msgid "Space between items"
-msgstr ""
 
 # Button placeholder
 #: bv3rRe
@@ -1714,6 +1738,12 @@ msgctxt "eoW0tZ"
 msgid "Duration"
 msgstr "Durée"
 
+# Breadcrumb field label
+#: f1XHNG
+msgctxt "f1XHNG"
+msgid "Button"
+msgstr ""
+
 # Field label
 #: f5Yipd
 msgctxt "f5Yipd"
@@ -1743,6 +1773,12 @@ msgstr "Texte"
 msgctxt "fLdjGi"
 msgid "Word of the week"
 msgstr "Mot de la semaine"
+
+# Field label
+#: fOYYk7
+msgctxt "fOYYk7"
+msgid "Align items"
+msgstr ""
 
 # No title label in Media Gallery
 #: fVqgfl
@@ -2246,6 +2282,12 @@ msgctxt "ru3tjH"
 msgid "Bad answer color"
 msgstr "Mauvaise réponse"
 
+# Field label
+#: rzXCu2
+msgctxt "rzXCu2"
+msgid "Label style"
+msgstr ""
+
 # Breadcrumb field label
 #: rzdds2
 msgctxt "rzdds2"
@@ -2305,12 +2347,6 @@ msgstr "22 déc au 20 jan"
 msgctxt "tYGev7"
 msgid "Font size"
 msgstr "Taille de la police"
-
-# Field label
-#: ta6Tqq
-msgctxt "ta6Tqq"
-msgid "Number of columns"
-msgstr ""
 
 # Media label
 #: tmfbUn
@@ -2389,6 +2425,12 @@ msgstr "Ombre"
 msgctxt "uiTxd7"
 msgid "Results"
 msgstr "Résultats"
+
+# Field label
+#: uoF5Pv
+msgctxt "uoF5Pv"
+msgid "Content"
+msgstr ""
 
 # Credits field label
 #: upzOTm
@@ -2522,6 +2564,12 @@ msgctxt "xT/onn"
 msgid "Image"
 msgstr "Image"
 
+# Field label
+#: xTJlyi
+msgctxt "xTJlyi"
+msgid "Horizontal"
+msgstr ""
+
 # Author placeholder
 #: xYqGzM
 msgctxt "xYqGzM"
@@ -2539,6 +2587,12 @@ msgstr "Verseau"
 msgctxt "xj0o1v"
 msgid "Grid"
 msgstr "Grille"
+
+# Field label
+#: xmp9nw
+msgctxt "xmp9nw"
+msgid "Spacing"
+msgstr ""
 
 # Visual field label
 #: xsipID

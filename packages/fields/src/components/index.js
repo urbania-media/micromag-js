@@ -1,5 +1,4 @@
 export { default as AdFormat } from './AdFormat';
-// export { default as Alignment } from './Alignment';
 export { default as AlignHorizontal } from './AlignHorizontal';
 export { default as AlignVertical } from './AlignVertical';
 export { default as Answer } from './Answer';
@@ -10,6 +9,7 @@ export { default as BorderRadius } from './BorderRadius';
 export { default as BorderStyle } from './BorderStyle';
 export { default as BorderWidth } from './BorderWidth';
 export { default as BoxStyleForm } from './BoxStyleForm';
+export { default as ButtonLayout } from './ButtonLayout';
 export { default as CallToAction } from './CallToAction';
 export { default as CallToActionForm } from './CallToActionForm';
 export { default as Checkboxes } from './Checkboxes';

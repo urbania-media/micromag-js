@@ -59,7 +59,7 @@
         "@micromag/screen-contribution": "^0.3.219",
         "@micromag/screen-conversation": "^0.3.221",
         "@micromag/screen-gallery": "^0.3.221",
-        "@micromag/screen-grid": "^0.3.223",
+        "@micromag/screen-keypad": "^0.3.223",
         "@micromag/screen-gallery-feed": "^0.3.221",
         "@micromag/screen-image": "^0.3.221",
         "@micromag/screen-map": "^0.3.219",

@@ -1,10 +1,10 @@
 import { defineMessage } from 'react-intl';
 
-import Grid from './Grid';
+import Keypad from './Keypad';
 
 export default [
     {
-        id: 'grid',
+        id: 'keypad',
         type: 'screen',
         group: {
             label: defineMessage({
@@ -14,15 +14,15 @@ export default [
             order: 4,
         },
         title: defineMessage({
-            defaultMessage: 'Grid',
-            description: 'Grid screen title',
+            defaultMessage: 'Keypad',
+            description: 'Keypad screen title',
         }),
         layouts: ['top', 'middle', 'bottom'],
-        component: Grid,
+        component: Keypad,
         states: [
             {
-                id: 'grid',
-                label: defineMessage({ defaultMessage: 'Grid', description: 'Grid state' }),
+                id: 'keypad',
+                label: defineMessage({ defaultMessage: 'Keypad', description: 'Keypad state' }),
                 fields: [
                     {
                         name: 'layout',
@@ -76,6 +76,14 @@ export default [
                         }),
                     },
                     {
+                        name: 'buttonLayout',
+                        type: 'button-layout',
+                        label: defineMessage({
+                            defaultMessage: 'Button layout',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
                         name: 'textStyle',
                         type: 'text-style-form',
                         label: defineMessage({
@@ -95,7 +103,7 @@ export default [
             },
             {
                 id: 'items',
-                label: defineMessage({ defaultMessage: 'Items', description: 'Grid item state' }),
+                label: defineMessage({ defaultMessage: 'Items', description: 'Keypad item state' }),
                 defaultValue: [],
                 repeatable: true,
                 fieldName: 'items',
