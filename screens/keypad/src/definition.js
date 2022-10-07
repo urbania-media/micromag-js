@@ -34,34 +34,43 @@ export default [
                         }),
                     },
                     {
-                        name: 'columnAlign',
-                        type: 'alignHorizontal',
+                        name: 'keypadLayout',
+                        type: 'keypad-layout-form',
                         defaultValue: 'middle',
                         label: defineMessage({
-                            defaultMessage: 'Align items',
+                            defaultMessage: 'Keypad layout',
                             description: 'Field label',
                         }),
                     },
-                    {
-                        name: 'columns',
-                        type: 'number',
-                        defaultValue: 3,
-                        isHorizontal: true,
-                        label: defineMessage({
-                            defaultMessage: 'Columns',
-                            description: 'Field label',
-                        }),
-                    },
-                    {
-                        name: 'spacing',
-                        type: 'number',
-                        defaultValue: 5,
-                        isHorizontal: true,
-                        label: defineMessage({
-                            defaultMessage: 'Spacing',
-                            description: 'Field label',
-                        }),
-                    },
+                    // {
+                    //     name: 'columnAlign',
+                    //     type: 'alignHorizontal',
+                    //     defaultValue: 'middle',
+                    //     label: defineMessage({
+                    //         defaultMessage: 'Align items',
+                    //         description: 'Field label',
+                    //     }),
+                    // },
+                    // {
+                    //     name: 'columns',
+                    //     type: 'number',
+                    //     defaultValue: 3,
+                    //     isHorizontal: true,
+                    //     label: defineMessage({
+                    //         defaultMessage: 'Columns',
+                    //         description: 'Field label',
+                    //     }),
+                    // },
+                    // {
+                    //     name: 'spacing',
+                    //     type: 'number',
+                    //     defaultValue: 5,
+                    //     isHorizontal: true,
+                    //     label: defineMessage({
+                    //         defaultMessage: 'Spacing',
+                    //         description: 'Field label',
+                    //     }),
+                    // },
                     {
                         name: 'items',
                         type: 'buttons',

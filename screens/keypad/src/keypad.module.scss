@@ -58,19 +58,29 @@
 
 .item {
     position: relative;
-    height: 0;
-    padding-bottom: 100%;
+    height: 100%;
+
+    .withSquareItems & {
+        height: 0;
+        padding-bottom: 100%;
+    }
 }
 
 .button {
-    @extend %fullscreen;
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
     padding: 0;
     overflow: hidden;
     font-weight: inherit;
+
+    .withSquareItems & {
+        @extend %fullscreen;
+    }
 }
 
 .thumbnail {
@@ -138,10 +148,13 @@
     }
 
     .thumbnail {
-        @extend %fullscreen;
         width: 100% !important;
 
         max-height: none;
+
+        .withSquareItems & {
+            @extend %fullscreen;
+        }
     }
 }
 

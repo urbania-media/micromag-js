@@ -62,10 +62,13 @@ const propTypes = {
         }),
     ),
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
-    columnAlign: PropTypes.oneOf(['left', 'right', 'middle']),
+    keypadLayout: PropTypes.shape({
+        columnAlign: PropTypes.oneOf(['left', 'right', 'middle']),
+        columns: PropTypes.number,
+        spacing: PropTypes.number,
+        withSquareItems: PropTypes.bool
+    }),
     // rowAlign: PropTypes.oneOf(['top', 'bottom', 'middle']),
-    columns: PropTypes.number,
-    spacing: PropTypes.number,
     buttonLayout: PropTypes.string,
     textStyle: MicromagPropTypes.textStyle,
     boxStyle: MicromagPropTypes.boxStyle,
@@ -78,10 +81,10 @@ const propTypes = {
 const defaultProps = {
     items: null,
     layout: 'middle',
-    columnAlign: null,
-    // rowAlign: null,
-    columns: 5,
-    spacing: 5,
+    keypadLayout: null,
+    // columnAlign: null,
+    // columns: 5,
+    // spacing: 5,
     buttonLayout: 'label-bottom', // @todo do we need a default here?
     textStyle: null,
     boxStyle: null,
@@ -94,10 +97,11 @@ const defaultProps = {
 const KeypadScreen = ({
     items,
     layout,
-    columnAlign,
+    keypadLayout,
+    // columnAlign,
     // rowAlign,
-    columns,
-    spacing,
+    // columns,
+    // spacing,
     buttonLayout,
     textStyle,
     boxStyle,
@@ -119,6 +123,8 @@ const KeypadScreen = ({
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
+
+    const { columnAlign = null, columns = null, spacing = null, withSquareItems = true } = keypadLayout || {};
 
     const [showPopup, setShowPopup] = useState(false);
     const [popupContent, setPopupContent] = useState(null);
@@ -256,6 +262,7 @@ const KeypadScreen = ({
                 {
                     [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
+                    [styles.withSquareItems]: withSquareItems,
                 },
             ])}
             data-screen-ready

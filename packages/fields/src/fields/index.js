@@ -49,6 +49,8 @@ export { default as items } from './items';
 export { default as itemTextStyle } from './item-text-style';
 export { default as letterSpacing } from './letter-spacing';
 export { default as lineHeight } from './line-height';
+export { default as keypadLayout } from './keypad-layout';
+export { default as keypadLayoutForm } from './keypad-layout-form';
 export { default as marker } from './marker';
 export { default as markerWithImage } from './marker-with-image';
 export { default as markers } from './markers';
