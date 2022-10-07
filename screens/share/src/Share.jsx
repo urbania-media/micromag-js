@@ -97,12 +97,11 @@ const ShareScreen = ({
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const currentUrl = useMemo(() => {
-        const origin =
-            typeof window !== 'undefined' ? window.location.origin.replace(/\/+$/, '') : '';
-        return origin;
+        if (typeof window === 'undefined') return '';
+        const { hostname = null, pathname = null } = window.location || {};
+        return hostname + pathname;
     }, []);
     const finalShareURL = shareUrl || currentUrl;
-
     const defaultOptions =
         options !== null
             ? ['email', 'facebook', 'twitter', 'linkedin', 'whatsapp', 'facebookMessenger']
