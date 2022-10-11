@@ -9,7 +9,7 @@ export default {
             name: 'label',
             type: 'text',
             label: defineMessage({
-                defaultMessage: 'Description',
+                defaultMessage: 'Label',
                 description: 'Field label',
             }),
         },
