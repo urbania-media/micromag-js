@@ -36,41 +36,11 @@ export default [
                     {
                         name: 'keypadLayout',
                         type: 'keypad-layout-form',
-                        defaultValue: 'middle',
                         label: defineMessage({
                             defaultMessage: 'Keypad layout',
                             description: 'Field label',
                         }),
                     },
-                    // {
-                    //     name: 'columnAlign',
-                    //     type: 'alignHorizontal',
-                    //     defaultValue: 'middle',
-                    //     label: defineMessage({
-                    //         defaultMessage: 'Align items',
-                    //         description: 'Field label',
-                    //     }),
-                    // },
-                    // {
-                    //     name: 'columns',
-                    //     type: 'number',
-                    //     defaultValue: 3,
-                    //     isHorizontal: true,
-                    //     label: defineMessage({
-                    //         defaultMessage: 'Columns',
-                    //         description: 'Field label',
-                    //     }),
-                    // },
-                    // {
-                    //     name: 'spacing',
-                    //     type: 'number',
-                    //     defaultValue: 5,
-                    //     isHorizontal: true,
-                    //     label: defineMessage({
-                    //         defaultMessage: 'Spacing',
-                    //         description: 'Field label',
-                    //     }),
-                    // },
                     {
                         name: 'items',
                         type: 'buttons',
@@ -84,29 +54,49 @@ export default [
                             description: 'Field label',
                         }),
                     },
+                    // {
+                    //     name: 'buttonLayout',
+                    //     type: 'button-layout',
+                    //     label: defineMessage({
+                    //         defaultMessage: 'Button layout',
+                    //         description: 'Field label',
+                    //     }),
+                    // },
                     {
-                        name: 'buttonLayout',
-                        type: 'button-layout',
+                        name: 'buttonStyles',
+                        type: 'fields',
                         label: defineMessage({
-                            defaultMessage: 'Button layout',
+                            defaultMessage: 'Buttons style',
                             description: 'Field label',
                         }),
-                    },
-                    {
-                        name: 'textStyle',
-                        type: 'text-style-form',
-                        label: defineMessage({
-                            defaultMessage: 'Label style',
-                            description: 'Field label',
-                        }),
-                    },
-                    {
-                        name: 'boxStyle',
-                        type: 'box-style-form',
-                        label: defineMessage({
-                            defaultMessage: 'Button style',
-                            description: 'Field label',
-                        }),
+                        isList: true,
+                        fields: [
+                            {
+                                name: 'buttonLayout',
+                                type: 'button-layout',
+                                isHorizontal: true,
+                                label: defineMessage({
+                                    defaultMessage: 'Button layout',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
+                                name: 'textStyle',
+                                type: 'text-style-form',
+                                label: defineMessage({
+                                    defaultMessage: 'Label style',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
+                                name: 'boxStyle',
+                                type: 'box-style-form',
+                                label: defineMessage({
+                                    defaultMessage: 'Button style',
+                                    description: 'Field label',
+                                }),
+                            },
+                        ],
                     },
                 ],
             },
@@ -117,6 +107,14 @@ export default [
                 repeatable: true,
                 fieldName: 'items',
                 fields: [
+                    {
+                        name: 'heading',
+                        type: 'heading-element',
+                        label: defineMessage({
+                            defaultMessage: 'Heading',
+                            description: 'Field label',
+                        }),
+                    },
                     {
                         name: 'content',
                         type: 'text-element',
@@ -132,6 +130,33 @@ export default [
                             defaultMessage: 'Visual',
                             description: 'Field label',
                         }),
+                    },
+                    {
+                        name: 'popupStyles',
+                        type: 'fields',
+                        label: defineMessage({
+                            defaultMessage: 'Popups style',
+                            description: 'Field label',
+                        }),
+                        isList: true,
+                        fields: [
+                            {
+                                name: 'textStyle',
+                                type: 'text-style-form',
+                                label: defineMessage({
+                                    defaultMessage: 'Popup content style',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
+                                name: 'boxStyle',
+                                type: 'box-style-form',
+                                label: defineMessage({
+                                    defaultMessage: 'Popup frame style',
+                                    description: 'Field label',
+                                }),
+                            },
+                        ],
                     },
                 ],
             },

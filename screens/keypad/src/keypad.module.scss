@@ -107,6 +107,8 @@
 .popupButton {
     @extend %reset-button;
 
+    width: 100%;
+    padding: 52px 18px 30px; // @todo eliminate magic numbers
     transition: transform 0.3s $ease-in-kickback;
 
     &:active {
@@ -115,12 +117,11 @@
 }
 
 .popupInner {
-    margin: 52px 18px 30px;
-    padding: 10px;
-    border-radius: 22px;
-    background-color: #0ff;
-    box-shadow: 0 0 4px (#010f66);
-    color: #1d3af2;
+    background-color: $purple;
+    // padding: 10px;
+    // border-radius: 22px;
+    // box-shadow: 0 0 4px (#010f66);
+    // color: #1d3af2;
 }
 
 /**

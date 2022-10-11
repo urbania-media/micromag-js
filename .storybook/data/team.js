@@ -15,6 +15,27 @@ export default [
             body: '<p>David est un lorem ipsum dolor sit amet consectetur adipiscing</p>'
         },
         largeVisual: imageMediaFromURL(dmp),
+        buttonStyles: {
+            buttonLayout: 'label-top',
+            textStyle: {
+                fontStyle: {
+                    bold: true,
+                    italic: false,
+                    underline: false,
+                },
+                fontSize: 8,
+            },
+            boxStyle: {
+                backgroundColor: {
+                    color: '#23195c',
+                    alpha: 1,
+                },
+                borderRadius: 10,
+                padding: {
+                    bottom: 5,
+                },
+            },
+        },
     },
     {
         label: 'Marc-Antoine Jacques',

@@ -16,25 +16,28 @@ const multipleKeypads = {
                 spacing: 1,
                 withSquareItems: false,
             },
-            buttonLayout: 'label-top',
-            textStyle: {
-                fontStyle: {
-                    bold: true,
-                    italic: false,
-                    underline: false,
+            buttonStyles: {
+                buttonLayout: 'label-top',
+                textStyle: {
+                    fontStyle: {
+                        bold: true,
+                        italic: false,
+                        underline: false,
+                    },
+                    fontSize: 8,
                 },
-                fontSize: 8,
+                boxStyle: {
+                    backgroundColor: {
+                        color: '#23195c',
+                        alpha: 1,
+                    },
+                    borderRadius: 10,
+                    padding: {
+                        bottom: 5,
+                    },
+                },
             },
-            boxStyle: {
-                backgroundColor: {
-                    color: '#23195c',
-                    alpha: 1,
-                },
-                borderRadius: 10,
-                padding: {
-                    bottom: 5,
-                },
-            },
+
         },
         {
             background: {
@@ -52,17 +55,19 @@ const multipleKeypads = {
                 spacing: 10,
                 withSquareItems: true,
             },
-            buttonLayout: 'no-label',
-            boxStyle: {
-                borderRadius: 10,
-                shadowAngle: 45,
-                shadowDistance: 5,
-                shadowColor: { alpha: 0.15, color: '#000000' },
-                borderStyle: 'solid',
-                borderWidth: 1,
-                borderColor: { alpha: 0.5, color: '#ffffff' },
+            buttonStyles: {
+                buttonLayout: 'no-label',
+                boxStyle: {
+                    borderRadius: 10,
+                    shadowAngle: 45,
+                    shadowDistance: 5,
+                    shadowColor: { alpha: 0.15, color: '#000000' },
+                    borderStyle: 'solid',
+                    borderWidth: 1,
+                    borderColor: { alpha: 0.5, color: '#ffffff' },
+                },
+                textStyle: null,
             },
-            textStyle: null,
         },
     ],
 };

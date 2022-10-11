@@ -527,6 +527,12 @@ msgctxt "8ELj2J"
 msgid "Items"
 msgstr ""
 
+# Field label
+#: 8UzHjg
+msgctxt "8UzHjg"
+msgid "Keypad layout"
+msgstr ""
+
 # UrbaniaHoroscope sign
 #: 8gQ1oW
 msgctxt "8gQ1oW"
@@ -845,6 +851,12 @@ msgctxt "GRVidW"
 msgid "360 Video"
 msgstr "Vidéo 360"
 
+# Fields section label
+#: Gtmyc8
+msgctxt "Gtmyc8"
+msgid "Layout / Spacing"
+msgstr ""
+
 # Timeline screen title
 #: GzoKNb
 msgctxt "GzoKNb"
@@ -1037,12 +1049,6 @@ msgctxt "N25iDO"
 msgid "Title"
 msgstr "Titre"
 
-# Keypad state
-#: NIm/GU
-msgctxt "NIm/GU"
-msgid "Screen"
-msgstr ""
-
 # Field label
 #: NVUpOG
 msgctxt "NVUpOG"
@@ -1061,6 +1067,12 @@ msgctxt "NmCfTO"
 msgid "Conversation"
 msgstr "Conversation"
 
+# Field label
+#: NqwQqU
+msgctxt "NqwQqU"
+msgid "Button layout"
+msgstr ""
+
 # Horoscope sign
 #: NumcrW
 msgctxt "NumcrW"
@@ -1072,6 +1084,12 @@ msgstr "Capricorne"
 msgctxt "O2JVA+"
 msgid "Left"
 msgstr "Gauche"
+
+# Radio option label
+#: O2ThsB
+msgctxt "O2ThsB"
+msgid "2"
+msgstr ""
 
 # Field label
 #: OJi+eg
@@ -1240,6 +1258,12 @@ msgctxt "S9YpbV"
 msgid "Text"
 msgstr "Texte"
 
+# Radio option label
+#: SPUQMP
+msgctxt "SPUQMP"
+msgid "4"
+msgstr ""
+
 # Published name style field label
 #: SyMSDa
 msgctxt "SyMSDa"
@@ -1263,6 +1287,12 @@ msgstr "Images"
 msgctxt "THKV4v"
 msgid "Longitude"
 msgstr "Longitude"
+
+# Field label
+#: TTPc+y
+msgctxt "TTPc+y"
+msgid "Use square keys"
+msgstr ""
 
 # Field label
 #: TZUu3s
@@ -1413,6 +1443,12 @@ msgstr "Réponse"
 msgctxt "XKcyqx"
 msgid "Taurus"
 msgstr "Taureau"
+
+# Field label
+#: XR5/Wk
+msgctxt "XR5/Wk"
+msgid "Edit"
+msgstr ""
 
 # GalleryFeedCaptions screen title
 #: XTJGzY
@@ -2054,6 +2090,12 @@ msgctxt "n9LoBJ"
 msgid "Top"
 msgstr "Haut"
 
+# Radio option label
+#: nCW2/v
+msgctxt "nCW2/v"
+msgid "3"
+msgstr ""
+
 # Urbania screen title
 #: nJgzwC
 msgctxt "nJgzwC"
@@ -2197,6 +2239,12 @@ msgstr "Droite"
 msgctxt "q/tLk0"
 msgid "Are you sure you want to delete this screen?"
 msgstr "Êtes-vous sûr que vous voulez supprimer cet écran?"
+
+# Keypad state
+#: qINMmC
+msgctxt "qINMmC"
+msgid "Keypad"
+msgstr ""
 
 # Save in Media Gallery
 #: qIw1nW
@@ -2425,6 +2473,12 @@ msgstr "Ombre"
 msgctxt "uiTxd7"
 msgid "Results"
 msgstr "Résultats"
+
+# Radio option label
+#: ujG9xe
+msgctxt "ujG9xe"
+msgid "1"
+msgstr ""
 
 # Field label
 #: uoF5Pv

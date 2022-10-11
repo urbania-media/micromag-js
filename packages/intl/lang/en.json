@@ -257,6 +257,9 @@
     "8ELj2J": {
         "defaultMessage": "Items"
     },
+    "8UzHjg": {
+        "defaultMessage": "Keypad layout"
+    },
     "8gQ1oW": {
         "defaultMessage": "Pisces"
     },
@@ -416,6 +419,9 @@
     "GRVidW": {
         "defaultMessage": "360 Video"
     },
+    "Gtmyc8": {
+        "defaultMessage": "Layout / Spacing"
+    },
     "GzoKNb": {
         "defaultMessage": "Timeline"
     },
@@ -512,9 +518,6 @@
     "N25iDO": {
         "defaultMessage": "Title"
     },
-    "NIm/GU": {
-        "defaultMessage": "Screen"
-    },
     "NVUpOG": {
         "defaultMessage": "Map fit markers"
     },
@@ -524,11 +527,17 @@
     "NmCfTO": {
         "defaultMessage": "Conversation"
     },
+    "NqwQqU": {
+        "defaultMessage": "Button layout"
+    },
     "NumcrW": {
         "defaultMessage": "Capricorn"
     },
     "O2JVA+": {
         "defaultMessage": "Left"
+    },
+    "O2ThsB": {
+        "defaultMessage": "2"
     },
     "OJi+eg": {
         "defaultMessage": "Label"
@@ -614,6 +623,9 @@
     "S9YpbV": {
         "defaultMessage": "Text"
     },
+    "SPUQMP": {
+        "defaultMessage": "4"
+    },
     "SyMSDa": {
         "defaultMessage": "Published name style"
     },
@@ -625,6 +637,9 @@
     },
     "THKV4v": {
         "defaultMessage": "Longitude"
+    },
+    "TTPc+y": {
+        "defaultMessage": "Use square keys"
     },
     "TZUu3s": {
         "defaultMessage": "Blur"
@@ -700,6 +715,9 @@
     },
     "XKcyqx": {
         "defaultMessage": "Taurus"
+    },
+    "XR5/Wk": {
+        "defaultMessage": "Edit"
     },
     "XTJGzY": {
         "defaultMessage": "Gallery feed with captions"
@@ -1022,6 +1040,9 @@
     "n9LoBJ": {
         "defaultMessage": "Top"
     },
+    "nCW2/v": {
+        "defaultMessage": "3"
+    },
     "nJgzwC": {
         "defaultMessage": "Urbania article"
     },
@@ -1093,6 +1114,9 @@
     },
     "q/tLk0": {
         "defaultMessage": "Are you sure you want to delete this screen?"
+    },
+    "qINMmC": {
+        "defaultMessage": "Keypad"
     },
     "qIw1nW": {
         "defaultMessage": "Save"
@@ -1207,6 +1231,9 @@
     },
     "uiTxd7": {
         "defaultMessage": "Results"
+    },
+    "ujG9xe": {
+        "defaultMessage": "1"
     },
     "uoF5Pv": {
         "defaultMessage": "Content"
