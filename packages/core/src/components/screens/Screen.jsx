@@ -14,6 +14,7 @@ const propTypes = {
     screen: MicromagPropTypes.storyComponent.isRequired,
     renderContext: MicromagPropTypes.renderContext,
     screenState: PropTypes.string,
+    index: PropTypes.number,
     active: PropTypes.bool,
     current: PropTypes.bool,
     component: PropTypes.node,
@@ -26,6 +27,7 @@ const defaultProps = {
     active: true,
     renderContext: null,
     screenState: null,
+    index: null,
     current: false,
     component: null,
     components: null,
@@ -37,6 +39,7 @@ const Screen = ({
     screen,
     renderContext,
     screenState,
+    index,
     active,
     current,
     components,
@@ -63,6 +66,7 @@ const Screen = ({
                 >
                     <ScreenComponent
                         {...screen}
+                        index={index}
                         active={active}
                         current={current}
                         mediaRef={mediaRef}

@@ -35,6 +35,7 @@ const propTypes = {
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
+    index: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -53,6 +54,7 @@ const defaultProps = {
     spacing: 20,
     background: null,
     callToAction: null,
+    index: null,
     current: true,
     active: true,
     transitions: null,
@@ -71,6 +73,7 @@ const ShareScreen = ({
     spacing,
     background,
     callToAction,
+    index,
     current,
     active,
     transitions,
@@ -99,8 +102,26 @@ const ShareScreen = ({
     const currentUrl = useMemo(() => {
         if (typeof window === 'undefined') return '';
         const { hostname = null, pathname = null } = window.location || {};
-        return hostname + pathname;
-    }, []);
+        const parts = pathname.split('/');
+        /**
+         * @note for the last portion of the path, if it's equal to the screen index,
+         * don't include it in the share URL. This makes sure we're not doing a
+         * `.replace()` that might remove a part from the slug of the current
+         * Micromag.
+         * (e.g. if the url is `/10-reasons-to-lorem-ipsum` and the share screen
+         * is on screen 10, then a string replace would remove the `/10` from the
+         * URL)
+         */
+        return parts.reduce(
+            (acc, part, i) =>
+                // last item, and it's equal to the screen index (and it's not empty)
+                (i === parts.length - 1 && parseInt(part, 10) === index) || part === ''
+                    ? acc
+                    : `${acc}/${part}`,
+            hostname,
+        );
+    }, [index]);
+    // if not share URl was specified, default to the currentURL (without the screen index part)
     const finalShareURL = shareUrl || currentUrl;
     const defaultOptions =
         options !== null
@@ -120,14 +141,13 @@ const ShareScreen = ({
         (type) => {
             if (trackingEnabled) {
                 trackEvent('click_share', type, {
-                    shareUrl,
+                    shareUrl: finalShareURL,
                 });
             }
         },
         [trackEvent],
     );
 
-    // Create elements
     const items = [
         <ScreenElement
             key="title"
