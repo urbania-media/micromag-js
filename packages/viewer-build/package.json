@@ -33,12 +33,14 @@
         "build"
     ],
     "scripts": {
-        "prepare": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build ./src/index.js"
+        "clean": "rm -rf build",
+        "build": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build ./src/index.js",
+        "prepare": "npm run clean && npm run build"
     },
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "255e9d831a38ce83523720061568fbb69dd90513",
+    "gitHead": "7492797ef2a91a9e37631d99c1e73552d8588d52",
     "devDependencies": {
         "@folklore/cli": "^0.0.49",
         "@micromag/core": "^0.3.246",
