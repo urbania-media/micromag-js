@@ -35,6 +35,7 @@ const propTypes = {
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
+    id: PropTypes.string,
     index: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -54,6 +55,7 @@ const defaultProps = {
     spacing: 20,
     background: null,
     callToAction: null,
+    id: null,
     index: null,
     current: true,
     active: true,
@@ -73,6 +75,7 @@ const ShareScreen = ({
     spacing,
     background,
     callToAction,
+    id,
     index,
     current,
     active,
@@ -104,24 +107,26 @@ const ShareScreen = ({
         const { hostname = null, pathname = null } = window.location || {};
         const parts = pathname.split('/');
         /**
-         * @note for the last portion of the path, if it's equal to the screen index,
-         * don't include it in the share URL. This makes sure we're not doing a
-         * `.replace()` that might remove a part from the slug of the current
-         * Micromag.
+         * for the last portion of the path, if it's equal to the screen index,
+         * or the screen id, then don't include it in the share URL.
+         * This makes sure we're not doing a `.replace()` that might remove a part
+         * from the slug of the current Micromag.
          * (e.g. if the url is `/10-reasons-to-lorem-ipsum` and the share screen
          * is on screen 10, then a string replace would remove the `/10` from the
          * URL)
          */
         return parts.reduce(
             (acc, part, i) =>
-                // last item, and it's equal to the screen index (and it's not empty)
-                (i === parts.length - 1 && parseInt(part, 10) === index) || part === ''
+                // it's equal to the screen index, or equal to the screen ID, or it's empty
+                (i === parts.length - 1 && parseInt(part, 10) === index) ||
+                part === id ||
+                part === ''
                     ? acc
                     : `${acc}/${part}`,
             hostname,
         );
-    }, [index]);
-    // if not share URl was specified, default to the currentURL (without the screen index part)
+    }, [index, id]);
+    // if not share URl was specified, default to the currentURL (without the screen index/id part)
     const finalShareURL = shareUrl || currentUrl;
     const defaultOptions =
         options !== null
