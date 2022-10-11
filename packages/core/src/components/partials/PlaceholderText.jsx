@@ -27,8 +27,8 @@ const defaultProps = {
 const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className }) => {
     const lineHeight =
         height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
-    
-    const oddWidth = isNumber(width) ? width * 0.9 : '90%';
+
+    const oddWidth = isNumber(width) ? width * 0.9 : '80%';
 
     return (
         <div

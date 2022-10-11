@@ -37,11 +37,10 @@ const multipleKeypads = {
                     },
                 },
             },
-
         },
         {
             background: {
-                color: { alpha: 1, color: '#fff800' },
+                color: { alpha: 1, color: '#ff008f', },
                 image: null,
                 video: null,
             },
@@ -67,6 +66,36 @@ const multipleKeypads = {
                     borderColor: { alpha: 0.5, color: '#ffffff' },
                 },
                 textStyle: null,
+            },
+            popupStyles: {
+                layout: 'content-top',
+                boxStyle: {
+                    borderStyle: 'solid',
+                    backgroundColor: {
+                        color: '#f3a9d3',
+                        alpha: 0.65,
+                    },
+                    borderRadius: 20,
+                    shadowAngle: 45,
+                    shadowDistance: 10,
+                    padding: {
+                        left: 10,
+                        top: 10,
+                        right: 10,
+                        bottom: 10,
+                    },
+                    borderWidth: 2,
+                    shadowColor: {
+                        color: '#010101',
+                        alpha: 0.33,
+                    },
+                },
+                textStyle: {
+                    color: {
+                        color: '#000000',
+                        alpha: 1,
+                    },
+                },
             },
         },
     ],

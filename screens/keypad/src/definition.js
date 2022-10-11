@@ -21,6 +21,39 @@ export default [
         component: Keypad,
         states: [
             {
+                id: 'popup',
+                label: defineMessage({ defaultMessage: 'Popup', description: 'Popup state' }),
+                fields: [
+                    {
+                        name: 'popupStyles',
+                        type: 'fields',
+                        label: defineMessage({
+                            defaultMessage: 'Popup style',
+                            description: 'Field label',
+                        }),
+                        isList: true,
+                        fields: [
+                            {
+                                name: 'textStyle',
+                                type: 'text-style-form',
+                                label: defineMessage({
+                                    defaultMessage: 'Text style',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
+                                name: 'boxStyle',
+                                type: 'box-style-form',
+                                label: defineMessage({
+                                    defaultMessage: 'Frame and backgound styles',
+                                    description: 'Field label',
+                                }),
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
                 id: 'keypad',
                 label: defineMessage({ defaultMessage: 'Keypad', description: 'Keypad state' }),
                 fields: [
@@ -130,33 +163,6 @@ export default [
                             defaultMessage: 'Visual',
                             description: 'Field label',
                         }),
-                    },
-                    {
-                        name: 'popupStyles',
-                        type: 'fields',
-                        label: defineMessage({
-                            defaultMessage: 'Popups style',
-                            description: 'Field label',
-                        }),
-                        isList: true,
-                        fields: [
-                            {
-                                name: 'textStyle',
-                                type: 'text-style-form',
-                                label: defineMessage({
-                                    defaultMessage: 'Popup content style',
-                                    description: 'Field label',
-                                }),
-                            },
-                            {
-                                name: 'boxStyle',
-                                type: 'box-style-form',
-                                label: defineMessage({
-                                    defaultMessage: 'Popup frame style',
-                                    description: 'Field label',
-                                }),
-                            },
-                        ],
                     },
                 ],
             },

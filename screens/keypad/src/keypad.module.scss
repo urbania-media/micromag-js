@@ -76,7 +76,25 @@
     height: 100%;
     padding: 0;
     overflow: hidden;
+    transition: transform 0.3s $ease-in-kickback;
     font-weight: inherit;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &.isPopupEmpty {
+        cursor: default;
+
+        &:hover,
+        &:active {
+            transform: none;
+        }
+    }
 
     .withSquareItems & {
         @extend %fullscreen;
@@ -108,7 +126,8 @@
     @extend %reset-button;
 
     width: 100%;
-    padding: 52px 18px 30px; // @todo eliminate magic numbers
+    height: 100%;
+    padding: 52px 15px 30px; // @todo eliminate magic numbers
     transition: transform 0.3s $ease-in-kickback;
 
     &:active {
@@ -117,11 +136,7 @@
 }
 
 .popupInner {
-    background-color: $purple;
-    // padding: 10px;
-    // border-radius: 22px;
-    // box-shadow: 0 0 4px (#010f66);
-    // color: #1d3af2;
+    background-color: $black;
 }
 
 /**

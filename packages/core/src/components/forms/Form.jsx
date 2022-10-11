@@ -152,6 +152,7 @@ const Form = ({
 
     const gotoFieldForm = useCallback(
         (field, formName = null) => {
+            console.log({field, formName});
             const fieldKey = `${field}${formName !== null ? `:${formName}` : ''}`;
             setFieldPaths([...fieldPaths, fieldKey]);
             if (onOpenFieldForm !== null) {

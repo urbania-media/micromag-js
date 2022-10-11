@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderButton } from '@micromag/core/components';
+import { PlaceholderButton, PlaceholderTitle, PlaceholderText, PlaceholderImage } from '@micromag/core/components';
 // import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
@@ -15,7 +15,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useDragProgress } from '@micromag/core/hooks';
+import { useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
 import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -23,6 +23,7 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Keypad from '@micromag/element-keypad';
 import Layout from '@micromag/element-layout';
+import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
@@ -75,6 +76,7 @@ const propTypes = {
         boxStyle: MicromagPropTypes.boxStyle,
     }),
     popupStyles: PropTypes.shape({
+        layout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
         textStyle: MicromagPropTypes.textStyle,
         boxStyle: MicromagPropTypes.boxStyle,
     }),
@@ -90,9 +92,6 @@ const defaultProps = {
     keypadLayout: null,
     buttonStyles: null,
     popupStyles: null,
-    // buttonLayout: 'label-bottom', // @todo do we need a default here?
-    // textStyle: null,
-    // boxStyle: null,
     background: null,
     current: true,
     active: true,
@@ -105,16 +104,13 @@ const KeypadScreen = ({
     keypadLayout,
     buttonStyles,
     popupStyles,
-    // buttonLayout,
-    // textStyle,
-    // boxStyle,
     background,
     current,
     active,
     className,
 }) => {
     // const intl = useIntl();
-    // const trackScreenEvent = useTrackScreenEvent(type);
+    const trackScreenEvent = useTrackScreenEvent('keypad');
     // const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
@@ -134,7 +130,11 @@ const KeypadScreen = ({
         withSquareItems = true,
     } = keypadLayout || {};
     const { buttonLayout = null, textStyle = null, boxStyle = null } = buttonStyles || {};
-    const { textStyle: popupTextStyle = null, boxStyle: popupBoxStyle = null } = popupStyles || {};
+    const {
+        textStyle: popupTextStyle = null,
+        boxStyle: popupBoxStyle = null,
+        layout: popupLayout = null,
+    } = popupStyles || {};
 
     const [showPopup, setShowPopup] = useState(false);
     const [popup, setPopup] = useState(null);
@@ -144,10 +144,9 @@ const KeypadScreen = ({
             e.stopPropagation();
             setPopup(item);
             setShowPopup(1);
-            // trackScreenEvent('UrbaniaHoroscope', 'select_sign', signs[foundSignIndex]);
+            trackScreenEvent('click_item', item);
         },
-        [setPopup],
-        // [setPopup, trackScreenEvent],
+        [setPopup, trackScreenEvent],
     );
 
     const onCloseModal = useCallback(() => {
@@ -190,10 +189,13 @@ const KeypadScreen = ({
                       visual = null,
                       textStyle: customTextStyle = null,
                       boxStyle: customBoxStyle = null,
+                      heading = null,
                       content = null,
                       largeVisual = null,
                   } = item || {};
-                  const { body: key = null } = label || {};
+                  const { url: visualUrl = null } = visual || {};
+                  const key = label || visualUrl;
+                  const isPopupEmpty = heading === null && content === null && largeVisual === null;
                   return (
                       <div key={key} className={styles.item}>
                           <Button
@@ -204,6 +206,7 @@ const KeypadScreen = ({
                                       [styles.layoutLabelTop]: buttonLayout === 'label-top',
                                       [styles.layoutNoLabel]: buttonLayout === 'no-label',
                                       [styles.layoutLabelOver]: buttonLayout === 'label-over',
+                                      [styles.isPopupEmpty]: isPopupEmpty,
                                   },
                               ])}
                               style={{
@@ -213,9 +216,9 @@ const KeypadScreen = ({
                                   ...getStyleFromText(customTextStyle),
                               }}
                               onClick={
-                                  content !== null && largeVisual !== null
+                                  !isPopupEmpty
                                       ? (e) => onItemClick(e, item)
-                                      : false
+                                      : (e) => e.preventDefault()
                               }
                           >
                               {visual !== null ? (
@@ -246,24 +249,24 @@ const KeypadScreen = ({
         largeVisual = null,
     } = popup || {};
 
-    const hasPopupContent = (item) => {
-        const { heading = null, content = null, largeVisual: popupLargeVisual = null } = item || {};
-        const { body: headingBody = null } = heading || {};
-        const { body: contentBody = null } = content || {};
-        return (
-            (headingBody !== null && headingBody !== '') ||
-            (contentBody !== null && contentBody !== '') ||
-            popupLargeVisual !== null
-        );
-    };
+    // const hasPopupContent = (item) => {
+    //     const { heading = null, content = null, largeVisual: popupLargeVisual = null } = item || {};
+    //     const { body: headingBody = null } = heading || {};
+    //     const { body: contentBody = null } = content || {};
+    //     return (
+    //         (headingBody !== null && headingBody !== '') ||
+    //         (contentBody !== null && contentBody !== '') ||
+    //         popupLargeVisual !== null
+    //     );
+    // };
 
     // for editor purposes
     const screenState = useScreenState();
 
     useEffect(() => {
-        console.log({screenState, items})
-        if (screenState === null && isPreview) {
-            return;
+        if (screenState === 'popup') {
+            setPopup(items[0] || {}); // @note force placeholder
+            setShowPopup(1);
         }
         if (screenState === 'keypad') {
             setPopup(null);
@@ -272,16 +275,14 @@ const KeypadScreen = ({
         if (screenState !== null && screenState.includes('items')) {
             const index = screenState.split('.').pop();
             const found = items[index];
-            console.log({screenState, found, index})
             setShowPopup(1);
             setPopup(found);
         }
         if (screenState === null) {
-            const found = items ? items[0] : {};
-            setShowPopup(1);
-            setPopup(found);
+            setShowPopup(0);
+            setPopup(null);
         }
-    }, [screenState, items, isPreview]);
+    }, [screenState, items]);
 
     return (
         <div
@@ -355,27 +356,32 @@ const KeypadScreen = ({
                                 }
                             }}
                         >
-                            <div
-                                className={styles.popupInner}
-                                style={{
-                                    ...getStyleFromBox(popupTextStyle),
-                                    ...getStyleFromText(popupBoxStyle),
-                                }}
-                            >
-                                {popupHeading !== null ? (
-                                    <Heading className={styles.popupHeading} {...popupHeading} />
-                                ) : null}
-                                {popupContent !== null ? (
-                                    <Text className={styles.popupContent} {...popupContent} />
-                                ) : null}
-                                {largeVisual !== null ? (
-                                    <Visual
-                                        className={styles.popupMedia}
-                                        media={largeVisual}
-                                        width="100%"
-                                    />
-                                ) : null}
-                            </div>
+                            <Scroll>
+                                <div
+                                    className={classNames([styles.popupInner, styles[popupLayout]])}
+                                    style={{
+                                        ...getStyleFromBox(popupBoxStyle),
+                                        ...getStyleFromText(popupTextStyle),
+                                    }}
+                                >
+                                    {popupHeading !== null ? (
+                                        <Heading
+                                            className={styles.popupHeading}
+                                            {...popupHeading}
+                                        />
+                                    ) : <PlaceholderTitle />}
+                                    {popupContent !== null ? (
+                                        <Text className={styles.popupContent} {...popupContent} />
+                                    ) : <PlaceholderText lines={3} />}
+                                    {largeVisual !== null ? (
+                                        <Visual
+                                            className={styles.popupMedia}
+                                            media={largeVisual}
+                                            width="100%"
+                                        />
+                                    ) : <PlaceholderImage />}
+                                </div>
+                            </Scroll>
                         </button>
                     </animated.div>
                 </Layout>
