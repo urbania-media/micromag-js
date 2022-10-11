@@ -225,12 +225,12 @@ const Viewer = ({
 
     const withoutScreensTransforms = isStatic || isCapture;
 
-    // const {
-    //     playing,
-    //     controls: playbackControls = false,
-    //     controlsVisible: playbackcontrolsVisible = false,
-    //     media: playbackMedia = null,
-    // } = usePlaybackContext();
+    const {
+        playing,
+        controls: playbackControls = false,
+        controlsVisible: playbackcontrolsVisible = false,
+        media: playbackMedia = null,
+    } = usePlaybackContext();
 
     const { ref: playbackControlsContainerRef, height: playbackControlsContainerHeight = 0 } =
         useDimensionObserver();
