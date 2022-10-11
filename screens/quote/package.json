@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-quote",
-    "version": "0.3.242",
+    "version": "0.3.243",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,14 +49,14 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.242",
-        "@micromag/element-background": "^0.3.242",
-        "@micromag/element-call-to-action": "^0.3.242",
-        "@micromag/element-container": "^0.3.242",
-        "@micromag/element-layout": "^0.3.242",
-        "@micromag/element-quote": "^0.3.242",
-        "@micromag/element-text": "^0.3.242",
-        "@micromag/transforms": "^0.3.242",
+        "@micromag/core": "^0.3.243",
+        "@micromag/element-background": "^0.3.243",
+        "@micromag/element-call-to-action": "^0.3.243",
+        "@micromag/element-container": "^0.3.243",
+        "@micromag/element-layout": "^0.3.243",
+        "@micromag/element-quote": "^0.3.243",
+        "@micromag/element-text": "^0.3.243",
+        "@micromag/transforms": "^0.3.243",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -66,5 +66,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "1fc7db5c3dc561fc11f7cc95fa3123a2fbdf1cfc"
+    "gitHead": "8627b7319dd503bb2cb87cfd76fa0129e55c69dd"
 }
