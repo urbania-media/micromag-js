@@ -1,0 +1,8 @@
+@import '~@micromag/core/scss/variables';
+@import './placeholders';
+
+.item {
+    + .item {
+        margin-left: auto;
+    }
+}

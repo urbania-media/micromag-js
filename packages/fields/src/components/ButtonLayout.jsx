@@ -1,10 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+
+import { PlaceholderImage, PlaceholderText } from '@micromag/core/components';
 
 import Radios from './Radios';
 
-import styles from '../styles/border-style.module.scss';
+import styles from '../styles/button-layout.module.scss';
 
 const propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
@@ -21,11 +23,61 @@ const defaultProps = {
 };
 
 const ButtonLayout = ({ types, value, className, onChange }) => {
-    const onButtonLayoutChange = newVal => {
+    const onButtonLayoutChange = (newVal) => {
         const v = newVal === value ? null : newVal;
 
+        console.log({value, v, newVal});
+
         onChange(v);
-    }
+    };
+
+    const getLayoutPreviewByType = useCallback((type) => {
+        switch (type) {
+            case 'label-bottom':
+                return (
+                    <div
+                    >
+                        <PlaceholderImage width="1.25em" height="1em" />
+                        <PlaceholderText lines={1} lineMargin={1} />
+                    </div>
+                );
+            case 'label-top':
+                return (
+                    <div
+                    >
+                        <PlaceholderText lines={1} lineMargin={1} />
+                        <PlaceholderImage width="1.25em" height="1em" />
+                    </div>
+                );
+            case 'no-label':
+                return (
+                    <div
+                    >
+                        <PlaceholderImage width="1.5em" height="1.5em" />
+                    </div>
+                );
+            case 'label-over':
+                return (
+                    <div
+                    >
+                        <PlaceholderImage width="1.5em" height="1.5em" />
+                        <PlaceholderText className={styles.placeholderTextOver} lines={1} />
+                    </div>
+                );
+            default:
+                return (
+                    <div
+                        style={
+                            {
+                                // width: 30,
+                                // height: 30,
+                                // border: `2px ${type} currentColor`,
+                            }
+                        }
+                    />
+                );
+        }
+    }, []);
 
     return (
         <div
@@ -40,18 +92,7 @@ const ButtonLayout = ({ types, value, className, onChange }) => {
                 <Radios
                     options={types.map((type) => ({
                         value: type,
-                        label: (
-                            <div className={styles.type}>
-                                {type}
-                                <div
-                                    style={{
-                                        width: 30,
-                                        height: 30,
-                                        border: `2px ${type} currentColor`,
-                                    }}
-                                />
-                            </div>
-                        ),
+                        label: getLayoutPreviewByType(type),
                     }))}
                     value={value || null}
                     className={classNames([
@@ -66,7 +107,7 @@ const ButtonLayout = ({ types, value, className, onChange }) => {
             </div>
         </div>
     );
-}
+};
 
 ButtonLayout.propTypes = propTypes;
 ButtonLayout.defaultProps = defaultProps;

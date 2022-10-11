@@ -44,9 +44,8 @@ const BorderStyle = ({ types, value, className, onChange }) => {
                         label: (
                             <div className={styles.type}>
                                 <div
+                                    className={styles.borders}
                                     style={{
-                                        width: 30,
-                                        height: 30,
                                         border: `2px ${type} currentColor`,
                                     }}
                                 />

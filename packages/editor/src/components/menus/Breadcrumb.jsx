@@ -94,7 +94,7 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                         type: fieldType = null,
                         fields: currentSubFields = null,
                         itemsField: currentItemsField = null,
-                    } = currentFields;
+                    } = currentFields || {};
 
                     const fieldsDef =
                         fieldType !== null ? fieldsManager.getDefinition(fieldType) : currentFields;
@@ -102,7 +102,7 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                         fields: defSubFields = null,
                         settings = null,
                         itemsField: defItemsField = null,
-                    } = fieldsDef;
+                    } = fieldsDef || {};
 
                     const itemsField = currentItemsField || defItemsField;
                     const subFields = currentSubFields || defSubFields;

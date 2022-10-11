@@ -60,6 +60,7 @@ const Radios = ({
                     key={`radio-${optionValue}-${index + 1}`}
                     className={classNames([
                         'btn',
+                        styles.item,
                         withBackground ? 'btn-secondary' : 'btn-outline-secondary',
                         {
                             active: optionValue === value,

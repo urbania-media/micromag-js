@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 // import { getStyleFromText, getFontFamilyFromFont } from '@micromag/core/utils';
 import FieldWithForm from './FieldWithForm';
 
@@ -39,20 +40,16 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
     //         </strong>
     //     ) : null;
 
-    console.log({value});
+    // console.log({value});
 
     return (
         <FieldWithForm
             isForm
             value={value}
-            label={
-                <FormattedMessage defaultMessage="Edit" description="Field label" />
-            }
+            label={<FormattedMessage defaultMessage="Edit" description="Field label" />}
             onChange={onChange}
-            thumbnail={<div>yo!</div>}
-            noValueLabel={
-                <FormattedMessage defaultMessage="Edit" description="Field label" />
-            }
+            thumbnail={<div>[preview pending]</div>}
+            noValueLabel={<FormattedMessage defaultMessage="Edit" description="Field label" />}
             {...props}
         />
     );
