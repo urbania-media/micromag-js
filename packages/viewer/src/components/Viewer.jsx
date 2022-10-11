@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, no-nested-ternary, react/jsx-props-no-spreading */
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { animated } from '@react-spring/web';
 import EventEmitter from 'wolfy87-eventemitter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -13,6 +13,7 @@ import {
     ViewerProvider,
     usePlaybackContext,
     VisitorProvider,
+    StoryProvider,
 } from '@micromag/core/contexts';
 import {
     useFullscreen,
@@ -54,7 +55,6 @@ const propTypes = {
     screenState: PropTypes.string,
     deviceScreens: MicromagPropTypes.deviceScreens,
     renderContext: MicromagPropTypes.renderContext,
-    visitor: MicromagPropTypes.visitor,
     onScreenChange: PropTypes.func,
     tapNextScreenWidthPercent: PropTypes.number,
     storyIsParsed: PropTypes.bool,
@@ -99,7 +99,6 @@ const defaultProps = {
     screenState: null,
     deviceScreens: getDeviceScreens(),
     renderContext: 'view',
-    visitor: null,
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.8,
     storyIsParsed: false,
@@ -140,7 +139,6 @@ const Viewer = ({
     screenState,
     deviceScreens,
     renderContext,
-    visitor,
     tapNextScreenWidthPercent,
     storyIsParsed,
     neighborScreensActive,
@@ -227,12 +225,12 @@ const Viewer = ({
 
     const withoutScreensTransforms = isStatic || isCapture;
 
-    const {
-        playing,
-        controls: playbackControls = false,
-        controlsVisible: playbackcontrolsVisible = false,
-        media: playbackMedia = null,
-    } = usePlaybackContext();
+    // const {
+    //     playing,
+    //     controls: playbackControls = false,
+    //     controlsVisible: playbackcontrolsVisible = false,
+    //     media: playbackMedia = null,
+    // } = usePlaybackContext();
 
     const { ref: playbackControlsContainerRef, height: playbackControlsContainerHeight = 0 } =
         useDimensionObserver();
@@ -519,7 +517,7 @@ const Viewer = ({
     });
 
     return (
-        <VisitorProvider visitor={visitor}>
+        <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
                 <ViewerProvider
                     containerRef={containerRef}
@@ -698,7 +696,7 @@ const Viewer = ({
                     </div>
                 </ViewerProvider>
             </ScreenSizeProvider>
-        </VisitorProvider>
+        </StoryProvider>
     );
 };
 
