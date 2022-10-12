@@ -20,16 +20,6 @@ export default {
                             description: 'Field label',
                         }),
                     },
-                    // {
-                    //     name: 'columns',
-                    //     type: 'number',
-                    //     defaultValue: 3,
-                    //     isHorizontal: true,
-                    //     label: defineMessage({
-                    //         defaultMessage: 'Columns',
-                    //         description: 'Field label',
-                    //     }),
-                    // },
                     {
                         name: 'columns',
                         type: 'radios',

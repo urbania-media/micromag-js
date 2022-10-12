@@ -5,7 +5,12 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderButton, PlaceholderTitle, PlaceholderText, PlaceholderImage } from '@micromag/core/components';
+import {
+    PlaceholderButton,
+    PlaceholderTitle,
+    PlaceholderText,
+    PlaceholderImage,
+} from '@micromag/core/components';
 // import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
@@ -28,6 +33,15 @@ import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
 import styles from './keypad.module.scss';
+
+const placeholderPopupBoxStyles = {
+    padding: {
+        left: 30,
+        top: 30,
+        right: 30,
+        bottom: 30,
+    },
+};
 
 const stopDragEventsPropagation = {
     onTouchMove: (e) => e.stopPropagation(),
@@ -249,23 +263,23 @@ const KeypadScreen = ({
         largeVisual = null,
     } = popup || {};
 
-    // const hasPopupContent = (item) => {
-    //     const { heading = null, content = null, largeVisual: popupLargeVisual = null } = item || {};
-    //     const { body: headingBody = null } = heading || {};
-    //     const { body: contentBody = null } = content || {};
-    //     return (
-    //         (headingBody !== null && headingBody !== '') ||
-    //         (contentBody !== null && contentBody !== '') ||
-    //         popupLargeVisual !== null
-    //     );
-    // };
+    const hasPopupContent = (item) => {
+        const { heading = null, content = null, largeVisual: popupLargeVisual = null } = item || {};
+        const { body: headingBody = null } = heading || {};
+        const { body: contentBody = null } = content || {};
+        return (
+            (headingBody !== null && headingBody !== '') ||
+            (contentBody !== null && contentBody !== '') ||
+            popupLargeVisual !== null
+        );
+    };
 
     // for editor purposes
     const screenState = useScreenState();
 
     useEffect(() => {
         if (screenState === 'popup') {
-            setPopup(items[0] || {}); // @note force placeholder
+            setPopup(items[0] || placeholderPopupBoxStyles); // @note force placeholder
             setShowPopup(1);
         }
         if (screenState === 'keypad') {
@@ -337,6 +351,7 @@ const KeypadScreen = ({
                         {isPlaceholder ? placeholderItems : gridItems}
                     </Keypad>
 
+                            <Scroll>
                     <animated.div
                         className={styles.popup}
                         style={{
@@ -356,10 +371,10 @@ const KeypadScreen = ({
                                 }
                             }}
                         >
-                            <Scroll>
                                 <div
                                     className={classNames([styles.popupInner, styles[popupLayout]])}
                                     style={{
+                                        ...getStyleFromBox(placeholderPopupBoxStyles),
                                         ...getStyleFromBox(popupBoxStyle),
                                         ...getStyleFromText(popupTextStyle),
                                     }}
@@ -369,21 +384,34 @@ const KeypadScreen = ({
                                             className={styles.popupHeading}
                                             {...popupHeading}
                                         />
-                                    ) : <PlaceholderTitle />}
+                                    ) : (
+                                        <PlaceholderTitle className={styles.popupHeading} />
+                                    )}
                                     {popupContent !== null ? (
                                         <Text className={styles.popupContent} {...popupContent} />
-                                    ) : <PlaceholderText lines={3} />}
+                                    ) : (
+                                        <PlaceholderText
+                                            className={styles.popupContent}
+                                            lines={3}
+                                            lineMargin={5}
+                                        />
+                                    )}
                                     {largeVisual !== null ? (
                                         <Visual
                                             className={styles.popupMedia}
                                             media={largeVisual}
                                             width="100%"
                                         />
-                                    ) : <PlaceholderImage />}
+                                    ) : (
+                                        <PlaceholderImage
+                                            className={styles.popupMediaPlaceholder}
+                                            height="8em"
+                                        />
+                                    )}
                                 </div>
-                            </Scroll>
                         </button>
                     </animated.div>
+                    </Scroll>
                 </Layout>
             </Container>
         </div>
