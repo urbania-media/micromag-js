@@ -22,7 +22,7 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
+import { getStyleFromText, getStyleFromBox, getStyleFromColor } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
@@ -91,7 +91,7 @@ const propTypes = {
         boxStyle: MicromagPropTypes.boxStyle,
     }),
     popupStyles: PropTypes.shape({
-        layout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
+        popupLayout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
         textStyle: MicromagPropTypes.textStyle,
         boxStyle: MicromagPropTypes.boxStyle,
     }),
@@ -146,7 +146,8 @@ const KeypadScreen = ({
     } = keypadLayout || {};
     const { buttonLayout = null, textStyle = null, boxStyle = null } = buttonStyles || {};
     const {
-        cardLayout: popupLayout = null,
+        layout: popupLayout = null,
+        backdrop: popupBackdrop = null,
         textStyle: popupTextStyle = null,
         boxStyle: popupBoxStyle = null,
     } = popupStyles || {};
@@ -360,6 +361,13 @@ const KeypadScreen = ({
                         {isPlaceholder ? placeholderItems : gridItems}
                     </Keypad>
 
+                    <animated.div
+                        className={classNames([styles.popupBackdrop])}
+                        style={{
+                            ...getStyleFromColor(popupBackdrop),
+                            opacity: popupSpring.to((p) => p),
+                        }}
+                    />
                     <animated.div
                         className={styles.popup}
                         style={{

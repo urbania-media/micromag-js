@@ -16,6 +16,9 @@ const multipleKeypads = {
                 spacing: 1,
                 withSquareItems: false,
             },
+            popupStyles: {
+                backdrop: { alpha: 0.5, color: '#1c1c1c' },
+            },
             buttonStyles: {
                 buttonLayout: 'label-top',
                 textStyle: {
@@ -69,11 +72,12 @@ const multipleKeypads = {
             },
             popupStyles: {
                 layout: 'content-top',
+                backdrop: { alpha: 0.75, color: '#f3a9d3' },
                 boxStyle: {
                     borderStyle: 'solid',
                     backgroundColor: {
                         color: '#f3a9d3',
-                        alpha: 0.65,
+                        alpha: 0.9,
                     },
                     borderRadius: 20,
                     shadowAngle: 45,

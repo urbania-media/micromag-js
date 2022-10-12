@@ -34,11 +34,11 @@ export default [
                         isList: true,
                         fields: [
                             {
-                                name: 'cardLayout',
+                                name: 'layout',
                                 type: 'card-layout',
                                 defaultValue: 'content-top',
                                 label: defineMessage({
-                                    defaultMessage: 'Card layout',
+                                    defaultMessage: 'Popup layout',
                                     description: 'Field label',
                                 }),
                             },
@@ -58,9 +58,17 @@ export default [
                                     description: 'Field label',
                                 }),
                             },
-                        ]
+                            {
+                                name: 'backdrop',
+                                type: 'color',
+                                label: defineMessage({
+                                    defaultMessage: 'Backdrop color',
+                                    description: 'Field label',
+                                }),
+                            },
+                        ],
                     },
-                ]
+                ],
             },
             {
                 id: 'keypad',

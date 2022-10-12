@@ -136,9 +136,17 @@
     touch-action: none;
 }
 
+.popupBackdrop {
+    @extend %fullscreen;
+    z-index: 1;
+    pointer-events: none;
+}
+
 .popupButton {
     @extend %reset-button;
 
+    position: relative;
+    z-index: 2;
     width: 100%;
     height: 100%;
     padding: 52px 15px 30px; // @todo eliminate magic numbers
