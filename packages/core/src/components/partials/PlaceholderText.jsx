@@ -13,6 +13,7 @@ const propTypes = {
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     fontSize: PropTypes.number,
     className: PropTypes.string,
+    withInvertedColors: PropTypes.bool
 };
 
 const defaultProps = {
@@ -22,9 +23,10 @@ const defaultProps = {
     height: null,
     fontSize: 16,
     className: null,
+    withInvertedColors: true,
 };
 
-const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className }) => {
+const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className,     withInvertedColors }) => {
     const lineHeight =
         height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
 
@@ -36,6 +38,7 @@ const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className
                 styles.container,
                 {
                     [className]: className,
+                    [styles.withInvertedColors]: withInvertedColors
                 },
             ])}
         >

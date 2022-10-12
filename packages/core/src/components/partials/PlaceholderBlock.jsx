@@ -11,6 +11,7 @@ const propTypes = {
     className: PropTypes.string,
     boxClassName: PropTypes.string,
     children: PropTypes.node,
+    withInvertedColors: PropTypes.bool
 };
 
 const defaultProps = {
@@ -20,15 +21,17 @@ const defaultProps = {
     className: null,
     boxClassName: null,
     children: null,
+    withInvertedColors: true,
 };
 
-const PlaceholderBlock = ({ width, height, outline, className, boxClassName, children }) => (
+const PlaceholderBlock = ({ width, height, outline, className, boxClassName, withInvertedColors, children }) => (
     <div
         className={classNames([
             styles.container,
             {
                 [className]: className !== null,
                 [styles.outline]: outline,
+                [styles.withInvertedColors]: withInvertedColors
             },
         ])}
     >

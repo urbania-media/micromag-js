@@ -34,6 +34,15 @@ export default [
                         isList: true,
                         fields: [
                             {
+                                name: 'cardLayout',
+                                type: 'card-layout',
+                                defaultValue: 'content-top',
+                                label: defineMessage({
+                                    defaultMessage: 'Card layout',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
                                 name: 'textStyle',
                                 type: 'text-style-form',
                                 label: defineMessage({

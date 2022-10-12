@@ -2,11 +2,11 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 
-import { PlaceholderImage, PlaceholderText } from '@micromag/core/components';
+import { PlaceholderImage, PlaceholderText, PlaceholderTitle } from '@micromag/core/components';
 
 import Radios from './Radios';
 
-import styles from '../styles/button-layout.module.scss';
+import styles from '../styles/card-layout.module.scss';
 
 const propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
@@ -16,13 +16,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-    types: ['label-bottom', 'label-top', 'no-label', 'label-over'],
+    types: ['content-top', 'content-bottom', 'content-split'],
     value: null,
     className: null,
     onChange: null,
 };
 
-const ButtonLayout = ({ types, value, className, onChange }) => {
+const CardLayout = ({ types, value, className, onChange }) => {
     const onButtonLayoutChange = (newVal) => {
         const v = newVal === value ? null : newVal;
 
@@ -31,35 +31,28 @@ const ButtonLayout = ({ types, value, className, onChange }) => {
 
     const getLayoutPreviewByType = useCallback((type) => {
         switch (type) {
-            case 'label-bottom':
+            case 'content-top':
                 return (
-                    <div
-                    >
-                        <PlaceholderImage width="1.25em" height="1em" />
-                        <PlaceholderText lines={1} lineMargin={1} />
+                    <div className={styles.layout}>
+                        <PlaceholderTitle lines={1} lineMargin={1} />
+                        <PlaceholderText lines={2} lineMargin={1} />
+                        <PlaceholderImage width="100%" height="1.25em" />
                     </div>
                 );
-            case 'label-top':
+            case 'content-bottom':
                 return (
-                    <div
-                    >
-                        <PlaceholderText lines={1} lineMargin={1} />
-                        <PlaceholderImage width="1.25em" height="1em" />
+                    <div className={styles.layout}>
+                        <PlaceholderImage width="100%" height="1.25em" />
+                        <PlaceholderTitle lines={1} lineMargin={1} />
+                        <PlaceholderText lines={2} lineMargin={1} />
                     </div>
                 );
-            case 'no-label':
+            case 'content-split':
                 return (
-                    <div
-                    >
-                        <PlaceholderImage width="1.5em" height="1.5em" />
-                    </div>
-                );
-            case 'label-over':
-                return (
-                    <div
-                    >
-                        <PlaceholderImage width="1.5em" height="1.5em" />
-                        <PlaceholderText className={styles.placeholderTextOver} lines={1} />
+                    <div className={styles.layout}>
+                        <PlaceholderTitle lines={1} lineMargin={1} />
+                        <PlaceholderImage width="100%" height="1.25em" />
+                        <PlaceholderText lines={2} lineMargin={1} />
                     </div>
                 );
             default:
@@ -86,7 +79,7 @@ const ButtonLayout = ({ types, value, className, onChange }) => {
                 },
             ])}
         >
-            <div className={classNames(['d-inline-flex', 'ms-auto', 'me-auto'])}>
+            <div className={classNames(['d-inline-flex', 'me-auto'])}>
                 <Radios
                     options={types.map((type) => ({
                         value: type,
@@ -107,7 +100,7 @@ const ButtonLayout = ({ types, value, className, onChange }) => {
     );
 };
 
-ButtonLayout.propTypes = propTypes;
-ButtonLayout.defaultProps = defaultProps;
+CardLayout.propTypes = propTypes;
+CardLayout.defaultProps = defaultProps;
 
-export default ButtonLayout;
+export default CardLayout;

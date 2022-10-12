@@ -47,6 +47,17 @@ export default [
     },
     {
         label: 'Nicolas Roy Bourdages',
+        heading: {
+            body: '@phatshambler',
+            textStyle: {
+                fontStyle: {
+                    bold: true,
+                    italic: false,
+                    underline: false,
+                },
+                fontSize: 20,
+            }
+        },
         visual: imageMediaFromURL(nrb)
     },
     {

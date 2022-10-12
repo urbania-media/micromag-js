@@ -12,6 +12,7 @@ export { default as BoxStyleForm } from './BoxStyleForm';
 export { default as ButtonLayout } from './ButtonLayout';
 export { default as CallToAction } from './CallToAction';
 export { default as CallToActionForm } from './CallToActionForm';
+export { default as CardLayout } from './CardLayout';
 export { default as Checkboxes } from './Checkboxes';
 export { default as ClosedCaptions } from './ClosedCaptions';
 export { default as Color } from './Color';
