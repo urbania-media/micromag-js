@@ -6,6 +6,15 @@
 .container {
     position: relative;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
     .empty {
         @extend %empty;
         height: 50px;
@@ -47,10 +56,10 @@
         border-style: solid;
     }
 
-    .content {
+    .body {
         flex-grow: 1;
 
-        &.lastContent {
+        &.last {
             margin-bottom: 20px;
         }
     }
@@ -105,8 +114,8 @@
             mix-blend-mode: difference;
         }
 
-        .content {
-            &.lastContent {
+        .body {
+            &.last {
                 margin-bottom: 4px;
             }
         }

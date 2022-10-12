@@ -313,8 +313,8 @@ const Timeline = ({
                                 </div>
                                 <div
                                     className={classNames([
-                                        styles.content,
-                                        { [styles.lastContent]: lastType && !lastItem },
+                                        styles.body,
+                                        { [styles.last]: lastType && !lastItem },
                                     ])}
                                 >
                                     {elementContent}
@@ -360,20 +360,7 @@ const Timeline = ({
             ])}
             data-screen-ready={ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Scroll
                     className={styles.scroll}
                     verticalAlign="middle"
@@ -426,6 +413,20 @@ const Timeline = ({
                     </div>
                 ) : null}
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.container}
+                />
+            ) : null}
         </div>
     );
 };

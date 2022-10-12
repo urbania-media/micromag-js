@@ -35,6 +35,8 @@ const propTypes = {
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
+    id: PropTypes.string,
+    index: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -53,6 +55,8 @@ const defaultProps = {
     spacing: 20,
     background: null,
     callToAction: null,
+    id: null,
+    index: null,
     current: true,
     active: true,
     transitions: null,
@@ -71,6 +75,8 @@ const ShareScreen = ({
     spacing,
     background,
     callToAction,
+    id,
+    index,
     current,
     active,
     transitions,
@@ -97,12 +103,31 @@ const ShareScreen = ({
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const currentUrl = useMemo(() => {
-        const origin =
-            typeof window !== 'undefined' ? window.location.origin.replace(/\/+$/, '') : '';
-        return origin;
-    }, []);
+        if (typeof window === 'undefined') return '';
+        const { hostname = null, pathname = null } = window.location || {};
+        const parts = pathname.split('/');
+        /**
+         * for the last portion of the path, if it's equal to the screen index,
+         * or the screen id, then don't include it in the share URL.
+         * This makes sure we're not doing a `.replace()` that might remove a part
+         * from the slug of the current Micromag.
+         * (e.g. if the url is `/10-reasons-to-lorem-ipsum` and the share screen
+         * is on screen 10, then a string replace would remove the `/10` from the
+         * URL)
+         */
+        return parts.reduce(
+            (acc, part, i) =>
+                // it's equal to the screen index, or equal to the screen ID, or it's empty
+                (i === parts.length - 1 && parseInt(part, 10) === index) ||
+                part === id ||
+                part === ''
+                    ? acc
+                    : `${acc}/${part}`,
+            hostname,
+        );
+    }, [index, id]);
+    // if not share URl was specified, default to the currentURL (without the screen index/id part)
     const finalShareURL = shareUrl || currentUrl;
-
     const defaultOptions =
         options !== null
             ? ['email', 'facebook', 'twitter', 'linkedin', 'whatsapp', 'facebookMessenger']
@@ -121,14 +146,13 @@ const ShareScreen = ({
         (type) => {
             if (trackingEnabled) {
                 trackEvent('click_share', type, {
-                    shareUrl,
+                    shareUrl: finalShareURL,
                 });
             }
         },
         [trackEvent],
     );
 
-    // Create elements
     const items = [
         <ScreenElement
             key="title"
@@ -194,20 +218,7 @@ const ShareScreen = ({
             ])}
             data-screen-ready
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={backgroundShouldLoad}
-                    mediaRef={mediaRef}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Layout
                     className={styles.layout}
                     verticalAlign={layout}
@@ -233,6 +244,20 @@ const ShareScreen = ({
                     </TransitionsStagger>
                 </Layout>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={backgroundShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

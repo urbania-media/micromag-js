@@ -15,7 +15,6 @@ import {
     useViewerWebView,
     usePlaybackContext,
     usePlaybackMediaRef,
-    useVisitor,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
 import { getLargestRemainderRound, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
@@ -101,13 +100,10 @@ const SurveyScreen = ({
     className,
 }) => {
     const screenId = id || 'screen-id';
-    const visitor = useVisitor();
-    const { id: visitorId = null } = visitor || {};
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
     const { create: submitQuiz } = useQuizCreate({
         screenId,
-        visitorId,
     });
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -460,20 +456,7 @@ const SurveyScreen = ({
                 },
             ])}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Scroll
                     verticalAlign={verticalAlign}
                     disabled={scrollingDisabled}
@@ -524,6 +507,20 @@ const SurveyScreen = ({
                     </div>
                 ) : null}
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

@@ -7,6 +7,19 @@
 .container {
     position: relative;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .inner {
+        @extend %fullscreen;
+    }
+
     @keyframes rotate {
         from {
             transform: rotate(0deg);
@@ -31,10 +44,6 @@
 
     .title {
         padding-bottom: 20px;
-    }
-
-    .content {
-        @extend %fullscreen;
     }
 
     .interactiveContainer {
@@ -183,7 +192,7 @@
     }
 
     &.isPlaceholder {
-        .content {
+        .inner {
             padding: 10px;
         }
     }

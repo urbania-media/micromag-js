@@ -346,20 +346,7 @@ function MapScreen({
             ])}
             data-screen-ready={finalReady}
         >
-            {!isPlaceholder ? (
-                <Background
-                    color={{ color: '#FFFFFF', alpha: 1 }}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={backgroundShouldLoad}
-                    mediaRef={mediaRef}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 {isPlaceholder ? (
                     <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />
                 ) : (
@@ -536,6 +523,20 @@ function MapScreen({
                     </Transitions>
                 )}
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    color={{ color: '#FFFFFF', alpha: 1 }}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={backgroundShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 }

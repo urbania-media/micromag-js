@@ -92,6 +92,7 @@ function ViewerScreen({
                         screen={screen}
                         renderContext={renderContext}
                         screenState={screenState}
+                        index={index}
                         active={active}
                         current={current}
                         mediaRef={mediaRef}

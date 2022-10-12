@@ -133,12 +133,6 @@ const Video = ({
     const ready = useMediaReady(ref.current, {
         id: mediaUrl,
     });
-    // useMediaLoad(ref.current, {
-    //     preload,
-    //     shouldLoad,
-    // });
-
-    // Get source files with supported mimes
     const sourceFiles = useMemo(() => {
         if (filesArray.length === 0) {
             return null;

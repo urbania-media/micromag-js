@@ -13,7 +13,6 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
     useViewerWebView,
-    useVisitor,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { useQuizCreate } from '@micromag/data';
@@ -263,11 +262,8 @@ const QuizMultipleScreen = ({
     const { background: resultBackground = null, layout: resultLayout = null } =
         currentResult || {};
 
-    const visitor = useVisitor();
-    const { id: visitorId = null } = visitor || {};
     const { create: submitQuiz } = useQuizCreate({
         screenId,
-        visitorId,
     });
 
     useEffect(() => {
@@ -360,25 +356,7 @@ const QuizMultipleScreen = ({
             ])}
             data-screen-ready
         >
-            {!isPlaceholder ? (
-                <TransitionGroup>
-                    <CSSTransition key={backgroundKey} classNames={styles} timeout={1000}>
-                        <Background
-                            background={finalBackground}
-                            width={width}
-                            height={height}
-                            resolution={resolution}
-                            playing={backgroundPlaying}
-                            muted={muted}
-                            shouldLoad={backgroundShouldLoad}
-                            mediaRef={mediaRef}
-                            className={styles.background}
-                            withoutVideo={isPreview}
-                        />
-                    </CSSTransition>
-                </TransitionGroup>
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Scroll
                     verticalAlign={verticalAlign}
                     disabled={scrollingDisabled}
@@ -524,6 +502,24 @@ const QuizMultipleScreen = ({
                     </div>
                 ) : null}
             </Container>
+            {!isPlaceholder ? (
+                <TransitionGroup>
+                    <CSSTransition key={backgroundKey} classNames={styles} timeout={1000}>
+                        <Background
+                            background={finalBackground}
+                            width={width}
+                            height={height}
+                            resolution={resolution}
+                            playing={backgroundPlaying}
+                            muted={muted}
+                            shouldLoad={backgroundShouldLoad}
+                            mediaRef={mediaRef}
+                            className={styles.background}
+                            withoutVideo={isPreview}
+                        />
+                    </CSSTransition>
+                </TransitionGroup>
+            ) : null}
         </div>
     );
 };

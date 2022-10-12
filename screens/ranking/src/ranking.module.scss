@@ -7,6 +7,15 @@
 .container {
     position: relative;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
     .empty {
         @extend %empty;
         height: 50px;
@@ -56,7 +65,7 @@
         }
 
         .rank,
-        .content {
+        .label {
             display: table-cell;
             padding: 10px 0;
             vertical-align: top;
@@ -98,7 +107,7 @@
                 padding-right: 4px;
             }
 
-            .content {
+            .label {
                 padding: 5px 0;
             }
         }

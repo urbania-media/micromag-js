@@ -414,18 +414,7 @@ const QuizScreen = ({
             ])}
             data-screen-ready
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    shouldLoad={backgroundShouldLoad}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Layout
                     className={styles.layout}
                     fullscreen
@@ -454,6 +443,18 @@ const QuizScreen = ({
                     />
                 ) : null}
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

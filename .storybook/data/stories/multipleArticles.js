@@ -1,9 +1,10 @@
 import {
     bigVideoMediaWithSound,
 } from '../../data';
+import article from './article.json';
 import article2 from './article2.json';
 import articleVideo from './article-video.json';
-import article from './article.json';
+import articleVideo2 from './article-video2.json';
 
 const multipleArticles = {
     components: [
@@ -86,14 +87,8 @@ const multipleArticles = {
                 color: { alpha: 1, color: '#ffffff' },
             },
         },
-        {
-            id: '3',
-            type: 'urbania-article',
-            article: articleVideo,
-            background: {
-                color: { alpha: 1, color: '#123456' },
-            },
-        },
+        articleVideo,
+        articleVideo2,
     ],
 };
 

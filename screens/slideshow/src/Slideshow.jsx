@@ -185,20 +185,9 @@ const SlideshowScreen = ({
             ])}
             data-screen-ready={ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    shouldLoad={mediaShouldLoad}
-                    withoutVideo={isPreview}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <div
-                    className={styles.content}
+                    className={styles.inner}
                     style={{
                         paddingTop: !isPreview ? viewerTopHeight : null,
                         paddingBottom:
@@ -223,6 +212,18 @@ const SlideshowScreen = ({
                     ) : null}
                 </div>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    shouldLoad={mediaShouldLoad}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

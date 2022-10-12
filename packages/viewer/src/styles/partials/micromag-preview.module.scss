@@ -8,7 +8,9 @@
 }
 
 .cover {
+    flex-shrink: 0;
     margin-right: 0.5rem;
+    overflow: hidden;
 }
 
 .info {
@@ -22,9 +24,9 @@
 
 .container {
     .title {
+        margin-bottom: 0.25rem;
         font-family: Helvetica, Arial, sans-serif !important; // @todo find a better way to avoid clashing CSS styles
         font-size: 1.1rem !important;
         font-weight: 700;
-        margin-bottom: 0.25rem;
     }
 }

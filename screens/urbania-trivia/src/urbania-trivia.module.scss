@@ -6,6 +6,15 @@
 .container {
     @extend %screen;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
     .emptyContainer {
         // top: 50%;
         // height: 0;
@@ -26,7 +35,7 @@
         min-width: 80%;
     }
 
-    .content {
+    .coinnerntent {
         @extend %fullscreen;
         display: flex;
         flex-direction: column;

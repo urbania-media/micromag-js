@@ -161,14 +161,14 @@ const UrbaniaHoroscope = ({
     const onOpenSignsGrid = useCallback(() => {
         setShowSignsGrid(true);
         disableInteraction();
-        trackScreenEvent('UrbaniaHoroscope', 'open_signs_grid');
+        trackScreenEvent('open');
     }, [disableInteraction, trackScreenEvent]);
 
     const onCloseSignsGrid = useCallback(() => {
         setShowSignsGrid(false);
         setShowModal(0); // can't have a modal if signs are closed
         enableInteraction();
-        trackScreenEvent('UrbaniaHoroscope', 'close_signs_grid');
+        trackScreenEvent('close');
     }, [setShowSignsGrid, setShowModal, enableInteraction, trackScreenEvent]);
 
     const onSelectSign = useCallback(
@@ -177,14 +177,14 @@ const UrbaniaHoroscope = ({
             const foundSignIndex = signs.findIndex((s) => s.id === id);
             setSelectedSign(foundSignIndex);
             setShowModal(true);
-            trackScreenEvent('UrbaniaHoroscope', 'select_sign', signs[foundSignIndex]);
+            trackScreenEvent('select_sign', signs[foundSignIndex]);
         },
         [signs, setSelectedSign, trackScreenEvent],
     );
 
     const onCloseModal = useCallback(() => {
         setShowModal(0);
-        trackScreenEvent('UrbaniaHoroscope', 'close_sign_modal');
+        trackScreenEvent('close_sign');
     }, [setShowModal, trackScreenEvent]);
 
     const computeSignsGridProgress = useCallback(
@@ -314,19 +314,7 @@ const UrbaniaHoroscope = ({
             {...(showSignsGrid ? stopDragEventsPropagation : null)}
         >
             {!isView ? <div {...mouseBlocker} /> : null}
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Layout
                     className={styles.layout}
                     style={
@@ -512,6 +500,19 @@ const UrbaniaHoroscope = ({
                     ) : null}
                 </Layout>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };
