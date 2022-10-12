@@ -7,12 +7,12 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
-    PlaceholderButton,
     PlaceholderTitle,
     PlaceholderText,
     PlaceholderImage,
+    PlaceholderButton,
+    ScreenElement,
 } from '@micromag/core/components';
-// import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -44,14 +44,14 @@ const placeholderPopupBoxStyles = {
     },
 };
 
-const stopDragEventsPropagation = {
-    onTouchMove: (e) => e.stopPropagation(),
-    onTouchStart: (e) => e.stopPropagation(),
-    onTouchEnd: (e) => e.stopPropagation(),
-    onPointerMove: (e) => e.stopPropagation(),
-    onPointerUp: (e) => e.stopPropagation(),
-    onPointerDown: (e) => e.stopPropagation(),
-};
+// const stopDragEventsPropagation = {
+//     onTouchMove: (e) => e.stopPropagation(),
+//     onTouchStart: (e) => e.stopPropagation(),
+//     onTouchEnd: (e) => e.stopPropagation(),
+//     onPointerMove: (e) => e.stopPropagation(),
+//     onPointerUp: (e) => e.stopPropagation(),
+//     onPointerDown: (e) => e.stopPropagation(),
+// };
 
 // @todo is this still good? if yes, maybe extract to util?
 // const mouseBlocker = {
@@ -84,12 +84,17 @@ const propTypes = {
         columns: PropTypes.number,
         spacing: PropTypes.number,
         withSquareItems: PropTypes.bool,
+        buttonStyles: PropTypes.shape({
+            buttonLayout: PropTypes.string,
+            textStyle: MicromagPropTypes.textStyle,
+            boxStyle: MicromagPropTypes.boxStyle,
+        }),
     }),
-    buttonStyles: PropTypes.shape({
-        buttonLayout: PropTypes.string,
-        textStyle: MicromagPropTypes.textStyle,
-        boxStyle: MicromagPropTypes.boxStyle,
-    }),
+    // buttonStyles: PropTypes.shape({
+    //     buttonLayout: PropTypes.string,
+    //     textStyle: MicromagPropTypes.textStyle,
+    //     boxStyle: MicromagPropTypes.boxStyle,
+    // }),
     popupStyles: PropTypes.shape({
         popupLayout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
         textStyle: MicromagPropTypes.textStyle,
@@ -103,9 +108,9 @@ const propTypes = {
 
 const defaultProps = {
     items: null,
-    layout: 'middle',
+    layout: null,
     keypadLayout: null,
-    buttonStyles: null,
+    // buttonStyles: null,
     popupStyles: null,
     background: null,
     current: true,
@@ -117,7 +122,7 @@ const KeypadScreen = ({
     items,
     layout,
     keypadLayout,
-    buttonStyles,
+    // buttonStyles,
     popupStyles,
     background,
     current,
@@ -142,7 +147,8 @@ const KeypadScreen = ({
         columnAlign = null,
         columns = null,
         spacing = null,
-        withSquareItems = true,
+        withSquareItems = false,
+        buttonStyles = null,
     } = keypadLayout || {};
     const { buttonLayout = null, textStyle = null, boxStyle = null } = buttonStyles || {};
     const {
@@ -200,67 +206,89 @@ const KeypadScreen = ({
         springParams: { config: { tension: 300, friction: 30 } },
     });
 
-    const gridItems =
-        items !== null
-            ? items.map((item) => {
-                  const {
-                      label = null,
-                      visual = null,
-                      textStyle: customTextStyle = null,
-                      boxStyle: customBoxStyle = null,
-                      heading = null,
-                      content = null,
-                      largeVisual = null,
-                  } = item || {};
-                  const { url: visualUrl = null } = visual || {};
-                  const key = label || visualUrl;
-                  const isPopupEmpty = heading === null && content === null && largeVisual === null;
-                  return (
-                      <div key={key} className={styles.item}>
-                          <Button
-                              className={classNames([
-                                  styles.button,
-                                  {
-                                      [styles.layoutLabelBottom]: buttonLayout === 'label-bottom',
-                                      [styles.layoutLabelTop]: buttonLayout === 'label-top',
-                                      [styles.layoutNoLabel]: buttonLayout === 'no-label',
-                                      [styles.layoutLabelOver]: buttonLayout === 'label-over',
-                                      [styles.isPopupEmpty]: isPopupEmpty,
-                                  },
-                              ])}
-                              style={{
-                                  ...getStyleFromBox(boxStyle),
-                                  ...getStyleFromText(textStyle),
-                                  ...getStyleFromBox(customBoxStyle),
-                                  ...getStyleFromText(customTextStyle),
-                              }}
-                              onClick={
-                                  !isPopupEmpty
-                                      ? (e) => onItemClick(e, item)
-                                      : (e) => e.preventDefault()
-                              }
-                          >
-                              {visual !== null ? (
-                                  <Visual
-                                      className={styles.buttonVisual}
-                                      imageClassName={styles.thumbnail}
-                                      media={visual}
-                                      width="auto"
-                                  />
-                              ) : null}
-                              {label !== null ? (
-                                  <div className={styles.buttonLabel}>{label}</div>
-                              ) : null}
-                          </Button>
-                      </div>
-                  );
-              })
-            : [];
-    const placeholderItems = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-        <div key={`${n}-placeholder`} className={styles.gridItem}>
-            <PlaceholderButton className={styles.placeholderButton} />
-        </div>
-    ));
+    const finalItems = useMemo(
+        () => (items === null || items.length === 0 ? [1, 2, 3, 4, 5, 6, 7] : items),
+        [items],
+    );
+    const gridItems = finalItems.map((item) => {
+        const {
+            label = null,
+            visual = null,
+            textStyle: customTextStyle = null,
+            boxStyle: customBoxStyle = null,
+            heading = null,
+            content = null,
+            largeVisual = null,
+        } = item || {};
+        const { url: visualUrl = null } = visual || {};
+        const key = label || visualUrl;
+        const isEmpty = label === null && visual === null;
+        const isPopupEmpty = heading === null && content === null && largeVisual === null;
+        return (
+            <div key={key} className={styles.item}>
+                <Button
+                    className={classNames([
+                        styles.button,
+                        {
+                            [styles.layoutLabelBottom]: buttonLayout === 'label-bottom',
+                            [styles.layoutLabelTop]: buttonLayout === 'label-top',
+                            [styles.layoutNoLabel]: buttonLayout === 'no-label',
+                            [styles.layoutLabelOver]: buttonLayout === 'label-over',
+                            [styles.isEmpty]: isEmpty,
+                            [styles.isPopupEmpty]: isPopupEmpty,
+                        },
+                    ])}
+                    style={{
+                        ...getStyleFromBox(boxStyle),
+                        ...getStyleFromText(textStyle),
+                        ...getStyleFromBox(customBoxStyle),
+                        ...getStyleFromText(customTextStyle),
+                    }}
+                    onClick={
+                        !isPopupEmpty ? (e) => onItemClick(e, item) : (e) => e.preventDefault()
+                    }
+                >
+                    {!isEmpty ? (
+                        <ScreenElement>
+                            {visual !== null ? (
+                                <Visual
+                                    className={styles.buttonVisual}
+                                    imageClassName={styles.thumbnail}
+                                    media={visual}
+                                    width="auto"
+                                />
+                            ) : null}
+                            {label !== null ? (
+                                <div className={styles.buttonLabel}>{label}</div>
+                            ) : null}
+                        </ScreenElement>
+                    ) : null}
+
+                    {isEmpty && !isPlaceholder ? (
+                        <ScreenElement>
+                            <PlaceholderImage
+                                className={classNames([
+                                    styles.buttonVisual,
+                                    styles.buttonVisualPlaceholder,
+                                ])}
+                            />
+                            <PlaceholderText
+                                lines={2}
+                                className={classNames([
+                                    styles.buttonLabel,
+                                    styles.buttonLabelPlaceholder,
+                                ])}
+                            />
+                        </ScreenElement>
+                    ) : null}
+
+                    {isEmpty && isPlaceholder ? (
+                        <PlaceholderButton className={styles.buttonPlaceholder} />
+                    ) : null}
+                </Button>
+            </div>
+        );
+    });
 
     const {
         heading: popupHeading = null,
@@ -358,108 +386,108 @@ const KeypadScreen = ({
                         columns={isPlaceholder ? 3 : columns}
                         spacing={isPlaceholder ? 2 : spacing}
                     >
-                        {isPlaceholder ? placeholderItems : gridItems}
+                        {gridItems}
                     </Keypad>
+                </Layout>
 
-                    <animated.div
-                        className={classNames([styles.popupBackdrop])}
-                        style={{
-                            ...getStyleFromColor(popupBackdrop),
-                            opacity: popupSpring.to((p) => p),
-                        }}
-                    />
-                    <animated.div
-                        className={styles.popup}
-                        style={{
-                            transform: popupSpring.to(
-                                (p) => `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
-                            ),
-                            pointerEvents: popupSpring.to((p) => (p < 0.1 ? 'none' : 'auto')),
-                        }}
-                        {...bindPopupDrag()}
-                    >
-                        <Scroll>
-                            <button
-                                type="button"
-                                className={styles.popupButton}
-                                onClick={() => {
-                                    if (onCloseModal !== null) {
-                                        onCloseModal();
-                                    }
+                <animated.div
+                    className={classNames([styles.popupBackdrop])}
+                    style={{
+                        ...getStyleFromColor(popupBackdrop),
+                        opacity: popupSpring.to((p) => p),
+                    }}
+                />
+                <animated.div
+                    className={styles.popup}
+                    style={{
+                        transform: popupSpring.to(
+                            (p) => `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
+                        ),
+                        pointerEvents: popupSpring.to((p) => (p < 0.1 ? 'none' : 'auto')),
+                    }}
+                    {...bindPopupDrag()}
+                >
+                    <Scroll>
+                        <button
+                            type="button"
+                            className={styles.popupButton}
+                            onClick={() => {
+                                if (onCloseModal !== null) {
+                                    onCloseModal();
+                                }
+                            }}
+                        >
+                            <div
+                                className={classNames([
+                                    styles.popupInner,
+                                    styles[popupLayoutClassName],
+                                ])}
+                                style={{
+                                    ...getStyleFromBox(placeholderPopupBoxStyles),
+                                    ...getStyleFromBox(popupBoxStyle),
+                                    ...getStyleFromText(popupTextStyle),
                                 }}
                             >
-                                <div
-                                    className={classNames([
-                                        styles.popupInner,
-                                        styles[popupLayoutClassName],
-                                    ])}
-                                    style={{
-                                        ...getStyleFromBox(placeholderPopupBoxStyles),
-                                        ...getStyleFromBox(popupBoxStyle),
-                                        ...getStyleFromText(popupTextStyle),
-                                    }}
-                                >
-                                    <div className={styles.popupWrapper}>
-                                        {!hasPopupContent ? (
-                                            <>
-                                                <PlaceholderTitle
-                                                    className={classNames([
-                                                        styles.placeholder,
-                                                        styles.popupHeading,
-                                                    ])}
-                                                    lines={1}
-                                                    height={1}
-                                                    withInvertedColors={false}
-                                                />
-                                                <PlaceholderText
-                                                    className={classNames([
-                                                        styles.placeholder,
-                                                        styles.popupContent,
-                                                    ])}
-                                                    lines={5}
-                                                    lineMargin={5}
-                                                    withInvertedColors={false}
-                                                />
-                                                <PlaceholderImage
-                                                    className={classNames([
-                                                        styles.placeholder,
-                                                        styles.popupMedia,
-                                                    ])}
-                                                    height="10em"
-                                                    withInvertedColors={false}
-                                                />
-                                            </>
-                                        ) : null}
+                                <div className={styles.popupWrapper}>
+                                    {!hasPopupContent ? (
+                                        <>
+                                            <PlaceholderTitle
+                                                className={classNames([
+                                                    styles.placeholder,
+                                                    styles.popupHeading,
+                                                ])}
+                                                lines={1}
+                                                height={1}
+                                                withInvertedColors={false}
+                                            />
+                                            <PlaceholderText
+                                                className={classNames([
+                                                    styles.placeholder,
+                                                    styles.popupContent,
+                                                ])}
+                                                lines={5}
+                                                lineMargin={5}
+                                                withInvertedColors={false}
+                                            />
+                                            <PlaceholderImage
+                                                className={classNames([
+                                                    styles.placeholder,
+                                                    styles.popupMedia,
+                                                ])}
+                                                height="10em"
+                                                withInvertedColors={false}
+                                            />
+                                        </>
+                                    ) : null}
 
-                                        {hasPopupContent ? (
-                                            <>
-                                                {popupHeading !== null ? (
-                                                    <Heading
-                                                        className={styles.popupHeading}
-                                                        {...popupHeading}
-                                                    />
-                                                ) : null}
-                                                {popupContent !== null ? (
-                                                    <Text
-                                                        className={styles.popupContent}
-                                                        {...popupContent}
-                                                    />
-                                                ) : null}
-                                                {largeVisual !== null ? (
-                                                    <Visual
-                                                        className={styles.popupMedia}
-                                                        media={largeVisual}
-                                                        width="100%"
-                                                    />
-                                                ) : null}
-                                            </>
-                                        ) : null}
-                                    </div>
+                                    {hasPopupContent ? (
+                                        <>
+                                            {popupHeading !== null ? (
+                                                <Heading
+                                                    className={styles.popupHeading}
+                                                    {...popupHeading}
+                                                />
+                                            ) : null}
+                                            {popupContent !== null ? (
+                                                <Text
+                                                    className={styles.popupContent}
+                                                    {...popupContent}
+                                                />
+                                            ) : null}
+                                            {largeVisual !== null ? (
+                                                <Visual
+                                                    className={styles.popupMedia}
+                                                    media={largeVisual}
+                                                    width="100%"
+                                                />
+                                            ) : null}
+                                        </>
+                                    ) : null}
                                 </div>
-                            </button>
-                        </Scroll>
-                    </animated.div>
-                </Layout>
+                            </div>
+                        </button>
+                    </Scroll>
+                </animated.div>
             </Container>
         </div>
     );

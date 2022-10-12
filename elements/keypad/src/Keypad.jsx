@@ -9,7 +9,6 @@ import styles from './keypad.module.scss';
 
 const propTypes = {
     align: PropTypes.oneOf(['left', 'right', 'middle']),
-    // vertical: PropTypes.oneOf(['top', 'bottom', 'middle']),
     columns: PropTypes.number,
     spacing: PropTypes.number,
     className: PropTypes.string,

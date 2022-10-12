@@ -27,6 +27,9 @@ export default [
                     {
                         name: 'popupStyles',
                         type: 'fields',
+                        defaultValue: {
+                            layout: 'content-top',
+                        },
                         label: defineMessage({
                             defaultMessage: 'Popup style',
                             description: 'Field label',
@@ -86,8 +89,19 @@ export default [
                     {
                         name: 'keypadLayout',
                         type: 'keypad-layout-form',
+                        defaultValue: {
+                            buttonStyles: {
+                                buttonLayout: 'content-bottom',
+                                boxStyle: {
+                                    backgroundColor: { alpha: 0.15, color: '#000000' },
+                                },
+                            },
+                            columnAlign: 'middle',
+                            columns: 3,
+                            spacing: 10,
+                        },
                         label: defineMessage({
-                            defaultMessage: 'Keypad layout',
+                            defaultMessage: 'Layout & styles',
                             description: 'Field label',
                         }),
                     },
@@ -103,50 +117,6 @@ export default [
                             defaultMessage: 'Buttons',
                             description: 'Field label',
                         }),
-                    },
-                    // {
-                    //     name: 'buttonLayout',
-                    //     type: 'button-layout',
-                    //     label: defineMessage({
-                    //         defaultMessage: 'Button layout',
-                    //         description: 'Field label',
-                    //     }),
-                    // },
-                    {
-                        name: 'buttonStyles',
-                        type: 'fields',
-                        label: defineMessage({
-                            defaultMessage: 'Buttons style',
-                            description: 'Field label',
-                        }),
-                        isList: true,
-                        fields: [
-                            {
-                                name: 'buttonLayout',
-                                type: 'button-layout',
-                                isHorizontal: true,
-                                label: defineMessage({
-                                    defaultMessage: 'Button layout',
-                                    description: 'Field label',
-                                }),
-                            },
-                            {
-                                name: 'textStyle',
-                                type: 'text-style-form',
-                                label: defineMessage({
-                                    defaultMessage: 'Label style',
-                                    description: 'Field label',
-                                }),
-                            },
-                            {
-                                name: 'boxStyle',
-                                type: 'box-style-form',
-                                label: defineMessage({
-                                    defaultMessage: 'Button style',
-                                    description: 'Field label',
-                                }),
-                            },
-                        ],
                     },
                 ],
             },

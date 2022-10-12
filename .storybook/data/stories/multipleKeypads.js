@@ -5,6 +5,32 @@ const multipleKeypads = {
     title: 'Multiple Keypads',
     theme: defaultTheme,
     components: [
+        // with default field
+        {
+            id: '0110110111101001001001001111110100101',
+            type: 'keypad',
+            // @todo -> should use default values here if we don't actually provide values... but it doesn't work yet
+            layout: 'middle',
+            keypadLayout: {
+                columnAlign: 'middle',
+                columns: 3,
+                spacing: 10,
+                withSquareItems: false,
+                buttonStyles: {
+                    buttonLayout: 'label-bottom',
+                    boxStyle: {
+                        backgroundColor: {
+                            alpha: 0.15,
+                            color: '#000',
+                        },
+                    },
+                },
+            },
+            popupStyles: {
+                layout: 'content-top',
+            },
+        },
+        // with "team" items
         {
             id: '12345',
             type: 'keypad',
@@ -15,35 +41,35 @@ const multipleKeypads = {
                 columns: 2,
                 spacing: 1,
                 withSquareItems: false,
+                buttonStyles: {
+                    buttonLayout: 'label-top',
+                    textStyle: {
+                        fontStyle: {
+                            bold: true,
+                            italic: false,
+                            underline: false,
+                        },
+                        fontSize: 8,
+                    },
+                    boxStyle: {
+                        backgroundColor: {
+                            color: '#23195c',
+                            alpha: 1,
+                        },
+                        borderRadius: 10,
+                        padding: {
+                            bottom: 5,
+                        },
+                    },
+                },
             },
             popupStyles: {
                 backdrop: { alpha: 0.5, color: '#1c1c1c' },
             },
-            buttonStyles: {
-                buttonLayout: 'label-top',
-                textStyle: {
-                    fontStyle: {
-                        bold: true,
-                        italic: false,
-                        underline: false,
-                    },
-                    fontSize: 8,
-                },
-                boxStyle: {
-                    backgroundColor: {
-                        color: '#23195c',
-                        alpha: 1,
-                    },
-                    borderRadius: 10,
-                    padding: {
-                        bottom: 5,
-                    },
-                },
-            },
         },
         {
             background: {
-                color: { alpha: 1, color: '#ff008f', },
+                color: { alpha: 1, color: '#ff008f' },
                 image: null,
                 video: null,
             },
@@ -56,19 +82,19 @@ const multipleKeypads = {
                 columns: 4,
                 spacing: 10,
                 withSquareItems: true,
-            },
-            buttonStyles: {
-                buttonLayout: 'no-label',
-                boxStyle: {
-                    borderRadius: 10,
-                    shadowAngle: 45,
-                    shadowDistance: 5,
-                    shadowColor: { alpha: 0.15, color: '#000000' },
-                    borderStyle: 'solid',
-                    borderWidth: 1,
-                    borderColor: { alpha: 0.5, color: '#ffffff' },
+                buttonStyles: {
+                    buttonLayout: 'no-label',
+                    boxStyle: {
+                        borderRadius: 10,
+                        shadowAngle: 45,
+                        shadowDistance: 5,
+                        shadowColor: { alpha: 0.15, color: '#000000' },
+                        borderStyle: 'solid',
+                        borderWidth: 1,
+                        borderColor: { alpha: 0.5, color: '#ffffff' },
+                    },
+                    textStyle: null,
                 },
-                textStyle: null,
             },
             popupStyles: {
                 layout: 'content-top',

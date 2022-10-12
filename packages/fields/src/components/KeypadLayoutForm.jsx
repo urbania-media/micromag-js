@@ -1,11 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-// import { getStyleFromText, getFontFamilyFromFont } from '@micromag/core/utils';
+import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
+import { PlaceholderText, PlaceholderImage } from '@micromag/core/components';
+
 import FieldWithForm from './FieldWithForm';
+
+import styles from '../styles/keypad-layout-form.module.scss';
 
 const propTypes = {
     value: PropTypes.shape({
@@ -40,7 +45,33 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
     //         </strong>
     //     ) : null;
 
-    // console.log({value});
+    const { buttonStyles = null } = value || {};
+    const { buttonLayout = null, textStyle = null, boxStyle = null } = buttonStyles || {};
+
+    console.log({ value });
+
+    const preview = (
+        <div
+            className={classNames([
+                styles.preview,
+                {
+                    [styles.layoutLabelBottom]: buttonLayout === 'label-bottom',
+                    [styles.layoutLabelTop]: buttonLayout === 'label-top',
+                    [styles.layoutNoLabel]: buttonLayout === 'no-label',
+                    [styles.layoutLabelOver]: buttonLayout === 'label-over',
+                    // [styles.isEmpty]: isEmpty,
+                    // [styles.isPopupEmpty]: isPopupEmpty,
+                },
+            ])}
+            style={{
+                ...getStyleFromBox(boxStyle),
+                ...getStyleFromText(textStyle),
+            }}
+        >
+            <PlaceholderImage className={styles.buttonVisual} />
+            <PlaceholderText lines={2} className={styles.buttonLabel} />
+        </div>
+    );
 
     return (
         <FieldWithForm
@@ -48,7 +79,7 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
             value={value}
             label={<FormattedMessage defaultMessage="Edit" description="Field label" />}
             onChange={onChange}
-            thumbnail={<div>[preview pending]</div>}
+            thumbnail={preview}
             noValueLabel={<FormattedMessage defaultMessage="Edit" description="Field label" />}
             {...props}
         />

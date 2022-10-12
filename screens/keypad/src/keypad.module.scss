@@ -56,13 +56,6 @@
     height: 50px;
 }
 
-.placeholderButton {
-    display: flex;
-    width: 100%;
-    background-color: $gray-800;
-    mix-blend-mode: normal;
-}
-
 .grid {
     width: 100%;
 }
@@ -73,6 +66,15 @@
 
     .withSquareItems & {
         height: 0;
+        padding-bottom: 100%;
+    }
+}
+
+.placeholderItem {
+    height: 0;
+    padding-bottom: 60%;
+
+    .withSquareItems & {
         padding-bottom: 100%;
     }
 }
@@ -98,6 +100,12 @@
         transform: scale(0.95);
     }
 
+    &.isEmpty {
+        padding: 5px;
+        pointer-events: none;
+    }
+
+    &.isEmpty,
     &.isPopupEmpty {
         cursor: default;
 
@@ -110,6 +118,16 @@
     .withSquareItems & {
         @extend %fullscreen;
     }
+
+
+    .buttonPlaceholder {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.buttonVisualPlaceholder {
+    width: 100%;
 }
 
 .thumbnail {

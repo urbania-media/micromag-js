@@ -1,0 +1,61 @@
+@import '~@micromag/core/scss/variables';
+
+// @todo taken straight from keypad.module.scss
+// gotta extract it somewhere?
+.preview {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+}
+
+.layoutLabelTop {
+    .buttonLabel {
+        order: 1;
+    }
+
+    .buttonVisual {
+        order: 2;
+    }
+}
+
+.layoutNoLabel,
+.layoutLabelOver {
+    .buttonLabel {
+        display: none;
+    }
+
+    .buttonVisual {
+        width: 100% !important;
+        height: 100%;
+    }
+
+    .thumbnail {
+        width: 100% !important;
+
+        max-height: none;
+
+        .withSquareItems & {
+            @extend %fullscreen;
+        }
+    }
+}
+
+// @note extends the styles of layoutNoLabel
+.layoutLabelOver {
+    .buttonVisual {
+        z-index: 1;
+    }
+
+    .buttonLabel {
+        @extend %fullscreen;
+        display: block;
+        z-index: 2;
+        top: auto;
+        bottom: 0;
+        height: auto;
+        background-image: linear-gradient(to bottom, rgba($black, 0), rgba($black, 0.75));
+    }
+}

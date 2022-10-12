@@ -6,15 +6,17 @@ import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
 import { isMessage } from '@micromag/core/utils';
-import styles from '../styles/field-with-form.module.scss';
+
 import Field from './Field';
 import Fields from './Fields';
 
+import styles from '../styles/field-with-form.module.scss';
+
 const propTypes = {
-    // value: MicromagPropTypes.media,
     value: PropTypes.any, // eslint-disable-line
     isForm: PropTypes.bool,
     label: PropTypes.oneOfType([PropTypes.node, MicromagPropTypes.message]),
@@ -76,7 +78,12 @@ const FieldWithForm = ({
                 buttonTheme="primary"
             />
         ) : (
-            <Fields className="p-2" {...props} value={value} onChange={onChange} />
+            <Fields
+                className="p-2"
+                {...props}
+                value={value}
+                onChange={onChange}
+            />
         );
     }
 
