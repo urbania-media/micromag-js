@@ -33,47 +33,48 @@ const ButtonLayout = ({ types, value, className, onChange }) => {
         switch (type) {
             case 'label-bottom':
                 return (
-                    <div
-                    >
+                    <div>
                         <PlaceholderImage width="1.25em" height="1em" />
-                        <PlaceholderText lines={1} lineMargin={1} />
+                        <PlaceholderText
+                            className={styles.placeholderText}
+                            lines={1}
+                            lineMargin={1}
+                        />
                     </div>
                 );
             case 'label-top':
                 return (
-                    <div
-                    >
-                        <PlaceholderText lines={1} lineMargin={1} />
+                    <div>
+                        <PlaceholderText
+                            className={styles.placeholderText}
+                            lines={1}
+                            lineMargin={1}
+                        />
                         <PlaceholderImage width="1.25em" height="1em" />
                     </div>
                 );
             case 'no-label':
                 return (
-                    <div
-                    >
+                    <div>
                         <PlaceholderImage width="1.5em" height="1.5em" />
                     </div>
                 );
             case 'label-over':
                 return (
-                    <div
-                    >
+                    <div>
                         <PlaceholderImage width="1.5em" height="1.5em" />
-                        <PlaceholderText className={styles.placeholderTextOver} lines={1} />
+                        <PlaceholderText
+                            className={classNames([
+                                styles.placeholderText,
+                                styles.placeholderTextOver,
+                            ])}
+                            lines={1}
+                            withInvertedColors={false}
+                        />
                     </div>
                 );
             default:
-                return (
-                    <div
-                        style={
-                            {
-                                // width: 30,
-                                // height: 30,
-                                // border: `2px ${type} currentColor`,
-                            }
-                        }
-                    />
-                );
+                return <div />;
         }
     }, []);
 
@@ -100,6 +101,7 @@ const ButtonLayout = ({ types, value, className, onChange }) => {
                         },
                     ])}
                     buttonClassName={styles.button}
+                    activeClassName={styles.active}
                     onChange={onButtonLayoutChange}
                 />
             </div>

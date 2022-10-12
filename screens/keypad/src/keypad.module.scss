@@ -160,7 +160,7 @@
         font-family: inherit;
         font-style: inherit;
         font-weight: inherit;
-        line-height: 1.3;
+        line-height: inherit;
 
         p {
             margin-top: 0;
@@ -194,6 +194,7 @@
 .popupWrapper {
     .popupHeading {
         margin-bottom: 0.25em;
+        font-weight: inherit;
     }
 }
 
