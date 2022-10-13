@@ -438,7 +438,7 @@ const KeypadScreen = ({
                                     >
                                         <Heading
                                             className={styles.popupHeading}
-                                            body="Heading"
+                                            body="Lorem ipsum"
                                             {...popupHeading}
                                         />
                                     </ScreenElement>
@@ -455,7 +455,7 @@ const KeypadScreen = ({
                                     >
                                         <Text
                                             className={styles.popupContent}
-                                            body="Content"
+                                            body="Lorem ipsum dolor sit amet consectetur adipiscing elit."
                                             {...popupContent}
                                         />
                                     </ScreenElement>
