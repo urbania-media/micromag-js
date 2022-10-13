@@ -137,6 +137,7 @@
 }
 
 .buttonLabel {
+    width: 100%;
     padding: 5px;
 }
 
@@ -241,28 +242,34 @@
 }
 
 .contentSplit {
-    .popupVisual {
+    .emptyHeading,
+    .popupHeading {
         order: 1;
     }
 
+    .emptyVisual,
     .popupVisual {
         order: 2;
     }
 
+    .emptyContent,
     .popupContent {
         order: 3;
     }
 }
 
 .contentBottom {
+    .emptyVisual,
     .popupVisual {
         order: 1;
     }
 
+    .emptyHeading,
     .popupHeading {
         order: 2;
     }
 
+    .emptyContent,
     .popupContent {
         order: 3;
     }

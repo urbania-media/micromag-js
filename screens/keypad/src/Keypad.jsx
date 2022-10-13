@@ -249,7 +249,16 @@ const KeypadScreen = ({
                         !isPopupEmpty ? (e) => onItemClick(e, item) : (e) => e.preventDefault()
                     }
                 >
-                    {isPlaceholder || (isEmpty && isPreview) ? (
+                    {/* show cooler placeholders for "preview" context */}
+                    {isEmpty && isPreview ? (
+                        <>
+                            <PlaceholderButton className={styles.buttonPlaceholder} />
+                            <PlaceholderText lines={2} />
+                        </>
+                    ):null}
+
+                    {/* only a button for the "placeholder" */}
+                    {isPlaceholder ? (
                         <PlaceholderButton className={styles.buttonPlaceholder} />
                     ) : (
                         <>
@@ -261,7 +270,7 @@ const KeypadScreen = ({
                                         description="Placeholder label"
                                     />
                                 }
-                                emptyClassName={classNames([styles.empty, styles.emptyButtonVisual])}
+                                emptyClassName={classNames([styles.empty, styles.buttonVisual, styles.emptyButtonVisual])}
                                 isEmpty={visual === null}
                             >
                                 <Visual
@@ -424,7 +433,7 @@ const KeypadScreen = ({
                                                 description="Placeholder label"
                                             />
                                         }
-                                        emptyClassName={classNames([styles.empty])}
+                                        emptyClassName={classNames([styles.empty, styles.emptyHeading])}
                                         isEmpty={popupHeading === null && screenState !== 'popup'}
                                     >
                                         <Heading
@@ -441,7 +450,7 @@ const KeypadScreen = ({
                                                 description="Placeholder label"
                                             />
                                         }
-                                        emptyClassName={classNames([styles.empty])}
+                                        emptyClassName={classNames([styles.empty, styles.emptyContent])}
                                         isEmpty={popupContent === null && screenState !== 'popup'}
                                     >
                                         <Text
@@ -458,8 +467,8 @@ const KeypadScreen = ({
                                                 description="Placeholder label"
                                             />
                                         }
-                                        emptyClassName={classNames([styles.empty, styles.popupVisual])}
-                                        isEmpty={largeVisual === null && screenState === 'popup'}
+                                        emptyClassName={classNames([styles.empty, styles.emptyVisual])}
+                                        isEmpty={largeVisual === null}
                                     >
                                         <Visual
                                             className={styles.popupVisual}
