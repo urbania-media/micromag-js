@@ -209,6 +209,9 @@
     "6bd963": {
         "defaultMessage": "Virgo"
     },
+    "6iR9Mt": {
+        "defaultMessage": "Heading"
+    },
     "6jX5Tb": {
         "defaultMessage": "Authors"
     },
@@ -256,9 +259,6 @@
     },
     "8ELj2J": {
         "defaultMessage": "Items"
-    },
-    "8UzHjg": {
-        "defaultMessage": "Keypad layout"
     },
     "8gQ1oW": {
         "defaultMessage": "Pisces"
@@ -452,6 +452,9 @@
     "ICXTfR": {
         "defaultMessage": "Links"
     },
+    "IE7U/Q": {
+        "defaultMessage": "Heading"
+    },
     "J9e9Qb": {
         "defaultMessage": "Video"
     },
@@ -463,6 +466,9 @@
     },
     "JDPMlG": {
         "defaultMessage": "Background color"
+    },
+    "JRZoe6": {
+        "defaultMessage": "Content"
     },
     "JoWKee": {
         "defaultMessage": "Create your first screen"
@@ -509,6 +515,9 @@
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
+    "Mej9Rl": {
+        "defaultMessage": "Popup layout"
+    },
     "MhGUaY": {
         "defaultMessage": "Slideshow"
     },
@@ -527,9 +536,6 @@
     "NmCfTO": {
         "defaultMessage": "Conversation"
     },
-    "NqwQqU": {
-        "defaultMessage": "Button layout"
-    },
     "NumcrW": {
         "defaultMessage": "Capricorn"
     },
@@ -538,6 +544,9 @@
     },
     "O2ThsB": {
         "defaultMessage": "2"
+    },
+    "OEckOD": {
+        "defaultMessage": "Text style"
     },
     "OJi+eg": {
         "defaultMessage": "Label"
@@ -583,6 +592,9 @@
     },
     "QSmRdP": {
         "defaultMessage": "Add an image"
+    },
+    "Qanvis": {
+        "defaultMessage": "Visual"
     },
     "Qe03Xz": {
         "defaultMessage": "Sign Subtitle"
@@ -758,6 +770,9 @@
     "ZMS1Wv": {
         "defaultMessage": "Text"
     },
+    "Zbu5Uk": {
+        "defaultMessage": "Label"
+    },
     "ZeosMy": {
         "defaultMessage": "Mar 21 - Apr 19"
     },
@@ -917,6 +932,9 @@
     "g6b9Lg": {
         "defaultMessage": "Contribution"
     },
+    "gFX2G9": {
+        "defaultMessage": "Layout & styles"
+    },
     "gRxcTc": {
         "defaultMessage": "Delete screen"
     },
@@ -931,6 +949,9 @@
     },
     "hVE7TA": {
         "defaultMessage": "Question"
+    },
+    "heeSlL": {
+        "defaultMessage": "Frame and backgound styles"
     },
     "hoDz0O": {
         "defaultMessage": "Description"
@@ -1003,6 +1024,9 @@
     },
     "liyV7Y": {
         "defaultMessage": "Size"
+    },
+    "mBYGpP": {
+        "defaultMessage": "Popup"
     },
     "mOSkbf": {
         "defaultMessage": "Usage"
@@ -1241,6 +1265,9 @@
     "upzOTm": {
         "defaultMessage": "Credits"
     },
+    "uv3PH4": {
+        "defaultMessage": "Backdrop color"
+    },
     "uwcXzb": {
         "defaultMessage": "Image"
     },
@@ -1267,6 +1294,9 @@
     },
     "vmrJ8U": {
         "defaultMessage": "(current screen)"
+    },
+    "vne4NN": {
+        "defaultMessage": "Popup style"
     },
     "vxEtY1": {
         "defaultMessage": "Background image"
@@ -1351,6 +1381,9 @@
     },
     "z4CiV1": {
         "defaultMessage": "Text"
+    },
+    "z4Pr+g": {
+        "defaultMessage": "Visual (Image or Video)"
     },
     "zD2Q5Y": {
         "defaultMessage": "Feb 19 - Mar 20"

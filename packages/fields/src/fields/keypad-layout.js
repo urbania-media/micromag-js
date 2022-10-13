@@ -10,15 +10,10 @@ export default {
                 defaultMessage: 'Buttons',
                 description: 'Field label',
             }),
-            defaultValue: {
-                boxStyle: {
-                    backgroundColor: { alpha: 0.5, color: '#000' },
-                },
-            },
             isList: true,
             fields: [
                 {
-                    name: 'buttonLayout',
+                    name: 'layout',
                     type: 'button-layout',
                     isHorizontal: true,
                     label: defineMessage({
@@ -64,35 +59,22 @@ export default {
                 {
                     name: 'columns',
                     type: 'radios',
-                    defaultValue: 3,
                     options: [
                         {
                             value: 1,
-                            label: defineMessage({
-                                defaultMessage: '1',
-                                description: 'Radio option label',
-                            }),
+                            label: 1,
                         },
                         {
                             value: 2,
-                            label: defineMessage({
-                                defaultMessage: '2',
-                                description: 'Radio option label',
-                            }),
+                            label: 2,
                         },
                         {
                             value: 3,
-                            label: defineMessage({
-                                defaultMessage: '3',
-                                description: 'Radio option label',
-                            }),
+                            label: 3,
                         },
                         {
                             value: 4,
-                            label: defineMessage({
-                                defaultMessage: '4',
-                                description: 'Radio option label',
-                            }),
+                            label: 4,
                         },
                     ],
                     label: defineMessage({

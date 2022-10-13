@@ -46,7 +46,7 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
     //     ) : null;
 
     const { buttonStyles = null } = value || {};
-    const { buttonLayout = null, textStyle = null, boxStyle = null } = buttonStyles || {};
+    const { layout = null, textStyle = null, boxStyle = null } = buttonStyles || {};
 
     // console.log({ value });
 
@@ -55,10 +55,10 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
             className={classNames([
                 styles.preview,
                 {
-                    [styles.layoutLabelBottom]: buttonLayout === 'label-bottom',
-                    [styles.layoutLabelTop]: buttonLayout === 'label-top',
-                    [styles.layoutNoLabel]: buttonLayout === 'no-label',
-                    [styles.layoutLabelOver]: buttonLayout === 'label-over',
+                    [styles.layoutLabelBottom]: layout === 'label-bottom',
+                    [styles.layoutLabelTop]: layout === 'label-top',
+                    [styles.layoutNoLabel]: layout === 'no-label',
+                    [styles.layoutLabelOver]: layout === 'label-over',
                     // [styles.isEmpty]: isEmpty,
                     // [styles.isPopupEmpty]: isPopupEmpty,
                 },

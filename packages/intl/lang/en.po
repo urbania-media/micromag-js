@@ -431,6 +431,12 @@ msgctxt "6bd963"
 msgid "Virgo"
 msgstr "Virgo"
 
+# Field label
+#: 6iR9Mt
+msgctxt "6iR9Mt"
+msgid "Heading"
+msgstr "Heading"
+
 # Authors placeholder
 #: 6jX5Tb
 msgctxt "6jX5Tb"
@@ -526,12 +532,6 @@ msgstr "Parameters"
 msgctxt "8ELj2J"
 msgid "Items"
 msgstr "Items"
-
-# Field label
-#: 8UzHjg
-msgctxt "8UzHjg"
-msgid "Keypad layout"
-msgstr "Keypad layout"
 
 # UrbaniaHoroscope sign
 #: 8gQ1oW
@@ -917,6 +917,12 @@ msgctxt "ICXTfR"
 msgid "Links"
 msgstr "Links"
 
+# Placeholder label
+#: IE7U/Q
+msgctxt "IE7U/Q"
+msgid "Heading"
+msgstr "Heading"
+
 # Type field label
 #: J9e9Qb
 msgctxt "J9e9Qb"
@@ -940,6 +946,12 @@ msgstr "Speakers"
 msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Background color"
+
+# Placeholder label
+#: JRZoe6
+msgctxt "JRZoe6"
+msgid "Content"
+msgstr "Content"
 
 # Button to create your first screen
 #: JoWKee
@@ -1031,6 +1043,12 @@ msgctxt "MYZwSA"
 msgid "Audio"
 msgstr "Audio"
 
+# Field label
+#: Mej9Rl
+msgctxt "Mej9Rl"
+msgid "Popup layout"
+msgstr "Popup layout"
+
 # Slideshow screen title
 #: MhGUaY
 msgctxt "MhGUaY"
@@ -1067,12 +1085,6 @@ msgctxt "NmCfTO"
 msgid "Conversation"
 msgstr "Conversation"
 
-# Field label
-#: NqwQqU
-msgctxt "NqwQqU"
-msgid "Button layout"
-msgstr "Button layout"
-
 # Horoscope sign
 #: NumcrW
 msgctxt "NumcrW"
@@ -1090,6 +1102,12 @@ msgstr "Left"
 msgctxt "O2ThsB"
 msgid "2"
 msgstr "2"
+
+# Field label
+#: OEckOD
+msgctxt "OEckOD"
+msgid "Text style"
+msgstr "Text style"
 
 # Field label
 #: OJi+eg
@@ -1180,6 +1198,12 @@ msgstr "Videos"
 msgctxt "QSmRdP"
 msgid "Add an image"
 msgstr "Add an image"
+
+# Placeholder label
+#: Qanvis
+msgctxt "Qanvis"
+msgid "Visual"
+msgstr "Visual"
 
 # Heading field label
 #: Qe03Xz
@@ -1528,6 +1552,12 @@ msgctxt "ZMS1Wv"
 msgid "Text"
 msgstr "Text"
 
+# Placeholder label
+#: Zbu5Uk
+msgctxt "Zbu5Uk"
+msgid "Label"
+msgstr "Label"
+
 # Horoscope date
 #: ZeosMy
 msgctxt "ZeosMy"
@@ -1846,6 +1876,12 @@ msgctxt "g6b9Lg"
 msgid "Contribution"
 msgstr "Contribution"
 
+# Field label
+#: gFX2G9
+msgctxt "gFX2G9"
+msgid "Layout & styles"
+msgstr "Layout & styles"
+
 # Delete screen button label
 #: gRxcTc
 msgctxt "gRxcTc"
@@ -1875,6 +1911,12 @@ msgstr "Buttons text"
 msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
+
+# Field label
+#: heeSlL
+msgctxt "heeSlL"
+msgid "Frame and backgound styles"
+msgstr "Frame and backgound styles"
 
 # Placeholder label
 #: hoDz0O
@@ -2019,6 +2061,12 @@ msgstr "Result"
 msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Size"
+
+# Popup state
+#: mBYGpP
+msgctxt "mBYGpP"
+msgid "Popup"
+msgstr "Popup"
 
 # Media label
 #: mOSkbf
@@ -2492,6 +2540,12 @@ msgctxt "upzOTm"
 msgid "Credits"
 msgstr "Credits"
 
+# Field label
+#: uv3PH4
+msgctxt "uv3PH4"
+msgid "Backdrop color"
+msgstr "Backdrop color"
+
 # Breadcrumb field label
 #: uwcXzb
 msgctxt "uwcXzb"
@@ -2545,6 +2599,12 @@ msgstr "Title with subtitle and credits"
 msgctxt "vmrJ8U"
 msgid "(current screen)"
 msgstr "(current screen)"
+
+# Field label
+#: vne4NN
+msgctxt "vne4NN"
+msgid "Popup style"
+msgstr "Popup style"
 
 # Breadcrumb field label
 #: vxEtY1
@@ -2713,6 +2773,12 @@ msgstr "Overtitle"
 msgctxt "z4CiV1"
 msgid "Text"
 msgstr "Text"
+
+# Placeholder label
+#: z4Pr+g
+msgctxt "z4Pr+g"
+msgid "Visual (Image or Video)"
+msgstr "Visual (Image or Video)"
 
 # UrbaniaHoroscope date
 #: zD2Q5Y

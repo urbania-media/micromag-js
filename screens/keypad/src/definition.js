@@ -43,9 +43,6 @@ export default [
                                     backgroundColor: { alpha: 0.15, color: '#000000' },
                                 },
                             },
-                            columnAlign: 'middle',
-                            columns: 3,
-                            spacing: 10,
                         },
                         label: defineMessage({
                             defaultMessage: 'Layout & styles',

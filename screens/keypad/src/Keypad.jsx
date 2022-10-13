@@ -94,7 +94,7 @@ const propTypes = {
         spacing: PropTypes.number,
         withSquareItems: PropTypes.bool,
         buttonStyles: PropTypes.shape({
-            buttonLayout: PropTypes.string,
+            layout: PropTypes.string,
             textStyle: MicromagPropTypes.textStyle,
             boxStyle: MicromagPropTypes.boxStyle,
         }),
@@ -152,7 +152,7 @@ const KeypadScreen = ({
         withSquareItems = false,
         buttonStyles = null,
     } = keypadLayout || {};
-    const { buttonLayout = null, textStyle = null, boxStyle = null } = buttonStyles || {};
+    const { layout: buttonLayout = null, textStyle = null, boxStyle = null } = buttonStyles || {};
     const {
         layout: popupLayout = null,
         backdrop: popupBackdrop = null,
@@ -211,9 +211,11 @@ const KeypadScreen = ({
         springParams: { config: { tension: 300, friction: 30 } },
     });
 
+    console.log({items});
+
     const gridItems = useMemo(
         () =>
-            (items || placeholders).map((item) => {
+            (items === null || items.length === 0 ? placeholders : items).map((item) => {
                 const {
                     id = null,
                     label = null,

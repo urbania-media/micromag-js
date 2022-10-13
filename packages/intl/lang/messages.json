@@ -279,6 +279,10 @@
     "defaultMessage": "Virgo",
     "description": "Horoscope sign"
   },
+  "6iR9Mt": {
+    "defaultMessage": "Heading",
+    "description": "Field label"
+  },
   "6jX5Tb": {
     "defaultMessage": "Authors",
     "description": "Authors placeholder"
@@ -342,10 +346,6 @@
   "8ELj2J": {
     "defaultMessage": "Items",
     "description": "Keypad item state"
-  },
-  "8UzHjg": {
-    "defaultMessage": "Keypad layout",
-    "description": "Field label"
   },
   "8gQ1oW": {
     "defaultMessage": "Pisces",
@@ -603,6 +603,10 @@
     "defaultMessage": "Links",
     "description": "Fields section label"
   },
+  "IE7U/Q": {
+    "defaultMessage": "Heading",
+    "description": "Placeholder label"
+  },
   "J9e9Qb": {
     "defaultMessage": "Video",
     "description": "Type field label"
@@ -618,6 +622,10 @@
   "JDPMlG": {
     "defaultMessage": "Background color",
     "description": "Field label"
+  },
+  "JRZoe6": {
+    "defaultMessage": "Content",
+    "description": "Placeholder label"
   },
   "JoWKee": {
     "defaultMessage": "Create your first screen",
@@ -679,6 +687,10 @@
     "defaultMessage": "Audio",
     "description": "Audio placeholder"
   },
+  "Mej9Rl": {
+    "defaultMessage": "Popup layout",
+    "description": "Field label"
+  },
   "MhGUaY": {
     "defaultMessage": "Slideshow",
     "description": "Slideshow screen title"
@@ -703,10 +715,6 @@
     "defaultMessage": "Conversation",
     "description": "Conversation placeholder"
   },
-  "NqwQqU": {
-    "defaultMessage": "Button layout",
-    "description": "Field label"
-  },
   "NumcrW": {
     "defaultMessage": "Capricorn",
     "description": "Horoscope sign"
@@ -718,6 +726,10 @@
   "O2ThsB": {
     "defaultMessage": "2",
     "description": "Radio option label"
+  },
+  "OEckOD": {
+    "defaultMessage": "Text style",
+    "description": "Field label"
   },
   "OJi+eg": {
     "defaultMessage": "Label",
@@ -778,6 +790,10 @@
   "QSmRdP": {
     "defaultMessage": "Add an image",
     "description": "Button label"
+  },
+  "Qanvis": {
+    "defaultMessage": "Visual",
+    "description": "Placeholder label"
   },
   "Qe03Xz": {
     "defaultMessage": "Sign Subtitle",
@@ -1010,6 +1026,10 @@
     "defaultMessage": "Text",
     "description": "Field label"
   },
+  "Zbu5Uk": {
+    "defaultMessage": "Label",
+    "description": "Placeholder label"
+  },
   "ZeosMy": {
     "defaultMessage": "Mar 21 - Apr 19",
     "description": "Horoscope date"
@@ -1222,6 +1242,10 @@
     "defaultMessage": "Contribution",
     "description": "Contribution screen title"
   },
+  "gFX2G9": {
+    "defaultMessage": "Layout & styles",
+    "description": "Field label"
+  },
   "gRxcTc": {
     "defaultMessage": "Delete screen",
     "description": "Delete screen button label"
@@ -1241,6 +1265,10 @@
   "hVE7TA": {
     "defaultMessage": "Question",
     "description": "Question field label"
+  },
+  "heeSlL": {
+    "defaultMessage": "Frame and backgound styles",
+    "description": "Field label"
   },
   "hoDz0O": {
     "defaultMessage": "Description",
@@ -1337,6 +1365,10 @@
   "liyV7Y": {
     "defaultMessage": "Size",
     "description": "Label in Media Gallery"
+  },
+  "mBYGpP": {
+    "defaultMessage": "Popup",
+    "description": "Popup state"
   },
   "mOSkbf": {
     "defaultMessage": "Usage",
@@ -1652,6 +1684,10 @@
     "defaultMessage": "Credits",
     "description": "Credits field label"
   },
+  "uv3PH4": {
+    "defaultMessage": "Backdrop color",
+    "description": "Field label"
+  },
   "uwcXzb": {
     "defaultMessage": "Image",
     "description": "Breadcrumb field label"
@@ -1687,6 +1723,10 @@
   "vmrJ8U": {
     "defaultMessage": "(current screen)",
     "description": "Button label"
+  },
+  "vne4NN": {
+    "defaultMessage": "Popup style",
+    "description": "Field label"
   },
   "vxEtY1": {
     "defaultMessage": "Background image",
@@ -1799,6 +1839,10 @@
   "z4CiV1": {
     "defaultMessage": "Text",
     "description": "Text placeholder"
+  },
+  "z4Pr+g": {
+    "defaultMessage": "Visual (Image or Video)",
+    "description": "Placeholder label"
   },
   "zD2Q5Y": {
     "defaultMessage": "Feb 19 - Mar 20",

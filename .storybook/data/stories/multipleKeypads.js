@@ -17,7 +17,7 @@ const multipleKeypads = {
                 spacing: 10,
                 withSquareItems: false,
                 buttonStyles: {
-                    buttonLayout: 'label-bottom',
+                    layout: 'label-bottom',
                     boxStyle: {
                         backgroundColor: {
                             alpha: 0.15,
@@ -27,7 +27,7 @@ const multipleKeypads = {
                 },
             },
             popupStyles: {
-                layout: 'content-top',
+                layout: 'content-split',
             },
         },
         // with "team" items
@@ -42,7 +42,7 @@ const multipleKeypads = {
                 spacing: 1,
                 withSquareItems: false,
                 buttonStyles: {
-                    buttonLayout: 'label-top',
+                    layout: 'label-top',
                     textStyle: {
                         fontStyle: {
                             bold: true,
@@ -83,7 +83,7 @@ const multipleKeypads = {
                 spacing: 10,
                 withSquareItems: true,
                 buttonStyles: {
-                    buttonLayout: 'no-label',
+                    layout: 'no-label',
                     boxStyle: {
                         borderRadius: 10,
                         shadowAngle: 45,

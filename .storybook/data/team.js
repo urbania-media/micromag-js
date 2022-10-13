@@ -16,7 +16,7 @@ export default [
         },
         largeVisual: imageMediaFromURL(dmp),
         buttonStyles: {
-            buttonLayout: 'label-top',
+            layout: 'label-top',
             textStyle: {
                 fontStyle: {
                     bold: true,

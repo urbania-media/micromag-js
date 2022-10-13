@@ -1,15 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-14 14:06-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2022-10-13 13:31-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 3.2.0\n"
+"X-Generator: Poedit 3.1\n"
 
 # Audio and Video screen group
 #: +9akmg
@@ -431,6 +432,12 @@ msgctxt "6bd963"
 msgid "Virgo"
 msgstr "Vierge"
 
+# Field label
+#: 6iR9Mt
+msgctxt "6iR9Mt"
+msgid "Heading"
+msgstr "Titre"
+
 # Authors placeholder
 #: 6jX5Tb
 msgctxt "6jX5Tb"
@@ -459,7 +466,7 @@ msgstr "Auteur"
 #: 75nZbY
 msgctxt "75nZbY"
 msgid "Keypad"
-msgstr ""
+msgstr "Clavier"
 
 # Title field label
 #: 7YE/VU
@@ -525,13 +532,7 @@ msgstr "Paramètres"
 #: 8ELj2J
 msgctxt "8ELj2J"
 msgid "Items"
-msgstr ""
-
-# Field label
-#: 8UzHjg
-msgctxt "8UzHjg"
-msgid "Keypad layout"
-msgstr ""
+msgstr "Éléments"
 
 # UrbaniaHoroscope sign
 #: 8gQ1oW
@@ -699,7 +700,7 @@ msgstr "Image avec texte"
 #: CWnXWp
 msgctxt "CWnXWp"
 msgid "No button yet"
-msgstr ""
+msgstr "Aucun bouton"
 
 # Quote placeholder
 #: CrzYgw
@@ -855,7 +856,7 @@ msgstr "Vidéo 360"
 #: Gtmyc8
 msgctxt "Gtmyc8"
 msgid "Layout / Spacing"
-msgstr ""
+msgstr "Disposition / Espacements"
 
 # Timeline screen title
 #: GzoKNb
@@ -891,7 +892,7 @@ msgstr "Modifier"
 #: HwqzVR
 msgctxt "HwqzVR"
 msgid "Visual"
-msgstr ""
+msgstr "Visuel"
 
 # Field label
 #: I2bIHm
@@ -917,6 +918,12 @@ msgctxt "ICXTfR"
 msgid "Links"
 msgstr "Liens"
 
+# Placeholder label
+#: IE7U/Q
+msgctxt "IE7U/Q"
+msgid "Heading"
+msgstr "Titre"
+
 # Type field label
 #: J9e9Qb
 msgctxt "J9e9Qb"
@@ -940,6 +947,12 @@ msgstr "Interlocuteurs"
 msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
+
+# Placeholder label
+#: JRZoe6
+msgctxt "JRZoe6"
+msgid "Content"
+msgstr "Contenu"
 
 # Button to create your first screen
 #: JoWKee
@@ -999,7 +1012,7 @@ msgstr "Écran {index}"
 #: LrRW+9
 msgctxt "LrRW+9"
 msgid "Add a button"
-msgstr ""
+msgstr "Ajouter un bouton"
 
 # Share option label
 #: Lrwi2G
@@ -1030,6 +1043,12 @@ msgstr "Vierge"
 msgctxt "MYZwSA"
 msgid "Audio"
 msgstr "Audio"
+
+# Field label
+#: Mej9Rl
+msgctxt "Mej9Rl"
+msgid "Popup layout"
+msgstr "Disposition du popup"
 
 # Slideshow screen title
 #: MhGUaY
@@ -1067,12 +1086,6 @@ msgctxt "NmCfTO"
 msgid "Conversation"
 msgstr "Conversation"
 
-# Field label
-#: NqwQqU
-msgctxt "NqwQqU"
-msgid "Button layout"
-msgstr ""
-
 # Horoscope sign
 #: NumcrW
 msgctxt "NumcrW"
@@ -1090,6 +1103,12 @@ msgstr "Gauche"
 msgctxt "O2ThsB"
 msgid "2"
 msgstr ""
+
+# Field label
+#: OEckOD
+msgctxt "OEckOD"
+msgid "Text style"
+msgstr "Style du texte"
 
 # Field label
 #: OJi+eg
@@ -1181,6 +1200,12 @@ msgctxt "QSmRdP"
 msgid "Add an image"
 msgstr "Ajouter une image"
 
+# Placeholder label
+#: Qanvis
+msgctxt "Qanvis"
+msgid "Visual"
+msgstr "Visuel"
+
 # Heading field label
 #: Qe03Xz
 msgctxt "Qe03Xz"
@@ -1250,7 +1275,7 @@ msgstr "Texte et images"
 #: S1F/re
 msgctxt "S1F/re"
 msgid "Columns"
-msgstr ""
+msgstr "Colonnes"
 
 # Text screen title
 #: S9YpbV
@@ -1292,7 +1317,7 @@ msgstr "Longitude"
 #: TTPc+y
 msgctxt "TTPc+y"
 msgid "Use square keys"
-msgstr ""
+msgstr "Utiliser des touches carrées"
 
 # Field label
 #: TZUu3s
@@ -1448,7 +1473,7 @@ msgstr "Taureau"
 #: XR5/Wk
 msgctxt "XR5/Wk"
 msgid "Edit"
-msgstr ""
+msgstr "Éditer"
 
 # GalleryFeedCaptions screen title
 #: XTJGzY
@@ -1484,7 +1509,7 @@ msgstr "Point rempli"
 #: YwySSO
 msgctxt "YwySSO"
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 # Horoscope sign
 #: YyPYHk
@@ -1527,6 +1552,12 @@ msgstr "Envoyer"
 msgctxt "ZMS1Wv"
 msgid "Text"
 msgstr "Texte"
+
+# Placeholder label
+#: Zbu5Uk
+msgctxt "Zbu5Uk"
+msgid "Label"
+msgstr "Libellé"
 
 # Horoscope date
 #: ZeosMy
@@ -1778,7 +1809,7 @@ msgstr "Durée"
 #: f1XHNG
 msgctxt "f1XHNG"
 msgid "Button"
-msgstr ""
+msgstr "Bouton"
 
 # Field label
 #: f5Yipd
@@ -1814,7 +1845,7 @@ msgstr "Mot de la semaine"
 #: fOYYk7
 msgctxt "fOYYk7"
 msgid "Align items"
-msgstr ""
+msgstr "Aligner les éléments"
 
 # No title label in Media Gallery
 #: fVqgfl
@@ -1846,6 +1877,12 @@ msgctxt "g6b9Lg"
 msgid "Contribution"
 msgstr "Contribution"
 
+# Field label
+#: gFX2G9
+msgctxt "gFX2G9"
+msgid "Layout & styles"
+msgstr "Disposition et styles"
+
 # Delete screen button label
 #: gRxcTc
 msgctxt "gRxcTc"
@@ -1875,6 +1912,12 @@ msgstr "Texte des boutons"
 msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
+
+# Field label
+#: heeSlL
+msgctxt "heeSlL"
+msgid "Frame and backgound styles"
+msgstr "Styles du cadre et du fond"
 
 # Placeholder label
 #: hoDz0O
@@ -2019,6 +2062,12 @@ msgstr "Résultat"
 msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Taille"
+
+# Popup state
+#: mBYGpP
+msgctxt "mBYGpP"
+msgid "Popup"
+msgstr "Popup"
 
 # Media label
 #: mOSkbf
@@ -2244,7 +2293,7 @@ msgstr "Êtes-vous sûr que vous voulez supprimer cet écran?"
 #: qINMmC
 msgctxt "qINMmC"
 msgid "Keypad"
-msgstr ""
+msgstr "Clavier"
 
 # Save in Media Gallery
 #: qIw1nW
@@ -2334,7 +2383,7 @@ msgstr "Mauvaise réponse"
 #: rzXCu2
 msgctxt "rzXCu2"
 msgid "Label style"
-msgstr ""
+msgstr "Style du libellé"
 
 # Breadcrumb field label
 #: rzdds2
@@ -2484,13 +2533,19 @@ msgstr ""
 #: uoF5Pv
 msgctxt "uoF5Pv"
 msgid "Content"
-msgstr ""
+msgstr "Contenu"
 
 # Credits field label
 #: upzOTm
 msgctxt "upzOTm"
 msgid "Credits"
 msgstr "Crédits"
+
+# Field label
+#: uv3PH4
+msgctxt "uv3PH4"
+msgid "Backdrop color"
+msgstr "Couleur du fond"
 
 # Breadcrumb field label
 #: uwcXzb
@@ -2545,6 +2600,12 @@ msgstr "Titre avec sous-titre et crédits"
 msgctxt "vmrJ8U"
 msgid "(current screen)"
 msgstr "(écran en cours)"
+
+# Field label
+#: vne4NN
+msgctxt "vne4NN"
+msgid "Popup style"
+msgstr "Style du popup"
 
 # Breadcrumb field label
 #: vxEtY1
@@ -2622,7 +2683,7 @@ msgstr "Image"
 #: xTJlyi
 msgctxt "xTJlyi"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 # Author placeholder
 #: xYqGzM
@@ -2646,7 +2707,7 @@ msgstr "Grille"
 #: xmp9nw
 msgctxt "xmp9nw"
 msgid "Spacing"
-msgstr ""
+msgstr "Espacement"
 
 # Visual field label
 #: xsipID
@@ -2713,6 +2774,12 @@ msgstr "Surtitre"
 msgctxt "z4CiV1"
 msgid "Text"
 msgstr "Texte"
+
+# Placeholder label
+#: z4Pr+g
+msgctxt "z4Pr+g"
+msgid "Visual (Image or Video)"
+msgstr "Visuel (image ou vidéo)"
 
 # UrbaniaHoroscope date
 #: zD2Q5Y
