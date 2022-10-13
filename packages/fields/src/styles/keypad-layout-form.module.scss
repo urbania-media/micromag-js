@@ -1,3 +1,4 @@
+@import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/variables';
 
 // @todo taken straight from keypad.module.scss
@@ -9,6 +10,10 @@
     align-items: center;
     justify-content: center;
     width: 40px;
+}
+
+.buttonVisual {
+    width: 100%;
 }
 
 .layoutLabelTop {

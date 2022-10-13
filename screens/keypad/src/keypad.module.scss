@@ -140,6 +140,22 @@
     padding: 5px;
 }
 
+.empty {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.emptyButtonVisual {
+    margin-bottom: 5px;
+    padding: 10px 5px;
+}
+
+.emptyButtonLabel {
+    margin-bottom: 5px;
+    padding: 2px 5px;
+}
+
 /**
  * POPUP
  */
@@ -210,7 +226,7 @@
 
 .popupHeading,
 .popupContent,
-.popupMedia {
+.popupVisual {
     flex-grow: 1;
     flex-shrink: 0;
     width: 100%;
@@ -225,11 +241,11 @@
 }
 
 .contentSplit {
-    .popupMedia {
+    .popupVisual {
         order: 1;
     }
 
-    .popupMedia {
+    .popupVisual {
         order: 2;
     }
 
@@ -239,7 +255,7 @@
 }
 
 .contentBottom {
-    .popupMedia {
+    .popupVisual {
         order: 1;
     }
 

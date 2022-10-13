@@ -21,6 +21,53 @@ export default [
         component: Keypad,
         states: [
             {
+                id: 'keypad',
+                label: defineMessage({ defaultMessage: 'Keypad', description: 'Keypad state' }),
+                fields: [
+                    {
+                        name: 'layout',
+                        type: 'screen-layout',
+                        defaultValue: 'middle',
+                        label: defineMessage({
+                            defaultMessage: 'Layout',
+                            description: 'Layout field label',
+                        }),
+                    },
+                    {
+                        name: 'keypadLayout',
+                        type: 'keypad-layout-form',
+                        defaultValue: {
+                            buttonStyles: {
+                                buttonLayout: 'content-bottom',
+                                boxStyle: {
+                                    backgroundColor: { alpha: 0.15, color: '#000000' },
+                                },
+                            },
+                            columnAlign: 'middle',
+                            columns: 3,
+                            spacing: 10,
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Layout & styles',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'items',
+                        type: 'buttons',
+                        theme: {
+                            label: {
+                                textStyle: 'button',
+                            },
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Buttons',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
+            },
+            {
                 id: 'popup',
                 label: defineMessage({ defaultMessage: 'Popup', description: 'Popup state' }),
                 fields: [
@@ -73,53 +120,7 @@ export default [
                     },
                 ],
             },
-            {
-                id: 'keypad',
-                label: defineMessage({ defaultMessage: 'Keypad', description: 'Keypad state' }),
-                fields: [
-                    {
-                        name: 'layout',
-                        type: 'screen-layout',
-                        defaultValue: 'middle',
-                        label: defineMessage({
-                            defaultMessage: 'Layout',
-                            description: 'Layout field label',
-                        }),
-                    },
-                    {
-                        name: 'keypadLayout',
-                        type: 'keypad-layout-form',
-                        defaultValue: {
-                            buttonStyles: {
-                                buttonLayout: 'content-bottom',
-                                boxStyle: {
-                                    backgroundColor: { alpha: 0.15, color: '#000000' },
-                                },
-                            },
-                            columnAlign: 'middle',
-                            columns: 3,
-                            spacing: 10,
-                        },
-                        label: defineMessage({
-                            defaultMessage: 'Layout & styles',
-                            description: 'Field label',
-                        }),
-                    },
-                    {
-                        name: 'items',
-                        type: 'buttons',
-                        theme: {
-                            label: {
-                                textStyle: 'button',
-                            },
-                        },
-                        label: defineMessage({
-                            defaultMessage: 'Buttons',
-                            description: 'Field label',
-                        }),
-                    },
-                ],
-            },
+
             {
                 id: 'items',
                 label: defineMessage({ defaultMessage: 'Items', description: 'Keypad item state' }),
