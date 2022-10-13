@@ -416,20 +416,15 @@ export const allScreens = [
     },
     {
         id: uuid(),
-        type: 'grid',
+        type: 'keypad',
         items: signs.map(({ id = '' }) => ({
-            description: {
-                body: `<p>${id}</p>`,
-                textStyle: {
-                    fontSize: 20,
-                    fontStyle: {
-                        bold: true,
-                    },
-                },
-            },
+            label: id,
         })),
-        columns: 3,
-        spacing: 5,
+        keypadLayout: {
+            columnAlign: 'middle',
+            columns: 3,
+            spacing: 10,
+        },
         // background: backgroundVideo(),
     },
 ];

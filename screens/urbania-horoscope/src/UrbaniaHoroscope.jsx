@@ -386,7 +386,9 @@ const UrbaniaHoroscope = ({
                             className={styles.header}
                             style={{
                                 opacity: showSignsGridProgress,
-                                pointerEvents: showSignsGridProgress.to((p) => (p < 0.25 ? 'none' : 'auto')),
+                                pointerEvents: showSignsGridProgress.to((p) =>
+                                    p < 0.25 ? 'none' : 'auto',
+                                ),
                             }}
                         >
                             <div className={styles.buttons}>
@@ -422,8 +424,10 @@ const UrbaniaHoroscope = ({
                             style={getSignsContainerStyles(showSignsGridProgress)}
                             {...bindSignsDrag()}
                         >
-                            <Keypad columns={3} spacing={5}>
-                                {signs.map((sign) => {
+                            <Keypad
+                                columns={3}
+                                spacing={5}
+                                items={signs.map((sign) => {
                                     const { id = null } = sign || {};
                                     return (
                                         <animated.div
@@ -439,7 +443,7 @@ const UrbaniaHoroscope = ({
                                         </animated.div>
                                     );
                                 })}
-                            </Keypad>
+                            />
 
                             <ScreenElement
                                 key="author"

@@ -33,7 +33,6 @@ const SettingsForm = ({
     closeFieldForm,
     onChange,
 }) => {
-    console.log({name, field, value});
     const { type = null } = field || {};
     const fieldsManager = useFieldsManager();
     const { component: fieldComponent = null, settings } =

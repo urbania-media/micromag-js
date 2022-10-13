@@ -27,15 +27,7 @@ const defaultProps = {
     items: null,
 };
 
-function Keypad({
-    items,
-    align,
-    columns,
-    spacing,
-    className,
-    itemClassName,
-    innerClassName,
-}) {
+function Keypad({ items, align, columns, spacing, className, itemClassName, innerClassName }) {
     const itemWidth = `${100 / columns}%`;
 
     return (
@@ -58,26 +50,28 @@ function Keypad({
                     ...getStyleFromAlignment({ horizontal: align }),
                 }}
             >
-                {items.map((item) => {
-                    const { key } = item || {};
-                    return (
-                        <div
-                            key={key}
-                            className={classNames([
-                                styles.item,
-                                {
-                                    [itemClassName]: itemClassName !== null,
-                                },
-                            ])}
-                            style={{
-                                width: itemWidth,
-                                padding: spacing / 2,
-                            }}
-                        >
-                            {item}
-                        </div>
-                    );
-                })}
+                {items !== null
+                    ? items.map((item) => {
+                          const { key } = item || {};
+                          return (
+                              <div
+                                  key={key}
+                                  className={classNames([
+                                      styles.item,
+                                      {
+                                          [itemClassName]: itemClassName !== null,
+                                      },
+                                  ])}
+                                  style={{
+                                      width: itemWidth,
+                                      padding: spacing / 2,
+                                  }}
+                              >
+                                  {item}
+                              </div>
+                          );
+                      })
+                    : null}
             </div>
         </div>
     );

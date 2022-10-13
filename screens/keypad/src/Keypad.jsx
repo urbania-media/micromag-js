@@ -211,8 +211,6 @@ const KeypadScreen = ({
         springParams: { config: { tension: 300, friction: 30 } },
     });
 
-    console.log({items});
-
     const gridItems = useMemo(
         () =>
             (items === null || items.length === 0 ? placeholders : items).map((item) => {
@@ -265,48 +263,48 @@ const KeypadScreen = ({
                                 </>
                             ) : (
                                 <>
-                                    <ScreenElement
-                                        emptyLabel={
-                                            isPreview ? (
-                                                <PlaceholderButton />
-                                            ) : (
+                                    {visual !== null || !isInteractivePreview ? (
+                                        <ScreenElement
+                                            emptyLabel={
                                                 <FormattedMessage
                                                     defaultMessage="Visual"
                                                     description="Placeholder label"
                                                 />
-                                            )
-                                        }
-                                        emptyClassName={classNames([
-                                            styles.empty,
-                                            styles.buttonVisual,
-                                            styles.emptyButtonVisual,
-                                        ])}
-                                        isEmpty={visual === null}
-                                    >
-                                        <Visual
-                                            className={styles.buttonVisual}
-                                            imageClassName={styles.thumbnail}
-                                            media={visual}
-                                            width="auto"
-                                        />
-                                    </ScreenElement>
-
-                                    <ScreenElement
-                                        placeholder={<PlaceholderButton />}
-                                        emptyLabel={
-                                            <FormattedMessage
-                                                defaultMessage="Label"
-                                                description="Placeholder label"
+                                            }
+                                            emptyClassName={classNames([
+                                                styles.empty,
+                                                styles.buttonVisual,
+                                                styles.emptyButtonVisual,
+                                            ])}
+                                            isEmpty={visual === null}
+                                        >
+                                            <Visual
+                                                className={styles.buttonVisual}
+                                                imageClassName={styles.thumbnail}
+                                                media={visual}
+                                                width="auto"
                                             />
-                                        }
-                                        emptyClassName={classNames([
-                                            styles.empty,
-                                            styles.emptyButtonLabel,
-                                        ])}
-                                        isEmpty={label === null}
-                                    >
-                                        <div className={styles.buttonLabel}>{label}</div>
-                                    </ScreenElement>
+                                        </ScreenElement>
+                                    ) : null}
+
+                                    {label !== null || !isInteractivePreview ? (
+                                        <ScreenElement
+                                            placeholder={<PlaceholderButton />}
+                                            emptyLabel={
+                                                <FormattedMessage
+                                                    defaultMessage="Label"
+                                                    description="Placeholder label"
+                                                />
+                                            }
+                                            emptyClassName={classNames([
+                                                styles.empty,
+                                                styles.emptyButtonLabel,
+                                            ])}
+                                            isEmpty={label === null}
+                                        >
+                                            <div className={styles.buttonLabel}>{label}</div>
+                                        </ScreenElement>
+                                    ) : null}
                                 </>
                             )}
                         </Button>
