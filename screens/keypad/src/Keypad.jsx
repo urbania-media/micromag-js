@@ -91,11 +91,6 @@ const propTypes = {
             boxStyle: MicromagPropTypes.boxStyle,
         }),
     }),
-    // buttonStyles: PropTypes.shape({
-    //     buttonLayout: PropTypes.string,
-    //     textStyle: MicromagPropTypes.textStyle,
-    //     boxStyle: MicromagPropTypes.boxStyle,
-    // }),
     popupStyles: PropTypes.shape({
         popupLayout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
         textStyle: MicromagPropTypes.textStyle,
@@ -111,7 +106,6 @@ const defaultProps = {
     items: null,
     layout: null,
     keypadLayout: null,
-    // buttonStyles: null,
     popupStyles: null,
     background: null,
     current: true,
@@ -123,7 +117,6 @@ const KeypadScreen = ({
     items,
     layout,
     keypadLayout,
-    // buttonStyles,
     popupStyles,
     background,
     current,
@@ -183,8 +176,7 @@ const KeypadScreen = ({
 
     const onCloseModal = useCallback(() => {
         setShowPopup(0);
-        // trackScreenEvent('UrbaniaHoroscope', 'close_sign_modal');
-        // }, [setShowPopup, trackScreenEvent]);
+        trackScreenEvent('close_modal');
     }, [setShowPopup]);
 
     const computePopupProgress = useCallback(
@@ -224,12 +216,12 @@ const KeypadScreen = ({
             boxStyle: customBoxStyle = null,
             heading = null,
             content = null,
-            largeVisual = null,
+            largeVisual: popupLargeVisual = null,
         } = item || {};
         const { url: visualUrl = null } = visual || {};
         const key = label || visualUrl;
         const isEmpty = label === null && visual === null;
-        const isPopupEmpty = heading === null && content === null && largeVisual === null;
+        const isPopupEmpty = heading === null && content === null && popupLargeVisual === null;
         return (
             <div key={key} className={styles.item}>
                 <Button
