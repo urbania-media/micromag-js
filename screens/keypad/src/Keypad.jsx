@@ -130,9 +130,7 @@ const KeypadScreen = ({
     active,
     className,
 }) => {
-    // const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent('keypad');
-    // const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
@@ -140,6 +138,7 @@ const KeypadScreen = ({
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const screenState = useScreenState();
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
@@ -165,6 +164,12 @@ const KeypadScreen = ({
 
     const [showPopup, setShowPopup] = useState(false);
     const [popup, setPopup] = useState(null);
+
+    const {
+        heading: popupHeading = null,
+        content: popupContent = null,
+        largeVisual = null,
+    } = popup || {};
 
     const onItemClick = useCallback(
         (e, item) => {
@@ -258,7 +263,7 @@ const KeypadScreen = ({
                     ):null}
 
                     {/* only a button for the "placeholder" */}
-                    {isPlaceholder ? (
+                    {isPlaceholder  ? (
                         <PlaceholderButton className={styles.buttonPlaceholder} />
                     ) : (
                         <>
@@ -271,7 +276,7 @@ const KeypadScreen = ({
                                     />
                                 }
                                 emptyClassName={classNames([styles.empty, styles.buttonVisual, styles.emptyButtonVisual])}
-                                isEmpty={visual === null}
+                                isEmpty={visual === null && screenState === 'keypad'}
                             >
                                 <Visual
                                     className={styles.buttonVisual}
@@ -290,7 +295,7 @@ const KeypadScreen = ({
                                     />
                                 }
                                 emptyClassName={classNames([styles.empty, styles.emptyButtonLabel])}
-                                isEmpty={label === null}
+                                isEmpty={label === null && screenState === 'keypad'}
                             >
                                 <div className={styles.buttonLabel}>{label}</div>
                             </ScreenElement>
@@ -301,14 +306,6 @@ const KeypadScreen = ({
         );
     });
 
-    const {
-        heading: popupHeading = null,
-        content: popupContent = null,
-        largeVisual = null,
-    } = popup || {};
-
-    // for editor purposes
-    const screenState = useScreenState();
 
     useEffect(() => {
         if (screenState === 'popup') {
