@@ -40,8 +40,6 @@ function ScreenStates({ screen, value, className, onChange }) {
             ? stateParam
             : null;
 
-    console.log({screen, value});
-
     return (
         <div
             className={classNames([

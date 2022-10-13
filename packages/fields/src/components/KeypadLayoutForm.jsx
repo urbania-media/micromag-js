@@ -48,7 +48,7 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
     const { buttonStyles = null } = value || {};
     const { buttonLayout = null, textStyle = null, boxStyle = null } = buttonStyles || {};
 
-    console.log({ value });
+    // console.log({ value });
 
     const preview = (
         <div

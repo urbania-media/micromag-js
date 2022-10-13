@@ -279,10 +279,12 @@
  * Button Layouts
  */
 .layoutLabelTop {
+    .emptyButtonLabel,
     .buttonLabel {
         order: 1;
     }
 
+    .emptyButtonVisual,
     .buttonVisual {
         order: 2;
     }
@@ -290,10 +292,12 @@
 
 .layoutNoLabel,
 .layoutLabelOver {
+    .emptyButtonLabel,
     .buttonLabel {
         display: none;
     }
 
+    .emptyButtonVisual,
     .buttonVisual {
         width: 100% !important;
         height: 100%;
@@ -312,10 +316,12 @@
 
 // @note extends the styles of layoutNoLabel
 .layoutLabelOver {
+    .emptyButtonVisual,
     .buttonVisual {
         z-index: 1;
     }
 
+    .emptyButtonLabel,
     .buttonLabel {
         @extend %fullscreen;
         display: block;

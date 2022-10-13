@@ -14,7 +14,7 @@ const propTypes = {
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     innerClassName: PropTypes.string,
-    children: PropTypes.node,
+    items: PropTypes.node,
 };
 
 const defaultProps = {
@@ -24,11 +24,11 @@ const defaultProps = {
     className: null,
     itemClassName: null,
     innerClassName: null,
-    children: null,
+    items: null,
 };
 
 function Keypad({
-    children,
+    items,
     align,
     columns,
     spacing,
@@ -58,7 +58,7 @@ function Keypad({
                     ...getStyleFromAlignment({ horizontal: align }),
                 }}
             >
-                {React.Children.map(children, (item) => {
+                {items.map((item) => {
                     const { key } = item || {};
                     return (
                         <div
