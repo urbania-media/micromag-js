@@ -78,9 +78,13 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             const hasField = field !== null;
             const fieldRoute = formName !== null ? 'screen.field.form' : 'screen.field';
             const [rootFieldName = null] = field !== null ? field.split('.') : [];
+            const [currentStateId = null] = fieldParams !== null ? fieldParams.split('/') : [];
             const { stateId = null } =
                 (rootFieldName !== null
-                    ? screenFields.find(({ name }) => name === rootFieldName) || null
+                    ? screenFields.find(
+                          ({ name, stateId: fieldStateId }) =>
+                              name === rootFieldName && currentStateId === fieldStateId,
+                      ) || null
                     : null) || {};
             routePush(hasField ? fieldRoute : 'screen', {
                 screen: screenId,
@@ -100,6 +104,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             routePush,
             screenId,
             screenFields,
+            fieldParams,
             url,
             fieldForms,
             setFieldForms,

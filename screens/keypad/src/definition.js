@@ -122,8 +122,8 @@ export default [
             },
 
             {
-                id: 'items',
-                label: defineMessage({ defaultMessage: 'Items', description: 'Keypad item state' }),
+                id: 'popups',
+                label: defineMessage({ defaultMessage: 'Popups', description: 'Keypad item state' }),
                 defaultValue: [],
                 repeatable: true,
                 fieldName: 'items',

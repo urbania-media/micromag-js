@@ -1097,12 +1097,6 @@ msgctxt "O2JVA+"
 msgid "Left"
 msgstr "Left"
 
-# Radio option label
-#: O2ThsB
-msgctxt "O2ThsB"
-msgid "2"
-msgstr "2"
-
 # Field label
 #: OEckOD
 msgctxt "OEckOD"
@@ -1281,12 +1275,6 @@ msgstr "Columns"
 msgctxt "S9YpbV"
 msgid "Text"
 msgstr "Text"
-
-# Radio option label
-#: SPUQMP
-msgctxt "SPUQMP"
-msgid "4"
-msgstr "4"
 
 # Published name style field label
 #: SyMSDa
@@ -2138,12 +2126,6 @@ msgctxt "n9LoBJ"
 msgid "Top"
 msgstr "Top"
 
-# Radio option label
-#: nCW2/v
-msgctxt "nCW2/v"
-msgid "3"
-msgstr "3"
-
 # Urbania screen title
 #: nJgzwC
 msgctxt "nJgzwC"
@@ -2521,12 +2503,6 @@ msgstr "Shadow"
 msgctxt "uiTxd7"
 msgid "Results"
 msgstr "Results"
-
-# Radio option label
-#: ujG9xe
-msgctxt "ujG9xe"
-msgid "1"
-msgstr "1"
 
 # Field label
 #: uoF5Pv

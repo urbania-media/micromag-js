@@ -325,7 +325,7 @@ const KeypadScreen = ({
             setPopup(null);
             setShowPopup(0);
         }
-        if (screenState !== null && screenState.includes('items')) {
+        if (screenState !== null && screenState.includes('popups')) {
             const index = screenState.split('.').pop();
             const found = items[index];
             setShowPopup(1);

@@ -61,6 +61,7 @@
         "@micromag/screen-gallery": "^0.3.246",
         "@micromag/screen-gallery-feed": "^0.3.246",
         "@micromag/screen-image": "^0.3.246",
+        "@micromag/screen-keypad": "^0.3.219",
         "@micromag/screen-map": "^0.3.246",
         "@micromag/screen-quiz": "^0.3.246",
         "@micromag/screen-quote": "^0.3.246",
