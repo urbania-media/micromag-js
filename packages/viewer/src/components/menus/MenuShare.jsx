@@ -89,7 +89,7 @@ const ViewerMenuShare = ({
     useEffect(() => {
         setFinalShareUrl(
             shareCurrentScreen && currentScreenIndex !== 0
-                ? `${shareUrl}/${currentScreenIndex}`
+                ? `${shareUrl}/${currentScreenIndex+1}`
                 : shareUrl,
         );
     }, [shareCurrentScreen, currentScreenIndex, setFinalShareUrl]);
