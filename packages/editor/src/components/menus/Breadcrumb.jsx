@@ -6,13 +6,16 @@ import PropTypes from 'prop-types';
 import React, { useMemo, useCallback } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useHistory } from 'react-router';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
 import { useScreensManager, useFieldsManager, useUrlGenerator } from '@micromag/core/contexts';
 import { isMessage, getScreenExtraField } from '@micromag/core/utils';
-import styles from '../../styles/menus/breadcrumb.module.scss';
+
 import getFieldByName from '../../utils/getFieldByName';
 import getScreenFieldsWithStates from '../../utils/getScreenFieldsWithStates';
+
+import styles from '../../styles/menus/breadcrumb.module.scss';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -181,7 +184,15 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
 
                     return nextFields;
                 },
-                { fields: screenFields },
+                {
+                    fields:
+                        stateId === null
+                            ? screenFields
+                            : screenFields.filter(
+                                  ({ stateId: fieldStateId = null }) =>
+                                      fieldStateId === null || fieldStateId === stateId,
+                              ),
+                },
             );
         }
 
