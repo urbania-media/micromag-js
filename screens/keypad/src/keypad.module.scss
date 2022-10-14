@@ -101,7 +101,7 @@
     }
 
     &.isEmpty {
-        padding: 5px;
+        padding: 2px;
         pointer-events: none;
     }
 
@@ -120,6 +120,7 @@
     }
 
 
+    .imagePlaceholder,
     .buttonPlaceholder {
         width: 100%;
         margin: 0;

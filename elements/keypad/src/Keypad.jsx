@@ -20,7 +20,7 @@ const propTypes = {
 const defaultProps = {
     align: null,
     columns: 3,
-    spacing: 0,
+    spacing: 10,
     className: null,
     itemClassName: null,
     innerClassName: null,

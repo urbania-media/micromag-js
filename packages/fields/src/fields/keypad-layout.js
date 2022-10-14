@@ -85,7 +85,6 @@ export default {
                 {
                     name: 'spacing',
                     type: 'number',
-                    defaultValue: 5,
                     isHorizontal: true,
                     label: defineMessage({
                         defaultMessage: 'Spacing',
@@ -95,7 +94,6 @@ export default {
                 {
                     name: 'withSquareItems',
                     type: 'toggle',
-                    defaultValue: true,
                     label: defineMessage({
                         defaultMessage: 'Use square keys',
                         description: 'Field label',

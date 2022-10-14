@@ -8,7 +8,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
-    // PlaceholderTitle,
     PlaceholderText,
     PlaceholderImage,
     PlaceholderButton,
@@ -44,6 +43,8 @@ const placeholders = [
     { id: '5' },
     { id: '6' },
     { id: '7' },
+    { id: '8' },
+    { id: '9' },
 ];
 const placeholderPopupBoxStyles = {
     padding: {
@@ -100,7 +101,7 @@ const propTypes = {
         }),
     }),
     popupStyles: PropTypes.shape({
-        popupLayout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
+        layout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
         textStyle: MicromagPropTypes.textStyle,
         boxStyle: MicromagPropTypes.boxStyle,
     }),
@@ -136,7 +137,7 @@ const KeypadScreen = ({
     const mediaRef = usePlaybackMediaRef(current);
 
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
+    // const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const screenState = useScreenState();
@@ -152,7 +153,6 @@ const KeypadScreen = ({
         withSquareItems = false,
         buttonStyles = null,
     } = keypadLayout || {};
-    const { layout: buttonLayout = null, textStyle = null, boxStyle = null } = buttonStyles || {};
     const {
         layout: popupLayout = null,
         backdrop: popupBackdrop = null,
@@ -163,6 +163,7 @@ const KeypadScreen = ({
         () => (popupLayout !== null ? camelCase(popupLayout) : ''),
         [popupLayout],
     );
+    const { layout: buttonLayout = null, textStyle: buttonTextStyle = null, boxStyle: buttonBoxStyle = null } = buttonStyles || {};
 
     const [showPopup, setShowPopup] = useState(false);
     const [popup, setPopup] = useState(null);
@@ -218,8 +219,8 @@ const KeypadScreen = ({
                     id = null,
                     label = null,
                     visual = null,
-                    textStyle: customTextStyle = null,
-                    boxStyle: customBoxStyle = null,
+                    textStyle = null,
+                    boxStyle = null,
                     heading = null,
                     content = null,
                     largeVisual: popupLargeVisual = null,
@@ -229,6 +230,7 @@ const KeypadScreen = ({
                 const isEmpty = label === null && visual === null;
                 const isPopupEmpty =
                     heading === null && content === null && popupLargeVisual === null;
+
                 return (
                     <div key={key} className={styles.item}>
                         <Button
@@ -244,10 +246,10 @@ const KeypadScreen = ({
                                 },
                             ])}
                             style={{
+                                ...getStyleFromBox(buttonBoxStyle),
+                                ...getStyleFromText(buttonTextStyle),
                                 ...getStyleFromBox(boxStyle),
                                 ...getStyleFromText(textStyle),
-                                ...getStyleFromBox(customBoxStyle),
-                                ...getStyleFromText(customTextStyle),
                             }}
                             onClick={
                                 !isPopupEmpty
@@ -256,9 +258,9 @@ const KeypadScreen = ({
                             }
                         >
                             {/* show cooler placeholders for "preview" state (default) */}
-                            {isEmpty && isInteractivePreview ? (
+                            {isEmpty && (isInteractivePreview || isPreview) ? (
                                 <>
-                                    <PlaceholderButton className={styles.buttonPlaceholder} />
+                                    <PlaceholderImage className={styles.imagePlaceholder} />
                                     <PlaceholderText lines={2} />
                                 </>
                             ) : (
@@ -311,7 +313,7 @@ const KeypadScreen = ({
                     </div>
                 );
             }),
-        [items, screenState, buttonLayout],
+        [items, screenState, keypadLayout],
     );
 
     useEffect(() => {
@@ -365,16 +367,16 @@ const KeypadScreen = ({
                 <Layout
                     className={styles.layout}
                     verticalAlign={layout}
-                    style={
-                        !isPlaceholder
-                            ? {
-                                  padding: spacing,
-                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
-                                  paddingBottom:
-                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
-                              }
-                            : null
-                    }
+                    // style={
+                    //     !isPlaceholder
+                    //         ? {
+                    //               padding: spacing,
+                    //               paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                    //               paddingBottom:
+                    //                   (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                    //           }
+                    //         : null
+                    // }
                 >
                     <Keypad
                         className={classNames([

@@ -37,8 +37,11 @@ export default [
                         name: 'keypadLayout',
                         type: 'keypad-layout-form',
                         defaultValue: {
+                            columnAlign: 'middle',
+                            columns: 3,
+                            spacing: 10,
                             buttonStyles: {
-                                buttonLayout: 'content-bottom',
+                                layout: 'label-bottom',
                                 boxStyle: {
                                     backgroundColor: { alpha: 0.15, color: '#000000' },
                                 },

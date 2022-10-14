@@ -5,31 +5,6 @@ const multipleKeypads = {
     title: 'Multiple Keypads',
     theme: defaultTheme,
     components: [
-        // with default field
-        {
-            id: '0110110111101001001001001111110100101',
-            type: 'keypad',
-            // @todo -> should use default values here if we don't actually provide values... but it doesn't work yet
-            layout: 'middle',
-            keypadLayout: {
-                columnAlign: 'middle',
-                columns: 3,
-                spacing: 10,
-                withSquareItems: false,
-                buttonStyles: {
-                    layout: 'label-bottom',
-                    boxStyle: {
-                        backgroundColor: {
-                            alpha: 0.15,
-                            color: '#000',
-                        },
-                    },
-                },
-            },
-            popupStyles: {
-                layout: 'content-split',
-            },
-        },
         // with "team" items
         {
             id: '12345',
