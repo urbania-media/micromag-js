@@ -17,7 +17,6 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useScreenState,
-    useViewerContext,
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
@@ -94,11 +93,11 @@ const propTypes = {
         columns: PropTypes.number,
         spacing: PropTypes.number,
         withSquareItems: PropTypes.bool,
-        buttonStyles: PropTypes.shape({
-            layout: PropTypes.string,
-            textStyle: MicromagPropTypes.textStyle,
-            boxStyle: MicromagPropTypes.boxStyle,
-        }),
+    }),
+    buttonStyles: PropTypes.shape({
+        layout: PropTypes.string,
+        textStyle: MicromagPropTypes.textStyle,
+        boxStyle: MicromagPropTypes.boxStyle,
     }),
     popupStyles: PropTypes.shape({
         layout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
@@ -115,6 +114,7 @@ const defaultProps = {
     items: null,
     layout: null,
     keypadLayout: null,
+    buttonStyles: null,
     popupStyles: null,
     background: null,
     current: true,
@@ -126,6 +126,7 @@ const KeypadScreen = ({
     items,
     layout,
     keypadLayout,
+    buttonStyles,
     popupStyles,
     background,
     current,
@@ -151,8 +152,12 @@ const KeypadScreen = ({
         columns = null,
         spacing = null,
         withSquareItems = false,
-        buttonStyles = null,
     } = keypadLayout || {};
+    const {
+        layout: buttonLayout = null,
+        textStyle: buttonTextStyle = null,
+        boxStyle: buttonBoxStyle = null,
+    } = buttonStyles || {};
     const {
         layout: popupLayout = null,
         backdrop: popupBackdrop = null,
@@ -163,7 +168,6 @@ const KeypadScreen = ({
         () => (popupLayout !== null ? camelCase(popupLayout) : ''),
         [popupLayout],
     );
-    const { layout: buttonLayout = null, textStyle: buttonTextStyle = null, boxStyle: buttonBoxStyle = null } = buttonStyles || {};
 
     const [showPopup, setShowPopup] = useState(false);
     const [popup, setPopup] = useState(null);

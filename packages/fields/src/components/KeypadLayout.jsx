@@ -2,23 +2,20 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-// import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import { PlaceholderText, PlaceholderImage } from '@micromag/core/components';
 import Keypad from '@micromag/element-keypad';
 
-import FieldWithForm from './FieldWithForm';
+import Fields from './Fields';
 
-import styles from '../styles/keypad-layout-form.module.scss';
+import styles from '../styles/keypad-layout.module.scss';
 
 const propTypes = {
     value: PropTypes.shape({
         color: PropTypes.string,
         alpha: PropTypes.number,
     }),
-    isForm: PropTypes.bool,
-    isHorizontal: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
     closeForm: PropTypes.func,
@@ -26,21 +23,18 @@ const propTypes = {
 
 const defaultProps = {
     value: null,
-    isForm: false,
-    isHorizontal: false,
     className: null,
     onChange: null,
     closeForm: null,
 };
 
-const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
+const KeypadLayout = ({ value, onChange, closeForm, ...props }) => {
     const {columnAlign = null, columns = null, spacing = null } = value || {};
-
 
     const previewElement =
         value !== null ? (
             <Keypad
-                className={styles.previewElement}
+                className={styles.keypad}
                 align={columnAlign}
                 columns={columns}
                 spacing={spacing}
@@ -62,19 +56,22 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
         ) : null;
 
     return (
-        <FieldWithForm
-            isForm
-            value={value}
-            label={<FormattedMessage defaultMessage="Edit" description="Field label" />}
-            onChange={onChange}
-            thumbnail={previewElement}
-            noValueLabel={<FormattedMessage defaultMessage="Edit" description="Field label" />}
-            {...props}
-        />
+        <div>
+            {/* <div className={styles.keypadPreview}>
+                {previewElement}
+            </div> */}
+            <Fields
+                value={value}
+                label={<FormattedMessage defaultMessage="Edit" description="Field label" />}
+                onChange={onChange}
+                noValueLabel={<FormattedMessage defaultMessage="Edit" description="Field label" />}
+                {...props}
+            />
+        </div>
     );
 };
 
-KeypadLayoutForm.propTypes = propTypes;
-KeypadLayoutForm.defaultProps = defaultProps;
+KeypadLayout.propTypes = propTypes;
+KeypadLayout.defaultProps = defaultProps;
 
-export default KeypadLayoutForm;
+export default KeypadLayout;

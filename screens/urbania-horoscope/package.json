@@ -58,7 +58,6 @@
         "@micromag/element-grid": "^0.3.246",
         "@micromag/element-heading": "^0.3.246",
         "@micromag/element-layout": "^0.3.246",
-        "@micromag/element-keypad": "^0.3.246",
         "@micromag/element-scroll": "^0.3.246",
         "@micromag/element-text": "^0.3.246",
         "@micromag/element-urbania-author": "^0.3.246",

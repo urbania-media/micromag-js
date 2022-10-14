@@ -1,4 +1,4 @@
 export default {
-    id: 'alignHorizontal',
+    id: 'align-horizontal',
     component: 'align-horizontal',
 };

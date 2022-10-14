@@ -41,6 +41,7 @@ export { default as ImagesWithCaption } from './ImagesWithCaption';
 export { default as InputElement } from './InputElement';
 export { default as InputGroup } from './InputGroup';
 export { default as Items } from './Items';
+export { default as KeypadLayout } from './KeypadLayout';
 export { default as KeypadLayoutForm } from './KeypadLayoutForm';
 export { default as Map } from './Map';
 export { default as Margin } from './Margin';

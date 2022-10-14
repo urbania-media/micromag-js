@@ -723,10 +723,6 @@
     "defaultMessage": "Left",
     "description": "Field left label"
   },
-  "O2ThsB": {
-    "defaultMessage": "2",
-    "description": "Radio option label"
-  },
   "OEckOD": {
     "defaultMessage": "Text style",
     "description": "Field label"
@@ -845,10 +841,6 @@
   "S9YpbV": {
     "defaultMessage": "Text",
     "description": "Text screen title"
-  },
-  "SPUQMP": {
-    "defaultMessage": "4",
-    "description": "Radio option label"
   },
   "SyMSDa": {
     "defaultMessage": "Published name style",
@@ -1416,10 +1408,6 @@
     "defaultMessage": "Top",
     "description": "Direction"
   },
-  "nCW2/v": {
-    "defaultMessage": "3",
-    "description": "Radio option label"
-  },
   "nJgzwC": {
     "defaultMessage": "Urbania article",
     "description": "Urbania screen title"
@@ -1671,10 +1659,6 @@
   "uiTxd7": {
     "defaultMessage": "Results",
     "description": "State label"
-  },
-  "ujG9xe": {
-    "defaultMessage": "1",
-    "description": "Radio option label"
   },
   "uoF5Pv": {
     "defaultMessage": "Content",

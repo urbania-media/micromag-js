@@ -1,38 +1,29 @@
 @import '~@micromag/core/scss/variables';
 
-.button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5em;
-    height: 2.5em;
-    padding: 0;
-}
-
 .icon {
     display: flex;
     flex-wrap: wrap;
-    width: 1.5em;
-    height: 1.5em;
+    align-items: center;
+    width: 30px;
 
     div {
-        width: 0.3em;
-        height: 0.3em;
+        width: 8px;
+        height: 8px;
         margin-right: 2px;
         margin-bottom: 2px;
         background-color: $white;
         mix-blend-mode: difference;
     }
 
-    .left & {
+    &.left {
         justify-content: flex-start;
     }
 
-    .middle & {
+    &.middle {
         justify-content: center;
     }
 
-    .right & {
+    &.right {
         justify-content: flex-end;
     }
 }

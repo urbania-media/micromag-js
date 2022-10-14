@@ -33,37 +33,131 @@ export default [
                             description: 'Layout field label',
                         }),
                     },
+
                     {
                         name: 'keypadLayout',
-                        type: 'keypad-layout-form',
+                        type: 'fields',
+                        label: defineMessage({
+                            defaultMessage: 'Keypad Layout',
+                            description: 'Keypad state',
+                        }),
+                        isList: true,
+                        isSection: true,
                         defaultValue: {
                             columnAlign: 'middle',
                             columns: 3,
-                            spacing: 10,
-                            buttonStyles: {
-                                layout: 'label-bottom',
-                                boxStyle: {
-                                    backgroundColor: { alpha: 0.15, color: '#000000' },
-                                },
-                            },
+                            spacing: 5,
                         },
+                        fields: [
+                            {
+                                name: 'columnAlign',
+                                type: 'align-horizontal',
+                                label: defineMessage({
+                                    defaultMessage: 'Align items',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
+                                name: 'columns',
+                                type: 'radios',
+                                options: [
+                                    {
+                                        value: 1,
+                                        label: 1,
+                                    },
+                                    {
+                                        value: 2,
+                                        label: 2,
+                                    },
+                                    {
+                                        value: 3,
+                                        label: 3,
+                                    },
+                                    {
+                                        value: 4,
+                                        label: 4,
+                                    },
+                                ],
+                                label: defineMessage({
+                                    defaultMessage: 'Columns',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
+                                name: 'spacing',
+                                type: 'number',
+                                isHorizontal: true,
+                                label: defineMessage({
+                                    defaultMessage: 'Spacing',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
+                                name: 'withSquareItems',
+                                type: 'toggle',
+                                label: defineMessage({
+                                    defaultMessage: 'Use square keys',
+                                    description: 'Field label',
+                                }),
+                            },
+                        ],
+                    },
+                    {
+                        name: 'buttonStyles',
+                        type: 'fields',
                         label: defineMessage({
-                            defaultMessage: 'Layout & styles',
+                            defaultMessage: 'Buttons Layout',
                             description: 'Field label',
                         }),
+                        defaultValue: {
+                            layout: 'label-bottom',
+                            boxStyle: {
+                                backgroundColor: { alpha: 0.15, color: '#000000' },
+                            },
+                        },
+                        isList: true,
+                        isSection: true,
+                        fields: [
+                            {
+                                name: 'layout',
+                                type: 'button-layout',
+                                isHorizontal: true,
+                                label: defineMessage({
+                                    defaultMessage: 'Layout',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
+                                name: 'textStyle',
+                                type: 'text-style-form',
+                                label: defineMessage({
+                                    defaultMessage: 'Label style',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
+                                name: 'boxStyle',
+                                type: 'box-style-form',
+                                label: defineMessage({
+                                    defaultMessage: 'Button style',
+                                    description: 'Field label',
+                                }),
+                            },
+                        ],
                     },
                     {
                         name: 'items',
                         type: 'buttons',
+                        label: defineMessage({
+                            defaultMessage: 'Items',
+                            description: 'Field label',
+                        }),
                         theme: {
                             label: {
                                 textStyle: 'button',
                             },
                         },
-                        label: defineMessage({
-                            defaultMessage: 'Buttons',
-                            description: 'Field label',
-                        }),
+                        isSection: true,
                     },
                 ],
             },
