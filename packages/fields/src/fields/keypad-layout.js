@@ -2,104 +2,69 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'keypad-layout',
+    component: 'keypad-layout',
+    isList: true,
     fields: [
         {
-            name: 'buttonStyles',
-            type: 'fields',
+            name: 'layout',
+            type: 'screen-layout',
+            defaultValue: 'middle',
             label: defineMessage({
-                defaultMessage: 'Buttons',
-                description: 'Field label',
+                defaultMessage: 'Align keypad',
+                description: 'Layout field label',
             }),
-            isList: true,
-            fields: [
-                {
-                    name: 'layout',
-                    type: 'button-layout',
-                    isHorizontal: true,
-                    label: defineMessage({
-                        defaultMessage: 'Layout',
-                        description: 'Field label',
-                    }),
-                },
-                {
-                    name: 'textStyle',
-                    type: 'text-style-form',
-                    label: defineMessage({
-                        defaultMessage: 'Label style',
-                        description: 'Field label',
-                    }),
-                },
-                {
-                    name: 'boxStyle',
-                    type: 'box-style-form',
-                    label: defineMessage({
-                        defaultMessage: 'Button style',
-                        description: 'Field label',
-                    }),
-                },
-            ],
         },
         {
-            type: 'fields',
+            name: 'columnAlign',
+            type: 'align-horizontal',
+            defaultValue: 'middle',
             label: defineMessage({
-                defaultMessage: 'Layout / Spacing',
-                description: 'Fields section label',
+                defaultMessage: 'Align items',
+                description: 'Field label',
             }),
-            isList: true,
-            fields: [
+        },
+        {
+            name: 'columns',
+            type: 'radios',
+            options: [
                 {
-                    name: 'columnAlign',
-                    type: 'alignHorizontal',
-                    defaultValue: 'middle',
-                    label: defineMessage({
-                        defaultMessage: 'Align items',
-                        description: 'Field label',
-                    }),
+                    value: 1,
+                    label: 1,
                 },
                 {
-                    name: 'columns',
-                    type: 'radios',
-                    options: [
-                        {
-                            value: 1,
-                            label: 1,
-                        },
-                        {
-                            value: 2,
-                            label: 2,
-                        },
-                        {
-                            value: 3,
-                            label: 3,
-                        },
-                        {
-                            value: 4,
-                            label: 4,
-                        },
-                    ],
-                    label: defineMessage({
-                        defaultMessage: 'Columns',
-                        description: 'Field label',
-                    }),
+                    value: 2,
+                    label: 2,
                 },
                 {
-                    name: 'spacing',
-                    type: 'number',
-                    isHorizontal: true,
-                    label: defineMessage({
-                        defaultMessage: 'Spacing',
-                        description: 'Field label',
-                    }),
+                    value: 3,
+                    label: 3,
                 },
                 {
-                    name: 'withSquareItems',
-                    type: 'toggle',
-                    label: defineMessage({
-                        defaultMessage: 'Use square keys',
-                        description: 'Field label',
-                    }),
+                    value: 4,
+                    label: 4,
                 },
             ],
+            label: defineMessage({
+                defaultMessage: 'Columns',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'spacing',
+            type: 'number',
+            isHorizontal: true,
+            label: defineMessage({
+                defaultMessage: 'Spacing',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'withSquareItems',
+            type: 'toggle',
+            label: defineMessage({
+                defaultMessage: 'Use square keys',
+                description: 'Field label',
+            }),
         },
     ],
 };

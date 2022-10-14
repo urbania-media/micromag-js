@@ -3,46 +3,9 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 
-// import { PlaceholderButton } from '@micromag/core/components';
 import Radios from './Radios';
 
 import styles from '../styles/align-horizontal.module.scss';
-
-const icons = {
-    left: (props) => (
-        <div {...props}>
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-        </div>
-    ),
-    middle: (props) => (
-        <div {...props}>
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-        </div>
-    ),
-    right: (props) => (
-        <div {...props}>
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-        </div>
-    ),
-};
 
 const propTypes = {
     value: PropTypes.oneOf(['left', 'middle', 'right']),
@@ -78,16 +41,11 @@ const AlignHorizontal = ({ value, className, onChange }) => {
                     options={['left', 'middle', 'right'].map((type) => ({
                         value: type,
                         label: (
-                            <div className={classNames([styles.type, styles[type]])}>
-                                <div className={styles.icon}>
-                                    <div />
-                                    <div />
-                                    <div />
-                                    <div />
-                                    <div />
-                                    <div />
-                                    <div />
-                                </div>
+                            <div className={classNames([styles.icon, styles[type]])}>
+                                <div />
+                                <div />
+                                <div />
+                                <div />
                             </div>
                         ),
                     }))}
