@@ -165,6 +165,7 @@ export default [
                 ],
             },
         ],
+
         fields: [
             {
                 name: 'layout',
@@ -179,6 +180,7 @@ export default [
                 name: 'keypadSettings',
                 type: 'fields',
                 isList: true,
+                withoutLabel: true,
                 defaultValue: {
                     layout: {
                         columnAlign: 'middle',
@@ -195,11 +197,6 @@ export default [
                     {
                         name: 'layout',
                         type: 'keypad-layout-form',
-
-                        label: defineMessage({
-                            defaultMessage: 'Keypad Layout',
-                            description: 'Keypad state',
-                        }),
                     },
                 ],
             },

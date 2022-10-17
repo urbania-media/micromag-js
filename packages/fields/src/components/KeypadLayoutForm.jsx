@@ -2,15 +2,28 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-// import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
-import { PlaceholderText, PlaceholderImage } from '@micromag/core/components';
 import Keypad from '@micromag/element-keypad';
 
 import FieldWithForm from './FieldWithForm';
 
 import styles from '../styles/keypad-layout-form.module.scss';
+
+function getPreviewItemsByColumns(columns) {
+    switch(columns) {
+        case 1:
+            return [1,2];
+        case 2:
+            return [1,2,3];
+        case 3:
+            return [1,2,3,4];
+        case 4:
+            return [1,2,3,4,5,6,7];
+        default:
+            return [1,2,3];
+    };
+}
 
 const propTypes = {
     value: PropTypes.shape({
@@ -34,8 +47,10 @@ const defaultProps = {
 };
 
 const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
+    const intl = useIntl();
     const { columnAlign = null, columns = null, spacing = null } = value || {};
     const finalSpacingPreview = Math.max(0, Math.min(4, spacing));
+    const previewItems = getPreviewItemsByColumns(columns);
 
     const previewElement =
         value !== null ? (
@@ -49,7 +64,7 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
                 align={columnAlign}
                 columns={columns}
                 spacing={finalSpacingPreview}
-                items={[1, 2, 3, 4].map((n) => (
+                items={previewItems.map((n) => (
                     <div key={n} className={styles.previewKey}>
                         <div className={styles.previewButton} />
                     </div>
@@ -61,10 +76,19 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
         <FieldWithForm
             isForm
             value={value}
-            label={<FormattedMessage defaultMessage="Edit" description="Field label" />}
+            isHorizontal={false}
+            label={`${columns} ${intl.formatMessage({
+                defaultMessage: 'columns',
+                description: 'Field label',
+            })} / ${columnAlign} ${intl.formatMessage({
+                defaultMessage: 'align.',
+                description: 'Field label',
+            })} / ${spacing}px ${intl.formatMessage({
+                defaultMessage: 'sp.',
+                description: 'Field label',
+            })}`}
             onChange={onChange}
             thumbnail={previewElement}
-            noValueLabel={<FormattedMessage defaultMessage="Edit" description="Field label" />}
             {...props}
         />
     );
