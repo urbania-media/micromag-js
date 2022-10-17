@@ -22,93 +22,29 @@ export default [
         states: [
             {
                 id: 'keypad',
-                label: defineMessage({ defaultMessage: 'Keypad', description: 'Keypad state' }),
+                label: defineMessage({ defaultMessage: 'Buttons', description: 'Keypad state' }),
                 fields: [
                     {
-                        name: 'layout',
-                        type: 'screen-layout',
-                        defaultValue: 'middle',
+                        name: 'items',
+                        type: 'buttons',
                         label: defineMessage({
-                            defaultMessage: 'Layout',
-                            description: 'Layout field label',
+                            defaultMessage: 'Items',
+                            description: 'Field label',
                         }),
-                    },
-
-                    {
-                        name: 'keypadLayout',
-                        type: 'fields',
-                        label: defineMessage({
-                            defaultMessage: 'Keypad Layout',
-                            description: 'Keypad state',
-                        }),
-                        isList: true,
-                        isSection: true,
-                        defaultValue: {
-                            columnAlign: 'middle',
-                            columns: 3,
-                            spacing: 5,
+                        theme: {
+                            label: {
+                                textStyle: 'button',
+                            },
                         },
-                        fields: [
-                            {
-                                name: 'columnAlign',
-                                type: 'align-horizontal',
-                                label: defineMessage({
-                                    defaultMessage: 'Align items',
-                                    description: 'Field label',
-                                }),
-                            },
-                            {
-                                name: 'columns',
-                                type: 'radios',
-                                options: [
-                                    {
-                                        value: 1,
-                                        label: 1,
-                                    },
-                                    {
-                                        value: 2,
-                                        label: 2,
-                                    },
-                                    {
-                                        value: 3,
-                                        label: 3,
-                                    },
-                                    {
-                                        value: 4,
-                                        label: 4,
-                                    },
-                                ],
-                                label: defineMessage({
-                                    defaultMessage: 'Columns',
-                                    description: 'Field label',
-                                }),
-                            },
-                            {
-                                name: 'spacing',
-                                type: 'number',
-                                isHorizontal: true,
-                                label: defineMessage({
-                                    defaultMessage: 'Spacing',
-                                    description: 'Field label',
-                                }),
-                            },
-                            {
-                                name: 'withSquareItems',
-                                type: 'toggle',
-                                label: defineMessage({
-                                    defaultMessage: 'Use square keys',
-                                    description: 'Field label',
-                                }),
-                            },
-                        ],
+                        isSection: true,
                     },
                     {
                         name: 'buttonStyles',
                         type: 'fields',
-                        label: defineMessage({
-                            defaultMessage: 'Buttons Layout',
-                            description: 'Field label',
-                        }),
+                        // label: defineMessage({
+                        //     defaultMessage: 'Buttons Layout',
+                        //     description: 'Field label',
+                        // }),
                         defaultValue: {
                             layout: 'label-bottom',
                             boxStyle: {
@@ -116,7 +52,6 @@ export default [
                             },
                         },
                         isList: true,
-                        isSection: true,
                         fields: [
                             {
                                 name: 'layout',
@@ -145,20 +80,6 @@ export default [
                             },
                         ],
                     },
-                    {
-                        name: 'items',
-                        type: 'buttons',
-                        label: defineMessage({
-                            defaultMessage: 'Items',
-                            description: 'Field label',
-                        }),
-                        theme: {
-                            label: {
-                                textStyle: 'button',
-                            },
-                        },
-                        isSection: true,
-                    },
                 ],
             },
             {
@@ -171,10 +92,10 @@ export default [
                         defaultValue: {
                             layout: 'content-top',
                         },
-                        label: defineMessage({
-                            defaultMessage: 'Popup style',
-                            description: 'Field label',
-                        }),
+                        // label: defineMessage({
+                        //     defaultMessage: 'Popup style',
+                        //     description: 'Field label',
+                        // }),
                         isList: true,
                         fields: [
                             {
@@ -182,7 +103,7 @@ export default [
                                 type: 'card-layout',
                                 defaultValue: 'content-top',
                                 label: defineMessage({
-                                    defaultMessage: 'Popup layout',
+                                    defaultMessage: 'Layout',
                                     description: 'Field label',
                                 }),
                             },
@@ -217,7 +138,10 @@ export default [
 
             {
                 id: 'popups',
-                label: defineMessage({ defaultMessage: 'Popups', description: 'Keypad item state' }),
+                label: defineMessage({
+                    defaultMessage: 'Popups',
+                    description: 'Keypad item state',
+                }),
                 defaultValue: [],
                 repeatable: true,
                 fieldName: 'items',
@@ -250,6 +174,35 @@ export default [
             },
         ],
         fields: [
+            {
+                name: 'align',
+                type: 'fields',
+                isList: true,
+                label: defineMessage({
+                    defaultMessage: 'Keypad',
+                    description: 'Layout field label',
+                }),
+                fields: [
+                    // {
+                    //     name: 'layout',
+                    //     type: 'screen-layout',
+                    //     defaultValue: 'middle',
+                    //     label: defineMessage({
+                    //         defaultMessage: 'Layout',
+                    //         description: 'Layout field label',
+                    //     }),
+                    // },
+                    {
+                        name: 'keypadLayout',
+                        type: 'keypad-layout-form',
+                        label: defineMessage({
+                            defaultMessage: 'Keypad Layout',
+                            description: 'Keypad state',
+                        }),
+                    },
+                ],
+            },
+
             {
                 name: 'background',
                 type: 'background',

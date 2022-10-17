@@ -1,16 +1,20 @@
+@import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/variables';
+
+$align-icon-size: 26px;
+$align-spacing: 2px;
 
 .icon {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    width: 30px;
+    width: $align-icon-size;
 
-    div {
-        width: 8px;
-        height: 8px;
-        margin-right: 2px;
-        margin-bottom: 2px;
+    > div {
+        width: ($align-icon-size * 3) - ($align-spacing * 2);
+        height: ($align-icon-size * 3) - ($align-spacing * 2);
+        margin-right: $align-spacing;
+        margin-bottom: $align-spacing;
         background-color: $white;
         mix-blend-mode: difference;
     }

@@ -179,6 +179,10 @@
     "defaultMessage": "Text",
     "description": "Text field label"
   },
+  "4FUFdm": {
+    "defaultMessage": "Align keypad",
+    "description": "Layout field label"
+  },
   "4H2n5r": {
     "defaultMessage": "Closed captions",
     "description": "Field label"
@@ -342,10 +346,6 @@
   "8A8cuq": {
     "defaultMessage": "Parameters",
     "description": "field label"
-  },
-  "8ELj2J": {
-    "defaultMessage": "Items",
-    "description": "Keypad item state"
   },
   "8gQ1oW": {
     "defaultMessage": "Pisces",
@@ -559,10 +559,6 @@
     "defaultMessage": "360 Video",
     "description": "Video 360 screen title"
   },
-  "Gtmyc8": {
-    "defaultMessage": "Layout / Spacing",
-    "description": "Fields section label"
-  },
   "GzoKNb": {
     "defaultMessage": "Timeline",
     "description": "Timeline screen title"
@@ -586,6 +582,10 @@
   "HwqzVR": {
     "defaultMessage": "Visual",
     "description": "Field label"
+  },
+  "Hyqnww": {
+    "defaultMessage": "Popups",
+    "description": "Keypad item state"
   },
   "I2bIHm": {
     "defaultMessage": "Good answer color",
@@ -934,6 +934,10 @@
     "defaultMessage": "Select a font file...",
     "description": "Label when no value"
   },
+  "WhCMRh": {
+    "defaultMessage": "Keypad Layout",
+    "description": "Keypad state"
+  },
   "Wk/o9B": {
     "defaultMessage": "Without true/false",
     "description": "Field label"
@@ -1218,6 +1222,10 @@
     "defaultMessage": "[no title]",
     "description": "No title label in Media Gallery"
   },
+  "fbUW2U": {
+    "defaultMessage": "Items",
+    "description": "Field label"
+  },
   "fbiNiR": {
     "defaultMessage": "Select a size...",
     "description": "No value label"
@@ -1233,10 +1241,6 @@
   "g6b9Lg": {
     "defaultMessage": "Contribution",
     "description": "Contribution screen title"
-  },
-  "gFX2G9": {
-    "defaultMessage": "Layout & styles",
-    "description": "Field label"
   },
   "gRxcTc": {
     "defaultMessage": "Delete screen",
@@ -1357,6 +1361,10 @@
   "liyV7Y": {
     "defaultMessage": "Size",
     "description": "Label in Media Gallery"
+  },
+  "lmumkq": {
+    "defaultMessage": "Buttons Layout",
+    "description": "Field label"
   },
   "mBYGpP": {
     "defaultMessage": "Popup",

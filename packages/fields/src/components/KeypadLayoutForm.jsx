@@ -34,28 +34,20 @@ const defaultProps = {
 };
 
 const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
-    const {columnAlign = null, columns = null, spacing = null } = value || {};
+    const { columnAlign = null, columns = null, spacing = null } = value || {};
 
+    console.log({ props });
 
     const previewElement =
         value !== null ? (
             <Keypad
-                className={styles.previewElement}
+                className={styles.previewKeypad}
                 align={columnAlign}
                 columns={columns}
                 spacing={spacing}
-                items={[1,2,3,4].map(n => (
-                    <div
-                        key={n}
-                        className={classNames([
-                            styles.preview,
-                            {
-                                // [styles.isPopupEmpty]: isPopupEmpty,
-                            },
-                        ])}
-                    >
-                        <PlaceholderImage className={styles.buttonVisual} height={20} />
-                        <PlaceholderText lines={1} className={styles.buttonLabel} />
+                items={[1, 2, 3, 4].map((n) => (
+                    <div key={n} className={styles.previewKey}>
+                        <div className={styles.previewButton} />
                     </div>
                 ))}
             />
@@ -76,5 +68,6 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
 
 KeypadLayoutForm.propTypes = propTypes;
 KeypadLayoutForm.defaultProps = defaultProps;
+KeypadLayoutForm.withForm = true;
 
 export default KeypadLayoutForm;

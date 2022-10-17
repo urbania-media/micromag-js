@@ -2,8 +2,6 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'keypad-layout',
-    component: 'keypad-layout',
-    isList: true,
     fields: [
         {
             name: 'layout',
@@ -18,6 +16,7 @@ export default {
             name: 'columnAlign',
             type: 'align-horizontal',
             defaultValue: 'middle',
+            isHorizontal: true,
             label: defineMessage({
                 defaultMessage: 'Align items',
                 description: 'Field label',

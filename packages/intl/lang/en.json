@@ -134,6 +134,9 @@
     "4E2gbX": {
         "defaultMessage": "Text"
     },
+    "4FUFdm": {
+        "defaultMessage": "Align keypad"
+    },
     "4H2n5r": {
         "defaultMessage": "Closed captions"
     },
@@ -256,9 +259,6 @@
     },
     "8A8cuq": {
         "defaultMessage": "Parameters"
-    },
-    "8ELj2J": {
-        "defaultMessage": "Items"
     },
     "8gQ1oW": {
         "defaultMessage": "Pisces"
@@ -419,9 +419,6 @@
     "GRVidW": {
         "defaultMessage": "360 Video"
     },
-    "Gtmyc8": {
-        "defaultMessage": "Layout / Spacing"
-    },
     "GzoKNb": {
         "defaultMessage": "Timeline"
     },
@@ -439,6 +436,9 @@
     },
     "HwqzVR": {
         "defaultMessage": "Visual"
+    },
+    "Hyqnww": {
+        "defaultMessage": "Popups"
     },
     "I2bIHm": {
         "defaultMessage": "Good answer color"
@@ -701,6 +701,9 @@
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
     },
+    "WhCMRh": {
+        "defaultMessage": "Keypad Layout"
+    },
     "Wk/o9B": {
         "defaultMessage": "Without true/false"
     },
@@ -914,6 +917,9 @@
     "fVqgfl": {
         "defaultMessage": "[no title]"
     },
+    "fbUW2U": {
+        "defaultMessage": "Items"
+    },
     "fbiNiR": {
         "defaultMessage": "Select a size..."
     },
@@ -925,9 +931,6 @@
     },
     "g6b9Lg": {
         "defaultMessage": "Contribution"
-    },
-    "gFX2G9": {
-        "defaultMessage": "Layout & styles"
     },
     "gRxcTc": {
         "defaultMessage": "Delete screen"
@@ -1018,6 +1021,9 @@
     },
     "liyV7Y": {
         "defaultMessage": "Size"
+    },
+    "lmumkq": {
+        "defaultMessage": "Buttons Layout"
     },
     "mBYGpP": {
         "defaultMessage": "Popup"

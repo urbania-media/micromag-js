@@ -36,7 +36,7 @@ const AlignHorizontal = ({ value, className, onChange }) => {
                 },
             ])}
         >
-            <div className={classNames(['d-flex', 'align-items-center', 'mb-2'])}>
+            <div className={classNames(['d-flex', 'align-items-center'])}>
                 <Radios
                     options={['left', 'middle', 'right'].map((type) => ({
                         value: type,

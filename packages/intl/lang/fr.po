@@ -281,6 +281,12 @@ msgctxt "4E2gbX"
 msgid "Text"
 msgstr "Texte"
 
+# Layout field label
+#: 4FUFdm
+msgctxt "4FUFdm"
+msgid "Align keypad"
+msgstr ""
+
 # Field label
 #: 4H2n5r
 msgctxt "4H2n5r"
@@ -526,12 +532,6 @@ msgstr "Facebook Messenger"
 msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Paramètres"
-
-# Keypad item state
-#: 8ELj2J
-msgctxt "8ELj2J"
-msgid "Items"
-msgstr "Éléments"
 
 # UrbaniaHoroscope sign
 #: 8gQ1oW
@@ -851,12 +851,6 @@ msgctxt "GRVidW"
 msgid "360 Video"
 msgstr "Vidéo 360"
 
-# Fields section label
-#: Gtmyc8
-msgctxt "Gtmyc8"
-msgid "Layout / Spacing"
-msgstr "Disposition / Espacements"
-
 # Timeline screen title
 #: GzoKNb
 msgctxt "GzoKNb"
@@ -892,6 +886,12 @@ msgstr "Modifier"
 msgctxt "HwqzVR"
 msgid "Visual"
 msgstr "Visuel"
+
+# Keypad item state
+#: Hyqnww
+msgctxt "Hyqnww"
+msgid "Popups"
+msgstr ""
 
 # Field label
 #: I2bIHm
@@ -1414,6 +1414,12 @@ msgctxt "Wb5zY4"
 msgid "Select a font file..."
 msgstr "Sélectionnez un fichier de police..."
 
+# Keypad state
+#: WhCMRh
+msgctxt "WhCMRh"
+msgid "Keypad Layout"
+msgstr ""
+
 # Field label
 #: Wk/o9B
 msgctxt "Wk/o9B"
@@ -1840,6 +1846,12 @@ msgctxt "fVqgfl"
 msgid "[no title]"
 msgstr "[sans titre]"
 
+# Field label
+#: fbUW2U
+msgctxt "fbUW2U"
+msgid "Items"
+msgstr ""
+
 # No value label
 #: fbiNiR
 msgctxt "fbiNiR"
@@ -1863,12 +1875,6 @@ msgstr "Taille"
 msgctxt "g6b9Lg"
 msgid "Contribution"
 msgstr "Contribution"
-
-# Field label
-#: gFX2G9
-msgctxt "gFX2G9"
-msgid "Layout & styles"
-msgstr "Disposition et styles"
 
 # Delete screen button label
 #: gRxcTc
@@ -2049,6 +2055,12 @@ msgstr "Résultat"
 msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Taille"
+
+# Field label
+#: lmumkq
+msgctxt "lmumkq"
+msgid "Buttons Layout"
+msgstr ""
 
 # Popup state
 #: mBYGpP
