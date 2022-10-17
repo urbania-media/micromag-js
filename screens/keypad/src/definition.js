@@ -41,10 +41,6 @@ export default [
                     {
                         name: 'buttonStyles',
                         type: 'fields',
-                        // label: defineMessage({
-                        //     defaultMessage: 'Buttons Layout',
-                        //     description: 'Field label',
-                        // }),
                         defaultValue: {
                             layout: 'label-bottom',
                             boxStyle: {
@@ -92,10 +88,6 @@ export default [
                         defaultValue: {
                             layout: 'content-top',
                         },
-                        // label: defineMessage({
-                        //     defaultMessage: 'Popup style',
-                        //     description: 'Field label',
-                        // }),
                         isList: true,
                         fields: [
                             {
@@ -175,26 +167,35 @@ export default [
         ],
         fields: [
             {
-                name: 'align',
-                type: 'fields',
-                isList: true,
+                name: 'layout',
+                type: 'screen-layout',
+                defaultValue: 'middle',
                 label: defineMessage({
-                    defaultMessage: 'Keypad',
+                    defaultMessage: 'Layout',
                     description: 'Layout field label',
                 }),
+            },
+            {
+                name: 'keypadSettings',
+                type: 'fields',
+                isList: true,
+                defaultValue: {
+                    layout: {
+                        columnAlign: 'middle',
+                        columns: 3,
+                        spacing: 2,
+                        withSquareItems: false,
+                    },
+                },
+                label: defineMessage({
+                    defaultMessage: 'Keypad settings',
+                    description: 'Field label',
+                }),
                 fields: [
-                    // {
-                    //     name: 'layout',
-                    //     type: 'screen-layout',
-                    //     defaultValue: 'middle',
-                    //     label: defineMessage({
-                    //         defaultMessage: 'Layout',
-                    //         description: 'Layout field label',
-                    //     }),
-                    // },
                     {
-                        name: 'keypadLayout',
+                        name: 'layout',
                         type: 'keypad-layout-form',
+
                         label: defineMessage({
                             defaultMessage: 'Keypad Layout',
                             description: 'Keypad state',

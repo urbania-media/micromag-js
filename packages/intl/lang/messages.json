@@ -687,10 +687,6 @@
     "defaultMessage": "Audio",
     "description": "Audio placeholder"
   },
-  "Mej9Rl": {
-    "defaultMessage": "Popup layout",
-    "description": "Field label"
-  },
   "MhGUaY": {
     "defaultMessage": "Slideshow",
     "description": "Slideshow screen title"
@@ -1002,6 +998,10 @@
     "defaultMessage": "Map",
     "description": "Screen group"
   },
+  "Z4f5qh": {
+    "defaultMessage": "Buttons",
+    "description": "Keypad state"
+  },
   "Z5jrDS": {
     "defaultMessage": "Letter spacing",
     "description": "Field label"
@@ -1033,6 +1033,10 @@
   "ZiWlL6": {
     "defaultMessage": "Questions",
     "description": "Screen group"
+  },
+  "ZjfeyQ": {
+    "defaultMessage": "Keypad",
+    "description": "Layout field label"
   },
   "ZxgNge": {
     "defaultMessage": "Add an item",
@@ -1362,10 +1366,6 @@
     "defaultMessage": "Size",
     "description": "Label in Media Gallery"
   },
-  "lmumkq": {
-    "defaultMessage": "Buttons Layout",
-    "description": "Field label"
-  },
   "mBYGpP": {
     "defaultMessage": "Popup",
     "description": "Popup state"
@@ -1511,10 +1511,6 @@
   "q/tLk0": {
     "defaultMessage": "Are you sure you want to delete this screen?",
     "description": "Confirmation message before deleting a screen"
-  },
-  "qINMmC": {
-    "defaultMessage": "Keypad",
-    "description": "Keypad state"
   },
   "qIw1nW": {
     "defaultMessage": "Save",
@@ -1715,10 +1711,6 @@
   "vmrJ8U": {
     "defaultMessage": "(current screen)",
     "description": "Button label"
-  },
-  "vne4NN": {
-    "defaultMessage": "Popup style",
-    "description": "Field label"
   },
   "vxEtY1": {
     "defaultMessage": "Background image",

@@ -1,7 +1,8 @@
+@use "sass:math";
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/variables';
 
-$align-icon-size: 26px;
+$align-icon-size: 30px;
 $align-spacing: 2px;
 
 .icon {
@@ -11,8 +12,8 @@ $align-spacing: 2px;
     width: $align-icon-size;
 
     > div {
-        width: ($align-icon-size * 3) - ($align-spacing * 2);
-        height: ($align-icon-size * 3) - ($align-spacing * 2);
+        width: math.div($align-icon-size, 3) - $align-spacing;
+        height: math.div($align-icon-size, 3) - $align-spacing;
         margin-right: $align-spacing;
         margin-bottom: $align-spacing;
         background-color: $white;

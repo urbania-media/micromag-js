@@ -4,15 +4,6 @@ export default {
     id: 'keypad-layout',
     fields: [
         {
-            name: 'layout',
-            type: 'screen-layout',
-            defaultValue: 'middle',
-            label: defineMessage({
-                defaultMessage: 'Align keypad',
-                description: 'Layout field label',
-            }),
-        },
-        {
             name: 'columnAlign',
             type: 'align-horizontal',
             defaultValue: 'middle',

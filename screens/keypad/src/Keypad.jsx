@@ -88,11 +88,13 @@ const propTypes = {
         }),
     ),
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
-    keypadLayout: PropTypes.shape({
-        columnAlign: PropTypes.oneOf(['left', 'right', 'middle']),
-        columns: PropTypes.number,
-        spacing: PropTypes.number,
-        withSquareItems: PropTypes.bool,
+    keypadSettings: PropTypes.shape({
+        layout: PropTypes.shape({
+            columnAlign: PropTypes.oneOf(['left', 'right', 'middle']),
+            columns: PropTypes.number,
+            spacing: PropTypes.number,
+            withSquareItems: PropTypes.bool,
+        })
     }),
     buttonStyles: PropTypes.shape({
         layout: PropTypes.string,
@@ -113,7 +115,7 @@ const propTypes = {
 const defaultProps = {
     items: null,
     layout: null,
-    keypadLayout: null,
+    keypadSettings: null,
     buttonStyles: null,
     popupStyles: null,
     background: null,
@@ -125,7 +127,7 @@ const defaultProps = {
 const KeypadScreen = ({
     items,
     layout,
-    keypadLayout,
+    keypadSettings,
     buttonStyles,
     popupStyles,
     background,
@@ -147,6 +149,9 @@ const KeypadScreen = ({
     const mediaShouldLoad = !isPlaceholder && (current || active);
     const isInteractivePreview = isEdit && screenState === null;
 
+    const {
+        layout: keypadLayout = null,
+    } = keypadSettings || {};
     const {
         columnAlign = null,
         columns = null,
@@ -317,7 +322,7 @@ const KeypadScreen = ({
                     </div>
                 );
             }),
-        [items, screenState, keypadLayout],
+        [items, screenState, keypadSettings],
     );
 
     useEffect(() => {

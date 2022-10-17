@@ -35,16 +35,20 @@ const defaultProps = {
 
 const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
     const { columnAlign = null, columns = null, spacing = null } = value || {};
-
-    console.log({ props });
+    const finalSpacingPreview = Math.max(0, Math.min(4, spacing));
 
     const previewElement =
         value !== null ? (
             <Keypad
-                className={styles.previewKeypad}
+                className={classNames([
+                    styles.previewKeypad,
+                    {
+                        [styles.oneColumn]: columns === 1,
+                    },
+                ])}
                 align={columnAlign}
                 columns={columns}
-                spacing={spacing}
+                spacing={finalSpacingPreview}
                 items={[1, 2, 3, 4].map((n) => (
                     <div key={n} className={styles.previewKey}>
                         <div className={styles.previewButton} />

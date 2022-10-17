@@ -515,9 +515,6 @@
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
-    "Mej9Rl": {
-        "defaultMessage": "Popup layout"
-    },
     "MhGUaY": {
         "defaultMessage": "Slideshow"
     },
@@ -752,6 +749,9 @@
     "Z27IP6": {
         "defaultMessage": "Map"
     },
+    "Z4f5qh": {
+        "defaultMessage": "Buttons"
+    },
     "Z5jrDS": {
         "defaultMessage": "Letter spacing"
     },
@@ -775,6 +775,9 @@
     },
     "ZiWlL6": {
         "defaultMessage": "Questions"
+    },
+    "ZjfeyQ": {
+        "defaultMessage": "Keypad"
     },
     "ZxgNge": {
         "defaultMessage": "Add an item"
@@ -1022,9 +1025,6 @@
     "liyV7Y": {
         "defaultMessage": "Size"
     },
-    "lmumkq": {
-        "defaultMessage": "Buttons Layout"
-    },
     "mBYGpP": {
         "defaultMessage": "Popup"
     },
@@ -1135,9 +1135,6 @@
     },
     "q/tLk0": {
         "defaultMessage": "Are you sure you want to delete this screen?"
-    },
-    "qINMmC": {
-        "defaultMessage": "Keypad"
     },
     "qIw1nW": {
         "defaultMessage": "Save"
@@ -1288,9 +1285,6 @@
     },
     "vmrJ8U": {
         "defaultMessage": "(current screen)"
-    },
-    "vne4NN": {
-        "defaultMessage": "Popup style"
     },
     "vxEtY1": {
         "defaultMessage": "Background image"

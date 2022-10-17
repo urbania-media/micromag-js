@@ -59,8 +59,8 @@ const FontStyles = ({ value, fontStyleName, alignName, className, onChange }) =>
                 },
             ])}
         >
-            <FontStyle className={styles.item} value={fontStyleValue} onChange={onFontStyleChange} />
-            <TextAlign className={styles.item} value={alignValue} onChange={onAlignChange} />
+            <FontStyle className={styles.item} buttonClassName={styles.button} value={fontStyleValue} onChange={onFontStyleChange} />
+            <TextAlign className={styles.item} buttonClassName={styles.button} value={alignValue} onChange={onAlignChange} />
         </div>
     );
 };

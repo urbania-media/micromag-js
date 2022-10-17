@@ -1043,12 +1043,6 @@ msgctxt "MYZwSA"
 msgid "Audio"
 msgstr "Audio"
 
-# Field label
-#: Mej9Rl
-msgctxt "Mej9Rl"
-msgid "Popup layout"
-msgstr "Disposition du popup"
-
 # Slideshow screen title
 #: MhGUaY
 msgctxt "MhGUaY"
@@ -1516,6 +1510,12 @@ msgctxt "Z27IP6"
 msgid "Map"
 msgstr "Carte"
 
+# Keypad state
+#: Z4f5qh
+msgctxt "Z4f5qh"
+msgid "Buttons"
+msgstr ""
+
 # Field label
 #: Z5jrDS
 msgctxt "Z5jrDS"
@@ -1563,6 +1563,12 @@ msgstr "21 mars au 19 avr"
 msgctxt "ZiWlL6"
 msgid "Questions"
 msgstr "Questions"
+
+# Layout field label
+#: ZjfeyQ
+msgctxt "ZjfeyQ"
+msgid "Keypad"
+msgstr ""
 
 # Button label in items field
 #: ZxgNge
@@ -2056,12 +2062,6 @@ msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Taille"
 
-# Field label
-#: lmumkq
-msgctxt "lmumkq"
-msgid "Buttons Layout"
-msgstr ""
-
 # Popup state
 #: mBYGpP
 msgctxt "mBYGpP"
@@ -2281,12 +2281,6 @@ msgstr "Droite"
 msgctxt "q/tLk0"
 msgid "Are you sure you want to delete this screen?"
 msgstr "Êtes-vous sûr que vous voulez supprimer cet écran?"
-
-# Keypad state
-#: qINMmC
-msgctxt "qINMmC"
-msgid "Keypad"
-msgstr "Clavier"
 
 # Save in Media Gallery
 #: qIw1nW
@@ -2587,12 +2581,6 @@ msgstr "Titre avec sous-titre et crédits"
 msgctxt "vmrJ8U"
 msgid "(current screen)"
 msgstr "(écran en cours)"
-
-# Field label
-#: vne4NN
-msgctxt "vne4NN"
-msgid "Popup style"
-msgstr "Style du popup"
 
 # Breadcrumb field label
 #: vxEtY1

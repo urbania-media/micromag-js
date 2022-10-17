@@ -11,11 +11,13 @@ const multipleKeypads = {
             type: 'keypad',
             items: team,
             layout: 'middle',
-            keypadLayout: {
-                columnAlign: 'middle',
-                columns: 2,
-                spacing: 1,
-                withSquareItems: false,
+            keypadSettings: {
+                layout: {
+                    columnAlign: 'middle',
+                    columns: 2,
+                    spacing: 1,
+                    withSquareItems: false,
+                }
             },
             buttonStyles: {
                 layout: 'label-top',
@@ -52,11 +54,13 @@ const multipleKeypads = {
             type: 'keypad',
             items: team,
             layout: 'bottom',
-            keypadLayout: {
+            keypadSettings: {
+                layout: {
                 columnAlign: 'left',
                 columns: 4,
                 spacing: 10,
                 withSquareItems: true,
+                }
             },
             buttonStyles: {
                 layout: 'no-label',
