@@ -94,7 +94,7 @@ const propTypes = {
             columns: PropTypes.number,
             spacing: PropTypes.number,
             withSquareItems: PropTypes.bool,
-        })
+        }),
     }),
     buttonStyles: PropTypes.shape({
         layout: PropTypes.string,
@@ -149,9 +149,7 @@ const KeypadScreen = ({
     const mediaShouldLoad = !isPlaceholder && (current || active);
     const isInteractivePreview = isEdit && screenState === null;
 
-    const {
-        layout: keypadLayout = null,
-    } = keypadSettings || {};
+    const { layout: keypadLayout = null } = keypadSettings || {};
     const {
         columnAlign = null,
         columns = null,
@@ -181,6 +179,9 @@ const KeypadScreen = ({
         content: popupContent = null,
         largeVisual = null,
     } = popup || {};
+    const { body: popupHeadingBody = null } = popupHeading || {};
+    const { body: popupContentBody = null } = popupContent || {};
+
     const onItemClick = useCallback(
         (e, item) => {
             e.stopPropagation();
@@ -235,10 +236,14 @@ const KeypadScreen = ({
                     largeVisual: popupLargeVisual = null,
                 } = item || {};
                 const { url: visualUrl = null } = visual || {};
+                const { body: headingBody = null } = heading || {};
+                const { body: contentBody = null } = content || {};
                 const key = label || visualUrl || id;
                 const isEmpty = label === null && visual === null;
                 const isPopupEmpty =
-                    heading === null && content === null && popupLargeVisual === null;
+                    (heading === null || headingBody === '') &&
+                    (content === null || contentBody === '') &&
+                    popupLargeVisual === null;
 
                 return (
                     <div key={key} className={styles.item}>
@@ -452,7 +457,9 @@ const KeypadScreen = ({
                                                 styles.emptyHeading,
                                             ])}
                                             isEmpty={
-                                                popupHeading === null && screenState !== 'popup'
+                                                (popupHeading === null ||
+                                                    popupHeadingBody === '') &&
+                                                screenState !== 'popup'
                                             }
                                         >
                                             <Heading
@@ -476,7 +483,10 @@ const KeypadScreen = ({
                                                 styles.emptyContent,
                                             ])}
                                             isEmpty={
-                                                popupContent === null && screenState !== 'popup'
+                                                (popupContent === null ||
+                                                    popupContentBody === '') &&
+                                                popupContent === null &&
+                                                screenState !== 'popup'
                                             }
                                         >
                                             <Text
