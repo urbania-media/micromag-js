@@ -94,6 +94,7 @@ const CardLayout = ({ types, value, className, onChange }) => {
                     ])}
                     buttonClassName={styles.button}
                     onChange={onButtonLayoutChange}
+                    uncheckable
                 />
             </div>
         </div>

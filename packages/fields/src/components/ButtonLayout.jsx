@@ -103,6 +103,7 @@ const ButtonLayout = ({ types, value, className, onChange }) => {
                     buttonClassName={styles.button}
                     activeClassName={styles.active}
                     onChange={onButtonLayoutChange}
+                    uncheckable
                 />
             </div>
         </div>

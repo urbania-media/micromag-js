@@ -93,7 +93,7 @@ export default [
                             {
                                 name: 'layout',
                                 type: 'card-layout',
-                                defaultValue: 'content-top',
+                                // defaultValue: 'content-top',
                                 label: defineMessage({
                                     defaultMessage: 'Layout',
                                     description: 'Field label',

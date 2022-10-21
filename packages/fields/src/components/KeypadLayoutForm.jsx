@@ -11,18 +11,18 @@ import FieldWithForm from './FieldWithForm';
 import styles from '../styles/keypad-layout-form.module.scss';
 
 function getPreviewItemsByColumns(columns) {
-    switch(columns) {
+    switch (columns) {
         case 1:
-            return [1,2];
+            return [1, 2];
         case 2:
-            return [1,2,3];
+            return [1, 2, 3];
         case 3:
-            return [1,2,3,4];
+            return [1, 2, 3, 4];
         case 4:
-            return [1,2,3,4,5,6,7];
+            return [1, 2, 3, 4, 5, 6, 7];
         default:
-            return [1,2,3];
-    };
+            return [1, 2, 3];
+    }
 }
 
 const propTypes = {
@@ -80,10 +80,10 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
             label={`${columns} ${intl.formatMessage({
                 defaultMessage: 'columns',
                 description: 'Field label',
-            })} / ${columnAlign} ${intl.formatMessage({
-                defaultMessage: 'align.',
+            })} / ${intl.formatMessage({
+                defaultMessage: 'align',
                 description: 'Field label',
-            })} / ${spacing}px ${intl.formatMessage({
+            })} ${columnAlign} / ${spacing}px ${intl.formatMessage({
                 defaultMessage: 'sp.',
                 description: 'Field label',
             })}`}
