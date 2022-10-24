@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -100,7 +100,7 @@ const UrbaniaArticle = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { color: backgroundColor = null } = background || {};
-    const { open: openWebView } = useViewerWebView();
+    const { opened: openedWebView, open: openWebView } = useViewerWebView();
     const { bottomSidesWidth: viewerBottomSidesWidth } = useViewerContext();
     const { muted, playing, setPlaying } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
@@ -133,16 +133,29 @@ const UrbaniaArticle = ({
     const { url = null } = image || {};
     const hasImage = url !== null;
 
-    const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
+    // const backgroundPlaying = current && (isView || isEdit);
+    const [backgroundPlaying, setBackgroundPlaying] = useState(false);
+
     const playIfCurrent = useCallback(() => {
-        if (current && !playing) {
+        if (current && !openedWebView && !playing) {
             setPlaying(true);
+        } else {
+            setPlaying(false);
         }
-    }, [current, playing, setPlaying]);
+    }, [current, openedWebView, playing, setPlaying]);
+
+    // TODO: link playIfCurrent and backgroundPlaying
+    useEffect(() => {
+        if (!current) {
+            setBackgroundPlaying(false);
+        } else if (current && (isView || isEdit)) {
+            setBackgroundPlaying(!openedWebView);
+        }
+    }, [current, isView, isEdit, openedWebView, setBackgroundPlaying]);
 
     useDebounce(playIfCurrent, current, 500);
 
