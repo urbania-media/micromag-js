@@ -17,6 +17,7 @@ import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
+import videoFileVertical from '../../../../.storybook/data/test-vertical.mp4';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
@@ -313,8 +314,18 @@ export const MultipleArticles = () => (
                     id: '3',
                     type: 'urbania-article',
                     article: articleVideo,
+                    articleType: 'video',
                     background: {
-                        color: { alpha: 1, color: '#123456' },
+                        color: { color: '#ffff1c', alpha: 1 },
+                        image: null,
+                        video: {
+                            type: 'video',
+                            url: 'https://cdn.microm.ag/video/2022-09-30/12836-100651.mp4#t=0.1',
+                            metadata: {
+                                width: 1920,
+                                height: 1080,
+                            },
+                        },
                     },
                 },
             ],
