@@ -152,10 +152,10 @@ const UrbaniaArticle = ({
     useEffect(() => {
         if (!current) {
             setBackgroundPlaying(false);
-        } else if (current && (isView || isEdit) && openedWebView !== null) {
+        } else if (current && (isView || isEdit) && hasCallToAction && openedWebView !== null) {
             setBackgroundPlaying(!openedWebView);
         }
-    }, [current, isView, isEdit, openedWebView, setBackgroundPlaying]);
+    }, [current, isView, isEdit, hasCallToAction, openedWebView, setBackgroundPlaying]);
 
     useDebounce(playIfCurrent, current, 500);
 
