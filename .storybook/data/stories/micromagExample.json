@@ -5315,7 +5315,6 @@
                 "video": {
                     "color": null,
                     "autoPlay": true,
-                    "loop": false,
                     "media": {
                         "id": "2812",
                         "type": "video",
@@ -5403,16 +5402,7 @@
                     "thumbnail": "thumbnails.4"
                 },
                 "gotoNextScreenOnEnd": true,
-                "parameters": {
-                    "metadata": {
-                        "title": "Intro Les Incontournables",
-                        "description": "Parce que le meilleur d'URBANIA est peut-être passé sous votre radar !"
-                    }
-                },
-                "group": {
-                    "collapsed": false,
-                    "mergeNavItems": true
-                },
+                "group": null,
                 "parentId": null
             },
             {
