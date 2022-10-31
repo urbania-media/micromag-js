@@ -21,7 +21,12 @@ import {
     useViewerContext,
     useViewerContainer,
 } from '@micromag/core/contexts';
-import { useDebounce, useTrackScreenMedia, useMediaThumbnail, useActivityDetector } from '@micromag/core/hooks';
+import {
+    useDebounce,
+    useTrackScreenMedia,
+    useMediaThumbnail,
+    useActivityDetector,
+} from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
