@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-keypad",
-    "version": "0.3.257",
+    "version": "0.3.258",
     "description": "",
     "keywords": [
         "javascript"
@@ -53,7 +53,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.257",
+        "@micromag/core": "^0.3.258",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -63,5 +63,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "e16eb446591d90a578fd56f0bc1e1ebd88f15ce8"
+    "gitHead": "420b1f249efd0ec5371a5f27f3a277bc11111e09"
 }
