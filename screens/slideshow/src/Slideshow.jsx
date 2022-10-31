@@ -135,6 +135,7 @@ const SlideshowScreen = ({
                                     objectFit={{ fit: 'cover' }}
                                     playing={backgroundPlaying}
                                     active={active}
+                                    withoutVideo={isPreview}
                                     onLoaded={onImageLoaded}
                                 />
                             ) : null}
@@ -184,21 +185,11 @@ const SlideshowScreen = ({
             ])}
             data-screen-ready={ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    shouldLoad={mediaShouldLoad}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <div
-                    className={styles.content}
+                    className={styles.inner}
                     style={{
-                        paddingTop: current && !isPreview ? viewerTopHeight : null,
+                        paddingTop: !isPreview ? viewerTopHeight : null,
                         paddingBottom:
                             (hasCallToAction ? callToActionHeight - finalSpacing : 0) +
                             (current && !isPreview ? viewerBottomHeight : 0),
@@ -221,6 +212,18 @@ const SlideshowScreen = ({
                     ) : null}
                 </div>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    shouldLoad={mediaShouldLoad}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

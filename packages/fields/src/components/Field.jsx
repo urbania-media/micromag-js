@@ -2,8 +2,10 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useFieldComponent, useFieldContext, useFieldsManager } from '@micromag/core/contexts';
+
 import FieldRow from './FieldRow';
 
 const propTypes = {

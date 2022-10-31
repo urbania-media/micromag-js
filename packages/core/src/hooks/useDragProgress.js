@@ -1,7 +1,6 @@
+import { useSpring } from '@react-spring/core';
 import { useDrag } from '@use-gesture/react';
-import { useState, useCallback, useEffect, useRef } from 'react';
-
-import useSpringValue from './useSpringValue';
+import { useEffect, useState, useCallback, useRef } from 'react';
 
 function useDragProgress({
     progress: wantedProgress,
@@ -13,14 +12,17 @@ function useDragProgress({
     springParams = undefined,
     dragOptions = {
         filterTaps: true,
-        preventDefault: true,
     },
 } = {}) {
     const refDragging = useRef(false);
-    const [{ dragging, progress }, setDragState] = useState({
-        dragging: false,
+    const refProgress = useRef(wantedProgress);
+    const [dragging, setDragging] = useState(false);
+    const spring = useCallback( () => ({
         progress: wantedProgress,
-    });
+        immediate: dragging || disabled,
+        ...springParams,
+    }), []);
+    const [{ progress }, api] = useSpring(spring);
     const onDrag = useCallback(
         (gestureState) => {
             if (disabled) {
@@ -39,26 +41,29 @@ function useDragProgress({
 
             const newProgress = computeProgress(gestureState);
             refDragging.current = active;
-            setDragState({
-                dragging: active,
+            refProgress.current = newProgress;
+            if (active !== dragging) {
+                setDragging(active);
+            }
+            api.start({
                 progress: newProgress,
+                immediate: active,
             });
             if (onProgress !== null) {
                 onProgress(newProgress, gestureState);
             }
         },
-        [setDragState, disabled, onTap, computeProgress, setDragState, onProgress],
+        [setDragging, disabled, onTap, computeProgress, dragging, onProgress],
     );
 
     const bind = useDrag(onDrag, dragOptions);
 
-    const springedProgress = useSpringValue(progress, dragging || disabled, springParams);
-
     useEffect(() => {
-        if (wantedProgress !== progress && !refDragging.current) {
-            setDragState({
-                dragging: refDragging.current,
+        if (!refDragging.current && wantedProgress !== refProgress.current) {
+            refProgress.current = wantedProgress;
+            api.start({
                 progress: wantedProgress,
+                immediate: false,
             });
         }
     }, [wantedProgress]);
@@ -66,7 +71,7 @@ function useDragProgress({
     return {
         bind,
         dragging,
-        progress: springedProgress,
+        progress,
     };
 }
 

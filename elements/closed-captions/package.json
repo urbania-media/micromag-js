@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-closed-captions",
-    "version": "0.3.251",
+    "version": "0.3.262",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.251",
+        "@micromag/core": "^0.3.262",
         "classnames": "^2.2.6",
         "node-fetch": "^2.6.1",
         "parse-srt": "^1.0.0-alpha",
@@ -61,5 +61,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "2bde6156abc5306b3303a3c860f81e2446696e79"
+    "gitHead": "2b4debbebfbf97b8b69e0fc33316a3936761b4af"
 }

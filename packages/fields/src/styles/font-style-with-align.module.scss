@@ -1,0 +1,16 @@
+@import '~@micromag/core/scss/variables';
+@import './placeholders';
+
+// @todo does this work!?
+.item {
+    width: calc(50% - 0.5em);
+
+    + .item {
+        margin-left: 1em;
+    }
+}
+
+.button {
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}

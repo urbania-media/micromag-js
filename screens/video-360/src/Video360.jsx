@@ -20,6 +20,7 @@ import {
 } from '@micromag/core/contexts';
 import {
     useAnimationFrame,
+    useDebounce,
     useTrackScreenEvent,
     useTrackScreenMedia,
     useActivityDetector,
@@ -160,19 +161,17 @@ const Video360Screen = ({
     const viewerContainer = useViewerContainer();
     const { detected: activityDetected } = useActivityDetector({
         element: viewerContainer,
-        disabled: !current || !isView,
+        disabled: !isView,
         timeout: 2000,
     });
-    useEffect(() => {
-        if (!current) {
-            return;
-        }
+    const toggleControlsVisibility = useCallback(() => {
         if (activityDetected) {
             showControls();
         } else {
             hideControls();
         }
     }, [activityDetected, showControls, hideControls]);
+    useDebounce(toggleControlsVisibility, activityDetected, 1000);
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
@@ -582,17 +581,7 @@ const Video360Screen = ({
             ])}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    shouldLoad={mediaShouldLoad}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 {withVideoSphere ? (
                     <div
                         ref={videoContainerRef}
@@ -625,8 +614,20 @@ const Video360Screen = ({
                         />
                     </div>
                 ) : null}
-                <div className={styles.content}>{items}</div>
+                <div className={styles.inner}>{items}</div>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    shouldLoad={mediaShouldLoad}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

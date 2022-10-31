@@ -2,30 +2,28 @@
 import React, { useCallback, useState } from 'react';
 
 import {
-    audioMedia,
-    callToAction,
+    audioMedia, // callToAction,
+    // callToActionWithStyles,
     imageMedia,
-    video360Media,
-    videoMedia,
-    bigVideoMediaWithSound,
-    gifVideoMedia,
+    video360Media, // videoMedia,
+    // bigVideoMediaWithSound,
+    // gifVideoMedia,
     webfont2Files,
     webfont3Files,
     webfontFiles,
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
+import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
+import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
+import multipleVideosStory from '../../../../.storybook/data/stories/multipleVideosStory';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
-import videoFileVertical from '../../../../.storybook/data/test-vertical.mp4';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import Viewer from '../components/ViewerContainer';
 
-import article2 from '../../../../.storybook/data/stories/article2.json';
-import articleVideo from '../../../../.storybook/data/stories/article-video.json';
-import article from '../../../../.storybook/data/stories/article.json';
 import basic from '../../../../.storybook/data/stories/basic.json';
 import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
@@ -139,108 +137,7 @@ export const MultipleAudios = () => (
     />
 );
 export const MultipleVideos = () => (
-    <Viewer
-        screenId="1"
-        story={{
-            components: [
-                {
-                    id: '1',
-                    type: 'video',
-                    layout: 'full',
-                    video: {
-                        media: bigVideoMediaWithSound(),
-                        withSeekBar: true,
-                        withControls: true,
-                        loop: false,
-                        autoPlay: true,
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#FFFF00' },
-                    },
-                    callToAction: callToAction(),
-                },
-                {
-                    id: '2',
-                    type: 'video',
-                    video: {
-                        withSeekBar: true,
-                        withControls: false,
-                        media: gifVideoMedia(),
-                        autoPlay: true,
-                        color: { alpha: 1, color: '#012400' },
-                        progressColor: { alpha: 1, color: '#8891cc' },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#123456' },
-                    },
-                    gotoNextScreenOnEnd: true,
-                },
-                {
-                    id: '3',
-                    type: 'video',
-                    layout: 'full',
-                    video: {
-                        media: video360Media(),
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#00FFFF' },
-                        video: videoMedia({ big: true }),
-                    },
-                },
-                {
-                    id: '4',
-                    type: 'video',
-                    video: {
-                        media: videoMedia({ big: true }),
-                        withSeekBar: false,
-                        withControls: false,
-                        autoPlay: true,
-                        color: { alpha: 1, color: '#000000' },
-                        progressColor: { alpha: 1, color: '#0000FF' },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#00FF00' },
-                        video: videoMedia({ big: true }),
-                    },
-                    gotoNextScreenOnEnd: false,
-                },
-                {
-                    id: '5',
-                    type: 'video',
-                    video: {
-                        media: videoMedia({ big: true }),
-                        withSeekBar: true,
-                        withControls: true,
-                        autoPlay: true,
-                        color: { alpha: 1, color: '#00ffff' },
-                        progressColor: { alpha: 1, color: '#FF0000' },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#FFFF00' },
-                    },
-                    gotoNextScreenOnEnd: false,
-                },
-                {
-                    id: '6',
-                    type: 'video',
-                    video: {
-                        media: videoMedia({ big: true }),
-                        withSeekBar: false,
-                        withControls: true,
-                        autoPlay: true,
-                        color: { alpha: 1, color: '#000000' },
-                        progressColor: { alpha: 1, color: '#00FF00' },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#FF00FF' },
-                        video: videoMedia({ big: true }),
-                    },
-                    gotoNextScreenOnEnd: false,
-                },
-            ],
-        }}
-        withNavigationHint
-    />
+    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint />
 );
 export const MultipleVideos360 = () => (
     <Viewer
@@ -272,66 +169,9 @@ export const MultipleVideos360 = () => (
         }}
     />
 );
-export const MultipleArticles = () => (
-    <Viewer
-        screenId="42"
-        story={{
-            components: [
-                {
-                    id: '1',
-                    type: 'urbania-article',
-                    article,
-                    background: {
-                        color: { alpha: 1, color: '#FF00FF' },
-                    },
-                },
-                {
-                    id: '2',
-                    type: 'urbania-article',
-                    article: article2,
-                    overTitle: {
-                        body: 'Guide des universités',
-                        textStyle: {
-                            color: { alpha: 1, color: '#ff0000' },
-                        },
-                    },
-                    description: {
-                        body: "Petite virée sur le campus de l'École de technologie supérieure (ÉTS)",
-                        textStyle: {
-                            fontStyle: {
-                                italic: true,
-                                bold: false,
-                            },
-                            fontSize: 13,
-                            color: { alpha: 1, color: '#ff0000' },
-                        },
-                    },
-                    background: {
-                        color: { alpha: 1, color: '#ffffff' },
-                    },
-                },
-                {
-                    id: '3',
-                    type: 'urbania-article',
-                    article: articleVideo,
-                    articleType: 'video',
-                    background: {
-                        color: { color: '#ffff1c', alpha: 1 },
-                        image: null,
-                        video: {
-                            type: 'video',
-                            url: 'https://cdn.microm.ag/video/2022-09-30/12836-100651.mp4#t=0.1',
-                            metadata: {
-                                width: 1920,
-                                height: 1080,
-                            },
-                        },
-                    },
-                },
-            ],
-        }}
-    />
-);
+export const MultipleArticles = () => <Viewer screenId="42" story={multipleArticles} />;
+
+export const MultipleKeypads = () => <Viewer screenId="777" story={multipleKeypads} />;
 
 export const WithCustomFonts = () => (
     <Viewer

@@ -279,6 +279,10 @@
     "defaultMessage": "Virgo",
     "description": "Horoscope sign"
   },
+  "6iR9Mt": {
+    "defaultMessage": "Heading",
+    "description": "Field label"
+  },
   "6jX5Tb": {
     "defaultMessage": "Authors",
     "description": "Authors placeholder"
@@ -295,6 +299,10 @@
     "defaultMessage": "Author",
     "description": "Author field label"
   },
+  "75nZbY": {
+    "defaultMessage": "Keypad",
+    "description": "Keypad screen title"
+  },
   "7YE/VU": {
     "defaultMessage": "Sponsor",
     "description": "Title field label"
@@ -302,6 +310,10 @@
   "7ZzlUE": {
     "defaultMessage": "Oct 23 - Nov 22",
     "description": "Horoscope date"
+  },
+  "7bDRdd": {
+    "defaultMessage": "sp.",
+    "description": "Field label"
   },
   "7mMPO4": {
     "defaultMessage": "Sagittarius",
@@ -443,6 +455,10 @@
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
   },
+  "CWnXWp": {
+    "defaultMessage": "No button yet",
+    "description": "Label when there is no item"
+  },
   "CrzYgw": {
     "defaultMessage": "Quote",
     "description": "Quote placeholder"
@@ -523,6 +539,10 @@
     "defaultMessage": "Question",
     "description": "Placeholder label"
   },
+  "FjuRaw": {
+    "defaultMessage": "Keypad settings",
+    "description": "Field label"
+  },
   "G/ITGY": {
     "defaultMessage": "Your name",
     "description": "Your name placeholder"
@@ -563,6 +583,14 @@
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
   },
+  "HwqzVR": {
+    "defaultMessage": "Visual",
+    "description": "Field label"
+  },
+  "Hyqnww": {
+    "defaultMessage": "Popups",
+    "description": "Keypad item state"
+  },
   "I2bIHm": {
     "defaultMessage": "Good answer color",
     "description": "Field label"
@@ -579,6 +607,10 @@
     "defaultMessage": "Links",
     "description": "Fields section label"
   },
+  "IE7U/Q": {
+    "defaultMessage": "Heading",
+    "description": "Placeholder label"
+  },
   "J9e9Qb": {
     "defaultMessage": "Video",
     "description": "Type field label"
@@ -594,6 +626,10 @@
   "JDPMlG": {
     "defaultMessage": "Background color",
     "description": "Field label"
+  },
+  "JRZoe6": {
+    "defaultMessage": "Content",
+    "description": "Placeholder label"
   },
   "JoWKee": {
     "defaultMessage": "Create your first screen",
@@ -629,6 +665,10 @@
   },
   "LkVfwW": {
     "defaultMessage": "Screen {index}",
+    "description": "Button label"
+  },
+  "LrRW+9": {
+    "defaultMessage": "Add a button",
     "description": "Button label"
   },
   "Lrwi2G": {
@@ -682,6 +722,10 @@
   "O2JVA+": {
     "defaultMessage": "Left",
     "description": "Field left label"
+  },
+  "OEckOD": {
+    "defaultMessage": "Text style",
+    "description": "Field label"
   },
   "OJi+eg": {
     "defaultMessage": "Label",
@@ -743,6 +787,10 @@
     "defaultMessage": "Add an image",
     "description": "Button label"
   },
+  "Qanvis": {
+    "defaultMessage": "Visual",
+    "description": "Placeholder label"
+  },
   "Qe03Xz": {
     "defaultMessage": "Sign Subtitle",
     "description": "Heading field label"
@@ -766,6 +814,10 @@
     "defaultMessage": "Unmute",
     "description": "Button label"
   },
+  "RKA2p5": {
+    "defaultMessage": "align",
+    "description": "Field label"
+  },
   "RcLsua": {
     "defaultMessage": "Message",
     "description": "Message field label"
@@ -786,6 +838,10 @@
     "defaultMessage": "Text and Images",
     "description": "Text and Images screen group"
   },
+  "S1F/re": {
+    "defaultMessage": "Columns",
+    "description": "Field label"
+  },
   "S9YpbV": {
     "defaultMessage": "Text",
     "description": "Text screen title"
@@ -805,6 +861,10 @@
   "THKV4v": {
     "defaultMessage": "Longitude",
     "description": "Longitude description"
+  },
+  "TTPc+y": {
+    "defaultMessage": "Use square keys",
+    "description": "Field label"
   },
   "TZUu3s": {
     "defaultMessage": "Blur",
@@ -906,6 +966,10 @@
     "defaultMessage": "Taurus",
     "description": "Horoscope sign"
   },
+  "XR5/Wk": {
+    "defaultMessage": "Edit",
+    "description": "Field label"
+  },
   "XTJGzY": {
     "defaultMessage": "Gallery feed with captions",
     "description": "GalleryFeedCaptions screen title"
@@ -926,6 +990,10 @@
     "defaultMessage": "Bullet filled",
     "description": "Field label"
   },
+  "YwySSO": {
+    "defaultMessage": "Vertical",
+    "description": "Field label"
+  },
   "YyPYHk": {
     "defaultMessage": "Scorpio",
     "description": "Horoscope sign"
@@ -933,6 +1001,10 @@
   "Z27IP6": {
     "defaultMessage": "Map",
     "description": "Screen group"
+  },
+  "Z4f5qh": {
+    "defaultMessage": "Buttons",
+    "description": "Keypad state"
   },
   "Z5jrDS": {
     "defaultMessage": "Letter spacing",
@@ -953,6 +1025,10 @@
   "ZMS1Wv": {
     "defaultMessage": "Text",
     "description": "Field label"
+  },
+  "Zbu5Uk": {
+    "defaultMessage": "Label",
+    "description": "Placeholder label"
   },
   "ZeosMy": {
     "defaultMessage": "Mar 21 - Apr 19",
@@ -1118,6 +1194,10 @@
     "defaultMessage": "Duration",
     "description": "Label in Media Gallery"
   },
+  "f1XHNG": {
+    "defaultMessage": "Button",
+    "description": "Breadcrumb field label"
+  },
   "f5Yipd": {
     "defaultMessage": "Box",
     "description": "Field label"
@@ -1138,9 +1218,17 @@
     "defaultMessage": "Word of the week",
     "description": "Field label"
   },
+  "fOYYk7": {
+    "defaultMessage": "Align items",
+    "description": "Field label"
+  },
   "fVqgfl": {
     "defaultMessage": "[no title]",
     "description": "No title label in Media Gallery"
+  },
+  "fbUW2U": {
+    "defaultMessage": "Items",
+    "description": "Field label"
   },
   "fbiNiR": {
     "defaultMessage": "Select a size...",
@@ -1178,6 +1266,10 @@
     "defaultMessage": "Question",
     "description": "Question field label"
   },
+  "heeSlL": {
+    "defaultMessage": "Frame and backgound styles",
+    "description": "Field label"
+  },
   "hoDz0O": {
     "defaultMessage": "Description",
     "description": "Placeholder label"
@@ -1212,6 +1304,10 @@
   },
   "iipV5Q": {
     "defaultMessage": "Type",
+    "description": "Field label"
+  },
+  "ijsNO4": {
+    "defaultMessage": "columns",
     "description": "Field label"
   },
   "irG6mX": {
@@ -1273,6 +1369,10 @@
   "liyV7Y": {
     "defaultMessage": "Size",
     "description": "Label in Media Gallery"
+  },
+  "mBYGpP": {
+    "defaultMessage": "Popup",
+    "description": "Popup state"
   },
   "mOSkbf": {
     "defaultMessage": "Usage",
@@ -1472,6 +1572,10 @@
     "defaultMessage": "Bad answer color",
     "description": "Field label"
   },
+  "rzXCu2": {
+    "defaultMessage": "Label style",
+    "description": "Field label"
+  },
   "rzdds2": {
     "defaultMessage": "Speaker",
     "description": "Breadcrumb field label"
@@ -1564,9 +1668,17 @@
     "defaultMessage": "Results",
     "description": "State label"
   },
+  "uoF5Pv": {
+    "defaultMessage": "Content",
+    "description": "Field label"
+  },
   "upzOTm": {
     "defaultMessage": "Credits",
     "description": "Credits field label"
+  },
+  "uv3PH4": {
+    "defaultMessage": "Backdrop color",
+    "description": "Field label"
   },
   "uwcXzb": {
     "defaultMessage": "Image",
@@ -1652,6 +1764,10 @@
     "defaultMessage": "Image",
     "description": "Field label"
   },
+  "xTJlyi": {
+    "defaultMessage": "Horizontal",
+    "description": "Field label"
+  },
   "xYqGzM": {
     "defaultMessage": "Author",
     "description": "Author placeholder"
@@ -1663,6 +1779,10 @@
   "xj0o1v": {
     "defaultMessage": "Grid",
     "description": "UrbaniaHoroscope state"
+  },
+  "xmp9nw": {
+    "defaultMessage": "Spacing",
+    "description": "Field label"
   },
   "xsipID": {
     "defaultMessage": "Image",
@@ -1707,6 +1827,10 @@
   "z4CiV1": {
     "defaultMessage": "Text",
     "description": "Text placeholder"
+  },
+  "z4Pr+g": {
+    "defaultMessage": "Visual (Image or Video)",
+    "description": "Placeholder label"
   },
   "zD2Q5Y": {
     "defaultMessage": "Feb 19 - Mar 20",

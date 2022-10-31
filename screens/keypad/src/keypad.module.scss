@@ -1,0 +1,335 @@
+// stylelint-disable max-nesting-depth
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %screen;
+    touch-action: none;
+
+    // @note prevent specificity clashes
+    p {
+        margin-top: inherit;
+        margin-bottom: inherit;
+        font-weight: inherit;
+    }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+    }
+}
+
+.background {
+    @extend %fullscreen;
+    z-index: 1;
+}
+
+.inner {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    text-align: center;
+}
+
+.emptyTitle,
+.emptyText {
+    @extend %empty;
+    width: 100%;
+    margin: 10px auto;
+}
+
+.emptyTitle {
+    height: 100px;
+}
+
+.emptyText {
+    height: 50px;
+}
+
+.grid {
+    width: 100%;
+}
+
+.item {
+    position: relative;
+    height: 100%;
+
+    .withSquareItems & {
+        height: 0;
+        padding-bottom: 100%;
+    }
+}
+
+.placeholderItem {
+    height: 0;
+    padding-bottom: 60%;
+
+    .withSquareItems & {
+        padding-bottom: 100%;
+    }
+}
+
+.button {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.3s $ease-in-kickback;
+    font-weight: inherit;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &.isEmpty {
+        padding: 2px;
+        pointer-events: none;
+    }
+
+    &.isEmpty,
+    &.isPopupEmpty {
+        cursor: default;
+
+        &:hover,
+        &:active {
+            transform: none;
+        }
+    }
+
+    .withSquareItems & {
+        @extend %fullscreen;
+    }
+
+
+    .imagePlaceholder,
+    .buttonPlaceholder {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.buttonVisualPlaceholder {
+    width: 100%;
+}
+
+.thumbnail {
+    max-height: 50px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.buttonLabel {
+    width: 100%;
+    padding: 5px;
+}
+
+.empty {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.emptyButtonVisual {
+    margin-bottom: 5px;
+    padding: 10px 5px;
+}
+
+.emptyButtonLabel {
+    margin-bottom: 5px;
+    padding: 2px 5px;
+}
+
+/**
+ * POPUP
+ */
+.popup {
+    position: fixed;
+    z-index: 6; // @todo
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+.popupBackdrop {
+    @extend %fullscreen;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.popupButton {
+    @extend %reset-button;
+
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    padding: 52px 15px 30px; // @todo eliminate magic numbers
+    transition: transform 0.3s $ease-in-kickback;
+    text-align: left;
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.popupInner {
+    overflow: hidden;
+    background-color: $black;
+
+    // @todo fighting specificity because of some weird reset
+    // I don't understand it; need to investigate deeper
+    .popupContent {
+        font-family: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-weight: inherit;
+        }
+    }
+}
+
+.popupWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: -0.5em;
+}
+
+.placeholder {
+    mix-blend-mode: normal;
+}
+
+.popupHeading,
+.popupContent,
+.popupVisual {
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0.5em;
+}
+
+.popupWrapper {
+    .popupHeading {
+        margin-bottom: 0.25em;
+        font-weight: inherit;
+    }
+}
+
+.contentSplit {
+    .emptyHeading,
+    .popupHeading {
+        order: 1;
+    }
+
+    .emptyVisual,
+    .popupVisual {
+        order: 2;
+    }
+
+    .emptyContent,
+    .popupContent {
+        order: 3;
+    }
+}
+
+.contentBottom {
+    .emptyVisual,
+    .popupVisual {
+        order: 1;
+    }
+
+    .emptyHeading,
+    .popupHeading {
+        order: 2;
+    }
+
+    .emptyContent,
+    .popupContent {
+        order: 3;
+    }
+}
+
+/**
+ * Button Layouts
+ */
+.layoutLabelTop {
+    .emptyButtonLabel,
+    .buttonLabel {
+        order: 1;
+    }
+
+    .emptyButtonVisual,
+    .buttonVisual {
+        order: 2;
+    }
+}
+
+.layoutNoLabel,
+.layoutLabelOver {
+    .emptyButtonLabel,
+    .buttonLabel {
+        display: none;
+    }
+
+    .emptyButtonVisual,
+    .buttonVisual {
+        width: 100% !important;
+        height: 100%;
+    }
+
+    .thumbnail {
+        width: 100% !important;
+
+        max-height: none;
+
+        .withSquareItems & {
+            @extend %fullscreen;
+        }
+    }
+}
+
+// @note extends the styles of layoutNoLabel
+.layoutLabelOver {
+    .emptyButtonVisual,
+    .buttonVisual {
+        z-index: 1;
+    }
+
+    .emptyButtonLabel,
+    .buttonLabel {
+        @extend %fullscreen;
+        display: block;
+        z-index: 2;
+        top: auto;
+        bottom: 0;
+        height: auto;
+        background-image: linear-gradient(to bottom, rgba($black, 0), rgba($black, 0.75));
+    }
+}

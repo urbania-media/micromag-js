@@ -206,6 +206,7 @@ const GalleryScreen = ({
                                     playing={backgroundPlaying}
                                     active={active}
                                     shouldLoad={mediaShouldLoad}
+                                    withoutVideo={isPreview}
                                     onLoaded={onImageLoaded}
                                 />
                             ) : null}
@@ -255,23 +256,11 @@ const GalleryScreen = ({
             ])}
             data-screen-ready={ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <div
-                    className={styles.content}
+                    className={styles.inner}
                     style={{
-                        paddingTop: current && !isPreview ? viewerTopHeight : null,
+                        paddingTop: !isPreview ? viewerTopHeight : null,
                         paddingBottom:
                             (hasCallToAction ? callToActionHeight : 0) +
                             (current && !isPreview ? viewerBottomHeight : 0),
@@ -303,6 +292,20 @@ const GalleryScreen = ({
                     ) : null}
                 </div>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

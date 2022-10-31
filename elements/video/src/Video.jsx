@@ -11,11 +11,12 @@ import {
     useMediaDuration,
     useMediaReady,
     useProgressSteps,
-    useMediaLoad,
+    // useMediaLoad,
 } from '@micromag/core/hooks';
-import { getMediaFilesAsArray } from '@micromag/core/utils';
+import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
+
 
 const propTypes = {
     media: MicromagPropTypes.videoMedia,
@@ -49,7 +50,6 @@ const propTypes = {
     onSuspend: PropTypes.func,
     onSuspended: PropTypes.func,
     focusable: PropTypes.bool,
-    supportedMimes: PropTypes.arrayOf(PropTypes.string),
     withPoster: PropTypes.bool,
     // onPosterLoaded: PropTypes.func,
 };
@@ -81,7 +81,6 @@ const defaultProps = {
     onSuspend: null,
     onSuspended: null,
     focusable: true,
-    supportedMimes: ['video/mp4', 'video/webm', 'video/ogg'],
     withPoster: false,
 };
 
@@ -112,11 +111,14 @@ const Video = ({
     onSuspend: customOnSuspend,
     onSuspended,
     focusable,
-    supportedMimes,
     withPoster,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
-    const { description = null, mime: mediaMime = null, has_audio: hasAudio = null } = metadata || {};
+    const {
+        description = null,
+        mime: mediaMime = null,
+        has_audio: hasAudio = null,
+    } = metadata || {};
     const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
     const finalThumbnail = useMediaThumbnail(media, thumbnail);
 
@@ -131,27 +133,18 @@ const Video = ({
     const ready = useMediaReady(ref.current, {
         id: mediaUrl,
     });
-    useMediaLoad(ref.current, {
-        preload,
-        shouldLoad,
-    });
-
-    // Get source files with supported mimes
     const sourceFiles = useMemo(() => {
         if (filesArray.length === 0) {
             return null;
         }
-        const supportVideo = document.createElement('video');
-        const finalSupportedMimes = supportedMimes.filter(
-            (mime) => supportVideo.canPlayType(mime) !== '',
-        );
-        if (finalSupportedMimes.length === 0) {
+        const supportedMimes = getVideoSupportedMimes();
+        if (supportedMimes.length === 0) {
             return null;
         }
         const sourceFilesMap = filesArray
             .filter((file) => {
                 const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
-                return finalSupportedMimes.indexOf(mime) !== -1;
+                return supportedMimes.indexOf(mime) !== -1;
             })
             .reduce((filesMap, file) => {
                 const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
@@ -165,7 +158,7 @@ const Video = ({
                     : filesMap;
             }, {});
         return Object.keys(sourceFilesMap).map((mime) => sourceFilesMap[mime]);
-    }, [filesArray, supportedMimes]);
+    }, [filesArray]);
 
     // @NOTE: Media is an animated image and doesn't have source files in video formats
     const { type: originalType = null, mime: originalMime = mediaMime } =
@@ -195,52 +188,37 @@ const Video = ({
 
     // Manage suspend
     const [isSuspended, setIsSuspended] = useState(false);
-    const onPlay = useCallback((e) => {
-        if (isSuspended) {
-            setIsSuspended(false);
-        }
-        if (customOnPlay !== null) {
-            customOnPlay(e);
-        }
-    }, [isSuspended, setIsSuspended, customOnPlay]);
+    const onPlay = useCallback(
+        (e) => {
+            if (isSuspended) {
+                setIsSuspended(false);
+            }
+            if (customOnPlay !== null) {
+                customOnPlay(e);
+            }
+        },
+        [isSuspended, setIsSuspended, customOnPlay],
+    );
     const onPlaying = useCallback(() => {
         if (isSuspended) {
             setIsSuspended(false);
         }
     }, [isSuspended, setIsSuspended]);
-    const onSuspend = useCallback((e) => {
-        if (e.currentTarget.paused && !paused && !isSuspended) {
-            setIsSuspended(true);
+    const onSuspend = useCallback(
+        (e) => {
+            if (e.currentTarget.paused && !paused && !isSuspended) {
+                setIsSuspended(true);
 
-            if (onSuspended !== null) {
-                onSuspended();
+                if (onSuspended !== null) {
+                    onSuspended();
+                }
             }
-        }
-        if (customOnSuspend !== null) {
-            customOnSuspend(e);
-        }
-    }, [isSuspended, paused, setIsSuspended, customOnSuspend, onSuspended]);
-
-    // Ensure load if preload value change over time
-    const firstPreloadRef = useRef(preload);
-    const firstShouldLoadRef = useRef(shouldLoad);
-    const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata' && shouldLoad);
-    useEffect(() => {
-        const { current: element = null } = ref;
-        const canLoad = preload !== 'none' && preload !== 'metadata' && shouldLoad;
-        const preloadHasChanged = firstPreloadRef.current !== preload;
-        const shouldLoadHasChanged = firstShouldLoadRef.current !== shouldLoad;
-        if (
-            canLoad &&
-            (preloadHasChanged || shouldLoadHasChanged) &&
-            !hasLoadedRef.current &&
-            element !== null &&
-            typeof element.load !== 'undefined'
-        ) {
-            hasLoadedRef.current = true;
-            element.load();
-        }
-    }, [shouldLoad, preload]);
+            if (customOnSuspend !== null) {
+                customOnSuspend(e);
+            }
+        },
+        [isSuspended, paused, setIsSuspended, customOnSuspend, onSuspended],
+    );
 
     useEffect(() => {
         if (ready && onReady !== null) {
@@ -300,11 +278,19 @@ const Video = ({
                             mediaRef.current = newRef;
                         }
                     }}
-                    src={sourceFiles === null || sourceFiles.length === 0 ? `${mediaUrl}#t=0.1` : null}
+                    src={
+                        sourceFiles === null || sourceFiles.length === 0
+                            ? `${mediaUrl}#t=0.1`
+                            : null
+                    }
                     autoPlay={autoPlay && !paused}
                     loop={loop}
                     muted={muted}
-                    poster={shouldLoad && withPoster && finalThumbnail !== null ? finalThumbnail.url || null : null}
+                    poster={
+                        shouldLoad && withPoster && finalThumbnail !== null
+                            ? finalThumbnail.url || null
+                            : null
+                    }
                     preload={shouldLoad ? preload : 'none'}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}

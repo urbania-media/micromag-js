@@ -412,19 +412,7 @@ const Image360Screen = ({
             ])}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <div
                     ref={canvasContainerRef}
                     className={styles.videoContainer}
@@ -435,8 +423,22 @@ const Image360Screen = ({
                         top: resizedImageTop,
                     }}
                 />
-                <div className={styles.content}>{items}</div>
+                <div className={styles.inner}>{items}</div>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

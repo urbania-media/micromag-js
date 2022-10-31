@@ -3,10 +3,17 @@
 .container {
     width: 100%;
     padding: 2px;
-    mix-blend-mode: difference;
 
-    .line {
-        height: 16px;
+    &.withInvertedColors {
+        mix-blend-mode: difference;
+    }
+}
+
+.line {
+    height: 16px;
+    background-color: currentColor;
+
+    .withInvertedColors & {
         background-color: rgba($white, 0.6);
     }
 }

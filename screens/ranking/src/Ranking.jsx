@@ -176,7 +176,7 @@ const RankingScreen = ({
                         </Transitions>
                     )}
                 </div>
-                <div className={styles.content}>
+                <div className={styles.label}>
                     {titleElement}
                     {descriptionElement}
                 </div>
@@ -216,19 +216,7 @@ const RankingScreen = ({
             ])}
             data-screen-ready
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Scroll
                     className={styles.scroll}
                     verticalAlign="middle"
@@ -242,7 +230,7 @@ const RankingScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
                                           (callToActionHeight || spacing),
@@ -263,7 +251,10 @@ const RankingScreen = ({
                             },
                         ])}
                         style={{
-                            transform: current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                            transform:
+                                current && !isPreview
+                                    ? `translate(0, -${viewerBottomHeight}px)`
+                                    : null,
                             paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
                             paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
                             paddingTop: spacing / 2,
@@ -279,6 +270,20 @@ const RankingScreen = ({
                     </div>
                 ) : null}
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

@@ -4,6 +4,8 @@ import React, { useCallback } from 'react';
 import FontStyle from './FontStyle';
 import TextAlign from './TextAlign';
 
+import styles from '../styles/font-style-with-align.module.scss';
+
 const propTypes = {
     value: PropTypes.shape({}),
     fontStyleName: PropTypes.string,
@@ -51,13 +53,14 @@ const FontStyles = ({ value, fontStyleName, alignName, className, onChange }) =>
         <div
             className={classNames([
                 'd-flex',
+                styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
         >
-            <FontStyle value={fontStyleValue} onChange={onFontStyleChange} />
-            <TextAlign value={alignValue} className="ms-auto" onChange={onAlignChange} />
+            <FontStyle className={styles.item} buttonClassName={styles.button} value={fontStyleValue} onChange={onFontStyleChange} />
+            <TextAlign className={styles.item} buttonClassName={styles.button} value={alignValue} onChange={onAlignChange} />
         </div>
     );
 };

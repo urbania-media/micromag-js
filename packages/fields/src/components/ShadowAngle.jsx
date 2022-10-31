@@ -46,13 +46,10 @@ const ShadowAngle = ({ types, value, className, onChange }) => {
                             label: (
                                 <div className={styles.type}>
                                     <div
+                                        className={styles.icon}
                                         style={{
-                                            width: 30,
-                                            height: 30,
                                             border: `2px solid currentColor`,
                                             position: 'relative',
-                                            top: `${-y/2}px`,
-                                            left: `${-x/2}px`,
                                             boxShadow: `${x}px ${y}px 0 0 currentColor`,
                                         }}
                                     />

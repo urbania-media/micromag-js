@@ -132,20 +132,23 @@ function CallToAction({
         event.preventDefault();
     }, []);
 
-    const onDragEnd = useCallback(({ movement: [, my] }) => {
-        if (my < -dragAmount) {
-            if (inWebView) {
-                onClickLink(null, 'swipe');
-            } else if (isIos() && selfTargetLinkRef.current !== null) {
-                selfTargetLinkRef.current.click();
-                setLeaving(true);
-                onClickLink(null, 'swipe');
-            } else if (buttonRef.current) {
-                buttonRef.current.click();
-                onClickLink(null, 'swipe');
+    const onDragEnd = useCallback(
+        ({ movement: [, my] }) => {
+            if (my < -dragAmount) {
+                if (inWebView) {
+                    onClickLink(null, 'swipe');
+                } else if (isIos() && selfTargetLinkRef.current !== null) {
+                    selfTargetLinkRef.current.click();
+                    setLeaving(true);
+                    onClickLink(null, 'swipe');
+                } else if (buttonRef.current) {
+                    buttonRef.current.click();
+                    onClickLink(null, 'swipe');
+                }
             }
-        }
-    }, [dragAmount, inWebView, onClickLink, setLeaving]);
+        },
+        [dragAmount, inWebView, onClickLink, setLeaving],
+    );
 
     const bind = useGesture({
         onDrag,

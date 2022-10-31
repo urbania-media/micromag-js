@@ -42,6 +42,7 @@ const FieldForm = ({
     closeFieldForm,
     fieldContext,
 }) => {
+
     const fieldsManager = useFieldsManager();
 
     const field = getFieldFromPath(name.split('.'), fields, fieldsManager);

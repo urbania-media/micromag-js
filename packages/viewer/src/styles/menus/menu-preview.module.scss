@@ -19,6 +19,8 @@
 .content {
     position: relative;
     flex-grow: 1;
+    height: 100%;
+    max-height: 100%;
 }
 
 .scroll {
@@ -26,11 +28,11 @@
 }
 
 .buttons {
+    display: flex;
     position: relative;
     z-index: 3;
-    display: flex;
-    align-items: center;
     flex-grow: 1;
+    align-items: center;
 }
 
 .organisation {
@@ -60,8 +62,8 @@
 .nav {
     position: relative;
     flex-grow: 1;
-    overflow: hidden;
     padding: 10px;
+    overflow: hidden;
 }
 
 .items,
@@ -82,21 +84,23 @@
     width: 33.333%;
 }
 
-.screen {
+.inner {
     padding: 2px;
 }
 
-.loading {
+.frame {
     width: 100%;
-    height: auto;
-    animation: fillPulse 1s infinite alternate-reverse $ease-in-out-soft-sine;
+    height: 0;
+    background-color: $gray-800;
 }
 
-@keyframes fillPulse {
-    from {
-        fill: rgba($white, 0.1);
-    }
+.screen {
+    animation: intro 1s 50ms 1 forwards $ease-in-out-sine;
+    opacity: 0;
+}
+
+@keyframes intro {
     to {
-        fill: rgba($white, 0.15);
+        opacity: 1;
     }
 }

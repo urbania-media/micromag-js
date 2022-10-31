@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer-build",
-    "version": "0.3.251",
+    "version": "0.3.262",
     "description": "",
     "keywords": [
         "javascript"
@@ -33,19 +33,21 @@
         "build"
     ],
     "scripts": {
-        "prepare": "flklr build --html-path=./public/index.html --output-path=./build ./src/index.js"
+        "clean": "rm -rf build",
+        "build": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build ./src/index.js",
+        "prepare": "npm run clean && npm run build"
     },
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "2bde6156abc5306b3303a3c860f81e2446696e79",
+    "gitHead": "2b4debbebfbf97b8b69e0fc33316a3936761b4af",
     "devDependencies": {
-        "@folklore/cli": "^0.0.42",
-        "@micromag/core": "^0.3.251",
-        "@micromag/elements": "^0.3.251",
-        "@micromag/screens": "^0.3.251",
-        "@micromag/transforms": "^0.3.251",
-        "@micromag/viewer": "^0.3.251",
+        "@folklore/cli": "^0.0.49",
+        "@micromag/core": "^0.3.262",
+        "@micromag/elements": "^0.3.262",
+        "@micromag/screens": "^0.3.262",
+        "@micromag/transforms": "^0.3.262",
+        "@micromag/viewer": "^0.3.262",
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     }

@@ -2,11 +2,8 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    @extend %fullscreen;
-    z-index: 0;
+    position: relative;
     overflow: hidden;
-
-    // background-color: rgba(#000, 0.25);
 }
 
 .videoContainer,
@@ -25,6 +22,7 @@
         right: 0;
         left: auto;
     }
+
     .bottom & {
         top: auto;
         bottom: 0;

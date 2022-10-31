@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import Grid from './Grid';
 
 export default {
@@ -11,6 +12,9 @@ const cellStyle = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color: '#000',
+    fontSize: '24px',
+    fontWeight: '700',
     background: '#ddd',
     height: '100%',
 };

@@ -1,0 +1,34 @@
+@use "sass:math";
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/variables';
+
+$align-icon-size: 30px;
+$align-spacing: 2px;
+
+.icon {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: $align-icon-size;
+
+    > div {
+        width: math.div($align-icon-size, 3) - $align-spacing;
+        height: math.div($align-icon-size, 3) - $align-spacing;
+        margin-right: $align-spacing;
+        margin-bottom: $align-spacing;
+        background-color: $white;
+        mix-blend-mode: difference;
+    }
+
+    &.left {
+        justify-content: flex-start;
+    }
+
+    &.middle {
+        justify-content: center;
+    }
+
+    &.right {
+        justify-content: flex-end;
+    }
+}

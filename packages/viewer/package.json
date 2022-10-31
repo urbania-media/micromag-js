@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer",
-    "version": "0.3.251",
+    "version": "0.3.262",
     "description": "",
     "keywords": [
         "javascript"
@@ -59,14 +59,14 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.251",
-        "@micromag/element-scroll": "^0.3.251",
-        "@micromag/element-share-options": "^0.3.251",
-        "@micromag/element-webview": "^0.3.251",
-        "@micromag/elements": "^0.3.251",
-        "@micromag/fields": "^0.3.251",
-        "@micromag/intl": "^0.3.251",
-        "@micromag/screens": "^0.3.251",
+        "@micromag/core": "^0.3.262",
+        "@micromag/element-scroll": "^0.3.262",
+        "@micromag/element-share-options": "^0.3.262",
+        "@micromag/element-webview": "^0.3.262",
+        "@micromag/elements": "^0.3.262",
+        "@micromag/fields": "^0.3.262",
+        "@micromag/intl": "^0.3.262",
+        "@micromag/screens": "^0.3.262",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "@use-gesture/react": "^10.2.4",
@@ -79,10 +79,11 @@
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
         "react-share": "^4.3.1",
+        "react-spring": "^9.5.2",
         "wolfy87-eventemitter": "^5.2.9"
     },
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "2bde6156abc5306b3303a3c860f81e2446696e79"
+    "gitHead": "2b4debbebfbf97b8b69e0fc33316a3936761b4af"
 }

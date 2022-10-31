@@ -2,6 +2,10 @@
 
 This is rather free-form for now, but eventually this will be properly timestamped, and will mention the version the changes apply to!
 
+2022-09-20 Fred Mercy <fred@folkloreinc.ca>
+
+    * Fixed an issue with the Horoscope screen signs not being editable
+
 2022-09-06 Fred Mercy <fred@folkloreinc.ca>
 
     * Attempts at fixing the CSS clashes with Micromag.ca/Urbania.ca's stylesheets

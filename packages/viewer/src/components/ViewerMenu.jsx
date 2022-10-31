@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useViewerSize } from '@micromag/core/contexts';
@@ -95,6 +95,7 @@ const ViewerMenu = ({
 
     const [menuOpened, setMenuOpened] = useState(false);
     const [shareOpened, setShareOpened] = useState(false);
+    const [menuMounted, setMenuMounted] = useState(false);
 
     const { ref: navContainerRef, height: navContainerHeight = 0 } = useDimensionObserver();
 
@@ -141,7 +142,6 @@ const ViewerMenu = ({
         return path;
     }, [shareBasePath]);
 
-    // @note possible to extract some of that logic
     const onOpenMenu = useCallback(() => {
         setMenuOpened(true);
         setShareOpened(false);
@@ -218,7 +218,11 @@ const ViewerMenu = ({
         }),
         [],
     );
-    const { bind: bindShareDrag, progress: shareOpenedProgress } = useDragProgress({
+    const {
+        bind: bindShareDrag,
+        dragging: draggingShare,
+        progress: shareOpenedProgress,
+    } = useDragProgress({
         progress: shareOpened ? 1 : 0,
         computeProgress: shareOpened ? computeShareProgressClose : computeShareProgress,
         springParams,
@@ -249,7 +253,11 @@ const ViewerMenu = ({
         [onCloseMenu],
     );
 
-    const { bind: bindMenuDrag, progress: menuOpenedProgress } = useDragProgress({
+    const {
+        bind: bindMenuDrag,
+        dragging: draggingMenu,
+        progress: menuOpenedProgress,
+    } = useDragProgress({
         progress: menuOpened ? 1 : 0,
         computeProgress: menuOpened ? computeMenuProgressClose : computeMenuProgress,
         springParams,
@@ -267,6 +275,14 @@ const ViewerMenu = ({
     // should be zero if either screens menu or share menu is opened
     const dotsOpacity = Math.min(1, Math.max(0, 1 - (menuOpenedProgress + shareOpenedProgress)));
 
+    useEffect(() => {
+        if ((menuOpened || draggingMenu) && !menuMounted) {
+            setMenuMounted(true);
+        } else if (!menuOpened && !draggingMenu && menuMounted) {
+            setMenuMounted(false);
+        }
+    }, [menuOpened, draggingMenu, menuMounted, setMenuMounted]);
+
     return (
         <>
             <div
@@ -282,10 +298,7 @@ const ViewerMenu = ({
             >
                 <nav className={styles.menuTopContainer} ref={navContainerRef}>
                     {!withoutShareMenu ? (
-                        <div
-                            className={classNames([styles.menuItem, styles.menuShare])}
-                            {...bindShareDrag()}
-                        >
+                        <div className={styles.menuItem} {...bindShareDrag()}>
                             <ToggleButton
                                 className={styles.slidingButton}
                                 button={
@@ -294,6 +307,7 @@ const ViewerMenu = ({
                                         onClick={onOpenShare}
                                         theme={menuTheme}
                                         iconPosition="left"
+                                        focusable={!shareOpened}
                                     />
                                 }
                                 toggledButton={
@@ -302,18 +316,16 @@ const ViewerMenu = ({
                                         onClick={onCloseShare}
                                         theme={menuTheme}
                                         iconPosition="left"
+                                        focusable={shareOpened}
                                     />
                                 }
-                                toggled={shareOpenedProgress}
+                                progressSpring={shareOpenedProgress}
                             />
                         </div>
                     ) : null}
 
                     {!withoutScreensMenu ? (
-                        <div
-                            className={classNames([styles.menuItem, styles.menuItemScreens])}
-                            {...bindMenuDrag()}
-                        >
+                        <div className={styles.menuItem} {...bindMenuDrag()}>
                             <ToggleButton
                                 className={styles.slidingButton}
                                 button={
@@ -321,6 +333,7 @@ const ViewerMenu = ({
                                         className={styles.menuButton}
                                         onClick={onOpenMenu}
                                         theme={menuTheme}
+                                        focusable={!menuOpened}
                                     />
                                 }
                                 toggledButton={
@@ -329,9 +342,10 @@ const ViewerMenu = ({
                                         onClick={onCloseMenu}
                                         theme={menuTheme}
                                         iconPosition="right"
+                                        focusable={menuOpened}
                                     />
                                 }
-                                toggled={menuOpenedProgress}
+                                progressSpring={menuOpenedProgress}
                                 toggledButtonClassName={styles.screensMenuButtonToggled}
                             />
                         </div>
@@ -352,17 +366,16 @@ const ViewerMenu = ({
                     className={styles.dots}
                     style={{
                         opacity: dotsOpacity ** 5, // @note this is like a "quint" easing, meaning it'll go towards 1 slowly first and then fast as it approaches 1
-                        pointerEvents: dotsOpacity < 1 ? 'none' : 'auto',
                     }}
                 />
             </div>
 
             <MenuContainer
                 className={styles.menuContainer}
-                transitionProgress={shareOpenedProgress}
+                progressSpring={shareOpenedProgress}
                 theme={viewerTheme}
             >
-                {shareOpenedProgress > 0 ? (
+                {draggingShare || shareOpened ? (
                     <MenuShare
                         viewerTheme={viewerTheme}
                         className={styles.menuShare}
@@ -382,10 +395,10 @@ const ViewerMenu = ({
 
             <MenuContainer
                 className={styles.menuContainer}
-                transitionProgress={menuOpenedProgress}
+                progressSpring={menuOpenedProgress}
                 theme={viewerTheme}
             >
-                {menuOpenedProgress > 0 ? (
+                {menuMounted ? (
                     <MenuPreview
                         viewerTheme={viewerTheme}
                         className={styles.menuPreview}
@@ -398,6 +411,7 @@ const ViewerMenu = ({
                         onShare={onShare}
                         onClickScreen={onClickScreen}
                         onClose={onCloseMenu}
+                        scrollDisabled={draggingMenu}
                         toggleFullscreen={toggleFullscreen}
                         fullscreenActive={fullscreenActive}
                         fullscreenEnabled={fullscreenEnabled}
@@ -411,4 +425,4 @@ const ViewerMenu = ({
 ViewerMenu.propTypes = propTypes;
 ViewerMenu.defaultProps = defaultProps;
 
-export default ViewerMenu;
+export default React.memo(ViewerMenu);

@@ -49,7 +49,6 @@ const ViewerMenuScreen = ({ className, item, index, onClick, screenSize, focusab
             : ''
     }`;
 
-
     return (
         <div
             className={classNames([
@@ -59,6 +58,11 @@ const ViewerMenuScreen = ({ className, item, index, onClick, screenSize, focusab
                     [styles.isCurrent]: current,
                 },
             ])}
+            style={{
+                paddingBottom: `${
+                    (screenHeight / screenWidth) * 100
+                }%`,
+            }}
         >
             <button
                 type="button"

@@ -9,7 +9,7 @@ import styles from '../../styles/forms/settings.module.scss';
 
 const propTypes = {
     name: PropTypes.string,
-    field: MicromagPropTypes.formField.isRequired,
+    field: MicromagPropTypes.formField,
     value: MicromagPropTypes.component,
     className: PropTypes.string,
     gotoFieldForm: PropTypes.func.isRequired,
@@ -19,6 +19,7 @@ const propTypes = {
 
 const defaultProps = {
     name: null,
+    field: null,
     value: null,
     className: null,
     onChange: null,
@@ -33,7 +34,9 @@ const SettingsForm = ({
     closeFieldForm,
     onChange,
 }) => {
-    const { type = null } = field;
+    if (field === null) return false;
+
+    const { type = null } = field || {};
     const fieldsManager = useFieldsManager();
     const { component: fieldComponent = null, settings } =
         type !== null ? fieldsManager.getDefinition(type) : field;

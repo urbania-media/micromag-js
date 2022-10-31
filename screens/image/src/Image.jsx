@@ -182,6 +182,7 @@ const ImageScreen = ({
                             muted={muted}
                             active={active}
                             shouldLoad={mediaShouldLoad}
+                            withoutVideo={isPreview}
                             onLoaded={onImageLoaded}
                         />
                     </Transitions>
@@ -305,7 +306,7 @@ const ImageScreen = ({
     }
 
     let paddingBottom = (current && !isPreview ? viewerBottomHeight : 0) + finalSpacing / 2;
-    let paddingTop = (current && !isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
+    let paddingTop = (!isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
 
     if (isCard || isFullscreen) {
         paddingTop = 0;
@@ -332,19 +333,7 @@ const ImageScreen = ({
             ])}
             data-screen-ready={ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Layout
                     className={styles.layout}
                     fullscreen
@@ -361,6 +350,20 @@ const ImageScreen = ({
                     {items}
                 </Layout>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

@@ -9,6 +9,7 @@ export { default as Container } from '@micromag/element-container';
 export { default as Grid } from '@micromag/element-grid';
 export { default as Heading } from '@micromag/element-heading';
 export { default as Image } from '@micromag/element-image';
+export { default as Keypad } from '@micromag/element-keypad';
 export { default as Layout } from '@micromag/element-layout';
 export { default as Link } from '@micromag/element-link';
 export { default as Map } from '@micromag/element-map';

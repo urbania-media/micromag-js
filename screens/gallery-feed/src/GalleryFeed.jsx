@@ -135,6 +135,7 @@ const GalleryFeedScreen = ({
                         playing={backgroundPlaying}
                         active={active}
                         shouldLoad={mediaShouldLoad}
+                        withoutVideo={isPreview}
                         onLoaded={onImageLoaded}
                     />
                 </div>
@@ -220,19 +221,7 @@ const GalleryFeedScreen = ({
             ])}
             data-screen-ready={ready}
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Scroll
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
@@ -244,9 +233,10 @@ const GalleryFeedScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                       paddingBottom:
-                                          (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                                          (current && !isPreview ? viewerBottomHeight : 0) +
+                                          spacing,
                                   }
                                 : null
                         }
@@ -285,6 +275,20 @@ const GalleryFeedScreen = ({
                     </Layout>
                 </Scroll>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

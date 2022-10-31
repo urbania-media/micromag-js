@@ -1,15 +1,11 @@
-/* eslint-disable no-param-reassign */
-
-/* eslint-disable react/jsx-props-no-spreading */
-// import { getSizeWithinBounds } from '@folklore/size';
+/* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
-    Transitions,
     ScreenElement,
     Empty,
     PlaceholderImage,
@@ -24,7 +20,7 @@ import {
     usePlaybackMediaRef,
     useViewerContext,
 } from '@micromag/core/contexts';
-import { useDimensionObserver } from '@micromag/core/hooks';
+import { useDimensionObserver, useDebounce } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -47,7 +43,7 @@ const propTypes = {
     description: MicromagPropTypes.textElement,
     overTitle: MicromagPropTypes.headingElement,
     author: MicromagPropTypes.authorElement,
-    sponsor: PropTypes.arrayOf(PropTypes.shape({})),
+    sponsors: PropTypes.arrayOf(PropTypes.shape({})),
     sponsorPrefix: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     sponsorColor: MicromagPropTypes.color,
     site: PropTypes.string,
@@ -68,7 +64,7 @@ const defaultProps = {
     description: null,
     overTitle: null,
     author: null,
-    sponsor: null,
+    sponsors: null,
     sponsorPrefix: null,
     sponsorColor: null,
     site: null,
@@ -89,7 +85,7 @@ const UrbaniaArticle = ({
     description,
     overTitle,
     author,
-    sponsor,
+    sponsors,
     sponsorPrefix,
     sponsorColor,
     site,
@@ -97,7 +93,6 @@ const UrbaniaArticle = ({
     callToAction,
     current,
     active,
-    transitions,
     spacing,
     className,
 }) => {
@@ -105,9 +100,9 @@ const UrbaniaArticle = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { color: backgroundColor = null } = background || {};
-    const { open: openWebView, opened: openedWebView } = useViewerWebView();
+    const { opened: openedWebView, open: openWebView } = useViewerWebView();
     const { bottomSidesWidth: viewerBottomSidesWidth } = useViewerContext();
-    const { muted, playing } = usePlaybackContext();
+    const { muted, playing, setPlaying } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
     const {
@@ -117,11 +112,7 @@ const UrbaniaArticle = ({
     } = useDimensionObserver();
     const { top: contentTop } = contentRect || {};
 
-    const {
-        minContentHeight = null,
-        // maxContentHeight = null,
-        // imageHeight = null,
-    } = useMemo(() => {
+    const { minContentHeight = null } = useMemo(() => {
         const defaultImageHeight = width * 0.8;
         const difference = height - contentHeight - contentTop + 1;
 
@@ -130,29 +121,46 @@ const UrbaniaArticle = ({
         }
 
         return { imageHeight: difference };
-
-        // const finalMaxContentHeight = height - defaultImageHeight;
-        // return { imageHeight: defaultImageHeight, maxContentHeight: finalMaxContentHeight };
     }, [contentTop, contentHeight, width, height]);
 
     const isVideo = type === 'video';
     const hasOverTitle = isTextFilled(overTitle);
     const hasTitle = isTextFilled(title);
-    const hasSponsor = isTextFilled(sponsor);
-
-    const { name: authorFullName } = author || {};
     const hasDescription = isTextFilled(description);
+    const hasSponsor = (sponsors || []).length > 0 && isTextFilled(sponsors[0]);
+    const { name: authorFullName } = author || {};
     const hasAuthor = isTextFilled(authorFullName);
-
     const { url = null } = image || {};
     const hasImage = url !== null;
 
-    const backgroundPlaying = current && !openedWebView && (isView || isEdit);
     const mediaShouldLoad = current || active;
-    const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
+
+    // const backgroundPlaying = current && (isView || isEdit);
+    const [backgroundPlaying, setBackgroundPlaying] = useState(false);
+
+    const playIfCurrent = useCallback(() => {
+        if (current && !openedWebView && !playing) {
+            setPlaying(true);
+        } else {
+            setPlaying(false);
+        }
+    }, [current, openedWebView, playing, setPlaying]);
+
+    // TODO: link playIfCurrent and backgroundPlaying
+    useEffect(() => {
+        if (!current) {
+            setBackgroundPlaying(false);
+        } else if (current && (isView || isEdit)) {
+            setBackgroundPlaying(!openedWebView);
+        }
+    }, [current, isView, isEdit, openedWebView, setBackgroundPlaying]);
+
+    useDebounce(playIfCurrent, current, 500);
+
+    const { video: backgroundVideo = null } = background || {};
+    const hasVideoBackground = backgroundVideo !== null;
 
     const items = [
         <ScreenElement
@@ -251,11 +259,18 @@ const UrbaniaArticle = ({
         >
             {hasSponsor ? (
                 <div className={styles.sponsors} style={{ ...getStyleFromColor(sponsorColor) }}>
-                    {sponsorPrefix !== null ? (
-                        <span className={styles.sponsor}>{sponsorPrefix}</span>
-                    ) : null}
-                    <span>&nbsp;</span>
-                    <Heading className={styles.sponsor} size="6" {...sponsor} />
+                    {sponsors.map((sponsor = null) => {
+                        const { body = '' } = sponsor;
+                        return (
+                            <React.Fragment key={body}>
+                                {sponsorPrefix !== null ? (
+                                    <span className={styles.sponsor}>{sponsorPrefix}</span>
+                                ) : null}
+                                <span>&nbsp;</span>
+                                <Heading className={styles.sponsor} size="6" {...sponsor} />
+                            </React.Fragment>
+                        );
+                    })}
                 </div>
             ) : null}
         </ScreenElement>,
@@ -269,12 +284,14 @@ const UrbaniaArticle = ({
                     [className]: className !== null,
                     [styles.isCurrent]: current,
                     [styles.isVideo]: isVideo,
+                    [styles.hasVideoBackground]: hasVideoBackground,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
             data-screen-ready={isStatic || isCapture}
         >
             <Background
+                className={styles.background}
                 background={background}
                 width={width}
                 height={height}
@@ -283,11 +300,12 @@ const UrbaniaArticle = ({
                 muted={muted}
                 shouldLoad={mediaShouldLoad}
                 mediaRef={mediaRef}
+                withoutVideo={isPreview}
             />
-            <Container className={styles.inner} width={width} height={height}>
+            <Container className={styles.content} width={width} height={height}>
                 <div
                     className={classNames([
-                        styles.content,
+                        styles.articleContent,
                         {
                             [styles[`${site}`]]: site !== null,
                         },
@@ -304,82 +322,79 @@ const UrbaniaArticle = ({
                     {items}
                 </div>
                 <div className={styles.visual}>
-                    <Transitions
-                        playing={transitionPlaying}
-                        transitions={transitions}
-                        disabled={transitionDisabled || true}
-                    >
-                        <ScreenElement
-                            key="image"
-                            placeholder={<PlaceholderImage className={styles.placeholder} />}
-                            empty={
-                                <div className={styles.emptyContainer}>
-                                    <Empty className={styles.empty}>
-                                        <FormattedMessage
-                                            defaultMessage="Image"
-                                            description="Image placeholder"
-                                        />
-                                    </Empty>
-                                </div>
-                            }
-                            isEmpty={!hasImage}
-                        >
-                            {hasImage && !isVideo ? (
-                                <Visual
-                                    className={styles.image}
-                                    imageClassName={styles.img}
-                                    media={image}
-                                    width={width}
-                                    height={height}
-                                    resolution={resolution}
-                                    objectFit={{ fit: 'cover' }}
-                                    shouldLoad={mediaShouldLoad}
-                                    playing={backgroundPlaying && playing}
-                                />
-                            ) : null}
-                            {hasImage && isVideo ? (
-                                <Visual
-                                    className={styles.video}
-                                    media={image}
-                                    width={width}
-                                    height={height}
-                                    resolution={resolution}
-                                    objectFit={{ fit: 'cover' }}
-                                    shouldLoad={mediaShouldLoad}
-                                    playing={backgroundPlaying && playing}
-                                    muted={muted}
-                                    mediaRef={mediaRef}
-                                />
-                            ) : null}
-                        </ScreenElement>
-                        {!isPlaceholder && hasCallToAction ? (
-                            <div
-                                style={{
-                                    paddingTop: spacing,
-                                    paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
-                                    paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
-                                }}
-                                key="call-to-action"
-                            >
-                                <CallToAction
-                                    {...callToAction}
-                                    className={styles.callToAction}
-                                    buttonClassName={styles.button}
-                                    labelClassName={styles.label}
-                                    arrowClassName={styles.arrow}
-                                    animationDisabled={isPreview}
-                                    focusable={current && isView}
-                                    arrow={<ArrowIcon />}
-                                    icon={
-                                        type === 'video' ? (
-                                            <WatchIcon className={styles.icon} />
-                                        ) : null
-                                    }
-                                    openWebView={openWebView}
-                                />
+                    <ScreenElement
+                        key="image"
+                        placeholder={<PlaceholderImage className={styles.placeholder} />}
+                        empty={
+                            <div className={styles.emptyContainer}>
+                                <Empty className={styles.empty}>
+                                    <FormattedMessage
+                                        defaultMessage="Image"
+                                        description="Image placeholder"
+                                    />
+                                </Empty>
                             </div>
+                        }
+                        isEmpty={!hasImage}
+                    >
+                        {hasImage && !isVideo ? (
+                            <Visual
+                                className={styles.image}
+                                imageClassName={styles.img}
+                                media={image}
+                                width={width}
+                                height={height}
+                                resolution={resolution}
+                                objectFit={{ fit: 'cover' }}
+                                shouldLoad={mediaShouldLoad}
+                                withoutVideo={isPreview}
+                                playing={backgroundPlaying && playing}
+                            />
                         ) : null}
-                    </Transitions>
+                        {hasImage && isVideo && !hasVideoBackground ? (
+                            <Visual
+                                className={styles.video}
+                                media={image}
+                                width={width}
+                                height={height}
+                                resolution={resolution}
+                                objectFit={{ fit: 'cover' }}
+                                shouldLoad={mediaShouldLoad}
+                                playing={backgroundPlaying && playing}
+                                muted={muted}
+                                withoutVideo={isPreview}
+                                mediaRef={mediaRef}
+                                autoPlay
+                            />
+                        ) : null}
+                    </ScreenElement>
+                </div>
+                <div className={styles.callToActionContainer}>
+                    {!isPlaceholder && hasCallToAction ? (
+                        <div
+                            style={{
+                                paddingTop: spacing,
+                                paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
+                                paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
+                            }}
+                            key="call-to-action"
+                        >
+                            <CallToAction
+                                {...callToAction}
+                                className={styles.callToAction}
+                                buttonClassName={styles.button}
+                                labelClassName={styles.label}
+                                arrowClassName={styles.arrow}
+                                animationDisabled={isPreview}
+                                focusable={current && isView}
+                                arrow={<ArrowIcon />}
+                                icon={
+                                    type === 'video' ? <WatchIcon className={styles.icon} /> : null
+                                }
+                                openWebView={openWebView}
+                            />
+                        </div>
+                    ) : null}
                 </div>
             </Container>
         </div>

@@ -46,6 +46,7 @@ const Checkboxes = ({ name, value, options, className, buttonClassName, onChange
                     className={classNames([
                         'btn',
                         'btn-outline-secondary',
+                        styles.item,
                         {
                             [buttonClassName]: buttonClassName !== null,
                             active: value !== null && value.indexOf(optionValue) !== -1,

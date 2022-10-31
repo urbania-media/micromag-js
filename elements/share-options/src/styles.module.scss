@@ -11,12 +11,13 @@
     @extend %reset-button;
     display: inline-flex;
     align-items: center;
-    text-align: left;
-    font-weight: 400;
-    color: $white;
-    background-color: transparent;
-    transition: transform 0.3s $ease-out-ramp;
     transform-origin: 0 50%;
+    transition: transform 0.3s $ease-out-ramp;
+    background-color: transparent;
+    color: $white;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
 
     @media (hover: hover) {
         &:hover {
@@ -39,8 +40,8 @@
 
 // @note there is repetition from the styles used in Button & IconButton from the Viewer package
 .icon {
-    position: relative;
     display: block;
+    position: relative;
     flex-shrink: 0;
 }
 
@@ -51,12 +52,13 @@
 
 .label {
     display: flex;
-    align-items: center;
     flex-grow: 1;
-    font-weight: bold;
-    padding: 0.5rem 0.25rem;
+    align-items: center;
     margin-left: 0.5em;
+    padding: 0.5rem 0.25rem;
     transform-origin: 0 50%;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .labelText {

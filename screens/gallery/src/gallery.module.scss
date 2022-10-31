@@ -3,6 +3,20 @@
 .container {
     @extend %screen;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .inner {
+        @extend %fullscreen;
+        transition: padding-bottom 0.2s ease-out;
+    }
+
     .grid {
         position: relative;
         height: 100%;
@@ -54,10 +68,5 @@
 
     .caption {
         padding: 10px 0;
-    }
-
-    .content {
-        @extend %fullscreen;
-        transition: padding-bottom 0.2s ease-out;
     }
 }

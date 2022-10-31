@@ -435,28 +435,17 @@ const ContributionScreen = ({
             ])}
             data-screen-ready
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <div
-                    className={styles.content}
+                    className={styles.inner}
                     style={
                         !isPlaceholder
                             ? {
                                   paddingLeft: spacing,
                                   paddingRight: spacing,
-                                  paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
-                                  paddingBottom: (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }
@@ -495,6 +484,20 @@ const ContributionScreen = ({
                     ) : null}
                 </div>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

@@ -209,6 +209,9 @@
     "6bd963": {
         "defaultMessage": "Vierge"
     },
+    "6iR9Mt": {
+        "defaultMessage": "Titre"
+    },
     "6jX5Tb": {
         "defaultMessage": "Auteurs"
     },
@@ -221,11 +224,17 @@
     "73hxYw": {
         "defaultMessage": "Auteur"
     },
+    "75nZbY": {
+        "defaultMessage": "Clavier"
+    },
     "7YE/VU": {
         "defaultMessage": "Présentateur"
     },
     "7ZzlUE": {
         "defaultMessage": "23 oct au 22 nov"
+    },
+    "7bDRdd": {
+        "defaultMessage": "esp."
     },
     "7mMPO4": {
         "defaultMessage": "Sagittaire"
@@ -332,6 +341,9 @@
     "CJmQeh": {
         "defaultMessage": "Image avec texte"
     },
+    "CWnXWp": {
+        "defaultMessage": "Aucun bouton"
+    },
     "CrzYgw": {
         "defaultMessage": "Citation"
     },
@@ -392,6 +404,9 @@
     "FOmgqv": {
         "defaultMessage": "Question"
     },
+    "FjuRaw": {
+        "defaultMessage": "Paramètres du clavier"
+    },
     "G/ITGY": {
         "defaultMessage": "Votre nom"
     },
@@ -422,6 +437,12 @@
     "HseFdk": {
         "defaultMessage": "Modifier"
     },
+    "HwqzVR": {
+        "defaultMessage": "Visuel"
+    },
+    "Hyqnww": {
+        "defaultMessage": "Popups"
+    },
     "I2bIHm": {
         "defaultMessage": "Bonne réponse"
     },
@@ -434,6 +455,9 @@
     "ICXTfR": {
         "defaultMessage": "Liens"
     },
+    "IE7U/Q": {
+        "defaultMessage": "Titre"
+    },
     "J9e9Qb": {
         "defaultMessage": "Vidéo"
     },
@@ -445,6 +469,9 @@
     },
     "JDPMlG": {
         "defaultMessage": "Couleur de l'arrière-plan"
+    },
+    "JRZoe6": {
+        "defaultMessage": "Contenu"
     },
     "JoWKee": {
         "defaultMessage": "Créez votre premier écran"
@@ -472,6 +499,9 @@
     },
     "LkVfwW": {
         "defaultMessage": "Écran {index}"
+    },
+    "LrRW+9": {
+        "defaultMessage": "Ajouter un bouton"
     },
     "Lrwi2G": {
         "defaultMessage": "Courriel"
@@ -511,6 +541,9 @@
     },
     "O2JVA+": {
         "defaultMessage": "Gauche"
+    },
+    "OEckOD": {
+        "defaultMessage": "Style du texte"
     },
     "OJi+eg": {
         "defaultMessage": "Libellé"
@@ -557,6 +590,9 @@
     "QSmRdP": {
         "defaultMessage": "Ajouter une image"
     },
+    "Qanvis": {
+        "defaultMessage": "Visuel"
+    },
     "Qe03Xz": {
         "defaultMessage": "Sous-titre du signe"
     },
@@ -575,6 +611,9 @@
     "RK/QEY": {
         "defaultMessage": "Activer le son"
     },
+    "RKA2p5": {
+        "defaultMessage": "align."
+    },
     "RcLsua": {
         "defaultMessage": "Message"
     },
@@ -590,6 +629,9 @@
     "S/mavZ": {
         "defaultMessage": "Texte et images"
     },
+    "S1F/re": {
+        "defaultMessage": "Colonnes"
+    },
     "S9YpbV": {
         "defaultMessage": "Texte"
     },
@@ -604,6 +646,9 @@
     },
     "THKV4v": {
         "defaultMessage": "Longitude"
+    },
+    "TTPc+y": {
+        "defaultMessage": "Utiliser des touches carrées"
     },
     "TZUu3s": {
         "defaultMessage": "Flou"
@@ -680,6 +725,9 @@
     "XKcyqx": {
         "defaultMessage": "Taureau"
     },
+    "XR5/Wk": {
+        "defaultMessage": "Éditer"
+    },
     "XTJGzY": {
         "defaultMessage": "Galerie (fil) avec légendes"
     },
@@ -695,11 +743,17 @@
     "YWcp4v": {
         "defaultMessage": "Point rempli"
     },
+    "YwySSO": {
+        "defaultMessage": "Vertical"
+    },
     "YyPYHk": {
         "defaultMessage": "Scorpion"
     },
     "Z27IP6": {
         "defaultMessage": "Carte"
+    },
+    "Z4f5qh": {
+        "defaultMessage": "Boutons"
     },
     "Z5jrDS": {
         "defaultMessage": "Interlettrage"
@@ -715,6 +769,9 @@
     },
     "ZMS1Wv": {
         "defaultMessage": "Texte"
+    },
+    "Zbu5Uk": {
+        "defaultMessage": "Libellé"
     },
     "ZeosMy": {
         "defaultMessage": "21 mars au 19 avr"
@@ -839,6 +896,9 @@
     "eoW0tZ": {
         "defaultMessage": "Durée"
     },
+    "f1XHNG": {
+        "defaultMessage": "Bouton"
+    },
     "f5Yipd": {
         "defaultMessage": "Boîte"
     },
@@ -854,8 +914,14 @@
     "fLdjGi": {
         "defaultMessage": "Mot de la semaine"
     },
+    "fOYYk7": {
+        "defaultMessage": "Aligner les éléments"
+    },
     "fVqgfl": {
         "defaultMessage": "[sans titre]"
+    },
+    "fbUW2U": {
+        "defaultMessage": "Éléments"
     },
     "fbiNiR": {
         "defaultMessage": "Choisir une taille..."
@@ -884,6 +950,9 @@
     "hVE7TA": {
         "defaultMessage": "Question"
     },
+    "heeSlL": {
+        "defaultMessage": "Styles du cadre et du fond"
+    },
     "hoDz0O": {
         "defaultMessage": "Description"
     },
@@ -910,6 +979,9 @@
     },
     "iipV5Q": {
         "defaultMessage": "Type"
+    },
+    "ijsNO4": {
+        "defaultMessage": "colonnes"
     },
     "irG6mX": {
         "defaultMessage": "Distance"
@@ -955,6 +1027,9 @@
     },
     "liyV7Y": {
         "defaultMessage": "Taille"
+    },
+    "mBYGpP": {
+        "defaultMessage": "Popup"
     },
     "mOSkbf": {
         "defaultMessage": "Utilisation"
@@ -1106,6 +1181,9 @@
     "ru3tjH": {
         "defaultMessage": "Mauvaise réponse"
     },
+    "rzXCu2": {
+        "defaultMessage": "Style du libellé"
+    },
     "rzdds2": {
         "defaultMessage": "Interlocuteur"
     },
@@ -1175,8 +1253,14 @@
     "uiTxd7": {
         "defaultMessage": "Résultats"
     },
+    "uoF5Pv": {
+        "defaultMessage": "Contenu"
+    },
     "upzOTm": {
         "defaultMessage": "Crédits"
+    },
+    "uv3PH4": {
+        "defaultMessage": "Couleur du fond"
     },
     "uwcXzb": {
         "defaultMessage": "Image"
@@ -1241,6 +1325,9 @@
     "xT/onn": {
         "defaultMessage": "Image"
     },
+    "xTJlyi": {
+        "defaultMessage": "Horizontal"
+    },
     "xYqGzM": {
         "defaultMessage": "Auteur"
     },
@@ -1249,6 +1336,9 @@
     },
     "xj0o1v": {
         "defaultMessage": "Grille"
+    },
+    "xmp9nw": {
+        "defaultMessage": "Espacement"
     },
     "xsipID": {
         "defaultMessage": "Image"
@@ -1282,6 +1372,9 @@
     },
     "z4CiV1": {
         "defaultMessage": "Texte"
+    },
+    "z4Pr+g": {
+        "defaultMessage": "Visuel (image ou vidéo)"
     },
     "zD2Q5Y": {
         "defaultMessage": "19 fév au 20 mars"

@@ -193,10 +193,10 @@ export const allScreens = [
             backgroundColor: { alpha: 1, color: '#001133' },
         },
         buttonsTextStyle: {
-            fontFamily: "Courier New",
+            fontFamily: 'Courier New',
             fontStyle: {
                 bold: true,
-            }
+            },
         },
         result: {
             body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?',
@@ -370,11 +370,11 @@ export const allScreens = [
             backgroundColor: { alpha: 1, color: '#001133' },
         },
         buttonsTextStyle: {
-            fontFamily: "Courier New",
+            fontFamily: 'Courier New',
             fontStyle: {
                 bold: true,
-                transform: "uppercase"
-            }
+                transform: 'uppercase',
+            },
         },
         options: {
             facebook: true,
@@ -413,6 +413,19 @@ export const allScreens = [
             description: text('long'),
         })),
         background: backgroundVideo(),
+    },
+    {
+        id: uuid(),
+        type: 'keypad',
+        items: signs.map(({ id = '' }) => ({
+            label: id,
+        })),
+        keypadLayout: {
+            columnAlign: 'middle',
+            columns: 3,
+            spacing: 10,
+        },
+        // background: backgroundVideo(),
     },
 ];
 

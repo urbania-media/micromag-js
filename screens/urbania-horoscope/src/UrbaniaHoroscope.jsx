@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
@@ -21,6 +22,7 @@ import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
+import Keypad from '@micromag/element-keypad';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Author from '@micromag/element-urbania-author';
@@ -134,7 +136,7 @@ const UrbaniaHoroscope = ({
                     : null),
                 ...defaultSign,
             })),
-        [],
+        [signsValue],
     );
 
     const { width, height, resolution } = useScreenSize();
@@ -149,7 +151,6 @@ const UrbaniaHoroscope = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
 
-    // @note sign selection, transitions
     const [showSignsGrid, setShowSignsGrid] = useState(false);
     const [selectedSign, setSelectedSign] = useState(null);
     const [showModal, setShowModal] = useState(false);
@@ -160,30 +161,30 @@ const UrbaniaHoroscope = ({
     const onOpenSignsGrid = useCallback(() => {
         setShowSignsGrid(true);
         disableInteraction();
-        trackScreenEvent('UrbaniaHoroscope', 'open_signs_grid');
+        trackScreenEvent('open');
     }, [disableInteraction, trackScreenEvent]);
 
     const onCloseSignsGrid = useCallback(() => {
         setShowSignsGrid(false);
         setShowModal(0); // can't have a modal if signs are closed
         enableInteraction();
-        trackScreenEvent('UrbaniaHoroscope', 'close_signs_grid');
+        trackScreenEvent('close');
     }, [setShowSignsGrid, setShowModal, enableInteraction, trackScreenEvent]);
 
     const onSelectSign = useCallback(
         (e, id) => {
             e.stopPropagation();
-            const foundSign = signs.find((s) => s.id === id);
-            setSelectedSign(foundSign);
+            const foundSignIndex = signs.findIndex((s) => s.id === id);
+            setSelectedSign(foundSignIndex);
             setShowModal(true);
-            trackScreenEvent('UrbaniaHoroscope', 'select_sign', foundSign);
+            trackScreenEvent('select_sign', signs[foundSignIndex]);
         },
         [signs, setSelectedSign, trackScreenEvent],
     );
 
     const onCloseModal = useCallback(() => {
         setShowModal(0);
-        trackScreenEvent('UrbaniaHoroscope', 'close_sign_modal');
+        trackScreenEvent('close_sign');
     }, [setShowModal, trackScreenEvent]);
 
     const computeSignsGridProgress = useCallback(
@@ -233,28 +234,30 @@ const UrbaniaHoroscope = ({
         springParams: { config: { tension: 300, friction: 30 } },
     });
 
-    const getHeaderStyles = (p) => ({
-        transform: `translateY(${-100 * p * (1 - p)}%)`,
-        opacity: p > 0.25 ? 1 - p : 1,
+    const getHeaderStyles = (spring) => ({
+        transform: spring.to((p) => `translateY(${-100 * p * (1 - p)}%)`),
+        opacity: spring.to((p) => (p > 0.25 ? 1 - p : 1)),
     });
-    const getSignsContainerStyles = (p) => ({
-        opacity: p,
-        pointerEvents: p < 0.25 ? 'none' : 'auto',
+    const getSignsContainerStyles = (spring) => ({
+        opacity: spring,
+        pointerEvents: spring.to((p) => (p < 0.25 ? 'none' : 'auto')),
     });
-    const getSignStyles = (i, p) => ({
-        opacity: p,
-        transform: `translateY(${3 * (1 - p)}rem) scale(${1 - 0.25 * (1 - p)})`,
+    const getSignStyles = (spring) => ({
+        opacity: spring,
+        transform: spring.to(
+            (p) => `translateY(${3 * (1 - p) ** 5}rem) scale(${1 - 0.25 * (1 - p)})`,
+        ),
     });
-    const getAuthorStyles = (p) => ({
-        transform: `translateY(${2 * (1 - p)}rem)`,
-        opacity: p,
+    const getAuthorStyles = (spring) => ({
+        transform: spring.to((p) => `translateY(${2 * (1 - p)}rem)`),
+        opacity: spring,
     });
-    const getBackdropStyles = (p) => ({
-        opacity: p,
+    const getBackdropStyles = (spring) => ({
+        opacity: spring,
     });
-    const getModalStyles = (p) => ({
-        transform: `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`,
-        pointerEvents: p < 0.1 ? 'none' : 'auto',
+    const getModalStyles = (spring) => ({
+        transform: spring.to((p) => `translateY(${100 * (1 - (p < 0.2 ? 0.1 * p + p : p))}%)`),
+        pointerEvents: spring.to((p) => (p < 0.1 ? 'none' : 'auto')),
     });
 
     // for editor purposes
@@ -276,7 +279,7 @@ const UrbaniaHoroscope = ({
             const index = screenState.split('.').pop();
             setShowSignsGrid(1);
             setShowModal(1);
-            setSelectedSign(signs[index]);
+            setSelectedSign(index);
         }
     }, [screenState]);
 
@@ -311,33 +314,22 @@ const UrbaniaHoroscope = ({
             {...(showSignsGrid ? stopDragEventsPropagation : null)}
         >
             {!isView ? <div {...mouseBlocker} /> : null}
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                />
-            ) : null}
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Layout
                     className={styles.layout}
                     style={
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
-                                  paddingBottom: (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }
                     height={height * 0.8}
                 >
-                    <div
+                    <animated.div
                         className={styles.headerContainer}
                         style={getHeaderStyles(showSignsGridProgress)}
                     >
@@ -364,7 +356,7 @@ const UrbaniaHoroscope = ({
                                 <Text className={styles.description} {...description} />
                             ) : null}
                         </ScreenElement>
-                    </div>
+                    </animated.div>
 
                     <ScreenElement
                         emptyLabel={
@@ -390,9 +382,14 @@ const UrbaniaHoroscope = ({
                     </ScreenElement>
 
                     {isView && !isPlaceholder ? (
-                        <div
+                        <animated.div
                             className={styles.header}
-                            style={getSignsContainerStyles(showSignsGridProgress)}
+                            style={{
+                                opacity: showSignsGridProgress,
+                                pointerEvents: showSignsGridProgress.to((p) =>
+                                    p < 0.25 ? 'none' : 'auto',
+                                ),
+                            }}
                         >
                             <div className={styles.buttons}>
                                 <Button
@@ -418,33 +415,35 @@ const UrbaniaHoroscope = ({
                                     withoutStyle
                                 />
                             </div>
-                        </div>
+                        </animated.div>
                     ) : null}
 
                     {!isPlaceholder ? (
-                        <div
+                        <animated.div
                             className={styles.signsGridContainer}
                             style={getSignsContainerStyles(showSignsGridProgress)}
                             {...bindSignsDrag()}
                         >
-                            <div className={styles.signs}>
-                                {signs.map((sign, i) => {
+                            <Keypad
+                                columns={3}
+                                spacing={5}
+                                items={signs.map((sign) => {
                                     const { id = null } = sign || {};
                                     return (
-                                        <div
+                                        <animated.div
                                             key={id}
                                             className={styles.sign}
-                                            style={getSignStyles(i, showSignsGridProgress)}
+                                            style={getSignStyles(showSignsGridProgress)}
                                         >
                                             <SignCard
                                                 key={id}
                                                 sign={sign}
                                                 onClick={(e) => onSelectSign(e, id)}
                                             />
-                                        </div>
+                                        </animated.div>
                                     );
                                 })}
-                            </div>
+                            />
 
                             <ScreenElement
                                 key="author"
@@ -468,10 +467,10 @@ const UrbaniaHoroscope = ({
                                     />
                                 ) : null}
                             </ScreenElement>
-                        </div>
+                        </animated.div>
                     ) : null}
 
-                    <div
+                    <animated.div
                         className={styles.modal}
                         style={getModalStyles(showModalProgress)}
                         {...bindModalDrag()}
@@ -479,26 +478,45 @@ const UrbaniaHoroscope = ({
                         <SignModal
                             width={width}
                             height={height}
-                            sign={selectedSign}
+                            sign={signs[selectedSign]}
                             subtitle={signSubtitle}
                             onClick={onCloseModal}
                         />
-                    </div>
+                    </animated.div>
 
                     {!isPlaceholder ? (
-                        <div
+                        <animated.div
                             className={styles.backdrop}
                             style={getBackdropStyles(showSignsGridProgress)}
                         >
                             {popupBackgroundUrl !== null ? (
-                                <video className={styles.videoBackdrop} autoPlay muted loop>
+                                <video
+                                    className={styles.videoBackdrop}
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                >
                                     <source src={popupBackgroundUrl} type="video/mp4" />
                                 </video>
                             ) : null}
-                        </div>
+                        </animated.div>
                     ) : null}
                 </Layout>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

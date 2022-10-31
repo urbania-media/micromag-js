@@ -39,6 +39,7 @@ function ScreenStates({ screen, value, className, onChange }) {
         stateParam !== null && states.findIndex(({ id }) => id === stateParam) !== -1
             ? stateParam
             : null;
+
     return (
         <div
             className={classNames([

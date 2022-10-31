@@ -1,0 +1,12 @@
+// @import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.inner {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.slot {
+    position: relative;
+}

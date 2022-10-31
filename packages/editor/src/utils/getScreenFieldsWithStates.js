@@ -1,11 +1,16 @@
 function getScreenFieldsWithStates(definition) {
-    const { fields: screenFields = [], states = null } = definition || {};
+    const { fields: screenFields = null, states = null } = definition || {};
     if (states === null) {
         return screenFields;
     }
-    return [
-        ...states.reduce(
-            (statesFields, { id, fields = [], repeatable = false, fieldName = null, label }) => [
+
+    const extraFields = states.reduce(
+        (
+            statesFields,
+            current
+        ) => {
+            const { id, fields = [], repeatable = false, fieldName = null, label, defaultValue = null } = current || {};
+            return [
                 ...statesFields,
                 ...(repeatable
                     ? [
@@ -13,6 +18,7 @@ function getScreenFieldsWithStates(definition) {
                               type: 'items',
                               name: fieldName || id,
                               label,
+                              defaultValue,
                               stateId: id,
                               itemsField: {
                                   label,
@@ -38,11 +44,12 @@ function getScreenFieldsWithStates(definition) {
                           stateId: id,
                       }))
                     : []),
-            ],
-            [],
-        ),
-        ...screenFields,
-    ];
+            ];
+        },
+        [],
+    );
+
+    return [...extraFields, ...screenFields];
 }
 
 export default getScreenFieldsWithStates;

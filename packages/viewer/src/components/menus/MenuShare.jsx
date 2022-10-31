@@ -20,7 +20,6 @@ const propTypes = {
     description: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     focusable: PropTypes.bool,
-    // shouldLoad: PropTypes.bool, // @todo still needed? to re-implement?
     paddingTop: PropTypes.number,
     currentScreenIndex: PropTypes.number,
     shareUrl: PropTypes.string,
@@ -90,7 +89,7 @@ const ViewerMenuShare = ({
     useEffect(() => {
         setFinalShareUrl(
             shareCurrentScreen && currentScreenIndex !== 0
-                ? `${shareUrl}/${currentScreenIndex}`
+                ? `${shareUrl}/${currentScreenIndex+1}`
                 : shareUrl,
         );
     }, [shareCurrentScreen, currentScreenIndex, setFinalShareUrl]);

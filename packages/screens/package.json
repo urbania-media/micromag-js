@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.251",
+    "version": "0.3.262",
     "description": "",
     "keywords": [
         "javascript"
@@ -54,29 +54,30 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.251",
-        "@micromag/screen-audio": "^0.3.251",
-        "@micromag/screen-contribution": "^0.3.251",
-        "@micromag/screen-conversation": "^0.3.251",
-        "@micromag/screen-gallery": "^0.3.251",
-        "@micromag/screen-gallery-feed": "^0.3.251",
-        "@micromag/screen-image": "^0.3.251",
-        "@micromag/screen-map": "^0.3.251",
-        "@micromag/screen-quiz": "^0.3.251",
-        "@micromag/screen-quote": "^0.3.251",
-        "@micromag/screen-ranking": "^0.3.251",
-        "@micromag/screen-share": "^0.3.251",
-        "@micromag/screen-slideshow": "^0.3.251",
-        "@micromag/screen-survey": "^0.3.251",
-        "@micromag/screen-text": "^0.3.251",
-        "@micromag/screen-timeline": "^0.3.251",
-        "@micromag/screen-title": "^0.3.251",
-        "@micromag/screen-urbania-article": "^0.3.251",
-        "@micromag/screen-urbania-horoscope": "^0.3.251",
-        "@micromag/screen-urbania-recommendation": "^0.3.251",
-        "@micromag/screen-urbania-trivia": "^0.3.251",
-        "@micromag/screen-video": "^0.3.251",
-        "@micromag/screen-video-360": "^0.3.251",
+        "@micromag/core": "^0.3.262",
+        "@micromag/screen-audio": "^0.3.262",
+        "@micromag/screen-contribution": "^0.3.262",
+        "@micromag/screen-conversation": "^0.3.262",
+        "@micromag/screen-gallery": "^0.3.262",
+        "@micromag/screen-gallery-feed": "^0.3.262",
+        "@micromag/screen-image": "^0.3.262",
+        "@micromag/screen-keypad": "^0.3.262",
+        "@micromag/screen-map": "^0.3.262",
+        "@micromag/screen-quiz": "^0.3.262",
+        "@micromag/screen-quote": "^0.3.262",
+        "@micromag/screen-ranking": "^0.3.262",
+        "@micromag/screen-share": "^0.3.262",
+        "@micromag/screen-slideshow": "^0.3.262",
+        "@micromag/screen-survey": "^0.3.262",
+        "@micromag/screen-text": "^0.3.262",
+        "@micromag/screen-timeline": "^0.3.262",
+        "@micromag/screen-title": "^0.3.262",
+        "@micromag/screen-urbania-article": "^0.3.262",
+        "@micromag/screen-urbania-horoscope": "^0.3.262",
+        "@micromag/screen-urbania-recommendation": "^0.3.262",
+        "@micromag/screen-urbania-trivia": "^0.3.262",
+        "@micromag/screen-video": "^0.3.262",
+        "@micromag/screen-video-360": "^0.3.262",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2"
@@ -84,5 +85,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "2bde6156abc5306b3303a3c860f81e2446696e79"
+    "gitHead": "2b4debbebfbf97b8b69e0fc33316a3936761b4af"
 }

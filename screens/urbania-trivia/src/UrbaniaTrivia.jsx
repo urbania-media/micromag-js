@@ -462,6 +462,18 @@ const UrbaniaTrivia = ({
             ])}
             data-screen-ready={isStatic || isCapture || ready}
         >
+            <Container width={width} height={height} className={styles.content}>
+                <div
+                    className={styles.inner}
+                    style={
+                        verticalVideo
+                            ? { justifyContent: 'flex-start', marginTop: spacing * 2 }
+                            : null
+                    }
+                >
+                    {items}
+                </div>
+            </Container>
             {!isPlaceholder ? (
                 <Background
                     background={finalBackground}
@@ -478,6 +490,7 @@ const UrbaniaTrivia = ({
                     resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={mediaShouldLoad}
+                    withoutVideo={isPreview}
                 />
             ) : (
                 <Background
@@ -486,20 +499,9 @@ const UrbaniaTrivia = ({
                     width={width}
                     height={height}
                     resolution={resolution}
+                    withoutVideo={isPreview}
                 />
             )}
-            <Container width={width} height={height}>
-                <div
-                    className={styles.content}
-                    style={
-                        verticalVideo
-                            ? { justifyContent: 'flex-start', marginTop: spacing * 2 }
-                            : null
-                    }
-                >
-                    {items}
-                </div>
-            </Container>
         </div>
     );
 };

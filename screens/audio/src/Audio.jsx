@@ -255,7 +255,8 @@ const AudioScreen = ({
                 key="bottom"
                 className={styles.bottom}
                 style={{
-                    transform: current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
+                    transform:
+                        current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
                     paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
                     paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
                     paddingBottom: spacing / 2,
@@ -294,6 +295,21 @@ const AudioScreen = ({
             ])}
             data-screen-ready={ready}
         >
+            <Container width={width} height={height} className={styles.content}>
+                <Layout
+                    fullscreen
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                              }
+                            : null
+                    }
+                >
+                    {elements}
+                </Layout>
+            </Container>
             {!isPlaceholder ? (
                 <Background
                     background={background}
@@ -302,23 +318,10 @@ const AudioScreen = ({
                     resolution={resolution}
                     playing={backgroundPlaying}
                     shouldLoad={mediaShouldLoad}
+                    withoutVideo={isPreview}
+                    className={styles.background}
                 />
             ) : null}
-            <Container width={width} height={height}>
-                <Layout
-                    fullscreen
-                    style={
-                        !isPlaceholder
-                            ? {
-                                  padding: spacing,
-                                  paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
-                              }
-                            : null
-                    }
-                >
-                    {elements}
-                </Layout>
-            </Container>
         </div>
     );
 };

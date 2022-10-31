@@ -23,7 +23,7 @@ const defaultProps = {
     onChange: null,
 };
 
-const ScreenLayoutField = ({ value, screenState, className, onChange }) => {
+const ScreenLayoutField = ({ value, screenState, className, onChange, ...props }) => {
     const { id, layouts = [] } = useScreenDefinition();
 
     return (

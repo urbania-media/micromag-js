@@ -6,13 +6,22 @@
 .container {
     @extend %screen;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
     .empty {
         @extend %empty;
         height: 100%;
         margin: 0;
     }
 
-    .content,
+    .inner,
     .canvas,
     .canvasButton,
     .video {

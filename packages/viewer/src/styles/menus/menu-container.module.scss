@@ -7,8 +7,8 @@
 
 .heightContainer {
     @extend %fullscreen;
-    overflow: hidden;
     z-index: 2;
+    overflow: hidden;
 }
 
 .backdrop {

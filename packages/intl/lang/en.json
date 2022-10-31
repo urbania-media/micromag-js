@@ -209,6 +209,9 @@
     "6bd963": {
         "defaultMessage": "Virgo"
     },
+    "6iR9Mt": {
+        "defaultMessage": "Heading"
+    },
     "6jX5Tb": {
         "defaultMessage": "Authors"
     },
@@ -221,11 +224,17 @@
     "73hxYw": {
         "defaultMessage": "Author"
     },
+    "75nZbY": {
+        "defaultMessage": "Keypad"
+    },
     "7YE/VU": {
         "defaultMessage": "Sponsor"
     },
     "7ZzlUE": {
         "defaultMessage": "Oct 23 - Nov 22"
+    },
+    "7bDRdd": {
+        "defaultMessage": "sp."
     },
     "7mMPO4": {
         "defaultMessage": "Sagittarius"
@@ -332,6 +341,9 @@
     "CJmQeh": {
         "defaultMessage": "Image with text"
     },
+    "CWnXWp": {
+        "defaultMessage": "No button yet"
+    },
     "CrzYgw": {
         "defaultMessage": "Quote"
     },
@@ -392,6 +404,9 @@
     "FOmgqv": {
         "defaultMessage": "Question"
     },
+    "FjuRaw": {
+        "defaultMessage": "Keypad settings"
+    },
     "G/ITGY": {
         "defaultMessage": "Your name"
     },
@@ -422,6 +437,12 @@
     "HseFdk": {
         "defaultMessage": "Edit"
     },
+    "HwqzVR": {
+        "defaultMessage": "Visual"
+    },
+    "Hyqnww": {
+        "defaultMessage": "Popups"
+    },
     "I2bIHm": {
         "defaultMessage": "Good answer color"
     },
@@ -434,6 +455,9 @@
     "ICXTfR": {
         "defaultMessage": "Links"
     },
+    "IE7U/Q": {
+        "defaultMessage": "Heading"
+    },
     "J9e9Qb": {
         "defaultMessage": "Video"
     },
@@ -445,6 +469,9 @@
     },
     "JDPMlG": {
         "defaultMessage": "Background color"
+    },
+    "JRZoe6": {
+        "defaultMessage": "Content"
     },
     "JoWKee": {
         "defaultMessage": "Create your first screen"
@@ -472,6 +499,9 @@
     },
     "LkVfwW": {
         "defaultMessage": "Screen {index}"
+    },
+    "LrRW+9": {
+        "defaultMessage": "Add a button"
     },
     "Lrwi2G": {
         "defaultMessage": "Email"
@@ -511,6 +541,9 @@
     },
     "O2JVA+": {
         "defaultMessage": "Left"
+    },
+    "OEckOD": {
+        "defaultMessage": "Text style"
     },
     "OJi+eg": {
         "defaultMessage": "Label"
@@ -557,6 +590,9 @@
     "QSmRdP": {
         "defaultMessage": "Add an image"
     },
+    "Qanvis": {
+        "defaultMessage": "Visual"
+    },
     "Qe03Xz": {
         "defaultMessage": "Sign Subtitle"
     },
@@ -575,6 +611,9 @@
     "RK/QEY": {
         "defaultMessage": "Unmute"
     },
+    "RKA2p5": {
+        "defaultMessage": "align"
+    },
     "RcLsua": {
         "defaultMessage": "Message"
     },
@@ -590,6 +629,9 @@
     "S/mavZ": {
         "defaultMessage": "Text and Images"
     },
+    "S1F/re": {
+        "defaultMessage": "Columns"
+    },
     "S9YpbV": {
         "defaultMessage": "Text"
     },
@@ -604,6 +646,9 @@
     },
     "THKV4v": {
         "defaultMessage": "Longitude"
+    },
+    "TTPc+y": {
+        "defaultMessage": "Use square keys"
     },
     "TZUu3s": {
         "defaultMessage": "Blur"
@@ -680,6 +725,9 @@
     "XKcyqx": {
         "defaultMessage": "Taurus"
     },
+    "XR5/Wk": {
+        "defaultMessage": "Edit"
+    },
     "XTJGzY": {
         "defaultMessage": "Gallery feed with captions"
     },
@@ -695,11 +743,17 @@
     "YWcp4v": {
         "defaultMessage": "Bullet filled"
     },
+    "YwySSO": {
+        "defaultMessage": "Vertical"
+    },
     "YyPYHk": {
         "defaultMessage": "Scorpio"
     },
     "Z27IP6": {
         "defaultMessage": "Map"
+    },
+    "Z4f5qh": {
+        "defaultMessage": "Buttons"
     },
     "Z5jrDS": {
         "defaultMessage": "Letter spacing"
@@ -715,6 +769,9 @@
     },
     "ZMS1Wv": {
         "defaultMessage": "Text"
+    },
+    "Zbu5Uk": {
+        "defaultMessage": "Label"
     },
     "ZeosMy": {
         "defaultMessage": "Mar 21 - Apr 19"
@@ -839,6 +896,9 @@
     "eoW0tZ": {
         "defaultMessage": "Duration"
     },
+    "f1XHNG": {
+        "defaultMessage": "Button"
+    },
     "f5Yipd": {
         "defaultMessage": "Box"
     },
@@ -854,8 +914,14 @@
     "fLdjGi": {
         "defaultMessage": "Word of the week"
     },
+    "fOYYk7": {
+        "defaultMessage": "Align items"
+    },
     "fVqgfl": {
         "defaultMessage": "[no title]"
+    },
+    "fbUW2U": {
+        "defaultMessage": "Items"
     },
     "fbiNiR": {
         "defaultMessage": "Select a size..."
@@ -884,6 +950,9 @@
     "hVE7TA": {
         "defaultMessage": "Question"
     },
+    "heeSlL": {
+        "defaultMessage": "Frame and backgound styles"
+    },
     "hoDz0O": {
         "defaultMessage": "Description"
     },
@@ -910,6 +979,9 @@
     },
     "iipV5Q": {
         "defaultMessage": "Type"
+    },
+    "ijsNO4": {
+        "defaultMessage": "columns"
     },
     "irG6mX": {
         "defaultMessage": "Distance"
@@ -955,6 +1027,9 @@
     },
     "liyV7Y": {
         "defaultMessage": "Size"
+    },
+    "mBYGpP": {
+        "defaultMessage": "Popup"
     },
     "mOSkbf": {
         "defaultMessage": "Usage"
@@ -1106,6 +1181,9 @@
     "ru3tjH": {
         "defaultMessage": "Bad answer color"
     },
+    "rzXCu2": {
+        "defaultMessage": "Label style"
+    },
     "rzdds2": {
         "defaultMessage": "Speaker"
     },
@@ -1175,8 +1253,14 @@
     "uiTxd7": {
         "defaultMessage": "Results"
     },
+    "uoF5Pv": {
+        "defaultMessage": "Content"
+    },
     "upzOTm": {
         "defaultMessage": "Credits"
+    },
+    "uv3PH4": {
+        "defaultMessage": "Backdrop color"
     },
     "uwcXzb": {
         "defaultMessage": "Image"
@@ -1241,6 +1325,9 @@
     "xT/onn": {
         "defaultMessage": "Image"
     },
+    "xTJlyi": {
+        "defaultMessage": "Horizontal"
+    },
     "xYqGzM": {
         "defaultMessage": "Author"
     },
@@ -1249,6 +1336,9 @@
     },
     "xj0o1v": {
         "defaultMessage": "Grid"
+    },
+    "xmp9nw": {
+        "defaultMessage": "Spacing"
     },
     "xsipID": {
         "defaultMessage": "Image"
@@ -1282,6 +1372,9 @@
     },
     "z4CiV1": {
         "defaultMessage": "Text"
+    },
+    "z4Pr+g": {
+        "defaultMessage": "Visual (Image or Video)"
     },
     "zD2Q5Y": {
         "defaultMessage": "Feb 19 - Mar 20"

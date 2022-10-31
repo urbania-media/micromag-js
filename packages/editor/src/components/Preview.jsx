@@ -7,7 +7,6 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, PlaybackProvider } from '@micromag/core/contexts';
 import { useDimensionObserver, useParsedStory } from '@micromag/core/hooks';
-// import { getDeviceScreens } from '@micromag/core/utils';
 import { Viewer } from '@micromag/viewer';
 
 import useRouteParams from '../hooks/useRouteParams';

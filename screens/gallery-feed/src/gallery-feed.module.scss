@@ -6,6 +6,15 @@
 .container {
     position: relative;
 
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
     .emptyImage,
     .emptyCaption {
         @extend %empty;

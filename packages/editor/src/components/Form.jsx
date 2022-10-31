@@ -5,20 +5,24 @@ import React, { useCallback, useState, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
 import { useRoutePush, ScreenProvider, useScreensManager } from '@micromag/core/contexts';
 import { slug } from '@micromag/core/utils';
+
 import useFormTransition from '../hooks/useFormTransition';
 import useRouteParams from '../hooks/useRouteParams';
-import styles from '../styles/form.module.scss';
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
 import getScreenFieldsWithStates from '../utils/getScreenFieldsWithStates';
+
 import SettingsButton from './buttons/Settings';
 import FieldWithContexts from './forms/FieldWithContexts';
 import ScreenForm from './forms/Screen';
 import Breadcrumb from './menus/Breadcrumb';
 import DeleteScreenModal from './modals/DeleteScreen';
+
+import styles from '../styles/form.module.scss';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -74,9 +78,13 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             const hasField = field !== null;
             const fieldRoute = formName !== null ? 'screen.field.form' : 'screen.field';
             const [rootFieldName = null] = field !== null ? field.split('.') : [];
+            const [currentStateId = null] = fieldParams !== null ? fieldParams.split('/') : [];
             const { stateId = null } =
                 (rootFieldName !== null
-                    ? screenFields.find(({ name }) => name === rootFieldName) || null
+                    ? screenFields.find(
+                          ({ name, stateId: fieldStateId }) =>
+                              name === rootFieldName && currentStateId === fieldStateId,
+                      ) || null
                     : null) || {};
             routePush(hasField ? fieldRoute : 'screen', {
                 screen: screenId,
@@ -96,6 +104,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             routePush,
             screenId,
             screenFields,
+            fieldParams,
             url,
             fieldForms,
             setFieldForms,

@@ -11,9 +11,9 @@ import {
     RoutesProvider,
     TrackingProvider,
     FieldsProvider,
-    UserInteractionProvider,
     ComponentsProvider,
     PlaybackProvider,
+    VisitorProvider,
     SCREENS_NAMESPACE,
 } from '@micromag/core/contexts';
 import fieldsManager from '@micromag/fields/manager';
@@ -38,6 +38,7 @@ const propTypes = {
     routes: ViewerPropTypes.routes,
     withoutRouter: PropTypes.bool,
     googleApiKey: PropTypes.string,
+    visitor: MicromagPropTypes.visitor,
     trackingVariables: MicromagPropTypes.trackingVariables,
     locale: PropTypes.string,
     locales: PropTypes.arrayOf(PropTypes.string),
@@ -55,6 +56,7 @@ const defaultProps = {
     routes: defaultRoutes,
     withoutRouter: false,
     googleApiKey: null,
+    visitor: null,
     trackingVariables: null,
     locale: 'en',
     locales: ['fr', 'en'],
@@ -71,6 +73,7 @@ const ViewerContainer = ({
     routes,
     withoutRouter,
     googleApiKey,
+    visitor,
     trackingVariables,
     locale,
     locales,
@@ -108,7 +111,7 @@ const ViewerContainer = ({
                                 namespace={SCREENS_NAMESPACE}
                                 components={screenComponents || {}}
                             >
-                                <UserInteractionProvider>
+                                <VisitorProvider visitor={visitor}>
                                     <PlaybackProvider>
                                         <TrackingProvider variables={finalTrackingVariables}>
                                             {withoutRouter ? (
@@ -127,7 +130,7 @@ const ViewerContainer = ({
                                             )}
                                         </TrackingProvider>
                                     </PlaybackProvider>
-                                </UserInteractionProvider>
+                                </VisitorProvider>
                             </ComponentsProvider>
                         </ScreensProvider>
                     </FieldsProvider>

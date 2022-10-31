@@ -97,10 +97,7 @@ const ConversationScreen = ({
 
     const hasTitle = isTextFilled(title);
 
-    const {
-        ref: contentRef,
-        height: scrollHeight
-    } = useDimensionObserver();
+    const { ref: contentRef, height: scrollHeight } = useDimensionObserver();
 
     const scrollRef = useRef(null);
     useEffect(() => {
@@ -175,20 +172,7 @@ const ConversationScreen = ({
             ])}
             data-screen-ready
         >
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                />
-            ) : null}
-
-            <Container width={width} height={height}>
+            <Container width={width} height={height} className={styles.content}>
                 <Scroll
                     ref={scrollRef}
                     disabled={scrollingDisabled}
@@ -202,9 +186,10 @@ const ConversationScreen = ({
                                 !isPlaceholder
                                     ? {
                                           padding: spacing,
-                                          paddingTop: (current && !isPreview ? viewerTopHeight : 0) + spacing,
+                                          paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                           paddingBottom:
-                                              (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                                              (current && !isPreview ? viewerBottomHeight : 0) +
+                                              spacing,
                                       }
                                     : null
                             }
@@ -273,6 +258,7 @@ const ConversationScreen = ({
                                                     withAnimation={withAnimation}
                                                     isPlaying={current && shouldPlay}
                                                     shouldLoad={mediaShouldLoad}
+                                                    withoutVideo={isPreview}
                                                     messageStyle={messageStyle}
                                                     speakerStyle={speakerStyle}
                                                 />
@@ -314,6 +300,20 @@ const ConversationScreen = ({
                     </div>
                 </Scroll>
             </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
         </div>
     );
 };

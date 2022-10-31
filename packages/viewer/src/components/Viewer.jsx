@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label, jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, no-nested-ternary, react/jsx-props-no-spreading */
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -12,6 +13,7 @@ import {
     ViewerProvider,
     usePlaybackContext,
     VisitorProvider,
+    StoryProvider,
 } from '@micromag/core/contexts';
 import {
     useFullscreen,
@@ -53,7 +55,6 @@ const propTypes = {
     screenState: PropTypes.string,
     deviceScreens: MicromagPropTypes.deviceScreens,
     renderContext: MicromagPropTypes.renderContext,
-    visitor: MicromagPropTypes.visitor,
     onScreenChange: PropTypes.func,
     tapNextScreenWidthPercent: PropTypes.number,
     storyIsParsed: PropTypes.bool,
@@ -98,11 +99,10 @@ const defaultProps = {
     screenState: null,
     deviceScreens: getDeviceScreens(),
     renderContext: 'view',
-    visitor: null,
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.8,
     storyIsParsed: false,
-    neighborScreensActive: 2,
+    neighborScreensActive: 1,
     neighborScreenOffset: 105,
     neighborScreenScale: 0.8,
     withMetadata: false,
@@ -139,7 +139,6 @@ const Viewer = ({
     screenState,
     deviceScreens,
     renderContext,
-    visitor,
     tapNextScreenWidthPercent,
     storyIsParsed,
     neighborScreensActive,
@@ -410,7 +409,7 @@ const Viewer = ({
     const springParams = useMemo(() => ({ config: SPRING_CONFIG_TIGHT }), []);
     const {
         dragging: isDragging,
-        progress: screenIndexProgress,
+        progress: progressSpring,
         bind: dragContentBind,
     } = useDragProgress({
         progress: screenIndex,
@@ -422,30 +421,47 @@ const Viewer = ({
         springParams,
     });
 
-    const getScreenStylesByIndex = (index, progress) => {
+    const getScreenStylesByIndex = (index, spring) => {
         if (transitionType === 'stack') {
-            const t = index - progress;
-            const clamped = Math.min(1, Math.max(0, t));
-            const invert = Math.min(1, Math.max(0, -t));
-            const opacity = Math.max(0, 1 - 0.75 * invert + (t + 1));
-
-            // just hide other screens
-            if ( Math.abs(t) > neighborScreensActive ) return { opacity: 0 };
-
             return {
-                opacity,
-                transform: `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`,
-                boxShadow: `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`,
                 zIndex: index,
+                opacity: spring.to((progress) => {
+                    const t = index - progress;
+                    const invert = Math.min(1, Math.max(0, -t));
+                    if (Math.abs(t) > neighborScreensActive) return 0;
+                    return Math.max(0, 1 - 0.75 * invert + (t + 1));
+                }),
+                transform: spring.to((progress) => {
+                    const t = index - progress;
+                    const clamped = Math.min(1, Math.max(0, t));
+                    const invert = Math.min(1, Math.max(0, -t));
+                    if (Math.abs(t) > neighborScreensActive) return 'translateX(100%)';
+                    return `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`;
+                }),
+                boxShadow: spring.to((progress) => {
+                    const t = index - progress;
+                    if (Math.abs(t) > neighborScreensActive) return null;
+                    const clamped = Math.min(1, Math.max(0, t));
+                    return `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`;
+                }),
             };
         }
-        const t = index - progress;
-        const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+
         return {
-            opacity: 1 - 0.75 * clamped,
-            transform: `translateX(${t * neighborScreenOffset}%) scale(${
-                1 - (1 - neighborScreenScale) * clamped
-            })`,
+            opacity: spring.to((progress) => {
+                const t = index - progress;
+                if (Math.abs(t) > neighborScreensActive) return 0;
+                const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+                return 1 - 0.75 * clamped;
+            }),
+            transform: spring.to((progress) => {
+                const t = index - progress;
+                if (Math.abs(t) > neighborScreensActive) return `translate(100%)`;
+                const clamped = Math.min(1, Math.max(0, Math.abs(t)));
+                return `translateX(${t * neighborScreenOffset}%) scale(${
+                    1 - (1 - neighborScreenScale) * clamped
+                })`;
+            }),
             zIndex: screensCount - index,
         };
     };
@@ -501,7 +517,7 @@ const Viewer = ({
     });
 
     return (
-        <VisitorProvider visitor={visitor}>
+        <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
                 <ViewerProvider
                     containerRef={containerRef}
@@ -604,14 +620,17 @@ const Viewer = ({
                                 >
                                     {screens.map((screen, i) => {
                                         const current = screenIndex === i;
-                                        {/* const current = i === Math.round(screenIndexProgress); // base current on transition */}
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive;
-                                        const screenStyles = getScreenStylesByIndex(i, screenIndexProgress);
+
+                                        const screenStyles = getScreenStylesByIndex(
+                                            i,
+                                            progressSpring,
+                                        );
 
                                         return (
-                                            <div
+                                            <animated.div
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
                                                 style={screenStyles}
                                                 className={classNames([
@@ -621,7 +640,7 @@ const Viewer = ({
                                                     },
                                                 ])}
                                             >
-                                                {screen !== null && active ? (
+                                                {screen !== null ? (
                                                     <ViewerScreen
                                                         className={styles.screen}
                                                         screen={screen}
@@ -638,7 +657,7 @@ const Viewer = ({
                                                         scale={screenScale}
                                                     />
                                                 ) : null}
-                                            </div>
+                                            </animated.div>
                                         );
                                     })}
                                 </div>
@@ -677,7 +696,7 @@ const Viewer = ({
                     </div>
                 </ViewerProvider>
             </ScreenSizeProvider>
-        </VisitorProvider>
+        </StoryProvider>
     );
 };
 

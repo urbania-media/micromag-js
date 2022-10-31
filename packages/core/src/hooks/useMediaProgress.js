@@ -1,22 +1,22 @@
 import raf from 'raf';
 import { useEffect, useState, useRef, useCallback } from 'react';
 
-import useMediaCurrentTime from './useMediaCurrentTime';
+// import useMediaCurrentTime from './useMediaCurrentTime';
 import useMediaDuration from './useMediaDuration';
 
 function useMediaProgress(media, { disabled = false, ...props } = {}) {
     const [playing, setPlaying] = useState(!disabled);
-    const currentTime = useMediaCurrentTime(media, {
-        disabled: disabled || !playing,
-        ...props,
-    });
+    // const currentTime = useMediaCurrentTime(media, {
+    //     disabled: disabled || !playing,
+    //     ...props,
+    // });
     const duration = useMediaDuration(media, {
         disabled: disabled || !playing,
         ...props,
     });
 
     const [progress, setProgress] = useState(
-        currentTime > 0 && duration > 0 ? currentTime / duration : 0,
+        media !== null && (media.currentTime || 0) > 0 && duration > 0 ? media.currentTime / duration : 0,
     );
     const realProgressRef = useRef(progress);
     const updateTimeRef = useRef(new Date().getTime());
@@ -49,7 +49,7 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
         media.addEventListener('play', onResume);
         media.addEventListener('seeked', onResume);
         media.addEventListener('playing', onResume);
-        media.addEventListener('timeupdate', onResume);
+        // media.addEventListener('timeupdate', onResume);
         media.addEventListener('pause', onPause);
         media.addEventListener('ended', onPause);
         media.addEventListener('waiting', onPause);
@@ -65,7 +65,7 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
             media.removeEventListener('play', onResume);
             media.removeEventListener('seeked', onResume);
             media.removeEventListener('playing', onResume);
-            media.removeEventListener('timeupdate', onResume);
+            // media.removeEventListener('timeupdate', onResume);
             media.removeEventListener('pause', onPause);
             media.removeEventListener('ended', onPause);
             media.removeEventListener('waiting', onPause);
@@ -76,10 +76,7 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
     }, [media, updateProgress, setPlaying, playing]);
 
     useEffect(() => {
-        if (media === null) {
-            return () => {};
-        }
-        if (!playing || disabled) {
+        if (media === null || !playing || disabled) {
             return () => {};
         }
         let handle;
