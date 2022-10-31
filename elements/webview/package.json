@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-webview",
-    "version": "0.3.254",
+    "version": "0.3.255",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,8 +52,8 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.254",
-        "@micromag/element-button": "^0.3.254",
+        "@micromag/core": "^0.3.255",
+        "@micromag/element-button": "^0.3.255",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -63,5 +63,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "d795fa87b8a83a94d0b1c58810aeaa4bfe5051b8"
+    "gitHead": "155d0da2b216a1cf32815ab8709f2869c1cc48aa"
 }
