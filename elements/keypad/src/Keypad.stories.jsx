@@ -35,10 +35,9 @@ export const telephone = () => (
         <Keypad
             columns={phoneKeyColumns}
             spacing={phoneKeySpacing}
-            alignment={{ horizontal: 'middle' }}
-        >
-            {items}
-        </Keypad>
+            align="middle"
+            items={items}
+        />
     </div>
 );
 
@@ -71,8 +70,7 @@ export const emojis = () => (
             columns={emojisColumns}
             width={emojisKeypadWidth}
             spacing={emojisSpacing}
-        >
-            {emojisItems}
-        </Keypad>
+            items={emojisItems}
+        />
     </div>
 );
