@@ -311,10 +311,6 @@
     "defaultMessage": "Oct 23 - Nov 22",
     "description": "Horoscope date"
   },
-  "7bDRdd": {
-    "defaultMessage": "sp.",
-    "description": "Field label"
-  },
   "7mMPO4": {
     "defaultMessage": "Sagittarius",
     "description": "Horoscope sign"
@@ -471,6 +467,10 @@
     "defaultMessage": "Copy link",
     "description": "Share button label"
   },
+  "D29KoV": {
+    "defaultMessage": "left aligned",
+    "description": "Alignment label"
+  },
   "D7LIZQ": {
     "defaultMessage": "Start",
     "description": "Screen button label"
@@ -534,6 +534,10 @@
   "FJygXH": {
     "defaultMessage": "Result",
     "description": "Field label"
+  },
+  "FKOWH0": {
+    "defaultMessage": "right aligned",
+    "description": "Alignment label"
   },
   "FOmgqv": {
     "defaultMessage": "Question",
@@ -755,6 +759,10 @@
     "defaultMessage": "Title with subtitle",
     "description": "TitleSubtitle screen title"
   },
+  "P9A8cx": {
+    "defaultMessage": "middle aligned",
+    "description": "Alignment label"
+  },
   "PFNMAQ": {
     "defaultMessage": "Bottom",
     "description": "Direction"
@@ -813,10 +821,6 @@
   "RK/QEY": {
     "defaultMessage": "Unmute",
     "description": "Button label"
-  },
-  "RKA2p5": {
-    "defaultMessage": "align",
-    "description": "Field label"
   },
   "RcLsua": {
     "defaultMessage": "Message",
@@ -1304,10 +1308,6 @@
   },
   "iipV5Q": {
     "defaultMessage": "Type",
-    "description": "Field label"
-  },
-  "ijsNO4": {
-    "defaultMessage": "columns",
     "description": "Field label"
   },
   "irG6mX": {

@@ -479,12 +479,6 @@ msgctxt "7ZzlUE"
 msgid "Oct 23 - Nov 22"
 msgstr "23 oct au 22 nov"
 
-# Field label
-#: 7bDRdd
-msgctxt "7bDRdd"
-msgid "sp."
-msgstr "esp."
-
 # Horoscope sign
 #: 7mMPO4
 msgctxt "7mMPO4"
@@ -719,6 +713,12 @@ msgctxt "D21uVQ"
 msgid "Copy link"
 msgstr "Copier le lien"
 
+# Alignment label
+#: D29KoV
+msgctxt "D29KoV"
+msgid "left aligned"
+msgstr "align. gauche"
+
 # Screen button label
 #: D7LIZQ
 msgctxt "D7LIZQ"
@@ -814,6 +814,12 @@ msgstr "Urbania Horoscope"
 msgctxt "FJygXH"
 msgid "Result"
 msgstr "Résultat"
+
+# Alignment label
+#: FKOWH0
+msgctxt "FKOWH0"
+msgid "right aligned"
+msgstr "align. droite"
 
 # Placeholder label
 #: FOmgqv
@@ -1145,6 +1151,12 @@ msgctxt "P1dwGU"
 msgid "Title with subtitle"
 msgstr "Titre avec sous-titre"
 
+# Alignment label
+#: P9A8cx
+msgctxt "P9A8cx"
+msgid "middle aligned"
+msgstr "align. milieu"
+
 # Direction
 #: PFNMAQ
 msgctxt "PFNMAQ"
@@ -1233,12 +1245,6 @@ msgstr "Couleur de la ligne"
 msgctxt "RK/QEY"
 msgid "Unmute"
 msgstr "Activer le son"
-
-# Field label
-#: RKA2p5
-msgctxt "RKA2p5"
-msgid "align"
-msgstr "align."
 
 # Message field label
 #: RcLsua
@@ -1971,12 +1977,6 @@ msgstr "Collaborateur"
 msgctxt "iipV5Q"
 msgid "Type"
 msgstr "Type"
-
-# Field label
-#: ijsNO4
-msgctxt "ijsNO4"
-msgid "columns"
-msgstr "colonnes"
 
 # Field label
 #: irG6mX
