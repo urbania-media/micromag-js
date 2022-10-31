@@ -134,9 +134,6 @@
     "4E2gbX": {
         "defaultMessage": "Text"
     },
-    "4FUFdm": {
-        "defaultMessage": "Align keypad"
-    },
     "4H2n5r": {
         "defaultMessage": "Closed captions"
     },
@@ -235,6 +232,9 @@
     },
     "7ZzlUE": {
         "defaultMessage": "Oct 23 - Nov 22"
+    },
+    "7bDRdd": {
+        "defaultMessage": "sp."
     },
     "7mMPO4": {
         "defaultMessage": "Sagittarius"
@@ -403,6 +403,9 @@
     },
     "FOmgqv": {
         "defaultMessage": "Question"
+    },
+    "FjuRaw": {
+        "defaultMessage": "Keypad settings"
     },
     "G/ITGY": {
         "defaultMessage": "Your name"
@@ -608,6 +611,9 @@
     "RK/QEY": {
         "defaultMessage": "Unmute"
     },
+    "RKA2p5": {
+        "defaultMessage": "align"
+    },
     "RcLsua": {
         "defaultMessage": "Message"
     },
@@ -698,9 +704,6 @@
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
     },
-    "WhCMRh": {
-        "defaultMessage": "Keypad Layout"
-    },
     "Wk/o9B": {
         "defaultMessage": "Without true/false"
     },
@@ -775,9 +778,6 @@
     },
     "ZiWlL6": {
         "defaultMessage": "Questions"
-    },
-    "ZjfeyQ": {
-        "defaultMessage": "Keypad"
     },
     "ZxgNge": {
         "defaultMessage": "Add an item"
@@ -979,6 +979,9 @@
     },
     "iipV5Q": {
         "defaultMessage": "Type"
+    },
+    "ijsNO4": {
+        "defaultMessage": "columns"
     },
     "irG6mX": {
         "defaultMessage": "Distance"

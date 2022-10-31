@@ -281,12 +281,6 @@ msgctxt "4E2gbX"
 msgid "Text"
 msgstr "Text"
 
-# Layout field label
-#: 4FUFdm
-msgctxt "4FUFdm"
-msgid "Align keypad"
-msgstr "Align keypad"
-
 # Field label
 #: 4H2n5r
 msgctxt "4H2n5r"
@@ -484,6 +478,12 @@ msgstr "Sponsor"
 msgctxt "7ZzlUE"
 msgid "Oct 23 - Nov 22"
 msgstr "Oct 23 - Nov 22"
+
+# Field label
+#: 7bDRdd
+msgctxt "7bDRdd"
+msgid "sp."
+msgstr "sp."
 
 # Horoscope sign
 #: 7mMPO4
@@ -820,6 +820,12 @@ msgstr "Result"
 msgctxt "FOmgqv"
 msgid "Question"
 msgstr "Question"
+
+# Field label
+#: FjuRaw
+msgctxt "FjuRaw"
+msgid "Keypad settings"
+msgstr "Keypad settings"
 
 # Your name placeholder
 #: G/ITGY
@@ -1228,6 +1234,12 @@ msgctxt "RK/QEY"
 msgid "Unmute"
 msgstr "Unmute"
 
+# Field label
+#: RKA2p5
+msgctxt "RKA2p5"
+msgid "align"
+msgstr "align"
+
 # Message field label
 #: RcLsua
 msgctxt "RcLsua"
@@ -1408,12 +1420,6 @@ msgctxt "Wb5zY4"
 msgid "Select a font file..."
 msgstr "Select a font file..."
 
-# Keypad state
-#: WhCMRh
-msgctxt "WhCMRh"
-msgid "Keypad Layout"
-msgstr "Keypad Layout"
-
 # Field label
 #: Wk/o9B
 msgctxt "Wk/o9B"
@@ -1563,12 +1569,6 @@ msgstr "Mar 21 - Apr 19"
 msgctxt "ZiWlL6"
 msgid "Questions"
 msgstr "Questions"
-
-# Layout field label
-#: ZjfeyQ
-msgctxt "ZjfeyQ"
-msgid "Keypad"
-msgstr "Keypad"
 
 # Button label in items field
 #: ZxgNge
@@ -1971,6 +1971,12 @@ msgstr "Collaborator"
 msgctxt "iipV5Q"
 msgid "Type"
 msgstr "Type"
+
+# Field label
+#: ijsNO4
+msgctxt "ijsNO4"
+msgid "columns"
+msgstr "columns"
 
 # Field label
 #: irG6mX
