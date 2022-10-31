@@ -52,24 +52,54 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
     const finalSpacingPreview = Math.max(0, Math.min(4, spacing));
     const previewItems = getPreviewItemsByColumns(columns);
 
+    function getAlignIntlLabel(columnAlignValue) {
+        switch (columnAlignValue) {
+            case 'left':
+                return intl.formatMessage({
+                    defaultMessage: 'left aligned',
+                    description: 'Alignment label',
+                });
+            case 'middle':
+                return intl.formatMessage({
+                    defaultMessage: 'middle aligned',
+                    description: 'Alignment label',
+                });
+            case 'right':
+                return intl.formatMessage({
+                    defaultMessage: 'right aligned',
+                    description: 'Alignment label',
+                });
+            default:
+                return '';
+        }
+    }
+
+    const label = (
+        <div className={styles.previewLabel}>
+            {columns}, {getAlignIntlLabel(columnAlign)}, {spacing}px
+        </div>
+    );
+
     const previewElement =
         value !== null ? (
-            <Keypad
-                className={classNames([
-                    styles.previewKeypad,
-                    {
-                        [styles.oneColumn]: columns === 1,
-                    },
-                ])}
-                align={columnAlign}
-                columns={columns}
-                spacing={finalSpacingPreview}
-                items={previewItems.map((n) => (
-                    <div key={n} className={styles.previewKey}>
-                        <div className={styles.previewButton} />
-                    </div>
-                ))}
-            />
+            <div>
+                <Keypad
+                    className={classNames([
+                        styles.previewKeypad,
+                        {
+                            [styles.oneColumn]: columns === 1,
+                        },
+                    ])}
+                    align={columnAlign}
+                    columns={columns}
+                    spacing={finalSpacingPreview}
+                    items={previewItems.map((n) => (
+                        <div key={n} className={styles.previewKey}>
+                            <div className={styles.previewButton} />
+                        </div>
+                    ))}
+                />
+            </div>
         ) : null;
 
     return (
@@ -77,16 +107,7 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
             isForm
             value={value}
             isHorizontal={false}
-            label={`${columns} ${intl.formatMessage({
-                defaultMessage: 'columns',
-                description: 'Field label',
-            })} / ${intl.formatMessage({
-                defaultMessage: 'align',
-                description: 'Field label',
-            })} ${columnAlign} / ${spacing}px ${intl.formatMessage({
-                defaultMessage: 'sp.',
-                description: 'Field label',
-            })}`}
+            label={label}
             onChange={onChange}
             thumbnail={previewElement}
             {...props}

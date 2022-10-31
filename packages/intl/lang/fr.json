@@ -233,9 +233,6 @@
     "7ZzlUE": {
         "defaultMessage": "23 oct au 22 nov"
     },
-    "7bDRdd": {
-        "defaultMessage": "esp."
-    },
     "7mMPO4": {
         "defaultMessage": "Sagittaire"
     },
@@ -353,6 +350,9 @@
     "D21uVQ": {
         "defaultMessage": "Copier le lien"
     },
+    "D29KoV": {
+        "defaultMessage": "align. gauche"
+    },
     "D7LIZQ": {
         "defaultMessage": "Démarrer"
     },
@@ -400,6 +400,9 @@
     },
     "FJygXH": {
         "defaultMessage": "Résultat"
+    },
+    "FKOWH0": {
+        "defaultMessage": "align. droite"
     },
     "FOmgqv": {
         "defaultMessage": "Question"
@@ -566,6 +569,9 @@
     "P1dwGU": {
         "defaultMessage": "Titre avec sous-titre"
     },
+    "P9A8cx": {
+        "defaultMessage": "align. milieu"
+    },
     "PFNMAQ": {
         "defaultMessage": "Bas"
     },
@@ -610,9 +616,6 @@
     },
     "RK/QEY": {
         "defaultMessage": "Activer le son"
-    },
-    "RKA2p5": {
-        "defaultMessage": "align."
     },
     "RcLsua": {
         "defaultMessage": "Message"
@@ -979,9 +982,6 @@
     },
     "iipV5Q": {
         "defaultMessage": "Type"
-    },
-    "ijsNO4": {
-        "defaultMessage": "colonnes"
     },
     "irG6mX": {
         "defaultMessage": "Distance"

@@ -7,7 +7,6 @@ export default {
             name: 'columnAlign',
             type: 'align-horizontal',
             defaultValue: 'middle',
-            isHorizontal: true,
             label: defineMessage({
                 defaultMessage: 'Align items',
                 description: 'Field label',

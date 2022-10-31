@@ -78,12 +78,7 @@ const FieldWithForm = ({
                 buttonTheme="primary"
             />
         ) : (
-            <Fields
-                className="p-2"
-                {...props}
-                value={value}
-                onChange={onChange}
-            />
+            <Fields className="p-2" {...props} value={value} onChange={onChange} />
         );
     }
 
@@ -105,6 +100,8 @@ const FieldWithForm = ({
             labelString !== null && isString(labelString)
                 ? labelString.replace(/(<([^>]+)>)/gi, '')
                 : null;
+
+        labelElement = React.isValidElement(labelValue) ? labelValue : labelElement;
     }
 
     let thumbnailElement = null;
