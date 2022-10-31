@@ -1,5 +1,3 @@
-// import isObject from 'lodash/isObject';
-
 function getJustifyContent(horizontal) {
     if (horizontal === 'left') return 'flex-start';
     if (horizontal === 'middle') return 'center';
