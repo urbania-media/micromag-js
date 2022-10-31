@@ -1,6 +1,6 @@
 {
     "name": "@micromag/intl",
-    "version": "0.3.253",
+    "version": "0.3.254",
     "description": "",
     "keywords": [
         "javascript"
@@ -58,7 +58,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@formatjs/cli": "^4.4.0",
-        "@micromag/core": "^0.3.253",
+        "@micromag/core": "^0.3.254",
         "commander": "^8.3.0",
         "fs-extra": "^10.0.0",
         "gettext-parser": "^4.0.4",
@@ -75,5 +75,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "255e9d831a38ce83523720061568fbb69dd90513"
+    "gitHead": "d795fa87b8a83a94d0b1c58810aeaa4bfe5051b8"
 }
