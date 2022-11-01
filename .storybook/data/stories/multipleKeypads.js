@@ -1,5 +1,6 @@
 import { imageMediaFromURL } from '../../data';
 import signs from '../signs';
+import background from '../files/signs/horoscope-background.png';
 import team from '../team';
 import { defaultTheme } from '../themes/micromag-default';
 
@@ -11,16 +12,16 @@ const multipleKeypads = {
         {
             id: 'asstrrologgy',
             type: 'keypad',
-            items: signs.map(s => {
+            items: signs.map((s) => {
                 const { id: label = null, image = null, description: content = null } = s || {};
                 return {
                     label,
                     heading: {
-                        body: label
+                        body: label,
                     },
                     visual: imageMediaFromURL(image),
                     largeVisual: imageMediaFromURL(image),
-                    content
+                    content,
                 };
             }),
             layout: 'middle',
@@ -37,7 +38,7 @@ const multipleKeypads = {
                 textStyle: {
                     fontWeight: 'bold',
                     fontSize: 12,
-                    transform: "uppercase",
+                    transform: 'uppercase',
                 },
                 boxStyle: {
                     backgroundColor: {
@@ -55,11 +56,23 @@ const multipleKeypads = {
             },
             popupStyles: {
                 backdrop: { alpha: 0.5, color: '#1518ee' },
-                textStyle: {
+                headingTextStyle: {
+                    align: 'center',
+                    fontSize: 24,
+                    fontStyle: {
+                        transform: 'uppercase',
+                    },
                     color: {
                         alpha: 1,
                         color: '#1d3af2',
-                    }
+                    },
+                },
+                contentTextStyle: {
+                    align: 'center',
+                    color: {
+                        alpha: 1,
+                        color: '#1d3af2',
+                    },
                 },
                 boxStyle: {
                     backgroundColor: {
@@ -72,6 +85,13 @@ const multipleKeypads = {
                     shadowBlur: 4,
                     shadowColor: { alpha: 1, color: '#010f66' },
                 },
+            },
+            background: {
+                color: {
+                    alpha: 1,
+                    color: '#1d3af2',
+                },
+                image: imageMediaFromURL(background)
             }
         },
 
@@ -169,7 +189,13 @@ const multipleKeypads = {
                         alpha: 0.33,
                     },
                 },
-                textStyle: {
+                headingTextStyle: {
+                    color: {
+                        color: '#000000',
+                        alpha: 1,
+                    },
+                },
+                contentTextStyle: {
                     color: {
                         color: '#000000',
                         alpha: 1,

@@ -143,6 +143,7 @@ export const imageMediaFromURL = (url) => ({
     ...imageMedia(),
     url,
     thumbnail_url: url,
+    sizes: [],
 });
 
 export const videoMedia = ({ vertical = false, big = false } = {}) => ({

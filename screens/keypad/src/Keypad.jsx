@@ -105,7 +105,8 @@ const propTypes = {
     }),
     popupStyles: PropTypes.shape({
         layout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
-        textStyle: MicromagPropTypes.textStyle,
+        headingTextStyle: MicromagPropTypes.textStyle,
+        contentTextStyle: MicromagPropTypes.textStyle,
         boxStyle: MicromagPropTypes.boxStyle,
     }),
     background: MicromagPropTypes.backgroundElement,
@@ -168,7 +169,8 @@ const KeypadScreen = ({
     const {
         layout: popupLayout = null,
         backdrop: popupBackdrop = null,
-        textStyle: popupTextStyle = null,
+        headingTextStyle = null,
+        contentTextStyle = null,
         boxStyle: popupBoxStyle = null,
     } = popupStyles || {};
     const popupLayoutClassName = useMemo(
@@ -183,8 +185,16 @@ const KeypadScreen = ({
         content: popupContent = null,
         largeVisual = null,
     } = popup || {};
-    const { body: popupHeadingBody = null } = popupHeading || {};
-    const { body: popupContentBody = null } = popupContent || {};
+    const { body: popupHeadingBody = null, textStyle: popupHeadingTextStyle = null } =
+        popupHeading || {};
+    const { body: popupContentBody = null, textStyle: popupContentTextStyle = null } =
+        popupContent || {};
+
+    console.log({
+        yo: popupHeadingBody,
+        ...getStyleFromText(headingTextStyle),
+        ...getStyleFromText(popupHeadingTextStyle),
+    });
 
     const onItemClick = useCallback(
         (e, item) => {
@@ -443,7 +453,6 @@ const KeypadScreen = ({
                                 style={{
                                     ...getStyleFromBox(placeholderPopupBoxStyles),
                                     ...getStyleFromBox(popupBoxStyle),
-                                    ...getStyleFromText(popupTextStyle),
                                 }}
                             >
                                 <div className={styles.popupWrapper}>
@@ -470,6 +479,10 @@ const KeypadScreen = ({
                                                 className={styles.popupHeading}
                                                 body="Lorem ipsum"
                                                 {...popupHeading}
+                                                textStyle={{
+                                                    ...headingTextStyle,
+                                                    ...popupHeadingTextStyle,
+                                                }}
                                             />
                                         </ScreenElement>
                                     ) : null}
@@ -497,6 +510,10 @@ const KeypadScreen = ({
                                                 className={styles.popupContent}
                                                 body="Lorem ipsum dolor sit amet consectetur adipiscing elit."
                                                 {...popupContent}
+                                                textStyle={{
+                                                    ...contentTextStyle,
+                                                    ...popupContentTextStyle,
+                                                }}
                                             />
                                         </ScreenElement>
                                     ) : null}
