@@ -1,8 +1,10 @@
-import { imageMediaFromURL } from '../../data';
+import { imageMediaFromURL, videoMediaFromURL } from '../../data';
 import signs from '../signs';
-import background from '../files/signs/horoscope-background.png';
 import team from '../team';
 import { defaultTheme } from '../themes/micromag-default';
+
+import background from '../files/signs/horoscope-background.png';
+import bgVideo from '../files/signs/horoscope.mp4';
 
 const multipleKeypads = {
     title: 'Multiple Keypads',
@@ -55,7 +57,13 @@ const multipleKeypads = {
                 },
             },
             popupStyles: {
-                backdrop: { alpha: 0.5, color: '#1518ee' },
+                backdrop: {
+                    color: {
+                        alpha: 0.5,
+                        color: '#1518ee',
+                    },
+                    image: videoMediaFromURL(bgVideo)
+                },
                 headingTextStyle: {
                     align: 'center',
                     fontSize: 24,
@@ -88,11 +96,10 @@ const multipleKeypads = {
             },
             background: {
                 color: {
-                    alpha: 1,
                     color: '#1d3af2',
                 },
-                image: imageMediaFromURL(background)
-            }
+                image: imageMediaFromURL(background),
+            },
         },
 
         // with "team" items

@@ -22,8 +22,8 @@ import {
     useViewerContext,
 } from '@micromag/core/contexts';
 import { useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getStyleFromText, getStyleFromBox, getStyleFromColor } from '@micromag/core/utils';
-import Background from '@micromag/element-background';
+import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
+import Background, { Background as PopupBackdrop } from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
@@ -189,12 +189,7 @@ const KeypadScreen = ({
         popupHeading || {};
     const { body: popupContentBody = null, textStyle: popupContentTextStyle = null } =
         popupContent || {};
-
-    console.log({
-        yo: popupHeadingBody,
-        ...getStyleFromText(headingTextStyle),
-        ...getStyleFromText(popupHeadingTextStyle),
-    });
+    const { color: backdropColor = null, image: backdropMedia = null } = popupBackdrop || {};
 
     const onItemClick = useCallback(
         (e, item) => {
@@ -421,10 +416,20 @@ const KeypadScreen = ({
                 <animated.div
                     className={classNames([styles.popupBackdrop])}
                     style={{
-                        ...getStyleFromColor(popupBackdrop),
                         opacity: popupSpring.to((p) => p),
                     }}
-                />
+                >
+                    <PopupBackdrop
+                        width={width}
+                        height={height}
+                        resolution={resolution}
+                        playing={backgroundPlaying}
+                        media={backdropMedia}
+                        color={backdropColor}
+                        muted
+                    />
+                </animated.div>
+
                 <animated.div
                     className={styles.popup}
                     style={{

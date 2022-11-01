@@ -168,6 +168,12 @@ export const videoMedia = ({ vertical = false, big = false } = {}) => ({
     },
 });
 
+export const videoMediaFromURL = (url) => ({
+    ...videoMedia(),
+    url,
+});
+
+
 export const videoMediaWithSound = () => ({
     ...videoMedia(),
     url: videoWithAudio,
