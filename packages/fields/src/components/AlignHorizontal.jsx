@@ -19,50 +19,41 @@ const defaultProps = {
     onChange: null,
 };
 
-const AlignHorizontal = ({ value, className, onChange }) => {
-    const onAlignChange = useCallback(
-        (newVal) => {
-            onChange(newVal);
-        },
-        [value],
-    );
-
-    return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <div className={classNames(['d-flex', 'align-items-center'])}>
-                <Radios
-                    options={['left', 'middle', 'right'].map((type) => ({
-                        value: type,
-                        label: (
-                            <div className={classNames([styles.icon, styles[type]])}>
-                                <div />
-                                <div />
-                                <div />
-                                <div />
-                            </div>
-                        ),
-                    }))}
-                    value={value !== null ? value : null}
-                    className={classNames([
-                        styles.container,
-                        {
-                            [className]: className !== null,
-                        },
-                    ])}
-                    buttonClassName={styles.button}
-                    onChange={onAlignChange}
-                />
-            </div>
+const AlignHorizontal = ({ value, className, onChange }) => (
+    <div
+        className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+            },
+        ])}
+    >
+        <div className={classNames(['d-flex', 'align-items-center'])}>
+            <Radios
+                options={['left', 'middle', 'right'].map((type) => ({
+                    value: type,
+                    label: (
+                        <div className={classNames([styles.icon, styles[type]])}>
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                        </div>
+                    ),
+                }))}
+                value={value !== null ? value : null}
+                className={classNames([
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
+                buttonClassName={styles.button}
+                onChange={onChange}
+            />
         </div>
-    );
-};
+    </div>
+);
 
 AlignHorizontal.propTypes = propTypes;
 AlignHorizontal.defaultProps = defaultProps;

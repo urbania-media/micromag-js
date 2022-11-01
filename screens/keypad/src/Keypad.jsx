@@ -19,6 +19,7 @@ import {
     useScreenState,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useViewerContext,
 } from '@micromag/core/contexts';
 import { useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
 import { getStyleFromText, getStyleFromBox, getStyleFromColor } from '@micromag/core/utils';
@@ -88,6 +89,7 @@ const propTypes = {
         }),
     ),
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
+    spacing: PropTypes.number,
     keypadSettings: PropTypes.shape({
         layout: PropTypes.shape({
             columnAlign: PropTypes.oneOf(['left', 'right', 'middle']),
@@ -115,6 +117,7 @@ const propTypes = {
 const defaultProps = {
     items: null,
     layout: null,
+    spacing: 20,
     keypadSettings: null,
     buttonStyles: null,
     popupStyles: null,
@@ -127,6 +130,7 @@ const defaultProps = {
 const KeypadScreen = ({
     items,
     layout,
+    spacing,
     keypadSettings,
     buttonStyles,
     popupStyles,
@@ -140,7 +144,7 @@ const KeypadScreen = ({
     const mediaRef = usePlaybackMediaRef(current);
 
     const { width, height, resolution } = useScreenSize();
-    // const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const screenState = useScreenState();
@@ -153,7 +157,7 @@ const KeypadScreen = ({
     const {
         columnAlign = null,
         columns = null,
-        spacing = null,
+        spacing: columnSpacing = null,
         withSquareItems = false,
     } = keypadLayout || {};
     const {
@@ -381,16 +385,16 @@ const KeypadScreen = ({
                 <Layout
                     className={styles.layout}
                     verticalAlign={layout}
-                    // style={
-                    //     !isPlaceholder
-                    //         ? {
-                    //               padding: spacing,
-                    //               paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
-                    //               paddingBottom:
-                    //                   (current && !isPreview ? viewerBottomHeight : 0) + spacing,
-                    //           }
-                    //         : null
-                    // }
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                              }
+                            : null
+                    }
                 >
                     <Keypad
                         className={classNames([
@@ -399,7 +403,7 @@ const KeypadScreen = ({
                         ])}
                         align={columnAlign}
                         columns={isPlaceholder ? 3 : columns}
-                        spacing={isPlaceholder ? 2 : spacing}
+                        spacing={isPlaceholder ? 2 : columnSpacing}
                         items={gridItems}
                     />
                 </Layout>

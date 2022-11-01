@@ -1,3 +1,5 @@
+import { imageMediaFromURL } from '../../data';
+import signs from '../signs';
 import team from '../team';
 import { defaultTheme } from '../themes/micromag-default';
 
@@ -5,6 +7,74 @@ const multipleKeypads = {
     title: 'Multiple Keypads',
     theme: defaultTheme,
     components: [
+        // with astrological signs
+        {
+            id: 'asstrrologgy',
+            type: 'keypad',
+            items: signs.map(s => {
+                const { id: label = null, image = null, description: content = null } = s || {};
+                return {
+                    label,
+                    heading: {
+                        body: label
+                    },
+                    visual: imageMediaFromURL(image),
+                    largeVisual: imageMediaFromURL(image),
+                    content
+                };
+            }),
+            layout: 'middle',
+            keypadSettings: {
+                layout: {
+                    columnAlign: 'middle',
+                    columns: 3,
+                    spacing: 5,
+                    withSquareItems: true,
+                },
+            },
+            buttonStyles: {
+                layout: 'label-bottom',
+                textStyle: {
+                    fontWeight: 'bold',
+                    fontSize: 12,
+                    transform: "uppercase",
+                },
+                boxStyle: {
+                    backgroundColor: {
+                        color: '#1518ee',
+                        alpha: 1,
+                    },
+                    borderRadius: 10,
+                    padding: {
+                        top: 5,
+                        right: 5,
+                        left: 5,
+                        bottom: 5,
+                    },
+                },
+            },
+            popupStyles: {
+                backdrop: { alpha: 0.5, color: '#1518ee' },
+                textStyle: {
+                    color: {
+                        alpha: 1,
+                        color: '#1d3af2',
+                    }
+                },
+                boxStyle: {
+                    backgroundColor: {
+                        color: '#0ff',
+                        alpha: 1,
+                    },
+                    borderRadius: 22,
+                    shadowAngle: 45,
+                    shadowDistance: 0,
+                    shadowBlur: 4,
+                    shadowColor: { alpha: 1, color: '#010f66' },
+                },
+            }
+        },
+
         // with "team" items
         {
             id: '12345',
@@ -17,7 +87,7 @@ const multipleKeypads = {
                     columns: 2,
                     spacing: 1,
                     withSquareItems: false,
-                }
+                },
             },
             buttonStyles: {
                 layout: 'label-top',
@@ -56,11 +126,11 @@ const multipleKeypads = {
             layout: 'bottom',
             keypadSettings: {
                 layout: {
-                columnAlign: 'left',
-                columns: 4,
-                spacing: 10,
-                withSquareItems: true,
-                }
+                    columnAlign: 'left',
+                    columns: 4,
+                    spacing: 10,
+                    withSquareItems: true,
+                },
             },
             buttonStyles: {
                 layout: 'no-label',
