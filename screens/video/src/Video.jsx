@@ -89,7 +89,6 @@ const VideoScreen = ({
     const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
-    // get resized video style props
     const {
         autoPlay = true,
         loop = false,
