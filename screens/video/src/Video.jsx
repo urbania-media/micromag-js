@@ -143,7 +143,7 @@ const VideoScreen = ({
     }, [mediaRef.current]);
 
     useEffect(() => {
-        if (current && autoPlay && !playing) {
+        if (current && autoPlay) {
             setPlaying(true);
         }
     }, [current, autoPlay]);

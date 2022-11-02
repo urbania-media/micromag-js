@@ -102,7 +102,7 @@ const UrbaniaArticle = ({
     const { color: backgroundColor = null } = background || {};
     const { opened: openedWebView, open: openWebView } = useViewerWebView();
     const { bottomSidesWidth: viewerBottomSidesWidth } = useViewerContext();
-    const { muted, playing, setPlaying } = usePlaybackContext();
+    const { muted, playing } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
     const {
@@ -135,23 +135,9 @@ const UrbaniaArticle = ({
     const hasCallToAction = callToAction !== null && callToAction.active === true;
     const { video: backgroundVideo = null } = background || {};
     const hasVideoBackground = backgroundVideo !== null;
-
     const mediaShouldLoad = current || active;
-    const [backgroundPlaying, setBackgroundPlaying] = useState(false);
+    const backgroundPlaying = current && !openedWebView && (isView || isEdit);
 
-    const playIfCurrent = useCallback(() => {
-        const shouldPlay = current && !openedWebView && !playing;
-
-        setPlaying(shouldPlay);
-    }, [current, openedWebView, playing, setPlaying]);
-
-    useEffect(() => {
-        const shouldBackgroundBePlaying = current && !openedWebView && (isView || isEdit);
-
-        setBackgroundPlaying(shouldBackgroundBePlaying);
-    }, [current, isView, isEdit, openedWebView, setBackgroundPlaying]);
-
-    useDebounce(playIfCurrent, current, 500);
 
     const items = [
         <ScreenElement
@@ -338,8 +324,6 @@ const UrbaniaArticle = ({
                                 resolution={resolution}
                                 objectFit={{ fit: 'cover' }}
                                 shouldLoad={mediaShouldLoad}
-                                withoutVideo={isPreview}
-                                playing={backgroundPlaying && playing}
                             />
                         ) : null}
                         {hasImage && isVideo && !hasVideoBackground ? (
@@ -351,10 +335,10 @@ const UrbaniaArticle = ({
                                 resolution={resolution}
                                 objectFit={{ fit: 'cover' }}
                                 shouldLoad={mediaShouldLoad}
-                                playing={backgroundPlaying && playing}
+                                playing={playing}
                                 muted={muted}
                                 withoutVideo={isPreview}
-                                mediaRef={mediaRef}
+                                // mediaRef={mediaRef}
                                 autoPlay
                             />
                         ) : null}

@@ -5408,6 +5408,564 @@
             {
                 "background": {
                     "color": null,
+                    "image": {
+                        "id": "2948",
+                        "type": "image",
+                        "name": "Capture d’écran, le 2022-06-17 à 16.47.55.png",
+                        "url": "https://cdn.microm.ag/image/2022-06-17/11733-044842.png",
+                        "thumbnail_url": "https://img.microm.ag/image/2022-06-17/filters/thumbnail/11733-044842.png",
+                        "files": {
+                            "original": {
+                                "id": "11733",
+                                "type": "image",
+                                "mime": "image/png",
+                                "handle": "original",
+                                "name": "Capture d’écran, le 2022-06-17 à 16.47.55.png",
+                                "url": "https://cdn.microm.ag/image/2022-06-17/11733-044842.png"
+                            }
+                        },
+                        "sizes": {
+                            "large": {
+                                "id": "large",
+                                "url": "https://img.microm.ag/image/2022-06-17/filters/large/11733-044842.png",
+                                "width": 642,
+                                "height": 822
+                            },
+                            "medium": {
+                                "id": "medium",
+                                "url": "https://img.microm.ag/image/2022-06-17/filters/medium/11733-044842.png",
+                                "width": 642,
+                                "height": 822
+                            },
+                            "small": {
+                                "id": "small",
+                                "url": "https://img.microm.ag/image/2022-06-17/filters/small/11733-044842.png",
+                                "width": 469,
+                                "height": 600
+                            }
+                        },
+                        "metadata": {
+                            "filename": "Capture d’écran, le 2022-06-17 à 16.47.55.png",
+                            "size": 855631,
+                            "mime": "image/png",
+                            "description": null,
+                            "width": 642,
+                            "height": 822
+                        }
+                    },
+                    "video": null,
+                    "repeat": true
+                },
+                "id": "17f61320-cc77-11ec-9259-5798aeb02811",
+                "type": "urbania-article",
+                "overTitle": {
+                    "body": "<span>Mini-docu</span>",
+                    "textStyle": {
+                        "color": {
+                            "color": "#ffffff",
+                            "alpha": 1
+                        },
+                        "fontStyle": {
+                            "bold": true,
+                            "italic": false,
+                            "underline": false
+                        },
+                        "fontFamily": {
+                            "name": "Agrandir Tight",
+                            "media": {
+                                "id": "2452",
+                                "type": "font",
+                                "name": "Agrandir-Tight.otf",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8962-022629.otf",
+                                "thumbnail_url": null,
+                                "files": {
+                                    "original": {
+                                        "id": "8962",
+                                        "type": null,
+                                        "mime": "application/vnd.ms-opentype",
+                                        "handle": "original",
+                                        "name": "Agrandir-Tight.otf",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8962-022629.otf"
+                                    },
+                                    "webfonts.otf": {
+                                        "id": "8963",
+                                        "type": null,
+                                        "mime": "application/vnd.ms-opentype",
+                                        "handle": "webfonts.otf",
+                                        "name": "mediatheque_pipeline_jobouakyG-webfonts.otf",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8963-022629.otf"
+                                    },
+                                    "webfonts.eot": {
+                                        "id": "8964",
+                                        "type": null,
+                                        "mime": "application/x-empty",
+                                        "handle": "webfonts.eot",
+                                        "name": "mediatheque_pipeline_jobouakyG-webfonts.eot",
+                                        "url": "https://cdn.microm.ag/2022-04-26/8964-022629.eot"
+                                    },
+                                    "webfonts.woff": {
+                                        "id": "8965",
+                                        "type": null,
+                                        "mime": "application/x-font-woff",
+                                        "handle": "webfonts.woff",
+                                        "name": "mediatheque_pipeline_jobouakyG-webfonts.woff",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8965-022629.woff"
+                                    },
+                                    "webfonts.woff2": {
+                                        "id": "8966",
+                                        "type": null,
+                                        "mime": "application/font-woff2",
+                                        "handle": "webfonts.woff2",
+                                        "name": "mediatheque_pipeline_jobouakyG-webfonts.woff2",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8966-022630.woff2"
+                                    }
+                                },
+                                "metadata": {
+                                    "filename": "Agrandir-Tight.otf",
+                                    "size": 50596,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "description": null
+                                }
+                            },
+                            "variants": [
+                                {
+                                    "weight": "700",
+                                    "style": "normal",
+                                    "fvd": "n7",
+                                    "media": {
+                                        "id": "2519",
+                                        "type": "font",
+                                        "name": "Agrandir-TightBold.otf",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9319-110742.otf",
+                                        "thumbnail_url": null,
+                                        "files": {
+                                            "original": {
+                                                "id": "9319",
+                                                "type": null,
+                                                "mime": "application/vnd.ms-opentype",
+                                                "handle": "original",
+                                                "name": "Agrandir-TightBold.otf",
+                                                "url": "https://cdn.microm.ag/font/2022-05-03/9319-110742.otf"
+                                            },
+                                            "webfonts.otf": {
+                                                "id": "9320",
+                                                "type": null,
+                                                "mime": "application/vnd.ms-opentype",
+                                                "handle": "webfonts.otf",
+                                                "name": "mediatheque_pipeline_jobuvEUKC-webfonts.otf",
+                                                "url": "https://cdn.microm.ag/font/2022-05-03/9320-110743.otf"
+                                            },
+                                            "webfonts.eot": {
+                                                "id": "9321",
+                                                "type": null,
+                                                "mime": "application/x-empty",
+                                                "handle": "webfonts.eot",
+                                                "name": "mediatheque_pipeline_jobuvEUKC-webfonts.eot",
+                                                "url": "https://cdn.microm.ag/2022-05-03/9321-110743.eot"
+                                            },
+                                            "webfonts.woff": {
+                                                "id": "9322",
+                                                "type": null,
+                                                "mime": "application/x-font-woff",
+                                                "handle": "webfonts.woff",
+                                                "name": "mediatheque_pipeline_jobuvEUKC-webfonts.woff",
+                                                "url": "https://cdn.microm.ag/font/2022-05-03/9322-110743.woff"
+                                            },
+                                            "webfonts.woff2": {
+                                                "id": "9323",
+                                                "type": null,
+                                                "mime": "application/font-woff2",
+                                                "handle": "webfonts.woff2",
+                                                "name": "mediatheque_pipeline_jobuvEUKC-webfonts.woff2",
+                                                "url": "https://cdn.microm.ag/font/2022-05-03/9323-110743.woff2"
+                                            }
+                                        },
+                                        "metadata": {
+                                            "filename": "Agrandir-TightBold.otf",
+                                            "size": 52928,
+                                            "mime": "application/vnd.ms-opentype",
+                                            "description": null
+                                        }
+                                    }
+                                },
+                                {
+                                    "weight": "900",
+                                    "style": "normal",
+                                    "fvd": "n9",
+                                    "media": {
+                                        "id": "2457",
+                                        "type": "font",
+                                        "name": "Agrandir-TightHeavy.otf",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8979-045102.otf",
+                                        "thumbnail_url": null,
+                                        "files": {
+                                            "original": {
+                                                "id": "8979",
+                                                "type": null,
+                                                "mime": "application/vnd.ms-opentype",
+                                                "handle": "original",
+                                                "name": "Agrandir-TightHeavy.otf",
+                                                "url": "https://cdn.microm.ag/font/2022-04-26/8979-045102.otf"
+                                            },
+                                            "webfonts.otf": {
+                                                "id": "8980",
+                                                "type": null,
+                                                "mime": "application/vnd.ms-opentype",
+                                                "handle": "webfonts.otf",
+                                                "name": "mediatheque_pipeline_job9jBtt0-webfonts.otf",
+                                                "url": "https://cdn.microm.ag/font/2022-04-26/8980-045103.otf"
+                                            },
+                                            "webfonts.eot": {
+                                                "id": "8981",
+                                                "type": null,
+                                                "mime": "application/x-empty",
+                                                "handle": "webfonts.eot",
+                                                "name": "mediatheque_pipeline_job9jBtt0-webfonts.eot",
+                                                "url": "https://cdn.microm.ag/2022-04-26/8981-045103.eot"
+                                            },
+                                            "webfonts.woff": {
+                                                "id": "8982",
+                                                "type": null,
+                                                "mime": "application/x-font-woff",
+                                                "handle": "webfonts.woff",
+                                                "name": "mediatheque_pipeline_job9jBtt0-webfonts.woff",
+                                                "url": "https://cdn.microm.ag/font/2022-04-26/8982-045103.woff"
+                                            },
+                                            "webfonts.woff2": {
+                                                "id": "8983",
+                                                "type": null,
+                                                "mime": "application/font-woff2",
+                                                "handle": "webfonts.woff2",
+                                                "name": "mediatheque_pipeline_job9jBtt0-webfonts.woff2",
+                                                "url": "https://cdn.microm.ag/font/2022-04-26/8983-045103.woff2"
+                                            }
+                                        },
+                                        "metadata": {
+                                            "filename": "Agrandir-TightHeavy.otf",
+                                            "size": 53268,
+                                            "mime": "application/vnd.ms-opentype",
+                                            "description": null
+                                        }
+                                    }
+                                },
+                                {
+                                    "weight": "500",
+                                    "style": "normal",
+                                    "fvd": "n5",
+                                    "media": {
+                                        "id": "2522",
+                                        "type": "font",
+                                        "name": "Agrandir-TightMedium.eot",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9331-111223.eot",
+                                        "thumbnail_url": null,
+                                        "files": {
+                                            "original": {
+                                                "id": "9331",
+                                                "type": null,
+                                                "mime": "application/vnd.ms-fontobject",
+                                                "handle": "original",
+                                                "name": "Agrandir-TightMedium.eot",
+                                                "url": "https://cdn.microm.ag/font/2022-05-03/9331-111223.eot"
+                                            },
+                                            "webfonts.eot": {
+                                                "id": "9332",
+                                                "type": null,
+                                                "mime": "application/vnd.ms-fontobject",
+                                                "handle": "webfonts.eot",
+                                                "name": "mediatheque_pipeline_jobgB5qW5-webfonts.eot",
+                                                "url": "https://cdn.microm.ag/font/2022-05-03/9332-111223.eot"
+                                            }
+                                        },
+                                        "metadata": {
+                                            "filename": "Agrandir-TightMedium.eot",
+                                            "size": 30556,
+                                            "mime": "application/vnd.ms-fontobject",
+                                            "description": null
+                                        }
+                                    }
+                                }
+                            ],
+                            "type": "custom"
+                        },
+                        "fontSize": 9,
+                        "letterSpacing": 1.1,
+                        "fontWeight": 700
+                    }
+                },
+                "group": null,
+                "parentId": null,
+                "url": "https://quatre95.urbania.ca/article/reportage-le-roi-du-smoked-meat",
+                "articleType": "video",
+                "title": {
+                    "body": "<span>Le roi du Smoked Meat&nbsp;</span>",
+                    "textStyle": {
+                        "fontSize": 40
+                    }
+                },
+                "callToAction": {
+                    "active": true,
+                    "type": "swipe-up",
+                    "label": {
+                        "body": "Regarder la vidéo",
+                        "textStyle": {
+                            "letterSpacing": 0.1,
+                            "fontStyle": {
+                                "underline": false,
+                                "bold": true,
+                                "italic": false
+                            },
+                            "fontSize": 16,
+                            "color": {
+                                "alpha": 1,
+                                "color": "#222222"
+                            },
+                            "fontFamily": {
+                                "type": "custom",
+                                "name": "Agrandir Tight",
+                                "media": {
+                                    "id": "2452",
+                                    "type": "font",
+                                    "name": "Agrandir-Tight.otf",
+                                    "url": "https://cdn.microm.ag/font/2022-04-26/8962-022629.otf",
+                                    "thumbnail_url": null,
+                                    "files": {
+                                        "original": {
+                                            "id": "8962",
+                                            "type": null,
+                                            "mime": "application/vnd.ms-opentype",
+                                            "handle": "original",
+                                            "name": "Agrandir-Tight.otf",
+                                            "url": "https://cdn.microm.ag/font/2022-04-26/8962-022629.otf"
+                                        },
+                                        "webfonts.otf": {
+                                            "id": "8963",
+                                            "type": null,
+                                            "mime": "application/vnd.ms-opentype",
+                                            "handle": "webfonts.otf",
+                                            "name": "mediatheque_pipeline_jobouakyG-webfonts.otf",
+                                            "url": "https://cdn.microm.ag/font/2022-04-26/8963-022629.otf"
+                                        },
+                                        "webfonts.eot": {
+                                            "id": "8964",
+                                            "type": null,
+                                            "mime": "application/x-empty",
+                                            "handle": "webfonts.eot",
+                                            "name": "mediatheque_pipeline_jobouakyG-webfonts.eot",
+                                            "url": "https://cdn.microm.ag/2022-04-26/8964-022629.eot"
+                                        },
+                                        "webfonts.woff": {
+                                            "id": "8965",
+                                            "type": null,
+                                            "mime": "application/x-font-woff",
+                                            "handle": "webfonts.woff",
+                                            "name": "mediatheque_pipeline_jobouakyG-webfonts.woff",
+                                            "url": "https://cdn.microm.ag/font/2022-04-26/8965-022629.woff"
+                                        },
+                                        "webfonts.woff2": {
+                                            "id": "8966",
+                                            "type": null,
+                                            "mime": "application/font-woff2",
+                                            "handle": "webfonts.woff2",
+                                            "name": "mediatheque_pipeline_jobouakyG-webfonts.woff2",
+                                            "url": "https://cdn.microm.ag/font/2022-04-26/8966-022630.woff2"
+                                        }
+                                    },
+                                    "metadata": {
+                                        "filename": "Agrandir-Tight.otf",
+                                        "size": 50596,
+                                        "mime": "application/vnd.ms-opentype",
+                                        "description": null
+                                    }
+                                }
+                            },
+                            "lineHeight": 1
+                        }
+                    },
+                    "boxStyle": {
+                        "borderWidth": 4,
+                        "padding": {
+                            "top": 8,
+                            "right": 20,
+                            "bottom": 5,
+                            "left": 20
+                        },
+                        "borderColor": {
+                            "alpha": 0.44,
+                            "color": "#fffc00"
+                        },
+                        "backgroundColor": {
+                            "alpha": 1,
+                            "color": "#fffc00"
+                        },
+                        "borderRadius": 40,
+                        "borderStyle": "solid"
+                    },
+                    "inWebView": true
+                },
+                "parameters": {
+                    "metadata": {
+                        "title": "Les incontournables #1",
+                        "description": "Le Métavers, ça sert à quoi au juste? Épisode 2"
+                    }
+                },
+                "image": {
+                    "id": "2931",
+                    "type": "video",
+                    "name": "SM_micromag_01.mp4",
+                    "url": "https://cdn.microm.ag/video/2022-06-17/11670-111747.mp4",
+                    "thumbnail_url": "https://img.microm.ag/image/2022-06-17/filters/thumbnail/11671-111749.jpg",
+                    "files": {
+                        "original": {
+                            "id": "11670",
+                            "type": "video",
+                            "mime": "video/mp4",
+                            "handle": "original",
+                            "name": "SM_micromag_01.mp4",
+                            "url": "https://cdn.microm.ag/video/2022-06-17/11670-111747.mp4"
+                        },
+                        "thumbnails.0": {
+                            "id": "11671",
+                            "type": "image",
+                            "mime": "image/jpeg",
+                            "handle": "thumbnails.0",
+                            "name": "mediatheque_pipeline_jobyRWTlB-thumbnails-0.jpg",
+                            "url": "https://cdn.microm.ag/image/2022-06-17/11671-111749.jpg"
+                        },
+                        "thumbnails.1": {
+                            "id": "11672",
+                            "type": "image",
+                            "mime": "image/jpeg",
+                            "handle": "thumbnails.1",
+                            "name": "mediatheque_pipeline_jobyRWTlB-thumbnails-1.jpg",
+                            "url": "https://cdn.microm.ag/image/2022-06-17/11672-111750.jpg"
+                        },
+                        "thumbnails.2": {
+                            "id": "11673",
+                            "type": "image",
+                            "mime": "image/jpeg",
+                            "handle": "thumbnails.2",
+                            "name": "mediatheque_pipeline_jobyRWTlB-thumbnails-2.jpg",
+                            "url": "https://cdn.microm.ag/image/2022-06-17/11673-111751.jpg"
+                        },
+                        "thumbnails.3": {
+                            "id": "11674",
+                            "type": "image",
+                            "mime": "image/jpeg",
+                            "handle": "thumbnails.3",
+                            "name": "mediatheque_pipeline_jobyRWTlB-thumbnails-3.jpg",
+                            "url": "https://cdn.microm.ag/image/2022-06-17/11674-111752.jpg"
+                        },
+                        "thumbnails.4": {
+                            "id": "11675",
+                            "type": "image",
+                            "mime": "image/jpeg",
+                            "handle": "thumbnails.4",
+                            "name": "mediatheque_pipeline_jobyRWTlB-thumbnails-4.jpg",
+                            "url": "https://cdn.microm.ag/image/2022-06-17/11675-111753.jpg"
+                        },
+                        "h264": {
+                            "id": "11676",
+                            "type": "video",
+                            "mime": "video/mp4",
+                            "handle": "h264",
+                            "name": "mediatheque_pipeline_jobZSby6y-h264.mp4",
+                            "url": "https://cdn.microm.ag/video/2022-06-17/11676-111823.mp4"
+                        },
+                        "webm": {
+                            "id": "11677",
+                            "type": "video",
+                            "mime": "video/webm",
+                            "handle": "webm",
+                            "name": "mediatheque_pipeline_jobEhqvBw-webm.webm",
+                            "url": "https://cdn.microm.ag/video/2022-06-17/11677-111926.webm"
+                        }
+                    },
+                    "metadata": {
+                        "filename": "SM_micromag_01.mp4",
+                        "size": 32776050,
+                        "mime": "video/mp4",
+                        "description": null,
+                        "duration": 12.9129,
+                        "width": 1080,
+                        "height": 1920,
+                        "has_audio": true
+                    }
+                },
+                "description": {
+                    "body": "<p><i>Après plus de 48 ans à travailler&nbsp;</i><br><i>au Roi du Smoked Meat, disons que Francine Gallant a fait sa marque autant dans l’histoire&nbsp;</i><br><i>de la Plaza Saint-Hubert que dans le coeur&nbsp;</i><br><i>de sa clientèle.</i></p>",
+                    "textStyle": {
+                        "fontFamily": {
+                            "type": "google",
+                            "name": "Roboto",
+                            "variants": [
+                                "100",
+                                "100italic",
+                                "300",
+                                "300italic",
+                                "regular",
+                                "italic",
+                                "500",
+                                "500italic",
+                                "700",
+                                "700italic",
+                                "900",
+                                "900italic"
+                            ]
+                        },
+                        "fontSize": 13
+                    }
+                },
+                "author": {
+                    "image": {
+                        "id": "2585",
+                        "type": "image",
+                        "name": "Urbania-Collabo.jpg",
+                        "url": "https://cdn.microm.ag/image/2022-05-06/9702-110821.jpg",
+                        "thumbnail_url": "https://img.microm.ag/image/2022-05-06/filters/thumbnail/9702-110821.jpg",
+                        "files": {
+                            "original": {
+                                "id": "9702",
+                                "type": "image",
+                                "mime": "image/jpeg",
+                                "handle": "original",
+                                "name": "Urbania-Collabo.jpg",
+                                "url": "https://cdn.microm.ag/image/2022-05-06/9702-110821.jpg"
+                            }
+                        },
+                        "sizes": {
+                            "large": {
+                                "id": "large",
+                                "url": "https://img.microm.ag/image/2022-05-06/filters/large/9702-110821.jpg",
+                                "width": 1400,
+                                "height": 1400
+                            },
+                            "medium": {
+                                "id": "medium",
+                                "url": "https://img.microm.ag/image/2022-05-06/filters/medium/9702-110821.jpg",
+                                "width": 1000,
+                                "height": 1000
+                            },
+                            "small": {
+                                "id": "small",
+                                "url": "https://img.microm.ag/image/2022-05-06/filters/small/9702-110821.jpg",
+                                "width": 600,
+                                "height": 600
+                            }
+                        },
+                        "metadata": {
+                            "filename": "Urbania-Collabo.jpg",
+                            "size": 2624866,
+                            "mime": "image/jpeg",
+                            "description": null,
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }
+            },
+            {
+                "background": {
+                    "color": null,
                     "image": null,
                     "video": null,
                     "repeat": true
