@@ -132,35 +132,26 @@ const UrbaniaArticle = ({
     const hasAuthor = isTextFilled(authorFullName);
     const { url = null } = image || {};
     const hasImage = url !== null;
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const { video: backgroundVideo = null } = background || {};
+    const hasVideoBackground = backgroundVideo !== null;
 
     const mediaShouldLoad = current || active;
-
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
-
-    // const backgroundPlaying = current && (isView || isEdit);
     const [backgroundPlaying, setBackgroundPlaying] = useState(false);
 
     const playIfCurrent = useCallback(() => {
-        if (current && !openedWebView && !playing) {
-            setPlaying(true);
-        } else {
-            setPlaying(false);
-        }
+        const shouldPlay = current && !openedWebView && !playing;
+
+        setPlaying(shouldPlay);
     }, [current, openedWebView, playing, setPlaying]);
 
-    // TODO: link playIfCurrent and backgroundPlaying
     useEffect(() => {
-        if (!current) {
-            setBackgroundPlaying(false);
-        } else if (current && (isView || isEdit)) {
-            setBackgroundPlaying(!openedWebView);
-        }
+        const shouldBackgroundBePlaying = current && !openedWebView && (isView || isEdit);
+
+        setBackgroundPlaying(shouldBackgroundBePlaying);
     }, [current, isView, isEdit, openedWebView, setBackgroundPlaying]);
 
     useDebounce(playIfCurrent, current, 500);
-
-    const { video: backgroundVideo = null } = background || {};
-    const hasVideoBackground = backgroundVideo !== null;
 
     const items = [
         <ScreenElement

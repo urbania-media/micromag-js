@@ -42,6 +42,8 @@ function WebViewContainer({ className, style }) {
 
     // Disable interaction and pause playback
     useEffect(() => {
+        console.log({ doofus: false });
+
         if (opened) {
             disableInteraction();
 
