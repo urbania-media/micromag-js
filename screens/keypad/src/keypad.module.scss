@@ -119,7 +119,6 @@
         @extend %fullscreen;
     }
 
-
     .imagePlaceholder,
     .buttonPlaceholder {
         width: 100%;
@@ -306,7 +305,7 @@
 
     .thumbnail {
         width: 100% !important;
-
+        object-fit: cover;
         max-height: none;
 
         .withSquareItems & {

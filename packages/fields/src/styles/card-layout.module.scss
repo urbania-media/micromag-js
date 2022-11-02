@@ -5,10 +5,10 @@
 }
 
 .button {
-    flex: none !important;
+    flex: none !important; // stupid old bootstrap override I never catch before it's live...
     width: 40px;
     height: 60px;
-    padding: 4px;
+    padding: 4px !important;
 }
 
 .layout {

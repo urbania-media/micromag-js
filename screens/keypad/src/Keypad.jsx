@@ -19,10 +19,11 @@ import {
     useScreenState,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useViewerContext,
 } from '@micromag/core/contexts';
 import { useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getStyleFromText, getStyleFromBox, getStyleFromColor } from '@micromag/core/utils';
-import Background from '@micromag/element-background';
+import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
+import Background, { Background as PopupBackdrop } from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
@@ -88,6 +89,7 @@ const propTypes = {
         }),
     ),
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
+    spacing: PropTypes.number,
     keypadSettings: PropTypes.shape({
         layout: PropTypes.shape({
             columnAlign: PropTypes.oneOf(['left', 'right', 'middle']),
@@ -103,7 +105,8 @@ const propTypes = {
     }),
     popupStyles: PropTypes.shape({
         layout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
-        textStyle: MicromagPropTypes.textStyle,
+        headingTextStyle: MicromagPropTypes.textStyle,
+        contentTextStyle: MicromagPropTypes.textStyle,
         boxStyle: MicromagPropTypes.boxStyle,
     }),
     background: MicromagPropTypes.backgroundElement,
@@ -115,6 +118,7 @@ const propTypes = {
 const defaultProps = {
     items: null,
     layout: null,
+    spacing: 20,
     keypadSettings: null,
     buttonStyles: null,
     popupStyles: null,
@@ -127,6 +131,7 @@ const defaultProps = {
 const KeypadScreen = ({
     items,
     layout,
+    spacing,
     keypadSettings,
     buttonStyles,
     popupStyles,
@@ -140,7 +145,7 @@ const KeypadScreen = ({
     const mediaRef = usePlaybackMediaRef(current);
 
     const { width, height, resolution } = useScreenSize();
-    // const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const screenState = useScreenState();
@@ -153,7 +158,7 @@ const KeypadScreen = ({
     const {
         columnAlign = null,
         columns = null,
-        spacing = null,
+        spacing: columnSpacing = null,
         withSquareItems = false,
     } = keypadLayout || {};
     const {
@@ -164,7 +169,8 @@ const KeypadScreen = ({
     const {
         layout: popupLayout = null,
         backdrop: popupBackdrop = null,
-        textStyle: popupTextStyle = null,
+        headingTextStyle = null,
+        contentTextStyle = null,
         boxStyle: popupBoxStyle = null,
     } = popupStyles || {};
     const popupLayoutClassName = useMemo(
@@ -179,8 +185,11 @@ const KeypadScreen = ({
         content: popupContent = null,
         largeVisual = null,
     } = popup || {};
-    const { body: popupHeadingBody = null } = popupHeading || {};
-    const { body: popupContentBody = null } = popupContent || {};
+    const { body: popupHeadingBody = null, textStyle: popupHeadingTextStyle = null } =
+        popupHeading || {};
+    const { body: popupContentBody = null, textStyle: popupContentTextStyle = null } =
+        popupContent || {};
+    const { color: backdropColor = null, image: backdropMedia = null } = popupBackdrop || {};
 
     const onItemClick = useCallback(
         (e, item) => {
@@ -271,7 +280,6 @@ const KeypadScreen = ({
                                     : (e) => e.preventDefault()
                             }
                         >
-                            {/* show cooler placeholders for "preview" state (default) */}
                             {isEmpty && (isInteractivePreview || isPreview) ? (
                                 <>
                                     <PlaceholderImage className={styles.imagePlaceholder} />
@@ -381,16 +389,16 @@ const KeypadScreen = ({
                 <Layout
                     className={styles.layout}
                     verticalAlign={layout}
-                    // style={
-                    //     !isPlaceholder
-                    //         ? {
-                    //               padding: spacing,
-                    //               paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
-                    //               paddingBottom:
-                    //                   (current && !isPreview ? viewerBottomHeight : 0) + spacing,
-                    //           }
-                    //         : null
-                    // }
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                              }
+                            : null
+                    }
                 >
                     <Keypad
                         className={classNames([
@@ -399,7 +407,7 @@ const KeypadScreen = ({
                         ])}
                         align={columnAlign}
                         columns={isPlaceholder ? 3 : columns}
-                        spacing={isPlaceholder ? 2 : spacing}
+                        spacing={isPlaceholder ? 2 : columnSpacing}
                         items={gridItems}
                     />
                 </Layout>
@@ -407,10 +415,20 @@ const KeypadScreen = ({
                 <animated.div
                     className={classNames([styles.popupBackdrop])}
                     style={{
-                        ...getStyleFromColor(popupBackdrop),
                         opacity: popupSpring.to((p) => p),
                     }}
-                />
+                >
+                    <PopupBackdrop
+                        width={width}
+                        height={height}
+                        resolution={resolution}
+                        playing={backgroundPlaying}
+                        media={backdropMedia}
+                        color={backdropColor}
+                        muted
+                    />
+                </animated.div>
+
                 <animated.div
                     className={styles.popup}
                     style={{
@@ -439,7 +457,6 @@ const KeypadScreen = ({
                                 style={{
                                     ...getStyleFromBox(placeholderPopupBoxStyles),
                                     ...getStyleFromBox(popupBoxStyle),
-                                    ...getStyleFromText(popupTextStyle),
                                 }}
                             >
                                 <div className={styles.popupWrapper}>
@@ -466,6 +483,10 @@ const KeypadScreen = ({
                                                 className={styles.popupHeading}
                                                 body="Lorem ipsum"
                                                 {...popupHeading}
+                                                textStyle={{
+                                                    ...headingTextStyle,
+                                                    ...popupHeadingTextStyle,
+                                                }}
                                             />
                                         </ScreenElement>
                                     ) : null}
@@ -493,6 +514,10 @@ const KeypadScreen = ({
                                                 className={styles.popupContent}
                                                 body="Lorem ipsum dolor sit amet consectetur adipiscing elit."
                                                 {...popupContent}
+                                                textStyle={{
+                                                    ...contentTextStyle,
+                                                    ...popupContentTextStyle,
+                                                }}
                                             />
                                         </ScreenElement>
                                     ) : null}

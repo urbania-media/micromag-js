@@ -76,7 +76,12 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
 
     const label = (
         <div className={styles.previewLabel}>
-            {columns}, {getAlignIntlLabel(columnAlign)}, {spacing}px
+            {columns}{' '}
+            {intl.formatMessage({
+                defaultMessage: 'columns',
+                description: 'Alignment label',
+            })}{' '}
+            , {getAlignIntlLabel(columnAlign)}, {spacing}px
         </div>
     );
 

@@ -57,15 +57,7 @@ const CardLayout = ({ types, value, className, onChange }) => {
                 );
             default:
                 return (
-                    <div
-                        style={
-                            {
-                                // width: 30,
-                                // height: 30,
-                                // border: `2px ${type} currentColor`,
-                            }
-                        }
-                    />
+                    <div />
                 );
         }
     }, []);

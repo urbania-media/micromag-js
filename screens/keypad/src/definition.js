@@ -93,17 +93,24 @@ export default [
                             {
                                 name: 'layout',
                                 type: 'card-layout',
-                                // defaultValue: 'content-top',
                                 label: defineMessage({
                                     defaultMessage: 'Layout',
                                     description: 'Field label',
                                 }),
                             },
                             {
-                                name: 'textStyle',
+                                name: 'headingTextStyle',
                                 type: 'text-style-form',
                                 label: defineMessage({
-                                    defaultMessage: 'Text style',
+                                    defaultMessage: 'Heading text style',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
+                                name: 'contentTextStyle',
+                                type: 'text-style-form',
+                                label: defineMessage({
+                                    defaultMessage: 'Content text style',
                                     description: 'Field label',
                                 }),
                             },
@@ -111,15 +118,15 @@ export default [
                                 name: 'boxStyle',
                                 type: 'box-style-form',
                                 label: defineMessage({
-                                    defaultMessage: 'Frame and backgound styles',
+                                    defaultMessage: 'Box style',
                                     description: 'Field label',
                                 }),
                             },
                             {
                                 name: 'backdrop',
-                                type: 'color',
+                                type: 'background',
                                 label: defineMessage({
-                                    defaultMessage: 'Backdrop color',
+                                    defaultMessage: 'Background',
                                     description: 'Field label',
                                 }),
                             },
