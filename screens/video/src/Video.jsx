@@ -89,7 +89,6 @@ const VideoScreen = ({
     const mediaShouldLoad = current || active;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
-    // get resized video style props
     const {
         autoPlay = true,
         loop = false,
@@ -119,10 +118,6 @@ const VideoScreen = ({
     const shouldDisplayPoster = isPreview || isCapture;
 
     useEffect(() => {
-        if (!current) {
-            return () => {};
-        }
-
         setControlsTheme({
             seekBarOnly: withSeekBar && !withControls,
             color,

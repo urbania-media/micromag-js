@@ -83,9 +83,6 @@
     "2J05S0": {
         "defaultMessage": "Images"
     },
-    "2Q/wGq": {
-        "defaultMessage": "21 jan au 18 fév"
-    },
     "2ZOPe+": {
         "defaultMessage": "Titre"
     },
@@ -112,9 +109,6 @@
     },
     "3OS3Ms": {
         "defaultMessage": "Légende"
-    },
-    "3YruaX": {
-        "defaultMessage": "21 mai au 20 juin"
     },
     "3ext9Q": {
         "defaultMessage": "Vidéo"
@@ -146,9 +140,6 @@
     "4YiKNK": {
         "defaultMessage": "Sélectionnez une couleur..."
     },
-    "4bHk4B": {
-        "defaultMessage": "Scorpion"
-    },
     "4bHvRS": {
         "defaultMessage": "Galerie (fil)"
     },
@@ -163,9 +154,6 @@
     },
     "4iBXj2": {
         "defaultMessage": "Disposition"
-    },
-    "4jR88b": {
-        "defaultMessage": "Balance"
     },
     "4js1kW": {
         "defaultMessage": "Options de partage"
@@ -257,9 +245,6 @@
     "8A8cuq": {
         "defaultMessage": "Paramètres"
     },
-    "8gQ1oW": {
-        "defaultMessage": "Poissons"
-    },
     "8oczXQ": {
         "defaultMessage": "Ajouter un marqueur"
     },
@@ -280,9 +265,6 @@
     },
     "9a5s+m": {
         "defaultMessage": "Titre avec encadré"
-    },
-    "9mSXOP": {
-        "defaultMessage": "23 juin au 22 août"
     },
     "9n9+yP": {
         "defaultMessage": "Ajouter une image"
@@ -343,9 +325,6 @@
     },
     "CrzYgw": {
         "defaultMessage": "Citation"
-    },
-    "CuR6TQ": {
-        "defaultMessage": "23 oct au 22 nov"
     },
     "D21uVQ": {
         "defaultMessage": "Copier le lien"
@@ -515,9 +494,6 @@
     "MBgLeH": {
         "defaultMessage": "23 juil - 22 août"
     },
-    "MRawqs": {
-        "defaultMessage": "Vierge"
-    },
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
@@ -533,9 +509,6 @@
     "NVUpOG": {
         "defaultMessage": "Ajuster la carte selon les marqueurs"
     },
-    "NcGcbY": {
-        "defaultMessage": "Capricorne"
-    },
     "NmCfTO": {
         "defaultMessage": "Conversation"
     },
@@ -544,9 +517,6 @@
     },
     "O2JVA+": {
         "defaultMessage": "Gauche"
-    },
-    "OEckOD": {
-        "defaultMessage": "Style du texte"
     },
     "OJi+eg": {
         "defaultMessage": "Libellé"
@@ -583,9 +553,6 @@
     },
     "PyxZY2": {
         "defaultMessage": "Annuler"
-    },
-    "Q2lZvi": {
-        "defaultMessage": "Gémeaux"
     },
     "QBaiO0": {
         "defaultMessage": "Ajouter un écran"
@@ -656,9 +623,6 @@
     "TZUu3s": {
         "defaultMessage": "Flou"
     },
-    "TmV8Ob": {
-        "defaultMessage": "Cancer"
-    },
     "Tol+/U": {
         "defaultMessage": "Effacer"
     },
@@ -691,9 +655,6 @@
     },
     "VMd1oG": {
         "defaultMessage": "Questions"
-    },
-    "VS7hGL": {
-        "defaultMessage": "21 juin au 22 juil"
     },
     "VspZp9": {
         "defaultMessage": "Téléverser une image"
@@ -763,9 +724,6 @@
     },
     "ZCe0r4": {
         "defaultMessage": "Description"
-    },
-    "ZDhS1K": {
-        "defaultMessage": "23 nov au 21 déc"
     },
     "ZLDmja": {
         "defaultMessage": "Envoyer"
@@ -872,9 +830,6 @@
     "e6+aGf": {
         "defaultMessage": "Sélectionnez un média..."
     },
-    "e9tPoV": {
-        "defaultMessage": "20 avr au 20 mai"
-    },
     "eBFxNl": {
         "defaultMessage": "Action"
     },
@@ -941,9 +896,6 @@
     "gRxcTc": {
         "defaultMessage": "Supprimer l’écran"
     },
-    "giHj1W": {
-        "defaultMessage": "23 août au 22 sept"
-    },
     "gprXiG": {
         "defaultMessage": "Recherche..."
     },
@@ -952,9 +904,6 @@
     },
     "hVE7TA": {
         "defaultMessage": "Question"
-    },
-    "heeSlL": {
-        "defaultMessage": "Styles du cadre et du fond"
     },
     "hoDz0O": {
         "defaultMessage": "Description"
@@ -1070,17 +1019,11 @@
     "nJgzwC": {
         "defaultMessage": "Urbania Article"
     },
-    "nP1L8v": {
-        "defaultMessage": "21 mars au 19 avr"
-    },
     "nXVNeg": {
         "defaultMessage": "Nom"
     },
     "nc8LF0": {
         "defaultMessage": "Métadonnées"
-    },
-    "nlnDFI": {
-        "defaultMessage": "23 sept au 22 oct"
     },
     "nno1Pq": {
         "defaultMessage": "Style du bouton"
@@ -1120,12 +1063,6 @@
     },
     "pRzSQ7": {
         "defaultMessage": "Surtitre"
-    },
-    "pSpaGF": {
-        "defaultMessage": "Sagittaire"
-    },
-    "pY/uB8": {
-        "defaultMessage": "Taureau"
     },
     "pfvDzR": {
         "defaultMessage": "Ajouté par"
@@ -1208,9 +1145,6 @@
     "tAYwqp": {
         "defaultMessage": "Ajouter une diapositive"
     },
-    "tFy+7Z": {
-        "defaultMessage": "22 déc au 20 jan"
-    },
     "tYGev7": {
         "defaultMessage": "Taille de la police"
     },
@@ -1241,9 +1175,6 @@
     "uNpHnA": {
         "defaultMessage": "Couleur du point"
     },
-    "uS3Zpq": {
-        "defaultMessage": "Bélier"
-    },
     "uSpItE": {
         "defaultMessage": "Ajouter des étiquettes..."
     },
@@ -1258,9 +1189,6 @@
     },
     "upzOTm": {
         "defaultMessage": "Crédits"
-    },
-    "uv3PH4": {
-        "defaultMessage": "Couleur du fond"
     },
     "uwcXzb": {
         "defaultMessage": "Image"
@@ -1331,9 +1259,6 @@
     "xYqGzM": {
         "defaultMessage": "Auteur"
     },
-    "xhP0oH": {
-        "defaultMessage": "Verseau"
-    },
     "xj0o1v": {
         "defaultMessage": "Grille"
     },
@@ -1355,9 +1280,6 @@
     "yCXMzz": {
         "defaultMessage": "Fermer"
     },
-    "yCbYhr": {
-        "defaultMessage": "Lion"
-    },
     "yCj5uv": {
         "defaultMessage": "23 nov au 21 déc"
     },
@@ -1375,9 +1297,6 @@
     },
     "z4Pr+g": {
         "defaultMessage": "Visuel (image ou vidéo)"
-    },
-    "zD2Q5Y": {
-        "defaultMessage": "19 fév au 20 mars"
     },
     "zDH24s": {
         "defaultMessage": "Latitude"
