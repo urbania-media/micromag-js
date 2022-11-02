@@ -20,7 +20,7 @@ import {
     usePlaybackMediaRef,
     useViewerContext,
 } from '@micromag/core/contexts';
-import { useDimensionObserver, useDebounce } from '@micromag/core/hooks';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
@@ -130,14 +130,14 @@ const UrbaniaArticle = ({
     const hasSponsor = (sponsors || []).length > 0 && isTextFilled(sponsors[0]);
     const { name: authorFullName } = author || {};
     const hasAuthor = isTextFilled(authorFullName);
-    const { url = null } = image || {};
+    const { url = null, type: imageType = null } = image || {};
     const hasImage = url !== null;
     const hasCallToAction = callToAction !== null && callToAction.active === true;
     const { video: backgroundVideo = null } = background || {};
     const hasVideoBackground = backgroundVideo !== null;
     const mediaShouldLoad = current || active;
+    const finalPlaying = playing && current;
     const backgroundPlaying = current && !openedWebView && (isView || isEdit);
-
 
     const items = [
         <ScreenElement
@@ -276,7 +276,7 @@ const UrbaniaArticle = ({
                 playing={backgroundPlaying}
                 muted={muted}
                 shouldLoad={mediaShouldLoad}
-                mediaRef={mediaRef}
+                mediaRef={imageType !== 'video' && hasVideoBackground ? mediaRef : null}
                 withoutVideo={isPreview}
             />
             <Container className={styles.content} width={width} height={height}>
@@ -335,10 +335,10 @@ const UrbaniaArticle = ({
                                 resolution={resolution}
                                 objectFit={{ fit: 'cover' }}
                                 shouldLoad={mediaShouldLoad}
-                                playing={playing}
+                                playing={finalPlaying}
                                 muted={muted}
                                 withoutVideo={isPreview}
-                                // mediaRef={mediaRef}
+                                mediaRef={mediaRef}
                                 autoPlay
                             />
                         ) : null}
