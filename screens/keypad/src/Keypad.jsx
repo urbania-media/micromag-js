@@ -280,7 +280,6 @@ const KeypadScreen = ({
                                     : (e) => e.preventDefault()
                             }
                         >
-                            {/* show cooler placeholders for "preview" state (default) */}
                             {isEmpty && (isInteractivePreview || isPreview) ? (
                                 <>
                                     <PlaceholderImage className={styles.imagePlaceholder} />
