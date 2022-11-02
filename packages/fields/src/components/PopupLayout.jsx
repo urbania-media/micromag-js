@@ -25,9 +25,6 @@ const defaultProps = {
 const ButtonLayout = ({ types, value, className, onChange }) => {
     const onButtonLayoutChange = (newVal) => {
         const v = newVal === value ? null : newVal;
-
-        console.log({value, v, newVal});
-
         onChange(v);
     };
 
