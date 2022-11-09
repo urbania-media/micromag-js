@@ -105,9 +105,12 @@ const Answers = ({
     );
 
     const hasRightAnswer =
-    items !== null && !isPlaceholder
-        ? items.reduce((hasGood, { good = false }) => hasGood || good, false)
-        : false;
+        items !== null && !isPlaceholder
+            ? items.reduce((hasGood, answer) => {
+                  const { good = false } = answer || {};
+                  return hasGood || good;
+              }, false)
+            : false;
     const finalShowUserAnswer = showUserAnswer || !hasRightAnswer;
 
     const shouldCollapse = !withoutGoodAnswer || (finalShowUserAnswer && answeredIndex !== null);
@@ -206,20 +209,22 @@ const Answers = ({
                         const hasFinalUserAnswer = finalShowUserAnswer && answeredIndex !== null;
 
                         // Hide bad answers
-                        if (answersDidCollapsed && !rightAnswer && (hasRightAnswer || !userAnswer)) {
+                        if (
+                            answersDidCollapsed &&
+                            !rightAnswer &&
+                            (hasRightAnswer || !userAnswer)
+                        ) {
                             return null;
                         }
 
-                        const answerToShow = (rightAnswer && hasRightAnswer) || (!hasRightAnswer && userAnswer && finalShowUserAnswer);
+                        const answerToShow =
+                            (rightAnswer && hasRightAnswer) ||
+                            (!hasRightAnswer && userAnswer && finalShowUserAnswer);
 
                         return (
                             <div
                                 key={`answer-${answerI}`}
-                                ref={
-                                    answerToShow
-                                        ? rightAnswerRef
-                                        : null
-                                }
+                                ref={answerToShow ? rightAnswerRef : null}
                                 className={classNames([
                                     styles.item,
                                     {
@@ -239,11 +244,7 @@ const Answers = ({
                                           }
                                         : null
                                 }
-                                onTransitionEnd={
-                                    answerToShow
-                                        ? onAnswerTransitionEnd
-                                        : null
-                                }
+                                onTransitionEnd={answerToShow ? onAnswerTransitionEnd : null}
                             >
                                 <div className={styles.itemContent}>
                                     <ScreenElement
