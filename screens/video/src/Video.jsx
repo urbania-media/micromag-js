@@ -118,6 +118,10 @@ const VideoScreen = ({
     const shouldDisplayPoster = isPreview || isCapture;
 
     useEffect(() => {
+        if (!current) {
+            return () => {};
+        }
+
         setControlsTheme({
             seekBarOnly: withSeekBar && !withControls,
             color,

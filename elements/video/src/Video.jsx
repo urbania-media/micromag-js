@@ -11,12 +11,10 @@ import {
     useMediaDuration,
     useMediaReady,
     useProgressSteps,
-    // useMediaLoad,
 } from '@micromag/core/hooks';
 import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
-
 
 const propTypes = {
     media: MicromagPropTypes.videoMedia,
@@ -51,7 +49,6 @@ const propTypes = {
     onSuspended: PropTypes.func,
     focusable: PropTypes.bool,
     withPoster: PropTypes.bool,
-    // onPosterLoaded: PropTypes.func,
 };
 
 const defaultProps = {

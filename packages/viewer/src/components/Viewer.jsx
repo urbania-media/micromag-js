@@ -12,7 +12,6 @@ import {
     ScreenSizeProvider,
     ViewerProvider,
     usePlaybackContext,
-    VisitorProvider,
     StoryProvider,
 } from '@micromag/core/contexts';
 import {
