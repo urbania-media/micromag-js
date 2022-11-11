@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-recommendation",
-    "version": "0.3.266",
+    "version": "0.3.270",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,7 +50,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.265",
-        "@micromag/element-background": "^0.3.266",
+        "@micromag/element-background": "^0.3.270",
         "@micromag/element-call-to-action": "^0.3.265",
         "@micromag/element-container": "^0.3.265",
         "@micromag/element-heading": "^0.3.265",
