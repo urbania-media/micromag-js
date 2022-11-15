@@ -42,7 +42,6 @@ export const allScreens = [
             video: videoMedia(),
         },
         callToAction: callToAction(),
-        shareIncentive: shareIncentive(),
     },
     {
         id: uuid(),
@@ -57,6 +56,7 @@ export const allScreens = [
             image: imageMedia({ gif: true }),
         },
         callToAction: callToAction(),
+        shareIncentive: shareIncentive('☝️ consider sharing if you enjoyed it!'),
     },
     {
         id: uuid(),
@@ -77,6 +77,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#00FF00' },
         },
         callToAction: callToAction(),
+        shareIncentive: shareIncentive('Lorem ipsum dolor sit amet consectetur adipiscing elit. Nunquam dolor dolor, et semper dolorem.'),
     },
     {
         id: uuid(),

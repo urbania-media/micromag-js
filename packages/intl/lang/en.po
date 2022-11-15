@@ -1600,6 +1600,12 @@ msgctxt "cuKSQz"
 msgid "Lede"
 msgstr "Lede"
 
+# Share Incentive default label
+#: d/01YO
+msgctxt "d/01YO"
+msgid "Share this Micromag!"
+msgstr "Share this Micromag!"
+
 # Subtitle placeholder
 #: d60tSn
 msgctxt "d60tSn"
@@ -2377,6 +2383,12 @@ msgstr "Bullet color"
 msgctxt "uSpItE"
 msgid "Add tags..."
 msgstr "Add tags..."
+
+# Field label
+#: uaL28k
+msgctxt "uaL28k"
+msgid "Share Incentive"
+msgstr "Share Incentive"
 
 # Field label
 #: udLCuY

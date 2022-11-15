@@ -14,6 +14,7 @@ import webFontWOFF2 from './data/files/webfont.woff2';
 import subtitles from './data/subtitles';
 import titles from './data/titles';
 import randomWords from './data/words';
+
 import image360File from './data/files/image-360.jpg';
 import gifFile from './data/files/test.gif';
 import closedCaptionsFile from './data/files/test.srt';
@@ -173,7 +174,6 @@ export const videoMediaFromURL = (url) => ({
     url,
 });
 
-
 export const videoMediaWithSound = () => ({
     ...videoMedia(),
     url: videoWithAudio,
@@ -330,10 +330,42 @@ export const callToAction = () => ({
     },
 });
 
-export const shareIncentive = () => ({
+export const shareIncentive = (body = 'Share this Micromag!') => ({
     active: true,
     label: {
-        body: 'Share this Micromag!',
+        body,
+        textStyle: {
+            color: {
+                alpha: 1,
+                color: '#222222',
+            },
+        },
+    },
+    boxStyle: {
+        borderWidth: 4,
+        padding: {
+            top: 5,
+            right: 20,
+            bottom: 5,
+            left: 20,
+        },
+        borderColor: {
+            alpha: 0.44,
+            color: '#fffc00',
+        },
+        backgroundColor: {
+            alpha: 1,
+            color: '#fffc00',
+        },
+        borderRadius: 30,
+        borderStyle: 'solid',
+        shadowAngle: 45,
+        shadowDistance: 5,
+        shadowBlur: 0,
+        shadowColor: {
+            color: '#000000',
+            alpha: 1,
+        },
     },
 });
 

@@ -214,3 +214,26 @@
 .webView {
     z-index: 10;
 }
+
+$ease-woosh: cubic-bezier(0.25, 2, 0.2, 1);
+$ease-hard-sine: cubic-bezier(0.9, 0, 0.2, 1);
+
+.shareIncentiveContainer {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 10px;
+    width: 100%;
+}
+
+.shareIncentive {
+    transform: translateY(-10px);
+    transition: opacity 0.3s $ease-hard-sine, transform 0.3s $ease-hard-sine;
+    opacity: 0;
+
+    .shareIncentiveVisible & {
+        transform: translateY(0);
+        transition: opacity 0.3s 0.5s $ease-woosh, transform 0.3s 0.5s $ease-woosh;
+        opacity: 1;
+    }
+}

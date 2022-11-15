@@ -1058,6 +1058,10 @@
     "defaultMessage": "Lede",
     "description": "Text field label"
   },
+  "d/01YO": {
+    "defaultMessage": "Share this Micromag!",
+    "description": "Share Incentive default label"
+  },
   "d60tSn": {
     "defaultMessage": "Subtitle",
     "description": "Subtitle placeholder"
@@ -1575,6 +1579,10 @@
   "uSpItE": {
     "defaultMessage": "Add tags...",
     "description": "Dropdown select label"
+  },
+  "uaL28k": {
+    "defaultMessage": "Share Incentive",
+    "description": "Field label"
   },
   "udLCuY": {
     "defaultMessage": "Shadow",

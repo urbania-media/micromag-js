@@ -1,5 +1,5 @@
 {
-    "name": "@micromag/screen-contribution",
+    "name": "@micromag/element-share-incentive",
     "version": "0.3.273",
     "description": "",
     "keywords": [
@@ -49,23 +49,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@fortawesome/fontawesome-svg-core": "^1.2.32",
-        "@fortawesome/free-solid-svg-icons": "^5.15.1",
-        "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.3.273",
-        "@micromag/data": "^0.3.273",
-        "@micromag/element-background": "^0.3.273",
-        "@micromag/element-button": "^0.3.273",
-        "@micromag/element-call-to-action": "^0.3.273",
-        "@micromag/element-container": "^0.3.273",
-        "@micromag/element-heading": "^0.3.273",
-        "@micromag/element-scroll": "^0.3.273",
-        "@micromag/element-share-incentive": "^0.3.273",
         "@micromag/element-text": "^0.3.273",
-        "@micromag/element-text-input": "^0.3.273",
-        "@micromag/transforms": "^0.3.273",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
         "uuid": "^8.3.2"

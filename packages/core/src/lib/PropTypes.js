@@ -476,6 +476,12 @@ export const callToAction = PropTypes.shape({
     buttonStyle: boxStyle,
 });
 
+export const shareIncentive = PropTypes.shape({
+    active: PropTypes.bool,
+    label: textElement,
+    boxStyle,
+});
+
 export const speaker = PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,

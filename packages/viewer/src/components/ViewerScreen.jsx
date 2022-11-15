@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -68,6 +69,7 @@ function ViewerScreen({
             }
         };
     }, [active, mounted, setMounted, index]);
+
     return (
         <div
             className={classNames([
@@ -84,7 +86,7 @@ function ViewerScreen({
                     height,
                     transform: scale !== null ? `scale(${scale})` : null,
                     transformOrigin: scale !== null ? '0 0' : null,
-                    opacity: mounted ? 1 : null
+                    opacity: mounted ? 1 : null,
                 }}
             >
                 {mounted ? (
@@ -99,6 +101,7 @@ function ViewerScreen({
                     />
                 ) : null}
             </div>
+
             {/* {withNavigationHint ? <HandTap className={styles.navigationHint} /> : null} */}
             {/* {withNavigationHint ? <ArrowHint className={styles.arrowHint} /> : null} */}
         </div>

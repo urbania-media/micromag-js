@@ -22,10 +22,7 @@ const defaultProps = {
 };
 
 const ShareIncentiveForm = ({ value, className, onChange, ...props }) => {
-    // const { active = false } = value || {};
     const intl = useIntl();
-
-    // set default type and label
     const onUpdateValue = useCallback(
         (newValue) => {
             const { active: wasActive = false } = value || {};

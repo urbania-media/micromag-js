@@ -24,6 +24,7 @@ import {
     useDragProgress,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
+import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
@@ -221,6 +222,7 @@ const Viewer = ({
     const isView = renderContext === 'view';
     const isStatic = renderContext === 'static';
     const isCapture = renderContext === 'capture';
+    const isEditor = renderContext === 'edit';
 
     const withoutScreensTransforms = isStatic || isCapture;
 
@@ -515,6 +517,20 @@ const Viewer = ({
         disabled: renderContext !== 'view',
     });
 
+    const [currentShareIncentive, setCurrentShareIncentive] = useState(null);
+    const { shareIncentive = null } = currentScreen || {};
+    const { active: hasShareIncentive = false, label: shareIncentiveLabel = null } =
+        shareIncentive || {};
+    const { label: currentShareIncentiveLabel = null } = currentShareIncentive || {};
+    const { body: incentiveLabel = null } = shareIncentiveLabel || {};
+    const { body: currentIncentiveLabel = null } = currentShareIncentiveLabel || {};
+
+    useEffect(() => {
+        if (shareIncentive !== null && shareIncentiveLabel !== currentShareIncentiveLabel) {
+            setCurrentShareIncentive(shareIncentive);
+        }
+    }, [incentiveLabel, currentIncentiveLabel, shareIncentive]);
+
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
@@ -597,6 +613,7 @@ const Viewer = ({
                                 refDots={menuDotsContainerRef}
                             />
                         ) : null}
+
                         {ready || withoutScreensTransforms ? (
                             <div className={styles.content} {...dragContentBind()}>
                                 {!withoutNavigationArrow &&
@@ -686,6 +703,22 @@ const Viewer = ({
                                 ) : null}
                             </div>
                         ) : null}
+
+                        <div
+                            className={classNames([
+                                styles.shareIncentiveContainer,
+                                { [styles.shareIncentiveVisible]: hasShareIncentive },
+                            ])}
+                            style={{
+                                top: isEditor ? 10 : menuDotsContainerHeight - 10,
+                            }}
+                        >
+                            <ShareIncentive
+                                className={styles.shareIncentive}
+                                {...currentShareIncentive}
+                            />
+                        </div>
+
                         <WebView
                             className={styles.webView}
                             style={{

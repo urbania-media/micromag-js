@@ -15,7 +15,7 @@ export default {
             }),
         },
         {
-            name: 'type',
+            name: 'label',
             type: 'text-element',
             textOnly: true,
             label: defineMessage({
