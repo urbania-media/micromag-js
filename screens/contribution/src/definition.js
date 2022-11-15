@@ -115,5 +115,9 @@ export default {
                 },
             },
         },
+        {
+            name: 'shareIncentive',
+            type: 'share-incentive',
+        },
     ],
 };

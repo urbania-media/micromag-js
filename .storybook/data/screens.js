@@ -19,6 +19,7 @@ import {
     quote,
     author,
     callToAction,
+    shareIncentive,
     conversation, // color,
 } from '../data';
 
@@ -41,6 +42,7 @@ export const allScreens = [
             video: videoMedia(),
         },
         callToAction: callToAction(),
+        shareIncentive: shareIncentive(),
     },
     {
         id: uuid(),

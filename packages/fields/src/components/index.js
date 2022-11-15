@@ -12,6 +12,8 @@ export { default as BoxStyleForm } from './BoxStyleForm';
 export { default as ButtonLayout } from './ButtonLayout';
 export { default as CallToAction } from './CallToAction';
 export { default as CallToActionForm } from './CallToActionForm';
+export { default as ShareIncentive } from './ShareIncentive';
+export { default as ShareIncentiveForm } from './ShareIncentiveForm';
 export { default as CardLayout } from './CardLayout';
 export { default as Checkboxes } from './Checkboxes';
 export { default as ClosedCaptions } from './ClosedCaptions';

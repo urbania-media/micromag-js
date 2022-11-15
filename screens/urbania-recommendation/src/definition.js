@@ -77,6 +77,10 @@ export default [
                     boxStyle: 'cta',
                 },
             },
+            {
+                name: 'shareIncentive',
+                type: 'share-incentive',
+            },
         ],
     },
 ];

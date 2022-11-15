@@ -70,6 +70,10 @@ export default {
                 },
             },
         },
+        {
+            name: 'shareIncentive',
+            type: 'share-incentive',
+        },
         // {
         //     type: 'fields',
         //     isList: true,

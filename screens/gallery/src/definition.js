@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import GalleryScreen from './Gallery';
 import GalleryCaptionsScreen from './GalleryCaptions';
 import * as transforms from './transforms/index';
@@ -78,6 +79,10 @@ export default [
                         textStyle: 'cta',
                     },
                 },
+            },
+            {
+                name: 'shareIncentive',
+                type: 'share-incentive',
             },
         ],
     },
@@ -160,6 +165,10 @@ export default [
                         textStyle: 'cta',
                     },
                 },
+            },
+            {
+                name: 'shareIncentive',
+                type: 'share-incentive',
             },
         ],
     },

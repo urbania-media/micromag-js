@@ -60,6 +60,10 @@ export default [
                     },
                 },
             },
+            {
+                name: 'shareIncentive',
+                type: 'share-incentive',
+            },
         ],
     },
     {
@@ -129,6 +133,10 @@ export default [
                         textStyle: 'cta',
                     },
                 },
+            },
+            {
+                name: 'shareIncentive',
+                type: 'share-incentive',
             },
         ],
     },

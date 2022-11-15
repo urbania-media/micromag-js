@@ -330,6 +330,13 @@ export const callToAction = () => ({
     },
 });
 
+export const shareIncentive = () => ({
+    active: true,
+    label: {
+        body: 'Share this Micromag!',
+    },
+});
+
 export const callToActionWithStyles = () => ({
     active: true,
     inWebView: true,

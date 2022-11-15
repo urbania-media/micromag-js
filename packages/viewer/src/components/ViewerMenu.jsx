@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useViewerSize } from '@micromag/core/contexts';
 import { useTrackEvent, useDragProgress, useDimensionObserver } from '@micromag/core/hooks';
+// import { Text } from '@micromag/elements';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 
@@ -283,6 +284,16 @@ const ViewerMenu = ({
         }
     }, [menuOpened, draggingMenu, menuMounted, setMenuMounted]);
 
+    const { active: shareIncentiveActive = false, label: shareIncentiveLabel = null } =
+        useMemo(() => {
+            const { screen = null } = items[currentScreenIndex] || {};
+            const { shareIncentive = null } = screen || {};
+
+            return shareIncentive;
+        }, [currentScreenIndex, items]);
+
+    console.log({Elements, shareIncentiveActive, shareIncentiveLabel});
+
     return (
         <>
             <div
@@ -392,6 +403,17 @@ const ViewerMenu = ({
                     />
                 ) : null}
             </MenuContainer>
+
+            <div
+                className={classNames([
+                    styles.shareIncentive,
+                    {
+                        active: shareIncentiveActive,
+                    },
+                ])}
+            >
+                {/* <Text {...shareIncentiveLabel} /> */}
+            </div>
 
             <MenuContainer
                 className={styles.menuContainer}
