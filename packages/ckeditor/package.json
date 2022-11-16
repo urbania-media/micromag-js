@@ -1,6 +1,6 @@
 {
     "name": "@micromag/ckeditor",
-    "version": "0.3.282",
+    "version": "0.3.283",
     "description": "",
     "keywords": [
         "javascript"
@@ -71,5 +71,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "1ccd2caafbcf2b27cde1216f97ae45abf0ae8c63"
+    "gitHead": "bde5b4a8c35b5b5f6979aae6e06bedf23881b0ff"
 }
