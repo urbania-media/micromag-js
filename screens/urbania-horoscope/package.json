@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-horoscope",
-    "version": "0.3.296",
+    "version": "0.3.297",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,19 +50,19 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.296",
-        "@micromag/element-background": "^0.3.296",
-        "@micromag/element-button": "^0.3.296",
-        "@micromag/element-call-to-action": "^0.3.296",
-        "@micromag/element-container": "^0.3.296",
-        "@micromag/element-grid": "^0.3.296",
-        "@micromag/element-heading": "^0.3.296",
-        "@micromag/element-keypad": "^0.3.296",
-        "@micromag/element-layout": "^0.3.296",
-        "@micromag/element-scroll": "^0.3.296",
-        "@micromag/element-text": "^0.3.296",
-        "@micromag/element-urbania-author": "^0.3.296",
-        "@micromag/transforms": "^0.3.296",
+        "@micromag/core": "^0.3.297",
+        "@micromag/element-background": "^0.3.297",
+        "@micromag/element-button": "^0.3.297",
+        "@micromag/element-call-to-action": "^0.3.297",
+        "@micromag/element-container": "^0.3.297",
+        "@micromag/element-grid": "^0.3.297",
+        "@micromag/element-heading": "^0.3.297",
+        "@micromag/element-keypad": "^0.3.297",
+        "@micromag/element-layout": "^0.3.297",
+        "@micromag/element-scroll": "^0.3.297",
+        "@micromag/element-text": "^0.3.297",
+        "@micromag/element-urbania-author": "^0.3.297",
+        "@micromag/transforms": "^0.3.297",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "@use-gesture/react": "^10.2.4",
@@ -76,5 +76,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "0bcd099c7e697bc4ebb858e7fd63fad111d052b8"
+    "gitHead": "172ee4065358410e09a8cce309b329293de74ecd"
 }
