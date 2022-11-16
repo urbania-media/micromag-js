@@ -1,6 +1,6 @@
 {
     "name": "@micromag/cli",
-    "version": "0.3.287",
+    "version": "0.3.288",
     "description": "",
     "keywords": [
         "javascript"
@@ -44,13 +44,13 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.287",
-        "@micromag/elements": "^0.3.287",
-        "@micromag/fields": "^0.3.287",
-        "@micromag/screens": "^0.3.287",
-        "@micromag/transforms": "^0.3.287",
-        "@micromag/viewer": "^0.3.287",
-        "@micromag/viewer-build": "^0.3.287",
+        "@micromag/core": "^0.3.288",
+        "@micromag/elements": "^0.3.288",
+        "@micromag/fields": "^0.3.288",
+        "@micromag/screens": "^0.3.288",
+        "@micromag/transforms": "^0.3.288",
+        "@micromag/viewer": "^0.3.288",
+        "@micromag/viewer-build": "^0.3.288",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "commander": "^8.3.0",
@@ -67,5 +67,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "408085666e85c8a4f89f1d088b65fd5fe6eaf4d3"
+    "gitHead": "1d688518603049a8da35938d50a2ffb87390da9a"
 }
