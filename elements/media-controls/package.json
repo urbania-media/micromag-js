@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-media-controls",
-    "version": "0.3.293",
+    "version": "0.3.294",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,7 +52,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.293",
+        "@micromag/core": "^0.3.294",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "classnames": "^2.2.6",
@@ -64,5 +64,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "aea8058b66c30d12af88491e8dde3e9875f7c68b"
+    "gitHead": "f02575d52699c8865b948b1ad484daf0c77f874c"
 }

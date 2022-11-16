@@ -1,5 +1,5 @@
 {
-    "version": "0.3.293",
+    "version": "0.3.294",
     "packages": [
         "elements/*",
         "packages/*",
@@ -10,6 +10,9 @@
             "allowBranch": [
                 "master",
                 "develop"
+            ],
+            "npmClientArgs": [
+                "--maxsockets=3"
             ]
         },
         "bootstrap": {
