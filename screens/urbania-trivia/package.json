@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-trivia",
-    "version": "0.3.294",
+    "version": "0.3.295",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,16 +50,16 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.20",
-        "@micromag/core": "^0.3.294",
-        "@micromag/element-background": "^0.3.294",
-        "@micromag/element-call-to-action": "^0.3.294",
-        "@micromag/element-closed-captions": "^0.3.294",
-        "@micromag/element-container": "^0.3.294",
-        "@micromag/element-heading": "^0.3.294",
-        "@micromag/element-image": "^0.3.294",
-        "@micromag/element-media-controls": "^0.3.294",
-        "@micromag/element-video": "^0.3.294",
-        "@micromag/transforms": "^0.3.294",
+        "@micromag/core": "^0.3.295",
+        "@micromag/element-background": "^0.3.295",
+        "@micromag/element-call-to-action": "^0.3.295",
+        "@micromag/element-closed-captions": "^0.3.295",
+        "@micromag/element-container": "^0.3.295",
+        "@micromag/element-heading": "^0.3.295",
+        "@micromag/element-image": "^0.3.295",
+        "@micromag/element-media-controls": "^0.3.295",
+        "@micromag/element-video": "^0.3.295",
+        "@micromag/transforms": "^0.3.295",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -69,5 +69,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "f02575d52699c8865b948b1ad484daf0c77f874c"
+    "gitHead": "42e06bfb13f8f61fee0bcbe49309bd860b602e6a"
 }
