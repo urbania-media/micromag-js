@@ -225,6 +225,7 @@ $ease-hard-sine: cubic-bezier(0.9, 0, 0.2, 1);
     top: 0;
     left: 10px;
     width: calc(100% - 20px);
+    pointer-events: none;
 }
 
 .shareIncentive {
