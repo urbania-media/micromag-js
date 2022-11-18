@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.3.305",
+    "version": "0.3.306",
     "description": "",
     "keywords": [
         "javascript"
@@ -133,5 +133,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "35403d9b75492cdde2921b0f1a148e9a55ed82ed"
+    "gitHead": "3221a816c93604d43c9bf7900506350b355fde9a"
 }
