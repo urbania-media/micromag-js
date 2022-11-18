@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-keypad",
-    "version": "0.3.302",
+    "version": "0.3.303",
     "description": "",
     "keywords": [
         "javascript"
@@ -54,20 +54,20 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.302",
-        "@micromag/element-background": "^0.3.302",
-        "@micromag/element-button": "^0.3.302",
-        "@micromag/element-call-to-action": "^0.3.302",
-        "@micromag/element-container": "^0.3.302",
-        "@micromag/element-grid": "^0.3.302",
-        "@micromag/element-heading": "^0.3.302",
-        "@micromag/element-keypad": "^0.3.302",
-        "@micromag/element-layout": "^0.3.302",
-        "@micromag/element-scroll": "^0.3.302",
-        "@micromag/element-text": "^0.3.302",
-        "@micromag/element-urbania-author": "^0.3.302",
-        "@micromag/element-visual": "^0.3.302",
-        "@micromag/transforms": "^0.3.302",
+        "@micromag/core": "^0.3.303",
+        "@micromag/element-background": "^0.3.303",
+        "@micromag/element-button": "^0.3.303",
+        "@micromag/element-call-to-action": "^0.3.303",
+        "@micromag/element-container": "^0.3.303",
+        "@micromag/element-grid": "^0.3.303",
+        "@micromag/element-heading": "^0.3.303",
+        "@micromag/element-keypad": "^0.3.303",
+        "@micromag/element-layout": "^0.3.303",
+        "@micromag/element-scroll": "^0.3.303",
+        "@micromag/element-text": "^0.3.303",
+        "@micromag/element-urbania-author": "^0.3.303",
+        "@micromag/element-visual": "^0.3.303",
+        "@micromag/transforms": "^0.3.303",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "@use-gesture/react": "^10.2.4",
@@ -82,5 +82,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "dfd32b9c4c806afe9937308ce14bf7e2e2f23b31"
+    "gitHead": "dfbee10ad0d83f5fbf91dabef33d3f67ed02eabb"
 }
