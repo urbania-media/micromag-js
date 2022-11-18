@@ -44,6 +44,7 @@ const DRAG_PROGRESS_ACTIVATION_THRESHOLD = 0.3;
 const DRAG_VELOCITY_ACTIVATION_THRESHOLD = 0.3;
 const DEFAULT_TRANSITION_TYPE_LANDSCAPE = 'carousel';
 const DEFAULT_TRANSITION_TYPE_PORTRAIT = 'stack';
+const SHARE_INCENTIVE_TIMEOUT = 6000;
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -518,6 +519,7 @@ const Viewer = ({
     });
 
     const [currentShareIncentive, setCurrentShareIncentive] = useState(null);
+    const [shareIncentiveVisible, setShareIncentiveVisible] = useState(false);
     const { shareIncentive = null } = currentScreen || {};
     const { active: hasShareIncentive = false, label: shareIncentiveLabel = null } =
         shareIncentive || {};
@@ -526,10 +528,26 @@ const Viewer = ({
     const { body: currentIncentiveLabel = null } = currentShareIncentiveLabel || {};
 
     useEffect(() => {
-        if (shareIncentive !== null && shareIncentiveLabel !== currentShareIncentiveLabel) {
+        setShareIncentiveVisible(true);
+
+        if (hasShareIncentive && shareIncentiveLabel !== currentShareIncentiveLabel) {
             setCurrentShareIncentive(shareIncentive);
         }
-    }, [incentiveLabel, currentIncentiveLabel, shareIncentive]);
+
+        const timeout = setTimeout(() => {
+            setShareIncentiveVisible(false);
+        }, SHARE_INCENTIVE_TIMEOUT);
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [
+        setShareIncentiveVisible,
+        hasShareIncentive,
+        incentiveLabel,
+        currentIncentiveLabel,
+        setCurrentShareIncentive,
+    ]);
 
     return (
         <StoryProvider story={parsedStory}>
@@ -707,7 +725,10 @@ const Viewer = ({
                         <div
                             className={classNames([
                                 styles.shareIncentiveContainer,
-                                { [styles.shareIncentiveVisible]: hasShareIncentive },
+                                {
+                                    [styles.shareIncentiveVisible]:
+                                        hasShareIncentive && shareIncentiveVisible,
+                                },
                             ])}
                             style={{
                                 top: isEditor ? 10 : menuDotsContainerHeight - 10,
