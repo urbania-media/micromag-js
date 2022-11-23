@@ -535,18 +535,22 @@ const Viewer = ({
         }
 
         const timeout = setTimeout(() => {
-            setShareIncentiveVisible(false);
+            if (isView) {
+                setShareIncentiveVisible(false);
+            }
         }, SHARE_INCENTIVE_TIMEOUT);
 
         return () => {
             clearTimeout(timeout);
         };
     }, [
+        shareIncentiveLabel,
         setShareIncentiveVisible,
         hasShareIncentive,
         incentiveLabel,
         currentIncentiveLabel,
         setCurrentShareIncentive,
+        isView
     ]);
 
     return (
