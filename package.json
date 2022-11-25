@@ -87,7 +87,7 @@
         "gettext-parser": "^4.0.4",
         "glob": "^7.1.6",
         "http-proxy-middleware": "^1.0.6",
-        "lerna": "^4.0.0",
+        "lerna": "^6.0.3",
         "lodash": "^4.17.21",
         "minimatch": "^5.0.1",
         "mkdirp": "^1.0.4",
