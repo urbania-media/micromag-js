@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     backgroundColor,
@@ -9,6 +10,7 @@ import {
 } from '../../../../.storybook/data';
 import Article from '../UrbaniaLoader';
 import definition from '../definition';
+
 import testArticle from './article.json';
 import testVideo from './video.json';
 
@@ -50,7 +52,13 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
 export const Video = (storyProps) => (
-    <Article {...storyProps} {...video()} type="video" image={videoMedia()} callToAction={callToAction()} />
+    <Article
+        {...storyProps}
+        {...video()}
+        type="video"
+        image={videoMedia()}
+        callToAction={callToAction()}
+    />
 );
 
 export const CallToAction = (storyProps) => (

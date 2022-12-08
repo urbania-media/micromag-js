@@ -3,7 +3,9 @@ import { getJSON } from '@folklore/fetch';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { isTextFilled } from '@micromag/core/utils';
+
+import { isTextFilled, isValidUrl } from '@micromag/core/utils';
+
 import UrbaniaArticle from './UrbaniaArticle';
 
 const propTypes = {
@@ -22,12 +24,13 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
     const [article, setArticle] = useState(initialArticle);
 
     const hostname = useMemo(() => {
-        const { hostname: urlHostname = null } = url !== null ? new URL(url) : {};
+        const { hostname: urlHostname = null } =
+            url !== null && isValidUrl(url) ? new URL(url) : {};
         return urlHostname;
     }, [url]);
 
     useEffect(() => {
-        if (url !== null) {
+        if (url !== null && isValidUrl(url)) {
             getJSON(`${url}.json`, { mode: 'cors' }).then((art) => {
                 setArticle(art || null);
             });
