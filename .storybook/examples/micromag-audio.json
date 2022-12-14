@@ -1,0 +1,234 @@
+{
+    "id": "214",
+    "document_id": "214",
+    "type": "story",
+    "title": "Micromag audio",
+    "author": {
+        "id": "1",
+        "name": "Joe Atreides",
+        "short_name": "JA",
+        "avatar": {
+            "id": "41",
+            "type": "image",
+            "name": "avatar.png",
+            "url": "https://cdn.dev.microm.ag/image/2021-02-24/68-043727.png",
+            "thumbnail_url": "https://img.dev.microm.ag/image/2021-02-24/filters/thumbnail/68-043727.png",
+            "files": {
+                "original": {
+                    "id": "68",
+                    "type": "image",
+                    "mime": "image/png",
+                    "handle": "original",
+                    "name": "avatar.png",
+                    "url": "https://cdn.dev.microm.ag/image/2021-02-24/68-043727.png"
+                }
+            },
+            "sizes": {
+                "large": {
+                    "id": "large",
+                    "url": "https://img.dev.microm.ag/image/2021-02-24/filters/large/68-043727.png",
+                    "width": 200,
+                    "height": 200
+                },
+                "medium": {
+                    "id": "medium",
+                    "url": "https://img.dev.microm.ag/image/2021-02-24/filters/medium/68-043727.png",
+                    "width": 200,
+                    "height": 200
+                },
+                "small": {
+                    "id": "small",
+                    "url": "https://img.dev.microm.ag/image/2021-02-24/filters/small/68-043727.png",
+                    "width": 200,
+                    "height": 200
+                }
+            },
+            "metadata": {
+                "filename": "avatar.png",
+                "size": 65870,
+                "mime": "image/png",
+                "description": null,
+                "width": 200,
+                "height": 200
+            }
+        },
+        "color": { "color": "#4a90e2", "alpha": 1 }
+    },
+    "organisation": {
+        "id": "43",
+        "name": "Fremen Krew",
+        "slug": "fremen-krew",
+        "short_name": "FK",
+        "tracking": [],
+        "google_api_key": null,
+        "namespaces": ["urbania"],
+        "active": true
+    },
+    "metadata": { "description": null, "language": "fr", "favicon": null, "shareImage": null },
+    "components": [
+        {
+            "id": "dbb947c0-7bc5-11ed-9ca1-1d124ec94696",
+            "type": "audio",
+            "background": {
+                "color": { "color": "#b51e1e", "alpha": 1 },
+                "image": "media://99",
+                "fit": "contain"
+            },
+            "audio": {
+                "color": { "color": "#FFF", "alpha": 1 },
+                "autoPlay": true,
+                "withControls": true,
+                "withWave": true,
+                "media": "media://98"
+            },
+            "callToAction": {
+                "active": false,
+                "type": "swipe-up",
+                "label": { "body": "En savoir plus" }
+            },
+            "shareIncentive": {
+                "active": true,
+                "label": {
+                    "body": "Share this Micromag!",
+                    "textStyle": {
+                        "fontStyle": { "bold": false, "italic": true, "underline": true },
+                        "fontSize": 16,
+                        "fontFamily": "Times New Roman",
+                        "color": { "color": "#b4b4b4", "alpha": 1 }
+                    }
+                }
+            }
+        }
+    ],
+    "medias": {
+        "media://99": {
+            "id": "99",
+            "type": "image",
+            "name": "noel_2022_share.jpg",
+            "url": "https://cdn.dev.microm.ag/image/2022-12-14/250-104528.jpg",
+            "thumbnail_url": "https://img.dev.microm.ag/image/2022-12-14/filters/thumbnail/250-104528.jpg",
+            "files": {
+                "original": {
+                    "id": "250",
+                    "type": "image",
+                    "mime": "image/jpeg",
+                    "handle": "original",
+                    "name": "noel_2022_share.jpg",
+                    "url": "https://cdn.dev.microm.ag/image/2022-12-14/250-104528.jpg"
+                }
+            },
+            "sizes": {
+                "large": {
+                    "id": "large",
+                    "url": "https://img.dev.microm.ag/image/2022-12-14/filters/large/250-104528.jpg",
+                    "width": 1200,
+                    "height": 630
+                },
+                "medium": {
+                    "id": "medium",
+                    "url": "https://img.dev.microm.ag/image/2022-12-14/filters/medium/250-104528.jpg",
+                    "width": 1000,
+                    "height": 525
+                },
+                "small": {
+                    "id": "small",
+                    "url": "https://img.dev.microm.ag/image/2022-12-14/filters/small/250-104528.jpg",
+                    "width": 600,
+                    "height": 315
+                }
+            },
+            "metadata": {
+                "filename": "noel_2022_share.jpg",
+                "size": 375721,
+                "mime": "image/jpeg",
+                "description": null,
+                "width": 1200,
+                "height": 630
+            }
+        },
+        "media://98": {
+            "id": "98",
+            "type": "audio",
+            "name": "LES_PIRES_MOMENTS_S5_EPISODE_1_VF.mp3",
+            "url": "https://cdn.dev.microm.ag/audio/2022-12-14/249-104222.mp3",
+            "thumbnail_url": null,
+            "files": {
+                "original": {
+                    "id": "249",
+                    "type": "audio",
+                    "mime": "audio/mpeg",
+                    "handle": "original",
+                    "name": "LES_PIRES_MOMENTS_S5_EPISODE_1_VF.mp3",
+                    "url": "https://cdn.dev.microm.ag/audio/2022-12-14/249-104222.mp3"
+                }
+            },
+            "metadata": {
+                "filename": "LES_PIRES_MOMENTS_S5_EPISODE_1_VF.mp3",
+                "size": 90033442,
+                "mime": "audio/mpeg",
+                "description": null,
+                "duration": 2233.4672,
+                "has_audio": true
+            }
+        }
+    },
+    "theme": {
+        "components": [],
+        "textStyles": {
+            "heading1": {
+                "color": { "color": "#FFF", "alpha": 1 },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 32,
+                "fontStyle": { "bold": false, "italic": false, "underline": false },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "heading2": {
+                "color": { "color": "#FFF", "alpha": 1 },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 24,
+                "fontStyle": { "bold": false, "italic": false, "underline": false },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "heading3": {
+                "color": { "color": "#FFF", "alpha": 1 },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 20,
+                "fontStyle": { "bold": false, "italic": false, "underline": false },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "button": {
+                "color": { "color": "#FFF", "alpha": 1 },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 16,
+                "fontStyle": { "bold": true, "italic": false, "underline": false },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "text": {
+                "color": { "color": "#FFF", "alpha": 1 },
+                "align": "left",
+                "fontFamily": "Georgia",
+                "fontSize": 16,
+                "fontStyle": { "bold": false, "italic": false, "underline": false },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            }
+        },
+        "boxStyles": null,
+        "colors": {
+            "primary": { "color": "#FFF", "alpha": 1 },
+            "secondary": { "color": "#999", "alpha": 1 }
+        },
+        "background": { "color": { "color": "#000", "alpha": 1 }, "image": null }
+    },
+    "settings": [],
+    "created_at": "2022-12-14T10:41:59-05:00",
+    "last_lock": null
+}

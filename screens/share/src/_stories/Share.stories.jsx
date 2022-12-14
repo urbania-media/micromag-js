@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 // import { text, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import { title, backgroundColor, transitions } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import ShareScreen from '../Share';
 import definition from '../definition';
 
@@ -25,7 +25,7 @@ export default {
     component: ShareScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition
+        screenDefinition: definition,
     },
 };
 
@@ -39,39 +39,47 @@ export const Edit = (storyProps) => <ShareScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ShareScreen {...storyProps} {...props} />;
 
-export const WithOnlyFacebook = (storyProps) => <ShareScreen {...storyProps} {...props} options={{
-    email: false,
-    facebook: true,
-    twitter: false,
-    linkedin: false,
-}} />;
+export const WithOnlyFacebook = (storyProps) => (
+    <ShareScreen
+        {...storyProps}
+        {...props}
+        options={{
+            email: false,
+            facebook: true,
+            twitter: false,
+            linkedin: false,
+        }}
+    />
+);
 
-export const WithCentered = (storyProps) => <ShareScreen
-    {...storyProps}
-    {...props}
-    options={{
-        email: false,
-        facebook: true,
-        twitter: true,
-        linkedin: true,
-    }}
-    centered
-/>;
+export const WithCentered = (storyProps) => (
+    <ShareScreen
+        {...storyProps}
+        {...props}
+        options={{
+            email: false,
+            facebook: true,
+            twitter: true,
+            linkedin: true,
+        }}
+        centered
+    />
+);
 
-export const WithAllPlatforms = (storyProps) => <ShareScreen
-    {...storyProps}
-    {...props}
-    options={{
-        email: true,
-        facebook: true,
-        twitter: true,
-        linkedin: true,
-        facebookMessenger: true,
-        whatsapp: true,
-    }}
-/>;
-
-
+export const WithAllPlatforms = (storyProps) => (
+    <ShareScreen
+        {...storyProps}
+        {...props}
+        options={{
+            email: true,
+            facebook: true,
+            twitter: true,
+            linkedin: true,
+            facebookMessenger: false,
+            whatsapp: true,
+        }}
+    />
+);
 
 // export const WithCallToAction = (storyProps) => (
 //     <ShareScreen {...storyProps} {...props} callToAction={callToAction()} />

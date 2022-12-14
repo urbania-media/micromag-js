@@ -18,12 +18,23 @@ const stopDragEventsPropagation = {
     onPointerDown: (e) => e.stopPropagation(),
 };
 
-function getFormattedTimestamp(s, withMilliseconds = false) {
-    const parts = `${s}`.split('.');
-    const seconds = parts[0];
-    const ms = withMilliseconds && parts.length > 1 ? `:${parts[1].substring(0, 3)}` : '';
+function getFormattedTimestamp(secondsWithMs = null) {
+    if (secondsWithMs === null || secondsWithMs <= 0) {
+        return '00:00';
+    }
+    const parts = `${secondsWithMs}`.split('.');
+    const [fullSeconds = 0] = parts || [];
 
-    return (s - (s %= 60)) / 60 + (9 < seconds ? ':' : ':0') + ~~s + ms; // eslint-disable-line
+    const finalFullSeconds = Math.round(fullSeconds);
+
+    const seconds = finalFullSeconds % 60;
+    const diff = finalFullSeconds - seconds;
+    const minutes = diff > 0 ? diff / 60 : 0;
+
+    return `${String(Math.round(minutes)).padStart(2, '0')}:${String(Math.round(seconds)).padStart(
+        2,
+        '0',
+    )}`;
 }
 
 const SHOW_MILLISECONDS_THRESHOLD = 5; // show milliseconds when scrubbing if length of video is shorter than 5 seconds
@@ -73,16 +84,16 @@ const SeekBar = ({
     const progress = useMediaProgress(media, {
         disabled: !playing,
     });
+
     const { currentTime = null, duration = null } = media || {};
     const [showTimestamp, setShowTimestamp] = useState(false);
 
     const onDrag = useCallback(
-        ({ event, xy: [x], elapsedTime, active, tap, currentTarget }) => {
+        ({ xy: [x], elapsedTime, active, tap, currentTarget }) => {
             if (!active && elapsedTime > 300) {
                 return;
             }
-
-            const { left: elX, width: elWidth } = currentTarget.getBoundingClientRect();
+            const { left: elX = 0, width: elWidth = 0 } = currentTarget.getBoundingClientRect();
             const newProgress = Math.max(0, Math.min(1, (x - elX) / elWidth));
 
             if (onSeek !== null) {

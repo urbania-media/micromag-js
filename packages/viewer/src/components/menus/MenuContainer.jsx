@@ -10,14 +10,14 @@ import styles from '../../styles/menus/menu-container.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
-    progressSpring: PropTypes.number,
+    progressSpring: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     theme: MicromagPropTypes.viewerTheme,
     children: PropTypes.node,
 };
 
 const defaultProps = {
     className: null,
-    progressSpring: 0,
+    progressSpring: null,
     theme: null,
     children: null,
 };

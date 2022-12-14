@@ -102,7 +102,6 @@ const ViewerMenuDots = ({
                         />
                     );
                 })}
-
                 {closeable ? (
                     <li className={styles.closeButton} style={{ color: primary }}>
                         <button

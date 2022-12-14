@@ -272,8 +272,16 @@ const ViewerMenu = ({
     );
     useKeyboardShortcuts(keyboardShortcuts);
 
+    const menuOpenedProgressValue = menuOpenedProgress ? menuOpenedProgress.value || 0 : 0;
+    const shareOpenedProgressValue = shareOpenedProgress ? shareOpenedProgress.value || 0 : 0;
+
     // should be zero if either screens menu or share menu is opened
-    const dotsOpacity = Math.min(1, Math.max(0, 1 - (menuOpenedProgress + shareOpenedProgress)));
+    const dotsOpacity = Math.min(
+        1,
+        Math.max(0, 1 - (menuOpenedProgressValue + shareOpenedProgressValue)),
+    );
+
+    // console.log(dotsOpacity, menuProgressValue, shareProgressValue);
 
     useEffect(() => {
         if ((menuOpened || draggingMenu) && !menuMounted) {

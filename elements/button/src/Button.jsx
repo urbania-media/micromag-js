@@ -4,9 +4,11 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button as CoreButton } from '@micromag/core/components';
 import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -76,9 +78,7 @@ const Button = ({
     }
 
     if (!withoutExternalBorder) {
-        const {
-            borderWidth = null,
-        } = finalStyles || {};
+        const { borderWidth = null } = finalStyles || {};
 
         const margin = borderWidth !== null && borderWidth > 0 ? '-1px' : null;
 
@@ -103,7 +103,7 @@ const Button = ({
             refButton={refButton}
             type={type}
             focusable={focusable}
-            withoutBoostrapStyles // @todo viewer should not be embarking any BS styles
+            withoutBootstrapStyles
             {...otherProps}
         >
             {children}

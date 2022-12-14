@@ -1,14 +1,19 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
+// .container {
+//     background-color: red;
+// }
+
 .inner {
+    position: relative;
     flex-grow: 1;
 }
 
 .progressBar {
     position: relative;
-    background-color: rgba($white, 0.1);
     height: 0.5rem;
+    background-color: rgba($white, 0.1);
 }
 
 .progress,
@@ -28,11 +33,12 @@
     left: 0;
     width: 1.5rem;
     height: 1.5rem;
-    border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.5s $ease-in-bump;
+    border-radius: 50%;
     background-color: $purple;
 }
+
 .withSeekHead {
     @media (hover: hover) {
         &:hover {
@@ -48,31 +54,35 @@
     z-index: 2;
     bottom: 100%;
     left: 50%;
+    padding: 0.4rem 0.5rem 0.25rem;
     transform: translate(-50%, 0);
-    opacity: 0;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+    transition: opacity 0.5s $ease-in-bump, transform 0.5s $ease-in-bump;
     border-width: 2px;
     border-style: solid;
+    border-radius: 4px;
+    opacity: 0;
+    background-color: $white;
+    color: $black;
     font-size: 1.1rem;
     font-weight: bold;
-    color: $black;
-    background-color: $white;
-    transition: opacity 0.5s $ease-in-bump, transform 0.5s $ease-in-bump;
+    line-height: 1;
 
     .showTimestamp & {
-        opacity: 1;
         transform: translate(-50%, -0.5rem);
+        opacity: 1;
     }
 }
 
 .track {
     @extend %reset-button;
-
     display: none;
+    position: absolute;
+    right: 0;
+    left: 0;
     height: 5rem;
     transform: translateY(-50%);
     background-color: transparent;
+    touch-action: none;
 
     .withSeekHead & {
         display: block;

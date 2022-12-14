@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
+import isNumber from 'lodash/isNumber';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useCallback } from 'react';
 
@@ -9,12 +10,11 @@ import {
     useMediaCurrentTime,
     useMediaReady,
     useMediaDuration,
-    useMediaLoad,
-    useMediaWaveform,
+    useMediaLoad, // useMediaWaveform,
     useProgressSteps,
 } from '@micromag/core/hooks';
 
-import AudioWave from './AudioWave';
+import AudioBars from './AudioBars';
 
 import styles from './styles/audio.module.scss';
 
@@ -33,13 +33,13 @@ const propTypes = {
     preload: PropTypes.oneOf(['auto', 'none', 'metadata']),
     shouldLoad: PropTypes.bool,
     waveFake: PropTypes.bool,
-    waveProps: PropTypes.shape({
-        sampleWidth: PropTypes.number,
-        sampleMargin: PropTypes.number,
-        minSampleHeight: PropTypes.number,
-    }),
+    // waveProps: PropTypes.shape({
+    //     sampleWidth: PropTypes.number,
+    //     sampleMargin: PropTypes.number,
+    //     minSampleHeight: PropTypes.number,
+    // }),
     withWave: PropTypes.bool,
-    reduceBufferFactor: PropTypes.number,
+    // reduceBufferFactor: PropTypes.number,
     className: PropTypes.string,
     onReady: PropTypes.func,
     onPlay: PropTypes.func,
@@ -62,9 +62,9 @@ const defaultProps = {
     preload: 'auto',
     shouldLoad: true,
     waveFake: false,
-    waveProps: null,
+    // waveProps: null,
     withWave: false,
-    reduceBufferFactor: 100,
+    // reduceBufferFactor: 100,
     className: null,
     onReady: null,
     onPlay: null,
@@ -87,9 +87,9 @@ const Audio = ({
     preload,
     shouldLoad,
     waveFake,
-    waveProps,
+    // waveProps,
     withWave,
-    reduceBufferFactor,
+    // reduceBufferFactor,
     className,
     onReady,
     onPlay,
@@ -104,20 +104,25 @@ const Audio = ({
     const { url = null } = media || {};
 
     const ref = useRef(null);
+
     const currentTime = useMediaCurrentTime(ref.current, {
         id: url,
         disabled: paused || (!withWave && onProgressStep === null),
     });
+
     const ready = useMediaReady(ref.current, {
         id: url,
     });
+
     const duration = useMediaDuration(ref.current, {
         id: url,
     });
-    const audioLevels = useMediaWaveform(media, {
-        fake: waveFake,
-        reduceBufferFactor,
-    });
+
+    // const audioLevels = useMediaWaveform(media, {
+    //     fake: waveFake,
+    //     reduceBufferFactor,
+    // });
+
     useMediaLoad(ref.current, {
         preload,
         shouldLoad,
@@ -139,7 +144,7 @@ const Audio = ({
         if (customOnVolumeChange !== null) {
             customOnVolumeChange(element.volume);
         }
-    }, [customOnVolumeChange]);
+    }, [ref.current, customOnVolumeChange]);
 
     const onWavePlay = useCallback(() => {
         const { current: element = null } = ref;
@@ -147,15 +152,22 @@ const Audio = ({
             return;
         }
         element.play();
-    }, []);
+    }, [ref.current]);
 
-    const onWaveSeek = useCallback((newTime) => {
-        const { current: element = null } = ref;
-        if (element === null) {
-            return;
-        }
-        element.currentTime = newTime;
-    }, []);
+    const onWaveSeek = useCallback(
+        (newTime) => {
+            const { current: element = null } = ref;
+            if (element === null) {
+                return;
+            }
+
+            console.log('fuck off', newTime);
+            if (isNumber(newTime)) {
+                element.currentTime = newTime;
+            }
+        },
+        [ref.current],
+    );
 
     useEffect(() => {
         if (waveReady && onReady !== null) {
@@ -183,6 +195,8 @@ const Audio = ({
         onStep: onProgressStep,
     });
 
+    const progress = currentTime !== null && duration > 0 ? currentTime / duration : 0;
+
     return (
         <div
             className={classNames([
@@ -196,7 +210,6 @@ const Audio = ({
                 key={url}
                 ref={(newRef) => {
                     ref.current = newRef;
-
                     if (mediaRef !== null && isFunction(mediaRef)) {
                         mediaRef(newRef);
                     } else if (mediaRef !== null) {
@@ -217,16 +230,14 @@ const Audio = ({
                 onVolumeChange={onVolumeChange}
             />
             {withWave ? (
-                <AudioWave
+                <AudioBars
                     className={styles.wave}
-                    media={media}
-                    currentTime={currentTime}
-                    {...waveProps}
+                    progress={progress}
+                    // {...waveProps}
                     duration={duration}
                     playing={!paused}
-                    onSeek={onWaveSeek}
-                    onResume={onWavePlay}
-                    audioLevels={audioLevels}
+                    seek={onWaveSeek}
+                    play={onWavePlay}
                 />
             ) : null}
         </div>

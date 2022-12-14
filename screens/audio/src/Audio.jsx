@@ -49,7 +49,7 @@ const defaultProps = {
     active: true,
     transitions: null,
     mediaRef: null,
-    showWave: false,
+    showWave: true,
     className: null,
 };
 
@@ -91,6 +91,7 @@ const AudioScreen = ({
         media: audioMedia = null,
         autoPlay = true,
         closedCaptions = null,
+        withWave = false,
         withControls = false,
         withSeekBar = false,
         color = null,
@@ -110,6 +111,7 @@ const AudioScreen = ({
 
     const { playing, muted, setControls, setControlsTheme, setMedia, setPlaying } =
         usePlaybackContext();
+
     const mediaRef = usePlaybackMediaRef(current);
 
     useEffect(() => {
@@ -245,7 +247,7 @@ const AudioScreen = ({
                     onDurationChange={onDurationChange}
                     onSeeked={onSeeked}
                     onEnded={onEnded}
-                    withWave={showWave}
+                    withWave={showWave && withWave}
                 />
             </Transitions>
         </ScreenElement>,
@@ -282,6 +284,8 @@ const AudioScreen = ({
             </div>
         ) : null,
     ].filter((el) => el !== null);
+
+    // console.log('finalAudio', finalAudio);
 
     return (
         <div

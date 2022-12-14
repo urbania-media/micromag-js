@@ -55,9 +55,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@dnd-kit/core": "^5.0.1",
-        "@dnd-kit/sortable": "^6.0.0",
-        "@dnd-kit/utilities": "^3.1.0",
+        "@dnd-kit/core": "^6.0.6",
+        "@dnd-kit/sortable": "^7.0.1",
+        "@dnd-kit/utilities": "^3.2.1",
         "@folklore/size": "^0.1.20",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",

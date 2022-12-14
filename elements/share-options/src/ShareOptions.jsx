@@ -13,9 +13,8 @@ import {
     LinkedinShareButton,
     LinkedinIcon,
     WhatsappShareButton,
-    WhatsappIcon,
-    FacebookMessengerShareButton,
-    FacebookMessengerIcon,
+    WhatsappIcon, // FacebookMessengerShareButton,
+    // FacebookMessengerIcon,
 } from 'react-share';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -98,8 +97,6 @@ const ShareOptions = ({
             ...getStyleFromBox(buttonsStyle),
         };
     }
-
-
 
     const [linkCopied, setLinkCopied] = useState(false);
 
@@ -247,32 +244,32 @@ const ShareOptions = ({
                 </WhatsappShareButton>
             ),
         },
-        {
-            id: 'facebookMessenger',
-            button: (
-                <FacebookMessengerShareButton
-                    {...shareButtonProps}
-                    title={title}
-                    appId="741129940350872"
-                    beforeOnClick={() => {
-                        onShareButtonClick('Whatsapp');
-                        return Promise.resolve();
-                    }}
-                    tabIndex={focusable ? null : '-1'}
-                    style={finalStyles}
-                >
-                    <FacebookMessengerIcon {...shareIconProps} />
-                    <div
-                        className={classNames([
-                            styles.label,
-                            { [labelClassName]: labelClassName !== null },
-                        ])}
-                    >
-                        Facebook Messenger
-                    </div>
-                </FacebookMessengerShareButton>
-            ),
-        },
+        // {
+        //     id: 'facebookMessenger',
+        //     button: (
+        //         <FacebookMessengerShareButton
+        //             {...shareButtonProps}
+        //             title={title}
+        //             appId="741129940350872"
+        //             beforeOnClick={() => {
+        //                 onShareButtonClick('Whatsapp');
+        //                 return Promise.resolve();
+        //             }}
+        //             tabIndex={focusable ? null : '-1'}
+        //             style={finalStyles}
+        //         >
+        //             <FacebookMessengerIcon {...shareIconProps} />
+        //             <div
+        //                 className={classNames([
+        //                     styles.label,
+        //                     { [labelClassName]: labelClassName !== null },
+        //                 ])}
+        //             >
+        //                 Facebook Messenger
+        //             </div>
+        //         </FacebookMessengerShareButton>
+        //     ),
+        // },
         {
             id: 'email',
             button: (

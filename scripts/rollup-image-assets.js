@@ -1,15 +1,16 @@
 import url from '@rollup/plugin-url';
 import { createFilter } from '@rollup/pluginutils';
-import isArray from 'lodash/isArray';
-import minimatch from 'minimatch';
+// import isArray from 'lodash/isArray';
+// import minimatch from 'minimatch';
 import path from 'path';
-import copy from 'rollup-plugin-copy';
+
+// import copy from 'rollup-plugin-copy';
 
 export default (options = {}) => {
     const filter = createFilter(options.include, options.exclude);
     const { load, ...plugin } = url({
         ...options,
-        publicPath: '../assets/images/'
+        publicPath: '../assets/images/',
     });
 
     return {
@@ -21,12 +22,14 @@ export default (options = {}) => {
             if (!filter(id)) {
                 return null;
             }
-            const exportData = await load(id) || null;
+            const exportData = (await load(id)) || null;
             const matches = exportData.match(/^export default "([^\"]+)"$/);
-            return matches !== null && matches[1].match(/^data:/) === null ? {
-                id : matches[1],
-                external: true,
-            } : null;
+            return matches !== null && matches[1].match(/^data:/) === null
+                ? {
+                      id: matches[1],
+                      external: true,
+                  }
+                : null;
         },
         load,
         ...plugin,

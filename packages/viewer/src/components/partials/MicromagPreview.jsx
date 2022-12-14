@@ -9,7 +9,7 @@ import { ScreenPreview } from '@micromag/core/components';
 import styles from '../../styles/partials/micromag-preview.module.scss';
 
 const propTypes = {
-    screen: MicromagPropTypes.item,
+    screen: MicromagPropTypes.screen,
     title: PropTypes.string,
     url: PropTypes.string,
     description: PropTypes.string,

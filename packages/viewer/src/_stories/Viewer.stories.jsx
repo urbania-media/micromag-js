@@ -28,6 +28,7 @@ import basic from '../../../../.storybook/data/stories/basic.json';
 import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
+import micromagAudio from '../../../../.storybook/examples/micromag-audio.json';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -103,6 +104,7 @@ const shareScreenProps = {
     story: shareScreensStory,
 };
 export const VideoAudio = () => <Viewer story={videoAudio} />;
+export const AudioOnly = () => <Viewer story={micromagAudio} />;
 
 export const ShareScreens = () => <Viewer {...shareScreenProps} />;
 

@@ -8,7 +8,7 @@ import styles from '../../styles/buttons/toggle-button.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
-    progressSpring: PropTypes.number,
+    progressSpring: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     button: PropTypes.node,
     toggledButton: PropTypes.node,
     toggledButtonClassName: PropTypes.string,
@@ -16,7 +16,7 @@ const propTypes = {
 
 const defaultProps = {
     className: null,
-    progressSpring: 0,
+    progressSpring: null,
     button: null,
     toggledButton: null,
     toggledButtonClassName: null,

@@ -130,7 +130,7 @@ const ShareScreen = ({
     const finalShareURL = shareUrl || currentUrl;
     const defaultOptions =
         options !== null
-            ? ['email', 'facebook', 'twitter', 'linkedin', 'whatsapp', 'facebookMessenger']
+            ? ['email', 'facebook', 'twitter', 'linkedin', 'whatsapp'] // 'facebookMessenger'
             : [];
     const selectedOptions =
         options !== null

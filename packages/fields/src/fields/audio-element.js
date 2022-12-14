@@ -26,6 +26,14 @@ export default {
             }),
         },
         {
+            name: 'withWave',
+            type: 'toggle',
+            label: defineMessage({
+                defaultMessage: 'With animated wave',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'withControls',
             type: 'toggle',
             label: defineMessage({

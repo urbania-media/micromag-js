@@ -87,7 +87,7 @@ const ViewerMenuPreview = ({
 
     useEffect(() => {
         if (items.length === screensMounted.length) {
-            return null;
+            return () => {};
         }
 
         const timeout = setTimeout(() => {
