@@ -1,6 +1,6 @@
 {
     "name": "@micromag/fields",
-    "version": "0.3.307",
+    "version": "0.3.309",
     "description": "",
     "keywords": [
         "javascript"
@@ -68,7 +68,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/ckeditor": "^0.3.307",
+        "@micromag/ckeditor": "^0.3.309",
         "@micromag/core": "^0.3.307",
         "@micromag/element-grid": "^0.3.307",
         "@micromag/element-keypad": "^0.3.307",
