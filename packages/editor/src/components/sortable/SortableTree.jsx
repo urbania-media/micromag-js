@@ -14,6 +14,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+
 import { sortableTreeKeyboardCoordinates } from '../../lib/keyboardCoordinates';
 import {
     buildTree,
@@ -25,8 +26,10 @@ import {
     setProperty,
     getMaxDepth,
 } from '../../lib/utilities';
-import styles from '../../styles/sortable/sortable-tree.module.scss';
+
 import SortableTreeItem from './SortableTreeItem';
+
+import styles from '../../styles/sortable/sortable-tree.module.scss';
 
 const initialItems = [
     {
@@ -255,7 +258,7 @@ const SortableTree = ({
                 return `Moving was cancelled. ${id} was dropped in its original position.`;
             },
         }),
-        [flattenedItems, onChange, getMovementAnnouncement],
+        [items, onChange, getMovementAnnouncement],
     );
 
     const activeValue = defaultItems.find(({ id: defaultId = null }) => defaultId === activeId);
@@ -329,6 +332,8 @@ const SortableTree = ({
 
                 const sortedItems = arrayMove(clonedItems, activeIndex, overIndex);
                 const newItems = buildTree(sortedItems);
+
+                // console.log('drag endd', sortedItems, newItems);
 
                 setItems(newItems);
             }

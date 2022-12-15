@@ -12,6 +12,7 @@ const defaultControlsThemeValue = {
 
 const defaultValue = {
     playing: false,
+    paused: false,
     muted: true,
     controls: false,
     controlsVisible: false,
@@ -63,6 +64,7 @@ const propTypes = {
     }),
     muted: PropTypes.bool,
     playing: PropTypes.bool,
+    paused: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -72,6 +74,7 @@ const defaultProps = {
 export const PlaybackProvider = ({
     muted: initialMuted,
     playing: initialPlaying,
+    paused,
     controls: initialControls,
     controlsVisible: initialControlsVisible,
     controlsTheme: initialControlsTheme,
@@ -123,7 +126,7 @@ export const PlaybackProvider = ({
     const value = useMemo(
         () => ({
             muted,
-            playing,
+            playing: playing && !paused,
             controls,
             controlsVisible,
             media,
@@ -141,6 +144,7 @@ export const PlaybackProvider = ({
         [
             muted,
             playing,
+            paused,
             controls,
             controlsVisible,
             controlsTheme,

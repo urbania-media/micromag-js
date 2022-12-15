@@ -550,7 +550,7 @@ const Viewer = ({
         incentiveLabel,
         currentIncentiveLabel,
         setCurrentShareIncentive,
-        isView
+        isView,
     ]);
 
     return (

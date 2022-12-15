@@ -69,6 +69,16 @@ function AudioBars({ progress, playing, duration, seek, play, className }) {
         [elRef.current, elWidth, setCurrentSeek],
     );
 
+    const onClick = useCallback(
+        (e) => {
+            if (e) {
+                seekFromX(e.clientX || null);
+                setCurrentSeek(null);
+            }
+        },
+        [seekFromX, setCurrentSeek],
+    );
+
     const bind = useGesture(
         {
             onDrag: ({ xy: [x], elapsedTime, active }) => {
@@ -133,7 +143,7 @@ function AudioBars({ progress, playing, duration, seek, play, className }) {
             <button
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...bind()}
-                onClick={(e) => (e.target !== null ? seekFromX(e.target.clientX) : null)}
+                onClick={onClick}
                 type="button"
                 className={styles.seekButton}
                 title={intl.formatMessage({

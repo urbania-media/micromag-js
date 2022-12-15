@@ -31,6 +31,7 @@ import defaultRoutes from '../data/routes.json';
 
 const propTypes = {
     story: MicromagPropTypes.story,
+    paused: PropTypes.bool,
     screen: PropTypes.string,
     screenComponents: PropTypes.objectOf(PropTypes.elementType),
     memoryRouter: PropTypes.bool,
@@ -49,6 +50,7 @@ const propTypes = {
 
 const defaultProps = {
     story: null,
+    paused: false,
     screen: null,
     screenComponents: null,
     memoryRouter: false,
@@ -67,6 +69,7 @@ const defaultProps = {
 
 const ViewerContainer = ({
     story,
+    paused,
     screenComponents,
     memoryRouter,
     basePath,
@@ -112,7 +115,7 @@ const ViewerContainer = ({
                                 components={screenComponents || {}}
                             >
                                 <VisitorProvider visitor={visitor}>
-                                    <PlaybackProvider>
+                                    <PlaybackProvider paused={paused}>
                                         <TrackingProvider variables={finalTrackingVariables}>
                                             {withoutRouter ? (
                                                 <Viewer

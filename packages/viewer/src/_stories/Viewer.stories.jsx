@@ -139,7 +139,7 @@ export const MultipleAudios = () => (
     />
 );
 export const MultipleVideos = () => (
-    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint />
+    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint paused />
 );
 export const MultipleVideos360 = () => (
     <Viewer

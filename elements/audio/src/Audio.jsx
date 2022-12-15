@@ -160,8 +160,6 @@ const Audio = ({
             if (element === null) {
                 return;
             }
-
-            console.log('fuck off', newTime);
             if (isNumber(newTime)) {
                 element.currentTime = newTime;
             }

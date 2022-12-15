@@ -5,12 +5,13 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { callToAction, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
-import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
 import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
+import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
+import simpleTreeTheme from '../../../../.storybook/data/themes/simpletree';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import { theme as backgroundTheme } from '../../../../.storybook/data/themes/with-background';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
@@ -200,6 +201,8 @@ export const Empty = () => <EditorContainer defaultValue={{ title: 'Empty' }} />
 export const VideoAudio = () => <EditorContainer defaultValue={videoAudio} />;
 
 export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
+
+export const IsSimpleTree = () => <EditorContainer defaultValue={simpleTreeTheme} />;
 
 export const Map = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'map', type: 'map' }] }} />

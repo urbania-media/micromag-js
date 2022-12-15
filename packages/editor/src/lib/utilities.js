@@ -75,7 +75,7 @@ function flatten(items, parentId = null, depth = 0) {
                 ...item,
                 parentId: item.parentId || parentId,
                 depth: item.parentId ? 1 : 0,
-                index,
+                index, // For some reason this aint enough
             },
             ...flatten(item.children || [], item.id, depth + 1),
         ],
@@ -95,14 +95,20 @@ export function buildTree(flattenedItems) {
     const root = { id: 'root', children: [] };
     const nodes = { [root.id]: root };
     const items = flattenedItems.map((item) => ({ ...item, children: [] }));
-
+    // console.log('BUILD');
+    const indexes = {};
     // eslint-disable-next-line no-restricted-syntax
     for (const item of items) {
         const { id, children } = item;
         const parentId = item.parentId ?? root.id;
         const parent = nodes[parentId] ?? findItem(items, parentId);
-        nodes[id] = { id, children };
-        parent.children.push(item);
+        if (indexes[parentId]) {
+            indexes[parentId] += 1;
+        } else {
+            indexes[parentId] = 0;
+        }
+        nodes[id] = { id, children, index: indexes[parentId] };
+        parent.children.push({ ...item, index: indexes[parentId] });
     }
 
     return root.children;
