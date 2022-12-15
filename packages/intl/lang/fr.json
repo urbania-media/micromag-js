@@ -776,6 +776,9 @@
     "bv3rRe": {
         "defaultMessage": "Bouton"
     },
+    "c7rrcG": {
+        "defaultMessage": "Avec ligne anmée"
+    },
     "c9VwT/": {
         "defaultMessage": "Détails techniques"
     },
@@ -793,6 +796,9 @@
     },
     "cuKSQz": {
         "defaultMessage": "Chapeau"
+    },
+    "d/01YO": {
+        "defaultMessage": "Partagez ce micromag!"
     },
     "d60tSn": {
         "defaultMessage": "Sous-titre"
@@ -995,6 +1001,9 @@
     "menus.pagination.previous": {
         "defaultMessage": "Précédent"
     },
+    "mgjMWG": {
+        "defaultMessage": "colonnes"
+    },
     "mlucL+": {
         "defaultMessage": "Twitter"
     },
@@ -1042,6 +1051,9 @@
     },
     "opcGwP": {
         "defaultMessage": "Ajouter un interlocuteur"
+    },
+    "p1pghO": {
+        "defaultMessage": "Style de boîte"
     },
     "p5RHzq": {
         "defaultMessage": "Style du texte des boutons"
@@ -1178,6 +1190,9 @@
     "uSpItE": {
         "defaultMessage": "Ajouter des étiquettes..."
     },
+    "uaL28k": {
+        "defaultMessage": "Suggestion de partage"
+    },
     "udLCuY": {
         "defaultMessage": "Ombre"
     },
@@ -1298,6 +1313,9 @@
     "z4Pr+g": {
         "defaultMessage": "Visuel (image ou vidéo)"
     },
+    "z9nSIG": {
+        "defaultMessage": "Style de texte du contenu"
+    },
     "zDH24s": {
         "defaultMessage": "Latitude"
     },
@@ -1318,5 +1336,8 @@
     },
     "zl6zsZ": {
         "defaultMessage": "Chapeau"
+    },
+    "zrK6ak": {
+        "defaultMessage": "Style de texte de l'en-tête"
     }
 }

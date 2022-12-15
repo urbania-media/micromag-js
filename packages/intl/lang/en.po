@@ -1564,6 +1564,12 @@ msgctxt "bv3rRe"
 msgid "Button"
 msgstr "Button"
 
+# Field label
+#: c7rrcG
+msgctxt "c7rrcG"
+msgid "With animated wave"
+msgstr "With animated wave"
+
 # Heading in Media Gallery
 #: c9VwT/
 msgctxt "c9VwT/"

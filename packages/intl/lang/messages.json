@@ -1034,6 +1034,10 @@
     "defaultMessage": "Button",
     "description": "Button placeholder"
   },
+  "c7rrcG": {
+    "defaultMessage": "With animated wave",
+    "description": "Field label"
+  },
   "c9VwT/": {
     "defaultMessage": "Technical details",
     "description": "Heading in Media Gallery"

@@ -1564,6 +1564,12 @@ msgctxt "bv3rRe"
 msgid "Button"
 msgstr "Bouton"
 
+# Field label
+#: c7rrcG
+msgctxt "c7rrcG"
+msgid "With animated wave"
+msgstr "Avec ligne anmée"
+
 # Heading in Media Gallery
 #: c9VwT/
 msgctxt "c9VwT/"
@@ -1604,7 +1610,7 @@ msgstr "Chapeau"
 #: d/01YO
 msgctxt "d/01YO"
 msgid "Share this Micromag!"
-msgstr ""
+msgstr "Partagez ce micromag!"
 
 # Subtitle placeholder
 #: d60tSn
@@ -2010,7 +2016,7 @@ msgstr "Précédent"
 #: mgjMWG
 msgctxt "mgjMWG"
 msgid "columns"
-msgstr ""
+msgstr "colonnes"
 
 # Field label
 #: mlucL+
@@ -2112,7 +2118,7 @@ msgstr "Ajouter un interlocuteur"
 #: p1pghO
 msgctxt "p1pghO"
 msgid "Box style"
-msgstr ""
+msgstr "Style de boîte"
 
 # Field label
 #: p5RHzq
@@ -2388,7 +2394,7 @@ msgstr "Ajouter des étiquettes..."
 #: uaL28k
 msgctxt "uaL28k"
 msgid "Share Incentive"
-msgstr ""
+msgstr "Suggestion de partage"
 
 # Field label
 #: udLCuY
@@ -2634,7 +2640,7 @@ msgstr "Visuel (image ou vidéo)"
 #: z9nSIG
 msgctxt "z9nSIG"
 msgid "Content text style"
-msgstr ""
+msgstr "Style de texte du contenu"
 
 # Latitude description
 #: zDH24s
@@ -2682,4 +2688,4 @@ msgstr "Chapeau"
 #: zrK6ak
 msgctxt "zrK6ak"
 msgid "Heading text style"
-msgstr ""
+msgstr "Style de texte de l'en-tête"
