@@ -202,7 +202,12 @@ export const VideoAudio = () => <EditorContainer defaultValue={videoAudio} />;
 
 export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
 
-export const IsSimpleTree = () => <EditorContainer defaultValue={simpleTreeTheme} />;
+export const IsSimpleTree = () => (
+    <EditorContainer
+        defaultValue={simpleTreeTheme}
+        onChange={(newValue) => console.log(newValue)}
+    />
+);
 
 export const Map = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'map', type: 'map' }] }} />

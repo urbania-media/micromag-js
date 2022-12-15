@@ -224,42 +224,13 @@ const SortableTree = ({
                 return getMovementAnnouncement('onDragOver', id, currentOverId);
             },
             onDragEnd(id, currentOverId) {
-                const flat = flattenTree(items);
-
-                if (onChange !== null) {
-                    onChange(
-                        (flat || []).map(
-                            ({
-                                id: itemId,
-                                children = [],
-                                parentId = null,
-                                collapsed = false,
-                            }) => ({
-                                id: itemId,
-                                props: {
-                                    ...((children || []).length > 0
-                                        ? {
-                                              group: {
-                                                  collapsed,
-                                                  mergeNavItems: true,
-                                              },
-                                          }
-                                        : {
-                                              group: null,
-                                          }),
-                                    ...(parentId !== null ? { parentId } : { parentId: null }),
-                                },
-                            }),
-                        ),
-                    );
-                }
                 return getMovementAnnouncement('onDragEnd', id, currentOverId);
             },
             onDragCancel(id) {
                 return `Moving was cancelled. ${id} was dropped in its original position.`;
             },
         }),
-        [items, onChange, getMovementAnnouncement],
+        [getMovementAnnouncement],
     );
 
     const activeValue = defaultItems.find(({ id: defaultId = null }) => defaultId === activeId);
@@ -334,9 +305,41 @@ const SortableTree = ({
                 const sortedItems = arrayMove(clonedItems, activeIndex, overIndex);
                 const newItems = buildTree(sortedItems);
 
-                // console.log('drag endd', sortedItems, newItems);
+                console.log('drag endd', sortedItems, newItems);
 
                 setItems(newItems);
+
+                if (onChange !== null) {
+                    console.log('hell is flatss', newItems);
+
+                    onChange(
+                        (newItems || []).map(
+                            ({
+                                id: itemId,
+                                children = [],
+                                parentId: itParentId = null,
+                                collapsed = false,
+                            }) => ({
+                                id: itemId,
+                                props: {
+                                    ...((children || []).length > 0
+                                        ? {
+                                              group: {
+                                                  collapsed,
+                                                  mergeNavItems: true,
+                                              },
+                                          }
+                                        : {
+                                              group: null,
+                                          }),
+                                    ...(itParentId !== null
+                                        ? { parentId: itParentId }
+                                        : { parentId: null }),
+                                },
+                            }),
+                        ),
+                    );
+                }
             }
         },
         [projected, items, resetState, arrayMove, buildTree, setItems],

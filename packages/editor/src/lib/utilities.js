@@ -102,13 +102,13 @@ export function buildTree(flattenedItems) {
         const { id, children } = item;
         const parentId = item.parentId ?? root.id;
         const parent = nodes[parentId] ?? findItem(items, parentId);
-        if (indexes[parentId]) {
+        if (typeof indexes[parentId] !== 'undefined') {
             indexes[parentId] += 1;
         } else {
             indexes[parentId] = 0;
         }
-        nodes[id] = { id, children };
-        parent.children.push({ ...item });
+        nodes[id] = { id, children, index: indexes[parentId] };
+        parent.children.push({ ...item, index: indexes[parentId] });
     }
 
     return root.children;
