@@ -205,7 +205,7 @@ export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
 export const IsSimpleTree = () => (
     <EditorContainer
         defaultValue={simpleTreeTheme}
-        onChange={(newValue) => console.log(newValue)}
+        // onChange={(newValue) => console.log(newValue)}
     />
 );
 

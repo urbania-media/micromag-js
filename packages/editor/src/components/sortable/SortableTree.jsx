@@ -305,12 +305,12 @@ const SortableTree = ({
                 const sortedItems = arrayMove(clonedItems, activeIndex, overIndex);
                 const newItems = buildTree(sortedItems);
 
-                console.log('drag endd', sortedItems, newItems);
+                // console.log('drag endd', sortedItems, newItems);
 
                 setItems(newItems);
 
                 if (onChange !== null) {
-                    console.log('hell is flatss', newItems);
+                    // console.log('hell is flatss', newItems);
 
                     onChange(
                         (newItems || []).map(
