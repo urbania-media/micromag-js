@@ -225,6 +225,7 @@ const SortableTree = ({
             },
             onDragEnd(id, currentOverId) {
                 const flat = flattenTree(items);
+
                 if (onChange !== null) {
                     onChange(
                         (flat || []).map(
@@ -361,7 +362,8 @@ const SortableTree = ({
 
     return (
         <DndContext
-            announcements={announcements}
+            accessibility={{ announcements }}
+            // announcements={announcements}
             sensors={sensors}
             collisionDetection={closestCenter}
             measuring={measuring}

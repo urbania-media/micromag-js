@@ -107,8 +107,8 @@ export function buildTree(flattenedItems) {
         } else {
             indexes[parentId] = 0;
         }
-        nodes[id] = { id, children, index: indexes[parentId] };
-        parent.children.push({ ...item, index: indexes[parentId] });
+        nodes[id] = { id, children };
+        parent.children.push({ ...item });
     }
 
     return root.children;
