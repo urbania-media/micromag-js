@@ -13,8 +13,8 @@ const defaultProps = {
 const StackIcon = ({ className }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="11.5"
-        height="17.5"
+        width="11.5px"
+        height="17.5px"
         viewBox="0 0 11.5 17.5"
         className={classNames([{ [className]: className !== null }])}
     >

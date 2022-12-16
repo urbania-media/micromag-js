@@ -134,9 +134,13 @@ function PlaybackControls({ className, collapsedClassName }) {
                         <svg
                             className={styles.icon}
                             xmlns="http://www.w3.org/2000/svg"
-                            width="10"
-                            height="16"
+                            xmlnsXlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            width="10px"
+                            height="16px"
                             viewBox="0 0 10 16"
+                            xmlSpace="preserve"
                             fill="currentColor"
                         >
                             <rect x="1" y="3.27" width="3" height="9.69" />
@@ -146,9 +150,13 @@ function PlaybackControls({ className, collapsedClassName }) {
                         <svg
                             className={styles.icon}
                             xmlns="http://www.w3.org/2000/svg"
-                            width="10"
-                            height="16"
+                            xmlnsXlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            width="10px"
+                            height="16px"
                             viewBox="0 0 10 16"
+                            xmlSpace="preserve"
                             fill="currentColor"
                         >
                             <path d="M1,3.16V12.84l8-4.84L1,3.16" />
@@ -193,9 +201,13 @@ function PlaybackControls({ className, collapsedClassName }) {
                     muted ? (
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="10"
-                            height="16"
+                            xmlnsXlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            width="10px"
+                            height="16px"
                             viewBox="0 0 10 16"
+                            xmlSpace="preserve"
                             className={styles.icon}
                             fill="currentColor"
                         >
@@ -205,9 +217,13 @@ function PlaybackControls({ className, collapsedClassName }) {
                     ) : (
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="10"
-                            height="16"
+                            xmlnsXlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            width="10px"
+                            height="16px"
                             viewBox="0 0 10 16"
+                            xmlSpace="preserve"
                             className={styles.icon}
                             fill="currentColor"
                         >
