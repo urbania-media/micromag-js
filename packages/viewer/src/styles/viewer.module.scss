@@ -101,6 +101,7 @@
     display: block;
     width: 50%;
     touch-action: none;
+    font-size: 8px;
 
     &:last-child {
         text-align: right;
@@ -109,7 +110,11 @@
 
 .menuButton {
     padding: 0.5rem 0.75rem;
-    font-size: 1rem;
+    font-size: 0.8rem;
+
+    @media (min-width: 320px) {
+        font-size: 1rem;
+    }
 }
 
 .slidingButton {
