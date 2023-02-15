@@ -86,7 +86,7 @@
         "react-select": "^3.1.1",
         "react-sortablejs": "^6.0.0",
         "tinycolor2": "^1.4.2",
-        "uuid": "^8.3.2"
+        "uuid": "^9.0.0"
     },
     "publishConfig": {
         "access": "public"

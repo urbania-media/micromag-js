@@ -68,8 +68,8 @@
         "@micromag/element-urbania-author": "^0.3.311",
         "@micromag/element-visual": "^0.3.311",
         "@micromag/transforms": "^0.3.311",
-        "@react-spring/core": "^9.1.1",
-        "@react-spring/web": "^9.1.1",
+        "@react-spring/core": "^9.6.1",
+        "@react-spring/web": "^9.6.1",
         "@use-gesture/react": "^10.2.4",
         "camelcase": "^7.0.0",
         "classnames": "^2.2.6",
@@ -77,7 +77,7 @@
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
         "react-transition-group": "^4.4.2",
-        "uuid": "^8.3.2"
+        "uuid": "^9.0.0"
     },
     "publishConfig": {
         "access": "public"
