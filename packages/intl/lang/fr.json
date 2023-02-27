@@ -104,9 +104,6 @@
     "3LEBIA": {
         "defaultMessage": "Angle"
     },
-    "3NghmM": {
-        "defaultMessage": "Bonne réponse"
-    },
     "3OS3Ms": {
         "defaultMessage": "Légende"
     },
@@ -377,9 +374,6 @@
     "F59wsl": {
         "defaultMessage": "Urbania Horoscope"
     },
-    "FJygXH": {
-        "defaultMessage": "Résultat"
-    },
     "FKOWH0": {
         "defaultMessage": "align. droite"
     },
@@ -440,6 +434,9 @@
     "IE7U/Q": {
         "defaultMessage": "Titre"
     },
+    "ItuhfW": {
+        "defaultMessage": "Bonne réponse"
+    },
     "J9e9Qb": {
         "defaultMessage": "Vidéo"
     },
@@ -473,6 +470,9 @@
     "KuzZbb": {
         "defaultMessage": "Couleur de l'arrière-plan"
     },
+    "LFziCV": {
+        "defaultMessage": "Sans icône vrai/faux"
+    },
     "LI0Gz4": {
         "defaultMessage": "Courriel"
     },
@@ -487,6 +487,9 @@
     },
     "Lrwi2G": {
         "defaultMessage": "Courriel"
+    },
+    "Lz2+Ws": {
+        "defaultMessage": "Rétroaction de la réponse"
     },
     "M/FGRs": {
         "defaultMessage": "Balance"
@@ -668,9 +671,6 @@
     "Wb5zY4": {
         "defaultMessage": "Sélectionnez un fichier de police..."
     },
-    "Wk/o9B": {
-        "defaultMessage": "Sans vrai/faux"
-    },
     "WlNxMj": {
         "defaultMessage": "Répéter"
     },
@@ -727,9 +727,6 @@
     },
     "ZLDmja": {
         "defaultMessage": "Envoyer"
-    },
-    "ZMS1Wv": {
-        "defaultMessage": "Texte"
     },
     "Zbu5Uk": {
         "defaultMessage": "Libellé"
@@ -934,6 +931,9 @@
     },
     "iL9RLu": {
         "defaultMessage": "Collaborateur"
+    },
+    "iQ5Uf7": {
+        "defaultMessage": "Rétroaction"
     },
     "iipV5Q": {
         "defaultMessage": "Type"

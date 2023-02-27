@@ -221,12 +221,6 @@ msgctxt "3LEBIA"
 msgid "Angle"
 msgstr "Angle"
 
-# Field label
-#: 3NghmM
-msgctxt "3NghmM"
-msgid "Good answer"
-msgstr "Good answer"
-
 # Legend field label
 #: 3OS3Ms
 msgctxt "3OS3Ms"
@@ -767,12 +761,6 @@ msgctxt "F59wsl"
 msgid "Urbania horoscope"
 msgstr "Urbania horoscope"
 
-# Field label
-#: FJygXH
-msgctxt "FJygXH"
-msgid "Result"
-msgstr "Result"
-
 # Alignment label
 #: FKOWH0
 msgctxt "FKOWH0"
@@ -893,6 +881,12 @@ msgctxt "IE7U/Q"
 msgid "Heading"
 msgstr "Heading"
 
+# Field label
+#: ItuhfW
+msgctxt "ItuhfW"
+msgid "Right answer"
+msgstr "Right answer"
+
 # Type field label
 #: J9e9Qb
 msgctxt "J9e9Qb"
@@ -960,6 +954,12 @@ msgid "Background color"
 msgstr "Background color"
 
 # Field label
+#: LFziCV
+msgctxt "LFziCV"
+msgid "Without right/wrong icon"
+msgstr "Without right/wrong icon"
+
+# Field label
 #: LI0Gz4
 msgctxt "LI0Gz4"
 msgid "Email"
@@ -988,6 +988,12 @@ msgstr "Add a button"
 msgctxt "Lrwi2G"
 msgid "Email"
 msgstr "Email"
+
+# Field label
+#: Lz2+Ws
+msgctxt "Lz2+Ws"
+msgid "Answer feedback"
+msgstr "Answer feedback"
 
 # Horoscope sign
 #: M/FGRs
@@ -1349,12 +1355,6 @@ msgid "Select a font file..."
 msgstr "Select a font file..."
 
 # Field label
-#: Wk/o9B
-msgctxt "Wk/o9B"
-msgid "Without true/false"
-msgstr "Without true/false"
-
-# Field label
 #: WlNxMj
 msgctxt "WlNxMj"
 msgid "Repeat"
@@ -1467,12 +1467,6 @@ msgstr "Description"
 msgctxt "ZLDmja"
 msgid "Submit"
 msgstr "Submit"
-
-# Field label
-#: ZMS1Wv
-msgctxt "ZMS1Wv"
-msgid "Text"
-msgstr "Text"
 
 # Placeholder label
 #: Zbu5Uk
@@ -1881,6 +1875,12 @@ msgstr "No entry..."
 msgctxt "iL9RLu"
 msgid "Collaborator"
 msgstr "Collaborator"
+
+# Field label
+#: iQ5Uf7
+msgctxt "iQ5Uf7"
+msgid "Default feedback"
+msgstr "Default feedback"
 
 # Field label
 #: iipV5Q

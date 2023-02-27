@@ -17,6 +17,7 @@ import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
 import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
 import multipleVideosStory from '../../../../.storybook/data/stories/multipleVideosStory';
+import quiz from '../../../../.storybook/data/stories/quiz';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
@@ -71,6 +72,7 @@ export default {
 };
 
 export const Basic = () => <Viewer story={basic} withNavigationHint />;
+export const QuizAndSurvey = () => <Viewer story={quiz} />;
 export const Empty = () => <Viewer basePath="/story-path" />;
 export const TwoScreens = () => <Viewer {...twoScreensProps} />;
 export const Tree = () => <Viewer story={treeTheme} withNavigationHint />;

@@ -22,6 +22,22 @@ const props = {
     transitions: transitions(),
 };
 
+const noGoodProps = {
+    question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
+    answers: [
+        { id: 1, label: { body: subtitle() } },
+        { id: 2, label: { body: 'Nope' }, good: false },
+        { id: 3, label: { body: subtitle() } },
+        { id: 4, label: { body: subtitle() } },
+    ],
+    result: {
+        body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?',
+    },
+    // withoutTrueFalse: true,
+    background: backgroundColor(),
+    transitions: transitions(),
+};
+
 export default {
     title: 'Screens/Quiz',
     component: QuizScreen,
@@ -42,6 +58,12 @@ export const Capture = (storyProps) => <QuizScreen {...storyProps} {...props} />
 export const Edit = (storyProps) => <QuizScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <QuizScreen {...storyProps} {...props} />;
+
+export const WithoutGoodAnswer = (storyProps) => <QuizScreen {...storyProps} {...noGoodProps} />;
+
+export const WithoutGoodAnswerAndWithoutTrueFalse = (storyProps) => (
+    <QuizScreen {...storyProps} {...noGoodProps} withoutTrueFalse />
+);
 
 export const WithCallToAction = (storyProps) => (
     <QuizScreen {...storyProps} {...props} callToAction={callToAction()} />

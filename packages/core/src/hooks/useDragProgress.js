@@ -17,18 +17,22 @@ function useDragProgress({
     const refDragging = useRef(false);
     const refProgress = useRef(wantedProgress);
     const [dragging, setDragging] = useState(false);
-    const spring = useCallback( () => ({
-        progress: wantedProgress,
-        immediate: dragging || disabled,
-        ...springParams,
-    }), []);
+    const spring = useCallback(
+        () => ({
+            progress: wantedProgress,
+            immediate: dragging || disabled,
+            ...springParams,
+        }),
+        [wantedProgress, disabled],
+    );
     const [{ progress }, api] = useSpring(spring);
     const onDrag = useCallback(
         (gestureState) => {
+            const { active, tap } = gestureState;
+
             if (disabled) {
                 return;
             }
-            const { active, tap } = gestureState;
 
             if (tap) {
                 if (onTap !== null) onTap(gestureState);

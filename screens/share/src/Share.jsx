@@ -126,12 +126,13 @@ const ShareScreen = ({
             hostname,
         );
     }, [index, id]);
+
     // if not share URl was specified, default to the currentURL (without the screen index/id part)
     const finalShareURL = shareUrl || currentUrl;
+
     const defaultOptions =
-        options !== null
-            ? ['email', 'facebook', 'twitter', 'linkedin', 'whatsapp'] // 'facebookMessenger'
-            : [];
+        options !== null ? ['email', 'facebook', 'twitter', 'linkedin', 'whatsapp'] : [];
+
     const selectedOptions =
         options !== null
             ? Object.keys(options).reduce((acc, key) => {

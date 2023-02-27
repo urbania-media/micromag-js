@@ -35,6 +35,17 @@
             opacity: 0;
         }
     }
+
+    &.disableMenu {
+        .menuNavContainer {
+            pointer-events: none;
+        }
+
+        .menuTopContainer,
+        .dots {
+            pointer-events: none;
+        }
+    }
 }
 
 .content {

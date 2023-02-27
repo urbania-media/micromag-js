@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useScreenSize } from '../../contexts';
+
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import { getComponentFromName } from '../../utils';
+
+import { useScreenSize } from '../../contexts';
 import TransitionComponents from './index';
 
 const propTypes = {
@@ -11,6 +13,7 @@ const propTypes = {
     playing: PropTypes.bool,
     delay: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
+    onComplete: PropTypes.func,
     disabled: PropTypes.bool,
     children: PropTypes.node,
 };
@@ -20,14 +23,16 @@ const defaultProps = {
     playing: false,
     delay: 0,
     transitions: null,
+    onComplete: null,
     disabled: false,
     children: null,
 };
 
-function Transitions({ fullscreen, playing, delay, transitions, disabled, children }) {
-    const { landscape = false } = useScreenSize();
-    const finalPlaying = playing || landscape;
+function Transitions({ fullscreen, playing, delay, transitions, onComplete, disabled, children }) {
+    const { landscape = true } = useScreenSize();
+    // console.log({ landscape });
 
+    const finalPlaying = playing || landscape;
     const finalTransitions = { in: null, out: null };
 
     const defaultTransitions = { in: 'fade', out: 'fade' };
@@ -56,9 +61,13 @@ function Transitions({ fullscreen, playing, delay, transitions, disabled, childr
             : null;
 
     const transitionInProps =
-        finalTransitionIn !== null ? { ...finalTransitionIn, name: undefined, delay } : null;
+        finalTransitionIn !== null
+            ? { ...finalTransitionIn, name: undefined, delay, onComplete }
+            : null;
     const transitionOutProps =
-        finalTransitionOut !== null ? { ...finalTransitionOut, name: undefined, delay } : null;
+        finalTransitionOut !== null
+            ? { ...finalTransitionOut, name: undefined, delay, onComplete }
+            : null;
 
     const renderTransitionOut =
         TransitionOut !== null && !disabled ? (

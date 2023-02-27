@@ -1,0 +1,2527 @@
+[
+    {
+        "id": "53b08eb0-254e-11ed-84d6-8986aa89da06",
+        "video": {
+            "color": {
+                "alpha": 1,
+                "color": "#ffffff"
+            },
+            "loop": true,
+            "closedCaptions": null,
+            "thumbnail": "thumbnails.3",
+            "media": null,
+            "autoPlay": true
+        },
+        "group": null,
+        "parentId": null,
+        "type": "video",
+        "layout": "full",
+        "parameters": {
+            "metadata": {
+                "title": "Couv-sommaire",
+                "description": null
+            }
+        },
+        "background": {
+            "color": null,
+            "video": null,
+            "image": null
+        },
+        "gotoNextScreenOnEnd": false
+    },
+    {
+        "id": "c2e7bad0-9e8c-11ed-9148-290bab885db4",
+        "video": {
+            "closedCaptions": null,
+            "withControls": true,
+            "loop": false,
+            "autoPlay": true,
+            "color": {
+                "alpha": 1,
+                "color": "#ffffff"
+            },
+            "media": "media://3817",
+            "withSeekBar": true,
+            "thumbnail": "thumbnails.3"
+        },
+        "group": null,
+        "parentId": null,
+        "type": "video",
+        "layout": "full",
+        "parameters": {
+            "metadata": {
+                "title": "Matthy et Sam",
+                "description": "Intro cold"
+            }
+        },
+        "background": {
+            "color": null,
+            "image": null
+        },
+        "gotoNextScreenOnEnd": true
+    },
+    {
+        "id": "a8ba82e0-5702-11ed-84c2-69ce7e6a4acf",
+        "video": {
+            "color": {
+                "alpha": 1,
+                "color": "#ffffff"
+            },
+            "loop": true,
+            "closedCaptions": null,
+            "withSeekBar": false,
+            "media": null,
+            "thumbnail": "thumbnails.1",
+            "withControls": false,
+            "autoPlay": true
+        },
+        "group": null,
+        "parentId": null,
+        "type": "video",
+        "layout": "full",
+        "parameters": {
+            "metadata": {
+                "title": "Matthy et Sam",
+                "description": "Panneau intro"
+            }
+        },
+        "background": {
+            "color": null,
+            "image": null
+        },
+        "gotoNextScreenOnEnd": false
+    },
+    {
+        "question": {
+            "body": "<span><strong>xxx</strong></span>",
+            "textStyle": {
+                "align": "center",
+                "fontStyle": {
+                    "transform": "uppercase"
+                },
+                "fontSize": 22,
+                "color": {
+                    "alpha": 1,
+                    "color": "#ffffff"
+                },
+                "fontFamily": {
+                    "type": "custom",
+                    "variants": [
+                        {
+                            "media": "media://2519",
+                            "fvd": "n7",
+                            "style": "normal",
+                            "weight": "700"
+                        },
+                        {
+                            "media": "media://2457",
+                            "fvd": "n9",
+                            "style": "normal",
+                            "weight": "900"
+                        },
+                        {
+                            "media": "media://2522",
+                            "fvd": "n5",
+                            "style": "normal",
+                            "weight": "500"
+                        }
+                    ],
+                    "name": "Agrandir Tight",
+                    "media": "media://2452"
+                },
+                "lineHeight": 1
+            }
+        },
+        "withoutBar": false,
+        "withoutPercentage": false,
+        "parameters": {
+            "metadata": {
+                "title": "Sondage",
+                "description": "Matchmaker"
+            }
+        },
+        "id": "2e0f52d0-a3f3-11ed-b465-fdb28f5b492b",
+        "type": "survey",
+        "buttonsTextStyle": {
+            "fontSize": 16,
+            "color": {
+                "alpha": 1,
+                "color": "#000000"
+            }
+        },
+        "group": null,
+        "parentId": null,
+        "answers": [
+            {
+                "label": {
+                    "body": "Oui! Les apps m’ont trop déçu.e",
+                    "textStyle": {
+                        "lineHeight": 1,
+                        "fontFamily": {
+                            "type": "custom",
+                            "media": "media://2452",
+                            "name": "Agrandir Tight"
+                        },
+                        "align": "center",
+                        "fontSize": 26,
+                        "color": {
+                            "alpha": 1,
+                            "color": "#222222"
+                        },
+                        "fontStyle": {
+                            "bold": true,
+                            "italic": false,
+                            "underline": false
+                        }
+                    }
+                }
+            },
+            {
+                "label": {
+                    "body": "Oui… quand mon pouce se tannera de swiper à gauche",
+                    "textStyle": {
+                        "lineHeight": 1,
+                        "fontFamily": {
+                            "type": "custom",
+                            "media": "media://2452",
+                            "name": "Agrandir Tight"
+                        },
+                        "align": "center",
+                        "fontSize": 26,
+                        "color": {
+                            "alpha": 1,
+                            "color": "#222222"
+                        },
+                        "fontStyle": {
+                            "underline": false,
+                            "bold": true,
+                            "italic": false
+                        }
+                    }
+                }
+            },
+            {
+                "label": {
+                    "body": "J’aime mieux aborder les gens dans le monde réel",
+                    "textStyle": {
+                        "lineHeight": 1,
+                        "fontFamily": {
+                            "media": "media://2452",
+                            "name": "Agrandir Tight",
+                            "type": "custom"
+                        },
+                        "align": "center",
+                        "fontSize": 26,
+                        "color": {
+                            "color": "#222222",
+                            "alpha": 1
+                        },
+                        "fontStyle": {
+                            "bold": true,
+                            "italic": false,
+                            "underline": false
+                        }
+                    }
+                }
+            },
+            {
+                "label": {
+                    "body": "Tinder et moi sommes déjà en relation exclusive",
+                    "textStyle": {
+                        "lineHeight": 1,
+                        "fontFamily": {
+                            "type": "custom",
+                            "name": "Agrandir Tight",
+                            "media": "media://2452"
+                        },
+                        "align": "center",
+                        "fontSize": 26,
+                        "color": {
+                            "color": "#222222",
+                            "alpha": 1
+                        },
+                        "fontStyle": {
+                            "bold": true,
+                            "underline": false,
+                            "italic": false
+                        }
+                    }
+                }
+            }
+        ],
+        "background": {
+            "color": null,
+            "video": "media://3799",
+            "image": null
+        },
+        "layout": "middle",
+        "buttonsStyle": {
+            "borderRadius": 10,
+            "borderColor": {
+                "alpha": 1,
+                "color": "#000000"
+            },
+            "shadowBlur": 3,
+            "borderStyle": "solid",
+            "shadowAngle": 45,
+            "borderWidth": 2,
+            "backgroundColor": {
+                "alpha": 0.37,
+                "color": "#ffffff"
+            },
+            "shadowDistance": 3,
+            "shadowColor": {
+                "alpha": 1,
+                "color": "#ffffff"
+            }
+        }
+    },
+    {
+        "parentId": null,
+        "gotoNextScreenOnEnd": false,
+        "parameters": {
+            "metadata": {
+                "title": "Dernier repas avec Mona de Grenoble",
+                "description": "Capsule complète"
+            }
+        },
+        "group": null,
+        "video": {
+            "loop": false,
+            "autoPlay": true,
+            "media": "media://3818",
+            "withControls": true,
+            "thumbnail": "thumbnails.1",
+            "closedCaptions": null,
+            "color": {
+                "alpha": 1,
+                "color": "#ffffff"
+            },
+            "withSeekBar": true
+        },
+        "type": "video",
+        "background": {
+            "color": null,
+            "image": null
+        },
+        "layout": "full",
+        "id": "abb08b10-ae1a-11ed-9d4f-23480fe17223"
+    },
+    {
+        "parentId": null,
+        "gotoNextScreenOnEnd": false,
+        "parameters": {
+            "metadata": {
+                "title": "Le Saviez-vous",
+                "description": "Avec un grand A"
+            }
+        },
+        "group": null,
+        "video": {
+            "closedCaptions": null,
+            "color": {
+                "alpha": 1,
+                "color": "#ffffff"
+            },
+            "loop": true,
+            "withControls": false,
+            "thumbnail": "thumbnails.1",
+            "media": null,
+            "autoPlay": true,
+            "withSeekBar": false
+        },
+        "type": "video",
+        "background": {
+            "color": null,
+            "image": null
+        },
+        "layout": "full",
+        "id": "b309f0c0-6439-11ed-a225-c1ef8fc5dafc"
+    },
+    {
+        "parentId": null,
+        "gotoNextScreenOnEnd": true,
+        "parameters": {
+            "metadata": {
+                "title": "Carte interactive dehors",
+                "description": null
+            }
+        },
+        "group": null,
+        "video": {
+            "thumbnail": "thumbnails.1",
+            "loop": false,
+            "color": {
+                "alpha": 1,
+                "color": "#ffffff"
+            },
+            "closedCaptions": null,
+            "withControls": false,
+            "withSeekBar": false,
+            "media": null,
+            "autoPlay": true
+        },
+        "type": "video",
+        "background": {
+            "color": null,
+            "image": null
+        },
+        "layout": "full",
+        "id": "4e945520-a982-11ed-bdb6-fb55f8bc6e2d"
+    },
+    {
+        "articleType": "article",
+        "title": {
+            "body": "<span>Le marché noir du&nbsp;<br>miel qui fait bander</span>",
+            "textStyle": {
+                "fontSize": 32
+            }
+        },
+        "overTitle": {
+            "body": "<span>Enquête</span>",
+            "textStyle": {
+                "color": {
+                    "color": "#000000",
+                    "alpha": 1
+                },
+                "fontStyle": {
+                    "bold": true,
+                    "italic": false,
+                    "underline": false
+                },
+                "fontFamily": {
+                    "name": "Agrandir Tight",
+                    "variants": [
+                        {
+                            "media": "media://2519",
+                            "style": "normal",
+                            "weight": "700",
+                            "fvd": "n7"
+                        },
+                        {
+                            "media": "media://2457",
+                            "style": "normal",
+                            "weight": "900",
+                            "fvd": "n9"
+                        },
+                        {
+                            "media": "media://2522",
+                            "style": "normal",
+                            "weight": "500",
+                            "fvd": "n5"
+                        }
+                    ],
+                    "media": "media://2452",
+                    "type": "custom"
+                },
+                "fontSize": 9,
+                "fontWeight": 700,
+                "letterSpacing": 1.1000000000000001
+            }
+        },
+        "url": null,
+        "author": {
+            "name": {
+                "body": "<p>Jean Bourbeau</p>"
+            },
+            "image": "media://3281"
+        },
+        "parameters": {
+            "metadata": {
+                "title": "Le marché noir du miel qui fait bander",
+                "description": "Incontournable #1"
+            }
+        },
+        "callToAction": {
+            "type": "swipe-up",
+            "inWebView": true,
+            "label": {
+                "body": "Lire l'article",
+                "textStyle": {
+                    "color": {
+                        "alpha": 1,
+                        "color": "#222222"
+                    },
+                    "fontFamily": {
+                        "name": "Agrandir Tight",
+                        "type": "custom",
+                        "media": "media://2452"
+                    },
+                    "fontStyle": {
+                        "italic": false,
+                        "bold": true,
+                        "underline": false
+                    },
+                    "lineHeight": 1,
+                    "letterSpacing": 0.10000000000000001,
+                    "fontSize": 16
+                }
+            },
+            "url": null,
+            "boxStyle": {
+                "borderRadius": 40,
+                "backgroundColor": {
+                    "alpha": 1,
+                    "color": "#fffc00"
+                },
+                "borderStyle": "solid",
+                "padding": {
+                    "right": 20,
+                    "left": 20,
+                    "bottom": 5,
+                    "top": 8
+                },
+                "borderColor": {
+                    "alpha": 0.44,
+                    "color": "#fffc00"
+                },
+                "borderWidth": 4
+            },
+            "active": true
+        },
+        "description": {
+            "body": "<p><i>Démystifier le stimulant&nbsp;</i><br><i>le plus collant du moment.</i></p>",
+            "textStyle": {
+                "fontSize": 11,
+                "fontFamily": {
+                    "variants": [
+                        "100",
+                        "100italic",
+                        "300",
+                        "300italic",
+                        "regular",
+                        "italic",
+                        "500",
+                        "500italic",
+                        "700",
+                        "700italic",
+                        "900",
+                        "900italic"
+                    ],
+                    "name": "Roboto",
+                    "type": "google"
+                }
+            }
+        },
+        "type": "urbania-article",
+        "id": "dfca3020-9e77-11ed-8de5-d5fafff94e04",
+        "sponsor": {
+            "body": null
+        },
+        "group": null,
+        "parentId": null,
+        "background": {
+            "color": {
+                "alpha": 1,
+                "color": "#ffffff"
+            },
+            "video": null,
+            "image": null,
+            "repeat": true
+        },
+        "image": null
+    },
+    {
+        "background": {
+            "image": null,
+            "color": null
+        },
+        "type": "video",
+        "parentId": null,
+        "video": {
+            "media": null,
+            "withControls": true,
+            "autoPlay": true,
+            "color": null,
+            "thumbnail": "media://3800",
+            "thumbnailFile": "thumbnails.3",
+            "loop": false,
+            "withSeekBar": true,
+            "closedCaptions": null
+        },
+        "id": "4ec87490-a96e-11ed-be80-fd42ca0d463f",
+        "group": null,
+        "layout": "full",
+        "parameters": {
+            "metadata": {
+                "description": "Incontournable #1",
+                "title": "Les cerfs de Longueuil"
+            }
+        },
+        "gotoNextScreenOnEnd": true
+    },
+    {
+        "articleType": "article",
+        "title": {
+            "textStyle": {
+                "fontSize": 32
+            },
+            "body": null
+        },
+        "overTitle": {
+            "textStyle": {
+                "fontStyle": {
+                    "italic": false,
+                    "underline": false,
+                    "bold": true
+                },
+                "letterSpacing": 1.1000000000000001,
+                "fontFamily": {
+                    "variants": [
+                        {
+                            "weight": "700",
+                            "style": "normal",
+                            "media": "media://2519",
+                            "fvd": "n7"
+                        },
+                        {
+                            "weight": "900",
+                            "style": "normal",
+                            "media": "media://2457",
+                            "fvd": "n9"
+                        },
+                        {
+                            "weight": "500",
+                            "style": "normal",
+                            "media": "media://2522",
+                            "fvd": "n5"
+                        }
+                    ],
+                    "type": "custom",
+                    "name": "Agrandir Tight",
+                    "media": "media://2452"
+                },
+                "fontWeight": 700,
+                "color": {
+                    "alpha": 1,
+                    "color": "#000000"
+                },
+                "fontSize": 9
+            },
+            "body": "<span>REPORTAGE</span>"
+        },
+        "url": null,
+        "author": {
+            "image": "media://3730",
+            "name": {
+                "body": "<p>EMMY Lapointe</p>"
+            }
+        },
+        "parameters": {
+            "metadata": {
+                "description": "Incontournable #3",
+                "title": "La face cachée de Québec avec Carolanne Fournier"
+            }
+        },
+        "callToAction": {
+            "url": null,
+            "label": {
+                "textStyle": {
+                    "fontSize": 16,
+                    "fontStyle": {
+                        "italic": false,
+                        "underline": false,
+                        "bold": true
+                    },
+                    "fontFamily": {
+                        "type": "custom",
+                        "media": "media://2452",
+                        "name": "Agrandir Tight"
+                    },
+                    "lineHeight": 1,
+                    "letterSpacing": 0.10000000000000001,
+                    "color": {
+                        "alpha": 1,
+                        "color": "#222222"
+                    }
+                },
+                "body": "Lire l'article"
+            },
+            "type": "swipe-up",
+            "active": true,
+            "inWebView": true,
+            "boxStyle": {
+                "borderWidth": 4,
+                "borderColor": {
+                    "color": "#fffc00",
+                    "alpha": 0.44
+                },
+                "backgroundColor": {
+                    "color": "#fffc00",
+                    "alpha": 1
+                },
+                "borderRadius": 40,
+                "borderStyle": "solid",
+                "padding": {
+                    "left": 20,
+                    "bottom": 5,
+                    "top": 8,
+                    "right": 20
+                }
+            }
+        },
+        "description": {
+            "textStyle": {
+                "fontSize": 11,
+                "fontFamily": {
+                    "variants": [
+                        "100",
+                        "100italic",
+                        "300",
+                        "300italic",
+                        "regular",
+                        "italic",
+                        "500",
+                        "500italic",
+                        "700",
+                        "700italic",
+                        "900",
+                        "900italic"
+                    ],
+                    "name": "Roboto",
+                    "type": "google"
+                }
+            },
+            "body": "<p><i>La région a encore&nbsp;</i><br><i>de quoi nous surprendre!</i></p>"
+        },
+        "type": "urbania-article",
+        "id": "85c9dfe0-9db3-11ed-9087-85fab2224fcf",
+        "sponsor": {
+            "body": null
+        },
+        "group": null,
+        "parentId": null,
+        "background": {
+            "video": null,
+            "image": null,
+            "repeat": true,
+            "color": {
+                "alpha": 1,
+                "color": "#fffc00"
+            }
+        },
+        "image": null
+    },
+    {
+        "parentId": null,
+        "video": {
+            "withControls": false,
+            "media": "media://3801",
+            "thumbnail": "thumbnails.0",
+            "autoPlay": true,
+            "color": null,
+            "withSeekBar": false,
+            "loop": false,
+            "thumbnailFile": "thumbnails.1"
+        },
+        "layout": "full",
+        "parameters": {
+            "metadata": {
+                "description": null,
+                "title": "PUB Banque nationale"
+            }
+        },
+        "callToAction": {
+            "boxStyle": {
+                "borderWidth": 5,
+                "padding": {
+                    "top": 8,
+                    "left": 20,
+                    "bottom": 7,
+                    "right": 20
+                },
+                "borderColor": {
+                    "alpha": 0.5,
+                    "color": "#e61e28"
+                },
+                "borderStyle": "solid",
+                "borderRadius": 40,
+                "backgroundColor": {
+                    "alpha": 1,
+                    "color": "#e61e28"
+                }
+            },
+            "type": "button",
+            "active": true,
+            "label": {
+                "textStyle": {
+                    "fontFamily": {
+                        "media": "media://2452",
+                        "name": "Agrandir Tight",
+                        "type": "custom"
+                    },
+                    "fontSize": 16,
+                    "color": {
+                        "alpha": 1,
+                        "color": "#ffffff"
+                    },
+                    "letterSpacing": 0.10000000000000001,
+                    "lineHeight": 1,
+                    "fontStyle": {
+                        "italic": false,
+                        "bold": true,
+                        "underline": false
+                    }
+                },
+                "body": "S'inscrire"
+            },
+            "url": "https://bit.ly/40NrAUH"
+        },
+        "type": "video",
+        "gotoNextScreenOnEnd": false,
+        "background": {
+            "image": null,
+            "video": null,
+            "color": null
+        },
+        "group": null,
+        "id": "2b8c6930-6b63-11ed-a82f-ff6ecab11cf7"
+    },
+    {
+        "title": {
+            "textStyle": {
+                "fontFamily": {
+                    "media": {
+                        "id": "2452",
+                        "thumbnail_url": null,
+                        "metadata": {
+                            "description": null,
+                            "filename": "Agrandir-Tight.otf",
+                            "mime": "application/vnd.ms-opentype",
+                            "size": 50596
+                        },
+                        "files": {
+                            "original": {
+                                "type": null,
+                                "handle": "original",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8962-022629.otf",
+                                "id": "8962",
+                                "mime": "application/vnd.ms-opentype",
+                                "name": "Agrandir-Tight.otf"
+                            },
+                            "webfonts.otf": {
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8963-022629.otf",
+                                "type": null,
+                                "handle": "webfonts.otf",
+                                "id": "8963",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.otf",
+                                "mime": "application/vnd.ms-opentype"
+                            },
+                            "webfonts.eot": {
+                                "url": "https://cdn.microm.ag/2022-04-26/8964-022629.eot",
+                                "type": null,
+                                "handle": "webfonts.eot",
+                                "id": "8964",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.eot",
+                                "mime": "application/x-empty"
+                            },
+                            "webfonts.woff": {
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8965-022629.woff",
+                                "type": null,
+                                "handle": "webfonts.woff",
+                                "id": "8965",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.woff",
+                                "mime": "application/x-font-woff"
+                            },
+                            "webfonts.woff2": {
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8966-022630.woff2",
+                                "type": null,
+                                "handle": "webfonts.woff2",
+                                "id": "8966",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.woff2",
+                                "mime": "application/font-woff2"
+                            }
+                        },
+                        "type": "font",
+                        "url": "https://cdn.microm.ag/font/2022-04-26/8962-022629.otf",
+                        "name": "Agrandir-Tight.otf"
+                    },
+                    "variants": [
+                        {
+                            "media": {
+                                "id": "2519",
+                                "thumbnail_url": null,
+                                "metadata": {
+                                    "filename": "Agrandir-TightBold.otf",
+                                    "description": null,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "size": 52928
+                                },
+                                "files": {
+                                    "webfonts.woff": {
+                                        "type": null,
+                                        "handle": "webfonts.woff",
+                                        "name": "mediatheque_pipeline_jobuvEUKC-webfonts.woff",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9322-110743.woff",
+                                        "mime": "application/x-font-woff",
+                                        "id": "9322"
+                                    },
+                                    "webfonts.otf": {
+                                        "id": "9320",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9320-110743.otf",
+                                        "handle": "webfonts.otf",
+                                        "mime": "application/vnd.ms-opentype",
+                                        "name": "mediatheque_pipeline_jobuvEUKC-webfonts.otf",
+                                        "type": null
+                                    },
+                                    "original": {
+                                        "id": "9319",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9319-110742.otf",
+                                        "handle": "original",
+                                        "mime": "application/vnd.ms-opentype",
+                                        "name": "Agrandir-TightBold.otf",
+                                        "type": null
+                                    },
+                                    "webfonts.woff2": {
+                                        "id": "9323",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9323-110743.woff2",
+                                        "handle": "webfonts.woff2",
+                                        "mime": "application/font-woff2",
+                                        "name": "mediatheque_pipeline_jobuvEUKC-webfonts.woff2",
+                                        "type": null
+                                    },
+                                    "webfonts.eot": {
+                                        "id": "9321",
+                                        "url": "https://cdn.microm.ag/2022-05-03/9321-110743.eot",
+                                        "handle": "webfonts.eot",
+                                        "mime": "application/x-empty",
+                                        "name": "mediatheque_pipeline_jobuvEUKC-webfonts.eot",
+                                        "type": null
+                                    }
+                                },
+                                "type": "font",
+                                "url": "https://cdn.microm.ag/font/2022-05-03/9319-110742.otf",
+                                "name": "Agrandir-TightBold.otf"
+                            },
+                            "fvd": "n7",
+                            "weight": "700",
+                            "style": "normal"
+                        },
+                        {
+                            "media": {
+                                "id": "2457",
+                                "thumbnail_url": null,
+                                "metadata": {
+                                    "filename": "Agrandir-TightHeavy.otf",
+                                    "size": 53268,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "description": null
+                                },
+                                "files": {
+                                    "webfonts.otf": {
+                                        "type": null,
+                                        "name": "mediatheque_pipeline_job9jBtt0-webfonts.otf",
+                                        "mime": "application/vnd.ms-opentype",
+                                        "handle": "webfonts.otf",
+                                        "id": "8980",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8980-045103.otf"
+                                    },
+                                    "webfonts.woff2": {
+                                        "name": "mediatheque_pipeline_job9jBtt0-webfonts.woff2",
+                                        "handle": "webfonts.woff2",
+                                        "type": null,
+                                        "id": "8983",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8983-045103.woff2",
+                                        "mime": "application/font-woff2"
+                                    },
+                                    "webfonts.woff": {
+                                        "name": "mediatheque_pipeline_job9jBtt0-webfonts.woff",
+                                        "handle": "webfonts.woff",
+                                        "type": null,
+                                        "id": "8982",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8982-045103.woff",
+                                        "mime": "application/x-font-woff"
+                                    },
+                                    "webfonts.eot": {
+                                        "name": "mediatheque_pipeline_job9jBtt0-webfonts.eot",
+                                        "handle": "webfonts.eot",
+                                        "type": null,
+                                        "id": "8981",
+                                        "url": "https://cdn.microm.ag/2022-04-26/8981-045103.eot",
+                                        "mime": "application/x-empty"
+                                    },
+                                    "original": {
+                                        "name": "Agrandir-TightHeavy.otf",
+                                        "handle": "original",
+                                        "type": null,
+                                        "id": "8979",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8979-045102.otf",
+                                        "mime": "application/vnd.ms-opentype"
+                                    }
+                                },
+                                "type": "font",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8979-045102.otf",
+                                "name": "Agrandir-TightHeavy.otf"
+                            },
+                            "fvd": "n9",
+                            "weight": "900",
+                            "style": "normal"
+                        },
+                        {
+                            "media": {
+                                "id": "2522",
+                                "thumbnail_url": null,
+                                "metadata": {
+                                    "size": 30556,
+                                    "description": null,
+                                    "filename": "Agrandir-TightMedium.eot",
+                                    "mime": "application/vnd.ms-fontobject"
+                                },
+                                "files": {
+                                    "webfonts.eot": {
+                                        "name": "mediatheque_pipeline_jobgB5qW5-webfonts.eot",
+                                        "handle": "webfonts.eot",
+                                        "type": null,
+                                        "id": "9332",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9332-111223.eot",
+                                        "mime": "application/vnd.ms-fontobject"
+                                    },
+                                    "original": {
+                                        "name": "Agrandir-TightMedium.eot",
+                                        "handle": "original",
+                                        "type": null,
+                                        "id": "9331",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9331-111223.eot",
+                                        "mime": "application/vnd.ms-fontobject"
+                                    }
+                                },
+                                "type": "font",
+                                "url": "https://cdn.microm.ag/font/2022-05-03/9331-111223.eot",
+                                "name": "Agrandir-TightMedium.eot"
+                            },
+                            "fvd": "n5",
+                            "weight": "500",
+                            "style": "normal"
+                        }
+                    ],
+                    "type": "custom",
+                    "name": "Agrandir Tight"
+                },
+                "fontStyle": {
+                    "italic": false,
+                    "transform": "uppercase",
+                    "bold": true,
+                    "underline": false
+                },
+                "color": {
+                    "color": "#00eaff",
+                    "alpha": 1
+                },
+                "letterSpacing": -0.5,
+                "lineHeight": 1
+            },
+            "body": null
+        },
+        "button": {
+            "textStyle": {
+                "align": "center",
+                "fontFamily": {
+                    "media": {
+                        "id": "2452",
+                        "thumbnail_url": null,
+                        "name": "Agrandir-Tight.otf",
+                        "type": "font",
+                        "files": {
+                            "webfonts.otf": {
+                                "handle": "webfonts.otf",
+                                "type": null,
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8963-022629.otf",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.otf",
+                                "mime": "application/vnd.ms-opentype",
+                                "id": "8963"
+                            },
+                            "webfonts.eot": {
+                                "id": "8964",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.eot",
+                                "mime": "application/x-empty",
+                                "url": "https://cdn.microm.ag/2022-04-26/8964-022629.eot",
+                                "handle": "webfonts.eot",
+                                "type": null
+                            },
+                            "webfonts.woff": {
+                                "id": "8965",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.woff",
+                                "mime": "application/x-font-woff",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8965-022629.woff",
+                                "handle": "webfonts.woff",
+                                "type": null
+                            },
+                            "original": {
+                                "id": "8962",
+                                "name": "Agrandir-Tight.otf",
+                                "mime": "application/vnd.ms-opentype",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8962-022629.otf",
+                                "handle": "original",
+                                "type": null
+                            },
+                            "webfonts.woff2": {
+                                "id": "8966",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.woff2",
+                                "mime": "application/font-woff2",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8966-022630.woff2",
+                                "handle": "webfonts.woff2",
+                                "type": null
+                            }
+                        },
+                        "url": "https://cdn.microm.ag/font/2022-04-26/8962-022629.otf",
+                        "metadata": {
+                            "size": 50596,
+                            "mime": "application/vnd.ms-opentype",
+                            "filename": "Agrandir-Tight.otf",
+                            "description": null
+                        }
+                    },
+                    "name": "Agrandir Tight",
+                    "type": "custom"
+                },
+                "fontSize": 16,
+                "color": {
+                    "color": "#222222",
+                    "alpha": 1
+                },
+                "lineHeight": 1,
+                "fontStyle": {
+                    "italic": false,
+                    "bold": true,
+                    "underline": false,
+                    "transform": null
+                }
+            },
+            "body": "<span>Découvrez&nbsp;<br>votre «&nbsp;avenir&nbsp;»!</span>",
+            "buttonStyle": {
+                "borderStyle": "solid",
+                "borderRadius": 40,
+                "borderWidth": 4,
+                "backgroundColor": null,
+                "padding": {
+                    "left": 20,
+                    "top": 8,
+                    "right": 20,
+                    "bottom": 5
+                },
+                "borderColor": {
+                    "alpha": 1,
+                    "color": "#fffc00"
+                },
+                "shadowColor": {
+                    "alpha": 1,
+                    "color": "#222222"
+                },
+                "shadowDistance": 5,
+                "shadowAngle": 45
+            }
+        },
+        "author": {
+            "image": null,
+            "textStyle": {
+                "lineHeight": 1.2,
+                "color": {
+                    "color": "#222222",
+                    "alpha": 1
+                },
+                "letterSpacing": -0.5,
+                "fontSize": 16,
+                "fontFamily": {
+                    "variants": [
+                        "100",
+                        "100italic",
+                        "300",
+                        "300italic",
+                        "regular",
+                        "italic",
+                        "500",
+                        "500italic",
+                        "700",
+                        "700italic",
+                        "900",
+                        "900italic"
+                    ],
+                    "name": "Roboto",
+                    "type": "google"
+                }
+            },
+            "collaborator": {
+                "textStyle": {
+                    "letterSpacing": 0,
+                    "fontSize": 10
+                },
+                "body": null
+            },
+            "name": {
+                "textStyle": {
+                    "color": {
+                        "alpha": 1,
+                        "color": "#00ffff"
+                    },
+                    "fontStyle": {
+                        "italic": false,
+                        "transform": null,
+                        "underline": false,
+                        "bold": false
+                    },
+                    "highlight": {
+                        "color": null
+                    },
+                    "link": {
+                        "fontStyle": {
+                            "bold": false,
+                            "underline": false,
+                            "italic": false
+                        }
+                    },
+                    "fontSize": null,
+                    "fontFamily": {
+                        "name": "Agrandir",
+                        "type": "custom",
+                        "media": {
+                            "url": "https://cdn.microm.ag/font/2022-04-26/8947-022421.otf",
+                            "metadata": {
+                                "size": 51160,
+                                "description": null,
+                                "mime": "application/vnd.ms-opentype",
+                                "filename": "Agrandir-Regular.otf"
+                            },
+                            "type": "font",
+                            "files": {
+                                "webfonts.woff2": {
+                                    "type": null,
+                                    "url": "https://cdn.microm.ag/font/2022-04-26/8951-022422.woff2",
+                                    "handle": "webfonts.woff2",
+                                    "id": "8951",
+                                    "mime": "application/font-woff2",
+                                    "name": "mediatheque_pipeline_jobbWJg2F-webfonts.woff2"
+                                },
+                                "webfonts.woff": {
+                                    "name": "mediatheque_pipeline_jobbWJg2F-webfonts.woff",
+                                    "type": null,
+                                    "mime": "application/x-font-woff",
+                                    "url": "https://cdn.microm.ag/font/2022-04-26/8950-022422.woff",
+                                    "handle": "webfonts.woff",
+                                    "id": "8950"
+                                },
+                                "webfonts.eot": {
+                                    "name": "mediatheque_pipeline_jobbWJg2F-webfonts.eot",
+                                    "type": null,
+                                    "mime": "application/x-empty",
+                                    "url": "https://cdn.microm.ag/2022-04-26/8949-022422.eot",
+                                    "handle": "webfonts.eot",
+                                    "id": "8949"
+                                },
+                                "original": {
+                                    "name": "Agrandir-Regular.otf",
+                                    "type": null,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "url": "https://cdn.microm.ag/font/2022-04-26/8947-022421.otf",
+                                    "handle": "original",
+                                    "id": "8947"
+                                },
+                                "webfonts.otf": {
+                                    "name": "mediatheque_pipeline_jobbWJg2F-webfonts.otf",
+                                    "type": null,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "url": "https://cdn.microm.ag/font/2022-04-26/8948-022422.otf",
+                                    "handle": "webfonts.otf",
+                                    "id": "8948"
+                                }
+                            },
+                            "name": "Agrandir-Regular.otf",
+                            "id": "2449",
+                            "thumbnail_url": null
+                        }
+                    }
+                },
+                "body": "<p><strong>Mélissa Desjardins </strong>et illustré par<strong> YOLLEMA</strong></p>"
+            }
+        },
+        "parameters": {
+            "metadata": {
+                "description": "Semaine du 11 février",
+                "title": "Astrologie"
+            }
+        },
+        "description": {
+            "textStyle": {
+                "letterSpacing": null,
+                "fontWeight": null,
+                "fontStyle": {
+                    "italic": false,
+                    "bold": false,
+                    "underline": false,
+                    "transform": "uppercase"
+                },
+                "color": {
+                    "alpha": 1,
+                    "color": "#00ffff"
+                },
+                "fontSize": null,
+                "lineHeight": 1.1000000000000001,
+                "fontFamily": {
+                    "type": "custom",
+                    "media": {
+                        "metadata": {
+                            "size": 50596,
+                            "mime": "application/vnd.ms-opentype",
+                            "filename": "Agrandir-Tight.otf",
+                            "description": null
+                        },
+                        "files": {
+                            "webfonts.woff2": {
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8966-022630.woff2",
+                                "mime": "application/font-woff2",
+                                "handle": "webfonts.woff2",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.woff2",
+                                "id": "8966",
+                                "type": null
+                            },
+                            "original": {
+                                "type": null,
+                                "handle": "original",
+                                "mime": "application/vnd.ms-opentype",
+                                "name": "Agrandir-Tight.otf",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8962-022629.otf",
+                                "id": "8962"
+                            },
+                            "webfonts.otf": {
+                                "type": null,
+                                "handle": "webfonts.otf",
+                                "mime": "application/vnd.ms-opentype",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.otf",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8963-022629.otf",
+                                "id": "8963"
+                            },
+                            "webfonts.woff": {
+                                "type": null,
+                                "handle": "webfonts.woff",
+                                "mime": "application/x-font-woff",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.woff",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8965-022629.woff",
+                                "id": "8965"
+                            },
+                            "webfonts.eot": {
+                                "type": null,
+                                "handle": "webfonts.eot",
+                                "mime": "application/x-empty",
+                                "name": "mediatheque_pipeline_jobouakyG-webfonts.eot",
+                                "url": "https://cdn.microm.ag/2022-04-26/8964-022629.eot",
+                                "id": "8964"
+                            }
+                        },
+                        "thumbnail_url": null,
+                        "id": "2452",
+                        "url": "https://cdn.microm.ag/font/2022-04-26/8962-022629.otf",
+                        "type": "font",
+                        "name": "Agrandir-Tight.otf"
+                    },
+                    "name": "Agrandir Tight",
+                    "variants": [
+                        {
+                            "media": {
+                                "metadata": {
+                                    "size": 52928,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "filename": "Agrandir-TightBold.otf",
+                                    "description": null
+                                },
+                                "files": {
+                                    "webfonts.woff2": {
+                                        "name": "mediatheque_pipeline_jobuvEUKC-webfonts.woff2",
+                                        "handle": "webfonts.woff2",
+                                        "mime": "application/font-woff2",
+                                        "type": null,
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9323-110743.woff2",
+                                        "id": "9323"
+                                    },
+                                    "original": {
+                                        "type": null,
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9319-110742.otf",
+                                        "id": "9319",
+                                        "mime": "application/vnd.ms-opentype",
+                                        "handle": "original",
+                                        "name": "Agrandir-TightBold.otf"
+                                    },
+                                    "webfonts.otf": {
+                                        "type": null,
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9320-110743.otf",
+                                        "id": "9320",
+                                        "mime": "application/vnd.ms-opentype",
+                                        "handle": "webfonts.otf",
+                                        "name": "mediatheque_pipeline_jobuvEUKC-webfonts.otf"
+                                    },
+                                    "webfonts.woff": {
+                                        "type": null,
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9322-110743.woff",
+                                        "id": "9322",
+                                        "mime": "application/x-font-woff",
+                                        "handle": "webfonts.woff",
+                                        "name": "mediatheque_pipeline_jobuvEUKC-webfonts.woff"
+                                    },
+                                    "webfonts.eot": {
+                                        "type": null,
+                                        "url": "https://cdn.microm.ag/2022-05-03/9321-110743.eot",
+                                        "id": "9321",
+                                        "mime": "application/x-empty",
+                                        "handle": "webfonts.eot",
+                                        "name": "mediatheque_pipeline_jobuvEUKC-webfonts.eot"
+                                    }
+                                },
+                                "thumbnail_url": null,
+                                "id": "2519",
+                                "url": "https://cdn.microm.ag/font/2022-05-03/9319-110742.otf",
+                                "type": "font",
+                                "name": "Agrandir-TightBold.otf"
+                            },
+                            "fvd": "n7",
+                            "style": "normal",
+                            "weight": "700"
+                        },
+                        {
+                            "media": {
+                                "metadata": {
+                                    "size": 53268,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "filename": "Agrandir-TightHeavy.otf",
+                                    "description": null
+                                },
+                                "files": {
+                                    "webfonts.woff2": {
+                                        "type": null,
+                                        "mime": "application/font-woff2",
+                                        "id": "8983",
+                                        "handle": "webfonts.woff2",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8983-045103.woff2",
+                                        "name": "mediatheque_pipeline_job9jBtt0-webfonts.woff2"
+                                    },
+                                    "original": {
+                                        "name": "Agrandir-TightHeavy.otf",
+                                        "id": "8979",
+                                        "mime": "application/vnd.ms-opentype",
+                                        "handle": "original",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8979-045102.otf",
+                                        "type": null
+                                    },
+                                    "webfonts.otf": {
+                                        "name": "mediatheque_pipeline_job9jBtt0-webfonts.otf",
+                                        "id": "8980",
+                                        "mime": "application/vnd.ms-opentype",
+                                        "handle": "webfonts.otf",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8980-045103.otf",
+                                        "type": null
+                                    },
+                                    "webfonts.woff": {
+                                        "name": "mediatheque_pipeline_job9jBtt0-webfonts.woff",
+                                        "id": "8982",
+                                        "mime": "application/x-font-woff",
+                                        "handle": "webfonts.woff",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8982-045103.woff",
+                                        "type": null
+                                    },
+                                    "webfonts.eot": {
+                                        "name": "mediatheque_pipeline_job9jBtt0-webfonts.eot",
+                                        "id": "8981",
+                                        "mime": "application/x-empty",
+                                        "handle": "webfonts.eot",
+                                        "url": "https://cdn.microm.ag/2022-04-26/8981-045103.eot",
+                                        "type": null
+                                    }
+                                },
+                                "thumbnail_url": null,
+                                "id": "2457",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8979-045102.otf",
+                                "type": "font",
+                                "name": "Agrandir-TightHeavy.otf"
+                            },
+                            "fvd": "n9",
+                            "style": "normal",
+                            "weight": "900"
+                        },
+                        {
+                            "media": {
+                                "metadata": {
+                                    "size": 30556,
+                                    "mime": "application/vnd.ms-fontobject",
+                                    "filename": "Agrandir-TightMedium.eot",
+                                    "description": null
+                                },
+                                "files": {
+                                    "original": {
+                                        "type": null,
+                                        "handle": "original",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9331-111223.eot",
+                                        "mime": "application/vnd.ms-fontobject",
+                                        "name": "Agrandir-TightMedium.eot",
+                                        "id": "9331"
+                                    },
+                                    "webfonts.eot": {
+                                        "type": null,
+                                        "handle": "webfonts.eot",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9332-111223.eot",
+                                        "mime": "application/vnd.ms-fontobject",
+                                        "name": "mediatheque_pipeline_jobgB5qW5-webfonts.eot",
+                                        "id": "9332"
+                                    }
+                                },
+                                "thumbnail_url": null,
+                                "id": "2522",
+                                "url": "https://cdn.microm.ag/font/2022-05-03/9331-111223.eot",
+                                "type": "font",
+                                "name": "Agrandir-TightMedium.eot"
+                            },
+                            "fvd": "n5",
+                            "style": "normal",
+                            "weight": "500"
+                        }
+                    ]
+                }
+            },
+            "body": "<p>&nbsp;</p><p><strong>Saison du Poissons et quiétude cosmique</strong></p>"
+        },
+        "type": "urbania-horoscope",
+        "id": "9883bbf0-c803-11ec-930b-5d58e0d3e624",
+        "signSubtitle": {
+            "body": null
+        },
+        "group": null,
+        "parentId": null,
+        "background": {
+            "image": null,
+            "video": "media://3139",
+            "color": null
+        },
+        "popupBackground": {
+            "video": {
+                "url": "https://cdn.microm.ag/video/2022-05-19/10331-045627.mp4",
+                "metadata": {
+                    "filename": "Urbania_MM_Etoiles_v01.mp4",
+                    "description": null,
+                    "duration": 6.0416999999999996,
+                    "size": 563955,
+                    "height": 1920,
+                    "width": 1080,
+                    "mime": "video/mp4"
+                },
+                "type": "video",
+                "files": {
+                    "thumbnails.2": {
+                        "mime": "image/jpeg",
+                        "type": "image",
+                        "id": "10334",
+                        "url": "https://cdn.microm.ag/image/2022-05-19/10334-045628.jpg",
+                        "name": "mediatheque_pipeline_jobUVNf7v-thumbnails-2.jpg",
+                        "handle": "thumbnails.2"
+                    },
+                    "original": {
+                        "type": "video",
+                        "url": "https://cdn.microm.ag/video/2022-05-19/10331-045627.mp4",
+                        "handle": "original",
+                        "mime": "video/mp4",
+                        "name": "Urbania_MM_Etoiles_v01.mp4",
+                        "id": "10331"
+                    },
+                    "thumbnails.0": {
+                        "url": "https://cdn.microm.ag/image/2022-05-19/10332-045628.jpg",
+                        "name": "mediatheque_pipeline_jobUVNf7v-thumbnails-0.jpg",
+                        "id": "10332",
+                        "handle": "thumbnails.0",
+                        "type": "image",
+                        "mime": "image/jpeg"
+                    },
+                    "thumbnails.3": {
+                        "url": "https://cdn.microm.ag/image/2022-05-19/10335-045629.jpg",
+                        "name": "mediatheque_pipeline_jobUVNf7v-thumbnails-3.jpg",
+                        "id": "10335",
+                        "handle": "thumbnails.3",
+                        "type": "image",
+                        "mime": "image/jpeg"
+                    },
+                    "thumbnails.1": {
+                        "url": "https://cdn.microm.ag/image/2022-05-19/10333-045628.jpg",
+                        "name": "mediatheque_pipeline_jobUVNf7v-thumbnails-1.jpg",
+                        "id": "10333",
+                        "handle": "thumbnails.1",
+                        "type": "image",
+                        "mime": "image/jpeg"
+                    },
+                    "thumbnails.4": {
+                        "url": "https://cdn.microm.ag/image/2022-05-19/10336-045629.jpg",
+                        "name": "mediatheque_pipeline_jobUVNf7v-thumbnails-4.jpg",
+                        "id": "10336",
+                        "handle": "thumbnails.4",
+                        "type": "image",
+                        "mime": "image/jpeg"
+                    }
+                },
+                "name": "Urbania_MM_Etoiles_v01.mp4",
+                "id": "2698",
+                "thumbnail_url": "https://img.microm.ag/image/2022-05-19/filters/thumbnail/10332-045628.jpg"
+            }
+        },
+        "signs": [
+            {
+                "image": "/static/media/f90e6cba1863b90a.f9c8b622643a0c2abfc4.png",
+                "id": "aries",
+                "word": {
+                    "body": "<span>Confort</span>"
+                },
+                "label": {
+                    "id": "/PJA/1",
+                    "defaultMessage": [
+                        {
+                            "value": "Aries",
+                            "type": 0
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "ZeosMy",
+                    "defaultMessage": [
+                        {
+                            "value": "Mar 21 - Apr 19",
+                            "type": 0
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p>C’est rare, mais l’introverti.e en vous risque de se pointer le bout du nez dans les prochains jours pis hey, c’est ben correct. <strong>C’est une bonne semaine pour prendre ça relax, développer tranquillement une nouvelle routine et vous réconcilier avec votre énergie habituelle.&nbsp;</strong><br><br>En plus, un p’tit peu de self-care vous ferait pas de tort. C’est ben beau, se laver à l’eau froide avec du savon 3-en-1 qui sent la poudre à canon pis le Monster, mais votre épiderme mérite mieux, croyez-moi.</p>"
+                }
+            },
+            {
+                "image": "/static/media/3bfa08be2d002a72.ea55a0b5095864e7464b.png",
+                "id": "taurus",
+                "word": {
+                    "body": "<span>BIEN-ÊTRE</span>"
+                },
+                "label": {
+                    "id": "XKcyqx",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Taurus"
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "raUY02",
+                    "defaultMessage": [
+                        {
+                            "value": "Apr 20 - May 20",
+                            "type": 0
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p><strong>Nouvelle lune, nouvelles amitiés, nouveaux projets, nouveaux draps en lin </strong><i><strong>fancy</strong></i><strong>, grandes nouvelles, bonnes nouvelles : vous en verrez de toutes les sortes cette semaine, les ami.e.s.&nbsp;</strong><br><br>C’est bien excitant tout ça, mais n’oubliez pas de prendre des pauses et de profiter des petits rituels qui vous rendent heureux et heureuses, genre prendre un bain moussant ou manger 2 kilos de fromage à raclette même si vous êtes violemment intolérant.e au lactose.</p>"
+                }
+            },
+            {
+                "image": "/static/media/86c96ccbc3eb5f30.467352cd9b40bff350d3.png",
+                "id": "gemini",
+                "word": {
+                    "body": "<span>Renommée</span>"
+                },
+                "label": {
+                    "id": "4g35M0",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Gemini"
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "142Fjj",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "May 21 - June 20"
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p><strong>Vous serez extrêmement populaires cette semaine mes p’tit.e.s gémeaux. </strong>Toutes ces invitations vous forceront peut-être à jongler avec votre horaire et/ou à faire du lavage parce que vous n’avez rien à vous mettre à part une tuque pis des shorts de basket, <strong>mais socialiser un peu vous fera du bien, promis.</strong>&nbsp;<br><br>Aussi, un projet dont vous êtes aussi fier.e.s qu’A$AP Rocky qui regarde Rihanna au Super Bowl aura enfin la reconnaissance qui lui est due. Faut bien que ça paie, tout ce talent!</p>"
+                }
+            },
+            {
+                "image": "/static/media/f2f09dc960fc9af3.7de2d7a81d8281acc134.png",
+                "id": "cancer",
+                "word": {
+                    "body": "<span>Savoir</span>"
+                },
+                "label": {
+                    "id": "0acGK7",
+                    "defaultMessage": [
+                        {
+                            "value": "Cancer",
+                            "type": 0
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "bMdONM",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "June 21 - July 22"
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p><strong>La recherche et l’étude seront deux thèmes majeurs pour vous, cette semaine. </strong>Genre la recherche de « combien de larmes je peux pleurer en allant voir la version remasterisée de <i>Titanic</i> en 3D au lieu d’aller travailler » ou encore l’étude de « je peux toffer combien de jours d'affilée sans mettre de bobettes ».&nbsp;<br><br>Hey, pas de jugement! Techniquement c’est de la science, tout ça. Ah et parlant de science : vous développerez peut-être une chimie inattendue avec un.e voisin.e. Ouuuh.</p>"
+                }
+            },
+            {
+                "image": "/static/media/59284c690a9b26f6.4382883d35b6f1d0695f.png",
+                "id": "leo",
+                "word": {
+                    "body": "<span>Évolution</span>"
+                },
+                "label": {
+                    "id": "EEUc6n",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Leo"
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "pnT3od",
+                    "defaultMessage": [
+                        {
+                            "value": "June 23 - Aug 22",
+                            "type": 0
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p>Bon, c’est pas parce que vous vous êtes cassé.e.s le dos en essayant de faire un <i>death drop </i>sur le dancefloor à votre dernier party de job que vous devez remettre l’entièreté de votre vie en question.&nbsp;<br><br>Nouvelle lune, nouveau chapitre, les chums. <strong>Votre BDE reviendra rapidement au galop vers la fin de la semaine et d’ici là, il pourrait vous être bénéfique de vous établir une nouvelle routine ou de planifier un voyage. </strong>Bizou.</p>"
+                }
+            },
+            {
+                "image": "/static/media/1bbb876a4b762fad.aa29e4c6027cef25ab57.png",
+                "id": "virgo",
+                "word": {
+                    "body": "<span>Respect</span>"
+                },
+                "label": {
+                    "id": "6bd963",
+                    "defaultMessage": [
+                        {
+                            "value": "Virgo",
+                            "type": 0
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "xL0GD2",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Aug 23 - Sept 22"
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p>Cette semaine, vous trouverez peut-être votre entourage trop honnête à votre goût. Épinards dans les dents? On va vous le dire. Un peu l’air bête? On va vous le dire. Besoin d’une douche? Impossible, vous en prenez deux par jour.&nbsp;<br><br><strong>Mais si vous allez autant goûter à votre propre médecine, c’est parce que vous allez aussi inspirer confiance aux autres!</strong> S’t’une bonne affaire, non? Profitez-en donc pour vous faire quelques contacts.</p>"
+                }
+            },
+            {
+                "image": "/static/media/55ff33323c0b04c5.5b9ed5107c40072d4665.png",
+                "id": "libra",
+                "word": {
+                    "body": "<span>Harmonie</span>"
+                },
+                "label": {
+                    "id": "M/FGRs",
+                    "defaultMessage": [
+                        {
+                            "value": "Libra",
+                            "type": 0
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "F0QDfY",
+                    "defaultMessage": [
+                        {
+                            "value": "Sept 23 - Oct 22",
+                            "type": 0
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p>Oups, votre téléphone est ENCORE tombé par terre et a ENCORE commandé un sac Hermès Paris sans faire exprès. C’est quoi les chances? Pas grave, vous pouvez vous le permettre-ish, parce que vous travaillez fort, ces temps-ci.&nbsp;<br><br>Par contre, n’oubliez pas que sans équilibre, vous avez tendance à l’échapper dans <i>curve</i>. <strong>Prenez un moment pour méditer, faire du sport et bien manger. </strong>Vous serez plus zen et ça va vous couter moins cher de Botox. xx</p>"
+                }
+            },
+            {
+                "image": "/static/media/0bb0764ae3723580.c06c01f0b70b99be17af.png",
+                "id": "scorpio",
+                "word": {
+                    "body": "<span>Tendresse</span>"
+                },
+                "label": {
+                    "id": "YyPYHk",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Scorpio"
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "7ZzlUE",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Oct 23 - Nov 22"
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p>Il y a de l’amour dans l’air, mes p’tits arachnides! (Contrairement à la semaine passée où vous aviez atteint le fond du baril en vous envoyant vous-mêmes des roses au bureau pour que vos collègues pensent que vous vivez une aventure torride avec un.e valentin.e mystère. Gênant.)&nbsp;<br><br><strong>Détendez-vous et permettez vous d’être vulnérables (ouach). </strong>Les bizous et les claques sur les fesses viendront à vous alors que vous vous y attendrez le moins, promis.</p>"
+                }
+            },
+            {
+                "image": "/static/media/90f6296a8fd932ab.b98e9032ea9c4e78a238.png",
+                "id": "sagittarius",
+                "word": {
+                    "body": "<span><strong>Témérité</strong></span>"
+                },
+                "label": {
+                    "id": "7mMPO4",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Sagittarius"
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "yCj5uv",
+                    "defaultMessage": [
+                        {
+                            "value": "Nov 23 - Dec 21",
+                            "type": 0
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p><strong>Cette semaine, le changement et la curiosité sont au rendez-vous.</strong> Grand.e.s explorateurs et exploratrices que vous êtes, votre soif d’aventure sera un peu plus dantesque qu’à l’habitude.&nbsp;<br><br>Parlant de Dante, si vous cherchiez un moment pour faire un trip d’Ayahuasca pendant lequel vous visiterez les 9 cercles de l’enfer pendant 25 ans alors qu’en réalité, vous serez juste en train de vomir dans une chaudière depuis une heure, c’est là que ça se passe. :) <i>Cheers</i>!</p>"
+                }
+            },
+            {
+                "image": "/static/media/25f283d87d385435.4075fd7184e53079af04.png",
+                "id": "capricorn",
+                "word": {
+                    "body": "<span>Échange</span>"
+                },
+                "label": {
+                    "id": "NumcrW",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Capricorn"
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "rAkTvt",
+                    "defaultMessage": [
+                        {
+                            "value": "Dec 22 - Jan 20",
+                            "type": 0
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p><strong>Pour vous, une nouvelle lune est toujours symbole de connexions intellectuelles et de conversations stimulantes.&nbsp;</strong><br><br><i>Fun fact</i>, un.e individu.e aux airs mystérieux pourrait vous faire changer d’opinion lors d’un débat enflammé. Deuxième <i>fun fact</i>, si vous voulez préserver vos amitiés, vous pourriez arrêter de crier des phrases comme « QUOI? TU CONNAIS PAS GEORGES MÉLIÈS? » dans les partys. Ben oui, on l’sait que vous avez eu un cours optionnel en cinéma au cégep, revenez-en.&nbsp;</p>"
+                }
+            },
+            {
+                "image": "/static/media/28d88580694a05cc.895570fa67d93a7cb30f.png",
+                "id": "aquarius",
+                "word": {
+                    "body": "<span>Prospérité</span>"
+                },
+                "label": {
+                    "id": "fBii8l",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Aquarius"
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "Op1ZIp",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Jan 21 - Feb 18"
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p>Votre projet de refuge pour les p’tits singes quadraplégiques est tombé à l’eau parce que vous mangez du resto à chaque jour au lieu d’économiser? Votre intérêt pour la philanthropie a disparu aussi vite qu’il est apparu quand vous avez réalisé que ça impliquait beaucoup plus qu’acheter un vieux NFT laid à 2 cennes?&nbsp;<br><br><strong>Pas de problèmes! Vous aurez bientôt une belle surprise au niveau financier qui vous permettra d'enfin changer le monde (ou presque).</strong></p>"
+                }
+            },
+            {
+                "image": "/static/media/3ae6eae95841dd6a.e8d388c5dfbd527fb583.png",
+                "id": "pisces",
+                "word": {
+                    "body": "<span>Assurance</span>"
+                },
+                "label": {
+                    "id": "dxAumJ",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Pisces"
+                        }
+                    ]
+                },
+                "date": {
+                    "id": "Evl2dG",
+                    "defaultMessage": [
+                        {
+                            "type": 0,
+                            "value": "Feb 19 - Mar 20"
+                        }
+                    ]
+                },
+                "description": {
+                    "body": "<p>Ok, votre Saint-Valentin ne s'est pas <i>tout à fait</i> déroulée comme vous l’aviez imaginée, mais pour vrai, les chances que votre <i>celebrity crush</i> vienne vous chercher au bureau en hélicoptère pour passer la soirée à boire du champagne pis frencher sur une île privée étaient plutôt minces.&nbsp;<br><br><strong>La bonne nouvelle c’est qu’on entre officiellement dans votre saison et que vous serez bientôt envahi.e.s d’un boost de confiance en vous légendaire. </strong>Profitez-en!&nbsp;</p>"
+                }
+            }
+        ]
+    },
+    {
+        "parentId": null,
+        "layout": "full",
+        "parameters": {
+            "metadata": {
+                "description": "L'ABC de l'amour en maternelle",
+                "title": "Vox Pop"
+            }
+        },
+        "gotoNextScreenOnEnd": true,
+        "video": {
+            "closedCaptions": null,
+            "withControls": true,
+            "media": null,
+            "color": {
+                "color": "#ffffff",
+                "alpha": 1
+            },
+            "autoPlay": true,
+            "withSeekBar": true,
+            "thumbnail": "media://3804"
+        },
+        "group": null,
+        "type": "video",
+        "background": {
+            "image": null,
+            "video": null,
+            "color": null
+        },
+        "id": "d1f3d420-3b7a-11ed-9684-3d1e59079a29"
+    },
+    {
+        "parentId": null,
+        "layout": "full",
+        "parameters": {
+            "metadata": {
+                "description": "Semaine du  11 février",
+                "title": "Intro Suggestions de la semaine"
+            }
+        },
+        "gotoNextScreenOnEnd": true,
+        "video": {
+            "thumbnail": "thumbnails.2",
+            "color": null,
+            "autoPlay": true,
+            "media": "media://2754",
+            "loop": false,
+            "thumbnailFile": "thumbnails.3"
+        },
+        "group": null,
+        "type": "video",
+        "background": {
+            "image": null,
+            "color": null
+        },
+        "id": "f479e4a0-c599-11ec-8a01-c58057c24752"
+    },
+    {
+        "category": {
+            "textStyle": {
+                "fontFamily": null,
+                "letterSpacing": null,
+                "fontWeight": null
+            },
+            "body": "<span>Événement</span>"
+        },
+        "parentId": null,
+        "date": {
+            "body": "<p><strong>18 FÉV.</strong></p>"
+        },
+        "title": {
+            "textStyle": {
+                "fontFamily": {
+                    "name": "Agrandir Narrow",
+                    "type": "custom",
+                    "media": "media://2450",
+                    "variants": [
+                        {
+                            "weight": "700",
+                            "media": "media://2521",
+                            "style": "normal",
+                            "fvd": "n7"
+                        }
+                    ]
+                },
+                "fontSize": 18,
+                "fontStyle": {
+                    "underline": false,
+                    "italic": false,
+                    "bold": false
+                }
+            },
+            "body": "<span>xx</span>"
+        },
+        "parameters": {
+            "metadata": {
+                "description": "Brunch Gospel au Balcon",
+                "title": "Suggestion de la semaine #1"
+            }
+        },
+        "description": {
+            "textStyle": {
+                "fontFamily": {
+                    "variants": [
+                        "100",
+                        "100italic",
+                        "300",
+                        "300italic",
+                        "regular",
+                        "italic",
+                        "500",
+                        "500italic",
+                        "700",
+                        "700italic",
+                        "900",
+                        "900italic"
+                    ],
+                    "name": "Roboto",
+                    "type": "google"
+                }
+            },
+            "body": "<p><strong>Le pitch : </strong>Laissez-vous transporter par l’énergie gospel en dégustant vos deux oeufs bacon pendant ce spectacle présenté par le chœur montréalais Imani Gospel Singers.</p><p><strong>Pourquoi on aime? </strong>Les mimosas ne vous auront jamais autant rempli de joie.&nbsp;</p><p><strong>Où ça? </strong>À la salle de spectacle Le Balcon.</p>"
+        },
+        "group": null,
+        "type": "urbania-recommendation",
+        "callToAction": {
+            "boxStyle": {
+                "backgroundColor": {
+                    "color": "#fffc00",
+                    "alpha": 1
+                },
+                "padding": {
+                    "top": 8,
+                    "left": 20,
+                    "bottom": 5,
+                    "right": 20
+                },
+                "borderColor": {
+                    "color": "#fffc00",
+                    "alpha": 0.44
+                },
+                "borderStyle": "solid",
+                "borderRadius": 40,
+                "borderWidth": 4
+            },
+            "url": "https://www.lavitrine.com/activity/Les_Brunchs_Gospel_avec_Imani_Gospel_Singers",
+            "type": "button",
+            "active": true,
+            "label": {
+                "textStyle": {
+                    "lineHeight": 1,
+                    "letterSpacing": 0.10000000000000001,
+                    "fontFamily": {
+                        "media": "media://2452",
+                        "type": "custom",
+                        "name": "Agrandir Tight"
+                    },
+                    "fontSize": 16,
+                    "fontStyle": {
+                        "bold": true,
+                        "italic": false,
+                        "underline": false
+                    },
+                    "color": {
+                        "alpha": 1,
+                        "color": "#222222"
+                    }
+                },
+                "body": "En savoir plus"
+            },
+            "inWebView": true
+        },
+        "background": {
+            "image": "media://3807",
+            "repeat": false,
+            "color": null
+        },
+        "id": "3ac21ca0-cb1e-11ec-bfd7-bb789b63ba8b"
+    },
+    {
+        "category": {
+            "body": "<span>Film</span>"
+        },
+        "background": {
+            "image": "media://3808",
+            "color": null
+        },
+        "date": {
+            "body": "<p><strong>31 JANV.</strong>&nbsp;<br>au <strong>20 FÉV.</strong></p>"
+        },
+        "title": {
+            "textStyle": {
+                "fontStyle": {
+                    "bold": true,
+                    "underline": false,
+                    "italic": false
+                },
+                "fontSize": 15,
+                "fontFamily": {
+                    "name": "Agrandir Narrow",
+                    "media": "media://2450",
+                    "type": "custom",
+                    "variants": [
+                        {
+                            "weight": "700",
+                            "fvd": "n7",
+                            "media": "media://2521",
+                            "style": "normal"
+                        }
+                    ]
+                }
+            },
+            "body": "<span>xxx</span>"
+        },
+        "parameters": {
+            "metadata": {
+                "description": "Les années Blaxploitation",
+                "title": "Suggestion de la semaine #2"
+            }
+        },
+        "description": {
+            "body": "<p><strong>Le pitch : </strong>La Cinémathèque québécoise souligne le Mois de l'histoire des Noirs en proposant quinze films culte de la Blaxploitation.</p><p><strong>Pourquoi on aime?</strong><i><strong> </strong></i>Au cours des années 70, la Blaxploitation s’inspirait de l’idéologie Black Power pour déconstruire les codes traditionnels d’Hollywood en mettant à l’avant scène la communauté afro-américaine alors en pleine ébullition contestataire.<br><br><strong>Où ça?</strong> Cinémathèque québécoise.</p>"
+        },
+        "group": null,
+        "sponsor": {
+            "body": null
+        },
+        "type": "urbania-recommendation",
+        "callToAction": {
+            "boxStyle": {
+                "borderStyle": "solid",
+                "borderRadius": 40,
+                "padding": {
+                    "top": 8,
+                    "right": 20,
+                    "bottom": 5,
+                    "left": 20
+                },
+                "borderWidth": 4,
+                "backgroundColor": {
+                    "color": "#fffc00",
+                    "alpha": 1
+                },
+                "borderColor": {
+                    "color": "#fffc00",
+                    "alpha": 0.44
+                }
+            },
+            "type": "button",
+            "url": "https://www.cinematheque.qc.ca/fr/cycles/les-annees-blaxploitation/",
+            "label": {
+                "textStyle": {
+                    "lineHeight": 1,
+                    "fontStyle": {
+                        "underline": false,
+                        "bold": true,
+                        "italic": false
+                    },
+                    "color": {
+                        "color": "#222222",
+                        "alpha": 1
+                    },
+                    "fontFamily": {
+                        "media": "media://2452",
+                        "name": "Agrandir Tight",
+                        "type": "custom"
+                    },
+                    "fontSize": 16,
+                    "letterSpacing": 0.10000000000000001
+                },
+                "body": "En savoir plus 🔗"
+            },
+            "inWebView": false,
+            "active": true
+        },
+        "parentId": null,
+        "id": "3d389ae0-cb1e-11ec-bfd7-bb789b63ba8b"
+    },
+    {
+        "category": {
+            "body": "<span>Évémement</span>"
+        },
+        "id": "578026c0-cb19-11ec-bfd7-bb789b63ba8b",
+        "date": {
+            "body": "<p>Du <strong>3 au&nbsp;</strong><br><strong>12 FÉV.</strong></p>"
+        },
+        "title": {
+            "textStyle": {
+                "fontStyle": {
+                    "bold": true,
+                    "italic": false,
+                    "underline": false
+                },
+                "fontSize": 16
+            },
+            "body": "<span>xx</span>"
+        },
+        "parameters": {
+            "metadata": {
+                "description": "Carnaval de Québec",
+                "title": "Suggestion de la semaine #3"
+            }
+        },
+        "description": {
+            "body": "<p><strong>Le pitch : </strong>Énerve-toi le pompon avec nous au carnaval! L’hiver sera à nouveau célébré avec mille et une activités aussi divertissantes les unes que les autres.<br><br><strong>Pourquoi on aime?</strong> Au programme, une série de nouvelles activités dont une Glisse urbaine, cinq soirées au cœur du Palais de glace de Bonhomme et le tout nouveau Camping de Bonhomme Vidéotron!</p><p><strong>Où ça?</strong><i><strong> </strong></i>Ville de Québec</p>"
+        },
+        "group": null,
+        "sponsor": {
+            "textStyle": {
+                "fontSize": 10,
+                "fontFamily": {
+                    "name": "Agrandir",
+                    "media": "media://2449",
+                    "type": "custom",
+                    "variants": [
+                        {
+                            "weight": "400",
+                            "media": "media://2449",
+                            "style": "normal",
+                            "fvd": "n4"
+                        },
+                        {
+                            "weight": "700",
+                            "media": "media://2518",
+                            "style": "normal",
+                            "fvd": "n7"
+                        }
+                    ]
+                },
+                "lineHeight": 1,
+                "fontStyle": {
+                    "underline": false,
+                    "bold": false,
+                    "italic": false
+                }
+            },
+            "body": "<p>Présenté par<strong> Carnaval de québec</strong></p>"
+        },
+        "type": "urbania-recommendation",
+        "callToAction": {
+            "inWebView": false,
+            "boxStyle": {
+                "borderRadius": 40,
+                "borderColor": {
+                    "color": "#fffc00",
+                    "alpha": 0.44
+                },
+                "borderWidth": 4,
+                "backgroundColor": {
+                    "color": "#fffc00",
+                    "alpha": 1
+                },
+                "borderStyle": "solid",
+                "padding": {
+                    "right": 20,
+                    "top": 8,
+                    "left": 20,
+                    "bottom": 5
+                }
+            },
+            "url": "https://carnaval.qc.ca/programmation-2023/",
+            "type": "button",
+            "active": true,
+            "label": {
+                "textStyle": {
+                    "color": {
+                        "alpha": 1,
+                        "color": "#222222"
+                    },
+                    "fontSize": 16,
+                    "letterSpacing": 0.10000000000000001,
+                    "lineHeight": 1,
+                    "fontStyle": {
+                        "bold": true,
+                        "italic": false,
+                        "underline": false
+                    },
+                    "fontFamily": {
+                        "type": "custom",
+                        "media": "media://2452",
+                        "name": "Agrandir Tight"
+                    }
+                },
+                "body": "En savoir plus 🔗"
+            }
+        },
+        "parentId": null,
+        "background": {
+            "image": "media://3809",
+            "color": null
+        }
+    },
+    {
+        "centered": true,
+        "heading": {
+            "textStyle": {
+                "color": {
+                    "alpha": 1,
+                    "color": "#ffffff"
+                },
+                "align": "center",
+                "fontSize": 18,
+                "lineHeight": 1,
+                "fontStyle": {
+                    "bold": true,
+                    "italic": true,
+                    "transform": null,
+                    "underline": false
+                },
+                "fontFamily": {
+                    "type": "custom",
+                    "variants": [
+                        {
+                            "fvd": "n7",
+                            "media": "media://2519",
+                            "style": "normal",
+                            "weight": "700"
+                        },
+                        {
+                            "fvd": "n9",
+                            "media": "media://2457",
+                            "style": "normal",
+                            "weight": "900"
+                        },
+                        {
+                            "fvd": "n5",
+                            "media": "media://2522",
+                            "style": "normal",
+                            "weight": "500"
+                        }
+                    ],
+                    "name": "Agrandir Tight",
+                    "media": "media://2452"
+                }
+            },
+            "body": null
+        },
+        "parameters": {
+            "metadata": {
+                "description": "Matthy et Sam",
+                "title": "Écran de partage"
+            }
+        },
+        "options": {
+            "email": false,
+            "copylink": true,
+            "facebook": true,
+            "facebookMessenger": true,
+            "whatsapp": false,
+            "twitter": false,
+            "linkedin": false
+        },
+        "id": "c87fc900-dd2c-11ec-97ab-dd58d11db3e7",
+        "shareUrl": null,
+        "type": "share",
+        "buttonsTextStyle": {
+            "color": {
+                "alpha": 1,
+                "color": "#000000"
+            }
+        },
+        "group": null,
+        "parentId": null,
+        "background": {
+            "image": null,
+            "video": null,
+            "color": null
+        },
+        "layout": "bottom",
+        "buttonsStyle": {
+            "borderColor": {
+                "alpha": 1,
+                "color": "#ffff1c"
+            },
+            "backgroundColor": {
+                "alpha": 0.69999999999999996,
+                "color": "#fffc00"
+            },
+            "borderRadius": 10,
+            "shadowBlur": 5,
+            "shadowDistance": 3,
+            "shadowAngle": 90,
+            "shadowColor": {
+                "alpha": 1,
+                "color": "#222222"
+            }
+        }
+    },
+    {
+        "callToAction": {
+            "boxStyle": {
+                "borderStyle": "solid",
+                "borderWidth": 5,
+                "backgroundColor": {
+                    "color": "#fffc00",
+                    "alpha": 1
+                },
+                "borderColor": {
+                    "color": "#fffc00",
+                    "alpha": 0.44
+                },
+                "borderRadius": 40,
+                "padding": {
+                    "top": 5,
+                    "right": 10,
+                    "left": 10,
+                    "bottom": 5
+                }
+            },
+            "active": false,
+            "label": {
+                "textStyle": {
+                    "lineHeight": 1,
+                    "fontStyle": {
+                        "underline": false,
+                        "bold": true,
+                        "italic": false
+                    },
+                    "color": {
+                        "color": "#222222",
+                        "alpha": 1
+                    },
+                    "fontSize": 18,
+                    "letterSpacing": 0.10000000000000001,
+                    "fontFamily": {
+                        "type": "custom",
+                        "name": "Agrandir Tight",
+                        "media": "media://2452"
+                    }
+                },
+                "body": "En savoir plus"
+            },
+            "type": "swipe-up"
+        },
+        "layout": "split-top",
+        "shareIncentive": {
+            "active": false,
+            "label": {
+                "body": "Partagez ce micromag!"
+            }
+        },
+        "title": {
+            "textStyle": {
+                "align": "center",
+                "lineHeight": 1,
+                "color": {
+                    "color": "#fffc00",
+                    "alpha": 1
+                },
+                "fontStyle": {
+                    "transform": "uppercase"
+                },
+                "fontSize": 43,
+                "fontFamily": {
+                    "type": "custom",
+                    "name": "GarageGothic-Bold",
+                    "media": "media://60"
+                },
+                "letterSpacing": -0.5
+            },
+            "body": "<span><br><br>La semaine prochaine dans votre micromag</span>"
+        },
+        "id": "69378360-9696-11ed-8de7-df654b544bc6",
+        "group": null,
+        "parentId": null,
+        "type": "title-with-box",
+        "background": {
+            "image": null,
+            "video": null,
+            "color": null
+        },
+        "description": {
+            "textStyle": {
+                "lineHeight": 1.2,
+                "color": {
+                    "alpha": 1,
+                    "color": "#222222"
+                },
+                "fontFamily": {
+                    "variants": [
+                        "100",
+                        "100italic",
+                        "300",
+                        "300italic",
+                        "regular",
+                        "italic",
+                        "500",
+                        "500italic",
+                        "700",
+                        "700italic",
+                        "900",
+                        "900italic"
+                    ],
+                    "type": "google",
+                    "name": "Roboto"
+                },
+                "letterSpacing": -0.5,
+                "fontSize": 16
+            },
+            "body": null
+        },
+        "subtitle": {
+            "textStyle": {
+                "fontStyle": {
+                    "transform": "uppercase"
+                },
+                "fontWeight": 300,
+                "color": {
+                    "alpha": 1,
+                    "color": "#ffffff"
+                },
+                "fontSize": 16,
+                "lineHeight": 1.1000000000000001,
+                "fontFamily": {
+                    "media": "media://527",
+                    "variants": [],
+                    "name": "AvantGarde Medium",
+                    "type": "custom"
+                },
+                "align": "center"
+            },
+            "body": null
+        },
+        "parameters": {
+            "metadata": {
+                "description": "Tricher : stupide ou ingénieux",
+                "title": "Prochain Micromag"
+            }
+        }
+    }
+]

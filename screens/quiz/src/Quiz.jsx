@@ -42,6 +42,7 @@ const propTypes = {
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    ready: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -64,6 +65,7 @@ const defaultProps = {
     callToAction: null,
     current: true,
     active: true,
+    ready: true,
     transitions: null,
     transitionStagger: 100,
     type: null,
@@ -86,6 +88,7 @@ const QuizScreen = ({
     callToAction,
     current,
     active,
+    ready,
     transitions,
     transitionStagger,
     type,
@@ -96,6 +99,8 @@ const QuizScreen = ({
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const clickDisabled = !ready;
+
     const {
         topHeight: viewerTopHeight,
         bottomHeight: viewerBottomHeight,
@@ -105,7 +110,7 @@ const QuizScreen = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
-    const transitionPlaying = current;
+    const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
@@ -117,6 +122,7 @@ const QuizScreen = ({
     const showInstantAnswer = isStatic || isCapture;
     const goodAnswerIndex =
         answers !== null ? answers.findIndex((answer) => answer !== null && answer.good) : null;
+    const withoutGoodAnswer = goodAnswerIndex === null || goodAnswerIndex === -1;
 
     const [userAnswerIndex, setUserAnswerIndex] = useState(
         showInstantAnswer ? goodAnswerIndex : null,
@@ -132,7 +138,6 @@ const QuizScreen = ({
                 return;
             }
             setUserAnswerIndex(answerI);
-
             trackScreenEvent('click_answer', `${userAnswerIndex + 1}: ${answer.label.body}`, {
                 answer,
                 answerIndex: answerI,
@@ -181,6 +186,7 @@ const QuizScreen = ({
             className={classNames([
                 styles.container,
                 {
+                    [styles.disabled]: clickDisabled,
                     [className]: className !== null,
                 },
             ])}
@@ -203,6 +209,7 @@ const QuizScreen = ({
                         goodAnswerColor={goodAnswerColor}
                         badAnswerColor={badAnswerColor}
                         withoutTrueFalse={withoutTrueFalse}
+                        withoutGoodAnswer={withoutGoodAnswer}
                         focusable={current && isView}
                         showInstantAnswer={showInstantAnswer}
                         withResult

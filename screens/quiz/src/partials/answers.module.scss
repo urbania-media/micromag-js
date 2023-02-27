@@ -22,56 +22,6 @@
 }
 
 .item {
-    transition-property: opacity;
-    transition-duration: 0.5s;
-    transition-timing-function: ease;
-
-    &.answerToSlide {
-        transition-property: transform;
-        transition-duration: 1s;
-    }
-
-    &.isUserAnswer {
-        //  transition-duration: 1s;
-        opacity: 1 !important;
-    }
-
-    .answered & {
-        opacity: 0.3;
-
-        &.rightAnswer,
-        &.userAnswer {
-            opacity: 0.99;
-        }
-    }
-
-    .willCollapse & {
-        transition-duration: 0.2s;
-        opacity: 0;
-
-        &.userAnswer {
-            transition-duration: 0.2s;
-            opacity: 0;
-        }
-
-        &.answerToSlide {
-            transition-duration: 1s;
-            opacity: 1;
-        }
-    }
-
-    .didCollapsed & {
-        &.answerToSlide {
-            transition: none;
-        }
-    }
-
-    .withoutGoodAnswer & {
-        &.userAnswer {
-            transition-duration: 1s;
-        }
-    }
-
     .isPlaceholder & {
         padding: 1px 0;
     }
@@ -119,6 +69,10 @@
 
     .rightAnswer & {
         background-color: $green;
+    }
+
+    .faIcon {
+        display: block;
     }
 }
 

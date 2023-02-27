@@ -237,6 +237,7 @@ const QuizMultipleScreen = ({
     const isIntro = hasIntro && questionIndex === 'intro';
     const isResults = questionIndex === 'results';
     const isQuestion = !isIntro && !isResults;
+
     const currentResult = useMemo(() => {
         if (!isResults) {
             return null;
@@ -256,9 +257,12 @@ const QuizMultipleScreen = ({
             .reduce((lastResult, result) => {
                 const { points: lastPoints = 0 } = lastResult || {};
                 const { points = 0 } = result || {};
-                return currentPoints >= lastPoints && currentPoints <= points ? result : lastResult;
+                return currentPoints >= (lastPoints || 0) && currentPoints >= points
+                    ? result
+                    : lastResult;
             }, null);
     }, [isResults, results, currentPoints, stateId, stateIndex]);
+
     const { background: resultBackground = null, layout: resultLayout = null } =
         currentResult || {};
 

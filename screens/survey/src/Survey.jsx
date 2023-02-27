@@ -50,7 +50,7 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
+    // transitionStagger: PropTypes.number,
     resultTransitionDuration: PropTypes.number,
     type: PropTypes.string,
     className: PropTypes.string,
@@ -72,7 +72,7 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
-    transitionStagger: 100,
+    // transitionStagger: 100,
     resultTransitionDuration: 500,
     type: null,
     className: null,
@@ -94,7 +94,7 @@ const SurveyScreen = ({
     current,
     active,
     transitions,
-    transitionStagger,
+    // transitionStagger,
     resultTransitionDuration,
     type,
     className,
@@ -119,7 +119,7 @@ const SurveyScreen = ({
     const { quiz: allQuizAnswers = [] } = useQuiz({ screenId, opts: { autoload: !isPlaceholder } });
     const quizAnswers = allQuizAnswers.filter((item) => {
         const { choice = null } = item || {};
-        const answersBody = answers
+        const answersBody = (answers || [])
             .map((answer) => {
                 const { label = null } = answer || {};
                 const { body = null } = label || {};
@@ -152,7 +152,6 @@ const SurveyScreen = ({
                 ? (answers || []).reduce((answersTotal, ans, i) => {
                       const { label = {} } = ans || {};
                       const { body = null } = label || {};
-
                       const { count = 0 } = quizAnswers.find((qa) => qa.choice === body) || {};
                       const countWithUser = i === userAnswerIndex ? count + 1 : count;
                       if (body !== null) {
@@ -186,7 +185,7 @@ const SurveyScreen = ({
     }, [answers, quizAnswers, userAnswerIndex]);
 
     const isSplitted = layout === 'split';
-    const isTopLayout = layout === 'top';
+    // const isTopLayout = layout === 'top';
     const isMiddleLayout = layout === 'middle';
     const verticalAlign = isSplitted ? null : layout;
 
@@ -288,6 +287,8 @@ const SurveyScreen = ({
                             textStyle: answerButtonTextStyle = null,
                             resultStyle: answerResultStyle = null,
                         } = answer || {};
+                        const { borderRadius: answerResultBorderRadius = null } =
+                            answerButtonStyle || {};
                         const {
                             barColor: answerResultBarColor = null,
                             textColor: answerResultTextColor,
@@ -324,116 +325,113 @@ const SurveyScreen = ({
                                     isEmpty={!hasAnswerLabel}
                                 >
                                     {hasAnswer ? (
-                                        <Transitions
-                                            transitions={transitions}
-                                            playing={transitionPlaying}
-                                            delay={(answerIndex + 1) * transitionStagger}
-                                            disabled={transitionDisabled}
-                                        >
-                                            <div className={styles.itemContent}>
-                                                <div
-                                                    className={styles.itemInner}
-                                                    style={{
-                                                        transitionDuration: finalTransitionDuration,
+                                        <div className={styles.itemContent}>
+                                            <div
+                                                className={styles.itemInner}
+                                                style={{
+                                                    transitionDuration: finalTransitionDuration,
+                                                }}
+                                            >
+                                                <Button
+                                                    className={styles.button}
+                                                    onPointerUp={(e) => {
+                                                        if (
+                                                            e.pointerType !== 'mouse' ||
+                                                            e.button === 0
+                                                        ) {
+                                                            onAnswerClick(answerIndex);
+                                                        }
+                                                    }}
+                                                    disabled={isPreview || userAnswerIndex !== null}
+                                                    focusable={current && isView}
+                                                    buttonStyle={{
+                                                        ...buttonsStyle,
+                                                        ...answerButtonStyle,
+                                                        ...(answered
+                                                            ? { textAlign: 'left' }
+                                                            : null),
+                                                    }}
+                                                    textStyle={{
+                                                        ...textStyle,
+                                                        ...buttonsTextStyle,
+                                                        ...answerButtonTextStyle,
                                                     }}
                                                 >
-                                                    <Button
-                                                        className={styles.button}
-                                                        onClick={() => onAnswerClick(answerIndex)}
-                                                        disabled={
-                                                            isPreview || userAnswerIndex !== null
-                                                        }
-                                                        focusable={current && isView}
-                                                        buttonStyle={{
-                                                            ...buttonsStyle,
-                                                            ...answerButtonStyle,
-                                                            ...(answered
-                                                                ? { textAlign: 'left' }
-                                                                : null),
-                                                        }}
-                                                        textStyle={{
-                                                            ...textStyle,
-                                                            ...buttonsTextStyle,
-                                                            ...answerButtonTextStyle,
-                                                        }}
-                                                    >
-                                                        <span className={styles.itemLabel}>
-                                                            <Text
-                                                                {...label}
-                                                                textStyle={{
-                                                                    ...textStyle,
-                                                                    ...buttonsTextStyle,
-                                                                    ...answerButtonTextStyle,
+                                                    <span className={styles.itemLabel}>
+                                                        <Text
+                                                            {...label}
+                                                            textStyle={{
+                                                                ...textStyle,
+                                                                ...buttonsTextStyle,
+                                                                ...answerButtonTextStyle,
+                                                            }}
+                                                            inline
+                                                            className={styles.itemText}
+                                                        />
+                                                        {!withoutPercentage ? (
+                                                            <div
+                                                                className={styles.resultLabel}
+                                                                style={{
+                                                                    ...getStyleFromColor(
+                                                                        answered
+                                                                            ? answerResultTextColor ||
+                                                                                  resultsTextColor ||
+                                                                                  answerResultBarColor ||
+                                                                                  resultsBarColor ||
+                                                                                  labelColor
+                                                                            : null,
+                                                                        'color',
+                                                                    ),
+                                                                    ...(answered
+                                                                        ? { opacity: 1 }
+                                                                        : { opacity: 0 }),
                                                                 }}
-                                                                inline
-                                                                className={styles.itemText}
-                                                            />
-                                                            {!withoutPercentage ? (
-                                                                <div
-                                                                    className={styles.resultLabel}
-                                                                    style={{
-                                                                        ...getStyleFromColor(
-                                                                            answered
-                                                                                ? answerResultTextColor ||
-                                                                                      resultsTextColor ||
-                                                                                      answerResultBarColor ||
-                                                                                      resultsBarColor ||
-                                                                                      labelColor
-                                                                                : null,
-                                                                            'color',
-                                                                        ),
-                                                                        ...(answered
-                                                                            ? { opacity: 1 }
-                                                                            : { opacity: 0 }),
+                                                            >
+                                                                <Text
+                                                                    {...label}
+                                                                    textStyle={{
+                                                                        ...textStyle,
+                                                                        ...buttonsTextStyle,
+                                                                        ...answerButtonTextStyle,
+                                                                        ...resultsTextColor,
+                                                                        ...resultsPercentageTextStyle,
+                                                                        ...answerResultTextColor,
+                                                                        ...answerResultPercentageTextStyle,
                                                                     }}
-                                                                >
-                                                                    <Text
-                                                                        {...label}
-                                                                        textStyle={{
-                                                                            ...textStyle,
-                                                                            ...buttonsTextStyle,
-                                                                            ...resultsTextColor,
-                                                                            ...resultsPercentageTextStyle,
-                                                                            ...answerResultTextColor,
-                                                                            ...answerResultPercentageTextStyle,
-                                                                        }}
-                                                                        inline
-                                                                        className={
-                                                                            styles.resultText
-                                                                        }
-                                                                        body={`${percent}%`}
-                                                                    />
-                                                                </div>
-                                                            ) : null}
-                                                            {!withoutBar ? (
-                                                                <div
-                                                                    className={styles.resultBar}
-                                                                    style={{
-                                                                        transitionDuration:
-                                                                            finalTransitionDuration,
-                                                                        width:
-                                                                            percent !== null
-                                                                                ? `${percent}%`
-                                                                                : null,
-                                                                        ...getStyleFromColor(
-                                                                            answered
-                                                                                ? answerResultBarColor ||
-                                                                                      resultsBarColor ||
-                                                                                      labelColor
-                                                                                : null,
-                                                                            'backgroundColor',
-                                                                        ),
-                                                                        ...(answered
-                                                                            ? { opacity: 1 }
-                                                                            : { opacity: 0 }),
-                                                                    }}
+                                                                    inline
+                                                                    className={styles.resultText}
+                                                                    body={`${percent}%`}
                                                                 />
-                                                            ) : null}
-                                                        </span>
-                                                    </Button>
-                                                </div>
+                                                            </div>
+                                                        ) : null}
+                                                        {!withoutBar ? (
+                                                            <div
+                                                                className={styles.resultBar}
+                                                                style={{
+                                                                    borderRadius:
+                                                                        answerResultBorderRadius,
+                                                                    transitionDuration:
+                                                                        finalTransitionDuration,
+                                                                    width:
+                                                                        percent !== null
+                                                                            ? `${percent}%`
+                                                                            : '0%',
+                                                                    ...getStyleFromColor(
+                                                                        answerResultBarColor ||
+                                                                            resultsBarColor ||
+                                                                            labelColor,
+                                                                        'backgroundColor',
+                                                                    ),
+                                                                    ...(answered
+                                                                        ? { opacity: 0.5 }
+                                                                        : { opacity: 0 }),
+                                                                }}
+                                                            />
+                                                        ) : null}
+                                                    </span>
+                                                </Button>
                                             </div>
-                                        </Transitions>
+                                        </div>
                                     ) : null}
                                 </ScreenElement>
                             </div>

@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
@@ -12,6 +13,7 @@ import { isTextFilled } from '@micromag/core/utils';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
+
 import Answers from './Answers';
 
 import styles from './question.module.scss';
@@ -113,11 +115,13 @@ const Question = ({
     const hasQuestion = isTextFilled(question);
     const { textStyle: questionTextStyle = null } = question || {};
 
-    const hasResult = isTextFilled(result);
-
     const [resultVisible, setResultVisible] = useState(showInstantAnswer);
 
     const answered = answeredIndex !== null;
+    const answer = answeredIndex !== null && answers[answeredIndex] ? answers[answeredIndex] : null;
+    const { customAnswerLabel = null } = answer || {};
+
+    const hasResult = customAnswerLabel !== null || isTextFilled(result);
 
     const onAnswersCollapse = useCallback(() => {
         setResultVisible(true);
@@ -226,7 +230,10 @@ const Question = ({
                                         delay={(1 + answers.length) * transitionStagger}
                                         disabled={transitionDisabled}
                                     >
-                                        <Text {...result} className={styles.resultText} />
+                                        <Text
+                                            {...(customAnswerLabel || result)}
+                                            className={styles.resultText}
+                                        />
                                     </Transitions>
                                 ) : null}
                             </ScreenElement>

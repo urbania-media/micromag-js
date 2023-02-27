@@ -18,7 +18,16 @@ export default {
             name: 'good',
             type: 'toggle',
             label: defineMessage({
-                defaultMessage: 'Good answer',
+                defaultMessage: 'Right answer',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'customAnswerLabel',
+            type: 'text-element',
+            textOnly: true,
+            label: defineMessage({
+                defaultMessage: 'Answer feedback',
                 description: 'Field label',
             }),
         },
@@ -40,9 +49,9 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Button style',
                         description: 'Field label',
-                    })
+                    }),
                 },
-            ]
+            ],
         },
-    ]
+    ],
 };

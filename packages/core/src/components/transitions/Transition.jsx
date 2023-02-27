@@ -1,19 +1,26 @@
 import { useSpring } from '@react-spring/core';
-import { animated } from '@react-spring/web';
+import { animated, config as defaultConfigs } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
+
 import styles from '../../styles/transitions/transition.module.scss';
 
 const propTypes = {
     fullscreen: PropTypes.bool,
-    from: PropTypes.objectOf(PropTypes.any),
-    to: PropTypes.objectOf(PropTypes.any),
+    from: PropTypes.objectOf(PropTypes.any), // eslint-disable-line react/forbid-prop-types
+    to: PropTypes.objectOf(PropTypes.any), // eslint-disable-line react/forbid-prop-types
     playing: PropTypes.bool,
     direction: PropTypes.oneOf(['in', 'out']),
     delay: PropTypes.number,
+    reversible: PropTypes.bool,
     duration: PropTypes.number,
     easing: PropTypes.func,
+    config: PropTypes.shape({
+        mass: PropTypes.number,
+        friction: PropTypes.number,
+        tension: PropTypes.number,
+    }),
     children: PropTypes.node,
     className: PropTypes.string,
     onStart: PropTypes.func,
@@ -27,8 +34,10 @@ const defaultProps = {
     playing: false,
     direction: null,
     delay: 0,
+    reversible: true,
     duration: undefined,
     easing: undefined,
+    config: null,
     children: null,
     className: null,
     onStart: null,
@@ -42,8 +51,10 @@ function Transition({
     playing,
     direction,
     delay,
+    reversible,
     duration,
     easing,
+    config,
     children,
     className,
     onStart,
@@ -54,41 +65,39 @@ function Transition({
     useEffect(() => {
         const immediate = (!playing && direction === 'in') || (playing && direction === 'out');
         const finalPlaying = immediate || playing;
-        const reset = playing && !immediate;
+        const reset = reversible && playing && !immediate;
         const finalDuration = duration !== null ? duration : undefined;
-
+        const withDelay = delay > 0 && playing && direction !== 'out';
+        const finalConfig =
+            easing !== null && defaultConfigs[easing] ? defaultConfigs[easing] || null : config;
         const props = {
-            from,
+            from: finalPlaying ? from : to,
             to: finalPlaying ? to : from,
+            immediate,
+            delay: withDelay ? delay : null,
             reset,
             onStart,
             onRest: onComplete,
-            config: {
-                duration: immediate ? 0 : finalDuration,
-            },
+            config:
+                finalConfig !== null
+                    ? finalConfig
+                    : {
+                          duration: immediate ? 0 : finalDuration,
+                      },
         };
-
-        const withDelay = delay > 0 && playing && direction !== 'out';
-        let timeout = null;
-        if (withDelay) {
-            setSpringProps.start({ to: from, immediate: true });
-            timeout = setTimeout(() => {
-                setSpringProps.start(props);
-            }, delay);
-        } else {
+        // Reversible always toggles between from-to (playing) to-from (!playing)
+        if (finalPlaying || reversible) {
             setSpringProps.start(props);
         }
-        return () => {
-            if (timeout !== null) {
-                clearTimeout(timeout);
-            }
-        };
+        // console.log('fx', { reset, finalPlaying, immediate, reversible });
     }, [
         playing,
         direction,
         delay,
         duration,
+        reversible,
         easing,
+        config,
         from,
         to,
         setSpringProps,

@@ -7,11 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Label } from '@micromag/core/components';
-import styles from '../styles/field-row.module.scss';
+
 import FieldErrors from './FieldErrors';
 import FieldHelp from './FieldHelp';
+
+import styles from '../styles/field-row.module.scss';
 
 const propTypes = {
     label: MicromagPropTypes.label,
@@ -116,6 +119,7 @@ const FieldRow = ({
                     col: !isHorizontal && withSettings,
                     'py-0': isHorizontal,
                     'pt-2': isHorizontal && hasIndicationsUnder,
+                    'me-1': isHorizontal,
                     'align-self-center': isHorizontal && !hasIndicationsUnder,
                     'fw-normal': !isSection,
                     'fw-bold': isSection,
@@ -127,7 +131,7 @@ const FieldRow = ({
         ) : null;
 
     const arrowElement = isClickable ? (
-        <span className="col-auto align-self-middle d-flex align-items-center">
+        <span className="col-auto align-self-center d-flex align-items-center mw-25">
             <FontAwesomeIcon icon={faAngleRight} />
         </span>
     ) : null;
@@ -136,8 +140,15 @@ const FieldRow = ({
         const rowInner = (
             <span className={classNames(['row', 'flex-nowrap', 'gx-1'])}>
                 {labelElement}
-                <span className={classNames(['col', styles.colValue, 'align-self-center'])}>
-                    <span className={classNames(['d-flex', 'w-100', 'justify-content-end'])}>
+                <span
+                    className={classNames([
+                        'col',
+                        styles.colValue,
+                        'align-self-center',
+                        { [styles.colMinWidth]: isListItem },
+                    ])}
+                >
+                    <span className={classNames(['d-flex', 'justify-content-end', 'me-1'])}>
                         {children}
                     </span>
                     {helpElement !== null || errorsElement !== null ? (
@@ -145,7 +156,7 @@ const FieldRow = ({
                             className={classNames([
                                 'd-flex',
                                 'mt-1',
-                                'w-100',
+                                // 'w-100',
                                 'justify-content-end',
                             ])}
                         >

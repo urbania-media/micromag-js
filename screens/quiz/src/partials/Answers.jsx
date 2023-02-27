@@ -4,15 +4,15 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useTransition, animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, Transitions } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
-import { useDimensionObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
@@ -32,10 +32,6 @@ const propTypes = {
     withoutIcon: PropTypes.bool,
     focusable: PropTypes.bool,
     collapsed: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionPlaying: PropTypes.bool,
-    transitionStagger: PropTypes.number,
-    transitionDisabled: PropTypes.bool,
     onClick: PropTypes.func,
     onCollapse: PropTypes.func,
     onCollapsed: PropTypes.func,
@@ -55,10 +51,6 @@ const defaultProps = {
     withoutIcon: false,
     focusable: false,
     collapsed: false,
-    transitions: null,
-    transitionPlaying: false,
-    transitionStagger: 100,
-    transitionDisabled: false,
     onClick: null,
     onCollapse: null,
     onCollapsed: null,
@@ -79,10 +71,6 @@ const Answers = ({
     withoutIcon,
     focusable,
     collapsed: initialCollapsed,
-    transitions,
-    transitionPlaying,
-    transitionStagger,
-    transitionDisabled,
     onClick,
     onCollapse,
     onCollapsed,
@@ -90,19 +78,9 @@ const Answers = ({
     className,
 }) => {
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
-
     const answered = answeredIndex !== null;
     const { good: hasAnsweredRight = false } = answeredIndex !== null ? items[answeredIndex] : {};
-
-    // we get .answer's current and future height to animate its height
-    // we also get the right answer's Y to animate its position
-
-    const { ref: answerRef, height: answerHeight } = useDimensionObserver();
-    const { ref: rightAnswerRef, height: rightAnswerHeight } = useDimensionObserver();
-    const rightAnswerTop = useMemo(
-        () => (rightAnswerRef.current !== null ? rightAnswerRef.current.offsetTop : 0),
-        [rightAnswerHeight],
-    );
+    const [visible] = useState(true);
 
     const hasRightAnswer =
         items !== null && !isPlaceholder
@@ -115,7 +93,7 @@ const Answers = ({
 
     const shouldCollapse = !withoutGoodAnswer || (finalShowUserAnswer && answeredIndex !== null);
     const [answersCollapsed, setAnswersCollapsed] = useState(answeredIndex !== null);
-    const [answersDidCollapsed, setAnswersDidCollapsed] = useState(
+    const [answersDidCollapse, setAnswersDidCollapse] = useState(
         initialCollapsed || answeredIndex !== null,
     );
 
@@ -132,7 +110,6 @@ const Answers = ({
                 hasAnsweredRight || finalShowUserAnswer ? 500 : answersCollapseDelay,
             );
         }
-
         return () => {
             if (timeout !== null) {
                 clearTimeout(timeout);
@@ -152,9 +129,8 @@ const Answers = ({
         if (onTransitionEnd !== null) {
             onTransitionEnd();
         }
-
-        if (shouldCollapse && answersCollapsed && !answersDidCollapsed) {
-            setAnswersDidCollapsed(true);
+        if (shouldCollapse && answersCollapsed && !answersDidCollapse) {
+            setAnswersDidCollapse(true);
             if (onCollapsed !== null) {
                 onCollapsed();
             }
@@ -162,11 +138,51 @@ const Answers = ({
     }, [
         shouldCollapse,
         answersCollapsed,
-        answersDidCollapsed,
+        answersDidCollapse,
         setAnswersCollapsed,
         onCollapsed,
         onTransitionEnd,
     ]);
+
+    const listOfItems = isPlaceholder || (isEdit && items.length === 0) ? [...new Array(2)] : items;
+    const filteredListOfItems = listOfItems.map((answer, answerI) => {
+        if (!isView) {
+            return { ...answer, hidden: false, index: answerI };
+        }
+        const userAnswer = answerI === answeredIndex;
+        const { good: rightAnswer = false } = answer || {};
+
+        if (answersDidCollapse && !rightAnswer && (hasRightAnswer || !userAnswer)) {
+            return { ...answer, hidden: true, index: answerI };
+        }
+        if (answersCollapsed && !rightAnswer) {
+            return { ...answer, hidden: true, index: answerI };
+        }
+        return { ...answer, hidden: false, index: answerI };
+    });
+
+    const transitions = useTransition(
+        filteredListOfItems.map((data) => ({
+            ...data,
+            hidden: data.hidden,
+        })),
+        {
+            key: ({ index = 0 }) => `index-${index}`,
+            leave: () => ({ opacity: 0, height: 0 }),
+            from: ({ hidden = false }) => ({
+                opacity: hidden && isView ? 0 : 1,
+                height: hidden && isView ? 0 : 'auto',
+            }),
+            enter: ({ hidden = false }) => ({
+                opacity: hidden && isView ? 0 : 1,
+                height: hidden && isView ? 0 : 'auto',
+            }),
+            update: ({ hidden = false }) => ({
+                opacity: hidden && isView ? 0 : 1,
+                height: hidden && isView ? 0 : 'auto',
+            }),
+        },
+    );
 
     return (
         <div
@@ -177,26 +193,15 @@ const Answers = ({
                     [styles.withoutGoodAnswer]: withoutGoodAnswer || !hasRightAnswer,
                     [styles.withGoodAnswer]: !withoutGoodAnswer && hasRightAnswer,
                     [styles.willCollapse]: shouldCollapse && answersCollapsed,
-                    [styles.didCollapsed]: shouldCollapse && answersDidCollapsed,
+                    [styles.didCollapsed]: shouldCollapse && answersDidCollapse,
                     [styles.isPlaceholder]: isPlaceholder,
                     [className]: className !== null,
                 },
             ])}
-            ref={answerRef}
-            style={
-                answered && !answersDidCollapsed && (isView || isEdit) && shouldCollapse
-                    ? {
-                          height: answersCollapsed ? rightAnswerHeight : answerHeight,
-                      }
-                    : null
-            }
         >
-            {items !== null || isPlaceholder ? (
+            {filteredListOfItems !== null || isPlaceholder ? (
                 <div className={styles.items}>
-                    {(isPlaceholder || (isEdit && items.length === 0)
-                        ? [...new Array(2)]
-                        : items
-                    ).map((answer, answerI) => {
+                    {transitions((style, answer, t, answerI) => {
                         const userAnswer = answerI === answeredIndex;
                         const {
                             good: rightAnswer = false,
@@ -206,45 +211,16 @@ const Answers = ({
                         } = answer || {};
                         const { textStyle = null } = label || {};
                         const hasAnswer = isTextFilled(label);
-                        const hasFinalUserAnswer = finalShowUserAnswer && answeredIndex !== null;
-
-                        // Hide bad answers
-                        if (
-                            answersDidCollapsed &&
-                            !rightAnswer &&
-                            (hasRightAnswer || !userAnswer)
-                        ) {
-                            return null;
-                        }
-
-                        const answerToShow =
-                            (rightAnswer && hasRightAnswer) ||
-                            (!hasRightAnswer && userAnswer && finalShowUserAnswer);
-
                         return (
-                            <div
+                            <animated.div
                                 key={`answer-${answerI}`}
-                                ref={answerToShow ? rightAnswerRef : null}
                                 className={classNames([
                                     styles.item,
                                     {
                                         [styles.rightAnswer]: rightAnswer && !withoutGoodAnswer,
-                                        [styles.userAnswer]: userAnswer && !finalShowUserAnswer,
-                                        [styles.isUserAnswer]: userAnswer && hasFinalUserAnswer,
-                                        [styles.answerToSlide]: answerToShow,
                                     },
                                 ])}
-                                style={
-                                    answersCollapsed &&
-                                    answerToShow &&
-                                    !answersDidCollapsed &&
-                                    shouldCollapse
-                                        ? {
-                                              transform: `translateY(${-rightAnswerTop}px)`,
-                                          }
-                                        : null
-                                }
-                                onTransitionEnd={answerToShow ? onAnswerTransitionEnd : null}
+                                style={{ ...style }}
                             >
                                 <div className={styles.itemContent}>
                                     <ScreenElement
@@ -260,75 +236,76 @@ const Answers = ({
                                         isEmpty={!hasAnswer}
                                     >
                                         {hasAnswer ? (
-                                            <Transitions
-                                                transitions={transitions}
-                                                playing={transitionPlaying}
-                                                delay={(answerI + 1) * transitionStagger}
-                                                disabled={transitionDisabled}
+                                            <Button
+                                                className={styles.button}
+                                                onPointerUp={(e) => {
+                                                    if (
+                                                        e.pointerType !== 'mouse' ||
+                                                        e.button === 0
+                                                    ) {
+                                                        onClick(answer, answerI);
+                                                        onAnswerTransitionEnd();
+                                                    }
+                                                }}
+                                                disabled={!visible || isPreview || answered}
+                                                focusable={focusable}
+                                                buttonStyle={{
+                                                    ...buttonsStyle,
+                                                    ...answerButtonStyle,
+                                                }}
+                                                textStyle={{
+                                                    ...buttonsTextStyle,
+                                                    ...answerButtonTextStyle,
+                                                }}
                                             >
-                                                <Button
-                                                    className={styles.button}
-                                                    onClick={() => onClick(answer, answerI)}
-                                                    disabled={isPreview || answered}
-                                                    focusable={focusable}
-                                                    buttonStyle={{
-                                                        ...buttonsStyle,
-                                                        ...answerButtonStyle,
-                                                    }}
+                                                {!withoutGoodAnswer &&
+                                                !withoutIcon &&
+                                                rightAnswer ? (
+                                                    <span
+                                                        className={styles.resultIcon}
+                                                        style={getStyleFromColor(
+                                                            goodAnswerColor,
+                                                            'backgroundColor',
+                                                        )}
+                                                    >
+                                                        <FontAwesomeIcon
+                                                            className={styles.faIcon}
+                                                            icon={faCheck}
+                                                        />
+                                                    </span>
+                                                ) : null}
+                                                {!withoutGoodAnswer &&
+                                                !withoutIcon &&
+                                                answered &&
+                                                !hasAnsweredRight &&
+                                                userAnswer ? (
+                                                    <span
+                                                        className={styles.resultIcon}
+                                                        style={getStyleFromColor(
+                                                            badAnswerColor,
+                                                            'backgroundColor',
+                                                        )}
+                                                    >
+                                                        <FontAwesomeIcon
+                                                            className={styles.faIcon}
+                                                            icon={faTimes}
+                                                        />
+                                                    </span>
+                                                ) : null}
+                                                <Text
+                                                    {...label}
+                                                    className={styles.optionLabel}
                                                     textStyle={{
+                                                        ...textStyle,
                                                         ...buttonsTextStyle,
                                                         ...answerButtonTextStyle,
                                                     }}
-                                                >
-                                                    {!withoutGoodAnswer &&
-                                                    !withoutIcon &&
-                                                    rightAnswer ? (
-                                                        <span
-                                                            className={styles.resultIcon}
-                                                            style={getStyleFromColor(
-                                                                goodAnswerColor,
-                                                                'backgroundColor',
-                                                            )}
-                                                        >
-                                                            <FontAwesomeIcon
-                                                                className={styles.faIcon}
-                                                                icon={faCheck}
-                                                            />
-                                                        </span>
-                                                    ) : null}
-                                                    {!withoutGoodAnswer &&
-                                                    !withoutIcon &&
-                                                    answered &&
-                                                    !hasAnsweredRight &&
-                                                    userAnswer ? (
-                                                        <span
-                                                            className={styles.resultIcon}
-                                                            style={getStyleFromColor(
-                                                                badAnswerColor,
-                                                                'backgroundColor',
-                                                            )}
-                                                        >
-                                                            <FontAwesomeIcon
-                                                                className={styles.faIcon}
-                                                                icon={faTimes}
-                                                            />
-                                                        </span>
-                                                    ) : null}
-                                                    <Text
-                                                        {...label}
-                                                        className={styles.optionLabel}
-                                                        textStyle={{
-                                                            ...textStyle,
-                                                            ...buttonsTextStyle,
-                                                            ...answerButtonTextStyle,
-                                                        }}
-                                                    />
-                                                </Button>
-                                            </Transitions>
+                                                />
+                                            </Button>
                                         ) : null}
                                     </ScreenElement>
                                 </div>
-                            </div>
+                            </animated.div>
                         );
                     })}
                 </div>

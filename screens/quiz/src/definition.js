@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import QuizScreen from './Quiz';
 import QuizMultipleScreen from './QuizMultiple';
 
@@ -57,7 +58,7 @@ export default [
                 name: 'withoutTrueFalse',
                 type: 'toggle',
                 label: defineMessage({
-                    defaultMessage: 'Without true/false',
+                    defaultMessage: 'Without right/wrong icon',
                     description: 'Field label',
                 }),
             },
@@ -68,7 +69,7 @@ export default [
                     textStyle: 'text',
                 },
                 label: defineMessage({
-                    defaultMessage: 'Result',
+                    defaultMessage: 'Default feedback',
                     description: 'Field label',
                 }),
             },

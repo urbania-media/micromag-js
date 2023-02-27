@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import { backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import SurveyScreen from '../Survey';
@@ -8,7 +9,7 @@ import definition from '../definition';
 const props = {
     question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
     answers: [
-        { id: 1, label: { body: 'Choix 1' }, percent: 34 },
+        { id: 1, label: { body: 'Choix 1' }, percent: 34, buttonStyle: { borderRadius: '30px' } },
         { id: 2, label: { body: 'Choix 2' }, percent: 12 },
         {
             id: 3,

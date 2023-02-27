@@ -104,9 +104,6 @@
     "3LEBIA": {
         "defaultMessage": "Angle"
     },
-    "3NghmM": {
-        "defaultMessage": "Good answer"
-    },
     "3OS3Ms": {
         "defaultMessage": "Legend"
     },
@@ -377,9 +374,6 @@
     "F59wsl": {
         "defaultMessage": "Urbania horoscope"
     },
-    "FJygXH": {
-        "defaultMessage": "Result"
-    },
     "FKOWH0": {
         "defaultMessage": "right aligned"
     },
@@ -440,6 +434,9 @@
     "IE7U/Q": {
         "defaultMessage": "Heading"
     },
+    "ItuhfW": {
+        "defaultMessage": "Right answer"
+    },
     "J9e9Qb": {
         "defaultMessage": "Video"
     },
@@ -473,6 +470,9 @@
     "KuzZbb": {
         "defaultMessage": "Background color"
     },
+    "LFziCV": {
+        "defaultMessage": "Without right/wrong icon"
+    },
     "LI0Gz4": {
         "defaultMessage": "Email"
     },
@@ -487,6 +487,9 @@
     },
     "Lrwi2G": {
         "defaultMessage": "Email"
+    },
+    "Lz2+Ws": {
+        "defaultMessage": "Answer feedback"
     },
     "M/FGRs": {
         "defaultMessage": "Libra"
@@ -668,9 +671,6 @@
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
     },
-    "Wk/o9B": {
-        "defaultMessage": "Without true/false"
-    },
     "WlNxMj": {
         "defaultMessage": "Repeat"
     },
@@ -727,9 +727,6 @@
     },
     "ZLDmja": {
         "defaultMessage": "Submit"
-    },
-    "ZMS1Wv": {
-        "defaultMessage": "Text"
     },
     "Zbu5Uk": {
         "defaultMessage": "Label"
@@ -934,6 +931,9 @@
     },
     "iL9RLu": {
         "defaultMessage": "Collaborator"
+    },
+    "iQ5Uf7": {
+        "defaultMessage": "Default feedback"
     },
     "iipV5Q": {
         "defaultMessage": "Type"

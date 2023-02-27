@@ -95,6 +95,8 @@ const propTypes = {
     ]),
     menuVisible: PropTypes.bool,
     menuOverScreen: PropTypes.bool,
+    width: PropTypes.number,
+    height: PropTypes.number,
     topHeight: PropTypes.number,
     bottomHeight: PropTypes.number,
     bottomSidesWidth: PropTypes.number,

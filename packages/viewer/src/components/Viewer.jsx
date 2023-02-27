@@ -326,13 +326,21 @@ const Viewer = ({
         [onEnd, changeIndex],
     );
 
-    const gotoPreviousScreen = useCallback(() => {
-        changeIndex(Math.max(0, screenIndex - 1));
-    }, [changeIndex, screenIndex]);
+    const gotoPreviousScreen = useCallback(
+        (e) => {
+            e.stopPropagation();
+            changeIndex(Math.max(0, screenIndex - 1));
+        },
+        [changeIndex, screenIndex],
+    );
 
-    const gotoNextScreen = useCallback(() => {
-        changeIndex(Math.min(screens.length - 1, screenIndex + 1));
-    }, [changeIndex, screenIndex]);
+    const gotoNextScreen = useCallback(
+        (e) => {
+            e.stopPropagation();
+            changeIndex(Math.min(screens.length - 1, screenIndex + 1));
+        },
+        [changeIndex, screenIndex],
+    );
 
     const [hasInteracted, setHasInteracted] = useState(false);
 
@@ -408,7 +416,25 @@ const Viewer = ({
         [onScreenNavigate, screenIndex],
     );
 
-    const springParams = useMemo(() => ({ config: SPRING_CONFIG_TIGHT }), []);
+    const [transitioned, setTransitioned] = useState(true);
+    const onTransitionStart = useCallback(() => {
+        setTransitioned(false);
+    }, [setTransitioned]);
+
+    const onTransitionComplete = useCallback(() => {
+        setTransitioned(true);
+    }, [setTransitioned]);
+
+    // console.log({ transitioned });
+
+    const springParams = useMemo(
+        () => ({
+            config: SPRING_CONFIG_TIGHT,
+            onStart: onTransitionStart,
+            onRest: onTransitionComplete,
+        }),
+        [onTransitionStart, onTransitionComplete],
+    );
     const {
         dragging: isDragging,
         progress: progressSpring,
@@ -475,6 +501,7 @@ const Viewer = ({
     } = useFullscreen(containerRef.current || null);
 
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
+    const navigationDisabled = currentScreenInteractionEnabled === false;
 
     // Get element height
     const { ref: menuDotsContainerRef, height: menuDotsContainerHeight = 0 } =
@@ -602,6 +629,7 @@ const Viewer = ({
                                 [styles.landscape]: landscape,
                                 [styles.withoutGestures]: withoutGestures,
                                 [styles.hideMenu]: !menuVisible,
+                                [styles.disableMenu]: navigationDisabled,
                                 [styles.fadeMenu]:
                                     playing && playbackControls && !playbackcontrolsVisible,
                                 [styles.ready]: ready || withoutScreensTransforms,
@@ -640,6 +668,7 @@ const Viewer = ({
                             <div className={styles.content} {...dragContentBind()}>
                                 {!withoutNavigationArrow &&
                                 !withNeighborScreens &&
+                                !navigationDisabled &&
                                 screenIndex > 0 &&
                                 screens.length > 1 ? (
                                     <NavigationButton
@@ -686,6 +715,7 @@ const Viewer = ({
                                                         index={i}
                                                         current={current}
                                                         active={active}
+                                                        ready={current && transitioned}
                                                         mediaRef={(ref) => {
                                                             screensMediasRef.current[i] = ref;
                                                         }}
@@ -701,6 +731,7 @@ const Viewer = ({
                                 </div>
                                 {!withoutNavigationArrow &&
                                 !withNeighborScreens &&
+                                !navigationDisabled &&
                                 screenIndex < screens.length - 1 ? (
                                     <NavigationButton
                                         direction="next"
@@ -719,6 +750,7 @@ const Viewer = ({
 
                                 {withNavigationHint &&
                                 !withNeighborScreens &&
+                                !navigationDisabled &&
                                 screenIndex === 0 &&
                                 !hasInteracted ? (
                                     <ArrowHint className={styles.arrowHint} />
@@ -743,7 +775,6 @@ const Viewer = ({
                                 {...currentShareIncentive}
                             />
                         </div>
-
                         <WebView
                             className={styles.webView}
                             style={{

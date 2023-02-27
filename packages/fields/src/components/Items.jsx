@@ -12,8 +12,10 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ReactSortable } from 'react-sortablejs';
 import { v4 as uuid } from 'uuid';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Empty, Label } from '@micromag/core/components';
+
 import Field from './Field';
 
 const propTypes = {
@@ -206,6 +208,7 @@ const ItemsField = ({
                                 <Field
                                     className={classNames([
                                         'flex-grow-1',
+                                        'overflow-hidden',
                                         {
                                             'border-top-0': index > 0,
                                             'border-left-0': editing && !finalWithoutSort,
@@ -236,7 +239,7 @@ const ItemsField = ({
                                 {editing ? (
                                     <button
                                         type="button"
-                                        className="btn ps-2 pe-0 py-0 text-danger"
+                                        className="btn ps-2 pe-2 py-0 text-danger"
                                         onClick={() => {
                                             onClickDelete(index);
                                         }}

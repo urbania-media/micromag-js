@@ -5,7 +5,11 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 
-import { useViewerInteraction, useViewerWebView, usePlaybackContext } from '@micromag/core/contexts';
+import {
+    useViewerInteraction,
+    useViewerWebView,
+    usePlaybackContext,
+} from '@micromag/core/contexts';
 import WebView from '@micromag/element-webview';
 
 import styles from '../../styles/partials/web-view.module.scss';
@@ -44,7 +48,6 @@ function WebViewContainer({ className, style }) {
     useEffect(() => {
         if (opened) {
             disableInteraction();
-
             wasPlayingRef.current = playing;
             if (playing) {
                 setPlaying(false);

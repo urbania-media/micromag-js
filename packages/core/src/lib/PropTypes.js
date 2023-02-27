@@ -255,14 +255,14 @@ export const closedCaptionsMedia = PropTypes.shape({
 /**
  * Style
  */
-export const font = PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.shape({
-        type: PropTypes.oneOf(['system', 'google', 'custom']),
-        name: PropTypes.string,
-        media: fontMedia,
-    }),
-]);
+
+export const customFont = PropTypes.shape({
+    type: PropTypes.oneOf(['system', 'google', 'custom']),
+    name: PropTypes.string,
+    media: fontMedia,
+});
+
+export const font = PropTypes.oneOfType([PropTypes.object, PropTypes.string]);
 
 export const fonts = PropTypes.arrayOf(font);
 

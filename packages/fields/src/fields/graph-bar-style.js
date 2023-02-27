@@ -12,14 +12,14 @@ export default {
                 description: 'Field label',
             }),
         },
-        {
-            name: 'textColor',
-            type: 'color',
-            label: defineMessage({
-                defaultMessage: 'Text',
-                description: 'Field label',
-            }),
-        },
+        // {
+        //     name: 'textColor',
+        //     type: 'color',
+        //     label: defineMessage({
+        //         defaultMessage: 'Text',
+        //         description: 'Field label',
+        //     }),
+        // },
         {
             name: 'percentageTextStyle',
             type: 'text-style-form',

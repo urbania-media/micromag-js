@@ -139,10 +139,6 @@
     "defaultMessage": "Angle",
     "description": "Field label"
   },
-  "3NghmM": {
-    "defaultMessage": "Good answer",
-    "description": "Field label"
-  },
   "3OS3Ms": {
     "defaultMessage": "Legend",
     "description": "Legend field label"
@@ -503,10 +499,6 @@
     "defaultMessage": "Urbania horoscope",
     "description": "Urbania screen title"
   },
-  "FJygXH": {
-    "defaultMessage": "Result",
-    "description": "Field label"
-  },
   "FKOWH0": {
     "defaultMessage": "right aligned",
     "description": "Alignment label"
@@ -587,6 +579,10 @@
     "defaultMessage": "Heading",
     "description": "Placeholder label"
   },
+  "ItuhfW": {
+    "defaultMessage": "Right answer",
+    "description": "Field label"
+  },
   "J9e9Qb": {
     "defaultMessage": "Video",
     "description": "Type field label"
@@ -631,6 +627,10 @@
     "defaultMessage": "Background color",
     "description": "Breadcrumb field label"
   },
+  "LFziCV": {
+    "defaultMessage": "Without right/wrong icon",
+    "description": "Field label"
+  },
   "LI0Gz4": {
     "defaultMessage": "Email",
     "description": "Field label"
@@ -650,6 +650,10 @@
   "Lrwi2G": {
     "defaultMessage": "Email",
     "description": "Share option label"
+  },
+  "Lz2+Ws": {
+    "defaultMessage": "Answer feedback",
+    "description": "Field label"
   },
   "M/FGRs": {
     "defaultMessage": "Libra",
@@ -890,10 +894,6 @@
     "defaultMessage": "Select a font file...",
     "description": "Label when no value"
   },
-  "Wk/o9B": {
-    "defaultMessage": "Without true/false",
-    "description": "Field label"
-  },
   "WlNxMj": {
     "defaultMessage": "Repeat",
     "description": "Field label"
@@ -969,10 +969,6 @@
   "ZLDmja": {
     "defaultMessage": "Submit",
     "description": "Submit form button"
-  },
-  "ZMS1Wv": {
-    "defaultMessage": "Text",
-    "description": "Field label"
   },
   "Zbu5Uk": {
     "defaultMessage": "Label",
@@ -1244,6 +1240,10 @@
   },
   "iL9RLu": {
     "defaultMessage": "Collaborator",
+    "description": "Field label"
+  },
+  "iQ5Uf7": {
+    "defaultMessage": "Default feedback",
     "description": "Field label"
   },
   "iipV5Q": {
