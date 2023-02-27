@@ -1,27 +1,16 @@
 {
-    "version": "0.3.317",
-    "packages": [
-        "elements/*",
-        "packages/*",
-        "screens/*"
-    ],
+    "version": "0.3.318",
+    "packages": ["elements/*", "packages/*", "screens/*"],
     "command": {
         "publish": {
-            "allowBranch": [
-                "master",
-                "develop"
-            ],
-            "npmClientArgs": [
-                "--maxsockets=3"
-            ]
+            "allowBranch": ["master", "develop"],
+            "npmClientArgs": ["--maxsockets=3"]
         },
         "bootstrap": {
             "hoist": true
         }
     },
     "bootstrap": {
-        "npmClientArgs": [
-            "--no-package-lock"
-        ]
+        "npmClientArgs": ["--no-package-lock"]
     }
 }
