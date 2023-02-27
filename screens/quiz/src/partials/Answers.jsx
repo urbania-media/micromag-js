@@ -192,6 +192,7 @@ const Answers = ({
                     [styles.answered]: answered,
                     [styles.withoutGoodAnswer]: withoutGoodAnswer || !hasRightAnswer,
                     [styles.withGoodAnswer]: !withoutGoodAnswer && hasRightAnswer,
+                    [styles.withIcon]: !withoutGoodAnswer && hasRightAnswer && !withoutIcon,
                     [styles.willCollapse]: shouldCollapse && answersCollapsed,
                     [styles.didCollapsed]: shouldCollapse && answersDidCollapse,
                     [styles.isPlaceholder]: isPlaceholder,

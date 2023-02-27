@@ -69,7 +69,7 @@ module.exports = (api) => {
         };
     }
 
-    console.log('env', api.env('development'));
+    console.log('Babel env', api.env('development'));
 
     return {
         presets: api.env('development')
