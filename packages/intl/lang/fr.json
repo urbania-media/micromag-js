@@ -18,7 +18,7 @@
         "defaultMessage": "Réponse"
     },
     "+SlKOi": {
-        "defaultMessage": "Style message publié"
+        "defaultMessage": "Style de message publié"
     },
     "+TPjd4": {
         "defaultMessage": "Présenté par"
@@ -95,6 +95,9 @@
     "33UbSd": {
         "defaultMessage": "Ligne du temps avec images"
     },
+    "3Ap0C1": {
+        "defaultMessage": "Ajouter un média"
+    },
     "3B9cb3": {
         "defaultMessage": "Whatsapp"
     },
@@ -135,7 +138,7 @@
         "defaultMessage": "Message"
     },
     "4YiKNK": {
-        "defaultMessage": "Sélectionnez une couleur..."
+        "defaultMessage": "Sélectionner une couleur"
     },
     "4bHvRS": {
         "defaultMessage": "Galerie (fil)"
@@ -187,6 +190,9 @@
     },
     "6Q4tcn": {
         "defaultMessage": "Style des résultats"
+    },
+    "6W4St0": {
+        "defaultMessage": "Ajouter un fichier audio"
     },
     "6ak5YN": {
         "defaultMessage": "Côté"
@@ -293,8 +299,8 @@
     "B1MeY+": {
         "defaultMessage": "Sélectionnez une image..."
     },
-    "B6cvYv": {
-        "defaultMessage": "Sélectionnez un fichier de sous-titres..."
+    "BAfC6s": {
+        "defaultMessage": "Ajouter un fichier de sous-titres"
     },
     "BSTWf8": {
         "defaultMessage": "Titre"
@@ -373,6 +379,9 @@
     },
     "F59wsl": {
         "defaultMessage": "Urbania Horoscope"
+    },
+    "FFBsfJ": {
+        "defaultMessage": "Chercher dans les médias..."
     },
     "FKOWH0": {
         "defaultMessage": "align. droite"
@@ -466,6 +475,12 @@
     },
     "KHWeV7": {
         "defaultMessage": "Réponses"
+    },
+    "KK5teQ": {
+        "defaultMessage": "Ajouter un visuel"
+    },
+    "KdAKt7": {
+        "defaultMessage": "Ajouter une image"
     },
     "KuzZbb": {
         "defaultMessage": "Couleur de l'arrière-plan"
@@ -659,9 +674,6 @@
     "VMd1oG": {
         "defaultMessage": "Questions"
     },
-    "VspZp9": {
-        "defaultMessage": "Téléverser une image"
-    },
     "W5qWPj": {
         "defaultMessage": "Centrer"
     },
@@ -670,6 +682,9 @@
     },
     "Wb5zY4": {
         "defaultMessage": "Sélectionnez un fichier de police..."
+    },
+    "WeD4nB": {
+        "defaultMessage": "Ajouter un fichier vidéo"
     },
     "WlNxMj": {
         "defaultMessage": "Répéter"
@@ -831,7 +846,7 @@
         "defaultMessage": "Résultats"
     },
     "e6+aGf": {
-        "defaultMessage": "Sélectionnez un média..."
+        "defaultMessage": "Sélectionner un média"
     },
     "eBFxNl": {
         "defaultMessage": "Action"
@@ -899,9 +914,6 @@
     "gRxcTc": {
         "defaultMessage": "Supprimer l’écran"
     },
-    "gprXiG": {
-        "defaultMessage": "Recherche..."
-    },
     "gwPu/I": {
         "defaultMessage": "Texte des boutons"
     },
@@ -921,7 +933,7 @@
         "defaultMessage": "LinkedIn"
     },
     "i+3ZrF": {
-        "defaultMessage": "Sélectionnez une police..."
+        "defaultMessage": "Sélectionner une police"
     },
     "i6bmbD": {
         "defaultMessage": "Bouton"
@@ -954,7 +966,7 @@
         "defaultMessage": "Écrans"
     },
     "jnww6n": {
-        "defaultMessage": "Sélectionnez une image..."
+        "defaultMessage": "Sélectionner une image"
     },
     "k+coTi": {
         "defaultMessage": "Image"
@@ -1020,7 +1032,7 @@
         "defaultMessage": "Ajouter une réponse"
     },
     "n8zmLY": {
-        "defaultMessage": "Aller au prochain écran à la fin de la vidéo"
+        "defaultMessage": "Aller au prochain écran à la fin"
     },
     "n9LoBJ": {
         "defaultMessage": "Haut"
@@ -1086,7 +1098,7 @@
         "defaultMessage": "Droite"
     },
     "q/tLk0": {
-        "defaultMessage": "Êtes-vous sûr que vous voulez supprimer cet écran?"
+        "defaultMessage": "Êtes-vous sûr de vouloir supprimer cet écran?"
     },
     "qIw1nW": {
         "defaultMessage": "Enregistrer"

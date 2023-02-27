@@ -95,6 +95,9 @@
     "33UbSd": {
         "defaultMessage": "Timeline with images"
     },
+    "3Ap0C1": {
+        "defaultMessage": "Upload a media"
+    },
     "3B9cb3": {
         "defaultMessage": "Whatsapp"
     },
@@ -187,6 +190,9 @@
     },
     "6Q4tcn": {
         "defaultMessage": "Result style"
+    },
+    "6W4St0": {
+        "defaultMessage": "Upload an audio file"
     },
     "6ak5YN": {
         "defaultMessage": "Side"
@@ -293,8 +299,8 @@
     "B1MeY+": {
         "defaultMessage": "Select an image..."
     },
-    "B6cvYv": {
-        "defaultMessage": "Select a closed-captions file..."
+    "BAfC6s": {
+        "defaultMessage": "Upload a closed captions file"
     },
     "BSTWf8": {
         "defaultMessage": "Title"
@@ -373,6 +379,9 @@
     },
     "F59wsl": {
         "defaultMessage": "Urbania horoscope"
+    },
+    "FFBsfJ": {
+        "defaultMessage": "Search medias..."
     },
     "FKOWH0": {
         "defaultMessage": "right aligned"
@@ -466,6 +475,12 @@
     },
     "KHWeV7": {
         "defaultMessage": "Answers"
+    },
+    "KK5teQ": {
+        "defaultMessage": "Upload a visual file"
+    },
+    "KdAKt7": {
+        "defaultMessage": "Upload an image file"
     },
     "KuzZbb": {
         "defaultMessage": "Background color"
@@ -659,9 +674,6 @@
     "VMd1oG": {
         "defaultMessage": "Questions"
     },
-    "VspZp9": {
-        "defaultMessage": "Upload an image"
-    },
     "W5qWPj": {
         "defaultMessage": "Center"
     },
@@ -670,6 +682,9 @@
     },
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
+    },
+    "WeD4nB": {
+        "defaultMessage": "Upload a video file"
     },
     "WlNxMj": {
         "defaultMessage": "Repeat"
@@ -899,9 +914,6 @@
     "gRxcTc": {
         "defaultMessage": "Delete screen"
     },
-    "gprXiG": {
-        "defaultMessage": "Search..."
-    },
     "gwPu/I": {
         "defaultMessage": "Buttons text"
     },
@@ -1036,6 +1048,9 @@
     },
     "nno1Pq": {
         "defaultMessage": "Button style"
+    },
+    "o3R+FM": {
+        "defaultMessage": "Select a closed captions file..."
     },
     "oAtOlP": {
         "defaultMessage": "Heading"

@@ -203,6 +203,12 @@ msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Timeline with images"
 
+# Upload button label in Media Gallery
+#: 3Ap0C1
+msgctxt "3Ap0C1"
+msgid "Upload a media"
+msgstr "Upload a media"
+
 # Field label
 #: 3B9cb3
 msgctxt "3B9cb3"
@@ -388,6 +394,12 @@ msgstr "Style"
 msgctxt "6Q4tcn"
 msgid "Result style"
 msgstr "Result style"
+
+# Upload button label in Media Gallery
+#: 6W4St0
+msgctxt "6W4St0"
+msgid "Upload an audio file"
+msgstr "Upload an audio file"
 
 # Field label
 #: 6ak5YN
@@ -599,11 +611,11 @@ msgctxt "B1MeY+"
 msgid "Select an image..."
 msgstr "Select an image..."
 
-# Label when no value is provided to Closed-captions field
-#: B6cvYv
-msgctxt "B6cvYv"
-msgid "Select a closed-captions file..."
-msgstr "Select a closed-captions file..."
+# Upload button label in Media Gallery
+#: BAfC6s
+msgctxt "BAfC6s"
+msgid "Upload a closed captions file"
+msgstr "Upload a closed captions file"
 
 # Placeholder label
 #: BSTWf8
@@ -760,6 +772,12 @@ msgstr "Loop"
 msgctxt "F59wsl"
 msgid "Urbania horoscope"
 msgstr "Urbania horoscope"
+
+# Input placeholder
+#: FFBsfJ
+msgctxt "FFBsfJ"
+msgid "Search medias..."
+msgstr "Search medias..."
 
 # Alignment label
 #: FKOWH0
@@ -946,6 +964,18 @@ msgstr "No font..."
 msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Answers"
+
+# Upload button label in Media Gallery
+#: KK5teQ
+msgctxt "KK5teQ"
+msgid "Upload a visual file"
+msgstr "Upload a visual file"
+
+# Upload button label in Media Gallery
+#: KdAKt7
+msgctxt "KdAKt7"
+msgid "Upload an image file"
+msgstr "Upload an image file"
 
 # Breadcrumb field label
 #: KuzZbb
@@ -1330,12 +1360,6 @@ msgctxt "VMd1oG"
 msgid "Questions"
 msgstr "Questions"
 
-# Upload button label in Media Gallery
-#: VspZp9
-msgctxt "VspZp9"
-msgid "Upload an image"
-msgstr "Upload an image"
-
 # Field label
 #: W5qWPj
 msgctxt "W5qWPj"
@@ -1353,6 +1377,12 @@ msgstr "Sponsor"
 msgctxt "Wb5zY4"
 msgid "Select a font file..."
 msgstr "Select a font file..."
+
+# Upload button label in Media Gallery
+#: WeD4nB
+msgctxt "WeD4nB"
+msgid "Upload a video file"
+msgstr "Upload a video file"
 
 # Field label
 #: WlNxMj
@@ -1810,12 +1840,6 @@ msgctxt "gRxcTc"
 msgid "Delete screen"
 msgstr "Delete screen"
 
-# Input placeholder
-#: gprXiG
-msgctxt "gprXiG"
-msgid "Search..."
-msgstr "Search..."
-
 # Field label
 #: gwPu/I
 msgctxt "gwPu/I"
@@ -2083,6 +2107,12 @@ msgstr "Metadata"
 msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Button style"
+
+# Label when no value is provided to Closed captions field
+#: o3R+FM
+msgctxt "o3R+FM"
+msgid "Select a closed captions file..."
+msgstr "Select a closed captions file..."
 
 # Header placeholder
 #: oAtOlP

@@ -127,6 +127,10 @@
     "defaultMessage": "Timeline with images",
     "description": "TimelineIllustrated screen title"
   },
+  "3Ap0C1": {
+    "defaultMessage": "Upload a media",
+    "description": "Upload button label in Media Gallery"
+  },
   "3B9cb3": {
     "defaultMessage": "Whatsapp",
     "description": "Field label"
@@ -250,6 +254,10 @@
   "6Q4tcn": {
     "defaultMessage": "Result style",
     "description": "Field section label"
+  },
+  "6W4St0": {
+    "defaultMessage": "Upload an audio file",
+    "description": "Upload button label in Media Gallery"
   },
   "6ak5YN": {
     "defaultMessage": "Side",
@@ -391,9 +399,9 @@
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
   },
-  "B6cvYv": {
-    "defaultMessage": "Select a closed-captions file...",
-    "description": "Label when no value is provided to Closed-captions field"
+  "BAfC6s": {
+    "defaultMessage": "Upload a closed captions file",
+    "description": "Upload button label in Media Gallery"
   },
   "BSTWf8": {
     "defaultMessage": "Title",
@@ -498,6 +506,10 @@
   "F59wsl": {
     "defaultMessage": "Urbania horoscope",
     "description": "Urbania screen title"
+  },
+  "FFBsfJ": {
+    "defaultMessage": "Search medias...",
+    "description": "Input placeholder"
   },
   "FKOWH0": {
     "defaultMessage": "right aligned",
@@ -622,6 +634,14 @@
   "KHWeV7": {
     "defaultMessage": "Answers",
     "description": "Field label"
+  },
+  "KK5teQ": {
+    "defaultMessage": "Upload a visual file",
+    "description": "Upload button label in Media Gallery"
+  },
+  "KdAKt7": {
+    "defaultMessage": "Upload an image file",
+    "description": "Upload button label in Media Gallery"
   },
   "KuzZbb": {
     "defaultMessage": "Background color",
@@ -878,10 +898,6 @@
     "defaultMessage": "Questions",
     "description": "State label"
   },
-  "VspZp9": {
-    "defaultMessage": "Upload an image",
-    "description": "Upload button label in Media Gallery"
-  },
   "W5qWPj": {
     "defaultMessage": "Center",
     "description": "Field label"
@@ -893,6 +909,10 @@
   "Wb5zY4": {
     "defaultMessage": "Select a font file...",
     "description": "Label when no value"
+  },
+  "WeD4nB": {
+    "defaultMessage": "Upload a video file",
+    "description": "Upload button label in Media Gallery"
   },
   "WlNxMj": {
     "defaultMessage": "Repeat",
@@ -1198,10 +1218,6 @@
     "defaultMessage": "Delete screen",
     "description": "Delete screen button label"
   },
-  "gprXiG": {
-    "defaultMessage": "Search...",
-    "description": "Input placeholder"
-  },
   "gwPu/I": {
     "defaultMessage": "Buttons text",
     "description": "Field label"
@@ -1379,6 +1395,10 @@
   "nno1Pq": {
     "defaultMessage": "Button style",
     "description": "Field label"
+  },
+  "o3R+FM": {
+    "defaultMessage": "Select a closed captions file...",
+    "description": "Label when no value is provided to Closed captions field"
   },
   "oAtOlP": {
     "defaultMessage": "Heading",

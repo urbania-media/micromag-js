@@ -134,6 +134,8 @@ const FieldWithForm = ({
                         className={classNames([
                             styles.label,
                             'col',
+                            'mx-0',
+                            'px-0',
                             'text-monospace',
                             'text-start',
                             'text-truncate',

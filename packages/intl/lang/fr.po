@@ -51,7 +51,7 @@ msgstr "Réponse"
 #: +SlKOi
 msgctxt "+SlKOi"
 msgid "Published message style"
-msgstr "Style message publié"
+msgstr "Style de message publié"
 
 # Sponsor label
 #: +TPjd4
@@ -203,6 +203,12 @@ msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Ligne du temps avec images"
 
+# Upload button label in Media Gallery
+#: 3Ap0C1
+msgctxt "3Ap0C1"
+msgid "Upload a media"
+msgstr "Ajouter un média"
+
 # Field label
 #: 3B9cb3
 msgctxt "3B9cb3"
@@ -285,7 +291,7 @@ msgstr "Message"
 #: 4YiKNK
 msgctxt "4YiKNK"
 msgid "Select a color..."
-msgstr "Sélectionnez une couleur..."
+msgstr "Sélectionner une couleur"
 
 # Gallery Feed screen title
 #: 4bHvRS
@@ -388,6 +394,12 @@ msgstr "Style"
 msgctxt "6Q4tcn"
 msgid "Result style"
 msgstr "Style des résultats"
+
+# Upload button label in Media Gallery
+#: 6W4St0
+msgctxt "6W4St0"
+msgid "Upload an audio file"
+msgstr "Ajouter un fichier audio"
 
 # Field label
 #: 6ak5YN
@@ -599,11 +611,11 @@ msgctxt "B1MeY+"
 msgid "Select an image..."
 msgstr "Sélectionnez une image..."
 
-# Label when no value is provided to Closed-captions field
-#: B6cvYv
-msgctxt "B6cvYv"
-msgid "Select a closed-captions file..."
-msgstr "Sélectionnez un fichier de sous-titres..."
+# Upload button label in Media Gallery
+#: BAfC6s
+msgctxt "BAfC6s"
+msgid "Upload a closed captions file"
+msgstr "Ajouter un fichier de sous-titres"
 
 # Placeholder label
 #: BSTWf8
@@ -760,6 +772,12 @@ msgstr "Boucle"
 msgctxt "F59wsl"
 msgid "Urbania horoscope"
 msgstr "Urbania Horoscope"
+
+# Input placeholder
+#: FFBsfJ
+msgctxt "FFBsfJ"
+msgid "Search medias..."
+msgstr "Chercher dans les médias..."
 
 # Alignment label
 #: FKOWH0
@@ -946,6 +964,18 @@ msgstr "Aucune police..."
 msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Réponses"
+
+# Upload button label in Media Gallery
+#: KK5teQ
+msgctxt "KK5teQ"
+msgid "Upload a visual file"
+msgstr "Ajouter un visuel"
+
+# Upload button label in Media Gallery
+#: KdAKt7
+msgctxt "KdAKt7"
+msgid "Upload an image file"
+msgstr "Ajouter une image"
 
 # Breadcrumb field label
 #: KuzZbb
@@ -1330,12 +1360,6 @@ msgctxt "VMd1oG"
 msgid "Questions"
 msgstr "Questions"
 
-# Upload button label in Media Gallery
-#: VspZp9
-msgctxt "VspZp9"
-msgid "Upload an image"
-msgstr "Téléverser une image"
-
 # Field label
 #: W5qWPj
 msgctxt "W5qWPj"
@@ -1353,6 +1377,12 @@ msgstr "Présentateur"
 msgctxt "Wb5zY4"
 msgid "Select a font file..."
 msgstr "Sélectionnez un fichier de police..."
+
+# Upload button label in Media Gallery
+#: WeD4nB
+msgctxt "WeD4nB"
+msgid "Upload a video file"
+msgstr "Ajouter un fichier vidéo"
 
 # Field label
 #: WlNxMj
@@ -1676,7 +1706,7 @@ msgstr "Résultats"
 #: e6+aGf
 msgctxt "e6+aGf"
 msgid "Select a media..."
-msgstr "Sélectionnez un média..."
+msgstr "Sélectionner un média"
 
 # Field label
 #: eBFxNl
@@ -1810,12 +1840,6 @@ msgctxt "gRxcTc"
 msgid "Delete screen"
 msgstr "Supprimer l’écran"
 
-# Input placeholder
-#: gprXiG
-msgctxt "gprXiG"
-msgid "Search..."
-msgstr "Recherche..."
-
 # Field label
 #: gwPu/I
 msgctxt "gwPu/I"
@@ -1856,7 +1880,7 @@ msgstr "LinkedIn"
 #: i+3ZrF
 msgctxt "i+3ZrF"
 msgid "Select a font family..."
-msgstr "Sélectionnez une police..."
+msgstr "Sélectionner une police"
 
 # Field label
 #: i6bmbD
@@ -1922,7 +1946,7 @@ msgstr "Écrans"
 #: jnww6n
 msgctxt "jnww6n"
 msgid "Select an image..."
-msgstr "Sélectionnez une image..."
+msgstr "Sélectionner une image"
 
 # Visuals field label
 #: k+coTi
@@ -2052,7 +2076,7 @@ msgstr "Ajouter une réponse"
 #: n8zmLY
 msgctxt "n8zmLY"
 msgid "Go to next screen on end"
-msgstr "Aller au prochain écran à la fin de la vidéo"
+msgstr "Aller au prochain écran à la fin"
 
 # Direction
 #: n9LoBJ
@@ -2083,6 +2107,12 @@ msgstr "Métadonnées"
 msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Style du bouton"
+
+# Label when no value is provided to Closed captions field
+#: o3R+FM
+msgctxt "o3R+FM"
+msgid "Select a closed captions file..."
+msgstr ""
 
 # Header placeholder
 #: oAtOlP
@@ -2184,7 +2214,7 @@ msgstr "Droite"
 #: q/tLk0
 msgctxt "q/tLk0"
 msgid "Are you sure you want to delete this screen?"
-msgstr "Êtes-vous sûr que vous voulez supprimer cet écran?"
+msgstr "Êtes-vous sûr de vouloir supprimer cet écran?"
 
 # Save in Media Gallery
 #: qIw1nW

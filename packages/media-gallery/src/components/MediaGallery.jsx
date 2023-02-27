@@ -1,16 +1,20 @@
 import classNames from 'classnames';
+import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Spinner, UploadModal } from '@micromag/core/components';
 import { useStory } from '@micromag/core/contexts';
 import { useMediaAuthors, useMediaCreate, useMedias, useMediaTags } from '@micromag/data';
-// import list from '../_stories/list.json';
-import styles from '../styles/media-gallery.module.scss';
+
 import Gallery from './lists/Gallery';
 import MediaMetadata from './partials/MediaMetadata';
 import Navbar from './partials/Navbar';
+
+// import list from '../_stories/list.json';
+import styles from '../styles/media-gallery.module.scss';
 
 const videoTypes = ['video', 'image/gif'];
 
@@ -122,10 +126,10 @@ function MediaGallery({
     const onClickBack = useCallback(() => setMetadataMedia(null), [setMetadataMedia]);
 
     // Reset all filters except source
-    const onClickCancel = useCallback(
-        () => setFiltersValue({ ...defaultFilters, source: filtersValue.source || null }),
-        [defaultFilters, filtersValue, setFiltersValue],
-    );
+    // const onClickCancel = useCallback(
+    //     () => setFiltersValue({ ...defaultFilters, source: filtersValue.source || null }),
+    //     [defaultFilters, filtersValue, setFiltersValue],
+    // );
 
     // Upload modal
     const [uploading, setUploading] = useState(false);
@@ -158,6 +162,7 @@ function MediaGallery({
             ])}
         >
             <Navbar
+                types={isArray(type) ? type : [type]}
                 filters={filtersValue}
                 media={metadataMedia !== null ? metadataMedia : null}
                 selectedMedia={selectedMedia}

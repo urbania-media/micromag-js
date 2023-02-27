@@ -56,6 +56,9 @@ const Search = ({ value, onChange, onFocus, onBlur, onClickIcon, className }) =>
             method="post"
             className={classNames([
                 'w-100',
+                'border',
+                'border-dark',
+                'rounded',
                 {
                     [className]: className !== null,
                 },
@@ -77,7 +80,7 @@ const Search = ({ value, onChange, onFocus, onBlur, onClickIcon, className }) =>
                     type="text"
                     value={value || ''}
                     placeholder={intl.formatMessage({
-                        defaultMessage: 'Search...',
+                        defaultMessage: 'Search medias...',
                         description: 'Input placeholder',
                     })}
                     onChange={onSearchChange}

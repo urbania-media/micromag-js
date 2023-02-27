@@ -6,19 +6,24 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+
 // useOrganisationTeam
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Media } from '@micromag/core/components';
 import { useMediasRecentSearches } from '@micromag/data';
+
 import { useSearchFilters } from '../../hooks/useSearchFilters';
 import * as AppPropTypes from '../../lib/PropTypes';
-import styles from '../../styles/partials/navbar.module.scss';
+
 import DropdownSection from '../forms/DropdownSection';
 import SearchForm from '../forms/Search';
 import SearchFilters from '../forms/SearchFilters';
 import ActiveFilters from './ActiveFilters';
 
+import styles from '../../styles/partials/navbar.module.scss';
+
 const propTypes = {
+    types: PropTypes.arrayOf(PropTypes.string),
     filters: AppPropTypes.filtersValue,
     media: MicromagPropTypes.media,
     selectedMedia: MicromagPropTypes.media,
@@ -38,6 +43,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    types: null,
     filters: null,
     media: null,
     selectedMedia: null,
@@ -57,6 +63,7 @@ const defaultProps = {
 };
 
 function Navbar({
+    types,
     filters,
     media,
     selectedMedia,
@@ -176,6 +183,54 @@ function Navbar({
         }
     }, [onClickClear, onClickItem]);
 
+    const uploadMessage = useMemo(() => {
+        let message = (
+            <FormattedMessage
+                defaultMessage="Upload a media"
+                description="Upload button label in Media Gallery"
+            />
+        );
+        if (types !== null) {
+            if (types.indexOf('video') !== -1 && types.indexOf('image') !== -1) {
+                message = (
+                    <FormattedMessage
+                        defaultMessage="Upload a visual file"
+                        description="Upload button label in Media Gallery"
+                    />
+                );
+            } else if (types.indexOf('video') !== -1) {
+                message = (
+                    <FormattedMessage
+                        defaultMessage="Upload a video file"
+                        description="Upload button label in Media Gallery"
+                    />
+                );
+            } else if (types.indexOf('image') !== -1) {
+                message = (
+                    <FormattedMessage
+                        defaultMessage="Upload an image file"
+                        description="Upload button label in Media Gallery"
+                    />
+                );
+            } else if (types.indexOf('audio') !== -1) {
+                message = (
+                    <FormattedMessage
+                        defaultMessage="Upload an audio file"
+                        description="Upload button label in Media Gallery"
+                    />
+                );
+            } else if (types.indexOf('subtitle') !== -1) {
+                message = (
+                    <FormattedMessage
+                        defaultMessage="Upload a closed captions file"
+                        description="Upload button label in Media Gallery"
+                    />
+                );
+            }
+        }
+        return message;
+    }, [types]);
+
     return (
         <nav
             className={classNames([
@@ -188,14 +243,21 @@ function Navbar({
         >
             <div className={classNames([styles.inner])}>
                 {media === null ? (
-                    <div className="list-group-item rounded w-100 mw-100 py-1 px-1 navbar-text d-flex align-items-center justify-content-between">
+                    <div
+                        className={classNames([
+                            'list-group-item rounded w-100 mw-100 py-1 px-1 navbar-text d-flex align-items-center justify-content-between',
+                            { 'border border-dark': selectedMedia !== null },
+                        ])}
+                    >
                         {selectedMedia !== null ? (
                             <Button
                                 className={classNames([
                                     styles.mediaLabel,
-                                    'd-flex px-0 py-0 align-items-center',
+                                    'd-flex px-0 py-0 me-1 align-items-center border-0',
                                 ])}
                                 onClick={() => onClickItemInfo(selectedMedia)}
+                                theme="primary"
+                                outline
                             >
                                 <Media
                                     className={styles.mediaPreview}
@@ -206,6 +268,8 @@ function Navbar({
                                         styles.mediaLabel,
                                         'd-inline-block',
                                         'text-truncate',
+                                        'mx-1',
+                                        'me-2',
                                     ])}
                                 >
                                     {selectedMedia.name || (
@@ -217,15 +281,8 @@ function Navbar({
                                 </span>
                             </Button>
                         ) : (
-                            <span className="ps-2">
-                                <FormattedMessage
-                                    defaultMessage="Upload an image"
-                                    description="Upload button label in Media Gallery"
-                                />
-                            </span>
-                        )}
-                        {selectedMedia === null ? (
                             <Button
+                                className="w-100"
                                 theme="primary"
                                 icon={<FontAwesomeIcon icon={faPlus} />}
                                 onClick={onClickAdd}
@@ -233,8 +290,11 @@ function Navbar({
                                     defaultMessage: 'Add',
                                     description: 'Add button label in Media Gallery',
                                 })}
-                            />
-                        ) : (
+                            >
+                                <span className="ps-2">{uploadMessage}</span>
+                            </Button>
+                        )}
+                        {selectedMedia === null ? null : (
                             <Button
                                 theme="primary"
                                 icon={<FontAwesomeIcon icon={faTimes} />}
