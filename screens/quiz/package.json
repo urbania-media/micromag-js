@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-quiz",
-    "version": "0.3.319",
+    "version": "0.3.320",
     "description": "",
     "keywords": [
         "javascript"
@@ -63,8 +63,8 @@
         "@micromag/element-scroll": "^0.3.318",
         "@micromag/element-text": "^0.3.318",
         "@micromag/transforms": "^0.3.318",
-        "@react-spring/web": "^9.6.1",
         "@react-spring/core": "^9.6.1",
+        "@react-spring/web": "^9.6.1",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
