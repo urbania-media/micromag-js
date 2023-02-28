@@ -1,16 +1,10 @@
 import raf from 'raf';
 import { useEffect, useState, useRef, useCallback } from 'react';
 
-// import useMediaCurrentTime from './useMediaCurrentTime';
 import useMediaDuration from './useMediaDuration';
 
 function useMediaProgress(media, { disabled = false, ...props } = {}) {
     const [playing, setPlaying] = useState(!disabled);
-
-    // const currentTime = useMediaCurrentTime(media, {
-    //     disabled: disabled || !playing,
-    //     ...props,
-    // });
 
     const duration = useMediaDuration(media, {
         disabled: disabled || !playing,
@@ -33,14 +27,15 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
     useEffect(() => {
         if (media !== null) {
             const value =
-                media !== null && (media.currentTime || 0) > 0 && duration > 0
-                    ? media.currentTime / duration
+                (media.currentTime || 0) > 0 && media.duration > 0
+                    ? media.currentTime / media.duration
                     : 0;
             updateProgress(value);
+            setPlaying(!media.paused && media.readyState === 4);
         } else {
             updateProgress(0);
+            setPlaying(false);
         }
-        setPlaying(!disabled);
     }, [media, disabled, setPlaying]);
 
     useEffect(() => {
