@@ -6,7 +6,7 @@
 .container {
     position: relative;
     overflow: hidden;
-    border: 0;
+    border: 1px solid $gray-800;
 
     cursor: pointer;
 
@@ -37,6 +37,7 @@
         flex-direction: row;
         align-items: center;
         border: 0;
+        border-top: 1px solid $gray-800;
         background: transparent;
         color: inherit;
         text-align: inherit;

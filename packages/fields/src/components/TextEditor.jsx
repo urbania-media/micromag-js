@@ -5,12 +5,15 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { v4 as uuidv4 } from 'uuid';
+
 import { InlinePlugin, MarkerPlugin } from '@micromag/ckeditor';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import { useGetColors } from '@micromag/core/contexts';
 import { getColorAsString, getStyleFromHighlight, getStyleFromLink } from '@micromag/core/utils';
+
 import useCKEditor from '../hooks/useCKEditor';
+
 import styles from '../styles/text-editor.module.scss';
 
 const propTypes = {

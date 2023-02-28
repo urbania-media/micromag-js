@@ -1,8 +1,10 @@
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import styles from '../../styles/forms/dropdown-section.module.scss';
 
 const propTypes = {

@@ -1,5 +1,6 @@
 /* eslint-disable no-constant-condition */
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
@@ -8,9 +9,11 @@ import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import styles from '../../styles/forms/search.module.scss';
 
 const propTypes = {
     value: PropTypes.string,
+    loading: PropTypes.bool,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
@@ -20,6 +23,7 @@ const propTypes = {
 
 const defaultProps = {
     value: null,
+    loading: false,
     onChange: null,
     onFocus: null,
     onBlur: null,
@@ -27,7 +31,7 @@ const defaultProps = {
     className: null,
 };
 
-const Search = ({ value, onChange, onFocus, onBlur, onClickIcon, className }) => {
+const Search = ({ value, loading, onChange, onFocus, onBlur, onClickIcon, className }) => {
     const intl = useIntl();
     const onSearchChange = useCallback(
         (e) => {
@@ -55,6 +59,7 @@ const Search = ({ value, onChange, onFocus, onBlur, onClickIcon, className }) =>
         <form
             method="post"
             className={classNames([
+                styles.container,
                 'w-100',
                 'border',
                 'border-dark',
@@ -67,10 +72,11 @@ const Search = ({ value, onChange, onFocus, onBlur, onClickIcon, className }) =>
         >
             <div className="input-group w-100">
                 <button type="button" className="btn" onClick={onClickSearchIcon}>
-                    <FontAwesomeIcon icon={faSearch} />
+                    <FontAwesomeIcon icon={loading ? faSpinner : faSearch} />
                 </button>
                 <input
                     className={classNames([
+                        styles.input,
                         'form-control',
                         {
                             'bg-light': !!value,

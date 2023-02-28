@@ -178,6 +178,7 @@ function MediaGallery({
                 storyId={storyId}
                 authors={authors}
                 tags={tags}
+                loading={loading || uploading}
                 className={navbarClassName}
             />
             <div className={styles.content}>

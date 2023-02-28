@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
+
 import styles from '../../styles/forms/tag-section.module.scss';
 
 const propTypes = {

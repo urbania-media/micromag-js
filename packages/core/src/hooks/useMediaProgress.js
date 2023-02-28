@@ -6,18 +6,18 @@ import useMediaDuration from './useMediaDuration';
 
 function useMediaProgress(media, { disabled = false, ...props } = {}) {
     const [playing, setPlaying] = useState(!disabled);
+
     // const currentTime = useMediaCurrentTime(media, {
     //     disabled: disabled || !playing,
     //     ...props,
     // });
+
     const duration = useMediaDuration(media, {
         disabled: disabled || !playing,
         ...props,
     });
 
-    const [progress, setProgress] = useState(
-        media !== null && (media.currentTime || 0) > 0 && duration > 0 ? media.currentTime / duration : 0,
-    );
+    const [progress, setProgress] = useState(0);
     const realProgressRef = useRef(progress);
     const updateTimeRef = useRef(new Date().getTime());
 
@@ -29,6 +29,19 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
         },
         [setProgress],
     );
+
+    useEffect(() => {
+        if (media !== null) {
+            const value =
+                media !== null && (media.currentTime || 0) > 0 && duration > 0
+                    ? media.currentTime / duration
+                    : 0;
+            updateProgress(value);
+        } else {
+            updateProgress(0);
+        }
+        setPlaying(!disabled);
+    }, [media, disabled, setPlaying]);
 
     useEffect(() => {
         if (media === null) {
@@ -81,6 +94,7 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
         }
         let handle;
         let canceled = false;
+
         function tick() {
             if (canceled) {
                 return;

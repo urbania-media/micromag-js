@@ -7,9 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Card } from '@micromag/core/components';
+
 import { middleEllipsis } from '../../lib/utils';
+
 import styles from '../../styles/items/gallery-item.module.scss';
 
 const propTypes = {
@@ -60,7 +63,7 @@ const GalleryItem = ({
                         'border-0',
                         'w-100',
                         'text-start',
-                        'bg-light',
+                        'bg-dark',
                         'text-black',
                         styles.imageButton,
                     ])}
@@ -106,7 +109,7 @@ const GalleryItem = ({
             className={classNames([
                 styles.container,
                 {
-                    'border-primary': selected,
+                    // 'border-primary': selected,
                     [className]: className !== null,
                 },
             ])}

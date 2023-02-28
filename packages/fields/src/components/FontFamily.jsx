@@ -4,11 +4,13 @@ import isObject from 'lodash/isObject';
 import PropTypes from 'prop-types';
 import React, { useMemo, useCallback, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import { useFonts } from '@micromag/core/contexts';
 import { useLoadedFonts } from '@micromag/core/hooks';
 import { getFontFamilyFromFont } from '@micromag/core/utils';
+
 import FieldWithForm from './FieldWithForm';
 
 const normalize = (str) =>

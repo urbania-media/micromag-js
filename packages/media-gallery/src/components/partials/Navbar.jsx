@@ -30,6 +30,7 @@ const propTypes = {
     storyId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     tags: MicromagPropTypes.tags,
     authors: MicromagPropTypes.authors,
+    loading: PropTypes.bool,
     withoutSource: PropTypes.bool,
     withoutType: PropTypes.bool,
     onClickAdd: PropTypes.func,
@@ -50,6 +51,7 @@ const defaultProps = {
     storyId: null,
     tags: [],
     authors: [],
+    loading: false,
     withoutSource: false,
     withoutType: true,
     onClickAdd: null,
@@ -70,6 +72,7 @@ function Navbar({
     storyId,
     tags,
     authors,
+    loading,
     withoutSource,
     withoutType,
     className,
@@ -245,8 +248,8 @@ function Navbar({
                 {media === null ? (
                     <div
                         className={classNames([
-                            'list-group-item rounded w-100 mw-100 py-1 px-1 navbar-text d-flex align-items-center justify-content-between',
-                            { 'border border-dark': selectedMedia !== null },
+                            'list-group-item rounded w-100 mw-100 navbar-text d-flex align-items-center justify-content-between',
+                            { 'border border-dark py-1 px-1': selectedMedia !== null },
                         ])}
                     >
                         {selectedMedia !== null ? (
@@ -329,7 +332,7 @@ function Navbar({
                                 onClick={onClickBack}
                             />
                         </form>
-                        <strong className="navbar-text me-auto w-100 text-truncate">
+                        <strong className="navbar-text me-auto w-100 text-truncate text-light">
                             {media !== null ? media.name : null}
                         </strong>
                     </div>
@@ -343,6 +346,7 @@ function Navbar({
                                 onChange={onSearchChange}
                                 onFocus={onSearchFocus}
                                 onClickIcon={onToggleMenu}
+                                loading={loading}
                                 className={classNames(['d-flex'])}
                             />
                         </div>

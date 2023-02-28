@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import AudioScreen from './Audio';
 import * as transforms from './transforms/index';
 

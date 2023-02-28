@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef, useCallback, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Spinner } from '@micromag/core/components';
 import {
     useMediaThumbnail,
     useMediaCurrentTime,
@@ -127,9 +128,24 @@ const Video = ({
     const duration = useMediaDuration(ref.current, {
         id: mediaUrl,
     });
+    const [showLoading, setShowLoading] = useState(false);
     const ready = useMediaReady(ref.current, {
         id: mediaUrl,
     });
+
+    useEffect(() => {
+        let id = null;
+        setShowLoading(false);
+        if (mediaUrl) {
+            id = setTimeout(() => {
+                setShowLoading(true);
+            }, 1000);
+        }
+        return () => {
+            clearTimeout(id);
+        };
+    }, [mediaUrl]);
+
     const sourceFiles = useMemo(() => {
         if (filesArray.length === 0) {
             return null;
@@ -312,6 +328,9 @@ const Video = ({
                         />
                     ))}
                 </video>
+            ) : null}
+            {!isImageWithoutSourceFile && !ready && showLoading ? (
+                <Spinner className={styles.spinner} />
             ) : null}
         </div>
     );

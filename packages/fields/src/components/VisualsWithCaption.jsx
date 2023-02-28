@@ -3,6 +3,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import ItemsField from './Items';

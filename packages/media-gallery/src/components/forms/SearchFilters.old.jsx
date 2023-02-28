@@ -1,14 +1,15 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading, jsx-a11y/label-has-associated-control */
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useFieldsManager } from '@micromag/core/contexts';
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+
 import { Label } from '@micromag/core/components';
+import { useFieldsManager } from '@micromag/core/contexts';
 
 import styles from '../../styles/forms/search-filters-old.module.scss';
 
 const propTypes = {
-    filters: PropTypes.arrayOf(PropTypes.object),
+    filters: PropTypes.arrayOf(PropTypes.shape({})),
     value: PropTypes.shape({
         search: PropTypes.string,
         types: PropTypes.arrayOf(PropTypes.string),

@@ -1,13 +1,16 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/label-has-associated-control, react/jsx-indent */
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from '@micromag/core/components';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
-import styles from '../../styles/partials/active-filters.module.scss';
+
+import { Button } from '@micromag/core/components';
+
 import CloseButton from '../buttons/Close';
+
+import styles from '../../styles/partials/active-filters.module.scss';
 
 const propTypes = {
     filters: PropTypes.shape({
@@ -18,7 +21,7 @@ const propTypes = {
     }),
     onChange: PropTypes.func,
     onReset: PropTypes.func,
-    sections: PropTypes.arrayOf(PropTypes.object),
+    sections: PropTypes.arrayOf(PropTypes.shape({})),
     className: PropTypes.string,
 };
 

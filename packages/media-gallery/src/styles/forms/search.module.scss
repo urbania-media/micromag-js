@@ -5,33 +5,18 @@
 .container {
     position: relative;
 
-    ::placeholder {
-        font-size: 1rem;
-    }
+    .input {
+        background-color: $gray-900;
 
-    .button {
-        margin-left: 5px;
-    }
-
-    .activeFilters {
-        border-top: solid 1px $border-color;
-    }
-
-    .searchFilter {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-
-    &.filtersOpened {
-        .searchFilter {
-            position: relative;
+        &:focus, &.active {
+            outline: none !important;
+            background-color: $gray-900 !important;
+            box-shadow: none !important;
+            color: $white !important;
         }
 
-        .tags {
-            position: absolute;
-            top: 0;
-            left: 0;
+        ::placeholder {
+            background-color: $gray-900 !important;
         }
     }
 }

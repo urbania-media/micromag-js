@@ -609,7 +609,7 @@ msgstr "Modifier l'action..."
 #: B1MeY+
 msgctxt "B1MeY+"
 msgid "Select an image..."
-msgstr "Sélectionnez une image..."
+msgstr "Sélectionner une image"
 
 # Upload button label in Media Gallery
 #: BAfC6s
@@ -705,7 +705,7 @@ msgstr "Couleur du texte"
 #: DWEzCv
 msgctxt "DWEzCv"
 msgid "Select a video..."
-msgstr "Sélectionnez une vidéo..."
+msgstr "Sélectionner une vidéo"
 
 # Media Gallery
 #: EDFyUp
@@ -1376,7 +1376,7 @@ msgstr "Présentateur"
 #: Wb5zY4
 msgctxt "Wb5zY4"
 msgid "Select a font file..."
-msgstr "Sélectionnez un fichier de police..."
+msgstr "Sélectionner un fichier de police"
 
 # Upload button label in Media Gallery
 #: WeD4nB
@@ -2532,7 +2532,7 @@ msgstr "Écrans"
 #: wt1+dM
 msgctxt "wt1+dM"
 msgid "Select an audio file..."
-msgstr "Sélectionnez un fichier audio..."
+msgstr "Sélectionner un fichier audio"
 
 # Heading field label
 #: wx5PI0

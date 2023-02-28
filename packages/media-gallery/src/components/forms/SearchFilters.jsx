@@ -7,14 +7,17 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
+
 import { Button } from '@micromag/core/components';
-import styles from '../../styles/forms/search-filters.module.scss';
+
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import TagSection from './TagSection';
 
+import styles from '../../styles/forms/search-filters.module.scss';
+
 const propTypes = {
     filters: PropTypes.object, // eslint-disable-line
-    sections: PropTypes.arrayOf(PropTypes.object),
+    sections: PropTypes.arrayOf(PropTypes.shape({})),
     onChange: PropTypes.func,
     onClose: PropTypes.func,
     className: PropTypes.string,

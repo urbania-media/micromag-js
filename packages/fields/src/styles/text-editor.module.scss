@@ -14,6 +14,7 @@
                     &.ck-rounded-corners {
                         border-radius: $input-border-radius;
                     }
+
                     &.ck-focused {
                         border: $input-border-width solid $input-btn-focus-color;
                         box-shadow: 0 0 0 3px $input-btn-focus-color;

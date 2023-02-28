@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import React, { useMemo, useCallback, useState, useEffect } from 'react';
+
 import InputGroup from './InputGroup';
 import TextField from './Text';
 
@@ -85,7 +86,8 @@ const UrlField = ({ schemes, value, className, onChange }) => {
             <button
                 className={classNames([
                     'btn',
-                    'btn-outline-secondary',
+                    'btn-outline-dark',
+                    'text-light',
                     'fw-normal',
                     {
                         show: open,
