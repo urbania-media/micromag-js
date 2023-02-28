@@ -121,7 +121,10 @@ const Question = ({
     const answer = answeredIndex !== null && answers[answeredIndex] ? answers[answeredIndex] : null;
     const { customAnswerLabel = null } = answer || {};
 
-    const hasResult = customAnswerLabel !== null || isTextFilled(result);
+    const hasResult = isTextFilled(customAnswerLabel) || isTextFilled(result);
+
+    const defaultResult = isTextFilled(result) ? result : null;
+    const customResult = isTextFilled(customAnswerLabel) ? customAnswerLabel : null;
 
     const onAnswersCollapse = useCallback(() => {
         setResultVisible(true);
@@ -231,7 +234,7 @@ const Question = ({
                                         disabled={transitionDisabled}
                                     >
                                         <Text
-                                            {...(customAnswerLabel || result)}
+                                            {...(customResult || defaultResult)}
                                             className={styles.resultText}
                                         />
                                     </Transitions>
