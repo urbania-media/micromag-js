@@ -9,7 +9,12 @@ import { useHistory } from 'react-router';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
-import { useScreensManager, useFieldsManager, useUrlGenerator } from '@micromag/core/contexts';
+import {
+    useScreensManager,
+    useFieldsManager,
+    useUrlGenerator,
+    useFieldsComponentsManager,
+} from '@micromag/core/contexts';
 import { isMessage, getScreenExtraField } from '@micromag/core/utils';
 
 import getFieldByName from '../../utils/getFieldByName';
@@ -40,6 +45,7 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
     const history = useHistory();
     const screensManager = useScreensManager();
     const fieldsManager = useFieldsManager();
+    const fieldsComponentManager = useFieldsComponentsManager();
     const route = useUrlGenerator();
 
     const {
@@ -91,6 +97,7 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
 
             const lastKeyIndex = finalFieldPath.length - 1;
             let parentItem = null;
+
             finalFieldPath.reduce(
                 (currentFields, key, keyIndex) => {
                     const {
@@ -101,22 +108,27 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
 
                     const fieldsDef =
                         fieldType !== null ? fieldsManager.getDefinition(fieldType) : currentFields;
+
                     const {
                         fields: defSubFields = null,
                         settings = null,
                         itemsField: defItemsField = null,
+                        component: defComponent = null,
                     } = fieldsDef || {};
+                    const { withForm = false } =
+                        fieldsComponentManager.getComponent(defComponent) || {};
 
                     const itemsField = currentItemsField || defItemsField;
                     const subFields = currentSubFields || defSubFields;
 
-                    const currentSubfields =
+                    const finalSubField =
                         subFields !== null ? getFieldByName(subFields, key) : null;
-                    const currentSettings =
+                    const finalSettingsField =
                         settings !== null ? getFieldByName(settings, key) : null;
 
-                    const isCurrentSubfields = currentSubfields !== null;
-                    const isCurrentSettings = currentSettings !== null;
+                    const isCurrentSubField = finalSubField !== null;
+                    const isCurrentSettingsField = finalSettingsField !== null;
+
                     const isListItems = itemsField !== null && !!key.match(/^[0-9]+$/);
                     const isLastIndex = keyIndex === lastKeyIndex;
 
@@ -128,36 +140,43 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                         ].filter((it) => it !== null),
                     });
                     const pathSuffix = isLastIndex && form !== null ? `/${form}` : '';
-
                     const addNewItem = isLastIndex || isListItems;
-
                     const itemPath = `${pathPrefix}${pathSuffix}`;
 
-                    let nextFields = null;
-
-                    if (isCurrentSubfields) {
-                        nextFields = currentSubfields;
-                    } else if (isCurrentSettings) {
-                        nextFields = currentSettings;
-                        if (parentItem !== null) {
-                            fieldItems.push({
-                                ...parentItem,
-                                url: route('screen.field.form', {
-                                    screen: screenId,
-                                    field: [
-                                        currentState !== null ? currentState.id : null,
-                                        ...finalFieldPath.slice(0, keyIndex),
-                                    ].filter((it) => it !== null),
-                                    form: 'settings',
-                                }),
-                            });
-                        }
-                    } else if (isListItems) {
-                        nextFields = itemsField;
+                    if (parentItem !== null && (withForm || isCurrentSettingsField)) {
+                        fieldItems.push({
+                            ...parentItem,
+                            url: isCurrentSettingsField
+                                ? route('screen.field.form', {
+                                      screen: screenId,
+                                      field: [
+                                          currentState !== null ? currentState.id : null,
+                                          ...finalFieldPath.slice(0, keyIndex),
+                                      ].filter((it) => it !== null),
+                                      form: 'settings',
+                                  })
+                                : route('screen.field', {
+                                      screen: screenId,
+                                      field: [
+                                          currentState !== null ? currentState.id : null,
+                                          ...finalFieldPath.slice(0, keyIndex),
+                                      ].filter((it) => it !== null),
+                                  }),
+                        });
                     }
 
-                    const fieldLabel = nextFields
-                        ? nextFields.breadcrumbLabel || nextFields.label
+                    let nextField = null;
+
+                    if (isCurrentSubField) {
+                        nextField = finalSubField;
+                    } else if (isCurrentSettingsField) {
+                        nextField = finalSettingsField;
+                    } else if (isListItems) {
+                        nextField = itemsField;
+                    }
+
+                    const fieldLabel = nextField
+                        ? nextField.breadcrumbLabel || nextField.label
                         : null;
 
                     const itemLabel = isMessage(fieldLabel)
@@ -180,9 +199,9 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                         fieldItems.push(item);
                     }
 
-                    parentItem = item;
+                    parentItem = !addNewItem ? item : null;
 
-                    return nextFields;
+                    return nextField;
                 },
                 {
                     fields:

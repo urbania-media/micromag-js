@@ -5,15 +5,18 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useFieldComponent } from '../../contexts';
+
 import { useForm } from '../../hooks';
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import styles from '../../styles/forms/form.module.scss';
 import { validateFields } from '../../utils';
+
+import { useFieldComponent } from '../../contexts';
 import BackButton from '../buttons/Back';
 import Button from '../buttons/Button';
 import Buttons from '../buttons/Buttons';
 import FieldForm from './Field';
+
+import styles from '../../styles/forms/form.module.scss';
 
 const propTypes = {
     action: PropTypes.string.isRequired,

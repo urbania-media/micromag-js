@@ -1,15 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-14 14:06-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2023-03-01 15:37-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 3.2.0\n"
+"X-Generator: Poedit 3.2.2\n"
 
 # Audio and Video screen group
 #: +9akmg
@@ -219,7 +220,7 @@ msgstr "Whatsapp"
 #: 3E57H7
 msgctxt "3E57H7"
 msgid "No marker..."
-msgstr "Aucun marqueur..."
+msgstr "Aucun marqueur"
 
 # Field label
 #: 3LEBIA
@@ -261,7 +262,7 @@ msgstr "Citation"
 #: 3wiL2y
 msgctxt "3wiL2y"
 msgid "No image..."
-msgstr "Aucune image..."
+msgstr "Aucune image"
 
 # Text field label
 #: 4E2gbX
@@ -375,7 +376,7 @@ msgstr "Sondage"
 #: 65rc70
 msgctxt "65rc70"
 msgid "Edit style..."
-msgstr "Modifier le style..."
+msgstr "Modifier le style"
 
 # Timing field label
 #: 6DV50M
@@ -561,7 +562,7 @@ msgstr "Ajouter une image"
 #: A+a0kL
 msgctxt "A+a0kL"
 msgid "No answer..."
-msgstr "Aucune réponse..."
+msgstr "Aucune réponse"
 
 # Field label
 #: A7ncT3
@@ -603,7 +604,7 @@ msgstr "Utilisé"
 #: AV6gfh
 msgctxt "AV6gfh"
 msgid "Edit call to action..."
-msgstr "Modifier l'action..."
+msgstr "Modifier l'action"
 
 # Label when no value is provided to Image field
 #: B1MeY+
@@ -741,7 +742,7 @@ msgstr "Sous-titre"
 #: EoVdMy
 msgctxt "EoVdMy"
 msgid "Edit content..."
-msgstr "Modifier le contenu..."
+msgstr "Modifier le contenu"
 
 # Horoscope date
 #: Evl2dG
@@ -777,7 +778,7 @@ msgstr "Urbania Horoscope"
 #: FFBsfJ
 msgctxt "FFBsfJ"
 msgid "Search medias..."
-msgstr "Chercher dans les médias..."
+msgstr "Cherchez un média..."
 
 # Alignment label
 #: FKOWH0
@@ -807,7 +808,7 @@ msgstr "Votre nom"
 #: G1Gyjn
 msgctxt "G1Gyjn"
 msgid "Seek"
-msgstr "Chercher"
+msgstr "Avancer"
 
 # Field label
 #: GMCLhn
@@ -843,7 +844,7 @@ msgstr "Image avec légende"
 #: HTd98/
 msgctxt "HTd98/"
 msgid "No message..."
-msgstr "Pas de message..."
+msgstr "Pas de message"
 
 # Fields section label
 #: HWpflq
@@ -945,13 +946,13 @@ msgstr "Créez votre premier écran"
 #: K1BxIr
 msgctxt "K1BxIr"
 msgid "Edit metadata..."
-msgstr "Modifier les métadonnées..."
+msgstr "Modifier les métadonnées"
 
 # Search a place on Google Maps placeholder
 #: KB7N5E
 msgctxt "KB7N5E"
 msgid "Search a place on Google Maps"
-msgstr "Rechercher un lieu sur Google Maps"
+msgstr "Chercher un lieu sur Google Maps"
 
 # Label when there is no item
 #: KCDOHI
@@ -1107,7 +1108,7 @@ msgstr "Swipe up"
 #: OdcEna
 msgctxt "OdcEna"
 msgid "No slide..."
-msgstr "Aucune diapo..."
+msgstr "Aucune diapo"
 
 # Type Label in Media Gallery
 #: OkNUmk
@@ -1143,7 +1144,7 @@ msgstr "Bas"
 #: PKCv5M
 msgctxt "PKCv5M"
 msgid "No item..."
-msgstr "Aucun item..."
+msgstr "Aucun item"
 
 # Media label
 #: PNMMo/
@@ -1652,7 +1653,7 @@ msgstr "Vidéo d'arrière-plan"
 #: dFMzBu
 msgctxt "dFMzBu"
 msgid "No image..."
-msgstr "Aucune image..."
+msgstr "Aucune image"
 
 # Screen title
 #: dPYwJG
@@ -1892,7 +1893,7 @@ msgstr "Bouton"
 #: iHV3W3
 msgctxt "iHV3W3"
 msgid "No entry..."
-msgstr "Aucune d’entrée..."
+msgstr "Aucune entrée"
 
 # Field label
 #: iL9RLu
@@ -2112,7 +2113,7 @@ msgstr "Style du bouton"
 #: o3R+FM
 msgctxt "o3R+FM"
 msgid "Select a closed captions file..."
-msgstr ""
+msgstr "Choisir un fichier de sous-titres"
 
 # Header placeholder
 #: oAtOlP
@@ -2160,7 +2161,7 @@ msgstr "Style du texte des boutons"
 #: p6n6vY
 msgctxt "p6n6vY"
 msgid "No answer..."
-msgstr "Pas de réponse..."
+msgstr "Pas de réponse"
 
 # Title of the delete screen dialog
 #: p6q/+/
@@ -2286,7 +2287,7 @@ msgstr "20 avr au 20 mai"
 #: rdFCsN
 msgctxt "rdFCsN"
 msgid "No marker..."
-msgstr "Aucun marqueur..."
+msgstr "Aucun marqueur"
 
 # Screen title
 #: ro6yHS
@@ -2340,7 +2341,7 @@ msgstr "Entrer"
 #: t+L1J/
 msgctxt "t+L1J/"
 msgid "No image..."
-msgstr "Pas d’image..."
+msgstr "Pas d’image"
 
 # Active filters title
 #: t2cFdl
@@ -2418,7 +2419,7 @@ msgstr "Couleur du point"
 #: uSpItE
 msgctxt "uSpItE"
 msgid "Add tags..."
-msgstr "Ajouter des étiquettes..."
+msgstr "Ajouter des étiquettes"
 
 # Field label
 #: uaL28k
@@ -2520,7 +2521,7 @@ msgstr "Désactiver le son"
 #: wChc+A
 msgctxt "wChc+A"
 msgid "Edit style..."
-msgstr "Modifier le style..."
+msgstr "Modifier le style"
 
 # Button to show screens
 #: wkysUu
@@ -2706,7 +2707,7 @@ msgstr "Aller à l'écran précédent"
 #: zh2m/S
 msgctxt "zh2m/S"
 msgid "Search fonts..."
-msgstr "Rechercher une police..."
+msgstr "Cherchez une police..."
 
 # Lede placeholder
 #: zl6zsZ

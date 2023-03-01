@@ -248,7 +248,7 @@ function Navbar({
                 {media === null ? (
                     <div
                         className={classNames([
-                            'list-group-item rounded w-100 mw-100 navbar-text d-flex align-items-center justify-content-between',
+                            'list-group-item rounded w-100 mw-100 navbar-text d-flex align-items-center justify-content-between mb-2',
                             { 'border border-dark py-1 px-1': selectedMedia !== null },
                         ])}
                     >
@@ -311,8 +311,8 @@ function Navbar({
                     </div>
                 ) : null}
 
-                {!withoutSource && media === null ? (
-                    <div className="mt-1 py-2 d-flex w-100 align-items-center flex-nowrap">
+                {!withoutSource && media === null && sources !== null && sources.length > 1 ? (
+                    <div className="mb-2 d-flex w-100 align-items-center flex-nowrap">
                         <DropdownSection
                             items={sources}
                             value={filters.source || null}

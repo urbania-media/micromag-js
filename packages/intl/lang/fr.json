@@ -102,7 +102,7 @@
         "defaultMessage": "Whatsapp"
     },
     "3E57H7": {
-        "defaultMessage": "Aucun marqueur..."
+        "defaultMessage": "Aucun marqueur"
     },
     "3LEBIA": {
         "defaultMessage": "Angle"
@@ -123,7 +123,7 @@
         "defaultMessage": "Citation"
     },
     "3wiL2y": {
-        "defaultMessage": "Aucune image..."
+        "defaultMessage": "Aucune image"
     },
     "4E2gbX": {
         "defaultMessage": "Texte"
@@ -180,7 +180,7 @@
         "defaultMessage": "Sondage"
     },
     "65rc70": {
-        "defaultMessage": "Modifier le style..."
+        "defaultMessage": "Modifier le style"
     },
     "6DV50M": {
         "defaultMessage": "Mode"
@@ -273,7 +273,7 @@
         "defaultMessage": "Ajouter une image"
     },
     "A+a0kL": {
-        "defaultMessage": "Aucune réponse..."
+        "defaultMessage": "Aucune réponse"
     },
     "A7ncT3": {
         "defaultMessage": "Déplaçable"
@@ -294,7 +294,7 @@
         "defaultMessage": "Utilisé"
     },
     "AV6gfh": {
-        "defaultMessage": "Modifier l'action..."
+        "defaultMessage": "Modifier l'action"
     },
     "B1MeY+": {
         "defaultMessage": "Sélectionner une image"
@@ -363,7 +363,7 @@
         "defaultMessage": "Sous-titre"
     },
     "EoVdMy": {
-        "defaultMessage": "Modifier le contenu..."
+        "defaultMessage": "Modifier le contenu"
     },
     "Evl2dG": {
         "defaultMessage": "19 fév au 20 mars"
@@ -381,7 +381,7 @@
         "defaultMessage": "Urbania Horoscope"
     },
     "FFBsfJ": {
-        "defaultMessage": "Chercher dans les médias..."
+        "defaultMessage": "Cherchez un média..."
     },
     "FKOWH0": {
         "defaultMessage": "align. droite"
@@ -396,7 +396,7 @@
         "defaultMessage": "Votre nom"
     },
     "G1Gyjn": {
-        "defaultMessage": "Chercher"
+        "defaultMessage": "Avancer"
     },
     "GMCLhn": {
         "defaultMessage": "Case"
@@ -414,7 +414,7 @@
         "defaultMessage": "Image avec légende"
     },
     "HTd98/": {
-        "defaultMessage": "Pas de message..."
+        "defaultMessage": "Pas de message"
     },
     "HWpflq": {
         "defaultMessage": "Surbrillance"
@@ -465,10 +465,10 @@
         "defaultMessage": "Créez votre premier écran"
     },
     "K1BxIr": {
-        "defaultMessage": "Modifier les métadonnées..."
+        "defaultMessage": "Modifier les métadonnées"
     },
     "KB7N5E": {
-        "defaultMessage": "Rechercher un lieu sur Google Maps"
+        "defaultMessage": "Chercher un lieu sur Google Maps"
     },
     "KCDOHI": {
         "defaultMessage": "Aucune police..."
@@ -546,7 +546,7 @@
         "defaultMessage": "Swipe up"
     },
     "OdcEna": {
-        "defaultMessage": "Aucune diapo..."
+        "defaultMessage": "Aucune diapo"
     },
     "OkNUmk": {
         "defaultMessage": "Type"
@@ -564,7 +564,7 @@
         "defaultMessage": "Bas"
     },
     "PKCv5M": {
-        "defaultMessage": "Aucun item..."
+        "defaultMessage": "Aucun item"
     },
     "PNMMo/": {
         "defaultMessage": "Audios"
@@ -819,7 +819,7 @@
         "defaultMessage": "Vidéo d'arrière-plan"
     },
     "dFMzBu": {
-        "defaultMessage": "Aucune image..."
+        "defaultMessage": "Aucune image"
     },
     "dPYwJG": {
         "defaultMessage": "Carte"
@@ -939,7 +939,7 @@
         "defaultMessage": "Bouton"
     },
     "iHV3W3": {
-        "defaultMessage": "Aucune d’entrée..."
+        "defaultMessage": "Aucune entrée"
     },
     "iL9RLu": {
         "defaultMessage": "Collaborateur"
@@ -1049,6 +1049,9 @@
     "nno1Pq": {
         "defaultMessage": "Style du bouton"
     },
+    "o3R+FM": {
+        "defaultMessage": "Choisir un fichier de sous-titres"
+    },
     "oAtOlP": {
         "defaultMessage": "En-tête"
     },
@@ -1071,7 +1074,7 @@
         "defaultMessage": "Style du texte des boutons"
     },
     "p6n6vY": {
-        "defaultMessage": "Pas de réponse..."
+        "defaultMessage": "Pas de réponse"
     },
     "p6q/+/": {
         "defaultMessage": "Supprimer l’écran"
@@ -1134,7 +1137,7 @@
         "defaultMessage": "20 avr au 20 mai"
     },
     "rdFCsN": {
-        "defaultMessage": "Aucun marqueur..."
+        "defaultMessage": "Aucun marqueur"
     },
     "ro6yHS": {
         "defaultMessage": "Carte avec images"
@@ -1161,7 +1164,7 @@
         "defaultMessage": "Entrer"
     },
     "t+L1J/": {
-        "defaultMessage": "Pas d’image..."
+        "defaultMessage": "Pas d’image"
     },
     "t2cFdl": {
         "defaultMessage": "Filtres actifs"
@@ -1200,7 +1203,7 @@
         "defaultMessage": "Couleur du point"
     },
     "uSpItE": {
-        "defaultMessage": "Ajouter des étiquettes..."
+        "defaultMessage": "Ajouter des étiquettes"
     },
     "uaL28k": {
         "defaultMessage": "Suggestion de partage"
@@ -1251,7 +1254,7 @@
         "defaultMessage": "Désactiver le son"
     },
     "wChc+A": {
-        "defaultMessage": "Modifier le style..."
+        "defaultMessage": "Modifier le style"
     },
     "wkysUu": {
         "defaultMessage": "Écrans"
@@ -1344,7 +1347,7 @@
         "defaultMessage": "Aller à l'écran précédent"
     },
     "zh2m/S": {
-        "defaultMessage": "Rechercher une police..."
+        "defaultMessage": "Cherchez une police..."
     },
     "zl6zsZ": {
         "defaultMessage": "Chapeau"
