@@ -1,5 +1,5 @@
 {
-    "version": "0.3.325",
+    "version": "0.3.326",
     "packages": ["elements/*", "packages/*", "screens/*"],
     "command": {
         "publish": {

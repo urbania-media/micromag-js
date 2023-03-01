@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.325",
+    "version": "0.3.326",
     "description": "",
     "keywords": [
         "javascript"
@@ -63,12 +63,12 @@
         "@micromag/screen-image": "^0.3.325",
         "@micromag/screen-keypad": "^0.3.325",
         "@micromag/screen-map": "^0.3.325",
-        "@micromag/screen-quiz": "^0.3.325",
+        "@micromag/screen-quiz": "^0.3.326",
         "@micromag/screen-quote": "^0.3.325",
         "@micromag/screen-ranking": "^0.3.325",
         "@micromag/screen-share": "^0.3.325",
         "@micromag/screen-slideshow": "^0.3.325",
-        "@micromag/screen-survey": "^0.3.325",
+        "@micromag/screen-survey": "^0.3.326",
         "@micromag/screen-text": "^0.3.325",
         "@micromag/screen-timeline": "^0.3.325",
         "@micromag/screen-title": "^0.3.325",
