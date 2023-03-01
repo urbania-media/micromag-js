@@ -2108,6 +2108,12 @@ msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Button style"
 
+# Field label
+#: nuj2tw
+msgctxt "nuj2tw"
+msgid "Minimum number of points for this result"
+msgstr "Minimum number of points for this result"
+
 # Label when no value is provided to Closed captions field
 #: o3R+FM
 msgctxt "o3R+FM"
@@ -2551,6 +2557,12 @@ msgstr "All sources"
 msgctxt "xCj1gI"
 msgid "Add a message"
 msgstr "Add a message"
+
+# Field label
+#: xF3g1l
+msgctxt "xF3g1l"
+msgid "Number of points awarded for this answer"
+msgstr "Number of points awarded for this answer"
 
 # Message displayed once text was copied successfully.
 #: xFlbR7

@@ -1049,6 +1049,9 @@
     "nno1Pq": {
         "defaultMessage": "Style du bouton"
     },
+    "nuj2tw": {
+        "defaultMessage": "Nombre de points minimum pour ce résultat"
+    },
     "o3R+FM": {
         "defaultMessage": "Choisir un fichier de sous-titres"
     },
@@ -1270,6 +1273,9 @@
     },
     "xCj1gI": {
         "defaultMessage": "Ajouter un message"
+    },
+    "xF3g1l": {
+        "defaultMessage": "Nombre de points donnés pour cette réponse"
     },
     "xFlbR7": {
         "defaultMessage": "Lien copié!"

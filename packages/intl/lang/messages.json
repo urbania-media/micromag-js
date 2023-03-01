@@ -1396,6 +1396,10 @@
     "defaultMessage": "Button style",
     "description": "Field label"
   },
+  "nuj2tw": {
+    "defaultMessage": "Minimum number of points for this result",
+    "description": "Field label"
+  },
   "o3R+FM": {
     "defaultMessage": "Select a closed captions file...",
     "description": "Label when no value is provided to Closed captions field"
@@ -1691,6 +1695,10 @@
   "xCj1gI": {
     "defaultMessage": "Add a message",
     "description": "Button label"
+  },
+  "xF3g1l": {
+    "defaultMessage": "Number of points awarded for this answer",
+    "description": "Field label"
   },
   "xFlbR7": {
     "defaultMessage": "Link copied!",

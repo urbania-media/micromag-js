@@ -308,6 +308,10 @@ export default [
                             defaultMessage: 'Points',
                             description: 'Field label',
                         }),
+                        help: defineMessage({
+                            defaultMessage: 'Minimum number of points for this result',
+                            description: 'Field label',
+                        }),
                     },
                     {
                         name: 'background',

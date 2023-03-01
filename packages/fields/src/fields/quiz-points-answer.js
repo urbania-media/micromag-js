@@ -18,6 +18,10 @@ export default {
             name: 'points',
             type: 'number',
             isHorizontal: true,
+            help: defineMessage({
+                defaultMessage: 'Number of points awarded for this answer',
+                description: 'Field label',
+            }),
             label: defineMessage({
                 defaultMessage: 'Points',
                 description: 'Field label',
@@ -33,9 +37,9 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Button style',
                         description: 'Field label',
-                    })
+                    }),
                 },
-            ]
+            ],
         },
 
         // {
@@ -43,5 +47,5 @@ export default {
         //     type: 'box-style',
         //     className: 'mt-4'
         // },
-    ]
+    ],
 };

@@ -287,8 +287,7 @@ const SurveyScreen = ({
                             textStyle: answerButtonTextStyle = null,
                             resultStyle: answerResultStyle = null,
                         } = answer || {};
-                        const { borderRadius: answerResultBorderRadius = null } =
-                            answerButtonStyle || {};
+
                         const {
                             barColor: answerResultBarColor = null,
                             textColor: answerResultTextColor,
@@ -301,6 +300,14 @@ const SurveyScreen = ({
                         const { color: labelColor = null } = textStyle || {};
                         const hasAnswerLabel = isTextFilled(label);
                         const userAnswer = userAnswerIndex === answerIndex;
+                        const buttonStyles = {
+                            ...buttonsStyle,
+                            ...answerButtonStyle,
+                            ...(answered ? { textAlign: 'left' } : null),
+                        };
+
+                        const { borderRadius: answerResultBorderRadius = null } =
+                            buttonStyles || {};
 
                         return (
                             <div
@@ -329,6 +336,7 @@ const SurveyScreen = ({
                                             <div
                                                 className={styles.itemInner}
                                                 style={{
+                                                    borderRadius: answerResultBorderRadius,
                                                     transitionDuration: finalTransitionDuration,
                                                 }}
                                             >
@@ -344,13 +352,7 @@ const SurveyScreen = ({
                                                     }}
                                                     disabled={isPreview || userAnswerIndex !== null}
                                                     focusable={current && isView}
-                                                    buttonStyle={{
-                                                        ...buttonsStyle,
-                                                        ...answerButtonStyle,
-                                                        ...(answered
-                                                            ? { textAlign: 'left' }
-                                                            : null),
-                                                    }}
+                                                    buttonStyle={buttonStyles}
                                                     textStyle={{
                                                         ...textStyle,
                                                         ...buttonsTextStyle,

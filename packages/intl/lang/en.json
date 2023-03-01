@@ -1049,6 +1049,9 @@
     "nno1Pq": {
         "defaultMessage": "Button style"
     },
+    "nuj2tw": {
+        "defaultMessage": "Minimum number of points for this result"
+    },
     "o3R+FM": {
         "defaultMessage": "Select a closed captions file..."
     },
@@ -1270,6 +1273,9 @@
     },
     "xCj1gI": {
         "defaultMessage": "Add a message"
+    },
+    "xF3g1l": {
+        "defaultMessage": "Number of points awarded for this answer"
     },
     "xFlbR7": {
         "defaultMessage": "Link copied!"
