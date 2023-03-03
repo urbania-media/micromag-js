@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer",
-    "version": "0.3.329",
+    "version": "0.3.330",
     "description": "",
     "keywords": [
         "javascript"
@@ -64,8 +64,8 @@
         "@micromag/element-share-options": "^0.3.329",
         "@micromag/element-webview": "^0.3.329",
         "@micromag/elements": "^0.3.329",
-        "@micromag/fields": "^0.3.329",
-        "@micromag/intl": "^0.3.329",
+        "@micromag/fields": "^0.3.330",
+        "@micromag/intl": "^0.3.330",
         "@micromag/screens": "^0.3.329",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
