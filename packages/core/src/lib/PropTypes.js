@@ -597,6 +597,13 @@ export const metadata = PropTypes.shape({
     favIcon: imageMedia,
 });
 
+export const tag = PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+});
+
+export const tags = PropTypes.arrayOf(tag);
+
 /**
  * Story
  */

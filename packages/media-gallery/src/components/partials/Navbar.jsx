@@ -29,7 +29,7 @@ const propTypes = {
     selectedMedia: MicromagPropTypes.media,
     storyId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     tags: MicromagPropTypes.tags,
-    authors: MicromagPropTypes.authors,
+    authors: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
     loading: PropTypes.bool,
     withoutSource: PropTypes.bool,
     withoutType: PropTypes.bool,

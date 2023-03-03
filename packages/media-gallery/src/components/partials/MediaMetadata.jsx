@@ -10,8 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import { useFieldComponent } from '@micromag/core/contexts';
-import { useMediaUpdate } from '@micromag/data';
-import { useMediaDelete } from '@micromag/data/src/hooks';
+import { useMediaUpdate, useMediaDelete } from '@micromag/data';
 
 import styles from '../../styles/partials/media-metadata.module.scss';
 
@@ -365,7 +364,6 @@ function MediaMetadata({ media, tags: allTags, onClickClose, className }) {
 }
 
 MediaMetadata.propTypes = propTypes;
-
 MediaMetadata.defaultProps = defaultProps;
 
 export default MediaMetadata;
