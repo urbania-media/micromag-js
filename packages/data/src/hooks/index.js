@@ -9,5 +9,6 @@ export { default as useMedias } from './useMedias';
 export { default as useMediasRecentSearches } from './useMediasRecentSearches';
 export { default as useMediaTags } from './useMediaTags';
 export { default as useMediaUpdate } from './useMediaUpdate';
+export { default as useMediaDelete } from './useMediaDelete';
 export { default as useQuiz } from './useQuiz';
 export { default as useQuizCreate } from './useQuizCreate';

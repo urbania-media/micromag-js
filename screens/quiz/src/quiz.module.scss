@@ -22,6 +22,35 @@
     }
 }
 
+.reset {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    transform-origin: center;
+    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+    border: 0;
+
+    &:hover {
+        border: 0;
+        opacity: 0.8;
+
+        &:active {
+            transform: rotate(30deg);
+        }
+    }
+}
+
+.points {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    color: $white;
+}
+
 .layout {
     position: absolute;
     top: 0;

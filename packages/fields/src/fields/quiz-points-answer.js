@@ -18,10 +18,6 @@ export default {
             name: 'points',
             type: 'number',
             isHorizontal: true,
-            help: defineMessage({
-                defaultMessage: 'Number of points awarded for this answer',
-                description: 'Field label',
-            }),
             label: defineMessage({
                 defaultMessage: 'Points',
                 description: 'Field label',

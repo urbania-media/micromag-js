@@ -339,6 +339,7 @@ const ViewerMenu = ({
                                 button={
                                     <MenuButton
                                         className={styles.menuButton}
+                                        iconClassName={styles.menuButtonIcon}
                                         onClick={onOpenMenu}
                                         theme={menuTheme}
                                         focusable={!menuOpened}

@@ -12,8 +12,20 @@
     overflow: hidden;
 
     .closeBtn {
+        display: flex;
         position: absolute;
-        right: 24px;
+        top: 0;
+        right: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        transition: opacity 0.15s ease-out;
+        border: 0 !important;
+
+        &:hover {
+            opacity: 0.8;
+        }
     }
 
     .section {

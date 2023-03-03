@@ -4,17 +4,20 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+// import MenuIcon from '../icons/Menu';
 import IconButton from './IconButton';
 
 const propTypes = {
     className: PropTypes.string,
+    iconClassName: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
+    iconClassName: null,
 };
 
-const MenuButton = ({ className, ...props }) => {
+const MenuButton = ({ className, iconClassName, ...props }) => {
     const intl = useIntl();
 
     return (
@@ -36,6 +39,7 @@ const MenuButton = ({ className, ...props }) => {
                     height="16"
                     viewBox="0 0 10 16"
                     fill="currentColor"
+                    // className={iconClassName}
                 >
                     <rect width="10" height="16" />
                 </svg>

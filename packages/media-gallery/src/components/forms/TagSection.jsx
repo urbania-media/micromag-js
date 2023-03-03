@@ -52,7 +52,8 @@ const TagSection = ({ tags, parent, onChange, className }) => {
                           'mb-1',
                           'me-1',
                           'p-1',
-                          'btn-dark',
+                          'btn-secondary',
+                          'text-truncate',
                           {
                               'btn-primary': active === true,
                               // 'btn-outline-light': active === false,

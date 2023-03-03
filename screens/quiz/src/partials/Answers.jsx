@@ -4,10 +4,10 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useTransition, animated } from '@react-spring/web';
+import { useTransition, animated, config } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -144,22 +144,38 @@ const Answers = ({
         onTransitionEnd,
     ]);
 
+    const itemsRefs = useRef([]);
     const listOfItems = isPlaceholder || (isEdit && items.length === 0) ? [...new Array(2)] : items;
+
+    // let total = 0;
+    // const heights = listOfItems.reduce((acc, it, i) => {
+    //     acc.push(total);
+    //     if (itemsRefs.current[i]) {
+    //         const { height } = itemsRefs.current[i].getBoundingClientRect() || {};
+    //         total += height;
+    //     }
+    //     return acc;
+    // }, []);
+
     const filteredListOfItems = listOfItems.map((answer, answerI) => {
-        if (!isView) {
-            return { ...answer, hidden: false, index: answerI };
-        }
+        // const y = heights[answerI] ? heights[answerI] : 0;
         const userAnswer = answerI === answeredIndex;
         const { good: rightAnswer = false } = answer || {};
-
-        if (answersDidCollapse && !rightAnswer && (hasRightAnswer || !userAnswer)) {
-            return { ...answer, hidden: true, index: answerI };
+        let hidden = false;
+        if (isView && answersDidCollapse && !rightAnswer && (hasRightAnswer || !userAnswer)) {
+            hidden = true;
         }
-        if (answersCollapsed && !rightAnswer) {
-            return { ...answer, hidden: true, index: answerI };
+        if (isView && answersCollapsed && !rightAnswer) {
+            hidden = true;
         }
-        return { ...answer, hidden: false, index: answerI };
+        return { ...answer, hidden, userAnswer, index: answerI };
     });
+
+    // let finalList = filteredListOfItems;
+    // if (answersCollapsed) {
+    //     finalList = [...filteredListOfItems].sort(({ hidden = false }) => (hidden ? 1 : -1));
+    //     console.log('da fuck', finalList);
+    // }
 
     const transitions = useTransition(
         filteredListOfItems.map((data) => ({
@@ -167,20 +183,15 @@ const Answers = ({
             hidden: data.hidden,
         })),
         {
-            key: ({ index = 0 }) => `index-${index}`,
-            leave: () => ({ opacity: 0, height: 0 }),
-            from: ({ hidden = false }) => ({
-                opacity: hidden && isView ? 0 : 1,
-                height: hidden && isView ? 0 : 'auto',
-            }),
-            enter: ({ hidden = false }) => ({
-                opacity: hidden && isView ? 0 : 1,
-                height: hidden && isView ? 0 : 'auto',
-            }),
+            key: ({ index = 0, label = null }) => `key-${index}-${label?.body || null}`,
             update: ({ hidden = false }) => ({
-                opacity: hidden && isView ? 0 : 1,
-                height: hidden && isView ? 0 : 'auto',
+                opacity: hidden && isView && !withoutGoodAnswer ? 0 : 1,
+                height: hidden && isView && !withoutGoodAnswer ? 0 : null,
             }),
+            config: config.gentle,
+            // onRest: () => {
+            //     console.log('rest');
+            // },
         },
     );
 
@@ -218,10 +229,15 @@ const Answers = ({
                                 className={classNames([
                                     styles.item,
                                     {
-                                        [styles.rightAnswer]: rightAnswer && !withoutGoodAnswer,
+                                        [styles.rightAnswer]: !withoutGoodAnswer && rightAnswer,
+                                        [styles.userAnswer]: withoutGoodAnswer && userAnswer,
+                                        [styles.otherAnswer]: withoutGoodAnswer && !userAnswer,
                                     },
                                 ])}
                                 style={{ ...style }}
+                                ref={(el) => {
+                                    itemsRefs.current[answerI] = el;
+                                }}
                             >
                                 <div className={styles.itemContent}>
                                     <ScreenElement

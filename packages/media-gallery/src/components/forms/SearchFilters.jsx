@@ -10,6 +10,7 @@ import { useIntl } from 'react-intl';
 
 import { Button } from '@micromag/core/components';
 
+import TagDropdown from './TagDropdown';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import TagSection from './TagSection';
 
@@ -85,7 +86,7 @@ const SearchFilters = ({ filters, sections, onChange, onClose, className }) => {
             {activeSections.length > 0 ? (
                 <div
                     className={classNames([
-                        'bg-light',
+                        'bg-dark',
                         'flex-nowrap',
                         'text-dark',
                         'py-1',
@@ -94,7 +95,7 @@ const SearchFilters = ({ filters, sections, onChange, onClose, className }) => {
                     ])}
                 >
                     <Button
-                        className={classNames([styles.closeBtn, 'py-1', 'px-1', 'text-dark'])}
+                        className={classNames([styles.closeBtn, 'py-1', 'px-1', 'text-light'])}
                         icon={<FontAwesomeIcon icon={faTimes} />}
                         onClick={onClose}
                         title={intl.formatMessage({
@@ -109,12 +110,21 @@ const SearchFilters = ({ filters, sections, onChange, onClose, className }) => {
                                 className={classNames([styles.section, 'py-2'])}
                             >
                                 <p className={classNames([styles.title, 'm-0'])}>{label}</p>
-                                <TagSection
-                                    className={classNames([styles.tags])}
-                                    tags={items}
-                                    parent={value}
-                                    onChange={onSectionChange}
-                                />
+                                {value === 'tags' || value === 'recent' || value === 'users' ? (
+                                    <TagDropdown
+                                        className={classNames([styles.tags])}
+                                        tags={items}
+                                        parent={value}
+                                        onChange={onSectionChange}
+                                    />
+                                ) : (
+                                    <TagSection
+                                        className={classNames([styles.tags])}
+                                        tags={items}
+                                        parent={value}
+                                        onChange={onSectionChange}
+                                    />
+                                )}
                             </div>
                         ) : null;
                     })}

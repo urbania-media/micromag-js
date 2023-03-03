@@ -1,9 +1,12 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
+import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button } from '@micromag/core/components';
 import {
     useScreenRenderContext,
     useScreenSize,
@@ -122,7 +125,7 @@ const QuizScreen = ({
     const showInstantAnswer = isStatic || isCapture;
     const goodAnswerIndex =
         answers !== null ? answers.findIndex((answer) => answer !== null && answer.good) : null;
-    const withoutGoodAnswer = goodAnswerIndex === null || goodAnswerIndex === -1;
+    // const withoutGoodAnswer = goodAnswerIndex === null || goodAnswerIndex === -1;
 
     const [userAnswerIndex, setUserAnswerIndex] = useState(
         showInstantAnswer ? goodAnswerIndex : null,
@@ -178,8 +181,13 @@ const QuizScreen = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const onQuizReset = useCallback(() => {
+        setUserAnswerIndex(null);
+    }, [setUserAnswerIndex]);
+
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
+    const showReset = isEdit;
 
     return (
         <div
@@ -193,6 +201,13 @@ const QuizScreen = ({
             data-screen-ready
         >
             <Container width={width} height={height} className={styles.content}>
+                {showReset ? (
+                    <Button
+                        className={styles.reset}
+                        icon={<FontAwesomeIcon icon={faRedo} size="md" />}
+                        onClick={onQuizReset}
+                    />
+                ) : null}
                 <Scroll
                     verticalAlign={verticalAlign}
                     disabled={scrollingDisabled}
@@ -209,7 +224,7 @@ const QuizScreen = ({
                         goodAnswerColor={goodAnswerColor}
                         badAnswerColor={badAnswerColor}
                         withoutTrueFalse={withoutTrueFalse}
-                        withoutGoodAnswer={withoutGoodAnswer}
+                        // withoutGoodAnswer={withoutGoodAnswer}
                         focusable={current && isView}
                         showInstantAnswer={showInstantAnswer}
                         withResult

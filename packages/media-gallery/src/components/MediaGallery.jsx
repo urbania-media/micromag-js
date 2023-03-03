@@ -3,9 +3,10 @@ import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Spinner, UploadModal } from '@micromag/core/components';
+import { Button, Spinner, UploadModal } from '@micromag/core/components';
 import { useStory } from '@micromag/core/contexts';
 import { useMediaAuthors, useMediaCreate, useMedias, useMediaTags } from '@micromag/data';
 
@@ -65,6 +66,7 @@ function MediaGallery({
     onClickMedia,
     onClearMedia,
 }) {
+    const intl = useIntl();
     // Base state for filters
     const defaultFilters = {
         type,
@@ -96,7 +98,12 @@ function MediaGallery({
     );
 
     // Items
-    const { allMedias: loadedMedias, loading = false } = useMedias(queryValue, 1, 100, {
+    const {
+        allMedias: loadedMedias,
+        loading = false,
+        loadNextPage = null,
+        allLoaded = false,
+    } = useMedias(queryValue, 1, 30, {
         ...(initialMedias !== null ? { items: initialMedias } : null),
     });
 
@@ -119,9 +126,19 @@ function MediaGallery({
         },
         [isPicker, setMetadataMedia, onClickMedia],
     );
-    const onClickItemInfo = useCallback((media) => setMetadataMedia(media), [setMetadataMedia]);
-    const onMetadataClickClose = useCallback(() => setMetadataMedia(null), [setMetadataMedia]);
 
+    const refresh = useCallback(() => {
+        // TODO: refactor useItems to enable this
+        // setPageNumber(1);
+        // setQueryValue({ ...defaultFilters, ...queryValue });
+    }, [defaultFilters, queryValue, setQueryValue]);
+
+    const onClickItemInfo = useCallback((media) => setMetadataMedia(media), [setMetadataMedia]);
+    const onMetadataClickClose = useCallback(() => {
+        setMetadataMedia(null);
+        refresh();
+    }, [refresh, setMetadataMedia]);
+    // console.log(loadedMedias);
     // Navigation
     const onClickBack = useCallback(() => setMetadataMedia(null), [setMetadataMedia]);
 
@@ -194,7 +211,22 @@ function MediaGallery({
                             onClickItemInfo={onClickItemInfo}
                         />
                     ) : null}
-                    {loading || uploading ? <Spinner className={styles.loading} /> : null}
+                    {!allLoaded ? (
+                        <div className="w-100 mb-2">
+                            {loading || uploading ? <Spinner className={styles.loading} /> : null}
+                            <Button
+                                className="d-block mx-auto"
+                                theme="secondary"
+                                outline
+                                onClick={loadNextPage}
+                            >
+                                {intl.formatMessage({
+                                    defaultMessage: 'Load more',
+                                    description: 'Load button label in Media Gallery',
+                                })}
+                            </Button>
+                        </div>
+                    ) : null}
                 </div>
                 <div className={styles.mediaMetadata}>
                     <MediaMetadata

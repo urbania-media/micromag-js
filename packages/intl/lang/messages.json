@@ -47,6 +47,10 @@
     "defaultMessage": "My files",
     "description": "Media gallery source"
   },
+  "/KQ87r": {
+    "defaultMessage": "Delete media",
+    "description": "Delete in Media Gallery"
+  },
   "/OM5UY": {
     "defaultMessage": "Tags",
     "description": "Media label"
@@ -619,6 +623,10 @@
     "defaultMessage": "Create your first screen",
     "description": "Button to create your first screen"
   },
+  "JoyIgA": {
+    "defaultMessage": "Minimum points for this result",
+    "description": "Field label"
+  },
   "K1BxIr": {
     "defaultMessage": "Edit metadata...",
     "description": "No value field label"
@@ -949,6 +957,10 @@
   "XhgKcw": {
     "defaultMessage": "Move the map to position the place",
     "description": "Move the map to position the place description"
+  },
+  "Xr1v8l": {
+    "defaultMessage": "points gained",
+    "description": "Quiz label"
   },
   "Y7bs1v": {
     "defaultMessage": "Description",
@@ -1294,6 +1306,10 @@
     "defaultMessage": "Image",
     "description": "Visuals field label"
   },
+  "k+edUi": {
+    "defaultMessage": "Sorry, this media is in use and could not be deleted.",
+    "description": "Delete error message in Media Gallery"
+  },
   "k81FRn": {
     "defaultMessage": "Message style",
     "description": "Field label"
@@ -1394,10 +1410,6 @@
   },
   "nno1Pq": {
     "defaultMessage": "Button style",
-    "description": "Field label"
-  },
-  "nuj2tw": {
-    "defaultMessage": "Minimum number of points for this result",
     "description": "Field label"
   },
   "o3R+FM": {
@@ -1628,6 +1640,10 @@
     "defaultMessage": "Credits",
     "description": "Credits field label"
   },
+  "ur6G0U": {
+    "defaultMessage": "Load more",
+    "description": "Load button label in Media Gallery"
+  },
   "uwcXzb": {
     "defaultMessage": "Image",
     "description": "Breadcrumb field label"
@@ -1695,10 +1711,6 @@
   "xCj1gI": {
     "defaultMessage": "Add a message",
     "description": "Button label"
-  },
-  "xF3g1l": {
-    "defaultMessage": "Number of points awarded for this answer",
-    "description": "Field label"
   },
   "xFlbR7": {
     "defaultMessage": "Link copied!",

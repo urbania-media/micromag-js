@@ -22,8 +22,19 @@
 }
 
 .item {
+    position: relative;
+    transition: opacity 0.15s ease-out;
+
     .isPlaceholder & {
         padding: 1px 0;
+    }
+
+    &.userAnswer {
+        opacity: 1 !important;
+    }
+
+    &.otherAnswer {
+        opacity: 0.7 !important;
     }
 }
 

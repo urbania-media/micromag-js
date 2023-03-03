@@ -6,25 +6,30 @@ import prettyBytes from 'pretty-bytes';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import { useFieldComponent } from '@micromag/core/contexts';
 import { useMediaUpdate } from '@micromag/data';
+import { useMediaDelete } from '@micromag/data/src/hooks';
+
 import styles from '../../styles/partials/media-metadata.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.media,
     tags: MicromagPropTypes.tags,
+    onClickClose: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     media: null,
     tags: [],
+    onClickClose: null,
     className: null,
 };
 
-function MediaMetadata({ media, tags: allTags, className }) {
+function MediaMetadata({ media, tags: allTags, onClickClose, className }) {
     const {
         id: mediaId,
         type,
@@ -46,6 +51,7 @@ function MediaMetadata({ media, tags: allTags, className }) {
     } = metadata || {};
 
     const { update } = useMediaUpdate();
+    const { deleteMedia } = useMediaDelete();
 
     const getOptionLabel = useCallback(({ name }) => name, []);
     const getOptionValue = useCallback(({ name }) => name, []);
@@ -94,8 +100,32 @@ function MediaMetadata({ media, tags: allTags, className }) {
         () =>
             update(mediaId, { name, tags, description }).then(() => {
                 setChanged(false);
+                if (onClickClose !== null) {
+                    onClickClose();
+                }
             }),
-        [mediaId, name, tags, description, metadata, update],
+        [mediaId, name, tags, description, metadata, update, onClickClose],
+    );
+
+    const [deletedState, setDeletedState] = useState(null);
+    useEffect(() => {
+        setDeletedState(null);
+    }, [mediaId]);
+
+    const onDelete = useCallback(
+        () =>
+            deleteMedia(mediaId)
+                .then(() => {
+                    setChanged(false);
+                    setDeletedState(true);
+                    if (onClickClose !== null) {
+                        onClickClose();
+                    }
+                })
+                .catch(() => {
+                    setDeletedState(false);
+                }),
+        [mediaId, deleteMedia, onClickClose],
     );
 
     useEffect(() => {
@@ -197,6 +227,7 @@ function MediaMetadata({ media, tags: allTags, className }) {
                         </Button>
                     ) : null}
                 </div>
+
                 <h6>
                     <FormattedMessage
                         defaultMessage="Technical details"
@@ -312,6 +343,22 @@ function MediaMetadata({ media, tags: allTags, className }) {
                         </li>
                     ) : null}
                 </ul>
+                <div className="py-3">
+                    <Button theme="danger" outline onClick={onDelete}>
+                        <FormattedMessage
+                            defaultMessage="Delete media"
+                            description="Delete in Media Gallery"
+                        />
+                    </Button>
+                    {deletedState === false ? (
+                        <p className="pt-1 text-danger">
+                            <FormattedMessage
+                                defaultMessage="Sorry, this media is in use and could not be deleted."
+                                description="Delete error message in Media Gallery"
+                            />
+                        </p>
+                    ) : null}
+                </div>
             </div>
         </div>
     );

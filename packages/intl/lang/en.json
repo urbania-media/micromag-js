@@ -35,6 +35,9 @@
     "/62oe4": {
         "defaultMessage": "My files"
     },
+    "/KQ87r": {
+        "defaultMessage": "Delete media"
+    },
     "/OM5UY": {
         "defaultMessage": "Tags"
     },
@@ -464,6 +467,9 @@
     "JoWKee": {
         "defaultMessage": "Create your first screen"
     },
+    "JoyIgA": {
+        "defaultMessage": "Minimum points for this result"
+    },
     "K1BxIr": {
         "defaultMessage": "Edit metadata..."
     },
@@ -712,6 +718,9 @@
     },
     "XhgKcw": {
         "defaultMessage": "Move the map to position the place"
+    },
+    "Xr1v8l": {
+        "defaultMessage": "points gained"
     },
     "Y7bs1v": {
         "defaultMessage": "Description"
@@ -971,6 +980,9 @@
     "k+coTi": {
         "defaultMessage": "Image"
     },
+    "k+edUi": {
+        "defaultMessage": "Sorry, this media is in use and could not be deleted."
+    },
     "k81FRn": {
         "defaultMessage": "Message style"
     },
@@ -1048,9 +1060,6 @@
     },
     "nno1Pq": {
         "defaultMessage": "Button style"
-    },
-    "nuj2tw": {
-        "defaultMessage": "Minimum number of points for this result"
     },
     "o3R+FM": {
         "defaultMessage": "Select a closed captions file..."
@@ -1223,6 +1232,9 @@
     "upzOTm": {
         "defaultMessage": "Credits"
     },
+    "ur6G0U": {
+        "defaultMessage": "Load more"
+    },
     "uwcXzb": {
         "defaultMessage": "Image"
     },
@@ -1273,9 +1285,6 @@
     },
     "xCj1gI": {
         "defaultMessage": "Add a message"
-    },
-    "xF3g1l": {
-        "defaultMessage": "Number of points awarded for this answer"
     },
     "xFlbR7": {
         "defaultMessage": "Link copied!"

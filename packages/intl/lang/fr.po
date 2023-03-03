@@ -83,6 +83,12 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "Mes fichiers"
 
+# Delete in Media Gallery
+#: /KQ87r
+msgctxt "/KQ87r"
+msgid "Delete media"
+msgstr "Supprimer ce média"
+
 # Media label
 #: /OM5UY
 msgctxt "/OM5UY"
@@ -941,6 +947,12 @@ msgctxt "JoWKee"
 msgid "Create your first screen"
 msgstr "Créez votre premier écran"
 
+# Field label
+#: JoyIgA
+msgctxt "JoyIgA"
+msgid "Minimum points for this result"
+msgstr "Nb. minimum de points"
+
 # No value field label
 #: K1BxIr
 msgctxt "K1BxIr"
@@ -1262,7 +1274,7 @@ msgstr "Texte"
 #: SyMSDa
 msgctxt "SyMSDa"
 msgid "Published name style"
-msgstr "Style nom publié"
+msgstr "Style du nom publié"
 
 # Field label
 #: T0pi1u
@@ -1437,6 +1449,12 @@ msgstr "Galerie (fil) avec légendes"
 msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Déplacez la carte pour positionner"
+
+# Quiz label
+#: Xr1v8l
+msgctxt "Xr1v8l"
+msgid "points gained"
+msgstr "points accumulés"
 
 # Text field label
 #: Y7bs1v
@@ -1954,6 +1972,12 @@ msgctxt "k+coTi"
 msgid "Image"
 msgstr "Image"
 
+# Delete error message in Media Gallery
+#: k+edUi
+msgctxt "k+edUi"
+msgid "Sorry, this media is in use and could not be deleted."
+msgstr "Désolé, ce média est utilisé par un écran et ne peut pas être supprimé."
+
 # Field label
 #: k81FRn
 msgctxt "k81FRn"
@@ -2107,12 +2131,6 @@ msgstr "Métadonnées"
 msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Style du bouton"
-
-# Field label
-#: nuj2tw
-msgctxt "nuj2tw"
-msgid "Minimum number of points for this result"
-msgstr "Nombre de points minimum pour ce résultat"
 
 # Label when no value is provided to Closed captions field
 #: o3R+FM
@@ -2456,6 +2474,12 @@ msgctxt "upzOTm"
 msgid "Credits"
 msgstr "Crédits"
 
+# Load button label in Media Gallery
+#: ur6G0U
+msgctxt "ur6G0U"
+msgid "Load more"
+msgstr "En voir plus"
+
 # Breadcrumb field label
 #: uwcXzb
 msgctxt "uwcXzb"
@@ -2557,12 +2581,6 @@ msgstr "Toutes les sources"
 msgctxt "xCj1gI"
 msgid "Add a message"
 msgstr "Ajouter un message"
-
-# Field label
-#: xF3g1l
-msgctxt "xF3g1l"
-msgid "Number of points awarded for this answer"
-msgstr "Nombre de points donnés pour cette réponse"
 
 # Message displayed once text was copied successfully.
 #: xFlbR7

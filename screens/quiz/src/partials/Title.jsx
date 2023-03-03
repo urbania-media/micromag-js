@@ -23,6 +23,7 @@ const propTypes = {
     button: MicromagPropTypes.textElement,
     layout: PropTypes.string,
     focusable: PropTypes.bool,
+    buttonDisabled: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionPlaying: PropTypes.bool,
     transitionStagger: PropTypes.number,
@@ -37,6 +38,7 @@ const defaultProps = {
     description: null,
     layout: null,
     button: null,
+    buttonDisabled: false,
     focusable: false,
     transitions: null,
     transitionPlaying: false,
@@ -52,6 +54,7 @@ const Title = ({
     title,
     description,
     button,
+    buttonDisabled,
     focusable,
     transitions,
     transitionPlaying,
@@ -133,7 +136,7 @@ const Title = ({
                         delay={transitionStagger * 2}
                     >
                         <Button
-                            disabled={isPreview || isEdit}
+                            disabled={buttonDisabled}
                             focusable={focusable}
                             buttonStyle={button !== null ? button.buttonStyle : null}
                             className={styles.button}

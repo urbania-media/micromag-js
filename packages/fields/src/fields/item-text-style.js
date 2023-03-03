@@ -1,10 +1,10 @@
 export default {
     id: 'item-text-style',
-    component: 'field-with-form',
+    component: 'text-style-form',
     fields: [
         {
             name: 'style',
             type: 'text-style',
         },
-    ]
+    ],
 };

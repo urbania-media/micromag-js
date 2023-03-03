@@ -1,8 +1,9 @@
 import { useCallback } from 'react';
+
 import { useApi } from '../contexts/ApiContext';
 import useItems from './useItems';
 
-const useMedias = (query = null, page = null, count = null, opts) => {
+const useMedias = (query = null, page = null, count = null, opts = null) => {
     const api = useApi();
     const getItems = useCallback(
         (requestedPage = null) => api.medias.get(query, requestedPage, count),

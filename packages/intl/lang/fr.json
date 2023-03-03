@@ -35,6 +35,9 @@
     "/62oe4": {
         "defaultMessage": "Mes fichiers"
     },
+    "/KQ87r": {
+        "defaultMessage": "Supprimer ce média"
+    },
     "/OM5UY": {
         "defaultMessage": "Mots-clés"
     },
@@ -464,6 +467,9 @@
     "JoWKee": {
         "defaultMessage": "Créez votre premier écran"
     },
+    "JoyIgA": {
+        "defaultMessage": "Nb. minimum de points"
+    },
     "K1BxIr": {
         "defaultMessage": "Modifier les métadonnées"
     },
@@ -624,7 +630,7 @@
         "defaultMessage": "Texte"
     },
     "SyMSDa": {
-        "defaultMessage": "Style nom publié"
+        "defaultMessage": "Style du nom publié"
     },
     "T0pi1u": {
         "defaultMessage": "Avec barre de défilement"
@@ -712,6 +718,9 @@
     },
     "XhgKcw": {
         "defaultMessage": "Déplacez la carte pour positionner"
+    },
+    "Xr1v8l": {
+        "defaultMessage": "points accumulés"
     },
     "Y7bs1v": {
         "defaultMessage": "Description"
@@ -971,6 +980,9 @@
     "k+coTi": {
         "defaultMessage": "Image"
     },
+    "k+edUi": {
+        "defaultMessage": "Désolé, ce média est utilisé par un écran et ne peut pas être supprimé."
+    },
     "k81FRn": {
         "defaultMessage": "Style du texte"
     },
@@ -1048,9 +1060,6 @@
     },
     "nno1Pq": {
         "defaultMessage": "Style du bouton"
-    },
-    "nuj2tw": {
-        "defaultMessage": "Nombre de points minimum pour ce résultat"
     },
     "o3R+FM": {
         "defaultMessage": "Choisir un fichier de sous-titres"
@@ -1223,6 +1232,9 @@
     "upzOTm": {
         "defaultMessage": "Crédits"
     },
+    "ur6G0U": {
+        "defaultMessage": "En voir plus"
+    },
     "uwcXzb": {
         "defaultMessage": "Image"
     },
@@ -1273,9 +1285,6 @@
     },
     "xCj1gI": {
         "defaultMessage": "Ajouter un message"
-    },
-    "xF3g1l": {
-        "defaultMessage": "Nombre de points donnés pour cette réponse"
     },
     "xFlbR7": {
         "defaultMessage": "Lien copié!"

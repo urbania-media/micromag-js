@@ -1,10 +1,14 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
+import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState, useMemo, useRef } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button } from '@micromag/core/components';
 import {
     useScreenRenderContext,
     useScreenSize,
@@ -188,6 +192,9 @@ const QuizMultipleScreen = ({
     );
 
     const onAnswerTransitionEnd = useCallback(() => {
+        if (isEdit) {
+            return;
+        }
         const nextIndex = questionIndex + 1;
         const questionsCount = questions.length;
         if (nextIndex < questionsCount) {
@@ -195,7 +202,7 @@ const QuizMultipleScreen = ({
         } else if (nextIndex === questionsCount) {
             setQuestionIndex('results');
         }
-    }, [questions, questionIndex, setQuestionIndex]);
+    }, [questions, questionIndex, setQuestionIndex, isEdit]);
 
     const onClickIntroButton = useCallback(() => {
         setQuestionIndex(0);
@@ -340,6 +347,10 @@ const QuizMultipleScreen = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const onQuizReset = useCallback(() => {
+        setUserAnswers(null);
+    }, [setUserAnswers]);
+
     let verticalAlign = layout;
     if (isIntro && introLayout !== null) {
         verticalAlign = introLayout;
@@ -348,6 +359,9 @@ const QuizMultipleScreen = ({
     } else if (isResults && resultLayout !== null) {
         verticalAlign = questionLayout;
     }
+
+    const showPoints = isEdit;
+    const showReset = isEdit;
 
     return (
         <div
@@ -361,6 +375,19 @@ const QuizMultipleScreen = ({
             data-screen-ready
         >
             <Container width={width} height={height} className={styles.content}>
+                {showPoints && currentPoints !== null && currentPoints > 0 ? (
+                    <div className={styles.points}>
+                        {`${currentPoints} `}
+                        <FormattedMessage defaultMessage="points gained" description="Quiz label" />
+                    </div>
+                ) : null}
+                {showReset ? (
+                    <Button
+                        className={styles.reset}
+                        icon={<FontAwesomeIcon icon={faRedo} size="md" />}
+                        onClick={onQuizReset}
+                    />
+                ) : null}
                 <Scroll
                     verticalAlign={verticalAlign}
                     disabled={scrollingDisabled}
@@ -376,6 +403,9 @@ const QuizMultipleScreen = ({
                                         description={description}
                                         layout={introLayout || layout}
                                         button={introButton}
+                                        buttonDisabled={
+                                            (questions || []).length < 1 || isEdit || isPreview
+                                        }
                                         focusable={current && isView}
                                         transitions={transitions}
                                         transitionPlaying={transitionPlaying}

@@ -145,7 +145,10 @@ const FieldRow = ({
                         'col',
                         styles.colValue,
                         'align-self-center',
-                        { [styles.colMinWidth]: isListItem },
+                        {
+                            [styles.colMinWidth]: isListItem,
+                            [styles.colButtonWidth]: isClickable && buttonTheme !== null,
+                        },
                     ])}
                 >
                     <span className={classNames(['d-flex', 'justify-content-end', 'me-1'])}>
@@ -213,6 +216,7 @@ const FieldRow = ({
             {isClickable ? (
                 <Button
                     className={classNames([
+                        styles.arrow,
                         'd-block',
                         'w-100',
                         'px-2',
