@@ -1972,12 +1972,6 @@ msgctxt "k+coTi"
 msgid "Image"
 msgstr "Image"
 
-# Delete error message in Media Gallery
-#: k+edUi
-msgctxt "k+edUi"
-msgid "Sorry, this media is in use and could not be deleted."
-msgstr "Désolé, ce média est utilisé par un écran et ne peut pas être supprimé."
-
 # Field label
 #: k81FRn
 msgctxt "k81FRn"
@@ -2317,6 +2311,12 @@ msgstr "Aucun marqueur"
 msgctxt "ro6yHS"
 msgid "Map with image markers"
 msgstr "Carte avec images"
+
+# Delete error message in Media Gallery
+#: rqbRV2
+msgctxt "rqbRV2"
+msgid "Sorry, this media could not be deleted."
+msgstr "Désolé, ce média n'a pas pu être supprimé."
 
 # Field label
 #: ru3tjH

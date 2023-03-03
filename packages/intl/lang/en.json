@@ -980,9 +980,6 @@
     "k+coTi": {
         "defaultMessage": "Image"
     },
-    "k+edUi": {
-        "defaultMessage": "Sorry, this media is in use and could not be deleted."
-    },
     "k81FRn": {
         "defaultMessage": "Message style"
     },
@@ -1153,6 +1150,9 @@
     },
     "ro6yHS": {
         "defaultMessage": "Map with image markers"
+    },
+    "rqbRV2": {
+        "defaultMessage": "Sorry, this media could not be deleted."
     },
     "ru3tjH": {
         "defaultMessage": "Bad answer color"

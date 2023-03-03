@@ -980,9 +980,6 @@
     "k+coTi": {
         "defaultMessage": "Image"
     },
-    "k+edUi": {
-        "defaultMessage": "Désolé, ce média est utilisé par un écran et ne peut pas être supprimé."
-    },
     "k81FRn": {
         "defaultMessage": "Style du texte"
     },
@@ -1153,6 +1150,9 @@
     },
     "ro6yHS": {
         "defaultMessage": "Carte avec images"
+    },
+    "rqbRV2": {
+        "defaultMessage": "Désolé, ce média n'a pas pu être supprimé."
     },
     "ru3tjH": {
         "defaultMessage": "Mauvaise réponse"

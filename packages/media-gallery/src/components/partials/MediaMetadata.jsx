@@ -18,6 +18,7 @@ const propTypes = {
     media: MicromagPropTypes.media,
     tags: MicromagPropTypes.tags,
     onClickClose: PropTypes.func,
+    onClickDelete: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -25,10 +26,11 @@ const defaultProps = {
     media: null,
     tags: [],
     onClickClose: null,
+    onClickDelete: null,
     className: null,
 };
 
-function MediaMetadata({ media, tags: allTags, onClickClose, className }) {
+function MediaMetadata({ media, tags: allTags, onClickClose, onClickDelete, className }) {
     const {
         id: mediaId,
         type,
@@ -117,8 +119,8 @@ function MediaMetadata({ media, tags: allTags, onClickClose, className }) {
                 .then(() => {
                     setChanged(false);
                     setDeletedState(true);
-                    if (onClickClose !== null) {
-                        onClickClose();
+                    if (onClickDelete !== null) {
+                        onClickDelete(mediaId);
                     }
                 })
                 .catch(() => {
@@ -352,7 +354,7 @@ function MediaMetadata({ media, tags: allTags, onClickClose, className }) {
                     {deletedState === false ? (
                         <p className="pt-1 text-danger">
                             <FormattedMessage
-                                defaultMessage="Sorry, this media is in use and could not be deleted."
+                                defaultMessage="Sorry, this media could not be deleted."
                                 description="Delete error message in Media Gallery"
                             />
                         </p>

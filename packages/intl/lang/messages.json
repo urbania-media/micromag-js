@@ -1306,10 +1306,6 @@
     "defaultMessage": "Image",
     "description": "Visuals field label"
   },
-  "k+edUi": {
-    "defaultMessage": "Sorry, this media is in use and could not be deleted.",
-    "description": "Delete error message in Media Gallery"
-  },
   "k81FRn": {
     "defaultMessage": "Message style",
     "description": "Field label"
@@ -1535,6 +1531,10 @@
   "ro6yHS": {
     "defaultMessage": "Map with image markers",
     "description": "Screen title"
+  },
+  "rqbRV2": {
+    "defaultMessage": "Sorry, this media could not be deleted.",
+    "description": "Delete error message in Media Gallery"
   },
   "ru3tjH": {
     "defaultMessage": "Bad answer color",

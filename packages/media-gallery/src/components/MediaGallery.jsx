@@ -134,10 +134,25 @@ function MediaGallery({
     }, [defaultFilters, queryValue, setQueryValue]);
 
     const onClickItemInfo = useCallback((media) => setMetadataMedia(media), [setMetadataMedia]);
+
     const onMetadataClickClose = useCallback(() => {
         setMetadataMedia(null);
         refresh();
     }, [refresh, setMetadataMedia]);
+
+    const onMetadataClickDelete = useCallback(
+        (mediaId = null) => {
+            const { id: selectedId = null } = selectedMedia || {};
+            if (mediaId !== null && mediaId === selectedId && onClickMedia !== null) {
+                onClickMedia(null);
+            } else {
+                setMetadataMedia(null);
+            }
+            refresh();
+        },
+        [refresh, setMetadataMedia, selectedMedia],
+    );
+
     // console.log(loadedMedias);
     // Navigation
     const onClickBack = useCallback(() => setMetadataMedia(null), [setMetadataMedia]);
@@ -233,6 +248,7 @@ function MediaGallery({
                         media={metadataMedia}
                         tags={tags}
                         onClickClose={onMetadataClickClose}
+                        onClickDelete={onMetadataClickDelete}
                     />
                 </div>
             </div>

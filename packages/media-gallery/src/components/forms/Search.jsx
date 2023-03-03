@@ -72,7 +72,7 @@ const Search = ({ value, loading, onChange, onFocus, onBlur, onClickIcon, classN
         >
             <div className="input-group w-100">
                 <button type="button" className="btn" onClick={onClickSearchIcon}>
-                    <FontAwesomeIcon icon={loading ? faSpinner : faSearch} />
+                    <FontAwesomeIcon icon={loading ? faSpinner : faSearch} spin={loading} />
                 </button>
                 <input
                     className={classNames([
