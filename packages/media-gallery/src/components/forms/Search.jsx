@@ -86,7 +86,7 @@ const Search = ({ value, loading, onChange, onFocus, onBlur, onClickIcon, classN
                     type="text"
                     value={value || ''}
                     placeholder={intl.formatMessage({
-                        defaultMessage: 'Search medias...',
+                        defaultMessage: 'Search medias',
                         description: 'Input placeholder',
                     })}
                     onChange={onSearchChange}

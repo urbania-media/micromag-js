@@ -713,6 +713,12 @@ msgctxt "DWEzCv"
 msgid "Select a video..."
 msgstr "Sélectionner une vidéo"
 
+# Save error message in Media Gallery
+#: DYjRd/
+msgctxt "DYjRd/"
+msgid "Sorry, this media could not be saved."
+msgstr "Désolé, ce média n'a pas pu être sauvegardé."
+
 # Media Gallery
 #: EDFyUp
 msgctxt "EDFyUp"
@@ -778,12 +784,6 @@ msgstr "Boucle"
 msgctxt "F59wsl"
 msgid "Urbania horoscope"
 msgstr "Urbania Horoscope"
-
-# Input placeholder
-#: FFBsfJ
-msgctxt "FFBsfJ"
-msgid "Search medias..."
-msgstr "Cherchez un média..."
 
 # Alignment label
 #: FKOWH0
@@ -2083,6 +2083,12 @@ msgstr "Images"
 msgctxt "mv37oK"
 msgid "Dimension"
 msgstr "Dimension"
+
+# Input placeholder
+#: n/SxMs
+msgctxt "n/SxMs"
+msgid "Search medias"
+msgstr "Chercher dans les médias"
 
 # Button label in answers field
 #: n2teag

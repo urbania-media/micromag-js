@@ -53,11 +53,11 @@
     }
 
     .infoButton,
-    .closeIcon {
+    .closeButton {
         position: absolute;
         top: 0;
         padding: math.div($spacer, 2);
-
+        transition: opacity 0.15s ease-out;
         color: $white;
         filter: drop-shadow(0 0 0.75rem $black);
 
@@ -66,14 +66,17 @@
             height: 1rem;
             margin-right: 0;
         }
+
+        &:hover {
+            opacity: 0.8;
+        }
     }
 
     .infoButton {
         left: 0;
     }
 
-    .closeIcon {
+    .closeButton {
         right: 0;
-        pointer-events: none;
     }
 }

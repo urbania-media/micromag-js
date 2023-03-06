@@ -19,6 +19,7 @@ const propTypes = {
     className: PropTypes.string,
     onClickItem: PropTypes.func,
     onClickItemInfo: PropTypes.func,
+    onClickRemoveItem: PropTypes.func,
 };
 
 const defaultProps = {
@@ -30,6 +31,7 @@ const defaultProps = {
     className: null,
     onClickItem: null,
     onClickItemInfo: null,
+    onClickRemoveItem: null,
 };
 
 function Gallery({
@@ -41,6 +43,7 @@ function Gallery({
     className,
     onClickItem,
     onClickItemInfo,
+    onClickRemoveItem,
 }) {
     const { ref, width } = useDimensionObserver();
 
@@ -81,6 +84,13 @@ function Gallery({
                             onClick={onClickItem !== null ? () => onClickItem(item) : null}
                             onClickInfo={
                                 onClickItemInfo !== null ? () => onClickItemInfo(item) : null
+                            }
+                            onClickRemove={
+                                onClickRemoveItem !== null
+                                    ? () => {
+                                          onClickRemoveItem();
+                                      }
+                                    : null
                             }
                             withInfoButton={withInfoButton}
                         />

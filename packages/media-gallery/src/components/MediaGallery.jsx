@@ -118,14 +118,25 @@ function MediaGallery({
     const [metadataMedia, setMetadataMedia] = useState(null);
     const onClickItem = useCallback(
         (media) => {
+            const { id: mediaId = null } = media || {};
+            const { id: selectedId = null } = selectedMedia || {};
+            const different = mediaId !== selectedId;
             if (!isPicker) {
                 setMetadataMedia(media);
             } else if (onClickMedia !== null) {
-                onClickMedia(media);
+                if (different) {
+                    onClickMedia(media);
+                }
             }
         },
-        [isPicker, setMetadataMedia, onClickMedia],
+        [isPicker, setMetadataMedia, onClickMedia, selectedMedia],
     );
+    const onClickRemoveItem = useCallback(() => {
+        setMetadataMedia(null);
+        if (onClickMedia !== null) {
+            onClickMedia(null);
+        }
+    }, [isPicker, setMetadataMedia, onClickMedia]);
 
     const refresh = useCallback(() => {
         // TODO: refactor useItems to enable this
@@ -224,6 +235,7 @@ function MediaGallery({
                             isSmall={isSmall}
                             onClickItem={onClickItem}
                             onClickItemInfo={onClickItemInfo}
+                            onClickRemoveItem={onClickRemoveItem}
                         />
                     ) : null}
                     {!allLoaded ? (

@@ -350,6 +350,9 @@
     "DWEzCv": {
         "defaultMessage": "Sélectionner une vidéo"
     },
+    "DYjRd/": {
+        "defaultMessage": "Désolé, ce média n'a pas pu être sauvegardé."
+    },
     "EDFyUp": {
         "defaultMessage": "Texte alternatif (accessibilité)"
     },
@@ -382,9 +385,6 @@
     },
     "F59wsl": {
         "defaultMessage": "Urbania Horoscope"
-    },
-    "FFBsfJ": {
-        "defaultMessage": "Cherchez un média..."
     },
     "FKOWH0": {
         "defaultMessage": "align. droite"
@@ -1036,6 +1036,9 @@
     },
     "mv37oK": {
         "defaultMessage": "Dimension"
+    },
+    "n/SxMs": {
+        "defaultMessage": "Chercher dans les médias"
     },
     "n2teag": {
         "defaultMessage": "Ajouter une réponse"

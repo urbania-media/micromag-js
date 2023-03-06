@@ -23,6 +23,7 @@ const propTypes = {
     className: PropTypes.string,
     onClick: PropTypes.func,
     onClickInfo: PropTypes.func,
+    onClickRemove: PropTypes.func,
 };
 
 const defaultProps = {
@@ -33,6 +34,7 @@ const defaultProps = {
     className: null,
     onClick: null,
     onClickInfo: null,
+    onClickRemove: null,
 };
 
 const GalleryItem = ({
@@ -43,6 +45,7 @@ const GalleryItem = ({
     className,
     onClick,
     onClickInfo,
+    onClickRemove,
 }) => {
     const { type, thumbnail_url: thumbnail = null, name, size } = item;
     let title = name;
@@ -51,11 +54,11 @@ const GalleryItem = ({
     } else {
         title = middleEllipsis(name, Math.floor(Math.max(25, width / 3 / 8)));
     }
+
     return (
         <Card
             image={
                 <button
-                    type="button"
                     className={classNames([
                         'd-block',
                         'position-relative',
@@ -67,6 +70,7 @@ const GalleryItem = ({
                         'text-black',
                         styles.imageButton,
                     ])}
+                    type="button"
                     onClick={onClick}
                 >
                     <div
@@ -85,9 +89,13 @@ const GalleryItem = ({
                         </Button>
                     ) : null}
                     {selected ? (
-                        <div className={classNames(['text-danger', styles.closeIcon])}>
+                        <Button
+                            className={classNames(['text-danger', styles.closeButton])}
+                            onClick={onClickRemove}
+                            withoutStyle
+                        >
                             <FontAwesomeIcon icon={faTimesCircle} className={styles.icon} />
-                        </div>
+                        </Button>
                     ) : null}
                 </>
             }

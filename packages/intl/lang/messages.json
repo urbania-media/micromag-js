@@ -467,6 +467,10 @@
     "defaultMessage": "Select a video...",
     "description": "Label when no value is provided to Video field"
   },
+  "DYjRd/": {
+    "defaultMessage": "Sorry, this media could not be saved.",
+    "description": "Save error message in Media Gallery"
+  },
   "EDFyUp": {
     "defaultMessage": "Alternative text (accessibility)",
     "description": "Media Gallery"
@@ -510,10 +514,6 @@
   "F59wsl": {
     "defaultMessage": "Urbania horoscope",
     "description": "Urbania screen title"
-  },
-  "FFBsfJ": {
-    "defaultMessage": "Search medias...",
-    "description": "Input placeholder"
   },
   "FKOWH0": {
     "defaultMessage": "right aligned",
@@ -1379,6 +1379,10 @@
   "mv37oK": {
     "defaultMessage": "Dimension",
     "description": "Label in Media Gallery"
+  },
+  "n/SxMs": {
+    "defaultMessage": "Search medias",
+    "description": "Input placeholder"
   },
   "n2teag": {
     "defaultMessage": "Add an answer",

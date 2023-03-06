@@ -350,6 +350,9 @@
     "DWEzCv": {
         "defaultMessage": "Select a video..."
     },
+    "DYjRd/": {
+        "defaultMessage": "Sorry, this media could not be saved."
+    },
     "EDFyUp": {
         "defaultMessage": "Alternative text (accessibility)"
     },
@@ -382,9 +385,6 @@
     },
     "F59wsl": {
         "defaultMessage": "Urbania horoscope"
-    },
-    "FFBsfJ": {
-        "defaultMessage": "Search medias..."
     },
     "FKOWH0": {
         "defaultMessage": "right aligned"
@@ -1036,6 +1036,9 @@
     },
     "mv37oK": {
         "defaultMessage": "Dimension"
+    },
+    "n/SxMs": {
+        "defaultMessage": "Search medias"
     },
     "n2teag": {
         "defaultMessage": "Add an answer"

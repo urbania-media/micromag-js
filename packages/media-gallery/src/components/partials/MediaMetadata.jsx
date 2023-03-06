@@ -97,15 +97,31 @@ function MediaMetadata({ media, tags: allTags, onClickClose, onClickDelete, clas
         [tags, setDescription, setChanged],
     );
 
+    const [saveState, setSaveState] = useState(null);
     const onSave = useCallback(
         () =>
-            update(mediaId, { name, tags, description }).then(() => {
-                setChanged(false);
-                if (onClickClose !== null) {
-                    onClickClose();
-                }
-            }),
-        [mediaId, name, tags, description, metadata, update, onClickClose],
+            update(mediaId, { name, tags, description })
+                .then(() => {
+                    setChanged(false);
+                    setSaveState(null);
+                    if (onClickClose !== null) {
+                        onClickClose();
+                    }
+                })
+                .catch(() => {
+                    setSaveState(false);
+                }),
+        [
+            mediaId,
+            name,
+            tags,
+            description,
+            metadata,
+            update,
+            onClickClose,
+            setChanged,
+            setSaveState,
+        ],
     );
 
     const [deletedState, setDeletedState] = useState(null);
@@ -227,8 +243,15 @@ function MediaMetadata({ media, tags: allTags, onClickClose, onClickDelete, clas
                             />
                         </Button>
                     ) : null}
+                    {saveState === false ? (
+                        <p className="pt-1 text-danger">
+                            <FormattedMessage
+                                defaultMessage="Sorry, this media could not be saved."
+                                description="Save error message in Media Gallery"
+                            />
+                        </p>
+                    ) : null}
                 </div>
-
                 <h6>
                     <FormattedMessage
                         defaultMessage="Technical details"

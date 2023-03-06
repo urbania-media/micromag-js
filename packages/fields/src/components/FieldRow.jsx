@@ -231,7 +231,9 @@ const FieldRow = ({
                     onClick={onClickRow}
                 >
                     <span className="row align-items-center">
-                        <span className={classNames(['col', styles.colValue])}>{children}</span>
+                        <span className={classNames(['col', 'text-truncate', styles.colValue])}>
+                            {children}
+                        </span>
                         {arrowElement}
                     </span>
                 </Button>
