@@ -97,14 +97,17 @@ function MediaGallery({
         [setFiltersValue, setQueryValue, throttle],
     );
 
+    const [defaultItems, setDefaultItems] = useState(initialMedias);
+
     // Items
     const {
-        allMedias: loadedMedias,
+        items: loadedMedias,
         loading = false,
         loadNextPage = null,
         allLoaded = false,
+        reset,
     } = useMedias(queryValue, 1, 30, {
-        ...(initialMedias !== null ? { items: initialMedias } : null),
+        pages: defaultItems,
     });
 
     // Temporary type filter
@@ -138,41 +141,32 @@ function MediaGallery({
         }
     }, [isPicker, setMetadataMedia, onClickMedia]);
 
-    const refresh = useCallback(() => {
-        // TODO: refactor useItems to enable this
-        // setPageNumber(1);
-        // setQueryValue({ ...defaultFilters, ...queryValue });
-    }, [defaultFilters, queryValue, setQueryValue]);
-
     const onClickItemInfo = useCallback((media) => setMetadataMedia(media), [setMetadataMedia]);
 
     const onMetadataClickClose = useCallback(() => {
         setMetadataMedia(null);
-        refresh();
-    }, [refresh, setMetadataMedia]);
+    }, [setMetadataMedia]);
+
+    const onMetadataClickSave = useCallback(() => {
+        reset();
+    }, [reset]);
 
     const onMetadataClickDelete = useCallback(
         (mediaId = null) => {
             const { id: selectedId = null } = selectedMedia || {};
             if (mediaId !== null && mediaId === selectedId && onClickMedia !== null) {
                 onClickMedia(null);
-            } else {
-                setMetadataMedia(null);
             }
-            refresh();
+            setMetadataMedia(null);
+            reset();
         },
-        [refresh, setMetadataMedia, selectedMedia],
+        [setMetadataMedia, selectedMedia],
     );
 
-    // console.log(loadedMedias);
     // Navigation
-    const onClickBack = useCallback(() => setMetadataMedia(null), [setMetadataMedia]);
-
-    // Reset all filters except source
-    // const onClickCancel = useCallback(
-    //     () => setFiltersValue({ ...defaultFilters, source: filtersValue.source || null }),
-    //     [defaultFilters, filtersValue, setFiltersValue],
-    // );
+    const onClickBack = useCallback(() => {
+        setMetadataMedia(null);
+    }, [setMetadataMedia, setDefaultItems, setQueryValue]);
 
     // Upload modal
     const [uploading, setUploading] = useState(false);
@@ -260,6 +254,7 @@ function MediaGallery({
                         media={metadataMedia}
                         tags={tags}
                         onClickClose={onMetadataClickClose}
+                        onClickSave={onMetadataClickSave}
                         onClickDelete={onMetadataClickDelete}
                     />
                 </div>

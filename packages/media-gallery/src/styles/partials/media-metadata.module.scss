@@ -32,10 +32,16 @@
         position: absolute;
         bottom: 0;
         width: 100%;
+        background-color: $black;
 
         .player {
             display: block;
             margin: 0 auto;
         }
+    }
+
+    .placeholder {
+        height: 60px;
+        background-color: $black;
     }
 }

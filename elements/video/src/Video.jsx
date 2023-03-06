@@ -139,7 +139,7 @@ const Video = ({
         if (mediaUrl) {
             id = setTimeout(() => {
                 setShowLoading(true);
-            }, 1000);
+            }, 2000);
         }
         return () => {
             clearTimeout(id);

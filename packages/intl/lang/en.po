@@ -515,6 +515,12 @@ msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Parameters"
 
+# Button label in Media Gallery
+#: 8TbpT7
+msgctxt "8TbpT7"
+msgid "Remove"
+msgstr "Remove"
+
 # Button label
 #: 8oczXQ
 msgctxt "8oczXQ"
@@ -1905,6 +1911,12 @@ msgstr "Select a font family..."
 msgctxt "i6bmbD"
 msgid "Button"
 msgstr "Button"
+
+# Button label in Media Gallery
+#: iCf/MP
+msgctxt "iCf/MP"
+msgid "Edit"
+msgstr "Edit"
 
 # Label when there is no item
 #: iHV3W3

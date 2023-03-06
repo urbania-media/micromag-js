@@ -2,9 +2,12 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import styles from '../../styles/partials/media.module.scss';
+
 import Label from './Label';
+
+import styles from '../../styles/partials/media.module.scss';
 
 const propTypes = {
     thumbnail: PropTypes.node,

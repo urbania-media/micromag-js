@@ -71,11 +71,12 @@ class MediasApi extends Base {
         );
     }
 
-    delete(id) {
+    delete(id, data) {
         return this.requestDelete(
             this.route('delete', {
                 media: id,
             }),
+            data,
         );
     }
 }

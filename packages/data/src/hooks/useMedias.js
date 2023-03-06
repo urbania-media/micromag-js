@@ -1,26 +1,25 @@
 import { useCallback } from 'react';
 
 import { useApi } from '../contexts/ApiContext';
-import useItems from './useItems';
+// import useItems from './useItems';
+import useItemsPaginated from './useItemsPaginated';
 
-const useMedias = (query = null, page = null, count = null, opts = null) => {
+const useMedias = (query = null, page = 1, count = 10, opts = null) => {
     const api = useApi();
-    const getItems = useCallback(
-        (requestedPage = null) => api.medias.get(query, requestedPage, count),
-        [api, query, count],
+
+    const getPage = useCallback(
+        (newQuery, requestedPage = null, requestedCount = null) =>
+            api.medias.get(newQuery, requestedPage, requestedCount),
+        [api],
     );
-    const { items, pageItems, ...request } = useItems({
-        getPage: page !== null ? getItems : null,
-        getItems: page === null ? getItems : null,
+
+    return useItemsPaginated({
+        getPage,
+        query,
         page,
+        count,
         ...opts,
     });
-    // console.log('medias', items);
-    return {
-        medias: page !== null ? pageItems : items,
-        allMedias: items,
-        ...request,
-    };
 };
 
 export default useMedias;

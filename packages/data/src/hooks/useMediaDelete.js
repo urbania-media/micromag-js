@@ -6,9 +6,9 @@ const useMediaDelete = () => {
     const [deleting, setDeleting] = useState(false);
     const api = useApi();
     const deleteMedia = useCallback(
-        (id, data) => {
+        (id, confirm = false) => {
             setDeleting(true);
-            return api.medias.delete(id, data).then((response) => {
+            return api.medias.delete(id, { confirm }).then((response) => {
                 setDeleting(false);
                 return response;
             });

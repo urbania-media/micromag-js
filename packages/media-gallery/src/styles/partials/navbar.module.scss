@@ -18,12 +18,21 @@
 
     .mediaPreview {
         display: block;
-        width: 100px;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
         margin-right: 5px;
 
         img {
             display: block;
-            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .thumbnail {
+            margin-right: 0 !important;
+
         }
     }
 

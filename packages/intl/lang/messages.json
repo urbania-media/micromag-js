@@ -335,6 +335,10 @@
     "defaultMessage": "Parameters",
     "description": "field label"
   },
+  "8TbpT7": {
+    "defaultMessage": "Remove",
+    "description": "Button label in Media Gallery"
+  },
   "8oczXQ": {
     "defaultMessage": "Add a marker",
     "description": "Button label"
@@ -1261,6 +1265,10 @@
   "i6bmbD": {
     "defaultMessage": "Button",
     "description": "Field label"
+  },
+  "iCf/MP": {
+    "defaultMessage": "Edit",
+    "description": "Button label in Media Gallery"
   },
   "iHV3W3": {
     "defaultMessage": "No entry...",

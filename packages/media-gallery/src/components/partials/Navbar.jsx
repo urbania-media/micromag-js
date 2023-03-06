@@ -1,4 +1,5 @@
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons/faInfoCircle';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -248,41 +249,69 @@ function Navbar({
                 {media === null ? (
                     <div
                         className={classNames([
-                            'list-group-item rounded w-100 mw-100 navbar-text d-flex align-items-center justify-content-between mb-2',
-                            { 'border border-dark py-1 px-1': selectedMedia !== null },
+                            'list-group-item rounded w-100 mw-100 navbar-text mb-2',
+                            { 'border border-dark bg-dark py-2 px-2': selectedMedia !== null },
                         ])}
                     >
                         {selectedMedia !== null ? (
-                            <Button
-                                className={classNames([
-                                    styles.mediaLabel,
-                                    'd-flex px-0 py-0 me-1 align-items-center border-0',
-                                ])}
-                                onClick={() => onClickItemInfo(selectedMedia)}
-                                theme="primary"
-                                outline
-                            >
-                                <Media
-                                    className={styles.mediaPreview}
-                                    thumbnail={selectedMedia?.thumbnail_url}
-                                />
-                                <span
-                                    className={classNames([
-                                        styles.mediaLabel,
-                                        'd-inline-block',
-                                        'text-truncate',
-                                        'mx-1',
-                                        'me-2',
-                                    ])}
-                                >
-                                    {selectedMedia.name || (
+                            <div className="">
+                                <div className="d-flex align-items-center mb-2 overflow-hidden">
+                                    <Media
+                                        className={styles.mediaPreview}
+                                        thumbnailClassName={styles.thumbnail}
+                                        thumbnail={selectedMedia?.thumbnail_url}
+                                        thumbnailAlign="center"
+                                    />
+                                    <span
+                                        className={classNames([
+                                            styles.mediaLabel,
+                                            'd-inline-block',
+                                            'text-truncate',
+                                            'mx-1',
+                                            'me-2',
+                                        ])}
+                                    >
+                                        {selectedMedia.name || (
+                                            <FormattedMessage
+                                                defaultMessage="[no title]"
+                                                description="No title label in Media Gallery"
+                                            />
+                                        )}
+                                    </span>
+                                </div>
+                                <div className="d-flex w-100 align-content-center justify-content-between">
+                                    <Button
+                                        onClick={() => onClickItemInfo(selectedMedia)}
+                                        theme="secondary"
+                                        size="sm"
+                                        iconPosition="right"
+                                        icon={<FontAwesomeIcon icon={faInfoCircle} />}
+                                        outline
+                                    >
                                         <FormattedMessage
-                                            defaultMessage="[no title]"
-                                            description="No title label in Media Gallery"
+                                            defaultMessage="Edit"
+                                            description="Button label in Media Gallery"
                                         />
-                                    )}
-                                </span>
-                            </Button>
+                                    </Button>
+                                    <Button
+                                        theme="secondary"
+                                        size="sm"
+                                        outline
+                                        iconPosition="right"
+                                        icon={<FontAwesomeIcon icon={faTimes} />}
+                                        onClick={onClickRemove}
+                                        title={intl.formatMessage({
+                                            defaultMessage: 'Remove',
+                                            description: 'Remove button label in Media Gallery',
+                                        })}
+                                    >
+                                        <FormattedMessage
+                                            defaultMessage="Remove"
+                                            description="Button label in Media Gallery"
+                                        />
+                                    </Button>
+                                </div>
+                            </div>
                         ) : (
                             <Button
                                 className="w-100"
@@ -296,17 +325,6 @@ function Navbar({
                             >
                                 <span className="ps-2">{uploadMessage}</span>
                             </Button>
-                        )}
-                        {selectedMedia === null ? null : (
-                            <Button
-                                theme="primary"
-                                icon={<FontAwesomeIcon icon={faTimes} />}
-                                onClick={onClickRemove}
-                                title={intl.formatMessage({
-                                    defaultMessage: 'Remove',
-                                    description: 'Remove button label in Media Gallery',
-                                })}
-                            />
                         )}
                     </div>
                 ) : null}
