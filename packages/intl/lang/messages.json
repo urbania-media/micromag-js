@@ -111,6 +111,10 @@
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
   },
+  "2FD6tj": {
+    "defaultMessage": "This media is used by the following documents:",
+    "description": "Delete error message in Media Gallery"
+  },
   "2J05S0": {
     "defaultMessage": "Images",
     "description": "Media label"
@@ -958,6 +962,10 @@
     "defaultMessage": "Gallery feed with captions",
     "description": "GalleryFeedCaptions screen title"
   },
+  "Xb6r3F": {
+    "defaultMessage": "Cancel",
+    "description": "Delete in Media Gallery"
+  },
   "XhgKcw": {
     "defaultMessage": "Move the map to position the place",
     "description": "Move the map to position the place description"
@@ -1540,6 +1548,10 @@
     "defaultMessage": "No marker...",
     "description": "Label when there is no item"
   },
+  "rkn2jO": {
+    "defaultMessage": "Confirm and delete media",
+    "description": "Delete in Media Gallery"
+  },
   "ro6yHS": {
     "defaultMessage": "Map with image markers",
     "description": "Screen title"
@@ -1715,6 +1727,10 @@
   "wx5PI0": {
     "defaultMessage": "Heading",
     "description": "Heading field label"
+  },
+  "wy2g+x": {
+    "defaultMessage": "Are you sure you want to continue?",
+    "description": "Delete error message in Media Gallery"
   },
   "xAzv6g": {
     "defaultMessage": "All sources",

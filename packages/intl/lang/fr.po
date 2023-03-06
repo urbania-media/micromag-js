@@ -179,6 +179,12 @@ msgctxt "2/F1Q7"
 msgid "#{index}"
 msgstr "#{index}"
 
+# Delete error message in Media Gallery
+#: 2FD6tj
+msgctxt "2FD6tj"
+msgid "This media is used by the following documents:"
+msgstr "Ce média est utilisé par les documents suivants:"
+
 # Media label
 #: 2J05S0
 msgctxt "2J05S0"
@@ -1450,6 +1456,12 @@ msgctxt "XTJGzY"
 msgid "Gallery feed with captions"
 msgstr "Galerie (fil) avec légendes"
 
+# Delete in Media Gallery
+#: Xb6r3F
+msgctxt "Xb6r3F"
+msgid "Cancel"
+msgstr "Annuler"
+
 # Move the map to position the place description
 #: XhgKcw
 msgctxt "XhgKcw"
@@ -2324,6 +2336,12 @@ msgctxt "rdFCsN"
 msgid "No marker..."
 msgstr "Aucun marqueur"
 
+# Delete in Media Gallery
+#: rkn2jO
+msgctxt "rkn2jO"
+msgid "Confirm and delete media"
+msgstr "Confirmer la suppression"
+
 # Screen title
 #: ro6yHS
 msgctxt "ro6yHS"
@@ -2587,6 +2605,12 @@ msgstr "Sélectionner un fichier audio"
 msgctxt "wx5PI0"
 msgid "Heading"
 msgstr "Titre"
+
+# Delete error message in Media Gallery
+#: wy2g+x
+msgctxt "wy2g+x"
+msgid "Are you sure you want to continue?"
+msgstr "Êtes-vous certain.e de vouloir continuer?"
 
 # Media gallery source
 #: xAzv6g

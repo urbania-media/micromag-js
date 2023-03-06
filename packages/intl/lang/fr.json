@@ -83,6 +83,9 @@
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
+    "2FD6tj": {
+        "defaultMessage": "Ce média est utilisé par les documents suivants:"
+    },
     "2J05S0": {
         "defaultMessage": "Images"
     },
@@ -719,6 +722,9 @@
     "XTJGzY": {
         "defaultMessage": "Galerie (fil) avec légendes"
     },
+    "Xb6r3F": {
+        "defaultMessage": "Annuler"
+    },
     "XhgKcw": {
         "defaultMessage": "Déplacez la carte pour positionner"
     },
@@ -1157,6 +1163,9 @@
     "rdFCsN": {
         "defaultMessage": "Aucun marqueur"
     },
+    "rkn2jO": {
+        "defaultMessage": "Confirmer la suppression"
+    },
     "ro6yHS": {
         "defaultMessage": "Carte avec images"
     },
@@ -1288,6 +1297,9 @@
     },
     "wx5PI0": {
         "defaultMessage": "Titre"
+    },
+    "wy2g+x": {
+        "defaultMessage": "Êtes-vous certain.e de vouloir continuer?"
     },
     "xAzv6g": {
         "defaultMessage": "Toutes les sources"

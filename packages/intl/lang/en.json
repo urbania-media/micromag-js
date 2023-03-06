@@ -83,6 +83,9 @@
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
+    "2FD6tj": {
+        "defaultMessage": "This media is used by the following documents:"
+    },
     "2J05S0": {
         "defaultMessage": "Images"
     },
@@ -719,6 +722,9 @@
     "XTJGzY": {
         "defaultMessage": "Gallery feed with captions"
     },
+    "Xb6r3F": {
+        "defaultMessage": "Cancel"
+    },
     "XhgKcw": {
         "defaultMessage": "Move the map to position the place"
     },
@@ -1157,6 +1163,9 @@
     "rdFCsN": {
         "defaultMessage": "No marker..."
     },
+    "rkn2jO": {
+        "defaultMessage": "Confirm and delete media"
+    },
     "ro6yHS": {
         "defaultMessage": "Map with image markers"
     },
@@ -1288,6 +1297,9 @@
     },
     "wx5PI0": {
         "defaultMessage": "Heading"
+    },
+    "wy2g+x": {
+        "defaultMessage": "Are you sure you want to continue?"
     },
     "xAzv6g": {
         "defaultMessage": "All sources"
