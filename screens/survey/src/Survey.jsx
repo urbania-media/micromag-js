@@ -2,6 +2,7 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
+import isNumber from 'lodash/isNumber';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -308,6 +309,12 @@ const SurveyScreen = ({
 
                         const { borderRadius: answerResultBorderRadius = null } =
                             buttonStyles || {};
+                        const finalBarBorderRadius =
+                            answerResultBorderRadius !== null &&
+                            isNumber(answerResultBorderRadius) &&
+                            answerResultBorderRadius > 2
+                                ? answerResultBorderRadius - 2
+                                : answerResultBorderRadius;
 
                         return (
                             <div
@@ -411,7 +418,7 @@ const SurveyScreen = ({
                                                                 className={styles.resultBar}
                                                                 style={{
                                                                     borderRadius:
-                                                                        answerResultBorderRadius,
+                                                                        finalBarBorderRadius,
                                                                     transitionDuration:
                                                                         finalTransitionDuration,
                                                                     width:

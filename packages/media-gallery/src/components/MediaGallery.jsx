@@ -108,7 +108,7 @@ function MediaGallery({
         loading = false,
         loadNextPage = null,
         allLoaded = false,
-        // reset,
+        reset,
     } = useMedias(queryValue, 1, 30, {
         pages: defaultItems,
     });
@@ -157,23 +157,25 @@ function MediaGallery({
                 onClickMedia(null);
             }
             setMetadataMedia(null);
+            reset();
         },
-        [setMetadataMedia, selectedMedia],
+        [setMetadataMedia, onClickMedia, reset, selectedMedia],
     );
 
     const onMetadataChange = useCallback(
         (val) => {
             setMetadataMedia(val);
-            if (onChange !== null) {
+            const { id: mediaId = null } = val || {};
+            const { id: selectedId = null } = selectedMedia || {};
+            if (onChange !== null && mediaId === selectedId) {
                 onChange(val);
             }
         },
-        [setMetadataMedia, onChange],
+        [setMetadataMedia, selectedMedia, onChange],
     );
 
     useEffect(() => {
         if (metadataMedia !== null) {
-            // reset();
             window.scrollTo(0, 0);
         }
     }, [metadataMedia]);
