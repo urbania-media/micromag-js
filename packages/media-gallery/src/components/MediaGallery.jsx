@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useIntl } from 'react-intl';
 
@@ -31,6 +31,7 @@ const propTypes = {
     selectedMedia: MicromagPropTypes.media,
     className: PropTypes.string,
     navbarClassName: PropTypes.string,
+    onChange: PropTypes.func,
     onClickMedia: PropTypes.func,
     onClearMedia: PropTypes.func,
 };
@@ -47,6 +48,7 @@ const defaultProps = {
     selectedMedia: null,
     className: null,
     navbarClassName: null,
+    onChange: null,
     onClickMedia: null,
     onClearMedia: null,
 };
@@ -63,6 +65,7 @@ function MediaGallery({
     selectedMedia,
     className,
     navbarClassName,
+    onChange,
     onClickMedia,
     onClearMedia,
 }) {
@@ -105,7 +108,7 @@ function MediaGallery({
         loading = false,
         loadNextPage = null,
         allLoaded = false,
-        reset,
+        // reset,
     } = useMedias(queryValue, 1, 30, {
         pages: defaultItems,
     });
@@ -147,10 +150,6 @@ function MediaGallery({
         setMetadataMedia(null);
     }, [setMetadataMedia]);
 
-    const onMetadataClickSave = useCallback(() => {
-        reset();
-    }, [reset]);
-
     const onMetadataClickDelete = useCallback(
         (mediaId = null) => {
             const { id: selectedId = null } = selectedMedia || {};
@@ -158,10 +157,26 @@ function MediaGallery({
                 onClickMedia(null);
             }
             setMetadataMedia(null);
-            reset();
         },
         [setMetadataMedia, selectedMedia],
     );
+
+    const onMetadataChange = useCallback(
+        (val) => {
+            setMetadataMedia(val);
+            if (onChange !== null) {
+                onChange(val);
+            }
+        },
+        [setMetadataMedia, onChange],
+    );
+
+    useEffect(() => {
+        if (metadataMedia !== null) {
+            // reset();
+            window.scrollTo(0, 0);
+        }
+    }, [metadataMedia]);
 
     // Navigation
     const onClickBack = useCallback(() => {
@@ -253,8 +268,9 @@ function MediaGallery({
                     <MediaMetadata
                         media={metadataMedia}
                         tags={tags}
+                        onChange={onMetadataChange}
                         onClickClose={onMetadataClickClose}
-                        onClickSave={onMetadataClickSave}
+                        // onClickSave={onMetadataClickSave}
                         onClickDelete={onMetadataClickDelete}
                     />
                 </div>

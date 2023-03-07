@@ -17,6 +17,7 @@ import styles from '../../styles/partials/media-metadata.module.scss';
 const propTypes = {
     media: MicromagPropTypes.media,
     tags: MicromagPropTypes.tags,
+    onChange: PropTypes.func,
     onClickClose: PropTypes.func,
     onClickSave: PropTypes.func,
     onClickDelete: PropTypes.func,
@@ -26,6 +27,7 @@ const propTypes = {
 const defaultProps = {
     media: null,
     tags: [],
+    onChange: null,
     onClickClose: null,
     onClickSave: null,
     onClickDelete: null,
@@ -35,6 +37,7 @@ const defaultProps = {
 function MediaMetadata({
     media,
     tags: allTags,
+    onChange,
     onClickClose,
     onClickSave,
     onClickDelete,
@@ -111,11 +114,14 @@ function MediaMetadata({
     const onSave = useCallback(
         () =>
             update(mediaId, { name, tags, description })
-                .then(() => {
+                .then((response) => {
                     setChanged(false);
                     setSaveState(null);
                     if (onClickSave !== null) {
                         onClickSave();
+                    }
+                    if (onChange !== null) {
+                        onChange(response);
                     }
                 })
                 .catch(() => {
@@ -128,6 +134,7 @@ function MediaMetadata({
             description,
             metadata,
             update,
+            onChange,
             onClickSave,
             onClickClose,
             setChanged,

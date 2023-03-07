@@ -78,6 +78,7 @@ const MediaField = ({
                 isPicker
                 isSmall
                 selectedMedia={value}
+                onChange={onChange}
                 onClickMedia={onClickMedia}
                 onClearMedia={onClearMedia}
             />
