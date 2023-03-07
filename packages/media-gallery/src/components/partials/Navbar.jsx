@@ -250,7 +250,7 @@ function Navbar({
                     <div
                         className={classNames([
                             'list-group-item rounded w-100 mw-100 navbar-text mb-2',
-                            { 'border border-dark bg-dark py-2 px-2': selectedMedia !== null },
+                            { 'border border-primary bg-dark py-2 px-2': selectedMedia !== null },
                         ])}
                     >
                         {selectedMedia !== null ? (

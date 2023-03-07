@@ -59,6 +59,7 @@ function Gallery({
             className={classNames([
                 styles.container,
                 'p-2',
+                'pt-0',
                 {
                     [className]: className !== null,
                 },

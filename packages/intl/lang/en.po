@@ -2336,12 +2336,6 @@ msgctxt "rdFCsN"
 msgid "No marker..."
 msgstr "No marker..."
 
-# Delete in Media Gallery
-#: rkn2jO
-msgctxt "rkn2jO"
-msgid "Confirm and delete media"
-msgstr "Confirm and delete media"
-
 # Screen title
 #: ro6yHS
 msgctxt "ro6yHS"

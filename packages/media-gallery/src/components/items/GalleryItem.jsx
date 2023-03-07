@@ -113,11 +113,12 @@ const GalleryItem = ({
                     </div>
                 </>
             }
-            theme={selected ? 'primary' : null}
+            theme={selected ? null : null}
             className={classNames([
                 styles.container,
                 {
                     // 'border-primary': selected,
+                    [styles.selected]: selected,
                     [className]: className !== null,
                 },
             ])}

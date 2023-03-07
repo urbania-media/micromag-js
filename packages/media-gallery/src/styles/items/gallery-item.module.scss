@@ -7,8 +7,11 @@
     position: relative;
     overflow: hidden;
     border: 1px solid $gray-800;
-
     cursor: pointer;
+
+    &.selected {
+        border: 1px solid $purple;
+    }
 
     .imageButton {
         border: 0;

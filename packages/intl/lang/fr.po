@@ -2336,12 +2336,6 @@ msgctxt "rdFCsN"
 msgid "No marker..."
 msgstr "Aucun marqueur"
 
-# Delete in Media Gallery
-#: rkn2jO
-msgctxt "rkn2jO"
-msgid "Confirm and delete media"
-msgstr "Confirmer la suppression"
-
 # Screen title
 #: ro6yHS
 msgctxt "ro6yHS"

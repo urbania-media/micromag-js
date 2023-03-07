@@ -419,7 +419,7 @@ function MediaMetadata({
                         <Button className="me-2" theme="danger" outline onClick={onDelete}>
                             {confirmation !== null ? (
                                 <FormattedMessage
-                                    defaultMessage="Confirm and delete media"
+                                    defaultMessage="Delete media"
                                     description="Delete in Media Gallery"
                                 />
                             ) : (
