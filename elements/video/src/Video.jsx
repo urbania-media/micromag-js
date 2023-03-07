@@ -81,7 +81,7 @@ const defaultProps = {
     onSuspended: null,
     focusable: true,
     withPoster: false,
-    withLoading: true,
+    withLoading: false,
 };
 
 const Video = ({
