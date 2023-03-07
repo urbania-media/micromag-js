@@ -108,7 +108,7 @@ function MediaGallery({
         loading = false,
         loadNextPage = null,
         allLoaded = false,
-        reset,
+        // reset,
     } = useMedias(queryValue, 1, 30, {
         pages: defaultItems,
     });
@@ -157,9 +157,8 @@ function MediaGallery({
                 onClickMedia(null);
             }
             setMetadataMedia(null);
-            reset();
         },
-        [setMetadataMedia, onClickMedia, reset, selectedMedia],
+        [setMetadataMedia, onClickMedia, selectedMedia],
     );
 
     const onMetadataChange = useCallback(
@@ -252,17 +251,19 @@ function MediaGallery({
                     {!allLoaded ? (
                         <div className="w-100 mb-2">
                             {loading || uploading ? <Spinner className={styles.loading} /> : null}
-                            <Button
-                                className="d-block mx-auto"
-                                theme="secondary"
-                                outline
-                                onClick={loadNextPage}
-                            >
-                                {intl.formatMessage({
-                                    defaultMessage: 'Load more',
-                                    description: 'Load button label in Media Gallery',
-                                })}
-                            </Button>
+                            {!loading && !uploading ? (
+                                <Button
+                                    className="d-block mx-auto"
+                                    theme="secondary"
+                                    outline
+                                    onClick={loadNextPage}
+                                >
+                                    {intl.formatMessage({
+                                        defaultMessage: 'Load more',
+                                        description: 'Load button label in Media Gallery',
+                                    })}
+                                </Button>
+                            ) : null}
                         </div>
                     ) : null}
                 </div>
