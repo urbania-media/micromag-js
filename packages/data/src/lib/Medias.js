@@ -8,6 +8,7 @@ class MediasApi extends Base {
                 index: 'medias',
                 tags: 'medias/tags',
                 authors: 'medias/authors',
+                requestDelete: 'medias/requestDelete/:media',
                 show: 'medias/:media',
                 store: 'medias',
                 update: 'medias/:media',
@@ -71,12 +72,19 @@ class MediasApi extends Base {
         );
     }
 
-    delete(id, data) {
+    requestDeleteMedia(id) {
+        return this.requestPost(
+            this.route('requestDelete', {
+                media: id,
+            }),
+        );
+    }
+
+    delete(id) {
         return this.requestDelete(
             this.route('delete', {
                 media: id,
             }),
-            data,
         );
     }
 }

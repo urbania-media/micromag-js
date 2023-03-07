@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import { useFieldComponent } from '@micromag/core/contexts';
-import { useMediaUpdate, useMediaDelete } from '@micromag/data';
+import { useMediaUpdate, useMediaDelete, useMediaRequestDelete } from '@micromag/data';
 
 import styles from '../../styles/partials/media-metadata.module.scss';
 
@@ -61,6 +61,7 @@ function MediaMetadata({
     } = metadata || {};
 
     const { update } = useMediaUpdate();
+    const { requestDeleteMedia } = useMediaRequestDelete();
     const { deleteMedia } = useMediaDelete();
 
     const getOptionLabel = useCallback(({ name }) => name, []);
@@ -142,27 +143,36 @@ function MediaMetadata({
         setConfirmation(null);
     }, [mediaId, setDeletedState, setConfirmation]);
 
-    const onDelete = useCallback(
-        () =>
-            deleteMedia(mediaId, confirmation !== null)
-                .then((response) => {
-                    const { state, items = [] } = response || {};
-                    if (state === 'needs_confirmation') {
-                        setConfirmation(items);
-                    } else {
-                        setChanged(false);
-                        setDeletedState(true);
-                        setConfirmation(null);
-                        if (onClickDelete !== null) {
-                            onClickDelete(mediaId);
-                        }
-                    }
-                })
-                .catch(() => {
-                    setDeletedState(false);
-                }),
-        [mediaId, confirmation, deleteMedia, onClickClose, setDeletedState, setConfirmation],
-    );
+    const onConfirm = useCallback(() => {
+        requestDeleteMedia(mediaId)
+            .then((response) => {
+                const { state, items = [] } = response || {};
+                if (state === 'needs_confirmation') {
+                    setConfirmation(items || []);
+                } else {
+                    setConfirmation(null);
+                }
+            })
+            .catch(() => {
+                setConfirmation(null);
+            });
+    }, [mediaId, requestDeleteMedia, setConfirmation]);
+
+    const onDelete = useCallback(() => {
+        deleteMedia(mediaId)
+            .then(() => {
+                setChanged(false);
+                setDeletedState(true);
+                setConfirmation(null);
+                if (onClickDelete !== null) {
+                    onClickDelete(mediaId);
+                }
+            })
+            .catch(() => {
+                setDeletedState(false);
+                setConfirmation(null);
+            });
+    }, [mediaId, deleteMedia, onClickDelete, setChanged, setDeletedState, setConfirmation]);
 
     const onCancelDelete = useCallback(() => {
         setConfirmation(null);
@@ -396,17 +406,23 @@ function MediaMetadata({
                 <div className="py-3">
                     {confirmation !== null ? (
                         <>
-                            <p className="pt-1 text-danger">
-                                <FormattedMessage
-                                    defaultMessage="This media is used by the following documents: "
-                                    description="Delete error message in Media Gallery"
-                                />
-                            </p>
-                            <ul>
-                                {confirmation.map((it) => (
-                                    <li className="text-danger">{it}</li>
-                                ))}
-                            </ul>
+                            {confirmation.length > 0 ? (
+                                <>
+                                    <p className="pt-1 text-danger">
+                                        <FormattedMessage
+                                            defaultMessage="This media is used by the following documents: "
+                                            description="Delete error message in Media Gallery"
+                                        />
+                                    </p>
+                                    <ul>
+                                        {confirmation.map((it, i) => (
+                                            <li key={`${it}-${i + 1}`} className="text-danger">
+                                                {it}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </>
+                            ) : null}
                             <p className="pt-1 text-danger">
                                 <FormattedMessage
                                     defaultMessage="Are you sure you want to continue?"
@@ -416,18 +432,16 @@ function MediaMetadata({
                         </>
                     ) : null}
                     <div className="d-flex">
-                        <Button className="me-2" theme="danger" outline onClick={onDelete}>
-                            {confirmation !== null ? (
-                                <FormattedMessage
-                                    defaultMessage="Delete media"
-                                    description="Delete in Media Gallery"
-                                />
-                            ) : (
-                                <FormattedMessage
-                                    defaultMessage="Delete media"
-                                    description="Delete in Media Gallery"
-                                />
-                            )}
+                        <Button
+                            className="me-2"
+                            theme="danger"
+                            outline
+                            onClick={confirmation === null ? onConfirm : onDelete}
+                        >
+                            <FormattedMessage
+                                defaultMessage="Delete media"
+                                description="Delete in Media Gallery"
+                            />
                         </Button>
                         {confirmation !== null ? (
                             <Button theme="primary" outline onClick={onCancelDelete}>

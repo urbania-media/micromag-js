@@ -220,7 +220,7 @@ module.exports = () => {
         res.end();
     };
 
-    const deleteResource = (req, res, confirm = false) => {
+    const deleteResource = (req, res) => {
         const { resource, id } = req.params;
         const currentItems = getResourceItems(resource);
         const currentItem = currentItems.find((it) => it.id === id) || null;
@@ -229,7 +229,7 @@ module.exports = () => {
             return;
         }
         deleteResourceItem(resource, id);
-        res.json({ ...currentItem, confirm });
+        res.json({ ...currentItem });
         res.end();
     };
 
@@ -242,9 +242,9 @@ module.exports = () => {
             res.sendStatus(404);
             return;
         }
-        const { _method: methodOverride = null, confirm = false } = req.body;
+        const { _method: methodOverride = null } = req.body;
         if (methodOverride !== null && methodOverride.toUpperCase() === 'DELETE') {
-            deleteResource(req, res, confirm);
+            deleteResource(req, res);
         } else {
             updateResource(req, res);
         }
@@ -253,6 +253,23 @@ module.exports = () => {
     /**
      * Resource delete
      */
+
+    router.post('/:resource/requestDelete/:id', (req, res) => {
+        const { resource, id } = req.params;
+        if (!resourceExists(resource)) {
+            res.sendStatus(404);
+            return;
+        }
+        const currentItems = getResourceItems(resource);
+        const currentItem = currentItems.find((it) => it.id === id) || null;
+        if (currentItem === null) {
+            res.sendStatus(404);
+            return;
+        }
+        res.json({ ...currentItem });
+        res.end();
+    });
+
     router.delete('/:resource/:id', (req, res) => {
         const { resource } = req.params;
         if (!resourceExists(resource)) {

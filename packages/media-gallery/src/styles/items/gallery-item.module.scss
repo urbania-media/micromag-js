@@ -6,8 +6,17 @@
 .container {
     position: relative;
     overflow: hidden;
+    transition: border 0.15s ease-out;
     border: 1px solid $gray-800;
     cursor: pointer;
+
+    &:hover {
+        border: 1px solid $gray-600;
+
+        &.selected {
+            border: 1px solid $purple;
+        }
+    }
 
     &.selected {
         border: 1px solid $purple;
