@@ -1,6 +1,6 @@
 {
     "name": "@micromag/editor",
-    "version": "0.3.338",
+    "version": "0.3.339",
     "description": "",
     "keywords": [
         "javascript"
@@ -64,9 +64,9 @@
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.3.332",
         "@micromag/elements": "^0.3.336",
-        "@micromag/fields": "^0.3.338",
+        "@micromag/fields": "^0.3.339",
         "@micromag/screens": "^0.3.338",
-        "@micromag/viewer": "^0.3.338",
+        "@micromag/viewer": "^0.3.339",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
