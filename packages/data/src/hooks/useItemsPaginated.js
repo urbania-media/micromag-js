@@ -72,12 +72,14 @@ const useItems = ({
     }, [getPages, setItems, setPagination]);
 
     useEffect(() => {
-        // console.log('try to load');
+        // eslint-disable-next-line
+        console.log('try to load');
         if (!canLoad || loading || (lastPage !== null && pageNumber > lastPage)) {
             // console.log('skips loading');
             return;
         }
-        // console.log('actually load', query, pageNumber, pageCount);
+        // eslint-disable-next-line
+        console.log('actually load', canLoad, loading, lastPage, pageNumber);
         setLoading(true);
         setCanLoad(false);
         // TODO: make this a cancellable promise
