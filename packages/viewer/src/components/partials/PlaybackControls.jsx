@@ -13,16 +13,24 @@ import SeekBar from './SeekBar';
 import styles from '../../styles/partials/playback-controls.module.scss';
 
 const propTypes = {
+    defaultColor: PropTypes.shape({
+        color: PropTypes.string,
+        alpha: PropTypes.number,
+    }),
     className: PropTypes.string,
     collapsedClassName: PropTypes.string,
 };
 
 const defaultProps = {
+    defaultColor: {
+        color: '#000000',
+        alpha: 1,
+    },
     className: null,
     collapsedClassName: null,
 };
 
-function PlaybackControls({ className, collapsedClassName }) {
+function PlaybackControls({ defaultColor, className, collapsedClassName }) {
     const intl = useIntl();
     const {
         media: mediaElement = null,
@@ -36,17 +44,23 @@ function PlaybackControls({ className, collapsedClassName }) {
         controlsTheme,
         showControls,
     } = usePlaybackContext();
-    const [customControlsTheme, setCustomControlsTheme] = useState(null);
+
+    const [customControlsTheme, setCustomControlsTheme] = useState({
+        color: getColorAsString(defaultColor),
+        progressColor: getColorAsString(defaultColor),
+        seekBarOnly: false,
+    });
+
     const [wasPlaying, setWasPlaying] = useState(false);
 
     useEffect(() => {
         const { color, progressColor, seekBarOnly } = controlsTheme || {};
         setCustomControlsTheme({
-            color: getColorAsString(color),
-            progressColor: getColorAsString(progressColor),
+            color: getColorAsString(color || defaultColor),
+            progressColor: getColorAsString(progressColor || defaultColor),
             seekBarOnly,
         });
-    }, [controlsTheme, setCustomControlsTheme]);
+    }, [controlsTheme, setCustomControlsTheme, defaultColor]);
 
     const onPlay = useCallback(() => {
         setPlaying(true);
@@ -141,10 +155,9 @@ function PlaybackControls({ className, collapsedClassName }) {
                             height="16px"
                             viewBox="0 0 10 16"
                             xmlSpace="preserve"
-                            fill="currentColor"
                         >
-                            <rect x="1" y="3.27" width="3" height="9.69" />
-                            <rect x="6" y="3.27" width="3" height="9.69" />
+                            <rect fill={color} x="1" y="3.27" width="3" height="9.69" />
+                            <rect fill={color} x="6" y="3.27" width="3" height="9.69" />
                         </svg>
                     ) : (
                         <svg
@@ -157,9 +170,8 @@ function PlaybackControls({ className, collapsedClassName }) {
                             height="16px"
                             viewBox="0 0 10 16"
                             xmlSpace="preserve"
-                            fill="currentColor"
                         >
-                            <path d="M1,3.16V12.84l8-4.84L1,3.16" />
+                            <path fill={color} d="M1,3.16V12.84l8-4.84L1,3.16" />
                         </svg>
                     )
                 }
@@ -209,10 +221,15 @@ function PlaybackControls({ className, collapsedClassName }) {
                             viewBox="0 0 10 16"
                             xmlSpace="preserve"
                             className={styles.icon}
-                            fill="currentColor"
                         >
-                            <polygon points="2.75 4.63 1.24 6 0 6 0 10 1.24 10 4.54 13 4.54 3 2.75 4.63" />
-                            <polygon points="10 6.63 8.94 5.57 7.58 6.93 6.21 5.57 5.15 6.63 6.52 7.99 5.15 9.35 6.21 10.43 7.58 9.06 8.94 10.43 10 9.35 8.64 7.99 10 6.63" />
+                            <polygon
+                                fill={color}
+                                points="2.75 4.63 1.24 6 0 6 0 10 1.24 10 4.54 13 4.54 3 2.75 4.63"
+                            />
+                            <polygon
+                                fill={color}
+                                points="10 6.63 8.94 5.57 7.58 6.93 6.21 5.57 5.15 6.63 6.52 7.99 5.15 9.35 6.21 10.43 7.58 9.06 8.94 10.43 10 9.35 8.64 7.99 10 6.63"
+                            />
                         </svg>
                     ) : (
                         <svg
@@ -225,11 +242,16 @@ function PlaybackControls({ className, collapsedClassName }) {
                             viewBox="0 0 10 16"
                             xmlSpace="preserve"
                             className={styles.icon}
-                            fill="currentColor"
                         >
-                            <polygon points="2.75 4.63 1.24 6 0 6 0 10 1.24 10 4.54 13 4.54 3 2.75 4.63" />
-                            <circle cx="6.14" cy="8" r=".99" />
-                            <path d="M6.14,11.88v-1.5c1.31,0,2.38-1.07,2.38-2.38s-1.07-2.38-2.38-2.38v-1.5c2.14,0,3.88,1.74,3.88,3.88s-1.74,3.88-3.88,3.88Z" />
+                            <polygon
+                                fill={color}
+                                points="2.75 4.63 1.24 6 0 6 0 10 1.24 10 4.54 13 4.54 3 2.75 4.63"
+                            />
+                            <circle fill={color} cx="6.14" cy="8" r=".99" />
+                            <path
+                                fill={color}
+                                d="M6.14,11.88v-1.5c1.31,0,2.38-1.07,2.38-2.38s-1.07-2.38-2.38-2.38v-1.5c2.14,0,3.88,1.74,3.88,3.88s-1.74,3.88-3.88,3.88Z"
+                            />
                         </svg>
                     )
                 }

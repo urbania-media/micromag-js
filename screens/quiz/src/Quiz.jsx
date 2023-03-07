@@ -125,7 +125,7 @@ const QuizScreen = ({
     const showInstantAnswer = isStatic || isCapture;
     const goodAnswerIndex =
         answers !== null ? answers.findIndex((answer) => answer !== null && answer.good) : null;
-    // const withoutGoodAnswer = goodAnswerIndex === null || goodAnswerIndex === -1;
+    const withoutGoodAnswer = goodAnswerIndex === null || goodAnswerIndex === -1;
 
     const [userAnswerIndex, setUserAnswerIndex] = useState(
         showInstantAnswer ? goodAnswerIndex : null,
@@ -224,7 +224,7 @@ const QuizScreen = ({
                         goodAnswerColor={goodAnswerColor}
                         badAnswerColor={badAnswerColor}
                         withoutTrueFalse={withoutTrueFalse}
-                        // withoutGoodAnswer={withoutGoodAnswer}
+                        withoutGoodAnswer={withoutGoodAnswer}
                         focusable={current && isView}
                         showInstantAnswer={showInstantAnswer}
                         withResult

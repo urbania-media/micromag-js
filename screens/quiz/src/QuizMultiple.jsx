@@ -452,6 +452,7 @@ const QuizMultipleScreen = ({
                                         showInstantAnswer={showInstantAnswer}
                                         layout={questionLayout || layout}
                                         withoutGoodAnswer
+                                        withoutTrueFalse
                                         transitions={transitions}
                                         transitionPlaying={transitionPlaying}
                                         transitionStagger={transitionStagger}

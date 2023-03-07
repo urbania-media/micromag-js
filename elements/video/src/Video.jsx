@@ -50,6 +50,7 @@ const propTypes = {
     onSuspended: PropTypes.func,
     focusable: PropTypes.bool,
     withPoster: PropTypes.bool,
+    withLoading: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -80,6 +81,7 @@ const defaultProps = {
     onSuspended: null,
     focusable: true,
     withPoster: false,
+    withLoading: true,
 };
 
 const Video = ({
@@ -110,6 +112,7 @@ const Video = ({
     onSuspended,
     focusable,
     withPoster,
+    withLoading,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
     const {
@@ -136,7 +139,7 @@ const Video = ({
     useEffect(() => {
         let id = null;
         setShowLoading(false);
-        if (mediaUrl) {
+        if (mediaUrl && withLoading) {
             id = setTimeout(() => {
                 setShowLoading(true);
             }, 2000);
@@ -144,7 +147,7 @@ const Video = ({
         return () => {
             clearTimeout(id);
         };
-    }, [mediaUrl]);
+    }, [mediaUrl, withLoading]);
 
     const sourceFiles = useMemo(() => {
         if (filesArray.length === 0) {

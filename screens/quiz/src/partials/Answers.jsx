@@ -201,11 +201,7 @@ const Answers = ({
                 styles.container,
                 {
                     [styles.answered]: answered,
-                    [styles.withoutGoodAnswer]: withoutGoodAnswer || !hasRightAnswer,
-                    [styles.withGoodAnswer]: !withoutGoodAnswer && hasRightAnswer,
-                    [styles.withIcon]: !withoutGoodAnswer && hasRightAnswer && !withoutIcon,
-                    [styles.willCollapse]: shouldCollapse && answersCollapsed,
-                    [styles.didCollapsed]: shouldCollapse && answersDidCollapse,
+                    [styles.withIcon]: !withoutIcon,
                     [styles.isPlaceholder]: isPlaceholder,
                     [className]: className !== null,
                 },
@@ -275,9 +271,7 @@ const Answers = ({
                                                     ...answerButtonTextStyle,
                                                 }}
                                             >
-                                                {!withoutGoodAnswer &&
-                                                !withoutIcon &&
-                                                rightAnswer ? (
+                                                {answered && !withoutIcon && rightAnswer ? (
                                                     <span
                                                         className={styles.resultIcon}
                                                         style={getStyleFromColor(
@@ -291,8 +285,7 @@ const Answers = ({
                                                         />
                                                     </span>
                                                 ) : null}
-                                                {!withoutGoodAnswer &&
-                                                !withoutIcon &&
+                                                {!withoutIcon &&
                                                 answered &&
                                                 !hasAnsweredRight &&
                                                 userAnswer ? (
