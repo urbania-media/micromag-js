@@ -328,7 +328,9 @@ const Viewer = ({
 
     const gotoPreviousScreen = useCallback(
         (e) => {
-            e.stopPropagation();
+            if (typeof e !== 'undefined') {
+                e.stopPropagation();
+            }
             changeIndex(Math.max(0, screenIndex - 1));
         },
         [changeIndex, screenIndex],
@@ -336,7 +338,9 @@ const Viewer = ({
 
     const gotoNextScreen = useCallback(
         (e) => {
-            e.stopPropagation();
+            if (typeof e !== 'undefined') {
+                e.stopPropagation();
+            }
             changeIndex(Math.min(screens.length - 1, screenIndex + 1));
         },
         [changeIndex, screenIndex],
