@@ -7,7 +7,9 @@ import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import styles from './styles/media-controls.module.scss';
 
 const propTypes = {
@@ -51,7 +53,6 @@ const MediaControls = ({
     const intl = useIntl();
     const fullColor = isString(color) ? { color, alpha: 1 } : color;
     const { color: finalColor = 'white' } = fullColor || {};
-
     return (
         <div
             className={classNames([

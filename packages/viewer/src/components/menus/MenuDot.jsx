@@ -71,7 +71,19 @@ const ViewerMenuDot = ({
             ])}
             aria-hidden="true"
         >
-            <button type="button" className={styles.button} onClick={onClick} tabIndex="-1">
+            <button
+                type="button"
+                className={styles.button}
+                onClick={(e = null) => {
+                    if (e !== null) {
+                        e.stopPropagation();
+                    }
+                    if (onClick !== null) {
+                        onClick();
+                    }
+                }}
+                tabIndex="-1"
+            >
                 <div
                     className={styles.dot}
                     style={{

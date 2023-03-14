@@ -37,7 +37,7 @@ const propTypes = {
     withoutScreensMenu: PropTypes.bool,
     withoutShareMenu: PropTypes.bool,
     onClickScreen: PropTypes.func,
-    onClickMenu: PropTypes.func,
+    // onClickMenu: PropTypes.func,
     onClickCloseViewer: PropTypes.func,
     refDots: PropTypes.shape({
         current: PropTypes.any, // eslint-disable-line
@@ -60,7 +60,7 @@ const defaultProps = {
     withoutScreensMenu: false,
     withoutShareMenu: false,
     onClickScreen: null,
-    onClickMenu: null,
+    // onClickMenu: null,
     onClickCloseViewer: null,
     refDots: null,
 };
@@ -82,7 +82,7 @@ const ViewerMenu = ({
     withoutScreensMenu,
     withoutShareMenu,
     onClickScreen: customOnClickScreen,
-    onClickMenu: customOnClickMenu,
+    // onClickMenu: customOnClickMenu,
     onClickCloseViewer,
     refDots,
 }) => {

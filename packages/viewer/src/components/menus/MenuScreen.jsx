@@ -59,15 +59,16 @@ const ViewerMenuScreen = ({ className, item, index, onClick, screenSize, focusab
                 },
             ])}
             style={{
-                paddingBottom: `${
-                    (screenHeight / screenWidth) * 100
-                }%`,
+                paddingBottom: `${(screenHeight / screenWidth) * 100}%`,
             }}
         >
             <button
                 type="button"
                 className={styles.button}
-                onClick={() => {
+                onClick={(e = null) => {
+                    if (e !== null) {
+                        e.stopPropagation();
+                    }
                     if (onClick !== null) {
                         onClick(item);
                     }

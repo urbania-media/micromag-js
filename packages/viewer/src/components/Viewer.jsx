@@ -326,25 +326,13 @@ const Viewer = ({
         [onEnd, changeIndex],
     );
 
-    const gotoPreviousScreen = useCallback(
-        (e) => {
-            if (typeof e !== 'undefined') {
-                e.stopPropagation();
-            }
-            changeIndex(Math.max(0, screenIndex - 1));
-        },
-        [changeIndex, screenIndex],
-    );
+    const gotoPreviousScreen = useCallback(() => {
+        changeIndex(Math.max(0, screenIndex - 1));
+    }, [changeIndex, screenIndex]);
 
-    const gotoNextScreen = useCallback(
-        (e) => {
-            if (typeof e !== 'undefined') {
-                e.stopPropagation();
-            }
-            changeIndex(Math.min(screens.length - 1, screenIndex + 1));
-        },
-        [changeIndex, screenIndex],
-    );
+    const gotoNextScreen = useCallback(() => {
+        changeIndex(Math.min(screens.length - 1, screenIndex + 1));
+    }, [changeIndex, screenIndex]);
 
     const [hasInteracted, setHasInteracted] = useState(false);
 
@@ -374,6 +362,9 @@ const Viewer = ({
 
     const onTap = useCallback(
         ({ currentTarget, event, target, xy: [x, y] }) => {
+            if (event) {
+                event.stopPropagation();
+            }
             interactWithScreen({
                 event,
                 target,
@@ -428,8 +419,6 @@ const Viewer = ({
     const onTransitionComplete = useCallback(() => {
         setTransitioned(true);
     }, [setTransitioned]);
-
-    // console.log({ transitioned });
 
     const springParams = useMemo(
         () => ({
@@ -667,7 +656,6 @@ const Viewer = ({
                                 refDots={menuDotsContainerRef}
                             />
                         ) : null}
-
                         {ready || withoutScreensTransforms ? (
                             <div className={styles.content} {...dragContentBind()}>
                                 {!withoutNavigationArrow &&
@@ -761,7 +749,6 @@ const Viewer = ({
                                 ) : null}
                             </div>
                         ) : null}
-
                         <div
                             className={classNames([
                                 styles.shareIncentiveContainer,

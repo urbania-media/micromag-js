@@ -23,7 +23,7 @@ const propTypes = {
 
 const defaultProps = {
     defaultColor: {
-        color: '#000000',
+        color: '#FFFFFF',
         alpha: 1,
     },
     className: null,

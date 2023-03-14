@@ -1,5 +1,5 @@
 import {
-    bigVideoMediaWithSound,
+    // bigVideoMediaWithSound,
     gifVideoMedia,
     video360Media,
     videoMedia,
@@ -13,7 +13,8 @@ export default {
             type: 'video',
             layout: 'full',
             video: {
-                media: bigVideoMediaWithSound(),
+                // media: bigVideoMediaWithSound(),
+                media: videoMedia({ big: true }),
                 withSeekBar: true,
                 withControls: true,
                 loop: false,
@@ -22,6 +23,7 @@ export default {
             background: {
                 color: { alpha: 1, color: '#FFFF00' },
             },
+            gotoNextScreenOnEnd: true,
         },
         {
             id: '2',

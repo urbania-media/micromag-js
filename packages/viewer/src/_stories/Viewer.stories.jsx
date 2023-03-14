@@ -141,8 +141,13 @@ export const MultipleAudios = () => (
     />
 );
 export const MultipleVideos = () => (
+    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint />
+);
+
+export const MultipleVideosForcePaused = () => (
     <Viewer screenId="1" story={multipleVideosStory} withNavigationHint paused />
 );
+
 export const MultipleVideos360 = () => (
     <Viewer
         screenId="1"
@@ -301,11 +306,11 @@ export const WithScroll = () => (
                 <Viewer
                     {...faceAFaceProps}
                     closeable
-                    onClose={() => console.log('close')}
-                    onStart={() => console.log('start')}
-                    onEnd={() => console.log('end')}
-                    onViewModeChange={(viewMode) => {
-                        console.log(viewMode);
+                    // onClose={() => console.log('close')}
+                    // onStart={() => console.log('start')}
+                    // onEnd={() => console.log('end')}
+                    onViewModeChange={() => {
+                        // console.log(viewMode);
                     }}
                 />
             </div>

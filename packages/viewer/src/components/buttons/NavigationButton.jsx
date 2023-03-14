@@ -28,7 +28,10 @@ const NavigationButton = ({ direction, onClick, className }) => (
                 [className]: className !== null,
             },
         ])}
-        onClick={onClick}
+        onClick={(e) => {
+            e.stopPropagation();
+            onClick();
+        }}
         iconPosition={direction === 'next' ? 'right' : 'left'}
         icon={
             <svg
