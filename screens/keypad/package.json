@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-keypad",
-    "version": "0.3.336",
+    "version": "0.3.341",
     "description": "",
     "keywords": [
         "javascript"
@@ -55,7 +55,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.332",
-        "@micromag/element-background": "^0.3.336",
+        "@micromag/element-background": "^0.3.341",
         "@micromag/element-button": "^0.3.332",
         "@micromag/element-call-to-action": "^0.3.332",
         "@micromag/element-container": "^0.3.332",
@@ -66,7 +66,7 @@
         "@micromag/element-scroll": "^0.3.332",
         "@micromag/element-text": "^0.3.332",
         "@micromag/element-urbania-author": "^0.3.332",
-        "@micromag/element-visual": "^0.3.336",
+        "@micromag/element-visual": "^0.3.341",
         "@micromag/transforms": "^0.3.332",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",

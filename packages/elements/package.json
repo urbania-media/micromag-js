@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.3.336",
+    "version": "0.3.341",
     "description": "",
     "keywords": [
         "javascript"
@@ -61,8 +61,8 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.332",
-        "@micromag/element-audio": "^0.3.332",
-        "@micromag/element-background": "^0.3.336",
+        "@micromag/element-audio": "^0.3.341",
+        "@micromag/element-background": "^0.3.341",
         "@micromag/element-button": "^0.3.332",
         "@micromag/element-call-to-action": "^0.3.332",
         "@micromag/element-checkbox": "^0.3.332",
@@ -75,7 +75,7 @@
         "@micromag/element-layout": "^0.3.332",
         "@micromag/element-link": "^0.3.332",
         "@micromag/element-map": "^0.3.332",
-        "@micromag/element-media-controls": "^0.3.332",
+        "@micromag/element-media-controls": "^0.3.341",
         "@micromag/element-quote": "^0.3.332",
         "@micromag/element-scroll": "^0.3.332",
         "@micromag/element-share-incentive": "^0.3.332",
@@ -84,8 +84,8 @@
         "@micromag/element-text": "^0.3.332",
         "@micromag/element-text-input": "^0.3.332",
         "@micromag/element-urbania-author": "^0.3.332",
-        "@micromag/element-video": "^0.3.336",
-        "@micromag/element-visual": "^0.3.336",
+        "@micromag/element-video": "^0.3.341",
+        "@micromag/element-visual": "^0.3.341",
         "@micromag/element-webview": "^0.3.332",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
