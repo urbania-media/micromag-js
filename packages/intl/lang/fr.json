@@ -89,6 +89,9 @@
     "2J05S0": {
         "defaultMessage": "Images"
     },
+    "2LbLWQ": {
+        "defaultMessage": "Aucun"
+    },
     "2ZOPe+": {
         "defaultMessage": "Titre"
     },
@@ -284,6 +287,9 @@
     "A+a0kL": {
         "defaultMessage": "Aucune réponse"
     },
+    "A/Vr8P": {
+        "defaultMessage": "Faux"
+    },
     "A7ncT3": {
         "defaultMessage": "Déplaçable"
     },
@@ -437,6 +443,9 @@
     "Hyqnww": {
         "defaultMessage": "Popups"
     },
+    "I1hyZY": {
+        "defaultMessage": "Icône de réponse"
+    },
     "I2bIHm": {
         "defaultMessage": "Bonne réponse"
     },
@@ -451,9 +460,6 @@
     },
     "IE7U/Q": {
         "defaultMessage": "Titre"
-    },
-    "ItuhfW": {
-        "defaultMessage": "Bonne réponse"
     },
     "J9e9Qb": {
         "defaultMessage": "Vidéo"
@@ -973,6 +979,9 @@
     },
     "irG6mX": {
         "defaultMessage": "Distance"
+    },
+    "j00v1T": {
+        "defaultMessage": "Vrai"
     },
     "jEK6B8": {
         "defaultMessage": "Par"

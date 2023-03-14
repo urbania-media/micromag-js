@@ -89,6 +89,9 @@
     "2J05S0": {
         "defaultMessage": "Images"
     },
+    "2LbLWQ": {
+        "defaultMessage": "None"
+    },
     "2ZOPe+": {
         "defaultMessage": "Title"
     },
@@ -284,6 +287,9 @@
     "A+a0kL": {
         "defaultMessage": "No answer..."
     },
+    "A/Vr8P": {
+        "defaultMessage": "False"
+    },
     "A7ncT3": {
         "defaultMessage": "Draggable"
     },
@@ -437,6 +443,9 @@
     "Hyqnww": {
         "defaultMessage": "Popups"
     },
+    "I1hyZY": {
+        "defaultMessage": "Answer icon value"
+    },
     "I2bIHm": {
         "defaultMessage": "Good answer color"
     },
@@ -451,9 +460,6 @@
     },
     "IE7U/Q": {
         "defaultMessage": "Heading"
-    },
-    "ItuhfW": {
-        "defaultMessage": "Right answer"
     },
     "J9e9Qb": {
         "defaultMessage": "Video"
@@ -973,6 +979,9 @@
     },
     "irG6mX": {
         "defaultMessage": "Distance"
+    },
+    "j00v1T": {
+        "defaultMessage": "True"
     },
     "jEK6B8": {
         "defaultMessage": "By"

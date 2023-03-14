@@ -84,6 +84,7 @@ export { default as textStyleForm } from './text-style-form';
 export { default as text } from './text';
 export { default as toggle } from './toggle';
 export { default as tokens } from './tokens';
+export { default as trueFalse } from './true-false';
 export { default as url } from './url';
 export { default as video } from './video';
 export { default as videoElement } from './video-element';

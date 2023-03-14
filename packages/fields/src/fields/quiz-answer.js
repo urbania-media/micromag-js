@@ -16,9 +16,9 @@ export default {
         },
         {
             name: 'good',
-            type: 'toggle',
+            type: 'true-false',
             label: defineMessage({
-                defaultMessage: 'Right answer',
+                defaultMessage: 'Answer icon value',
                 description: 'Field label',
             }),
         },

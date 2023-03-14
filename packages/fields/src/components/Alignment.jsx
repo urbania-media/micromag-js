@@ -6,6 +6,8 @@ import { FormattedMessage } from 'react-intl';
 
 import Radios from './Radios';
 
+import styles from '../styles/alignment.module.scss';
+
 const icons = {
     horizontal: {
         left: (props) => <div {...props}>left</div>,
@@ -73,48 +75,58 @@ const Alignment = ({ alignment, value, className, onChange }) => {
                 },
             ])}
         >
-            {Object.keys(alignment).map((axis) => axis(
-                <div key={axis} className={classNames(['d-flex', 'align-items-center', 'mb-2'])}>
-                    <small className={styles.label}>
-                        {axis === 'horizontal' ? (
-                            <FormattedMessage
-                                defaultMessage="Horizontal"
-                                description="Field label"
-                            />
-                        ) : (
-                            <FormattedMessage defaultMessage="Vertical" description="Field label" />
-                        )}
-                    </small>
-                    <Radios
-                        options={(axis === 'horizontal'
-                            ? ['left', 'middle', 'right']
-                            : ['top', 'middle', 'bottom']
-                        ).map((type) => {
-                            const Icon = icons[axis][type];
+            {Object.keys(alignment).map((axis) =>
+                axis(
+                    <div
+                        key={axis}
+                        className={classNames(['d-flex', 'align-items-center', 'mb-2'])}
+                    >
+                        <small className={styles.label}>
+                            {axis === 'horizontal' ? (
+                                <FormattedMessage
+                                    defaultMessage="Horizontal"
+                                    description="Field label"
+                                />
+                            ) : (
+                                <FormattedMessage
+                                    defaultMessage="Vertical"
+                                    description="Field label"
+                                />
+                            )}
+                        </small>
+                        <Radios
+                            options={(axis === 'horizontal'
+                                ? ['left', 'middle', 'right']
+                                : ['top', 'middle', 'bottom']
+                            ).map((type) => {
+                                const Icon = icons[axis][type];
 
-                            return {
-                                value: type,
-                                label: (
-                                    <div className={styles.type}>
-                                        <Icon className={styles.icon} />
-                                    </div>
-                                ),
-                            };
-                        })}
-                        value={value !== null ? value[axis] : null}
-                        className={classNames([
-                            styles.container,
-                            {
-                                [className]: className !== null,
-                            },
-                        ])}
-                        buttonClassName={styles.button}
-                        onChange={
-                            axis === 'horizontal' ? onHorizontalAlignChange : onVerticalAlignChange
-                        }
-                    />
-                </div>
-            ))}
+                                return {
+                                    value: type,
+                                    label: (
+                                        <div className={styles.type}>
+                                            <Icon className={styles.icon} />
+                                        </div>
+                                    ),
+                                };
+                            })}
+                            value={value !== null ? value[axis] : null}
+                            className={classNames([
+                                styles.container,
+                                {
+                                    [className]: className !== null,
+                                },
+                            ])}
+                            buttonClassName={styles.button}
+                            onChange={
+                                axis === 'horizontal'
+                                    ? onHorizontalAlignChange
+                                    : onVerticalAlignChange
+                            }
+                        />
+                    </div>,
+                ),
+            )}
         </div>
     );
 };

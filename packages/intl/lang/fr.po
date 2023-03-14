@@ -191,6 +191,12 @@ msgctxt "2J05S0"
 msgid "Images"
 msgstr "Images"
 
+# Field label
+#: 2LbLWQ
+msgctxt "2LbLWQ"
+msgid "None"
+msgstr "Aucun"
+
 # Title placeholder
 #: 2ZOPe+
 msgctxt "2ZOPe+"
@@ -582,6 +588,12 @@ msgid "No answer..."
 msgstr "Aucune réponse"
 
 # Field label
+#: A/Vr8P
+msgctxt "A/Vr8P"
+msgid "False"
+msgstr "Faux"
+
+# Field label
 #: A7ncT3
 msgctxt "A7ncT3"
 msgid "Draggable"
@@ -888,6 +900,12 @@ msgid "Popups"
 msgstr "Popups"
 
 # Field label
+#: I1hyZY
+msgctxt "I1hyZY"
+msgid "Answer icon value"
+msgstr "Icône de réponse"
+
+# Field label
 #: I2bIHm
 msgctxt "I2bIHm"
 msgid "Good answer color"
@@ -916,12 +934,6 @@ msgstr "Liens"
 msgctxt "IE7U/Q"
 msgid "Heading"
 msgstr "Titre"
-
-# Field label
-#: ItuhfW
-msgctxt "ItuhfW"
-msgid "Right answer"
-msgstr "Bonne réponse"
 
 # Type field label
 #: J9e9Qb
@@ -1959,6 +1971,12 @@ msgstr "Type"
 msgctxt "irG6mX"
 msgid "Distance"
 msgstr "Distance"
+
+# Field label
+#: j00v1T
+msgctxt "j00v1T"
+msgid "True"
+msgstr "Vrai"
 
 # Author label
 #: jEK6B8

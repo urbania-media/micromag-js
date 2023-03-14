@@ -119,6 +119,10 @@
     "defaultMessage": "Images",
     "description": "Media label"
   },
+  "2LbLWQ": {
+    "defaultMessage": "None",
+    "description": "Field label"
+  },
   "2ZOPe+": {
     "defaultMessage": "Title",
     "description": "Title placeholder"
@@ -379,6 +383,10 @@
     "defaultMessage": "No answer...",
     "description": "Label when there is no item"
   },
+  "A/Vr8P": {
+    "defaultMessage": "False",
+    "description": "Field label"
+  },
   "A7ncT3": {
     "defaultMessage": "Draggable",
     "description": "Field label"
@@ -583,6 +591,10 @@
     "defaultMessage": "Popups",
     "description": "Keypad item state"
   },
+  "I1hyZY": {
+    "defaultMessage": "Answer icon value",
+    "description": "Field label"
+  },
   "I2bIHm": {
     "defaultMessage": "Good answer color",
     "description": "Field label"
@@ -602,10 +614,6 @@
   "IE7U/Q": {
     "defaultMessage": "Heading",
     "description": "Placeholder label"
-  },
-  "ItuhfW": {
-    "defaultMessage": "Right answer",
-    "description": "Field label"
   },
   "J9e9Qb": {
     "defaultMessage": "Video",
@@ -1296,6 +1304,10 @@
   },
   "irG6mX": {
     "defaultMessage": "Distance",
+    "description": "Field label"
+  },
+  "j00v1T": {
+    "defaultMessage": "True",
     "description": "Field label"
   },
   "jEK6B8": {
