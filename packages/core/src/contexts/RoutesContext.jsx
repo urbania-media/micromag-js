@@ -27,14 +27,16 @@ export const useUrlGenerator = () => {
 
 export const useRoutePush = () => {
     const url = useUrlGenerator();
-    const history = useHistory();
+    const history = useHistory() || null;
     const push = useCallback(
         (route, data, ...args) => {
-            if (isString(route)) {
-                history.push(url(route, data), ...args);
-            } else {
-                const { pathname = null, search = null } = route || {};
-                history.push({ pathname: url(pathname, data), search }, ...args);
+            if (history !== null && history.push) {
+                if (isString(route)) {
+                    history.push(url(route, data), ...args);
+                } else {
+                    const { pathname = null, search = null } = route || {};
+                    history.push({ pathname: url(pathname, data), search }, ...args);
+                }
             }
         },
         [history, url],
@@ -44,8 +46,12 @@ export const useRoutePush = () => {
 
 export const useRouteBack = () => {
     const url = useUrlGenerator();
-    const history = useHistory();
-    const back = useCallback(() => history.goBack(), [history, url]);
+    const history = useHistory() || null;
+    const back = useCallback(() => {
+        if (history !== null && history.goBack) {
+            history.goBack();
+        }
+    }, [history, url]);
     return back;
 };
 
