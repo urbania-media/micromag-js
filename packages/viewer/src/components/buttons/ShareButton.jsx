@@ -6,8 +6,6 @@ import { useIntl } from 'react-intl';
 
 import IconButton from './IconButton';
 
-import styles from '../../styles/buttons/share-button.module.scss';
-
 const propTypes = {
     className: PropTypes.string,
 };
@@ -31,7 +29,6 @@ const ShareButton = ({ className, ...props }) => {
                 description: 'Button label',
             })}
             iconPosition="left"
-            iconClassName={styles.icon}
             icon={
                 <svg
                     width="24"

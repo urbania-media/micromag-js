@@ -30,27 +30,27 @@ const CloseButton = ({ className, ...props }) => {
             })}
             icon={
                 <svg
-                    width="27"
-                    height="31"
-                    viewBox="0 0 27 31"
+                    width="19"
+                    height="23"
+                    viewBox="0 0 19 23"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                 >
-                    <mask id="path-1-inside-1_526_17272" fill="currentColor">
-                        <path d="M4 11C4 8.79086 5.79086 7 8 7H16C18.2091 7 20 8.79086 20 11V23C20 25.2091 18.2091 27 16 27H8C5.79086 27 4 25.2091 4 23V11Z" />
+                    <mask id="path-1-inside-1_560_19911" fill="currentColor">
+                        <path d="M0 7C0 4.79086 1.79086 3 4 3H12C14.2091 3 16 4.79086 16 7V19C16 21.2091 14.2091 23 12 23H4C1.79086 23 0 21.2091 0 19V7Z" />
                     </mask>
                     <path
-                        d="M4 7H20H4ZM20 23C20 25.7614 17.7614 28 15 28H8C5.23858 28 3 25.7614 3 23H5C5 24.6569 6.34315 26 8 26H16C18.2091 26 20 24.6569 20 23ZM8 28C5.23858 28 3 25.7614 3 23V12C3 9.23858 5.23858 7 8 7C6.34315 7 5 8.79086 5 11V23C5 24.6569 6.34315 26 8 26V28ZM20 7V27V7Z"
+                        d="M0 3H16H0ZM16 19C16 21.7614 13.7614 24 11 24H4C1.23858 24 -1 21.7614 -1 19H1C1 20.6569 2.34315 22 4 22H12C14.2091 22 16 20.6569 16 19ZM4 24C1.23858 24 -1 21.7614 -1 19V8C-1 5.23858 1.23858 3 4 3C2.34315 3 1 4.79086 1 7V19C1 20.6569 2.34315 22 4 22V24ZM16 3V23V3Z"
                         fill="currentColor"
-                        mask="url(#path-1-inside-1_526_17272)"
+                        mask="url(#path-1-inside-1_560_19911)"
                     />
-                    <rect x="7.5" y="4.5" width="15" height="19" rx="2.5" stroke="currentColor" />
+                    <rect x="3.5" y="0.5" width="15" height="19" rx="2.5" stroke="currentColor" />
                     <path
-                        d="M11.3533 10.3533L18.6467 17.6467"
+                        d="M7.35333 6.35333L14.6467 13.6467"
                         stroke="currentColor"
                         strokeLinejoin="round"
                     />
-                    <path d="M11.3533 17.6467L18.6467 10.3533" stroke="currentColor" />
+                    <path d="M7.35333 13.6467L14.6467 6.35333" stroke="white" />
                 </svg>
             }
             {...props}

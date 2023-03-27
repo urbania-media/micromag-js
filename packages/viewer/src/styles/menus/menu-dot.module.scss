@@ -34,7 +34,7 @@
     @media (hover: hover) {
         &:hover {
             .dot {
-                transform: scaleY(4);
+                transform: scaleY(1.5);
                 background-color: $white !important;
             }
         }
@@ -42,17 +42,17 @@
 
     &:active {
         .dot {
-            transform: scaleY(6);
+            transform: scaleY(1.5);
         }
     }
 }
 
 .dot {
-    position: relative;
     display: block;
+    position: relative;
     width: 100%;
-    height: 3px;
-    transform-origin: 50% 0;
+    height: 2px;
+    // transform-origin: 50% 0;
     transition: transform 0.3s $ease-in-bump;
     background-color: rgba($white, 0.15);
 }
@@ -102,6 +102,6 @@
 
 @keyframes outlineBounce {
     to {
-        transform: scaleY(4);
+        transform: scaleY(1.5);
     }
 }

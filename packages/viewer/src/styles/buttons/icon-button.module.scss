@@ -3,23 +3,27 @@
 
 .container {
     @extend %reset-button;
-    @extend %focus-outline; // @todo still used and relevant? investigate
 
     display: flex;
     align-items: center;
     transform-origin: 0 50%;
     border-radius: 0;
 
-    .label {
+    .label,
+    .icon {
         opacity: 0.75;
     }
 
     @media (hover: hover) {
         &:hover {
-            .icon,
-            .label {
+            .icon {
                 transform: scale(1.1);
                 transition: transform 0.3s $ease-in-yo, opacity 0.3s $ease-in-yo;
+                opacity: 1;
+            }
+
+            .label {
+                transition: opacity 0.3s $ease-in-yo;
                 opacity: 1;
             }
         }
@@ -35,7 +39,6 @@
 }
 
 .label {
-    font-weight: bold;
     user-select: none;
 }
 
