@@ -92,6 +92,7 @@
         "minimatch": "^5.0.1",
         "mkdirp": "^1.0.4",
         "node-sass-tilde-importer": "^1.0.2",
+        "nx": "^15.8.9",
         "pkg-up": "^3.1.0",
         "postcss": "^8.2.4",
         "postcss-cli": "^9.0.2",
