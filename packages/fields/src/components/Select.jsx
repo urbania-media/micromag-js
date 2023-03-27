@@ -1,7 +1,8 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import getSelectOptions from '../utils/getSelectOptions';
@@ -32,6 +33,7 @@ const SelectField = ({ value, options, disabled, className, onChange }) => {
                 styles.container,
                 'form-select',
                 {
+                    'text-dark': disabled,
                     [className]: className !== null,
                 },
             ])}

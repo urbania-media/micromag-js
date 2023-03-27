@@ -1,6 +1,7 @@
 {
-    "version": "0.3.344",
+    "version": "0.3.343",
     "packages": ["elements/*", "packages/*", "screens/*"],
+    "useNx": true,
     "command": {
         "publish": {
             "allowBranch": ["master", "develop"],
