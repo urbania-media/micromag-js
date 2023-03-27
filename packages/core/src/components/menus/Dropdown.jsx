@@ -4,8 +4,10 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useRef, useCallback, useState, useEffect } from 'react';
+
 import { useDocumentEvent } from '../../hooks';
 import { PropTypes as MicromagPropTypes } from '../../lib';
+
 // import Button from '../buttons/Button';
 import Label from '../partials/Label';
 import Link from '../partials/Link';
@@ -118,7 +120,7 @@ const Dropdown = ({
                       return ItemComponent !== null ? (
                           <div>
                               <ItemComponent
-                                  key={`item-${index}-${label}`}
+                                  key={`item-${index}-${label}-${type}`}
                                   className={classNames([
                                       {
                                           'dropdown-item': type === 'link' || type === 'button',

@@ -12,4 +12,8 @@
     }
 }
 
+.lightCaret {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Cpath fill=%27none%27 stroke=%27#FFF%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27m2 5 6 6 6-6%27/%3E%3C/svg%3E");
+}
+
 /* stylelint-enable selector-class-pattern, max-nesting-depth, selector-max-compound-selectors, selector-pseudo-class-no-unknown */

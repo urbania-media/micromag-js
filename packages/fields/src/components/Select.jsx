@@ -33,6 +33,9 @@ const SelectField = ({ value, options, disabled, className, onChange }) => {
                 styles.container,
                 'form-select',
                 {
+                    [styles.lightCaret]: !disabled,
+                    'bg-dark': !disabled,
+                    'text-light': !disabled,
                     'text-dark': disabled,
                     [className]: className !== null,
                 },
