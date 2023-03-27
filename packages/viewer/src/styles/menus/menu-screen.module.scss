@@ -28,12 +28,11 @@
 
     .isCurrent & {
         animation: pulse 0.75s $ease-in-out-soft-sine infinite alternate-reverse;
-        border-color: #fffc00;
+        // border-color: #FFFC00;
     }
 
     @media (hover: hover) {
         &:hover {
-            // border: 0.25rem solid $white;
             border: 0.1rem solid $white;
         }
     }

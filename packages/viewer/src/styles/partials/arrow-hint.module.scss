@@ -44,11 +44,11 @@
 
 @keyframes panX {
     from {
-        transform: translateX(0) rotate(90deg) ;
+        transform: translateX(0);
     }
 
     to {
-        transform: translateX(-1rem) rotate(90deg) ;
+        transform: translateX(-1rem);
     }
 }
 
