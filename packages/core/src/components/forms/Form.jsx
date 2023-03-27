@@ -26,6 +26,8 @@ const propTypes = {
     postForm: PropTypes.func,
     submitButtonLabel: MicromagPropTypes.label,
     submitButtonLoadingLabel: MicromagPropTypes.label,
+    submitButtonTheme: PropTypes.string,
+    cancelButtonTheme: PropTypes.string,
     buttons: MicromagPropTypes.buttons,
     children: PropTypes.node,
     actionsAlign: PropTypes.oneOf(['left', 'right']),
@@ -54,6 +56,8 @@ const defaultProps = {
         <FormattedMessage defaultMessage="Submit" description="Submit form button" />
     ),
     submitButtonLoadingLabel: null,
+    submitButtonTheme: null,
+    cancelButtonTheme: null,
     buttons: null,
     children: null,
     actionsAlign: 'left',
@@ -81,6 +85,8 @@ const Form = ({
     postForm,
     submitButtonLabel,
     submitButtonLoadingLabel,
+    submitButtonTheme,
+    cancelButtonTheme,
     buttons,
     children,
     actionsAlign,
@@ -246,7 +252,7 @@ const Form = ({
                             type="button"
                             onClick={onCancel}
                             href={onCancelHref}
-                            theme="secondary"
+                            theme={cancelButtonTheme || 'secondary'}
                             outline
                             disabled={status === 'loading'}
                             className={classNames([
@@ -264,7 +270,7 @@ const Form = ({
                     ) : (
                         <Button
                             type="submit"
-                            theme="primary"
+                            theme={submitButtonTheme || 'primary'}
                             disabled={status === 'loading' || !canSave}
                         >
                             {status === 'loading'
