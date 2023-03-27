@@ -8,14 +8,16 @@ import Button from './Button';
 import styles from '../../styles/buttons/icon-button.module.scss';
 
 const propTypes = {
+    iconClassName: PropTypes.string,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    iconClassName: null,
     className: null,
 };
 
-const IconButton = ({ className, ...props }) => (
+const IconButton = ({ iconClassName, className, ...props }) => (
     <Button
         className={classNames([
             styles.container,
@@ -24,7 +26,12 @@ const IconButton = ({ className, ...props }) => (
             },
         ])}
         labelClassName={styles.label}
-        iconClassName={styles.icon}
+        iconClassName={classNames([
+            styles.icon,
+            {
+                [iconClassName]: iconClassName !== null,
+            },
+        ])}
         {...props}
     />
 );

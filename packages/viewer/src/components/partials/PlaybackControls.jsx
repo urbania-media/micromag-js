@@ -163,31 +163,29 @@ function PlaybackControls({
     const icon = playing ? (
         <svg
             className={styles.icon}
+            width="14"
+            height="18"
+            viewBox="0 0 14 18"
+            fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            width="10px"
-            height="16px"
-            viewBox="0 0 10 16"
-            xmlSpace="preserve"
         >
-            <rect fill={color} x="1" y="3.27" width="3" height="9.69" />
-            <rect fill={color} x="6" y="3.27" width="3" height="9.69" />
+            <rect width="6" height="18" rx="2" fill={color} />
+            <rect x="8" width="6" height="18" rx="2" fill={color} />
         </svg>
     ) : (
         <svg
-            className={styles.icon}
+            width="20"
+            height="23"
+            viewBox="0 0 20 23"
+            fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            width="10px"
-            height="16px"
-            viewBox="0 0 10 16"
-            xmlSpace="preserve"
+            className={styles.icon}
         >
-            <path fill={color} d="M1,3.16V12.84l8-4.84L1,3.16" />
+            <path
+                d="M16.25 12.5574L2.74999 20.3516C1.74999 20.9289 0.499993 20.2073 0.499993 19.0526L0.499994 3.4641C0.499994 2.3094 1.74999 1.58771 2.74999 2.16506L16.25 9.95929C17.25 10.5366 17.25 11.98 16.25 12.5574Z"
+                fill={color}
+                stroke={color}
+            />
         </svg>
     );
 
@@ -264,45 +262,44 @@ function PlaybackControls({
                 icon={
                     muted ? (
                         <svg
+                            width="26"
+                            height="26"
+                            viewBox="0 0 26 26"
+                            fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                            x="0px"
-                            y="0px"
-                            width="10px"
-                            height="16px"
-                            viewBox="0 0 10 16"
-                            xmlSpace="preserve"
                             className={styles.icon}
                         >
-                            <polygon
+                            <path
+                                d="M7.09929 8.77987H1C0.447715 8.77987 0 9.22758 0 9.77987V15.7799C0 16.3322 0.447715 16.7799 1 16.7799H7.1076C7.35984 16.7799 7.60276 16.8752 7.78768 17.0467L14.3199 23.1062C14.9599 23.6999 16 23.246 16 22.3731V3.00199C16 2.12221 14.9458 1.67117 14.3095 2.2787L7.78983 8.50316C7.6038 8.68077 7.35649 8.77987 7.09929 8.77987Z"
                                 fill={color}
-                                points="2.75 4.63 1.24 6 0 6 0 10 1.24 10 4.54 13 4.54 3 2.75 4.63"
                             />
-                            <polygon
+                            <path
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M20.8536 13.3946L23 15.5411L23.7071 14.834L21.5607 12.6875L23.7071 10.5411L23 9.83398L20.8536 11.9804L18.7071 9.83398L18 10.5411L20.1464 12.6875L18 14.834L18.7071 15.5411L20.8536 13.3946Z"
                                 fill={color}
-                                points="10 6.63 8.94 5.57 7.58 6.93 6.21 5.57 5.15 6.63 6.52 7.99 5.15 9.35 6.21 10.43 7.58 9.06 8.94 10.43 10 9.35 8.64 7.99 10 6.63"
                             />
                         </svg>
                     ) : (
                         <svg
+                            width="26"
+                            height="26"
+                            viewBox="0 0 26 26"
+                            fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                            x="0px"
-                            y="0px"
-                            width="10px"
-                            height="16px"
-                            viewBox="0 0 10 16"
-                            xmlSpace="preserve"
                             className={styles.icon}
                         >
-                            <polygon
-                                fill={color}
-                                points="2.75 4.63 1.24 6 0 6 0 10 1.24 10 4.54 13 4.54 3 2.75 4.63"
-                            />
-                            <circle fill={color} cx="6.14" cy="8" r=".99" />
                             <path
+                                d="M7.09929 8.77987H1C0.447715 8.77987 0 9.22758 0 9.77987V15.7799C0 16.3322 0.447715 16.7799 1 16.7799H7.1076C7.35984 16.7799 7.60276 16.8752 7.78768 17.0467L14.3199 23.1062C14.9599 23.6999 16 23.246 16 22.3731V3.00199C16 2.12221 14.9458 1.67117 14.3095 2.2787L7.78983 8.50316C7.6038 8.68077 7.35649 8.77987 7.09929 8.77987Z"
                                 fill={color}
-                                d="M6.14,11.88v-1.5c1.31,0,2.38-1.07,2.38-2.38s-1.07-2.38-2.38-2.38v-1.5c2.14,0,3.88,1.74,3.88,3.88s-1.74,3.88-3.88,3.88Z"
+                            />
+                            <path
+                                d="M18 18.6875C21.3137 18.6875 24 16.0012 24 12.6875C24 9.37379 21.3137 6.6875 18 6.6875"
+                                stroke={color}
+                            />
+                            <path
+                                d="M18 15.6875C19.6569 15.6875 21 14.3444 21 12.6875C21 11.0306 19.6569 9.6875 18 9.6875"
+                                stroke={color}
                             />
                         </svg>
                     )
