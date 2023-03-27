@@ -1,3 +1,4 @@
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons/faCircleNotch';
 import { faPause } from '@fortawesome/free-solid-svg-icons/faPause';
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons/faVolumeUp';
@@ -14,6 +15,7 @@ import styles from './styles/media-controls.module.scss';
 
 const propTypes = {
     playing: PropTypes.bool,
+    loading: PropTypes.bool,
     muted: PropTypes.bool,
     onPlay: PropTypes.func,
     onPause: PropTypes.func,
@@ -27,6 +29,7 @@ const propTypes = {
 
 const defaultProps = {
     playing: false,
+    loading: false,
     muted: false,
     onPlay: null,
     onPause: null,
@@ -40,6 +43,7 @@ const defaultProps = {
 
 const MediaControls = ({
     playing,
+    loading,
     muted,
     onPlay,
     onPause,
@@ -53,6 +57,8 @@ const MediaControls = ({
     const intl = useIntl();
     const fullColor = isString(color) ? { color, alpha: 1 } : color;
     const { color: finalColor = 'white' } = fullColor || {};
+    const playAction = playing ? onPause : onPlay;
+
     return (
         <div
             className={classNames([
@@ -72,7 +78,7 @@ const MediaControls = ({
                 <button
                     type="button"
                     className={styles.playPauseButton}
-                    onClick={playing ? onPause : onPlay}
+                    onClick={loading ? null : playAction}
                     title={intl.formatMessage({
                         defaultMessage: 'Play',
                         description: 'Button label',
@@ -83,7 +89,14 @@ const MediaControls = ({
                     })}
                     tabIndex={focusable ? '0' : '-1'}
                 >
-                    <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />
+                    {loading ? (
+                        <FontAwesomeIcon className={styles.icon} icon={faCircleNotch} spin />
+                    ) : (
+                        <FontAwesomeIcon
+                            className={styles.icon}
+                            icon={playing ? faPause : faPlay}
+                        />
+                    )}
                 </button>
                 <button
                     type="button"

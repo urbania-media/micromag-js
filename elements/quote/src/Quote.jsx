@@ -1,11 +1,17 @@
 /* eslint-disable react/no-array-index-key, react/no-danger */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { v1 as uuid } from 'uuid';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
+import { v1 as uuid } from 'uuid';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromText, getStyleFromMargin } from '@micromag/core/utils';
-import { LinkStyle } from '@micromag/core/components';
+import { LinkStyle, HighlightStyle } from '@micromag/core/components';
+import {
+    getStyleFromText,
+    getStyleFromMargin,
+    getStyleFromHighlight,
+    getStyleFromLink,
+} from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -30,9 +36,13 @@ const defaultProps = {
 };
 
 const Quote = ({ body, textStyle, linksStyle, margin, showEmpty, className, emptyClassName }) => {
-    let finalStyle = null;
+    const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
+    let finalStyle = {};
+    let finalLinkStyle = linkStyle !== null ? getStyleFromLink(linkStyle) : null;
 
-    let finalLinkStyle = null;
+    const finalHighlightStyle =
+        highlightStyle !== null ? getStyleFromHighlight(highlightStyle) : null;
+
     if (textStyle !== null) {
         finalStyle = {
             ...finalStyle,
@@ -53,13 +63,18 @@ const Quote = ({ body, textStyle, linksStyle, margin, showEmpty, className, empt
         };
     }
 
-    const id = useMemo(() => (finalLinkStyle !== null ? `quote-component-${uuid()}` : null), [
-        finalLinkStyle !== null,
-    ]);
+    const id = useMemo(
+        () => (finalLinkStyle !== null ? `quote-component-${uuid()}` : null),
+        [finalLinkStyle !== null],
+    );
+
     return (
         <>
             {finalLinkStyle !== null ? (
                 <LinkStyle selector={`#${id}`} style={finalLinkStyle} />
+            ) : null}
+            {finalHighlightStyle !== null ? (
+                <HighlightStyle selector={`#${id}`} style={finalHighlightStyle} />
             ) : null}
             <blockquote
                 id={id}

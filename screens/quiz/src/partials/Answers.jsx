@@ -109,6 +109,8 @@ const Answers = ({
                 },
                 hasAnsweredRight || finalShowUserAnswer ? 500 : answersCollapseDelay,
             );
+        } else if (answeredIndex === null && shouldCollapse) {
+            setAnswersCollapsed(false);
         }
         return () => {
             if (timeout !== null) {
@@ -157,15 +159,23 @@ const Answers = ({
     //     return acc;
     // }, []);
 
+    const showAnimation = isView || isEdit;
     const filteredListOfItems = listOfItems.map((answer, answerI) => {
         // const y = heights[answerI] ? heights[answerI] : 0;
         const userAnswer = answerI === answeredIndex;
         const { good: rightAnswer = false } = answer || {};
         let hidden = false;
-        if (isView && answersDidCollapse && !rightAnswer && (hasRightAnswer || !userAnswer)) {
+
+        if (
+            answeredIndex !== null &&
+            showAnimation &&
+            answersDidCollapse &&
+            !rightAnswer &&
+            (hasRightAnswer || !userAnswer)
+        ) {
             hidden = true;
         }
-        if (isView && answersCollapsed && !rightAnswer) {
+        if (answeredIndex !== null && showAnimation && answersCollapsed && !rightAnswer) {
             hidden = true;
         }
         return { ...answer, hidden, userAnswer, index: answerI };
@@ -185,8 +195,8 @@ const Answers = ({
         {
             key: ({ index = 0, label = null }) => `key-${index}-${label?.body || null}`,
             update: ({ hidden = false }) => ({
-                opacity: hidden && isView && !withoutGoodAnswer ? 0 : 1,
-                height: hidden && isView && !withoutGoodAnswer ? 0 : null,
+                opacity: hidden && showAnimation && !withoutGoodAnswer ? 0 : 1,
+                height: hidden && showAnimation && !withoutGoodAnswer ? 0 : 'auto',
             }),
             config: config.gentle,
             // onRest: () => {
@@ -212,7 +222,7 @@ const Answers = ({
                     {transitions((style, answer, t, answerI) => {
                         const userAnswer = answerI === answeredIndex;
                         const {
-                            good: rightAnswer = false,
+                            good: rightAnswer = null,
                             label = null,
                             buttonStyle: answerButtonStyle = null,
                             textStyle: answerButtonTextStyle = null,
@@ -225,7 +235,8 @@ const Answers = ({
                                 className={classNames([
                                     styles.item,
                                     {
-                                        [styles.rightAnswer]: !withoutGoodAnswer && rightAnswer,
+                                        [styles.rightAnswer]:
+                                            !withoutGoodAnswer && rightAnswer === true,
                                         [styles.userAnswer]: withoutGoodAnswer && userAnswer,
                                         [styles.otherAnswer]: withoutGoodAnswer && !userAnswer,
                                     },
@@ -271,7 +282,9 @@ const Answers = ({
                                                     ...answerButtonTextStyle,
                                                 }}
                                             >
-                                                {answered && !withoutIcon && rightAnswer ? (
+                                                {answered &&
+                                                !withoutIcon &&
+                                                rightAnswer === true ? (
                                                     <span
                                                         className={styles.resultIcon}
                                                         style={getStyleFromColor(
@@ -287,8 +300,7 @@ const Answers = ({
                                                 ) : null}
                                                 {!withoutIcon &&
                                                 answered &&
-                                                !hasAnsweredRight &&
-                                                userAnswer ? (
+                                                rightAnswer === false ? (
                                                     <span
                                                         className={styles.resultIcon}
                                                         style={getStyleFromColor(

@@ -1,4 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons/faCircleNotch';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -6,6 +8,7 @@ import { useIntl } from 'react-intl';
 
 import { Button } from '@micromag/core/components';
 import { usePlaybackContext } from '@micromag/core/contexts';
+import { useMediaReady } from '@micromag/core/hooks';
 import { getColorAsString } from '@micromag/core/utils';
 
 import SeekBar from './SeekBar';
@@ -17,6 +20,11 @@ const propTypes = {
         color: PropTypes.string,
         alpha: PropTypes.number,
     }),
+    defaultProgressColor: PropTypes.shape({
+        color: PropTypes.string,
+        alpha: PropTypes.number,
+    }),
+    withLoading: PropTypes.bool,
     className: PropTypes.string,
     collapsedClassName: PropTypes.string,
 };
@@ -26,11 +34,22 @@ const defaultProps = {
         color: '#FFFFFF',
         alpha: 1,
     },
+    defaultProgressColor: {
+        color: '#666',
+        alpha: 1,
+    },
+    withLoading: true,
     className: null,
     collapsedClassName: null,
 };
 
-function PlaybackControls({ defaultColor, className, collapsedClassName }) {
+function PlaybackControls({
+    defaultColor,
+    defaultProgressColor,
+    withLoading,
+    className,
+    collapsedClassName,
+}) {
     const intl = useIntl();
     const {
         media: mediaElement = null,
@@ -45,6 +64,28 @@ function PlaybackControls({ defaultColor, className, collapsedClassName }) {
         showControls,
     } = usePlaybackContext();
 
+    const [showLoading, setShowLoading] = useState(false);
+    const mediaUrl = mediaElement !== null ? mediaElement.src : null;
+    const mediaReady = useMediaReady(mediaElement, {
+        id: mediaUrl,
+    });
+    const ready = mediaElement === null || mediaReady;
+    const finalShowLoading = showLoading && !ready;
+
+    useEffect(() => {
+        let id = null;
+        setShowLoading(false);
+        if (!ready && withLoading) {
+            id = setTimeout(() => {
+                setShowLoading(true);
+            }, 2000);
+        }
+        return () => {
+            setShowLoading(false);
+            clearTimeout(id);
+        };
+    }, [ready, withLoading, setShowLoading]);
+
     const [customControlsTheme, setCustomControlsTheme] = useState({
         color: getColorAsString(defaultColor),
         progressColor: getColorAsString(defaultColor),
@@ -57,10 +98,10 @@ function PlaybackControls({ defaultColor, className, collapsedClassName }) {
         const { color, progressColor, seekBarOnly } = controlsTheme || {};
         setCustomControlsTheme({
             color: getColorAsString(color || defaultColor),
-            progressColor: getColorAsString(progressColor || defaultColor),
+            progressColor: getColorAsString(progressColor || defaultProgressColor),
             seekBarOnly,
         });
-    }, [controlsTheme, setCustomControlsTheme, defaultColor]);
+    }, [controlsTheme, setCustomControlsTheme, defaultColor, defaultProgressColor]);
 
     const onPlay = useCallback(() => {
         setPlaying(true);
@@ -119,6 +160,36 @@ function PlaybackControls({ defaultColor, className, collapsedClassName }) {
     const mediaHasAudio = hasMedia && (hasAudio === null || hasAudio === true);
     const { color, progressColor, seekBarOnly } = customControlsTheme || {};
     const isCollapsed = (controls && !controlsVisible && playing) || (!controls && mediaHasAudio);
+    const icon = playing ? (
+        <svg
+            className={styles.icon}
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            width="10px"
+            height="16px"
+            viewBox="0 0 10 16"
+            xmlSpace="preserve"
+        >
+            <rect fill={color} x="1" y="3.27" width="3" height="9.69" />
+            <rect fill={color} x="6" y="3.27" width="3" height="9.69" />
+        </svg>
+    ) : (
+        <svg
+            className={styles.icon}
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            width="10px"
+            height="16px"
+            viewBox="0 0 10 16"
+            xmlSpace="preserve"
+        >
+            <path fill={color} d="M1,3.16V12.84l8-4.84L1,3.16" />
+        </svg>
+    );
 
     return (
         <div
@@ -143,36 +214,17 @@ function PlaybackControls({ defaultColor, className, collapsedClassName }) {
                 }}
                 onClick={playing ? onPause : onPlay}
                 focusable={controlsVisible}
+                disabled={finalShowLoading}
                 icon={
-                    playing ? (
-                        <svg
-                            className={styles.icon}
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                            x="0px"
-                            y="0px"
-                            width="10px"
-                            height="16px"
-                            viewBox="0 0 10 16"
-                            xmlSpace="preserve"
-                        >
-                            <rect fill={color} x="1" y="3.27" width="3" height="9.69" />
-                            <rect fill={color} x="6" y="3.27" width="3" height="9.69" />
-                        </svg>
+                    finalShowLoading ? (
+                        <FontAwesomeIcon
+                            className={styles.spinner}
+                            icon={faCircleNotch}
+                            spin
+                            size="lg"
+                        />
                     ) : (
-                        <svg
-                            className={styles.icon}
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                            x="0px"
-                            y="0px"
-                            width="10px"
-                            height="16px"
-                            viewBox="0 0 10 16"
-                            xmlSpace="preserve"
-                        >
-                            <path fill={color} d="M1,3.16V12.84l8-4.84L1,3.16" />
-                        </svg>
+                        icon
                     )
                 }
                 aria-label={

@@ -96,7 +96,6 @@ const Checkboxes = ({
                                 } else {
                                     newValue = null;
                                 }
-
                                 if (onChange !== null) {
                                     onChange(newValue);
                                 }

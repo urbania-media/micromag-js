@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { v1 as uuid } from 'uuid';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import {
@@ -13,6 +14,7 @@ import {
     getStyleFromMargin,
     getStyleFromText,
 } from '@micromag/core/utils';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -61,8 +63,10 @@ const Text = ({
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = {};
     let finalLinkStyle = linkStyle !== null ? getStyleFromLink(linkStyle) : null;
+
     const finalHighlightStyle =
         highlightStyle !== null ? getStyleFromHighlight(highlightStyle) : null;
+
     if (textStyle !== null) {
         finalStyle = {
             ...finalStyle,

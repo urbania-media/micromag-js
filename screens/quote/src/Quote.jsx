@@ -111,7 +111,7 @@ const QuoteScreen = ({
                 />
             ) : null}
         </ScreenElement>,
-        isSplitted && <Spacer key="spacer" />,
+        isSplitted ? <Spacer key="spacer" /> : null,
         <ScreenElement
             key="author"
             placeholder="subtitle"
@@ -166,7 +166,8 @@ const QuoteScreen = ({
                             ? {
                                   padding: spacing,
                                   paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
-                                  paddingBottom: (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
                               }
                             : null
                     }

@@ -1,4 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import MediaControls from './MediaControls';
 
 export default {
@@ -9,10 +11,17 @@ export default {
     },
 };
 
-export const normal = () => <MediaControls />;
-export const withSeekBar = () => <MediaControls withSeekBar />;
-export const withControls = () => <MediaControls withControls />;
-export const withAll = () => <MediaControls withControls withSeekBar muted />;
+const theme = {
+    color: { color: '#FF0000', alpha: 1 },
+    progressColor: { color: '#00FF00', alpha: 1 },
+};
+
+export const normal = () => <MediaControls {...theme} />;
+export const loading = () => <MediaControls loading withSeekBar withControls {...theme} />;
+export const withSeekBar = () => <MediaControls withSeekBar {...theme} />;
+export const withControls = () => <MediaControls withControls {...theme} />;
+export const withAll = () => <MediaControls withControls withSeekBar muted {...theme} />;
+
 export const withAllColored = () => (
     <MediaControls
         withControls

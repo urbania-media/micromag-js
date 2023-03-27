@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Checkboxes from './Checkboxes';
+import Radios from './Radios';
 
 const propTypes = {
     value: PropTypes.shape({}),
@@ -63,15 +63,7 @@ const TrueFalse = ({ value, options, onChange, ...props }) => {
         },
         [value, onChange],
     );
-    return (
-        <Checkboxes
-            value={value}
-            options={options}
-            onChange={onInputChange}
-            singleChoice
-            {...props}
-        />
-    );
+    return <Radios value={value} options={options} onChange={onInputChange} asRadios {...props} />;
 };
 
 TrueFalse.propTypes = propTypes;
