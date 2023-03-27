@@ -10,12 +10,17 @@
     transform-origin: 0 50%;
     border-radius: 0;
 
+    .label {
+        opacity: 0.75;
+    }
+
     @media (hover: hover) {
         &:hover {
             .icon,
             .label {
                 transform: scale(1.1);
-                transition: transform 0.3s $ease-in-yo;
+                transition: transform 0.3s $ease-in-yo, opacity 0.3s $ease-in-yo;
+                opacity: 1;
             }
         }
     }
