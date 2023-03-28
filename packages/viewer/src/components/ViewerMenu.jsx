@@ -273,16 +273,15 @@ const ViewerMenu = ({
     );
     useKeyboardShortcuts(keyboardShortcuts);
 
-    const menuOpenedProgressValue = menuOpenedProgress ? menuOpenedProgress.value || 0 : 0;
-    const shareOpenedProgressValue = shareOpenedProgress ? shareOpenedProgress.value || 0 : 0;
-
+    // @TODO: Fix if needed
+    // const menuOpenedProgressValue = menuOpenedProgress ? menuOpenedProgress.value || 0 : 0;
+    // const shareOpenedProgressValue = shareOpenedProgress ? shareOpenedProgress.value || 0 : 0;
     // should be zero if either screens menu or share menu is opened
-    const dotsOpacity = Math.min(
-        1,
-        Math.max(0, 1 - (menuOpenedProgressValue + shareOpenedProgressValue)),
-    );
+    // const dotsOpacity = useEffect(() => {
+    //     Math.min(1, Math.max(0, 1 - (menuOpenedProgressValue + shareOpenedProgressValue)));
+    // }, [menuOpenedProgressValue, shareOpenedProgressValue]);
 
-    // console.log(dotsOpacity, menuProgressValue, shareProgressValue);
+    // console.log(dotsOpacity);
 
     useEffect(() => {
         if ((menuOpened || draggingMenu) && !menuMounted) {
@@ -374,9 +373,9 @@ const ViewerMenu = ({
                     withoutShareMenu={withoutShareMenu}
                     onClose={onClickCloseViewer}
                     className={styles.dots}
-                    style={{
-                        opacity: dotsOpacity ** 5, // @note this is like a "quint" easing, meaning it'll go towards 1 slowly first and then fast as it approaches 1
-                    }}
+                    // style={{
+                    // opacity: dotsOpacity ** 5, // @note this is like a "quint" easing, meaning it'll go towards 1 slowly first and then fast as it approaches 1
+                    // }}
                 />
             </div>
 
