@@ -113,9 +113,9 @@ const ViewerMenuPreview = ({
             <div className={styles.content} ref={containerRef}>
                 <Scroll className={styles.scroll} disabled={scrollDisabled}>
                     <nav className={styles.nav} style={{ paddingTop }}>
-                        <div>
-                            <h1>SFLKGJDFLKG</h1>
-                        </div>
+                        {/* <div>
+                            <h1>@TODO: ADD MICROMAG TITLE HERE</h1>
+                        </div> */}
                         <ul className={styles.items}>
                             {items.map((item, index) => {
                                 const { screenId } = item || {};
