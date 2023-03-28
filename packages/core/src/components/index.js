@@ -6,6 +6,12 @@ export { default as Form } from './forms/Form';
 export { default as FormPanel } from './forms/FormPanel';
 export { default as FieldForm } from './forms/Field';
 
+export { default as CloseIcon } from './icons/Close';
+export { default as MuteIcon } from './icons/Mute';
+export { default as PauseIcon } from './icons/Pause';
+export { default as PlayIcon } from './icons/Play';
+export { default as UnmuteIcon } from './icons/Unmute';
+
 export { default as Breadcrumb } from './menus/Breadcrumb';
 export { default as DropdownMenu } from './menus/Dropdown';
 export { default as Menu } from './menus/Menu';

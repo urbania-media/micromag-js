@@ -1,19 +1,22 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
-// .container {
-//     background-color: red;
-// }
-
 .inner {
     position: relative;
     flex-grow: 1;
 }
 
-.progressBar {
+.progressBarContainer {
     position: relative;
     height: 0.16rem;
-    background-color: rgba($white, 0.1);
+}
+
+.progressBar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background-color: $white;
 }
 
 .progress,
@@ -24,7 +27,7 @@
 .progress {
     position: relative;
     transform-origin: left center;
-    background-color: $purple;
+    background-color: $white;
 }
 
 .playHead {
@@ -36,7 +39,7 @@
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.5s $ease-in-bump;
     border-radius: 50%;
-    background-color: $purple;
+    background-color: $white;
 }
 
 .withSeekHead {

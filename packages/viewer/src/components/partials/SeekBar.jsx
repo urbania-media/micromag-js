@@ -139,7 +139,8 @@ const SeekBar = ({
             {...stopDragEventsPropagation}
         >
             <div className={styles.inner}>
-                <div className={styles.progressBar} style={{ backgroundColor }}>
+                <div className={styles.progressBarContainer}>
+                    <div className={styles.progressBar} style={{ backgroundColor }} />
                     <div
                         className={styles.playHead}
                         style={{

@@ -28,6 +28,7 @@
 
     .isCurrent & {
         animation: pulse 0.75s $ease-in-out-soft-sine infinite alternate-reverse;
+        // @TODO: Add border-color from micomag theme
         // border-color: #FFFC00;
     }
 

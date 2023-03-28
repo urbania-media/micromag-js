@@ -50,7 +50,7 @@ const CloseButton = ({ className, ...props }) => {
                         stroke="currentColor"
                         strokeLinejoin="round"
                     />
-                    <path d="M7.35333 13.6467L14.6467 6.35333" stroke="white" />
+                    <path d="M7.35333 13.6467L14.6467 6.35333" stroke="currentColor" />
                 </svg>
             }
             {...props}
