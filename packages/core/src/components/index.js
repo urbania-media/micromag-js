@@ -6,6 +6,7 @@ export { default as Form } from './forms/Form';
 export { default as FormPanel } from './forms/FormPanel';
 export { default as FieldForm } from './forms/Field';
 
+export { default as ArrowIcon } from './icons/Arrow';
 export { default as CloseIcon } from './icons/Close';
 export { default as MuteIcon } from './icons/Mute';
 export { default as PauseIcon } from './icons/Pause';
