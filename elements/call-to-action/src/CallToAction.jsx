@@ -29,6 +29,7 @@ const propTypes = {
             current: PropTypes.any, // eslint-disable-line
         }),
     ]),
+    disabled: PropTypes.bool,
     animationDisabled: PropTypes.bool,
     icon: PropTypes.node,
     arrow: PropTypes.node,
@@ -50,6 +51,7 @@ const defaultProps = {
     boxStyle: null,
     inWebView: false,
     elRef: null,
+    disabled: false,
     animationDisabled: false,
     icon: null,
     arrow: null,
