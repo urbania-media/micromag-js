@@ -122,6 +122,6 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
 
 KeypadLayoutForm.propTypes = propTypes;
 KeypadLayoutForm.defaultProps = defaultProps;
-KeypadLayoutForm.withForm = true;
+// KeypadLayoutForm.withForm = true;
 
 export default KeypadLayoutForm;
