@@ -469,6 +469,11 @@ const KeypadScreen = ({
                             pointerEvents: popupSpring.to((p) => (p < 0.1 ? 'none' : 'auto')),
                         }}
                         {...bindPopupDrag()}
+                        onClick={() => {
+                            if (onCloseModal !== null) {
+                                onCloseModal();
+                            }
+                        }}
                     >
                         <Scroll
                             disabled={isPreview || isPlaceholder || isEdit}
@@ -476,15 +481,7 @@ const KeypadScreen = ({
                             withArrow={false}
                             withShadow
                         >
-                            <button
-                                type="button"
-                                className={styles.popupButton}
-                                onClick={() => {
-                                    if (onCloseModal !== null) {
-                                        onCloseModal();
-                                    }
-                                }}
-                            >
+                            <button type="button" className={styles.popupButton}>
                                 <div
                                     className={classNames([
                                         styles.popupInner,

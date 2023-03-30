@@ -55,7 +55,11 @@ export default [
         content: {
             body: '<p>Marc-Antoine a toujours été dolor sit amet consectetur adipiscing elit, nunquam dolores. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est. Errare humanum est.</p>',
         },
-        button: { label: { body: 'Clik there' }, url: 'https://urbania.ca', inWebView: true },
+        button: {
+            label: { body: 'Clik there' },
+            url: 'https://ici.radio-canada.ca/jeunesse/maj/1966836/masturber-questions-jeunes-ados',
+            inWebView: true,
+        },
         largeVisual: imageMediaFromURL(maj),
     },
     {
