@@ -189,9 +189,9 @@ export default [
         visual: imageMediaFromURL(nrb),
     },
     {
-        label: 'Bingus bongus dingus dongus',
+        label: 'Hello hello helloooo',
         content: {
-            body: '<p>bbbb ing  us, bong gus, lend me your ears.</p>',
+            body: '<p>Friends, romans, countrymen, lend me your ears.</p>',
         },
         heading: {
             body: 'bongus bingus dongus dingus',
