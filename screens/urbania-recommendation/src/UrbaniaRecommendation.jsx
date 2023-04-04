@@ -237,7 +237,7 @@ const UrbaniaRecommendation = ({
                                         styles.dateContainer,
                                         {
                                             [className]: className !== null,
-                                            [styles.rightBorder]: hasTitle,
+                                            // [styles.rightBorder]: hasTitle,
                                         },
                                     ])}
                                 >
