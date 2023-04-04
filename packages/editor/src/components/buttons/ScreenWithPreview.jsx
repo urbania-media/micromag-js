@@ -84,9 +84,7 @@ const ScreenWithPreview = ({
                 withSize
             />
             {index !== null && withIndexIndicator ? (
-                <div className={styles.index}>
-                    <p>{index + 1}</p>
-                </div>
+                <div className={styles.index}>{index + 1}</div>
             ) : null}
         </ScreenButton>
     );
