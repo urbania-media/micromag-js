@@ -34,18 +34,23 @@ const ColorPickerField = ({ className, value, onChange }) => {
     const { color = null, alpha = null } = value || {};
 
     const finalColor = useMemo(() => {
-        const newColor = !isEmpty(color) ? tinycolor(color) : tinycolor('#000');
-        if (alpha !== null) {
-            newColor.setAlpha(alpha);
-        } else {
-            newColor.setAlpha(1);
+        let newColor = null;
+        if (color !== null) {
+            newColor = !isEmpty(color) ? tinycolor(color) : null;
         }
-        return newColor;
+        if (alpha !== null) {
+            if (newColor === null) {
+                newColor = tinycolor('#000');
+            }
+            newColor.setAlpha(alpha);
+        }
+        return newColor !== null ? newColor.toRgb() : '';
     }, [color, alpha]);
 
     const onPickerChange = useCallback(
         (newValue) => {
-            if (onChange !== null) {
+            if (onChange !== null && newValue !== null) {
+                console.log('new color', newValue); // eslint-disable-line
                 onChange({
                     color: newValue.hex,
                     alpha: newValue.rgb.a,
@@ -58,7 +63,7 @@ const ColorPickerField = ({ className, value, onChange }) => {
     return (
         <div className={classNames(['text-light', { [className]: className !== null }])}>
             <SketchPicker
-                color={finalColor !== null ? finalColor.toRgb() : ''}
+                color={finalColor}
                 presetColors={colors}
                 styles={{
                     picker: {

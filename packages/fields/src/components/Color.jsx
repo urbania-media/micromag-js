@@ -43,7 +43,7 @@ const ColorField = ({ value, onChange, closeForm, ...props }) => {
     );
 
     const previewElement =
-        value !== null ? (
+        value !== null && color !== null ? (
             <span className={styles.preview}>
                 <span
                     className={styles.color}
