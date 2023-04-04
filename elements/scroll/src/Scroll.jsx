@@ -20,6 +20,7 @@ const propTypes = {
     contain: PropTypes.bool,
     scrollContainerRef: PropTypes.any, // eslint-disable-line
     withShadow: PropTypes.bool,
+    withArrow: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -34,6 +35,7 @@ const defaultProps = {
     contain: false,
     scrollContainerRef: null,
     withShadow: false,
+    withArrow: true,
 };
 
 function Scroll({
@@ -47,7 +49,8 @@ function Scroll({
     onScrolledNotBottom,
     contain,
     scrollContainerRef,
-    withShadow
+    withShadow,
+    withArrow: showArrow,
 }) {
     const finalStyle = {
         width,
@@ -89,7 +92,7 @@ function Scroll({
                 scrolledNotBottomOnce.current = true;
             }
 
-            if (newWithArrow !== withArrow) {
+            if (newWithArrow !== withArrow && showArrow) {
                 setWithArrow(newWithArrow);
             }
             reachedBottom.current = nowReachedBottom;
@@ -113,7 +116,6 @@ function Scroll({
             }
         }
     }, [scrollableHeight, scrolleeHeight, setWithArrow, disabled]);
-
     return (
         <div
             className={classNames([
@@ -123,7 +125,7 @@ function Scroll({
                     [styles.containOverscroll]: contain,
                     [className]: className !== null,
                     [styles[verticalAlign]]: verticalAlign !== null,
-                    [styles.withArrow]: withArrow,
+                    [styles.withArrow]: showArrow && withArrow,
                     [styles.withShadow]: withShadow,
                 },
             ])}
@@ -134,7 +136,7 @@ function Scroll({
                     {children}
                 </div>
             </div>
-            {!disabled ? (
+            {!disabled && showArrow ? (
                 <div className={styles.arrowContainer}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +146,7 @@ function Scroll({
                         className={styles.arrow}
                         fill="currentColor"
                     >
-                        <polygon points=".38 11.38 5 16 9.62 11.38 8.56 10.32 5.75 13.13 5.75 1.61 4.25 1.61 4.25 13.13 1.44 10.32 .38 11.38"/>
+                        <polygon points=".38 11.38 5 16 9.62 11.38 8.56 10.32 5.75 13.13 5.75 1.61 4.25 1.61 4.25 13.13 1.44 10.32 .38 11.38" />
                     </svg>
                 </div>
             ) : null}

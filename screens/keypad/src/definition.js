@@ -25,6 +25,40 @@ export default [
                 label: defineMessage({ defaultMessage: 'Buttons', description: 'Keypad state' }),
                 fields: [
                     {
+                        name: 'layout',
+                        type: 'screen-layout',
+                        defaultValue: 'middle',
+                        label: defineMessage({
+                            defaultMessage: 'Layout',
+                            description: 'Layout field label',
+                        }),
+                    },
+                    {
+                        name: 'keypadSettings',
+                        type: 'fields',
+                        isList: false,
+                        withoutLabel: true,
+                        defaultValue: {
+                            layout: {
+                                columnAlign: 'middle',
+                                columns: 3,
+                                spacing: 2,
+                                withSquareItems: false,
+                            },
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Keypad settings',
+                            description: 'Field label',
+                        }),
+                        fields: [
+                            {
+                                name: 'layout',
+                                type: 'keypad-layout',
+                                isList: true,
+                            },
+                        ],
+                    },
+                    {
                         name: 'items',
                         type: 'buttons',
                         label: defineMessage({
@@ -79,8 +113,8 @@ export default [
                 ],
             },
             {
-                id: 'popup',
-                label: defineMessage({ defaultMessage: 'Popup', description: 'Popup state' }),
+                id: 'popups',
+                label: defineMessage({ defaultMessage: 'Popups', description: 'Popup state' }),
                 fields: [
                     {
                         name: 'popupStyles',
@@ -136,9 +170,9 @@ export default [
             },
 
             {
-                id: 'popups',
+                id: 'popup',
                 label: defineMessage({
-                    defaultMessage: 'Popups',
+                    defaultMessage: 'Popup',
                     description: 'Keypad item state',
                 }),
                 defaultValue: [],
@@ -169,45 +203,19 @@ export default [
                             description: 'Field label',
                         }),
                     },
+                    {
+                        name: 'button',
+                        type: 'button-link',
+                        label: defineMessage({
+                            defaultMessage: 'Button',
+                            description: 'Field label',
+                        }),
+                    },
                 ],
             },
         ],
 
         fields: [
-            {
-                name: 'layout',
-                type: 'screen-layout',
-                defaultValue: 'middle',
-                label: defineMessage({
-                    defaultMessage: 'Layout',
-                    description: 'Layout field label',
-                }),
-            },
-            {
-                name: 'keypadSettings',
-                type: 'fields',
-                isList: true,
-                withoutLabel: true,
-                defaultValue: {
-                    layout: {
-                        columnAlign: 'middle',
-                        columns: 3,
-                        spacing: 2,
-                        withSquareItems: false,
-                    },
-                },
-                label: defineMessage({
-                    defaultMessage: 'Keypad settings',
-                    description: 'Field label',
-                }),
-                fields: [
-                    {
-                        name: 'layout',
-                        type: 'keypad-layout-form',
-                    },
-                ],
-            },
-
             {
                 name: 'background',
                 type: 'background',

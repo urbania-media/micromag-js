@@ -1,18 +1,22 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faCogs } from '@fortawesome/free-solid-svg-icons/faCogs';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
+
 import useRouteParams from '../../hooks/useRouteParams';
 import useScreenStates from '../../hooks/useScreenStates';
-import styles from '../../styles/partials/screen-states.module.scss';
+
 import ScreenWithPreview from '../buttons/ScreenWithPreview';
+
+import styles from '../../styles/partials/screen-states.module.scss';
 
 const propTypes = {
     screen: MicromagPropTypes.screen.isRequired,
@@ -117,6 +121,7 @@ function ScreenStates({ screen, value, className, onChange }) {
                                         <li className="p-1">
                                             <ScreenWithPreview
                                                 index={index}
+                                                withIndexIndicator
                                                 screen={screen}
                                                 screenState={`${id}.${index}`}
                                                 className={styles.button}

@@ -37,5 +37,22 @@ export default {
                 description: 'Field label',
             }),
         },
+        {
+            name: 'url',
+            type: 'url',
+            label: defineMessage({
+                defaultMessage: 'Link',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'inWebView',
+            type: 'toggle',
+            isHorizontal: true,
+            label: defineMessage({
+                defaultMessage: 'Pop-up window',
+                description: 'Field label',
+            }),
+        },
     ],
 };

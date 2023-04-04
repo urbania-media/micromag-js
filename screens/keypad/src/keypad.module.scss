@@ -106,12 +106,20 @@
     }
 
     &.isEmpty,
-    &.isPopupEmpty {
+    &.disableHover {
         cursor: default;
 
         &:hover,
         &:active {
             transform: none;
+        }
+    }
+
+    &.isLink {
+        text-decoration: none;
+
+        &:hover {
+            color: inherit;
         }
     }
 
@@ -273,6 +281,10 @@
     .popupContent {
         order: 3;
     }
+}
+
+.popupCTA {
+    margin: 0 auto;
 }
 
 /**

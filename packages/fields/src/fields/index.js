@@ -15,6 +15,7 @@ export { default as button } from './button';
 export { default as buttonLayout } from './button-layout';
 export { default as buttons } from './buttons';
 export { default as buttonElement } from './button-element';
+export { default as buttonLink } from './button-link';
 export { default as callToAction } from './call-to-action';
 export { default as callToActionForm } from './call-to-action-form';
 export { default as shareIncentive } from './share-incentive';
