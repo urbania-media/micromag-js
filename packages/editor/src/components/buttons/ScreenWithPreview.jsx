@@ -20,6 +20,7 @@ const propTypes = {
     title: PropTypes.string,
     active: PropTypes.bool,
     withPlaceholder: PropTypes.bool,
+    withIndexIndicator: PropTypes.bool,
     onClick: PropTypes.func,
     onClickItem: PropTypes.func,
     className: PropTypes.string,
@@ -32,6 +33,7 @@ const defaultProps = {
     href: null,
     active: false,
     withPlaceholder: false,
+    withIndexIndicator: false,
     onClick: null,
     onClickItem: null,
     className: null,
@@ -48,6 +50,7 @@ const ScreenWithPreview = ({
     onClick,
     onClickItem,
     withPlaceholder,
+    withIndexIndicator,
 }) => {
     const intl = useIntl();
 
@@ -61,6 +64,7 @@ const ScreenWithPreview = ({
                 styles.button,
                 {
                     [className]: className !== null,
+                    [styles.withIndex]: withIndexIndicator,
                 },
             ])}
             title={isMessage(title) ? intl.formatMessage(title) : null}
@@ -79,6 +83,11 @@ const ScreenWithPreview = ({
                 className={styles.screen}
                 withSize
             />
+            {index !== null && withIndexIndicator ? (
+                <div className={styles.index}>
+                    <p>{index + 1}</p>
+                </div>
+            ) : null}
         </ScreenButton>
     );
 };

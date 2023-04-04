@@ -80,10 +80,13 @@ export default [
     {
         label: 'Alexandre Lamarche',
         visual: imageMediaFromURL(alex),
+        url: 'http://hotdog.com',
     },
     {
         label: 'Corentin Guérin',
         visual: imageMediaFromURL(cocog),
+        url: 'http://urbanio.ca',
+        inWebView: true,
     },
     {
         label: 'Joseph Blais',
@@ -195,7 +198,7 @@ export default [
     {
         label: 'Hello hello helloooo',
         content: {
-            body: '<p>Friends, romans, countrymen, lend me your ears.</p>',
+            body: '<p>Friends, romans, countrymen, lend me your ears. Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus  </p>',
         },
         heading: {
             body: 'bongus bingus dongus dingus',

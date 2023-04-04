@@ -114,7 +114,7 @@ export default [
             },
             {
                 id: 'popup',
-                label: defineMessage({ defaultMessage: 'Popup', description: 'Popup state' }),
+                label: defineMessage({ defaultMessage: 'Popups', description: 'Popup state' }),
                 fields: [
                     {
                         name: 'popupStyles',
@@ -170,9 +170,9 @@ export default [
             },
 
             {
-                id: 'popups',
+                id: 'popup',
                 label: defineMessage({
-                    defaultMessage: 'Popups',
+                    defaultMessage: 'Popup',
                     description: 'Keypad item state',
                 }),
                 defaultValue: [],

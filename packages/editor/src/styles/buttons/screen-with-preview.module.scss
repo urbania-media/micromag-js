@@ -5,4 +5,36 @@
 .button {
     display: block;
     position: relative;
+    transition: filter 0.2s ease;
+
+    .index {
+        display: flex;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding-top: 0.75rem;
+        transition: opacity 0.2s ease;
+        opacity: 0;
+        background-color: hsla(0, 0%, 100%, 0.4);
+        font-size: 1.25rem;
+        text-shadow: 0 0 4px #000;
+        pointer-events: none;
+    }
+
+    &:hover {
+        filter: grayscale(0.5);
+    }
+
+    &.withIndex {
+        &:hover {
+            .index {
+                opacity: 1;
+            }
+        }
+    }
 }

@@ -198,15 +198,22 @@ const KeypadScreen = ({
     const {
         label: buttonLabel = null,
         url: buttonUrl = null,
-        inWebView = false,
+        inWebView: popupInWebView = false,
         boxStyle: popupButtonBoxStyle = null,
     } = popupButton || {};
     const onItemClick = useCallback(
         (e, item) => {
+            const { inWebView = false, url = null } = item || {};
             e.stopPropagation();
+            trackScreenEvent('click_item', item);
+            if (inWebView && url !== null) {
+                openWebView({
+                    url,
+                });
+                return;
+            }
             setPopup(item);
             setShowPopup(1);
-            trackScreenEvent('click_item', item);
         },
         [setPopup, trackScreenEvent],
     );
@@ -266,13 +273,17 @@ const KeypadScreen = ({
                     boxStyle = null,
                     heading = null,
                     content = null,
+                    url = null,
+                    inWebView = false,
                     largeVisual: popupLargeVisual = null,
                 } = item || {};
                 const { url: visualUrl = null } = visual || {};
                 const { body: headingBody = null } = heading || {};
                 const { body: contentBody = null } = content || {};
                 const key = label || visualUrl || id;
+
                 const isEmpty = label === null && visual === null;
+                const isExternalLink = url !== null && !inWebView;
                 const isPopupEmpty =
                     (heading === null || headingBody === '') &&
                     (content === null || contentBody === '') &&
@@ -289,7 +300,8 @@ const KeypadScreen = ({
                                     [styles.layoutNoLabel]: buttonLayout === 'no-label',
                                     [styles.layoutLabelOver]: buttonLayout === 'label-over',
                                     [styles.isEmpty]: isEmpty,
-                                    [styles.isPopupEmpty]: isPopupEmpty,
+                                    [styles.isLink]: url !== null,
+                                    [styles.disableHover]: isPopupEmpty && url === null,
                                 },
                             ])}
                             style={{
@@ -298,10 +310,12 @@ const KeypadScreen = ({
                                 ...getStyleFromBox(boxStyle),
                                 ...getStyleFromText(textStyle),
                             }}
+                            external={isExternalLink}
+                            href={isExternalLink ? url : null}
                             onClick={
-                                !isPopupEmpty
+                                !isPopupEmpty || !isExternalLink
                                     ? (e) => onItemClick(e, item)
-                                    : (e) => e.preventDefault()
+                                    : null
                             }
                         >
                             {isEmpty && (isInteractivePreview || isPreview) ? (
@@ -583,7 +597,7 @@ const KeypadScreen = ({
                                                     className={styles.popupCTA}
                                                     label={buttonLabel}
                                                     url={buttonUrl}
-                                                    inWebView={inWebView}
+                                                    inWebView={popupInWebView}
                                                     openWebView={openWebView}
                                                     type="click"
                                                     boxStyle={popupButtonBoxStyle}

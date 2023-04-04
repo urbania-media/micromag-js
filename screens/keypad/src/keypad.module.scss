@@ -106,12 +106,20 @@
     }
 
     &.isEmpty,
-    &.isPopupEmpty {
+    &.disableHover {
         cursor: default;
 
         &:hover,
         &:active {
             transform: none;
+        }
+    }
+
+    &.isLink {
+        text-decoration: none;
+
+        &:hover {
+            color: inherit;
         }
     }
 

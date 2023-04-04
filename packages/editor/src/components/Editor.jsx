@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Modals, Navbar } from '@micromag/core/components';
 import {
@@ -13,11 +14,14 @@ import {
 } from '@micromag/core/contexts';
 import { useMediasParser, useParsedStory, useScreenSizeFromElement } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
+
 import useRouteParams from '../hooks/useRouteParams';
-import styles from '../styles/editor.module.scss';
+
 import EditorForm from './Form';
 import EditorPreview from './Preview';
 import Screens from './Screens';
+
+import styles from '../styles/editor.module.scss';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -54,7 +58,6 @@ const Editor = ({
     fullscreen,
     className,
 }) => {
-
     const push = useRoutePush();
     const refScreensContainer = useRef(null);
     const { screen: screenId } = useRouteParams({ screenOnly: true });
