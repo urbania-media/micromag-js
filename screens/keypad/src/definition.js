@@ -113,7 +113,7 @@ export default [
                 ],
             },
             {
-                id: 'popup',
+                id: 'popups',
                 label: defineMessage({ defaultMessage: 'Popups', description: 'Popup state' }),
                 fields: [
                     {
