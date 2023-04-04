@@ -1,14 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Button } from '@micromag/core/components';
-import { getStyleFromColor } from '@micromag/core/utils';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import tinycolor from 'tinycolor2';
-import styles from '../styles/color.module.scss';
+
+import { Button } from '@micromag/core/components';
+import { getStyleFromColor } from '@micromag/core/utils';
+
 import ColorPicker from './ColorPicker';
 import FieldWithForm from './FieldWithForm';
+
+import styles from '../styles/color.module.scss';
 
 const propTypes = {
     value: PropTypes.shape({
@@ -33,10 +36,12 @@ const defaultProps = {
 
 const ColorField = ({ value, onChange, closeForm, ...props }) => {
     const { color = null } = value || {};
+
     const hexColor = useMemo(
         () => (color !== null ? tinycolor(color).toHexString() : null),
         [color],
     );
+
     const previewElement =
         value !== null ? (
             <span className={styles.preview}>
@@ -48,6 +53,7 @@ const ColorField = ({ value, onChange, closeForm, ...props }) => {
                 />
             </span>
         ) : null;
+
     const onClickReset = useCallback(() => {
         if (onChange !== null) {
             onChange(null);
