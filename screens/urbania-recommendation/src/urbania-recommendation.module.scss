@@ -42,11 +42,12 @@
     .textCard {
         display: flex;
         flex-direction: column;
-        border: 2px solid #000;
-        border-radius: 17px;
-        box-shadow: 0 3px 34px rgba(0, 0, 0, 0.43);
+        width: 90%;
+        margin: 0 auto;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
         color: #000;
-        text-align: center;
 
         &.isPlaceholder {
             height: 200px;
@@ -59,95 +60,19 @@
             opacity: 0;
             animation-fill-mode: forwards;
         }
-    }
 
-    .category {
-        padding: 12px 10px 6px;
-        border-bottom: 2px solid #000;
-        background-color: #ff4f46;
-        color: #fff;
-        font-family: 'Agrandir Tight', sans-serif;
-        font-size: 28px;
-        font-weight: 900;
-        text-transform: uppercase;
+        &.visualBottom {
+            flex-direction: column-reverse;
 
-        &.noBottomBorder {
-            border-bottom: 0;
+            .visual {
+                flex-direction: column-reverse;
+            }
         }
     }
 
-    .categoryPlaceholder {
-        padding: 10px;
-        background-color: $gray-800;
-    }
-
-    .dateTitleRow {
+    .visual {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        background-color: #fff;
-
-        &.bottomBorder {
-            border-bottom: 2px solid #000;
-        }
-
-        &.isPlaceholder {
-            margin-left: 2px;
-            padding: 10px;
-            background-color: $gray-200;
-        }
-    }
-
-    .dateContainer {
-        flex-grow: 1;
-        min-width: 30%;
-        max-width: 50%;
-        height: inherit;
-        padding: 15px 10px;
-        text-align: center;
-        overflow-wrap: break-word;
-
-        // &.rightBorder {
-        // border-right: 2px solid #000;
-        // }
-
-        strong {
-            white-space: nowrap;
-        }
-    }
-
-    .date {
-        color: #ff4f46;
-        font-family: 'Agrandir', sans-serif;
-        font-size: 12px;
-        line-height: 1;
-
-        &.centerDate {
-            text-align: center;
-        }
-    }
-
-    .titleContainer {
-        min-width: 50%;
-        max-width: 70%;
-        overflow-wrap: break-word;
-
-        &.leftBorder {
-            margin-right: -2px;
-            margin-left: -2px;
-            border-left: 2px solid #000;
-        }
-    }
-
-    .title {
-        padding: 15px 20px 11px;
-        font-family: 'Agrandir Narrow', sans-serif;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        text-transform: uppercase;
+        flex-direction: column;
     }
 
     .sponsor {
@@ -156,15 +81,12 @@
         font-family: 'Agrandir', sans-serif;
         font-size: 10px;
         line-height: 1;
+        text-align: center;
         text-transform: uppercase;
 
         > p {
             margin-top: 0;
             margin-bottom: 0;
-        }
-
-        &.bottomBorder {
-            border-bottom: 2px solid #000;
         }
     }
 
@@ -172,15 +94,80 @@
         padding: 10px;
     }
 
-    .description {
+    .visualPlaceholder {
+        width: 100%;
+        height: 100px;
+        background-color: #f3f;
+    }
+
+    .text {
+        display: flex;
+    }
+
+    .category {
+        width: 20%;
+        padding: 12px 10px 6px;
+        transform: rotate(180deg);
+        font-family: 'Agrandir Tight', sans-serif;
+        font-size: 28px;
+        font-weight: 900;
+        text-align: center;
+        text-transform: uppercase;
+        writing-mode: vertical-lr;
+    }
+
+    .categoryPlaceholder {
         padding: 10px;
-        background-color: #fff;
-        font-family: 'Roboto', sans-serif;
+        background-color: $gray-800;
+    }
+
+    .dateTitleRow {
+        width: 80%;
+        padding: 8px 8px 14px 0;
+
+        &.isPlaceholder {
+            margin-left: 2px;
+            padding: 10px;
+            background-color: $gray-200;
+        }
+    }
+
+    .titleContainer {
+        overflow-wrap: break-word;
+    }
+
+    .title {
+        border-bottom: 1px solid #000;
+        font-family: 'Agrandir Tight', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .date,
+    .location {
+        padding-top: 3px;
+        border-bottom: 1px solid #000;
+        font-family: 'Agrandir Tight', sans-serif;
+        text-transform: uppercase;
+    }
+
+    .date {
+        font-size: 14px;
+    }
+
+    .location {
         font-size: 12px;
-        text-align: left;
+        font-weight: 700;
+    }
+
+    .description {
+        font-family: 'Agrandir Tight', sans-serif;
+        font-size: 12px;
+        font-weight: 300;
 
         p {
-            margin-bottom: 1em;
+            margin-bottom: 0.5em;
 
             &:last-child {
                 margin-bottom: 0;

@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import UrbaniaRecommendation from './UrbaniaRecommendation';
 
 export default [
@@ -28,14 +29,6 @@ export default [
                 }),
             },
             {
-                name: 'date',
-                type: 'text-element',
-                label: defineMessage({
-                    defaultMessage: 'Date',
-                    description: 'Text field label',
-                }),
-            },
-            {
                 name: 'title',
                 type: 'heading-element',
                 label: defineMessage({
@@ -44,10 +37,18 @@ export default [
                 }),
             },
             {
-                name: 'sponsor',
+                name: 'date',
                 type: 'text-element',
                 label: defineMessage({
-                    defaultMessage: 'Sponsor',
+                    defaultMessage: 'Date',
+                    description: 'Text field label',
+                }),
+            },
+            {
+                name: 'location',
+                type: 'text-element',
+                label: defineMessage({
+                    defaultMessage: 'Location',
                     description: 'Text field label',
                 }),
             },
@@ -56,6 +57,14 @@ export default [
                 type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Description',
+                    description: 'Text field label',
+                }),
+            },
+            {
+                name: 'sponsor',
+                type: 'text-element',
+                label: defineMessage({
+                    defaultMessage: 'Sponsor',
                     description: 'Text field label',
                 }),
             },

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -33,16 +33,17 @@ import styles from './urbania-recommendation.module.scss';
 
 const propTypes = {
     category: MicromagPropTypes.headingElement,
-    date: MicromagPropTypes.textElement,
     title: MicromagPropTypes.headingElement,
-    sponsor: MicromagPropTypes.textElement,
+    date: MicromagPropTypes.textElement,
+    location: MicromagPropTypes.textElement,
     description: MicromagPropTypes.textElement,
+    sponsor: MicromagPropTypes.textElement,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    animateBackground: PropTypes.bool,
+    // animateBackground: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
@@ -50,16 +51,17 @@ const propTypes = {
 
 const defaultProps = {
     category: null,
-    date: null,
     title: null,
-    sponsor: null,
+    date: null,
+    location: null,
     description: null,
+    sponsor: null,
     spacing: 20,
     background: null,
     callToAction: null,
     current: true,
     active: true,
-    animateBackground: true,
+    // animateBackground: true,
     transitions: null,
     transitionStagger: 100,
     className: null,
@@ -67,16 +69,17 @@ const defaultProps = {
 
 const UrbaniaRecommendation = ({
     category,
-    date,
     title,
-    sponsor,
+    date,
+    location,
     description,
+    sponsor,
     spacing,
     background,
     callToAction,
     current,
     active,
-    animateBackground,
+    // animateBackground,
     transitions,
     transitionStagger,
     className,
@@ -96,20 +99,20 @@ const UrbaniaRecommendation = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
-    const finalAnimateBackground =
-        current && animateBackground && !isPlaceholder && !isStatic && !isPreview && !isEdit;
+    // const finalAnimateBackground =
+    // current && animateBackground && !isPlaceholder && !isStatic && !isPreview && !isEdit;
 
-    const [animationStarted, setAnimationStarted] = useState(finalAnimateBackground);
+    // const [animationStarted, setAnimationStarted] = useState(finalAnimateBackground);
 
     const hasCategory = isTextFilled(category);
-    const hasDate = isTextFilled(date);
     const hasTitle = isTextFilled(title);
-    const hasSponsor = isTextFilled(sponsor);
+    const hasDate = isTextFilled(date);
+    const hasLocation = isTextFilled(location);
     const hasDescription = isTextFilled(description);
+    const hasSponsor = isTextFilled(sponsor);
 
-    const onlyCategory = hasCategory && !hasDate && !hasTitle && !hasSponsor && !hasDescription;
-
-    const hasTextCard = hasCategory || hasDate || hasTitle || hasSponsor || hasDescription;
+    const hasTextCard =
+        hasCategory || hasTitle || hasDate || hasLocation || hasDescription || hasSponsor;
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
@@ -121,25 +124,25 @@ const UrbaniaRecommendation = ({
     const { active: hasCallToAction = false } = callToAction || {};
     const [scrolledBottom, setScrolledBottom] = useState(false);
 
-    useEffect(() => {
-        let id = null;
-        if (animationStarted) {
-            id = setTimeout(() => {
-                setAnimationStarted(false);
-            }, 3000);
-        }
-        return () => {
-            clearTimeout(id);
-        };
-    }, [animationStarted, finalAnimateBackground, setAnimationStarted]);
+    // useEffect(() => {
+    //     let id = null;
+    //     if (animationStarted) {
+    //         id = setTimeout(() => {
+    //             setAnimationStarted(false);
+    //         }, 3000);
+    //     }
+    //     return () => {
+    //         clearTimeout(id);
+    //     };
+    // }, [animationStarted, finalAnimateBackground, setAnimationStarted]);
 
-    useEffect(() => {
-        if (!isView) {
-            setAnimationStarted(false);
-        } else {
-            setAnimationStarted(true);
-        }
-    }, [isView, setAnimationStarted]);
+    // useEffect(() => {
+    //     if (!isView) {
+    //         setAnimationStarted(false);
+    //     } else {
+    //         setAnimationStarted(true);
+    //     }
+    // }, [isView, setAnimationStarted]);
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -155,16 +158,16 @@ const UrbaniaRecommendation = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
-    const finalBackground = useMemo(
-        () => ({
-            fit: 'cover',
-            // horizontalAlign: 'left',
-            // verticalAlign: '-20%',
-            repeat: true,
-            ...background,
-        }),
-        [background],
-    );
+    // const finalBackground = useMemo(
+    //     () => ({
+    //         fit: 'cover',
+    //         // horizontalAlign: 'left',
+    //         // verticalAlign: '-20%',
+    //         repeat: true,
+    //         ...background,
+    //     }),
+    //     [background],
+    // );
 
     // Create elements
     const items = [
@@ -174,154 +177,115 @@ const UrbaniaRecommendation = ({
                 className={classNames([
                     styles.textCard,
                     {
-                        [className]: className !== null,
                         [styles.isPlaceholder]: isPlaceholder,
-                        [styles.appear]: finalAnimateBackground,
+                        // TODO: Add toggle for visual position
+                        [styles.visualBottom]: false,
+                        // [styles.appear]: finalAnimateBackground,
                     },
                 ])}
             >
-                {/* // CATEGORY */}
-                <ScreenElement
-                    key="category"
-                    placeholder={<PlaceholderTitle className={styles.categoryPlaceholder} />}
-                    emptyLabel={
-                        <FormattedMessage
-                            defaultMessage="Category"
-                            description="Category placeholder"
-                        />
-                    }
-                    emptyClassName={styles.emptyText}
-                    isEmpty={!hasCategory}
-                >
-                    {hasCategory ? (
-                        <Heading
+                <div className={styles.visual}>
+                    {/* // SPONSOR */}
+                    <ScreenElement
+                        key="sponsor"
+                        placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Sponsor"
+                                description="Text placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyText}
+                        isEmpty={!hasSponsor}
+                    >
+                        {hasSponsor ? <Text className={styles.sponsor} {...sponsor} /> : null}
+                    </ScreenElement>
+                    {/* REPLACE WITH A REAL IMG */}
+                    <div className={styles.visualPlaceholder} />
+                </div>
+                <div className={styles.text}>
+                    {/* // CATEGORY */}
+                    <ScreenElement
+                        key="category"
+                        placeholder={<PlaceholderTitle className={styles.categoryPlaceholder} />}
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Category"
+                                description="Category placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyText}
+                        isEmpty={!hasCategory}
+                    >
+                        {hasCategory ? <Heading className={styles.category} {...category} /> : null}
+                    </ScreenElement>
+                    {hasTitle || hasDate || hasLocation || isPlaceholder ? (
+                        <div
                             className={classNames([
-                                styles.category,
+                                styles.dateTitleRow,
                                 {
-                                    [className]: className !== null,
-                                    [styles.noBottomBorder]: onlyCategory,
+                                    [styles.isPlaceholder]: isPlaceholder,
                                 },
                             ])}
-                            {...category}
-                        />
-                    ) : null}
-                </ScreenElement>
-                {hasDate || hasTitle || isPlaceholder ? (
-                    <div
-                        className={classNames([
-                            styles.dateTitleRow,
-                            {
-                                [className]: className !== null,
-                                [styles.bottomBorder]:
-                                    hasSponsor || (!hasSponsor && hasDescription),
-                                [styles.isPlaceholder]: isPlaceholder,
-                            },
-                        ])}
-                    >
-                        {/* // DATE */}
-                        <ScreenElement
-                            key="date"
-                            placeholder={<PlaceholderText className={styles.datePlaceholder} />}
-                            // emptyLabel={
-                            //     <FormattedMessage
-                            //         defaultMessage="Date"
-                            //         description="Date placeholder"
-                            //     />
-                            // }
-                            // emptyClassName={styles.emptyText}
-                            // isEmpty={!hasDate}
                         >
-                            {hasDate ? (
-                                <div
-                                    className={classNames([
-                                        styles.dateContainer,
-                                        {
-                                            [className]: className !== null,
-                                            // [styles.rightBorder]: hasTitle,
-                                        },
-                                    ])}
-                                >
+                            {/* // TITLE */}
+                            <ScreenElement key="title" placeholder="title">
+                                {hasTitle ? (
+                                    <div className={styles.titleContainer}>
+                                        <Heading className={styles.title} {...title} />
+                                    </div>
+                                ) : null}
+                            </ScreenElement>
+                            {/* // DATE */}
+                            <ScreenElement
+                                key="date"
+                                placeholder={<PlaceholderText className={styles.datePlaceholder} />}
+                            >
+                                {hasDate ? (
                                     <Text
                                         className={classNames([
                                             styles.date,
                                             {
-                                                [className]: className !== null,
                                                 [styles.centerDate]: !hasTitle,
                                             },
                                         ])}
                                         {...date}
                                     />
-                                </div>
-                            ) : null}
-                        </ScreenElement>
-                        {/* // TITLE */}
-                        <ScreenElement
-                            key="title"
-                            placeholder="title"
-                            // emptyLabel={
-                            //     <FormattedMessage
-                            //         defaultMessage="Title"
-                            //         description="Title placeholder"
-                            //     />
-                            // }
-                            // emptyClassName={styles.emptyTitle}
-                            // isEmpty={!hasTitle}
-                        >
-                            {hasTitle ? (
-                                <div
-                                    className={classNames([
-                                        styles.titleContainer,
-                                        {
-                                            [styles.leftBorder]: hasDate,
-                                        },
-                                    ])}
-                                >
-                                    <Heading className={styles.title} {...title} />
-                                </div>
-                            ) : null}
-                        </ScreenElement>
-                    </div>
-                ) : null}
-                {/* // SPONSOR */}
-                <ScreenElement
-                    key="sponsor"
-                    placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
-                    emptyLabel={
-                        <FormattedMessage defaultMessage="Sponsor" description="Text placeholder" />
-                    }
-                    emptyClassName={styles.emptyText}
-                    isEmpty={!hasSponsor}
-                >
-                    {hasSponsor ? (
-                        <Text
-                            className={classNames([
-                                styles.sponsor,
-                                {
-                                    [styles.bottomBorder]: hasDescription,
-                                },
-                            ])}
-                            {...sponsor}
-                        />
+                                ) : null}
+                            </ScreenElement>
+                            {/* // LOCATION */}
+                            <ScreenElement
+                                key="location"
+                                placeholder={
+                                    <PlaceholderText className={styles.locationPlaceholder} />
+                                }
+                            >
+                                {hasLocation ? (
+                                    <Text className={styles.location} {...location} />
+                                ) : null}
+                            </ScreenElement>
+                            {/* // DESCRIPTION */}
+                            <ScreenElement
+                                key="description"
+                                placeholder={
+                                    <PlaceholderText className={styles.descriptionPlaceholder} />
+                                }
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Description"
+                                        description="Text placeholder"
+                                    />
+                                }
+                                emptyClassName={styles.emptyText}
+                                isEmpty={!hasDescription}
+                            >
+                                {hasDescription ? (
+                                    <Text className={styles.description} {...description} />
+                                ) : null}
+                            </ScreenElement>
+                        </div>
                     ) : null}
-                </ScreenElement>
-
-                {/* // DESCRIPTION */}
-                <ScreenElement
-                    key="description"
-                    placeholder={<PlaceholderText className={styles.descriptionPlaceholder} />}
-                    emptyLabel={
-                        <FormattedMessage
-                            defaultMessage="Description"
-                            description="Text placeholder"
-                        />
-                    }
-                    emptyClassName={styles.emptyText}
-                    isEmpty={!hasDescription}
-                >
-                    {hasDescription ? (
-                        <Text className={styles.description} {...description} />
-                    ) : null}
-                </ScreenElement>
+                </div>
             </Container>
         ) : null,
         !isPlaceholder ? <Spacer key="spacer-cta-bottom" /> : null,
@@ -363,7 +327,8 @@ const UrbaniaRecommendation = ({
         >
             <Container width={width} height={height} className={styles.content}>
                 <Scroll
-                    disabled={animationStarted || scrollingDisabled}
+                    // disabled={animationStarted || scrollingDisabled}
+                    disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="top"
@@ -395,14 +360,15 @@ const UrbaniaRecommendation = ({
             </Container>
             {!isPlaceholder ? (
                 <Background
-                    background={finalBackground}
+                    // background={finalBackground}
+                    background={background}
                     width={width}
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    backgroundClassName={finalAnimateBackground ? styles.background : null}
+                    // backgroundClassName={finalAnimateBackground ? styles.background : null}
                     mediaRef={mediaRef}
                     withoutVideo={isPreview}
                     className={styles.background}
