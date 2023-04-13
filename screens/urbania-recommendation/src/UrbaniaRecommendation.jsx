@@ -219,10 +219,10 @@ const UrbaniaRecommendation = ({
                     >
                         {hasCategory ? <Heading className={styles.category} {...category} /> : null}
                     </ScreenElement>
-                    {hasTitle || hasDate || hasLocation || isPlaceholder ? (
+                    {hasTitle || hasDate || hasLocation || hasDescription || isPlaceholder ? (
                         <div
                             className={classNames([
-                                styles.dateTitleRow,
+                                styles.textContent,
                                 {
                                     [styles.isPlaceholder]: isPlaceholder,
                                 },
@@ -332,6 +332,7 @@ const UrbaniaRecommendation = ({
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="top"
+                    withShadow
                 >
                     <Layout
                         className={styles.layout}
