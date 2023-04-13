@@ -5,7 +5,7 @@ import React, { useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -15,9 +15,11 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import ShareOptions from '@micromag/element-share-options';
@@ -34,13 +36,12 @@ const propTypes = {
     centered: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     id: PropTypes.string,
     index: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -54,13 +55,12 @@ const defaultProps = {
     centered: false,
     spacing: 20,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     id: null,
     index: null,
     current: true,
     active: true,
-    transitions: null,
-    transitionStagger: 100,
     className: null,
 };
 
@@ -74,18 +74,16 @@ const ShareScreen = ({
     centered,
     spacing,
     background,
-    callToAction,
+    header,
+    footer,
     id,
     index,
     current,
     active,
-    transitions,
-    transitionStagger,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {
         topHeight: viewerTopHeight,
         bottomHeight: viewerBottomHeight,
@@ -95,12 +93,12 @@ const ShareScreen = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
-    const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active;
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const currentUrl = useMemo(() => {
         if (typeof window === 'undefined') return '';
@@ -154,60 +152,6 @@ const ShareScreen = ({
         [trackEvent],
     );
 
-    const items = [
-        <ScreenElement
-            key="title"
-            placeholder="title"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Heading" description="Heading placeholder" />
-            }
-            emptyClassName={styles.emptyHeading}
-            isEmpty={!heading || heading?.body === ''}
-        >
-            {heading ? <Heading className={classNames([styles.heading])} {...heading} /> : null}
-        </ScreenElement>,
-
-        <Spacer key="spacer" size={5} />,
-
-        <ScreenElement
-            key="share-options"
-            placeholder="share-options"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Share options" description="Title placeholder" />
-            }
-            emptyClassName={styles.emptyOptions}
-            isEmpty={!options}
-        >
-            <ShareOptions
-                className={classNames([styles.shareOptions, { [styles.isCentered]: centered }])}
-                buttonClassName={styles.shareButton}
-                url={finalShareURL}
-                options={selectedOptions}
-                onShare={onClickShare}
-                buttonsStyle={buttonsStyle}
-                buttonsTextStyle={buttonsTextStyle}
-            />
-        </ScreenElement>,
-
-        !isPlaceholder && hasCallToAction ? (
-            <div
-                style={{
-                    paddingTop: spacing,
-                    paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
-                    paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
-                }}
-                key="call-to-action"
-            >
-                <CallToAction
-                    {...callToAction}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                    openWebView={openWebView}
-                />
-            </div>
-        ) : null,
-    ].filter((el) => el !== null);
-
     return (
         <div
             className={classNames([
@@ -235,14 +179,70 @@ const ShareScreen = ({
                             : null
                     }
                 >
-                    <TransitionsStagger
-                        transitions={transitions}
-                        stagger={transitionStagger}
-                        disabled={transitionDisabled}
-                        playing={transitionPlaying}
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            key="header"
+                            style={{
+                                paddingBottom: spacing,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
+                    <ScreenElement
+                        key="title"
+                        placeholder="title"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Heading"
+                                description="Heading placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyHeading}
+                        isEmpty={!heading || heading?.body === ''}
                     >
-                        {items}
-                    </TransitionsStagger>
+                        {heading ? (
+                            <Heading className={classNames([styles.heading])} {...heading} />
+                        ) : null}
+                    </ScreenElement>
+                    <Spacer key="spacer" size={5} />
+                    <ScreenElement
+                        key="share-options"
+                        placeholder="share-options"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Share options"
+                                description="Title placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyOptions}
+                        isEmpty={!options}
+                    >
+                        <ShareOptions
+                            className={classNames([
+                                styles.shareOptions,
+                                { [styles.isCentered]: centered },
+                            ])}
+                            buttonClassName={styles.shareButton}
+                            url={finalShareURL}
+                            options={selectedOptions}
+                            onShare={onClickShare}
+                            buttonsStyle={buttonsStyle}
+                            buttonsTextStyle={buttonsTextStyle}
+                        />
+                    </ScreenElement>
+                    {!isPlaceholder && hasFooter ? (
+                        <div
+                            style={{
+                                paddingTop: spacing,
+                                paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
+                                paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
+                            }}
+                            key="call-to-action"
+                        >
+                            <Footer {...footerProps} />
+                        </div>
+                    ) : null}
                 </Layout>
             </Container>
             {!isPlaceholder ? (

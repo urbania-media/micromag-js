@@ -1,12 +1,15 @@
 // eslint-disable-next-line
 export { default as Audio } from '@micromag/element-audio';
 export { default as Background } from '@micromag/element-background';
+export { default as Badge } from '@micromag/element-badge';
 export { default as Button } from '@micromag/element-button';
 export { default as CallToAction } from '@micromag/element-call-to-action';
 export { default as Checkbox } from '@micromag/element-checkbox';
 export { default as ClosedCaptions } from '@micromag/element-closed-captions';
 export { default as Container } from '@micromag/element-container';
+export { default as Footer } from '@micromag/element-footer';
 export { default as Grid } from '@micromag/element-grid';
+export { default as Header } from '@micromag/element-header';
 export { default as Heading } from '@micromag/element-heading';
 export { default as Image } from '@micromag/element-image';
 export { default as Keypad } from '@micromag/element-keypad';

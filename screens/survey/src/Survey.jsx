@@ -18,12 +18,20 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
-import { getLargestRemainderRound, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
+import {
+    getLargestRemainderRound,
+    getStyleFromColor,
+    isTextFilled,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+} from '@micromag/core/utils';
 import { useQuiz, useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
@@ -44,8 +52,9 @@ const propTypes = {
         percentageTextStyle: MicromagPropTypes.textStyle,
     }),
     spacing: PropTypes.number,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
     withoutPercentage: PropTypes.bool,
     withoutBar: PropTypes.bool,
     current: PropTypes.bool,
@@ -66,8 +75,9 @@ const defaultProps = {
     buttonsTextStyle: null,
     resultsStyle: null,
     spacing: 20,
+    header: null,
+    footer: null,
     background: null,
-    callToAction: null,
     withoutPercentage: false,
     withoutBar: false,
     current: true,
@@ -88,8 +98,9 @@ const SurveyScreen = ({
     buttonsTextStyle,
     resultsStyle,
     spacing,
+    header,
+    footer,
     background,
-    callToAction,
     withoutPercentage,
     withoutBar,
     current,
@@ -220,8 +231,9 @@ const SurveyScreen = ({
         }
     }, [isEdit, current, userAnswerIndex, setUserAnswerIndex]);
 
-    // Call to Action
-    const { active: hasCallToAction = false } = callToAction || {};
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
     const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
@@ -264,7 +276,7 @@ const SurveyScreen = ({
         </ScreenElement>,
     ];
 
-    if (isSplitted || (!isPlaceholder && hasCallToAction && isMiddleLayout)) {
+    if (isSplitted || (!isPlaceholder && hasFooter && isMiddleLayout)) {
         items.push(<Spacer key="spacer" />);
     }
 
@@ -485,10 +497,20 @@ const SurveyScreen = ({
                                 : null
                         }
                     >
+                        {!isPlaceholder && hasHeader ? (
+                            <div
+                                key="header"
+                                style={{
+                                    paddingBottom: spacing,
+                                }}
+                            >
+                                <Header {...header} />
+                            </div>
+                        ) : null}
                         {items}
                     </Layout>
                 </Scroll>
-                {!isPlaceholder && hasCallToAction ? (
+                {!isPlaceholder && hasFooter ? (
                     <div
                         ref={callToActionRef}
                         className={classNames([
@@ -505,12 +527,7 @@ const SurveyScreen = ({
                             paddingBottom: spacing / 2,
                         }}
                     >
-                        <CallToAction
-                            {...callToAction}
-                            animationDisabled={isPreview}
-                            focusable={current && isView}
-                            openWebView={openWebView}
-                        />
+                        <Footer {...footerProps} />
                     </div>
                 ) : null}
             </Container>

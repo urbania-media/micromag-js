@@ -5,7 +5,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -14,10 +14,11 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Quote from '@micromag/element-quote';
 import Text from '@micromag/element-text';
@@ -30,7 +31,8 @@ const propTypes = {
     author: MicromagPropTypes.textElement,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -44,7 +46,8 @@ const defaultProps = {
     author: null,
     spacing: 20,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
     transitions: null,
@@ -58,7 +61,8 @@ const QuoteScreen = ({
     author,
     spacing,
     background,
-    callToAction,
+    header,
+    footer,
     current,
     active,
     transitions,
@@ -77,6 +81,10 @@ const QuoteScreen = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
     const hasQuote = isTextFilled(quote);
     const hasAuthor = isTextFilled(author);
 
@@ -90,60 +98,6 @@ const QuoteScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
-
-    const { active: hasCallToAction = false } = callToAction || {};
-
-    const items = [
-        !isPlaceholder && hasCallToAction && isMiddleLayout ? (
-            <Spacer key="spacer-cta-top" />
-        ) : null,
-        <ScreenElement
-            key="quote"
-            placeholder="quote"
-            emptyLabel={<FormattedMessage defaultMessage="Quote" description="Quote placeholder" />}
-            emptyClassName={styles.emptyQuote}
-            isEmpty={!hasQuote}
-        >
-            {hasQuote ? (
-                <Quote
-                    className={classNames([styles.quote, { [styles.withMargin]: quoteWithMargin }])}
-                    {...quote}
-                />
-            ) : null}
-        </ScreenElement>,
-        isSplitted ? <Spacer key="spacer" /> : null,
-        <ScreenElement
-            key="author"
-            placeholder="subtitle"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Author" description="Author placeholder" />
-            }
-            emptyClassName={styles.emptyAuthor}
-            isEmpty={!hasAuthor}
-        >
-            {hasAuthor ? <Text className={styles.author} {...author} /> : null}
-        </ScreenElement>,
-        !isPlaceholder && hasCallToAction && (isTopLayout || isMiddleLayout) ? (
-            <Spacer key="spacer-cta-bottom" />
-        ) : null,
-        !isPlaceholder && hasCallToAction ? (
-            <div
-                style={{
-                    paddingTop: spacing,
-                    paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
-                    paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
-                }}
-                key="call-to-action"
-            >
-                <CallToAction
-                    {...callToAction}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                    openWebView={openWebView}
-                />
-            </div>
-        ) : null,
-    ].filter((el) => el !== null);
 
     return (
         <div
@@ -172,14 +126,71 @@ const QuoteScreen = ({
                             : null
                     }
                 >
-                    <TransitionsStagger
-                        transitions={transitions}
-                        stagger={transitionStagger}
-                        disabled={transitionDisabled}
-                        playing={transitionPlaying}
+                    {!isPlaceholder && hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            key="header"
+                            style={{
+                                paddingBottom: spacing,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
+                    <ScreenElement
+                        key="quote"
+                        placeholder="quote"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Quote"
+                                description="Quote placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyQuote}
+                        isEmpty={!hasQuote}
                     >
-                        {items}
-                    </TransitionsStagger>
+                        {hasQuote ? (
+                            <Quote
+                                className={classNames([
+                                    styles.quote,
+                                    { [styles.withMargin]: quoteWithMargin },
+                                ])}
+                                {...quote}
+                            />
+                        ) : null}
+                    </ScreenElement>
+                    {isSplitted ? <Spacer key="spacer" /> : null}
+                    <ScreenElement
+                        key="author"
+                        placeholder="subtitle"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Author"
+                                description="Author placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyAuthor}
+                        isEmpty={!hasAuthor}
+                    >
+                        {hasAuthor ? <Text className={styles.author} {...author} /> : null}
+                    </ScreenElement>
+                    {!isPlaceholder && hasFooter && (isTopLayout || isMiddleLayout) ? (
+                        <Spacer key="spacer-cta-bottom" />
+                    ) : null}
+                    {!isPlaceholder && hasFooter ? (
+                        <div
+                            style={{
+                                paddingTop: spacing,
+                                paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
+                                paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
+                            }}
+                            key="call-to-action"
+                        >
+                            <Footer {...footerProps} />
+                        </div>
+                    ) : null}
                 </Layout>
             </Container>
             {!isPlaceholder ? (

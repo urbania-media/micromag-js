@@ -15,10 +15,17 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
+import {
+    getStyleFromColor,
+    isTextFilled,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
@@ -41,8 +48,9 @@ const propTypes = {
     bulletFilled: PropTypes.bool,
     illustrated: PropTypes.bool,
     spacing: PropTypes.number,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -60,8 +68,9 @@ const defaultProps = {
     bulletFilled: true,
     illustrated: false,
     spacing: 20,
+    header: null,
+    footer: null,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
     transitions: null,
@@ -79,8 +88,9 @@ const Timeline = ({
     bulletFilled,
     illustrated,
     spacing,
+    header,
+    footer,
     background,
-    callToAction,
     current,
     active,
     transitions,
@@ -328,8 +338,10 @@ const Timeline = ({
     });
 
     // Call to Action
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
-    const { active: hasCallToAction = false } = callToAction || {};
     const [scrolledBottom, setScrolledBottom] = useState(false);
     const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
@@ -381,10 +393,20 @@ const Timeline = ({
                                 : null
                         }
                     >
+                        {!isPlaceholder && hasHeader ? (
+                            <div
+                                key="header"
+                                style={{
+                                    paddingBottom: spacing,
+                                }}
+                            >
+                                <Header {...header} />
+                            </div>
+                        ) : null}
                         {timelineElements}
                     </Layout>
                 </Scroll>
-                {!isPlaceholder && hasCallToAction ? (
+                {!isPlaceholder && hasFooter ? (
                     <div
                         ref={callToActionRef}
                         className={classNames([
@@ -404,12 +426,7 @@ const Timeline = ({
                             paddingBottom: spacing / 2,
                         }}
                     >
-                        <CallToAction
-                            {...callToAction}
-                            animationDisabled={isPreview}
-                            focusable={current && isView}
-                            openWebView={openWebView}
-                        />
+                        <Footer {...footerProps} />
                     </div>
                 ) : null}
             </Container>
@@ -424,7 +441,7 @@ const Timeline = ({
                     shouldLoad={mediaShouldLoad}
                     mediaRef={mediaRef}
                     withoutVideo={isPreview}
-                    className={styles.container}
+                    className={styles.background}
                 />
             ) : null}
         </div>

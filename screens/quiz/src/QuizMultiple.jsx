@@ -19,10 +19,12 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Scroll from '@micromag/element-scroll';
 
 import Question from './partials/Question';
@@ -60,7 +62,8 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     introButton: MicromagPropTypes.textElement,
     introBackground: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -88,7 +91,8 @@ const defaultProps = {
     background: null,
     introButton: null,
     introBackground: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
     transitions: null,
@@ -116,7 +120,8 @@ const QuizMultipleScreen = ({
     background,
     introBackground,
     introButton,
-    callToAction,
+    header,
+    footer,
     current,
     active,
     transitions,
@@ -147,7 +152,9 @@ const QuizMultipleScreen = ({
 
     // Call to Action
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
@@ -388,6 +395,16 @@ const QuizMultipleScreen = ({
                         onClick={onQuizReset}
                     />
                 ) : null}
+                {!isPlaceholder && hasHeader ? (
+                    <div
+                        key="header"
+                        style={{
+                            paddingTop: spacing,
+                        }}
+                    >
+                        <Header {...header} />
+                    </div>
+                ) : null}
                 <Scroll
                     verticalAlign={verticalAlign}
                     disabled={scrollingDisabled}
@@ -415,7 +432,8 @@ const QuizMultipleScreen = ({
                                         style={
                                             !isPlaceholder
                                                 ? {
-                                                      padding: spacing,
+                                                      paddingLeft: spacing,
+                                                      paddingRight: spacing,
                                                       paddingTop:
                                                           (!isPreview ? viewerTopHeight : 0) +
                                                           spacing,
@@ -511,7 +529,7 @@ const QuizMultipleScreen = ({
                         ]}
                     </TransitionGroup>
                 </Scroll>
-                {!isPlaceholder && hasCallToAction ? (
+                {!isPlaceholder && hasFooter ? (
                     <div
                         ref={callToActionRef}
                         className={classNames([
@@ -528,12 +546,7 @@ const QuizMultipleScreen = ({
                             paddingBottom: spacing / 2,
                         }}
                     >
-                        <CallToAction
-                            {...callToAction}
-                            animationDisabled={isPreview}
-                            focusable={current && isView}
-                            openWebView={openWebView}
-                        />
+                        <Footer {...footerProps} />
                     </div>
                 ) : null}
             </Container>

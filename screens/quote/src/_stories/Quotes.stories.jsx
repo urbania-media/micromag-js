@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     quote,
     author,
     backgroundColor,
     transitions,
-    callToAction,
+    headerFooter,
 } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import QuoteScreen from '../Quote';
 import definition from '../definition';
 
@@ -38,8 +38,8 @@ export const Edit = (storyProps) => <QuoteScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
 
-export const WithCallToAction = (storyProps) => (
-    <QuoteScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <QuoteScreen {...storyProps} {...props} {...headerFooter()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

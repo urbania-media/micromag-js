@@ -16,10 +16,11 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
@@ -35,7 +36,8 @@ const propTypes = {
     timing: PropTypes.oneOf(['instant', 'sequence']),
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     type: PropTypes.string,
@@ -50,7 +52,8 @@ const defaultProps = {
     timing: 'sequence',
     spacing: 20,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
     type: null,
@@ -65,7 +68,8 @@ const ConversationScreen = ({
     timing: timingMode,
     spacing,
     background,
-    callToAction,
+    header,
+    footer,
     current,
     active,
     type,
@@ -94,6 +98,10 @@ const ConversationScreen = ({
 
     const [conversationState, setConversationState] = useState([]);
     const chatBottomRef = useRef(null);
+
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const hasTitle = isTextFilled(title);
 
@@ -143,11 +151,9 @@ const ConversationScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
-    // CTA
-    const { active: hasCallToAction = false } = callToAction || {};
     const [scrolledBottom, setScrolledBottom] = useState(false);
-    const showCallToAction =
-        (animationFinished && !isPlaceholder && hasCallToAction) || !withAnimation;
+    const showFooter = (animationFinished && !isPlaceholder && hasFooter) || !withAnimation;
+
     const onScrolledBottom = useCallback(
         ({ initial }) => {
             if (initial) {
@@ -194,6 +200,16 @@ const ConversationScreen = ({
                                     : null
                             }
                         >
+                            {!isPlaceholder && hasHeader ? (
+                                <div
+                                    key="header"
+                                    style={{
+                                        paddingBottom: spacing,
+                                    }}
+                                >
+                                    <Header {...header} />
+                                </div>
+                            ) : null}
                             <ScreenElement
                                 placeholder="conversation"
                                 emptyLabel={
@@ -265,7 +281,7 @@ const ConversationScreen = ({
                                             );
                                         })}
                                     </div>
-                                    {showCallToAction ? (
+                                    {showFooter ? (
                                         <div
                                             className={classNames([
                                                 styles.callToAction,
@@ -285,12 +301,7 @@ const ConversationScreen = ({
                                                 paddingTop: spacing,
                                             }}
                                         >
-                                            <CallToAction
-                                                {...callToAction}
-                                                animationDisabled={isPreview}
-                                                focusable={current && isView}
-                                                openWebView={openWebView}
-                                            />
+                                            <Footer {...footerProps} />
                                         </div>
                                     ) : null}
                                     <div ref={chatBottomRef} />

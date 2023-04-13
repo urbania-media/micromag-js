@@ -16,7 +16,12 @@ import {
     useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
-import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
+import {
+    getStyleFromColor,
+    isTextFilled, // isHeaderFilled,
+    // isFooterFilled,
+    // getFooterProps,
+} from '@micromag/core/utils';
 import { Background } from '@micromag/element-background';
 import ButtonElement from '@micromag/element-button';
 import Container from '@micromag/element-container';
@@ -42,7 +47,6 @@ const stopDragEventsPropagation = {
     onPointerUp: (e) => e.stopPropagation(),
     onPointerDown: (e) => e.stopPropagation(),
 };
-
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
     draggable: PropTypes.bool,
@@ -55,6 +59,8 @@ const propTypes = {
     center: MicromagPropTypes.geoPosition,
     zoom: PropTypes.number,
     fitBounds: PropTypes.bool,
+    // header: MicromagPropTypes.header,
+    // footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,

@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import ImageScreen from './Image';
 import ImageLegendScreen from './ImageLegend';
 import ImageTextScreen from './ImageText';
@@ -61,19 +62,21 @@ export default [
                 }),
             },
             {
-                name: 'callToAction',
-                type: 'call-to-action',
-                theme: {
-                    boxStyle: 'cta',
-                    label: {
-                        textStyle: 'cta',
-                    },
-                },
+                name: 'header',
+                type: 'header',
+                label: defineMessage({
+                    defaultMessage: 'Header',
+                    description: 'Field label',
+                }),
             },
-        {
-            name: 'shareIncentive',
-            type: 'share-incentive',
-        },
+            {
+                name: 'footer',
+                type: 'footer',
+                label: defineMessage({
+                    defaultMessage: 'Footer',
+                    description: 'Field label',
+                }),
+            },
         ],
     },
     {
@@ -151,10 +154,10 @@ export default [
                     },
                 },
             },
-        {
-            name: 'shareIncentive',
-            type: 'share-incentive',
-        },
+            {
+                name: 'shareIncentive',
+                type: 'share-incentive',
+            },
         ],
     },
     {
@@ -231,10 +234,10 @@ export default [
                     },
                 },
             },
-        {
-            name: 'shareIncentive',
-            type: 'share-incentive',
-        },
+            {
+                name: 'shareIncentive',
+                type: 'share-incentive',
+            },
         ],
     },
     {

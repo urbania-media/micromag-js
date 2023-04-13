@@ -224,6 +224,22 @@ export default [
                     description: 'Background field label',
                 }),
             },
+            {
+                name: 'header',
+                type: 'header',
+                label: defineMessage({
+                    defaultMessage: 'Header',
+                    description: 'Field label',
+                }),
+            },
+            {
+                name: 'footer',
+                type: 'footer',
+                label: defineMessage({
+                    defaultMessage: 'Footer',
+                    description: 'Field label',
+                }),
+            },
         ],
     },
 ];

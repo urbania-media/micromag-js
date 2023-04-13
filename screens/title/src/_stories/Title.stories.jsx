@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { title, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
+import { title, backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
 import TitleScreen from '../Title';
 import definition from '../definition';
 
@@ -33,8 +34,8 @@ export const Edit = (storyProps) => <TitleScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <TitleScreen {...storyProps} {...screen} />;
 
-export const WithCallToAction = (storyProps) => (
-    <TitleScreen {...storyProps} {...screen} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <TitleScreen {...storyProps} {...screen} {...headerFooter()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

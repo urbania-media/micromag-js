@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     audioMedia,
     backgroundColor,
     closedCaptionsMedia,
     transitions,
-    callToAction,
+    headerFooter,
 } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import AudioScreen from '../Audio';
 import definition from '../definition';
 
@@ -32,7 +32,9 @@ export default {
 export const Placeholder = (storyProps) => <AudioScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
+
 export const Static = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
+
 export const Capture = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
 
 export const Edit = (storyProps) => <AudioScreen {...storyProps} />;
@@ -43,11 +45,11 @@ export const WithClosedCaptions = (storyProps) => (
     <AudioScreen {...storyProps} {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }} />
 );
 
-export const WithCallToAction = (storyProps) => (
+export const WithHeaderFooter = (storyProps) => (
     <AudioScreen
         {...storyProps}
+        {...headerFooter()}
         {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }}
-        callToAction={callToAction()}
     />
 );
 

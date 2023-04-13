@@ -27,10 +27,12 @@ import {
     useMediaThumbnail,
     useActivityDetector,
 } from '@micromag/core/hooks';
+import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 
@@ -40,8 +42,9 @@ const propTypes = {
     layout: PropTypes.oneOf(['middle', 'full']),
     video: MicromagPropTypes.videoElement,
     gotoNextScreenOnEnd: PropTypes.bool,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -54,8 +57,9 @@ const defaultProps = {
     layout: 'middle',
     video: null,
     gotoNextScreenOnEnd: false,
+    header: null,
+    footer: null,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
     transitions: null,
@@ -68,8 +72,9 @@ const VideoScreen = ({
     layout,
     video,
     gotoNextScreenOnEnd,
+    header,
+    footer,
     background,
-    callToAction,
     current,
     active,
     spacing,
@@ -82,8 +87,11 @@ const VideoScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
-    const { bottomHeight: viewerBottomHeight, bottomSidesWidth: viewerBottomSidesWidth } =
-        useViewerContext();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
 
     const mediaShouldLoad = current || active;
@@ -228,7 +236,14 @@ const VideoScreen = ({
 
     const fullscreen = layout === 'full';
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, {
+        isView,
+        current,
+        openWebView,
+        isPreview,
+    });
 
     const hasVideo = video !== null;
     const [ready, setReady] = useState(hasVideo);
@@ -290,6 +305,19 @@ const VideoScreen = ({
         >
             <Container width={width} height={height} className={styles.content}>
                 <div className={styles.inner}>
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            key="header"
+                            className={styles.header}
+                            style={{
+                                paddingTop: spacing,
+                                transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
+
                     <ScreenElement
                         key="video"
                         placeholder={
@@ -380,15 +408,7 @@ const VideoScreen = ({
                                     currentTime={currentTime}
                                 />
                             ) : null}
-                            {hasCallToAction ? (
-                                <CallToAction
-                                    {...callToAction}
-                                    className={styles.callToAction}
-                                    animationDisabled={isPreview}
-                                    focusable={current && isView}
-                                    openWebView={openWebView}
-                                />
-                            ) : null}
+                            {hasFooter ? <Footer {...footerProps} /> : null}
                         </div>
                     ) : null}
                 </div>

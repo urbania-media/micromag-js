@@ -2,8 +2,7 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-// import { text, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
-import { title, backgroundColor, transitions } from '../../../../.storybook/data';
+import { title, backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
 import ShareScreen from '../Share';
 import definition from '../definition';
 
@@ -32,7 +31,9 @@ export default {
 export const Placeholder = (storyProps) => <ShareScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <ShareScreen {...storyProps} {...props} />;
+
 export const Static = (storyProps) => <ShareScreen {...storyProps} {...props} />;
+
 export const Capture = (storyProps) => <ShareScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <ShareScreen {...storyProps} />;
@@ -81,8 +82,8 @@ export const WithAllPlatforms = (storyProps) => (
     />
 );
 
-// export const WithCallToAction = (storyProps) => (
-//     <ShareScreen {...storyProps} {...props} callToAction={callToAction()} />
-// );
+export const WithHeaderFooter = (storyProps) => (
+    <ShareScreen {...storyProps} {...headerFooter()} {...props} />
+);
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

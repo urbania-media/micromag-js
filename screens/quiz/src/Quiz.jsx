@@ -16,10 +16,12 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Scroll from '@micromag/element-scroll';
 
 import Question from './partials/Question';
@@ -42,7 +44,8 @@ const propTypes = {
     withoutTrueFalse: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     ready: PropTypes.bool,
@@ -64,8 +67,9 @@ const defaultProps = {
     badAnswerColor: null,
     withoutTrueFalse: false,
     spacing: 20,
+    header: null,
+    footer: null,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
     ready: true,
@@ -87,8 +91,9 @@ const QuizScreen = ({
     badAnswerColor,
     withoutTrueFalse,
     spacing,
+    header,
+    footer,
     background,
-    callToAction,
     current,
     active,
     ready,
@@ -118,8 +123,10 @@ const QuizScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
 
-    // Call to Action
-    const { active: hasCallToAction = false } = callToAction || {};
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
     const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const showInstantAnswer = isStatic || isCapture;
@@ -210,10 +217,20 @@ const QuizScreen = ({
                 ) : null}
                 <Scroll
                     verticalAlign={verticalAlign}
-                    disabled={scrollingDisabled}
+                    disabled={scrollingDisabled || userAnswerIndex !== null}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                 >
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            key="header"
+                            style={{
+                                paddingTop: spacing,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
                     <Question
                         question={question}
                         answers={answers}
@@ -248,7 +265,7 @@ const QuizScreen = ({
                         }
                     />
                 </Scroll>
-                {!isPlaceholder && hasCallToAction ? (
+                {!isPlaceholder && hasFooter ? (
                     <div
                         ref={callToActionRef}
                         className={classNames([
@@ -268,12 +285,7 @@ const QuizScreen = ({
                             paddingBottom: spacing / 2,
                         }}
                     >
-                        <CallToAction
-                            {...callToAction}
-                            animationDisabled={isPreview}
-                            focusable={current && isView}
-                            openWebView={openWebView}
-                        />
+                        <Footer {...footerProps} />
                     </div>
                 ) : null}
             </Container>

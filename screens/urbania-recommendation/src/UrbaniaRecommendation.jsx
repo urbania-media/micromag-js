@@ -20,10 +20,11 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
@@ -39,8 +40,9 @@ const propTypes = {
     description: MicromagPropTypes.textElement,
     sponsor: MicromagPropTypes.textElement,
     spacing: PropTypes.number,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
     // animateBackground: PropTypes.bool,
@@ -57,8 +59,9 @@ const defaultProps = {
     description: null,
     sponsor: null,
     spacing: 20,
+    header: null,
+    footer: null,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
     // animateBackground: true,
@@ -75,8 +78,9 @@ const UrbaniaRecommendation = ({
     description,
     sponsor,
     spacing,
+    header,
+    footer,
     background,
-    callToAction,
     current,
     active,
     // animateBackground,
@@ -121,7 +125,9 @@ const UrbaniaRecommendation = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
-    const { active: hasCallToAction = false } = callToAction || {};
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
     const [scrolledBottom, setScrolledBottom] = useState(false);
 
     // useEffect(() => {
@@ -171,6 +177,16 @@ const UrbaniaRecommendation = ({
 
     // Create elements
     const items = [
+        !isPlaceholder && hasHeader ? (
+            <div
+                key="header"
+                style={{
+                    paddingBottom: spacing,
+                }}
+            >
+                <Header {...header} />
+            </div>
+        ) : null,
         !isPlaceholder ? <Spacer key="spacer-cta-top" /> : null,
         hasTextCard || isPlaceholder || isEdit ? (
             <Container
@@ -310,8 +326,9 @@ const UrbaniaRecommendation = ({
             </Container>
         ) : null,
         !isPlaceholder ? <Spacer key="spacer-cta-bottom" /> : null,
-        !isPlaceholder && hasCallToAction ? (
+        !isPlaceholder && hasFooter ? (
             <div
+                key="call-to-action"
                 className={classNames([
                     styles.callToAction,
                     {
@@ -323,14 +340,8 @@ const UrbaniaRecommendation = ({
                     paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
                     paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
                 }}
-                key="call-to-action"
             >
-                <CallToAction
-                    {...callToAction}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                    openWebView={openWebView}
-                />
+                <Footer {...footerProps} />
             </div>
         ) : null,
     ].filter((el) => el !== null);

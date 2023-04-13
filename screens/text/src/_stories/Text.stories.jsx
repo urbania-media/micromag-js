@@ -1,8 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { text, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import {
+    text,
+    backgroundColor,
+    transitions,
+    callToAction,
+    badge,
+} from '../../../../.storybook/data';
 import TextScreen from '../Text';
 import definition from '../definition';
 
@@ -24,15 +30,22 @@ export default {
 export const Placeholder = (storyProps) => <TextScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <TextScreen {...storyProps} {...props} />;
+
 export const Static = (storyProps) => <TextScreen {...storyProps} {...props} />;
+
 export const Capture = (storyProps) => <TextScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <TextScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <TextScreen {...storyProps} {...props} />;
 
-export const WithCallToAction = (storyProps) => (
-    <TextScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <TextScreen
+        {...storyProps}
+        {...props}
+        footer={{ callToAction: { ...callToAction(), inWebView: false, withArrow: false } }}
+        header={{ badge: { ...badge(), label: { body: 'My badge 10210' } } }}
+    />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

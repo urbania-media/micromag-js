@@ -484,6 +484,39 @@ export const conversation = (messagesNumber = 10, speakersNumber = 2, timing = '
     };
 };
 
+export const badge = () => ({
+    active: true,
+    label: {
+        body: `My badge ${Math.floor(Math.random() * 10000000)}`,
+        textStyle: { color: '#00F' },
+    },
+    boxStyle: {
+        backgroundColor: { color: '#d91b1b', alpha: 1 },
+        borderRadius: 8,
+        padding: null,
+        borderWidth: 1,
+        borderColor: color(),
+        borderStyle: 'dashed',
+        shadowDistance: 0,
+        shadowBlur: 6,
+        shadowColor: color(),
+        shadowAngle: 45,
+    },
+});
+
+export const header = () => ({
+    badge: badge(),
+});
+
+export const footer = () => ({
+    callToAction: callToAction(),
+});
+
+export const headerFooter = () => ({
+    header: header(),
+    footer: footer(),
+});
+
 export default {
     title,
     subtitle,
