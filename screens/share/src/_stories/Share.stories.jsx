@@ -35,7 +35,7 @@ const styles = {
         borderRadius: '10px',
     },
     buttonsTextStyle: {
-        fontSize: '44px',
+        // fontSize: '20px',
     },
 };
 

@@ -329,7 +329,7 @@ const ShareOptions = ({
                             style={finalStyles}
                             withoutBootstrapStyles
                         >
-                            <ShareLinkIcon {...shareIconProps} />
+                            <ShareLinkIcon size={45} {...shareIconProps} />
                             <div
                                 className={classNames([
                                     styles.label,

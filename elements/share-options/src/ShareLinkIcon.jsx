@@ -9,7 +9,7 @@ const propTypes = {
 
 const defaultProps = {
     className: null,
-    size: 50,
+    size: 45,
 };
 
 const ShareLinkIcon = ({ className, size }) => (

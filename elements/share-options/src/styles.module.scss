@@ -23,7 +23,7 @@
         &:hover {
             .icon,
             .label {
-                transform: scale(1.1);
+                transform: scale(1.05);
                 transition: transform 0.3s $ease-in-yo;
             }
         }
@@ -32,7 +32,7 @@
     &:active {
         .icon,
         .label {
-            transform: scale(1);
+            transform: scale(1.05);
             transition: transform 0.3s $ease-in-kickback;
         }
     }
@@ -46,7 +46,7 @@
 }
 
 .icon, .spacer {
-    width: 50px;
+    width: 45px;
     height: 100%;
 }
 
@@ -64,6 +64,8 @@
     margin-left: 0.25em;
     padding: 0.25rem;
     transform-origin: center;
+    font-size: inherit;
+    line-height: 1;
 }
 
 .labelText {
