@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-share",
-    "version": "0.3.351",
+    "version": "0.3.352",
     "description": "",
     "keywords": [
         "javascript"
@@ -59,7 +59,7 @@
         "@micromag/element-container": "^0.3.348",
         "@micromag/element-heading": "^0.3.348",
         "@micromag/element-layout": "^0.3.348",
-        "@micromag/element-share-options": "^0.3.351",
+        "@micromag/element-share-options": "^0.3.352",
         "@micromag/element-text": "^0.3.348",
         "@micromag/transforms": "^0.3.348",
         "classnames": "^2.2.6",
