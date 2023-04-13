@@ -40,6 +40,7 @@ const propTypes = {
     options: PropTypes.arrayOf(PropTypes.string),
     buttonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
+    iconSize: PropTypes.number,
     theme: MicromagPropTypes.viewerTheme,
     onShare: PropTypes.func,
     onClose: PropTypes.func,
@@ -56,6 +57,7 @@ const defaultProps = {
     options: null,
     buttonsStyle: null,
     buttonsTextStyle: null,
+    iconSize: 45,
     theme: null,
     onShare: null,
     onClose: null,
@@ -72,6 +74,7 @@ const ShareOptions = ({
     options,
     buttonsStyle,
     buttonsTextStyle,
+    iconSize,
     theme,
     onShare,
     onClose,
@@ -134,13 +137,13 @@ const ShareOptions = ({
     const shareIconProps = useMemo(
         () => ({
             className: styles.icon,
-            size: 50,
+            size: iconSize,
             bgStyle: {
                 fill: 'none',
             },
             iconFillColor: 'currentColor',
         }),
-        [],
+        [iconSize],
     );
 
     const shareOptions = [
@@ -166,7 +169,7 @@ const ShareOptions = ({
                     >
                         Facebook
                     </div>
-                    <div className={styles.spacer} />
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </FacebookShareButton>
             ),
         },
@@ -192,7 +195,7 @@ const ShareOptions = ({
                     >
                         Twitter
                     </div>
-                    <div className={styles.spacer} />
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </TwitterShareButton>
             ),
         },
@@ -218,7 +221,7 @@ const ShareOptions = ({
                     >
                         LinkedIn
                     </div>
-                    <div className={styles.spacer} />
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </LinkedinShareButton>
             ),
         },
@@ -244,7 +247,7 @@ const ShareOptions = ({
                     >
                         Whatsapp
                     </div>
-                    <div className={styles.spacer} />
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </WhatsappShareButton>
             ),
         },
@@ -296,7 +299,7 @@ const ShareOptions = ({
                     >
                         <FormattedMessage defaultMessage="Email" description="Share option label" />
                     </div>
-                    <div className={styles.spacer} />
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </EmailShareButton>
             ),
         },
@@ -329,7 +332,7 @@ const ShareOptions = ({
                             style={finalStyles}
                             withoutBootstrapStyles
                         >
-                            <ShareLinkIcon size={45} {...shareIconProps} />
+                            <ShareLinkIcon {...shareIconProps} />
                             <div
                                 className={classNames([
                                     styles.label,
@@ -351,7 +354,7 @@ const ShareOptions = ({
                                     ) : null}
                                 </span>
                             </div>
-                            <div className={styles.spacer} />
+                            <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                         </Button>
                     </div>
                 ) : null}
