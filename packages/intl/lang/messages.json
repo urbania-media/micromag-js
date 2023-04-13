@@ -539,6 +539,10 @@
     "defaultMessage": "Question",
     "description": "Placeholder label"
   },
+  "FYm4w+": {
+    "defaultMessage": "Popups",
+    "description": "Popup state"
+  },
   "FjuRaw": {
     "defaultMessage": "Keypad settings",
     "description": "Field label"
@@ -586,10 +590,6 @@
   "HwqzVR": {
     "defaultMessage": "Visual",
     "description": "Field label"
-  },
-  "Hyqnww": {
-    "defaultMessage": "Popups",
-    "description": "Keypad item state"
   },
   "I1hyZY": {
     "defaultMessage": "Answer icon value",
@@ -722,6 +722,10 @@
   "N25iDO": {
     "defaultMessage": "Title",
     "description": "Title field label"
+  },
+  "N7Kj8z": {
+    "defaultMessage": "Button",
+    "description": "Placeholder label"
   },
   "NVUpOG": {
     "defaultMessage": "Map fit markers",
@@ -1366,10 +1370,6 @@
     "defaultMessage": "Size",
     "description": "Label in Media Gallery"
   },
-  "mBYGpP": {
-    "defaultMessage": "Popup",
-    "description": "Popup state"
-  },
   "mOSkbf": {
     "defaultMessage": "Usage",
     "description": "Media label"
@@ -1583,6 +1583,10 @@
   "sESmah": {
     "defaultMessage": "Entries",
     "description": "Entries field label"
+  },
+  "sSahY1": {
+    "defaultMessage": "Popup",
+    "description": "Keypad item state"
   },
   "sUP5BO": {
     "defaultMessage": "Urbania recommendation",

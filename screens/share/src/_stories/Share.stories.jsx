@@ -3,7 +3,7 @@ import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 // import { text, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
-import { title, backgroundColor, transitions } from '../../../../.storybook/data';
+import { title, backgroundColor, transitions, color } from '../../../../.storybook/data';
 import ShareScreen from '../Share';
 import definition from '../definition';
 
@@ -29,15 +29,27 @@ export default {
     },
 };
 
+const styles = {
+    buttonsStyle: {
+        backgroundColor: color(),
+        borderRadius: '10px',
+    },
+    buttonsTextStyle: {
+        fontSize: '44px',
+    },
+};
+
 export const Placeholder = (storyProps) => <ShareScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <ShareScreen {...storyProps} {...props} />;
+
 export const Static = (storyProps) => <ShareScreen {...storyProps} {...props} />;
+
 export const Capture = (storyProps) => <ShareScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <ShareScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <ShareScreen {...storyProps} {...props} />;
+export const Normal = (storyProps) => <ShareScreen {...storyProps} {...props} {...styles} />;
 
 export const WithOnlyFacebook = (storyProps) => (
     <ShareScreen

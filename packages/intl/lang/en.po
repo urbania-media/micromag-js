@@ -821,6 +821,12 @@ msgctxt "FOmgqv"
 msgid "Question"
 msgstr "Question"
 
+# Popup state
+#: FYm4w+
+msgctxt "FYm4w+"
+msgid "Popups"
+msgstr "Popups"
+
 # Field label
 #: FjuRaw
 msgctxt "FjuRaw"
@@ -892,12 +898,6 @@ msgstr "Edit"
 msgctxt "HwqzVR"
 msgid "Visual"
 msgstr "Visual"
-
-# Keypad item state
-#: Hyqnww
-msgctxt "Hyqnww"
-msgid "Popups"
-msgstr "Popups"
 
 # Field label
 #: I1hyZY
@@ -1096,6 +1096,12 @@ msgstr "Gallery with captions"
 msgctxt "N25iDO"
 msgid "Title"
 msgstr "Title"
+
+# Placeholder label
+#: N7Kj8z
+msgctxt "N7Kj8z"
+msgid "Button"
+msgstr "Button"
 
 # Field label
 #: NVUpOG
@@ -2062,12 +2068,6 @@ msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Size"
 
-# Popup state
-#: mBYGpP
-msgctxt "mBYGpP"
-msgid "Popup"
-msgstr "Popup"
-
 # Media label
 #: mOSkbf
 msgctxt "mOSkbf"
@@ -2389,6 +2389,12 @@ msgstr "Speaker"
 msgctxt "sESmah"
 msgid "Entries"
 msgstr "Entries"
+
+# Keypad item state
+#: sSahY1
+msgctxt "sSahY1"
+msgid "Popup"
+msgstr "Popup"
 
 # Urbania screen title
 #: sUP5BO

@@ -404,6 +404,9 @@
     "FOmgqv": {
         "defaultMessage": "Question"
     },
+    "FYm4w+": {
+        "defaultMessage": "Popups"
+    },
     "FjuRaw": {
         "defaultMessage": "Keypad settings"
     },
@@ -439,9 +442,6 @@
     },
     "HwqzVR": {
         "defaultMessage": "Visual"
-    },
-    "Hyqnww": {
-        "defaultMessage": "Popups"
     },
     "I1hyZY": {
         "defaultMessage": "Answer icon value"
@@ -541,6 +541,9 @@
     },
     "N25iDO": {
         "defaultMessage": "Title"
+    },
+    "N7Kj8z": {
+        "defaultMessage": "Button"
     },
     "NVUpOG": {
         "defaultMessage": "Map fit markers"
@@ -1025,9 +1028,6 @@
     "liyV7Y": {
         "defaultMessage": "Size"
     },
-    "mBYGpP": {
-        "defaultMessage": "Popup"
-    },
     "mOSkbf": {
         "defaultMessage": "Usage"
     },
@@ -1189,6 +1189,9 @@
     },
     "sESmah": {
         "defaultMessage": "Entries"
+    },
+    "sSahY1": {
+        "defaultMessage": "Popup"
     },
     "sUP5BO": {
         "defaultMessage": "Urbania recommendation"

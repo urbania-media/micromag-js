@@ -166,6 +166,7 @@ const ShareOptions = ({
                     >
                         Facebook
                     </div>
+                    <div className={styles.spacer} />
                 </FacebookShareButton>
             ),
         },
@@ -191,6 +192,7 @@ const ShareOptions = ({
                     >
                         Twitter
                     </div>
+                    <div className={styles.spacer} />
                 </TwitterShareButton>
             ),
         },
@@ -216,6 +218,7 @@ const ShareOptions = ({
                     >
                         LinkedIn
                     </div>
+                    <div className={styles.spacer} />
                 </LinkedinShareButton>
             ),
         },
@@ -241,6 +244,7 @@ const ShareOptions = ({
                     >
                         Whatsapp
                     </div>
+                    <div className={styles.spacer} />
                 </WhatsappShareButton>
             ),
         },
@@ -292,6 +296,7 @@ const ShareOptions = ({
                     >
                         <FormattedMessage defaultMessage="Email" description="Share option label" />
                     </div>
+                    <div className={styles.spacer} />
                 </EmailShareButton>
             ),
         },
@@ -346,6 +351,7 @@ const ShareOptions = ({
                                     ) : null}
                                 </span>
                             </div>
+                            <div className={styles.spacer} />
                         </Button>
                     </div>
                 ) : null}
