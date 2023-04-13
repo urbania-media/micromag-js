@@ -16,11 +16,12 @@
         z-index: 1;
     }
 
+    .empty,
     .emptyTitle,
     .emptyText {
         @extend %empty;
         width: 100%;
-        margin: 10px auto;
+        // margin: 10px auto;
     }
 
     .emptyTitle {
@@ -29,6 +30,13 @@
 
     .emptyText {
         height: 50px;
+    }
+
+    .emptyCategory {
+        @extend %empty;
+        padding: 10px;
+        writing-mode: vertical-lr;
+        transform: rotate(180deg);
     }
 
     .callToAction {

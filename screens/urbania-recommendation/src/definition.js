@@ -21,6 +21,22 @@ export default [
         component: UrbaniaRecommendation,
         fields: [
             {
+                name: 'sponsor',
+                type: 'text-element',
+                label: defineMessage({
+                    defaultMessage: 'Sponsor',
+                    description: 'Text field label',
+                }),
+            },
+            {
+                name: 'visual',
+                type: 'visual',
+                label: defineMessage({
+                    defaultMessage: 'Visual',
+                    description: 'Field label',
+                }),
+            },
+            {
                 name: 'category',
                 type: 'heading-element',
                 label: defineMessage({
@@ -60,14 +76,7 @@ export default [
                     description: 'Text field label',
                 }),
             },
-            {
-                name: 'sponsor',
-                type: 'text-element',
-                label: defineMessage({
-                    defaultMessage: 'Sponsor',
-                    description: 'Text field label',
-                }),
-            },
+
             {
                 name: 'background',
                 type: 'background',
