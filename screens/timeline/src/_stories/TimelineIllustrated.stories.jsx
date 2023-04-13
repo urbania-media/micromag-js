@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     text,
     title,
@@ -8,9 +9,8 @@ import {
     videoMedia,
     backgroundColor,
     transitions,
-    callToAction,
+    headerFooter,
 } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import TimelineIllustratedScreen from '../TimelineIllustrated';
 import definition from '../definition';
 
@@ -60,8 +60,8 @@ export const Normal = (storyProps) => (
     <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
 );
 
-export const WithCallToAction = (storyProps) => (
-    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} {...headerFooter()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

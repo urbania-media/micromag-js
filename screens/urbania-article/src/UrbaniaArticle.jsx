@@ -21,10 +21,17 @@ import {
     useViewerContext,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
+import {
+    isTextFilled,
+    getStyleFromColor,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 import UrbaniaAuthor from '@micromag/element-urbania-author';
@@ -47,8 +54,9 @@ const propTypes = {
     sponsorPrefix: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     sponsorColor: MicromagPropTypes.color,
     site: PropTypes.string,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -68,8 +76,9 @@ const defaultProps = {
     sponsorPrefix: null,
     sponsorColor: null,
     site: null,
+    header: null,
+    footer: null,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
     transitions: null,
@@ -89,8 +98,9 @@ const UrbaniaArticle = ({
     sponsorPrefix,
     sponsorColor,
     site,
+    header,
+    footer,
     background,
-    callToAction,
     current,
     active,
     spacing,
@@ -132,7 +142,11 @@ const UrbaniaArticle = ({
     const hasAuthor = isTextFilled(authorFullName);
     const { url = null, type: imageType = null } = image || {};
     const hasImage = url !== null;
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
     const { video: backgroundVideo = null } = background || {};
     const hasVideoBackground = backgroundVideo !== null;
     const mediaShouldLoad = current || active;
@@ -279,7 +293,19 @@ const UrbaniaArticle = ({
                 mediaRef={imageType !== 'video' && hasVideoBackground ? mediaRef : null}
                 withoutVideo={isPreview}
             />
+
             <Container className={styles.content} width={width} height={height}>
+                {!isPlaceholder && hasHeader ? (
+                    <div
+                        key="header"
+                        className={styles.header}
+                        style={{
+                            paddingTop: spacing,
+                        }}
+                    >
+                        <Header {...header} />
+                    </div>
+                ) : null}
                 <div
                     className={classNames([
                         styles.articleContent,
@@ -345,18 +371,18 @@ const UrbaniaArticle = ({
                     </ScreenElement>
                 </div>
                 <div className={styles.callToActionContainer}>
-                    {!isPlaceholder && hasCallToAction ? (
+                    {!isPlaceholder && hasFooter ? (
                         <div
+                            key="call-to-action"
                             style={{
                                 paddingTop: spacing,
                                 paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
                                 paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
                             }}
-                            key="call-to-action"
+                            className={styles.callToAction}
                         >
-                            <CallToAction
-                                {...callToAction}
-                                className={styles.callToAction}
+                            <Footer
+                                {...footerProps}
                                 buttonClassName={styles.button}
                                 labelClassName={styles.label}
                                 arrowClassName={styles.arrow}

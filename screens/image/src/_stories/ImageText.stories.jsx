@@ -1,15 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     imageMedia,
     videoMedia,
     text,
     backgroundColor,
     transitions,
-    callToAction,
+    headerFooter,
 } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import ImageTextScreen from '../ImageText';
 import definition from '../definition';
 
@@ -43,8 +43,8 @@ export const WithVideo = (storyProps) => (
     <ImageTextScreen {...storyProps} {...props} image={videoMedia()} />
 );
 
-export const WithCallToAction = (storyProps) => (
-    <ImageTextScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <ImageTextScreen {...storyProps} {...props} {...headerFooter()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

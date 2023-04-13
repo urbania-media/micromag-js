@@ -1,20 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import definition from '../definition';
+import { backgroundColor, headerFooter } from '../../../../.storybook/data';
 import Keypad from '../Keypad';
+import definition from '../definition';
 
 const props = {
-    background: {
-        color: {
-            alpha: 1,
-            color: '#696942',
-        }
-    },
+    background: backgroundColor(),
     items: [
         {
             id: '1',
-            label: '1'
+            label: '1',
         },
         {
             id: '2',
@@ -63,5 +60,9 @@ export const Capture = (storyProps) => <Keypad {...storyProps} {...props} />;
 export const Edit = (storyProps) => <Keypad {...storyProps} />;
 
 export const Normal = (storyProps) => <Keypad {...storyProps} {...props} />;
+
+export const WithHeaderFooter = (storyProps) => (
+    <Keypad {...storyProps} {...props} {...headerFooter()} />
+);
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

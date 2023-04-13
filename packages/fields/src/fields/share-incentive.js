@@ -2,7 +2,6 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'share-incentive',
-    isList: true,
     component: 'share-incentive',
     fields: [
         {

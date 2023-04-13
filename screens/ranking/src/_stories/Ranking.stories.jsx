@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     text,
     title,
     backgroundColor,
     transitions,
-    callToAction,
+    headerFooter,
 } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import RankingScreen from '../Ranking';
 import definition from '../definition';
 
@@ -43,8 +43,8 @@ export const Edit = (storyProps) => <RankingScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <RankingScreen {...storyProps} {...props} />;
 
-export const WithCallToAction = (storyProps) => (
-    <RankingScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <RankingScreen {...storyProps} {...props} {...headerFooter()} />
 );
 
 export const Ascending = (storyProps) => <RankingScreen {...storyProps} {...props} ascending />;

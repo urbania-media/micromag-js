@@ -5,7 +5,7 @@ import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition
 import {
     backgroundColor,
     transitions,
-    callToAction,
+    headerFooter,
     videoMedia,
 } from '../../../../.storybook/data';
 import Article from '../UrbaniaLoader';
@@ -52,17 +52,11 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
 export const Video = (storyProps) => (
-    <Article
-        {...storyProps}
-        {...video()}
-        type="video"
-        image={videoMedia()}
-        callToAction={callToAction()}
-    />
+    <Article {...storyProps} {...video()} type="video" image={videoMedia()} {...headerFooter()} />
 );
 
-export const CallToAction = (storyProps) => (
-    <Article {...storyProps} {...props()} article={testVideo} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <Article {...storyProps} {...props()} article={testVideo} {...headerFooter()} />
 );
 
 export const URL = (storyProps) => (

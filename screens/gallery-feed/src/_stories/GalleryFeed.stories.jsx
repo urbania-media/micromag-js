@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { images, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import { images, backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
 import GalleryFeedScreen from '../GalleryFeed';
 import definition from '../definition';
 
@@ -31,8 +31,8 @@ export const Edit = (storyProps) => <GalleryFeedScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <GalleryFeedScreen {...storyProps} {...props} />;
 
-export const WithCallToAction = (storyProps) => (
-    <GalleryFeedScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <GalleryFeedScreen {...storyProps} {...headerFooter()} {...props} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

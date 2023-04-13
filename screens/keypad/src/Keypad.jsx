@@ -23,11 +23,20 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled, getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
+import {
+    isTextFilled,
+    getStyleFromText,
+    getStyleFromBox,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+} from '@micromag/core/utils';
 import Background, { Background as PopupBackdrop } from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Keypad from '@micromag/element-keypad';
 import Layout from '@micromag/element-layout';
@@ -111,6 +120,8 @@ const propTypes = {
         contentTextStyle: MicromagPropTypes.textStyle,
         boxStyle: MicromagPropTypes.boxStyle,
     }),
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -124,6 +135,8 @@ const defaultProps = {
     keypadSettings: null,
     buttonStyles: null,
     popupStyles: null,
+    header: null,
+    footer: null,
     background: null,
     current: true,
     active: true,
@@ -137,6 +150,8 @@ const KeypadScreen = ({
     keypadSettings,
     buttonStyles,
     popupStyles,
+    header,
+    footer,
     background,
     current,
     active,
@@ -149,10 +164,18 @@ const KeypadScreen = ({
     const screenState = useScreenState();
 
     const { width, height, resolution } = useScreenSize();
-    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
@@ -165,11 +188,13 @@ const KeypadScreen = ({
         spacing: columnSpacing = null,
         withSquareItems = false,
     } = keypadLayout || {};
+
     const {
         layout: buttonLayout = null,
         textStyle: buttonTextStyle = null,
         boxStyle: buttonBoxStyle = null,
     } = buttonStyles || {};
+
     const {
         layout: popupLayout = null,
         backdrop: popupBackdrop = null,
@@ -177,6 +202,7 @@ const KeypadScreen = ({
         contentTextStyle = null,
         boxStyle: popupBoxStyle = null,
     } = popupStyles || {};
+
     const popupLayoutClassName = useMemo(
         () => (popupLayout !== null ? camelCase(popupLayout) : ''),
         [popupLayout],
@@ -201,6 +227,7 @@ const KeypadScreen = ({
         inWebView: popupInWebView = false,
         boxStyle: popupButtonBoxStyle = null,
     } = popupButton || {};
+
     const onItemClick = useCallback(
         (e, item) => {
             const { inWebView = false, url = null } = item || {};
@@ -445,6 +472,16 @@ const KeypadScreen = ({
                                 : null
                         }
                     >
+                        {!isPlaceholder && hasHeader ? (
+                            <div
+                                key="header"
+                                style={{
+                                    paddingBottom: spacing,
+                                }}
+                            >
+                                <Header {...header} />
+                            </div>
+                        ) : null}
                         <Keypad
                             className={classNames([
                                 styles.grid,
@@ -455,6 +492,24 @@ const KeypadScreen = ({
                             spacing={isPlaceholder ? 2 : columnSpacing}
                             items={gridItems}
                         />
+                        {!isPlaceholder && hasFooter ? (
+                            <div
+                                key="footer"
+                                className={styles.footer}
+                                style={{
+                                    transform:
+                                        current && !isPreview
+                                            ? `translate(0, -${viewerBottomHeight}px)`
+                                            : null,
+                                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                                    paddingBottom: spacing / 2,
+                                    paddingTop: 0,
+                                }}
+                            >
+                                <Footer {...footerProps} />
+                            </div>
+                        ) : null}
                     </Layout>
 
                     <animated.div
@@ -558,6 +613,7 @@ const KeypadScreen = ({
                                                 />
                                             ) : null}
                                         </ScreenElement>
+
                                         {largeVisual !== null ? (
                                             <ScreenElement
                                                 placeholder="image"

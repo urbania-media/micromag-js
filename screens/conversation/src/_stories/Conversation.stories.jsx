@@ -2,9 +2,14 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import {
+    conversation as makeConversation,
+    title,
+    headerFooter,
+    backgroundColor,
+} from '../../../../.storybook/data';
 import ConversationScreen from '../Conversation';
 import definition from '../definition';
-import { conversation as makeConversation, title, callToAction } from '../../../../.storybook/data';
 
 export default {
     title: 'Screens/Conversation',
@@ -49,12 +54,13 @@ export const Edit = (storyProps) => (
     <ConversationScreen {...storyProps} conversation={conversation} />
 );
 
-export const WithCallToAction = (storyProps) => (
+export const WithHeaderFooter = (storyProps) => (
     <ConversationScreen
         {...storyProps}
+        {...headerFooter()}
+        background={backgroundColor()}
         conversation={conversation}
         timing="instant"
-        callToAction={callToAction()}
     />
 );
 

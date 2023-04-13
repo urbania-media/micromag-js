@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -23,7 +24,6 @@ function Container({ width, height, className, children }) {
               height,
           }
         : null;
-
     return (
         <div
             className={classNames([

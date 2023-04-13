@@ -419,6 +419,10 @@
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
   },
+  "B5C18D": {
+    "defaultMessage": "Badge",
+    "description": "Field label"
+  },
   "BAfC6s": {
     "defaultMessage": "Upload a closed captions file",
     "description": "Upload button label in Media Gallery"
@@ -539,6 +543,10 @@
     "defaultMessage": "Question",
     "description": "Placeholder label"
   },
+  "FYm4w+": {
+    "defaultMessage": "Popups",
+    "description": "Popup state"
+  },
   "FjuRaw": {
     "defaultMessage": "Keypad settings",
     "description": "Field label"
@@ -586,10 +594,6 @@
   "HwqzVR": {
     "defaultMessage": "Visual",
     "description": "Field label"
-  },
-  "Hyqnww": {
-    "defaultMessage": "Popups",
-    "description": "Keypad item state"
   },
   "I1hyZY": {
     "defaultMessage": "Answer icon value",
@@ -722,6 +726,10 @@
   "N25iDO": {
     "defaultMessage": "Title",
     "description": "Title field label"
+  },
+  "N7Kj8z": {
+    "defaultMessage": "Button",
+    "description": "Placeholder label"
   },
   "NVUpOG": {
     "defaultMessage": "Map fit markers",
@@ -1342,6 +1350,10 @@
     "defaultMessage": "Name",
     "description": "Name in Media Gallery"
   },
+  "kei7Ga": {
+    "defaultMessage": "Footer",
+    "description": "Footer field label"
+  },
   "kf/5Tw": {
     "defaultMessage": "Right",
     "description": "Direction"
@@ -1365,10 +1377,6 @@
   "liyV7Y": {
     "defaultMessage": "Size",
     "description": "Label in Media Gallery"
-  },
-  "mBYGpP": {
-    "defaultMessage": "Popup",
-    "description": "Popup state"
   },
   "mOSkbf": {
     "defaultMessage": "Usage",
@@ -1584,6 +1592,10 @@
     "defaultMessage": "Entries",
     "description": "Entries field label"
   },
+  "sSahY1": {
+    "defaultMessage": "Popup",
+    "description": "Keypad item state"
+  },
   "sUP5BO": {
     "defaultMessage": "Urbania recommendation",
     "description": "Urbania screen title"
@@ -1595,6 +1607,10 @@
   "sXfFFw": {
     "defaultMessage": "Enter",
     "description": "Screen button label"
+  },
+  "slgDJT": {
+    "defaultMessage": "Header",
+    "description": "Header field label"
   },
   "t+L1J/": {
     "defaultMessage": "No image...",

@@ -5,6 +5,7 @@ export { default as Answer } from './Answer';
 export { default as Answers } from './Answers';
 export { default as Audio } from './Audio';
 export { default as Autocomplete } from './Autocomplete';
+export { default as Badge } from './Badge';
 export { default as BorderRadius } from './BorderRadius';
 export { default as BorderStyle } from './BorderStyle';
 export { default as BorderWidth } from './BorderWidth';

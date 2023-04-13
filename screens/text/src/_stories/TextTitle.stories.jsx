@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     title,
     text,
     backgroundColor,
     transitions,
-    callToAction,
+    headerFooter,
 } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import TextTitleScreen from '../TextTitle';
 import definition from '../definition';
 
@@ -31,15 +31,17 @@ export default {
 export const Placeholder = (storyProps) => <TextTitleScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <TextTitleScreen {...storyProps} {...props} />;
+
 export const Static = (storyProps) => <TextTitleScreen {...storyProps} {...props} />;
+
 export const Capture = (storyProps) => <TextTitleScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <TextTitleScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <TextTitleScreen {...storyProps} {...props} />;
 
-export const WithCallToAction = (storyProps) => (
-    <TextTitleScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <TextTitleScreen {...storyProps} {...props} {...headerFooter()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

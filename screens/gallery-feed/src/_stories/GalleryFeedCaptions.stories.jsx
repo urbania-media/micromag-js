@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     imagesWithCaptions,
     backgroundColor,
     transitions,
-    callToAction,
+    headerFooter,
 } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import GalleryFeedCaptionsScreen from '../GalleryFeedCaptions';
 import definition from '../definition';
 
@@ -36,8 +36,8 @@ export const Edit = (storyProps) => <GalleryFeedCaptionsScreen {...storyProps} /
 
 export const Normal = (storyProps) => <GalleryFeedCaptionsScreen {...storyProps} {...props} />;
 
-export const WithCallToAction = (storyProps) => (
-    <GalleryFeedCaptionsScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <GalleryFeedCaptionsScreen {...storyProps} {...headerFooter()} {...props} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

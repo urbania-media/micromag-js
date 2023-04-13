@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     video360Media,
     backgroundColor,
     closedCaptionsMedia,
     transitions,
-    callToAction,
+    headerFooter,
 } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import Video360Screen from '../Video360';
 import definition from '../definition';
 
@@ -32,7 +32,9 @@ export default {
 export const Placeholder = (storyProps) => <Video360Screen {...storyProps} />;
 
 export const Preview = (storyProps) => <Video360Screen {...storyProps} {...props()} />;
+
 export const Static = (storyProps) => <Video360Screen {...storyProps} {...props()} />;
+
 export const Capture = (storyProps) => <Video360Screen {...storyProps} {...props()} />;
 
 export const Edit = (storyProps) => <Video360Screen {...storyProps} />;
@@ -54,11 +56,11 @@ export const WithSeekbarAndClosedCaptions = (storyProps) => (
     />
 );
 
-export const WithCallToAction = (storyProps) => (
+export const WithHeaderFooter = (storyProps) => (
     <Video360Screen
         {...storyProps}
         {...{ ...props({ closedCaptions: closedCaptionsMedia(), withSeekBar: true }) }}
-        callToAction={callToAction()}
+        {...headerFooter()}
     />
 );
 

@@ -287,6 +287,14 @@ $color-universities-text: #f33;
     display: block;
 }
 
+.header {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .bottom {
     transition: opacity 0.15s linear;
     opacity: 0;

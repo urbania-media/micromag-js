@@ -57,8 +57,17 @@
         height: 100%;
     }
 
+    .header {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
     .callToAction {
         position: absolute;
+        z-index: 1;
         bottom: 0;
         left: 0;
         width: 100%;

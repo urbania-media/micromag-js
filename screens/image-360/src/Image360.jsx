@@ -18,9 +18,11 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useAnimationFrame, useTrackScreenEvent } from '@micromag/core/hooks';
+import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Image from '@micromag/element-image';
 
 import useThree from './useThree';
@@ -31,7 +33,8 @@ const propTypes = {
     layout: PropTypes.oneOf(['full']),
     image: MicromagPropTypes.imageMedia,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -44,7 +47,8 @@ const defaultProps = {
     layout: 'full',
     image: null,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
     transitions: null,
@@ -57,7 +61,8 @@ const Image360Screen = ({
     layout, // eslint-disable-line
     image,
     background,
-    callToAction,
+    header,
+    footer,
     current,
     active,
     transitions,
@@ -86,7 +91,9 @@ const Image360Screen = ({
     // ------------------------------------
 
     const hasMedia = image !== null;
-    const { active: hasCallToAction = false } = callToAction || {};
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const [ready, setReady] = useState(!hasMedia);
 
@@ -321,87 +328,6 @@ const Image360Screen = ({
         [gotoPreviousScreen, gotoNextScreen, landscape],
     );
 
-    // Building elements ------------------
-
-    const items = [
-        <ScreenElement
-            key="video"
-            placeholder={
-                <PlaceholderVideo360 className={styles.placeholder} width="100%" height="100%" />
-            }
-            emptyClassName={styles.empty}
-            emptyLabel={
-                <FormattedMessage defaultMessage="Image 360" description="Image 360 placeholder" />
-            }
-            isEmpty={!withSphere}
-        >
-            <Transitions
-                playing={transitionPlaying}
-                transitions={transitions}
-                disabled={transitionDisabled}
-                fullscreen
-            >
-                {withSphere ? (
-                    <>
-                        <canvas ref={canvasRef} className={styles.canvas} />
-                        <button
-                            className={styles.canvasButton}
-                            type="button"
-                            aria-label="canvas-interaction"
-                            onPointerDown={onPointerDown}
-                            onPointerMove={onPointerMove}
-                            onPointerUp={onPointerUp}
-                            tabIndex={current && isView ? null : '-1'}
-                        />
-                    </>
-                ) : (
-                    <div
-                        className={styles.videoContainer}
-                        style={{
-                            width: resizedImageWidth,
-                            height: resizedImageHeight,
-                            left: resizedImageLeft,
-                            top: resizedImageTop,
-                        }}
-                    >
-                        <Image
-                            className={styles.video}
-                            media={{
-                                url: thumbnailUrl,
-                                metadata: { width: imageWidth, height: imageHeight },
-                            }}
-                            width={resizedImageWidth}
-                            height={resizedImageHeight}
-                            resolution={resolution}
-                            shouldLoad={mediaShouldLoad}
-                        />
-                    </div>
-                )}
-            </Transitions>
-        </ScreenElement>,
-        !isPlaceholder && hasCallToAction ? (
-            <div
-                key="callToAction"
-                className={styles.callToAction}
-                style={{
-                    transform:
-                        current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
-                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
-                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
-                    paddingBottom: spacing / 2,
-                    paddingTop: 0,
-                }}
-            >
-                <CallToAction
-                    {...callToAction}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                    openWebView={openWebView}
-                />
-            </div>
-        ) : null,
-    ];
-
     return (
         <div
             className={classNames([
@@ -424,7 +350,99 @@ const Image360Screen = ({
                         top: resizedImageTop,
                     }}
                 />
-                <div className={styles.inner}>{items}</div>
+                <div className={styles.inner}>
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            key="header"
+                            className={styles.header}
+                            style={{
+                                paddingTop: spacing,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
+                    <ScreenElement
+                        key="video"
+                        placeholder={
+                            <PlaceholderVideo360
+                                className={styles.placeholder}
+                                width="100%"
+                                height="100%"
+                            />
+                        }
+                        emptyClassName={styles.empty}
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Image 360"
+                                description="Image 360 placeholder"
+                            />
+                        }
+                        isEmpty={!withSphere}
+                    >
+                        <Transitions
+                            playing={transitionPlaying}
+                            transitions={transitions}
+                            disabled={transitionDisabled}
+                            fullscreen
+                        >
+                            {withSphere ? (
+                                <>
+                                    <canvas ref={canvasRef} className={styles.canvas} />
+                                    <button
+                                        className={styles.canvasButton}
+                                        type="button"
+                                        aria-label="canvas-interaction"
+                                        onPointerDown={onPointerDown}
+                                        onPointerMove={onPointerMove}
+                                        onPointerUp={onPointerUp}
+                                        tabIndex={current && isView ? null : '-1'}
+                                    />
+                                </>
+                            ) : (
+                                <div
+                                    className={styles.videoContainer}
+                                    style={{
+                                        width: resizedImageWidth,
+                                        height: resizedImageHeight,
+                                        left: resizedImageLeft,
+                                        top: resizedImageTop,
+                                    }}
+                                >
+                                    <Image
+                                        className={styles.video}
+                                        media={{
+                                            url: thumbnailUrl,
+                                            metadata: { width: imageWidth, height: imageHeight },
+                                        }}
+                                        width={resizedImageWidth}
+                                        height={resizedImageHeight}
+                                        resolution={resolution}
+                                        shouldLoad={mediaShouldLoad}
+                                    />
+                                </div>
+                            )}
+                        </Transitions>
+                    </ScreenElement>
+                    {!isPlaceholder && hasFooter ? (
+                        <div
+                            key="callToAction"
+                            className={styles.callToAction}
+                            style={{
+                                transform:
+                                    current && !isPreview
+                                        ? `translate(0, -${viewerBottomHeight}px)`
+                                        : null,
+                                paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                                paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                                paddingBottom: spacing / 2,
+                                paddingTop: 0,
+                            }}
+                        >
+                            <Footer {...footerProps} />
+                        </div>
+                    ) : null}
+                </div>
             </Container>
             {!isPlaceholder ? (
                 <Background

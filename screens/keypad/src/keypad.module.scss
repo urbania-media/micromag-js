@@ -26,6 +26,20 @@
     z-index: 1;
 }
 
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
 .inner {
     position: relative;
     z-index: 2;

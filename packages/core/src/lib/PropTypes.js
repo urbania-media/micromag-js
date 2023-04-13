@@ -757,3 +757,8 @@ export const visitor = PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     name: PropTypes.string,
 });
+
+export const badge = PropTypes.shape({
+    label: textElement,
+    buttonStyle: boxStyle,
+});

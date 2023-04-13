@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import ShareScreen from './Share';
 import * as transforms from './transforms/index';
 
@@ -37,8 +38,8 @@ export default {
                 description: 'Field label',
             }),
             help: defineMessage({
-                defaultMessage: 'If this field is left empty, this Micromag\'s URL will be shared.',
-                description: 'Field help text'
+                defaultMessage: "If this field is left empty, this Micromag's URL will be shared.",
+                description: 'Field help text',
             }),
         },
         {
@@ -148,6 +149,22 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Background',
                 description: 'Background field label',
+            }),
+        },
+        {
+            name: 'header',
+            type: 'header',
+            label: defineMessage({
+                defaultMessage: 'Header',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'footer',
+            type: 'footer',
+            label: defineMessage({
+                defaultMessage: 'Footer',
+                description: 'Field label',
             }),
         },
     ],

@@ -2,7 +2,7 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { subtitle, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
+import { subtitle, backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
 import QuizMultipleScreen from '../QuizMultiple';
 import definition from '../definition';
 
@@ -21,6 +21,8 @@ const props = {
                 { id: 2, label: { body: subtitle() }, points: 1 },
                 { id: 3, label: { body: subtitle() }, points: 5 },
                 { id: 4, label: { body: subtitle() }, points: 10 },
+                { id: 5, label: { body: subtitle() }, points: 20 },
+                { id: 6, label: { body: subtitle() }, points: 2 },
             ],
         },
         {
@@ -74,8 +76,8 @@ export const Edit = (storyProps) => <QuizMultipleScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <QuizMultipleScreen {...storyProps} {...props} />;
 
-export const WithCallToAction = (storyProps) => (
-    <QuizMultipleScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <QuizMultipleScreen {...storyProps} {...props} {...headerFooter()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

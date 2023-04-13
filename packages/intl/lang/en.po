@@ -641,6 +641,12 @@ msgctxt "B1MeY+"
 msgid "Select an image..."
 msgstr "Select an image..."
 
+# Field label
+#: B5C18D
+msgctxt "B5C18D"
+msgid "Badge"
+msgstr "Badge"
+
 # Upload button label in Media Gallery
 #: BAfC6s
 msgctxt "BAfC6s"
@@ -821,6 +827,12 @@ msgctxt "FOmgqv"
 msgid "Question"
 msgstr "Question"
 
+# Popup state
+#: FYm4w+
+msgctxt "FYm4w+"
+msgid "Popups"
+msgstr "Popups"
+
 # Field label
 #: FjuRaw
 msgctxt "FjuRaw"
@@ -892,12 +904,6 @@ msgstr "Edit"
 msgctxt "HwqzVR"
 msgid "Visual"
 msgstr "Visual"
-
-# Keypad item state
-#: Hyqnww
-msgctxt "Hyqnww"
-msgid "Popups"
-msgstr "Popups"
 
 # Field label
 #: I1hyZY
@@ -1096,6 +1102,12 @@ msgstr "Gallery with captions"
 msgctxt "N25iDO"
 msgid "Title"
 msgstr "Title"
+
+# Placeholder label
+#: N7Kj8z
+msgctxt "N7Kj8z"
+msgid "Button"
+msgstr "Button"
 
 # Field label
 #: NVUpOG
@@ -2026,6 +2038,12 @@ msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Name"
 
+# Footer field label
+#: kei7Ga
+msgctxt "kei7Ga"
+msgid "Footer"
+msgstr "Footer"
+
 # Direction
 #: kf/5Tw
 msgctxt "kf/5Tw"
@@ -2061,12 +2079,6 @@ msgstr "Result"
 msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Size"
-
-# Popup state
-#: mBYGpP
-msgctxt "mBYGpP"
-msgid "Popup"
-msgstr "Popup"
 
 # Media label
 #: mOSkbf
@@ -2390,6 +2402,12 @@ msgctxt "sESmah"
 msgid "Entries"
 msgstr "Entries"
 
+# Keypad item state
+#: sSahY1
+msgctxt "sSahY1"
+msgid "Popup"
+msgstr "Popup"
+
 # Urbania screen title
 #: sUP5BO
 msgctxt "sUP5BO"
@@ -2407,6 +2425,12 @@ msgstr "Author"
 msgctxt "sXfFFw"
 msgid "Enter"
 msgstr "Enter"
+
+# Header field label
+#: slgDJT
+msgctxt "slgDJT"
+msgid "Header"
+msgstr "Header"
 
 # Label when there is no item in images field
 #: t+L1J/
