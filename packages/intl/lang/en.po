@@ -203,6 +203,12 @@ msgctxt "2ZOPe+"
 msgid "Title"
 msgstr "Title"
 
+# Category placeholder
+#: 2c1WFV
+msgctxt "2c1WFV"
+msgid "Title"
+msgstr "Title"
+
 # Url field label
 #: 2pO2Cj
 msgctxt "2pO2Cj"
@@ -982,6 +988,12 @@ msgstr "Create your first screen"
 msgctxt "JoyIgA"
 msgid "Minimum points for this result"
 msgstr "Minimum points for this result"
+
+# Text placeholder
+#: JzSBzL
+msgctxt "JzSBzL"
+msgid "Visual"
+msgstr "Visual"
 
 # No value field label
 #: K1BxIr
@@ -1888,6 +1900,12 @@ msgctxt "g2CRt5"
 msgid "Size"
 msgstr "Size"
 
+# Field label
+#: g4nybp
+msgctxt "g4nybp"
+msgid "Footer"
+msgstr "Footer"
+
 # Contribution screen title
 #: g6b9Lg
 msgctxt "g6b9Lg"
@@ -2037,12 +2055,6 @@ msgstr "Message style"
 msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Name"
-
-# Footer field label
-#: kei7Ga
-msgctxt "kei7Ga"
-msgid "Footer"
-msgstr "Footer"
 
 # Direction
 #: kf/5Tw
@@ -2366,6 +2378,12 @@ msgctxt "rdFCsN"
 msgid "No marker..."
 msgstr "No marker..."
 
+# Field label
+#: rhuDxI
+msgctxt "rhuDxI"
+msgid "Header"
+msgstr "Header"
+
 # Screen title
 #: ro6yHS
 msgctxt "ro6yHS"
@@ -2425,12 +2443,6 @@ msgstr "Author"
 msgctxt "sXfFFw"
 msgid "Enter"
 msgstr "Enter"
-
-# Header field label
-#: slgDJT
-msgctxt "slgDJT"
-msgid "Header"
-msgstr "Header"
 
 # Label when there is no item in images field
 #: t+L1J/
@@ -2797,6 +2809,12 @@ msgstr "Urbania trivia"
 msgctxt "zGIcdn"
 msgid "Sponsors"
 msgstr "Sponsors"
+
+# Text field label
+#: zLxBdl
+msgctxt "zLxBdl"
+msgid "Location"
+msgstr "Location"
 
 # Quiz screen title
 #: zW7IVm

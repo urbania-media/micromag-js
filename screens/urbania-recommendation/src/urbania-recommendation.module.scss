@@ -28,8 +28,18 @@
         height: 100px;
     }
 
-    .emptyText {
+    .emptyText,
+    .emptyVisual {
         height: 50px;
+    }
+
+    .emptySponsor,
+    .emptyVisual {
+        width: calc(100% - 10px);
+    }
+
+    .emptySponsor {
+        padding: 5px;
     }
 
     .emptyCategory {

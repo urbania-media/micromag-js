@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
+    PlaceholderImage,
     PlaceholderText,
     PlaceholderTitle,
     ScreenElement,
@@ -219,14 +220,14 @@ const UrbaniaRecommendation = ({
                     {/* REPLACE WITH A REAL <Visual>... Create a new element that onClick expands to fill screen w/ player */}
                     <ScreenElement
                         key="visual"
-                        placeholder={<PlaceholderText className={styles.visualPlaceholder} />}
+                        placeholder={<PlaceholderImage className={styles.visualPlaceholder} />}
                         emptyLabel={
                             <FormattedMessage
                                 defaultMessage="Visual"
                                 description="Text placeholder"
                             />
                         }
-                        emptyClassName={styles.emptyText}
+                        emptyClassName={classNames([styles.empty, styles.emptyVisual])}
                         isEmpty
                     >
                         {!isPlaceholder ? <div className={styles.visualPlaceholder} /> : null}

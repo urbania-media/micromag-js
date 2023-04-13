@@ -127,6 +127,10 @@
     "defaultMessage": "Title",
     "description": "Title placeholder"
   },
+  "2c1WFV": {
+    "defaultMessage": "Title",
+    "description": "Category placeholder"
+  },
   "2pO2Cj": {
     "defaultMessage": "Url",
     "description": "Url field label"
@@ -646,6 +650,10 @@
   "JoyIgA": {
     "defaultMessage": "Minimum points for this result",
     "description": "Field label"
+  },
+  "JzSBzL": {
+    "defaultMessage": "Visual",
+    "description": "Text placeholder"
   },
   "K1BxIr": {
     "defaultMessage": "Edit metadata...",
@@ -1250,6 +1258,10 @@
     "defaultMessage": "Size",
     "description": "Field label"
   },
+  "g4nybp": {
+    "defaultMessage": "Footer",
+    "description": "Field label"
+  },
   "g6b9Lg": {
     "defaultMessage": "Contribution",
     "description": "Contribution screen title"
@@ -1349,10 +1361,6 @@
   "kBz8vF": {
     "defaultMessage": "Name",
     "description": "Name in Media Gallery"
-  },
-  "kei7Ga": {
-    "defaultMessage": "Footer",
-    "description": "Footer field label"
   },
   "kf/5Tw": {
     "defaultMessage": "Right",
@@ -1568,6 +1576,10 @@
     "defaultMessage": "No marker...",
     "description": "Label when there is no item"
   },
+  "rhuDxI": {
+    "defaultMessage": "Header",
+    "description": "Field label"
+  },
   "ro6yHS": {
     "defaultMessage": "Map with image markers",
     "description": "Screen title"
@@ -1607,10 +1619,6 @@
   "sXfFFw": {
     "defaultMessage": "Enter",
     "description": "Screen button label"
-  },
-  "slgDJT": {
-    "defaultMessage": "Header",
-    "description": "Header field label"
   },
   "t+L1J/": {
     "defaultMessage": "No image...",
@@ -1855,6 +1863,10 @@
   "zGIcdn": {
     "defaultMessage": "Sponsors",
     "description": "Sponsors placeholder"
+  },
+  "zLxBdl": {
+    "defaultMessage": "Location",
+    "description": "Text field label"
   },
   "zW7IVm": {
     "defaultMessage": "Quiz",
