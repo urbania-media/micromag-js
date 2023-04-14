@@ -28,6 +28,16 @@ export default {
     },
 };
 
+const styles = {
+    buttonsStyle: {
+        backgroundColor: color(),
+        borderRadius: '10px',
+    },
+    buttonsTextStyle: {
+        // fontSize: '20px',
+    },
+};
+
 export const Placeholder = (storyProps) => <ShareScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <ShareScreen {...storyProps} {...props} />;
@@ -38,7 +48,7 @@ export const Capture = (storyProps) => <ShareScreen {...storyProps} {...props} /
 
 export const Edit = (storyProps) => <ShareScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <ShareScreen {...storyProps} {...props} />;
+export const Normal = (storyProps) => <ShareScreen {...storyProps} {...props} {...styles} />;
 
 export const WithOnlyFacebook = (storyProps) => (
     <ShareScreen

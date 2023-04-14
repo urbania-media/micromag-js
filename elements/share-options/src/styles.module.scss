@@ -11,19 +11,19 @@
     @extend %reset-button;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     transform-origin: 0 50%;
     transition: transform 0.3s $ease-out-ramp;
     background-color: transparent;
     color: $white;
     font-size: 1rem;
     font-weight: 400;
-    text-align: left;
 
     @media (hover: hover) {
         &:hover {
             .icon,
             .label {
-                transform: scale(1.1);
+                transform: scale(1.05);
                 transition: transform 0.3s $ease-in-yo;
             }
         }
@@ -32,7 +32,7 @@
     &:active {
         .icon,
         .label {
-            transform: scale(1);
+            transform: scale(1.05);
             transition: transform 0.3s $ease-in-kickback;
         }
     }
@@ -45,6 +45,11 @@
     flex-shrink: 0;
 }
 
+.icon, .spacer {
+    width: 45px;
+    height: 100%;
+}
+
 .icon,
 .label {
     transition: transform 0.3s $ease-out-ramp;
@@ -54,14 +59,17 @@
     display: flex;
     flex-grow: 1;
     align-items: center;
-    margin-left: 0.5em;
-    padding: 0.5rem 0.25rem;
-    transform-origin: 0 50%;
-    font-size: 1rem;
-    // font-weight: bold;
+    justify-content: center;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+    padding: 0.25rem;
+    transform-origin: center;
+    font-size: inherit;
+    line-height: 1;
 }
 
 .labelText {
     flex-shrink: 0;
-    margin-right: 1rem;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
 }
