@@ -6,6 +6,7 @@ import {
     // text,
     // title,
     backgroundImage,
+    imageMedia,
     transitions,
     headerFooter,
 } from '../../../../.storybook/data';
@@ -21,11 +22,12 @@ const props = {
     category: { body: 'Pièce de théâtre' },
     date: { body: 'du 14 FÉVRIER au 5 MARS' },
     title: { body: 'Blackbird' },
-    sponsor: { body: 'suggéré par banque national' },
+    sponsor: { body: 'suggéré par <strong>banque national</strong>' },
     description: {
         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         // body: 'testing testing one two one two mic check one two one two',
     },
+    visual: imageMedia({ width: 309, height: 223 }),
     background: backgroundImage({ width: 320, height: 480 }),
     transitions: transitions(),
 };

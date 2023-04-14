@@ -82,13 +82,13 @@
         &.visualBottom {
             flex-direction: column-reverse;
 
-            .visual {
+            .visualContainer {
                 flex-direction: column-reverse;
             }
         }
     }
 
-    .visual {
+    .visualContainer {
         display: flex;
         flex-direction: column;
     }
@@ -114,15 +114,9 @@
         padding: 10px;
     }
 
-    .visualPlaceholder {
+    .visual {
         width: 100%;
         height: 100px;
-        background: linear-gradient(
-            0deg,
-            rgba(2, 0, 36, 1) 0%,
-            rgba(9, 9, 121, 1) 35%,
-            rgba(0, 212, 255, 1) 100%
-        );
     }
 
     .text {

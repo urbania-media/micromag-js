@@ -30,11 +30,13 @@ import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
+import Visual from '@micromag/element-visual';
 
 import styles from './urbania-recommendation.module.scss';
 
 const propTypes = {
     category: MicromagPropTypes.headingElement,
+    visual: MicromagPropTypes.imageMedia,
     title: MicromagPropTypes.headingElement,
     date: MicromagPropTypes.textElement,
     location: MicromagPropTypes.textElement,
@@ -54,6 +56,7 @@ const propTypes = {
 
 const defaultProps = {
     category: null,
+    visual: null,
     title: null,
     date: null,
     location: null,
@@ -73,6 +76,7 @@ const defaultProps = {
 
 const UrbaniaRecommendation = ({
     category,
+    visual,
     title,
     date,
     location,
@@ -109,6 +113,7 @@ const UrbaniaRecommendation = ({
 
     // const [animationStarted, setAnimationStarted] = useState(finalAnimateBackground);
 
+    const hasVisual = visual !== null;
     const hasCategory = isTextFilled(category);
     const hasTitle = isTextFilled(title);
     const hasDate = isTextFilled(date);
@@ -175,7 +180,6 @@ const UrbaniaRecommendation = ({
     //     }),
     //     [background],
     // );
-
     // Create elements
     const items = [
         !isPlaceholder && hasHeader ? (
@@ -201,7 +205,7 @@ const UrbaniaRecommendation = ({
                     },
                 ])}
             >
-                <div className={styles.visual}>
+                <div className={styles.visualContainer}>
                     {/* // SPONSOR */}
                     <ScreenElement
                         key="sponsor"
@@ -217,7 +221,7 @@ const UrbaniaRecommendation = ({
                     >
                         {hasSponsor ? <Text className={styles.sponsor} {...sponsor} /> : null}
                     </ScreenElement>
-                    {/* REPLACE WITH A REAL <Visual>... Create a new element that onClick expands to fill screen w/ player */}
+                    {/* @TODO: Create a new element that onClick expands to fill screen w/ player */}
                     <ScreenElement
                         key="visual"
                         placeholder={<PlaceholderImage className={styles.visualPlaceholder} />}
@@ -230,7 +234,7 @@ const UrbaniaRecommendation = ({
                         emptyClassName={classNames([styles.empty, styles.emptyVisual])}
                         isEmpty
                     >
-                        {!isPlaceholder ? <div className={styles.visualPlaceholder} /> : null}
+                        {hasVisual ? <Visual className={styles.visual} {...visual} /> : null}
                     </ScreenElement>
                 </div>
                 <div className={styles.text}>
