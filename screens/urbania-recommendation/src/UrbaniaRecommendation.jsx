@@ -95,6 +95,8 @@ const UrbaniaRecommendation = ({
 }) => {
     const trackScreenEvent = useTrackScreenEvent();
 
+    console.log(visual);
+
     const { width, height, resolution } = useScreenSize();
     const {
         topHeight: viewerTopHeight,

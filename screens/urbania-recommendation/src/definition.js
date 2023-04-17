@@ -38,10 +38,10 @@ export default [
                 }),
                 fields: [
                     {
-                        name: 'visual',
+                        name: 'image',
                         type: 'visual',
                         label: defineMessage({
-                            defaultMessage: 'Source',
+                            defaultMessage: 'Image',
                             description: 'Field label',
                         }),
                     },
