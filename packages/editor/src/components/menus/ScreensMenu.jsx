@@ -67,7 +67,6 @@ const ScreensMenu = ({
     onClickItem,
     onOrderChange,
 }) => {
-    console.log('withName', withName, items);
     const itemsElements = !isTree
         ? items.map(
               (

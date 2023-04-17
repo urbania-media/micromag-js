@@ -2196,7 +2196,7 @@ msgstr "Choisir un fichier de sous-titres"
 #: oAtOlP
 msgctxt "oAtOlP"
 msgid "Heading"
-msgstr "Haut de l'écran"
+msgstr "En-tête"
 
 # TextTitle screen title
 #: oCBQKV
@@ -2370,7 +2370,7 @@ msgstr "Aucun marqueur"
 #: rhuDxI
 msgctxt "rhuDxI"
 msgid "Header"
-msgstr "En-tête de page"
+msgstr "Haut de l'écran"
 
 # Screen title
 #: ro6yHS
