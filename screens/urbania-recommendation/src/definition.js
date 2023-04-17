@@ -49,7 +49,7 @@ export default [
                         name: 'visualLayout',
                         type: 'button-layout',
                         types: ['label-bottom', 'label-top'],
-                        value: 'label-bottom',
+                        defaultValue: 'label-bottom',
                         isHorizontal: true,
                         label: defineMessage({
                             defaultMessage: 'Layout',

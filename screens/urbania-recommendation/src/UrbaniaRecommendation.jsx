@@ -36,7 +36,10 @@ import styles from './urbania-recommendation.module.scss';
 
 const propTypes = {
     category: MicromagPropTypes.headingElement,
-    visual: MicromagPropTypes.imageMedia,
+    visual: PropTypes.shape({
+        image: MicromagPropTypes.imageMedia,
+        visualLayout: PropTypes.oneOf(['label-bottom', 'label-top']),
+    }),
     title: MicromagPropTypes.headingElement,
     date: MicromagPropTypes.textElement,
     location: MicromagPropTypes.textElement,
@@ -95,7 +98,7 @@ const UrbaniaRecommendation = ({
 }) => {
     const trackScreenEvent = useTrackScreenEvent();
 
-    console.log(visual);
+    // console.log(visual);
 
     const { width, height, resolution } = useScreenSize();
     const {
@@ -115,7 +118,8 @@ const UrbaniaRecommendation = ({
 
     // const [animationStarted, setAnimationStarted] = useState(finalAnimateBackground);
 
-    const hasVisual = visual !== null;
+    const { image = null, visualLayout = null } = visual || {};
+    const hasVisual = image !== null;
     const hasCategory = isTextFilled(category);
     const hasTitle = isTextFilled(title);
     const hasDate = isTextFilled(date);
@@ -202,7 +206,7 @@ const UrbaniaRecommendation = ({
                     {
                         [styles.isPlaceholder]: isPlaceholder,
                         // TODO: Add toggle for visual position
-                        [styles.visualBottom]: false,
+                        [styles.visualBottom]: visualLayout === 'label-top',
                         // [styles.appear]: finalAnimateBackground,
                     },
                 ])}
@@ -237,7 +241,7 @@ const UrbaniaRecommendation = ({
                         isEmpty={!hasVisual}
                     >
                         {hasVisual ? (
-                            <Visual className={styles.visual} media={visual} width="auto" />
+                            <Visual className={styles.visual} media={image} width="auto" />
                         ) : null}
                     </ScreenElement>
                 </div>
@@ -420,7 +424,7 @@ const UrbaniaRecommendation = ({
     );
 };
 
-UrbaniaRecommendation.defaultProps = defaultProps;
 UrbaniaRecommendation.propTypes = propTypes;
+UrbaniaRecommendation.defaultProps = defaultProps;
 
 export default React.memo(UrbaniaRecommendation);
