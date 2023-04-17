@@ -234,7 +234,9 @@ const SurveyScreen = ({
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+
+    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const [scrolledBottom, setScrolledBottom] = useState(false);
@@ -252,6 +254,14 @@ const SurveyScreen = ({
     const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
+
+    const [hasScroll, setHasScroll] = useState(false);
+    const onScrollHeightChange = useCallback(
+        ({ canScroll = false }) => {
+            setHasScroll(canScroll);
+        },
+        [setHasScroll],
+    );
 
     // Question
     const items = [
@@ -481,7 +491,32 @@ const SurveyScreen = ({
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
+                    onScrollHeightChange={onScrollHeightChange}
                 >
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            className={classNames([
+                                styles.header,
+                                {
+                                    [styles.disabled]:
+                                        scrolledBottom && !scrollingDisabled && hasScroll,
+                                },
+                            ])}
+                            ref={headerRef}
+                            style={{
+                                paddingTop: spacing,
+                                paddingLeft: spacing,
+                                paddingRight: spacing,
+                                paddingBottom: spacing,
+                                transform:
+                                    current && !isPreview
+                                        ? `translate(0, ${viewerTopHeight}px)`
+                                        : null,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
                     <Layout
                         className={styles.layout}
                         verticalAlign={verticalAlign}
@@ -489,32 +524,24 @@ const SurveyScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop:
+                                          (current && !isPreview ? viewerTopHeight : 0) +
+                                          (headerHeight || spacing),
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
-                                          (callToActionHeight + spacing),
+                                          (footerHeight + spacing),
                                   }
                                 : null
                         }
                     >
-                        {!isPlaceholder && hasHeader ? (
-                            <div
-                                key="header"
-                                style={{
-                                    paddingBottom: spacing,
-                                }}
-                            >
-                                <Header {...header} />
-                            </div>
-                        ) : null}
                         {items}
                     </Layout>
                 </Scroll>
                 {!isPlaceholder && hasFooter ? (
                     <div
-                        ref={callToActionRef}
+                        ref={footerRef}
                         className={classNames([
-                            styles.callToAction,
+                            styles.footer,
                             {
                                 [styles.disabled]: !scrolledBottom,
                             },

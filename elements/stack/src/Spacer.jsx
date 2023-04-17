@@ -1,7 +1,9 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { useStackDirection } from './StackContext';
+
 import styles from './styles/spacer.module.scss';
 
 const propTypes = {

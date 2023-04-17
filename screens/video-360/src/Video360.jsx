@@ -559,6 +559,8 @@ const Video360Screen = ({
                                 className={styles.header}
                                 style={{
                                     paddingTop: spacing,
+                                    paddingLeft: spacing,
+                                    paddingRight: spacing,
                                     transform: !isPreview
                                         ? `translate(0, ${viewerTopHeight}px)`
                                         : null,

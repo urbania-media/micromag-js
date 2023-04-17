@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import { footer } from '../../../.storybook/data';
 import Footer from './Footer';
 
 export default {
@@ -23,7 +24,7 @@ const FooterContainer = (props = null) => {
                 height,
             }}
         >
-            <Footer {...otherProps} />
+            <Footer {...footer()} {...otherProps} />
         </div>
     );
 };

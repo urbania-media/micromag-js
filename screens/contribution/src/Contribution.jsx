@@ -202,7 +202,7 @@ const ContributionScreen = ({
     // Call to Action
     const [scrolledBottom, setScrolledBottom] = useState(false);
     const swipeUpLinkActive = scrolledBottom && submitState === 4;
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -436,6 +436,19 @@ const ContributionScreen = ({
         </div>,
     );
 
+    const headerElement =
+        !isPlaceholder && hasHeader ? (
+            <div
+                className={styles.header}
+                style={{
+                    paddingBottom: spacing,
+                }}
+            >
+                <Header {...header} />
+            </div>
+        ) : null;
+    const headerInScroll = submitState >= 4;
+
     return (
         <div
             className={classNames([
@@ -465,29 +478,21 @@ const ContributionScreen = ({
                             : null
                     }
                 >
+                    {!headerInScroll ? headerElement : null}
                     <Scroll
                         verticalAlign={layout}
                         disabled={scrollingDisabled}
                         onScrolledBottom={onScrolledBottom}
                         onScrolledNotBottom={onScrolledNotBottom}
                     >
-                        {!isPlaceholder && hasHeader ? (
-                            <div
-                                key="header"
-                                style={{
-                                    paddingBottom: spacing,
-                                }}
-                            >
-                                <Header {...header} />
-                            </div>
-                        ) : null}
+                        {headerInScroll ? headerElement : null}
                         {items}
                     </Scroll>
                     {!isPlaceholder && hasFooter ? (
                         <div
-                            ref={callToActionRef}
+                            ref={footerRef}
                             className={classNames([
-                                styles.callToAction,
+                                styles.footer,
                                 {
                                     [styles.disabled]: !swipeUpLinkActive,
                                 },

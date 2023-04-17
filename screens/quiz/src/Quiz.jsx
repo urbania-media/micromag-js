@@ -127,7 +127,8 @@ const QuizScreen = ({
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
     const showInstantAnswer = isStatic || isCapture;
     const goodAnswerIndex =
@@ -188,6 +189,14 @@ const QuizScreen = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const [hasScroll, setHasScroll] = useState(false);
+    const onScrollHeightChange = useCallback(
+        ({ canScroll = false }) => {
+            setHasScroll(canScroll);
+        },
+        [setHasScroll],
+    );
+
     const onQuizReset = useCallback(() => {
         setUserAnswerIndex(null);
     }, [setUserAnswerIndex]);
@@ -220,12 +229,27 @@ const QuizScreen = ({
                     disabled={scrollingDisabled || userAnswerIndex !== null}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
+                    onScrollHeightChange={onScrollHeightChange}
                 >
                     {!isPlaceholder && hasHeader ? (
                         <div
-                            key="header"
+                            className={classNames([
+                                styles.header,
+                                {
+                                    [styles.disabled]:
+                                        scrolledBottom && !scrollingDisabled && hasScroll,
+                                },
+                            ])}
+                            ref={headerRef}
                             style={{
                                 paddingTop: spacing,
+                                paddingLeft: spacing,
+                                paddingRight: spacing,
+                                paddingBottom: spacing,
+                                transform:
+                                    current && !isPreview
+                                        ? `translate(0, ${viewerTopHeight}px)`
+                                        : null,
                             }}
                         >
                             <Header {...header} />
@@ -256,10 +280,12 @@ const QuizScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop:
+                                          (current && !isPreview ? viewerTopHeight : 0) +
+                                          (headerHeight || spacing),
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
-                                          (callToActionHeight || spacing),
+                                          (footerHeight || spacing),
                                   }
                                 : null
                         }
@@ -267,11 +293,11 @@ const QuizScreen = ({
                 </Scroll>
                 {!isPlaceholder && hasFooter ? (
                     <div
-                        ref={callToActionRef}
+                        ref={footerRef}
                         className={classNames([
-                            styles.callToAction,
+                            styles.footer,
                             {
-                                [styles.disabled]: !scrolledBottom,
+                                [styles.disabled]: !scrolledBottom && hasScroll,
                             },
                         ])}
                         style={{

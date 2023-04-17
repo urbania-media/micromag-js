@@ -78,7 +78,6 @@
         "@micromag/element-layout": "^0.3.348",
         "@micromag/element-link": "^0.3.348",
         "@micromag/element-map": "^0.3.348",
-        "@micromag/element-media-controls": "^0.3.348",
         "@micromag/element-quote": "^0.3.348",
         "@micromag/element-scroll": "^0.3.349",
         "@micromag/element-share-incentive": "^0.3.348",

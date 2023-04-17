@@ -1888,6 +1888,12 @@ msgctxt "g2CRt5"
 msgid "Size"
 msgstr "Taille"
 
+# Field label
+#: g4nybp
+msgctxt "g4nybp"
+msgid "Footer"
+msgstr ""
+
 # Contribution screen title
 #: g6b9Lg
 msgctxt "g6b9Lg"
@@ -2037,12 +2043,6 @@ msgstr "Style du texte"
 msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Nom"
-
-# Footer field label
-#: kei7Ga
-msgctxt "kei7Ga"
-msgid "Footer"
-msgstr ""
 
 # Direction
 #: kf/5Tw
@@ -2366,6 +2366,12 @@ msgctxt "rdFCsN"
 msgid "No marker..."
 msgstr "Aucun marqueur"
 
+# Field label
+#: rhuDxI
+msgctxt "rhuDxI"
+msgid "Header"
+msgstr ""
+
 # Screen title
 #: ro6yHS
 msgctxt "ro6yHS"
@@ -2425,12 +2431,6 @@ msgstr "Auteur"
 msgctxt "sXfFFw"
 msgid "Enter"
 msgstr "Entrer"
-
-# Header field label
-#: slgDJT
-msgctxt "slgDJT"
-msgid "Header"
-msgstr ""
 
 # Label when there is no item in images field
 #: t+L1J/

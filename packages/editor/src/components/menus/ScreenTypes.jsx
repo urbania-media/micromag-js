@@ -4,12 +4,15 @@ import orderBy from 'lodash/orderBy';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
 import { useScreensManager } from '@micromag/core/contexts';
 import { isMessage } from '@micromag/core/utils';
-import styles from '../../styles/menus/screen-types.module.scss';
+
 import ScreensMenu from './ScreensMenu';
+
+import styles from '../../styles/menus/screen-types.module.scss';
 
 const propTypes = {
     screens: MicromagPropTypes.screenDefinitions,
@@ -51,12 +54,14 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
                 id,
                 type: id,
                 screen: definition,
+                title,
                 className: classNames({
                     'bg-secondary': !selected,
                     'bg-primary': selected,
                     [styles.selected]: selected,
                 }),
             };
+
             return groupIndex !== -1
                 ? [
                       ...allGroups.slice(0, groupIndex),
@@ -79,6 +84,7 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
 
         return orderBy(groupItems, ['order', 'name'], ['asc', 'asc']);
     }, [finalDefinitions, selectedTypes]);
+
     return (
         <div
             className={classNames([
@@ -96,6 +102,7 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
                             <ScreensMenu
                                 items={items}
                                 withPlaceholder
+                                withName
                                 itemClassName={classNames([
                                     styles.screen,
                                     'border',

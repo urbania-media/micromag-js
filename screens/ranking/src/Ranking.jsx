@@ -233,9 +233,10 @@ const RankingScreen = ({
                 >
                     {!isPlaceholder && hasHeader ? (
                         <div
-                            key="header"
                             style={{
                                 paddingTop: spacing,
+                                paddingLeft: spacing,
+                                paddingRight: spacing,
                             }}
                         >
                             <Header {...header} />

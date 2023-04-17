@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getOptimalImageUrl } from '@micromag/core/utils';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState, useRef } from 'react';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getOptimalImageUrl } from '@micromag/core/utils';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -20,7 +22,7 @@ const propTypes = {
     imageClassName: PropTypes.string,
     onLoaded: PropTypes.func,
     loadingMode: PropTypes.string,
-    shouldLoad: PropTypes.bool
+    shouldLoad: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -36,7 +38,7 @@ const defaultProps = {
     imageClassName: null,
     onLoaded: null,
     loadingMode: 'lazy',
-    shouldLoad: true
+    shouldLoad: true,
 };
 
 const Image = ({
@@ -54,7 +56,7 @@ const Image = ({
     loadingMode,
     shouldLoad,
 }) => {
-    const { url = null, metadata = null } = media || {};
+    const { metadata = null } = media || {};
     const {
         width: mediaWidth = 0,
         height: mediaHeight = 0,

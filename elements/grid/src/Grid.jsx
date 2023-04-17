@@ -1,9 +1,11 @@
 /* eslint-disable react/no-array-index-key */
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React from 'react';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import styles from './styles.module.scss';
 
 const propTypes = {

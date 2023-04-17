@@ -938,6 +938,9 @@
     "g2CRt5": {
         "defaultMessage": "Size"
     },
+    "g4nybp": {
+        "defaultMessage": "Footer"
+    },
     "g6b9Lg": {
         "defaultMessage": "Contribution"
     },
@@ -1012,9 +1015,6 @@
     },
     "kBz8vF": {
         "defaultMessage": "Name"
-    },
-    "kei7Ga": {
-        "defaultMessage": "Footer"
     },
     "kf/5Tw": {
         "defaultMessage": "Right"
@@ -1178,6 +1178,9 @@
     "rdFCsN": {
         "defaultMessage": "No marker..."
     },
+    "rhuDxI": {
+        "defaultMessage": "Header"
+    },
     "ro6yHS": {
         "defaultMessage": "Map with image markers"
     },
@@ -1207,9 +1210,6 @@
     },
     "sXfFFw": {
         "defaultMessage": "Enter"
-    },
-    "slgDJT": {
-        "defaultMessage": "Header"
     },
     "t+L1J/": {
         "defaultMessage": "No image..."

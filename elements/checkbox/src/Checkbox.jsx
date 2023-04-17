@@ -1,7 +1,8 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/label-has-associated-control */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import styles from './styles.module.scss';

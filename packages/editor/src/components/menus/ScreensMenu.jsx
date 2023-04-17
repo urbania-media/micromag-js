@@ -6,15 +6,19 @@ import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { ReactSortable } from 'react-sortablejs';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import styles from '../../styles/menus/screens.module.scss';
+
 import ScreenWithPreview from '../buttons/ScreenWithPreview';
 import SortableTree from '../sortable/SortableTree';
+
+import styles from '../../styles/menus/screens.module.scss';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
     withPreview: PropTypes.bool,
     withPlaceholder: PropTypes.bool,
+    withName: PropTypes.bool,
     settings: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     sortable: PropTypes.bool,
     isTree: PropTypes.bool,
@@ -32,6 +36,7 @@ const defaultProps = {
     items: [],
     withPreview: false,
     withPlaceholder: false,
+    withName: false,
     settings: null,
     sortable: false,
     isTree: false,
@@ -49,6 +54,7 @@ const ScreensMenu = ({
     items,
     withPreview,
     withPlaceholder,
+    withName,
     settings,
     isVertical,
     noWrap,
@@ -61,6 +67,7 @@ const ScreensMenu = ({
     onClickItem,
     onOrderChange,
 }) => {
+    console.log('withName', withName, items);
     const itemsElements = !isTree
         ? items.map(
               (
@@ -68,6 +75,7 @@ const ScreensMenu = ({
                       className: itemCustomClassName = null,
                       screen,
                       type,
+                      title,
                       onClick = null,
                       active,
                       href,
@@ -91,9 +99,11 @@ const ScreensMenu = ({
                           screen={withPlaceholder ? { ...screen, type } : screen}
                           href={href}
                           className={buttonClassName}
+                          title={title}
                           active={active}
                           withPreview={withPreview}
                           withPlaceholder={withPlaceholder}
+                          withName={withName}
                           onClick={onClick}
                           onClickItem={onClickItem}
                       />

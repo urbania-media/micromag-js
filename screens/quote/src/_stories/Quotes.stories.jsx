@@ -8,6 +8,8 @@ import {
     backgroundColor,
     transitions,
     headerFooter,
+    header,
+    footer,
 } from '../../../../.storybook/data';
 import QuoteScreen from '../Quote';
 import definition from '../definition';
@@ -31,7 +33,9 @@ export default {
 export const Placeholder = (storyProps) => <QuoteScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
+
 export const Static = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
+
 export const Capture = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <QuoteScreen {...storyProps} />;
@@ -40,6 +44,14 @@ export const Normal = (storyProps) => <QuoteScreen {...storyProps} {...props} />
 
 export const WithHeaderFooter = (storyProps) => (
     <QuoteScreen {...storyProps} {...props} {...headerFooter()} />
+);
+
+export const WithHeader = (storyProps) => (
+    <QuoteScreen {...storyProps} {...props} header={header()} />
+);
+
+export const WithFooter = (storyProps) => (
+    <QuoteScreen {...storyProps} {...props} footer={footer()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

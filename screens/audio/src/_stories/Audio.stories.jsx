@@ -39,17 +39,23 @@ export const Capture = (storyProps) => <AudioScreen {...storyProps} {...props()}
 
 export const Edit = (storyProps) => <AudioScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
+export const Normal = (storyProps) => (
+    <AudioScreen {...storyProps} {...props({ withWave: true })} />
+);
 
 export const WithClosedCaptions = (storyProps) => (
-    <AudioScreen {...storyProps} {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }} />
+    <AudioScreen
+        {...storyProps}
+        {...{ ...props({ closedCaptions: closedCaptionsMedia(), withWave: true }) }}
+    />
 );
 
 export const WithHeaderFooter = (storyProps) => (
     <AudioScreen
         {...storyProps}
         {...headerFooter()}
-        {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }}
+        {...{ ...props({ closedCaptions: closedCaptionsMedia(), withWave: true }) }}
+        showWave
     />
 );
 

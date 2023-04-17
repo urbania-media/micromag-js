@@ -5,7 +5,7 @@ import React, { useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -46,8 +46,6 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -62,8 +60,6 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
-    transitions: null,
-    transitionStagger: 75,
     type: null,
     className: null,
 };
@@ -78,8 +74,6 @@ const GalleryFeedScreen = ({
     footer,
     current,
     active,
-    transitions,
-    transitionStagger,
     type,
     className,
 }) => {
@@ -266,7 +260,7 @@ const GalleryFeedScreen = ({
                         {!isPlaceholder && hasFooter ? (
                             <div
                                 className={classNames([
-                                    styles.callToAction,
+                                    styles.footer,
                                     {
                                         [styles.disabled]: !scrolledBottom,
                                     },

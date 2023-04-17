@@ -50,7 +50,7 @@ export const title = () => random(titles);
 
 export const subtitle = () => random(subtitles);
 
-export const quote = ({ likelyhood = 100, min = 7, max = 20 } = {}) =>
+export const quote = ({ likelyhood = 100, min = 5, max = 12 } = {}) =>
     `“ ${words(likelyhood, min, max)} ”`;
 
 export const author = ({ likelyhood = 100 } = {}) => name(likelyhood);
@@ -487,20 +487,23 @@ export const conversation = (messagesNumber = 10, speakersNumber = 2, timing = '
 export const badge = () => ({
     active: true,
     label: {
-        body: `My badge ${Math.floor(Math.random() * 10000000)}`,
-        textStyle: { color: '#00F' },
+        body:
+            Math.random() > 0.5
+                ? `My badge ${Math.floor(Math.random() * 10000000)}`
+                : words(100, 8, 10),
+        textStyle: { color: color() },
     },
     boxStyle: {
-        backgroundColor: { color: '#d91b1b', alpha: 1 },
+        backgroundColor: 'transparent',
         borderRadius: 8,
         padding: null,
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: color(),
-        borderStyle: 'dashed',
-        shadowDistance: 0,
-        shadowBlur: 6,
-        shadowColor: color(),
-        shadowAngle: 45,
+        borderStyle: 'solid',
+        // shadowDistance: 0,
+        // shadowBlur: 6,
+        // shadowColor: color(),
+        // shadowAngle: 45,
     },
 });
 

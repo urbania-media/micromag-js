@@ -209,7 +209,6 @@ const TitleScreen = ({
                 >
                     {!isPlaceholder && hasHeader ? (
                         <div
-                            key="header"
                             style={{
                                 paddingBottom: spacing,
                             }}
@@ -218,8 +217,15 @@ const TitleScreen = ({
                         </div>
                     ) : null}
 
-                    {(!isPlaceholder && hasFooter && isMiddleLayout) ||
-                    (!isPlaceholder && hasHeader && isBottomLayout) ? (
+                    {!isPlaceholder && hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && isBottomLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && !hasFooter && isMiddleLayout ? (
                         <Spacer key="spacer-cta-top" />
                     ) : null}
 
@@ -292,6 +298,10 @@ const TitleScreen = ({
                     ) : null}
 
                     {!isPlaceholder && hasFooter && (isTopLayout || isMiddleLayout) ? (
+                        <Spacer key="spacer-cta-bottom" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && !hasFooter && isMiddleLayout ? (
                         <Spacer key="spacer-cta-bottom" />
                     ) : null}
 

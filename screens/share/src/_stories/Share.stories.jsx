@@ -17,6 +17,12 @@ const props = {
     },
     background: backgroundColor(),
     transitions: transitions(),
+    buttonsStyle: {
+        // border: '1px solid #000',
+        borderColor: '#000',
+        borderStyle: 'solid',
+        borderWidth: '1',
+    },
 };
 
 export default {

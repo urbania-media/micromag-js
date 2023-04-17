@@ -83,10 +83,10 @@
 }
 
 .arrow {
-    position: relative;
-    top: 1rem;
-    z-index: 2;
     display: inline-block;
+    position: relative;
+    z-index: 2;
+    top: 1rem;
     width: 1rem;
     height: auto;
     animation: upAndDown 0.75s alternate infinite $ease-in-out-soft-sine;

@@ -57,7 +57,6 @@
         "@micromag/element-closed-captions": "^0.3.348",
         "@micromag/element-container": "^0.3.348",
         "@micromag/element-image": "^0.3.348",
-        "@micromag/element-media-controls": "^0.3.348",
         "@micromag/element-video": "^0.3.348",
         "@micromag/transforms": "^0.3.348",
         "classnames": "^2.2.6",

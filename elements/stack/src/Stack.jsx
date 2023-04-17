@@ -1,12 +1,17 @@
+/* eslint-disable react/jsx-indent */
+
 /* eslint-disable react/no-array-index-key */
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import classNames from 'classnames';
 import isNumber from 'lodash/isNumber';
 import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
 import React from 'react';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import Spacer from './Spacer';
 import { StackProvider } from './StackContext';
+
 import styles from './styles/stack.module.scss';
 
 const propTypes = {

@@ -8,6 +8,8 @@ import {
     backgroundColor,
     transitions,
     headerFooter,
+    header,
+    footer,
 } from '../../../../.storybook/data';
 import TitleSubtitleScreen from '../TitleSubtitle';
 import definition from '../definition';
@@ -43,6 +45,14 @@ export const Normal = (storyProps) => <TitleSubtitleScreen {...storyProps} {...s
 
 export const WithHeaderFooter = (storyProps) => (
     <TitleSubtitleScreen {...storyProps} {...screen} {...headerFooter()} />
+);
+
+export const WithHeader = (storyProps) => (
+    <TitleSubtitleScreen {...storyProps} {...screen} header={header()} />
+);
+
+export const WithFooter = (storyProps) => (
+    <TitleSubtitleScreen {...storyProps} {...screen} footer={footer()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

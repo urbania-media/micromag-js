@@ -1250,6 +1250,10 @@
     "defaultMessage": "Size",
     "description": "Field label"
   },
+  "g4nybp": {
+    "defaultMessage": "Footer",
+    "description": "Field label"
+  },
   "g6b9Lg": {
     "defaultMessage": "Contribution",
     "description": "Contribution screen title"
@@ -1349,10 +1353,6 @@
   "kBz8vF": {
     "defaultMessage": "Name",
     "description": "Name in Media Gallery"
-  },
-  "kei7Ga": {
-    "defaultMessage": "Footer",
-    "description": "Footer field label"
   },
   "kf/5Tw": {
     "defaultMessage": "Right",
@@ -1568,6 +1568,10 @@
     "defaultMessage": "No marker...",
     "description": "Label when there is no item"
   },
+  "rhuDxI": {
+    "defaultMessage": "Header",
+    "description": "Field label"
+  },
   "ro6yHS": {
     "defaultMessage": "Map with image markers",
     "description": "Screen title"
@@ -1607,10 +1611,6 @@
   "sXfFFw": {
     "defaultMessage": "Enter",
     "description": "Screen button label"
-  },
-  "slgDJT": {
-    "defaultMessage": "Header",
-    "description": "Header field label"
   },
   "t+L1J/": {
     "defaultMessage": "No image...",

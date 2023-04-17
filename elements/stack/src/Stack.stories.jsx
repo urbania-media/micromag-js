@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Spacer from './Spacer';
 import Stack from './Stack';
 
@@ -11,6 +12,7 @@ const cellStyle = {
     textAlign: 'center',
     padding: 20,
     background: '#ddd',
+    color: '#000',
 };
 
 const cells = [1, 2, 3, 4, 5].map((number) => (

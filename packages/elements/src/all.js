@@ -16,7 +16,6 @@ export { default as Keypad } from '@micromag/element-keypad';
 export { default as Layout } from '@micromag/element-layout';
 export { default as Link } from '@micromag/element-link';
 export { default as Map } from '@micromag/element-map';
-export { default as MediaControls } from '@micromag/element-media-controls';
 export { default as Quote } from '@micromag/element-quote';
 export { default as Scroll } from '@micromag/element-scroll';
 export { default as ShareIncentive } from '@micromag/element-share-incentive';

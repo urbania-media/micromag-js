@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { gifVideoMedia, imageMedia, videoMedia } from '../../../.storybook/data';
-import BackgroundLayers from './BackgroundLayers';
 import Background from './Background';
+import BackgroundLayers from './BackgroundLayers';
 
 export default {
     component: Background,
@@ -17,7 +17,11 @@ export const layers = () => (
                 background={[
                     { color: { color: '#ffcc00', alpha: 0.5 }, height: '50%' },
                     { media: imageMedia({ width: 200, height: 100 }), fit: 'contain' },
-                    { color: { color: '#ff0000', alpha: 0.5 }, height: '50%', verticalAlign: 'bottom' },
+                    {
+                        color: { color: '#ff0000', alpha: 0.5 },
+                        height: '50%',
+                        verticalAlign: 'bottom',
+                    },
                 ]}
             />
         </div>
