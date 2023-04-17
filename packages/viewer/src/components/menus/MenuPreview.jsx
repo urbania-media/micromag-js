@@ -14,6 +14,7 @@ import styles from '../../styles/menus/menu-preview.module.scss';
 const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
     screenSize: MicromagPropTypes.screenSize,
+    title: PropTypes.string,
     menuWidth: PropTypes.number,
     items: MicromagPropTypes.menuItems,
     focusable: PropTypes.bool,
@@ -32,6 +33,7 @@ const propTypes = {
 const defaultProps = {
     viewerTheme: null,
     screenSize: null,
+    title: null,
     menuWidth: null,
     items: [],
     focusable: true,
@@ -49,6 +51,7 @@ const defaultProps = {
 const ViewerMenuPreview = ({
     viewerTheme,
     screenSize,
+    title,
     menuWidth,
     items,
     focusable,
@@ -66,7 +69,7 @@ const ViewerMenuPreview = ({
 
     // @todo reimplement the brand logo
     // const { background = null, logo: brandLogo = null } = viewerTheme || {};
-    const { background = null } = viewerTheme || {};
+    const { background = null, textStyles = null } = viewerTheme || {};
     const { image = null } = background || {};
     const { url: brandImageUrl = null } = image || {};
     const brandImageStyle =
@@ -76,14 +79,20 @@ const ViewerMenuPreview = ({
               }
             : null;
 
+    const { heading1: titleStyles = null } = textStyles || {};
+
     // const { url: brandLogoUrl = null } = brandLogo || {};
     const [screensMounted, setScreensMounted] = useState([]);
+
+    const withTitle = title !== null;
 
     // @todo optimize all of this the proper way
     // const finalItems = useMemo(
     //     () => (!focusable ? items.map((s, i) => (i > 6 ? { screenId: s.screenId } : s)) : items),
     //     [items, focusable],
     // );
+
+    console.log(viewerTheme, title);
 
     useEffect(() => {
         if (items.length === screensMounted.length) {
@@ -112,10 +121,16 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.content} ref={containerRef}>
                 <Scroll className={styles.scroll} disabled={scrollDisabled}>
-                    <nav className={styles.nav} style={{ paddingTop }}>
-                        {/* <div>
-                            <h1>@TODO: ADD MICROMAG TITLE HERE</h1>
-                        </div> */}
+                    {title !== null ? (
+                        <h1 className={styles.title} style={{ paddingTop, ...titleStyles }}>
+                            {title}
+                        </h1>
+                    ) : null}
+                    <nav
+                        className={styles.nav}
+                        // style={{ paddingTop }}
+                        style={!withTitle ? { paddingTop } : null}
+                    >
                         <ul className={styles.items}>
                             {items.map((item, index) => {
                                 const { screenId } = item || {};
