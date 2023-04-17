@@ -30,11 +30,33 @@ export default [
             },
             {
                 name: 'visual',
-                type: 'visual',
+                type: 'fields',
+                isList: true,
                 label: defineMessage({
                     defaultMessage: 'Visual',
                     description: 'Field label',
                 }),
+                fields: [
+                    {
+                        name: 'visual',
+                        type: 'visual',
+                        label: defineMessage({
+                            defaultMessage: 'Source',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'visualLayout',
+                        type: 'button-layout',
+                        types: ['label-bottom', 'label-top'],
+                        value: 'label-bottom',
+                        isHorizontal: true,
+                        label: defineMessage({
+                            defaultMessage: 'Layout',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
             },
             {
                 name: 'category',

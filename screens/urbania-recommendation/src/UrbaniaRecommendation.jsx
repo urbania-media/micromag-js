@@ -210,14 +210,14 @@ const UrbaniaRecommendation = ({
                     <ScreenElement
                         key="sponsor"
                         placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
-                        emptyLabel={
-                            <FormattedMessage
-                                defaultMessage="Sponsor"
-                                description="Text placeholder"
-                            />
-                        }
-                        emptyClassName={classNames([styles.empty, styles.emptySponsor])}
-                        isEmpty={!hasSponsor}
+                        // emptyLabel={
+                        //     <FormattedMessage
+                        //         defaultMessage="Sponsor"
+                        //         description="Text placeholder"
+                        //     />
+                        // }
+                        // emptyClassName={classNames([styles.empty, styles.emptySponsor])}
+                        // isEmpty={!hasSponsor}
                     >
                         {hasSponsor ? <Text className={styles.sponsor} {...sponsor} /> : null}
                     </ScreenElement>
@@ -232,9 +232,11 @@ const UrbaniaRecommendation = ({
                             />
                         }
                         emptyClassName={classNames([styles.empty, styles.emptyVisual])}
-                        isEmpty
+                        isEmpty={!hasVisual}
                     >
-                        {hasVisual ? <Visual className={styles.visual} {...visual} /> : null}
+                        {hasVisual ? (
+                            <Visual className={styles.visual} media={visual} width="auto" />
+                        ) : null}
                     </ScreenElement>
                 </div>
                 <div className={styles.text}>

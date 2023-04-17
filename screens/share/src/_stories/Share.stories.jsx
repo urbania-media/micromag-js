@@ -2,7 +2,13 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { title, backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
+import {
+    title,
+    backgroundColor,
+    transitions,
+    headerFooter,
+    color,
+} from '../../../../.storybook/data';
 import ShareScreen from '../Share';
 import definition from '../definition';
 

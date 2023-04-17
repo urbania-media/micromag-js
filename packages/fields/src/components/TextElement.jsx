@@ -1,11 +1,12 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import TextField from './Text';
-import TextareaField from './Textarea';
 import EditorField from './TextEditor';
+import TextareaField from './Textarea';
 
 const propTypes = {
     value: MicromagPropTypes.textElement,
