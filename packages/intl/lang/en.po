@@ -641,6 +641,12 @@ msgctxt "B1MeY+"
 msgid "Select an image..."
 msgstr "Select an image..."
 
+# Field label
+#: B5C18D
+msgctxt "B5C18D"
+msgid "Badge"
+msgstr "Badge"
+
 # Upload button label in Media Gallery
 #: BAfC6s
 msgctxt "BAfC6s"
@@ -1882,6 +1888,12 @@ msgctxt "g2CRt5"
 msgid "Size"
 msgstr "Size"
 
+# Field label
+#: g4nybp
+msgctxt "g4nybp"
+msgid "Footer"
+msgstr "Footer"
+
 # Contribution screen title
 #: g6b9Lg
 msgctxt "g6b9Lg"
@@ -2353,6 +2365,12 @@ msgstr "Apr 20 - May 20"
 msgctxt "rdFCsN"
 msgid "No marker..."
 msgstr "No marker..."
+
+# Field label
+#: rhuDxI
+msgctxt "rhuDxI"
+msgid "Header"
+msgstr "Header"
 
 # Screen title
 #: ro6yHS

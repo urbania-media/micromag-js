@@ -2,7 +2,7 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { subtitle, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
+import { subtitle, backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
 import QuizScreen from '../Quiz';
 import definition from '../definition';
 
@@ -65,8 +65,12 @@ export const WithoutGoodAnswerAndWithoutTrueFalse = (storyProps) => (
     <QuizScreen {...storyProps} {...noGoodProps} withoutTrueFalse />
 );
 
-export const WithCallToAction = (storyProps) => (
-    <QuizScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <QuizScreen {...storyProps} {...props} {...headerFooter()} />
+);
+
+export const WithShortLayout = (storyProps) => (
+    <QuizScreen {...storyProps} {...props} {...headerFooter()} answers={[]} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

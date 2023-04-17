@@ -1,14 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     title,
     subtitle,
     backgroundColor,
     transitions,
-    callToAction,
+    headerFooter,
+    header,
+    footer,
 } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import TitleWithBoxScreen from '../TitleWithBox';
 import definition from '../definition';
 
@@ -39,15 +41,25 @@ export default {
 export const Placeholder = (storyProps) => <TitleWithBoxScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <TitleWithBoxScreen {...storyProps} {...screen} />;
+
 export const Static = (storyProps) => <TitleWithBoxScreen {...storyProps} {...screen} />;
+
 export const Capture = (storyProps) => <TitleWithBoxScreen {...storyProps} {...screen} />;
 
 export const Edit = (storyProps) => <TitleWithBoxScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <TitleWithBoxScreen {...storyProps} {...screen} />;
 
-export const WithCallToAction = (storyProps) => (
-    <TitleWithBoxScreen {...storyProps} {...screen} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <TitleWithBoxScreen {...storyProps} {...screen} {...headerFooter()} />
+);
+
+export const WithHeader = (storyProps) => (
+    <TitleWithBoxScreen {...storyProps} {...screen} header={header()} />
+);
+
+export const WithFooter = (storyProps) => (
+    <TitleWithBoxScreen {...storyProps} {...screen} footer={footer()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

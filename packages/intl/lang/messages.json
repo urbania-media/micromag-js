@@ -419,6 +419,10 @@
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
   },
+  "B5C18D": {
+    "defaultMessage": "Badge",
+    "description": "Field label"
+  },
   "BAfC6s": {
     "defaultMessage": "Upload a closed captions file",
     "description": "Upload button label in Media Gallery"
@@ -1246,6 +1250,10 @@
     "defaultMessage": "Size",
     "description": "Field label"
   },
+  "g4nybp": {
+    "defaultMessage": "Footer",
+    "description": "Field label"
+  },
   "g6b9Lg": {
     "defaultMessage": "Contribution",
     "description": "Contribution screen title"
@@ -1559,6 +1567,10 @@
   "rdFCsN": {
     "defaultMessage": "No marker...",
     "description": "Label when there is no item"
+  },
+  "rhuDxI": {
+    "defaultMessage": "Header",
+    "description": "Field label"
   },
   "ro6yHS": {
     "defaultMessage": "Map with image markers",

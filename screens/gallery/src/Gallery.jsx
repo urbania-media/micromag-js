@@ -16,11 +16,18 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { isImageFilled, isTextFilled } from '@micromag/core/utils';
+import {
+    isImageFilled,
+    isTextFilled,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
 import Grid from '@micromag/element-grid';
+import Header from '@micromag/element-header';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
@@ -57,7 +64,8 @@ const propTypes = {
     spacing: PropTypes.number,
     captionMaxLines: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -72,7 +80,8 @@ const defaultProps = {
     spacing: 20,
     captionMaxLines: 2,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
     transitions: null,
@@ -85,7 +94,8 @@ const GalleryScreen = ({
     images,
     withCaptions,
     background,
-    callToAction,
+    header,
+    footer,
     current,
     active,
     spacing,
@@ -153,9 +163,12 @@ const GalleryScreen = ({
         }
     }, [contentWidth, contentHeight, layout, setImagesSizes]);
 
-    // Call to Action
-    const { active: hasCallToAction = false } = callToAction || {};
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+    // headre + footer
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
     // items
     const items = [...Array(gridSpaces)].map((item, itemI) => {
@@ -260,34 +273,44 @@ const GalleryScreen = ({
                 <div
                     className={styles.inner}
                     style={{
-                        paddingTop: !isPreview ? viewerTopHeight : null,
+                        paddingTop:
+                            (hasHeader ? headerHeight : 0) + (!isPreview ? viewerTopHeight : 0),
                         paddingBottom:
-                            (hasCallToAction ? callToActionHeight : 0) +
+                            (hasFooter ? footerHeight : 0) +
                             (current && !isPreview ? viewerBottomHeight : 0),
                     }}
                     ref={contentRef}
                 >
-                    <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
-                    {!isPlaceholder && hasCallToAction ? (
+                    {!isPlaceholder && hasHeader ? (
                         <div
-                            className={styles.callToAction}
-                            ref={callToActionRef}
+                            className={styles.header}
+                            ref={headerRef}
+                            style={{
+                                paddingTop: finalSpacing,
+                                paddingLeft: spacing,
+                                paddingRight: spacing,
+                                transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
+                    <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
+                    {!isPlaceholder && hasFooter ? (
+                        <div
+                            className={styles.footer}
+                            ref={footerRef}
                             style={{
                                 paddingLeft: Math.max(finalSpacing / 2, viewerBottomSidesWidth),
                                 paddingRight: Math.max(finalSpacing / 2, viewerBottomSidesWidth),
-                                paddingTop: finalSpacing / 2,
+                                // paddingTop: finalSpacing / 2,
                                 paddingBottom: finalSpacing / 2,
                                 transform: !isPreview
                                     ? `translate(0, -${viewerBottomHeight}px)`
                                     : null,
                             }}
                         >
-                            <CallToAction
-                                {...callToAction}
-                                animationDisabled={isPreview}
-                                focusable={current && isView}
-                                openWebView={openWebView}
-                            />
+                            <Footer {...footerProps} />
                         </div>
                     ) : null}
                 </div>

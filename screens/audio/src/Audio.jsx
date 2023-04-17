@@ -14,13 +14,14 @@ import {
     usePlaybackMediaRef,
     useViewerWebView,
 } from '@micromag/core/contexts';
-import { useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
-import { isIos } from '@micromag/core/utils';
+import { useTrackScreenMedia } from '@micromag/core/hooks';
+import { isIos, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Audio from '@micromag/element-audio';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Layout, { Spacer } from '@micromag/element-layout';
 
 import styles from './audio.module.scss';
@@ -30,7 +31,8 @@ const propTypes = {
     audio: MicromagPropTypes.audioElement,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -44,7 +46,8 @@ const defaultProps = {
     audio: null,
     spacing: 20,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
     transitions: null,
@@ -58,7 +61,8 @@ const AudioScreen = ({
     audio,
     spacing,
     background,
-    callToAction,
+    header,
+    footer,
     current,
     active,
     transitions,
@@ -85,7 +89,10 @@ const AudioScreen = ({
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
-    const { active: hasCallToAction = false } = callToAction || {};
+    const showHeader = isHeaderFilled(header);
+    const showFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
     const hasAudio = audio !== null;
     const {
         media: audioMedia = null,
@@ -207,86 +214,6 @@ const AudioScreen = ({
         [trackScreenMedia, audio],
     );
 
-    const elements = [
-        <Spacer key="spacer-top" />,
-        <ScreenElement
-            key="audio"
-            placeholder="audio"
-            emptyLabel={<FormattedMessage defaultMessage="Audio" description="Audio placeholder" />}
-            emptyClassName={styles.empty}
-            isEmpty={!hasAudioUrl}
-        >
-            <Transitions
-                transitions={transitions}
-                playing={transitionPlaying}
-                disabled={transitionDisabled}
-            >
-                <Audio
-                    {...finalAudio}
-                    mediaRef={mediaRef}
-                    waveFake={isIOS || isPreview}
-                    waveProps={
-                        isPreview
-                            ? {
-                                  sampleWidth: 10,
-                                  sampleMargin: 5,
-                                  minSampleHeight: 5,
-                                  backgroundColor: color,
-                                  progressColor,
-                              }
-                            : { backgroundColor: color, progressColor }
-                    }
-                    paused={!current || !playing}
-                    muted={muted}
-                    className={styles.audio}
-                    onReady={onAudioReady}
-                    onPlay={onPlay}
-                    onPause={onPause}
-                    onTimeUpdate={onTimeUpdate}
-                    onProgressStep={onProgressStep}
-                    onDurationChange={onDurationChange}
-                    onSeeked={onSeeked}
-                    onEnded={onEnded}
-                    withWave={showWave && withWave}
-                />
-            </Transitions>
-        </ScreenElement>,
-        <Spacer key="spacer-middle" />,
-        !isPlaceholder ? (
-            <div
-                key="bottom"
-                className={styles.bottom}
-                style={{
-                    transform:
-                        current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
-                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
-                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
-                    paddingBottom: spacing / 2,
-                    paddingTop: 0,
-                }}
-            >
-                {hasClosedCaptions && !isPreview && !isCapture && !isStatic ? (
-                    <ClosedCaptions
-                        className={styles.closedCaptions}
-                        media={closedCaptions}
-                        currentTime={currentTime}
-                    />
-                ) : null}
-                {hasCallToAction ? (
-                    <CallToAction
-                        {...callToAction}
-                        className={styles.callToAction}
-                        animationDisabled={isPreview}
-                        focusable={current && isView}
-                        openWebView={openWebView}
-                    />
-                ) : null}
-            </div>
-        ) : null,
-    ].filter((el) => el !== null);
-
-    // console.log('finalAudio', finalAudio);
-
     return (
         <div
             className={classNames([
@@ -311,7 +238,82 @@ const AudioScreen = ({
                             : null
                     }
                 >
-                    {elements}
+                    {showHeader ? <Header {...header} /> : <Spacer key="spacer-top" />}
+                    <ScreenElement
+                        key="audio"
+                        placeholder="audio"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Audio"
+                                description="Audio placeholder"
+                            />
+                        }
+                        emptyClassName={styles.empty}
+                        isEmpty={!hasAudioUrl}
+                    >
+                        <Transitions
+                            transitions={transitions}
+                            playing={transitionPlaying}
+                            disabled={transitionDisabled}
+                        >
+                            <Audio
+                                {...finalAudio}
+                                mediaRef={mediaRef}
+                                waveFake={isIOS || isPreview}
+                                waveProps={
+                                    isPreview
+                                        ? {
+                                              sampleWidth: 10,
+                                              sampleMargin: 5,
+                                              minSampleHeight: 5,
+                                              backgroundColor: color,
+                                              progressColor,
+                                          }
+                                        : { backgroundColor: color, progressColor }
+                                }
+                                paused={!current || !playing}
+                                muted={muted}
+                                className={styles.audio}
+                                onReady={onAudioReady}
+                                onPlay={onPlay}
+                                onPause={onPause}
+                                onTimeUpdate={onTimeUpdate}
+                                onProgressStep={onProgressStep}
+                                onDurationChange={onDurationChange}
+                                onSeeked={onSeeked}
+                                onEnded={onEnded}
+                                withWave={showWave && withWave}
+                            />
+                        </Transitions>
+                    </ScreenElement>
+                    <Spacer key="spacer-middle" />
+                    {!isPlaceholder ? (
+                        <div
+                            key="bottom"
+                            className={styles.bottom}
+                            style={{
+                                transform:
+                                    current && !isPreview
+                                        ? `translate(0, -${viewerBottomHeight}px)`
+                                        : null,
+                                paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                                paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                                paddingBottom: spacing / 2,
+                                paddingTop: 0,
+                            }}
+                        >
+                            {hasClosedCaptions && !isPreview && !isCapture && !isStatic ? (
+                                <ClosedCaptions
+                                    className={styles.closedCaptions}
+                                    media={closedCaptions}
+                                    currentTime={currentTime}
+                                />
+                            ) : null}
+                            {showFooter ? (
+                                <Footer {...footerProps} className={styles.callToAction} />
+                            ) : null}
+                        </div>
+                    ) : null}
                 </Layout>
             </Container>
             {!isPlaceholder ? (

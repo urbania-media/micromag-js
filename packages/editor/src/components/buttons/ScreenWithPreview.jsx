@@ -21,6 +21,7 @@ const propTypes = {
     active: PropTypes.bool,
     withPlaceholder: PropTypes.bool,
     withIndexIndicator: PropTypes.bool,
+    withName: PropTypes.bool,
     onClick: PropTypes.func,
     onClickItem: PropTypes.func,
     className: PropTypes.string,
@@ -34,6 +35,7 @@ const defaultProps = {
     active: false,
     withPlaceholder: false,
     withIndexIndicator: false,
+    withName: false,
     onClick: null,
     onClickItem: null,
     className: null,
@@ -49,12 +51,14 @@ const ScreenWithPreview = ({
     className,
     onClick,
     onClickItem,
+    withName,
     withPlaceholder,
     withIndexIndicator,
 }) => {
     const intl = useIntl();
 
     const ScreenComponent = withPlaceholder ? ScreenPlaceholder : ScreenPreview;
+    const finalTitle = isMessage(title) ? intl.formatMessage(title) : title || null;
 
     return (
         <ScreenButton
@@ -64,10 +68,10 @@ const ScreenWithPreview = ({
                 styles.button,
                 {
                     [className]: className !== null,
-                    [styles.withIndex]: withIndexIndicator,
+                    [styles.withIndex]: withIndexIndicator || withName,
                 },
             ])}
-            title={isMessage(title) ? intl.formatMessage(title) : null}
+            title={finalTitle}
             onClick={() => {
                 if (onClick !== null) {
                     onClick(screen, index);
@@ -85,6 +89,9 @@ const ScreenWithPreview = ({
             />
             {index !== null && withIndexIndicator ? (
                 <div className={styles.index}>{index + 1}</div>
+            ) : null}
+            {withName && !withIndexIndicator ? (
+                <div className={styles.name}>{finalTitle || null}</div>
             ) : null}
         </ScreenButton>
     );

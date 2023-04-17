@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     // text,
     // title,
     backgroundImage,
     transitions,
-    callToAction,
+    headerFooter,
 } from '../../../../.storybook/data';
 import UrbaniaRecommendation from '../UrbaniaRecommendation';
 import definition from '../definition';
@@ -48,8 +49,8 @@ export const Edit = (storyProps) => <UrbaniaRecommendation {...storyProps} />;
 
 export const Normal = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
 
-export const WithCallToAction = (storyProps) => (
-    <UrbaniaRecommendation {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <UrbaniaRecommendation {...storyProps} {...props} {...headerFooter()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

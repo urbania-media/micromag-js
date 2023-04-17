@@ -314,6 +314,9 @@
     "B1MeY+": {
         "defaultMessage": "Select an image..."
     },
+    "B5C18D": {
+        "defaultMessage": "Badge"
+    },
     "BAfC6s": {
         "defaultMessage": "Upload a closed captions file"
     },
@@ -935,6 +938,9 @@
     "g2CRt5": {
         "defaultMessage": "Size"
     },
+    "g4nybp": {
+        "defaultMessage": "Footer"
+    },
     "g6b9Lg": {
         "defaultMessage": "Contribution"
     },
@@ -1171,6 +1177,9 @@
     },
     "rdFCsN": {
         "defaultMessage": "No marker..."
+    },
+    "rhuDxI": {
+        "defaultMessage": "Header"
     },
     "ro6yHS": {
         "defaultMessage": "Map with image markers"

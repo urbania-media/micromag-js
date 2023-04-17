@@ -50,7 +50,7 @@ const ColorPickerField = ({ className, value, onChange }) => {
     const onPickerChange = useCallback(
         (newValue) => {
             if (onChange !== null && newValue !== null) {
-                console.log('new color', newValue); // eslint-disable-line
+                // console.log('new color', newValue); // eslint-disable-line
                 onChange({
                     color: newValue.hex,
                     alpha: newValue.rgb.a,

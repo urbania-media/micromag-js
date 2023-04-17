@@ -2,8 +2,7 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-// import { text, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
-import { title, backgroundColor, transitions, color } from '../../../../.storybook/data';
+import { title, backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
 import ShareScreen from '../Share';
 import definition from '../definition';
 
@@ -18,6 +17,12 @@ const props = {
     },
     background: backgroundColor(),
     transitions: transitions(),
+    buttonsStyle: {
+        // border: '1px solid #000',
+        borderColor: '#000',
+        borderStyle: 'solid',
+        borderWidth: '1',
+    },
 };
 
 export default {
@@ -93,8 +98,8 @@ export const WithAllPlatforms = (storyProps) => (
     />
 );
 
-// export const WithCallToAction = (storyProps) => (
-//     <ShareScreen {...storyProps} {...props} callToAction={callToAction()} />
-// );
+export const WithHeaderFooter = (storyProps) => (
+    <ShareScreen {...storyProps} {...headerFooter()} {...props} />
+);
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

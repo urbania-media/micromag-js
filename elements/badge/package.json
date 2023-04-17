@@ -1,5 +1,5 @@
 {
-    "name": "@micromag/element-media-controls",
+    "name": "@micromag/element-badge",
     "version": "0.3.348",
     "description": "",
     "keywords": [
@@ -22,10 +22,6 @@
         {
             "name": "Nicolas Roy-Bourdages",
             "email": "nrb@folklore.email"
-        },
-        {
-            "name": "Julien Carignan",
-            "email": "jc@folklore.email"
         }
     ],
     "license": "ISC",
@@ -49,12 +45,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@fortawesome/fontawesome-svg-core": "^1.2.32",
-        "@fortawesome/free-solid-svg-icons": "^5.15.1",
-        "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.3.348",
-        "@react-spring/core": "^9.6.1",
-        "@react-spring/web": "^9.6.1",
+        "@micromag/element-text": "^0.3.348",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -63,6 +55,5 @@
     },
     "publishConfig": {
         "access": "public"
-    },
-    "gitHead": "3221a816c93604d43c9bf7900506350b355fde9a"
+    }
 }

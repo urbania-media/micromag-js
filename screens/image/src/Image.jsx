@@ -17,16 +17,19 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
 import styles from './image.module.scss';
+
+// NOTE: should this be a scrolling element ?
 
 const propTypes = {
     layout: PropTypes.oneOf([
@@ -48,7 +51,8 @@ const propTypes = {
     withLegend: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -68,7 +72,8 @@ const defaultProps = {
     withLegend: false,
     spacing: 20,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
     transitions: null,
@@ -88,7 +93,8 @@ const ImageScreen = ({
     withLegend,
     spacing,
     background,
-    callToAction,
+    header,
+    footer,
     current,
     active,
     transitions,
@@ -270,40 +276,9 @@ const ImageScreen = ({
         }
     }
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
-    if (!isPlaceholder && hasCallToAction) {
-        items.push(
-            <div
-                className={styles.callToAction}
-                style={
-                    isFullscreen || isCardReverse
-                        ? {
-                              paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
-                              paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
-                              paddingTop: spacing / 2,
-                              paddingBottom: spacing / 2,
-                              transform: !isPreview
-                                  ? `translate(0, -${viewerBottomHeight}px)`
-                                  : null,
-                          }
-                        : {
-                              paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
-                              paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
-                              paddingTop: isCard ? spacing / 2 : null,
-                              paddingBottom: isCard ? spacing / 2 : null,
-                          }
-                }
-                key="call-to-action"
-            >
-                <CallToAction
-                    {...callToAction}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                    openWebView={openWebView}
-                />
-            </div>,
-        );
-    }
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     let paddingBottom = (current && !isPreview ? viewerBottomHeight : 0) + finalSpacing / 2;
     let paddingTop = (!isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
@@ -347,7 +322,72 @@ const ImageScreen = ({
                             : null
                     }
                 >
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            className={styles.header}
+                            style={
+                                isFullscreen || isCardReverse
+                                    ? {
+                                          paddingTop: spacing,
+                                          paddingBottom: spacing / 2,
+                                          paddingLeft: isCardReverse ? spacing / 2 : spacing,
+                                          paddingRight: isCardReverse ? spacing / 2 : spacing,
+                                          transform: !isPreview
+                                              ? `translate(0, ${viewerTopHeight}px)`
+                                              : null,
+                                      }
+                                    : {
+                                          paddingTop:
+                                              isCard || isCardReverse ? spacing : spacing / 2,
+                                          paddingBottom:
+                                              isCard || isCardReverse ? spacing : spacing / 2,
+                                          paddingLeft: spacing / 2,
+                                          paddingRight: spacing / 2,
+                                      }
+                            }
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
                     {items}
+                    {!isPlaceholder && hasFooter ? (
+                        <div
+                            className={styles.footer}
+                            style={
+                                isFullscreen || isCardReverse
+                                    ? {
+                                          paddingLeft: Math.max(
+                                              spacing / 2,
+                                              viewerBottomSidesWidth,
+                                          ),
+                                          paddingRight: Math.max(
+                                              spacing / 2,
+                                              viewerBottomSidesWidth,
+                                          ),
+                                          paddingTop: spacing / 2,
+                                          paddingBottom: spacing / 2,
+                                          transform: !isPreview
+                                              ? `translate(0, -${viewerBottomHeight}px)`
+                                              : null,
+                                      }
+                                    : {
+                                          paddingLeft: Math.max(
+                                              viewerBottomSidesWidth - spacing,
+                                              0,
+                                          ),
+                                          paddingRight: Math.max(
+                                              viewerBottomSidesWidth - spacing,
+                                              0,
+                                          ),
+                                          paddingTop: isCard ? spacing / 2 : null,
+                                          paddingBottom: isCard ? spacing / 2 : null,
+                                      }
+                            }
+                            key="call-to-action"
+                        >
+                            <Footer {...footerProps} />
+                        </div>
+                    ) : null}
                 </Layout>
             </Container>
             {!isPlaceholder ? (

@@ -2,7 +2,7 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
+import { backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
 import SurveyScreen from '../Survey';
 import definition from '../definition';
 
@@ -54,8 +54,12 @@ export const WithoutResults = (storyProps) => (
     <SurveyScreen {...storyProps} {...props} withoutPercentage withoutBar />
 );
 
-export const WithCallToAction = (storyProps) => (
-    <SurveyScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <SurveyScreen {...storyProps} {...props} {...headerFooter()} />
+);
+
+export const WithShortLayout = (storyProps) => (
+    <SurveyScreen {...storyProps} {...props} {...headerFooter()} answers={[]} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

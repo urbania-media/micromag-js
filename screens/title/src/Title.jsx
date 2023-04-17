@@ -5,7 +5,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -14,10 +14,17 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { isTextFilled, getStyleFromBox } from '@micromag/core/utils';
+import {
+    isTextFilled,
+    getStyleFromBox,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
@@ -35,8 +42,9 @@ const propTypes = {
     withBox: PropTypes.bool,
     spacing: PropTypes.number,
     descriptionEmptyLabel: MicromagPropTypes.label,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -57,8 +65,9 @@ const defaultProps = {
     descriptionEmptyLabel: (
         <FormattedMessage defaultMessage="Description" description="Description placeholder" />
     ),
+    header: null,
+    footer: null,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
     transitions: null,
@@ -77,17 +86,15 @@ const TitleScreen = ({
     withBox, // eslint-disable-line
     spacing,
     descriptionEmptyLabel,
+    header,
+    footer,
     background,
-    callToAction,
     current,
     active,
-    transitions,
-    transitionStagger,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {
         topHeight: viewerTopHeight,
         bottomHeight: viewerBottomHeight,
@@ -105,6 +112,7 @@ const TitleScreen = ({
     const isSplitted = layoutParts[0] === 'split';
     const isTopLayout = layout === 'top';
     const isMiddleLayout = layout === 'middle';
+    const isBottomLayout = layout === 'bottom';
     const verticalAlign = isSplitted ? layoutParts[1] || null : layoutParts[0];
 
     const titleWithMargin =
@@ -112,12 +120,12 @@ const TitleScreen = ({
     const subtitleWithMargin =
         hasSubtitle && hasDescription && (!isSplitted || verticalAlign === 'bottom');
 
-    const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active;
 
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const titleElement = (
         <ScreenElement
@@ -199,7 +207,25 @@ const TitleScreen = ({
                             : null
                     }
                 >
-                    {!isPlaceholder && hasCallToAction && isMiddleLayout ? (
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            style={{
+                                paddingBottom: spacing,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
+
+                    {!isPlaceholder && hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && isBottomLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && !hasFooter && isMiddleLayout ? (
                         <Spacer key="spacer-cta-top" />
                     ) : null}
 
@@ -212,26 +238,12 @@ const TitleScreen = ({
                                     : null
                             }
                         >
-                            <TransitionsStagger
-                                transitions={transitions}
-                                stagger={transitionStagger}
-                                disabled={transitionDisabled}
-                                playing={transitionPlaying}
-                                focusable={current && isView}
-                            >
-                                {[titleElement, subtitleElement, descriptionElement]}
-                            </TransitionsStagger>
+                            {[titleElement, subtitleElement, descriptionElement]}
                         </div>
                     ) : null}
 
                     {withBox && isSplitted ? (
-                        <TransitionsStagger
-                            transitions={transitions}
-                            stagger={transitionStagger}
-                            disabled={transitionDisabled}
-                            playing={transitionPlaying}
-                            focusable={current && isView}
-                        >
+                        <>
                             <div
                                 className={styles.box}
                                 key="top"
@@ -268,17 +280,11 @@ const TitleScreen = ({
                                     : null}
                                 {descriptionElement}
                             </div>
-                        </TransitionsStagger>
+                        </>
                     ) : null}
 
                     {!withBox ? (
-                        <TransitionsStagger
-                            transitions={transitions}
-                            stagger={transitionStagger}
-                            disabled={transitionDisabled}
-                            playing={transitionPlaying}
-                            focusable={current && isView}
-                        >
+                        <>
                             {titleElement}
                             {isSplitted && (!withDescription || verticalAlign === 'bottom') && (
                                 <Spacer key="spacer1" />
@@ -288,14 +294,18 @@ const TitleScreen = ({
                                 <Spacer key="spacer2" />
                             )}
                             {descriptionElement}
-                        </TransitionsStagger>
+                        </>
                     ) : null}
 
-                    {!isPlaceholder && hasCallToAction && (isTopLayout || isMiddleLayout) ? (
+                    {!isPlaceholder && hasFooter && (isTopLayout || isMiddleLayout) ? (
                         <Spacer key="spacer-cta-bottom" />
                     ) : null}
 
-                    {!isPlaceholder && hasCallToAction ? (
+                    {!isPlaceholder && hasHeader && !hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-bottom" />
+                    ) : null}
+
+                    {!isPlaceholder && hasFooter ? (
                         <div
                             key="call-to-action"
                             style={{
@@ -304,12 +314,7 @@ const TitleScreen = ({
                                 paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
                             }}
                         >
-                            <CallToAction
-                                {...callToAction}
-                                animationDisabled={isPreview}
-                                focusable={current && isView}
-                                openWebView={openWebView}
-                            />
+                            <Footer {...footerProps} />
                         </div>
                     ) : null}
                 </Layout>

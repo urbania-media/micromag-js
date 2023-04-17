@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     backgroundColor,
@@ -7,17 +8,18 @@ import {
     text,
     transitions,
     videoMedia,
+    headerFooter,
 } from '../../../../.storybook/data';
-import definition from '../definition';
 import SlideshowScreen from '../Slideshow';
+import definition from '../definition';
 
 const props = {
-    slides: [...Array(3).keys()].map(() => ({ visual: imageMedia(), caption: text() })),
+    slides: [...Array(3).keys()].map(() => ({ media: imageMedia(), caption: text() })),
     background: backgroundColor(),
     transitions: transitions(),
 };
 
-const videos = [...Array(3).keys()].map(() => ({ visual: videoMedia(), caption: text() }));
+const videos = [...Array(3).keys()].map(() => ({ media: videoMedia(), caption: text() }));
 
 export default {
     title: 'Screens/Slideshow',
@@ -54,6 +56,10 @@ export function Normal(storyProps) {
 
 export function WithVideos(storyProps) {
     return <SlideshowScreen {...storyProps} {...props} slides={videos} />;
+}
+
+export function WithHeaderFooter(storyProps) {
+    return <SlideshowScreen {...storyProps} {...props} {...headerFooter()} />;
 }
 
 export function Definition(storyProps) {

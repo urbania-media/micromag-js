@@ -25,10 +25,12 @@ import {
     useTrackScreenMedia,
     useActivityDetector,
 } from '@micromag/core/hooks';
+import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 
@@ -39,8 +41,9 @@ import styles from './video-360.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['full']),
     video: MicromagPropTypes.videoElement,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -53,8 +56,9 @@ const propTypes = {
 const defaultProps = {
     layout: 'full',
     video: null,
+    header: null,
+    footer: null,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
     transitions: null,
@@ -67,8 +71,9 @@ const defaultProps = {
 const Video360Screen = ({
     layout, // eslint-disable-line
     video,
+    header,
+    footer,
     background,
-    callToAction,
     current,
     active,
     transitions,
@@ -82,8 +87,11 @@ const Video360Screen = ({
     const trackScreenMedia = useTrackScreenMedia('video_360');
     const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { gotoPreviousScreen, gotoNextScreen } = useViewerNavigation();
-    const { bottomHeight: viewerBottomHeight, bottomSidesWidth: viewerBottomSidesWidth } =
-        useViewerContext();
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
     const { width, height, landscape, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -234,7 +242,17 @@ const Video360Screen = ({
 
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-    const { active: hasCallToAction = false } = callToAction || {};
+
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, {
+        isView,
+        current,
+        openWebView,
+        isPreview,
+        enableInteraction,
+        disableInteraction,
+    });
 
     const finalVideo = hasVideo
         ? {
@@ -472,104 +490,6 @@ const Video360Screen = ({
         [gotoPreviousScreen, gotoNextScreen, landscape],
     );
 
-    // Building elements ------------------
-
-    const items = [
-        <ScreenElement
-            key="video"
-            placeholder={
-                <PlaceholderVideo360 className={styles.placeholder} width="100%" height="100%" />
-            }
-            emptyClassName={styles.empty}
-            emptyLabel={
-                <FormattedMessage defaultMessage="Video 360" description="Video 360 placeholder" />
-            }
-            isEmpty={!withVideoSphere}
-        >
-            <Transitions
-                playing={transitionPlaying}
-                transitions={transitions}
-                disabled={transitionDisabled}
-                fullscreen
-            >
-                {withVideoSphere ? (
-                    <>
-                        <canvas ref={canvasRef} className={styles.canvas} />
-                        <button
-                            className={styles.canvasButton}
-                            type="button"
-                            aria-label="canvas-interaction"
-                            onPointerDown={onPointerDown}
-                            onPointerMove={onPointerMove}
-                            onPointerUp={onPointerUp}
-                            tabIndex={current && isView ? null : '-1'}
-                        />
-                    </>
-                ) : (
-                    <div
-                        className={styles.videoContainer}
-                        style={{
-                            width: resizedVideoWidth,
-                            height: resizedVideoHeight,
-                            left: resizedVideoLeft,
-                            top: resizedVideoTop,
-                        }}
-                    >
-                        <Image
-                            className={styles.video}
-                            media={{
-                                url: thumbnailUrl,
-                                metadata: { width: videoWidth, height: videoHeight },
-                            }}
-                            width={resizedVideoWidth}
-                            height={resizedVideoHeight}
-                            resolution={resolution}
-                        />
-                    </div>
-                )}
-            </Transitions>
-        </ScreenElement>,
-        !isPlaceholder ? (
-            <div
-                key="bottom-content"
-                className={styles.bottom}
-                style={{
-                    transform:
-                        current && !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
-                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
-                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
-                    paddingBottom: spacing / 2,
-                    paddingTop: 0,
-                }}
-            >
-                <Transitions
-                    playing={transitionPlaying}
-                    transitions={transitions}
-                    disabled={transitionDisabled}
-                >
-                    {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
-                        <ClosedCaptions
-                            className={styles.closedCaptions}
-                            media={closedCaptions}
-                            currentTime={currentTime}
-                        />
-                    ) : null}
-                    {hasCallToAction ? (
-                        <CallToAction
-                            {...callToAction}
-                            className={styles.callToAction}
-                            animationDisabled={isPreview}
-                            focusable={current && isView}
-                            enableInteraction={enableInteraction}
-                            disableInteraction={disableInteraction}
-                            openWebView={openWebView}
-                        />
-                    ) : null}
-                </Transitions>
-            </div>
-        ) : null,
-    ];
-
     return (
         <div
             className={classNames([
@@ -614,7 +534,121 @@ const Video360Screen = ({
                         />
                     </div>
                 ) : null}
-                <div className={styles.inner}>{items}</div>
+                <div className={styles.inner}>
+                    <ScreenElement
+                        key="video"
+                        placeholder={
+                            <PlaceholderVideo360
+                                className={styles.placeholder}
+                                width="100%"
+                                height="100%"
+                            />
+                        }
+                        emptyClassName={styles.empty}
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Video 360"
+                                description="Video 360 placeholder"
+                            />
+                        }
+                        isEmpty={!withVideoSphere}
+                    >
+                        {!isPlaceholder && hasHeader ? (
+                            <div
+                                key="header"
+                                className={styles.header}
+                                style={{
+                                    paddingTop: spacing,
+                                    paddingLeft: spacing,
+                                    paddingRight: spacing,
+                                    transform: !isPreview
+                                        ? `translate(0, ${viewerTopHeight}px)`
+                                        : null,
+                                }}
+                            >
+                                <Header {...header} />
+                            </div>
+                        ) : null}
+                        <Transitions
+                            playing={transitionPlaying}
+                            transitions={transitions}
+                            disabled={transitionDisabled}
+                            fullscreen
+                        >
+                            {withVideoSphere ? (
+                                <>
+                                    <canvas ref={canvasRef} className={styles.canvas} />
+                                    <button
+                                        className={styles.canvasButton}
+                                        type="button"
+                                        aria-label="canvas-interaction"
+                                        onPointerDown={onPointerDown}
+                                        onPointerMove={onPointerMove}
+                                        onPointerUp={onPointerUp}
+                                        tabIndex={current && isView ? null : '-1'}
+                                    />
+                                </>
+                            ) : (
+                                <div
+                                    className={styles.videoContainer}
+                                    style={{
+                                        width: resizedVideoWidth,
+                                        height: resizedVideoHeight,
+                                        left: resizedVideoLeft,
+                                        top: resizedVideoTop,
+                                    }}
+                                >
+                                    <Image
+                                        className={styles.video}
+                                        media={{
+                                            url: thumbnailUrl,
+                                            metadata: { width: videoWidth, height: videoHeight },
+                                        }}
+                                        width={resizedVideoWidth}
+                                        height={resizedVideoHeight}
+                                        resolution={resolution}
+                                    />
+                                </div>
+                            )}
+                        </Transitions>
+                    </ScreenElement>
+                    {!isPlaceholder ? (
+                        <div
+                            key="bottom-content"
+                            className={styles.bottom}
+                            style={{
+                                transform:
+                                    current && !isPreview
+                                        ? `translate(0, -${viewerBottomHeight}px)`
+                                        : null,
+                                paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                                paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                                paddingBottom: spacing / 2,
+                                paddingTop: 0,
+                            }}
+                        >
+                            <Transitions
+                                playing={transitionPlaying}
+                                transitions={transitions}
+                                disabled={transitionDisabled}
+                            >
+                                {closedCaptions !== null &&
+                                !isPreview &&
+                                !isCapture &&
+                                !isStatic ? (
+                                    <ClosedCaptions
+                                        className={styles.closedCaptions}
+                                        media={closedCaptions}
+                                        currentTime={currentTime}
+                                    />
+                                ) : null}
+                                {hasFooter ? (
+                                    <Footer {...footerProps} className={styles.callToAction} />
+                                ) : null}
+                            </Transitions>
+                        </div>
+                    ) : null}
+                </div>
             </Container>
             {!isPlaceholder ? (
                 <Background

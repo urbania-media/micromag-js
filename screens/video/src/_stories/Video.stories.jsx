@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     videoMedia,
     backgroundColor,
     closedCaptionsMedia,
     transitions,
-    callToAction,
+    headerFooter,
 } from '../../../../.storybook/data';
 import VideoScreen from '../Video';
 import definition from '../definition';
@@ -80,11 +81,11 @@ export const WithBadContrast = (storyProps) => (
     />
 );
 
-export const WithCallToAction = (storyProps) => (
+export const WithHeaderFooter = (storyProps) => (
     <VideoScreen
         {...storyProps}
         {...{ ...props({ closedCaptions: closedCaptionsMedia(), withSeekBar: true }) }}
-        callToAction={callToAction()}
+        {...headerFooter()}
     />
 );
 

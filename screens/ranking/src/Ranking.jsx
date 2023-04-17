@@ -15,10 +15,11 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
@@ -33,7 +34,8 @@ const propTypes = {
     ascending: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -49,7 +51,8 @@ const defaultProps = {
     ascending: false,
     spacing: 20,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
     transitions: null,
@@ -65,7 +68,8 @@ const RankingScreen = ({
     ascending,
     spacing,
     background,
-    callToAction,
+    header,
+    footer,
     current,
     active,
     transitions,
@@ -186,7 +190,10 @@ const RankingScreen = ({
 
     // Call to Action
 
-    const { active: hasCallToAction = false } = callToAction || {};
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
     const [scrolledBottom, setScrolledBottom] = useState(false);
     const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
@@ -224,6 +231,17 @@ const RankingScreen = ({
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                 >
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            style={{
+                                paddingTop: spacing,
+                                paddingLeft: spacing,
+                                paddingRight: spacing,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
                     <Layout
                         className={styles.layout}
                         style={
@@ -241,7 +259,7 @@ const RankingScreen = ({
                         {elements}
                     </Layout>
                 </Scroll>
-                {!isPlaceholder && hasCallToAction ? (
+                {!isPlaceholder && hasFooter ? (
                     <div
                         ref={callToActionRef}
                         className={classNames([
@@ -261,12 +279,7 @@ const RankingScreen = ({
                             paddingBottom: spacing / 2,
                         }}
                     >
-                        <CallToAction
-                            {...callToAction}
-                            animationDisabled={isPreview}
-                            focusable={current && isView}
-                            openWebView={openWebView}
-                        />
+                        <Footer {...footerProps} />
                     </div>
                 ) : null}
             </Container>

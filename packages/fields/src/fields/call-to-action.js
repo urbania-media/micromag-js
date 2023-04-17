@@ -2,7 +2,6 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'call-to-action',
-    isList: true,
     component: 'call-to-action',
     fields: [
         {

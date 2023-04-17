@@ -1,9 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, callToAction, images, transitions } from '../../../../.storybook/data';
-import definition from '../definition';
+import {
+    backgroundColor,
+    headerFooter,
+    header,
+    footer,
+    images,
+    transitions,
+} from '../../../../.storybook/data';
 import GalleryScreen from '../Gallery';
+import definition from '../definition';
 
 const props = {
     images: images({ count: 20 }),
@@ -42,8 +50,16 @@ export function Normal(storyProps) {
     return <GalleryScreen {...storyProps} {...props} />;
 }
 
-export function WithCallToAction(storyProps) {
-    return <GalleryScreen {...storyProps} {...props} callToAction={callToAction()} />;
+export function WithHeaderFooter(storyProps) {
+    return <GalleryScreen {...storyProps} {...headerFooter()} {...props} />;
+}
+
+export function WithHeader(storyProps) {
+    return <GalleryScreen {...storyProps} header={header()} {...props} />;
+}
+
+export function WithFooter(storyProps) {
+    return <GalleryScreen {...storyProps} footer={footer()} {...props} />;
 }
 
 export function Definition(storyProps) {

@@ -5,7 +5,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -14,10 +14,11 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
@@ -30,12 +31,11 @@ const propTypes = {
     title: MicromagPropTypes.headingElement,
     withTitle: PropTypes.bool,
     spacing: PropTypes.number,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -45,12 +45,11 @@ const defaultProps = {
     title: null,
     withTitle: false,
     spacing: 20,
+    header: null,
+    footer: null,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
-    transitions: null,
-    transitionStagger: 100,
     className: null,
 };
 
@@ -60,17 +59,15 @@ const TextScreen = ({
     title,
     withTitle,
     spacing,
+    header,
+    footer,
     background,
-    callToAction,
     current,
     active,
-    transitions,
-    transitionStagger,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {
         topHeight: viewerTopHeight,
         bottomHeight: viewerBottomHeight,
@@ -86,76 +83,17 @@ const TextScreen = ({
     const isSplitted = layout === 'split';
     const isTopLayout = layout === 'top';
     const isMiddleLayout = layout === 'middle';
+    const isBottomLayout = layout === 'bottom';
     const verticalAlign = isSplitted ? null : layout;
 
     const titleWithMargin = hasTitle && hasText && !isSplitted;
 
-    const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active;
 
-    const { active: hasCallToAction = false } = callToAction || {};
-
-    // Create elements
-    const items = [
-        !isPlaceholder && hasCallToAction && isMiddleLayout ? (
-            <Spacer key="spacer-cta-top" />
-        ) : null,
-        withTitle ? (
-            <ScreenElement
-                key="title"
-                placeholder="title"
-                emptyLabel={
-                    <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-                }
-                emptyClassName={styles.emptyTitle}
-                isEmpty={!hasTitle}
-            >
-                {hasTitle ? (
-                    <Heading
-                        className={classNames([
-                            styles.title,
-                            { [styles.withMargin]: titleWithMargin },
-                        ])}
-                        {...title}
-                    />
-                ) : null}
-            </ScreenElement>
-        ) : null,
-
-        isSplitted && withTitle ? <Spacer key="spacer" /> : null,
-
-        <ScreenElement
-            key="description"
-            placeholder="text"
-            emptyLabel={<FormattedMessage defaultMessage="Text" description="Text placeholder" />}
-            emptyClassName={styles.emptyText}
-            isEmpty={!hasText}
-        >
-            {hasText ? <Text className={styles.text} {...text} /> : null}
-        </ScreenElement>,
-        !isPlaceholder && hasCallToAction && (isTopLayout || isMiddleLayout) ? (
-            <Spacer key="spacer-cta-bottom" />
-        ) : null,
-        !isPlaceholder && hasCallToAction ? (
-            <div
-                key="call-to-action"
-                style={{
-                    paddingTop: spacing,
-                    paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
-                    paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
-                }}
-            >
-                <CallToAction
-                    {...callToAction}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                    openWebView={openWebView}
-                />
-            </div>
-        ) : null,
-    ].filter((el) => el !== null);
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     return (
         <div
@@ -184,14 +122,90 @@ const TextScreen = ({
                             : null
                     }
                 >
-                    <TransitionsStagger
-                        transitions={transitions}
-                        stagger={transitionStagger}
-                        disabled={transitionDisabled}
-                        playing={transitionPlaying}
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            style={{
+                                paddingBottom: spacing,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
+
+                    {!isPlaceholder && hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && isBottomLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && !hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {withTitle ? (
+                        <ScreenElement
+                            key="title"
+                            placeholder="title"
+                            emptyLabel={
+                                <FormattedMessage
+                                    defaultMessage="Title"
+                                    description="Title placeholder"
+                                />
+                            }
+                            emptyClassName={styles.emptyTitle}
+                            isEmpty={!hasTitle}
+                        >
+                            {hasTitle ? (
+                                <Heading
+                                    className={classNames([
+                                        styles.title,
+                                        { [styles.withMargin]: titleWithMargin },
+                                    ])}
+                                    {...title}
+                                />
+                            ) : null}
+                        </ScreenElement>
+                    ) : null}
+
+                    {isSplitted && withTitle ? <Spacer key="spacer" /> : null}
+
+                    <ScreenElement
+                        key="description"
+                        placeholder="text"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Text"
+                                description="Text placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyText}
+                        isEmpty={!hasText}
                     >
-                        {items}
-                    </TransitionsStagger>
+                        {hasText ? <Text className={styles.text} {...text} /> : null}
+                    </ScreenElement>
+
+                    {!isPlaceholder && hasFooter && (isTopLayout || isMiddleLayout) ? (
+                        <Spacer key="spacer-cta-bottom" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && !hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-bottom" />
+                    ) : null}
+
+                    {!isPlaceholder && hasFooter ? (
+                        <div
+                            className={styles.footer}
+                            style={{
+                                paddingTop: spacing,
+                                paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
+                                paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
+                            }}
+                        >
+                            <Footer {...footerProps} />
+                        </div>
+                    ) : null}
                 </Layout>
             </Container>
             {!isPlaceholder ? (

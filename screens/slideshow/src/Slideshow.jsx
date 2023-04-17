@@ -13,23 +13,27 @@ import {
     useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
 import styles from './slideshow.module.scss';
 
+// TODO: make this happen
+
 const propTypes = {
-    layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
+    // layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
     slides: PropTypes.oneOfType([MicromagPropTypes.imageMedias, MicromagPropTypes.imageElements]),
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     captionMaxLines: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -37,13 +41,14 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'middle',
+    // layout: 'middle',
     withCaptions: false,
     slides: [],
     spacing: 20,
     captionMaxLines: 2,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
     transitions: null,
@@ -55,7 +60,8 @@ const SlideshowScreen = ({
     slides,
     withCaptions,
     background,
-    callToAction,
+    header,
+    footer,
     current,
     active,
     spacing,
@@ -78,7 +84,7 @@ const SlideshowScreen = ({
 
     const ready = true;
     const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
@@ -86,17 +92,27 @@ const SlideshowScreen = ({
 
     const imagesEl = useRef([]);
 
-    // Call to Action
-    const hasCallToAction = callToAction !== null && callToAction.active === true;
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+    // Head and foot
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, {
+        isView,
+        current,
+        isPreview,
+        enableInteraction,
+        disableInteraction,
+    });
+
+    const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
+    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
 
     const items = (slides || []).map((item, itemI) => {
-        const { visual = null, caption = null } = item || {};
-        const imageSize = { width: width / 2, height: height / 2 };
-
+        const { media = null, caption = null } = item || {};
+        const imageSize = { width, height };
+        // console.log(imageSize);
         // const { caption = null } = finalImage || {};
 
-        const hasImage = visual !== null;
+        const hasImage = media !== null;
         const hasCaption = isTextFilled(caption);
 
         return (
@@ -129,7 +145,7 @@ const SlideshowScreen = ({
                             {mediaShouldLoad ? (
                                 <Visual
                                     className={styles.image}
-                                    media={visual}
+                                    media={media}
                                     {...imageSize}
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
@@ -191,23 +207,27 @@ const SlideshowScreen = ({
                     style={{
                         paddingTop: !isPreview ? viewerTopHeight : null,
                         paddingBottom:
-                            (hasCallToAction ? callToActionHeight - finalSpacing : 0) +
+                            (hasFooter ? footerHeight - finalSpacing : 0) +
                             (current && !isPreview ? viewerBottomHeight : 0),
                     }}
                 >
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            className={styles.header}
+                            ref={headerRef}
+                            style={{ padding: finalSpacing }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
                     {items}
-                    {!isPlaceholder && hasCallToAction ? (
-                        <div style={{ marginTop: -finalSpacing }}>
-                            <CallToAction
-                                ref={callToActionRef}
-                                className={styles.callToAction}
-                                callToAction={callToAction}
-                                animationDisabled={isPreview}
-                                focusable={current && isView}
-                                screenSize={{ width, height }}
-                                enableInteraction={enableInteraction}
-                                disableInteraction={disableInteraction}
-                            />
+                    {!isPlaceholder && hasFooter ? (
+                        <div
+                            className={styles.footer}
+                            ref={footerRef}
+                            style={{ padding: finalSpacing / 2 }}
+                        >
+                            <Footer {...footerProps} />
                         </div>
                     ) : null}
                 </div>

@@ -1,19 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     title,
     text,
     backgroundColor,
     transitions,
-    callToAction,
+    headerFooter,
+    header,
+    footer,
 } from '../../../../.storybook/data';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import TextTitleScreen from '../TextTitle';
 import definition from '../definition';
 
 const props = {
-    text: text('verylong'),
+    text: text('long'),
     title: { body: title() },
     background: backgroundColor(),
     transitions: transitions(),
@@ -31,15 +33,25 @@ export default {
 export const Placeholder = (storyProps) => <TextTitleScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <TextTitleScreen {...storyProps} {...props} />;
+
 export const Static = (storyProps) => <TextTitleScreen {...storyProps} {...props} />;
+
 export const Capture = (storyProps) => <TextTitleScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <TextTitleScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <TextTitleScreen {...storyProps} {...props} />;
 
-export const WithCallToAction = (storyProps) => (
-    <TextTitleScreen {...storyProps} {...props} callToAction={callToAction()} />
+export const WithHeaderFooter = (storyProps) => (
+    <TextTitleScreen {...storyProps} {...props} {...headerFooter()} />
+);
+
+export const WithHeader = (storyProps) => (
+    <TextTitleScreen {...storyProps} {...props} header={header()} />
+);
+
+export const WithFooter = (storyProps) => (
+    <TextTitleScreen {...storyProps} {...props} footer={footer()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

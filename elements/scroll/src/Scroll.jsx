@@ -17,6 +17,7 @@ const propTypes = {
     children: PropTypes.node,
     onScrolledBottom: PropTypes.func,
     onScrolledNotBottom: PropTypes.func,
+    onScrollHeightChange: PropTypes.func,
     contain: PropTypes.bool,
     scrollContainerRef: PropTypes.any, // eslint-disable-line
     withShadow: PropTypes.bool,
@@ -32,6 +33,7 @@ const defaultProps = {
     children: null,
     onScrolledBottom: null,
     onScrolledNotBottom: null,
+    onScrollHeightChange: null,
     contain: false,
     scrollContainerRef: null,
     withShadow: false,
@@ -47,6 +49,7 @@ function Scroll({
     children,
     onScrolledBottom,
     onScrolledNotBottom,
+    onScrollHeightChange,
     contain,
     scrollContainerRef,
     withShadow,
@@ -116,6 +119,14 @@ function Scroll({
             }
         }
     }, [scrollableHeight, scrolleeHeight, setWithArrow, disabled]);
+
+    useEffect(() => {
+        if (onScrollHeightChange !== null) {
+            const canScroll = (scrolleeHeight || 0) > (scrollableHeight || 0);
+            onScrollHeightChange({ scrollableHeight, scrolleeHeight, canScroll });
+        }
+    }, [scrollableHeight, scrolleeHeight, onScrollHeightChange]);
+
     return (
         <div
             className={classNames([

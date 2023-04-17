@@ -16,10 +16,12 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Scroll from '@micromag/element-scroll';
 
 import Question from './partials/Question';
@@ -42,7 +44,8 @@ const propTypes = {
     withoutTrueFalse: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     ready: PropTypes.bool,
@@ -64,8 +67,9 @@ const defaultProps = {
     badAnswerColor: null,
     withoutTrueFalse: false,
     spacing: 20,
+    header: null,
+    footer: null,
     background: null,
-    callToAction: null,
     current: true,
     active: true,
     ready: true,
@@ -87,8 +91,9 @@ const QuizScreen = ({
     badAnswerColor,
     withoutTrueFalse,
     spacing,
+    header,
+    footer,
     background,
-    callToAction,
     current,
     active,
     ready,
@@ -118,9 +123,12 @@ const QuizScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
 
-    // Call to Action
-    const { active: hasCallToAction = false } = callToAction || {};
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
+    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
     const showInstantAnswer = isStatic || isCapture;
     const goodAnswerIndex =
@@ -181,6 +189,14 @@ const QuizScreen = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const [hasScroll, setHasScroll] = useState(false);
+    const onScrollHeightChange = useCallback(
+        ({ canScroll = false }) => {
+            setHasScroll(canScroll);
+        },
+        [setHasScroll],
+    );
+
     const onQuizReset = useCallback(() => {
         setUserAnswerIndex(null);
     }, [setUserAnswerIndex]);
@@ -210,10 +226,35 @@ const QuizScreen = ({
                 ) : null}
                 <Scroll
                     verticalAlign={verticalAlign}
-                    disabled={scrollingDisabled}
+                    disabled={scrollingDisabled || userAnswerIndex !== null}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
+                    onScrollHeightChange={onScrollHeightChange}
                 >
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            className={classNames([
+                                styles.header,
+                                {
+                                    [styles.disabled]:
+                                        scrolledBottom && !scrollingDisabled && hasScroll,
+                                },
+                            ])}
+                            ref={headerRef}
+                            style={{
+                                paddingTop: spacing,
+                                paddingLeft: spacing,
+                                paddingRight: spacing,
+                                paddingBottom: spacing,
+                                transform:
+                                    current && !isPreview
+                                        ? `translate(0, ${viewerTopHeight}px)`
+                                        : null,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
                     <Question
                         question={question}
                         answers={answers}
@@ -239,22 +280,24 @@ const QuizScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop:
+                                          (current && !isPreview ? viewerTopHeight : 0) +
+                                          (headerHeight || spacing),
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
-                                          (callToActionHeight || spacing),
+                                          (footerHeight || spacing),
                                   }
                                 : null
                         }
                     />
                 </Scroll>
-                {!isPlaceholder && hasCallToAction ? (
+                {!isPlaceholder && hasFooter ? (
                     <div
-                        ref={callToActionRef}
+                        ref={footerRef}
                         className={classNames([
-                            styles.callToAction,
+                            styles.footer,
                             {
-                                [styles.disabled]: !scrolledBottom,
+                                [styles.disabled]: !scrolledBottom && hasScroll,
                             },
                         ])}
                         style={{
@@ -268,12 +311,7 @@ const QuizScreen = ({
                             paddingBottom: spacing / 2,
                         }}
                     >
-                        <CallToAction
-                            {...callToAction}
-                            animationDisabled={isPreview}
-                            focusable={current && isView}
-                            openWebView={openWebView}
-                        />
+                        <Footer {...footerProps} />
                     </div>
                 ) : null}
             </Container>

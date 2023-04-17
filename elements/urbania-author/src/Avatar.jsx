@@ -2,8 +2,10 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getOptimalImageUrl } from '@micromag/core/utils';
+import { getOptimalImageUrl, pascalCase } from '@micromag/core/utils';
+
 import styles from './avatar.module.scss';
 
 const propTypes = {
@@ -30,12 +32,13 @@ const defaultProps = {
 
 const Avatar = ({ image, width, height, resolution, shape, isTag, className, shouldLoad }) => {
     const imageAtSize = getOptimalImageUrl(image, width, height, { resolution });
+    const finalShape = shape !== null ? pascalCase(shape) : null;
     return (
         <span
             className={classNames([
                 styles.container,
                 {
-                    [styles[`shape-${shape}`]]: shape !== null,
+                    [styles[`shape${finalShape}`]]: finalShape !== null,
                     [styles.isTag]: isTag,
                     [className]: className !== null,
                 },

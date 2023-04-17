@@ -25,7 +25,20 @@
         position: relative;
     }
 
-    .callToAction {
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transition: opacity 0.2s ease-out;
+
+        &.disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    .footer {
         position: absolute;
         bottom: 0;
         left: 0;

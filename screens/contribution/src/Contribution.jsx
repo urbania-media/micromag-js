@@ -19,12 +19,21 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
-import { isTextFilled, isLabelFilled, getStyleFromColor } from '@micromag/core/utils';
+import {
+    isTextFilled,
+    isLabelFilled,
+    getStyleFromColor,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+} from '@micromag/core/utils';
 import { useContributions, useContributionCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
-import CallToAction from '@micromag/element-call-to-action';
+// import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
@@ -43,7 +52,8 @@ const propTypes = {
     messageStyle: MicromagPropTypes.textStyle,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -64,7 +74,8 @@ const defaultProps = {
     messageStyle: null,
     spacing: 20,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
     transitions: null,
@@ -85,7 +96,8 @@ const ContributionScreen = ({
     messageStyle,
     spacing,
     background,
-    callToAction,
+    header,
+    footer,
     current,
     active,
     transitions,
@@ -115,7 +127,10 @@ const ContributionScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
-    const { active: hasCallToAction = false } = callToAction || {};
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
     const hasTitle = isTextFilled(title);
     const hasNameLabel = isLabelFilled(name);
     const hasMessageLabel = isLabelFilled(message);
@@ -187,7 +202,7 @@ const ContributionScreen = ({
     // Call to Action
     const [scrolledBottom, setScrolledBottom] = useState(false);
     const swipeUpLinkActive = scrolledBottom && submitState === 4;
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -417,9 +432,22 @@ const ContributionScreen = ({
                     </div>
                 </div>
             </div>
-            {hasCallToAction ? <div style={{ height: callToActionHeight }} /> : null}
+            {hasFooter ? <div style={{ height: callToActionHeight }} /> : null}
         </div>,
     );
+
+    const headerElement =
+        !isPlaceholder && hasHeader ? (
+            <div
+                className={styles.header}
+                style={{
+                    paddingBottom: spacing,
+                }}
+            >
+                <Header {...header} />
+            </div>
+        ) : null;
+    const headerInScroll = submitState >= 4;
 
     return (
         <div
@@ -450,19 +478,21 @@ const ContributionScreen = ({
                             : null
                     }
                 >
+                    {!headerInScroll ? headerElement : null}
                     <Scroll
                         verticalAlign={layout}
                         disabled={scrollingDisabled}
                         onScrolledBottom={onScrolledBottom}
                         onScrolledNotBottom={onScrolledNotBottom}
                     >
+                        {headerInScroll ? headerElement : null}
                         {items}
                     </Scroll>
-                    {!isPlaceholder && hasCallToAction ? (
+                    {!isPlaceholder && hasFooter ? (
                         <div
-                            ref={callToActionRef}
+                            ref={footerRef}
                             className={classNames([
-                                styles.callToAction,
+                                styles.footer,
                                 {
                                     [styles.disabled]: !swipeUpLinkActive,
                                 },
@@ -474,12 +504,7 @@ const ContributionScreen = ({
                                 paddingBottom: (!isPreview ? viewerBottomHeight : 0) + spacing / 2,
                             }}
                         >
-                            <CallToAction
-                                {...callToAction}
-                                animationDisabled={isPreview}
-                                focusable={current && isView}
-                                openWebView={openWebView}
-                            />
+                            <Footer {...footerProps} />
                         </div>
                     ) : null}
                 </div>

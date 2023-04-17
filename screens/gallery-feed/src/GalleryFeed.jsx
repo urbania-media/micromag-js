@@ -5,7 +5,7 @@ import React, { useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -15,10 +15,17 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { isImageFilled, isTextFilled } from '@micromag/core/utils';
+import {
+    isImageFilled,
+    isTextFilled,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
@@ -35,11 +42,10 @@ const propTypes = {
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    callToAction: MicromagPropTypes.callToAction,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -50,11 +56,10 @@ const defaultProps = {
     withCaptions: false,
     spacing: 20,
     background: null,
-    callToAction: null,
+    header: null,
+    footer: null,
     current: true,
     active: true,
-    transitions: null,
-    transitionStagger: 75,
     type: null,
     className: null,
 };
@@ -65,11 +70,10 @@ const GalleryFeedScreen = ({
     withCaptions,
     spacing,
     background,
-    callToAction,
+    header,
+    footer,
     current,
     active,
-    transitions,
-    transitionStagger,
     type,
     className,
 }) => {
@@ -92,7 +96,6 @@ const GalleryFeedScreen = ({
     const imagesCount = hasImages ? images.length : 0;
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const ready = imagesLoaded >= imagesCount;
-    const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
@@ -192,8 +195,10 @@ const GalleryFeedScreen = ({
         }
     });
 
-    // Call to Action
-    const { active: hasCallToAction = false } = callToAction || {};
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
     const [scrolledBottom, setScrolledBottom] = useState(false);
 
     const onScrolledBottom = useCallback(
@@ -241,18 +246,21 @@ const GalleryFeedScreen = ({
                                 : null
                         }
                     >
-                        <TransitionsStagger
-                            transitions={transitions}
-                            stagger={transitionStagger}
-                            disabled={transitionDisabled}
-                            playing={transitionPlaying}
-                        >
-                            {items}
-                        </TransitionsStagger>
-                        {!isPlaceholder && hasCallToAction ? (
+                        {!isPlaceholder && hasHeader ? (
+                            <div
+                                key="header"
+                                style={{
+                                    paddingBottom: spacing,
+                                }}
+                            >
+                                <Header {...header} />
+                            </div>
+                        ) : null}
+                        {items}
+                        {!isPlaceholder && hasFooter ? (
                             <div
                                 className={classNames([
-                                    styles.callToAction,
+                                    styles.footer,
                                     {
                                         [styles.disabled]: !scrolledBottom,
                                     },
@@ -263,13 +271,7 @@ const GalleryFeedScreen = ({
                                     paddingTop: spacing,
                                 }}
                             >
-                                <CallToAction
-                                    {...callToAction}
-                                    className={styles.callToAction}
-                                    animationDisabled={isPreview}
-                                    focusable={current && isView}
-                                    openWebView={openWebView}
-                                />
+                                <Footer {...footerProps} />
                             </div>
                         ) : null}
                     </Layout>
