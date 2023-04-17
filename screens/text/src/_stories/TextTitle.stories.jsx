@@ -8,12 +8,14 @@ import {
     backgroundColor,
     transitions,
     headerFooter,
+    header,
+    footer,
 } from '../../../../.storybook/data';
 import TextTitleScreen from '../TextTitle';
 import definition from '../definition';
 
 const props = {
-    text: text('verylong'),
+    text: text('long'),
     title: { body: title() },
     background: backgroundColor(),
     transitions: transitions(),
@@ -42,6 +44,14 @@ export const Normal = (storyProps) => <TextTitleScreen {...storyProps} {...props
 
 export const WithHeaderFooter = (storyProps) => (
     <TextTitleScreen {...storyProps} {...props} {...headerFooter()} />
+);
+
+export const WithHeader = (storyProps) => (
+    <TextTitleScreen {...storyProps} {...props} header={header()} />
+);
+
+export const WithFooter = (storyProps) => (
+    <TextTitleScreen {...storyProps} {...props} footer={footer()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

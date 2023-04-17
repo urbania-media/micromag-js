@@ -29,6 +29,8 @@ import Visual from '@micromag/element-visual';
 
 import styles from './image.module.scss';
 
+// NOTE: should this be a scrolling element ?
+
 const propTypes = {
     layout: PropTypes.oneOf([
         'normal',
@@ -322,11 +324,27 @@ const ImageScreen = ({
                 >
                     {!isPlaceholder && hasHeader ? (
                         <div
-                            key="header"
-                            style={{
-                                paddingTop: finalSpacing / 2,
-                                paddingBottom: finalSpacing / 2,
-                            }}
+                            className={styles.header}
+                            style={
+                                isFullscreen || isCardReverse
+                                    ? {
+                                          paddingTop: spacing,
+                                          paddingBottom: spacing / 2,
+                                          paddingLeft: isCardReverse ? spacing / 2 : spacing,
+                                          paddingRight: isCardReverse ? spacing / 2 : spacing,
+                                          transform: !isPreview
+                                              ? `translate(0, ${viewerTopHeight}px)`
+                                              : null,
+                                      }
+                                    : {
+                                          paddingTop:
+                                              isCard || isCardReverse ? spacing : spacing / 2,
+                                          paddingBottom:
+                                              isCard || isCardReverse ? spacing : spacing / 2,
+                                          paddingLeft: spacing / 2,
+                                          paddingRight: spacing / 2,
+                                      }
+                            }
                         >
                             <Header {...header} />
                         </div>
@@ -334,7 +352,7 @@ const ImageScreen = ({
                     {items}
                     {!isPlaceholder && hasFooter ? (
                         <div
-                            className={styles.callToAction}
+                            className={styles.footer}
                             style={
                                 isFullscreen || isCardReverse
                                     ? {

@@ -1,7 +1,8 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
+
 import { useGoogleMapsClient } from '@micromag/core/contexts';
 
 import { Map as GoogleMap, Marker } from './google';
@@ -15,7 +16,7 @@ const propTypes = {
     }),
     zoom: PropTypes.number,
     draggable: PropTypes.bool,
-    markers: PropTypes.arrayOf(PropTypes.object),
+    markers: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line react/forbid-prop-types
     onClickMap: PropTypes.func,
     onClickMarker: PropTypes.func,
     className: PropTypes.string,
@@ -94,7 +95,9 @@ const Map = ({
     );
 
     const bounds = useMemo(() => {
-        const correctMarkers = (markers || []).filter(it => it !== null && (it.geoPosition || null) !== null);
+        const correctMarkers = (markers || []).filter(
+            (it) => it !== null && (it.geoPosition || null) !== null,
+        );
         if (client === null || correctMarkers === null || correctMarkers.length === 0) {
             return null;
         }

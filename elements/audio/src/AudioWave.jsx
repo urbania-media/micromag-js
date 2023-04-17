@@ -1,7 +1,4 @@
-/* eslint-disable no-multi-assign */
-
-/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, react/no-array-index-key */
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+/* eslint-disable no-multi-assign, jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, react/no-array-index-key */
 import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';

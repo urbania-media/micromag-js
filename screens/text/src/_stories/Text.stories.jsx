@@ -8,6 +8,8 @@ import {
     transitions,
     callToAction,
     badge,
+    header,
+    footer,
 } from '../../../../.storybook/data';
 import TextScreen from '../Text';
 import definition from '../definition';
@@ -46,6 +48,14 @@ export const WithHeaderFooter = (storyProps) => (
         footer={{ callToAction: { ...callToAction(), inWebView: false, withArrow: false } }}
         header={{ badge: { ...badge(), label: { body: 'My badge 10210' } } }}
     />
+);
+
+export const WithHeader = (storyProps) => (
+    <TextScreen {...storyProps} {...props} header={header()} />
+);
+
+export const WithFooter = (storyProps) => (
+    <TextScreen {...storyProps} {...props} footer={footer()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

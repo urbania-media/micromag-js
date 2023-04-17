@@ -156,6 +156,7 @@ const QuizMultipleScreen = ({
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
+    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
     const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const showInstantAnswer = isStatic || isCapture;
@@ -354,6 +355,14 @@ const QuizMultipleScreen = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const [hasScroll, setHasScroll] = useState(false);
+    const onScrollHeightChange = useCallback(
+        ({ canScroll = false }) => {
+            setHasScroll(canScroll);
+        },
+        [setHasScroll],
+    );
+
     const onQuizReset = useCallback(() => {
         setUserAnswers(null);
     }, [setUserAnswers]);
@@ -397,9 +406,21 @@ const QuizMultipleScreen = ({
                 ) : null}
                 {!isPlaceholder && hasHeader ? (
                     <div
-                        key="header"
+                        className={classNames([
+                            styles.header,
+                            {
+                                [styles.disabled]:
+                                    scrolledBottom && !scrollingDisabled && hasScroll,
+                            },
+                        ])}
+                        ref={headerRef}
                         style={{
                             paddingTop: spacing,
+                            paddingLeft: spacing,
+                            paddingRight: spacing,
+                            paddingBottom: spacing,
+                            transform:
+                                current && !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
                         }}
                     >
                         <Header {...header} />
@@ -410,6 +431,7 @@ const QuizMultipleScreen = ({
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
+                    onScrollHeightChange={onScrollHeightChange}
                 >
                     <TransitionGroup>
                         {[
@@ -483,8 +505,9 @@ const QuizMultipleScreen = ({
                                                 ? {
                                                       padding: spacing,
                                                       paddingTop:
-                                                          (!isPreview ? viewerTopHeight : 0) +
-                                                          spacing,
+                                                          (current && !isPreview
+                                                              ? viewerTopHeight
+                                                              : 0) + (headerHeight || spacing),
                                                       paddingBottom:
                                                           (current && !isPreview
                                                               ? viewerBottomHeight
@@ -513,8 +536,9 @@ const QuizMultipleScreen = ({
                                                 ? {
                                                       padding: spacing,
                                                       paddingTop:
-                                                          (!isPreview ? viewerTopHeight : 0) +
-                                                          spacing,
+                                                          (current && !isPreview
+                                                              ? viewerTopHeight
+                                                              : 0) + (headerHeight || spacing),
                                                       paddingBottom:
                                                           (current && !isPreview
                                                               ? viewerBottomHeight
@@ -533,7 +557,7 @@ const QuizMultipleScreen = ({
                     <div
                         ref={callToActionRef}
                         className={classNames([
-                            styles.callToAction,
+                            styles.footer,
                             {
                                 [styles.disabled]: !scrolledBottom,
                             },

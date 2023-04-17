@@ -49,12 +49,20 @@
     }
 
     .imageContainer {
-        overflow: hidden;
         position: relative;
         flex-grow: 1;
+        overflow: hidden;
     }
 
-    .callToAction {
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transition: transform 0.2s ease-out;
+    }
+
+    .footer {
         position: absolute;
         bottom: 0;
         left: 0;

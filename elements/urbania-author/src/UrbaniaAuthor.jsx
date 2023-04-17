@@ -5,11 +5,14 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { isTextFilled } from '@micromag/core/utils';
 import Link from '@micromag/element-link';
 import Text from '@micromag/element-text';
+
 import Avatar from './Avatar';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -70,12 +73,12 @@ const UrbaniaAuthor = ({
             className={classNames([
                 styles.name,
                 {
-                    [backgroundClassName]: backgroundClassName
-                }
+                    [backgroundClassName]: backgroundClassName,
+                },
             ])}
             {...name}
         />
-    ): null;
+    ) : null;
     const collaboratorText = isTextFilled(collaborator) ? (
         <Text className={styles.collaboratorText} {...collaborator} inline />
     ) : null;
@@ -99,8 +102,8 @@ const UrbaniaAuthor = ({
                     className={classNames([
                         styles.prefix,
                         {
-                            [backgroundClassName]: backgroundClassName
-                        }
+                            [backgroundClassName]: backgroundClassName,
+                        },
                     ])}
                     body={`<span>${prefix}<span>`}
                 />
@@ -127,12 +130,14 @@ const UrbaniaAuthor = ({
                     <div>{authorText}</div>
                 )}
                 {collaboratorText !== null ? (
-                    <div className={classNames([
-                        styles.collaborator,
-                        {
-                            [collaboratorClassName]: collaboratorClassName
-                        }
-                    ])}>
+                    <div
+                        className={classNames([
+                            styles.collaborator,
+                            {
+                                [collaboratorClassName]: collaboratorClassName,
+                            },
+                        ])}
+                    >
                         {collaboratorText !== null ? collaboratorText : null}
                     </div>
                 ) : null}

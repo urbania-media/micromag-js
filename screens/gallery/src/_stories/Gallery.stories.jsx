@@ -2,7 +2,14 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, headerFooter, images, transitions } from '../../../../.storybook/data';
+import {
+    backgroundColor,
+    headerFooter,
+    header,
+    footer,
+    images,
+    transitions,
+} from '../../../../.storybook/data';
 import GalleryScreen from '../Gallery';
 import definition from '../definition';
 
@@ -45,6 +52,14 @@ export function Normal(storyProps) {
 
 export function WithHeaderFooter(storyProps) {
     return <GalleryScreen {...storyProps} {...headerFooter()} {...props} />;
+}
+
+export function WithHeader(storyProps) {
+    return <GalleryScreen {...storyProps} header={header()} {...props} />;
+}
+
+export function WithFooter(storyProps) {
+    return <GalleryScreen {...storyProps} footer={footer()} {...props} />;
 }
 
 export function Definition(storyProps) {

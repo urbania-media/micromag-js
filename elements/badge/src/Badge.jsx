@@ -26,7 +26,6 @@ const defaultProps = {
 function Badge({ label, boxStyle, className, labelClassName }) {
     const { textStyle = null } = label || {};
     const { lineHeight = null } = textStyle || {};
-
     let boxStyles = null;
     if (boxStyle !== null) {
         boxStyles = {
@@ -34,7 +33,6 @@ function Badge({ label, boxStyle, className, labelClassName }) {
             ...getStyleFromBox(boxStyle),
         };
     }
-
     return (
         <div
             className={classNames([

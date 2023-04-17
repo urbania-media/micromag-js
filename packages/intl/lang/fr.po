@@ -651,7 +651,7 @@ msgstr "Sélectionner une image"
 #: B5C18D
 msgctxt "B5C18D"
 msgid "Badge"
-msgstr ""
+msgstr "Badge"
 
 # Upload button label in Media Gallery
 #: BAfC6s
@@ -837,7 +837,7 @@ msgstr "Question"
 #: FYm4w+
 msgctxt "FYm4w+"
 msgid "Popups"
-msgstr ""
+msgstr "Pop-ups"
 
 # Field label
 #: FjuRaw
@@ -1119,7 +1119,7 @@ msgstr "Titre"
 #: N7Kj8z
 msgctxt "N7Kj8z"
 msgid "Button"
-msgstr ""
+msgstr "Bouton"
 
 # Field label
 #: NVUpOG
@@ -1904,7 +1904,7 @@ msgstr "Taille"
 #: g4nybp
 msgctxt "g4nybp"
 msgid "Footer"
-msgstr ""
+msgstr "Bas de l'écran"
 
 # Contribution screen title
 #: g6b9Lg
@@ -2208,7 +2208,7 @@ msgstr "Choisir un fichier de sous-titres"
 #: oAtOlP
 msgctxt "oAtOlP"
 msgid "Heading"
-msgstr "En-tête"
+msgstr "Haut de l'écran"
 
 # TextTitle screen title
 #: oCBQKV
@@ -2382,7 +2382,7 @@ msgstr "Aucun marqueur"
 #: rhuDxI
 msgctxt "rhuDxI"
 msgid "Header"
-msgstr ""
+msgstr "En-tête de page"
 
 # Screen title
 #: ro6yHS
@@ -2424,7 +2424,7 @@ msgstr "Entrées"
 #: sSahY1
 msgctxt "sSahY1"
 msgid "Popup"
-msgstr ""
+msgstr "Pop-up"
 
 # Urbania screen title
 #: sUP5BO

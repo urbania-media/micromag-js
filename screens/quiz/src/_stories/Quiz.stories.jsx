@@ -69,4 +69,8 @@ export const WithHeaderFooter = (storyProps) => (
     <QuizScreen {...storyProps} {...props} {...headerFooter()} />
 );
 
+export const WithShortLayout = (storyProps) => (
+    <QuizScreen {...storyProps} {...props} {...headerFooter()} answers={[]} />
+);
+
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

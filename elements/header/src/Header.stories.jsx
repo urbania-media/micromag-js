@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import { header } from '../../../.storybook/data';
 import Header from './Header';
 
 export default {
@@ -23,7 +24,7 @@ const HeaderContainer = (props = null) => {
                 height,
             }}
         >
-            <Header {...otherProps} />
+            <Header {...header()} {...otherProps} />
         </div>
     );
 };

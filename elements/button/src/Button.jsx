@@ -79,9 +79,7 @@ const Button = ({
 
     if (!withoutExternalBorder) {
         const { borderWidth = null } = finalStyles || {};
-
         const margin = borderWidth !== null && borderWidth > 0 ? '-1px' : null;
-
         finalStyles = {
             ...finalStyles,
             display: inline ? 'inline-block' : null,

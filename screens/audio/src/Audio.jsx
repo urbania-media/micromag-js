@@ -238,8 +238,7 @@ const AudioScreen = ({
                             : null
                     }
                 >
-                    {showHeader ? <Header {...header} /> : null}
-                    <Spacer key="spacer-top" />
+                    {showHeader ? <Header {...header} /> : <Spacer key="spacer-top" />}
                     <ScreenElement
                         key="audio"
                         placeholder="audio"

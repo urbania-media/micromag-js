@@ -25,6 +25,8 @@ import Text from '@micromag/element-text';
 
 import styles from './quote.module.scss';
 
+// NOTE: this might be better with a scroll
+
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     quote: MicromagPropTypes.textElement,
@@ -35,8 +37,6 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -50,8 +50,6 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
-    transitions: null,
-    transitionStagger: 100,
     className: null,
 };
 
@@ -65,13 +63,10 @@ const QuoteScreen = ({
     footer,
     current,
     active,
-    transitions,
-    transitionStagger,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {
         topHeight: viewerTopHeight,
         bottomHeight: viewerBottomHeight,
@@ -81,6 +76,12 @@ const QuoteScreen = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
+    const isSplitted = layout === 'split';
+    const isTopLayout = layout === 'top';
+    const isMiddleLayout = layout === 'middle';
+    const isBottomLayout = layout === 'bottom';
+    const verticalAlign = isSplitted ? null : layout;
+
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
@@ -88,14 +89,7 @@ const QuoteScreen = ({
     const hasQuote = isTextFilled(quote);
     const hasAuthor = isTextFilled(author);
 
-    const isSplitted = layout === 'split';
-    const isTopLayout = layout === 'top';
-    const isMiddleLayout = layout === 'middle';
-    const verticalAlign = isSplitted ? null : layout;
-
     const quoteWithMargin = hasQuote && hasAuthor && !isSplitted;
-    const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
 
@@ -126,12 +120,8 @@ const QuoteScreen = ({
                             : null
                     }
                 >
-                    {!isPlaceholder && hasFooter && isMiddleLayout ? (
-                        <Spacer key="spacer-cta-top" />
-                    ) : null}
                     {!isPlaceholder && hasHeader ? (
                         <div
-                            key="header"
                             style={{
                                 paddingBottom: spacing,
                             }}
@@ -139,6 +129,19 @@ const QuoteScreen = ({
                             <Header {...header} />
                         </div>
                     ) : null}
+
+                    {!isPlaceholder && hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && isBottomLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && !hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
                     <ScreenElement
                         key="quote"
                         placeholder="quote"
@@ -161,7 +164,9 @@ const QuoteScreen = ({
                             />
                         ) : null}
                     </ScreenElement>
+
                     {isSplitted ? <Spacer key="spacer" /> : null}
+
                     <ScreenElement
                         key="author"
                         placeholder="subtitle"
@@ -176,9 +181,15 @@ const QuoteScreen = ({
                     >
                         {hasAuthor ? <Text className={styles.author} {...author} /> : null}
                     </ScreenElement>
+
                     {!isPlaceholder && hasFooter && (isTopLayout || isMiddleLayout) ? (
                         <Spacer key="spacer-cta-bottom" />
                     ) : null}
+
+                    {!isPlaceholder && hasHeader && !hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-bottom" />
+                    ) : null}
+
                     {!isPlaceholder && hasFooter ? (
                         <div
                             style={{
@@ -186,7 +197,6 @@ const QuoteScreen = ({
                                 paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
                                 paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
                             }}
-                            key="call-to-action"
                         >
                             <Footer {...footerProps} />
                         </div>

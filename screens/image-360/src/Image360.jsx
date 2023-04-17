@@ -357,6 +357,8 @@ const Image360Screen = ({
                             className={styles.header}
                             style={{
                                 paddingTop: spacing,
+                                paddingLeft: spacing,
+                                paddingRight: spacing,
                             }}
                         >
                             <Header {...header} />

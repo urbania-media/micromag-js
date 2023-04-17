@@ -195,7 +195,7 @@ const ConversationScreen = ({
                                           paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
                                           paddingBottom:
                                               (current && !isPreview ? viewerBottomHeight : 0) +
-                                              spacing,
+                                              spacing / 2,
                                       }
                                     : null
                             }
@@ -284,7 +284,7 @@ const ConversationScreen = ({
                                     {showFooter ? (
                                         <div
                                             className={classNames([
-                                                styles.callToAction,
+                                                styles.footer,
                                                 {
                                                     [styles.disabled]: !scrolledBottom,
                                                 },

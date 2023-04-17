@@ -314,6 +314,9 @@
     "B1MeY+": {
         "defaultMessage": "Sélectionner une image"
     },
+    "B5C18D": {
+        "defaultMessage": "Badge"
+    },
     "BAfC6s": {
         "defaultMessage": "Ajouter un fichier de sous-titres"
     },
@@ -403,6 +406,9 @@
     },
     "FOmgqv": {
         "defaultMessage": "Question"
+    },
+    "FYm4w+": {
+        "defaultMessage": "Pop-ups"
     },
     "FjuRaw": {
         "defaultMessage": "Paramètres du clavier"
@@ -538,6 +544,9 @@
     },
     "N25iDO": {
         "defaultMessage": "Titre"
+    },
+    "N7Kj8z": {
+        "defaultMessage": "Bouton"
     },
     "NVUpOG": {
         "defaultMessage": "Ajuster la carte selon les marqueurs"
@@ -929,6 +938,9 @@
     "g2CRt5": {
         "defaultMessage": "Taille"
     },
+    "g4nybp": {
+        "defaultMessage": "Bas de l'écran"
+    },
     "g6b9Lg": {
         "defaultMessage": "Contribution"
     },
@@ -1080,7 +1092,7 @@
         "defaultMessage": "Choisir un fichier de sous-titres"
     },
     "oAtOlP": {
-        "defaultMessage": "En-tête"
+        "defaultMessage": "Haut de l'écran"
     },
     "oCBQKV": {
         "defaultMessage": "Texte avec titre"
@@ -1166,6 +1178,9 @@
     "rdFCsN": {
         "defaultMessage": "Aucun marqueur"
     },
+    "rhuDxI": {
+        "defaultMessage": "En-tête de page"
+    },
     "ro6yHS": {
         "defaultMessage": "Carte avec images"
     },
@@ -1183,6 +1198,9 @@
     },
     "sESmah": {
         "defaultMessage": "Entrées"
+    },
+    "sSahY1": {
+        "defaultMessage": "Pop-up"
     },
     "sUP5BO": {
         "defaultMessage": "Urbania Recommandation"

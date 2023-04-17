@@ -163,11 +163,12 @@ const GalleryScreen = ({
         }
     }, [contentWidth, contentHeight, layout, setImagesSizes]);
 
-    // Call to Action
+    // headre + footer
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
     // items
     const items = [...Array(gridSpaces)].map((item, itemI) => {
@@ -272,18 +273,22 @@ const GalleryScreen = ({
                 <div
                     className={styles.inner}
                     style={{
-                        paddingTop: !isPreview ? viewerTopHeight : null,
+                        paddingTop:
+                            (hasHeader ? headerHeight : 0) + (!isPreview ? viewerTopHeight : 0),
                         paddingBottom:
-                            (hasFooter ? callToActionHeight : 0) +
+                            (hasFooter ? footerHeight : 0) +
                             (current && !isPreview ? viewerBottomHeight : 0),
                     }}
                     ref={contentRef}
                 >
                     {!isPlaceholder && hasHeader ? (
                         <div
-                            key="header"
+                            className={styles.header}
+                            ref={headerRef}
                             style={{
-                                paddingTop: finalSpacing / 2,
+                                paddingTop: finalSpacing,
+                                paddingLeft: spacing,
+                                paddingRight: spacing,
                                 transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
                             }}
                         >
@@ -293,12 +298,12 @@ const GalleryScreen = ({
                     <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
                     {!isPlaceholder && hasFooter ? (
                         <div
-                            className={styles.callToAction}
-                            ref={callToActionRef}
+                            className={styles.footer}
+                            ref={footerRef}
                             style={{
                                 paddingLeft: Math.max(finalSpacing / 2, viewerBottomSidesWidth),
                                 paddingRight: Math.max(finalSpacing / 2, viewerBottomSidesWidth),
-                                paddingTop: finalSpacing / 2,
+                                // paddingTop: finalSpacing / 2,
                                 paddingBottom: finalSpacing / 2,
                                 transform: !isPreview
                                     ? `translate(0, -${viewerBottomHeight}px)`

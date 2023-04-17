@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/no-array-index-key, react/no-danger */
-import React from 'react';
-import PropTypes from 'prop-types';
+/* eslint-disable jsx-a11y/label-has-associated-control, react/no-array-index-key, react/no-danger, react/jsx-props-no-spreading */
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromText, getStyleFromMargin, getStyleFromBox } from '@micromag/core/utils';
 
@@ -88,7 +87,6 @@ const TextInput = ({
             ...elementStyle,
             ...getStyleFromText(textStyle),
         };
-
     }
 
     if (buttonStyle !== null) {
@@ -123,16 +121,9 @@ const TextInput = ({
     };
 
     const element = multiline ? (
-        <textarea
-            {...elementProps}
-            tabIndex={focusable ? '0' : '-1'}
-        />
+        <textarea {...elementProps} tabIndex={focusable ? '0' : '-1'} />
     ) : (
-        <input
-            {...elementProps}
-            type="text"
-            tabIndex={focusable ? '0' : '-1'}
-        />
+        <input {...elementProps} type="text" tabIndex={focusable ? '0' : '-1'} />
     );
 
     return !labelOutside ? (

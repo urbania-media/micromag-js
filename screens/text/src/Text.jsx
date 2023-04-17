@@ -83,6 +83,7 @@ const TextScreen = ({
     const isSplitted = layout === 'split';
     const isTopLayout = layout === 'top';
     const isMiddleLayout = layout === 'middle';
+    const isBottomLayout = layout === 'bottom';
     const verticalAlign = isSplitted ? null : layout;
 
     const titleWithMargin = hasTitle && hasText && !isSplitted;
@@ -90,8 +91,8 @@ const TextScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active;
 
-    const showHeader = isHeaderFilled(header);
-    const showFooter = isFooterFilled(footer);
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     return (
@@ -121,9 +122,8 @@ const TextScreen = ({
                             : null
                     }
                 >
-                    {!isPlaceholder && showHeader ? (
+                    {!isPlaceholder && hasHeader ? (
                         <div
-                            key="header"
                             style={{
                                 paddingBottom: spacing,
                             }}
@@ -131,9 +131,19 @@ const TextScreen = ({
                             <Header {...header} />
                         </div>
                     ) : null}
-                    {!isPlaceholder && showFooter && isMiddleLayout ? (
+
+                    {!isPlaceholder && hasFooter && isMiddleLayout ? (
                         <Spacer key="spacer-cta-top" />
                     ) : null}
+
+                    {!isPlaceholder && hasHeader && isBottomLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {!isPlaceholder && hasHeader && !hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
                     {withTitle ? (
                         <ScreenElement
                             key="title"
@@ -175,12 +185,18 @@ const TextScreen = ({
                     >
                         {hasText ? <Text className={styles.text} {...text} /> : null}
                     </ScreenElement>
-                    {!isPlaceholder && showFooter && (isTopLayout || isMiddleLayout) ? (
+
+                    {!isPlaceholder && hasFooter && (isTopLayout || isMiddleLayout) ? (
                         <Spacer key="spacer-cta-bottom" />
                     ) : null}
-                    {!isPlaceholder && showFooter ? (
+
+                    {!isPlaceholder && hasHeader && !hasFooter && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-bottom" />
+                    ) : null}
+
+                    {!isPlaceholder && hasFooter ? (
                         <div
-                            key="call-to-action"
+                            className={styles.footer}
                             style={{
                                 paddingTop: spacing,
                                 paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),

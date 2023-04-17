@@ -14,7 +14,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -100,6 +100,9 @@ const ShareScreen = ({
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
+    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
+
     const currentUrl = useMemo(() => {
         if (typeof window === 'undefined') return '';
         const { hostname = null, pathname = null } = window.location || {};
@@ -172,18 +175,25 @@ const ShareScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingTop:
+                                      (current && !isPreview ? viewerTopHeight : 0) +
+                                      (headerHeight || spacing),
                                   paddingBottom:
-                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                                      (current && !isPreview ? viewerBottomHeight : 0) +
+                                      (footerHeight || spacing),
                               }
                             : null
                     }
                 >
                     {!isPlaceholder && hasHeader ? (
                         <div
-                            key="header"
+                            className={styles.header}
+                            ref={headerRef}
                             style={{
+                                paddingTop: spacing,
                                 paddingBottom: spacing,
+                                paddingLeft: spacing,
+                                paddingRight: spacing,
                             }}
                         >
                             <Header {...header} />
@@ -233,12 +243,14 @@ const ShareScreen = ({
                     </ScreenElement>
                     {!isPlaceholder && hasFooter ? (
                         <div
+                            className={styles.footer}
+                            ref={footerRef}
                             style={{
                                 paddingTop: spacing,
+                                paddingBottom: spacing,
                                 paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
                                 paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
                             }}
-                            key="call-to-action"
                         >
                             <Footer {...footerProps} />
                         </div>
