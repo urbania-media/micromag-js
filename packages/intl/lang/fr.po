@@ -1892,7 +1892,7 @@ msgstr "Taille"
 #: g4nybp
 msgctxt "g4nybp"
 msgid "Footer"
-msgstr "Pied de page"
+msgstr "Bas de l'écran"
 
 # Contribution screen title
 #: g6b9Lg
@@ -2196,7 +2196,7 @@ msgstr "Choisir un fichier de sous-titres"
 #: oAtOlP
 msgctxt "oAtOlP"
 msgid "Heading"
-msgstr "En-tête"
+msgstr "Haut de l'écran"
 
 # TextTitle screen title
 #: oCBQKV
