@@ -47,6 +47,10 @@
     "defaultMessage": "My files",
     "description": "Media gallery source"
   },
+  "/6zaOP": {
+    "defaultMessage": "Transition Delay (in seconds)",
+    "description": "Number field label"
+  },
   "/KQ87r": {
     "defaultMessage": "Delete media",
     "description": "Delete in Media Gallery"

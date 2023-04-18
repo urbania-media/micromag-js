@@ -83,6 +83,12 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "My files"
 
+# Number field label
+#: /6zaOP
+msgctxt "/6zaOP"
+msgid "Transition Delay (in seconds)"
+msgstr "Transition Delay (in seconds)"
+
 # Delete in Media Gallery
 #: /KQ87r
 msgctxt "/KQ87r"

@@ -36,7 +36,7 @@ export default [
                 float: true,
                 label: defineMessage({
                     defaultMessage: 'Transition Delay (in seconds)',
-                    description: 'Visuals field label',
+                    description: 'Number field label',
                 }),
             },
             {

@@ -39,11 +39,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-    withCaptions: true,
+    withCaptions: false,
     slides: [],
     spacing: 20,
     captionMaxLines: 2,
-    transitionDelay: 1,
+    transitionDelay: 1, // in seconds
     background: null,
     header: null,
     footer: null,
@@ -111,7 +111,7 @@ const SlideshowScreen = ({
         const hasImage = media !== null;
         const hasCaption = isTextFilled(caption);
 
-        const finalTransitionDelay = itemI > 0 ? itemI * (transitionDelay / 1000) : 0;
+        const finalTransitionDelay = itemI > 0 ? itemI * (transitionDelay * 1000) : 0;
 
         return (
             <div key={`item-${itemI}`} className={styles.gridItem}>

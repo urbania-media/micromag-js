@@ -83,6 +83,12 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "Mes fichiers"
 
+# Number field label
+#: /6zaOP
+msgctxt "/6zaOP"
+msgid "Transition Delay (in seconds)"
+msgstr ""
+
 # Delete in Media Gallery
 #: /KQ87r
 msgctxt "/KQ87r"
@@ -207,7 +213,7 @@ msgstr "Titre"
 #: 2c1WFV
 msgctxt "2c1WFV"
 msgid "Title"
-msgstr ""
+msgstr "Titre"
 
 # Url field label
 #: 2pO2Cj
@@ -987,7 +993,7 @@ msgstr "Nb. minimum de points"
 #: JzSBzL
 msgctxt "JzSBzL"
 msgid "Visual"
-msgstr ""
+msgstr "Visuel"
 
 # No value field label
 #: K1BxIr
