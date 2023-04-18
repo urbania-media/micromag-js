@@ -87,7 +87,7 @@ msgstr "Mes fichiers"
 #: /6zaOP
 msgctxt "/6zaOP"
 msgid "Transition Delay (in seconds)"
-msgstr ""
+msgstr "Délai de transition (en secondes)"
 
 # Delete in Media Gallery
 #: /KQ87r
