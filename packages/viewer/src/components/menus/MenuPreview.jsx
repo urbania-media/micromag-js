@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
+import { getStyleFromText } from '@micromag/core/utils';
+import Badge from '@micromag/element-badge';
 import Scroll from '@micromag/element-scroll';
 
 import MenuScreen from './MenuScreen';
@@ -79,7 +81,8 @@ const ViewerMenuPreview = ({
               }
             : null;
 
-    const { heading1: titleStyles = null } = textStyles || {};
+    const { title: titleStyles = null } = textStyles || {};
+    const finalTitleStyles = titleStyles !== null ? getStyleFromText(titleStyles) : null;
 
     // const { url: brandLogoUrl = null } = brandLogo || {};
     const [screensMounted, setScreensMounted] = useState([]);
@@ -91,8 +94,6 @@ const ViewerMenuPreview = ({
     //     () => (!focusable ? items.map((s, i) => (i > 6 ? { screenId: s.screenId } : s)) : items),
     //     [items, focusable],
     // );
-
-    console.log(viewerTheme, title);
 
     useEffect(() => {
         if (items.length === screensMounted.length) {
@@ -122,9 +123,15 @@ const ViewerMenuPreview = ({
             <div className={styles.content} ref={containerRef}>
                 <Scroll className={styles.scroll} disabled={scrollDisabled}>
                     {title !== null ? (
-                        <h1 className={styles.title} style={{ paddingTop, ...titleStyles }}>
-                            {title}
-                        </h1>
+                        <div
+                            className={styles.titleContainer}
+                            style={{ paddingTop: paddingTop + 10 }}
+                        >
+                            <Badge label={{ body: 'dfg' }} className={styles.badge} />
+                            <h1 className={styles.title} style={{ ...finalTitleStyles }}>
+                                {title}
+                            </h1>
+                        </div>
                     ) : null}
                     <nav
                         className={styles.nav}

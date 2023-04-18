@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -10,7 +10,6 @@ import {
     PlaceholderText,
     PlaceholderTitle,
     ScreenElement,
-    TransitionsStagger,
 } from '@micromag/core/components';
 import {
     useScreenSize,
@@ -51,9 +50,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    // animateBackground: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -71,9 +67,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    // animateBackground: true,
-    transitions: null,
-    transitionStagger: 100,
     className: null,
 };
 
@@ -91,14 +84,9 @@ const UrbaniaRecommendation = ({
     background,
     current,
     active,
-    // animateBackground,
-    transitions,
-    transitionStagger,
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent();
-
-    // console.log(visual);
 
     const { width, height, resolution } = useScreenSize();
     const {
@@ -113,10 +101,9 @@ const UrbaniaRecommendation = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
-    // const finalAnimateBackground =
-    // current && animateBackground && !isPlaceholder && !isStatic && !isPreview && !isEdit;
+    const animateBackground = current && !isPlaceholder && !isStatic && !isPreview && !isEdit;
 
-    // const [animationStarted, setAnimationStarted] = useState(finalAnimateBackground);
+    const [animationStarted, setAnimationStarted] = useState(animateBackground);
 
     const { image = null, visualLayout = null } = visual || {};
     const hasVisual = image !== null;
@@ -133,34 +120,32 @@ const UrbaniaRecommendation = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
 
-    const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
+    const scrollingDisabled = (!isView && !isEdit) || !current;
 
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
     const [scrolledBottom, setScrolledBottom] = useState(false);
 
-    // useEffect(() => {
-    //     let id = null;
-    //     if (animationStarted) {
-    //         id = setTimeout(() => {
-    //             setAnimationStarted(false);
-    //         }, 3000);
-    //     }
-    //     return () => {
-    //         clearTimeout(id);
-    //     };
-    // }, [animationStarted, finalAnimateBackground, setAnimationStarted]);
+    useEffect(() => {
+        let id = null;
+        if (animationStarted) {
+            id = setTimeout(() => {
+                setAnimationStarted(false);
+            }, 3000);
+        }
+        return () => {
+            clearTimeout(id);
+        };
+    }, [animationStarted, animateBackground, setAnimationStarted]);
 
-    // useEffect(() => {
-    //     if (!isView) {
-    //         setAnimationStarted(false);
-    //     } else {
-    //         setAnimationStarted(true);
-    //     }
-    // }, [isView, setAnimationStarted]);
+    useEffect(() => {
+        if (!isView) {
+            setAnimationStarted(false);
+        } else {
+            setAnimationStarted(true);
+        }
+    }, [isView, setAnimationStarted]);
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -205,9 +190,9 @@ const UrbaniaRecommendation = ({
                     styles.textCard,
                     {
                         [styles.isPlaceholder]: isPlaceholder,
-                        // TODO: Add toggle for visual position
                         [styles.visualBottom]: visualLayout === 'label-top',
-                        // [styles.appear]: finalAnimateBackground,
+                        // [styles.appear]: animateBackground,
+                        [styles.appear]: animationStarted,
                     },
                 ])}
             >
@@ -216,16 +201,16 @@ const UrbaniaRecommendation = ({
                     <ScreenElement
                         key="sponsor"
                         placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
-                        // emptyLabel={
-                        //     <FormattedMessage
-                        //         defaultMessage="Sponsor"
-                        //         description="Text placeholder"
-                        //     />
-                        // }
-                        // emptyClassName={classNames([styles.empty, styles.emptySponsor])}
-                        // isEmpty={!hasSponsor}
                     >
-                        {hasSponsor ? <Text className={styles.sponsor} {...sponsor} /> : null}
+                        {hasSponsor ? (
+                            <Text
+                                className={classNames([
+                                    styles.sponsor,
+                                    { [styles.hasVisual]: hasVisual },
+                                ])}
+                                {...sponsor}
+                            />
+                        ) : null}
                     </ScreenElement>
                     {/* @TODO: Create a new element that onClick expands to fill screen w/ player */}
                     <ScreenElement
@@ -372,8 +357,7 @@ const UrbaniaRecommendation = ({
         >
             <Container width={width} height={height} className={styles.content}>
                 <Scroll
-                    // disabled={animationStarted || scrollingDisabled}
-                    disabled={scrollingDisabled}
+                    disabled={animationStarted || scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="middle"
@@ -393,14 +377,7 @@ const UrbaniaRecommendation = ({
                                 : null
                         }
                     >
-                        <TransitionsStagger
-                            transitions={transitions}
-                            stagger={transitionStagger}
-                            disabled={transitionDisabled}
-                            playing={transitionPlaying}
-                        >
-                            {items}
-                        </TransitionsStagger>
+                        {items}
                     </Layout>
                 </Scroll>
             </Container>
@@ -414,7 +391,7 @@ const UrbaniaRecommendation = ({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    // backgroundClassName={finalAnimateBackground ? styles.background : null}
+                    // backgroundClassName={animateBackground ? styles.background : null}
                     mediaRef={mediaRef}
                     withoutVideo={isPreview}
                     className={styles.background}
