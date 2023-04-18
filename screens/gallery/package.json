@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-gallery",
-    "version": "0.3.354",
+    "version": "0.3.356",
     "description": "",
     "keywords": [
         "javascript"
@@ -54,7 +54,7 @@
         "@micromag/element-container": "^0.3.354",
         "@micromag/element-footer": "^0.3.354",
         "@micromag/element-grid": "^0.3.354",
-        "@micromag/element-header": "^0.3.354",
+        "@micromag/element-header": "^0.3.356",
         "@micromag/element-layout": "^0.3.354",
         "@micromag/element-text": "^0.3.354",
         "@micromag/element-visual": "^0.3.354",
