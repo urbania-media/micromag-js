@@ -161,16 +161,6 @@ const UrbaniaRecommendation = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
-    // const finalBackground = useMemo(
-    //     () => ({
-    //         fit: 'cover',
-    //         // horizontalAlign: 'left',
-    //         // verticalAlign: '-20%',
-    //         repeat: true,
-    //         ...background,
-    //     }),
-    //     [background],
-    // );
     // Create elements
     const items = [
         !isPlaceholder && hasHeader ? (
@@ -191,7 +181,6 @@ const UrbaniaRecommendation = ({
                     {
                         [styles.isPlaceholder]: isPlaceholder,
                         [styles.visualBottom]: visualLayout === 'label-top',
-                        // [styles.appear]: animateBackground,
                         [styles.appear]: animationStarted,
                     },
                 ])}
@@ -383,7 +372,6 @@ const UrbaniaRecommendation = ({
             </Container>
             {!isPlaceholder ? (
                 <Background
-                    // background={finalBackground}
                     background={background}
                     width={width}
                     height={height}
@@ -391,7 +379,6 @@ const UrbaniaRecommendation = ({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    // backgroundClassName={animateBackground ? styles.background : null}
                     mediaRef={mediaRef}
                     withoutVideo={isPreview}
                     className={styles.background}
