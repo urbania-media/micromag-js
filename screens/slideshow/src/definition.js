@@ -20,23 +20,22 @@ export default [
             description: 'Slideshow screen title',
         }),
         component: SlideshowScreen,
-        layouts: ['top', 'middle', 'bottom'],
-        // transforms,
         fields: [
-            {
-                name: 'layout',
-                type: 'screen-layout',
-                defaultValue: 'two-vertical-equal',
-                label: defineMessage({
-                    defaultMessage: 'Layout',
-                    description: 'Layout field label',
-                }),
-            },
             {
                 name: 'slides',
                 type: 'visuals-with-caption',
                 label: defineMessage({
                     defaultMessage: 'Images',
+                    description: 'Visuals field label',
+                }),
+            },
+            {
+                name: 'transitionDelay',
+                type: 'number',
+                min: 0,
+                float: true,
+                label: defineMessage({
+                    defaultMessage: 'Transition Delay (in seconds)',
                     description: 'Visuals field label',
                 }),
             },

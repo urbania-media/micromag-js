@@ -23,14 +23,12 @@ import Visual from '@micromag/element-visual';
 
 import styles from './slideshow.module.scss';
 
-// TODO: make this happen
-
 const propTypes = {
-    // layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
     slides: PropTypes.oneOfType([MicromagPropTypes.imageMedias, MicromagPropTypes.imageElements]),
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     captionMaxLines: PropTypes.number,
+    transitionDelay: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
@@ -41,11 +39,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-    // layout: 'middle',
-    withCaptions: false,
+    withCaptions: true,
     slides: [],
     spacing: 20,
     captionMaxLines: 2,
+    transitionDelay: 1,
     background: null,
     header: null,
     footer: null,
@@ -56,7 +54,6 @@ const defaultProps = {
 };
 
 const SlideshowScreen = ({
-    // layout,
     slides,
     withCaptions,
     background,
@@ -65,6 +62,7 @@ const SlideshowScreen = ({
     current,
     active,
     spacing,
+    transitionDelay,
     captionMaxLines,
     transitions,
     className,
@@ -109,11 +107,11 @@ const SlideshowScreen = ({
     const items = (slides || []).map((item, itemI) => {
         const { media = null, caption = null } = item || {};
         const imageSize = { width, height };
-        // console.log(imageSize);
-        // const { caption = null } = finalImage || {};
 
         const hasImage = media !== null;
         const hasCaption = isTextFilled(caption);
+
+        const finalTransitionDelay = itemI > 0 ? itemI * (transitionDelay / 1000) : 0;
 
         return (
             <div key={`item-${itemI}`} className={styles.gridItem}>
@@ -125,7 +123,7 @@ const SlideshowScreen = ({
                 >
                     <Transitions
                         transitions={transitions}
-                        delay={1}
+                        delay={finalTransitionDelay}
                         playing={transitionPlaying}
                         disabled={transitionDisabled}
                         fullscreen
@@ -161,7 +159,7 @@ const SlideshowScreen = ({
                 {withCaptions ? (
                     <Transitions
                         transitions={transitions}
-                        delay={1}
+                        delay={finalTransitionDelay}
                         playing={transitionPlaying}
                         disabled={transitionDisabled}
                     >
@@ -176,13 +174,15 @@ const SlideshowScreen = ({
                             emptyClassName={styles.emptyCaption}
                             isEmpty={!hasCaption}
                         >
-                            <div className={styles.caption}>
-                                <Text
-                                    {...caption}
-                                    className={styles.captionText}
-                                    lineClamp={captionMaxLines}
-                                />
-                            </div>
+                            {hasCaption ? (
+                                <div className={styles.caption}>
+                                    <Text
+                                        {...caption}
+                                        className={styles.captionText}
+                                        lineClamp={captionMaxLines}
+                                    />
+                                </div>
+                            ) : null}
                         </ScreenElement>
                     </Transitions>
                 ) : null}
@@ -211,6 +211,18 @@ const SlideshowScreen = ({
                             (current && !isPreview ? viewerBottomHeight : 0),
                     }}
                 >
+                    {isPlaceholder ? (
+                        <ScreenElement
+                            placeholder="image"
+                            placeholderProps={{ className: styles.placeholder, height: '100%' }}
+                            emptyLabel={
+                                <FormattedMessage
+                                    defaultMessage="Image"
+                                    description="Image placeholder"
+                                />
+                            }
+                        />
+                    ) : null}
                     {!isPlaceholder && hasHeader ? (
                         <div
                             className={styles.header}
@@ -220,6 +232,7 @@ const SlideshowScreen = ({
                             <Header {...header} />
                         </div>
                     ) : null}
+
                     {items}
                     {!isPlaceholder && hasFooter ? (
                         <div
