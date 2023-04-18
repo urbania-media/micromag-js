@@ -683,12 +683,6 @@ msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Succès"
 
-# Text placeholder
-#: Bv1Q38
-msgctxt "Bv1Q38"
-msgid "Sponsor"
-msgstr "Présentateur"
-
 # Field label
 #: BwYZbB
 msgctxt "BwYZbB"
