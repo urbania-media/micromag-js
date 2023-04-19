@@ -87,7 +87,7 @@ const ViewerMenuPreview = ({
     // const { url: brandLogoUrl = null } = brandLogo || {};
     const [screensMounted, setScreensMounted] = useState([]);
 
-    const withTitle = title !== null;
+    const hasTitle = title !== null;
 
     // @todo optimize all of this the proper way
     // const finalItems = useMemo(
@@ -122,7 +122,7 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.content} ref={containerRef}>
                 <Scroll className={styles.scroll} disabled={scrollDisabled}>
-                    {title !== null ? (
+                    {hasTitle ? (
                         <div
                             className={styles.titleContainer}
                             style={{ paddingTop: paddingTop + 10 }}
@@ -133,11 +133,7 @@ const ViewerMenuPreview = ({
                             </h1>
                         </div>
                     ) : null}
-                    <nav
-                        className={styles.nav}
-                        // style={{ paddingTop }}
-                        style={!withTitle ? { paddingTop } : null}
-                    >
+                    <nav className={styles.nav} style={!hasTitle ? { paddingTop } : null}>
                         <ul className={styles.items}>
                             {items.map((item, index) => {
                                 const { screenId } = item || {};
