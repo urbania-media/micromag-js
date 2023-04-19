@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-image-360",
-    "version": "0.3.356",
+    "version": "0.3.357",
     "description": "",
     "keywords": [
         "javascript"
@@ -55,7 +55,7 @@
         "@micromag/element-closed-captions": "^0.3.354",
         "@micromag/element-container": "^0.3.354",
         "@micromag/element-footer": "^0.3.354",
-        "@micromag/element-header": "^0.3.356",
+        "@micromag/element-header": "^0.3.357",
         "@micromag/element-image": "^0.3.354",
         "@micromag/element-video": "^0.3.354",
         "@micromag/transforms": "^0.3.354",
