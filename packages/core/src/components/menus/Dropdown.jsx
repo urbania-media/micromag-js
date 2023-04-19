@@ -118,9 +118,8 @@ const Dropdown = ({
                                 }
                               : null;
                       return ItemComponent !== null ? (
-                          <div>
+                          <div key={`item-${index}-${label}-${type}`}>
                               <ItemComponent
-                                  key={`item-${index}-${label}-${type}`}
                                   className={classNames([
                                       {
                                           'dropdown-item': type === 'link' || type === 'button',

@@ -250,7 +250,20 @@ export const WithTheme = () => (
         }}
     />
 );
+
+export const WithThemeCTABadge = () => (
+    <EditorContainer
+        defaultValue={{
+            ...textQuoteBadges,
+            title: 'With theme Cta Badge',
+            theme: defaultTheme,
+            components: [textQuoteBadges.components[0]],
+        }}
+    />
+);
+
 export const IsBackgroundTheme = () => <EditorContainer isTheme defaultValue={backgroundTheme} />;
+
 export const WithBackgroundTheme = () => (
     <EditorContainer
         defaultValue={{
@@ -259,6 +272,7 @@ export const WithBackgroundTheme = () => (
         }}
     />
 );
+
 export const WithThemeAllScreens = () => (
     <EditorContainer
         defaultValue={{

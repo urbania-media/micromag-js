@@ -56,48 +56,54 @@ export const defaultTheme = {
                 bold: true,
             },
         },
+        badge: {
+            color: {
+                alpha: 1,
+                color: '#f50',
+            },
+            fontFamily: 'Agrandir',
+            fontSize: 30,
+            fontStyle: {
+                bold: true,
+            },
+        },
     },
     boxStyles: {
-        // cta: {
-        //     borderColor: {
-        //         alpha: 0.5,
-        //         color: '#f5ff00',
-        //     },
-        //     borderStyle: 'solid',
-        //     padding: '5 10',
-        //     backgroundColor: {
-        //         color: '#fcff00',
-        //         alpha: 1,
-        //     },
-        //     borderWidth: 5,
-        //     borderRadius: 30,
-        // }
+        badge: {
+            borderColor: {
+                alpha: 0.5,
+                color: '#f50',
+            },
+            borderStyle: 'solid',
+            padding: '5 10',
+            backgroundColor: '#F00',
+            // backgroundColor: {
+            //     color: '#fcff00',
+            //     alpha: 1,
+            // },
+            borderWidth: 10,
+            borderRadius: 30,
+        },
         cta: {
             // padding: '5 10',
             padding: {
-                top: 5,
+                top: 20,
                 right: 10,
                 left: 10,
                 bottom: 5,
             },
-            borderColor: {
-                color: '#fffc00',
-                alpha: 0.44,
-            },
+            borderColor: '#00F',
             borderStyle: 'solid',
             borderWidth: 5,
-            backgroundColor: {
-                color: '#fffc00',
-                alpha: 1,
-            },
+            backgroundColor: '#00F',
             borderRadius: 40,
             shadowAngle: null,
             shadowDistance: 5,
             shadowBlur: 0,
             shadowColor: {
                 color: '#000000',
-                alpha: 1
-            }
+                alpha: 1,
+            },
         },
     },
     components: [
@@ -135,5 +141,7 @@ export const defaultTheme = {
         },
     ],
 };
+
+// console.log('defaultTheme', defaultTheme);
 
 export default defaultTheme;

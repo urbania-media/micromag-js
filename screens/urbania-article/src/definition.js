@@ -125,6 +125,14 @@ export default {
                 defaultMessage: 'Header',
                 description: 'Field label',
             }),
+            theme: {
+                badge: {
+                    label: {
+                        textStyle: 'badge',
+                    },
+                    boxStyle: 'badge',
+                },
+            },
         },
         {
             name: 'footer',
@@ -133,6 +141,14 @@ export default {
                 defaultMessage: 'Footer',
                 description: 'Field label',
             }),
+            theme: {
+                callToAction: {
+                    label: {
+                        textStyle: 'cta',
+                    },
+                    boxStyle: 'cta',
+                },
+            },
         },
     ],
 };
