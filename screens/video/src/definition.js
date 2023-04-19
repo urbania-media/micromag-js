@@ -68,6 +68,14 @@ export default {
                 defaultMessage: 'Header',
                 description: 'Field label',
             }),
+            theme: {
+                badge: {
+                    label: {
+                        textStyle: 'badge',
+                    },
+                    boxStyle: 'badge',
+                },
+            },
         },
         {
             name: 'footer',
@@ -76,33 +84,14 @@ export default {
                 defaultMessage: 'Footer',
                 description: 'Field label',
             }),
+            theme: {
+                callToAction: {
+                    label: {
+                        textStyle: 'cta',
+                    },
+                    boxStyle: 'cta',
+                },
+            },
         },
-        // {
-        //     type: 'fields',
-        //     isList: true,
-        //     label: defineMessage({
-        //         defaultMessage: 'Addons',
-        //         description: 'Addons field label',
-        //     }),
-        //     fields: [
-        //         {
-        //             name: 'callToAction',
-        //             type: 'call-to-action-form',
-        //             label: defineMessage({
-        //                 defaultMessage: 'Call to action',
-        //                 description: 'Cta field label',
-        //             }),
-        //             isHorizontal: true,
-        //             // isList: true,
-        //             // isFlushList: true,
-        //             // defaultValue: null,
-        //             // theme: {
-        //             //     label: {
-        //             //         textStyle: 'heading2',
-        //             //     },
-        //             // },
-        //         },
-        //     ],
-        // },
     ],
 };

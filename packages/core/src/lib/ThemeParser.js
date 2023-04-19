@@ -123,6 +123,7 @@ class ThemeParser {
     // eslint-disable-next-line class-methods-use-this
     parseField(key, definition, value, themeValue, themeColors, themeTextStyles, themeBoxStyles) {
         const { theme: fieldTheme = null } = definition;
+        // console.log('fieldTheme', id, fieldTheme);
 
         // Early return
         if (fieldTheme === null || !isObject(fieldTheme)) {
@@ -134,6 +135,7 @@ class ThemeParser {
             const newFieldValue = value.map((innerField) =>
                 innerField !== null
                     ? Object.keys(innerField).reduce((newInnerField, innerFieldName) => {
+                          // console.log('innerField', innerField);
                           // Early return
                           if (!isObject(innerField[innerFieldName])) {
                               return newInnerField;
@@ -257,11 +259,11 @@ class ThemeParser {
             let complexValue = null;
 
             if (!isEmpty(otherProps)) {
-                complexValue = Object.keys(fieldTheme).reduce((newObject, key) => {
+                complexValue = Object.keys(otherProps).reduce((newObject, key) => {
                     const innerValue = value !== null ? value[key] || null : null;
                     const newValue = this.parseValue(
                         innerValue,
-                        fieldTheme[key],
+                        otherProps[key],
                         themeValue,
                         themeColors,
                         themeTextStyles,
@@ -279,6 +281,7 @@ class ThemeParser {
                 fieldColorName !== null && themeColors !== null
                     ? themeColors[fieldColorName] || null
                     : null;
+
             const colorValue =
                 fieldColor !== null
                     ? {
@@ -291,8 +294,10 @@ class ThemeParser {
                 fieldTextStyleName !== null && themeTextStyles !== null
                     ? themeTextStyles[fieldTextStyleName] || null
                     : null;
+
             const fieldThemeComponentTextStyle =
                 themeValue !== null ? themeValue.textStyle || null : null;
+
             const textStyleValue =
                 fieldTextStyle !== null || fieldThemeComponentTextStyle !== null
                     ? {
@@ -323,6 +328,8 @@ class ThemeParser {
                           },
                       }
                     : null;
+
+            // console.log('hell', boxStyleValue, complexValue);
 
             // Only change value if something is overrided
             return colorValue !== null ||

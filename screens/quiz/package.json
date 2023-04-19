@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-quiz",
-    "version": "0.3.357",
+    "version": "0.3.360",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,18 +52,18 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.354",
-        "@micromag/data": "^0.3.354",
-        "@micromag/element-background": "^0.3.354",
-        "@micromag/element-button": "^0.3.354",
-        "@micromag/element-container": "^0.3.354",
-        "@micromag/element-footer": "^0.3.354",
-        "@micromag/element-header": "^0.3.357",
-        "@micromag/element-heading": "^0.3.354",
-        "@micromag/element-layout": "^0.3.354",
-        "@micromag/element-scroll": "^0.3.354",
-        "@micromag/element-text": "^0.3.354",
-        "@micromag/transforms": "^0.3.354",
+        "@micromag/core": "^0.3.360",
+        "@micromag/data": "^0.3.360",
+        "@micromag/element-background": "^0.3.360",
+        "@micromag/element-button": "^0.3.360",
+        "@micromag/element-container": "^0.3.360",
+        "@micromag/element-footer": "^0.3.360",
+        "@micromag/element-header": "^0.3.360",
+        "@micromag/element-heading": "^0.3.360",
+        "@micromag/element-layout": "^0.3.360",
+        "@micromag/element-scroll": "^0.3.360",
+        "@micromag/element-text": "^0.3.360",
+        "@micromag/transforms": "^0.3.360",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
         "classnames": "^2.2.6",
@@ -76,5 +76,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "3221a816c93604d43c9bf7900506350b355fde9a"
+    "gitHead": "22eba0d01f18f8971e0405bbb41081b5e2ae80ee"
 }

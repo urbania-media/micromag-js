@@ -1,14 +1,14 @@
 // import React from 'react';
-import { SortableTree } from '../components/sortable/SortableTree';
+// import { SortableTree } from '../components/sortable/SortableTree';
 
-export default {
-    component: SortableTree,
-    title: 'Editor/Sortable',
-    decorators: [],
-    parameters: {
-        intl: true,
-    },
-};
+// export default {
+//     component: SortableTree,
+//     title: 'Editor/Sortable',
+//     decorators: [],
+//     parameters: {
+//         intl: true,
+//     },
+// };
 
 // eslint-disable-next-line react/prop-types
 // const SortableContainer = ({ children }) => <div style={{ width: 200 }}>{children}</div>;
