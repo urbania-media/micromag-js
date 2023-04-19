@@ -199,6 +199,10 @@
     "defaultMessage": "Select a color...",
     "description": "No value label"
   },
+  "4b5gym": {
+    "defaultMessage": "Screen title",
+    "description": "Field default label"
+  },
   "4bHvRS": {
     "defaultMessage": "Gallery Feed",
     "description": "Gallery Feed screen title"

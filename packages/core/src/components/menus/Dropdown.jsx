@@ -118,7 +118,7 @@ const Dropdown = ({
                                 }
                               : null;
                       return ItemComponent !== null ? (
-                          <div key={`item-${index}-${label}-${type}`}>
+                          <div key={`item-${index + 1}-${label}-${type}`}>
                               <ItemComponent
                                   className={classNames([
                                       {

@@ -311,6 +311,12 @@ msgctxt "4YiKNK"
 msgid "Select a color..."
 msgstr "Select a color..."
 
+# Field default label
+#: 4b5gym
+msgctxt "4b5gym"
+msgid "Screen title"
+msgstr "Screen title"
+
 # Gallery Feed screen title
 #: 4bHvRS
 msgctxt "4bHvRS"
