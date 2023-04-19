@@ -115,7 +115,6 @@ export default [
                     },
                 ],
             },
-
             {
                 name: 'background',
                 type: 'background',
@@ -125,18 +124,20 @@ export default [
                 }),
             },
             {
-                name: 'callToAction',
-                type: 'call-to-action',
-                theme: {
-                    boxStyle: 'cta',
-                    label: {
-                        textStyle: 'cta',
-                    },
-                },
+                name: 'header',
+                type: 'header',
+                label: defineMessage({
+                    defaultMessage: 'Header',
+                    description: 'Field label',
+                }),
             },
             {
-                name: 'shareIncentive',
-                type: 'share-incentive',
+                name: 'footer',
+                type: 'footer',
+                label: defineMessage({
+                    defaultMessage: 'Footer',
+                    description: 'Field label',
+                }),
             },
         ],
     },
