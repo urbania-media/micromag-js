@@ -20,6 +20,7 @@ import {
     author,
     callToAction,
     shareIncentive,
+    badge,
     conversation, // color,
 } from '../data';
 
@@ -41,7 +42,8 @@ export const allScreens = [
             image: imageMedia(),
             video: videoMedia(),
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -55,8 +57,11 @@ export const allScreens = [
             color: { alpha: 1, color: '#00FFFF' },
             image: imageMedia({ gif: true }),
         },
-        callToAction: callToAction(),
-        shareIncentive: shareIncentive('☝️ consider sharing if you enjoyed it!'),
+        header: {
+            badge: badge(),
+            shareIncentive: shareIncentive('☝️ consider sharing if you enjoyed it!'),
+        },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -66,7 +71,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FFFF00' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -76,8 +82,13 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00FF00' },
         },
-        callToAction: callToAction(),
-        shareIncentive: shareIncentive('Lorem ipsum dolor sit amet consectetur adipiscing elit. Nunquam dolor dolor, et semper dolorem.'),
+        header: {
+            badge: badge(),
+            shareIncentive: shareIncentive(
+                'Lorem ipsum dolor sit amet consectetur adipiscing elit. Nunquam dolor dolor, et semper dolorem.',
+            ),
+        },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -87,7 +98,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00FFFF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -98,7 +110,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -109,7 +122,8 @@ export const allScreens = [
             color: { alpha: 1, color: '#123b0b' },
             video: bigVideoMediaWithSound(),
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -125,7 +139,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#0000FF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -135,7 +150,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -149,7 +165,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF0000' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -163,9 +180,9 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#0000FF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
-
     {
         id: uuid(),
         type: 'conversation',
@@ -175,7 +192,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00000F' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -207,7 +225,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00FF00' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -218,7 +237,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00FFFF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -232,7 +252,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -248,7 +269,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#333' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -258,7 +280,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#0f00f7' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -278,7 +301,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -296,7 +320,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#0000FF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -308,7 +333,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF0000' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -325,7 +351,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -343,6 +370,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -354,8 +383,9 @@ export const allScreens = [
         description: {
             body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
         },
-        background: backgroundImage({ width: 320, height: 480 }),
-        callToAction: callToAction(),
+        background: backgroundImage({ width: 320, header: { badge: badge() }, height: 480 }),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -388,6 +418,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00c28e' },
         },
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -396,7 +428,8 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        callToAction: callToAction(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
     {
         id: uuid(),
@@ -429,6 +462,8 @@ export const allScreens = [
             spacing: 10,
         },
         // background: backgroundVideo(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
     },
 ];
 
