@@ -117,6 +117,7 @@
     animation: intro 1s 50ms 1 forwards $ease-in-out-sine;
     border-radius: 0.45rem;
     opacity: 0;
+    box-shadow: 0 0 2px $black;
 }
 
 @keyframes intro {

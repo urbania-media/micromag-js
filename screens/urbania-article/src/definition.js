@@ -88,19 +88,30 @@ export default {
         },
         {
             name: 'sponsor',
-            type: 'heading-element',
+            type: 'fields',
+            isList: true,
             label: defineMessage({
                 defaultMessage: 'Sponsor',
-                description: 'Title field label',
+                description: 'Text field label',
             }),
-        },
-        {
-            name: 'sponsorColor',
-            type: 'color',
-            label: defineMessage({
-                defaultMessage: 'Sponsor color',
-                description: 'Field label',
-            }),
+            fields: [
+                {
+                    name: 'sponsorLabel',
+                    type: 'heading-element',
+                    label: defineMessage({
+                        defaultMessage: 'Sponsor Label',
+                        description: 'Title field label',
+                    }),
+                },
+                {
+                    name: 'sponsorColor',
+                    type: 'color',
+                    label: defineMessage({
+                        defaultMessage: 'Sponsor color',
+                        description: 'Field label',
+                    }),
+                },
+            ],
         },
         {
             name: 'image',

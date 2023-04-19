@@ -50,7 +50,7 @@ export default {
             type: 'toggle',
             isHorizontal: true,
             label: defineMessage({
-                defaultMessage: 'Pop-up window',
+                defaultMessage: 'Embedded browser',
                 description: 'Field label',
             }),
         },

@@ -626,28 +626,28 @@ const KeypadScreen = ({
                                             ) : null}
                                         </ScreenElement>
 
-                                        {largeVisual !== null ? (
-                                            <ScreenElement
-                                                placeholder="image"
-                                                emptyLabel={
-                                                    <FormattedMessage
-                                                        defaultMessage="Visual (Image or Video)"
-                                                        description="Placeholder label"
-                                                    />
-                                                }
-                                                emptyClassName={classNames([
-                                                    styles.empty,
-                                                    styles.emptyVisual,
-                                                ])}
-                                                isEmpty={largeVisual === null}
-                                            >
+                                        <ScreenElement
+                                            placeholder="image"
+                                            emptyLabel={
+                                                <FormattedMessage
+                                                    defaultMessage="Visual (Image or Video)"
+                                                    description="Placeholder label"
+                                                />
+                                            }
+                                            emptyClassName={classNames([
+                                                styles.empty,
+                                                styles.emptyVisual,
+                                            ])}
+                                            isEmpty={largeVisual === null}
+                                        >
+                                            {largeVisual !== null ? (
                                                 <Visual
                                                     className={styles.popupVisual}
                                                     media={largeVisual}
                                                     width="100%"
                                                 />
-                                            </ScreenElement>
-                                        ) : null}
+                                            ) : null}
+                                        </ScreenElement>
 
                                         <ScreenElement
                                             placeholder="button"
@@ -657,7 +657,10 @@ const KeypadScreen = ({
                                                     description="Placeholder label"
                                                 />
                                             }
-                                            emptyClassName={classNames([styles.empty])}
+                                            emptyClassName={classNames([
+                                                styles.empty,
+                                                styles.emptyCTA,
+                                            ])}
                                             isEmpty={popupButton === null}
                                         >
                                             {popupButton !== null ? (

@@ -50,6 +50,9 @@
     "/T/UDH": {
         "defaultMessage": "Remove all"
     },
+    "/W31TQ": {
+        "defaultMessage": "Embedded browser"
+    },
     "/YQ+xP": {
         "defaultMessage": "Image 360"
     },
@@ -232,9 +235,6 @@
     },
     "75nZbY": {
         "defaultMessage": "Keypad"
-    },
-    "7YE/VU": {
-        "defaultMessage": "Sponsor"
     },
     "7ZzlUE": {
         "defaultMessage": "Oct 23 - Nov 22"
@@ -971,6 +971,9 @@
     "hvxkzE": {
         "defaultMessage": "LinkedIn"
     },
+    "hzvEim": {
+        "defaultMessage": "Sponsor Label"
+    },
     "i+3ZrF": {
         "defaultMessage": "Select a font family..."
     },
@@ -1159,9 +1162,6 @@
     },
     "qjL/eA": {
         "defaultMessage": "Bar"
-    },
-    "qmIJjc": {
-        "defaultMessage": "Pop-up window"
     },
     "qroLmS": {
         "defaultMessage": "Marker"

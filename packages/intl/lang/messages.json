@@ -67,6 +67,10 @@
     "defaultMessage": "Remove all",
     "description": "Remove all button label"
   },
+  "/W31TQ": {
+    "defaultMessage": "Embedded browser",
+    "description": "Field label"
+  },
   "/YQ+xP": {
     "defaultMessage": "Image 360",
     "description": "Image 360 placeholder"
@@ -310,10 +314,6 @@
   "75nZbY": {
     "defaultMessage": "Keypad",
     "description": "Keypad screen title"
-  },
-  "7YE/VU": {
-    "defaultMessage": "Sponsor",
-    "description": "Title field label"
   },
   "7ZzlUE": {
     "defaultMessage": "Oct 23 - Nov 22",
@@ -1294,6 +1294,10 @@
     "defaultMessage": "LinkedIn",
     "description": "Field label"
   },
+  "hzvEim": {
+    "defaultMessage": "Sponsor Label",
+    "description": "Title field label"
+  },
   "i+3ZrF": {
     "defaultMessage": "Select a font family...",
     "description": "No value label"
@@ -1542,10 +1546,6 @@
   },
   "qjL/eA": {
     "defaultMessage": "Bar",
-    "description": "Field label"
-  },
-  "qmIJjc": {
-    "defaultMessage": "Pop-up window",
     "description": "Field label"
   },
   "qroLmS": {

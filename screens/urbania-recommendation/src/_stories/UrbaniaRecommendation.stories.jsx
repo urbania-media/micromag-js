@@ -6,6 +6,7 @@ import {
     // text,
     // title,
     backgroundImage,
+    backgroundVideo,
     imageMedia,
     transitions,
     headerFooter,
@@ -28,7 +29,6 @@ const props = {
         body: '<p><strong>LE PITCH</strong></p><p>Un festival hivernal de musique urbaine pour célébrer le nouvel an à Québec.</p><p><strong>Pourquoi on aime?</strong></p><p>Ambiance festive et programmation électro gratuite. Que demander de plus.</p>',
     },
     visual: { image: imageMedia({ width: 309, height: 223 }), visualLayout: 'label-top' },
-    // visual: { visualLayout: 'label-top' },
     background: backgroundImage({ width: 320, height: 480 }),
     transitions: transitions(),
 };
@@ -51,6 +51,10 @@ export const Capture = (storyProps) => <UrbaniaRecommendation {...storyProps} {.
 export const Edit = (storyProps) => <UrbaniaRecommendation {...storyProps} />;
 
 export const Normal = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
+
+export const WithVideoBackground = (storyProps) => (
+    <UrbaniaRecommendation {...storyProps} {...props} background={backgroundVideo()} />
+);
 
 export const WithHeaderFooter = (storyProps) => (
     <UrbaniaRecommendation {...storyProps} {...props} {...headerFooter()} />

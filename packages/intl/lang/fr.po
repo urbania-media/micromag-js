@@ -113,6 +113,12 @@ msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Tout effacer"
 
+# Field label
+#: /W31TQ
+msgctxt "/W31TQ"
+msgid "Embedded browser"
+msgstr "Navigateur intégré"
+
 # Image 360 placeholder
 #: /YQ+xP
 msgctxt "/YQ+xP"
@@ -478,12 +484,6 @@ msgstr "Auteur"
 msgctxt "75nZbY"
 msgid "Keypad"
 msgstr "Clavier"
-
-# Title field label
-#: 7YE/VU
-msgctxt "7YE/VU"
-msgid "Sponsor"
-msgstr "Présentateur"
 
 # Horoscope date
 #: 7ZzlUE
@@ -1954,6 +1954,12 @@ msgctxt "hvxkzE"
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
+# Title field label
+#: hzvEim
+msgctxt "hzvEim"
+msgid "Sponsor Label"
+msgstr "Libellé du présentateur"
+
 # No value label
 #: i+3ZrF
 msgctxt "i+3ZrF"
@@ -2329,12 +2335,6 @@ msgstr "Marges"
 msgctxt "qjL/eA"
 msgid "Bar"
 msgstr "Barre"
-
-# Field label
-#: qmIJjc
-msgctxt "qmIJjc"
-msgid "Pop-up window"
-msgstr "Fenêtre pop-up"
 
 # Breadcrumb field label
 #: qroLmS
@@ -2814,7 +2814,7 @@ msgstr "Présentateurs"
 #: zLxBdl
 msgctxt "zLxBdl"
 msgid "Location"
-msgstr ""
+msgstr "Lieu"
 
 # Quiz screen title
 #: zW7IVm

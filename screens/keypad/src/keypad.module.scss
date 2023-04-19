@@ -278,6 +278,11 @@
     .popupContent {
         order: 3;
     }
+
+    .emptyCTA,
+    .popupCTA {
+        order: 4;
+    }
 }
 
 .contentBottom {
@@ -294,6 +299,11 @@
     .emptyContent,
     .popupContent {
         order: 3;
+    }
+
+    .emptyCTA,
+    .popupCTA {
+        order: 4;
     }
 }
 

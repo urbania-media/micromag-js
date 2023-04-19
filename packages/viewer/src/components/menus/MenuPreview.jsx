@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { getStyleFromText } from '@micromag/core/utils';
+import { isTextFilled, getStyleFromText } from '@micromag/core/utils';
 import Badge from '@micromag/element-badge';
 import Scroll from '@micromag/element-scroll';
 
@@ -17,6 +17,7 @@ const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
     screenSize: MicromagPropTypes.screenSize,
     title: PropTypes.string,
+    surtitle: MicromagPropTypes.badge,
     menuWidth: PropTypes.number,
     items: MicromagPropTypes.menuItems,
     focusable: PropTypes.bool,
@@ -36,6 +37,7 @@ const defaultProps = {
     viewerTheme: null,
     screenSize: null,
     title: null,
+    surtitle: null,
     menuWidth: null,
     items: [],
     focusable: true,
@@ -54,6 +56,7 @@ const ViewerMenuPreview = ({
     viewerTheme,
     screenSize,
     title,
+    surtitle,
     menuWidth,
     items,
     focusable,
@@ -88,6 +91,7 @@ const ViewerMenuPreview = ({
     const [screensMounted, setScreensMounted] = useState([]);
 
     const hasTitle = title !== null;
+    const hasSurtitle = isTextFilled(surtitle);
 
     // @todo optimize all of this the proper way
     // const finalItems = useMemo(
@@ -127,7 +131,7 @@ const ViewerMenuPreview = ({
                             className={styles.titleContainer}
                             style={{ paddingTop: paddingTop + 10 }}
                         >
-                            <Badge label={{ body: 'dfg' }} className={styles.badge} />
+                            {hasSurtitle ? <Badge {...surtitle} className={styles.badge} /> : null}
                             <h1 className={styles.title} style={{ ...finalTitleStyles }}>
                                 {title}
                             </h1>

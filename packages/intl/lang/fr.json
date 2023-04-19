@@ -50,6 +50,9 @@
     "/T/UDH": {
         "defaultMessage": "Tout effacer"
     },
+    "/W31TQ": {
+        "defaultMessage": "Navigateur intégré"
+    },
     "/YQ+xP": {
         "defaultMessage": "Image 360"
     },
@@ -232,9 +235,6 @@
     },
     "75nZbY": {
         "defaultMessage": "Clavier"
-    },
-    "7YE/VU": {
-        "defaultMessage": "Présentateur"
     },
     "7ZzlUE": {
         "defaultMessage": "23 oct au 22 nov"
@@ -971,6 +971,9 @@
     "hvxkzE": {
         "defaultMessage": "LinkedIn"
     },
+    "hzvEim": {
+        "defaultMessage": "Libellé du présentateur"
+    },
     "i+3ZrF": {
         "defaultMessage": "Sélectionner une police"
     },
@@ -1159,9 +1162,6 @@
     },
     "qjL/eA": {
         "defaultMessage": "Barre"
-    },
-    "qmIJjc": {
-        "defaultMessage": "Fenêtre pop-up"
     },
     "qroLmS": {
         "defaultMessage": "Marqueur"
@@ -1399,6 +1399,9 @@
     },
     "zGIcdn": {
         "defaultMessage": "Présentateurs"
+    },
+    "zLxBdl": {
+        "defaultMessage": "Lieu"
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"
