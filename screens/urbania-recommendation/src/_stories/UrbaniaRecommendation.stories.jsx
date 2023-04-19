@@ -50,7 +50,13 @@ export const Capture = (storyProps) => <UrbaniaRecommendation {...storyProps} {.
 
 export const Edit = (storyProps) => <UrbaniaRecommendation {...storyProps} />;
 
-export const Normal = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
+export const Normal = (storyProps) => (
+    <UrbaniaRecommendation
+        {...storyProps}
+        {...props}
+        visual={{ image: imageMedia({ width: 309, height: 223 }), visualLayout: 'label-bottom' }}
+    />
+);
 
 export const WithVideoBackground = (storyProps) => (
     <UrbaniaRecommendation {...storyProps} {...props} background={backgroundVideo()} />
