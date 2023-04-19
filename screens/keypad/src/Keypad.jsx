@@ -22,7 +22,7 @@ import {
     useViewerContext,
     useViewerWebView,
 } from '@micromag/core/contexts';
-import { useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
+import { useDragProgress, useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
 import {
     isTextFilled,
     getStyleFromText,
@@ -176,6 +176,9 @@ const KeypadScreen = ({
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
+    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || active);
@@ -464,19 +467,28 @@ const KeypadScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop:
+                                          (hasHeader ? headerHeight : spacing) +
+                                          (current && !isPreview ? viewerTopHeight : 0),
                                       paddingBottom:
-                                          (current && !isPreview ? viewerBottomHeight : 0) +
-                                          spacing,
+                                          (hasFooter ? footerHeight : spacing) +
+                                          (current && !isPreview ? viewerBottomHeight : 0),
                                   }
                                 : null
                         }
                     >
                         {!isPlaceholder && hasHeader ? (
                             <div
-                                key="header"
+                                ref={headerRef}
+                                className={styles.header}
                                 style={{
+                                    paddingTop: spacing,
+                                    paddingLeft: spacing,
+                                    paddingRight: spacing,
                                     paddingBottom: spacing,
+                                    transform: !isPreview
+                                        ? `translate(0, ${viewerTopHeight}px)`
+                                        : null,
                                 }}
                             >
                                 <Header {...header} />
@@ -494,7 +506,7 @@ const KeypadScreen = ({
                         />
                         {!isPlaceholder && hasFooter ? (
                             <div
-                                key="footer"
+                                ref={footerRef}
                                 className={styles.footer}
                                 style={{
                                     transform:
@@ -504,7 +516,7 @@ const KeypadScreen = ({
                                     paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
                                     paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
                                     paddingBottom: spacing / 2,
-                                    paddingTop: 0,
+                                    paddingTop: spacing,
                                 }}
                             >
                                 <Footer {...footerProps} />

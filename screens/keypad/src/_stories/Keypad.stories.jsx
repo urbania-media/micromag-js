@@ -2,7 +2,7 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, headerFooter } from '../../../../.storybook/data';
+import { backgroundColor, headerFooter, header, footer } from '../../../../.storybook/data';
 import Keypad from '../Keypad';
 import definition from '../definition';
 
@@ -64,5 +64,9 @@ export const Normal = (storyProps) => <Keypad {...storyProps} {...props} />;
 export const WithHeaderFooter = (storyProps) => (
     <Keypad {...storyProps} {...props} {...headerFooter()} />
 );
+
+export const WithHeader = (storyProps) => <Keypad {...storyProps} {...props} header={header()} />;
+
+export const WithFooter = (storyProps) => <Keypad {...storyProps} {...props} footer={footer()} />;
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
