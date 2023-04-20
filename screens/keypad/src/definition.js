@@ -156,14 +156,6 @@ export default [
                                     description: 'Field label',
                                 }),
                             },
-                            {
-                                name: 'backdrop',
-                                type: 'background',
-                                label: defineMessage({
-                                    defaultMessage: 'Background',
-                                    description: 'Field label',
-                                }),
-                            },
                         ],
                     },
                 ],
@@ -216,6 +208,17 @@ export default [
         ],
 
         fields: [
+            {
+                name: 'title',
+                type: 'heading-element',
+                theme: {
+                    textStyle: 'heading1',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Title',
+                    description: 'Title field label',
+                }),
+            },
             {
                 name: 'background',
                 type: 'background',

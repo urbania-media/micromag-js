@@ -8,10 +8,14 @@ import definition from '../definition';
 
 const props = {
     background: backgroundColor(),
+    title: { body: 'Title' },
     items: [
         {
             id: '1',
             label: '1',
+            content: {
+                body: '<p>1 est un lorem ipsum dolor sit amet consectetur adipiscing</p>',
+            },
         },
         {
             id: '2',
@@ -36,6 +40,10 @@ const props = {
         {
             id: '7',
             label: '7',
+        },
+        {
+            id: '8',
+            label: '8',
         },
     ],
 };
