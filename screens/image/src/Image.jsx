@@ -112,6 +112,10 @@ const ImageScreen = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
     const hasImage = image !== null;
     const hasTitle = isTextFilled(title);
     const hasText = isTextFilled(text);
@@ -134,8 +138,11 @@ const ImageScreen = ({
 
     const isReversed = layout === 'reverse' || layout === 'card-reverse';
     const isTitleTop = layout === 'title-top';
-    const isCard = layout === 'card' || layout === 'card-reverse';
+    const isCardLayout = layout === 'card' || layout === 'card-reverse';
+
+    const isCard = layout === 'card';
     const isCardReverse = layout === 'card-reverse';
+
     const isFullscreen = layout === 'fullscreen';
 
     const finalSpacing = !isFullscreen && !isPlaceholder ? spacing : 0;
@@ -146,7 +153,15 @@ const ImageScreen = ({
         ? `${finalSpacing / 2}px ${-finalSpacing / 2}px 0`
         : `0 ${-finalSpacing / 2}px ${finalSpacing / 2}px`;
 
-    const imageMargin = isCard || isCardReverse ? cardImageMargin : finalSpacing / 2;
+    const imageMargin = isCardLayout ? cardImageMargin : finalSpacing / 2;
+
+    const itemMarginStyle = !isPlaceholder
+        ? {
+              margin: finalSpacing / 2,
+              marginTop: isCardReverse && !hasHeader ? finalSpacing : finalSpacing / 2,
+              marginBottom: isCard && !hasHeader ? finalSpacing : finalSpacing / 2,
+          }
+        : null;
 
     const items = [
         <div
@@ -195,6 +210,7 @@ const ImageScreen = ({
                 ) : null}
             </ScreenElement>
         </div>,
+
         withTitle && (
             <ScreenElement
                 key="title"
@@ -211,7 +227,7 @@ const ImageScreen = ({
                         playing={transitionPlaying}
                         disabled={transitionDisabled}
                     >
-                        <div style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}>
+                        <div style={itemMarginStyle}>
                             <Heading {...title} />
                         </div>
                     </Transitions>
@@ -235,7 +251,7 @@ const ImageScreen = ({
                         playing={transitionPlaying}
                         disabled={transitionDisabled}
                     >
-                        <div style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}>
+                        <div style={itemMarginStyle}>
                             <Text {...text} />
                         </div>
                     </Transitions>
@@ -259,7 +275,7 @@ const ImageScreen = ({
                         playing={transitionPlaying}
                         disabled={transitionDisabled}
                     >
-                        <div style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}>
+                        <div style={itemMarginStyle}>
                             <Text {...legend} />
                         </div>
                     </Transitions>
@@ -276,14 +292,10 @@ const ImageScreen = ({
         }
     }
 
-    const hasHeader = isHeaderFilled(header);
-    const hasFooter = isFooterFilled(footer);
-    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
-
     let paddingBottom = (current && !isPreview ? viewerBottomHeight : 0) + finalSpacing / 2;
     let paddingTop = (!isPreview ? viewerTopHeight : 0) + finalSpacing / 2;
 
-    if (isCard || isFullscreen) {
+    if (isCardLayout || isFullscreen) {
         paddingTop = 0;
         paddingBottom = 0;
     }
@@ -328,8 +340,8 @@ const ImageScreen = ({
                             style={
                                 isFullscreen || isCardReverse
                                     ? {
-                                          paddingTop: spacing,
-                                          paddingBottom: spacing / 2,
+                                          paddingTop: hasHeader ? spacing / 2 : spacing,
+                                          paddingBottom: hasHeader ? spacing / 2 : spacing,
                                           paddingLeft: isCardReverse ? spacing / 2 : spacing,
                                           paddingRight: isCardReverse ? spacing / 2 : spacing,
                                           transform: !isPreview
@@ -337,10 +349,8 @@ const ImageScreen = ({
                                               : null,
                                       }
                                     : {
-                                          paddingTop:
-                                              isCard || isCardReverse ? spacing : spacing / 2,
-                                          paddingBottom:
-                                              isCard || isCardReverse ? spacing : spacing / 2,
+                                          paddingTop: isCardLayout ? spacing / 2 : null,
+                                          paddingBottom: isCardLayout ? spacing : spacing / 2,
                                           paddingLeft: spacing / 2,
                                           paddingRight: spacing / 2,
                                       }
@@ -379,11 +389,10 @@ const ImageScreen = ({
                                               viewerBottomSidesWidth - spacing,
                                               0,
                                           ),
-                                          paddingTop: isCard ? spacing / 2 : null,
-                                          paddingBottom: isCard ? spacing / 2 : null,
+                                          paddingTop: isCardLayout ? spacing / 2 : null,
+                                          paddingBottom: isCardLayout ? spacing / 2 : null,
                                       }
                             }
-                            key="call-to-action"
                         >
                             <Footer {...footerProps} />
                         </div>

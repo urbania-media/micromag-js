@@ -310,7 +310,7 @@ const VideoScreen = ({
                             key="header"
                             className={styles.header}
                             style={{
-                                paddingTop: spacing,
+                                paddingTop: spacing / 2,
                                 paddingLeft: spacing,
                                 paddingRight: spacing,
                                 transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,

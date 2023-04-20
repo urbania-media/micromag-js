@@ -157,7 +157,7 @@ const QuizMultipleScreen = ({
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: callToActionHeight = 0 } = useDimensionObserver();
 
     const showInstantAnswer = isStatic || isCapture;
 
@@ -415,12 +415,11 @@ const QuizMultipleScreen = ({
                         ])}
                         ref={headerRef}
                         style={{
-                            paddingTop: spacing,
+                            paddingTop: spacing / 2,
                             paddingLeft: spacing,
                             paddingRight: spacing,
                             paddingBottom: spacing,
-                            transform:
-                                current && !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
+                            transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
                         }}
                     >
                         <Header {...header} />
@@ -555,7 +554,7 @@ const QuizMultipleScreen = ({
                 </Scroll>
                 {!isPlaceholder && hasFooter ? (
                     <div
-                        ref={callToActionRef}
+                        ref={footerRef}
                         className={classNames([
                             styles.footer,
                             {
@@ -563,11 +562,11 @@ const QuizMultipleScreen = ({
                             },
                         ])}
                         style={{
-                            transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
                             paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
                             paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
                             paddingTop: spacing / 2,
                             paddingBottom: spacing / 2,
+                            transform: !isPreview ? `translate(0, -${viewerBottomHeight}px)` : null,
                         }}
                     >
                         <Footer {...footerProps} />

@@ -14,6 +14,10 @@
     .content {
         z-index: 1;
     }
+
+    .heading {
+        margin-bottom: 10px;
+    }
 }
 
 .layout {
@@ -23,12 +27,12 @@
 }
 
 .shareOptions {
-    margin-top: 10px;
-
     &.isCentered {
         justify-content: center;
     }
 }
+
+
 
 .shareButton {
     display: flex;

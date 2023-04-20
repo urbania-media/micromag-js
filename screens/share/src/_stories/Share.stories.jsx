@@ -2,7 +2,13 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { title, backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
+import {
+    title,
+    backgroundColor,
+    transitions,
+    headerFooter,
+    color,
+} from '../../../../.storybook/data';
 import ShareScreen from '../Share';
 import definition from '../definition';
 
@@ -55,6 +61,10 @@ export const Capture = (storyProps) => <ShareScreen {...storyProps} {...props} /
 export const Edit = (storyProps) => <ShareScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ShareScreen {...storyProps} {...props} {...styles} />;
+
+export const WithHeading = (storyProps) => (
+    <ShareScreen {...storyProps} {...props} {...styles} heading={{ body: 'Headings are great' }} />
+);
 
 export const WithOnlyFacebook = (storyProps) => (
     <ShareScreen

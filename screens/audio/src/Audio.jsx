@@ -89,8 +89,8 @@ const AudioScreen = ({
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
-    const showHeader = isHeaderFilled(header);
-    const showFooter = isFooterFilled(footer);
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const hasAudio = audio !== null;
@@ -233,12 +233,14 @@ const AudioScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingTop:
+                                      (!isPreview ? viewerTopHeight : 0) +
+                                      (hasHeader ? spacing / 2 : spacing),
                               }
                             : null
                     }
                 >
-                    {showHeader ? <Header {...header} /> : <Spacer key="spacer-top" />}
+                    {hasHeader ? <Header {...header} /> : <Spacer key="spacer-top" />}
                     <ScreenElement
                         key="audio"
                         placeholder="audio"
@@ -309,7 +311,7 @@ const AudioScreen = ({
                                     currentTime={currentTime}
                                 />
                             ) : null}
-                            {showFooter ? (
+                            {hasFooter ? (
                                 <Footer {...footerProps} className={styles.callToAction} />
                             ) : null}
                         </div>

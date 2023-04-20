@@ -215,7 +215,7 @@ const SlideshowScreen = ({
                         <div
                             className={styles.header}
                             ref={headerRef}
-                            style={{ padding: finalSpacing }}
+                            style={{ padding: finalSpacing, paddingTop: finalSpacing / 2 }}
                         >
                             <Header {...header} />
                         </div>

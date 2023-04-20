@@ -192,7 +192,8 @@ const ConversationScreen = ({
                                 !isPlaceholder
                                     ? {
                                           padding: spacing,
-                                          paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                          paddingTop:
+                                              (!isPreview ? viewerTopHeight : 0) + spacing / 2,
                                           paddingBottom:
                                               (current && !isPreview ? viewerBottomHeight : 0) +
                                               spacing / 2,

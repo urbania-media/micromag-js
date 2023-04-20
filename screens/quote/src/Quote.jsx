@@ -113,9 +113,12 @@ const QuoteScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingTop:
+                                      (!isPreview ? viewerTopHeight : 0) +
+                                      (hasHeader ? spacing / 2 : spacing),
                                   paddingBottom:
-                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
+                                      (!isPreview ? viewerBottomHeight : 0) +
+                                      (hasFooter ? spacing / 2 : spacing),
                               }
                             : null
                     }
