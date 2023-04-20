@@ -25,6 +25,10 @@
     .item {
         position: relative;
         padding: 10px 0;
+
+        &:first-child {
+            padding-top: 0;
+        }
     }
 
     .rankText {

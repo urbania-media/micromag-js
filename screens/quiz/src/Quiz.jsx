@@ -242,14 +242,11 @@ const QuizScreen = ({
                             ])}
                             ref={headerRef}
                             style={{
-                                paddingTop: spacing,
+                                paddingTop: spacing / 2,
                                 paddingLeft: spacing,
                                 paddingRight: spacing,
                                 paddingBottom: spacing,
-                                transform:
-                                    current && !isPreview
-                                        ? `translate(0, ${viewerTopHeight}px)`
-                                        : null,
+                                transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
                             }}
                         >
                             <Header {...header} />
@@ -281,7 +278,7 @@ const QuizScreen = ({
                                 ? {
                                       padding: spacing,
                                       paddingTop:
-                                          (current && !isPreview ? viewerTopHeight : 0) +
+                                          (!isPreview ? viewerTopHeight : 0) +
                                           (headerHeight || spacing),
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +

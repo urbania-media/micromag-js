@@ -343,7 +343,7 @@ const Timeline = ({
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const [scrolledBottom, setScrolledBottom] = useState(false);
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -385,17 +385,18 @@ const Timeline = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop:
+                                          (!isPreview ? viewerTopHeight : 0) +
+                                          (hasHeader ? spacing / 2 : spacing),
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
-                                          (callToActionHeight || spacing),
+                                          (footerHeight || spacing),
                                   }
                                 : null
                         }
                     >
                         {!isPlaceholder && hasHeader ? (
                             <div
-                                key="header"
                                 style={{
                                     paddingBottom: spacing,
                                 }}
@@ -408,7 +409,7 @@ const Timeline = ({
                 </Scroll>
                 {!isPlaceholder && hasFooter ? (
                     <div
-                        ref={callToActionRef}
+                        ref={footerRef}
                         className={classNames([
                             styles.callToAction,
                             {

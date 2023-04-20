@@ -195,7 +195,7 @@ const RankingScreen = ({
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const [scrolledBottom, setScrolledBottom] = useState(false);
-    const { ref: callToActionRef, height: callToActionHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: foterHeight = 0 } = useDimensionObserver();
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -234,7 +234,7 @@ const RankingScreen = ({
                     {!isPlaceholder && hasHeader ? (
                         <div
                             style={{
-                                paddingTop: spacing,
+                                paddingTop: spacing / 2 + viewerTopHeight,
                                 paddingLeft: spacing,
                                 paddingRight: spacing,
                             }}
@@ -248,10 +248,13 @@ const RankingScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop:
+                                          !isPlaceholder && hasHeader
+                                              ? spacing
+                                              : (!isPreview ? viewerTopHeight : 0) + spacing,
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
-                                          (callToActionHeight || spacing),
+                                          (foterHeight || spacing),
                                   }
                                 : null
                         }
@@ -261,7 +264,7 @@ const RankingScreen = ({
                 </Scroll>
                 {!isPlaceholder && hasFooter ? (
                     <div
-                        ref={callToActionRef}
+                        ref={footerRef}
                         className={classNames([
                             styles.callToAction,
                             {

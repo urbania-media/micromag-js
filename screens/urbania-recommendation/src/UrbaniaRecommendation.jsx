@@ -358,10 +358,10 @@ const UrbaniaRecommendation = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                      paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing / 2,
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
-                                          spacing,
+                                          spacing / 2,
                                   }
                                 : null
                         }

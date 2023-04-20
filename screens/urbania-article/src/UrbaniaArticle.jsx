@@ -111,7 +111,8 @@ const UrbaniaArticle = ({
         useScreenRenderContext();
     const { color: backgroundColor = null } = background || {};
     const { opened: openedWebView, open: openWebView } = useViewerWebView();
-    const { bottomSidesWidth: viewerBottomSidesWidth } = useViewerContext();
+    const { bottomSidesWidth: viewerBottomSidesWidth, topHeight: viewerTopHeight } =
+        useViewerContext();
     const { muted, playing } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
@@ -296,7 +297,10 @@ const UrbaniaArticle = ({
                         key="header"
                         className={styles.header}
                         style={{
-                            paddingTop: spacing,
+                            paddingTop: spacing / 2,
+                            paddingLeft: spacing,
+                            paddingRight: spacing,
+                            transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
                         }}
                     >
                         <Header {...header} />
@@ -366,16 +370,15 @@ const UrbaniaArticle = ({
                         ) : null}
                     </ScreenElement>
                 </div>
-                <div className={styles.callToActionContainer}>
+                <div className={styles.footerContainer}>
                     {!isPlaceholder && hasFooter ? (
                         <div
-                            key="call-to-action"
                             style={{
                                 paddingTop: spacing,
                                 paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
                                 paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
                             }}
-                            className={styles.callToAction}
+                            className={styles.footer}
                         >
                             <Footer
                                 {...footerProps}

@@ -286,7 +286,7 @@ const GalleryScreen = ({
                             className={styles.header}
                             ref={headerRef}
                             style={{
-                                paddingTop: finalSpacing,
+                                paddingTop: hasHeader ? finalSpacing / 2 : spacing,
                                 paddingLeft: spacing,
                                 paddingRight: spacing,
                                 transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,

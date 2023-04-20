@@ -176,7 +176,7 @@ const ShareScreen = ({
                             ? {
                                   padding: spacing,
                                   paddingTop:
-                                      (current && !isPreview ? viewerTopHeight : 0) +
+                                      (!isPreview ? viewerTopHeight : 0) +
                                       (headerHeight || spacing),
                                   paddingBottom:
                                       (current && !isPreview ? viewerBottomHeight : 0) +
@@ -190,10 +190,11 @@ const ShareScreen = ({
                             className={styles.header}
                             ref={headerRef}
                             style={{
-                                paddingTop: spacing,
+                                paddingTop: spacing / 2,
                                 paddingBottom: spacing,
                                 paddingLeft: spacing,
                                 paddingRight: spacing,
+                                transform: `translate(0px, ${viewerTopHeight}px)`,
                             }}
                         >
                             <Header {...header} />
@@ -247,7 +248,7 @@ const ShareScreen = ({
                             ref={footerRef}
                             style={{
                                 paddingTop: spacing,
-                                paddingBottom: spacing,
+                                paddingBottom: spacing / 2,
                                 paddingLeft: Math.max(viewerBottomSidesWidth - spacing, 0),
                                 paddingRight: Math.max(viewerBottomSidesWidth - spacing, 0),
                             }}

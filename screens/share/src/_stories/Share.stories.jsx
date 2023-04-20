@@ -62,6 +62,10 @@ export const Edit = (storyProps) => <ShareScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ShareScreen {...storyProps} {...props} {...styles} />;
 
+export const WithHeading = (storyProps) => (
+    <ShareScreen {...storyProps} {...props} {...styles} heading={{ body: 'Headings are great' }} />
+);
+
 export const WithOnlyFacebook = (storyProps) => (
     <ShareScreen
         {...storyProps}

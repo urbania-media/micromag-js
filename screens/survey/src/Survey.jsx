@@ -504,14 +504,11 @@ const SurveyScreen = ({
                             ])}
                             ref={headerRef}
                             style={{
-                                paddingTop: spacing,
+                                paddingTop: spacing / 2,
                                 paddingLeft: spacing,
                                 paddingRight: spacing,
                                 paddingBottom: spacing,
-                                transform:
-                                    current && !isPreview
-                                        ? `translate(0, ${viewerTopHeight}px)`
-                                        : null,
+                                transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
                             }}
                         >
                             <Header {...header} />

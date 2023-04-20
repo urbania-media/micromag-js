@@ -353,10 +353,9 @@ const Image360Screen = ({
                 <div className={styles.inner}>
                     {!isPlaceholder && hasHeader ? (
                         <div
-                            key="header"
                             className={styles.header}
                             style={{
-                                paddingTop: spacing,
+                                paddingTop: spacing / 2,
                                 paddingLeft: spacing,
                                 paddingRight: spacing,
                             }}
@@ -365,7 +364,6 @@ const Image360Screen = ({
                         </div>
                     ) : null}
                     <ScreenElement
-                        key="video"
                         placeholder={
                             <PlaceholderVideo360
                                 className={styles.placeholder}
@@ -428,8 +426,7 @@ const Image360Screen = ({
                     </ScreenElement>
                     {!isPlaceholder && hasFooter ? (
                         <div
-                            key="callToAction"
-                            className={styles.callToAction}
+                            className={styles.footer}
                             style={{
                                 transform:
                                     current && !isPreview

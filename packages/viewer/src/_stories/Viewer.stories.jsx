@@ -37,6 +37,22 @@ const props = {
     story: allScreensStory,
 };
 
+const propsWithoutHeader = {
+    screenId: allScreensStory.components[0].id,
+    story: {
+        ...allScreensStory,
+        components: allScreensStory.components.map((it) => ({ ...it, header: null })),
+    },
+};
+
+const propsWithoutFooter = {
+    screenId: allScreensStory.components[0].id,
+    story: {
+        ...allScreensStory,
+        components: allScreensStory.components.map((it) => ({ ...it, footer: null })),
+    },
+};
+
 const faceAFaceProps = {
     screenId: faceAFace.components[0].id,
     story: faceAFace,
@@ -107,6 +123,8 @@ export const LesPlanetes = () => <Viewer {...planetsStory} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint />;
 
 export const AllScreens = () => <Viewer {...props} withNeighborScreens />;
+export const AllScreensWithoutHeader = () => <Viewer {...propsWithoutHeader} withNeighborScreens />;
+export const AllScreensWithoutFooter = () => <Viewer {...propsWithoutFooter} withNeighborScreens />;
 
 const shareScreenProps = {
     screenId: shareScreensStory.components[0].id,

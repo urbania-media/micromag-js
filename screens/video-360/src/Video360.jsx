@@ -558,7 +558,7 @@ const Video360Screen = ({
                                 key="header"
                                 className={styles.header}
                                 style={{
-                                    paddingTop: spacing,
+                                    paddingTop: spacing / 2,
                                     paddingLeft: spacing,
                                     paddingRight: spacing,
                                     transform: !isPreview

@@ -503,7 +503,7 @@ const KeypadScreen = ({
                                 ref={headerRef}
                                 className={styles.header}
                                 style={{
-                                    paddingTop: spacing,
+                                    paddingTop: spacing / 2,
                                     paddingLeft: spacing,
                                     paddingRight: spacing,
                                     paddingBottom: spacing,

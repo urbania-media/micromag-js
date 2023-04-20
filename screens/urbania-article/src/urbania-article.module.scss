@@ -249,12 +249,12 @@ $color-universities-text: #f33;
     height: 100%;
 }
 
-.callToActionContainer {
+.footerContainer {
     @extend %fullscreen;
     z-index: 3;
 }
 
-.callToAction {
+.footer {
     position: absolute;
     z-index: 10;
     right: 0;
