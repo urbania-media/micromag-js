@@ -762,3 +762,11 @@ export const badge = PropTypes.shape({
     label: textElement,
     buttonStyle: boxStyle,
 });
+
+export const header = PropTypes.shape({
+    badge,
+});
+
+export const footer = PropTypes.shape({
+    callToAction,
+});

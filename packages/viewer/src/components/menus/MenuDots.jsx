@@ -1,12 +1,11 @@
 /* eslint-disable react/no-array-index-key */
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { CloseIcon } from '@micromag/core/components';
 
 import MenuDot from './MenuDot';
 
@@ -117,7 +116,7 @@ const ViewerMenuDots = ({
                                 description: 'Button label',
                             })}
                         >
-                            <FontAwesomeIcon icon={faTimes} />
+                            <CloseIcon />
                         </button>
                     </li>
                 ) : null}

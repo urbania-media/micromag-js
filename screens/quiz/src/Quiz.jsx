@@ -264,6 +264,7 @@ const QuizScreen = ({
                         withoutTrueFalse={withoutTrueFalse}
                         withoutGoodAnswer={withoutGoodAnswer}
                         focusable={current && isView}
+                        animated={isView}
                         showInstantAnswer={showInstantAnswer}
                         withResult
                         layout={layout}

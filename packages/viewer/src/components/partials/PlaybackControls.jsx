@@ -1,12 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons/faCircleNotch';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { Button, PlayIcon, PauseIcon, MuteIcon, UnmuteIcon } from '@micromag/core/components';
+import {
+    Button,
+    PlayIcon,
+    PauseIcon,
+    MuteIcon,
+    UnmuteIcon,
+    Spinner,
+} from '@micromag/core/components';
 import { usePlaybackContext } from '@micromag/core/contexts';
 import { useMediaReady } from '@micromag/core/hooks';
 import { getColorAsString } from '@micromag/core/utils';
@@ -160,11 +165,22 @@ function PlaybackControls({
     const mediaHasAudio = hasMedia && (hasAudio === null || hasAudio === true);
     const { color, progressColor, seekBarOnly } = customControlsTheme || {};
     const isCollapsed = (controls && !controlsVisible && playing) || (!controls && mediaHasAudio);
-    const icon = playing ? (
+
+    const playIcon = playing ? (
         <PauseIcon className={styles.icon} />
     ) : (
         <PlayIcon className={styles.icon} />
     );
+
+    const playLabel = playing
+        ? intl.formatMessage({
+              defaultMessage: 'Pause',
+              description: 'Button label',
+          })
+        : intl.formatMessage({
+              defaultMessage: 'Play',
+              description: 'Button label',
+          });
 
     return (
         <div
@@ -183,35 +199,24 @@ function PlaybackControls({
             ])}
         >
             <Button
-                className={styles.playPauseButton}
+                className={classNames([
+                    styles.playPauseButton,
+                    { [styles.loading]: finalShowLoading },
+                ])}
                 style={{
                     color,
                 }}
                 onClick={playing ? onPause : onPlay}
                 focusable={controlsVisible}
                 disabled={finalShowLoading}
-                icon={
-                    finalShowLoading ? (
-                        <FontAwesomeIcon
-                            className={styles.spinner}
-                            icon={faCircleNotch}
-                            spin
-                            size="lg"
-                        />
-                    ) : (
-                        icon
-                    )
-                }
+                icon={finalShowLoading ? <Spinner className={styles.spinner} /> : playIcon}
                 aria-label={
-                    playing
+                    finalShowLoading
                         ? intl.formatMessage({
-                              defaultMessage: 'Pause',
+                              defaultMessage: 'Loading',
                               description: 'Button label',
                           })
-                        : intl.formatMessage({
-                              defaultMessage: 'Play',
-                              description: 'Button label',
-                          })
+                        : playLabel
                 }
                 withoutBootstrapStyles
             />

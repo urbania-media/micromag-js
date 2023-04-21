@@ -23,6 +23,8 @@
 
 .item {
     position: relative;
+    margin: 0;
+    padding: 0;
     transition: opacity 0.15s ease-out;
 
     .isPlaceholder & {
