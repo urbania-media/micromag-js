@@ -4,7 +4,7 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useTransition, animated, config } from '@react-spring/web';
+import { useTransition, animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState, useRef, useMemo } from 'react';
@@ -153,15 +153,18 @@ const Answers = ({
     const listOfItems = isPlaceholder || (isEdit && items.length === 0) ? [...new Array(2)] : items;
 
     const heights = useMemo(() => {
-        const allHeights = listOfItems.reduce((acc, it, i) => {
-            if (itemsRefs.current[i] && collapseAnimated) {
-                const { height = 0 } = itemsRefs.current[i].getBoundingClientRect() || {};
-                acc.push(height);
-            }
-            return acc;
-        }, []);
-        return allHeights;
-    }, [answeredIndex, shouldCollapse, collapseAnimated, listOfItems]);
+        if (animated) {
+            const allHeights = listOfItems.reduce((acc, it, i) => {
+                if (itemsRefs.current[i] && collapseAnimated) {
+                    const { height = 0 } = itemsRefs.current[i].getBoundingClientRect() || {};
+                    acc.push(height);
+                }
+                return acc;
+            }, []);
+            return allHeights;
+        }
+        return [];
+    }, [animated, answeredIndex, shouldCollapse, collapseAnimated, listOfItems]);
 
     const showAnimation = isView || isEdit;
     const filteredListOfItems = listOfItems.map((answer, answerI) => {
@@ -169,7 +172,6 @@ const Answers = ({
         const userAnswer = answerI === answeredIndex;
         const { good: rightAnswer = false } = answer || {};
         let hidden = false;
-
         if (
             answeredIndex !== null &&
             showAnimation &&
@@ -192,13 +194,15 @@ const Answers = ({
             // Animate this, not height
             maxHeight:
                 // eslint-disable-next-line no-nested-ternary
-                hidden && showAnimation && !withoutGoodAnswer
+                hidden && showAnimation && !withoutGoodAnswer && collapseAnimated
                     ? 0
                     : maxHeight > 0
                     ? maxHeight
                     : null,
+            height: hidden && showAnimation && !withoutGoodAnswer && !collapseAnimated ? 0 : 'auto',
         }),
-        config: config.gentle,
+        // config: config.gentle,
+        config: { tension: 300, friction: 35 },
     });
 
     return (

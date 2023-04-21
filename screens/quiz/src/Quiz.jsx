@@ -201,6 +201,11 @@ const QuizScreen = ({
         setUserAnswerIndex(null);
     }, [setUserAnswerIndex]);
 
+    const numberOfAnswers = (answers || []).length;
+    useEffect(() => {
+        onQuizReset();
+    }, [numberOfAnswers, onQuizReset]);
+
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
     const showReset = isEdit;
