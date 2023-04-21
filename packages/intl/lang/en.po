@@ -1534,6 +1534,12 @@ msgctxt "YyPYHk"
 msgid "Scorpio"
 msgstr "Scorpio"
 
+# Button label
+#: YyYrXp
+msgctxt "YyYrXp"
+msgid "Loading"
+msgstr "Loading"
+
 # Screen group
 #: Z27IP6
 msgctxt "Z27IP6"
