@@ -4,7 +4,7 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useTransition, animated } from '@react-spring/web';
+import { useTransition, animated, easings } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState, useRef, useMemo } from 'react';
@@ -229,7 +229,8 @@ const Answers = ({
                     ? 0
                     : 'auto',
         }),
-        config: { tension: 300, friction: 35 },
+        // config: { tension: 300, friction: 35 },
+        config: { duration: 300, easing: easings.easeOutSine },
     });
 
     return (
