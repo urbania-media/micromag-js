@@ -138,7 +138,7 @@ const Answers = ({
         if (answersCollapsed) {
             timeout = setTimeout(() => {
                 setAnswersFinalCollapse(true);
-            }, 200);
+            }, 300);
         }
         return () => {
             if (timeout !== null) {
