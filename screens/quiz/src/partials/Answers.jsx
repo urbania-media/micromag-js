@@ -42,7 +42,7 @@ const propTypes = {
 
 const defaultProps = {
     answeredIndex: null,
-    answersCollapseDelay: 2000,
+    answersCollapseDelay: 1000,
     buttonsStyle: null,
     buttonsTextStyle: null,
     goodAnswerColor: null,
@@ -99,6 +99,9 @@ const Answers = ({
     const [answersDidCollapse, setAnswersDidCollapse] = useState(
         initialCollapsed || answeredIndex !== null,
     );
+    const [answersFinalCollapse, setAnswersFinalCollapse] = useState(
+        initialCollapsed || answeredIndex !== null,
+    );
 
     useEffect(() => {
         let timeout = null;
@@ -129,6 +132,20 @@ const Answers = ({
         hasAnsweredRight,
         finalShowUserAnswer,
     ]);
+
+    useEffect(() => {
+        let timeout = null;
+        if (answersCollapsed) {
+            timeout = setTimeout(() => {
+                setAnswersFinalCollapse(true);
+            }, 200);
+        }
+        return () => {
+            if (timeout !== null) {
+                clearTimeout(timeout);
+            }
+        };
+    }, [answersCollapsed]);
 
     const onAnswerTransitionEnd = useCallback(() => {
         if (onTransitionEnd !== null) {
@@ -194,14 +211,24 @@ const Answers = ({
             // Animate this, not height
             maxHeight:
                 // eslint-disable-next-line no-nested-ternary
-                hidden && showAnimation && !withoutGoodAnswer && collapseAnimated
+                hidden &&
+                showAnimation &&
+                !withoutGoodAnswer &&
+                collapseAnimated &&
+                answersFinalCollapse
                     ? 0
                     : maxHeight > 0
                     ? maxHeight
                     : null,
-            height: hidden && showAnimation && !withoutGoodAnswer && !collapseAnimated ? 0 : 'auto',
+            height:
+                hidden &&
+                showAnimation &&
+                !withoutGoodAnswer &&
+                !collapseAnimated &&
+                answersFinalCollapse
+                    ? 0
+                    : 'auto',
         }),
-        // config: config.gentle,
         config: { tension: 300, friction: 35 },
     });
 
