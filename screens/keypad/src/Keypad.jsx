@@ -156,6 +156,7 @@ const KeypadScreen = ({
     active,
     className,
 }) => {
+    const containerRef = useRef(null);
     const popupInnerRef = useRef(null);
 
     const trackScreenEvent = useTrackScreenEvent('keypad');
@@ -285,6 +286,10 @@ const KeypadScreen = ({
             if (
                 popupInnerRef.current &&
                 !popupInnerRef.current.contains(event.target) &&
+                containerRef.current &&
+                containerRef.current.contains(event.target) &&
+                !isInteractivePreview &&
+                !isEdit &&
                 showPopup !== 0
             ) {
                 onCloseModal();
@@ -295,7 +300,7 @@ const KeypadScreen = ({
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [popupInnerRef, showPopup]);
+    }, [popupInnerRef, containerRef, isInteractivePreview, isEdit, showPopup]);
 
     const { bind: bindPopupDrag, progress: popupSpring } = useDragProgress({
         disabled: !isView,
@@ -396,7 +401,8 @@ const KeypadScreen = ({
                                     ])}
                                     isEmpty={visual === null}
                                 >
-                                    {visual !== null || !isInteractivePreview ? (
+                                    {visual !== null ? (
+                                        // || !isInteractivePreview
                                         <Visual
                                             className={styles.buttonVisual}
                                             imageClassName={styles.thumbnail}
@@ -456,6 +462,7 @@ const KeypadScreen = ({
 
     return (
         <div
+            ref={containerRef}
             className={classNames([
                 styles.container,
                 {
@@ -485,7 +492,7 @@ const KeypadScreen = ({
                     width={width}
                     height={height}
                     verticalAlign={layout}
-                    disabled={isPreview || isPlaceholder || isEdit || showPopup !== 0}
+                    disabled={isPreview || isPlaceholder || showPopup !== 0}
                 >
                     <Layout
                         className={styles.layout}
@@ -596,7 +603,6 @@ const KeypadScreen = ({
                                         p < 0.1 ? 'none' : 'auto',
                                     ),
                                 }}
-                                // onClick={onCloseModal}
                                 {...bindPopupDrag()}
                             >
                                 {/* <button
@@ -605,9 +611,7 @@ const KeypadScreen = ({
                                     className={styles.popupButton}
                                 > */}
                                 <Scroll
-                                    disabled={
-                                        isPreview || isPlaceholder || isEdit || showPopup === 0
-                                    }
+                                    disabled={isPreview || isPlaceholder || showPopup === 0}
                                     verticalAlign="middle"
                                     withArrow={false}
                                     className={styles.popupScroll}
