@@ -739,7 +739,6 @@ const Viewer = ({
                                         <PlaybackControls className={styles.controls} />
                                     </div>
                                 ) : null}
-
                                 {withNavigationHint &&
                                 !withNeighborScreens &&
                                 !navigationDisabled &&
