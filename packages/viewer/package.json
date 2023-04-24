@@ -57,6 +57,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.367",
+        "@micromag/element-badge": "^0.3.362",
         "@micromag/element-scroll": "^0.3.367",
         "@micromag/element-share-options": "^0.3.367",
         "@micromag/element-webview": "^0.3.367",
@@ -82,5 +83,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "22eba0d01f18f8971e0405bbb41081b5e2ae80ee"
+    "gitHead": "887eca305ae85cbc230a9737864bb418edf25e04"
 }

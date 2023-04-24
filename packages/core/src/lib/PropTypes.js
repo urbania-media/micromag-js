@@ -769,4 +769,5 @@ export const header = PropTypes.shape({
 
 export const footer = PropTypes.shape({
     callToAction,
+    //
 });
