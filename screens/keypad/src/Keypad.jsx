@@ -7,12 +7,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import {
-    PlaceholderText,
-    PlaceholderImage,
-    PlaceholderButton,
-    ScreenElement,
-} from '@micromag/core/components';
+import { PlaceholderButton, ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenState,
@@ -220,6 +215,7 @@ const KeypadScreen = ({
 
     const [showPopup, setShowPopup] = useState(false);
     const [popup, setPopup] = useState(null);
+
     const {
         heading: popupHeading = null,
         content: popupContent = null,
@@ -250,27 +246,19 @@ const KeypadScreen = ({
                 });
                 return;
             }
-            // disableInteraction();
+            disableInteraction();
             setPopup(item);
             setShowPopup(1);
         },
-        [
-            // disableInteraction,
-            setPopup,
-            trackScreenEvent,
-        ],
+        [disableInteraction, setPopup, trackScreenEvent],
     );
 
     const onCloseModal = useCallback(() => {
-        // enableInteraction();
+        enableInteraction();
 
         setShowPopup(0);
         trackScreenEvent('close_modal');
-    }, [
-        // enableInteraction,
-        setShowPopup,
-        trackScreenEvent,
-    ]);
+    }, [enableInteraction, setShowPopup, trackScreenEvent]);
 
     const computePopupProgress = useCallback(
         ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
@@ -362,62 +350,63 @@ const KeypadScreen = ({
                             external={isExternalLink}
                             href={isExternalLink ? url : null}
                             onClick={
-                                !isPopupEmpty || !isExternalLink
+                                !isPopupEmpty || (url !== null && !isExternalLink)
                                     ? (e) => onItemClick(e, item)
                                     : null
                             }
                         >
-                            {isEmpty && (isInteractivePreview || isPreview) ? (
+                            {/* @TODO: change this */}
+                            {/* {isEmpty && (isInteractivePreview || isPreview) ? (
                                 <>
                                     <PlaceholderImage className={styles.imagePlaceholder} />
                                     <PlaceholderText lines={2} />
                                 </>
-                            ) : (
-                                <>
+                            ) : ( */}
+                            <>
+                                <ScreenElement
+                                    emptyLabel={
+                                        <FormattedMessage
+                                            defaultMessage="Visual"
+                                            description="Placeholder label"
+                                        />
+                                    }
+                                    emptyClassName={classNames([
+                                        styles.empty,
+                                        styles.buttonVisual,
+                                        styles.emptyButtonVisual,
+                                    ])}
+                                    isEmpty={visual === null}
+                                >
                                     {visual !== null || !isInteractivePreview ? (
-                                        <ScreenElement
-                                            emptyLabel={
-                                                <FormattedMessage
-                                                    defaultMessage="Visual"
-                                                    description="Placeholder label"
-                                                />
-                                            }
-                                            emptyClassName={classNames([
-                                                styles.empty,
-                                                styles.buttonVisual,
-                                                styles.emptyButtonVisual,
-                                            ])}
-                                            isEmpty={visual === null}
-                                        >
-                                            <Visual
-                                                className={styles.buttonVisual}
-                                                imageClassName={styles.thumbnail}
-                                                media={visual}
-                                                width="auto"
-                                            />
-                                        </ScreenElement>
+                                        <Visual
+                                            className={styles.buttonVisual}
+                                            imageClassName={styles.thumbnail}
+                                            media={visual}
+                                            width="auto"
+                                        />
                                     ) : null}
+                                </ScreenElement>
 
+                                <ScreenElement
+                                    placeholder={<PlaceholderButton />}
+                                    emptyLabel={
+                                        <FormattedMessage
+                                            defaultMessage="Label"
+                                            description="Placeholder label"
+                                        />
+                                    }
+                                    emptyClassName={classNames([
+                                        styles.empty,
+                                        styles.emptyButtonLabel,
+                                    ])}
+                                    isEmpty={label === null}
+                                >
                                     {label !== null || !isInteractivePreview ? (
-                                        <ScreenElement
-                                            placeholder={<PlaceholderButton />}
-                                            emptyLabel={
-                                                <FormattedMessage
-                                                    defaultMessage="Label"
-                                                    description="Placeholder label"
-                                                />
-                                            }
-                                            emptyClassName={classNames([
-                                                styles.empty,
-                                                styles.emptyButtonLabel,
-                                            ])}
-                                            isEmpty={label === null}
-                                        >
-                                            <div className={styles.buttonLabel}>{label}</div>
-                                        </ScreenElement>
+                                        <div className={styles.buttonLabel}>{label}</div>
                                     ) : null}
-                                </>
-                            )}
+                                </ScreenElement>
+                            </>
+                            {/* )} */}
                         </Button>
                     </div>
                 );
@@ -493,7 +482,6 @@ const KeypadScreen = ({
                                       paddingBottom:
                                           (hasFooter ? footerHeight : spacing) +
                                           (current && !isPreview ? viewerBottomHeight : 0),
-                                      transition: 'padding 0.2s ease-out',
                                   }
                                 : null
                         }
@@ -576,7 +564,7 @@ const KeypadScreen = ({
                                 }}
                             />
 
-                            <animated.div
+                            <animated.button
                                 className={styles.popup}
                                 style={{
                                     transform: popupSpring.to(
@@ -589,6 +577,7 @@ const KeypadScreen = ({
                                         p < 0.1 ? 'none' : 'auto',
                                     ),
                                 }}
+                                onClick={onCloseModal}
                                 {...bindPopupDrag()}
                             >
                                 <Scroll
@@ -599,133 +588,130 @@ const KeypadScreen = ({
                                     withArrow={false}
                                     withShadow
                                 >
-                                    <button
+                                    {/* <button
                                         type="button"
-                                        onClick={onCloseModal}
+                                        // onClick={onCloseModal}
                                         className={styles.popupButton}
+                                    > */}
+                                    <div
+                                        className={classNames([
+                                            styles.popupInner,
+                                            styles[popupLayoutClassName],
+                                        ])}
+                                        style={{
+                                            ...getStyleFromBox(placeholderPopupBoxStyles),
+                                            ...getStyleFromBox(popupBoxStyle),
+                                        }}
                                     >
-                                        <div
-                                            className={classNames([
-                                                styles.popupInner,
-                                                styles[popupLayoutClassName],
-                                            ])}
-                                            style={{
-                                                ...getStyleFromBox(placeholderPopupBoxStyles),
-                                                ...getStyleFromBox(popupBoxStyle),
-                                            }}
-                                        >
-                                            <div className={styles.popupWrapper}>
-                                                <ScreenElement
-                                                    placeholder="popupHeading"
-                                                    emptyLabel={
-                                                        <FormattedMessage
-                                                            defaultMessage="Heading"
-                                                            description="Placeholder label"
-                                                        />
-                                                    }
-                                                    emptyClassName={classNames([
-                                                        styles.empty,
-                                                        styles.emptyHeading,
-                                                    ])}
-                                                    isEmpty={!hasPopupHeading}
-                                                >
-                                                    {hasPopupHeading ? (
-                                                        <Heading
-                                                            className={styles.popupHeading}
-                                                            {...popupHeading}
-                                                            textStyle={{
-                                                                ...headingTextStyle,
-                                                                ...popupHeadingTextStyle,
-                                                            }}
-                                                        />
-                                                    ) : null}
-                                                </ScreenElement>
+                                        <div className={styles.popupWrapper}>
+                                            <ScreenElement
+                                                emptyLabel={
+                                                    <FormattedMessage
+                                                        defaultMessage="Heading"
+                                                        description="Placeholder label"
+                                                    />
+                                                }
+                                                emptyClassName={classNames([
+                                                    styles.empty,
+                                                    styles.emptyHeading,
+                                                ])}
+                                                isEmpty={!hasPopupHeading}
+                                            >
+                                                {hasPopupHeading ? (
+                                                    <Heading
+                                                        className={styles.popupHeading}
+                                                        {...popupHeading}
+                                                        textStyle={{
+                                                            ...headingTextStyle,
+                                                            ...popupHeadingTextStyle,
+                                                        }}
+                                                    />
+                                                ) : null}
+                                            </ScreenElement>
 
-                                                <ScreenElement
-                                                    placeholder="popupContent"
-                                                    emptyLabel={
-                                                        <FormattedMessage
-                                                            defaultMessage="Content"
-                                                            description="Placeholder label"
-                                                        />
-                                                    }
-                                                    emptyClassName={classNames([
-                                                        styles.empty,
-                                                        styles.emptyContent,
-                                                    ])}
-                                                    isEmpty={!hasPopupContent}
-                                                >
-                                                    {hasPopupContent ? (
-                                                        <Text
-                                                            className={styles.popupContent}
-                                                            {...popupContent}
-                                                            textStyle={{
-                                                                ...contentTextStyle,
-                                                                ...popupContentTextStyle,
-                                                            }}
-                                                        />
-                                                    ) : null}
-                                                </ScreenElement>
+                                            <ScreenElement
+                                                placeholder="popupContent"
+                                                emptyLabel={
+                                                    <FormattedMessage
+                                                        defaultMessage="Content"
+                                                        description="Placeholder label"
+                                                    />
+                                                }
+                                                emptyClassName={classNames([
+                                                    styles.empty,
+                                                    styles.emptyContent,
+                                                ])}
+                                                isEmpty={!hasPopupContent}
+                                            >
+                                                {hasPopupContent ? (
+                                                    <Text
+                                                        className={styles.popupContent}
+                                                        {...popupContent}
+                                                        textStyle={{
+                                                            ...contentTextStyle,
+                                                            ...popupContentTextStyle,
+                                                        }}
+                                                    />
+                                                ) : null}
+                                            </ScreenElement>
 
-                                                <ScreenElement
-                                                    placeholder="image"
-                                                    emptyLabel={
-                                                        <FormattedMessage
-                                                            defaultMessage="Visual (Image or Video)"
-                                                            description="Placeholder label"
-                                                        />
-                                                    }
-                                                    emptyClassName={classNames([
-                                                        styles.empty,
-                                                        styles.emptyVisual,
-                                                    ])}
-                                                    isEmpty={largeVisual === null}
-                                                >
-                                                    {largeVisual !== null ? (
-                                                        <Visual
-                                                            className={styles.popupVisual}
-                                                            media={largeVisual}
-                                                            width="100%"
-                                                        />
-                                                    ) : null}
-                                                </ScreenElement>
+                                            <ScreenElement
+                                                placeholder="image"
+                                                emptyLabel={
+                                                    <FormattedMessage
+                                                        defaultMessage="Visual (Image or Video)"
+                                                        description="Placeholder label"
+                                                    />
+                                                }
+                                                emptyClassName={classNames([
+                                                    styles.empty,
+                                                    styles.emptyVisual,
+                                                ])}
+                                                isEmpty={largeVisual === null}
+                                            >
+                                                {largeVisual !== null ? (
+                                                    <Visual
+                                                        className={styles.popupVisual}
+                                                        media={largeVisual}
+                                                        width="100%"
+                                                    />
+                                                ) : null}
+                                            </ScreenElement>
 
-                                                <ScreenElement
-                                                    placeholder="button"
-                                                    emptyLabel={
-                                                        <FormattedMessage
-                                                            defaultMessage="Button"
-                                                            description="Placeholder label"
-                                                        />
-                                                    }
-                                                    emptyClassName={classNames([
-                                                        styles.empty,
-                                                        styles.emptyCTA,
-                                                    ])}
-                                                    isEmpty={popupButton === null}
-                                                >
-                                                    {popupButton !== null ? (
-                                                        <CallToAction
-                                                            className={styles.popupCTA}
-                                                            label={buttonLabel}
-                                                            url={buttonUrl}
-                                                            inWebView={popupInWebView}
-                                                            openWebView={openWebView}
-                                                            type="click"
-                                                            boxStyle={popupButtonBoxStyle}
-                                                            style={{
-                                                                ...getStyleFromBox(
-                                                                    popupButtonBoxStyle,
-                                                                ),
-                                                            }}
-                                                        />
-                                                    ) : null}
-                                                </ScreenElement>
-                                            </div>
+                                            <ScreenElement
+                                                placeholder="button"
+                                                emptyLabel={
+                                                    <FormattedMessage
+                                                        defaultMessage="Button"
+                                                        description="Placeholder label"
+                                                    />
+                                                }
+                                                emptyClassName={classNames([
+                                                    styles.empty,
+                                                    styles.emptyCTA,
+                                                ])}
+                                                isEmpty={popupButton === null}
+                                            >
+                                                {popupButton !== null ? (
+                                                    <CallToAction
+                                                        className={styles.popupCTA}
+                                                        label={buttonLabel}
+                                                        url={buttonUrl}
+                                                        inWebView={popupInWebView}
+                                                        openWebView={openWebView}
+                                                        type="click"
+                                                        boxStyle={popupButtonBoxStyle}
+                                                        style={{
+                                                            ...getStyleFromBox(popupButtonBoxStyle),
+                                                        }}
+                                                    />
+                                                ) : null}
+                                            </ScreenElement>
                                         </div>
-                                    </button>
+                                    </div>
+                                    {/* </button> */}
                                 </Scroll>
-                            </animated.div>
+                            </animated.button>
                         </>
                     ) : null}
                 </Scroll>

@@ -80,7 +80,7 @@ export default [
     {
         label: 'Alexandre Lamarche',
         visual: imageMediaFromURL(alex),
-        url: 'http://hotdog.com',
+        url: 'http://urbania.ca',
     },
     {
         label: 'Corentin Guérin',

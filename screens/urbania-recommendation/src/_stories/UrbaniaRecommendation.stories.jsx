@@ -58,6 +58,14 @@ export const Normal = (storyProps) => (
     />
 );
 
+export const VisualBottom = (storyProps) => (
+    <UrbaniaRecommendation
+        {...storyProps}
+        {...props}
+        visual={{ image: imageMedia({ width: 309, height: 223 }), visualLayout: 'label-top' }}
+    />
+);
+
 export const WithVideoBackground = (storyProps) => (
     <UrbaniaRecommendation {...storyProps} {...props} background={backgroundVideo()} />
 );
