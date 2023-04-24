@@ -8233,6 +8233,55 @@
                 "category": {
                     "body": "<span>PODCAST</span>"
                 },
+                "visual": {
+                    "image": {
+                        "id": "2810",
+                        "type": "image",
+                        "name": "SUGGESTIONSPlan-de-travail-2.png",
+                        "url": "https://cdn.microm.ag/image/2022-06-02/11034-042743.png",
+                        "thumbnail_url": "https://img.microm.ag/image/2022-06-02/filters/thumbnail/11034-042743.png",
+                        "files": {
+                            "original": {
+                                "id": "11034",
+                                "type": "image",
+                                "mime": "image/png",
+                                "handle": "original",
+                                "name": "SUGGESTIONSPlan-de-travail-2.png",
+                                "url": "https://cdn.microm.ag/image/2022-06-02/11034-042743.png"
+                            }
+                        },
+                        "sizes": {
+                            "large": {
+                                "id": "large",
+                                "url": "https://img.microm.ag/image/2022-06-02/filters/large/11034-042743.png",
+                                "width": 788,
+                                "height": 1400
+                            },
+                            "medium": {
+                                "id": "medium",
+                                "url": "https://img.microm.ag/image/2022-06-02/filters/medium/11034-042743.png",
+                                "width": 563,
+                                "height": 1000
+                            },
+                            "small": {
+                                "id": "small",
+                                "url": "https://img.microm.ag/image/2022-06-02/filters/small/11034-042743.png",
+                                "width": 338,
+                                "height": 600
+                            }
+                        },
+                        "metadata": {
+                            "filename": "SUGGESTIONSPlan-de-travail-2.png",
+                            "size": 2477547,
+                            "mime": "image/png",
+                            "description": null,
+                            "width": 1080,
+                            "height": 1920
+                        }
+                    },
+                    "visualLayout": "label-top"
+                },
+
                 "title": {
                     "body": "<span>Tomber : Michel Brûlé</span>",
                     "textStyle": {

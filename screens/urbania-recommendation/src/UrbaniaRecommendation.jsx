@@ -215,7 +215,15 @@ const UrbaniaRecommendation = ({
                         isEmpty={!hasVisual}
                     >
                         {hasVisual ? (
-                            <Visual className={styles.visual} media={image} width="auto" />
+                            <Visual
+                                className={styles.visual}
+                                media={image}
+                                width="100%"
+                                // objectFit={{ fit: 'cover' }}
+                                resolution={resolution}
+                                active={active}
+                                shouldLoad={mediaShouldLoad}
+                            />
                         ) : null}
                     </ScreenElement>
                 </div>

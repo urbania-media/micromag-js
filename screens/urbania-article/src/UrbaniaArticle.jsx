@@ -248,7 +248,7 @@ const UrbaniaArticle = ({
             {hasSponsor ? (
                 <div className={styles.sponsors} style={{ ...getStyleFromColor(sponsorColor) }}>
                     {sponsors.map((sponsor = null) => {
-                        const { body = '' } = sponsor;
+                        const { body = '' } = sponsor || {};
                         return (
                             <React.Fragment key={body}>
                                 {sponsorPrefix !== null ? (

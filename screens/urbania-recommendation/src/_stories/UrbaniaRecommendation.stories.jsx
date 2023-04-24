@@ -54,7 +54,7 @@ export const Normal = (storyProps) => (
     <UrbaniaRecommendation
         {...storyProps}
         {...props}
-        visual={{ image: imageMedia({ width: 309, height: 223 }), visualLayout: 'label-bottom' }}
+        visual={{ image: imageMedia({ width: 1309, height: 1223 }), visualLayout: 'label-bottom' }}
     />
 );
 
