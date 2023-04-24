@@ -53,9 +53,22 @@
     height: auto;
 }
 
-.title {
-    margin-right: auto;
+.titleContainer {
+    width: 70%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.badge {
+    margin-bottom: 10px;
+    border-color: #fff;
     color: #fff;
+}
+
+.title {
+    // color: #fff;
     font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -64,6 +77,10 @@
     flex-grow: 1;
     padding: 10px;
     overflow: hidden;
+}
+
+.title {
+    text-align: center;
 }
 
 .items,
@@ -100,6 +117,7 @@
     animation: intro 1s 50ms 1 forwards $ease-in-out-sine;
     border-radius: 0.45rem;
     opacity: 0;
+    box-shadow: 0 0 2px $black;
 }
 
 @keyframes intro {

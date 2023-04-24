@@ -83,6 +83,12 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "Mes fichiers"
 
+# Number field label
+#: /6zaOP
+msgctxt "/6zaOP"
+msgid "Transition Delay (in seconds)"
+msgstr "Délai de transition (en secondes)"
+
 # Delete in Media Gallery
 #: /KQ87r
 msgctxt "/KQ87r"
@@ -106,6 +112,12 @@ msgstr "Bélier"
 msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Tout effacer"
+
+# Field label
+#: /W31TQ
+msgctxt "/W31TQ"
+msgid "Embedded browser"
+msgstr "Navigateur intégré"
 
 # Image 360 placeholder
 #: /YQ+xP
@@ -200,6 +212,12 @@ msgstr "Aucun"
 # Title placeholder
 #: 2ZOPe+
 msgctxt "2ZOPe+"
+msgid "Title"
+msgstr "Titre"
+
+# Category placeholder
+#: 2c1WFV
+msgctxt "2c1WFV"
 msgid "Title"
 msgstr "Titre"
 
@@ -473,12 +491,6 @@ msgctxt "75nZbY"
 msgid "Keypad"
 msgstr "Clavier"
 
-# Title field label
-#: 7YE/VU
-msgctxt "7YE/VU"
-msgid "Sponsor"
-msgstr "Présentateur"
-
 # Horoscope date
 #: 7ZzlUE
 msgctxt "7ZzlUE"
@@ -682,12 +694,6 @@ msgstr "Titre des résultats"
 msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Succès"
-
-# Text placeholder
-#: Bv1Q38
-msgctxt "Bv1Q38"
-msgid "Sponsor"
-msgstr "Présentateur"
 
 # Field label
 #: BwYZbB
@@ -988,6 +994,12 @@ msgstr "Créez votre premier écran"
 msgctxt "JoyIgA"
 msgid "Minimum points for this result"
 msgstr "Nb. minimum de points"
+
+# Text placeholder
+#: JzSBzL
+msgctxt "JzSBzL"
+msgid "Visual"
+msgstr "Visuel"
 
 # No value field label
 #: K1BxIr
@@ -1954,6 +1966,12 @@ msgctxt "hvxkzE"
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
+# Title field label
+#: hzvEim
+msgctxt "hzvEim"
+msgid "Sponsor Label"
+msgstr "Libellé du présentateur"
+
 # No value label
 #: i+3ZrF
 msgctxt "i+3ZrF"
@@ -2329,12 +2347,6 @@ msgstr "Marges"
 msgctxt "qjL/eA"
 msgid "Bar"
 msgstr "Barre"
-
-# Field label
-#: qmIJjc
-msgctxt "qmIJjc"
-msgid "Pop-up window"
-msgstr "Fenêtre pop-up"
 
 # Breadcrumb field label
 #: qroLmS
@@ -2809,6 +2821,12 @@ msgstr "Urbania Insolite"
 msgctxt "zGIcdn"
 msgid "Sponsors"
 msgstr "Présentateurs"
+
+# Text field label
+#: zLxBdl
+msgctxt "zLxBdl"
+msgid "Location"
+msgstr "Lieu"
 
 # Quiz screen title
 #: zW7IVm

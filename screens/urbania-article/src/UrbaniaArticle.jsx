@@ -127,6 +127,7 @@ const UrbaniaArticle = ({
         const defaultImageHeight = width * 0.8;
         const difference = height - contentHeight - contentTop + 1;
 
+        // @TODO: seems like this returns the same thing no matter what
         if (difference > defaultImageHeight) {
             return { imageHeight: difference };
         }
@@ -213,28 +214,23 @@ const UrbaniaArticle = ({
                 </div>
             ) : null}
         </ScreenElement>,
-        hasDescription ? (
-            <ScreenElement
-                key="description"
-                empty={
-                    <div className={styles.emptyContainer}>
-                        <Empty className={styles.empty}>
-                            <FormattedMessage
-                                defaultMessage="Lede"
-                                description="Lede placeholder"
-                            />
-                        </Empty>
-                    </div>
-                }
-                isEmpty={!hasDescription}
-            >
-                {hasDescription ? (
-                    <div className={classNames([styles.description])}>
-                        <Text className={classNames([styles.lede])} {...description} />
-                    </div>
-                ) : null}
-            </ScreenElement>
-        ) : null,
+        <ScreenElement
+            key="description"
+            empty={
+                <div className={styles.emptyContainer}>
+                    <Empty className={styles.empty}>
+                        <FormattedMessage defaultMessage="Lede" description="Lede placeholder" />
+                    </Empty>
+                </div>
+            }
+            isEmpty={!hasDescription && !hasArticle}
+        >
+            {hasDescription ? (
+                <div className={classNames([styles.description])}>
+                    <Text className={classNames([styles.lede])} {...description} />
+                </div>
+            ) : null}
+        </ScreenElement>,
         <ScreenElement
             key="sponsors"
             empty={
@@ -342,7 +338,7 @@ const UrbaniaArticle = ({
                                 </Empty>
                             </div>
                         }
-                        isEmpty={!hasImage}
+                        isEmpty={!hasImage && !hasArticle}
                     >
                         {hasImage && !isVideo ? (
                             <Visual

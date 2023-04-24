@@ -60,7 +60,11 @@ const faceAFaceProps = {
 
 const twoScreensProps = {
     ...faceAFaceProps,
-    story: { ...faceAFace.story, components: faceAFace.components.slice(0, 2) },
+    story: {
+        ...faceAFace.story,
+        title: 'Two screens',
+        components: faceAFace.components.slice(0, 2),
+    },
 };
 
 export default {

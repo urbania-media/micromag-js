@@ -6,6 +6,8 @@ import {
     // text,
     // title,
     backgroundImage,
+    backgroundVideo,
+    imageMedia,
     transitions,
     headerFooter,
 } from '../../../../.storybook/data';
@@ -19,13 +21,14 @@ const props = {
     // sponsor: text('short'),
     // description: text('medium'),
     category: { body: 'Pièce de théâtre' },
-    date: { body: 'du 14 FÉVRIER au 5 MARS' },
+    date: { body: 'du <strong>14 FÉVRIER</strong> au <strong>5 MARS</strong>' },
     title: { body: 'Blackbird' },
-    sponsor: { body: 'suggéré par banque national' },
+    sponsor: { body: 'suggéré par <strong>banque national</strong>' },
+    location: { body: 'suggéré par <strong>banque national</strong>' },
     description: {
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        // body: 'testing testing one two one two mic check one two one two',
+        body: '<p><strong>LE PITCH</strong></p><p>Un festival hivernal de musique urbaine pour célébrer le nouvel an à Québec.</p><p><strong>Pourquoi on aime?</strong></p><p>Ambiance festive et programmation électro gratuite. Que demander de plus.</p>',
     },
+    visual: { image: imageMedia({ width: 309, height: 223 }), visualLayout: 'label-top' },
     background: backgroundImage({ width: 320, height: 480 }),
     transitions: transitions(),
 };
@@ -47,7 +50,25 @@ export const Capture = (storyProps) => <UrbaniaRecommendation {...storyProps} {.
 
 export const Edit = (storyProps) => <UrbaniaRecommendation {...storyProps} />;
 
-export const Normal = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
+export const Normal = (storyProps) => (
+    <UrbaniaRecommendation
+        {...storyProps}
+        {...props}
+        visual={{ image: imageMedia({ width: 309, height: 223 }), visualLayout: 'label-bottom' }}
+    />
+);
+
+export const VisualBottom = (storyProps) => (
+    <UrbaniaRecommendation
+        {...storyProps}
+        {...props}
+        visual={{ image: imageMedia({ width: 309, height: 223 }), visualLayout: 'label-top' }}
+    />
+);
+
+export const WithVideoBackground = (storyProps) => (
+    <UrbaniaRecommendation {...storyProps} {...props} background={backgroundVideo()} />
+);
 
 export const WithHeaderFooter = (storyProps) => (
     <UrbaniaRecommendation {...storyProps} {...props} {...headerFooter()} />

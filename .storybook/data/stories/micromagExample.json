@@ -8225,7 +8225,10 @@
                     "url": "https://ici.radio-canada.ca/ohdio/balados/9704/tomber-michel-brule"
                 },
                 "date": {
-                    "body": "<p>À écouter&nbsp;<br>sur <strong>OHdio&nbsp;</strong></p>"
+                    "body": "<p>Du <strong>20</strong> au <strong>22</strong> mars</p>"
+                },
+                "location": {
+                    "body": "<p>À écouter&nbsp;sur <strong>OHdio&nbsp;</strong></p>"
                 },
                 "category": {
                     "body": "<span>PODCAST</span>"
@@ -8539,7 +8542,7 @@
                     "inWebView": false
                 },
                 "date": {
-                    "body": "<p>Du <strong>16</strong> au&nbsp;<br><strong>19 JUIN</strong></p>"
+                    "body": "<p>Du <strong>16</strong> au&nbsp;<strong>19 JUIN</strong></p>"
                 },
                 "sponsor": {
                     "body": "<p>Présenté par <strong>Festival de Tadoussac</strong></p>",

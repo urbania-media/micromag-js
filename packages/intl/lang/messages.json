@@ -47,6 +47,10 @@
     "defaultMessage": "My files",
     "description": "Media gallery source"
   },
+  "/6zaOP": {
+    "defaultMessage": "Transition Delay (in seconds)",
+    "description": "Number field label"
+  },
   "/KQ87r": {
     "defaultMessage": "Delete media",
     "description": "Delete in Media Gallery"
@@ -62,6 +66,10 @@
   "/T/UDH": {
     "defaultMessage": "Remove all",
     "description": "Remove all button label"
+  },
+  "/W31TQ": {
+    "defaultMessage": "Embedded browser",
+    "description": "Field label"
   },
   "/YQ+xP": {
     "defaultMessage": "Image 360",
@@ -126,6 +134,10 @@
   "2ZOPe+": {
     "defaultMessage": "Title",
     "description": "Title placeholder"
+  },
+  "2c1WFV": {
+    "defaultMessage": "Title",
+    "description": "Category placeholder"
   },
   "2pO2Cj": {
     "defaultMessage": "Url",
@@ -307,10 +319,6 @@
     "defaultMessage": "Keypad",
     "description": "Keypad screen title"
   },
-  "7YE/VU": {
-    "defaultMessage": "Sponsor",
-    "description": "Title field label"
-  },
   "7ZzlUE": {
     "defaultMessage": "Oct 23 - Nov 22",
     "description": "Horoscope date"
@@ -446,10 +454,6 @@
   "BpZoQZ": {
     "defaultMessage": "Success",
     "description": "Success form message"
-  },
-  "Bv1Q38": {
-    "defaultMessage": "Sponsor",
-    "description": "Text placeholder"
   },
   "BwYZbB": {
     "defaultMessage": "With controls button",
@@ -650,6 +654,10 @@
   "JoyIgA": {
     "defaultMessage": "Minimum points for this result",
     "description": "Field label"
+  },
+  "JzSBzL": {
+    "defaultMessage": "Visual",
+    "description": "Text placeholder"
   },
   "K1BxIr": {
     "defaultMessage": "Edit metadata...",
@@ -1294,6 +1302,10 @@
     "defaultMessage": "LinkedIn",
     "description": "Field label"
   },
+  "hzvEim": {
+    "defaultMessage": "Sponsor Label",
+    "description": "Title field label"
+  },
   "i+3ZrF": {
     "defaultMessage": "Select a font family...",
     "description": "No value label"
@@ -1542,10 +1554,6 @@
   },
   "qjL/eA": {
     "defaultMessage": "Bar",
-    "description": "Field label"
-  },
-  "qmIJjc": {
-    "defaultMessage": "Pop-up window",
     "description": "Field label"
   },
   "qroLmS": {
@@ -1863,6 +1871,10 @@
   "zGIcdn": {
     "defaultMessage": "Sponsors",
     "description": "Sponsors placeholder"
+  },
+  "zLxBdl": {
+    "defaultMessage": "Location",
+    "description": "Text field label"
   },
   "zW7IVm": {
     "defaultMessage": "Quiz",

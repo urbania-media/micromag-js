@@ -163,7 +163,7 @@ const GalleryScreen = ({
         }
     }, [contentWidth, contentHeight, layout, setImagesSizes]);
 
-    // headre + footer
+    // header + footer
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });

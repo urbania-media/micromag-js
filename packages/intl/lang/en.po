@@ -83,6 +83,12 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "My files"
 
+# Number field label
+#: /6zaOP
+msgctxt "/6zaOP"
+msgid "Transition Delay (in seconds)"
+msgstr "Transition Delay (in seconds)"
+
 # Delete in Media Gallery
 #: /KQ87r
 msgctxt "/KQ87r"
@@ -106,6 +112,12 @@ msgstr "Aries"
 msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Remove all"
+
+# Field label
+#: /W31TQ
+msgctxt "/W31TQ"
+msgid "Embedded browser"
+msgstr "Embedded browser"
 
 # Image 360 placeholder
 #: /YQ+xP
@@ -200,6 +212,12 @@ msgstr "None"
 # Title placeholder
 #: 2ZOPe+
 msgctxt "2ZOPe+"
+msgid "Title"
+msgstr "Title"
+
+# Category placeholder
+#: 2c1WFV
+msgctxt "2c1WFV"
 msgid "Title"
 msgstr "Title"
 
@@ -473,12 +491,6 @@ msgctxt "75nZbY"
 msgid "Keypad"
 msgstr "Keypad"
 
-# Title field label
-#: 7YE/VU
-msgctxt "7YE/VU"
-msgid "Sponsor"
-msgstr "Sponsor"
-
 # Horoscope date
 #: 7ZzlUE
 msgctxt "7ZzlUE"
@@ -682,12 +694,6 @@ msgstr "Results title"
 msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Success"
-
-# Text placeholder
-#: Bv1Q38
-msgctxt "Bv1Q38"
-msgid "Sponsor"
-msgstr "Sponsor"
 
 # Field label
 #: BwYZbB
@@ -988,6 +994,12 @@ msgstr "Create your first screen"
 msgctxt "JoyIgA"
 msgid "Minimum points for this result"
 msgstr "Minimum points for this result"
+
+# Text placeholder
+#: JzSBzL
+msgctxt "JzSBzL"
+msgid "Visual"
+msgstr "Visual"
 
 # No value field label
 #: K1BxIr
@@ -1954,6 +1966,12 @@ msgctxt "hvxkzE"
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
+# Title field label
+#: hzvEim
+msgctxt "hzvEim"
+msgid "Sponsor Label"
+msgstr "Sponsor Label"
+
 # No value label
 #: i+3ZrF
 msgctxt "i+3ZrF"
@@ -2329,12 +2347,6 @@ msgstr "Padding"
 msgctxt "qjL/eA"
 msgid "Bar"
 msgstr "Bar"
-
-# Field label
-#: qmIJjc
-msgctxt "qmIJjc"
-msgid "Pop-up window"
-msgstr "Pop-up window"
 
 # Breadcrumb field label
 #: qroLmS
@@ -2809,6 +2821,12 @@ msgstr "Urbania trivia"
 msgctxt "zGIcdn"
 msgid "Sponsors"
 msgstr "Sponsors"
+
+# Text field label
+#: zLxBdl
+msgctxt "zLxBdl"
+msgid "Location"
+msgstr "Location"
 
 # Quiz screen title
 #: zW7IVm

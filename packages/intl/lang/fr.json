@@ -35,6 +35,9 @@
     "/62oe4": {
         "defaultMessage": "Mes fichiers"
     },
+    "/6zaOP": {
+        "defaultMessage": "Délai de transition (en secondes)"
+    },
     "/KQ87r": {
         "defaultMessage": "Supprimer ce média"
     },
@@ -46,6 +49,9 @@
     },
     "/T/UDH": {
         "defaultMessage": "Tout effacer"
+    },
+    "/W31TQ": {
+        "defaultMessage": "Navigateur intégré"
     },
     "/YQ+xP": {
         "defaultMessage": "Image 360"
@@ -93,6 +99,9 @@
         "defaultMessage": "Aucun"
     },
     "2ZOPe+": {
+        "defaultMessage": "Titre"
+    },
+    "2c1WFV": {
         "defaultMessage": "Titre"
     },
     "2pO2Cj": {
@@ -230,9 +239,6 @@
     "75nZbY": {
         "defaultMessage": "Clavier"
     },
-    "7YE/VU": {
-        "defaultMessage": "Présentateur"
-    },
     "7ZzlUE": {
         "defaultMessage": "23 oct au 22 nov"
     },
@@ -334,9 +340,6 @@
     },
     "BpZoQZ": {
         "defaultMessage": "Succès"
-    },
-    "Bv1Q38": {
-        "defaultMessage": "Présentateur"
     },
     "BwYZbB": {
         "defaultMessage": "Avec les contrôles"
@@ -487,6 +490,9 @@
     },
     "JoyIgA": {
         "defaultMessage": "Nb. minimum de points"
+    },
+    "JzSBzL": {
+        "defaultMessage": "Visuel"
     },
     "K1BxIr": {
         "defaultMessage": "Modifier les métadonnées"
@@ -971,6 +977,9 @@
     "hvxkzE": {
         "defaultMessage": "LinkedIn"
     },
+    "hzvEim": {
+        "defaultMessage": "Libellé du présentateur"
+    },
     "i+3ZrF": {
         "defaultMessage": "Sélectionner une police"
     },
@@ -1159,9 +1168,6 @@
     },
     "qjL/eA": {
         "defaultMessage": "Barre"
-    },
-    "qmIJjc": {
-        "defaultMessage": "Fenêtre pop-up"
     },
     "qroLmS": {
         "defaultMessage": "Marqueur"
@@ -1399,6 +1405,9 @@
     },
     "zGIcdn": {
         "defaultMessage": "Présentateurs"
+    },
+    "zLxBdl": {
+        "defaultMessage": "Lieu"
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"

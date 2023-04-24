@@ -11,6 +11,7 @@ import styles from '../styles/button-layout.module.scss';
 const propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
     value: PropTypes.string,
+    defaultValue: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -18,16 +19,22 @@ const propTypes = {
 const defaultProps = {
     types: ['label-bottom', 'label-top', 'no-label', 'label-over'],
     value: null,
+    defaultValue: null,
     className: null,
     onChange: null,
 };
 
-const ButtonLayout = ({ types, value, className, onChange }) => {
-    const onButtonLayoutChange = (newVal) => {
-        const v = newVal === value ? null : newVal;
+const ButtonLayout = ({ types, value, defaultValue, className, onChange }) => {
+    const finalValue = value === null && defaultValue !== null ? defaultValue : value;
 
-        onChange(v);
-    };
+    const onButtonLayoutChange = useCallback(
+        (newVal) => {
+            // const v = newVal === finalValue ? null : newVal;
+
+            onChange(newVal);
+        },
+        [finalValue],
+    );
 
     const getLayoutPreviewByType = useCallback((type) => {
         switch (type) {
@@ -93,7 +100,7 @@ const ButtonLayout = ({ types, value, className, onChange }) => {
                         value: type,
                         label: getLayoutPreviewByType(type),
                     }))}
-                    value={value || null}
+                    value={finalValue || null}
                     className={classNames([
                         styles.container,
                         {

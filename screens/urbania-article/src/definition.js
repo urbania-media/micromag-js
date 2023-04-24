@@ -86,11 +86,12 @@ export default {
                 description: 'Author field label',
             }),
         },
+
         {
-            name: 'sponsor',
+            name: 'sponsorLabel',
             type: 'heading-element',
             label: defineMessage({
-                defaultMessage: 'Sponsor',
+                defaultMessage: 'Sponsor Label',
                 description: 'Title field label',
             }),
         },
@@ -102,6 +103,7 @@ export default {
                 description: 'Field label',
             }),
         },
+
         {
             name: 'image',
             type: 'visual',

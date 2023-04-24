@@ -21,10 +21,56 @@ export default [
         component: UrbaniaRecommendation,
         fields: [
             {
+                name: 'sponsor',
+                type: 'text-element',
+                label: defineMessage({
+                    defaultMessage: 'Sponsor',
+                    description: 'Text field label',
+                }),
+            },
+            {
+                name: 'visual',
+                type: 'fields',
+                isList: true,
+                label: defineMessage({
+                    defaultMessage: 'Visual',
+                    description: 'Field label',
+                }),
+                fields: [
+                    {
+                        name: 'image',
+                        type: 'visual',
+                        label: defineMessage({
+                            defaultMessage: 'Image',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'visualLayout',
+                        type: 'button-layout',
+                        types: ['label-bottom', 'label-top'],
+                        defaultValue: 'label-bottom',
+                        isHorizontal: true,
+                        label: defineMessage({
+                            defaultMessage: 'Layout',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
+            },
+            {
                 name: 'category',
                 type: 'heading-element',
                 label: defineMessage({
                     defaultMessage: 'Category',
+                    description: 'Title field label',
+                }),
+            },
+            {
+                name: 'title',
+                type: 'heading-element',
+                label: defineMessage({
+                    defaultMessage: 'Title',
                     description: 'Title field label',
                 }),
             },
@@ -37,18 +83,10 @@ export default [
                 }),
             },
             {
-                name: 'title',
-                type: 'heading-element',
-                label: defineMessage({
-                    defaultMessage: 'Title',
-                    description: 'Title field label',
-                }),
-            },
-            {
-                name: 'sponsor',
+                name: 'location',
                 type: 'text-element',
                 label: defineMessage({
-                    defaultMessage: 'Sponsor',
+                    defaultMessage: 'Location',
                     description: 'Text field label',
                 }),
             },
@@ -60,6 +98,7 @@ export default [
                     description: 'Text field label',
                 }),
             },
+
             {
                 name: 'background',
                 type: 'background',

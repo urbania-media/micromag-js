@@ -30,7 +30,6 @@ const defaultProps = {
 
 function Transitions({ fullscreen, playing, delay, transitions, onComplete, disabled, children }) {
     const { landscape = true } = useScreenSize();
-    // console.log({ landscape });
 
     const finalPlaying = playing || landscape;
     const finalTransitions = { in: null, out: null };

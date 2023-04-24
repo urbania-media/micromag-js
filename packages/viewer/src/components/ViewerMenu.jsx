@@ -410,6 +410,7 @@ const ViewerMenu = ({
                 {menuMounted ? (
                     <MenuPreview
                         viewerTheme={viewerTheme}
+                        title={title}
                         className={styles.menuPreview}
                         screenSize={screenSize}
                         menuWidth={menuWidth}

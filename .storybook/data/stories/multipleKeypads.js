@@ -150,6 +150,7 @@ const multipleKeypads = {
             id: '54321',
             type: 'keypad',
             items: team,
+            title: { body: 'Team' },
             layout: 'bottom',
             keypadSettings: {
                 layout: {

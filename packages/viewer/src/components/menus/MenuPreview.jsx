@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
+import { isTextFilled, getStyleFromText } from '@micromag/core/utils';
+import Badge from '@micromag/element-badge';
 import Scroll from '@micromag/element-scroll';
 
 import MenuScreen from './MenuScreen';
@@ -14,6 +16,8 @@ import styles from '../../styles/menus/menu-preview.module.scss';
 const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
     screenSize: MicromagPropTypes.screenSize,
+    title: PropTypes.string,
+    surtitle: MicromagPropTypes.badge,
     menuWidth: PropTypes.number,
     items: MicromagPropTypes.menuItems,
     focusable: PropTypes.bool,
@@ -32,6 +36,8 @@ const propTypes = {
 const defaultProps = {
     viewerTheme: null,
     screenSize: null,
+    title: null,
+    surtitle: null,
     menuWidth: null,
     items: [],
     focusable: true,
@@ -49,6 +55,8 @@ const defaultProps = {
 const ViewerMenuPreview = ({
     viewerTheme,
     screenSize,
+    title,
+    surtitle,
     menuWidth,
     items,
     focusable,
@@ -66,7 +74,7 @@ const ViewerMenuPreview = ({
 
     // @todo reimplement the brand logo
     // const { background = null, logo: brandLogo = null } = viewerTheme || {};
-    const { background = null } = viewerTheme || {};
+    const { background = null, textStyles = null } = viewerTheme || {};
     const { image = null } = background || {};
     const { url: brandImageUrl = null } = image || {};
     const brandImageStyle =
@@ -76,8 +84,14 @@ const ViewerMenuPreview = ({
               }
             : null;
 
+    const { title: titleStyles = null } = textStyles || {};
+    const finalTitleStyles = titleStyles !== null ? getStyleFromText(titleStyles) : null;
+
     // const { url: brandLogoUrl = null } = brandLogo || {};
     const [screensMounted, setScreensMounted] = useState([]);
+
+    const hasTitle = title !== null;
+    const hasSurtitle = isTextFilled(surtitle);
 
     // @todo optimize all of this the proper way
     // const finalItems = useMemo(
@@ -112,10 +126,18 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.content} ref={containerRef}>
                 <Scroll className={styles.scroll} disabled={scrollDisabled}>
-                    <nav className={styles.nav} style={{ paddingTop }}>
-                        {/* <div>
-                            <h1>@TODO: ADD MICROMAG TITLE HERE</h1>
-                        </div> */}
+                    {hasTitle ? (
+                        <div
+                            className={styles.titleContainer}
+                            style={{ paddingTop: paddingTop + 10 }}
+                        >
+                            {hasSurtitle ? <Badge {...surtitle} className={styles.badge} /> : null}
+                            <h1 className={styles.title} style={{ ...finalTitleStyles }}>
+                                {title}
+                            </h1>
+                        </div>
+                    ) : null}
+                    <nav className={styles.nav} style={!hasTitle ? { paddingTop } : null}>
                         <ul className={styles.items}>
                             {items.map((item, index) => {
                                 const { screenId } = item || {};

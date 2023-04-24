@@ -52,6 +52,7 @@
     align-items: center;
     justify-content: flex-start;
     height: 100%;
+    transition: padding 0.2s ease-out;
     text-align: center;
 }
 
@@ -71,7 +72,7 @@
 }
 
 .grid {
-    width: 100%;
+    width: 85%; // @note: leaves a bigger left/right margin for click navigation between screens
 }
 
 .item {
@@ -182,32 +183,42 @@
 /**
  * POPUP
  */
-.popup {
-    position: fixed;
-    z-index: 6; // @todo
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    touch-action: none;
-}
 
 .popupBackdrop {
     @extend %fullscreen;
-    z-index: 2;
+    // z-index: 2;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(0.25rem);
     pointer-events: none;
+}
+
+.popup {
+    @extend %reset-button;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s $ease-in-kickback;
+    // z-index: 6; // @todo
+    // touch-action: none;
+
+    &:active,
+    &:hover {
+        transform: scale(0.95);
+    }
 }
 
 .popupButton {
     @extend %reset-button;
 
     position: relative;
-    z-index: 3;
+    // z-index: 3;
     width: 100%;
     height: 100%;
-    padding: 52px 15px 30px; // @todo eliminate magic numbers
+
     transition: transform 0.3s $ease-in-kickback;
+
     text-align: left;
 
     &:active {
@@ -215,12 +226,22 @@
     }
 }
 
+.popupScroll {
+    width: 100%;
+    height: 100%;
+}
+
 .popupInner {
+    position: relative;
+    z-index: 40;
+    margin: 10% 7.5%;
     overflow: hidden;
     background-color: $black;
+    box-shadow: 0 0 2px $black;
 
     // @todo fighting specificity because of some weird reset
     // I don't understand it; need to investigate deeper
+    // Probably cause it's all wrapped in a button — take that off
     .popupContent {
         font-family: inherit;
         font-style: inherit;
@@ -278,6 +299,11 @@
     .popupContent {
         order: 3;
     }
+
+    .emptyCTA,
+    .popupCTA {
+        order: 4;
+    }
 }
 
 .contentBottom {
@@ -295,9 +321,15 @@
     .popupContent {
         order: 3;
     }
+
+    .emptyCTA,
+    .popupCTA {
+        order: 4;
+    }
 }
 
 .popupCTA {
+    z-index: 2;
     margin: 0 auto;
 }
 
