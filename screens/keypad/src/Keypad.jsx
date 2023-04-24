@@ -292,7 +292,7 @@ const KeypadScreen = ({
     useEffect(() => {
         function handleClickOutside(event) {
             if (
-                !current ||
+                (!current && isView) ||
                 (popupInnerRef.current &&
                     !popupInnerRef.current.contains(event.target) &&
                     containerRef.current &&
