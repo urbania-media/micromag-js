@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-footer",
-    "version": "0.3.368",
+    "version": "0.3.369",
     "description": "",
     "keywords": [
         "javascript"
@@ -45,8 +45,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.368",
-        "@micromag/element-call-to-action": "^0.3.368",
+        "@micromag/core": "^0.3.369",
+        "@micromag/element-call-to-action": "^0.3.369",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
