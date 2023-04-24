@@ -3,7 +3,7 @@ import { animated } from '@react-spring/web';
 import camelCase from 'camelcase';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -156,6 +156,8 @@ const KeypadScreen = ({
     active,
     className,
 }) => {
+    const popupInnerRef = useRef(null);
+
     const trackScreenEvent = useTrackScreenEvent('keypad');
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
@@ -277,6 +279,23 @@ const KeypadScreen = ({
         },
         [onCloseModal],
     );
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (
+                popupInnerRef.current &&
+                !popupInnerRef.current.contains(event.target) &&
+                showPopup !== 0
+            ) {
+                onCloseModal();
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [popupInnerRef, showPopup]);
 
     const { bind: bindPopupDrag, progress: popupSpring } = useDragProgress({
         disabled: !isView,
@@ -564,7 +583,7 @@ const KeypadScreen = ({
                                 }}
                             />
 
-                            <animated.button
+                            <animated.div
                                 className={styles.popup}
                                 style={{
                                     transform: popupSpring.to(
@@ -577,23 +596,25 @@ const KeypadScreen = ({
                                         p < 0.1 ? 'none' : 'auto',
                                     ),
                                 }}
-                                onClick={onCloseModal}
+                                // onClick={onCloseModal}
                                 {...bindPopupDrag()}
                             >
+                                {/* <button
+                                    type="button"
+                                    onClick={onCloseModal}
+                                    className={styles.popupButton}
+                                > */}
                                 <Scroll
                                     disabled={
                                         isPreview || isPlaceholder || isEdit || showPopup === 0
                                     }
                                     verticalAlign="middle"
                                     withArrow={false}
+                                    className={styles.popupScroll}
                                     withShadow
                                 >
-                                    {/* <button
-                                        type="button"
-                                        // onClick={onCloseModal}
-                                        className={styles.popupButton}
-                                    > */}
                                     <div
+                                        ref={popupInnerRef}
                                         className={classNames([
                                             styles.popupInner,
                                             styles[popupLayoutClassName],
@@ -709,9 +730,9 @@ const KeypadScreen = ({
                                             </ScreenElement>
                                         </div>
                                     </div>
-                                    {/* </button> */}
                                 </Scroll>
-                            </animated.button>
+                                {/* </button> */}
+                            </animated.div>
                         </>
                     ) : null}
                 </Scroll>

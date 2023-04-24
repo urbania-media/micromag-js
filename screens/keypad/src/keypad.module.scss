@@ -211,14 +211,12 @@
 
 .popupButton {
     @extend %reset-button;
+
     position: relative;
-    z-index: 3;
+    // z-index: 3;
     width: 100%;
     height: 100%;
-    padding: 10rem auto;
 
-    // padding: 52px 15px 30px; // @todo eliminate magic numbers
-    // padding: 52px 0 30px; // @todo eliminate magic numbers
     transition: transform 0.3s $ease-in-kickback;
 
     text-align: left;
@@ -228,10 +226,18 @@
     }
 }
 
+.popupScroll {
+    width: 100%;
+    height: 100%;
+}
+
 .popupInner {
+    position: relative;
+    z-index: 40;
     margin: 10% 7.5%;
     overflow: hidden;
     background-color: $black;
+    box-shadow: 0 0 2px $black;
 
     // @todo fighting specificity because of some weird reset
     // I don't understand it; need to investigate deeper
