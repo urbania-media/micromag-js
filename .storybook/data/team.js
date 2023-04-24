@@ -198,10 +198,10 @@ export default [
     {
         label: 'Hello hello helloooo',
         content: {
-            body: '<p>Friends, romans, countrymen, lend me your ears. Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus Bingus bongus  </p>',
+            body: '<p>Friends, Romans, countrymen, lend me your ears; I come to bury Caesar, not to praise him. The evil that men do lives after them; The good is oft interred with their bones; So let it be with Caesar. The noble Brutus Hath told you Caesar was ambitious: If it were so, it was a grievous fault, And grievously hath Caesar answer’d it.</p>',
         },
         heading: {
-            body: 'bongus bingus dongus dingus',
+            body: 'Et 2 Brute?',
         },
     },
 ];
