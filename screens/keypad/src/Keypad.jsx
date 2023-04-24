@@ -249,7 +249,7 @@ const KeypadScreen = ({
                 });
                 return;
             }
-            disableInteraction();
+            // disableInteraction();
             setPopup(item);
             setShowPopup(1);
         },
@@ -257,7 +257,7 @@ const KeypadScreen = ({
     );
 
     const onCloseModal = useCallback(() => {
-        enableInteraction();
+        // enableInteraction();
 
         setShowPopup(0);
         trackScreenEvent('close_modal');
@@ -282,15 +282,24 @@ const KeypadScreen = ({
     );
 
     useEffect(() => {
+        if (showPopup !== 0) {
+            disableInteraction();
+        } else {
+            enableInteraction();
+        }
+    }, [showPopup]);
+
+    useEffect(() => {
         function handleClickOutside(event) {
             if (
-                popupInnerRef.current &&
-                !popupInnerRef.current.contains(event.target) &&
-                containerRef.current &&
-                containerRef.current.contains(event.target) &&
-                !isInteractivePreview &&
-                !isEdit &&
-                showPopup !== 0
+                !current ||
+                (popupInnerRef.current &&
+                    !popupInnerRef.current.contains(event.target) &&
+                    containerRef.current &&
+                    containerRef.current.contains(event.target) &&
+                    !isInteractivePreview &&
+                    !isEdit &&
+                    showPopup !== 0)
             ) {
                 onCloseModal();
             }
@@ -300,7 +309,7 @@ const KeypadScreen = ({
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [popupInnerRef, containerRef, isInteractivePreview, isEdit, showPopup]);
+    }, [current, popupInnerRef, containerRef, isInteractivePreview, isEdit, showPopup]);
 
     const { bind: bindPopupDrag, progress: popupSpring } = useDragProgress({
         disabled: !isView,
