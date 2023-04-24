@@ -34,6 +34,7 @@ const propTypes = {
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     focusable: PropTypes.bool,
+    animated: PropTypes.bool,
     layout: PropTypes.string,
     showInstantAnswer: PropTypes.bool,
     withResult: PropTypes.bool,
@@ -63,6 +64,7 @@ const defaultProps = {
     goodAnswerColor: null,
     badAnswerColor: null,
     focusable: false,
+    animated: false,
     layout: null,
     showInstantAnswer: false,
     withResult: false,
@@ -92,6 +94,7 @@ const Question = ({
     goodAnswerColor,
     badAnswerColor,
     focusable,
+    animated,
     showInstantAnswer,
     withResult,
     withoutGoodAnswer,
@@ -203,6 +206,7 @@ const Question = ({
                     buttonsStyle={buttonsStyle}
                     buttonsTextStyle={buttonsTextStyle}
                     focusable={focusable}
+                    animated={animated}
                     transitions={transitions}
                     transitionStagger={transitionStagger}
                     transitionPlaying={transitionPlaying}

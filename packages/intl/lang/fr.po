@@ -333,7 +333,7 @@ msgstr "Sélectionner une couleur"
 #: 4b5gym
 msgctxt "4b5gym"
 msgid "Screen title"
-msgstr ""
+msgstr "Titre de l'écran"
 
 # Gallery Feed screen title
 #: 4bHvRS
@@ -1545,6 +1545,12 @@ msgstr "Vertical"
 msgctxt "YyPYHk"
 msgid "Scorpio"
 msgstr "Scorpion"
+
+# Button label
+#: YyYrXp
+msgctxt "YyYrXp"
+msgid "Loading"
+msgstr "Chargement"
 
 # Screen group
 #: Z27IP6

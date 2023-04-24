@@ -23,7 +23,7 @@ export default {
                     name: 'borderRadius',
                     type: 'number',
                     isHorizontal: true,
-                    dataList: [0, 2, 4, 6, 8, 10],
+                    dataList: [0, 2, 4, 6, 8, 10, 16, 20, 24, 30],
                     label: defineMessage({
                         defaultMessage: 'Rounded corners',
                         description: 'Field label',

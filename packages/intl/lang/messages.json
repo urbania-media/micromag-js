@@ -1022,6 +1022,10 @@
     "defaultMessage": "Scorpio",
     "description": "Horoscope sign"
   },
+  "YyYrXp": {
+    "defaultMessage": "Loading",
+    "description": "Button label"
+  },
   "Z27IP6": {
     "defaultMessage": "Map",
     "description": "Screen group"

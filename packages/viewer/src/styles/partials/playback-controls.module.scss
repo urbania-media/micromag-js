@@ -36,8 +36,9 @@
     display: block;
     position: relative;
     z-index: 1;
+    left: -0.5rem;
     width: 2rem;
-    height: auto;
+    max-height: 2rem;
     color: currentColor;
 }
 
@@ -55,6 +56,10 @@
     // display the play/pause button, but faded because the controls are collapsed
     .withPlayPause.isCollapsed & {
         opacity: 0.25;
+    }
+
+    &.loading {
+        opacity: 1;
     }
 }
 

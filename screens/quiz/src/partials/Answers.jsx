@@ -4,10 +4,10 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useTransition, animated, config } from '@react-spring/web';
+import { useTransition, animated, easings } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useState, useRef, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -31,6 +31,7 @@ const propTypes = {
     withoutGoodAnswer: PropTypes.bool,
     withoutIcon: PropTypes.bool,
     focusable: PropTypes.bool,
+    animated: PropTypes.bool,
     collapsed: PropTypes.bool,
     onClick: PropTypes.func,
     onCollapse: PropTypes.func,
@@ -41,7 +42,7 @@ const propTypes = {
 
 const defaultProps = {
     answeredIndex: null,
-    answersCollapseDelay: 2000,
+    answersCollapseDelay: 1000,
     buttonsStyle: null,
     buttonsTextStyle: null,
     goodAnswerColor: null,
@@ -50,6 +51,7 @@ const defaultProps = {
     withoutGoodAnswer: false,
     withoutIcon: false,
     focusable: false,
+    animated: false,
     collapsed: false,
     onClick: null,
     onCollapse: null,
@@ -70,6 +72,7 @@ const Answers = ({
     withoutGoodAnswer,
     withoutIcon,
     focusable,
+    animated: collapseAnimated,
     collapsed: initialCollapsed,
     onClick,
     onCollapse,
@@ -94,6 +97,9 @@ const Answers = ({
     const shouldCollapse = !withoutGoodAnswer || (finalShowUserAnswer && answeredIndex !== null);
     const [answersCollapsed, setAnswersCollapsed] = useState(answeredIndex !== null);
     const [answersDidCollapse, setAnswersDidCollapse] = useState(
+        initialCollapsed || answeredIndex !== null,
+    );
+    const [answersFinalCollapse, setAnswersFinalCollapse] = useState(
         initialCollapsed || answeredIndex !== null,
     );
 
@@ -127,6 +133,20 @@ const Answers = ({
         finalShowUserAnswer,
     ]);
 
+    useEffect(() => {
+        let timeout = null;
+        if (answersCollapsed) {
+            timeout = setTimeout(() => {
+                setAnswersFinalCollapse(true);
+            }, 300);
+        }
+        return () => {
+            if (timeout !== null) {
+                clearTimeout(timeout);
+            }
+        };
+    }, [answersCollapsed]);
+
     const onAnswerTransitionEnd = useCallback(() => {
         if (onTransitionEnd !== null) {
             onTransitionEnd();
@@ -149,23 +169,26 @@ const Answers = ({
     const itemsRefs = useRef([]);
     const listOfItems = isPlaceholder || (isEdit && items.length === 0) ? [...new Array(2)] : items;
 
-    // let total = 0;
-    // const heights = listOfItems.reduce((acc, it, i) => {
-    //     acc.push(total);
-    //     if (itemsRefs.current[i]) {
-    //         const { height } = itemsRefs.current[i].getBoundingClientRect() || {};
-    //         total += height;
-    //     }
-    //     return acc;
-    // }, []);
+    const heights = useMemo(() => {
+        if (animated) {
+            const allHeights = listOfItems.reduce((acc, it, i) => {
+                if (itemsRefs.current[i] && collapseAnimated) {
+                    const { height = 0 } = itemsRefs.current[i].getBoundingClientRect() || {};
+                    acc.push(height);
+                }
+                return acc;
+            }, []);
+            return allHeights;
+        }
+        return [];
+    }, [animated, answeredIndex, shouldCollapse, collapseAnimated, listOfItems]);
 
     const showAnimation = isView || isEdit;
     const filteredListOfItems = listOfItems.map((answer, answerI) => {
-        // const y = heights[answerI] ? heights[answerI] : 0;
+        const height = heights[answerI] ? heights[answerI] : 0;
         const userAnswer = answerI === answeredIndex;
         const { good: rightAnswer = false } = answer || {};
         let hidden = false;
-
         if (
             answeredIndex !== null &&
             showAnimation &&
@@ -178,32 +201,37 @@ const Answers = ({
         if (answeredIndex !== null && showAnimation && answersCollapsed && !rightAnswer) {
             hidden = true;
         }
-        return { ...answer, hidden, userAnswer, index: answerI };
+        return { ...answer, hidden, userAnswer, index: answerI, maxHeight: height };
     });
 
-    // let finalList = filteredListOfItems;
-    // if (answersCollapsed) {
-    //     finalList = [...filteredListOfItems].sort(({ hidden = false }) => (hidden ? 1 : -1));
-    //     console.log('da fuck', finalList);
-    // }
-
-    const transitions = useTransition(
-        filteredListOfItems.map((data) => ({
-            ...data,
-            hidden: data.hidden,
-        })),
-        {
-            key: ({ index = 0, label = null }) => `key-${index}-${label?.body || null}`,
-            update: ({ hidden = false }) => ({
-                opacity: hidden && showAnimation && !withoutGoodAnswer ? 0 : 1,
-                height: hidden && showAnimation && !withoutGoodAnswer ? 0 : 'auto',
-            }),
-            config: config.gentle,
-            // onRest: () => {
-            //     console.log('rest');
-            // },
-        },
-    );
+    const transitions = useTransition(filteredListOfItems, {
+        key: ({ index = 0, label = null }) => `key-${index}-${label?.body || null}`,
+        update: ({ hidden = false, maxHeight = 0 }) => ({
+            opacity: hidden && showAnimation && !withoutGoodAnswer ? 0 : 1,
+            // Animate this, not height
+            maxHeight:
+                // eslint-disable-next-line no-nested-ternary
+                hidden &&
+                showAnimation &&
+                !withoutGoodAnswer &&
+                collapseAnimated &&
+                answersFinalCollapse
+                    ? 0
+                    : maxHeight > 0
+                    ? maxHeight
+                    : null,
+            height:
+                hidden &&
+                showAnimation &&
+                !withoutGoodAnswer &&
+                !collapseAnimated &&
+                answersFinalCollapse
+                    ? 0
+                    : 'auto',
+        }),
+        // config: { tension: 300, friction: 35 },
+        config: { duration: 300, easing: easings.easeOutSine },
+    });
 
     return (
         <div
@@ -242,11 +270,13 @@ const Answers = ({
                                     },
                                 ])}
                                 style={{ ...style }}
-                                ref={(el) => {
-                                    itemsRefs.current[answerI] = el;
-                                }}
                             >
-                                <div className={styles.itemContent}>
+                                <div
+                                    className={styles.itemContent}
+                                    ref={(el) => {
+                                        itemsRefs.current[answerI] = el;
+                                    }}
+                                >
                                     <ScreenElement
                                         placeholder="quizAnswer"
                                         placeholderProps={{ good: answerI === 0 }}

@@ -17,10 +17,16 @@ const props = {
     result: {
         body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?',
     },
-    // withoutTrueFalse: true,
     background: backgroundColor(),
     transitions: transitions(),
 };
+
+const multipleGood = [
+    { id: 1, label: { body: subtitle() } },
+    { id: 2, label: { body: 'La bonne réponse' }, good: true },
+    { id: 3, label: { body: subtitle() } },
+    { id: 4, label: { body: subtitle() }, good: true },
+];
 
 const noGoodProps = {
     question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
@@ -33,7 +39,6 @@ const noGoodProps = {
     result: {
         body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?',
     },
-    // withoutTrueFalse: true,
     background: backgroundColor(),
     transitions: transitions(),
 };
@@ -58,6 +63,14 @@ export const Capture = (storyProps) => <QuizScreen {...storyProps} {...props} />
 export const Edit = (storyProps) => <QuizScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <QuizScreen {...storyProps} {...props} />;
+
+export const MultipleGoodAnswers = (storyProps) => (
+    <QuizScreen {...storyProps} {...props} answers={multipleGood} />
+);
+
+export const WithoutTrueFalse = (storyProps) => (
+    <QuizScreen {...storyProps} {...props} withoutTrueFalse />
+);
 
 export const WithoutGoodAnswer = (storyProps) => <QuizScreen {...storyProps} {...noGoodProps} />;
 

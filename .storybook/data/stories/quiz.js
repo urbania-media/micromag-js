@@ -238,6 +238,7 @@ const Quiz = {
                     },
                 },
                 {
+                    good: true,
                     label: {
                         body: 'Votre thérapeute',
                         textStyle: {
@@ -286,7 +287,6 @@ const Quiz = {
                     },
                 },
                 {
-                    good: true,
                     label: {
                         textStyle: {
                             align: 'center',
