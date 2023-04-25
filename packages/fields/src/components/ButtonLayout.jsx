@@ -94,7 +94,7 @@ const ButtonLayout = ({ types, value, defaultValue, className, onChange }) => {
                 },
             ])}
         >
-            <div className={classNames(['d-inline-flex', 'ms-auto', 'me-auto'])}>
+            <div className={classNames(['d-inline-flex', 'me-auto'])}>
                 <Radios
                     options={types.map((type) => ({
                         value: type,

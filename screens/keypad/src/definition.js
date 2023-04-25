@@ -87,10 +87,6 @@ export default [
                                 name: 'layout',
                                 type: 'button-layout',
                                 // isHorizontal: true,
-                                help: defineMessage({
-                                    defaultMessage: 'Button layout',
-                                    description: 'Field help',
-                                }),
                                 label: defineMessage({
                                     defaultMessage: 'Layout',
                                     description: 'Field label',
