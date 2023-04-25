@@ -132,7 +132,7 @@ const UrbaniaRecommendation = ({
         if (animationStarted) {
             id = setTimeout(() => {
                 setAnimationStarted(false);
-            }, 3000);
+            }, 1500);
         }
         return () => {
             clearTimeout(id);

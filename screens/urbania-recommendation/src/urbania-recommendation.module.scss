@@ -67,7 +67,7 @@
 
         &.appear {
             animation: appear 1s ease-in-out;
-            animation-delay: 2s;
+            animation-delay: 0.5s;
             opacity: 0;
             animation-fill-mode: forwards;
         }
