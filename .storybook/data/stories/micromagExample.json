@@ -8281,7 +8281,199 @@
                     },
                     "visualLayout": "label-top"
                 },
-
+                "sponsor": {
+                    "body": "<p>Présenté par <strong>Festival de Tadoussac</strong></p>",
+                    "textStyle": {
+                        "fontFamily": {
+                            "name": "Agrandir",
+                            "media": {
+                                "id": "2449",
+                                "type": "font",
+                                "name": "Agrandir-Regular.otf",
+                                "url": "https://cdn.microm.ag/font/2022-04-26/8947-022421.otf",
+                                "thumbnail_url": null,
+                                "files": {
+                                    "original": {
+                                        "id": "8947",
+                                        "type": null,
+                                        "mime": "application/vnd.ms-opentype",
+                                        "handle": "original",
+                                        "name": "Agrandir-Regular.otf",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8947-022421.otf"
+                                    },
+                                    "webfonts.otf": {
+                                        "id": "8948",
+                                        "type": null,
+                                        "mime": "application/vnd.ms-opentype",
+                                        "handle": "webfonts.otf",
+                                        "name": "mediatheque_pipeline_jobbWJg2F-webfonts.otf",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8948-022422.otf"
+                                    },
+                                    "webfonts.eot": {
+                                        "id": "8949",
+                                        "type": null,
+                                        "mime": "application/x-empty",
+                                        "handle": "webfonts.eot",
+                                        "name": "mediatheque_pipeline_jobbWJg2F-webfonts.eot",
+                                        "url": "https://cdn.microm.ag/2022-04-26/8949-022422.eot"
+                                    },
+                                    "webfonts.woff": {
+                                        "id": "8950",
+                                        "type": null,
+                                        "mime": "application/x-font-woff",
+                                        "handle": "webfonts.woff",
+                                        "name": "mediatheque_pipeline_jobbWJg2F-webfonts.woff",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8950-022422.woff"
+                                    },
+                                    "webfonts.woff2": {
+                                        "id": "8951",
+                                        "type": null,
+                                        "mime": "application/font-woff2",
+                                        "handle": "webfonts.woff2",
+                                        "name": "mediatheque_pipeline_jobbWJg2F-webfonts.woff2",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8951-022422.woff2"
+                                    }
+                                },
+                                "metadata": {
+                                    "filename": "Agrandir-Regular.otf",
+                                    "size": 51160,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "description": null
+                                }
+                            },
+                            "variants": [
+                                {
+                                    "weight": "400",
+                                    "style": "normal",
+                                    "fvd": "n4",
+                                    "media": {
+                                        "id": "2449",
+                                        "type": "font",
+                                        "name": "Agrandir-Regular.otf",
+                                        "url": "https://cdn.microm.ag/font/2022-04-26/8947-022421.otf",
+                                        "thumbnail_url": null,
+                                        "files": {
+                                            "original": {
+                                                "id": "8947",
+                                                "type": null,
+                                                "mime": "application/vnd.ms-opentype",
+                                                "handle": "original",
+                                                "name": "Agrandir-Regular.otf",
+                                                "url": "https://cdn.microm.ag/font/2022-04-26/8947-022421.otf"
+                                            },
+                                            "webfonts.otf": {
+                                                "id": "8948",
+                                                "type": null,
+                                                "mime": "application/vnd.ms-opentype",
+                                                "handle": "webfonts.otf",
+                                                "name": "mediatheque_pipeline_jobbWJg2F-webfonts.otf",
+                                                "url": "https://cdn.microm.ag/font/2022-04-26/8948-022422.otf"
+                                            },
+                                            "webfonts.eot": {
+                                                "id": "8949",
+                                                "type": null,
+                                                "mime": "application/x-empty",
+                                                "handle": "webfonts.eot",
+                                                "name": "mediatheque_pipeline_jobbWJg2F-webfonts.eot",
+                                                "url": "https://cdn.microm.ag/2022-04-26/8949-022422.eot"
+                                            },
+                                            "webfonts.woff": {
+                                                "id": "8950",
+                                                "type": null,
+                                                "mime": "application/x-font-woff",
+                                                "handle": "webfonts.woff",
+                                                "name": "mediatheque_pipeline_jobbWJg2F-webfonts.woff",
+                                                "url": "https://cdn.microm.ag/font/2022-04-26/8950-022422.woff"
+                                            },
+                                            "webfonts.woff2": {
+                                                "id": "8951",
+                                                "type": null,
+                                                "mime": "application/font-woff2",
+                                                "handle": "webfonts.woff2",
+                                                "name": "mediatheque_pipeline_jobbWJg2F-webfonts.woff2",
+                                                "url": "https://cdn.microm.ag/font/2022-04-26/8951-022422.woff2"
+                                            }
+                                        },
+                                        "metadata": {
+                                            "filename": "Agrandir-Regular.otf",
+                                            "size": 51160,
+                                            "mime": "application/vnd.ms-opentype",
+                                            "description": null
+                                        }
+                                    }
+                                },
+                                {
+                                    "weight": "700",
+                                    "style": "normal",
+                                    "fvd": "n7",
+                                    "media": {
+                                        "id": "2518",
+                                        "type": "font",
+                                        "name": "Agrandir-Bold.otf",
+                                        "url": "https://cdn.microm.ag/font/2022-05-03/9314-110534.otf",
+                                        "thumbnail_url": null,
+                                        "files": {
+                                            "original": {
+                                                "id": "9314",
+                                                "type": null,
+                                                "mime": "application/vnd.ms-opentype",
+                                                "handle": "original",
+                                                "name": "Agrandir-Bold.otf",
+                                                "url": "https://cdn.microm.ag/font/2022-05-03/9314-110534.otf"
+                                            },
+                                            "webfonts.otf": {
+                                                "id": "9315",
+                                                "type": null,
+                                                "mime": "application/vnd.ms-opentype",
+                                                "handle": "webfonts.otf",
+                                                "name": "mediatheque_pipeline_jobiX7gl3-webfonts.otf",
+                                                "url": "https://cdn.microm.ag/font/2022-05-03/9315-110535.otf"
+                                            },
+                                            "webfonts.eot": {
+                                                "id": "9316",
+                                                "type": null,
+                                                "mime": "application/x-empty",
+                                                "handle": "webfonts.eot",
+                                                "name": "mediatheque_pipeline_jobiX7gl3-webfonts.eot",
+                                                "url": "https://cdn.microm.ag/2022-05-03/9316-110535.eot"
+                                            },
+                                            "webfonts.woff": {
+                                                "id": "9317",
+                                                "type": null,
+                                                "mime": "application/x-font-woff",
+                                                "handle": "webfonts.woff",
+                                                "name": "mediatheque_pipeline_jobiX7gl3-webfonts.woff",
+                                                "url": "https://cdn.microm.ag/font/2022-05-03/9317-110535.woff"
+                                            },
+                                            "webfonts.woff2": {
+                                                "id": "9318",
+                                                "type": null,
+                                                "mime": "application/font-woff2",
+                                                "handle": "webfonts.woff2",
+                                                "name": "mediatheque_pipeline_jobiX7gl3-webfonts.woff2",
+                                                "url": "https://cdn.microm.ag/font/2022-05-03/9318-110535.woff2"
+                                            }
+                                        },
+                                        "metadata": {
+                                            "filename": "Agrandir-Bold.otf",
+                                            "size": 52592,
+                                            "mime": "application/vnd.ms-opentype",
+                                            "description": null
+                                        }
+                                    }
+                                }
+                            ],
+                            "type": "custom"
+                        },
+                        "fontSize": 10,
+                        "fontStyle": {
+                            "bold": false,
+                            "italic": false,
+                            "underline": false
+                        },
+                        "lineHeight": 1
+                    }
+                },
                 "title": {
                     "body": "<span>Tomber : Michel Brûlé</span>",
                     "textStyle": {
@@ -8592,6 +8784,9 @@
                 },
                 "date": {
                     "body": "<p>Du <strong>16</strong> au&nbsp;<strong>19 JUIN</strong></p>"
+                },
+                "visual": {
+                    "visualLayout": "label-bottom"
                 },
                 "sponsor": {
                     "body": "<p>Présenté par <strong>Festival de Tadoussac</strong></p>",
