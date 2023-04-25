@@ -72,7 +72,7 @@
 }
 
 .grid {
-    width: 85%; // @note: leaves a bigger left/right margin for click navigation between screens
+    width: 85%; // @note: leaves a bigger left/right gutter for onClick navigation between screens
 }
 
 .item {
@@ -194,14 +194,14 @@
 
 .popup {
     @extend %reset-button;
+    // z-index: 6; // @todo
+    // touch-action: none;
     position: fixed;
     top: 0;
     right: 0;
     width: 100%;
     height: 100%;
     transition: transform 0.3s $ease-in-kickback;
-    // z-index: 6; // @todo
-    // touch-action: none;
 
     &:active,
     &:hover {
@@ -241,7 +241,7 @@
 
     // @todo fighting specificity because of some weird reset
     // I don't understand it; need to investigate deeper
-    // Probably cause it's all wrapped in a button — take that off
+    // Probably cause it was all wrapped in a button — test
     .popupContent {
         font-family: inherit;
         font-style: inherit;

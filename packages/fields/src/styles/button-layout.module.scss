@@ -6,7 +6,6 @@
 
 .button {
     flex: none !important;
-    padding: 5px;
     color: #ccc;
 
     .placeholderText {
@@ -18,7 +17,7 @@
         bottom: 6px;
         left: 25%;
         width: 50%;
-        color: $black;
+        color: $gray-600;
     }
 
     &:hover,
@@ -28,7 +27,6 @@
 
         .placeholderTextOver {
             opacity: 0.6;
-            color: $white;
         }
     }
 }
