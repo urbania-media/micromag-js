@@ -86,7 +86,6 @@ export default [
                             {
                                 name: 'layout',
                                 type: 'button-layout',
-                                // isHorizontal: true,
                                 label: defineMessage({
                                     defaultMessage: 'Layout',
                                     description: 'Field label',
@@ -147,6 +146,32 @@ export default [
                                     defaultMessage: 'Content text style',
                                     description: 'Field label',
                                 }),
+                            },
+                            {
+                                name: 'button',
+                                type: 'fields',
+                                label: defineMessage({
+                                    defaultMessage: 'Button',
+                                    description: 'Field label',
+                                }),
+                                fields: [
+                                    {
+                                        name: 'buttonTextStyle',
+                                        type: 'text-style-form',
+                                        label: defineMessage({
+                                            defaultMessage: 'Button text style',
+                                            description: 'Field label',
+                                        }),
+                                    },
+                                    {
+                                        name: 'buttonStyle',
+                                        type: 'box-style-form',
+                                        label: defineMessage({
+                                            defaultMessage: 'Button style',
+                                            description: 'Field label',
+                                        }),
+                                    },
+                                ],
                             },
                             {
                                 name: 'boxStyle',

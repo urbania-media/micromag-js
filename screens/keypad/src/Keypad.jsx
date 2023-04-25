@@ -208,8 +208,12 @@ const KeypadScreen = ({
         layout: popupLayout = null,
         headingTextStyle = null,
         contentTextStyle = null,
+        button: popupButtons = null,
         boxStyle: popupBoxStyle = null,
     } = popupStyles || {};
+
+    const { buttonTextStyle: popupButtonsTextStyle = null, boxStyle: popupButtonsBoxStyle = null } =
+        popupButtons || {};
 
     const popupLayoutClassName = useMemo(
         () => (popupLayout !== null ? camelCase(popupLayout) : ''),
@@ -249,7 +253,6 @@ const KeypadScreen = ({
                 });
                 return;
             }
-            // disableInteraction(); Moved to useEffect
             setPopup(item);
             setShowPopup(1);
         },
@@ -257,8 +260,6 @@ const KeypadScreen = ({
     );
 
     const onCloseModal = useCallback(() => {
-        // enableInteraction();
-
         setShowPopup(0);
         trackScreenEvent('close_modal');
     }, [enableInteraction, setShowPopup, trackScreenEvent]);
@@ -266,9 +267,9 @@ const KeypadScreen = ({
     const computePopupProgress = useCallback(
         ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
             const damper = 0.5;
-            const p = Math.max(0, my) / window.innerHeight;
+            const p = Math.min(0, my) / window.innerHeight;
             const progress = p * damper;
-            const reachedThreshold = vy > 0.3 || Math.abs(p) > 0.3;
+            const reachedThreshold = vy > 0.3 || (my < 0 && Math.abs(p) > 0.3);
 
             if (!dragActive) {
                 if (reachedThreshold) {
@@ -311,8 +312,25 @@ const KeypadScreen = ({
         };
     }, [current, popupInnerRef, containerRef, isInteractivePreview, isEdit, showPopup]);
 
+    const [popupDragDisabled, setPopupDragDisabled] = useState(false);
+
+    const onPopupScrollBottom = useCallback(() => {
+        setPopupDragDisabled(false);
+    }, [setPopupDragDisabled]);
+
+    const onPopupScrollNotBottom = useCallback(() => {
+        setPopupDragDisabled(true);
+    }, [setPopupDragDisabled]);
+
+    useEffect(() => {
+        // @TODO not working
+        if (popupInnerRef.current && popupInnerRef.current.clientHeight > height) {
+            setPopupDragDisabled(false);
+        }
+    }, [showPopup, popupInnerRef, setPopupDragDisabled]);
+
     const { bind: bindPopupDrag, progress: popupSpring } = useDragProgress({
-        disabled: !isView,
+        disabled: !isView || popupDragDisabled,
         progress: showPopup ? 1 : 0,
         computeProgress: computePopupProgress,
         springParams: { config: { tension: 300, friction: 30 } },
@@ -403,7 +421,6 @@ const KeypadScreen = ({
                                 isEmpty={visual === null}
                             >
                                 {visual !== null ? (
-                                    // || !isInteractivePreview
                                     <Visual
                                         className={styles.buttonVisual}
                                         imageClassName={styles.thumbnail}
@@ -488,7 +505,8 @@ const KeypadScreen = ({
                     width={width}
                     height={height}
                     verticalAlign={layout}
-                    disabled={isPreview || isPlaceholder || showPopup !== 0}
+                    withArrow={showPopup === 0}
+                    disabled={isPreview || isPlaceholder}
                 >
                     <Layout
                         className={styles.layout}
@@ -525,6 +543,7 @@ const KeypadScreen = ({
                                 <Header {...header} />
                             </div>
                         ) : null}
+
                         <ScreenElement
                             placeholder="Title"
                             emptyLabel={
@@ -601,30 +620,27 @@ const KeypadScreen = ({
                                 }}
                                 {...bindPopupDrag()}
                             >
-                                {/* <button
-                                    type="button"
-                                    onClick={onCloseModal}
-                                    className={styles.popupButton}
-                                > */}
-                                {/* <Scroll
+                                <Scroll
                                     disabled={isPreview || isPlaceholder || showPopup === 0}
                                     verticalAlign="middle"
                                     withArrow={false}
+                                    onScrolledBottom={onPopupScrollBottom}
+                                    onScrolledNotBottom={onPopupScrollNotBottom}
                                     className={styles.popupScroll}
                                     withShadow
-                                > */}
-                                <div
-                                    ref={popupInnerRef}
-                                    className={classNames([
-                                        styles.popupInner,
-                                        styles[popupLayoutClassName],
-                                    ])}
-                                    style={{
-                                        ...getStyleFromBox(placeholderPopupBoxStyles),
-                                        ...getStyleFromBox(popupBoxStyle),
-                                    }}
                                 >
-                                    <div className={styles.popupWrapper}>
+                                    <div
+                                        ref={popupInnerRef}
+                                        className={classNames([
+                                            styles.popupInner,
+                                            styles[popupLayoutClassName],
+                                        ])}
+                                        style={{
+                                            ...getStyleFromBox(placeholderPopupBoxStyles),
+                                            ...getStyleFromBox(popupBoxStyle),
+                                        }}
+                                    >
+                                        {/* <div className={styles.popupWrapper}> */}
                                         <ScreenElement
                                             emptyLabel={
                                                 <FormattedMessage
@@ -667,6 +683,7 @@ const KeypadScreen = ({
                                             {hasPopupContent ? (
                                                 <Text
                                                     className={styles.popupContent}
+                                                    // @TODO: There's a styles clash here, check if there's more elsewhere
                                                     {...popupContent}
                                                     textStyle={{
                                                         ...contentTextStyle,
@@ -698,7 +715,6 @@ const KeypadScreen = ({
                                                 />
                                             ) : null}
                                         </ScreenElement>
-
                                         <ScreenElement
                                             placeholder="button"
                                             emptyLabel={
@@ -716,22 +732,29 @@ const KeypadScreen = ({
                                             {popupButton !== null ? (
                                                 <CallToAction
                                                     className={styles.popupCTA}
-                                                    label={buttonLabel}
+                                                    label={{
+                                                        ...popupButtonsTextStyle,
+                                                        ...buttonLabel,
+                                                    }}
                                                     url={buttonUrl}
                                                     inWebView={popupInWebView}
                                                     openWebView={openWebView}
                                                     type="click"
-                                                    boxStyle={popupButtonBoxStyle}
-                                                    style={{
-                                                        ...getStyleFromBox(popupButtonBoxStyle),
+                                                    boxStyle={{
+                                                        ...popupButtonsBoxStyle,
+                                                        ...popupButtonBoxStyle,
                                                     }}
+                                                    // style={{
+                                                    //     ...getStyleFromText(popupButtonsTextStyle),
+                                                    //     ...getStyleFromBox(popupButtonsBoxStyle),
+                                                    //     ...getStyleFromBox(popupButtonBoxStyle),
+                                                    // }}
                                                 />
                                             ) : null}
                                         </ScreenElement>
+                                        {/* </div> */}
                                     </div>
-                                </div>
-                                {/* </Scroll> */}
-                                {/* </button> */}
+                                </Scroll>
                             </animated.div>
                         </>
                     ) : null}
