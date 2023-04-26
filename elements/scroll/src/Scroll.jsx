@@ -15,6 +15,7 @@ const propTypes = {
     verticalAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
     className: PropTypes.string,
     children: PropTypes.node,
+    scrollPosition: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
     onScrolledBottom: PropTypes.func,
     onScrolledNotBottom: PropTypes.func,
     onScrollHeightChange: PropTypes.func,
@@ -31,6 +32,7 @@ const defaultProps = {
     verticalAlign: null,
     className: null,
     children: null,
+    scrollPosition: null,
     onScrolledBottom: null,
     onScrolledNotBottom: null,
     onScrollHeightChange: null,
@@ -47,6 +49,7 @@ function Scroll({
     verticalAlign,
     className,
     children,
+    scrollPosition,
     onScrolledBottom,
     onScrolledNotBottom,
     onScrollHeightChange,
@@ -127,6 +130,12 @@ function Scroll({
         }
     }, [scrollableHeight, scrolleeHeight, onScrollHeightChange]);
 
+    useEffect(() => {
+        if (scrollableRef.current !== null && scrollPosition !== null) {
+            scrollableRef.current.scrollTop = scrollPosition;
+        }
+    }, [scrolleeRef, scrollPosition]);
+
     return (
         <div
             className={classNames([
@@ -165,7 +174,7 @@ function Scroll({
     );
 }
 
-Scroll.propTypes = propTypes;
 Scroll.defaultProps = defaultProps;
+Scroll.propTypes = propTypes;
 
 export default React.forwardRef((props, ref) => <Scroll scrollContainerRef={ref} {...props} />);

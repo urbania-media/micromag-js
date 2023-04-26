@@ -19,7 +19,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -36,7 +36,7 @@ import styles from './urbania-recommendation.module.scss';
 const propTypes = {
     category: MicromagPropTypes.headingElement,
     visual: PropTypes.shape({
-        image: MicromagPropTypes.imageMedia,
+        image: MicromagPropTypes.visualElement,
         visualLayout: PropTypes.oneOf(['label-bottom', 'label-top']),
     }),
     title: MicromagPropTypes.headingElement,
@@ -98,14 +98,19 @@ const UrbaniaRecommendation = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
+    const {
+        ref: cardRef,
+        entry: { contentRect: cardRect = null },
+    } = useResizeObserver();
+    const { width: cardWidth = 0 } = cardRect || {};
+
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic } = useScreenRenderContext();
 
     const animateBackground = current && !isPlaceholder && !isStatic && !isPreview && !isEdit;
 
     const [animationStarted, setAnimationStarted] = useState(animateBackground);
 
-    const { image = null, visualLayout = null } = visual || {};
+    const { image = null, visualLayout = null } = visual || {}; // note: image can be a video
     const hasVisual = image !== null;
     const hasCategory = isTextFilled(category);
     const hasTitle = isTextFilled(title);
@@ -126,6 +131,8 @@ const UrbaniaRecommendation = ({
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
     const [scrolledBottom, setScrolledBottom] = useState(false);
+
+    // const [visualModalOpened, setVisualModalOpened] = useState(false);
 
     useEffect(() => {
         let id = null;
@@ -176,6 +183,7 @@ const UrbaniaRecommendation = ({
         !isPlaceholder ? <Spacer key="spacer-cta-top" /> : null,
         hasTextCard || isPlaceholder || isEdit ? (
             <Container
+                ref={cardRef}
                 className={classNames([
                     styles.textCard,
                     {
@@ -215,16 +223,21 @@ const UrbaniaRecommendation = ({
                         isEmpty={!hasVisual}
                     >
                         {hasVisual ? (
+                            // <div className={styles.visualWrapper}>
                             <Visual
-                                className={styles.visual}
+                                // {...visual}
+                                imageClassName={styles.visual}
                                 media={image}
-                                width="100%"
-                                // objectFit={{ fit: 'cover' }}
+                                muted
+                                width={cardWidth}
+                                height={250}
+                                objectFit={{ fit: 'cover' }}
                                 resolution={resolution}
                                 active={active}
                                 shouldLoad={mediaShouldLoad}
                             />
-                        ) : null}
+                        ) : // </div>
+                        null}
                     </ScreenElement>
                 </div>
                 <div className={styles.text}>

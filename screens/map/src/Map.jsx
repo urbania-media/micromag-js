@@ -184,6 +184,8 @@ function MapScreen({
         [finalMarkers, setSelectedMarkerIndex, trackScreenEvent],
     );
 
+    console.log(disableInteraction());
+
     const onButtonClick = useCallback(() => {
         setOpened(true);
         if (disableInteraction !== null) {

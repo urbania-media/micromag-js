@@ -254,41 +254,69 @@ const KeypadScreen = ({
                 return;
             }
             setPopup(item);
-            setShowPopup(1);
+            setShowPopup(true);
         },
         [disableInteraction, setPopup, trackScreenEvent],
     );
 
     const onCloseModal = useCallback(() => {
-        setShowPopup(0);
+        setShowPopup(false);
         trackScreenEvent('close_modal');
     }, [enableInteraction, setShowPopup, trackScreenEvent]);
+
+    const [popupDragDirection, setPopupDragDirection] = useState(0);
+
+    const onPopupScrollHeightChange = useCallback(
+        ({ scrolleeHeight = 0 }) => {
+            if (Math.floor(scrolleeHeight) >= Math.floor(height)) {
+                setPopupDragDirection('top');
+            } else {
+                setPopupDragDirection('bottom');
+            }
+        },
+        [height],
+    );
 
     const computePopupProgress = useCallback(
         ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
             const damper = 0.5;
-            const p = Math.min(0, my) / window.innerHeight;
-            const progress = p * damper;
-            const reachedThreshold = vy > 0.3 || (my < 0 && Math.abs(p) > 0.3);
+            const delta = Math.abs(my) / window.innerHeight;
+            const reachedThreshold = vy > 1 || delta > 0.3;
+            let progress = 0;
+
+            if (popupDragDirection === 'top' && my < 0) {
+                progress = delta * damper * -1;
+            } else if (popupDragDirection === 'bottom' && my > 0) {
+                progress = delta * damper;
+            }
+            console.log(popupDragDirection, dragActive, progress, my, reachedThreshold, vy);
 
             if (!dragActive) {
                 if (reachedThreshold) {
                     onCloseModal();
+                    // if (popupDragDirection === 'top') {
+                    //     return -1;
+                    // }
+                    return 1;
                 }
-                return reachedThreshold ? 0 : 1;
+                return 0;
+                // return reachedThreshold ? 0 : 1;
             }
-            return 1 - progress;
+
+            return progress;
         },
-        [onCloseModal],
+        [onCloseModal, popupDragDirection],
     );
 
     useEffect(() => {
-        if (showPopup !== 0) {
+        if (showPopup) {
             disableInteraction();
         } else {
             enableInteraction();
         }
     }, [showPopup]);
+
+    console.log(showPopup);
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -300,7 +328,7 @@ const KeypadScreen = ({
                     containerRef.current.contains(event.target) &&
                     !isInteractivePreview &&
                     !isEdit &&
-                    showPopup !== 0)
+                    showPopup)
             ) {
                 onCloseModal();
             }
@@ -322,16 +350,9 @@ const KeypadScreen = ({
         setPopupDragDisabled(true);
     }, [setPopupDragDisabled]);
 
-    useEffect(() => {
-        // @TODO not working
-        if (popupInnerRef.current && popupInnerRef.current.clientHeight > height) {
-            setPopupDragDisabled(false);
-        }
-    }, [showPopup, popupInnerRef, setPopupDragDisabled]);
-
     const { bind: bindPopupDrag, progress: popupSpring } = useDragProgress({
         disabled: !isView || popupDragDisabled,
-        progress: showPopup ? 1 : 0,
+        progress: showPopup ? 0 : 1,
         computeProgress: computePopupProgress,
         springParams: { config: { tension: 300, friction: 30 } },
     });
@@ -339,7 +360,7 @@ const KeypadScreen = ({
     useEffect(() => {
         const keyup = (e) => {
             if (e.key === 'Escape') {
-                if (showPopup === 1) {
+                if (showPopup) {
                     onCloseModal();
                 }
             }
@@ -455,21 +476,21 @@ const KeypadScreen = ({
     useEffect(() => {
         if (screenState === 'popup' && isPlaceholder) {
             setPopup(placeholderPopupBoxStyles); // @note force placeholder
-            setShowPopup(1);
+            setShowPopup(true);
         }
         if (screenState === 'keypad') {
             setPopup(null);
-            setShowPopup(0);
+            setShowPopup(false);
         }
         if (screenState !== null && screenState.includes('popup')) {
             const index = screenState.split('.').pop();
             const found = items[index];
-            setShowPopup(1);
             setPopup(found);
+            setShowPopup(true);
         }
         if (screenState === null) {
-            setShowPopup(0);
             setPopup(null);
+            setShowPopup(false);
         }
     }, [screenState, items]);
 
@@ -505,8 +526,8 @@ const KeypadScreen = ({
                     width={width}
                     height={height}
                     verticalAlign={layout}
-                    withArrow={showPopup === 0}
-                    disabled={isPreview || isPlaceholder}
+                    withArrow={!showPopup}
+                    disabled={isPreview || isPlaceholder || showPopup}
                 >
                     <Layout
                         className={styles.layout}
@@ -601,7 +622,7 @@ const KeypadScreen = ({
                             <animated.div
                                 className={classNames([styles.popupBackdrop])}
                                 style={{
-                                    opacity: popupSpring.to((p) => p),
+                                    opacity: popupSpring.to((p) => 1 - Math.abs(p)),
                                 }}
                             />
 
@@ -611,21 +632,24 @@ const KeypadScreen = ({
                                     transform: popupSpring.to(
                                         (p) =>
                                             `translateY(${
-                                                100 * (1 - (p < 0.2 ? 0.1 * p + p : p))
-                                            }%)`,
+                                                100 * p
+                                                // 100 * (1 - (p < 0.2 && p > -0.2 ? 0.1 * p + p : p))
+                                            }%) scale(${1 - Math.abs(p * 0.5)})`,
                                     ),
                                     pointerEvents: popupSpring.to((p) =>
-                                        p < 0.1 ? 'none' : 'auto',
+                                        Math.abs(p) > 0.5 ? 'none' : 'auto',
                                     ),
                                 }}
                                 {...bindPopupDrag()}
                             >
                                 <Scroll
-                                    disabled={isPreview || isPlaceholder || showPopup === 0}
+                                    disabled={isPreview || isPlaceholder}
                                     verticalAlign="middle"
                                     withArrow={false}
+                                    scrollPosition={!showPopup ? 1 : null}
                                     onScrolledBottom={onPopupScrollBottom}
                                     onScrolledNotBottom={onPopupScrollNotBottom}
+                                    onScrollHeightChange={onPopupScrollHeightChange}
                                     className={styles.popupScroll}
                                     withShadow
                                 >

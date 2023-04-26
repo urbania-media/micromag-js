@@ -88,6 +88,12 @@
         overflow: hidden;
     }
 
+    .visual {
+        width: 100%;
+        height: auto;
+        max-height: 250px;
+    }
+
     .sponsor {
         z-index: 1;
         width: 100%;
@@ -113,8 +119,11 @@
         padding: 10px;
     }
 
-    .visual {
-        width: 100%;
+    .visualWrapper {
+        // position: absolute;
+        top: 0;
+        left: 0;
+        // width: 100%;
     }
 
     .text {
