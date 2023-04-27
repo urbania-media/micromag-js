@@ -19,6 +19,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
     useViewerContext,
+    useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
 import {
@@ -113,6 +114,8 @@ const UrbaniaArticle = ({
     const { opened: openedWebView, open: openWebView } = useViewerWebView();
     const { bottomSidesWidth: viewerBottomSidesWidth, topHeight: viewerTopHeight } =
         useViewerContext();
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
+
     const { muted, playing } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
@@ -147,7 +150,28 @@ const UrbaniaArticle = ({
 
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
-    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+    const footerCta = {
+        buttonClassName: styles.button,
+        labelClassName: styles.label,
+        arrowClassName: styles.arrow,
+        arrow: <ArrowIcon />,
+        icon: type === 'video' ? <WatchIcon className={styles.icon} /> : null,
+    };
+
+    const { callToAction = null, ...otherFooterProps } = footer || {};
+    const footerProps = getFooterProps(
+        { ...otherFooterProps, callToAction: { ...callToAction, ...footerCta } },
+        {
+            isView,
+            current,
+            openWebView,
+            isPreview,
+            animationDisabled: isPreview,
+            focusable: current && isView,
+            enableInteraction,
+            disableInteraction,
+        },
+    );
 
     const { video: backgroundVideo = null } = background || {};
     const hasVideoBackground = backgroundVideo !== null;
@@ -380,19 +404,7 @@ const UrbaniaArticle = ({
                             }}
                             className={styles.footer}
                         >
-                            <Footer
-                                {...footerProps}
-                                buttonClassName={styles.button}
-                                labelClassName={styles.label}
-                                arrowClassName={styles.arrow}
-                                animationDisabled={isPreview}
-                                focusable={current && isView}
-                                arrow={<ArrowIcon />}
-                                icon={
-                                    type === 'video' ? <WatchIcon className={styles.icon} /> : null
-                                }
-                                openWebView={openWebView}
-                            />
+                            <Footer {...footerProps} />
                         </div>
                     ) : null}
                 </div>

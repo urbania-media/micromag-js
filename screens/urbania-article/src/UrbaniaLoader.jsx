@@ -99,7 +99,6 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             !hasSponsorProps && defaultSponsor !== null ? (
                 <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
             ) : null;
-        console.log(ctaUrl);
 
         return {
             type: defaultType,
@@ -121,7 +120,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 callToAction: {
                     type: 'swipe-up',
                     label: defaultType === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
-                    // icon: defaultType === 'video' ? { id: 'play' } : null,
+                    // icon: defaultType === 'video' ? <WatchIcon /> : null,
                     inWebView: true,
                     ...callToAction,
                     ...(hasArticle ? { active: true } : null),
@@ -134,6 +133,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
     return <UrbaniaArticle {...props} {...values} hasArticle={url !== null} />;
 };
 
+UrbaniaLoader.propTypes = propTypes;
 UrbaniaLoader.defaultProps = defaultProps;
 
 export default React.memo(UrbaniaLoader);
