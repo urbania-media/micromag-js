@@ -1,6 +1,6 @@
 {
     "name": "@micromag/data",
-    "version": "0.3.370",
+    "version": "0.3.371",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,7 +50,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/fetch": "^0.1.15",
-        "@micromag/core": "^0.3.370",
+        "@micromag/core": "^0.3.371",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "query-string": "^6.13.7",
