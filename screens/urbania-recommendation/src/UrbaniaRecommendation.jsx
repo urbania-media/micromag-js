@@ -10,18 +10,21 @@ import {
     PlaceholderText,
     PlaceholderTitle,
     ScreenElement,
+    Close,
 } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
     useViewerContext,
     useViewerWebView,
+    useViewerInteraction,
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
+import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
@@ -97,6 +100,7 @@ const UrbaniaRecommendation = ({
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
+    const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic } = useScreenRenderContext();
 
@@ -128,7 +132,7 @@ const UrbaniaRecommendation = ({
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
     const [scrolledBottom, setScrolledBottom] = useState(false);
 
-    // const [visualModalOpened, setVisualModalOpened] = useState(false);
+    const [visualModalOpened, setVisualModalOpened] = useState(false);
 
     useEffect(() => {
         let id = null;
@@ -164,6 +168,22 @@ const UrbaniaRecommendation = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const onClickVisual = useCallback(() => {
+        setVisualModalOpened(true);
+    }, [setVisualModalOpened]);
+
+    const onCloseModal = useCallback(() => {
+        setVisualModalOpened(false);
+    }, [setVisualModalOpened]);
+
+    useEffect(() => {
+        if (visualModalOpened) {
+            disableInteraction();
+        } else {
+            enableInteraction();
+        }
+    }, [visualModalOpened]);
+
     // Create elements
     const items = [
         !isPlaceholder && hasHeader ? (
@@ -177,6 +197,11 @@ const UrbaniaRecommendation = ({
             </div>
         ) : null,
         !isPlaceholder ? <Spacer key="spacer-cta-top" /> : null,
+        visualModalOpened ? (
+            <Button className={styles.close} onClick={onCloseModal}>
+                <Close className={styles.closeIcon} />
+            </Button>
+        ) : null,
         hasTextCard || isPlaceholder || isEdit ? (
             <Container
                 className={classNames([
@@ -188,22 +213,12 @@ const UrbaniaRecommendation = ({
                     },
                 ])}
             >
-                <div className={styles.visualContainer}>
-                    {/* // SPONSOR */}
-                    <ScreenElement
-                        key="sponsor"
-                        placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
-                    >
-                        {hasSponsor ? (
-                            <Text
-                                className={classNames([
-                                    styles.sponsor,
-                                    { [styles.hasVisual]: hasVisual },
-                                ])}
-                                {...sponsor}
-                            />
-                        ) : null}
-                    </ScreenElement>
+                <div
+                    className={classNames([
+                        styles.visualContainer,
+                        { [styles.modalOpened]: visualModalOpened },
+                    ])}
+                >
                     {/* @TODO: Create a new element that onClick expands to fill screen w/ player */}
                     <ScreenElement
                         key="visual"
@@ -218,17 +233,25 @@ const UrbaniaRecommendation = ({
                         isEmpty={!hasVisual}
                     >
                         {hasVisual && !isVideo ? (
-                            // <div className={styles.visualWrapper}>
-                            <Visual
-                                imageClassName={styles.visual}
-                                media={image}
-                                width="100%"
-                                resolution={resolution}
-                                active={active}
-                                shouldLoad={mediaShouldLoad}
-                            />
-                        ) : // </div>
-                        null}
+                            <div
+                                className={classNames([
+                                    styles.visualWrapper,
+                                    { [styles.modalOpened]: visualModalOpened },
+                                ])}
+                                style={visualModalOpened ? { width, height } : null}
+                            >
+                                <Button className={styles.visualButton} onClick={onClickVisual}>
+                                    <Visual
+                                        imageClassName={styles.visual}
+                                        media={image}
+                                        width="100%"
+                                        resolution={resolution}
+                                        active={active}
+                                        shouldLoad={mediaShouldLoad}
+                                    />
+                                </Button>
+                            </div>
+                        ) : null}
 
                         {hasVisual && isVideo ? (
                             <Visual
@@ -241,6 +264,21 @@ const UrbaniaRecommendation = ({
                                 muted
                                 withoutVideo={isPreview}
                                 autoPlay
+                            />
+                        ) : null}
+                    </ScreenElement>
+                    {/* // SPONSOR */}
+                    <ScreenElement
+                        key="sponsor"
+                        placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
+                    >
+                        {hasSponsor ? (
+                            <Text
+                                className={classNames([
+                                    styles.sponsor,
+                                    { [styles.hasVisual]: hasVisual },
+                                ])}
+                                {...sponsor}
                             />
                         ) : null}
                     </ScreenElement>
