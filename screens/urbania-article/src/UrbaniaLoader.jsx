@@ -45,9 +45,10 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             sponsor = {},
             author = null,
             image = {},
-            callToAction = null,
+            footer = {},
         } = props || {};
         const { url: imageUrl = null } = image || {};
+        const { callToAction = null } = footer || {};
         const { url: ctaUrl = null } = callToAction || {};
 
         // Straight from article
@@ -98,6 +99,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             !hasSponsorProps && defaultSponsor !== null ? (
                 <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
             ) : null;
+        console.log(ctaUrl);
 
         return {
             type: defaultType,
@@ -114,14 +116,17 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 imageUrl !== null
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
-            callToAction: {
-                type: 'swipe-up',
-                label: defaultType === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
-                icon: defaultType === 'video' ? { id: 'play' } : null,
-                inWebView: true,
-                ...callToAction,
-                ...(hasArticle ? { active: true } : null),
-                url: ctaUrl || readerUrl || canonical,
+            footer: {
+                ...footer,
+                callToAction: {
+                    type: 'swipe-up',
+                    label: defaultType === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
+                    // icon: defaultType === 'video' ? { id: 'play' } : null,
+                    inWebView: true,
+                    ...callToAction,
+                    ...(hasArticle ? { active: true } : null),
+                    url: ctaUrl || readerUrl || canonical,
+                },
             },
         };
     }, [article, url, hostname, props]);
@@ -129,7 +134,6 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
     return <UrbaniaArticle {...props} {...values} hasArticle={url !== null} />;
 };
 
-UrbaniaLoader.propTypes = propTypes;
 UrbaniaLoader.defaultProps = defaultProps;
 
 export default React.memo(UrbaniaLoader);
