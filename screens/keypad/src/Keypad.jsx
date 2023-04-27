@@ -289,18 +289,13 @@ const KeypadScreen = ({
             } else if (popupDragDirection === 'bottom' && my > 0) {
                 progress = delta * damper;
             }
-            console.log(popupDragDirection, dragActive, progress, my, reachedThreshold, vy);
 
             if (!dragActive) {
                 if (reachedThreshold) {
                     onCloseModal();
-                    // if (popupDragDirection === 'top') {
-                    //     return -1;
-                    // }
                     return 1;
                 }
                 return 0;
-                // return reachedThreshold ? 0 : 1;
             }
 
             return progress;
@@ -315,8 +310,6 @@ const KeypadScreen = ({
             enableInteraction();
         }
     }, [showPopup]);
-
-    console.log(showPopup);
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -664,7 +657,6 @@ const KeypadScreen = ({
                                             ...getStyleFromBox(popupBoxStyle),
                                         }}
                                     >
-                                        {/* <div className={styles.popupWrapper}> */}
                                         <ScreenElement
                                             emptyLabel={
                                                 <FormattedMessage
@@ -776,7 +768,6 @@ const KeypadScreen = ({
                                                 />
                                             ) : null}
                                         </ScreenElement>
-                                        {/* </div> */}
                                     </div>
                                 </Scroll>
                             </animated.div>
