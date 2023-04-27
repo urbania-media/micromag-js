@@ -428,6 +428,10 @@ const Viewer = ({
         }),
         [onTransitionStart, onTransitionComplete],
     );
+
+    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
+    const navigationDisabled = currentScreenInteractionEnabled === false;
+
     const {
         dragging: isDragging,
         progress: progressSpring,
@@ -435,7 +439,7 @@ const Viewer = ({
     } = useDragProgress({
         progress: screenIndex,
         disabled: !isView || withoutTransitions,
-        dragDisabled: withoutGestures,
+        dragDisabled: withoutGestures || !currentScreenInteractionEnabled,
         computeProgress: computeScreenProgress,
         onProgress: onScreenProgress,
         onTap,
@@ -492,9 +496,6 @@ const Viewer = ({
         active: fullscreenActive,
         enabled: fullscreenEnabled,
     } = useFullscreen(containerRef.current || null);
-
-    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
-    const navigationDisabled = currentScreenInteractionEnabled === false;
 
     // Get element height
     const { ref: menuDotsContainerRef, height: menuDotsContainerHeight = 0 } =
