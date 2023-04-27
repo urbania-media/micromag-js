@@ -19,7 +19,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -98,12 +98,6 @@ const UrbaniaRecommendation = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
-    const {
-        ref: cardRef,
-        entry: { contentRect: cardRect = null },
-    } = useResizeObserver();
-    const { width: cardWidth = 0 } = cardRect || {};
-
     const { isView, isPreview, isPlaceholder, isEdit, isStatic } = useScreenRenderContext();
 
     const animateBackground = current && !isPlaceholder && !isStatic && !isPreview && !isEdit;
@@ -111,7 +105,9 @@ const UrbaniaRecommendation = ({
     const [animationStarted, setAnimationStarted] = useState(animateBackground);
 
     const { image = null, visualLayout = null } = visual || {}; // note: image can be a video
+    const { type = null } = image || {};
     const hasVisual = image !== null;
+    const isVideo = type === 'video';
     const hasCategory = isTextFilled(category);
     const hasTitle = isTextFilled(title);
     const hasDate = isTextFilled(date);
@@ -183,7 +179,6 @@ const UrbaniaRecommendation = ({
         !isPlaceholder ? <Spacer key="spacer-cta-top" /> : null,
         hasTextCard || isPlaceholder || isEdit ? (
             <Container
-                ref={cardRef}
                 className={classNames([
                     styles.textCard,
                     {
@@ -222,22 +217,32 @@ const UrbaniaRecommendation = ({
                         emptyClassName={classNames([styles.empty, styles.emptyVisual])}
                         isEmpty={!hasVisual}
                     >
-                        {hasVisual ? (
+                        {hasVisual && !isVideo ? (
                             // <div className={styles.visualWrapper}>
                             <Visual
-                                // {...visual}
                                 imageClassName={styles.visual}
                                 media={image}
-                                muted
-                                width={cardWidth}
-                                height={250}
-                                objectFit={{ fit: 'cover' }}
+                                width="100%"
                                 resolution={resolution}
                                 active={active}
                                 shouldLoad={mediaShouldLoad}
                             />
                         ) : // </div>
                         null}
+
+                        {hasVisual && isVideo ? (
+                            <Visual
+                                media={image}
+                                width={width * 0.9}
+                                height={250}
+                                resolution={resolution}
+                                objectFit={{ fit: 'cover' }}
+                                shouldLoad={mediaShouldLoad}
+                                muted
+                                withoutVideo={isPreview}
+                                autoPlay
+                            />
+                        ) : null}
                     </ScreenElement>
                 </div>
                 <div className={styles.text}>
