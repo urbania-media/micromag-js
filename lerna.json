@@ -1,5 +1,5 @@
 {
-    "version": "0.3.369",
+    "version": "0.3.370",
     "packages": ["elements/*", "packages/*", "screens/*"],
     "useNx": true,
     "command": {
