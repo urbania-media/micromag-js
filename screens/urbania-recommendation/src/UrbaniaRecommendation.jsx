@@ -172,6 +172,10 @@ const UrbaniaRecommendation = ({
                 style={{
                     paddingBottom: spacing,
                 }}
+                className={classNames([
+                    styles.headerContainer,
+                    // { [styles.appear]: animationStarted },
+                ])}
             >
                 <Header {...header} />
             </div>
@@ -189,7 +193,6 @@ const UrbaniaRecommendation = ({
                 ])}
             >
                 <div className={styles.visualContainer}>
-                    {/* // SPONSOR */}
                     <ScreenElement
                         key="sponsor"
                         placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
@@ -246,7 +249,6 @@ const UrbaniaRecommendation = ({
                     </ScreenElement>
                 </div>
                 <div className={styles.text}>
-                    {/* // CATEGORY */}
                     <ScreenElement
                         key="category"
                         placeholder={<PlaceholderTitle className={styles.categoryPlaceholder} />}
@@ -270,7 +272,6 @@ const UrbaniaRecommendation = ({
                             },
                         ])}
                     >
-                        {/* // TITLE */}
                         <ScreenElement
                             key="title"
                             placeholder="title"
@@ -289,14 +290,14 @@ const UrbaniaRecommendation = ({
                                 </div>
                             ) : null}
                         </ScreenElement>
-                        {/* // DATE */}
+
                         <ScreenElement
                             key="date"
                             placeholder={<PlaceholderText className={styles.datePlaceholder} />}
                         >
                             {hasDate ? <Text className={styles.date} {...date} /> : null}
                         </ScreenElement>
-                        {/* // LOCATION */}
+
                         <ScreenElement
                             key="location"
                             placeholder={<PlaceholderText className={styles.locationPlaceholder} />}
@@ -305,7 +306,7 @@ const UrbaniaRecommendation = ({
                                 <Text className={styles.location} {...location} />
                             ) : null}
                         </ScreenElement>
-                        {/* // DESCRIPTION */}
+
                         <ScreenElement
                             key="description"
                             placeholder={

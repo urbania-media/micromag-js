@@ -43,6 +43,15 @@
         writing-mode: vertical-lr;
     }
 
+    .headerContainer {
+        &.appear {
+            animation: appear 1s ease-in-out;
+            animation-delay: 0.5s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+    }
+
     .callToAction {
         transition: opacity 0.2 ease-out;
 
