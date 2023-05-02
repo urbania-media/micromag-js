@@ -143,12 +143,12 @@ const UrbaniaRecommendation = ({
     }, [animationStarted, animateBackground, setAnimationStarted]);
 
     useEffect(() => {
-        if (!isView) {
-            setAnimationStarted(false);
-        } else {
+        if (isView && current) {
             setAnimationStarted(true);
+        } else {
+            setAnimationStarted(false);
         }
-    }, [isView, setAnimationStarted]);
+    }, [isView, current, setAnimationStarted]);
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -294,17 +294,7 @@ const UrbaniaRecommendation = ({
                             key="date"
                             placeholder={<PlaceholderText className={styles.datePlaceholder} />}
                         >
-                            {hasDate ? (
-                                <Text
-                                    className={classNames([
-                                        styles.date,
-                                        {
-                                            [styles.centerDate]: !hasTitle,
-                                        },
-                                    ])}
-                                    {...date}
-                                />
-                            ) : null}
+                            {hasDate ? <Text className={styles.date} {...date} /> : null}
                         </ScreenElement>
                         {/* // LOCATION */}
                         <ScreenElement
@@ -372,6 +362,8 @@ const UrbaniaRecommendation = ({
         >
             <Container width={width} height={height} className={styles.content}>
                 <Scroll
+                    width={width}
+                    height={height}
                     disabled={animationStarted || scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
@@ -380,6 +372,8 @@ const UrbaniaRecommendation = ({
                 >
                     <Layout
                         className={styles.layout}
+                        width={width}
+                        // height={height}
                         style={
                             !isPlaceholder
                                 ? {
@@ -388,6 +382,7 @@ const UrbaniaRecommendation = ({
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
                                           spacing / 2,
+                                      minHeight: height, // probably not the best
                                   }
                                 : null
                         }

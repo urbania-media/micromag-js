@@ -101,11 +101,6 @@
         text-align: center;
         text-transform: uppercase;
 
-        > p {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-
         &.hasVisual {
             position: absolute;
         }
@@ -182,6 +177,15 @@
     .location {
         font-size: 12px;
         font-weight: 700;
+    }
+
+    .date,
+    .location,
+    .sponsor {
+        > p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
     }
 
     .description {
