@@ -182,6 +182,7 @@ const KeypadScreen = ({
 
     const hasTitle = isTextFilled(title);
     const { textStyle: titleTextStyle = null } = title || {};
+    const finalTitleTextStyle = { ...getStyleFromText(titleTextStyle) };
 
     const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
     const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
@@ -573,10 +574,7 @@ const KeypadScreen = ({
                                 <Heading
                                     className={styles.title}
                                     {...title}
-                                    textStyle={{
-                                        ...headingTextStyle,
-                                        ...getStyleFromText(titleTextStyle),
-                                    }}
+                                    textStyle={titleTextStyle}
                                 />
                             ) : null}
                         </ScreenElement>
