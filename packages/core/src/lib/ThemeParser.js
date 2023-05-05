@@ -329,8 +329,6 @@ class ThemeParser {
                       }
                     : null;
 
-            // console.log('hell', boxStyleValue, complexValue);
-
             // Only change value if something is overrided
             return colorValue !== null ||
                 themeValue !== null ||

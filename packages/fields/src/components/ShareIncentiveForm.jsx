@@ -3,14 +3,16 @@
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { useIntl, defineMessage, FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 // import { getStyleFromBox } from '@micromag/core/utils';
 // import styles from '../styles/box-style.module.scss';
 // import Fields from './Fields';
 import FieldWithForm from './FieldWithForm';
 
 const propTypes = {
-    value: MicromagPropTypes.CallToActionForm,
+    value: MicromagPropTypes.activeForm,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };

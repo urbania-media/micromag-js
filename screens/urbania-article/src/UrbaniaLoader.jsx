@@ -42,9 +42,10 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             articleType = null,
             title = {},
             overTitle = {},
-            sponsor = {},
+            sponsorLabel = {},
             author = null,
             image = {},
+            header = {},
             footer = {},
         } = props || {};
         const { url: imageUrl = null } = image || {};
@@ -93,7 +94,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
         // Content
         const hasTitle = isTextFilled(title);
         const hasOverTitle = isTextFilled(overTitle);
-        const hasSponsorProps = isTextFilled(sponsor);
+        const hasSponsorProps = isTextFilled(sponsorLabel);
 
         const sponsorPrefix =
             !hasSponsorProps && defaultSponsor !== null ? (
@@ -107,14 +108,15 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             author: { ...finalArticleAuthor, ...author },
             sponsors:
                 defaultSponsor !== null && !hasSponsorProps
-                    ? [{ ...sponsor, body: `<strong>${defaultSponsor}</strong>` }]
-                    : [sponsor],
+                    ? [{ ...sponsorLabel, body: `<strong>${defaultSponsor}</strong>` }]
+                    : [sponsorLabel],
             sponsorPrefix,
             site,
             image:
                 imageUrl !== null
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
+            header,
             footer: {
                 ...footer,
                 callToAction: {
@@ -123,7 +125,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                     // icon: defaultType === 'video' ? <WatchIcon /> : null,
                     inWebView: true,
                     ...callToAction,
-                    ...(hasArticle ? { active: true } : null),
+                    ...(hasArticle ? { active: url !== null } : null),
                     url: ctaUrl || readerUrl || canonical,
                 },
             },

@@ -37,7 +37,7 @@ const hasWindow = typeof window !== 'undefined';
 
 const apiBaseUrl = hasWindow ? `${window.location.protocol}//${window.location.host}/api` : '/api';
 
-const EditorContainer = ({ defaultValue, isTheme, viewerTheme }) => {
+const EditorContainer = ({ defaultValue, isTheme = false, viewerTheme }) => {
     const [value, setValue] = useState(defaultValue);
     return (
         <ApiProvider baseUrl={apiBaseUrl}>

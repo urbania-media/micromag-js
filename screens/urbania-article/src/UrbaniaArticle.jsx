@@ -149,7 +149,7 @@ const UrbaniaArticle = ({
     const hasImage = url !== null;
 
     const hasHeader = isHeaderFilled(header);
-    const hasFooter = isFooterFilled(footer);
+    const hasFooter = isFooterFilled(footer) || hasArticle;
     const footerCta = {
         buttonClassName: styles.button,
         labelClassName: styles.label,
@@ -159,8 +159,15 @@ const UrbaniaArticle = ({
     };
 
     const { callToAction = null, ...otherFooterProps } = footer || {};
+
     const footerProps = getFooterProps(
-        { ...otherFooterProps, callToAction: { ...callToAction, ...footerCta } },
+        {
+            ...otherFooterProps,
+            callToAction: {
+                ...callToAction,
+                ...footerCta,
+            },
+        },
         {
             isView,
             current,

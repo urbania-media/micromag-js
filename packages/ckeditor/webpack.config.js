@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin');
+const { CKEditorTranslationsPlugin } = require('@ckeditor/ckeditor5-dev-translations');
 const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
     },
 
     plugins: [
-        new CKEditorWebpackPlugin({
+        new CKEditorTranslationsPlugin({
             // See https://ckeditor.com/docs/ckeditor5/latest/features/ui-language.html
             language: 'fr',
             additionalLanguages: ['en'],
