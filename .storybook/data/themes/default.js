@@ -14,6 +14,7 @@ export default {
         heading1: {
             fontSize: 36,
             fontFamily: 'Courier',
+            textAlign: 'left',
         },
         heading2: {
             fontSize: 24,
@@ -75,8 +76,8 @@ export default {
             shadowBlur: 0,
             shadowColor: {
                 color: '#000000',
-                alpha: 1
-            }
+                alpha: 1,
+            },
         },
     },
 };
