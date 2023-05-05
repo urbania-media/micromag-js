@@ -85,7 +85,9 @@ const ViewerMenuPreview = ({
             : null;
 
     const { title: titleStyles = null } = textStyles || {};
-    const finalTitleStyles = titleStyles !== null ? getStyleFromText(titleStyles) : null;
+    // eslint-disable-next-line no-unused-vars
+    const { textAlign = null, ...otherTitleStyles } = titleStyles || {};
+    const finalTitleStyles = titleStyles !== null ? getStyleFromText(otherTitleStyles) : null;
 
     // const { url: brandLogoUrl = null } = brandLogo || {};
     const [screensMounted, setScreensMounted] = useState([]);
