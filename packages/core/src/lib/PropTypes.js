@@ -482,6 +482,10 @@ export const shareIncentive = PropTypes.shape({
     boxStyle,
 });
 
+export const activeForm = PropTypes.shape({
+    active: PropTypes.bool,
+});
+
 export const speaker = PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -22,7 +22,13 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import {
+    isTextFilled,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+    getStyleFromText,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
@@ -107,6 +113,7 @@ const UrbaniaRecommendation = ({
     const animateBackground = current && !isPlaceholder && !isStatic && !isPreview && !isEdit;
 
     const [animationStarted, setAnimationStarted] = useState(animateBackground);
+    const [didAnimate, setDidAnimate] = useState(false);
 
     const { image = null, visualLayout = null } = visual || {}; // note: image can be a video
     const { type = null } = image || {};
@@ -134,25 +141,54 @@ const UrbaniaRecommendation = ({
 
     const [visualModalOpened, setVisualModalOpened] = useState(false);
 
+    const { text: backgroundText = null } = background || {};
+    const { body: backgroundTextBody = null, textStyle: backgroundTextStyle } =
+        backgroundText || {};
+
+    const finalBackgroundText = useMemo(() => {
+        function distributeTextEqually(text) {
+            const words = text !== null ? text.split(' ') : [];
+            const numRows = 4;
+
+            if (words.length < numRows / 2) {
+                return Array(numRows).fill(text);
+            }
+
+            const halfNumWords = Math.ceil(words.length / 2);
+            const firstHalf = words.slice(0, halfNumWords).join(' ');
+            const secondHalf = words.slice(halfNumWords).join(' ');
+
+            return [firstHalf, secondHalf, firstHalf, secondHalf];
+        }
+
+        const textArray = distributeTextEqually(backgroundTextBody);
+
+        // @TODO: move container div here to avoid double map
+        const textElements = (textArray || []).map((line) => <span>{line}</span>);
+
+        return textElements;
+    }, [backgroundTextBody]);
+
     useEffect(() => {
         let id = null;
         if (animationStarted) {
             id = setTimeout(() => {
                 setAnimationStarted(false);
-            }, 1500);
+                setDidAnimate(true);
+            }, 1600);
         }
         return () => {
             clearTimeout(id);
         };
-    }, [animationStarted, animateBackground, setAnimationStarted]);
+    }, [animationStarted, animateBackground, setDidAnimate, setAnimationStarted]);
 
     useEffect(() => {
-        if (!isView) {
-            setAnimationStarted(false);
-        } else {
+        if (isView && !isStatic && current) {
             setAnimationStarted(true);
+        } else {
+            setAnimationStarted(false);
         }
-    }, [isView, setAnimationStarted]);
+    }, [isView, current, setAnimationStarted]);
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -192,6 +228,10 @@ const UrbaniaRecommendation = ({
                 style={{
                     paddingBottom: spacing,
                 }}
+                className={classNames([
+                    styles.headerContainer,
+                    // { [styles.appear]: animationStarted },
+                ])}
             >
                 <Header {...header} />
             </div>
@@ -213,13 +253,26 @@ const UrbaniaRecommendation = ({
                     },
                 ])}
             >
-                <div
-                    className={classNames([
+                <div className={classNames([
                         styles.visualContainer,
                         { [styles.modalOpened]: visualModalOpened },
-                    ])}
-                >
+                    ])}>
+                    <ScreenElement
+                        key="sponsor"
+                        placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
+                    >
+                        {hasSponsor ? (
+                            <Text
+                                className={classNames([
+                                    styles.sponsor,
+                                    { [styles.hasVisual]: hasVisual },
+                                ])}
+                                {...sponsor}
+                            />
+                        ) : null}
+                    </ScreenElement>
                     {/* @TODO: Create a new element that onClick expands to fill screen w/ player */}
+
                     <ScreenElement
                         key="visual"
                         placeholder={<PlaceholderImage className={styles.visualPlaceholder} />}
@@ -284,7 +337,6 @@ const UrbaniaRecommendation = ({
                     </ScreenElement>
                 </div>
                 <div className={styles.text}>
-                    {/* // CATEGORY */}
                     <ScreenElement
                         key="category"
                         placeholder={<PlaceholderTitle className={styles.categoryPlaceholder} />}
@@ -308,7 +360,6 @@ const UrbaniaRecommendation = ({
                             },
                         ])}
                     >
-                        {/* // TITLE */}
                         <ScreenElement
                             key="title"
                             placeholder="title"
@@ -327,24 +378,14 @@ const UrbaniaRecommendation = ({
                                 </div>
                             ) : null}
                         </ScreenElement>
-                        {/* // DATE */}
+
                         <ScreenElement
                             key="date"
                             placeholder={<PlaceholderText className={styles.datePlaceholder} />}
                         >
-                            {hasDate ? (
-                                <Text
-                                    className={classNames([
-                                        styles.date,
-                                        {
-                                            [styles.centerDate]: !hasTitle,
-                                        },
-                                    ])}
-                                    {...date}
-                                />
-                            ) : null}
+                            {hasDate ? <Text className={styles.date} {...date} /> : null}
                         </ScreenElement>
-                        {/* // LOCATION */}
+
                         <ScreenElement
                             key="location"
                             placeholder={<PlaceholderText className={styles.locationPlaceholder} />}
@@ -353,7 +394,7 @@ const UrbaniaRecommendation = ({
                                 <Text className={styles.location} {...location} />
                             ) : null}
                         </ScreenElement>
-                        {/* // DESCRIPTION */}
+
                         <ScreenElement
                             key="description"
                             placeholder={
@@ -410,6 +451,8 @@ const UrbaniaRecommendation = ({
         >
             <Container width={width} height={height} className={styles.content}>
                 <Scroll
+                    width={width}
+                    height={height}
                     disabled={animationStarted || scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
@@ -418,6 +461,8 @@ const UrbaniaRecommendation = ({
                 >
                     <Layout
                         className={styles.layout}
+                        width={width}
+                        // height={height}
                         style={
                             !isPlaceholder
                                 ? {
@@ -426,6 +471,7 @@ const UrbaniaRecommendation = ({
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
                                           spacing / 2,
+                                      minHeight: height, // probably not the best
                                   }
                                 : null
                         }
@@ -435,18 +481,44 @@ const UrbaniaRecommendation = ({
                 </Scroll>
             </Container>
             {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                    withoutVideo={isPreview}
-                    className={styles.background}
-                />
+                <>
+                    <Background
+                        background={background}
+                        width={width}
+                        height={height}
+                        resolution={resolution}
+                        playing={backgroundPlaying}
+                        muted={muted}
+                        shouldLoad={mediaShouldLoad}
+                        mediaRef={mediaRef}
+                        withoutVideo={isPreview}
+                        className={styles.background}
+                    />
+                    {backgroundText !== null && finalBackgroundText.length > 0 ? (
+                        <Container
+                            width={width}
+                            height={height}
+                            className={styles.backgroundTextContainer}
+                        >
+                            {(finalBackgroundText || []).map((line, i) => (
+                                <div
+                                    key={`background-text-${line}`}
+                                    className={classNames([styles.backgroundText], {
+                                        [styles.didAnimate]: didAnimate, // @TODO: optimise — use animation-fill-mode?
+                                        [styles.animateFromBottom]: animationStarted && i % 2 !== 0,
+                                        [styles.animateFromTop]: animationStarted && i % 2 === 0,
+                                    })}
+                                    style={{
+                                        animationDelay: `${i * 100}ms`,
+                                        ...getStyleFromText(backgroundTextStyle),
+                                    }}
+                                >
+                                    {line}
+                                </div>
+                            ))}
+                        </Container>
+                    ) : null}
+                </>
             ) : null}
         </div>
     );

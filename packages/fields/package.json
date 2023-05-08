@@ -1,6 +1,6 @@
 {
     "name": "@micromag/fields",
-    "version": "0.3.370",
+    "version": "0.3.373",
     "description": "",
     "keywords": [
         "javascript"
@@ -64,16 +64,16 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@ckeditor/ckeditor5-react": "^5.0.3",
+        "@ckeditor/ckeditor5-react": "^6.0.0",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/ckeditor": "^0.3.318",
-        "@micromag/core": "^0.3.370",
-        "@micromag/element-grid": "^0.3.370",
-        "@micromag/element-keypad": "^0.3.370",
-        "@micromag/element-map": "^0.3.370",
-        "@micromag/media-gallery": "^0.3.370",
+        "@micromag/ckeditor": "^0.3.373",
+        "@micromag/core": "^0.3.373",
+        "@micromag/element-grid": "^0.3.373",
+        "@micromag/element-keypad": "^0.3.373",
+        "@micromag/element-map": "^0.3.373",
+        "@micromag/media-gallery": "^0.3.373",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
         "fuse.js": "^6.4.3",

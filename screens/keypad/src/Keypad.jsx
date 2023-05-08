@@ -573,10 +573,7 @@ const KeypadScreen = ({
                                 <Heading
                                     className={styles.title}
                                     {...title}
-                                    textStyle={{
-                                        ...headingTextStyle,
-                                        ...getStyleFromText(titleTextStyle),
-                                    }}
+                                    textStyle={titleTextStyle}
                                 />
                             ) : null}
                         </ScreenElement>
@@ -699,7 +696,6 @@ const KeypadScreen = ({
                                             {hasPopupContent ? (
                                                 <Text
                                                     className={styles.popupContent}
-                                                    // @TODO: There's a styles clash here, check if there's more elsewhere
                                                     {...popupContent}
                                                     textStyle={{
                                                         ...contentTextStyle,
@@ -760,11 +756,6 @@ const KeypadScreen = ({
                                                         ...popupButtonsBoxStyle,
                                                         ...popupButtonBoxStyle,
                                                     }}
-                                                    // style={{
-                                                    //     ...getStyleFromText(popupButtonsTextStyle),
-                                                    //     ...getStyleFromBox(popupButtonsBoxStyle),
-                                                    //     ...getStyleFromBox(popupButtonBoxStyle),
-                                                    // }}
                                                 />
                                             ) : null}
                                         </ScreenElement>

@@ -687,6 +687,10 @@
     "defaultMessage": "Background color",
     "description": "Breadcrumb field label"
   },
+  "KvBdrU": {
+    "defaultMessage": "Background text",
+    "description": "Field label"
+  },
   "LFziCV": {
     "defaultMessage": "Without right/wrong icon",
     "description": "Field label"

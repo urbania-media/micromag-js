@@ -102,6 +102,8 @@ $color-universities-text: #f33;
     margin: 0;
 }
 
+
+
 .background {
     z-index: 1;
 }
@@ -267,13 +269,22 @@ $color-universities-text: #f33;
     .arrow {
         margin-bottom: 5px;
         opacity: 0.95;
+        // color: $color-urbania-background;
     }
 
     .icon {
         display: inline-block;
         margin-top: -3px;
         margin-right: 3px;
-        padding: 1px;
+        padding: 2px;
+    }
+
+    .button {
+        // border-radius: 20px;
+        // background-color: $color-urbania-background;
+        // color: $black;
+        font-family: 'Agrandir';
+        font-size: 16px;
     }
 }
 

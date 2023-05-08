@@ -541,7 +541,8 @@ const Viewer = ({
 
     const [currentShareIncentive, setCurrentShareIncentive] = useState(null);
     const [shareIncentiveVisible, setShareIncentiveVisible] = useState(false);
-    const { shareIncentive = null } = currentScreen || {};
+    const { header = null } = currentScreen || {};
+    const { shareIncentive = null } = header || {};
     const { active: hasShareIncentive = false, label: shareIncentiveLabel = null } =
         shareIncentive || {};
     const { label: currentShareIncentiveLabel = null } = currentShareIncentive || {};

@@ -87,7 +87,7 @@ export const defaultTheme = {
         cta: {
             // padding: '5 10',
             padding: {
-                top: 20,
+                top: 5,
                 right: 10,
                 left: 10,
                 bottom: 5,
