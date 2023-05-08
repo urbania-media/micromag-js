@@ -1044,6 +1044,12 @@ msgid "Background color"
 msgstr "Background color"
 
 # Field label
+#: KvBdrU
+msgctxt "KvBdrU"
+msgid "Background text"
+msgstr "Background text"
+
+# Field label
 #: LFziCV
 msgctxt "LFziCV"
 msgid "Without right/wrong icon"

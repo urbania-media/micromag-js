@@ -99,8 +99,6 @@ const TextEditorField = ({
         [onChange],
     );
 
-    // console.log('Editor', Editor);
-
     return (
         <div
             className={classNames([

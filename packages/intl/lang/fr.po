@@ -1044,6 +1044,12 @@ msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
 
 # Field label
+#: KvBdrU
+msgctxt "KvBdrU"
+msgid "Background text"
+msgstr "Texte en arrière-plan"
+
+# Field label
 #: LFziCV
 msgctxt "LFziCV"
 msgid "Without right/wrong icon"

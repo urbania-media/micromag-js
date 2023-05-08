@@ -101,7 +101,7 @@ export default [
 
             {
                 name: 'background',
-                type: 'background',
+                type: 'background-recommendation',
                 label: defineMessage({
                     defaultMessage: 'Background',
                     description: 'Background field label',

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -20,7 +20,13 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import {
+    isTextFilled,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+    getStyleFromText,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -103,6 +109,7 @@ const UrbaniaRecommendation = ({
     const animateBackground = current && !isPlaceholder && !isStatic && !isPreview && !isEdit;
 
     const [animationStarted, setAnimationStarted] = useState(animateBackground);
+    const [didAnimate, setDidAnimate] = useState(false);
 
     const { image = null, visualLayout = null } = visual || {}; // note: image can be a video
     const { type = null } = image || {};
@@ -130,20 +137,49 @@ const UrbaniaRecommendation = ({
 
     // const [visualModalOpened, setVisualModalOpened] = useState(false);
 
+    const { text: backgroundText = null } = background || {};
+    const { body: backgroundTextBody = null, textStyle: backgroundTextStyle } =
+        backgroundText || {};
+
+    const finalBackgroundText = useMemo(() => {
+        function distributeTextEqually(text) {
+            const words = text !== null ? text.split(' ') : [];
+            const numRows = 4;
+
+            if (words.length < numRows / 2) {
+                return Array(numRows).fill(text);
+            }
+
+            const halfNumWords = Math.ceil(words.length / 2);
+            const firstHalf = words.slice(0, halfNumWords).join(' ');
+            const secondHalf = words.slice(halfNumWords).join(' ');
+
+            return [firstHalf, secondHalf, firstHalf, secondHalf];
+        }
+
+        const textArray = distributeTextEqually(backgroundTextBody);
+
+        // @TODO: move container div here to avoid double map
+        const textElements = (textArray || []).map((line) => <span>{line}</span>);
+
+        return textElements;
+    }, [backgroundTextBody]);
+
     useEffect(() => {
         let id = null;
         if (animationStarted) {
             id = setTimeout(() => {
                 setAnimationStarted(false);
-            }, 1500);
+                setDidAnimate(true);
+            }, 1600);
         }
         return () => {
             clearTimeout(id);
         };
-    }, [animationStarted, animateBackground, setAnimationStarted]);
+    }, [animationStarted, animateBackground, setDidAnimate, setAnimationStarted]);
 
     useEffect(() => {
-        if (isView && current) {
+        if (isView && !isStatic && current) {
             setAnimationStarted(true);
         } else {
             setAnimationStarted(false);
@@ -208,6 +244,7 @@ const UrbaniaRecommendation = ({
                         ) : null}
                     </ScreenElement>
                     {/* @TODO: Create a new element that onClick expands to fill screen w/ player */}
+
                     <ScreenElement
                         key="visual"
                         placeholder={<PlaceholderImage className={styles.visualPlaceholder} />}
@@ -393,18 +430,44 @@ const UrbaniaRecommendation = ({
                 </Scroll>
             </Container>
             {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={resolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
-                    withoutVideo={isPreview}
-                    className={styles.background}
-                />
+                <>
+                    <Background
+                        background={background}
+                        width={width}
+                        height={height}
+                        resolution={resolution}
+                        playing={backgroundPlaying}
+                        muted={muted}
+                        shouldLoad={mediaShouldLoad}
+                        mediaRef={mediaRef}
+                        withoutVideo={isPreview}
+                        className={styles.background}
+                    />
+                    {backgroundText !== null && finalBackgroundText.length > 0 ? (
+                        <Container
+                            width={width}
+                            height={height}
+                            className={styles.backgroundTextContainer}
+                        >
+                            {(finalBackgroundText || []).map((line, i) => (
+                                <div
+                                    key={`background-text-${line}`}
+                                    className={classNames([styles.backgroundText], {
+                                        [styles.didAnimate]: didAnimate, // @TODO: optimise — use animation-fill-mode?
+                                        [styles.animateFromBottom]: animationStarted && i % 2 !== 0,
+                                        [styles.animateFromTop]: animationStarted && i % 2 === 0,
+                                    })}
+                                    style={{
+                                        animationDelay: `${i * 100}ms`,
+                                        ...getStyleFromText(backgroundTextStyle),
+                                    }}
+                                >
+                                    {line}
+                                </div>
+                            ))}
+                        </Container>
+                    ) : null}
+                </>
             ) : null}
         </div>
     );

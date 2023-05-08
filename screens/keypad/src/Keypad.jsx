@@ -182,7 +182,6 @@ const KeypadScreen = ({
 
     const hasTitle = isTextFilled(title);
     const { textStyle: titleTextStyle = null } = title || {};
-    const finalTitleTextStyle = { ...getStyleFromText(titleTextStyle) };
 
     const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
     const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
@@ -697,7 +696,6 @@ const KeypadScreen = ({
                                             {hasPopupContent ? (
                                                 <Text
                                                     className={styles.popupContent}
-                                                    // @TODO: There's a styles clash here, check if there's more elsewhere
                                                     {...popupContent}
                                                     textStyle={{
                                                         ...contentTextStyle,
@@ -758,11 +756,6 @@ const KeypadScreen = ({
                                                         ...popupButtonsBoxStyle,
                                                         ...popupButtonBoxStyle,
                                                     }}
-                                                    // style={{
-                                                    //     ...getStyleFromText(popupButtonsTextStyle),
-                                                    //     ...getStyleFromBox(popupButtonsBoxStyle),
-                                                    //     ...getStyleFromBox(popupButtonBoxStyle),
-                                                    // }}
                                                 />
                                             ) : null}
                                         </ScreenElement>

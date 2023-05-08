@@ -108,6 +108,27 @@ const multipleKeypads = {
             type: 'keypad',
             items: team,
             layout: 'middle',
+            header: {
+                badge: {
+                    active: true,
+                    label: {
+                        body: 'Folklore folks',
+                        textStyle: { color: 'rgba(224, 224, 224, 0.8)' },
+                    },
+                    boxStyle: {
+                        backgroundColor: 'transparent',
+                        borderRadius: 8,
+                        padding: null,
+                        borderWidth: 2,
+                        borderColor: 'rgba(224, 224, 224, 0.8)',
+                        borderStyle: 'solid',
+                        // shadowDistance: 0,
+                        // shadowBlur: 6,
+                        // shadowColor: color(),
+                        // shadowAngle: 45,
+                    },
+                },
+            },
             keypadSettings: {
                 layout: {
                     columnAlign: 'middle',
