@@ -367,6 +367,7 @@ const UrbaniaRecommendation = ({
                                                     disabled={visualModalOpened}
                                                 >
                                                     <Visual
+                                                        className={styles.visual}
                                                         imageClassName={styles.visual}
                                                         media={image}
                                                         width={
