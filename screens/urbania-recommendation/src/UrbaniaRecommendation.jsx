@@ -143,7 +143,8 @@ const UrbaniaRecommendation = ({
         ref: textContainerRef,
         entry: { contentRect: textContainerRect = null },
     } = useResizeObserver();
-    const { height: textContainerHeight = 0 } = textContainerRect || {};
+    const { width: textContainerWidth = 0, height: textContainerHeight = 0 } =
+        textContainerRect || {};
 
     const {
         ref: visualWrapperRef,
@@ -325,8 +326,6 @@ const UrbaniaRecommendation = ({
                                         { [styles.modalOpened]: visualModalOpened },
                                     ])}
                                 >
-                                    {/* @TODO: Create a new element that onClick expands to fill screen w/ player */}
-
                                     <ScreenElement
                                         key="visual"
                                         placeholder={
@@ -353,7 +352,14 @@ const UrbaniaRecommendation = ({
                                                     styles.visualWrapper,
                                                     { [styles.modalOpened]: visualModalOpened },
                                                 ])}
-                                                style={visualModalOpened ? { width, height } : null}
+                                                style={
+                                                    visualModalOpened
+                                                        ? { width, height }
+                                                        : {
+                                                              width: textContainerWidth,
+                                                              height: 'auto',
+                                                          }
+                                                }
                                             >
                                                 <Button
                                                     className={styles.visualButton}
@@ -363,7 +369,11 @@ const UrbaniaRecommendation = ({
                                                     <Visual
                                                         imageClassName={styles.visual}
                                                         media={image}
-                                                        width="100%"
+                                                        width={
+                                                            visualModalOpened
+                                                                ? width
+                                                                : textContainerWidth
+                                                        }
                                                         resolution={resolution}
                                                         active={active}
                                                         shouldLoad={mediaShouldLoad}
