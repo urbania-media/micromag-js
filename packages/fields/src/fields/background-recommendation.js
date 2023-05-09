@@ -49,13 +49,5 @@ export default {
                 description: 'Field label',
             }),
         },
-        {
-            name: 'boxStyle',
-            type: 'box-style-form',
-            label: defineMessage({
-                defaultMessage: 'Style',
-                description: 'Field label',
-            }),
-        },
     ],
 };

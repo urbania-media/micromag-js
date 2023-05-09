@@ -21,7 +21,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import {
     isTextFilled,
     isHeaderFilled,
@@ -139,6 +139,19 @@ const UrbaniaRecommendation = ({
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
     const [scrolledBottom, setScrolledBottom] = useState(false);
 
+    const {
+        ref: textContainerRef,
+        entry: { contentRect: textContainerRect = null },
+    } = useResizeObserver();
+    const { height: textContainerHeight = 0 } = textContainerRect || {};
+
+    const {
+        ref: visualWrapperRef,
+        entry: { contentRect: visualWrapperRect = null },
+    } = useResizeObserver();
+    const { width: visualWrapperWidth = 0, height: visualWrapperHeight = 0 } =
+        visualWrapperRect || {};
+
     const [visualModalOpened, setVisualModalOpened] = useState(false);
 
     const { text: backgroundText = null } = background || {};
@@ -205,7 +218,7 @@ const UrbaniaRecommendation = ({
     }, [setScrolledBottom]);
 
     const onClickVisual = useCallback(() => {
-        setVisualModalOpened(true);
+        if (!visualModalOpened) setVisualModalOpened(true);
     }, [setVisualModalOpened]);
 
     const onCloseModal = useCallback(() => {
@@ -220,223 +233,21 @@ const UrbaniaRecommendation = ({
         }
     }, [visualModalOpened]);
 
+    useEffect(() => {
+        const keyup = (e) => {
+            if (e.key === 'Escape') {
+                if (visualModalOpened) {
+                    onCloseModal();
+                }
+            }
+        };
+        document.addEventListener('keyup', keyup);
+        return () => {
+            document.removeEventListener('keyup', keyup);
+        };
+    }, [visualModalOpened, onCloseModal]);
+
     // Create elements
-    const items = [
-        !isPlaceholder && hasHeader ? (
-            <div
-                key="header"
-                style={{
-                    paddingBottom: spacing,
-                }}
-                className={classNames([
-                    styles.headerContainer,
-                    // { [styles.appear]: animationStarted },
-                ])}
-            >
-                <Header {...header} />
-            </div>
-        ) : null,
-        !isPlaceholder ? <Spacer key="spacer-cta-top" /> : null,
-        visualModalOpened ? (
-            <Button className={styles.close} onClick={onCloseModal}>
-                <Close className={styles.closeIcon} />
-            </Button>
-        ) : null,
-        hasTextCard || isPlaceholder || isEdit ? (
-            <Container
-                className={classNames([
-                    styles.textCard,
-                    {
-                        [styles.isPlaceholder]: isPlaceholder,
-                        [styles.visualBottom]: visualLayout === 'label-top',
-                        [styles.appear]: animationStarted,
-                    },
-                ])}
-            >
-                <div className={classNames([
-                        styles.visualContainer,
-                        { [styles.modalOpened]: visualModalOpened },
-                    ])}>
-                    <ScreenElement
-                        key="sponsor"
-                        placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
-                    >
-                        {hasSponsor ? (
-                            <Text
-                                className={classNames([
-                                    styles.sponsor,
-                                    { [styles.hasVisual]: hasVisual },
-                                ])}
-                                {...sponsor}
-                            />
-                        ) : null}
-                    </ScreenElement>
-                    {/* @TODO: Create a new element that onClick expands to fill screen w/ player */}
-
-                    <ScreenElement
-                        key="visual"
-                        placeholder={<PlaceholderImage className={styles.visualPlaceholder} />}
-                        emptyLabel={
-                            <FormattedMessage
-                                defaultMessage="Visual"
-                                description="Text placeholder"
-                            />
-                        }
-                        emptyClassName={classNames([styles.empty, styles.emptyVisual])}
-                        isEmpty={!hasVisual}
-                    >
-                        {hasVisual && !isVideo ? (
-                            <div
-                                className={classNames([
-                                    styles.visualWrapper,
-                                    { [styles.modalOpened]: visualModalOpened },
-                                ])}
-                                style={visualModalOpened ? { width, height } : null}
-                            >
-                                <Button className={styles.visualButton} onClick={onClickVisual}>
-                                    <Visual
-                                        imageClassName={styles.visual}
-                                        media={image}
-                                        width="100%"
-                                        resolution={resolution}
-                                        active={active}
-                                        shouldLoad={mediaShouldLoad}
-                                    />
-                                </Button>
-                            </div>
-                        ) : null}
-
-                        {hasVisual && isVideo ? (
-                            <Visual
-                                media={image}
-                                width={width * 0.9}
-                                height={250}
-                                resolution={resolution}
-                                objectFit={{ fit: 'cover' }}
-                                shouldLoad={mediaShouldLoad}
-                                muted
-                                withoutVideo={isPreview}
-                                autoPlay
-                            />
-                        ) : null}
-                    </ScreenElement>
-                    {/* // SPONSOR */}
-                    <ScreenElement
-                        key="sponsor"
-                        placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
-                    >
-                        {hasSponsor ? (
-                            <Text
-                                className={classNames([
-                                    styles.sponsor,
-                                    { [styles.hasVisual]: hasVisual },
-                                ])}
-                                {...sponsor}
-                            />
-                        ) : null}
-                    </ScreenElement>
-                </div>
-                <div className={styles.text}>
-                    <ScreenElement
-                        key="category"
-                        placeholder={<PlaceholderTitle className={styles.categoryPlaceholder} />}
-                        emptyLabel={
-                            <FormattedMessage
-                                defaultMessage="Category"
-                                description="Category placeholder"
-                            />
-                        }
-                        emptyClassName={styles.emptyCategory}
-                        isEmpty={!hasCategory}
-                    >
-                        {hasCategory ? <Heading className={styles.category} {...category} /> : null}
-                    </ScreenElement>
-
-                    <div
-                        className={classNames([
-                            styles.textContent,
-                            {
-                                [styles.isPlaceholder]: isPlaceholder,
-                            },
-                        ])}
-                    >
-                        <ScreenElement
-                            key="title"
-                            placeholder="title"
-                            emptyLabel={
-                                <FormattedMessage
-                                    defaultMessage="Title"
-                                    description="Category placeholder"
-                                />
-                            }
-                            emptyClassName={styles.emptyText}
-                            isEmpty={!hasTitle}
-                        >
-                            {hasTitle ? (
-                                <div className={styles.titleContainer}>
-                                    <Heading className={styles.title} {...title} />
-                                </div>
-                            ) : null}
-                        </ScreenElement>
-
-                        <ScreenElement
-                            key="date"
-                            placeholder={<PlaceholderText className={styles.datePlaceholder} />}
-                        >
-                            {hasDate ? <Text className={styles.date} {...date} /> : null}
-                        </ScreenElement>
-
-                        <ScreenElement
-                            key="location"
-                            placeholder={<PlaceholderText className={styles.locationPlaceholder} />}
-                        >
-                            {hasLocation ? (
-                                <Text className={styles.location} {...location} />
-                            ) : null}
-                        </ScreenElement>
-
-                        <ScreenElement
-                            key="description"
-                            placeholder={
-                                <PlaceholderText className={styles.descriptionPlaceholder} />
-                            }
-                            emptyLabel={
-                                <FormattedMessage
-                                    defaultMessage="Description"
-                                    description="Text placeholder"
-                                />
-                            }
-                            emptyClassName={styles.emptyText}
-                            isEmpty={!hasDescription}
-                        >
-                            {hasDescription ? (
-                                <Text className={styles.description} {...description} />
-                            ) : null}
-                        </ScreenElement>
-                    </div>
-                </div>
-            </Container>
-        ) : null,
-        !isPlaceholder ? <Spacer key="spacer-cta-bottom" /> : null,
-        !isPlaceholder && hasFooter ? (
-            <div
-                key="call-to-action"
-                className={classNames([
-                    styles.callToAction,
-                    {
-                        [styles.disabled]: !scrolledBottom,
-                    },
-                ])}
-                style={{
-                    paddingTop: spacing,
-                    paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
-                    paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
-                }}
-            >
-                <Footer {...footerProps} />
-            </div>
-        ) : null,
-    ].filter((el) => el !== null);
 
     return (
         <div
@@ -457,7 +268,8 @@ const UrbaniaRecommendation = ({
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="middle"
-                    withShadow
+                    withShadow={!visualModalOpened}
+                    withArrow={!visualModalOpened}
                 >
                     <Layout
                         className={styles.layout}
@@ -476,7 +288,253 @@ const UrbaniaRecommendation = ({
                                 : null
                         }
                     >
-                        {items}
+                        {!isPlaceholder && hasHeader ? (
+                            <div
+                                key="header"
+                                style={{
+                                    paddingBottom: spacing,
+                                }}
+                                className={classNames([
+                                    styles.headerContainer,
+                                    // { [styles.appear]: animationStarted },
+                                ])}
+                            >
+                                <Header {...header} />
+                            </div>
+                        ) : null}
+                        {!isPlaceholder ? <Spacer key="spacer-cta-top" /> : null}
+                        {visualModalOpened ? (
+                            <Button className={styles.close} onClick={onCloseModal}>
+                                <Close className={styles.closeIcon} />
+                            </Button>
+                        ) : null}
+                        {hasTextCard || isPlaceholder || isEdit ? (
+                            <Container
+                                className={classNames([
+                                    styles.textCard,
+                                    {
+                                        [styles.isPlaceholder]: isPlaceholder,
+                                        [styles.visualBottom]: visualLayout === 'label-top',
+                                        [styles.appear]: animationStarted,
+                                    },
+                                ])}
+                            >
+                                <div
+                                    className={classNames([
+                                        styles.visualContainer,
+                                        { [styles.modalOpened]: visualModalOpened },
+                                    ])}
+                                >
+                                    {/* @TODO: Create a new element that onClick expands to fill screen w/ player */}
+
+                                    <ScreenElement
+                                        key="visual"
+                                        placeholder={
+                                            <PlaceholderImage
+                                                className={styles.visualPlaceholder}
+                                            />
+                                        }
+                                        emptyLabel={
+                                            <FormattedMessage
+                                                defaultMessage="Visual"
+                                                description="Text placeholder"
+                                            />
+                                        }
+                                        emptyClassName={classNames([
+                                            styles.empty,
+                                            styles.emptyVisual,
+                                        ])}
+                                        isEmpty={!hasVisual}
+                                    >
+                                        {hasVisual && !isVideo ? (
+                                            <div
+                                                ref={visualWrapperRef}
+                                                className={classNames([
+                                                    styles.visualWrapper,
+                                                    { [styles.modalOpened]: visualModalOpened },
+                                                ])}
+                                                style={visualModalOpened ? { width, height } : null}
+                                            >
+                                                <Button
+                                                    className={styles.visualButton}
+                                                    onClick={onClickVisual}
+                                                    disabled={visualModalOpened}
+                                                >
+                                                    <Visual
+                                                        imageClassName={styles.visual}
+                                                        media={image}
+                                                        width="100%"
+                                                        resolution={resolution}
+                                                        active={active}
+                                                        shouldLoad={mediaShouldLoad}
+                                                    />
+                                                </Button>
+                                            </div>
+                                        ) : null}
+
+                                        {hasVisual && isVideo ? (
+                                            <Visual
+                                                media={image}
+                                                width={width * 0.9}
+                                                height={250}
+                                                resolution={resolution}
+                                                objectFit={{ fit: 'cover' }}
+                                                shouldLoad={mediaShouldLoad}
+                                                muted
+                                                withoutVideo={isPreview}
+                                                autoPlay
+                                            />
+                                        ) : null}
+                                    </ScreenElement>
+                                    {/* // SPONSOR */}
+                                    <ScreenElement
+                                        key="sponsor"
+                                        placeholder={
+                                            <PlaceholderText
+                                                className={styles.sponsorPlaceholder}
+                                            />
+                                        }
+                                    >
+                                        {hasSponsor ? (
+                                            <Text
+                                                className={classNames([
+                                                    styles.sponsor,
+                                                    { [styles.hasVisual]: hasVisual },
+                                                ])}
+                                                {...sponsor}
+                                            />
+                                        ) : null}
+                                    </ScreenElement>
+                                </div>
+                                <div ref={textContainerRef} className={styles.text}>
+                                    <ScreenElement
+                                        key="category"
+                                        placeholder={
+                                            <PlaceholderTitle
+                                                className={styles.categoryPlaceholder}
+                                            />
+                                        }
+                                        emptyLabel={
+                                            <FormattedMessage
+                                                defaultMessage="Category"
+                                                description="Category placeholder"
+                                            />
+                                        }
+                                        emptyClassName={styles.emptyCategory}
+                                        isEmpty={!hasCategory}
+                                    >
+                                        {hasCategory ? (
+                                            <div
+                                                className={styles.categoryContainer}
+                                                style={{ width: textContainerHeight }}
+                                            >
+                                                {' '}
+                                                <Heading
+                                                    className={styles.category}
+                                                    {...category}
+                                                />{' '}
+                                            </div>
+                                        ) : null}
+                                    </ScreenElement>
+                                    <div
+                                        className={classNames([
+                                            styles.textContent,
+                                            {
+                                                [styles.isPlaceholder]: isPlaceholder,
+                                            },
+                                        ])}
+                                    >
+                                        <ScreenElement
+                                            key="title"
+                                            placeholder="title"
+                                            emptyLabel={
+                                                <FormattedMessage
+                                                    defaultMessage="Title"
+                                                    description="Category placeholder"
+                                                />
+                                            }
+                                            emptyClassName={styles.emptyText}
+                                            isEmpty={!hasTitle}
+                                        >
+                                            {hasTitle ? (
+                                                <div className={styles.titleContainer}>
+                                                    <Heading className={styles.title} {...title} />
+                                                </div>
+                                            ) : null}
+                                        </ScreenElement>
+
+                                        <ScreenElement
+                                            key="date"
+                                            placeholder={
+                                                <PlaceholderText
+                                                    className={styles.datePlaceholder}
+                                                />
+                                            }
+                                        >
+                                            {hasDate ? (
+                                                <Text className={styles.date} {...date} />
+                                            ) : null}
+                                        </ScreenElement>
+
+                                        <ScreenElement
+                                            key="location"
+                                            placeholder={
+                                                <PlaceholderText
+                                                    className={styles.locationPlaceholder}
+                                                />
+                                            }
+                                        >
+                                            {hasLocation ? (
+                                                <Text className={styles.location} {...location} />
+                                            ) : null}
+                                        </ScreenElement>
+
+                                        <ScreenElement
+                                            key="description"
+                                            placeholder={
+                                                <PlaceholderText
+                                                    className={styles.descriptionPlaceholder}
+                                                />
+                                            }
+                                            emptyLabel={
+                                                <FormattedMessage
+                                                    defaultMessage="Description"
+                                                    description="Text placeholder"
+                                                />
+                                            }
+                                            emptyClassName={styles.emptyText}
+                                            isEmpty={!hasDescription}
+                                        >
+                                            {hasDescription ? (
+                                                <Text
+                                                    className={styles.description}
+                                                    {...description}
+                                                />
+                                            ) : null}
+                                        </ScreenElement>
+                                    </div>
+                                </div>
+                            </Container>
+                        ) : null}
+                        {!isPlaceholder ? <Spacer key="spacer-cta-bottom" /> : null}
+                        {!isPlaceholder && hasFooter ? (
+                            <div
+                                key="footer"
+                                className={classNames([
+                                    styles.footer,
+                                    {
+                                        [styles.disabled]: !scrolledBottom && !visualModalOpened,
+                                    },
+                                ])}
+                                style={{
+                                    paddingTop: spacing,
+                                    paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
+                                    paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
+                                }}
+                            >
+                                <Footer {...footerProps} />
+                            </div>
+                        ) : null}
                     </Layout>
                 </Scroll>
             </Container>
