@@ -153,7 +153,7 @@ export const VisualBottom = (storyProps) => (
     <UrbaniaRecommendation
         {...storyProps}
         {...props}
-        visual={{ image: imageMedia({ width: 309, height: 223 }), visualLayout: 'label-top' }}
+        visual={{ image: imageMedia({ width: 109, height: 623 }), visualLayout: 'label-top' }}
     />
 );
 

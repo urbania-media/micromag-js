@@ -16,12 +16,18 @@ import {
     useScreenSize,
     useScreenRenderContext,
     useViewerContext,
+    useViewerContainer,
     useViewerWebView,
     useViewerInteraction,
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
+import {
+    useActivityDetector,
+    useDebounce,
+    useTrackScreenEvent,
+    useResizeObserver,
+} from '@micromag/core/hooks';
 import {
     isTextFilled,
     isHeaderFilled,
@@ -104,7 +110,8 @@ const UrbaniaRecommendation = ({
         bottomSidesWidth: viewerBottomSidesWidth,
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
-    const { muted } = usePlaybackContext();
+    const { playing, muted, setControls, setPlaying, showControls, hideControls } =
+        usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
@@ -112,11 +119,12 @@ const UrbaniaRecommendation = ({
 
     const animateBackground = current && !isPlaceholder && !isStatic && !isPreview && !isEdit;
 
-    const [animationStarted, setAnimationStarted] = useState(animateBackground);
+    const [backgroundAnimationStarted, setBackgroundAnimationStarted] = useState(animateBackground);
     const [didAnimate, setDidAnimate] = useState(false);
 
     const { image = null, visualLayout = null } = visual || {}; // note: image can be a video
     const { type = null } = image || {};
+
     const hasVisual = image !== null;
     const isVideo = type === 'video';
     const hasCategory = isTextFilled(category);
@@ -130,6 +138,7 @@ const UrbaniaRecommendation = ({
         hasCategory || hasTitle || hasDate || hasLocation || hasDescription || hasSponsor;
 
     const backgroundPlaying = current && (isView || isEdit);
+    const videoPlaying = current && (isView || isEdit) && playing;
     const mediaShouldLoad = current || active;
 
     const scrollingDisabled = (!isView && !isEdit) || !current;
@@ -148,11 +157,12 @@ const UrbaniaRecommendation = ({
 
     const {
         ref: visualWrapperRef,
-        entry: { contentRect: visualWrapperRect = null },
+        // entry: { contentRect: visualWrapperRect = null },
     } = useResizeObserver();
-    const { width: visualWrapperWidth = 0, height: visualWrapperHeight = 0 } =
-        visualWrapperRect || {};
+    // const { width: visualWrapperWidth = 0, height: visualWrapperHeight = 0 } =
+    // visualWrapperRect || {};
 
+    const [visualModalTransitioning, setVisualModalTransitioning] = useState(false);
     const [visualModalOpened, setVisualModalOpened] = useState(false);
 
     const { text: backgroundText = null } = background || {};
@@ -183,27 +193,34 @@ const UrbaniaRecommendation = ({
         return textElements;
     }, [backgroundTextBody]);
 
+    // intro animation
     useEffect(() => {
         let id = null;
-        if (animationStarted) {
+        if (backgroundAnimationStarted) {
             id = setTimeout(() => {
-                setAnimationStarted(false);
+                setBackgroundAnimationStarted(false);
                 setDidAnimate(true);
             }, 1600);
         }
         return () => {
             clearTimeout(id);
         };
-    }, [animationStarted, animateBackground, setDidAnimate, setAnimationStarted]);
+    }, [
+        backgroundAnimationStarted,
+        animateBackground,
+        setDidAnimate,
+        setBackgroundAnimationStarted,
+    ]);
 
     useEffect(() => {
         if (isView && !isStatic && current) {
-            setAnimationStarted(true);
+            setBackgroundAnimationStarted(true);
         } else {
-            setAnimationStarted(false);
+            setBackgroundAnimationStarted(false);
         }
-    }, [isView, current, setAnimationStarted]);
+    }, [isView, current, setBackgroundAnimationStarted]);
 
+    // scroll events
     const onScrolledBottom = useCallback(
         ({ initial }) => {
             if (initial) {
@@ -218,11 +235,30 @@ const UrbaniaRecommendation = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    // modal
+    useEffect(() => {
+        let id = null;
+        if (visualModalTransitioning) {
+            id = setTimeout(() => {
+                setVisualModalTransitioning(false);
+                setVisualModalOpened(true);
+            }, 400);
+        }
+        return () => {
+            clearTimeout(id);
+        };
+    }, [visualModalTransitioning, setVisualModalTransitioning]);
+
     const onClickVisual = useCallback(() => {
-        if (!visualModalOpened) setVisualModalOpened(true);
+        if (!visualModalOpened) {
+            setVisualModalTransitioning(true);
+        }
     }, [setVisualModalOpened]);
 
     const onCloseModal = useCallback(() => {
+        if (visualModalTransitioning) {
+            setVisualModalTransitioning(false);
+        }
         setVisualModalOpened(false);
     }, [setVisualModalOpened]);
 
@@ -248,7 +284,45 @@ const UrbaniaRecommendation = ({
         };
     }, [visualModalOpened, onCloseModal]);
 
-    // Create elements
+    // Modal video
+
+    useEffect(() => {
+        if (current && !backgroundAnimationStarted) {
+            setPlaying(true);
+        }
+    }, [current, backgroundAnimationStarted]);
+
+    useEffect(() => {
+        if (!current) {
+            return () => {};
+        }
+
+        if (visualModalOpened && isVideo) {
+            setControls(true);
+        } else {
+            setControls(false);
+        }
+        return () => {
+            if (visualModalOpened) {
+                setControls(false);
+            }
+        };
+    }, [current, setControls, visualModalOpened, isVideo]);
+
+    const viewerContainer = useViewerContainer();
+    const { detected: activityDetected } = useActivityDetector({
+        element: viewerContainer,
+        disabled: !isView,
+        timeout: 2000,
+    });
+    const toggleControlsVisibility = useCallback(() => {
+        if (activityDetected && isVideo && visualModalOpened) {
+            showControls();
+        } else {
+            hideControls();
+        }
+    }, [activityDetected, showControls, isVideo, hideControls]);
+    useDebounce(toggleControlsVisibility, activityDetected, 1000);
 
     return (
         <div
@@ -265,7 +339,7 @@ const UrbaniaRecommendation = ({
                 <Scroll
                     width={width}
                     height={height}
-                    disabled={animationStarted || scrollingDisabled}
+                    disabled={backgroundAnimationStarted || scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="middle"
@@ -297,7 +371,7 @@ const UrbaniaRecommendation = ({
                                 }}
                                 className={classNames([
                                     styles.headerContainer,
-                                    // { [styles.appear]: animationStarted },
+                                    // { [styles.appear]: backgroundAnimationStarted },
                                 ])}
                             >
                                 <Header {...header} />
@@ -316,14 +390,19 @@ const UrbaniaRecommendation = ({
                                     {
                                         [styles.isPlaceholder]: isPlaceholder,
                                         [styles.visualBottom]: visualLayout === 'label-top',
-                                        [styles.appear]: animationStarted,
+                                        [styles.appear]: backgroundAnimationStarted,
+                                        [styles.modalOpened]:
+                                            visualModalTransitioning || visualModalOpened,
                                     },
                                 ])}
                             >
                                 <div
                                     className={classNames([
                                         styles.visualContainer,
-                                        { [styles.modalOpened]: visualModalOpened },
+                                        {
+                                            [styles.modalOpened]:
+                                                visualModalTransitioning || visualModalOpened,
+                                        },
                                     ])}
                                 >
                                     <ScreenElement
@@ -350,10 +429,14 @@ const UrbaniaRecommendation = ({
                                                 ref={visualWrapperRef}
                                                 className={classNames([
                                                     styles.visualWrapper,
-                                                    { [styles.modalOpened]: visualModalOpened },
+                                                    {
+                                                        [styles.modalOpened]:
+                                                            visualModalTransitioning ||
+                                                            visualModalOpened,
+                                                    },
                                                 ])}
                                                 style={
-                                                    visualModalOpened
+                                                    visualModalTransitioning || visualModalOpened
                                                         ? { width, height }
                                                         : {
                                                               width: textContainerWidth,
@@ -362,9 +445,23 @@ const UrbaniaRecommendation = ({
                                                 }
                                             >
                                                 <Button
-                                                    className={styles.visualButton}
+                                                    className={classNames([
+                                                        styles.visualButton,
+                                                        {
+                                                            [styles.transitioning]:
+                                                                visualModalTransitioning,
+                                                        },
+                                                    ])}
                                                     onClick={onClickVisual}
-                                                    disabled={visualModalOpened}
+                                                    disabled={
+                                                        backgroundAnimationStarted ||
+                                                        visualModalOpened
+                                                    }
+                                                    style={{
+                                                        transform: visualModalTransitioning
+                                                            ? `scale(${width / textContainerWidth})`
+                                                            : null,
+                                                    }}
                                                 >
                                                     <Visual
                                                         className={styles.visual}
@@ -384,17 +481,60 @@ const UrbaniaRecommendation = ({
                                         ) : null}
 
                                         {hasVisual && isVideo ? (
-                                            <Visual
-                                                media={image}
-                                                width={width * 0.9}
-                                                height={250}
-                                                resolution={resolution}
-                                                objectFit={{ fit: 'cover' }}
-                                                shouldLoad={mediaShouldLoad}
-                                                muted
-                                                withoutVideo={isPreview}
-                                                autoPlay
-                                            />
+                                            <div
+                                                ref={visualWrapperRef}
+                                                className={classNames([
+                                                    styles.visualWrapper,
+                                                    {
+                                                        [styles.modalOpened]:
+                                                            visualModalTransitioning ||
+                                                            visualModalOpened,
+                                                    },
+                                                ])}
+                                                style={
+                                                    visualModalTransitioning || visualModalOpened
+                                                        ? { width, height }
+                                                        : {
+                                                              width: textContainerWidth,
+                                                              height: 'auto',
+                                                          }
+                                                }
+                                            >
+                                                <Button
+                                                    className={classNames([
+                                                        styles.visualButton,
+                                                        {
+                                                            [styles.transitioning]:
+                                                                visualModalTransitioning,
+                                                        },
+                                                    ])}
+                                                    onClick={onClickVisual}
+                                                    disabled={
+                                                        backgroundAnimationStarted ||
+                                                        visualModalOpened
+                                                    }
+                                                    style={{
+                                                        transform: visualModalTransitioning
+                                                            ? `scale(${width / textContainerWidth})`
+                                                            : null,
+                                                    }}
+                                                >
+                                                    <Visual
+                                                        media={image}
+                                                        mediaRef={mediaRef}
+                                                        width={
+                                                            visualModalOpened ? width : width * 0.9
+                                                        } // @TODO: fix magic numbers
+                                                        height={visualModalOpened ? height : 250}
+                                                        resolution={resolution}
+                                                        objectFit={{ fit: 'cover' }}
+                                                        shouldLoad={mediaShouldLoad}
+                                                        muted={muted || !visualModalOpened}
+                                                        withoutVideo={isPreview}
+                                                        playing={videoPlaying}
+                                                    />
+                                                </Button>
+                                            </div>
                                         ) : null}
                                     </ScreenElement>
                                     {/* // SPONSOR */}
@@ -439,11 +579,10 @@ const UrbaniaRecommendation = ({
                                                 className={styles.categoryContainer}
                                                 style={{ width: textContainerHeight }}
                                             >
-                                                {' '}
                                                 <Heading
                                                     className={styles.category}
                                                     {...category}
-                                                />{' '}
+                                                />
                                             </div>
                                         ) : null}
                                     </ScreenElement>
@@ -556,10 +695,9 @@ const UrbaniaRecommendation = ({
                         width={width}
                         height={height}
                         resolution={resolution}
-                        playing={backgroundPlaying}
-                        muted={muted}
+                        playing={backgroundPlaying && !visualModalOpened}
+                        muted={muted || visualModalOpened}
                         shouldLoad={mediaShouldLoad}
-                        mediaRef={mediaRef}
                         withoutVideo={isPreview}
                         className={styles.background}
                     />
@@ -573,9 +711,11 @@ const UrbaniaRecommendation = ({
                                 <div
                                     key={`background-text-${line}`}
                                     className={classNames([styles.backgroundText], {
-                                        [styles.didAnimate]: didAnimate, // @TODO: optimise — use animation-fill-mode?
-                                        [styles.animateFromBottom]: animationStarted && i % 2 !== 0,
-                                        [styles.animateFromTop]: animationStarted && i % 2 === 0,
+                                        [styles.didAnimate]: didAnimate, // @TODO: optimise —> use animation-fill-mode?
+                                        [styles.animateFromBottom]:
+                                            backgroundAnimationStarted && i % 2 !== 0,
+                                        [styles.animateFromTop]:
+                                            backgroundAnimationStarted && i % 2 === 0,
                                     })}
                                     style={{
                                         animationDelay: `${i * 100}ms`,
