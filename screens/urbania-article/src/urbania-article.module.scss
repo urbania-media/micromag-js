@@ -102,8 +102,6 @@ $color-universities-text: #f33;
     margin: 0;
 }
 
-
-
 .background {
     z-index: 1;
 }
@@ -150,6 +148,7 @@ $color-universities-text: #f33;
 
     .title {
         font-family: 'GarageGothic-Bold';
+        font-size: 36px;
         line-height: 0.88;
         text-transform: uppercase;
     }

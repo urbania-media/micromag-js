@@ -127,13 +127,8 @@ const UrbaniaArticle = ({
     const { top: contentTop } = contentRect || {};
 
     const { minContentHeight = null } = useMemo(() => {
-        const defaultImageHeight = width * 0.8;
+        // const defaultImageHeight = width * 0.8;
         const difference = height - contentHeight - contentTop + 1;
-
-        // @TODO: seems like this returns the same thing no matter what
-        if (difference > defaultImageHeight) {
-            return { imageHeight: difference };
-        }
 
         return { imageHeight: difference };
     }, [contentTop, contentHeight, width, height]);
