@@ -521,11 +521,14 @@ const UrbaniaRecommendation = ({
                                                     }}
                                                 >
                                                     <Visual
+                                                        videoClassName={styles.videoVisual}
                                                         media={image}
                                                         mediaRef={mediaRef}
                                                         width={
-                                                            visualModalOpened ? width : width * 0.9
-                                                        } // @TODO: fix magic numbers
+                                                            visualModalOpened
+                                                                ? width
+                                                                : (width - 40) * 0.9 + 1
+                                                        } // @TODO: fix magic numbers ((width - margins) * card width + gapfix )
                                                         height={visualModalOpened ? height : 250}
                                                         resolution={resolution}
                                                         objectFit={{ fit: 'cover' }}
