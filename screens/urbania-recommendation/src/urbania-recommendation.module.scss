@@ -146,6 +146,8 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
 
             .visualContainer {
                 flex-direction: column-reverse;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
                 border-bottom-right-radius: 10px;
                 border-bottom-left-radius: 10px;
             }

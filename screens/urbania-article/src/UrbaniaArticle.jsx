@@ -14,7 +14,7 @@ import {
 } from '@micromag/core/components';
 import {
     useScreenSize,
-    useScreenRenderContext, // useViewerNavigation,
+    useScreenRenderContext,
     useViewerWebView,
     usePlaybackContext,
     usePlaybackMediaRef,
