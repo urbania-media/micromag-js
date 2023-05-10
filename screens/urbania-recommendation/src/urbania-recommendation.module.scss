@@ -136,11 +136,18 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
             animation-fill-mode: forwards;
         }
 
+        .visualContainer {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
         &.visualBottom {
             flex-direction: column-reverse;
 
             .visualContainer {
                 flex-direction: column-reverse;
+                border-bottom-right-radius: 10px;
+                border-bottom-left-radius: 10px;
             }
         }
 
@@ -164,6 +171,7 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         &.modalOpened {
             // max-height: none;
             overflow: auto;
+            border-radius: 0;
         }
     }
 
