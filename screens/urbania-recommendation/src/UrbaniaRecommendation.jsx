@@ -110,7 +110,7 @@ const UrbaniaRecommendation = ({
         bottomSidesWidth: viewerBottomSidesWidth,
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
-    const { playing, muted, setControls, setPlaying, showControls, hideControls } =
+    const { playing, setPlaying, muted, setControls, showControls, hideControls } =
         usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
@@ -393,6 +393,7 @@ const UrbaniaRecommendation = ({
                                         [styles.appear]: backgroundAnimationStarted,
                                         [styles.modalOpened]:
                                             visualModalTransitioning || visualModalOpened,
+                                        [styles.hidden]: !current,
                                     },
                                 ])}
                             >
