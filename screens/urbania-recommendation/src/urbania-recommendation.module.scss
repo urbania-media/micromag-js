@@ -171,7 +171,6 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         overflow: hidden;
 
         &.modalOpened {
-            // max-height: none;
             overflow: auto;
             border-radius: 0;
         }

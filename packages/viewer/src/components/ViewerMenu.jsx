@@ -34,6 +34,7 @@ const propTypes = {
     theme: MicromagPropTypes.viewerTheme,
     screenSize: MicromagPropTypes.screenSize,
     menuWidth: PropTypes.number,
+    previewHeader: PropTypes.node,
     withDotItemClick: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
     withoutShareMenu: PropTypes.bool,
@@ -57,6 +58,7 @@ const defaultProps = {
     theme: null,
     screenSize: null,
     menuWidth: null,
+    previewHeader: null,
     withDotItemClick: false,
     withoutScreensMenu: false,
     withoutShareMenu: false,
@@ -79,6 +81,7 @@ const ViewerMenu = ({
     theme: viewerTheme,
     screenSize,
     menuWidth,
+    previewHeader,
     withDotItemClick,
     withoutScreensMenu,
     withoutShareMenu,
@@ -410,6 +413,7 @@ const ViewerMenu = ({
                 {menuMounted ? (
                     <MenuPreview
                         viewerTheme={viewerTheme}
+                        header={previewHeader}
                         title={title}
                         className={styles.menuPreview}
                         screenSize={screenSize}

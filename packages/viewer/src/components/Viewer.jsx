@@ -81,6 +81,7 @@ const propTypes = {
     onViewModeChange: PropTypes.func,
     currentScreenMedia: MicromagPropTypes.ref,
     menuIsScreenWidth: PropTypes.bool,
+    menuHeader: PropTypes.node,
     screensMedias: MicromagPropTypes.ref,
     screenSizeOptions: PropTypes.shape({
         withoutMaxSize: PropTypes.bool,
@@ -119,6 +120,7 @@ const defaultProps = {
     withoutNavigationArrow: false,
     withoutPlaybackControls: false,
     menuIsScreenWidth: false,
+    menuHeader: null,
     closeable: false,
     onClose: null,
     onInteraction: null,
@@ -158,6 +160,7 @@ const Viewer = ({
     withNavigationHint,
     withoutPlaybackControls,
     menuIsScreenWidth,
+    menuHeader,
     closeable,
     onClose: onCloseViewer,
     onInteraction,
@@ -649,6 +652,7 @@ const Viewer = ({
                                 screenSize={screenSize}
                                 menuWidth={menuIsScreenWidth ? screenContainerWidth : null}
                                 theme={viewerTheme}
+                                previewHeader={menuHeader}
                                 trackingEnabled={trackingEnabled}
                                 onClickScreen={onClickScreen}
                                 onClickCloseViewer={onCloseViewer}

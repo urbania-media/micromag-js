@@ -15,6 +15,7 @@ import styles from '../../styles/menus/menu-preview.module.scss';
 
 const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
+    header: PropTypes.node,
     screenSize: MicromagPropTypes.screenSize,
     title: PropTypes.string,
     surtitle: MicromagPropTypes.badge,
@@ -35,6 +36,7 @@ const propTypes = {
 
 const defaultProps = {
     viewerTheme: null,
+    header: null,
     screenSize: null,
     title: null,
     surtitle: null,
@@ -54,6 +56,7 @@ const defaultProps = {
 
 const ViewerMenuPreview = ({
     viewerTheme,
+    header,
     screenSize,
     title,
     surtitle,
@@ -127,7 +130,7 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.content} ref={containerRef}>
                 <Scroll className={styles.scroll} disabled={scrollDisabled}>
-                    {hasTitle ? (
+                    {hasTitle && header === null ? (
                         <div
                             className={styles.titleContainer}
                             style={{ paddingTop: paddingTop + 10 }}
@@ -137,7 +140,9 @@ const ViewerMenuPreview = ({
                                 {title}
                             </h1>
                         </div>
-                    ) : null}
+                    ) : (
+                        header
+                    )}
                     <nav className={styles.nav} style={!hasTitle ? { paddingTop } : null}>
                         <ul className={styles.items}>
                             {items.map((item, index) => {
