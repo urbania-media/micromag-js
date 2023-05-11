@@ -774,3 +774,5 @@ export const header = PropTypes.shape({
 export const footer = PropTypes.shape({
     callToAction,
 });
+
+export const reload = PropTypes.shape();
