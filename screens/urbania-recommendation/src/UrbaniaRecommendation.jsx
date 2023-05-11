@@ -400,7 +400,7 @@ const UrbaniaRecommendation = ({
                                         [styles.appear]: backgroundAnimationStarted,
                                         [styles.modalOpened]:
                                             visualModalTransitioning || visualModalOpened,
-                                        [styles.hidden]: !current && isView,
+                                        [styles.hidden]: !current && isView && !isPreview,
                                     },
                                 ])}
                             >
@@ -462,6 +462,7 @@ const UrbaniaRecommendation = ({
                                                     ])}
                                                     onClick={onClickVisual}
                                                     disabled={
+                                                        isPreview ||
                                                         backgroundAnimationStarted ||
                                                         visualModalOpened
                                                     }
