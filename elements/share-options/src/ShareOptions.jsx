@@ -312,8 +312,7 @@ const ShareOptions = ({
                         styles.button,
                         { [buttonClassName]: buttonClassName !== null },
                     ])}
-                    href="sms:?body=MicroMag"
-                    // onClick={onClickSms}
+                    href={`sms:?body=${title}: ${url}`}
                     focusable={focusable}
                     style={finalStyles}
                     external

@@ -227,8 +227,30 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         }
     }
 
-    .videoVisual {
-        // transform: translate(-50%, -50%);
+    .iconContainer {
+        display: flex;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+
+        pointer-events: none;
+
+        &.visualBottom {
+            bottom: 25px;
+        }
+    }
+
+    .icon {
+        width: 14px;
+        // height: 22px;
+        // padding-left: 4px;
     }
 
     .text {
