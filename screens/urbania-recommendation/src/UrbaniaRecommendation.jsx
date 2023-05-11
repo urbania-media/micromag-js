@@ -514,23 +514,24 @@ const UrbaniaRecommendation = ({
                                                             shouldLoad={mediaShouldLoad}
                                                         />
                                                     )}
+                                                    {visualModalClosed ? (
+                                                        <div
+                                                            className={classNames([
+                                                                styles.iconContainer,
+                                                                {
+                                                                    [styles.visualBottom]:
+                                                                        visualLayout ===
+                                                                        'label-top',
+                                                                },
+                                                            ])}
+                                                        >
+                                                            <FullscreenIcon
+                                                                color="#000"
+                                                                className={styles.icon}
+                                                            />
+                                                        </div>
+                                                    ) : null}
                                                 </Button>
-                                                {visualModalClosed ? (
-                                                    <div
-                                                        className={classNames([
-                                                            styles.iconContainer,
-                                                            {
-                                                                [styles.visualBottom]:
-                                                                    visualLayout === 'label-top',
-                                                            },
-                                                        ])}
-                                                    >
-                                                        <FullscreenIcon
-                                                            color="#000"
-                                                            className={styles.icon}
-                                                        />
-                                                    </div>
-                                                ) : null}
                                             </div>
                                         ) : null}
                                     </ScreenElement>
