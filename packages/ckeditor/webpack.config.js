@@ -28,6 +28,7 @@ module.exports = {
             // See https://ckeditor.com/docs/ckeditor5/latest/features/ui-language.html
             language: 'fr',
             additionalLanguages: ['en'],
+            //
         }),
     ],
 

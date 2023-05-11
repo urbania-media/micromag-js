@@ -1,7 +1,7 @@
 const MarkerPlugin = (editor) => {
     const options = editor.config.get('highlight.options') || [];
     const markers = options.filter(({ color = null }) => color !== null);
-
+    //
     editor.conversion.attributeToElement({
         model: {
             key: 'highlight',
