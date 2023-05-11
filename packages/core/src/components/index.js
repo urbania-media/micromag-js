@@ -8,6 +8,7 @@ export { default as FieldForm } from './forms/Field';
 
 export { default as ArrowIcon } from './icons/Arrow';
 export { default as CloseIcon } from './icons/Close';
+export { default as FullscreenIcon } from './icons/Fullscreen';
 export { default as LinkIcon } from './icons/Link';
 export { default as MuteIcon } from './icons/Mute';
 export { default as PauseIcon } from './icons/Pause';

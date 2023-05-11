@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useState, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import {
-    EmailShareButton,
-    EmailIcon,
+    EmailShareButton, // EmailIcon,
     FacebookShareButton,
     FacebookIcon,
     TwitterShareButton,
@@ -26,7 +25,9 @@ import {
     copyToClipboard,
 } from '@micromag/core/utils';
 
+import EmailIcon from './EmailIcon';
 import ShareLinkIcon from './ShareLinkIcon';
+import SmsIcon from './SmsIcon';
 
 import styles from './styles.module.scss';
 
@@ -301,6 +302,38 @@ const ShareOptions = ({
                     </div>
                     <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </EmailShareButton>
+            ),
+        },
+        {
+            id: 'sms',
+            button: (
+                <Button
+                    className={classNames([
+                        styles.button,
+                        { [buttonClassName]: buttonClassName !== null },
+                    ])}
+                    href={`sms:?body=${title}: ${url}`}
+                    focusable={focusable}
+                    style={finalStyles}
+                    external
+                    withoutBootstrapStyles
+                >
+                    <SmsIcon {...shareIconProps} />
+                    <div
+                        className={classNames([
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
+                        ])}
+                    >
+                        <span className={styles.labelText}>
+                            <FormattedMessage
+                                defaultMessage="SMS"
+                                description="Share button label"
+                            />
+                        </span>
+                    </div>
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
+                </Button>
             ),
         },
     ];

@@ -11,6 +11,7 @@ import {
     PlaceholderTitle,
     ScreenElement,
     Close,
+    FullscreenIcon,
 } from '@micromag/core/components';
 import {
     useScreenSize,
@@ -123,10 +124,14 @@ const UrbaniaRecommendation = ({
     const [didAnimate, setDidAnimate] = useState(false);
 
     const { image = null, visualLayout = null } = visual || {}; // note: image can be a video
-    const { type = null } = image || {};
+    const { type = null, metadata: videoMetadata = null } = image || {};
+    const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
     const hasVisual = image !== null;
     const isVideo = type === 'video';
+
+    const isVideoLandscape = hasVisual && isVideo && videoWidth > videoHeight;
+
     const hasCategory = isTextFilled(category);
     const hasTitle = isTextFilled(title);
     const hasDate = isTextFilled(date);
@@ -164,6 +169,8 @@ const UrbaniaRecommendation = ({
 
     const [visualModalTransitioning, setVisualModalTransitioning] = useState(false);
     const [visualModalOpened, setVisualModalOpened] = useState(false);
+
+    const visualModalClosed = !visualModalTransitioning && !visualModalOpened;
 
     const { text: backgroundText = null } = background || {};
     const { body: backgroundTextBody = null, textStyle: backgroundTextStyle } =
@@ -393,7 +400,7 @@ const UrbaniaRecommendation = ({
                                         [styles.appear]: backgroundAnimationStarted,
                                         [styles.modalOpened]:
                                             visualModalTransitioning || visualModalOpened,
-                                        [styles.hidden]: !current,
+                                        [styles.hidden]: !current && isView && !isPreview,
                                     },
                                 ])}
                             >
@@ -425,7 +432,7 @@ const UrbaniaRecommendation = ({
                                         ])}
                                         isEmpty={!hasVisual}
                                     >
-                                        {hasVisual && !isVideo ? (
+                                        {hasVisual ? (
                                             <div
                                                 ref={visualWrapperRef}
                                                 className={classNames([
@@ -455,6 +462,7 @@ const UrbaniaRecommendation = ({
                                                     ])}
                                                     onClick={onClickVisual}
                                                     disabled={
+                                                        isPreview ||
                                                         backgroundAnimationStarted ||
                                                         visualModalOpened
                                                     }
@@ -464,79 +472,66 @@ const UrbaniaRecommendation = ({
                                                             : null,
                                                     }}
                                                 >
-                                                    <Visual
-                                                        className={styles.visual}
-                                                        imageClassName={styles.visual}
-                                                        media={image}
-                                                        width={
-                                                            visualModalOpened
-                                                                ? width
-                                                                : textContainerWidth
-                                                        }
-                                                        resolution={resolution}
-                                                        active={active}
-                                                        shouldLoad={mediaShouldLoad}
-                                                    />
-                                                </Button>
-                                            </div>
-                                        ) : null}
-
-                                        {hasVisual && isVideo ? (
-                                            <div
-                                                ref={visualWrapperRef}
-                                                className={classNames([
-                                                    styles.visualWrapper,
-                                                    {
-                                                        [styles.modalOpened]:
-                                                            visualModalTransitioning ||
-                                                            visualModalOpened,
-                                                    },
-                                                ])}
-                                                style={
-                                                    visualModalTransitioning || visualModalOpened
-                                                        ? { width, height }
-                                                        : {
-                                                              width: textContainerWidth,
-                                                              height: 'auto',
-                                                          }
-                                                }
-                                            >
-                                                <Button
-                                                    className={classNames([
-                                                        styles.visualButton,
-                                                        {
-                                                            [styles.transitioning]:
-                                                                visualModalTransitioning,
-                                                        },
-                                                    ])}
-                                                    onClick={onClickVisual}
-                                                    disabled={
-                                                        backgroundAnimationStarted ||
-                                                        visualModalOpened
-                                                    }
-                                                    style={{
-                                                        transform: visualModalTransitioning
-                                                            ? `scale(${width / textContainerWidth})`
-                                                            : null,
-                                                    }}
-                                                >
-                                                    <Visual
-                                                        videoClassName={styles.videoVisual}
-                                                        media={image}
-                                                        mediaRef={mediaRef}
-                                                        width={
-                                                            visualModalOpened
-                                                                ? width
-                                                                : (width - 40) * 0.9 + 1
-                                                        } // @TODO: fix magic numbers ((width - margins) * card width + gapfix )
-                                                        height={visualModalOpened ? height : 250}
-                                                        resolution={resolution}
-                                                        objectFit={{ fit: 'cover' }}
-                                                        shouldLoad={mediaShouldLoad}
-                                                        muted={muted || !visualModalOpened}
-                                                        withoutVideo={isPreview}
-                                                        playing={videoPlaying}
-                                                    />
+                                                    {isVideo ? (
+                                                        <Visual
+                                                            media={image}
+                                                            mediaRef={mediaRef}
+                                                            width={
+                                                                visualModalTransitioning ||
+                                                                visualModalOpened
+                                                                    ? width
+                                                                    : (width - 40) * 0.9 + 1
+                                                            } // ((width - margins) * card width + gapfix )
+                                                            height={
+                                                                visualModalTransitioning ||
+                                                                visualModalOpened
+                                                                    ? height
+                                                                    : 250
+                                                            }
+                                                            resolution={resolution}
+                                                            objectFit={{
+                                                                fit:
+                                                                    (visualModalTransitioning ||
+                                                                        visualModalOpened) &&
+                                                                    isVideoLandscape
+                                                                        ? 'contain'
+                                                                        : 'cover',
+                                                            }}
+                                                            shouldLoad={mediaShouldLoad}
+                                                            muted={muted || !visualModalOpened}
+                                                            withoutVideo={isPreview}
+                                                            playing={videoPlaying}
+                                                        />
+                                                    ) : (
+                                                        <Visual
+                                                            media={image}
+                                                            width={
+                                                                visualModalOpened
+                                                                    ? width
+                                                                    : textContainerWidth
+                                                            }
+                                                            resolution={resolution}
+                                                            active={active}
+                                                            shouldLoad={mediaShouldLoad}
+                                                        />
+                                                    )}
+                                                    {visualModalClosed ? (
+                                                        <div
+                                                            className={classNames([
+                                                                styles.iconContainer,
+                                                                {
+                                                                    [styles.visualBottom]:
+                                                                        visualLayout ===
+                                                                        'label-top',
+                                                                },
+                                                            ])}
+                                                        >
+                                                            <FullscreenIcon
+                                                                color="#000"
+                                                                className={styles.icon}
+                                                            />
+                                                        </div>
+                                                    ) : null}
                                                 </Button>
                                             </div>
                                         ) : null}

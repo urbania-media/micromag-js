@@ -107,21 +107,30 @@ export default {
                         description: 'Field label',
                     }),
                 },
-                {
-                    name: 'facebookMessenger',
-                    type: 'toggle',
-                    defaultValue: true,
-                    label: defineMessage({
-                        defaultMessage: 'Facebook Messenger',
-                        description: 'Field label',
-                    }),
-                },
+                // {
+                //     name: 'facebookMessenger',
+                //     type: 'toggle',
+                //     defaultValue: true,
+                //     label: defineMessage({
+                //         defaultMessage: 'Facebook Messenger',
+                //         description: 'Field label',
+                //     }),
+                // },
                 {
                     name: 'email',
                     type: 'toggle',
                     defaultValue: true,
                     label: defineMessage({
                         defaultMessage: 'Email',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'sms',
+                    type: 'toggle',
+                    defaultValue: true,
+                    label: defineMessage({
+                        defaultMessage: 'SMS',
                         description: 'Field label',
                     }),
                 },

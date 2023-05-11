@@ -171,7 +171,6 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         overflow: hidden;
 
         &.modalOpened {
-            // max-height: none;
             overflow: auto;
             border-radius: 0;
         }
@@ -226,10 +225,40 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         &.transitioning {
             transition: transform 0.4s $modal-transition-curve;
         }
+
+        &:hover {
+            filter: saturate(1.1);
+
+            > .iconContainer {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
     }
 
-    .videoVisual {
-        // transform: translate(-50%, -50%);
+    .iconContainer {
+        display: flex;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        transition: all 0.1s;
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+        pointer-events: none;
+
+        &.visualBottom {
+            bottom: 25px;
+        }
+    }
+
+    .icon {
+        width: 14px;
+        height: 14px;
     }
 
     .text {
