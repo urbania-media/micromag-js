@@ -12,6 +12,7 @@ import {
     ScreenElement,
     Close,
     FullscreenIcon,
+    MuteIcon,
 } from '@micromag/core/components';
 import {
     useScreenSize,
@@ -111,7 +112,7 @@ const UrbaniaRecommendation = ({
         bottomSidesWidth: viewerBottomSidesWidth,
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
-    const { playing, setPlaying, muted, setControls, showControls, hideControls } =
+    const { playing, setPlaying, muted, setMuted, setControls, showControls, hideControls } =
         usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
@@ -259,6 +260,9 @@ const UrbaniaRecommendation = ({
     const onClickVisual = useCallback(() => {
         if (!visualModalOpened) {
             setVisualModalTransitioning(true);
+        }
+        if (muted && isVideo) {
+            setMuted(false);
         }
     }, [setVisualModalOpened]);
 
@@ -526,10 +530,17 @@ const UrbaniaRecommendation = ({
                                                                 },
                                                             ])}
                                                         >
-                                                            <FullscreenIcon
-                                                                color="#000"
-                                                                className={styles.icon}
-                                                            />
+                                                            {isVideo ? (
+                                                                <MuteIcon
+                                                                    color="#000"
+                                                                    className={styles.icon}
+                                                                />
+                                                            ) : (
+                                                                <FullscreenIcon
+                                                                    color="#000"
+                                                                    className={styles.icon}
+                                                                />
+                                                            )}
                                                         </div>
                                                     ) : null}
                                                 </Button>
