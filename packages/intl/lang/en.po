@@ -533,12 +533,6 @@ msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Quote"
 
-# Field label
-#: 88kexp
-msgctxt "88kexp"
-msgid "Facebook Messenger"
-msgstr "Facebook Messenger"
-
 # field label
 #: 8A8cuq
 msgctxt "8A8cuq"
@@ -1726,6 +1720,12 @@ msgctxt "d/01YO"
 msgid "Share this Micromag!"
 msgstr "Share this Micromag!"
 
+# Field label
+#: d3va12
+msgctxt "d3va12"
+msgid "SMS"
+msgstr "SMS"
+
 # Subtitle placeholder
 #: d60tSn
 msgctxt "d60tSn"
@@ -1749,6 +1749,12 @@ msgstr "No image..."
 msgctxt "dPYwJG"
 msgid "Map"
 msgstr "Map"
+
+# Share button label
+#: dSfmnf
+msgctxt "dSfmnf"
+msgid "SMS"
+msgstr "SMS"
 
 # Title screen title
 #: dVcog7

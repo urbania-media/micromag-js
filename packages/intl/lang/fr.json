@@ -260,9 +260,6 @@
     "88/Ge8": {
         "defaultMessage": "Citation"
     },
-    "88kexp": {
-        "defaultMessage": "Facebook Messenger"
-    },
     "8A8cuq": {
         "defaultMessage": "Paramètres"
     },
@@ -857,6 +854,9 @@
     "d/01YO": {
         "defaultMessage": "Partagez ce micromag!"
     },
+    "d3va12": {
+        "defaultMessage": "SMS"
+    },
     "d60tSn": {
         "defaultMessage": "Sous-titre"
     },
@@ -868,6 +868,9 @@
     },
     "dPYwJG": {
         "defaultMessage": "Carte"
+    },
+    "dSfmnf": {
+        "defaultMessage": "SMS"
     },
     "dVcog7": {
         "defaultMessage": "Titre"

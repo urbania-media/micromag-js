@@ -347,10 +347,6 @@
     "defaultMessage": "Quote",
     "description": "Quote field label"
   },
-  "88kexp": {
-    "defaultMessage": "Facebook Messenger",
-    "description": "Field label"
-  },
   "8A8cuq": {
     "defaultMessage": "Parameters",
     "description": "field label"
@@ -1142,6 +1138,10 @@
     "defaultMessage": "Share this Micromag!",
     "description": "Share Incentive default label"
   },
+  "d3va12": {
+    "defaultMessage": "SMS",
+    "description": "Field label"
+  },
   "d60tSn": {
     "defaultMessage": "Subtitle",
     "description": "Subtitle placeholder"
@@ -1157,6 +1157,10 @@
   "dPYwJG": {
     "defaultMessage": "Map",
     "description": "Screen title"
+  },
+  "dSfmnf": {
+    "defaultMessage": "SMS",
+    "description": "Share button label"
   },
   "dVcog7": {
     "defaultMessage": "Title",
