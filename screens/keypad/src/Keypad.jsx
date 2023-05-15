@@ -387,8 +387,8 @@ const KeypadScreen = ({
                 const isEmpty = label === null && visual === null;
                 const isExternalLink = url !== null && !inWebView;
                 const isPopupEmpty =
-                    (heading === null || headingBody === '') &&
-                    (content === null || contentBody === '') &&
+                    (heading === null || headingBody === null || headingBody === '') &&
+                    (content === null || contentBody === null || contentBody === '') &&
                     popupLargeVisual === null;
 
                 return (

@@ -312,7 +312,7 @@ const ShareOptions = ({
                         styles.button,
                         { [buttonClassName]: buttonClassName !== null },
                     ])}
-                    href={`sms:?body=${title}: ${url}`}
+                    href={`sms:?&body=${url}`}
                     focusable={focusable}
                     style={finalStyles}
                     external

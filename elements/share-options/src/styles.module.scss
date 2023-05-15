@@ -31,7 +31,8 @@
         }
     }
 
-    &:active {
+    &:active,
+    &:focus {
         .icon,
         .label {
             transform: scale(1.05);
