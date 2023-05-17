@@ -56,7 +56,7 @@ const SignModal = ({
 }) => {
     // eslint-disable-next-line no-unused-vars
     const { label = null, image = null, date = null, word = null, description = null } = sign || {};
-    const { body: wordBody = null } = word || {};
+    // const { body: wordBody = null } = word || {};
 
     const { isEdit } = useScreenRenderContext();
 
@@ -80,7 +80,7 @@ const SignModal = ({
             <button
                 type="button"
                 className={styles.modalButton}
-                onClick={e => {
+                onClick={(e) => {
                     if (onClick !== null) {
                         onClick(e);
                     }
@@ -108,7 +108,11 @@ const SignModal = ({
                                         />
                                     </h3>
                                 )}
-                                <Text className={styles.word} body={wordBody} />
+                                <Text
+                                    className={styles.word}
+                                    {...word}
+                                    // body={wordBody}
+                                />
                             </div>
                         ) : null}
 
