@@ -41,6 +41,7 @@ const propTypes = {
     onClickScreen: PropTypes.func,
     // onClickMenu: PropTypes.func,
     onClickCloseViewer: PropTypes.func,
+    onChange: PropTypes.func,
     refDots: PropTypes.shape({
         current: PropTypes.any, // eslint-disable-line
     }),
@@ -63,6 +64,7 @@ const defaultProps = {
     withoutScreensMenu: false,
     withoutShareMenu: false,
     onClickScreen: null,
+    onChange: null,
     // onClickMenu: null,
     onClickCloseViewer: null,
     refDots: null,
@@ -86,6 +88,7 @@ const ViewerMenu = ({
     withoutScreensMenu,
     withoutShareMenu,
     onClickScreen: customOnClickScreen,
+    onChange,
     // onClickMenu: customOnClickMenu,
     onClickCloseViewer,
     refDots,
@@ -181,6 +184,12 @@ const ViewerMenu = ({
         },
         [customOnClickScreen, setMenuOpened, items, screenId, trackScreenEvent],
     );
+
+    useEffect(() => {
+        if (onChange !== null) {
+            onChange({ menuOpen: menuOpened, shareOpen: shareOpened });
+        }
+    }, [onChange, menuOpened, shareOpened]);
 
     const onShare = useCallback(
         (type) => {

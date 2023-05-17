@@ -5,8 +5,7 @@ import React, { useEffect, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { isTextFilled, getStyleFromText } from '@micromag/core/utils';
-import Badge from '@micromag/element-badge';
+import { getStyleFromText } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
 
 import MenuScreen from './MenuScreen';
@@ -18,7 +17,6 @@ const propTypes = {
     header: PropTypes.node,
     screenSize: MicromagPropTypes.screenSize,
     title: PropTypes.string,
-    surtitle: MicromagPropTypes.badge,
     menuWidth: PropTypes.number,
     items: MicromagPropTypes.menuItems,
     focusable: PropTypes.bool,
@@ -39,7 +37,6 @@ const defaultProps = {
     header: null,
     screenSize: null,
     title: null,
-    surtitle: null,
     menuWidth: null,
     items: [],
     focusable: true,
@@ -59,7 +56,6 @@ const ViewerMenuPreview = ({
     header,
     screenSize,
     title,
-    surtitle,
     menuWidth,
     items,
     focusable,
@@ -95,7 +91,6 @@ const ViewerMenuPreview = ({
     const [screensMounted, setScreensMounted] = useState([]);
 
     const hasTitle = title !== null;
-    const hasSurtitle = isTextFilled(surtitle);
 
     // @todo optimize all of this the proper way
     // const finalItems = useMemo(
@@ -117,6 +112,8 @@ const ViewerMenuPreview = ({
         };
     }, [items, screensMounted, setScreensMounted]);
 
+    const menuPaddingTop = paddingTop + 10;
+
     return (
         <div
             className={classNames([
@@ -133,15 +130,19 @@ const ViewerMenuPreview = ({
                     {hasTitle && header === null ? (
                         <div
                             className={styles.titleContainer}
-                            style={{ paddingTop: paddingTop + 10 }}
+                            style={{ paddingTop: menuPaddingTop }}
                         >
-                            {hasSurtitle ? <Badge {...surtitle} className={styles.badge} /> : null}
                             <h1 className={styles.title} style={{ ...finalTitleStyles }}>
                                 {title}
                             </h1>
                         </div>
                     ) : (
-                        header
+                        <div
+                            className={styles.headerContainer}
+                            style={{ paddingTop: menuPaddingTop }}
+                        >
+                            {header}
+                        </div>
                     )}
                     <nav className={styles.nav} style={!hasTitle ? { paddingTop } : null}>
                         <ul className={styles.items}>

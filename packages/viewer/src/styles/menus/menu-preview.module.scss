@@ -54,21 +54,27 @@
 }
 
 .titleContainer {
-    width: 70%;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 10px;
+    width: 100%;
+    padding: 10px 80px;
     text-align: center;
 }
 
+.headerContainer {
+    position: relative;
+    width: 100%;
+}
+
 .badge {
-    margin-bottom: 10px;
+    display: inline-block;
+    margin: 0 auto 10px;
     border-color: #fff;
     color: #fff;
 }
 
 .title {
-    // color: #fff;
+    display: inline-block;
+    max-width: 500px;
+    margin: 0 auto;
     font-family: Helvetica, Arial, sans-serif;
     text-align: center;
 }

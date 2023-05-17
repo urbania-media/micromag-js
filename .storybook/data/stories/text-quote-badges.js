@@ -1,5 +1,6 @@
 export default {
-    title: 'Test 1 2 3 4',
+    title: 'Test 1 2 3 4 my title is very long and annoying lalalala lalala',
+    surtitle: 'HAHAHA',
     components: [
         {
             id: '1cb8a4be-5c1a-11eb-985f-ad6fce99d847',

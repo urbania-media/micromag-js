@@ -92,7 +92,18 @@ export default {
     },
 };
 
-export const Basic = () => <Viewer story={basic} withNavigationHint />;
+export const Basic = () => (
+    <Viewer
+        story={basic}
+        withNavigationHint
+        menuHeader={
+            <div style={{ width: '100%', padding: '0 20 0 0', textAlign: 'center' }}>
+                <div>Friend</div> MY KUSTOM TITLE
+            </div>
+        }
+        onMenuChange={(state) => console.log(state)}
+    />
+);
 export const TextQuoteBadges = () => <Viewer story={textQuoteBadges} withNavigationHint />;
 
 export const QuizAndSurvey = () => <Viewer story={quiz} />;
