@@ -221,6 +221,7 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
 
     .visualButton {
         @extend %reset-button;
+        display: block;
 
         &.transitioning {
             transition: transform 0.4s $modal-transition-curve;

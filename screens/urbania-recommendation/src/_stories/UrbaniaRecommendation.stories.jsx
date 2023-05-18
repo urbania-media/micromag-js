@@ -156,7 +156,8 @@ export const VisualBottom = (storyProps) => (
     <UrbaniaRecommendation
         {...storyProps}
         {...props}
-        visual={{ image: imageMedia({ width: 109, height: 623 }), visualLayout: 'label-top' }}
+        sponsor
+        visual={{ image: imageMedia({ width: 1009, height: 623 }), visualLayout: 'label-top' }}
     />
 );
 
