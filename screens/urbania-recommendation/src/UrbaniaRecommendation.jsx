@@ -719,7 +719,7 @@ const UrbaniaRecommendation = ({
                         >
                             {(finalBackgroundText || []).map((line, i) => (
                                 <div
-                                    key={`background-text-${line}`}
+                                    key={`reco-background-text-${i + 1}`}
                                     className={classNames([styles.backgroundText], {
                                         [styles.didAnimate]: didAnimate, // @TODO: optimise —> use animation-fill-mode?
                                         [styles.animateFromBottom]:
