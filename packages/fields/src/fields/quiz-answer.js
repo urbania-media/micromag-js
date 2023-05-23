@@ -9,6 +9,11 @@ export default {
             name: 'label',
             type: 'text-element',
             textOnly: true,
+            fieldsProps: {
+                textStyle: {
+                    excludedFields: ['highlight', 'link'],
+                },
+            },
             label: defineMessage({
                 defaultMessage: 'Label',
                 description: 'Field label',
@@ -26,6 +31,11 @@ export default {
             name: 'customAnswerLabel',
             type: 'text-element',
             textOnly: true,
+            fieldsProps: {
+                textStyle: {
+                    excludedFields: ['highlight', 'link'],
+                },
+            },
             label: defineMessage({
                 defaultMessage: 'Answer feedback',
                 description: 'Field label',
@@ -38,6 +48,7 @@ export default {
                 {
                     name: 'textStyle',
                     type: 'text-style-form',
+
                     label: defineMessage({
                         defaultMessage: 'Button text style',
                         description: 'Field label',

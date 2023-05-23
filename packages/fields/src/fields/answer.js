@@ -9,6 +9,11 @@ export default {
             name: 'label',
             type: 'text-element',
             textOnly: true,
+            fieldsProps: {
+                textStyle: {
+                    excludedFields: ['highlight', 'link'],
+                },
+            },
             label: defineMessage({
                 defaultMessage: 'Label',
                 description: 'Field label',
@@ -32,7 +37,7 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Button style',
                         description: 'Field label',
-                    })
+                    }),
                 },
                 {
                     name: 'resultStyle',
@@ -43,7 +48,7 @@ export default {
                         description: 'Field section label',
                     }),
                 },
-            ]
+            ],
         },
     ],
 };
