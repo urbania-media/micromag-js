@@ -24,6 +24,7 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
     .backgroundText {
         height: 100%;
         transform: rotate(180deg);
+        transition: opacity 0.3s ease-out;
         color: #f28d77;
         font-family: 'Agrandir', sans-serif;
         font-size: 100px;
@@ -35,6 +36,10 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         white-space: nowrap;
         writing-mode: vertical-lr;
         // pointer-events: none;
+
+        &.hidden {
+            opacity: 0;
+        }
 
         &.didAnimate {
             transform: rotate(180deg);

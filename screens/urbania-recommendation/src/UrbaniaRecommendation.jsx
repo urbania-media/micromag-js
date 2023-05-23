@@ -721,6 +721,8 @@ const UrbaniaRecommendation = ({
                                 <div
                                     key={`reco-background-text-${i + 1}`}
                                     className={classNames([styles.backgroundText], {
+                                        [styles.hidden]: !current && isView && !isPreview,
+
                                         [styles.didAnimate]: didAnimate, // @TODO: optimise —> use animation-fill-mode?
                                         [styles.animateFromBottom]:
                                             backgroundAnimationStarted && i % 2 !== 0,
