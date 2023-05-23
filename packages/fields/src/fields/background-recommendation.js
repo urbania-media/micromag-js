@@ -44,6 +44,11 @@ export default {
             name: 'text',
             type: 'text-element',
             textOnly: true,
+            fieldsProps: {
+                textStyle: {
+                    excludedFields: ['highlight', 'link'],
+                },
+            },
             label: defineMessage({
                 defaultMessage: 'Background text',
                 description: 'Field label',

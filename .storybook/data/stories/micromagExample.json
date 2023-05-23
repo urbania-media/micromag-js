@@ -7787,6 +7787,15 @@
                             "width": 1080,
                             "height": 1920
                         }
+                    },
+                    "text": {
+                        "body": "bands musique punk rock",
+                        "textStyle": {
+                            "color": {
+                                "color": "#fffc00",
+                                "alpha": 1
+                            }
+                        }
                     }
                 },
                 "id": "3ac21ca0-cb1e-11ec-bfd7-bb789b63ba8b",
@@ -8070,6 +8079,15 @@
             {
                 "background": {
                     "color": null,
+                    "text": {
+                        "body": "Michel Brule",
+                        "textStyle": {
+                            "color": {
+                                "color": "#fffc00",
+                                "alpha": 1
+                            }
+                        }
+                    },
                     "image": {
                         "id": "2810",
                         "type": "image",

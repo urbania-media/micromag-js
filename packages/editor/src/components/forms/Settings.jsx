@@ -1,7 +1,8 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useFieldsManager, useFieldComponent } from '@micromag/core/contexts';
 
@@ -36,7 +37,7 @@ const SettingsForm = ({
 }) => {
     if (field === null) return false;
 
-    const { type = null } = field || {};
+    const { type = null, fieldsProps = null } = field || {};
     const fieldsManager = useFieldsManager();
     const { component: fieldComponent = null, settings } =
         type !== null ? fieldsManager.getDefinition(type) : field;
@@ -77,6 +78,7 @@ const SettingsForm = ({
                     onChange={onSettingsChange}
                     gotoFieldForm={gotoFieldForm}
                     closeFieldForm={closeFieldForm}
+                    fieldsProps={fieldsProps}
                 />
             </div>
         </div>

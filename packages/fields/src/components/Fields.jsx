@@ -16,6 +16,7 @@ import styles from '../styles/fields.module.scss';
 const propTypes = {
     name: PropTypes.string,
     fields: MicromagPropTypes.formFields,
+    excludedFields: PropTypes.arrayOf(PropTypes.string),
     value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     errors: MicromagPropTypes.formErrors,
     withBorders: PropTypes.bool,
@@ -30,12 +31,14 @@ const propTypes = {
     fieldClassName: PropTypes.string,
     labelClassName: PropTypes.string,
     components: MicromagPropTypes.components,
+    fieldsProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     fieldProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 const defaultProps = {
     name: null,
     fields: [],
+    excludedFields: null,
     value: null,
     errors: null,
     withBorders: false,
@@ -50,12 +53,14 @@ const defaultProps = {
     fieldClassName: null,
     labelClassName: null,
     components: null,
+    fieldsProps: null,
     fieldProps: null,
 };
 
 const Fields = ({
     name: namespace,
     fields,
+    excludedFields,
     value,
     errors,
     withBorders,
@@ -70,6 +75,7 @@ const Fields = ({
     fieldClassName,
     labelClassName,
     components,
+    fieldsProps,
     fieldProps,
 }) => {
     const nullableOnChange = useCallback(
@@ -95,8 +101,13 @@ const Fields = ({
         },
         [value, nullableOnChange],
     );
-
-    const visibleFields = fields.filter(({ hidden = false }) => !hidden);
+    const includedFields = fields.filter(
+        ({ name = null, key = null }) =>
+            (name === null && key === null) ||
+            excludedFields === null ||
+            excludedFields.indexOf(name || key) === -1,
+    );
+    const visibleFields = includedFields.filter(({ hidden = false }) => !hidden);
     const fieldsAdvanced = visibleFields.map(({ advanced = false }) => advanced);
     const normalFieldsIndex = useMemo(
         () =>
@@ -124,7 +135,21 @@ const Fields = ({
                     isHorizontal = globalIsHorizontal,
                     isSection = false,
                     className: customClassName = null,
+                    fieldsProps: customFieldsProps = null,
                 } = field;
+
+                const fieldExcludedFields =
+                    excludedFields !== null
+                        ? excludedFields
+                              .filter((key) => name === null || key.match(new RegExp(`^${name}.`)))
+                              .map((key) =>
+                                  name !== null ? key.replace(new RegExp(`^${name}.`), '') : key,
+                              )
+                        : null;
+
+                const customFieldProps =
+                    name !== null ? (customFieldsProps || fieldsProps || {})[name] || null : null;
+
                 const singleFieldValue =
                     name !== null && typeof (value || {})[name] !== 'undefined'
                         ? (value || {})[name]
@@ -139,8 +164,10 @@ const Fields = ({
 
                 return (
                     <Field
+                        excludedFields={fieldExcludedFields}
                         {...field}
                         {...fieldProps}
+                        {...customFieldProps}
                         key={`field-${name}-${i + 1}`}
                         name={
                             namespace !== null
@@ -179,9 +206,14 @@ const Fields = ({
             onFieldChange,
             gotoFieldForm,
             closeFieldForm,
+            fieldProps,
+            fieldsProps,
         ],
     );
 
+    if (fieldsElements.length === 0) {
+        return null;
+    }
     return (
         <div
             className={classNames([

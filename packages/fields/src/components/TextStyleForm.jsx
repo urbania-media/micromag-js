@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { getStyleFromText, getFontFamilyFromFont } from '@micromag/core/utils';
+
 import FieldWithForm from './FieldWithForm';
 
 const propTypes = {

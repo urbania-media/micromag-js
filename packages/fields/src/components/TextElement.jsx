@@ -44,6 +44,7 @@ const TextElement = ({ value, onChange, inline, textOnly, ...props }) => {
             <TextareaField {...props} value={bodyValue} onChange={onBodyChange} />
         );
     }
+
     return (
         <EditorField
             {...props}

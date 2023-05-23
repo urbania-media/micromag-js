@@ -1,5 +1,6 @@
-import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import React, { useMemo, useCallback } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Fields from './Fields';
@@ -35,12 +36,13 @@ const ElementField = ({
 }) => {
     const fields = formFields || [];
     const settingsNames = useMemo(
-        () => (fields ? fields.filter(({ setting = false }) => setting).map(it => it.name) : []),
+        () => (fields ? fields.filter(({ setting = false }) => setting).map((it) => it.name) : []),
         [fields],
     );
-    const componentFields = useMemo(() => fields.filter(({ setting = false }) => !setting), [
-        fields,
-    ]);
+    const componentFields = useMemo(
+        () => fields.filter(({ setting = false }) => !setting),
+        [fields],
+    );
     const componentValue = useMemo(() => {
         if (value === null || settingsNames === null) {
             return value;
@@ -58,7 +60,7 @@ const ElementField = ({
     }, [fields, settingsNames, value]);
 
     const componentOnChange = useCallback(
-        newComponentValue => {
+        (newComponentValue) => {
             const newValue = {
                 ...value,
                 ...newComponentValue,

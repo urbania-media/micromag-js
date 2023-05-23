@@ -4,6 +4,7 @@ export default {
     id: 'text-style',
     fields: [
         {
+            key: 'typography',
             type: 'fields',
             label: defineMessage({
                 defaultMessage: 'Typography',

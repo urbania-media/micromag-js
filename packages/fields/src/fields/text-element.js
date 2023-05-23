@@ -5,6 +5,6 @@ export default {
         {
             name: 'textStyle',
             type: 'text-style',
-        }
-    ]
+        },
+    ],
 };
