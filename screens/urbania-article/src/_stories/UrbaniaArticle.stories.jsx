@@ -4,10 +4,12 @@ import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     backgroundColor,
+    backgroundVideo,
     transitions,
     headerFooter,
     videoMedia,
 } from '../../../../.storybook/data';
+import ArticleNew from '../UrbaniaArticleNew';
 import Article from '../UrbaniaLoader';
 import definition from '../definition';
 
@@ -51,6 +53,12 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
+export const New = (storyProps) => (
+    <ArticleNew {...storyProps} {...props()} background={backgroundVideo()} {...headerFooter()} />
+);
+
+export const NewPlaceholder = (storyProps) => <ArticleNew {...storyProps} />;
+
 export const Video = (storyProps) => (
     <Article {...storyProps} {...video()} type="video" image={videoMedia()} {...headerFooter()} />
 );
@@ -66,7 +74,7 @@ export const URL = (storyProps) => (
         article={null}
         url="https://urbania.ca/article/expose-plonger-dans-lorthophonie-scolaire-avec-mathilde-dupas"
         description={{
-            body: '<p>Salutr sdfksajdfh sfdksahdf hsdfhsadfaksdf as df sadf sadfg adg sadg....</p>',
+            body: '<p>L’orthophoniste, c’est la personne qui aide les élèves à mieux prononcer à l’école? Leur rôle est beaucoup plus large et compexe! </p>',
         }}
     />
 );
