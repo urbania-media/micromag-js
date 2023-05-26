@@ -331,12 +331,13 @@ const ViewerMenu = ({
                                     />
                                 }
                                 toggledButton={
-                                    <CloseButton
+                                    <CloseMenuButton
                                         className={styles.menuButton}
                                         onClick={onCloseShare}
                                         theme={menuTheme}
                                         iconPosition="left"
                                         focusable={shareOpened}
+                                        single
                                     />
                                 }
                                 progressSpring={shareOpenedProgress}

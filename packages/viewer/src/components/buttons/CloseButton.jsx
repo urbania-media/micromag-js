@@ -18,7 +18,6 @@ const defaultProps = {
 
 const CloseButton = ({ className, ...props }) => {
     const intl = useIntl();
-
     return (
         <IconButton
             className={classNames([
@@ -28,7 +27,7 @@ const CloseButton = ({ className, ...props }) => {
             ])}
             label={intl.formatMessage({
                 defaultMessage: 'Close',
-                description: 'Button label',
+                description: 'Button label with icon',
             })}
             icon={<CloseIcon />}
             {...props}
