@@ -28,7 +28,7 @@ const video = (props) => ({
 const props = () => ({
     image: video(null),
     article: testArticle,
-    background: backgroundColor(),
+    // background: backgroundColor(),
     transitions: transitions(),
 });
 
@@ -54,7 +54,15 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
 export const New = (storyProps) => (
-    <ArticleNew {...storyProps} {...props()} background={backgroundVideo()} {...headerFooter()} />
+    <Article
+        {...storyProps}
+        // {...props()}
+        isNew
+        // url="https://simple.urbania.ca.test:8080/article/pourquoi-la-generation-z-trippe-autant-sur-shrek?new"
+        url="https://urbania.ca/article/pourquoi-la-generation-z-trippe-autant-sur-shrek"
+        background={backgroundVideo()}
+        {...headerFooter()}
+    />
 );
 
 export const NewPlaceholder = (storyProps) => <ArticleNew {...storyProps} />;

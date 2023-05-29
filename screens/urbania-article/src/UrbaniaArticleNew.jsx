@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -9,9 +9,7 @@ import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
-    useViewerWebView,
     usePlaybackContext,
-    usePlaybackMediaRef,
     useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
@@ -29,6 +27,9 @@ import styles from './urbania-article-new.module.scss';
 const propTypes = {
     hasArticle: PropTypes.bool,
     type: PropTypes.oneOf(['article', 'video']),
+    url: PropTypes.string,
+    articleTitle: PropTypes.string,
+    image: MicromagPropTypes.visualElement,
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
@@ -42,6 +43,9 @@ const propTypes = {
 const defaultProps = {
     hasArticle: false,
     type: null,
+    url: null,
+    articleTitle: null,
+    image: null,
     header: null,
     footer: null,
     background: null,
@@ -55,6 +59,9 @@ const defaultProps = {
 const UrbaniaArticleNew = ({
     hasArticle,
     type,
+    url,
+    articleTitle,
+    image,
     header,
     footer,
     background,
@@ -63,22 +70,18 @@ const UrbaniaArticleNew = ({
     spacing,
     className,
 }) => {
+    const finalBackground = background !== null ? background : { image };
+
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-    const { color: backgroundColor = null } = background || {};
-    const { opened: openedWebView, open: openWebView } = useViewerWebView();
     const { bottomSidesWidth: viewerBottomSidesWidth, topHeight: viewerTopHeight } =
         useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
-    console.log(isPreview);
+    const { muted } = usePlaybackContext();
 
-    const { muted, playing } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
-
-    const isVideo = type === 'video';
-
+    const hasUrl = url !== null && url.length > 0;
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer) || hasArticle;
     const footerCta = {
@@ -102,7 +105,7 @@ const UrbaniaArticleNew = ({
         {
             isView,
             current,
-            openWebView,
+
             isPreview,
             animationDisabled: isPreview,
             focusable: current && isView,
@@ -111,10 +114,14 @@ const UrbaniaArticleNew = ({
         },
     );
 
-    const { video: backgroundVideo = null } = background || {};
-    const hasVideoBackground = backgroundVideo !== null;
     const mediaShouldLoad = current || active;
-    const backgroundPlaying = current && !openedWebView && (isView || isEdit);
+    const backgroundPlaying = current && (isView || isEdit);
+
+    // @ TODO: REPLACE BY URL BEFORE DEPLOYMENT!!!
+    //         LOAD ALL THIS STUFF IN BETA.URBANIA.CA
+    const localUrl = hasUrl
+        ? url.replace('quatre95', 'simple').replace('.ca', '.ca.test:8080').concat('?new')
+        : null;
 
     return (
         <div
@@ -123,8 +130,6 @@ const UrbaniaArticleNew = ({
                 {
                     [className]: className !== null,
                     [styles.isCurrent]: current,
-                    [styles.isVideo]: isVideo,
-                    [styles.hasVideoBackground]: hasVideoBackground,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
@@ -132,14 +137,13 @@ const UrbaniaArticleNew = ({
         >
             <Background
                 className={styles.background}
-                background={background}
+                background={finalBackground}
                 width={width}
                 height={height}
                 resolution={resolution}
                 playing={backgroundPlaying}
                 muted={muted}
                 shouldLoad={mediaShouldLoad}
-                // mediaRef={imageType !== 'video' && hasVideoBackground ? mediaRef : null}
                 withoutVideo={isPreview}
             />
 
@@ -169,15 +173,13 @@ const UrbaniaArticleNew = ({
                             />
                         }
                         emptyClassName={styles.emptyImage}
-                        isEmpty={false} // fix
+                        isEmpty={!hasUrl}
                     >
                         {!isPreview || !isPlaceholder ? (
                             <iframe
                                 className={styles.iframe}
-                                // ref={iframeRef}
-                                title="Popup"
-                                // src={url || 'about:blank'}
-                                src="https://simple.urbania.ca.test:8080/article/pourquoi-la-generation-z-trippe-autant-sur-shrek?new"
+                                title={articleTitle}
+                                src={localUrl || 'about:blank'}
                                 style={{ width, height }}
                             />
                         ) : null}

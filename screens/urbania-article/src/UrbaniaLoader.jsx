@@ -7,8 +7,10 @@ import { FormattedMessage } from 'react-intl';
 import { isTextFilled, isValidUrl } from '@micromag/core/utils';
 
 import UrbaniaArticle from './UrbaniaArticle';
+import UrbaniaArticleNew from './UrbaniaArticleNew';
 
 const propTypes = {
+    isNew: PropTypes.bool,
     url: PropTypes.string,
     article: PropTypes.shape({
         type: PropTypes.string,
@@ -16,11 +18,12 @@ const propTypes = {
 };
 
 const defaultProps = {
+    isNew: false,
     url: null,
     article: null,
 };
 
-const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
+const UrbaniaLoader = ({ isNew, url, article: initialArticle, ...props }) => {
     const [article, setArticle] = useState(initialArticle);
 
     const hostname = useMemo(() => {
@@ -70,7 +73,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
             readerUrl = null,
         } = metadata || {};
         const { sizes = {} } = articleImage || {};
-        const { medium, large } = sizes || {};
+        const { medium = {}, large = {} } = sizes || {};
         const articleAuthor = (authors || []).length > 0 ? authors[0] : null;
         const { name: authorName = null, avatar: authorImage = null } = articleAuthor || {};
         const finalArticleAuthor = {
@@ -101,9 +104,16 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
             ) : null;
 
+        console.log(
+            imageUrl !== null
+                ? image
+                : { type: 'image', ...articleImage, sizes: { medium, large } },
+        );
+
         return {
             type: defaultType,
             title: hasTitle ? title : { ...title, body: articleTitle },
+            articleTitle,
             overTitle: hasOverTitle ? overTitle : { ...overTitle, body: 'En vedette' },
             author: { ...finalArticleAuthor, ...author },
             sponsors:
@@ -116,6 +126,7 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 imageUrl !== null
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
+            url: readerUrl || canonical,
             header,
             footer: {
                 ...footer,
@@ -132,7 +143,11 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
         };
     }, [article, url, hostname, props]);
 
-    return <UrbaniaArticle {...props} {...values} hasArticle={url !== null} />;
+    return isNew ? (
+        <UrbaniaArticleNew {...props} {...values} hasArticle={url !== null} />
+    ) : (
+        <UrbaniaArticle {...props} {...values} hasArticle={url !== null} />
+    );
 };
 
 UrbaniaLoader.propTypes = propTypes;
