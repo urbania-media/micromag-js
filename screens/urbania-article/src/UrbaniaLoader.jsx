@@ -18,7 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    isNew: false,
+    isNew: true,
     url: null,
     article: null,
 };

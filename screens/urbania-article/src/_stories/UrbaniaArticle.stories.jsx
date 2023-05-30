@@ -28,7 +28,7 @@ const video = (props) => ({
 const props = () => ({
     image: video(null),
     article: testArticle,
-    // background: backgroundColor(),
+    background: backgroundColor(),
     transitions: transitions(),
 });
 

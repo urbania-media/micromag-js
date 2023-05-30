@@ -1,11 +1,12 @@
 /* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
+import { useGesture, useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement } from '@micromag/core/components';
+import { Close, ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -15,6 +16,7 @@ import {
 } from '@micromag/core/contexts';
 import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
+import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
@@ -117,11 +119,53 @@ const UrbaniaArticleNew = ({
     const mediaShouldLoad = current || active;
     const backgroundPlaying = current && (isView || isEdit);
 
+    // iframe interaction
+    const [iframeOpened, setIframeOpened] = useState(false);
+    const [pointerEventsEnabled, setPointerEventsEnabled] = useState(false);
+
+    const toggleIframe = useCallback(() => {
+        setIframeOpened(!iframeOpened);
+    }, [iframeOpened, setIframeOpened]);
+
+    useEffect(() => {
+        let id = null;
+        if (iframeOpened) {
+            disableInteraction();
+            id = setTimeout(() => {
+                setPointerEventsEnabled(true);
+            }, 200);
+        } else {
+            enableInteraction();
+            setPointerEventsEnabled(false);
+        }
+        return () => {
+            clearTimeout(id);
+        };
+    }, [iframeOpened, setPointerEventsEnabled]);
+
+    // use Y only
+    const bind = useGesture(
+        {
+            onDrag: ({ movement: [, my], tap }) => {
+                if ((!iframeOpened && my < 0) || (iframeOpened && my > 0) || tap) {
+                    toggleIframe();
+                }
+            },
+            onWheel: ({ movement: [, my] }) => {
+                if ((!iframeOpened && my > 0) || (iframeOpened && my < 0)) {
+                    toggleIframe();
+                }
+            },
+        },
+        { axis: 'y' },
+    );
+
     // @ TODO: REPLACE BY URL BEFORE DEPLOYMENT!!!
     //         LOAD ALL THIS STUFF IN BETA.URBANIA.CA
     const localUrl = hasUrl
         ? url.replace('quatre95', 'simple').replace('.ca', '.ca.test:8080').concat('?new')
         : null;
+    // const localUrl = url;
 
     return (
         <div
@@ -176,12 +220,39 @@ const UrbaniaArticleNew = ({
                         isEmpty={!hasUrl}
                     >
                         {!isPreview || !isPlaceholder ? (
-                            <iframe
-                                className={styles.iframe}
-                                title={articleTitle}
-                                src={localUrl || 'about:blank'}
-                                style={{ width, height }}
-                            />
+                            <>
+                                <div
+                                    {...bind()}
+                                    style={{
+                                        // border: '1px solid red',
+                                        height: iframeOpened ? '100px' : height,
+                                        // height: iframeHeight,
+                                        width,
+                                        position: iframeOpened ? 'absolute' : 'relative',
+                                        zIndex: iframeOpened ? 5 : 'auto',
+                                    }}
+                                />
+                                {pointerEventsEnabled ? (
+                                    <Button className={styles.close} onClick={toggleIframe}>
+                                        <Close color="#000" className={styles.closeIcon} />
+                                    </Button>
+                                ) : null}
+                                <iframe
+                                    className={classNames([
+                                        styles.iframe,
+                                        {
+                                            [styles.opened]: iframeOpened,
+                                        },
+                                    ])}
+                                    title={articleTitle}
+                                    src={localUrl || 'about:blank'}
+                                    style={{
+                                        width,
+                                        height: iframeOpened ? height : height * 0.45,
+                                        pointerEvents: pointerEventsEnabled ? 'auto' : 'none',
+                                    }}
+                                />
+                            </>
                         ) : null}
                     </ScreenElement>
                 </Container>
@@ -205,7 +276,7 @@ const UrbaniaArticleNew = ({
     );
 };
 
-UrbaniaArticleNew.propTypes = propTypes;
 UrbaniaArticleNew.defaultProps = defaultProps;
+UrbaniaArticleNew.propTypes = propTypes;
 
 export default React.memo(UrbaniaArticleNew);
