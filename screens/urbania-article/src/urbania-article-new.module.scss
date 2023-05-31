@@ -5,31 +5,35 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
 
 .container {
     @extend %screen;
+}
 
-    &.isPlaceholder {
-        .articleContent {
-            width: 80%;
-            height: 35%;
-            margin: 5px auto;
-            background-color: transparent;
-            background-color: $gray-900;
-        }
+.background {
+    z-index: 1;
+}
 
-        .visual {
-            position: relative;
-            flex-grow: 1;
-            width: 80%;
-            height: 50%;
-            margin: 5px auto;
-        }
-    }
+.content {
+    @extend %fullscreen;
+    display: flex;
+    z-index: 2;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 .iframeContainer {
     @extend %fullscreen;
-
     position: relative;
     z-index: 4; //this should probably be lower, check all z-indexes
+
+    &.isPlaceholder {
+        top: 55%;
+        align-self: center;
+        width: 95%;
+        height: 45%;
+        border-top-left-radius: 2em;
+        border-top-right-radius: 2em;
+        background-color: $gray-600;
+    }
 }
 
 .close {
@@ -52,7 +56,7 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
     @extend %hide-scrollbars;
     position: absolute;
     bottom: 0;
-    margin-top: 10px;
+    // margin-top: 10px;
     transform: scaleX(0.95);
     transition: height 0.4s $curve, transform 0.4s $curve, border-radius 0.4s $curve;
     border-top-left-radius: 30px;
@@ -65,103 +69,35 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
         border-top-right-radius: 0;
     }
 
-    &::before {
-        content: 'dfgh';
-        position: absolute;
-        z-index: 6;
-        top: -10px;
-        width: 50px;
-        height: 5px;
-        border: 4px solid #f3f;
-        border-radius: 2px;
-        background-color: #323232;
-    }
+    // &::after {
+    //     content: 'dfgh';
+    //     position: absolute;
+    //     z-index: 6;
+    //     top: -10px;
+    //     width: 500px;
+    //     height: 500px;
+    //     border: 4px solid #f3f;
+    //     border-radius: 2px;
+    //     // background-color: #323232;
+    //     background-color: #f3f;
+    // }
 }
 
 .placeholder {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #f3f;
     background-color: $gray-600;
-}
-
-.emptyContainer {
-    width: 100%;
-    height: 0;
-    margin-bottom: 10px;
-    padding-bottom: 20%;
-    transform: translateY(0); // ??
-
-    &.small {
-        padding-bottom: 15%;
-    }
 }
 
 .empty {
     @extend %empty;
     @extend %fullscreen;
-
+    top: 55%;
+    height: 45%;
     margin: 0;
-}
-
-.background {
-    z-index: 1;
-}
-
-.video {
-    @extend %fullscreen;
-}
-
-.content {
-    @extend %fullscreen;
-    display: flex;
-    z-index: 2;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-}
-
-.visual {
-    z-index: 2;
-    height: 100%;
-}
-
-.footerContainer {
-    @extend %fullscreen;
-    z-index: 3;
-}
-
-.footer {
-    position: absolute;
-    z-index: 10;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding-bottom: 5px;
-    transform: translate3d(0, 0, 0);
-    vertical-align: middle;
-
-    .arrow {
-        margin-bottom: 5px;
-        opacity: 0.95;
-    }
-
-    .icon {
-        display: inline-block;
-        margin-top: -3px;
-        margin-right: 3px;
-        padding: 2px;
-    }
-
-    .button {
-        font-family: 'Agrandir';
-        font-size: 16px;
-    }
-}
-
-.mediaControls {
-    padding: 10px 20px 20px;
-}
-
-.placeholder {
-    display: block;
+    border-top-left-radius: 2em;
+    border-top-right-radius: 2em;
 }
 
 .header {
@@ -172,51 +108,9 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
     width: 100%;
 }
 
-.bottom {
-    transition: opacity 0.15s linear;
-    opacity: 0;
-
-    &.visible {
-        opacity: 1;
-    }
-
-    &.withGradient {
-        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
-    }
-}
-
-.image {
-    position: relative !important;
-    width: 100% !important;
-    height: 100% !important;
-
-    .isCurrent & {
-        animation: slowZoom 15s 1 ease-out forwards;
-    }
-}
-
-.img {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover;
-}
-
-@keyframes slowZoom {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.2);
-    }
-}
-
 @keyframes popIn {
     from {
-        transform: scale(0.8);
+        transform: scale(0.8) rotate(-90deg);
     }
 
     to {

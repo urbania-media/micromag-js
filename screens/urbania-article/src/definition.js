@@ -54,21 +54,5 @@ export default {
                 },
             },
         },
-        {
-            name: 'footer',
-            type: 'footer',
-            label: defineMessage({
-                defaultMessage: 'Footer',
-                description: 'Field label',
-            }),
-            theme: {
-                callToAction: {
-                    label: {
-                        textStyle: 'cta',
-                    },
-                    boxStyle: 'cta',
-                },
-            },
-        },
     ],
 };

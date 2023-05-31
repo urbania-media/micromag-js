@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
-import { useGesture, useDrag } from '@use-gesture/react';
+import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect } from 'react';
@@ -14,15 +14,12 @@ import {
     useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
-import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { isHeaderFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
-import Footer from '@micromag/element-footer';
+// import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
-
-import ArrowIcon from './icons/ArrowIcon';
-import WatchIcon from './icons/WatchIcon';
 
 import styles from './urbania-article-new.module.scss';
 
@@ -33,7 +30,7 @@ const propTypes = {
     articleTitle: PropTypes.string,
     image: MicromagPropTypes.visualElement,
     header: MicromagPropTypes.header,
-    footer: MicromagPropTypes.footer,
+    // footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -49,7 +46,7 @@ const defaultProps = {
     articleTitle: null,
     image: null,
     header: null,
-    footer: null,
+    // footer: null,
     background: null,
     current: true,
     active: true,
@@ -65,7 +62,7 @@ const UrbaniaArticleNew = ({
     articleTitle,
     image,
     header,
-    footer,
+    // footer,
     background,
     current,
     active,
@@ -77,44 +74,13 @@ const UrbaniaArticleNew = ({
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-    const { bottomSidesWidth: viewerBottomSidesWidth, topHeight: viewerTopHeight } =
-        useViewerContext();
+    const { topHeight: viewerTopHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { muted } = usePlaybackContext();
 
     const hasUrl = url !== null && url.length > 0;
     const hasHeader = isHeaderFilled(header);
-    const hasFooter = isFooterFilled(footer) || hasArticle;
-    const footerCta = {
-        buttonClassName: styles.button,
-        labelClassName: styles.label,
-        arrowClassName: styles.arrow,
-        arrow: <ArrowIcon />,
-        icon: type === 'video' ? <WatchIcon className={styles.icon} /> : null,
-    };
-
-    const { callToAction = null, ...otherFooterProps } = footer || {};
-
-    const footerProps = getFooterProps(
-        {
-            ...otherFooterProps,
-            callToAction: {
-                ...callToAction,
-                ...footerCta,
-            },
-        },
-        {
-            isView,
-            current,
-
-            isPreview,
-            animationDisabled: isPreview,
-            focusable: current && isView,
-            enableInteraction,
-            disableInteraction,
-        },
-    );
 
     const mediaShouldLoad = current || active;
     const backgroundPlaying = current && (isView || isEdit);
@@ -143,7 +109,12 @@ const UrbaniaArticleNew = ({
         };
     }, [iframeOpened, setPointerEventsEnabled]);
 
-    // use Y only
+    useEffect(() => {
+        if (!current) {
+            setIframeOpened(false);
+        }
+    }, [current]);
+
     const bind = useGesture(
         {
             onDrag: ({ movement: [, my], tap }) => {
@@ -157,15 +128,15 @@ const UrbaniaArticleNew = ({
                 }
             },
         },
-        { axis: 'y' },
+        { drag: { axis: 'y' }, wheel: { axis: 'y' } },
     );
 
     // @ TODO: REPLACE BY URL BEFORE DEPLOYMENT!!!
     //         LOAD ALL THIS STUFF IN BETA.URBANIA.CA
-    const localUrl = hasUrl
-        ? url.replace('quatre95', 'simple').replace('.ca', '.ca.test:8080').concat('?new')
-        : null;
-    // const localUrl = url;
+    // const localUrl = hasUrl
+    //     ? url.replace('quatre95', 'simple').replace('.ca', '.ca.test:8080').concat('?new')
+    //     : null;
+    const localUrl = url;
 
     return (
         <div
@@ -206,31 +177,36 @@ const UrbaniaArticleNew = ({
                         <Header {...header} />
                     </div>
                 ) : null}
-                <Container className={styles.iframeContainer}>
+                <Container
+                    className={classNames([
+                        styles.iframeContainer,
+                        {
+                            [styles.isPlaceholder]: isPlaceholder,
+                        },
+                    ])}
+                >
                     <ScreenElement
-                        placeholder="image"
-                        placeholderProps={{ className: styles.placeholder, height: '100%' }}
+                        placeholderProps={{ className: styles.placeholder }}
                         emptyLabel={
                             <FormattedMessage
-                                defaultMessage="Image"
-                                description="Image placeholder"
+                                defaultMessage="Article"
+                                description="Article placeholder"
                             />
                         }
-                        emptyClassName={styles.emptyImage}
-                        isEmpty={!hasUrl}
+                        emptyClassName={styles.empty}
+                        isEmpty={!hasUrl || !hasArticle}
                     >
-                        {!isPreview || !isPlaceholder ? (
+                        {(!isPreview || !isPlaceholder) && hasArticle ? (
                             <>
                                 <div
                                     {...bind()}
                                     style={{
-                                        // border: '1px solid red',
                                         height: iframeOpened ? '100px' : height,
-                                        // height: iframeHeight,
                                         width,
                                         position: iframeOpened ? 'absolute' : 'relative',
                                         zIndex: iframeOpened ? 5 : 'auto',
                                     }}
+                                    className={styles.interactiveZone}
                                 />
                                 {pointerEventsEnabled ? (
                                     <Button className={styles.close} onClick={toggleIframe}>
@@ -256,21 +232,6 @@ const UrbaniaArticleNew = ({
                         ) : null}
                     </ScreenElement>
                 </Container>
-
-                <div className={styles.footerContainer}>
-                    {!isPlaceholder && hasFooter ? (
-                        <div
-                            style={{
-                                paddingTop: spacing,
-                                paddingLeft: Math.max(0, viewerBottomSidesWidth - spacing),
-                                paddingRight: Math.max(0, viewerBottomSidesWidth - spacing),
-                            }}
-                            className={styles.footer}
-                        >
-                            <Footer {...footerProps} />
-                        </div>
-                    ) : null}
-                </div>
             </Container>
         </div>
     );

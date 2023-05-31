@@ -84,6 +84,9 @@ const UrbaniaLoader = ({ isNew, url, article: initialArticle, ...props }) => {
         // Type
         const defaultType = articleType || type;
 
+        // Url
+        const finalReaderUrl = readerUrl !== null ? `${readerUrl}?new` : null;
+
         // Sponsors
         const defaultSponsor =
             (sponsors || []).length > 0
@@ -104,12 +107,6 @@ const UrbaniaLoader = ({ isNew, url, article: initialArticle, ...props }) => {
                 <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
             ) : null;
 
-        console.log(
-            imageUrl !== null
-                ? image
-                : { type: 'image', ...articleImage, sizes: { medium, large } },
-        );
-
         return {
             type: defaultType,
             title: hasTitle ? title : { ...title, body: articleTitle },
@@ -126,7 +123,7 @@ const UrbaniaLoader = ({ isNew, url, article: initialArticle, ...props }) => {
                 imageUrl !== null
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
-            url: readerUrl || canonical,
+            url: finalReaderUrl || canonical,
             header,
             footer: {
                 ...footer,

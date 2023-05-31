@@ -65,8 +65,6 @@ export const New = (storyProps) => (
     />
 );
 
-export const NewPlaceholder = (storyProps) => <ArticleNew {...storyProps} />;
-
 export const Video = (storyProps) => (
     <Article {...storyProps} {...video()} type="video" image={videoMedia()} {...headerFooter()} />
 );
