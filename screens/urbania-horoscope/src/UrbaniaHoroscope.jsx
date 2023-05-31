@@ -329,6 +329,14 @@ const UrbaniaHoroscope = ({
                     }
                     height={height * 0.8}
                 >
+                    {isPlaceholder ? (
+                        <div className={styles.placeholderGrid}>
+                            {[...Array(12).keys()].map(() => (
+                                <div className={styles.placeholderItem} />
+                            ))}
+                        </div>
+                    ) : null}
+
                     <animated.div
                         className={styles.headerContainer}
                         style={getHeaderStyles(showSignsGridProgress)}
