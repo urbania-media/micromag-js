@@ -18,19 +18,16 @@ import { isHeaderFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
-// import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
 
 import styles from './urbania-article-new.module.scss';
 
 const propTypes = {
     hasArticle: PropTypes.bool,
-    type: PropTypes.oneOf(['article', 'video']),
     url: PropTypes.string,
-    articleTitle: PropTypes.string,
+    title: PropTypes.string,
     image: MicromagPropTypes.visualElement,
     header: MicromagPropTypes.header,
-    // footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -41,12 +38,10 @@ const propTypes = {
 
 const defaultProps = {
     hasArticle: false,
-    type: null,
     url: null,
-    articleTitle: null,
+    title: null,
     image: null,
     header: null,
-    // footer: null,
     background: null,
     current: true,
     active: true,
@@ -55,14 +50,12 @@ const defaultProps = {
     className: null,
 };
 
-const UrbaniaArticleNew = ({
+const UrbaniaArticleCardw = ({
     hasArticle,
-    type,
     url,
-    articleTitle,
+    title,
     image,
     header,
-    // footer,
     background,
     current,
     active,
@@ -130,13 +123,6 @@ const UrbaniaArticleNew = ({
         },
         { drag: { axis: 'y' }, wheel: { axis: 'y' } },
     );
-
-    // @ TODO: REPLACE BY URL BEFORE DEPLOYMENT!!!
-    //         LOAD ALL THIS STUFF IN BETA.URBANIA.CA
-    // const localUrl = hasUrl
-    //     ? url.replace('quatre95', 'simple').replace('.ca', '.ca.test:8080').concat('?new')
-    //     : null;
-    const localUrl = url;
 
     return (
         <div
@@ -220,8 +206,8 @@ const UrbaniaArticleNew = ({
                                             [styles.opened]: iframeOpened,
                                         },
                                     ])}
-                                    title={articleTitle}
-                                    src={localUrl || 'about:blank'}
+                                    title={title}
+                                    src={url || 'about:blank'}
                                     style={{
                                         width,
                                         height: iframeOpened ? height : height * 0.45,
@@ -237,7 +223,7 @@ const UrbaniaArticleNew = ({
     );
 };
 
-UrbaniaArticleNew.defaultProps = defaultProps;
-UrbaniaArticleNew.propTypes = propTypes;
+UrbaniaArticleCardw.propTypes = propTypes;
+UrbaniaArticleCardw.defaultProps = defaultProps;
 
-export default React.memo(UrbaniaArticleNew);
+export default React.memo(UrbaniaArticleCardw);

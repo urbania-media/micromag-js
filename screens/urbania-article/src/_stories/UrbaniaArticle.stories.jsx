@@ -9,9 +9,8 @@ import {
     headerFooter,
     videoMedia,
 } from '../../../../.storybook/data';
-import ArticleNew from '../UrbaniaArticleNew';
 import Article from '../UrbaniaLoader';
-import definition from '../definition';
+import definition from '../definition-card';
 
 import testArticle from './article.json';
 import testVideo from './video.json';
@@ -28,6 +27,7 @@ const video = (props) => ({
 const props = () => ({
     image: video(null),
     article: testArticle,
+    isNew: false,
     background: backgroundColor(),
     transitions: transitions(),
 });
@@ -57,8 +57,7 @@ export const New = (storyProps) => (
     <Article
         {...storyProps}
         // {...props()}
-        isNew
-        // url="https://simple.urbania.ca.test:8080/article/pourquoi-la-generation-z-trippe-autant-sur-shrek?new"
+        theme="card"
         url="https://urbania.ca/article/pourquoi-la-generation-z-trippe-autant-sur-shrek"
         background={backgroundVideo()}
         {...headerFooter()}

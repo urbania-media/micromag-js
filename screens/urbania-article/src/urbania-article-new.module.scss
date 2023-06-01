@@ -23,7 +23,7 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
 .iframeContainer {
     @extend %fullscreen;
     position: relative;
-    z-index: 4; //this should probably be lower, check all z-indexes
+    z-index: 4;
 
     &.isPlaceholder {
         top: 55%;
@@ -56,7 +56,6 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
     @extend %hide-scrollbars;
     position: absolute;
     bottom: 0;
-    // margin-top: 10px;
     transform: scaleX(0.95);
     transition: height 0.4s $curve, transform 0.4s $curve, border-radius 0.4s $curve;
     border-top-left-radius: 30px;
@@ -68,19 +67,6 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
-
-    // &::after {
-    //     content: 'dfgh';
-    //     position: absolute;
-    //     z-index: 6;
-    //     top: -10px;
-    //     width: 500px;
-    //     height: 500px;
-    //     border: 4px solid #f3f;
-    //     border-radius: 2px;
-    //     // background-color: #323232;
-    //     background-color: #f3f;
-    // }
 }
 
 .placeholder {
@@ -110,7 +96,7 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
 
 @keyframes popIn {
     from {
-        transform: scale(0.8) rotate(-90deg);
+        transform: scale(0.8);
     }
 
     to {

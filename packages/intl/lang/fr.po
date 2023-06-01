@@ -2092,6 +2092,12 @@ msgctxt "kf/5Tw"
 msgid "Right"
 msgstr "Droite"
 
+# Toggle label
+#: ksoi7T
+msgctxt "ksoi7T"
+msgid "New layout"
+msgstr ""
+
 # Button label
 #: l/Y6or
 msgctxt "l/Y6or"
@@ -2785,6 +2791,12 @@ msgstr "23 nov au 21 déc"
 msgctxt "yEG9zh"
 msgid "Date"
 msgstr "Date"
+
+# Article placeholder
+#: yMpGIc
+msgctxt "yMpGIc"
+msgid "Article"
+msgstr "Article"
 
 # Call to action default label
 #: z/VBX0

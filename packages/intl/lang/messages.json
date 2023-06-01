@@ -1386,6 +1386,10 @@
     "defaultMessage": "Right",
     "description": "Direction"
   },
+  "ksoi7T": {
+    "defaultMessage": "New layout",
+    "description": "Toggle label"
+  },
   "l/Y6or": {
     "defaultMessage": "Add an entry",
     "description": "Button label"
@@ -1847,6 +1851,10 @@
   "yEG9zh": {
     "defaultMessage": "Date",
     "description": "Text field label"
+  },
+  "yMpGIc": {
+    "defaultMessage": "Article",
+    "description": "Article placeholder"
   },
   "z/VBX0": {
     "defaultMessage": "Learn more",

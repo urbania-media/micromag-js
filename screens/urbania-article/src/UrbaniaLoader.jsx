@@ -6,11 +6,11 @@ import { FormattedMessage } from 'react-intl';
 
 import { isTextFilled, isValidUrl } from '@micromag/core/utils';
 
-import UrbaniaArticle from './UrbaniaArticle';
-import UrbaniaArticleNew from './UrbaniaArticleNew';
+import UrbaniaArticle from './UrbaniaBaseArticle';
+import UrbaniaBaseArticleCard from './UrbaniaBaseArticleCard';
 
 const propTypes = {
-    isNew: PropTypes.bool,
+    theme: PropTypes.string,
     url: PropTypes.string,
     article: PropTypes.shape({
         type: PropTypes.string,
@@ -18,12 +18,12 @@ const propTypes = {
 };
 
 const defaultProps = {
-    isNew: true,
+    theme: null,
     url: null,
     article: null,
 };
 
-const UrbaniaLoader = ({ isNew, url, article: initialArticle, ...props }) => {
+const UrbaniaLoader = ({ theme, url, article: initialArticle, ...props }) => {
     const [article, setArticle] = useState(initialArticle);
 
     const hostname = useMemo(() => {
@@ -85,7 +85,8 @@ const UrbaniaLoader = ({ isNew, url, article: initialArticle, ...props }) => {
         const defaultType = articleType || type;
 
         // Url
-        const finalReaderUrl = readerUrl !== null ? `${readerUrl}?new` : null;
+        const finalReaderUrl =
+            readerUrl !== null ? `${readerUrl}${theme !== null ? `?theme=${theme}` : null}` : null;
 
         // Sponsors
         const defaultSponsor =
@@ -130,7 +131,6 @@ const UrbaniaLoader = ({ isNew, url, article: initialArticle, ...props }) => {
                 callToAction: {
                     type: 'swipe-up',
                     label: defaultType === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
-                    // icon: defaultType === 'video' ? <WatchIcon /> : null,
                     inWebView: true,
                     ...callToAction,
                     ...(hasArticle ? { active: url !== null } : null),
@@ -140,8 +140,8 @@ const UrbaniaLoader = ({ isNew, url, article: initialArticle, ...props }) => {
         };
     }, [article, url, hostname, props]);
 
-    return isNew ? (
-        <UrbaniaArticleNew {...props} {...values} hasArticle={url !== null} />
+    return theme === 'card' ? (
+        <UrbaniaBaseArticleCard {...props} {...values} hasArticle={url !== null} />
     ) : (
         <UrbaniaArticle {...props} {...values} hasArticle={url !== null} />
     );
