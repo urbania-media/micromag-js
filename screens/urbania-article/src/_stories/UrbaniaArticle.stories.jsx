@@ -9,6 +9,7 @@ import {
     headerFooter,
     videoMedia,
 } from '../../../../.storybook/data';
+import ArticleCard from '../UrbaniaCardLoader';
 import Article from '../UrbaniaLoader';
 import definition from '../definition-card';
 
@@ -54,7 +55,7 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
 export const New = (storyProps) => (
-    <Article
+    <ArticleCard
         {...storyProps}
         // {...props()}
         theme="card"

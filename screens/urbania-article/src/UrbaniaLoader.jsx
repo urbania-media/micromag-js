@@ -6,8 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { isTextFilled, isValidUrl } from '@micromag/core/utils';
 
-import UrbaniaArticle from './UrbaniaBaseArticle';
-import UrbaniaBaseArticleCard from './UrbaniaBaseArticleCard';
+import UrbaniaBaseArticle from './UrbaniaBaseArticle';
 
 const propTypes = {
     theme: PropTypes.string,
@@ -140,11 +139,7 @@ const UrbaniaLoader = ({ theme, url, article: initialArticle, ...props }) => {
         };
     }, [article, url, hostname, props]);
 
-    return theme === 'card' ? (
-        <UrbaniaBaseArticleCard {...props} {...values} hasArticle={url !== null} />
-    ) : (
-        <UrbaniaArticle {...props} {...values} hasArticle={url !== null} />
-    );
+    return <UrbaniaBaseArticle {...props} {...values} hasArticle={url !== null} />;
 };
 
 UrbaniaLoader.propTypes = propTypes;

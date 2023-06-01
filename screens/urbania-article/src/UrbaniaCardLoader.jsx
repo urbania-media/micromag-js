@@ -42,7 +42,6 @@ const UrbaniaCardLoader = ({ theme, url, article: initialArticle, ...props }) =>
         const { image = {}, header = {} } = props || {};
         const { url: imageUrl = null } = image || {};
 
-        // Straight from article
         const {
             title: articleTitle = null,
             image: articleImage = null,
@@ -55,10 +54,6 @@ const UrbaniaCardLoader = ({ theme, url, article: initialArticle, ...props }) =>
         const { sizes = {} } = articleImage || {};
         const { medium = {}, large = {} } = sizes || {};
 
-        // Url
-        // const finalReaderUrl =
-        // readerUrl !== null ? `${readerUrl}${theme !== null ? `?theme=${theme}` : null}` : null;
-
         return {
             hasArticle,
             title: articleTitle,
@@ -68,7 +63,7 @@ const UrbaniaCardLoader = ({ theme, url, article: initialArticle, ...props }) =>
                 imageUrl !== null
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
-            url: readerUrl || canonical,
+            url: readerUrl || canonical || url,
             header,
         };
     }, [article, url, hostname, props]);

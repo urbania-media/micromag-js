@@ -161,13 +161,6 @@ const UrbaniaRecommendation = ({
     const { width: textContainerWidth = 0, height: textContainerHeight = 0 } =
         textContainerRect || {};
 
-    const {
-        ref: visualWrapperRef,
-        // entry: { contentRect: visualWrapperRect = null },
-    } = useResizeObserver();
-    // const { width: visualWrapperWidth = 0, height: visualWrapperHeight = 0 } =
-    // visualWrapperRect || {};
-
     const [visualModalTransitioning, setVisualModalTransitioning] = useState(false);
     const [visualModalOpened, setVisualModalOpened] = useState(false);
 
@@ -380,10 +373,7 @@ const UrbaniaRecommendation = ({
                                 style={{
                                     paddingBottom: spacing,
                                 }}
-                                className={classNames([
-                                    styles.headerContainer,
-                                    // { [styles.appear]: backgroundAnimationStarted },
-                                ])}
+                                className={classNames([styles.headerContainer])}
                             >
                                 <Header {...header} />
                             </div>
@@ -438,7 +428,6 @@ const UrbaniaRecommendation = ({
                                     >
                                         {hasVisual ? (
                                             <div
-                                                ref={visualWrapperRef}
                                                 className={classNames([
                                                     styles.visualWrapper,
                                                     {
