@@ -59,6 +59,7 @@ export const New = (storyProps) => (
         {...storyProps}
         // {...props()}
         theme="card"
+        text={{ body: 'Quelque chose de trop drole' }}
         url="https://urbania.ca/article/pourquoi-la-generation-z-trippe-autant-sur-shrek"
         background={backgroundVideo()}
         {...headerFooter()}

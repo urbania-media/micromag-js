@@ -30,6 +30,11 @@ export default {
         {
             name: 'text',
             type: 'text-element',
+            fieldsProps: {
+                textStyle: {
+                    excludedFields: ['highlight', 'link'],
+                },
+            },
             label: defineMessage({
                 defaultMessage: 'Text',
                 description: 'Text field label',

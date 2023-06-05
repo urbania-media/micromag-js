@@ -26,6 +26,16 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
     justify-content: center;
 }
 
+.text {
+    width: 100%;
+    padding: 0 10px;
+    font-family: 'Agrandir', sans-serif;
+    font-size: 1.65em;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 4px 4px rgba(0 0 0 / 0.35);
+}
+
 .iframeContainer {
     @extend %fullscreen;
     // position: relative;

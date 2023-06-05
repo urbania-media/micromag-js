@@ -6,7 +6,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Close, PlaceholderText, ScreenElement } from '@micromag/core/components';
+import { Close, Empty, PlaceholderText, ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -172,6 +172,14 @@ const UrbaniaArticleCardw = ({
                 <Layout className={styles.layout} height={height * 0.65}>
                     <ScreenElement
                         key="text"
+                        empty={
+                            <Empty className={styles.emptyText}>
+                                <FormattedMessage
+                                    defaultMessage="Text"
+                                    description="Text placeholder"
+                                />
+                            </Empty>
+                        }
                         placeholder={<PlaceholderText className={styles.placeholderText} />}
                     >
                         {hasText ? <Text className={styles.text} {...text} /> : null}
