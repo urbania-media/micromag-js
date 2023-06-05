@@ -104,6 +104,7 @@ export const Basic = () => (
         onMenuChange={(state) => console.log(state)}
     />
 );
+
 export const TextQuoteBadges = () => <Viewer story={textQuoteBadges} withNavigationHint />;
 
 export const QuizAndSurvey = () => <Viewer story={quiz} />;

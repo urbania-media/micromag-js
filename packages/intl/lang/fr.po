@@ -1744,6 +1744,12 @@ msgctxt "dFMzBu"
 msgid "No image..."
 msgstr "Aucune image"
 
+# Button label with icon
+#: dIvwcD
+msgctxt "dIvwcD"
+msgid "Close"
+msgstr "Fermer"
+
 # Screen title
 #: dPYwJG
 msgctxt "dPYwJG"

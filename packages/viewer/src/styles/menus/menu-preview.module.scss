@@ -76,6 +76,7 @@
     max-width: 500px;
     margin: 0 auto;
     font-family: Helvetica, Arial, sans-serif;
+    font-size: 24px;
     text-align: center;
 }
 
@@ -84,10 +85,6 @@
     flex-grow: 1;
     padding: 10px;
     overflow: hidden;
-}
-
-.title {
-    text-align: center;
 }
 
 .items,

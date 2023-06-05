@@ -1154,6 +1154,10 @@
     "defaultMessage": "No image...",
     "description": "Label when there is no item"
   },
+  "dIvwcD": {
+    "defaultMessage": "Close",
+    "description": "Button label with icon"
+  },
   "dPYwJG": {
     "defaultMessage": "Map",
     "description": "Screen title"
