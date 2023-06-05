@@ -57,7 +57,6 @@ const UrbaniaCardLoader = ({ theme, url, article: initialArticle, ...props }) =>
         return {
             hasArticle,
             title: articleTitle,
-
             site,
             image:
                 imageUrl !== null

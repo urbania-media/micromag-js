@@ -2092,12 +2092,6 @@ msgctxt "kf/5Tw"
 msgid "Right"
 msgstr "Droite"
 
-# Toggle label
-#: ksoi7T
-msgctxt "ksoi7T"
-msgid "New layout"
-msgstr ""
-
 # Button label
 #: l/Y6or
 msgctxt "l/Y6or"

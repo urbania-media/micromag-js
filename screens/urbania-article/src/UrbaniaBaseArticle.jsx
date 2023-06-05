@@ -41,7 +41,7 @@ import Visual from '@micromag/element-visual';
 import ArrowIcon from './icons/ArrowIcon';
 import WatchIcon from './icons/WatchIcon';
 
-import styles from './urbania-article.module.scss';
+import styles from './urbania-base-article.module.scss';
 
 const propTypes = {
     hasArticle: PropTypes.bool,

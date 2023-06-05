@@ -27,7 +27,14 @@ export default {
                 description: 'Url field label',
             }),
         },
-
+        {
+            name: 'text',
+            type: 'text-element',
+            label: defineMessage({
+                defaultMessage: 'Text',
+                description: 'Text field label',
+            }),
+        },
         {
             name: 'background',
             type: 'background',

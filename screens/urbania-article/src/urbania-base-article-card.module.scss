@@ -20,10 +20,16 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
     height: 100%;
 }
 
+.layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .iframeContainer {
     @extend %fullscreen;
-    position: relative;
-    z-index: 4;
+    // position: relative;
+    z-index: 5;
 
     &.isPlaceholder {
         top: 55%;

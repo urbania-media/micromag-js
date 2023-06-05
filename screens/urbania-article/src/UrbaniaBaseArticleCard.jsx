@@ -6,7 +6,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Close, ScreenElement } from '@micromag/core/components';
+import { Close, PlaceholderText, ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -14,18 +14,21 @@ import {
     useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
-import { isHeaderFilled } from '@micromag/core/utils';
+import { isTextFilled, isHeaderFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Header from '@micromag/element-header';
+import Layout from '@micromag/element-layout';
+import Text from '@micromag/element-text';
 
-import styles from './urbania-article-new.module.scss';
+import styles from './urbania-base-article-card.module.scss';
 
 const propTypes = {
     hasArticle: PropTypes.bool,
     url: PropTypes.string,
     title: PropTypes.string,
+    text: MicromagPropTypes.textElement,
     image: MicromagPropTypes.visualElement,
     header: MicromagPropTypes.header,
     background: MicromagPropTypes.backgroundElement,
@@ -40,6 +43,7 @@ const defaultProps = {
     hasArticle: false,
     url: null,
     title: null,
+    text: null,
     image: null,
     header: null,
     background: null,
@@ -54,6 +58,7 @@ const UrbaniaArticleCardw = ({
     hasArticle,
     url,
     title,
+    text,
     image,
     header,
     background,
@@ -74,6 +79,7 @@ const UrbaniaArticleCardw = ({
 
     const hasUrl = url !== null && url.length > 0;
     const hasHeader = isHeaderFilled(header);
+    const hasText = isTextFilled(text);
 
     const mediaShouldLoad = current || active;
     const backgroundPlaying = current && (isView || isEdit);
@@ -163,6 +169,14 @@ const UrbaniaArticleCardw = ({
                         <Header {...header} />
                     </div>
                 ) : null}
+                <Layout className={styles.layout} height={height * 0.65}>
+                    <ScreenElement
+                        key="text"
+                        placeholder={<PlaceholderText className={styles.placeholderText} />}
+                    >
+                        {hasText ? <Text className={styles.text} {...text} /> : null}
+                    </ScreenElement>
+                </Layout>
                 <Container
                     className={classNames([
                         styles.iframeContainer,
