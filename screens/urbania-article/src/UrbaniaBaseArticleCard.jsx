@@ -86,7 +86,7 @@ const UrbaniaArticleCardw = ({
 
     // iframe interaction
     const [iframeOpened, setIframeOpened] = useState(false);
-    const [pointerEventsEnabled, setPointerEventsEnabled] = useState(false);
+    const [iframeInteractionEnabled, setIframeInteractionEnabled] = useState(false);
 
     const toggleIframe = useCallback(() => {
         setIframeOpened(!iframeOpened);
@@ -97,16 +97,16 @@ const UrbaniaArticleCardw = ({
         if (iframeOpened) {
             disableInteraction();
             id = setTimeout(() => {
-                setPointerEventsEnabled(true);
+                setIframeInteractionEnabled(true);
             }, 200);
         } else {
             enableInteraction();
-            setPointerEventsEnabled(false);
+            setIframeInteractionEnabled(false);
         }
         return () => {
             clearTimeout(id);
         };
-    }, [iframeOpened, setPointerEventsEnabled]);
+    }, [iframeOpened, setIframeInteractionEnabled]);
 
     useEffect(() => {
         if (!current) {
@@ -216,7 +216,7 @@ const UrbaniaArticleCardw = ({
                                     }}
                                     className={styles.interactiveZone}
                                 />
-                                {pointerEventsEnabled ? (
+                                {iframeInteractionEnabled ? (
                                     <Button className={styles.close} onClick={toggleIframe}>
                                         <Close color="#000" className={styles.closeIcon} />
                                     </Button>
@@ -233,7 +233,8 @@ const UrbaniaArticleCardw = ({
                                     style={{
                                         width,
                                         height: iframeOpened ? height : height * 0.45,
-                                        pointerEvents: pointerEventsEnabled ? 'auto' : 'none',
+                                        pointerEvents: iframeInteractionEnabled ? 'auto' : 'none',
+                                        touchAction: iframeInteractionEnabled ? 'auto' : 'none', // unnecessary
                                     }}
                                 />
                             </>
