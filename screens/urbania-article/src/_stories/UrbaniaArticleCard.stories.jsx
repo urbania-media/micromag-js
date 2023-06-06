@@ -4,12 +4,13 @@ import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     backgroundColor,
+    backgroundVideo,
     transitions,
     headerFooter,
     videoMedia,
 } from '../../../../.storybook/data';
-import Article from '../UrbaniaLoader';
-import definition from '../definition';
+import Article from '../UrbaniaCardLoader';
+import definition from '../definition-card';
 
 import testArticle from './article.json';
 import testVideo from './video.json';
@@ -25,13 +26,16 @@ const video = (props) => ({
 
 const props = () => ({
     image: video(null),
+    theme: 'card',
     article: testArticle,
+    url: 'https://quatre95.urbania.ca/article/homard-et-crabe-des-neiges-des-prix-qui-pincent',
     background: backgroundColor(),
     transitions: transitions(),
 });
 
 export default {
-    title: 'Urbania Screens/Article',
+    title: 'Urbania Screens/ArticleCard',
+    theme: 'card',
     component: Article,
     parameters: {
         intl: true,
@@ -51,11 +55,18 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
-export const Video = (storyProps) => (
-    <Article {...storyProps} {...video()} type="video" image={videoMedia()} {...headerFooter()} />
+export const WithVideoBackground = (storyProps) => (
+    <Article
+        {...storyProps}
+        {...props()}
+        theme="card"
+        text={{ body: 'Quelque chose de trop drole' }}
+        background={backgroundVideo()}
+        {...headerFooter()}
+    />
 );
 
-export const WithHeaderFooter = (storyProps) => (
+export const WithHeader = (storyProps) => (
     <Article {...storyProps} {...props()} article={testVideo} {...headerFooter()} />
 );
 
@@ -75,7 +86,7 @@ export const ThemeUrl = (storyProps) => (
     <Article
         {...storyProps}
         url="https://urbania.ca/article/expose-plonger-dans-lorthophonie-scolaire-avec-mathilde-dupas"
-        articleType="article"
+        // articleType="article"
     />
 );
 

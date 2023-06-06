@@ -9,6 +9,7 @@ import { isTextFilled, isValidUrl } from '@micromag/core/utils';
 import UrbaniaBaseArticle from './UrbaniaBaseArticle';
 
 const propTypes = {
+    component: PropTypes.elementType,
     theme: PropTypes.string,
     url: PropTypes.string,
     article: PropTypes.shape({
@@ -17,12 +18,13 @@ const propTypes = {
 };
 
 const defaultProps = {
+    component: UrbaniaBaseArticle,
     theme: null,
     url: null,
     article: null,
 };
 
-const UrbaniaLoader = ({ theme, url, article: initialArticle, ...props }) => {
+const UrbaniaLoader = ({ component: Component, theme, url, article: initialArticle, ...props }) => {
     const [article, setArticle] = useState(initialArticle);
 
     const hostname = useMemo(() => {
@@ -85,7 +87,7 @@ const UrbaniaLoader = ({ theme, url, article: initialArticle, ...props }) => {
 
         // Url
         const finalReaderUrl =
-            readerUrl !== null ? `${readerUrl}${theme !== null ? `?theme=${theme}` : null}` : null;
+            readerUrl !== null ? `${readerUrl}${theme !== null ? `?theme=${theme}` : ''}` : null;
 
         // Sponsors
         const defaultSponsor =
@@ -123,7 +125,7 @@ const UrbaniaLoader = ({ theme, url, article: initialArticle, ...props }) => {
                 imageUrl !== null
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
-            url: finalReaderUrl || canonical,
+            url: finalReaderUrl || canonical || url,
             header,
             footer: {
                 ...footer,
@@ -139,7 +141,7 @@ const UrbaniaLoader = ({ theme, url, article: initialArticle, ...props }) => {
         };
     }, [article, url, hostname, props]);
 
-    return <UrbaniaBaseArticle {...props} {...values} hasArticle={url !== null} />;
+    return <Component {...props} {...values} hasArticle={url !== null} />;
 };
 
 UrbaniaLoader.propTypes = propTypes;

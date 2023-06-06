@@ -54,7 +54,7 @@ const defaultProps = {
     className: null,
 };
 
-const UrbaniaArticleCardw = ({
+const UrbaniaArticleCard = ({
     hasArticle,
     url,
     title,
@@ -234,7 +234,6 @@ const UrbaniaArticleCardw = ({
                                         width,
                                         height: iframeOpened ? height : height * 0.45,
                                         pointerEvents: iframeInteractionEnabled ? 'auto' : 'none',
-                                        touchAction: iframeInteractionEnabled ? 'auto' : 'none', // unnecessary
                                     }}
                                 />
                             </>
@@ -246,7 +245,7 @@ const UrbaniaArticleCardw = ({
     );
 };
 
-UrbaniaArticleCardw.propTypes = propTypes;
-UrbaniaArticleCardw.defaultProps = defaultProps;
+UrbaniaArticleCard.propTypes = propTypes;
+UrbaniaArticleCard.defaultProps = defaultProps;
 
-export default React.memo(UrbaniaArticleCardw);
+export default React.memo(UrbaniaArticleCard);
