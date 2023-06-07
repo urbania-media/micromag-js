@@ -3,7 +3,7 @@ import { defineMessage } from 'react-intl';
 import UrbaniaCardLoader from './UrbaniaCardLoader';
 
 export default {
-    id: 'urbania-article',
+    id: 'urbania-article-card',
     type: 'screen',
     namespaces: ['urbania'],
     group: {
