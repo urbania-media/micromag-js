@@ -3,6 +3,11 @@
     "version": "1.0.0",
     "private": true,
     "description": "",
+    "workspaces": [
+        "elements/*",
+        "packages/*",
+        "screens/*"
+    ],
     "scripts": {
         "storybook": "NODE_TLS_REJECT_UNAUTHORIZED=0 start-storybook --port 58800",
         "start": "npm run storybook",

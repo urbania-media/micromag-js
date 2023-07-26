@@ -6,12 +6,6 @@
         "publish": {
             "allowBranch": ["master", "develop"],
             "npmClientArgs": ["--maxsockets=3"]
-        },
-        "bootstrap": {
-            "hoist": true
         }
-    },
-    "bootstrap": {
-        "npmClientArgs": ["--no-package-lock"]
     }
 }

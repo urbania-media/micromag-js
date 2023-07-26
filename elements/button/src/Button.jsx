@@ -40,7 +40,7 @@ const defaultProps = {
     onClick: null,
     children: null,
     className: null,
-    withoutExternalBorder: false,
+    withoutExternalBorder: true,
     refButton: null,
 };
 

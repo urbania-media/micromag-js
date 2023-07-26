@@ -1,10 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // organize-imports-ignore
-import './public-path';
-import Viewer from '@micromag/viewer';
 import React from 'react';
 import { render } from 'react-dom';
+
+import Viewer from '@micromag/viewer';
 import '@micromag/viewer/scss/styles';
+
+import './public-path';
+
 import './index.css';
 
 const initialStory = typeof window.MICROMAG_STORY !== 'undefined' ? window.MICROMAG_STORY : null;

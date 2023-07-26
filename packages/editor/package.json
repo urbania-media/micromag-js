@@ -31,6 +31,7 @@
     "license": "ISC",
     "main": "lib/index.js",
     "module": "es/index.js",
+    "style": "assets/css/styles.css",
     "exports": {
         ".": "./lib/index.js",
         "./scss/styles": "./scss/styles.scss",

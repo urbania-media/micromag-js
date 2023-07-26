@@ -109,7 +109,7 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
 
     return (
         <div
-            styles={classNames([
+            className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
