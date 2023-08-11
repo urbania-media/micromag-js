@@ -1,6 +1,7 @@
 {
     "name": "@micromag/ckeditor",
     "version": "0.3.378",
+    "private": false,
     "description": "",
     "keywords": [
         "javascript"
@@ -70,7 +71,8 @@
         "@ckeditor/ckeditor5-react": "^6.0.0"
     },
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
     },
     "gitHead": "3221a816c93604d43c9bf7900506350b355fde9a"
 }

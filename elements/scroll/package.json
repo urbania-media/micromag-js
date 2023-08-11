@@ -1,6 +1,7 @@
 {
     "name": "@micromag/element-scroll",
     "version": "0.3.389",
+    "private": false,
     "description": "",
     "keywords": [
         "javascript"
@@ -61,7 +62,8 @@
         "uuid": "^9.0.0"
     },
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
     },
     "gitHead": "8b87a7c069ebdfc1bd5c7dafe8879d2f96faf9b2"
 }

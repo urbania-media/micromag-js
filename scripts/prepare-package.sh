@@ -32,10 +32,10 @@ done
 # Build methods
 clean() {
     echo "Cleaning..."
-    # rm -rf scss
-    # rm -rf assets
-    # rm -rf lib
-    # rm -rf es
+    rm -rf scss
+    rm -rf assets
+    rm -rf lib
+    rm -rf es
 }
 
 build_rollup() {

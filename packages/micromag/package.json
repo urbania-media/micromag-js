@@ -1,6 +1,7 @@
 {
     "name": "micromag",
     "version": "0.3.389",
+    "private": false,
     "description": "",
     "keywords": [
         "javascript"
