@@ -14,7 +14,11 @@
         "server": "npm run storybook",
         "intl:tx-config": "./scripts/tx-config.js",
         "output-static": "NODE_ENV=node BABEL_ENV=node babel-node ./scripts/output-static.js",
-        "intl": "npm run intl --prefix ./packages/intl"
+        "intl": "npm run intl --workspace=@micromag/intl",
+        "build": "npm run build:all",
+        "build:all": "nx run-many --target=prepare",
+        "build:nocache": "nx run-many --target=prepare --skip-nx-cache",
+        "graph": "nx graph"
     },
     "author": "",
     "license": "ISC",
