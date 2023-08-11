@@ -248,9 +248,7 @@ const Timeline = ({
                                             {hasElement ? (
                                                 <Text
                                                     {...description}
-                                                    textStyle={getStyleFromColor(
-                                                        descriptionTextStyle,
-                                                    )}
+                                                    textStyle={{ ...descriptionTextStyle }}
                                                 />
                                             ) : null}
                                         </ScreenElement>
