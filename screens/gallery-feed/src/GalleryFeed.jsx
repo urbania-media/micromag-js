@@ -165,15 +165,17 @@ const GalleryFeedScreen = ({
                     emptyClassName={styles.emptyCaption}
                     isEmpty={!hasCaption}
                 >
-                    <div
-                        className={styles.caption}
-                        style={{
-                            marginTop,
-                            marginBottom,
-                        }}
-                    >
-                        <Text {...caption} className={styles.captionText} />
-                    </div>
+                    {hasCaption ? (
+                        <div
+                            className={styles.caption}
+                            style={{
+                                marginTop,
+                                marginBottom,
+                            }}
+                        >
+                            <Text {...caption} className={styles.captionText} />
+                        </div>
+                    ) : null}
                 </ScreenElement>
             );
         }

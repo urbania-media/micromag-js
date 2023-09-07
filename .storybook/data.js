@@ -280,7 +280,7 @@ export const imagesWithCaptions = ({
 } = {}) =>
     [...Array(count)].map(() => ({
         media: imageMedia({ width, height, rand, gif }),
-        caption: text(),
+        caption: Math.random() > 0.5 ? text() : null,
     }));
 
 export const backgroundColor = () => ({
