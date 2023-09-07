@@ -173,8 +173,9 @@ const Timeline = ({
                     disabled={transitionDisabled}
                 >
                     {elementsTypes.map((elementType, typeI) => {
+                        let elementContent = null;
                         let hasElement = false;
-                        let elementContent;
+
                         switch (elementType) {
                             case 'title':
                                 hasElement = hasTitle;
@@ -191,7 +192,7 @@ const Timeline = ({
                                             emptyClassName={styles.empty}
                                             isEmpty={!hasTitle}
                                         >
-                                            {hasElement ? <Heading {...title} /> : null}
+                                            {hasTitle ? <Heading {...title} /> : null}
                                         </ScreenElement>
                                     </div>
                                 );
@@ -211,7 +212,7 @@ const Timeline = ({
                                             emptyClassName={styles.empty}
                                             isEmpty={!hasImage}
                                         >
-                                            {hasElement ? (
+                                            {hasImage ? (
                                                 <Visual
                                                     className={styles.image}
                                                     videoClassName={styles.video}
@@ -230,7 +231,6 @@ const Timeline = ({
                                 );
                                 break;
                             case 'description':
-                            default:
                                 hasElement = hasDescription;
                                 elementContent = (
                                     <div className={styles.description}>
@@ -245,7 +245,7 @@ const Timeline = ({
                                             emptyClassName={styles.empty}
                                             isEmpty={!hasDescription}
                                         >
-                                            {hasElement ? (
+                                            {hasDescription ? (
                                                 <Text
                                                     {...description}
                                                     textStyle={{ ...descriptionTextStyle }}
@@ -255,6 +255,8 @@ const Timeline = ({
                                     </div>
                                 );
                                 break;
+                            default:
+                                elementContent = null;
                         }
 
                         const firstItem = itemI === 0;
@@ -271,6 +273,9 @@ const Timeline = ({
                                 className={classNames([
                                     styles.element,
                                     styles[`element-${elementType}`],
+                                    {
+                                        [styles.hidden]: isView && !hasElement,
+                                    },
                                 ])}
                                 ref={itemI === 0 ? firstContentRef : null}
                             >

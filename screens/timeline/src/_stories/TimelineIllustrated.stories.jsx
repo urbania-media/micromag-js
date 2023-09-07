@@ -17,11 +17,15 @@ import definition from '../definition';
 const props = {
     items: [...new Array(10)].map((_, index) => ({
         title: { body: title() },
-        description: {
-            ...text('long'),
-            textStyle: { color: '#fff', alpha: 1 },
-        },
-        image: index % 3 === 0 ? videoMedia() : imageMedia(), // use a video for every third item
+        description:
+            Math.random() > 0.5
+                ? {
+                      ...text('long'),
+                      textStyle: { color: '#fff', alpha: 1 },
+                  }
+                : null,
+        // eslint-disable-next-line no-nested-ternary
+        image: index % 3 === 0 ? null : Math.random() > 0.5 ? imageMedia() : videoMedia(), // use a video for every third item
     })),
     background: backgroundColor(),
     transitions: transitions(),

@@ -27,6 +27,11 @@
 
     .element {
         display: flex;
+
+        &.hidden {
+            display: none;
+            visibility: hidden;
+        }
     }
 
     .timeline {
