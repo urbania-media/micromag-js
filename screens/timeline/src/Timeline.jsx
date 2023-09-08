@@ -257,6 +257,7 @@ const Timeline = ({
                                 break;
                             default:
                                 elementContent = null;
+                                hasElement = false;
                         }
 
                         const firstItem = itemI === 0;
@@ -274,7 +275,7 @@ const Timeline = ({
                                     styles.element,
                                     styles[`element-${elementType}`],
                                     {
-                                        [styles.hidden]: isView && !hasElement,
+                                        [styles.hidden]: (isView || isStatic) && !hasElement,
                                     },
                                 ])}
                                 ref={itemI === 0 ? firstContentRef : null}

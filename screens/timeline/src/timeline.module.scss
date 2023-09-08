@@ -29,8 +29,10 @@
         display: flex;
 
         &.hidden {
-            display: none;
-            visibility: hidden;
+            .body {
+                display: none;
+                visibility: hidden;
+            }
         }
     }
 
