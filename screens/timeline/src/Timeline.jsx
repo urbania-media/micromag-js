@@ -127,7 +127,7 @@ const Timeline = ({
 
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const ready = imagesLoaded >= imagesCount;
-    const transitionsPlaying = current && ready;
+    // const transitionsPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);
@@ -166,177 +166,167 @@ const Timeline = ({
 
         return (
             <div className={styles.item} key={`item-${itemI}`}>
-                <Transitions
-                    transitions={transitions}
-                    playing={transitionsPlaying}
-                    delay={transitionStagger * itemI}
-                    disabled={transitionDisabled}
-                >
-                    {elementsTypes.map((elementType, typeI) => {
-                        let elementContent = null;
-                        let hasElement = false;
+                {elementsTypes.map((elementType, typeI) => {
+                    let elementContent = null;
+                    let hasElement = false;
 
-                        switch (elementType) {
-                            case 'title':
-                                hasElement = hasTitle;
-                                elementContent = (
-                                    <div className={styles.title}>
-                                        <ScreenElement
-                                            placeholder="title"
-                                            emptyLabel={
-                                                <FormattedMessage
-                                                    defaultMessage="Title"
-                                                    description="Title placeholder"
-                                                />
-                                            }
-                                            emptyClassName={styles.empty}
-                                            isEmpty={!hasTitle}
-                                        >
-                                            {hasTitle ? <Heading {...title} /> : null}
-                                        </ScreenElement>
-                                    </div>
-                                );
-                                break;
-                            case 'image':
-                                hasElement = hasImage;
-                                elementContent = (
-                                    <div className={styles.imageContainer}>
-                                        <ScreenElement
-                                            placeholder="image"
-                                            emptyLabel={
-                                                <FormattedMessage
-                                                    defaultMessage="Image"
-                                                    description="Image placeholder"
-                                                />
-                                            }
-                                            emptyClassName={styles.empty}
-                                            isEmpty={!hasImage}
-                                        >
-                                            {hasImage ? (
-                                                <Visual
-                                                    className={styles.image}
-                                                    videoClassName={styles.video}
-                                                    media={image}
-                                                    width={imageWidth}
-                                                    resolution={resolution}
-                                                    playing={backgroundPlaying}
-                                                    active={active}
-                                                    shouldLoad={mediaShouldLoad}
-                                                    withoutVideo={isPreview}
-                                                    onLoaded={onImageLoaded}
-                                                />
-                                            ) : null}
-                                        </ScreenElement>
-                                    </div>
-                                );
-                                break;
-                            case 'description':
-                                hasElement = hasDescription;
-                                elementContent = (
-                                    <div className={styles.description}>
-                                        <ScreenElement
-                                            placeholder="text"
-                                            emptyLabel={
-                                                <FormattedMessage
-                                                    defaultMessage="Description"
-                                                    description="Description placeholder"
-                                                />
-                                            }
-                                            emptyClassName={styles.empty}
-                                            isEmpty={!hasDescription}
-                                        >
-                                            {hasDescription ? (
-                                                <Text
-                                                    {...description}
-                                                    textStyle={{ ...descriptionTextStyle }}
-                                                />
-                                            ) : null}
-                                        </ScreenElement>
-                                    </div>
-                                );
-                                break;
-                            default:
-                                elementContent = null;
-                                hasElement = false;
-                        }
+                    switch (elementType) {
+                        case 'title':
+                            hasElement = hasTitle;
+                            elementContent = (
+                                <div className={styles.title}>
+                                    <ScreenElement
+                                        placeholder="title"
+                                        emptyLabel={
+                                            <FormattedMessage
+                                                defaultMessage="Title"
+                                                description="Title placeholder"
+                                            />
+                                        }
+                                        emptyClassName={styles.empty}
+                                        isEmpty={!hasTitle}
+                                    >
+                                        {hasTitle ? <Heading {...title} /> : null}
+                                    </ScreenElement>
+                                </div>
+                            );
+                            break;
+                        case 'image':
+                            hasElement = hasImage;
+                            elementContent = (
+                                <div className={styles.imageContainer}>
+                                    <ScreenElement
+                                        placeholder="image"
+                                        emptyLabel={
+                                            <FormattedMessage
+                                                defaultMessage="Image"
+                                                description="Image placeholder"
+                                            />
+                                        }
+                                        emptyClassName={styles.empty}
+                                        isEmpty={!hasImage}
+                                    >
+                                        {hasImage ? (
+                                            <Visual
+                                                className={styles.image}
+                                                videoClassName={styles.video}
+                                                media={image}
+                                                width={imageWidth}
+                                                resolution={resolution}
+                                                playing={backgroundPlaying}
+                                                active={active}
+                                                shouldLoad={mediaShouldLoad}
+                                                withoutVideo={isPreview}
+                                                onLoaded={onImageLoaded}
+                                            />
+                                        ) : null}
+                                    </ScreenElement>
+                                </div>
+                            );
+                            break;
+                        case 'description':
+                            hasElement = hasDescription;
+                            elementContent = (
+                                <div className={styles.description}>
+                                    <ScreenElement
+                                        placeholder="text"
+                                        emptyLabel={
+                                            <FormattedMessage
+                                                defaultMessage="Description"
+                                                description="Description placeholder"
+                                            />
+                                        }
+                                        emptyClassName={styles.empty}
+                                        isEmpty={!hasDescription}
+                                    >
+                                        {hasDescription ? (
+                                            <Text
+                                                {...description}
+                                                textStyle={{ ...descriptionTextStyle }}
+                                            />
+                                        ) : null}
+                                    </ScreenElement>
+                                </div>
+                            );
+                            break;
+                        default:
+                            elementContent = null;
+                            hasElement = false;
+                    }
 
-                        const firstItem = itemI === 0;
-                        const lastItem = itemI === itemsCount - 1;
-                        const lastType = typeI === typesCount - 1;
-                        const topLineHidden =
-                            (firstItem && typeI <= titleIndex) || (lastItem && typeI > titleIndex);
-                        const bottomLineHidden =
-                            (firstItem && typeI < titleIndex) || (lastItem && typeI >= titleIndex);
+                    const firstItem = itemI === 0;
+                    const lastItem = itemI === itemsCount - 1;
+                    const lastType = typeI === typesCount - 1;
+                    const topLineHidden =
+                        (firstItem && typeI <= titleIndex) || (lastItem && typeI > titleIndex);
+                    const bottomLineHidden =
+                        (firstItem && typeI < titleIndex) || (lastItem && typeI >= titleIndex);
 
-                        return (
+                    return (
+                        <div
+                            key={`element-${elementType}`}
+                            className={classNames([
+                                styles.element,
+                                styles[`element-${elementType}`],
+                                {
+                                    [styles.hidden]: (isView || isStatic) && !hasElement,
+                                },
+                            ])}
+                            ref={itemI === 0 ? firstContentRef : null}
+                        >
                             <div
-                                key={`element-${elementType}`}
-                                className={classNames([
-                                    styles.element,
-                                    styles[`element-${elementType}`],
-                                    {
-                                        [styles.hidden]: (isView || isStatic) && !hasElement,
-                                    },
-                                ])}
-                                ref={itemI === 0 ? firstContentRef : null}
+                                className={styles.timeline}
+                                ref={itemI === 0 ? firstLineRef : null}
                             >
                                 <div
-                                    className={styles.timeline}
-                                    ref={itemI === 0 ? firstLineRef : null}
-                                >
+                                    className={classNames([
+                                        styles.line,
+                                        {
+                                            [styles.hidden]: topLineHidden,
+                                        },
+                                    ])}
+                                    style={{
+                                        ...(!topLineHidden
+                                            ? getStyleFromColor(lineColor, 'backgroundColor')
+                                            : null),
+                                    }}
+                                />
+                                {elementType === 'title' ? (
                                     <div
-                                        className={classNames([
-                                            styles.line,
-                                            {
-                                                [styles.hidden]: topLineHidden,
-                                            },
-                                        ])}
+                                        className={styles.bullet}
                                         style={{
-                                            ...(!topLineHidden
-                                                ? getStyleFromColor(lineColor, 'backgroundColor')
+                                            ...getStyleFromColor(bulletColor, 'borderColor'),
+                                            ...(bulletFilled
+                                                ? getStyleFromColor(bulletColor, 'backgroundColor')
                                                 : null),
                                         }}
                                     />
-                                    {elementType === 'title' ? (
-                                        <div
-                                            className={styles.bullet}
-                                            style={{
-                                                ...getStyleFromColor(bulletColor, 'borderColor'),
-                                                ...(bulletFilled
-                                                    ? getStyleFromColor(
-                                                          bulletColor,
-                                                          'backgroundColor',
-                                                      )
-                                                    : null),
-                                            }}
-                                        />
-                                    ) : null}
-                                    <div
-                                        className={classNames([
-                                            styles.line,
-                                            {
-                                                [styles.hidden]: bottomLineHidden,
-                                            },
-                                        ])}
-                                        style={{
-                                            ...(!bottomLineHidden
-                                                ? getStyleFromColor(lineColor, 'backgroundColor')
-                                                : null),
-                                        }}
-                                    />
-                                </div>
+                                ) : null}
                                 <div
                                     className={classNames([
-                                        styles.body,
-                                        { [styles.last]: lastType && !lastItem },
+                                        styles.line,
+                                        {
+                                            [styles.hidden]: bottomLineHidden,
+                                        },
                                     ])}
-                                >
-                                    {elementContent}
-                                </div>
+                                    style={{
+                                        ...(!bottomLineHidden
+                                            ? getStyleFromColor(lineColor, 'backgroundColor')
+                                            : null),
+                                    }}
+                                />
                             </div>
-                        );
-                    })}
-                </Transitions>
+                            <div
+                                className={classNames([
+                                    styles.body,
+                                    { [styles.last]: lastType && !lastItem },
+                                ])}
+                            >
+                                {elementContent}
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         );
     });
