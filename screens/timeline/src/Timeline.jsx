@@ -5,7 +5,7 @@ import React, { useMemo, useCallback, useEffect, useRef, useState } from 'react'
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, Transitions } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenRenderContext,
     useScreenSize,
@@ -53,8 +53,8 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
+    // transitions: MicromagPropTypes.transitions,
+    // transitionStagger: PropTypes.number,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -73,8 +73,8 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    transitions: null,
-    transitionStagger: 75,
+    // transitions: null,
+    // transitionStagger: 75,
     type: null,
     className: null,
 };
@@ -93,8 +93,8 @@ const Timeline = ({
     background,
     current,
     active,
-    transitions,
-    transitionStagger,
+    // transitions,
+    // transitionStagger,
     type,
     className,
 }) => {
