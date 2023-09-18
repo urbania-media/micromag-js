@@ -6,7 +6,7 @@ export default [
     {
         id: 'urbania-recommendation',
         type: 'screen',
-        namespaces: ['urbania'],
+        namespaces: ['urbania', 'bayard'],
         group: {
             label: defineMessage({
                 defaultMessage: 'Urbania',
