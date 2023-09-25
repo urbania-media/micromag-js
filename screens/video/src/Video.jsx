@@ -115,6 +115,7 @@ const VideoScreen = ({
         setControls,
         setControlsTheme,
         setPlaying,
+        controlsVisible,
         showControls,
         hideControls,
     } = usePlaybackContext();
@@ -316,7 +317,7 @@ const VideoScreen = ({
                                 transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
                             }}
                         >
-                            <Header {...header} />
+                            <Header fade={current && !controlsVisible} {...header} />
                         </div>
                     ) : null}
 

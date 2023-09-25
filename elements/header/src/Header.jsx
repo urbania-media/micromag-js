@@ -10,22 +10,25 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     badge: MicromagPropTypes.badge,
+    fade: PropTypes.bool,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     badge: null,
+    fade: false,
     className: null,
 };
 
-function Header({ badge, className }) {
+function Header({ badge, fade, className }) {
     if (badge === null) return null;
-
+    console.log(fade);
     return (
         <div
             className={classNames([
                 styles.container,
                 {
+                    [styles.fade]: fade === true,
                     [className]: className !== null,
                 },
             ])}

@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import Link from '../partials/Link';
+
 // import Label from '../partials/Label';
 import Button from '../buttons/Button';
+import Link from '../partials/Link';
 import Dropdown from './Dropdown';
 
 const propTypes = {
