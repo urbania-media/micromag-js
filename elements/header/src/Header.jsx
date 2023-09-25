@@ -22,7 +22,7 @@ const defaultProps = {
 
 function Header({ badge, fade, className }) {
     if (badge === null) return null;
-    console.log(fade);
+
     return (
         <div
             className={classNames([
