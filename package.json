@@ -5,8 +5,8 @@
     "description": "",
     "workspaces": [
         "elements/*",
-        "packages/*",
-        "screens/*"
+        "screens/*",
+        "packages/*"
     ],
     "scripts": {
         "storybook": "NODE_TLS_REJECT_UNAUTHORIZED=0 start-storybook --port 58800",
@@ -18,6 +18,7 @@
         "build": "npm run build:all",
         "build:all": "nx run-many --target=prepare",
         "build:nocache": "nx run-many --target=prepare --skip-nx-cache",
+        "build:viewer": "npm run build --workspace=@micromag/viewer-build",
         "graph": "nx graph"
     },
     "author": "",
@@ -95,7 +96,7 @@
         "fs-extra": "^10.0.0",
         "gettext-parser": "^4.0.4",
         "glob": "^7.1.6",
-        "lerna": "^7.1.4",
+        "lerna": "^7.3.0",
         "http-proxy-middleware": "^1.0.6",
         "lodash": "^4.17.21",
         "minimatch": "^5.0.1",
