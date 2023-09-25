@@ -36,7 +36,7 @@
     "scripts": {
         "clean": "rm -rf build",
         "build": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build ./src/index.js",
-        "prepare": "npm run clean && npm run build"
+        "pre-build": "npm run clean && npm run build"
     },
     "publishConfig": {
         "access": "public",
