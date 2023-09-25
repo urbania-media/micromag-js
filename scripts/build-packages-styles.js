@@ -21,19 +21,31 @@ program.parse(process.argv);
 
 const options = program.opts();
 
-const nodeModulesPath = path.join(process.cwd(), './node_modules/');
+// const nodeModulesPath = path.join(process.cwd(), './node_modules/');
 const packageJsonPath = path.join(process.cwd(), 'package.json');
 const { dependencies } = fsExtra.readJsonSync(packageJsonPath);
 
 const patternRegExp = new RegExp(`^${options.pattern.replace('*', '.*')}$`, 'i');
 const packages = Object.keys(dependencies).filter(
-    (it) =>
-        patternRegExp.test(it) &&
-        fs.existsSync(
-            require.resolve(`${it}/assets/css/styles.css`, {
-                paths: [nodeModulesPath],
-            }),
-        ),
+    (it) => {
+        if (!patternRegExp.test(it)) {
+            return false;
+        }
+        try {
+            require.resolve(`${it}/assets/css/styles.css`);
+        } catch (e) {
+            console.log(e);
+            return false;
+        }
+
+        return true;
+    },
+    // patternRegExp.test(it) &&
+    // fs.existsSync(
+    //     require.resolve(`${it}/assets/css/styles.css`, {
+    //         paths: [nodeModulesPath],
+    //     }),
+    // ),
 );
 
 const templateStr = fs.readFileSync(templateFile);
