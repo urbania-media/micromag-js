@@ -2,11 +2,11 @@ import isObject from 'lodash/isObject';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
-import '../../packages/intl/lang/en';
-import '../../packages/intl/lang/fr';
+import '../../packages/intl/locale/en';
+import '../../packages/intl/locale/fr';
 
-import messagesEn from '../../packages/intl/lang/en.json';
-import messagesFr from '../../packages/intl/lang/fr.json';
+import messagesEn from '../../packages/intl/locale/en.json';
+import messagesFr from '../../packages/intl/locale/fr.json';
 
 const withIntlProvider = (Story, { parameters: { intl = null } }) => {
     const enabled = isObject(intl) || intl === true;
