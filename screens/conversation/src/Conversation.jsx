@@ -34,6 +34,7 @@ const propTypes = {
     // layout: PropTypes.oneOf(['normal']),
     title: MicromagPropTypes.headingElement,
     timing: PropTypes.oneOf(['instant', 'sequence']),
+    readingSpeed: PropTypes.number,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     header: MicromagPropTypes.header,
@@ -50,6 +51,7 @@ const defaultProps = {
     // layout: 'normal',
     title: null,
     timing: 'sequence',
+    readingSpeed: 255,
     spacing: 20,
     background: null,
     header: null,
@@ -66,6 +68,7 @@ const ConversationScreen = ({
     // layout,
     title,
     timing: timingMode,
+    readingSpeed,
     spacing,
     background,
     header,
@@ -127,10 +130,9 @@ const ConversationScreen = ({
     );
 
     // sequence timings
-    const readSpeed = 255; // Words Per Minute
     const defaultHesitationDelay = 1000;
     const imageReadDelay = 5000; // 5 seconds
-    const millisecondsPerWord = ((60 * 1000) / readSpeed);
+    const millisecondsPerWord = ((60 * 1000) / readingSpeed);
     const filteredMessages = (messages || []).filter((m) => m !== null);
     const timings = filteredMessages.map((messageParams, messageI) => {
         const { timing = null, message = null } = messageParams || {};

@@ -1258,6 +1258,12 @@ msgctxt "QfpTKK"
 msgid "Select a screen..."
 msgstr "Select a screen..."
 
+# Reading speed label
+#: QjbLZ9
+msgctxt "QjbLZ9"
+msgid "Reading speed (in Words Per Minute)"
+msgstr "Reading speed (in Words Per Minute)"
+
 # Field label
 #: Qw8cb5
 msgctxt "Qw8cb5"

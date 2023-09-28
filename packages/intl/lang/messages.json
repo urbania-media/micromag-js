@@ -830,6 +830,10 @@
   "QfpTKK": {
     "defaultMessage": "Select a screen..."
   },
+  "QjbLZ9": {
+    "defaultMessage": "Reading speed (in Words Per Minute)",
+    "description": "Reading speed label"
+  },
   "Qw8cb5": {
     "defaultMessage": "Sponsor color",
     "description": "Field label"

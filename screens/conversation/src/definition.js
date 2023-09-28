@@ -71,6 +71,15 @@ export default {
             }),
         },
         {
+            name: 'readingSpeed',
+            type: 'number',
+            defaultValue: 255,
+            label: defineMessage({
+                defaultMessage: 'Reading speed (in Words Per Minute)',
+                description: 'Reading speed label'
+            })
+        },
+        {
             name: 'background',
             type: 'background',
             label: defineMessage({
