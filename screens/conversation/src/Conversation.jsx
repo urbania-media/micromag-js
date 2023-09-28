@@ -127,8 +127,10 @@ const ConversationScreen = ({
     );
 
     // sequence timings
-    const defaultTimingFactor = 40;
+    const readSpeed = 255; // Words Per Minute
     const defaultHesitationDelay = 1000;
+    const imageReadDelay = 5000; // 5 seconds
+    const millisecondsPerWord = ((60 * 1000) / readSpeed);
     const filteredMessages = (messages || []).filter((m) => m !== null);
     const timings = filteredMessages.map((messageParams, messageI) => {
         const { timing = null, message = null } = messageParams || {};
@@ -138,8 +140,26 @@ const ConversationScreen = ({
         if (messageI === 0) {
             return 0;
         }
-        const finalTime = defaultTimingFactor * ((message || '').length || 10);
-        return finalTime < 2000 ? finalTime : 2000;
+
+        // the trick here is to estimate "how long it take to read the previous message"
+        // instead of "how long does it take to write this message".
+        const previous = filteredMessages[messageI - 1]
+
+        // counting words: only keep whitespaces and alphanumeric characters, then split of whitespaces
+        const wordCount = previous.message
+            .replace(/[^\w\d\s]/g, '')
+            .trim()
+            .split(/\s/g)
+            .length;
+
+        let finalTimeMs = wordCount * millisecondsPerWord
+
+        // if the message includes an image, add some more time to "read" it
+        if (previous.image) {
+            finalTimeMs += imageReadDelay;
+        }
+
+        return Math.max(finalTimeMs, 2000);
     });
 
     const hesitationTimings = filteredMessages.map(({ hesitation = null } = {}) =>
