@@ -1,0 +1,17 @@
+@import '~@micromag/core/scss/variables';
+
+.container {
+    position: relative;
+
+    .input {
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            appearance: none;
+        }
+
+        -moz-appearance: textfield; // stylelint-disable-line
+        width: 100%;
+        margin-left: auto;
+        padding-right: 20px;
+    }
+}

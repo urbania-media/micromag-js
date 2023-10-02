@@ -1,0 +1,47 @@
+// stylelint-disable max-nesting-depth
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    position: relative;
+
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .emptyText {
+        @extend %empty;
+        width: 100%;
+        margin: 10px auto;
+        padding: 12px 0 10px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+
+    .footer {
+        transition: opacity 0.2s ease-out;
+
+        a {
+            padding: 0;
+        }
+
+        &.disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+    }
+}

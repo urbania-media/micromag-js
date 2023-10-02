@@ -13,6 +13,7 @@ import {
     webfontFiles,
 } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
+import article from '../../../../.storybook/data/stories/article-generic';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
 import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
@@ -104,6 +105,8 @@ export const Basic = () => (
         onMenuChange={(state) => console.log(state)}
     />
 );
+
+export const Article = () => <Viewer story={article} />;
 
 export const TextQuoteBadges = () => <Viewer story={textQuoteBadges} withNavigationHint />;
 

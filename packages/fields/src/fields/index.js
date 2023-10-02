@@ -20,6 +20,8 @@ export { default as buttonElement } from './button-element';
 export { default as buttonLink } from './button-link';
 export { default as callToAction } from './call-to-action';
 export { default as callToActionForm } from './call-to-action-form';
+export { default as date } from './date';
+export { default as datetime } from './datetime';
 export { default as shareIncentive } from './share-incentive';
 export { default as shareIncentiveForm } from './share-incentive-form';
 export { default as cardLayout } from './card-layout';

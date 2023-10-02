@@ -1,4 +1,5 @@
 import { ScreensManager } from '@micromag/core';
+import article from '@micromag/screen-article';
 import audio from '@micromag/screen-audio';
 import contribution from '@micromag/screen-contribution';
 import conversation from '@micromag/screen-conversation';
@@ -26,6 +27,7 @@ import video from '@micromag/screen-video';
 import video360 from '@micromag/screen-video-360';
 
 const manager = new ScreensManager();
+manager.addDefinition(article);
 manager.addDefinition(audio);
 manager.addDefinition(contribution);
 manager.addDefinition(conversation);

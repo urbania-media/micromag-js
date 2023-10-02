@@ -2276,6 +2276,12 @@ msgctxt "opcGwP"
 msgid "Add a speaker"
 msgstr "Ajouter un interlocuteur"
 
+# Article screen title
+#: ouMwWq
+msgctxt "ouMwWq"
+msgid "Article"
+msgstr ""
+
 # Field label
 #: p1pghO
 msgctxt "p1pghO"

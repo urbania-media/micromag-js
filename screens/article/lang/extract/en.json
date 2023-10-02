@@ -1,0 +1,38 @@
+{
+  "+MPZRu": {
+    "developer_comment": "Background field label",
+    "string": "Background"
+  },
+  "0gyI2S": {
+    "developer_comment": "GalleryFeedLegends screen title",
+    "string": "GalleryFeedLegends"
+  },
+  "4iBXj2": {
+    "developer_comment": "Layout field label",
+    "string": "Layout"
+  },
+  "63Kvho": {
+    "developer_comment": "Images field label",
+    "string": "Images"
+  },
+  "6mX2ya": {
+    "developer_comment": "Images screen group",
+    "string": "Images"
+  },
+  "dqnkQk": {
+    "developer_comment": "Legend placeholder",
+    "string": "Legend"
+  },
+  "ebsPd4": {
+    "developer_comment": "Image placeholder",
+    "string": "Image"
+  },
+  "uD3/zU": {
+    "developer_comment": "Images field label (with legend)",
+    "string": "Images (with legend)"
+  },
+  "vrCfAS": {
+    "developer_comment": "GalleryFeed screen title",
+    "string": "GalleryFeed"
+  }
+}

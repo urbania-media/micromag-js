@@ -5,6 +5,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { callToAction, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
+import article from '../../../../.storybook/data/stories/article-generic';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
 import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
@@ -125,9 +126,11 @@ EditorContainer.defaultProps = {
     viewerTheme: null,
 };
 
+export const TextArticle = () => <EditorContainer defaultValue={article} />;
+
 export const TextQuoteBadges = () => <EditorContainer defaultValue={textQuoteBadges} />;
 
-export const TestArticle = () => (
+export const TestArticleUrbania = () => (
     <EditorContainer
         defaultValue={{
             title: 'Test',

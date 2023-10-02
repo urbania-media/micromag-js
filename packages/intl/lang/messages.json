@@ -1508,6 +1508,10 @@
     "defaultMessage": "Add a speaker",
     "description": "Button label"
   },
+  "ouMwWq": {
+    "defaultMessage": "Article",
+    "description": "Article screen title"
+  },
   "p1pghO": {
     "defaultMessage": "Box style",
     "description": "Field label"
