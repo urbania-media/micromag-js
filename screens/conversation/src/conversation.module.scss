@@ -219,3 +219,27 @@
         }
     }
 }
+
+.audioMessageContainer {
+    display: flex;
+    flex-direction: row;
+
+    .playButtonContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        width: 3em;
+        margin-right: 0.50rem;
+
+        button {
+            border: 0;
+        }
+    }
+
+    .audioMessage {
+        flex-grow: 1;
+        min-width: 7em;
+        height: 3em;
+    }
+}

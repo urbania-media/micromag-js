@@ -30,5 +30,13 @@ export default {
                 description: 'Field label',
             }),
         },
+        {
+            name: 'audio',
+            type: 'audio',
+            label: defineMessage({
+                defaultMessage: 'Audio attachment',
+                description: 'Field label'
+            })
+        }
     ],
 };

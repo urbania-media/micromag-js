@@ -1919,5 +1919,9 @@
   "zrK6ak": {
     "defaultMessage": "Heading text style",
     "description": "Field label"
+  },
+  "zueWSA": {
+    "defaultMessage": "Audio attachment",
+    "description": "Field label"
   }
 }

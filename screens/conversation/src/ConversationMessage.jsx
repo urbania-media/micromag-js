@@ -9,6 +9,7 @@ import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
 import styles from './conversation.module.scss';
+import ConversationAudioAttachment from './ConversationAudioAttachment';
 
 const propTypes = {
     message: MicromagPropTypes.conversationMessage,
@@ -61,7 +62,7 @@ const ConversationMessage = ({
     speakerStyle,
     className,
 }) => {
-    const { message: messageBody, image = null } = message || {};
+    const { message: messageBody, image = null, audio } = message || {};
     const {
         avatar: { url: avatarUrl = null } = {},
         name: speakerName,
@@ -192,6 +193,11 @@ const ConversationMessage = ({
                             body={messageBody}
                             textStyle={messageStyle}
                         />
+                        {audio ? (
+                            <ConversationAudioAttachment
+                                audio={audio}
+                            />
+                        ) : null}
                     </div>
                 </div>
             )}
