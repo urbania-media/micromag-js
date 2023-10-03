@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.397",
+    "version": "0.3.398",
     "private": false,
     "description": "",
     "keywords": [
@@ -57,9 +57,9 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.396",
-        "@micromag/screen-audio": "^0.3.397",
+        "@micromag/screen-audio": "^0.3.398",
         "@micromag/screen-contribution": "^0.3.397",
-        "@micromag/screen-conversation": "^0.3.397",
+        "@micromag/screen-conversation": "^0.3.398",
         "@micromag/screen-gallery": "^0.3.397",
         "@micromag/screen-gallery-feed": "^0.3.397",
         "@micromag/screen-image": "^0.3.397",
