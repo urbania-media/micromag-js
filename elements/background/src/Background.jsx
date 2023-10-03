@@ -159,7 +159,7 @@ const Background = ({
                     <Video
                         className={styles.video}
                         media={media}
-                        mediaRef={mediaRef}
+                        mediaRef={!forceMuted ? mediaRef : null}
                         paused={!playing}
                         muted={muted || forceMuted}
                         shouldLoad={shouldLoad}
