@@ -1960,6 +1960,12 @@ msgctxt "gwPu/I"
 msgid "Buttons text"
 msgstr "Buttons text"
 
+# Field label
+#: hUUIQt
+msgctxt "hUUIQt"
+msgid "Mute audio of background video"
+msgstr "Mute audio of background video"
+
 # Question field label
 #: hVE7TA
 msgctxt "hVE7TA"

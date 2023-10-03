@@ -34,6 +34,7 @@ const propTypes = {
     loadingMode: PropTypes.string,
     shouldLoad: PropTypes.bool,
     withoutVideo: PropTypes.bool,
+    forceMuted: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -54,6 +55,7 @@ const defaultProps = {
     loadingMode: 'lazy',
     shouldLoad: true,
     withoutVideo: false,
+    forceMuted: false,
 };
 
 const Background = ({
@@ -74,6 +76,7 @@ const Background = ({
     loadingMode,
     shouldLoad,
     withoutVideo,
+    forceMuted,
 }) => {
     const {
         type: mediaType = null,
@@ -158,7 +161,7 @@ const Background = ({
                         media={media}
                         mediaRef={mediaRef}
                         paused={!playing}
-                        muted={muted}
+                        muted={muted || forceMuted}
                         shouldLoad={shouldLoad}
                         autoPlay
                         loop

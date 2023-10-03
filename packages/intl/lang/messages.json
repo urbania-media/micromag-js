@@ -1298,6 +1298,10 @@
     "defaultMessage": "Buttons text",
     "description": "Field label"
   },
+  "hUUIQt": {
+    "defaultMessage": "Mute audio of background video",
+    "description": "Field label"
+  },
   "hVE7TA": {
     "defaultMessage": "Question",
     "description": "Question field label"
