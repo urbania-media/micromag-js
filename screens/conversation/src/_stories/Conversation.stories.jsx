@@ -25,7 +25,7 @@ export default {
 
 const conversation = makeConversation(13, 2);
 const conversation2 = makeConversation(13, 5, 'instant');
-const voiceConversation = makeAudioConversation(13, 2);
+const voiceConversation = makeAudioConversation(4, 2, 'sequence');
 
 export const Normal = (storyProps) => (
     <ConversationScreen

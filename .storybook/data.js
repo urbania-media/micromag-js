@@ -484,7 +484,7 @@ export const conversation = (messagesNumber = 10, speakersNumber = 2, timing = '
     };
 };
 
-export const audioConversation = (messagesNumber = 10, speakersNumber = 2) => {
+export const audioConversation = (messagesNumber = 10, speakersNumber = 2, timing = 'sequence') => {
     const speakers = ([...Array(speakersNumber)] || []).map((s, idx) => ({
         id: `${idx}`,
         name: name(),
@@ -499,7 +499,7 @@ export const audioConversation = (messagesNumber = 10, speakersNumber = 2) => {
     }));
     return {
         speakers,
-        timing: 'sequence',
+        timing,
         messages,
     };
 };

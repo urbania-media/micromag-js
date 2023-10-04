@@ -28,6 +28,7 @@ import Scroll from '@micromag/element-scroll';
 import ConversationMessage from './ConversationMessage';
 
 import styles from './conversation.module.scss';
+import EventEmitter from 'wolfy87-eventemitter';
 
 const propTypes = {
     // id: PropTypes.string,
@@ -90,6 +91,8 @@ const ConversationScreen = ({
     const trackScreenEvent = useTrackScreenEvent(type);
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
+
+    const audioEventsChannel = new BroadcastChannel(`conversation_${uuid()}_audioEvents`)
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -289,12 +292,23 @@ const ConversationScreen = ({
 
                                             const typingTiming = timings[messageI];
 
+                                            const messageId = `${m.message}-${messagesUniqueId[messageI]}`
+
+                                            const nextAudioMessage = filteredMessages.slice(messageI + 1).find(c => c.audio != null)
+                                            const nextAudioMessageId = (
+                                                nextAudioMessage
+                                                ? `${m.message}-${messagesUniqueId[filteredMessages.indexOf(nextAudioMessage)]}`
+                                                : null
+                                            )
+
                                             return (
                                                 <ConversationMessage
-                                                    key={`${m.message}-${messagesUniqueId[messageI]}`}
+                                                    key={messageId}
                                                     message={m}
+                                                    messageId={messageId}
                                                     previousMessage={previousMessage}
                                                     nextMessage={nextMessage}
+                                                    nextAudioMessageId={nextAudioMessageId}
                                                     nextMessageState={
                                                         conversationState[messageI + 1] ||
                                                         !withAnimation
@@ -309,6 +323,7 @@ const ConversationScreen = ({
                                                     withoutVideo={isPreview}
                                                     messageStyle={messageStyle}
                                                     speakerStyle={speakerStyle}
+                                                    audioEventsChannelName={audioEventsChannel.name}
                                                 />
                                             );
                                         })}
