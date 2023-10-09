@@ -173,7 +173,7 @@ const ConversationScreen = ({
             finalTimeMs += imageReadDelay;
         }
 
-        return Math.max(finalTimeMs, 2000);
+        return finalTimeMs
     });
 
     const hesitationTimings = filteredMessages.map(({ hesitation = null } = {}) =>
