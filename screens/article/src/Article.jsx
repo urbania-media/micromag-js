@@ -14,7 +14,7 @@ import {
     usePlaybackContext,
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
 import {
     isTextFilled,
     isHeaderFilled,
@@ -27,7 +27,7 @@ import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
-import Layout from '@micromag/element-layout';
+import Layout, { Spacer } from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 // import Visual from '@micromag/element-visual';
@@ -99,6 +99,8 @@ const ArticleScreen = ({
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
+
+    const { ref: imageCntRef, width: imageWidth, height: imageHeight } = useDimensionObserver();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -233,7 +235,7 @@ const ArticleScreen = ({
                                       padding: spacing,
                                       paddingTop:
                                           (!isPreview ? viewerTopHeight : 0) +
-                                          (hasHeader ? spacing / 2 : spacing),
+                                          (hasHeader ? spacing / 2 : spacing + imageHeight),
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
                                           spacing / 2,
@@ -245,15 +247,24 @@ const ArticleScreen = ({
                             <div
                                 key="header"
                                 style={{
-                                    paddingBottom: spacing,
+                                    paddingBottom: imageHeight - spacing || spacing,
                                 }}
                             >
                                 <Header {...header} />
                             </div>
                         ) : null}
-                        {hasImage ? (
-                            <Visual media={image} width={width} resolution={resolution} />
-                        ) : null}
+                        <div ref={imageCntRef} className={styles.visualContainer}>
+                            {hasImage ? (
+                                <Visual
+                                    media={image}
+                                    // width={width - spacing * 2} // in layout flow
+                                    width={width}
+                                    height="100%"
+                                    resolution={resolution}
+                                    className={styles.visual}
+                                />
+                            ) : null}
+                        </div>
                         <div className={styles.topContent}>
                             {surtitleElement}
                             {dateElement}
