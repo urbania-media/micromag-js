@@ -367,6 +367,10 @@
     "defaultMessage": "Conversation",
     "description": "Conversation field label"
   },
+  "9AP246": {
+    "defaultMessage": "Date",
+    "description": "Date field label"
+  },
   "9DhYaZ": {
     "defaultMessage": "Ascending",
     "description": "Ascending field label"
@@ -1009,6 +1013,10 @@
   "Y7bs1v": {
     "defaultMessage": "Description",
     "description": "Text field label"
+  },
+  "YD9M2p": {
+    "defaultMessage": "Overtitle",
+    "description": "Overtitle field label"
   },
   "YJZtWR": {
     "defaultMessage": "Description",

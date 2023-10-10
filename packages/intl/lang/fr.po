@@ -563,6 +563,12 @@ msgctxt "8tANs8"
 msgid "Conversation"
 msgstr "Conversation"
 
+# Date field label
+#: 9AP246
+msgctxt "9AP246"
+msgid "Date"
+msgstr ""
+
 # Ascending field label
 #: 9DhYaZ
 msgctxt "9DhYaZ"
@@ -1527,6 +1533,12 @@ msgstr "points accumulés"
 msgctxt "Y7bs1v"
 msgid "Description"
 msgstr "Description"
+
+# Overtitle field label
+#: YD9M2p
+msgctxt "YD9M2p"
+msgid "Overtitle"
+msgstr ""
 
 # Description in Media Gallery
 #: YJZtWR
