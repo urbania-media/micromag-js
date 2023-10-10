@@ -44,16 +44,28 @@
     }
 
     .surtitle {
-        width: 50%;
+        width: 100%;
+        font-size: 12px;
     }
 
     .date {
-        width: 50%;
+        width: 100%;
+        font-size: 12px;
         text-align: right;
     }
 
+    .title {
+        margin: 10px 0;
+    }
+
+    .author {
+        // font-size: 16px;
+    }
+
     .text {
-        font-size: 16px;
+        margin-top: 2.5em;
+        // margin-top: 40px;
+        // font-size: 16px;
     }
 
     .topContent {

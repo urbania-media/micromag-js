@@ -156,15 +156,7 @@ const ArticleScreen = ({
             emptyClassName={styles.emptyTitle}
             isEmpty={!hasTitle}
         >
-            {hasTitle ? (
-                <Heading
-                    className={classNames([
-                        styles.title,
-                        // { [styles.withMargin]: titleWithMargin },
-                    ])}
-                    {...title}
-                />
-            ) : null}
+            {hasTitle ? <Heading className={styles.title} {...title} /> : null}
         </ScreenElement>
     );
 
@@ -191,7 +183,9 @@ const ArticleScreen = ({
             isEmpty={!hasDate}
         >
             {hasDate ? (
-                <FormattedDate value={finalDate} year="numeric" month="long" day="2-digit" />
+                <p className={styles.date}>
+                    <FormattedDate value={finalDate} year="numeric" month="long" day="2-digit" />
+                </p>
             ) : null}
         </ScreenElement>
     );
@@ -274,7 +268,8 @@ const ArticleScreen = ({
                             <div
                                 key="header"
                                 style={{
-                                    paddingBottom: imageHeight - spacing || spacing,
+                                    height: hasImage && imageHeight > 0 ? 0 : 'auto',
+                                    paddingBottom: imageHeight > 0 ? imageHeight : spacing,
                                 }}
                             >
                                 <Header {...header} />

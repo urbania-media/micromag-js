@@ -50,6 +50,14 @@ export default [
                     description: 'Overtitle field label',
                 }),
             },
+            {
+                name: 'date',
+                type: 'date',
+                label: defineMessage({
+                    defaultMessage: 'Date',
+                    description: 'Date field label',
+                }),
+            },
             // {
             //     name: 'author',
             //     type: 'author-element',
@@ -66,14 +74,7 @@ export default [
                     description: 'Author field label',
                 }),
             },
-            {
-                name: 'date',
-                type: 'date',
-                label: defineMessage({
-                    defaultMessage: 'Date',
-                    description: 'Date field label',
-                }),
-            },
+
             {
                 name: 'text',
                 type: 'text-element',
