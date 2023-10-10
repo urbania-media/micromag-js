@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback } from 'react';
-import { FormattedMessage } from 'react-intl';
+import React, { useState, useCallback, useMemo } from 'react';
+import { FormattedDate, FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
@@ -27,7 +28,7 @@ import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
-import Layout, { Spacer } from '@micromag/element-layout';
+import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 // import Visual from '@micromag/element-visual';
@@ -123,6 +124,30 @@ const ArticleScreen = ({
     const hasDate = date !== null && date.length > 0;
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
+    const finalDate = useMemo(() => dayjs(date).toDate(), [date]);
+
+    const imageElement = (
+        <ScreenElement
+            placeholder="image"
+            emptyLabel={<FormattedMessage defaultMessage="Image" description="Image placeholder" />}
+            emptyClassName={styles.emptyText}
+            isEmpty={!hasImage}
+        >
+            <div ref={imageCntRef} className={styles.visualContainer}>
+                {hasImage ? (
+                    <Visual
+                        media={image}
+                        // width={width - spacing * 2} // in layout flow
+                        width={width}
+                        height="100%"
+                        resolution={resolution}
+                        className={styles.visual}
+                    />
+                ) : null}
+            </div>
+        </ScreenElement>
+    );
+
     const titleElement = (
         <ScreenElement
             key="title"
@@ -146,7 +171,7 @@ const ArticleScreen = ({
     const surtitleElement = (
         <ScreenElement
             key="surtitle"
-            placeholder="surtitle"
+            placeholder="line"
             emptyLabel={
                 <FormattedMessage defaultMessage="Surtitle" description="Surtitle placeholder" />
             }
@@ -160,19 +185,21 @@ const ArticleScreen = ({
     const dateElement = (
         <ScreenElement
             key="date"
-            placeholder="date"
+            placeholder="line"
             emptyLabel={<FormattedMessage defaultMessage="Date" description="Date placeholder" />}
             emptyClassName={styles.emptyDate}
             isEmpty={!hasDate}
         >
-            {hasDate ? <Text className={styles.date} body={date} {...date} /> : null}
+            {hasDate ? (
+                <FormattedDate value={finalDate} year="numeric" month="long" day="2-digit" />
+            ) : null}
         </ScreenElement>
     );
 
     const authorElement = (
         <ScreenElement
             key="author"
-            placeholder="author"
+            placeholder="line"
             emptyLabel={
                 <FormattedMessage defaultMessage="Author" description="Author placeholder" />
             }
@@ -253,18 +280,7 @@ const ArticleScreen = ({
                                 <Header {...header} />
                             </div>
                         ) : null}
-                        <div ref={imageCntRef} className={styles.visualContainer}>
-                            {hasImage ? (
-                                <Visual
-                                    media={image}
-                                    // width={width - spacing * 2} // in layout flow
-                                    width={width}
-                                    height="100%"
-                                    resolution={resolution}
-                                    className={styles.visual}
-                                />
-                            ) : null}
-                        </div>
+                        {imageElement}
                         <div className={styles.topContent}>
                             {surtitleElement}
                             {dateElement}

@@ -95,6 +95,12 @@ msgctxt "/KQ87r"
 msgid "Delete media"
 msgstr "Delete media"
 
+# Date placeholder
+#: /MsgWe
+msgctxt "/MsgWe"
+msgid "Date"
+msgstr "Date"
+
 # Media label
 #: /OM5UY
 msgctxt "/OM5UY"
@@ -2671,6 +2677,12 @@ msgstr "Recent searches"
 msgctxt "vZrFq6"
 msgid "Title with subtitle and credits"
 msgstr "Title with subtitle and credits"
+
+# Surtitle placeholder
+#: vdWMTA
+msgctxt "vdWMTA"
+msgid "Surtitle"
+msgstr "Surtitle"
 
 # Button label
 #: vmrJ8U

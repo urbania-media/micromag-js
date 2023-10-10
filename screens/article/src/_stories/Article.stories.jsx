@@ -15,7 +15,7 @@ import ArticleScreen from '../Article';
 import definition from '../definition';
 
 const props = {
-    image: imageMedia(),
+    image: imageMedia({ height: 400 }),
     title: { body: title() },
     surtitle: { body: title() },
     date: '1969-04-20',

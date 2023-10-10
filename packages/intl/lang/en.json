@@ -41,6 +41,9 @@
     "/KQ87r": {
         "defaultMessage": "Delete media"
     },
+    "/MsgWe": {
+        "defaultMessage": "Date"
+    },
     "/OM5UY": {
         "defaultMessage": "Tags"
     },
@@ -1330,6 +1333,9 @@
     },
     "vZrFq6": {
         "defaultMessage": "Title with subtitle and credits"
+    },
+    "vdWMTA": {
+        "defaultMessage": "Surtitle"
     },
     "vmrJ8U": {
         "defaultMessage": "(current screen)"

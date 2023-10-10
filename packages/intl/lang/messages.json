@@ -55,6 +55,10 @@
     "defaultMessage": "Delete media",
     "description": "Delete in Media Gallery"
   },
+  "/MsgWe": {
+    "defaultMessage": "Date",
+    "description": "Date placeholder"
+  },
   "/OM5UY": {
     "defaultMessage": "Tags",
     "description": "Media label"
@@ -1771,6 +1775,10 @@
   "vZrFq6": {
     "defaultMessage": "Title with subtitle and credits",
     "description": "TitleSubtitleCredits screen title"
+  },
+  "vdWMTA": {
+    "defaultMessage": "Surtitle",
+    "description": "Surtitle placeholder"
   },
   "vmrJ8U": {
     "defaultMessage": "(current screen)",
