@@ -51,6 +51,7 @@
         "@micromag/element-container": "^0.3.396",
         "@micromag/element-footer": "^0.3.396",
         "@micromag/element-header": "^0.3.396",
+        "@micromag/element-heading": "^0.3.396",
         "@micromag/element-layout": "^0.3.396",
         "@micromag/element-scroll": "^0.3.396",
         "@micromag/element-stack": "^0.3.396",

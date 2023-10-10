@@ -15,16 +15,24 @@ import {
     usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import {
+    isTextFilled,
+    isHeaderFilled,
+    isFooterFilled,
+    getFooterProps,
+    isImageFilled,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
+import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
-
-// import Text from '@micromag/element-text';
+import Text from '@micromag/element-text';
 // import Visual from '@micromag/element-visual';
+import Visual from '@micromag/element-visual';
+
 import styles from './article.module.scss';
 
 const propTypes = {
@@ -33,7 +41,8 @@ const propTypes = {
     title: MicromagPropTypes.title,
     surtitle: MicromagPropTypes.text,
     date: MicromagPropTypes.date,
-    author: MicromagPropTypes.author,
+    // author: MicromagPropTypes.author, // potential to integrate more complete author element
+    author: MicromagPropTypes.text,
     text: MicromagPropTypes.text,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -65,6 +74,11 @@ const defaultProps = {
 
 const ArticleScreen = ({
     // layout,
+    image,
+    title,
+    surtitle,
+    date,
+    author,
     text,
     spacing,
     background,
@@ -97,6 +111,76 @@ const ArticleScreen = ({
 
     const hasText = isTextFilled(text);
 
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const hasTitle = isTextFilled(title);
+    const hasSurtitle = isTextFilled(surtitle);
+    const hasAuthor = isTextFilled(author);
+    const hasImage = isImageFilled(image);
+    // const hasDate = isTextFilled(date);
+    const hasDate = date !== null && date.length > 0;
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
+    const titleElement = (
+        <ScreenElement
+            key="title"
+            placeholder="title"
+            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
+            emptyClassName={styles.emptyTitle}
+            isEmpty={!hasTitle}
+        >
+            {hasTitle ? (
+                <Heading
+                    className={classNames([
+                        styles.title,
+                        // { [styles.withMargin]: titleWithMargin },
+                    ])}
+                    {...title}
+                />
+            ) : null}
+        </ScreenElement>
+    );
+
+    const surtitleElement = (
+        <ScreenElement
+            key="surtitle"
+            placeholder="surtitle"
+            emptyLabel={
+                <FormattedMessage defaultMessage="Surtitle" description="Surtitle placeholder" />
+            }
+            emptyClassName={styles.emptySurtitle}
+            isEmpty={!hasSurtitle}
+        >
+            {hasSurtitle ? <Text className={styles.surtitle} {...surtitle} /> : null}
+        </ScreenElement>
+    );
+
+    const dateElement = (
+        <ScreenElement
+            key="date"
+            placeholder="date"
+            emptyLabel={<FormattedMessage defaultMessage="Date" description="Date placeholder" />}
+            emptyClassName={styles.emptyDate}
+            isEmpty={!hasDate}
+        >
+            {hasDate ? <Text className={styles.date} body={date} {...date} /> : null}
+        </ScreenElement>
+    );
+
+    const authorElement = (
+        <ScreenElement
+            key="author"
+            placeholder="author"
+            emptyLabel={
+                <FormattedMessage defaultMessage="Author" description="Author placeholder" />
+            }
+            emptyClassName={styles.emptyAuthor}
+            isEmpty={!hasAuthor}
+        >
+            {hasAuthor ? <Text className={styles.author} {...author} /> : null}
+        </ScreenElement>
+    );
+
     const contentElement = (
         <ScreenElement
             placeholder="text"
@@ -104,13 +188,9 @@ const ArticleScreen = ({
             emptyClassName={styles.emptyText}
             isEmpty={!hasText}
         >
-            <div className={styles.text}>Body</div>
+            {hasText ? <Text className={styles.text} {...text} /> : null}
         </ScreenElement>
     );
-
-    const hasHeader = isHeaderFilled(header);
-    const hasFooter = isFooterFilled(footer);
-    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const [scrolledBottom, setScrolledBottom] = useState(false);
 
@@ -171,6 +251,16 @@ const ArticleScreen = ({
                                 <Header {...header} />
                             </div>
                         ) : null}
+                        {hasImage ? (
+                            <Visual media={image} width={width} resolution={resolution} />
+                        ) : null}
+                        <div className={styles.topContent}>
+                            {surtitleElement}
+                            {dateElement}
+                        </div>
+                        {titleElement}
+                        {authorElement}
+
                         {contentElement}
                         {!isPlaceholder && hasFooter ? (
                             <div

@@ -163,7 +163,7 @@ const Background = ({
                         paused={!playing}
                         muted={muted || forceMuted}
                         shouldLoad={shouldLoad}
-                        disablePictureInPicture={true}
+                        disablePictureInPicture
                         autoPlay
                         loop
                         withPoster

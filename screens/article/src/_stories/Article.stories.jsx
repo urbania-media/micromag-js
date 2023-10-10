@@ -2,12 +2,25 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
+import {
+    imageMedia,
+    title,
+    author,
+    paragraph,
+    backgroundColor,
+    transitions,
+    headerFooter,
+} from '../../../../.storybook/data';
 import ArticleScreen from '../Article';
 import definition from '../definition';
 
 const props = {
-    body: '<p>Hello</p>',
+    image: imageMedia(),
+    title: { body: title() },
+    surtitle: { body: title() },
+    date: '1969-04-20',
+    author: { body: author() },
+    text: { body: paragraph({ min: 40, max: 400 }) },
     background: backgroundColor(),
     transitions: transitions(),
 };

@@ -44,15 +44,23 @@ export default [
             },
             {
                 name: 'surtitle',
-                type: 'text',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Overtitle',
                     description: 'Overtitle field label',
                 }),
             },
+            // {
+            //     name: 'author',
+            //     type: 'author-element',
+            //     label: defineMessage({
+            //         defaultMessage: 'Author',
+            //         description: 'Author field label',
+            //     }),
+            // },
             {
                 name: 'author',
-                type: 'author-element',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Author',
                     description: 'Author field label',

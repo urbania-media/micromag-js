@@ -9,7 +9,6 @@ import { useTrackEvent, useDragProgress, useDimensionObserver } from '@micromag/
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 
-import CloseButton from './buttons/CloseButton';
 import CloseMenuButton from './buttons/CloseMenuButton';
 import MenuButton from './buttons/MenuButton';
 import ShareButton from './buttons/ShareButton';
