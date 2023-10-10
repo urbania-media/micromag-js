@@ -1972,6 +1972,12 @@ msgctxt "gwPu/I"
 msgid "Buttons text"
 msgstr "Texte des boutons"
 
+# Field label
+#: hUUIQt
+msgctxt "hUUIQt"
+msgid "Mute audio of background video"
+msgstr "Vidéo d'arrière-plan en sourdine"
+
 # Question field label
 #: hVE7TA
 msgctxt "hVE7TA"
@@ -2905,3 +2911,9 @@ msgstr "Chapeau"
 msgctxt "zrK6ak"
 msgid "Heading text style"
 msgstr "Style de texte de l'en-tête"
+
+# Field label
+#: zueWSA
+msgctxt "zueWSA"
+msgid "Audio attachment"
+msgstr "Audio joint"

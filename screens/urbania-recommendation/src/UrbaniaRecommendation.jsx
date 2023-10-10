@@ -697,6 +697,7 @@ const UrbaniaRecommendation = ({
                         playing={backgroundPlaying && !visualModalOpened}
                         muted={muted || visualModalOpened}
                         shouldLoad={mediaShouldLoad}
+                        mediaRef={mediaRef}
                         withoutVideo={isPreview}
                         className={styles.background}
                     />

@@ -4,6 +4,7 @@ import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     conversation as makeConversation,
+    audioConversation as makeAudioConversation,
     title,
     headerFooter,
     backgroundColor,
@@ -24,6 +25,7 @@ export default {
 
 const conversation = makeConversation(13, 2);
 const conversation2 = makeConversation(13, 5, 'instant');
+const voiceConversation = makeAudioConversation(4, 2, 'sequence');
 
 export const Normal = (storyProps) => (
     <ConversationScreen
@@ -61,6 +63,15 @@ export const WithHeaderFooter = (storyProps) => (
         background={backgroundColor()}
         conversation={conversation}
         timing="instant"
+    />
+);
+
+export const AudioMessages = (storyProps) => (
+    <ConversationScreen
+        {...storyProps}
+        conversation={voiceConversation}
+        timing={voiceConversation.timing}
+        title={{ body: title(1) }}
     />
 );
 

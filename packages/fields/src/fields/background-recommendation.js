@@ -41,6 +41,14 @@ export default {
             }),
         },
         {
+            name: 'forceMuted',
+            type: 'toggle',
+            label: defineMessage({
+                defaultMessage: 'Mute audio of background video',
+                description: 'Field label'
+            })
+        },
+        {
             name: 'text',
             type: 'text-element',
             textOnly: true,
@@ -53,6 +61,6 @@ export default {
                 defaultMessage: 'Background text',
                 description: 'Field label',
             }),
-        },
+        }
     ],
 };

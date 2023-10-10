@@ -39,7 +39,9 @@ const propTypes = {
     //     minSampleHeight: PropTypes.number,
     // }),
     withWave: PropTypes.bool,
+    autoWaveHeight: PropTypes.bool,
     // reduceBufferFactor: PropTypes.number,
+    updateInterval: PropTypes.number,
     className: PropTypes.string,
     onReady: PropTypes.func,
     onPlay: PropTypes.func,
@@ -64,7 +66,9 @@ const defaultProps = {
     waveFake: false,
     // waveProps: null,
     withWave: false,
+    autoWaveHeight: false,
     // reduceBufferFactor: 100,
+    updateInterval: 1000,
     className: null,
     onReady: null,
     onPlay: null,
@@ -89,7 +93,9 @@ const Audio = ({
     waveFake,
     // waveProps,
     withWave,
+    autoWaveHeight,
     // reduceBufferFactor,
+    updateInterval,
     className,
     onReady,
     onPlay,
@@ -108,6 +114,7 @@ const Audio = ({
     const currentTime = useMediaCurrentTime(ref.current, {
         id: url,
         disabled: paused || (!withWave && onProgressStep === null),
+        updateInterval,
     });
 
     const ready = useMediaReady(ref.current, {
@@ -229,7 +236,12 @@ const Audio = ({
             />
             {withWave ? (
                 <AudioBars
-                    className={styles.wave}
+                    className={classNames([
+                        styles.wave,
+                        {
+                            [styles.withAutoHeight]: autoWaveHeight
+                        }
+                    ])}
                     progress={progress}
                     // {...waveProps}
                     duration={duration}

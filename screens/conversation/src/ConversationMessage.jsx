@@ -9,11 +9,14 @@ import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
 import styles from './conversation.module.scss';
+import ConversationAudioAttachment from './ConversationAudioAttachment';
 
 const propTypes = {
     message: MicromagPropTypes.conversationMessage,
+    messageId: PropTypes.string,
     previousMessage: MicromagPropTypes.conversationMessage,
     nextMessage: MicromagPropTypes.conversationMessage,
+    nextAudioMessageId: PropTypes.string,
     nextMessageState: PropTypes.bool,
     currentSpeaker: MicromagPropTypes.speaker,
     // state: PropTypes.oneOf(['pause', 'typing', 'send']),
@@ -26,12 +29,15 @@ const propTypes = {
     speakerStyle: MicromagPropTypes.textStyle,
     messageStyle: MicromagPropTypes.textStyle,
     className: PropTypes.string,
+    audioEventsChannelName: PropTypes.string,
 };
 
 const defaultProps = {
     message: null,
+    messageId: null,
     previousMessage: null,
     nextMessage: null,
+    nextAudioMessageId: null,
     nextMessageState: null,
     currentSpeaker: null,
     conversationTiming: null,
@@ -43,12 +49,15 @@ const defaultProps = {
     messageStyle: null,
     speakerStyle: null,
     className: null,
+    audioEventsChannelName: null
 };
 
 const ConversationMessage = ({
     message,
+    messageId,
     previousMessage,
     nextMessage,
+    nextAudioMessageId,
     nextMessageState,
     currentSpeaker,
     conversationTiming,
@@ -60,8 +69,9 @@ const ConversationMessage = ({
     messageStyle,
     speakerStyle,
     className,
+    audioEventsChannelName,
 }) => {
-    const { message: messageBody, image = null } = message || {};
+    const { message: messageBody, image = null, audio } = message || {};
     const {
         avatar: { url: avatarUrl = null } = {},
         name: speakerName,
@@ -192,6 +202,14 @@ const ConversationMessage = ({
                             body={messageBody}
                             textStyle={messageStyle}
                         />
+                        {audio ? (
+                            <ConversationAudioAttachment
+                                audio={audio}
+                                messageId={messageId}
+                                nextAudioMessageId={nextAudioMessageId}
+                                audioEventsChannelName={audioEventsChannelName}
+                            />
+                        ) : null}
                     </div>
                 </div>
             )}

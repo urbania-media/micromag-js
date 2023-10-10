@@ -974,6 +974,9 @@
     "gwPu/I": {
         "defaultMessage": "Texte des boutons"
     },
+    "hUUIQt": {
+        "defaultMessage": "Vidéo d'arrière-plan en sourdine"
+    },
     "hVE7TA": {
         "defaultMessage": "Question"
     },
@@ -1438,5 +1441,8 @@
     },
     "zrK6ak": {
         "defaultMessage": "Style de texte de l'en-tête"
+    },
+    "zueWSA": {
+        "defaultMessage": "Audio joint"
     }
 }

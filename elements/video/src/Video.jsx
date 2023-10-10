@@ -34,6 +34,7 @@ const propTypes = {
     loop: PropTypes.bool,
     playsInline: PropTypes.bool,
     preload: PropTypes.oneOf(['auto', 'metadata', 'none', null]),
+    disablePictureInPicture: PropTypes.bool,
     shouldLoad: PropTypes.bool,
     withoutCors: PropTypes.bool,
     className: PropTypes.string,
@@ -65,6 +66,7 @@ const defaultProps = {
     loop: false,
     playsInline: true,
     preload: 'auto',
+    disablePictureInPicture: false,
     shouldLoad: true,
     withoutCors: false,
     className: null,
@@ -113,6 +115,7 @@ const Video = ({
     focusable,
     withPoster,
     withLoading,
+    disablePictureInPicture,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
     const {
@@ -310,6 +313,7 @@ const Video = ({
                     preload={shouldLoad ? preload : 'none'}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
+                    disablePictureInPicture={disablePictureInPicture}
                     tabIndex={focusable ? '0' : '-1'}
                     className={classNames(styles.video)}
                     onPlay={onPlay}

@@ -28,6 +28,7 @@ import Scroll from '@micromag/element-scroll';
 import ConversationMessage from './ConversationMessage';
 
 import styles from './conversation.module.scss';
+import EventEmitter from 'wolfy87-eventemitter';
 
 const propTypes = {
     // id: PropTypes.string,
@@ -91,6 +92,8 @@ const ConversationScreen = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
+    const audioEventsChannel = new BroadcastChannel(`conversation_${uuid()}_audioEvents`)
+
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
@@ -135,7 +138,7 @@ const ConversationScreen = ({
     const millisecondsPerWord = ((60 * 1000) / readingSpeed);
     const filteredMessages = (messages || []).filter((m) => m !== null);
     const timings = filteredMessages.map((messageParams, messageI) => {
-        const { timing = null, message = null } = messageParams || {};
+        const { timing = null, message = null, audio } = messageParams || {};
         if (timing !== null) {
             return timing;
         }
@@ -143,16 +146,25 @@ const ConversationScreen = ({
             return 0;
         }
 
+        // if the current message has an audio attachment, use the time it takes to record that message
+        if (audio) {
+            return audio.metadata.duration;
+        }
+
         // the trick here is to estimate "how long it take to read the previous message"
         // instead of "how long does it take to write this message".
         const previous = filteredMessages[messageI - 1]
 
         // counting words: only keep whitespaces and alphanumeric characters, then split of whitespaces
-        const wordCount = previous.message
-            .replace(/[^\w\d\s]/g, '')
-            .trim()
-            .split(/\s/g)
-            .length;
+        const wordCount = (
+            previous.message
+            ? previous.message
+                .replace(/[^\w\d\s]/g, '')
+                .trim()
+                .split(/\s/g)
+                .length
+            : 0
+        );
 
         let finalTimeMs = wordCount * millisecondsPerWord
 
@@ -161,7 +173,7 @@ const ConversationScreen = ({
             finalTimeMs += imageReadDelay;
         }
 
-        return Math.max(finalTimeMs, 2000);
+        return finalTimeMs
     });
 
     const hesitationTimings = filteredMessages.map(({ hesitation = null } = {}) =>
@@ -280,12 +292,23 @@ const ConversationScreen = ({
 
                                             const typingTiming = timings[messageI];
 
+                                            const messageId = `${m.message}-${messagesUniqueId[messageI]}`
+
+                                            const nextAudioMessage = filteredMessages.slice(messageI + 1).find(c => c.audio != null)
+                                            const nextAudioMessageId = (
+                                                nextAudioMessage
+                                                ? `${m.message}-${messagesUniqueId[filteredMessages.indexOf(nextAudioMessage)]}`
+                                                : null
+                                            )
+
                                             return (
                                                 <ConversationMessage
-                                                    key={`${m.message}-${messagesUniqueId[messageI]}`}
+                                                    key={messageId}
                                                     message={m}
+                                                    messageId={messageId}
                                                     previousMessage={previousMessage}
                                                     nextMessage={nextMessage}
+                                                    nextAudioMessageId={nextAudioMessageId}
                                                     nextMessageState={
                                                         conversationState[messageI + 1] ||
                                                         !withAnimation
@@ -300,6 +323,7 @@ const ConversationScreen = ({
                                                     withoutVideo={isPreview}
                                                     messageStyle={messageStyle}
                                                     speakerStyle={speakerStyle}
+                                                    audioEventsChannelName={audioEventsChannel.name}
                                                 />
                                             );
                                         })}
