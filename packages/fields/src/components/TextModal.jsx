@@ -155,12 +155,14 @@ const TextModal = ({
                                 [className]: className,
                             },
                         ])}
+                        bodyClassName={styles.dialogBody}
                         onClickClose={onClose}
                     >
                         <EditorField
                             {...props}
                             value={bodyValue}
                             onChange={onBodyChange}
+                            className={styles.editor}
                             // editorConfig={finalEditorConfig}
                         />
                     </Dialog>

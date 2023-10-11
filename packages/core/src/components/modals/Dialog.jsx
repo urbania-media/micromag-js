@@ -2,10 +2,13 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import styles from '../../styles/modals/dialog.module.scss';
+
 import Buttons from '../buttons/Buttons';
 import Label from '../partials/Label';
+
+import styles from '../../styles/modals/dialog.module.scss';
 
 const propTypes = {
     title: MicromagPropTypes.label,
@@ -16,6 +19,7 @@ const propTypes = {
     // theme: PropTypes.oneOf([null, 'dark', 'light']),
     onClickClose: PropTypes.func,
     className: PropTypes.string,
+    bodyClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -27,6 +31,7 @@ const defaultProps = {
     // theme: 'dark',
     onClickClose: null,
     className: null,
+    bodyClassName: null,
 };
 
 const ModalDialog = ({
@@ -38,6 +43,7 @@ const ModalDialog = ({
     // theme,
     onClickClose,
     className,
+    bodyClassName,
 }) => (
     <div
         className={classNames([
@@ -80,6 +86,7 @@ const ModalDialog = ({
                     'p-2',
                     styles.body,
                     {
+                        [bodyClassName]: bodyClassName !== null,
                         // [`bg-${theme}`]: theme !== null,
                         // 'text-light': theme === 'dark',
                         // 'bg-dark': theme === 'dark',
