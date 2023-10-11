@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useMemo } from 'react';
-import { FormattedDate, FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
@@ -31,7 +31,6 @@ import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
-// import Visual from '@micromag/element-visual';
 import Visual from '@micromag/element-visual';
 
 import styles from './article.module.scss';
@@ -90,6 +89,7 @@ const ArticleScreen = ({
     type,
     className,
 }) => {
+    const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
     const {
@@ -101,7 +101,7 @@ const ArticleScreen = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
-    const { ref: imageCntRef, width: imageWidth, height: imageHeight } = useDimensionObserver();
+    const { ref: imageCntRef, height: imageHeight } = useDimensionObserver();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -120,11 +120,21 @@ const ArticleScreen = ({
     const hasSurtitle = isTextFilled(surtitle);
     const hasAuthor = isTextFilled(author);
     const hasImage = isImageFilled(image);
-    // const hasDate = isTextFilled(date);
-    const hasDate = date !== null && date.length > 0;
+    const hasDate = isTextFilled(date);
+    // const hasDate = date !== null && date.length > 0;
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
-    const finalDate = useMemo(() => dayjs(date).toDate(), [date]);
+    const finalDate = useMemo(
+        () =>
+            intl.formatDate(dayjs(date.body).toDate(), {
+                year: 'numeric',
+                month: 'long',
+                day: '2-digit',
+            }),
+        [date],
+    );
+
+    console.log(finalDate);
 
     const imageElement = (
         <ScreenElement
@@ -182,11 +192,7 @@ const ArticleScreen = ({
             emptyClassName={styles.emptyDate}
             isEmpty={!hasDate}
         >
-            {hasDate ? (
-                <p className={styles.date}>
-                    <FormattedDate value={finalDate} year="numeric" month="long" day="2-digit" />
-                </p>
-            ) : null}
+            {hasDate ? <Text className={styles.date} {...date} body={finalDate} /> : null}
         </ScreenElement>
     );
 
@@ -256,7 +262,7 @@ const ArticleScreen = ({
                                       padding: spacing,
                                       paddingTop:
                                           (!isPreview ? viewerTopHeight : 0) +
-                                          (hasHeader ? spacing / 2 : spacing + imageHeight),
+                                          (hasHeader ? spacing / 2 : spacing / 2 + imageHeight),
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
                                           spacing / 2,

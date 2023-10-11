@@ -23,7 +23,7 @@ export * from './useObserver';
 export { default as useParsedStory } from './useParsedStory';
 export { default as useProgressSteps } from './useProgressSteps';
 export * from './useScreenSize';
-export { default as useSpringValue} from './useSpringValue';
+export { default as useSpringValue } from './useSpringValue';
 export * from './useSwipe';
 export { default as useThemeParser } from './useThemeParser';
 export * from './useTracking';

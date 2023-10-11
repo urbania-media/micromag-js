@@ -8,6 +8,7 @@ export default {
             image: {
                 id: '402078',
                 url: 'https://cdn.urbania.ca/media/2022/04/Prix-Crabe.jpg',
+                type: 'image',
                 title: null,
                 description: null,
                 width: 3840,
@@ -77,18 +78,18 @@ export default {
                 credits: null,
             },
             title: {
-                body: 'Test 1-2-3-4 my title is very long and annoying',
+                body: 'Shocking Secrets of Wealthy Crabs',
             },
             surtitle: {
-                body: '<p>This is an article</p>',
+                body: 'Generational Fortunes',
                 textStyle: {
                     color: {
-                        color: '#FFF',
+                        color: '#909090',
                         alpha: 1,
                     },
                     align: 'left',
-                    fontFamily: 'Georgia',
-                    fontSize: 16,
+                    // fontFamily: 'Georgia',
+                    // fontSize: 12,
                     fontStyle: {
                         bold: false,
                         italic: false,
@@ -98,9 +99,17 @@ export default {
                     letterSpacing: 0,
                 },
             },
-            date: '1994-04-04',
+            date: {
+                body: '1969-04-20',
+                textStyle: {
+                    color: {
+                        color: '#909090',
+                        alpha: 1,
+                    },
+                },
+            },
             author: {
-                body: '<p>un auteur inconnu</p>',
+                body: 'Mr. Pinchy',
                 textStyle: {
                     color: {
                         color: '#FFF',
@@ -119,7 +128,7 @@ export default {
                 },
             },
             text: {
-                body: '<p><a target="_blank" rel="noopener noreferrer" href="https://www.google.com">Hello!</a> I am <mark>here</mark>.</p><p>Fugiat sit laborum labore ipsum anim deserunt ipsum. Lorem nostrud ipsum excepteur irure pariatur. Enim id nisi sunt mollit sit occaecat culpa mollit sit incididunt aliqua. Elit exercitation laborum irure officia magna cillum sit dolore duis minim. Et qui id ex exercitation Lorem veniam eu officia aliquip occaecat incididunt. Lorem aliquip reprehenderit cupidatat tempor aliquip sunt id.</p><h3>Header</h3><p>Velit esse pariatur elit eu sit minim irure culpa. Labore ex ad amet labore. Ut ea cupidatat reprehenderit dolor commodo aliqua veniam id incididunt. Mollit Lorem ea officia est consequat deserunt consequat aute qui nostrud irure. Quis minim laboris adipisicing elit quis sunt ea dolore consequat.</p><ul><li>hello</li><li>hello</li><li>hello</li></ul><br><blockquote><p>Whats up?</p><footer>Shakespeare, <cite>A Midsummers Night Dream</cite></footer></blockquote>',
+                body: '<p><a target="_blank" rel="noopener noreferrer" href="https://www.google.com">Hello!</a> I am <mark>here</mark>.</p><p>Fugiat sit laborum labore ipsum anim deserunt ipsum. Lorem nostrud ipsum excepteur irure pariatur. Enim id nisi sunt mollit sit occaecat culpa mollit sit incididunt aliqua. Elit exercitation laborum irure officia magna cillum sit dolore duis minim. Et qui id ex exercitation Lorem veniam eu officia aliquip occaecat incididunt. Lorem aliquip reprehenderit cupidatat tempor aliquip sunt id.</p><h3>Header</h3><p>Velit esse pariatur elit eu sit minim irure culpa. Labore ex ad amet labore. Ut ea cupidatat reprehenderit dolor commodo aliqua veniam id incididunt. Mollit Lorem ea officia est consequat deserunt consequat aute qui nostrud irure. Quis minim laboris adipisicing elit quis sunt ea dolore consequat.</p><ul><li>hello</li><li>hello</li><li>hello</li></ul><br><blockquote><p>To die, to sleep;To sleep: perchance to dream: ay, there\'s the rub;</p><footer>Shakespeare, <cite>Hamlet</cite></footer></blockquote>',
                 textStyle: {
                     fontSize: 16,
                     fontStyle: {
@@ -145,9 +154,11 @@ export default {
             header: {
                 badge: {
                     active: true,
-                    label: { body: 'My badge is gray', textStyle: { color: '#F0F' } },
+                    label: { body: 'Crab News', textStyle: { color: '#909090' } },
                     boxStyle: {
+                        backgroundColor: '#000',
                         borderRadius: 8,
+                        border: 0,
                     },
                 },
             },
