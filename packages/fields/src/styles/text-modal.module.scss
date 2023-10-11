@@ -1,0 +1,30 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.dialog {
+    max-width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+
+    .selected {
+        background-color: $primary;
+    }
+
+    @media screen and (min-width: 768px) {
+        max-width: 50vw;
+    }
+}
+
+.previewButton {
+    @extend %reset-button;
+    width: 100%;
+    background-color: transparent;
+}
+
+.preview {
+    height: calc(1.4em + 1rem);
+    overflow: hidden;
+    border-bottom: 0.4em solid $input-bg;
+    border-radius: $input-border-radius;
+    pointer-events: none;
+}

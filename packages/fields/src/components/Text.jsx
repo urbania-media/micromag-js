@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/no-autofocus */
+
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
-import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
+import isEmpty from 'lodash/isEmpty';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 const propTypes = {
@@ -17,8 +19,9 @@ const propTypes = {
     placeholder: PropTypes.string,
     prefix: PropTypes.string,
     autofocus: PropTypes.bool,
-    className: PropTypes.string,
+    onFocus: PropTypes.func,
     onChange: PropTypes.func,
+    className: PropTypes.string,
 };
 
 const defaultProps = {
@@ -31,8 +34,9 @@ const defaultProps = {
     placeholder: null,
     prefix: null,
     autofocus: false,
-    className: null,
     onChange: null,
+    onFocus: null,
+    className: null,
 };
 
 const TextField = ({
@@ -45,8 +49,9 @@ const TextField = ({
     placeholder,
     prefix,
     autofocus,
-    className,
     onChange,
+    onFocus,
+    className,
 }) => {
     const input = (
         <input
@@ -56,6 +61,7 @@ const TextField = ({
                 'form-control',
                 {
                     'is-invalid': errors !== null && errors.length > 0,
+                    disabled,
                     [className]: className !== null,
                 },
             ])}
@@ -67,6 +73,7 @@ const TextField = ({
             required={required}
             disabled={disabled}
             autoFocus={autofocus}
+            {...(onFocus !== null ? { onFocus } : null)}
         />
     );
 

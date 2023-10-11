@@ -13,6 +13,8 @@ const propTypes = {
     inline: PropTypes.bool,
     textOnly: PropTypes.bool,
     onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    disabled: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -20,9 +22,11 @@ const defaultProps = {
     textOnly: false,
     value: null,
     onChange: null,
+    onFocus: null,
+    disabled: false,
 };
 
-const TextElement = ({ value, onChange, inline, textOnly, ...props }) => {
+const TextElement = ({ value, onChange, inline, textOnly, onFocus, disabled, ...props }) => {
     const bodyValue = value !== null ? value.body || null : null;
     const textStyleValue = value !== null ? value.textStyle || null : null;
     const onBodyChange = useCallback(
@@ -39,9 +43,21 @@ const TextElement = ({ value, onChange, inline, textOnly, ...props }) => {
     );
     if (textOnly) {
         return inline ? (
-            <TextField {...props} value={bodyValue} onChange={onBodyChange} />
+            <TextField
+                {...props}
+                value={bodyValue}
+                onChange={onBodyChange}
+                onFocus={onFocus}
+                disabled={disabled}
+            />
         ) : (
-            <TextareaField {...props} value={bodyValue} onChange={onBodyChange} />
+            <TextareaField
+                {...props}
+                value={bodyValue}
+                onChange={onBodyChange}
+                onFocus={onFocus}
+                disabled={disabled}
+            />
         );
     }
 
@@ -52,6 +68,8 @@ const TextElement = ({ value, onChange, inline, textOnly, ...props }) => {
             textStyle={textStyleValue}
             value={bodyValue}
             onChange={onBodyChange}
+            onFocus={onFocus}
+            disabled={disabled}
         />
     );
 };

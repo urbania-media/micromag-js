@@ -124,17 +124,18 @@ const ArticleScreen = ({
     // const hasDate = date !== null && date.length > 0;
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
+    const partialDate = hasDate ? date.body || null : null;
     const finalDate = useMemo(
         () =>
-            intl.formatDate(dayjs(date.body).toDate(), {
-                year: 'numeric',
-                month: 'long',
-                day: '2-digit',
-            }),
-        [date],
+            partialDate !== null
+                ? intl.formatDate(dayjs(partialDate).toDate(), {
+                      year: 'numeric',
+                      month: 'long',
+                      day: '2-digit',
+                  })
+                : null,
+        [partialDate],
     );
-
-    console.log(finalDate);
 
     const imageElement = (
         <ScreenElement

@@ -41,6 +41,9 @@
     "/KQ87r": {
         "defaultMessage": "Supprimer ce média"
     },
+    "/MsgWe": {
+        "defaultMessage": "Date"
+    },
     "/OM5UY": {
         "defaultMessage": "Mots-clés"
     },
@@ -274,6 +277,9 @@
     },
     "8tANs8": {
         "defaultMessage": "Conversation"
+    },
+    "9AP246": {
+        "defaultMessage": "Date"
     },
     "9DhYaZ": {
         "defaultMessage": "Ordre croissant"
@@ -758,6 +764,9 @@
     "Y7bs1v": {
         "defaultMessage": "Description"
     },
+    "YD9M2p": {
+        "defaultMessage": "Surtitre"
+    },
     "YJZtWR": {
         "defaultMessage": "Description"
     },
@@ -1136,6 +1145,9 @@
     "opcGwP": {
         "defaultMessage": "Ajouter un interlocuteur"
     },
+    "ouMwWq": {
+        "defaultMessage": "Article"
+    },
     "p1pghO": {
         "defaultMessage": "Style de boîte"
     },
@@ -1321,6 +1333,9 @@
     },
     "vZrFq6": {
         "defaultMessage": "Titre avec sous-titre et crédits"
+    },
+    "vdWMTA": {
+        "defaultMessage": "Surtitre"
     },
     "vmrJ8U": {
         "defaultMessage": "(écran en cours)"

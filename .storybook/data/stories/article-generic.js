@@ -106,6 +106,7 @@ export default {
                         color: '#909090',
                         alpha: 1,
                     },
+                    fontFamily: 'Courier',
                 },
             },
             author: {

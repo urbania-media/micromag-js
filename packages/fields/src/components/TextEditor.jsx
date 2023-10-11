@@ -25,6 +25,8 @@ const propTypes = {
     withHighlightColors: PropTypes.bool,
     textStyle: PropTypes.shape({}),
     editorConfig: PropTypes.shape({}),
+    onFocus: PropTypes.func,
+    disabled: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -41,6 +43,8 @@ const defaultProps = {
             addTargetToExternalLinks: true,
         },
     },
+    onFocus: null,
+    disabled: false,
 };
 
 const TextEditorField = ({
@@ -52,6 +56,8 @@ const TextEditorField = ({
     inline,
     withHighlightColors,
     onChange,
+    onFocus,
+    disabled,
 }) => {
     const { locale } = useIntl();
     const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
@@ -66,7 +72,6 @@ const TextEditorField = ({
 
     const finalEditorConfig = useMemo(
         () => ({
-            ...editorConfig,
             extraPlugins: [MarkerPlugin, inline ? InlinePlugin : null].filter((it) => it !== null),
             highlight: {
                 options: [
@@ -83,6 +88,7 @@ const TextEditorField = ({
                 ],
             },
             language: locale,
+            ...editorConfig,
         }),
         [editorConfig, inline, locale],
     );
@@ -117,6 +123,8 @@ const TextEditorField = ({
                     data={value || ''}
                     onReady={onEditorReady}
                     onChange={onEditorChange}
+                    onFocus={onFocus}
+                    disabled={disabled}
                 />
             ) : null}
             {linkStyle !== null ? (

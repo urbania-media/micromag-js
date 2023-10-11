@@ -52,7 +52,7 @@ export default [
             },
             {
                 name: 'date',
-                type: 'date',
+                type: 'date-element',
                 label: defineMessage({
                     defaultMessage: 'Date',
                     description: 'Date field label',
@@ -77,7 +77,7 @@ export default [
 
             {
                 name: 'text',
-                type: 'text-element',
+                type: 'text-modal',
                 label: defineMessage({
                     defaultMessage: 'Text',
                     description: 'Text field label',

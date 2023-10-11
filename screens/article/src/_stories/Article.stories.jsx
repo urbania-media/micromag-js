@@ -18,7 +18,7 @@ const props = {
     image: imageMedia({ height: 900 }),
     title: { body: title() },
     surtitle: { body: title() },
-    date: '1969-04-20',
+    date: { body: '1969-04-20' },
     author: { body: author() },
     text: { body: paragraph({ min: 40, max: 400 }) },
     background: backgroundColor(),
