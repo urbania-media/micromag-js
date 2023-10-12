@@ -77,6 +77,12 @@ msgctxt "+vzDdb"
 msgid "Word of the Week"
 msgstr "Le mot de la semaine"
 
+# Modal title
+#: /0hgRs
+msgctxt "/0hgRs"
+msgid "Edit text"
+msgstr "Modifier le texte"
+
 # Media gallery source
 #: /62oe4
 msgctxt "/62oe4"

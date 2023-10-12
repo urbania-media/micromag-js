@@ -43,6 +43,10 @@
     "defaultMessage": "Word of the Week",
     "description": "Horoscope Subtitle"
   },
+  "/0hgRs": {
+    "defaultMessage": "Edit text",
+    "description": "Modal title"
+  },
   "/62oe4": {
     "defaultMessage": "My files",
     "description": "Media gallery source"

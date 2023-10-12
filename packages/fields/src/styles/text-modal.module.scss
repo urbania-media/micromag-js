@@ -12,6 +12,10 @@
 
     .editor {
         max-height: 100%;
+
+        > div {
+            min-height: 100%;
+        }
     }
 
     @media screen and (min-width: 768px) {
