@@ -5,7 +5,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
 
 import { InlinePlugin, MarkerPlugin } from '@micromag/ckeditor';
-import { Modal, ModalDialog as Dialog } from '@micromag/core/components';
+import { Modal, ModalDialog as Dialog, Button } from '@micromag/core/components';
 import { useGetColors } from '@micromag/core/contexts';
 import { getColorAsString } from '@micromag/core/utils';
 
@@ -157,6 +157,16 @@ const TextModal = ({
                         ])}
                         bodyClassName={styles.dialogBody}
                         onClickClose={onClose}
+                        footer={
+                            <div className="p-2">
+                                <Button className={styles.close} theme="primary" onClick={onClose}>
+                                    <FormattedMessage
+                                        defaultMessage="Close"
+                                        description="Button label"
+                                    />
+                                </Button>
+                            </div>
+                        }
                     >
                         <EditorField
                             {...props}
