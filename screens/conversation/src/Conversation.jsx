@@ -138,7 +138,7 @@ const ConversationScreen = ({
     const millisecondsPerWord = ((60 * 1000) / readingSpeed);
     const filteredMessages = (messages || []).filter((m) => m !== null);
     const timings = filteredMessages.map((messageParams, messageI) => {
-        const { timing = null, message = null, audio } = messageParams || {};
+        const { timing = null, message = null, image, audio } = messageParams || {};
         if (timing !== null) {
             return timing;
         }
@@ -151,14 +151,10 @@ const ConversationScreen = ({
             return audio.metadata.duration;
         }
 
-        // the trick here is to estimate "how long it take to read the previous message"
-        // instead of "how long does it take to write this message".
-        const previous = filteredMessages[messageI - 1]
-
         // counting words: only keep whitespaces and alphanumeric characters, then split of whitespaces
         const wordCount = (
-            previous.message
-            ? previous.message
+            message
+            ? message
                 .replace(/[^\w\d\s]/g, '')
                 .trim()
                 .split(/\s/g)
@@ -169,7 +165,7 @@ const ConversationScreen = ({
         let finalTimeMs = wordCount * millisecondsPerWord
 
         // if the message includes an image, add some more time to "read" it
-        if (previous.image) {
+        if (image) {
             finalTimeMs += imageReadDelay;
         }
 
