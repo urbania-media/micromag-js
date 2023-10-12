@@ -2,7 +2,7 @@
 @import '~@micromag/core/scss/placeholders';
 
 .dialog {
-    width: 100vw;
+    width: 100vw !important;
     padding: 0.5rem;
     font-size: 1rem;
 
@@ -19,7 +19,7 @@
     }
 
     @media screen and (min-width: 768px) {
-        width: 50vw;
+        width: 50vw !important;
     }
 }
 
