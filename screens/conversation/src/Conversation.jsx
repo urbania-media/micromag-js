@@ -133,7 +133,7 @@ const ConversationScreen = ({
     );
 
     // sequence timings
-    const defaultHesitationDelay = 1000;
+    const defaultHesitationDelay = 1500;
     const imageReadDelay = 5000; // 5 seconds
     const millisecondsPerWord = ((60 * 1000) / readingSpeed);
     const filteredMessages = (messages || []).filter((m) => m !== null);
