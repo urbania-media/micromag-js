@@ -1,3 +1,8 @@
+import {
+    // bigVideoMediaWithSound,
+    videoMedia,
+} from '../../data';
+
 export default {
     title: 'Test 1-2-3-4 my title is very long and annoying',
     surtitle: 'HAHAHA',
@@ -5,6 +10,7 @@ export default {
         {
             id: '1cb8a4be-5c1a-11eb-985f-ad6fce99ds47',
             type: 'article',
+            // image: videoMedia(),
             image: {
                 id: '402078',
                 url: 'https://cdn.urbania.ca/media/2022/04/Prix-Crabe.jpg',

@@ -121,8 +121,17 @@ const ArticleScreen = ({
     const hasAuthor = isTextFilled(author);
     const hasImage = isImageFilled(image);
     const hasDate = isTextFilled(date);
-    // const hasDate = date !== null && date.length > 0;
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
+    const mediaHeight = useMemo(() => {
+        if (!hasImage) {
+            return 0;
+        }
+        const { metadata = {} } = image || {};
+        const { width: initialWidth = 0, height: initialHeight = 0 } = metadata || {};
+
+        return (width * initialHeight) / initialWidth;
+    }, [image]);
 
     const partialDate = hasDate ? date.body || null : null;
     const finalDate = useMemo(
@@ -150,8 +159,9 @@ const ArticleScreen = ({
                         media={image}
                         // width={width - spacing * 2} // in layout flow
                         width={width}
-                        // height="auto"
-                        height="100%"
+                        // width="100%"
+                        height={mediaHeight}
+                        // height="100%"
                         resolution={resolution}
                         className={styles.visual}
                     />
