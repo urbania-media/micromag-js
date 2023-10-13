@@ -65,8 +65,24 @@
 
     .text {
         margin-top: 2.5em;
-        // margin-top: 40px;
-        // font-size: 16px;
+
+        h2 {
+            font-size: 2em;
+        }
+
+        h3 {
+            font-size: 1.5em;
+        }
+
+        ol,
+        ul {
+            list-style-position: inside;
+        }
+
+        blockquote {
+            padding-left: 0.5em;
+            border-left: 1px solid;
+        }
     }
 
     .topContent {
