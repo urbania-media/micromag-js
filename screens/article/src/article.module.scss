@@ -66,6 +66,19 @@
     .text {
         margin-top: 2.5em;
 
+        h2,
+        h3,
+        p,
+        ol,
+        ul,
+        blockquote {
+            margin-bottom: 1rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
         h2 {
             font-size: 2em;
         }
