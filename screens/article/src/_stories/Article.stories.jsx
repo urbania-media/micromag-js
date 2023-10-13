@@ -3,7 +3,7 @@ import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
-    imageMedia,
+    imageMedia, // videoMediaWithSound,
     title,
     author,
     paragraph,

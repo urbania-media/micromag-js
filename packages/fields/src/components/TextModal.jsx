@@ -52,11 +52,11 @@ const TextModal = ({
     const [modalOpen, setModalOpen] = useState();
 
     const { locale } = useIntl();
-    const getColors = useGetColors();
-    const colors = useMemo(
-        () => (withHighlightColors ? getColors() : null) || [],
-        [withHighlightColors, getColors],
-    );
+    // const getColors = useGetColors();
+    // const colors = useMemo(
+    //     () => (withHighlightColors ? getColors() : null) || [],
+    //     [withHighlightColors, getColors],
+    // );
 
     const previewEditorConfig = useMemo(
         () => ({
@@ -71,23 +71,23 @@ const TextModal = ({
 
     const finalEditorConfig = useMemo(
         () => ({
-            ...editorConfig,
-            extraPlugins: [MarkerPlugin, inline ? InlinePlugin : null].filter((it) => it !== null),
-            highlight: {
-                options: [
-                    {
-                        model: 'marker',
-                        title: 'Marker',
-                        type: 'marker',
-                    },
-                    ...colors.map((color, index) => ({
-                        model: `marker_${index}`,
-                        type: 'marker',
-                        color: getColorAsString(color),
-                    })),
-                ],
-            },
-            language: locale,
+            // ...editorConfig,
+            // extraPlugins: [MarkerPlugin, inline ? InlinePlugin : null].filter((it) => it !== null),
+            // highlight: {
+            //     options: [
+            //         {
+            //             model: 'marker',
+            //             title: 'Marker',
+            //             type: 'marker',
+            //         },
+            //         ...colors.map((color, index) => ({
+            //             model: `marker_${index}`,
+            //             type: 'marker',
+            //             color: getColorAsString(color),
+            //         })),
+            //     ],
+            // },
+            // language: locale,
         }),
         [editorConfig, inline, locale],
     );
@@ -173,7 +173,9 @@ const TextModal = ({
                             value={bodyValue}
                             onChange={onBodyChange}
                             className={styles.editor}
-                            // editorConfig={finalEditorConfig}
+                            inline={inline}
+                            withHighlightColors={withHighlightColors}
+                            withFullEditor
                         />
                     </Dialog>
                 </Modal>

@@ -150,6 +150,7 @@ const ArticleScreen = ({
                         media={image}
                         // width={width - spacing * 2} // in layout flow
                         width={width}
+                        // height="auto"
                         height="100%"
                         resolution={resolution}
                         className={styles.visual}
