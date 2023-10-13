@@ -86,24 +86,10 @@ const TextEditorField = ({
                           'link',
                           'blockQuote',
                           'bulletedList',
+                          'numberedList',
                           'uploadImage',
                           // 'mediaEmbed',
                       ],
-                      //   heading: {
-                      //       options: [
-                      //           {
-                      //               model: 'paragraph',
-                      //               title: 'Paragraph',
-                      //               class: 'ck-heading_paragraph',
-                      //           },
-                      //           {
-                      //               model: 'heading2',
-                      //               view: 'h2',
-                      //               title: 'Heading 2',
-                      //               class: 'ck-heading_heading2',
-                      //           },
-                      //       ],
-                      //   },
                       link: {
                           addTargetToExternalLinks: true,
                       },
@@ -136,9 +122,6 @@ const TextEditorField = ({
         }),
         [editorConfig, inline, locale],
     );
-
-    console.log('ec', editorConfig);
-    console.log('fec', finalEditorConfig);
 
     const onEditorReady = useCallback(() => {}, []);
 

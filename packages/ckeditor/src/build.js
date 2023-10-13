@@ -4,7 +4,7 @@ import { InlineEditor as InlineEditorBase } from '@ckeditor/ckeditor5-editor-inl
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
 import { Heading, HeadingButtonsUI } from '@ckeditor/ckeditor5-heading';
 import { Highlight } from '@ckeditor/ckeditor5-highlight';
-import { ImageUtils, ImageInsert, ImageToolbar, ImageUpload } from '@ckeditor/ckeditor5-image';
+import { ImageInline, ImageToolbar, ImageUpload } from '@ckeditor/ckeditor5-image';
 import { Link } from '@ckeditor/ckeditor5-link';
 import { List } from '@ckeditor/ckeditor5-list';
 import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
@@ -22,8 +22,7 @@ NormalEditor.builtinPlugins = [
     Highlight,
     Link,
     Heading,
-    ImageUtils,
-    ImageInsert,
+    ImageInline,
     ImageToolbar,
     ImageUpload,
     SimpleUploadAdapter,
@@ -40,7 +39,7 @@ NormalEditor.defaultConfig = {
     },
     simpleUpload: {
         // The URL that the images are uploaded to.
-        uploadUrl: 'https://micromag.studio.test:8080/medias/upload',
+        uploadUrl: 'https://micromag.studio/medias/upload',
         // Enable the XMLHttpRequest.withCredentials property.
         withCredentials: true,
         // Headers sent along with the XMLHttpRequest to the upload server.
