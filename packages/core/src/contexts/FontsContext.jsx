@@ -4,7 +4,9 @@ import isObject from 'lodash/isObject';
 import uniqBy from 'lodash/uniqBy';
 import PropTypes from 'prop-types';
 import React, { useContext, useMemo, useState, useEffect } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '../lib';
+
 import { useGoogleKeys } from './GoogleKeysContext';
 
 export const FontsContext = React.createContext({

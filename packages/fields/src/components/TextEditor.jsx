@@ -23,6 +23,7 @@ const propTypes = {
     onChange: PropTypes.func,
     inline: PropTypes.bool,
     withHighlightColors: PropTypes.bool,
+    withFullEditor: PropTypes.bool,
     textStyle: PropTypes.shape({}),
     editorConfig: PropTypes.shape({}),
     onFocus: PropTypes.func,
@@ -36,6 +37,7 @@ const defaultProps = {
     onChange: null,
     inline: false,
     withHighlightColors: false,
+    withFullEditor: false,
     textStyle: null,
     editorConfig: {
         toolbar: ['bold', 'italic', 'highlight', '|', 'link'],
@@ -52,9 +54,10 @@ const TextEditorField = ({
     size,
     className,
     textStyle,
-    editorConfig,
+    editorConfig: defaultConfig,
     inline,
     withHighlightColors,
+    withFullEditor,
     onChange,
     onFocus,
     disabled,
@@ -66,6 +69,47 @@ const TextEditorField = ({
     const colors = useMemo(
         () => (withHighlightColors ? getColors() : null) || [],
         [withHighlightColors, getColors],
+    );
+
+    const editorConfig = useMemo(
+        () =>
+            withFullEditor
+                ? {
+                      toolbar: [
+                          'heading2',
+                          'heading3',
+                          'paragraph',
+                          '|',
+                          'bold',
+                          'italic',
+                          '|',
+                          'link',
+                          'blockQuote',
+                          'bulletedList',
+                          'uploadImage',
+                          // 'mediaEmbed',
+                      ],
+                      //   heading: {
+                      //       options: [
+                      //           {
+                      //               model: 'paragraph',
+                      //               title: 'Paragraph',
+                      //               class: 'ck-heading_paragraph',
+                      //           },
+                      //           {
+                      //               model: 'heading2',
+                      //               view: 'h2',
+                      //               title: 'Heading 2',
+                      //               class: 'ck-heading_heading2',
+                      //           },
+                      //       ],
+                      //   },
+                      link: {
+                          addTargetToExternalLinks: true,
+                      },
+                  }
+                : defaultConfig,
+        [defaultConfig, withFullEditor],
     );
 
     const id = useMemo(() => `editor-${uuidv4()}`, []);
@@ -92,6 +136,9 @@ const TextEditorField = ({
         }),
         [editorConfig, inline, locale],
     );
+
+    console.log('ec', editorConfig);
+    console.log('fec', finalEditorConfig);
 
     const onEditorReady = useCallback(() => {}, []);
 
