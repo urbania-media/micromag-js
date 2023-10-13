@@ -1,6 +1,6 @@
 {
     "name": "@micromag/ckeditor",
-    "version": "0.3.390",
+    "version": "0.3.407",
     "private": false,
     "description": "",
     "keywords": [
@@ -59,23 +59,23 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@folklore/fetch": "0.1.17",
         "@ckeditor/ckeditor5-basic-styles": "^40.0.0",
+        "@ckeditor/ckeditor5-block-quote": "^40.0.0",
         "@ckeditor/ckeditor5-build-inline": "^40.0.0",
         "@ckeditor/ckeditor5-dev-translations": "39.1.0",
         "@ckeditor/ckeditor5-dev-utils": "39.1.0",
         "@ckeditor/ckeditor5-editor-inline": "^40.0.0",
         "@ckeditor/ckeditor5-essentials": "^40.0.0",
+        "@ckeditor/ckeditor5-heading": "^40.0.0",
         "@ckeditor/ckeditor5-highlight": "^40.0.0",
+        "@ckeditor/ckeditor5-image": "^40.0.0",
         "@ckeditor/ckeditor5-link": "^40.0.0",
+        "@ckeditor/ckeditor5-list": "^40.0.0",
+        "@ckeditor/ckeditor5-media-embed": "^40.0.0",
         "@ckeditor/ckeditor5-paragraph": "^40.0.0",
         "@ckeditor/ckeditor5-react": "^6.1.0",
-        "@ckeditor/ckeditor5-image": "^40.0.0",
-        "@ckeditor/ckeditor5-block-quote": "^40.0.0",
-        "@ckeditor/ckeditor5-heading": "^40.0.0",
         "@ckeditor/ckeditor5-upload": "^40.0.0",
-        "@ckeditor/ckeditor5-media-embed": "^40.0.0",
-        "@ckeditor/ckeditor5-list": "^40.0.0"
+        "@folklore/fetch": "0.1.17"
     },
     "publishConfig": {
         "access": "public",
