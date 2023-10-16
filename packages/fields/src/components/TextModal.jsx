@@ -86,7 +86,7 @@ const TextModal = ({
                 addTargetToExternalLinks: true,
             },
             simpleUpload: {
-                uploadUrl: xhrEndpoint || 'https://micromag.studio/xhr/upload',
+                uploadUrl: xhrEndpoint || null,
                 withCredentials: true,
                 headers: {
                     // 'X-CSRF-TOKEN': 'CSRF-Token',

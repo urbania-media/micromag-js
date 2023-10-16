@@ -50,6 +50,7 @@ const EditorContainer = ({ defaultValue, isTheme = false, viewerTheme }) => {
                 memoryRouter
                 viewerTheme={viewerTheme}
                 screenNamespaces={['urbania']}
+                uppy={{ transport: 'tus', xhr: { endpoint: `${apiBaseUrl}/xhr/upload` } }}
             />
         </ApiProvider>
     );
