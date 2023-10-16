@@ -5,11 +5,14 @@ const { CKEditorTranslationsPlugin } = require('@ckeditor/ckeditor5-dev-translat
 const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 
 module.exports = {
-    entry: './src/build.js',
+    entry: {
+        build: './src/build.js',
+        full: './src/full.js',
+    },
 
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'ckeditor.js',
+        filename: '[name].js',
         library: 'MicromagEditor',
         libraryTarget: 'umd',
         libraryExport: 'default',

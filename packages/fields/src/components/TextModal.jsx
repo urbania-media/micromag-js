@@ -1,13 +1,12 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
+import { getCSRFHeaders } from '@folklore/fetch';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
 
-import { InlinePlugin, MarkerPlugin } from '@micromag/ckeditor';
 import { Modal, ModalDialog as Dialog, Button } from '@micromag/core/components';
-import { useGetColors } from '@micromag/core/contexts';
-import { getColorAsString } from '@micromag/core/utils';
+import { useUppyConfig } from '@micromag/core/contexts';
 
 import EditorField from './TextEditor';
 import TextElement from './TextElement';
@@ -52,11 +51,8 @@ const TextModal = ({
     const [modalOpen, setModalOpen] = useState();
 
     const { locale } = useIntl();
-    // const getColors = useGetColors();
-    // const colors = useMemo(
-    //     () => (withHighlightColors ? getColors() : null) || [],
-    //     [withHighlightColors, getColors],
-    // );
+    const { xhr } = useUppyConfig();
+    const { endpoint: xhrEndpoint = null } = xhr || {};
 
     const previewEditorConfig = useMemo(
         () => ({
@@ -71,23 +67,33 @@ const TextModal = ({
 
     const finalEditorConfig = useMemo(
         () => ({
-            // ...editorConfig,
-            // extraPlugins: [MarkerPlugin, inline ? InlinePlugin : null].filter((it) => it !== null),
-            // highlight: {
-            //     options: [
-            //         {
-            //             model: 'marker',
-            //             title: 'Marker',
-            //             type: 'marker',
-            //         },
-            //         ...colors.map((color, index) => ({
-            //             model: `marker_${index}`,
-            //             type: 'marker',
-            //             color: getColorAsString(color),
-            //         })),
-            //     ],
-            // },
-            // language: locale,
+            toolbar: [
+                'heading2',
+                'heading3',
+                'paragraph',
+                '|',
+                'bold',
+                'italic',
+                '|',
+                'link',
+                'blockQuote',
+                'bulletedList',
+                'numberedList',
+                'uploadImage',
+                // 'mediaEmbed',
+            ],
+            link: {
+                addTargetToExternalLinks: true,
+            },
+            simpleUpload: {
+                uploadUrl: xhrEndpoint || 'https://micromag.studio/xhr/upload',
+                withCredentials: true,
+                headers: {
+                    // 'X-CSRF-TOKEN': 'CSRF-Token',
+                    // Authorization: 'Bearer <JSON Web Token>',
+                    ...getCSRFHeaders(),
+                },
+            },
         }),
         [editorConfig, inline, locale],
     );
@@ -176,6 +182,7 @@ const TextModal = ({
                             inline={inline}
                             withHighlightColors={withHighlightColors}
                             withFullEditor
+                            editorConfig={finalEditorConfig}
                         />
                     </Dialog>
                 </Modal>

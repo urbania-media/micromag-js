@@ -54,7 +54,7 @@ const TextEditorField = ({
     size,
     className,
     textStyle,
-    editorConfig: defaultConfig,
+    editorConfig,
     inline,
     withHighlightColors,
     withFullEditor,
@@ -64,38 +64,11 @@ const TextEditorField = ({
 }) => {
     const { locale } = useIntl();
     const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
-    const Editor = useCKEditor();
+    const Editor = useCKEditor({ full: withFullEditor });
     const getColors = useGetColors();
     const colors = useMemo(
         () => (withHighlightColors ? getColors() : null) || [],
         [withHighlightColors, getColors],
-    );
-
-    const editorConfig = useMemo(
-        () =>
-            withFullEditor
-                ? {
-                      toolbar: [
-                          'heading2',
-                          'heading3',
-                          'paragraph',
-                          '|',
-                          'bold',
-                          'italic',
-                          '|',
-                          'link',
-                          'blockQuote',
-                          'bulletedList',
-                          'numberedList',
-                          'uploadImage',
-                          // 'mediaEmbed',
-                      ],
-                      link: {
-                          addTargetToExternalLinks: true,
-                      },
-                  }
-                : defaultConfig,
-        [defaultConfig, withFullEditor],
     );
 
     const id = useMemo(() => `editor-${uuidv4()}`, []);

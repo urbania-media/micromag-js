@@ -34,11 +34,13 @@
     "module": "es/index.js",
     "exports": {
         ".": "./lib/index.js",
-        "./build": "./dist/ckeditor.js"
+        "./build": "./dist/build.js",
+        "./full": "./dist/full.js"
     },
     "browser": {
         ".": "./es/index.js",
-        "./build": "./dist/ckeditor.js"
+        "./build": "./dist/build.js",
+        "./full": "./dist/full.js"
     },
     "files": [
         "dist",

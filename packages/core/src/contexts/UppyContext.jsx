@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { v1 as uuid } from 'uuid';
+
 import useUppyCore from '../hooks/useUppyCore';
 import useUppyLocale from '../hooks/useUppyLocale';
 import useUppySources from '../hooks/useUppySources';
@@ -12,6 +13,28 @@ import useUppyTransport from '../hooks/useUppyTransport';
 import getTransloaditMediasFromResponse from '../utils/getTransloaditMediasFromResponse';
 
 export const UppyContext = React.createContext(null);
+
+export const useUppyConfig = () => {
+    const {
+        transport = null,
+        locale = null,
+        sources = null,
+        transloadit = null,
+        companion = null,
+        tus = null,
+        xhr = null,
+    } = useContext(UppyContext) || {};
+
+    return {
+        transport,
+        locale,
+        sources,
+        transloadit,
+        companion,
+        tus,
+        xhr,
+    };
+};
 
 export const useUppy = ({
     onComplete = null,
