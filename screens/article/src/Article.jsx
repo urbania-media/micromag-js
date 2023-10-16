@@ -137,11 +137,11 @@ const ArticleScreen = ({
     const finalDate = useMemo(
         () =>
             partialDate !== null
-                ? intl.formatDate(dayjs(partialDate).toDate(), {
+                ? `<p>${intl.formatDate(dayjs(partialDate).toDate(), {
                       year: 'numeric',
                       month: 'long',
                       day: '2-digit',
-                  })
+                  })}</p>`
                 : null,
         [partialDate],
     );
@@ -159,9 +159,7 @@ const ArticleScreen = ({
                         media={image}
                         // width={width - spacing * 2} // in layout flow
                         width={width}
-                        // width="100%"
                         height={mediaHeight}
-                        // height="100%"
                         resolution={resolution}
                         className={styles.visual}
                     />

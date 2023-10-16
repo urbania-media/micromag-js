@@ -27,3 +27,4 @@ export { default as Video } from '@micromag/element-video';
 export { default as Visual } from '@micromag/element-visual';
 export { default as WebView } from '@micromag/element-webview';
 export { default as UrbaniaAuthor } from '@micromag/element-urbania-author';
+export { default as Author } from '@micromag/element-author';
