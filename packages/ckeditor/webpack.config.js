@@ -7,7 +7,6 @@ const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 module.exports = {
     entry: {
         build: './src/build.js',
-        full: './src/full.js',
     },
 
     output: {

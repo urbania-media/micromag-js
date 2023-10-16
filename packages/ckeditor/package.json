@@ -34,13 +34,11 @@
     "module": "es/index.js",
     "exports": {
         ".": "./lib/index.js",
-        "./build": "./dist/build.js",
-        "./full": "./dist/full.js"
+        "./build": "./dist/build.js"
     },
     "browser": {
         ".": "./es/index.js",
-        "./build": "./dist/build.js",
-        "./full": "./dist/full.js"
+        "./build": "./dist/build.js"
     },
     "files": [
         "dist",

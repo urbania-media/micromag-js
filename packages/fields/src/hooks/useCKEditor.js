@@ -18,30 +18,21 @@ const useCKEditor = ({ full = false } = {}) => {
                 canceled = true;
             };
         }
-        if (full) {
-            import('@micromag/ckeditor/full').then(({ default: Editor }) => {
-                packageCache.full = Editor;
+        import('@micromag/ckeditor/build').then(
+            ({ default: { NormalEditor = null, FullEditor = null } }) => {
+                packageCache[key] = key === 'full' ? FullEditor : NormalEditor;
                 if (!canceled) {
                     setLoadedPackage({
-                        full: Editor,
+                        [key]: packageCache[key],
                     });
                 }
-            });
-        } else {
-            import('@micromag/ckeditor/build').then(({ default: Editor }) => {
-                packageCache.build = Editor;
-                if (!canceled) {
-                    setLoadedPackage({
-                        build: Editor,
-                    });
-                }
-            });
-        }
+            },
+        );
 
         return () => {
             canceled = true;
         };
-    }, [loadedPackage, setLoadedPackage]);
+    }, [loadedPackage, setLoadedPackage, key]);
     return loadedPackage;
 };
 
