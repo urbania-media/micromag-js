@@ -29,6 +29,7 @@ import styles from './ranking.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['side', 'over']),
+    title: MicromagPropTypes.headingElement,
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
     numbersStyle: MicromagPropTypes.textStyle,
     ascending: PropTypes.bool,
@@ -46,6 +47,7 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'side',
+    title: null,
     items: [null],
     numbersStyle: null,
     ascending: false,
@@ -63,6 +65,7 @@ const defaultProps = {
 
 const RankingScreen = ({
     layout,
+    title,
     items,
     numbersStyle,
     ascending,
@@ -101,30 +104,52 @@ const RankingScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
 
-    const elements = (finalItems || []).map((item, itemI) => {
-        const { title = null, description = null } = item || {};
+    const hasTitle = isTextFilled(title);
 
-        const hasTitle = isTextFilled(title);
+    const titleElement = (
+        <ScreenElement
+            placeholder="Title"
+            emptyLabel={<FormattedMessage defaultMessage="Title" description="Placeholder label" />}
+            emptyClassName={classNames([styles.empty, styles.emptyTitle])}
+            isEmpty={!hasTitle}
+        >
+            {hasTitle ? (
+                <Heading
+                    className={styles.title}
+                    {...title}
+                    // textStyle={titleTextStyle}
+                />
+            ) : null}
+        </ScreenElement>
+    );
+
+    const elements = (finalItems || []).map((item, itemI) => {
+        const { title: itemTitle = null, description = null } = item || {};
+
+        const hasItemTitle = isTextFilled(itemTitle);
         const hasDescription = isTextFilled(description);
 
-        const titleElement = (
-            <div className={styles.title}>
+        const itemTitleElement = (
+            <div className={styles.itemTitle}>
                 <ScreenElement
                     placeholder="title"
                     emptyLabel={
-                        <FormattedMessage defaultMessage="Title" description="Title placeholder" />
+                        <FormattedMessage
+                            defaultMessage="Entry Title"
+                            description="Title placeholder"
+                        />
                     }
                     emptyClassName={styles.empty}
-                    isEmpty={!hasTitle}
+                    isEmpty={!hasItemTitle}
                 >
-                    {hasTitle ? (
+                    {hasItemTitle ? (
                         <Transitions
                             transitions={transitions}
                             playing={transitionPlaying}
                             delay={transitionStagger * itemI}
                             disabled={transitionDisabled}
                         >
-                            <Heading {...title} />
+                            <Heading {...itemTitle} />
                         </Transitions>
                     ) : null}
                 </ScreenElement>
@@ -181,7 +206,7 @@ const RankingScreen = ({
                     )}
                 </div>
                 <div className={styles.label}>
-                    {titleElement}
+                    {itemTitleElement}
                     {descriptionElement}
                 </div>
             </div>
@@ -259,7 +284,8 @@ const RankingScreen = ({
                                 : null
                         }
                     >
-                        {elements}
+                        {titleElement}
+                        <div className={styles.elementsContainer}>{elements}</div>
                     </Layout>
                 </Scroll>
                 {!isPlaceholder && hasFooter ? (

@@ -1696,6 +1696,12 @@ msgctxt "bhEaUt"
 msgid "Audio"
 msgstr "Audio"
 
+# Title placeholder
+#: bmO4Ss
+msgctxt "bmO4Ss"
+msgid "Entry Title"
+msgstr "Titre de l’entrée"
+
 # Button placeholder
 #: bv3rRe
 msgctxt "bv3rRe"

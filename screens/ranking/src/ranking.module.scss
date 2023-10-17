@@ -22,6 +22,11 @@
         margin-right: 10px;
     }
 
+    .emptyTitle {
+        @extend %empty-text;
+        min-width: 100%;
+    }
+
     .item {
         position: relative;
         padding: 10px 0;
@@ -35,7 +40,7 @@
         font-size: 48px;
     }
 
-    .title,
+    .itemTitle,
     .description {
         padding: 8px 0;
     }
@@ -58,7 +63,7 @@
     }
 
     &.sideLayout {
-        .layout {
+        .elementsContainer {
             display: table;
             width: 100%;
         }
@@ -92,7 +97,7 @@
             padding: 5px;
         }
 
-        .title,
+        .itemTitle,
         .description {
             display: flex;
             flex-direction: column;

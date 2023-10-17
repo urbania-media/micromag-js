@@ -1122,6 +1122,10 @@
     "defaultMessage": "Audio",
     "description": "Audio screen title"
   },
+  "bmO4Ss": {
+    "defaultMessage": "Entry Title",
+    "description": "Title placeholder"
+  },
   "bv3rRe": {
     "defaultMessage": "Button",
     "description": "Button placeholder"

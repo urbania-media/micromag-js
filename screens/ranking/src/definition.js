@@ -31,6 +31,18 @@ export default {
             }),
         },
         {
+            name: 'title',
+            type: 'heading-element',
+            // inline: true,
+            theme: {
+                textStyle: 'heading1',
+            },
+            label: defineMessage({
+                defaultMessage: 'Title',
+                description: 'Title field label',
+            }),
+        },
+        {
             name: 'items',
             type: 'entries',
             theme: {
