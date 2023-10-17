@@ -13,6 +13,7 @@ import TimelineScreen from '../Timeline';
 import definition from '../definition';
 
 const props = {
+    title: { body: title() },
     items: [...new Array(10)].map(() => ({
         title: { body: title() },
         description: text('long'),

@@ -41,6 +41,7 @@ const propTypes = {
         'title-image-description',
         'image-title-description',
     ]),
+    title: MicromagPropTypes.headingElement,
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
     bulletColor: MicromagPropTypes.color,
     lineColor: MicromagPropTypes.color,
@@ -61,6 +62,7 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'normal',
+    title: null,
     items: [null],
     bulletColor: null,
     lineColor: null,
@@ -81,6 +83,7 @@ const defaultProps = {
 
 const Timeline = ({
     layout,
+    title,
     items,
     bulletColor,
     lineColor,
@@ -116,6 +119,8 @@ const Timeline = ({
         [isPlaceholder, items],
     );
 
+    const hasTitle = isTextFilled(title);
+
     const itemsCount = finalItems !== null ? finalItems.length : 0;
     const hasItems = finalItems !== null && itemsCount;
     const imagesCount = hasItems
@@ -146,9 +151,9 @@ const Timeline = ({
     }, [width, height]);
 
     const timelineElements = (finalItems || []).map((item, itemI) => {
-        const { title = null, description = null, image = null } = item || {};
+        const { title: itemTitle = null, description = null, image = null } = item || {};
 
-        const hasTitle = isTextFilled(title);
+        const hasItemTitle = isTextFilled(itemTitle);
         const hasDescription = isTextFilled(description);
         const hasImage = image !== null;
 
@@ -172,21 +177,21 @@ const Timeline = ({
 
                     switch (elementType) {
                         case 'title':
-                            hasElement = hasTitle;
+                            hasElement = hasItemTitle;
                             elementContent = (
                                 <div className={styles.title}>
                                     <ScreenElement
                                         placeholder="title"
                                         emptyLabel={
                                             <FormattedMessage
-                                                defaultMessage="Title"
+                                                defaultMessage="Entry Title"
                                                 description="Title placeholder"
                                             />
                                         }
                                         emptyClassName={styles.empty}
-                                        isEmpty={!hasTitle}
+                                        isEmpty={!hasItemTitle}
                                     >
-                                        {hasTitle ? <Heading {...title} /> : null}
+                                        {hasItemTitle ? <Heading {...itemTitle} /> : null}
                                     </ScreenElement>
                                 </div>
                             );
@@ -398,6 +403,26 @@ const Timeline = ({
                                 <Header {...header} />
                             </div>
                         ) : null}
+                        <ScreenElement
+                            placeholder="Title"
+                            emptyLabel={
+                                <FormattedMessage
+                                    defaultMessage="Title"
+                                    description="Placeholder label"
+                                />
+                            }
+                            emptyClassName={classNames([styles.empty, styles.emptyTitle])}
+                            isEmpty={!hasTitle}
+                        >
+                            {hasTitle ? (
+                                <Heading
+                                    className={styles.title}
+                                    {...title}
+                                    // textStyle={titleTextStyle}
+                                />
+                            ) : null}
+                        </ScreenElement>
+
                         {timelineElements}
                     </Layout>
                 </Scroll>

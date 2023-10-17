@@ -35,7 +35,7 @@ export default [
                 type: 'heading-element',
                 inline: true,
                 theme: {
-                    textStyle: 'heading2',
+                    textStyle: 'header2',
                 },
                 label: defineMessage({
                     defaultMessage: 'Title',

@@ -24,6 +24,18 @@ export default [
         transforms,
         fields: [
             {
+                name: 'title',
+                type: 'heading-element',
+                // inline: true,
+                theme: {
+                    textStyle: 'heading1',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Title',
+                    description: 'Title field label',
+                }),
+            },
+            {
                 name: 'items',
                 type: 'entries',
                 theme: {
@@ -150,6 +162,18 @@ export default [
         component: TimelineIllustratedScreen,
         layouts: ['title-image-description', 'title-description-image', 'image-title-description'],
         fields: [
+            {
+                name: 'title',
+                type: 'heading-element',
+                // inline: true,
+                theme: {
+                    textStyle: 'heading1',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Title',
+                    description: 'Title field label',
+                }),
+            },
             {
                 name: 'layout',
                 type: 'screen-layout',
