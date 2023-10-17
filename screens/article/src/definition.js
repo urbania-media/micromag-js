@@ -58,22 +58,22 @@ export default [
                     description: 'Date field label',
                 }),
             },
-            // {
-            //     name: 'author',
-            //     type: 'author-element',
-            //     label: defineMessage({
-            //         defaultMessage: 'Author',
-            //         description: 'Author field label',
-            //     }),
-            // },
             {
                 name: 'author',
-                type: 'text-element',
+                type: 'author-element',
                 label: defineMessage({
                     defaultMessage: 'Author',
                     description: 'Author field label',
                 }),
             },
+            // {
+            //     name: 'author',
+            //     type: 'text-element',
+            //     label: defineMessage({
+            //         defaultMessage: 'Author',
+            //         description: 'Author field label',
+            //     }),
+            // },
 
             {
                 name: 'text',

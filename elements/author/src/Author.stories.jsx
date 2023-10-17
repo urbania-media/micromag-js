@@ -66,7 +66,7 @@ export const WithCollaborator = () => (
             image: imageMedia(),
             url: 'https://urbania.ca/auteurs/hugomeunier',
             collaborator: {
-                body: "<p>Paul l'illustrateur</p>",
+                body: "<p>Illustrations: Paul l'illustrateur</p>",
             },
         }}
     />

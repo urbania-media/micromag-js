@@ -25,7 +25,6 @@ const propTypes = {
     }),
     withImage: PropTypes.bool,
     withoutLink: PropTypes.bool,
-    withoutPrefix: PropTypes.bool,
     isSmall: PropTypes.bool,
     linkUnderlineColor: PropTypes.string,
     className: PropTypes.string,
@@ -38,7 +37,6 @@ const defaultProps = {
     author: null,
     withImage: true,
     withoutLink: false,
-    withoutPrefix: false,
     isSmall: false,
     linkUnderlineColor: null,
     className: null,
@@ -51,7 +49,6 @@ const Author = ({
     author,
     withImage,
     withoutLink,
-    withoutPrefix,
     isSmall,
     linkUnderlineColor,
     className,
@@ -60,13 +57,8 @@ const Author = ({
     shouldLoad,
     ...otherProps
 }) => {
-    const intl = useIntl();
     const { name = null, image = null, url = null, collaborator = null } = author || {};
     const withAvatar = withImage && image !== null;
-    const prefix = intl.formatMessage({
-        defaultMessage: 'By',
-        description: 'Author label',
-    });
 
     const authorText = isTextFilled(name) ? (
         <Text
@@ -96,18 +88,6 @@ const Author = ({
             ])}
             {...otherProps}
         >
-            {!withoutPrefix ? (
-                <Text
-                    {...name}
-                    className={classNames([
-                        styles.prefix,
-                        {
-                            [backgroundClassName]: backgroundClassName,
-                        },
-                    ])}
-                    body={`<span>${prefix}<span>`}
-                />
-            ) : null}
             {withAvatar ? (
                 <Avatar className={styles.image} image={image} shouldLoad={shouldLoad} />
             ) : null}

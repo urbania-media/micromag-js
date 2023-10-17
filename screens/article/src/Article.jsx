@@ -23,6 +23,7 @@ import {
     getFooterProps,
     isImageFilled,
 } from '@micromag/core/utils';
+import Author from '@micromag/element-author';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -41,8 +42,8 @@ const propTypes = {
     title: MicromagPropTypes.title,
     surtitle: MicromagPropTypes.text,
     date: MicromagPropTypes.date,
-    // author: MicromagPropTypes.author, // potential to integrate more complete author element
-    author: MicromagPropTypes.text,
+    author: MicromagPropTypes.author,
+    // author: MicromagPropTypes.text,
     text: MicromagPropTypes.text,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -112,13 +113,15 @@ const ArticleScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
-    const hasText = isTextFilled(text);
+    const { name: authorName = null } = author || {};
 
+    const hasText = isTextFilled(text);
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
     const hasTitle = isTextFilled(title);
     const hasSurtitle = isTextFilled(surtitle);
-    const hasAuthor = isTextFilled(author);
+    const hasSimpleAuthor = isTextFilled(author); // legacy
+    const hasAuthor = isTextFilled(authorName);
     const hasImage = isImageFilled(image);
     const hasDate = isTextFilled(date);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
@@ -214,9 +217,10 @@ const ArticleScreen = ({
                 <FormattedMessage defaultMessage="Author" description="Author placeholder" />
             }
             emptyClassName={styles.emptyAuthor}
-            isEmpty={!hasAuthor}
+            isEmpty={!hasAuthor && !hasSimpleAuthor}
         >
-            {hasAuthor ? <Text className={styles.author} {...author} /> : null}
+            {hasSimpleAuthor ? <Text className={styles.author} {...author} /> : null}
+            {hasAuthor ? <Author author={author} /> : null}
         </ScreenElement>
     );
 
