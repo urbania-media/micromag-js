@@ -1,6 +1,6 @@
 import {
     // bigVideoMediaWithSound,
-    videoMedia,
+    // videoMedia,
     imageMedia,
 } from '../../data';
 
