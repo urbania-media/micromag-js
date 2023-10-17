@@ -1,6 +1,7 @@
 import {
     // bigVideoMediaWithSound,
     videoMedia,
+    imageMedia,
 } from '../../data';
 
 export default {
@@ -87,7 +88,7 @@ export default {
                 body: 'Shocking Secrets of Wealthy Crabs',
             },
             surtitle: {
-                body: 'Generational Fortunes',
+                body: '<p>Generational Fortunes</p>',
                 textStyle: {
                     color: {
                         color: '#909090',
@@ -116,22 +117,11 @@ export default {
                 },
             },
             author: {
-                body: 'Mr. Pinchy',
-                textStyle: {
-                    color: {
-                        color: '#FFF',
-                        alpha: 1,
-                    },
-                    align: 'left',
-                    fontFamily: 'Helvetica',
-                    fontSize: 16,
-                    fontStyle: {
-                        bold: false,
-                        italic: false,
-                        underline: false,
-                    },
-                    lineHeight: 1,
-                    letterSpacing: 0,
+                name: { body: '<p>Cash Clawson</p>' },
+                image: imageMedia(),
+                url: 'https://urbania.ca/auteurs/hugomeunier',
+                collaborator: {
+                    body: '<p>Illustrations: Fineas Finley</p>',
                 },
             },
             text: {

@@ -15,17 +15,11 @@
     }
 
     .link {
-        display: inline-block;
-        color: currentColor;
+        text-decoration: none;
     }
 
     .right {
         display: block;
-    }
-
-    .name,
-    .collaborator {
-        white-space: nowrap;
     }
 
     .name {
@@ -36,7 +30,6 @@
     }
 
     .collaborator {
-        position: absolute;
         background-color: transparent;
 
         .collaboratorText {

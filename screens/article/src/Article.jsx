@@ -289,19 +289,29 @@ const ArticleScreen = ({
                                 key="header"
                                 style={{
                                     height: hasImage && imageHeight > 0 ? 0 : 'auto',
-                                    paddingBottom: imageHeight > 0 ? imageHeight : spacing,
+                                    paddingBottom:
+                                        imageHeight > 0 ? imageHeight - viewerTopHeight : spacing,
                                 }}
                             >
                                 <Header {...header} />
                             </div>
                         ) : null}
-                        {imageElement}
-                        <div className={styles.topContent}>
-                            {surtitleElement}
-                            {dateElement}
+                        <div
+                            className={classNames([
+                                styles.main,
+                                {
+                                    [styles.hasText]: hasText,
+                                },
+                            ])}
+                        >
+                            {imageElement}
+                            <div className={styles.topContent}>
+                                {surtitleElement}
+                                {dateElement}
+                            </div>
+                            {titleElement}
+                            {authorElement}
                         </div>
-                        {titleElement}
-                        {authorElement}
 
                         {contentElement}
                         {!isPlaceholder && hasFooter ? (
