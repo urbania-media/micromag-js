@@ -427,6 +427,18 @@ export const allScreens = [
         article,
         background: {
             color: { alpha: 1, color: '#FF00FF' },
+            video: bigVideoMediaWithSound()
+        },
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
+    },
+    {
+        id: uuid(),
+        type: 'urbania-article-card',
+        article,
+        background: {
+            color: { alpha: 1, color: '#FF00FF' },
+            video: bigVideoMediaWithSound()
         },
         header: { badge: badge() },
         footer: { callToAction: callToAction() },

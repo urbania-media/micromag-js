@@ -13,6 +13,7 @@ import {
     usePlaybackContext,
     useViewerContext,
     useViewerInteraction,
+    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { isTextFilled, isHeaderFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
@@ -76,6 +77,7 @@ const UrbaniaArticleCard = ({
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const hasUrl = url !== null && url.length > 0;
     const hasHeader = isHeaderFilled(header);
@@ -150,6 +152,7 @@ const UrbaniaArticleCard = ({
                 resolution={resolution}
                 playing={backgroundPlaying}
                 muted={muted}
+                mediaRef={mediaRef}
                 shouldLoad={mediaShouldLoad}
                 withoutVideo={isPreview}
             />
