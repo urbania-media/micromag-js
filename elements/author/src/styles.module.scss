@@ -10,7 +10,6 @@
 
     .image {
         max-width: 35px;
-
         margin-right: 10px;
     }
 
@@ -38,31 +37,6 @@
             p {
                 display: inline;
             }
-        }
-    }
-
-    &.isSmall {
-        font-size: 9px;
-
-        .name {
-            font-size: 9px;
-            white-space: normal;
-        }
-
-        .image {
-            max-width: 30px;
-        }
-    }
-
-    &.withoutImage {
-        .name {
-            margin-left: 0;
-            padding-left: 0;
-        }
-
-        .prefix {
-            margin-right: 0;
-            padding-right: 0.4em;
         }
     }
 }

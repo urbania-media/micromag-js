@@ -113,7 +113,11 @@ const ArticleScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
-    const { name: authorName = null } = author || {};
+    const {
+        name: authorName = null,
+        image: authorImage = null,
+        collaborator: authorCollabs,
+    } = author || {};
 
     const hasText = isTextFilled(text);
     const hasHeader = isHeaderFilled(header);
@@ -121,7 +125,8 @@ const ArticleScreen = ({
     const hasTitle = isTextFilled(title);
     const hasSurtitle = isTextFilled(surtitle);
     const hasSimpleAuthor = isTextFilled(author); // legacy
-    const hasAuthor = isTextFilled(authorName);
+    const hasAuthor =
+        isTextFilled(authorName) || isImageFilled(authorImage) || isTextFilled(authorCollabs);
     const hasImage = isImageFilled(image);
     const hasDate = isTextFilled(date);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
@@ -132,7 +137,6 @@ const ArticleScreen = ({
         }
         const { metadata = {} } = image || {};
         const { width: initialWidth = 0, height: initialHeight = 0 } = metadata || {};
-
         return (width * initialHeight) / initialWidth;
     }, [image]);
 

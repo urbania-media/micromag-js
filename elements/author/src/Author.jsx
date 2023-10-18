@@ -24,7 +24,6 @@ const propTypes = {
     }),
     withImage: PropTypes.bool,
     withoutLink: PropTypes.bool,
-    isSmall: PropTypes.bool,
     linkUnderlineColor: PropTypes.string,
     className: PropTypes.string,
     backgroundClassName: PropTypes.string,
@@ -36,7 +35,6 @@ const defaultProps = {
     author: null,
     withImage: true,
     withoutLink: false,
-    isSmall: false,
     linkUnderlineColor: null,
     className: null,
     backgroundClassName: null,
@@ -48,7 +46,6 @@ const Author = ({
     author,
     withImage,
     withoutLink,
-    isSmall,
     linkUnderlineColor,
     className,
     backgroundClassName,
@@ -70,6 +67,7 @@ const Author = ({
             {...name}
         />
     ) : null;
+
     const collaboratorText = isTextFilled(collaborator) ? (
         <Text className={styles.collaboratorText} {...collaborator} inline />
     ) : null;
@@ -79,9 +77,6 @@ const Author = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles.isSmall]: isSmall,
-                    [styles.withoutAvatar]: withAvatar,
-                    [styles.withoutImage]: !withImage || image === null,
                     [className]: className !== null,
                 },
             ])}

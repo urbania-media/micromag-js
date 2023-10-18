@@ -33,6 +33,7 @@ const defaultProps = {
 const Avatar = ({ image, width, height, resolution, shape, isTag, className, shouldLoad }) => {
     const imageAtSize = getOptimalImageUrl(image, width, height, { resolution });
     const finalShape = shape !== null ? pascalCase(shape) : null;
+
     return (
         <span
             className={classNames([
