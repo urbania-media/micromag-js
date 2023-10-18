@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 export { default as Audio } from '@micromag/element-audio';
+export { default as Author } from '@micromag/element-author';
 export { default as Background } from '@micromag/element-background';
 export { default as Badge } from '@micromag/element-badge';
 export { default as Button } from '@micromag/element-button';
@@ -27,4 +28,3 @@ export { default as Video } from '@micromag/element-video';
 export { default as Visual } from '@micromag/element-visual';
 export { default as WebView } from '@micromag/element-webview';
 export { default as UrbaniaAuthor } from '@micromag/element-urbania-author';
-export { default as Author } from '@micromag/element-author';

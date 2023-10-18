@@ -1,5 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve';
 import path from 'path';
+
 import { createConfig } from '../../rollup.config';
 
 export default [
