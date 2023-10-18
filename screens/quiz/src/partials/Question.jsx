@@ -9,10 +9,11 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
-import { isTextFilled } from '@micromag/core/utils';
+import { isImageFilled, isTextFilled } from '@micromag/core/utils';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
+import Visual from '@micromag/element-visual';
 
 import Answers from './Answers';
 
@@ -25,6 +26,7 @@ const propTypes = {
         image: MicromagPropTypes.imageElement,
         text: MicromagPropTypes.textElement,
     }),
+    resultImage: MicromagPropTypes.visualElement,
     index: PropTypes.number,
     totalCount: PropTypes.number,
     answeredIndex: PropTypes.number,
@@ -55,6 +57,7 @@ const defaultProps = {
     question: null,
     answers: null,
     result: null,
+    resultImage: null,
     index: null,
     totalCount: null,
     answeredIndex: null,
@@ -85,6 +88,7 @@ const Question = ({
     question,
     answers,
     result,
+    resultImage,
     index,
     totalCount,
     answeredIndex,
@@ -122,10 +126,10 @@ const Question = ({
 
     const answered = answeredIndex !== null;
     const answer = answeredIndex !== null && answers[answeredIndex] ? answers[answeredIndex] : null;
-    const { customAnswerLabel = null } = answer || {};
+    const { customAnswerLabel = null, answerImage = null } = answer || {};
 
     const hasResult = isTextFilled(customAnswerLabel) || isTextFilled(result);
-
+    const hasResultVisual = isImageFilled(answerImage) || isImageFilled(resultImage);
     const defaultResult = isTextFilled(result) ? result : null;
     const customResult = isTextFilled(customAnswerLabel) ? customAnswerLabel : null;
 
@@ -230,17 +234,26 @@ const Question = ({
                                 isEmpty={answered && !hasResult}
                                 emptyClassName={styles.emptyResult}
                             >
-                                {hasResult && answers !== null ? (
+                                {(hasResult || hasResultVisual) && answers !== null ? (
                                     <Transitions
                                         transitions={transitions}
                                         playing={transitionPlaying}
                                         delay={(1 + answers.length) * transitionStagger}
                                         disabled={transitionDisabled}
                                     >
-                                        <Text
-                                            {...(customResult || defaultResult)}
-                                            className={styles.resultText}
-                                        />
+                                        {hasResult ? (
+                                            <Text
+                                                {...(customResult || defaultResult)}
+                                                className={styles.resultText}
+                                            />
+                                        ) : null}
+                                        {hasResultVisual ? (
+                                            <Visual
+                                                media={answerImage || resultImage}
+                                                width="100%"
+                                                height="auto"
+                                            />
+                                        ) : null}
                                     </Transitions>
                                 ) : null}
                             </ScreenElement>

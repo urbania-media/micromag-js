@@ -47,6 +47,10 @@ export const WithHeaderFooter = (storyProps) => (
     <RankingScreen {...storyProps} {...props} {...headerFooter()} />
 );
 
+export const WithTitle = (storyProps) => (
+    <RankingScreen {...storyProps} {...props} title={{ body: title() }} />
+);
+
 export const Ascending = (storyProps) => <RankingScreen {...storyProps} {...props} ascending />;
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

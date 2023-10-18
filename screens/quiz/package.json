@@ -64,6 +64,7 @@
         "@micromag/element-layout": "^0.3.410",
         "@micromag/element-scroll": "^0.3.410",
         "@micromag/element-text": "^0.3.410",
+        "@micromag/element-visual": "^0.3.410",
         "@micromag/transforms": "^0.3.410",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",

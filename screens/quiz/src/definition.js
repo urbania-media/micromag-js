@@ -74,6 +74,14 @@ export default [
                 }),
             },
             {
+                name: 'resultImage',
+                type: 'visual',
+                label: defineMessage({
+                    defaultMessage: 'Result feedback image',
+                    description: 'Visual field label',
+                }),
+            },
+            {
                 type: 'fields',
                 isList: true,
                 label: defineMessage({

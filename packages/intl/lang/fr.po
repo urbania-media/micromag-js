@@ -395,6 +395,12 @@ msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
 
+# Visual field label
+#: 57hjHa
+msgctxt "57hjHa"
+msgid "Answer feedback image"
+msgstr "Image de rétroaction"
+
 # visualsWithCaptions field label
 #: 59f2bg
 msgctxt "59f2bg"
@@ -2827,6 +2833,12 @@ msgstr "Commencer à l'écran en cours"
 msgctxt "y7xsPe"
 msgid "Advanced settings"
 msgstr "Paramètres avancés"
+
+# Visual field label
+#: yA4B6h
+msgctxt "yA4B6h"
+msgid "Result feedback image"
+msgstr "Image rétroaction"
 
 # Close button label in Media Gallery
 #: yCXMzz

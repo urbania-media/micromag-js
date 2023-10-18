@@ -191,6 +191,9 @@
     "507VAi": {
         "defaultMessage": "Description"
     },
+    "57hjHa": {
+        "defaultMessage": "Answer feedback image"
+    },
     "59f2bg": {
         "defaultMessage": "Images"
     },
@@ -1408,6 +1411,9 @@
     },
     "y7xsPe": {
         "defaultMessage": "Advanced settings"
+    },
+    "yA4B6h": {
+        "defaultMessage": "Result feedback image"
     },
     "yCXMzz": {
         "defaultMessage": "Close"

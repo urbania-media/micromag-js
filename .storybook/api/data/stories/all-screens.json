@@ -329,7 +329,17 @@
             },
             "answers": [
                 { "id": "1", "label": { "body": "A better somewhat longer longer subtitle" } },
-                { "id": "2", "label": { "body": "La bonne réponse" }, "good": true },
+                {
+                    "id": "2",
+                    "label": { "body": "La bonne réponse" },
+                    "good": true,
+                    "customAnswerLabel": { "body": "réponse" },
+                    "answerImage": {
+                        "url": "https://picsum.photos/100/100?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 100, "height": 100 }
+                    }
+                },
                 { "id": "3", "label": { "body": "A subtitle for something about something" } },
                 { "id": "4", "label": { "body": "Subtitle" } }
             ],

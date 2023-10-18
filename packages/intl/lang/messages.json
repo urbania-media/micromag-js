@@ -255,6 +255,10 @@
     "defaultMessage": "Description",
     "description": "Description placeholder"
   },
+  "57hjHa": {
+    "defaultMessage": "Answer feedback image",
+    "description": "Visual field label"
+  },
   "59f2bg": {
     "defaultMessage": "Images",
     "description": "visualsWithCaptions field label"
@@ -1875,6 +1879,10 @@
   "y7xsPe": {
     "defaultMessage": "Advanced settings",
     "description": "Fields section label"
+  },
+  "yA4B6h": {
+    "defaultMessage": "Result feedback image",
+    "description": "Visual field label"
   },
   "yCXMzz": {
     "defaultMessage": "Close",

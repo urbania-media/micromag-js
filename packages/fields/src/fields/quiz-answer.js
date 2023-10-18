@@ -42,6 +42,14 @@ export default {
             }),
         },
         {
+            name: 'answerImage',
+            type: 'visual',
+            label: defineMessage({
+                defaultMessage: 'Answer feedback image',
+                description: 'Visual field label',
+            }),
+        },
+        {
             type: 'fields',
             isList: true,
             fields: [

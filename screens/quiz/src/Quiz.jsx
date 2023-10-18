@@ -37,6 +37,7 @@ const propTypes = {
         image: MicromagPropTypes.imageElement,
         text: MicromagPropTypes.textElement,
     }),
+    resultImage: MicromagPropTypes.visualElement,
     buttonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
@@ -61,6 +62,7 @@ const defaultProps = {
     question: null,
     answers: null,
     result: null,
+    resultImage: null,
     buttonsStyle: null,
     buttonsTextStyle: null,
     goodAnswerColor: null,
@@ -85,6 +87,7 @@ const QuizScreen = ({
     question,
     answers,
     result,
+    resultImage,
     buttonsStyle,
     buttonsTextStyle,
     goodAnswerColor,
@@ -190,6 +193,7 @@ const QuizScreen = ({
     }, [setScrolledBottom]);
 
     const [hasScroll, setHasScroll] = useState(false);
+
     const onScrollHeightChange = useCallback(
         ({ canScroll = false }) => {
             setHasScroll(canScroll);
@@ -231,7 +235,8 @@ const QuizScreen = ({
                 ) : null}
                 <Scroll
                     verticalAlign={verticalAlign}
-                    disabled={scrollingDisabled || userAnswerIndex !== null}
+                    // disabled={scrollingDisabled || userAnswerIndex !== null}
+                    disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     onScrollHeightChange={onScrollHeightChange}
@@ -242,7 +247,8 @@ const QuizScreen = ({
                                 styles.header,
                                 {
                                     [styles.disabled]:
-                                        scrolledBottom && !scrollingDisabled && hasScroll,
+                                        userAnswerIndex !== null ||
+                                        (scrolledBottom && !scrollingDisabled && hasScroll),
                                 },
                             ])}
                             ref={headerRef}
@@ -261,6 +267,7 @@ const QuizScreen = ({
                         question={question}
                         answers={answers}
                         result={result}
+                        resultImage={resultImage}
                         answeredIndex={userAnswerIndex}
                         buttonsStyle={buttonsStyle}
                         buttonsTextStyle={buttonsTextStyle}
