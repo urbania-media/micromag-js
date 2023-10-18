@@ -1,15 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-14 14:06-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2023-10-18 14:59-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 3.2.0\n"
+"X-Generator: Poedit 3.1.1\n"
 
 # Audio and Video screen group
 #: +9akmg
@@ -2838,7 +2839,7 @@ msgstr "Paramètres avancés"
 #: yA4B6h
 msgctxt "yA4B6h"
 msgid "Result feedback image"
-msgstr "Image rétroaction"
+msgstr "Image de rétroaction"
 
 # Close button label in Media Gallery
 #: yCXMzz
