@@ -46,8 +46,8 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
         align-self: center;
         width: 95%;
         height: 45%;
-        border-top-left-radius: 2em;
-        border-top-right-radius: 2em;
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
         background-color: $gray-600;
     }
 }
@@ -74,8 +74,8 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
     bottom: 0;
     transform: scaleX(0.95);
     transition: height 0.4s $curve, transform 0.4s $curve, border-radius 0.4s $curve;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     box-shadow: 0 0 26px rgba(0 0 0 / 0.35);
 
     &.opened {

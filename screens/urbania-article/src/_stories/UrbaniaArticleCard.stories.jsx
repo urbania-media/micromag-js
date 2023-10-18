@@ -28,7 +28,8 @@ const props = () => ({
     image: video(null),
     theme: 'card',
     article: testArticle,
-    url: 'https://quatre95.urbania.ca/article/homard-et-crabe-des-neiges-des-prix-qui-pincent',
+    // url: 'https://reader.quatre95.urbania.ca/article/homard-et-crabe-des-neiges-des-prix-qui-pincent',
+    url: 'https://simple.urbania.ca.test:8080/article/mais-pourquoi-la-generation-boomer-ecrit-elle-comme-ca?=new',
     background: backgroundColor(),
     transitions: transitions(),
 });

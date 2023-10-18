@@ -235,7 +235,7 @@ const UrbaniaArticleCard = ({
                                     src={url || 'about:blank'}
                                     style={{
                                         width,
-                                        height: iframeOpened ? height : height * 0.45,
+                                        height: iframeOpened ? height : height * 0.25,
                                         pointerEvents: iframeInteractionEnabled ? 'auto' : 'none',
                                     }}
                                 />
