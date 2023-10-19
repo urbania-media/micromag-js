@@ -278,9 +278,9 @@ const ArticleScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop:
-                                          (!isPreview ? viewerTopHeight : 0) +
-                                          (hasHeader ? spacing / 2 : spacing / 2 + imageHeight),
+                                      paddingTop: hasHeader
+                                          ? spacing / 2 + (!isPreview ? viewerTopHeight : 0)
+                                          : spacing / 2 + imageHeight,
                                       paddingBottom:
                                           (current && !isPreview ? viewerBottomHeight : 0) +
                                           spacing / 2,
