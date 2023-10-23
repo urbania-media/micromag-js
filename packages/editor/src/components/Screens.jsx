@@ -7,16 +7,20 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Route } from 'react-router';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Empty, Navbar } from '@micromag/core/components';
 import { useRoutePush, useRoutes, useUrlGenerator } from '@micromag/core/contexts';
 import { useParsedStory } from '@micromag/core/hooks';
+
 import useRouteParams from '../hooks/useRouteParams';
 import useThemeValue from '../hooks/useThemeValue';
-import styles from '../styles/screens.module.scss';
 import createScreen from '../utils/createScreen';
+
 import ScreensMenu from './menus/ScreensMenu';
 import ScreenTypesModal from './modals/ScreenTypes';
+
+import styles from '../styles/screens.module.scss';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -131,6 +135,7 @@ const EditorScreens = ({
                         })),
                 };
                 if (onChange !== null) {
+                    // console.log('og!', listItems, newValue);
                     onChange(newValue);
                 }
             }

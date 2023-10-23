@@ -1,11 +1,11 @@
-/* eslint-disable no-unused-vars, no-param-reassign, jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
+/* eslint-disable no-param-reassign, jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, Transitions } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -35,7 +35,6 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     mediaRef: PropTypes.func,
     showWave: PropTypes.bool,
     className: PropTypes.string,
@@ -50,7 +49,6 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
-    transitions: null,
     mediaRef: null,
     showWave: true,
     className: null,
@@ -65,7 +63,6 @@ const AudioScreen = ({
     footer,
     current,
     active,
-    transitions,
     mediaRef: customMediaRef,
     showWave,
     className,
@@ -86,8 +83,8 @@ const AudioScreen = ({
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
-    const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
+    // const transitionPlaying = current && ready;
+    // const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
@@ -116,8 +113,7 @@ const AudioScreen = ({
         : null;
     const hasClosedCaptions = closedCaptions !== null;
 
-    const { playing, muted, setControls, setControlsTheme, setMedia, setPlaying } =
-        usePlaybackContext();
+    const { playing, muted, setControls, setControlsTheme, setPlaying } = usePlaybackContext();
 
     const mediaRef = usePlaybackMediaRef(current);
 
@@ -253,40 +249,34 @@ const AudioScreen = ({
                         emptyClassName={styles.empty}
                         isEmpty={!hasAudioUrl}
                     >
-                        <Transitions
-                            transitions={transitions}
-                            playing={transitionPlaying}
-                            disabled={transitionDisabled}
-                        >
-                            <Audio
-                                {...finalAudio}
-                                mediaRef={mediaRef}
-                                waveFake={isIOS || isPreview}
-                                waveProps={
-                                    isPreview
-                                        ? {
-                                              sampleWidth: 10,
-                                              sampleMargin: 5,
-                                              minSampleHeight: 5,
-                                              backgroundColor: color,
-                                              progressColor,
-                                          }
-                                        : { backgroundColor: color, progressColor }
-                                }
-                                paused={!current || !playing}
-                                muted={muted}
-                                className={styles.audio}
-                                onReady={onAudioReady}
-                                onPlay={onPlay}
-                                onPause={onPause}
-                                onTimeUpdate={onTimeUpdate}
-                                onProgressStep={onProgressStep}
-                                onDurationChange={onDurationChange}
-                                onSeeked={onSeeked}
-                                onEnded={onEnded}
-                                withWave={showWave && withWave}
-                            />
-                        </Transitions>
+                        <Audio
+                            {...finalAudio}
+                            mediaRef={mediaRef}
+                            waveFake={isIOS || isPreview}
+                            waveProps={
+                                isPreview
+                                    ? {
+                                          sampleWidth: 10,
+                                          sampleMargin: 5,
+                                          minSampleHeight: 5,
+                                          backgroundColor: color,
+                                          progressColor,
+                                      }
+                                    : { backgroundColor: color, progressColor }
+                            }
+                            paused={!current || !playing}
+                            muted={muted}
+                            className={styles.audio}
+                            onReady={onAudioReady}
+                            onPlay={onPlay}
+                            onPause={onPause}
+                            onTimeUpdate={onTimeUpdate}
+                            onProgressStep={onProgressStep}
+                            onDurationChange={onDurationChange}
+                            onSeeked={onSeeked}
+                            onEnded={onEnded}
+                            withWave={showWave && withWave}
+                        />
                     </ScreenElement>
                     <Spacer key="spacer-middle" />
                     {!isPlaceholder ? (

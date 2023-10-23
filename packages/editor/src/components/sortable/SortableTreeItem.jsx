@@ -4,9 +4,12 @@ import { CSS } from '@dnd-kit/utilities';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useRef } from 'react';
+
 import { iOS } from '../../lib/utilities';
-import styles from '../../styles/sortable/sortable-tree-item.module.scss';
+
 import SortableTreeItemActions from './SortableTreeItemActions';
+
+import styles from '../../styles/sortable/sortable-tree-item.module.scss';
 
 const propTypes = {
     id: PropTypes.string.isRequired,

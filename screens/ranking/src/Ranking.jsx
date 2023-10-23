@@ -39,8 +39,6 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -57,8 +55,6 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
-    transitions: null,
-    transitionStagger: 75,
     type: null,
     className: null,
 };
@@ -75,8 +71,6 @@ const RankingScreen = ({
     footer,
     current,
     active,
-    transitions,
-    transitionStagger,
     type,
     className,
 }) => {
@@ -98,7 +92,6 @@ const RankingScreen = ({
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
 
-    const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);
@@ -142,16 +135,7 @@ const RankingScreen = ({
                     emptyClassName={styles.empty}
                     isEmpty={!hasItemTitle}
                 >
-                    {hasItemTitle ? (
-                        <Transitions
-                            transitions={transitions}
-                            playing={transitionPlaying}
-                            delay={transitionStagger * itemI}
-                            disabled={transitionDisabled}
-                        >
-                            <Heading {...itemTitle} />
-                        </Transitions>
-                    ) : null}
+                    {hasItemTitle ? <Heading {...itemTitle} /> : null}
                 </ScreenElement>
             </div>
         );
@@ -169,16 +153,7 @@ const RankingScreen = ({
                     emptyClassName={styles.empty}
                     isEmpty={!hasDescription}
                 >
-                    {hasDescription ? (
-                        <Transitions
-                            transitions={transitions}
-                            playing={transitionPlaying}
-                            delay={transitionStagger * itemI}
-                            disabled={transitionDisabled}
-                        >
-                            <Text {...description} />
-                        </Transitions>
-                    ) : null}
+                    {hasDescription ? <Text {...description} /> : null}
                 </ScreenElement>
             </div>
         );
@@ -191,18 +166,11 @@ const RankingScreen = ({
                     {isPlaceholder ? (
                         rankText
                     ) : (
-                        <Transitions
-                            transitions={transitions}
-                            playing={transitionPlaying}
-                            delay={transitionStagger * itemI}
-                            disabled={transitionDisabled}
-                        >
-                            <Text
-                                className={styles.rankText}
-                                body={rankText}
-                                textStyle={numbersStyle}
-                            />
-                        </Transitions>
+                        <Text
+                            className={styles.rankText}
+                            body={rankText}
+                            textStyle={numbersStyle}
+                        />
                     )}
                 </div>
                 <div className={styles.label}>

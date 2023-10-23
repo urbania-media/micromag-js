@@ -35,7 +35,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
     className: PropTypes.string,
 };
@@ -50,7 +49,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    transitions: null,
     spacing: 20,
     className: null,
 };

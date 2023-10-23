@@ -1,8 +1,4 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-
-/* eslint-disable no-param-reassign */
-
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading, no-param-reassign, jsx-a11y/control-has-associated-label */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -47,7 +43,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
     mediaRef: PropTypes.func,
     className: PropTypes.string,
@@ -62,7 +57,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    transitions: null,
     spacing: 20,
     mediaRef: null,
     className: null,

@@ -153,6 +153,7 @@ const Image360Screen = ({
         if (THREE === null) {
             return;
         }
+
         // const { MathUtils } = THREE;
         // lat.current = Math.max(-85, Math.min(85, lat.current));
         // phi.current = MathUtils.degToRad(90 - lat.current);

@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import 'whatwg-fetch';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
+import { PlaceholderVideo360, ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -46,7 +46,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     type: PropTypes.string,
     spacing: PropTypes.number,
     mediaRef: PropTypes.func,
@@ -61,7 +60,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    transitions: null,
     type: null,
     spacing: 20,
     mediaRef: null,
@@ -76,7 +74,6 @@ const Video360Screen = ({
     background,
     current,
     active,
-    transitions,
     type,
     spacing,
     mediaRef: customMediaRef,
@@ -240,8 +237,8 @@ const Video360Screen = ({
 
     const [ready, setReady] = useState(!hasVideo);
 
-    const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
+    // const transitionPlaying = current && ready;
+    // const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
@@ -319,6 +316,10 @@ const Video360Screen = ({
     // render 3D frame
 
     const render3D = useCallback(() => {
+        if (THREE === null) {
+            return;
+        }
+
         const { MathUtils } = THREE;
         lat.current = Math.max(-85, Math.min(85, lat.current));
         phi.current = MathUtils.degToRad(90 - lat.current);
@@ -569,48 +570,42 @@ const Video360Screen = ({
                                 <Header {...header} />
                             </div>
                         ) : null}
-                        <Transitions
-                            playing={transitionPlaying}
-                            transitions={transitions}
-                            disabled={transitionDisabled}
-                            fullscreen
-                        >
-                            {withVideoSphere ? (
-                                <>
-                                    <canvas ref={canvasRef} className={styles.canvas} />
-                                    <button
-                                        className={styles.canvasButton}
-                                        type="button"
-                                        aria-label="canvas-interaction"
-                                        onPointerDown={onPointerDown}
-                                        onPointerMove={onPointerMove}
-                                        onPointerUp={onPointerUp}
-                                        tabIndex={current && isView ? null : '-1'}
-                                    />
-                                </>
-                            ) : (
-                                <div
-                                    className={styles.videoContainer}
-                                    style={{
-                                        width: resizedVideoWidth,
-                                        height: resizedVideoHeight,
-                                        left: resizedVideoLeft,
-                                        top: resizedVideoTop,
+
+                        {withVideoSphere ? (
+                            <>
+                                <canvas ref={canvasRef} className={styles.canvas} />
+                                <button
+                                    className={styles.canvasButton}
+                                    type="button"
+                                    aria-label="canvas-interaction"
+                                    onPointerDown={onPointerDown}
+                                    onPointerMove={onPointerMove}
+                                    onPointerUp={onPointerUp}
+                                    tabIndex={current && isView ? null : '-1'}
+                                />
+                            </>
+                        ) : (
+                            <div
+                                className={styles.videoContainer}
+                                style={{
+                                    width: resizedVideoWidth,
+                                    height: resizedVideoHeight,
+                                    left: resizedVideoLeft,
+                                    top: resizedVideoTop,
+                                }}
+                            >
+                                <Image
+                                    className={styles.video}
+                                    media={{
+                                        url: thumbnailUrl,
+                                        metadata: { width: videoWidth, height: videoHeight },
                                     }}
-                                >
-                                    <Image
-                                        className={styles.video}
-                                        media={{
-                                            url: thumbnailUrl,
-                                            metadata: { width: videoWidth, height: videoHeight },
-                                        }}
-                                        width={resizedVideoWidth}
-                                        height={resizedVideoHeight}
-                                        resolution={resolution}
-                                    />
-                                </div>
-                            )}
-                        </Transitions>
+                                    width={resizedVideoWidth}
+                                    height={resizedVideoHeight}
+                                    resolution={resolution}
+                                />
+                            </div>
+                        )}
                     </ScreenElement>
                     {!isPlaceholder ? (
                         <div
@@ -627,25 +622,16 @@ const Video360Screen = ({
                                 paddingTop: 0,
                             }}
                         >
-                            <Transitions
-                                playing={transitionPlaying}
-                                transitions={transitions}
-                                disabled={transitionDisabled}
-                            >
-                                {closedCaptions !== null &&
-                                !isPreview &&
-                                !isCapture &&
-                                !isStatic ? (
-                                    <ClosedCaptions
-                                        className={styles.closedCaptions}
-                                        media={closedCaptions}
-                                        currentTime={currentTime}
-                                    />
-                                ) : null}
-                                {hasFooter ? (
-                                    <Footer {...footerProps} className={styles.callToAction} />
-                                ) : null}
-                            </Transitions>
+                            {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
+                                <ClosedCaptions
+                                    className={styles.closedCaptions}
+                                    media={closedCaptions}
+                                    currentTime={currentTime}
+                                />
+                            ) : null}
+                            {hasFooter ? (
+                                <Footer {...footerProps} className={styles.callToAction} />
+                            ) : null}
                         </div>
                     ) : null}
                 </div>

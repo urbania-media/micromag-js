@@ -47,7 +47,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
@@ -70,7 +69,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    transitions: null,
     transitionStagger: 100,
     className: null,
 };

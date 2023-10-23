@@ -28,7 +28,7 @@ export const defaultTheme = {
                 mergeNavItems: true,
                 collapsed: false,
             },
-            background: { color: { color: '#FF0', alpha: 1 }, image: null, video: null },
+            background: { color: { color: '#0FF', alpha: 1 }, image: null, video: null },
         },
         {
             id: '2222222222',
@@ -43,19 +43,25 @@ export const defaultTheme = {
             layout: 'top',
             text: {
                 body: 'Test body 4',
+                style: {
+                    color: {
+                        color: '#000',
+                        alpha: 1,
+                    },
+                },
             },
             group: {
                 mergeNavItems: true,
                 collapsed: true,
             },
-            background: { color: { color: '#0FF', alpha: 1 }, image: null, video: null },
+            background: { color: { color: '#FC0', alpha: 1 }, image: null, video: null },
         },
         {
             id: '555555',
             type: 'text',
             layout: 'top',
             text: {
-                body: 'Test body 4',
+                body: 'Test body 5',
             },
             background: { color: { color: '#00F', alpha: 1 }, image: null, video: null },
             parentId: '44444444',
@@ -65,7 +71,7 @@ export const defaultTheme = {
             type: 'text',
             layout: 'top',
             text: {
-                body: 'Test body 4',
+                body: 'Test body 6',
             },
             background: { color: { color: '#F0F', alpha: 1 }, image: null, video: null },
             parentId: '44444444',

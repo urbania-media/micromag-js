@@ -7,8 +7,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenRenderContext } from '@micromag/core/contexts';
+import { ScreenElement } from '@micromag/core/components';
 import { isTextFilled } from '@micromag/core/utils';
 import Button from '@micromag/element-button';
 import Heading from '@micromag/element-heading';
@@ -24,10 +23,6 @@ const propTypes = {
     layout: PropTypes.string,
     focusable: PropTypes.bool,
     buttonDisabled: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionPlaying: PropTypes.bool,
-    transitionStagger: PropTypes.number,
-    transitionDisabled: PropTypes.bool,
     className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     onClickButton: PropTypes.func,
@@ -40,10 +35,6 @@ const defaultProps = {
     button: null,
     buttonDisabled: false,
     focusable: false,
-    transitions: null,
-    transitionPlaying: false,
-    transitionStagger: 100,
-    transitionDisabled: false,
     className: null,
     style: null,
     onClickButton: null,
@@ -56,15 +47,11 @@ const Title = ({
     button,
     buttonDisabled,
     focusable,
-    transitions,
-    transitionPlaying,
-    transitionStagger,
-    transitionDisabled,
     className,
     style,
     onClickButton,
 }) => {
-    const { isPreview, isEdit } = useScreenRenderContext();
+    // const { isPreview, isEdit } = useScreenRenderContext();
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
@@ -94,15 +81,7 @@ const Title = ({
                     emptyClassName={styles.emptyTitle}
                     isEmpty={!hasTitle}
                 >
-                    {hasTitle ? (
-                        <Transitions
-                            transitions={transitions}
-                            playing={transitionPlaying}
-                            disabled={transitionDisabled}
-                        >
-                            <Heading {...title} className={styles.title} />
-                        </Transitions>
-                    ) : null}
+                    {hasTitle ? <Heading {...title} className={styles.title} /> : null}
                 </ScreenElement>,
                 <ScreenElement
                     key="description"
@@ -117,41 +96,27 @@ const Title = ({
                     isEmpty={!hasDescription}
                 >
                     {hasDescription ? (
-                        <Transitions
-                            transitions={transitions}
-                            playing={transitionPlaying}
-                            disabled={transitionDisabled}
-                            delay={transitionStagger}
-                        >
-                            <Text {...description} className={styles.description} />
-                        </Transitions>
+                        <Text {...description} className={styles.description} />
                     ) : null}
                 </ScreenElement>,
                 isSplitted ? <Spacer key="spacer" /> : null,
                 <ScreenElement key="button" placeholder="button">
-                    <Transitions
-                        transitions={transitions}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                        delay={transitionStagger * 2}
+                    <Button
+                        disabled={buttonDisabled}
+                        focusable={focusable}
+                        buttonStyle={button !== null ? button.buttonStyle : null}
+                        className={styles.button}
+                        onClick={onClickButton}
                     >
-                        <Button
-                            disabled={buttonDisabled}
-                            focusable={focusable}
-                            buttonStyle={button !== null ? button.buttonStyle : null}
-                            className={styles.button}
-                            onClick={onClickButton}
-                        >
-                            {hasButton ? (
-                                <Text {...button} className={styles.label} />
-                            ) : (
-                                <FormattedMessage
-                                    defaultMessage="Start"
-                                    description="Screen button label"
-                                />
-                            )}
-                        </Button>
-                    </Transitions>
+                        {hasButton ? (
+                            <Text {...button} className={styles.label} />
+                        ) : (
+                            <FormattedMessage
+                                defaultMessage="Start"
+                                description="Screen button label"
+                            />
+                        )}
+                    </Button>
                 </ScreenElement>,
             ]}
         </Layout>

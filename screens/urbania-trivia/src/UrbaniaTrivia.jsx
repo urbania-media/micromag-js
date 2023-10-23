@@ -71,7 +71,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
     padding: PropTypes.number,
     mediaRef: PropTypes.func,
@@ -86,7 +85,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    transitions: null,
     spacing: 20,
     padding: 20,
     mediaRef: null,
@@ -101,13 +99,15 @@ const UrbaniaTrivia = ({
     background,
     current,
     active,
-    transitions,
     spacing,
     padding,
+    transitions,
     mediaRef: customMediaRef,
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
+
+    console.log(transitions);
 
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -381,11 +381,6 @@ const UrbaniaTrivia = ({
                             maxHeight: videoMaxHeight,
                         }}
                     >
-                        {/* <Transitions
-                        playing={transitionPlaying}
-                        transitions={transitions}
-                        disabled={transitionDisabled}
-                    > */}
                         {isPreview || isCapture ? (
                             <Image
                                 className={styles.image}
@@ -418,7 +413,7 @@ const UrbaniaTrivia = ({
                                 shouldLoad={mediaShouldLoad}
                             />
                         )}
-                        {/* </Transitions> */}
+
                         {current && !isPlaceholder ? (
                             <div
                                 key="bottom-content"
