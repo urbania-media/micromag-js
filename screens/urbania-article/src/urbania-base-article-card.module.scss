@@ -113,7 +113,28 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
         left: 0;
         width: 100%;
     }
+
+    .iframeBlocker {
+        display: none;
+        position: absolute;
+
+        z-index: 4;
+        bottom: 0;
+        opacity: 0.5;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    .placeholder {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #f3f;
+        background-color: $gray-600;
+    }
 }
+
 
 
 

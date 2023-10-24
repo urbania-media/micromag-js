@@ -212,7 +212,8 @@ const UrbaniaArticleCard = ({
                                         height: iframeOpened ? '100px' : height,
                                         width,
                                         position: iframeOpened ? 'absolute' : 'relative',
-                                        zIndex: iframeOpened ? 5 : 'auto',
+                                        // zIndex: iframeOpened ? 5 : 'auto',
+                                        zIndex: 5,
                                     }}
                                     className={styles.interactiveZone}
                                 />
@@ -235,6 +236,15 @@ const UrbaniaArticleCard = ({
                                         height: iframeOpened ? height : height * 0.25,
                                         pointerEvents: iframeInteractionEnabled ? 'auto' : 'none',
                                     }}
+                                />
+                                <div
+                                    className={classNames([
+                                        styles.iframeBlocker,
+                                        {
+                                            [styles.active]: !iframeInteractionEnabled,
+                                        },
+                                    ])}
+                                    style={{ width, height: height * 0.25 }}
                                 />
                             </>
                         ) : null}
