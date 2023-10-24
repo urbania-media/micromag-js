@@ -71,7 +71,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'bottom',
+    layout: null,
     category: null,
     visual: null,
     title: null,
@@ -392,7 +392,7 @@ const UrbaniaRecommendation = ({
                                     styles.textCard,
                                     {
                                         [styles.isPlaceholder]: isPlaceholder,
-                                        [styles.visualBottom]: layout === 'top',
+                                        [styles.visualBottom]: layout === 'bottom',
                                         [styles.appear]: backgroundAnimationStarted,
                                         [styles.modalOpened]:
                                             visualModalTransitioning || visualModalOpened,
@@ -516,7 +516,7 @@ const UrbaniaRecommendation = ({
                                                                 styles.iconContainer,
                                                                 {
                                                                     [styles.visualBottom]:
-                                                                        layout === 'top',
+                                                                        layout === 'bottom',
                                                                 },
                                                             ])}
                                                         >
@@ -537,7 +537,6 @@ const UrbaniaRecommendation = ({
                                             </div>
                                         ) : null}
                                     </ScreenElement>
-                                    {/* // SPONSOR */}
                                     <ScreenElement
                                         key="sponsor"
                                         placeholder={

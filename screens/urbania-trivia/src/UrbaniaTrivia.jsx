@@ -74,6 +74,7 @@ const propTypes = {
     spacing: PropTypes.number,
     padding: PropTypes.number,
     mediaRef: PropTypes.func,
+    transitions: PropTypes.any, // eslint-disable-line react/forbid-prop-types
     className: PropTypes.string,
 };
 
@@ -87,6 +88,7 @@ const defaultProps = {
     active: true,
     spacing: 20,
     padding: 20,
+    transitions: null,
     mediaRef: null,
     className: null,
 };
@@ -106,8 +108,6 @@ const UrbaniaTrivia = ({
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
-
-    console.log(transitions);
 
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =

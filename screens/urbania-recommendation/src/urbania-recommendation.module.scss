@@ -308,6 +308,8 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         padding: 14px 8px 14px 0;
 
         &.isPlaceholder {
+            display: none;
+            visibility: hidden;
             margin-left: 2px;
             padding: 10px;
             background-color: $gray-200;
@@ -346,9 +348,10 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
     .date,
     .location,
     .sponsor {
-        > p {
+        p {
             margin-top: 0;
             margin-bottom: 0;
+            font-weight: inherit;
         }
     }
 
@@ -360,6 +363,7 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
 
         p {
             margin-bottom: 0.5em;
+            font-weight: inherit;
 
             &:last-child {
                 margin-bottom: 0;
