@@ -1,6 +1,6 @@
 {
     "name": "@micromag/ckeditor",
-    "version": "0.3.409",
+    "version": "0.3.417",
     "private": false,
     "description": "",
     "keywords": [
@@ -64,8 +64,8 @@
         "@ckeditor/ckeditor5-build-inline": "^40.0.0",
         "@ckeditor/ckeditor5-dev-translations": "39.1.0",
         "@ckeditor/ckeditor5-dev-utils": "39.1.0",
-        "@ckeditor/ckeditor5-editor-inline": "^40.0.0",
         "@ckeditor/ckeditor5-editor-classic": "^40.0.0",
+        "@ckeditor/ckeditor5-editor-inline": "^40.0.0",
         "@ckeditor/ckeditor5-essentials": "^40.0.0",
         "@ckeditor/ckeditor5-heading": "^40.0.0",
         "@ckeditor/ckeditor5-highlight": "^40.0.0",
