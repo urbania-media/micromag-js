@@ -2,6 +2,8 @@
 @import '~@micromag/core/scss/variables';
 
 .container {
+    padding: 0;
+    // background-color: hsla(0,0%,100%,.07);
     /* stylelint-disable selector-class-pattern, max-nesting-depth, selector-max-compound-selectors, selector-pseudo-class-no-unknown, no-descending-specificity */
     :global {
         .ck {
@@ -11,13 +13,16 @@
                 background: $input-bg;
 
                 &:not(.ck-editor__nested-editable) {
+                    border: 1px solid transparent;
+
                     &.ck-rounded-corners {
                         border-radius: $input-border-radius;
                     }
 
                     &.ck-focused {
-                        border: $input-border-width solid $input-btn-focus-color;
-                        box-shadow: 0 0 0 3px $input-btn-focus-color;
+                        border: 1px solid transparent;
+                        outline: none;
+                        box-shadow: 0 0 0 4px $input-btn-focus-color;
                     }
                 }
             }

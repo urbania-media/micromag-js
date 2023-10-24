@@ -510,6 +510,7 @@ const Viewer = ({
     const onClickScreen = useCallback(
         ({ screenId: itemScreenId }) => {
             onInteractionPrivate();
+
             const index = screens.findIndex(({ id }) => id === itemScreenId);
             changeIndex(index);
         },

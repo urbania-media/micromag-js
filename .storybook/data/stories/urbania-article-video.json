@@ -1,0 +1,502 @@
+{
+    "id": "8274rgiuwfguwy4f23",
+    "type": "urbania-article",
+    "article": {
+        "id": "402054",
+        "type": "video",
+        "title": "Prendre le large dans le Bas-Saint-Laurent",
+        "subtitle": null,
+        "image": {
+            "id": "402057",
+            "url": "https://cdn.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg",
+            "title": null,
+            "description": null,
+            "width": 3840,
+            "height": 2160,
+            "sizes": {
+                "original": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg",
+                    "width": 3840,
+                    "height": 2160
+                },
+                "original_webp": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75",
+                    "width": 3840,
+                    "height": 2160
+                },
+                "thumbnail": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                    "width": 200,
+                    "height": 200
+                },
+                "thumbnail_webp": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                    "width": 200,
+                    "height": 200
+                },
+                "small": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=max&w=400&h=400",
+                    "width": 400,
+                    "height": 225
+                },
+                "small_webp": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75&fit=max&w=400&h=400",
+                    "width": 400,
+                    "height": 225
+                },
+                "medium": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=max&w=700&h=700",
+                    "width": 700,
+                    "height": 394
+                },
+                "medium_webp": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75&fit=max&w=700&h=700",
+                    "width": 700,
+                    "height": 394
+                },
+                "large": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=max&w=1400",
+                    "width": 3840,
+                    "height": 2160
+                },
+                "large_webp": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75&fit=max&w=1400",
+                    "width": 3840,
+                    "height": 2160
+                },
+                "cover": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=max&w=1400&h=1400",
+                    "width": 1400,
+                    "height": 788
+                },
+                "cover_webp": {
+                    "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75&fit=max&w=1400&h=1400",
+                    "width": 1400,
+                    "height": 788
+                }
+            },
+            "credits": null
+        },
+        "video": {
+            "id": "x89ywwb",
+            "provider": "dailymotion",
+            "url": "https://www.dailymotion.com/video/x89ywwb",
+            "embed": "https://www.dailymotion.com/embed/video/x89ywwb",
+            "width": 1080,
+            "height": 1350,
+            "duration": 282
+        },
+        "slug": "prendre-le-large-dans-le-bas-st-laurent",
+        "url": "/article/prendre-le-large-dans-le-bas-st-laurent",
+        "metadata": {
+            "title": "Prendre le large dans le Bas-Saint-Laurent",
+            "description": "Pour plusieurs Montr\u00e9alais, l\u2019id\u00e9e de d\u00e9m\u00e9nager en r\u00e9gion implique des sacrifices. Est-ce que c\u2019est vrai? On est all\u00e9s v\u00e9rifier par nous-m\u00eames dans le...",
+            "image": {
+                "id": "402057",
+                "url": "https://cdn.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg",
+                "title": null,
+                "description": null,
+                "width": 3840,
+                "height": 2160,
+                "sizes": {
+                    "original": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg",
+                        "width": 3840,
+                        "height": 2160
+                    },
+                    "original_webp": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75",
+                        "width": 3840,
+                        "height": 2160
+                    },
+                    "thumbnail": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                        "width": 200,
+                        "height": 200
+                    },
+                    "thumbnail_webp": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                        "width": 200,
+                        "height": 200
+                    },
+                    "small": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=max&w=400&h=400",
+                        "width": 400,
+                        "height": 225
+                    },
+                    "small_webp": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75&fit=max&w=400&h=400",
+                        "width": 400,
+                        "height": 225
+                    },
+                    "medium": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=max&w=700&h=700",
+                        "width": 700,
+                        "height": 394
+                    },
+                    "medium_webp": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75&fit=max&w=700&h=700",
+                        "width": 700,
+                        "height": 394
+                    },
+                    "large": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=max&w=1400",
+                        "width": 3840,
+                        "height": 2160
+                    },
+                    "large_webp": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75&fit=max&w=1400",
+                        "width": 3840,
+                        "height": 2160
+                    },
+                    "cover": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=max&w=1400&h=1400",
+                        "width": 1400,
+                        "height": 788
+                    },
+                    "cover_webp": {
+                        "url": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=webp&q=75&fit=max&w=1400&h=1400",
+                        "width": 1400,
+                        "height": 788
+                    }
+                },
+                "credits": null
+            },
+            "customDimensions": {
+                "pageType": "article",
+                "postType": "video",
+                "categories": ["reportage-2"],
+                "keywords": [
+                    "bas-st-laurent",
+                    "campagne",
+                    "demenager",
+                    "fleuve",
+                    "mode-de-vie",
+                    "region"
+                ],
+                "isCollection": false,
+                "publishedDate": "2022-04-13",
+                "postAuthors": ["laimaagerald"],
+                "postId": "402054",
+                "isSponsored": true,
+                "sponsorName": "Bas-Saint-Laurent"
+            },
+            "adsTargeting": {
+                "postID": "402054",
+                "categories": ["reportage-2"],
+                "tags": [
+                    "bas-st-laurent",
+                    "campagne",
+                    "demenager",
+                    "fleuve",
+                    "mode-de-vie",
+                    "region"
+                ],
+                "authors": ["laimaagerald"],
+                "sponsors": ["Bas-Saint-Laurent"],
+                "GoogleSafeTargeting": true
+            },
+            "createdAt": "2022-04-13 14:46:55",
+            "site": "urbania",
+            "canonical": "https://urbania.ca/article/prendre-le-large-dans-le-bas-st-laurent",
+            "authors": [
+                {
+                    "id": "10759",
+                    "type": "author",
+                    "slug": "laimaagerald",
+                    "name": "La\u00efma A. G\u00e9rald",
+                    "url": "/auteurs/laimaagerald",
+                    "description": null,
+                    "avatar": {
+                        "id": "356482",
+                        "url": "https://cdn.urbania.ca/media/2020/09/Laima.jpg",
+                        "title": null,
+                        "description": null,
+                        "width": 1280,
+                        "height": 1280,
+                        "sizes": {
+                            "original": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=jpg",
+                                "width": 1280,
+                                "height": 1280
+                            },
+                            "original_webp": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=webp&q=75",
+                                "width": 1280,
+                                "height": 1280
+                            },
+                            "thumbnail": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=jpg&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                                "width": 200,
+                                "height": 200
+                            },
+                            "thumbnail_webp": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                                "width": 200,
+                                "height": 200
+                            },
+                            "small": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=jpg&fit=max&w=400&h=400",
+                                "width": 400,
+                                "height": 400
+                            },
+                            "small_webp": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=webp&q=75&fit=max&w=400&h=400",
+                                "width": 400,
+                                "height": 400
+                            },
+                            "medium": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=jpg&fit=max&w=700&h=700",
+                                "width": 700,
+                                "height": 700
+                            },
+                            "medium_webp": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=webp&q=75&fit=max&w=700&h=700",
+                                "width": 700,
+                                "height": 700
+                            },
+                            "large": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=jpg&fit=max&w=1400",
+                                "width": 1280,
+                                "height": 1280
+                            },
+                            "large_webp": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=webp&q=75&fit=max&w=1400",
+                                "width": 1280,
+                                "height": 1280
+                            },
+                            "cover": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=jpg&fit=max&w=1400&h=1400",
+                                "width": 1280,
+                                "height": 1280
+                            },
+                            "cover_webp": {
+                                "url": "https://img.urbania.ca/media/2020/09/Laima.jpg?fm=webp&q=75&fit=max&w=1400&h=1400",
+                                "width": 1280,
+                                "height": 1280
+                            }
+                        },
+                        "credits": null
+                    }
+                }
+            ],
+            "section": null,
+            "categories": [
+                {
+                    "id": "11417",
+                    "name": "Reportage",
+                    "slug": "reportage-2",
+                    "url": "/sujets/reportage-2"
+                }
+            ],
+            "sponsors": [
+                {
+                    "name": "Bas-Saint-Laurent",
+                    "url": "http://vivreaubassaintlaurent.org/",
+                    "logo": {
+                        "id": "402058",
+                        "url": "https://cdn.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png",
+                        "title": null,
+                        "description": null,
+                        "width": 2400,
+                        "height": 1426,
+                        "sizes": {
+                            "original": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=png",
+                                "width": 2400,
+                                "height": 1426
+                            },
+                            "original_webp": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=webp&q=75",
+                                "width": 2400,
+                                "height": 1426
+                            },
+                            "thumbnail": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=png&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                                "width": 200,
+                                "height": 200
+                            },
+                            "thumbnail_webp": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=webp&q=75&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                                "width": 200,
+                                "height": 200
+                            },
+                            "small": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=png&fit=max&w=400&h=400",
+                                "width": 400,
+                                "height": 238
+                            },
+                            "small_webp": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=webp&q=75&fit=max&w=400&h=400",
+                                "width": 400,
+                                "height": 238
+                            },
+                            "medium": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=png&fit=max&w=700&h=700",
+                                "width": 700,
+                                "height": 416
+                            },
+                            "medium_webp": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=webp&q=75&fit=max&w=700&h=700",
+                                "width": 700,
+                                "height": 416
+                            },
+                            "large": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=png&fit=max&w=1400",
+                                "width": 2400,
+                                "height": 1426
+                            },
+                            "large_webp": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=webp&q=75&fit=max&w=1400",
+                                "width": 2400,
+                                "height": 1426
+                            },
+                            "cover": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=png&fit=max&w=1400&h=1400",
+                                "width": 1400,
+                                "height": 832
+                            },
+                            "cover_webp": {
+                                "url": "https://img.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png?fm=webp&q=75&fit=max&w=1400&h=1400",
+                                "width": 1400,
+                                "height": 832
+                            }
+                        },
+                        "credits": null
+                    }
+                }
+            ],
+            "tags": [
+                {
+                    "id": "5982",
+                    "name": "bas-st-laurent",
+                    "slug": "bas-st-laurent",
+                    "url": "/mots-cles/bas-st-laurent"
+                },
+                {
+                    "id": "2180",
+                    "name": "campagne",
+                    "slug": "campagne",
+                    "url": "/mots-cles/campagne"
+                },
+                {
+                    "id": "15162",
+                    "name": "d\u00e9m\u00e9nager",
+                    "slug": "demenager",
+                    "url": "/mots-cles/demenager"
+                },
+                { "id": "4672", "name": "fleuve", "slug": "fleuve", "url": "/mots-cles/fleuve" },
+                {
+                    "id": "12564",
+                    "name": "Mode de vie",
+                    "slug": "mode-de-vie",
+                    "url": "/mots-cles/mode-de-vie"
+                },
+                { "id": "11267", "name": "region", "slug": "region", "url": "/mots-cles/region" }
+            ],
+            "color": "#33FFCC",
+            "commentsCount": 0,
+            "duration": 282,
+            "pixels": [],
+            "locations": [],
+            "microformats": [
+                {
+                    "@type": "Article",
+                    "@context": "http://schema.org",
+                    "identifier": "402054",
+                    "url": "https://urbania.ca/article/prendre-le-large-dans-le-bas-st-laurent",
+                    "headline": "Prendre le large dans le Bas-Saint-Laurent",
+                    "description": "Pour plusieurs Montr\u00e9alais, l\u2019id\u00e9e de d\u00e9m\u00e9nager en r\u00e9gion implique des sacrifices. Est-ce que c\u2019est vrai? On est all\u00e9s v\u00e9rifier par nous-m\u00eames dans le...",
+                    "articleSection": "Reportage",
+                    "keywords": [
+                        "bas-st-laurent",
+                        "campagne",
+                        "demenager",
+                        "fleuve",
+                        "mode-de-vie",
+                        "region"
+                    ],
+                    "image": {
+                        "@type": "Image",
+                        "@context": "http://schema.org",
+                        "identifier": "402057",
+                        "url": "https://cdn.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg",
+                        "width": 3840,
+                        "height": 2160
+                    },
+                    "thumbnailUrl": "https://img.urbania.ca/media/2022/04/16_9thumb_REPORTAGE-TERRAIN.jpg?fm=jpg&fit=crop&crop=faces%2Cedges&w=200&h=200",
+                    "author": {
+                        "@type": "Person",
+                        "@context": "http://schema.org",
+                        "identifier": "10759",
+                        "url": "https://urbania.ca/auteurs/laimaagerald",
+                        "image": {
+                            "@type": "Image",
+                            "@context": "http://schema.org",
+                            "identifier": "356482",
+                            "url": "https://cdn.urbania.ca/media/2020/09/Laima.jpg",
+                            "width": 1280,
+                            "height": 1280
+                        },
+                        "name": "La\u00efma A. G\u00e9rald"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "@context": "http://schema.org",
+                        "identifier": "urbania",
+                        "url": "https://urbania.ca",
+                        "name": "URBANIA",
+                        "image": {
+                            "@type": "Image",
+                            "@context": "http://schema.org",
+                            "identifier": "https://urbania.ca/static/media/facebook/urbania/default.png",
+                            "url": "https://urbania.ca/static/media/facebook/urbania/default.png",
+                            "width": 1910,
+                            "height": 1000
+                        }
+                    },
+                    "sponsor": {
+                        "@type": "Organization",
+                        "@context": "http://schema.org",
+                        "identifier": "Bas-Saint-Laurent",
+                        "url": "http://vivreaubassaintlaurent.org/",
+                        "name": "Bas-Saint-Laurent",
+                        "image": {
+                            "@type": "Image",
+                            "@context": "http://schema.org",
+                            "identifier": "402058",
+                            "url": "https://cdn.urbania.ca/media/2022/04/CRD-BSL_slogan_RVB_Logo_Couleur.png",
+                            "width": 2400,
+                            "height": 1426
+                        }
+                    },
+                    "sourceOrganization": "Urbania",
+                    "dateCreated": "2022-04-13T14:46:55-04:00",
+                    "datePublished": "2022-04-13T14:46:55-04:00",
+                    "dateModified": "2022-04-13T16:01:11-04:00"
+                }
+            ]
+        },
+        "blocks": [
+            {
+                "id": "0",
+                "type": "text",
+                "body": "<p>Pour plusieurs Montr\u00e9alais, l\u2019id\u00e9e de d\u00e9m\u00e9nager en r\u00e9gion implique des sacrifices. Est-ce que c\u2019est vrai? On est all\u00e9s v\u00e9rifier par nous-m\u00eames dans le Bas-Saint-Laurent!</p>",
+                "withBox": false
+            },
+            {
+                "id": "1",
+                "type": "text",
+                "body": "<p data-pm-slice=\"1 1 []\">\u00c7a vous a donn\u00e9 le go\u00fbt de prendre le large, vous aussi? Visitez le <a class=\"ProsemirrorEditor-link\" href=\"http://vivreaubassaintlaurent.org/\" target=\"_blank\" rel=\"noreferrer noopener\">vivreaubassaintlaurent.org</a>!</p>",
+                "withBox": false
+            },
+            {
+                "id": "2",
+                "type": "text",
+                "body": "<p class=\"p1\">Envie de d\u00e9couvrir une tonne d\u2019histoires de gens passionn\u00e9s (ou juste de vous divertir un bon coup)? <a href=\"https://goo.gl/WpXp1X\">Abonnez-vous \u00e0 notre cha\u00eene YouTube</a> et <a href=\"https://www.instagram.com/_urbania/\">suivez-nous sur Instagram</a>!</p>",
+                "withBox": false
+            }
+        ],
+        "pageType": "article"
+    }
+}

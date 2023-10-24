@@ -2,36 +2,23 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    backgroundColor,
-    backgroundVideo,
-    transitions,
-    headerFooter,
-    videoMedia,
-} from '../../../../.storybook/data';
+import { backgroundVideo, headerFooter } from '../../../../.storybook/data';
+import testArticle from '../../../../.storybook/data/stories/urbania-article-card';
 import Article from '../UrbaniaCardLoader';
 import definition from '../definition-card';
 
-import testArticle from './article.json';
-import testVideo from './video.json';
-
-const video = (props) => ({
-    ...props,
-    type: 'video',
-    media: videoMedia(),
-    autoPlay: true,
-    article: testVideo,
-    loop: false,
-});
+import testVideoArticle from './video.json';
 
 const props = () => ({
-    image: video(null),
+    ...testArticle,
+    // image: videoMedia(),
     theme: 'card',
-    article: testArticle,
-    // url: 'https://reader.quatre95.urbania.ca/article/homard-et-crabe-des-neiges-des-prix-qui-pincent',
-    url: 'https://simple.urbania.ca.test:8080/article/mais-pourquoi-la-generation-boomer-ecrit-elle-comme-ca?=new',
-    background: backgroundColor(),
-    transitions: transitions(),
+    url: 'https://simple.urbania.ca/article/mais-pourquoi-la-generation-boomer-ecrit-elle-comme-ca?=new',
+    // background: backgroundColor(),
+    // transitions: transitions(),
+    text: {
+        body: '<p>ABCD</p>',
+    },
 });
 
 export default {
@@ -68,7 +55,7 @@ export const WithVideoBackground = (storyProps) => (
 );
 
 export const WithHeader = (storyProps) => (
-    <Article {...storyProps} {...props()} article={testVideo} {...headerFooter()} />
+    <Article {...storyProps} {...props()} article={testVideoArticle} {...headerFooter()} />
 );
 
 export const URL = (storyProps) => (

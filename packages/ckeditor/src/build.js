@@ -1,6 +1,7 @@
 // eslint-disable-next-line max-classes-per-file
 import { Bold, Italic } from '@ckeditor/ckeditor5-basic-styles';
 import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
+import { ClassicEditor as ClassicEditorBase } from '@ckeditor/ckeditor5-editor-classic';
 import { InlineEditor as InlineEditorBase } from '@ckeditor/ckeditor5-editor-inline';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
 import { Heading, HeadingButtonsUI } from '@ckeditor/ckeditor5-heading';
@@ -18,7 +19,7 @@ class NormalEditor extends InlineEditorBase {}
 NormalEditor.builtinPlugins = [Essentials, Paragraph, Bold, Italic, Highlight, Link];
 NormalEditor.defaultConfig = {};
 
-class FullEditor extends InlineEditorBase {}
+class FullEditor extends ClassicEditorBase {}
 FullEditor.builtinPlugins = [
     Essentials,
     Paragraph,

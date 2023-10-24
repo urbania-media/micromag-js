@@ -51,10 +51,10 @@ import Visual from '@micromag/element-visual';
 import styles from './urbania-recommendation.module.scss';
 
 const propTypes = {
+    layout: PropTypes.string,
     category: MicromagPropTypes.headingElement,
     visual: PropTypes.shape({
         image: MicromagPropTypes.visualElement,
-        visualLayout: PropTypes.oneOf(['label-bottom', 'label-top']),
     }),
     title: MicromagPropTypes.headingElement,
     date: MicromagPropTypes.textElement,
@@ -71,6 +71,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    layout: 'bottom',
     category: null,
     visual: null,
     title: null,
@@ -88,6 +89,7 @@ const defaultProps = {
 };
 
 const UrbaniaRecommendation = ({
+    layout,
     category,
     visual,
     title,
@@ -124,7 +126,7 @@ const UrbaniaRecommendation = ({
     const [backgroundAnimationStarted, setBackgroundAnimationStarted] = useState(animateBackground);
     const [didAnimate, setDidAnimate] = useState(false);
 
-    const { image = null, visualLayout = null } = visual || {}; // note: image can be a video
+    const { image = null } = visual || {}; // note: image can be a video
     const { type = null, metadata: videoMetadata = null } = image || {};
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
@@ -390,7 +392,7 @@ const UrbaniaRecommendation = ({
                                     styles.textCard,
                                     {
                                         [styles.isPlaceholder]: isPlaceholder,
-                                        [styles.visualBottom]: visualLayout === 'label-top',
+                                        [styles.visualBottom]: layout === 'top',
                                         [styles.appear]: backgroundAnimationStarted,
                                         [styles.modalOpened]:
                                             visualModalTransitioning || visualModalOpened,
@@ -514,8 +516,7 @@ const UrbaniaRecommendation = ({
                                                                 styles.iconContainer,
                                                                 {
                                                                     [styles.visualBottom]:
-                                                                        visualLayout ===
-                                                                        'label-top',
+                                                                        layout === 'top',
                                                                 },
                                                             ])}
                                                         >

@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading, no-console */
 import React, { useCallback, useState } from 'react';
 
 import {
@@ -21,6 +21,7 @@ import multipleVideosStory from '../../../../.storybook/data/stories/multipleVid
 import quiz from '../../../../.storybook/data/stories/quiz';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
+import UrbaniaComponents from '../../../../.storybook/data/stories/urbania-components';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
@@ -96,6 +97,19 @@ export default {
 export const Basic = () => (
     <Viewer
         story={basic}
+        withNavigationHint
+        menuHeader={
+            <div style={{ width: '100%', padding: '0 20 0 0', textAlign: 'center' }}>
+                <div>Friend</div> MY KUSTOM TITLE
+            </div>
+        }
+        onMenuChange={(state) => console.log(state)}
+    />
+);
+
+export const Urbania = () => (
+    <Viewer
+        story={{ ...basic, background: null, components: UrbaniaComponents }}
         withNavigationHint
         menuHeader={
             <div style={{ width: '100%', padding: '0 20 0 0', textAlign: 'center' }}>

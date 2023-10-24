@@ -11,6 +11,7 @@ import multipleArticles from '../../../../.storybook/data/stories/multipleArticl
 import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
+import UrbaniaScreenComponents from '../../../../.storybook/data/stories/urbania-components';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
 import simpleTreeTheme from '../../../../.storybook/data/themes/simpletree';
@@ -127,9 +128,15 @@ EditorContainer.defaultProps = {
     viewerTheme: null,
 };
 
-export const TextArticle = () => <EditorContainer defaultValue={article} />;
+export const TestUrbania = () => (
+    <EditorContainer
+        defaultValue={{ title: 'Test', theme: defaultTheme, components: UrbaniaScreenComponents }}
+    />
+);
 
-export const TextQuoteBadges = () => <EditorContainer defaultValue={textQuoteBadges} />;
+export const TestUrbaniaArticle = () => <EditorContainer defaultValue={article} />;
+
+export const TestQuoteBadges = () => <EditorContainer defaultValue={textQuoteBadges} />;
 
 export const TestArticleUrbania = () => (
     <EditorContainer

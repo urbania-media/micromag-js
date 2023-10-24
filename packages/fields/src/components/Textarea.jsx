@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
-import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
+import isEmpty from 'lodash/isEmpty';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 const propTypes = {

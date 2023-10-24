@@ -1,23 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { imageMedia, backgroundVideo, transitions } from '../../../../.storybook/data';
+import horoscope from '../../../../.storybook/data/stories/urbania-horoscope';
 import UrbaniaHoroscope from '../UrbaniaHoroscope';
 import definition from '../definition';
-import signs from '../../../../.storybook/data/signs';
 
 const props = {
-    description: { body: 'Qu’est-ce que les planètes racontent sur vous cette semaine?' },
-    author: {
-        name: { body: 'Robert Léponge' },
-        avatar: imageMedia(),
-    },
-    button: {
-        body: '<span>Découvrir</span>',
-    },
-    signs,
-    background: backgroundVideo(),
-    transitions: transitions(),
+    ...horoscope,
 };
 
 export default {

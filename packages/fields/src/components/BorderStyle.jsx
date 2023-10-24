@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import PropTypes from 'prop-types';
+import React from 'react';
 
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Radios from './Radios';
 
 import styles from '../styles/border-style.module.scss';
@@ -22,11 +22,10 @@ const defaultProps = {
 };
 
 const BorderStyle = ({ types, value, className, onChange }) => {
-    const onBorderStyleChange = newVal => {
+    const onBorderStyleChange = (newVal) => {
         const v = newVal === value ? null : newVal;
-
         onChange(v);
-    }
+    };
 
     return (
         <div
@@ -65,7 +64,7 @@ const BorderStyle = ({ types, value, className, onChange }) => {
             </div>
         </div>
     );
-}
+};
 
 BorderStyle.propTypes = propTypes;
 BorderStyle.defaultProps = defaultProps;

@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import UrbaniaTriviaScreen from './UrbaniaTrivia';
 
 export default {

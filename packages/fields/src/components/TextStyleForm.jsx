@@ -13,8 +13,10 @@ const propTypes = {
         color: PropTypes.string,
         alpha: PropTypes.number,
     }),
+    fields: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string })),
     isForm: PropTypes.bool,
     isHorizontal: PropTypes.bool,
+    sections: PropTypes.arrayOf(PropTypes.string),
     className: PropTypes.string,
     onChange: PropTypes.func,
     closeForm: PropTypes.func,
@@ -22,14 +24,16 @@ const propTypes = {
 
 const defaultProps = {
     value: null,
+    fields: [],
     isForm: false,
     isHorizontal: false,
+    sections: null,
     className: null,
     onChange: null,
     closeForm: null,
 };
 
-const TextStyleForm = ({ value, onChange, closeForm, ...props }) => {
+const TextStyleForm = ({ value, fields, sections, onChange, closeForm, ...props }) => {
     const textStyle = getStyleFromText(value);
     const { fontFamily = null } = textStyle || {};
     const fontLabel = fontFamily !== null ? fontFamily.replace(/['"]+/g, '') : null;
@@ -41,9 +45,13 @@ const TextStyleForm = ({ value, onChange, closeForm, ...props }) => {
             </strong>
         ) : null;
 
+    const finalFields =
+        sections !== null ? fields.filter(({ name }) => sections.indexOf(name) !== -1) : fields;
+
     return (
         <FieldWithForm
             isForm
+            fields={finalFields}
             value={value}
             label={fontLabel}
             onChange={onChange}

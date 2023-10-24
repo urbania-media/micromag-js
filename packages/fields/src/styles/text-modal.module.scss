@@ -44,3 +44,23 @@
     border-radius: $input-border-radius;
     pointer-events: none;
 }
+
+.editor {
+    --ck-color-base-background: #2B2B2B;
+
+    :global {
+        .ck {
+            &.ck-editor__editable {
+                &:not(.ck-editor__nested-editable) {
+                    border: 0;
+
+                    &.ck-focused {
+                        border: 0;
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}

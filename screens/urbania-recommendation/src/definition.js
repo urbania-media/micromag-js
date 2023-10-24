@@ -19,7 +19,17 @@ export default [
             description: 'Urbania screen title',
         }),
         component: UrbaniaRecommendation,
+        layouts: ['top', 'bottom'],
         fields: [
+            {
+                name: 'layout',
+                type: 'screen-layout',
+                defaultValue: 'bottom',
+                label: defineMessage({
+                    defaultMessage: 'Layout',
+                    description: 'Layout field label',
+                }),
+            },
             {
                 name: 'sponsor',
                 type: 'text-element',
@@ -42,17 +52,6 @@ export default [
                         type: 'visual',
                         label: defineMessage({
                             defaultMessage: 'Image',
-                            description: 'Field label',
-                        }),
-                    },
-                    {
-                        name: 'visualLayout',
-                        type: 'button-layout',
-                        types: ['label-bottom', 'label-top'],
-                        defaultValue: 'label-bottom',
-                        isHorizontal: true,
-                        label: defineMessage({
-                            defaultMessage: 'Layout',
                             description: 'Field label',
                         }),
                     },

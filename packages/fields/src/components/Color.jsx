@@ -20,6 +20,7 @@ const propTypes = {
     }),
     isForm: PropTypes.bool,
     isHorizontal: PropTypes.bool,
+    disableAlpha: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
     closeForm: PropTypes.func,
@@ -29,12 +30,13 @@ const defaultProps = {
     value: null,
     isForm: false,
     isHorizontal: false,
+    disableAlpha: false,
     className: null,
     onChange: null,
     closeForm: null,
 };
 
-const ColorField = ({ value, onChange, closeForm, ...props }) => {
+const ColorField = ({ value, onChange, closeForm, disableAlpha, ...props }) => {
     const { color = null } = value || {};
 
     const hexColor = useMemo(
@@ -75,7 +77,12 @@ const ColorField = ({ value, onChange, closeForm, ...props }) => {
             {...props}
         >
             <div className="p-2">
-                <ColorPicker className={styles.picker} value={value} onChange={onChange} />
+                <ColorPicker
+                    className={styles.picker}
+                    value={value}
+                    onChange={onChange}
+                    disableAlpha={disableAlpha}
+                />
                 <div className="d-flex mt-4">
                     <Button theme="light" size="sm" onClick={closeForm}>
                         <FormattedMessage defaultMessage="Close" description="Button label" />

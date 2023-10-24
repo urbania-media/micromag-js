@@ -122,7 +122,7 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
             sponsorPrefix,
             site,
             image:
-                imageUrl !== null
+                imageUrl !== null && image !== null
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
             url: finalReaderUrl || canonical || url,
@@ -140,6 +140,8 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
             },
         };
     }, [article, url, hostname, props]);
+
+    // console.log('full', { ...props, ...values });
 
     return <Component {...props} {...values} hasArticle={url !== null} />;
 };

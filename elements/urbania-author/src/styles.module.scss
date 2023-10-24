@@ -43,14 +43,16 @@
         padding: 6px 8px 3px 13px;
         border-top-right-radius: 40px;
         border-bottom-right-radius: 40px;
+        font-weight: 700;
+        line-height: 1;
+        text-transform: uppercase;
 
         p {
             display: inline;
             margin: 0;
             font-size: inherit;
-            font-weight: 700;
-            line-height: 1;
-            text-transform: uppercase;
+            font-weight: inherit;
+            text-transform: inherit;
         }
     }
 
@@ -62,12 +64,13 @@
 
         .collaboratorText{
             padding-left: 7.3px;
-            font-size: inherit;
+            font-size: 0.9em;
+            line-height: 1;
 
             p {
                 display: inline;
-                font-size: 0.9em;
-                line-height: 1;
+                font-size: inherit;
+                line-height: inherit;
             }
         }
     }

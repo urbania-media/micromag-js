@@ -2,31 +2,23 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    backgroundColor,
-    transitions,
-    headerFooter,
-    videoMedia,
-} from '../../../../.storybook/data';
+import { transitions, headerFooter, videoMedia } from '../../../../.storybook/data';
 import Article from '../UrbaniaLoader';
 import definition from '../definition';
 
-import testArticle from './article.json';
-import testVideo from './video.json';
+import testVideo from '../../../../.storybook/data/stories/urbania-article-video.json';
+import testArticle from '../../../../.storybook/data/stories/urbania-article.json';
 
-const video = (props) => ({
-    ...props,
+const videoArticle = () => ({
+    ...testVideo,
     type: 'video',
     media: videoMedia(),
     autoPlay: true,
-    article: testVideo,
     loop: false,
 });
 
 const props = () => ({
-    image: video(null),
-    article: testArticle,
-    background: backgroundColor(),
+    ...testArticle,
     transitions: transitions(),
 });
 
@@ -52,7 +44,13 @@ export const Edit = (storyProps) => <Article {...storyProps} />;
 export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
 
 export const Video = (storyProps) => (
-    <Article {...storyProps} {...video()} type="video" image={videoMedia()} {...headerFooter()} />
+    <Article
+        {...storyProps}
+        {...videoArticle()}
+        type="video"
+        image={videoMedia()}
+        {...headerFooter()}
+    />
 );
 
 export const WithHeaderFooter = (storyProps) => (

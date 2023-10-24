@@ -61,6 +61,7 @@ export default {
                 {
                     name: 'borderColor',
                     type: 'color',
+                    disableAlpha: true,
                     label: defineMessage({
                         defaultMessage: 'Color',
                         description: 'Field label',

@@ -154,7 +154,6 @@ const UrbaniaArticleCard = ({
                 shouldLoad={mediaShouldLoad}
                 withoutVideo={isPreview}
             />
-
             <Container className={styles.content} width={width} height={height}>
                 {!isPlaceholder && hasHeader ? (
                     <div

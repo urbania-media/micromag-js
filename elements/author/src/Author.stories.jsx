@@ -13,7 +13,6 @@ export default {
 };
 
 const elementProps = {
-    // visible: true,
     author: {
         name: { body: '<p>Paul le fermier avec un nom assez long</p>' },
         image: imageMedia(),

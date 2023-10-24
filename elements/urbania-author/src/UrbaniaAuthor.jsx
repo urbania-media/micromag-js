@@ -79,6 +79,7 @@ const UrbaniaAuthor = ({
             {...name}
         />
     ) : null;
+
     const collaboratorText = isTextFilled(collaborator) ? (
         <Text className={styles.collaboratorText} {...collaborator} inline />
     ) : null;

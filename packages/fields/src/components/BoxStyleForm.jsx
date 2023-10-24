@@ -1,12 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromBox } from '@micromag/core/utils';
-import styles from '../styles/box-style.module.scss';
+
 import FieldWithForm from './FieldWithForm';
+
+import styles from '../styles/box-style.module.scss';
 
 const propTypes = {
     value: MicromagPropTypes.boxStyle,
@@ -39,6 +42,7 @@ const BoxStyleForm = ({ value, onChange, closeForm, ...props }) => {
                 />
             </span>
         ) : null;
+
     return (
         <FieldWithForm
             isForm
