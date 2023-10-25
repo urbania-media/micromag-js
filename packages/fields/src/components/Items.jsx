@@ -175,6 +175,8 @@ const ItemsField = ({
     const sortableItems = items.map((it, index) => ({ id: idMap.current[index], it, index }));
     const finalWithoutSort = withoutSort || !editing;
 
+    // console.log('items', items, itemsField, props);
+
     return (
         <div className={className}>
             {hasItems ? (

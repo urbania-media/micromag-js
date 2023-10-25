@@ -65,11 +65,6 @@ export default [
                             defaultMessage: 'Items',
                             description: 'Field label',
                         }),
-                        theme: {
-                            label: {
-                                textStyle: 'button',
-                            },
-                        },
                         isSection: true,
                     },
                     {
@@ -211,6 +206,11 @@ export default [
                             defaultMessage: 'Content',
                             description: 'Field label',
                         }),
+                        theme: {
+                            label: {
+                                textStyle: 'text',
+                            },
+                        },
                     },
                     {
                         name: 'largeVisual',
@@ -227,6 +227,11 @@ export default [
                             defaultMessage: 'Button',
                             description: 'Field label',
                         }),
+                        theme: {
+                            label: {
+                                textStyle: 'button',
+                            },
+                        },
                     },
                 ],
             },

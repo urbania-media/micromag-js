@@ -21,10 +21,12 @@ class ThemeParser {
         if (story === null) {
             return story;
         }
+
         const { theme = null, components = null } = story || {};
         if (theme === null || components === null) {
             return story;
         }
+
         const {
             components: themeComponents = [],
             background: themeBackground = null,
@@ -76,7 +78,24 @@ class ThemeParser {
         themeTextStyles,
         themeBoxStyles,
     ) {
-        const { fields = [] } = definition;
+        const { fields = [], states = [] } = definition || {};
+
+        // TODO: test this
+        let finalFields = fields;
+        let repetableStates = [];
+        if (states !== null && states.length > 0) {
+            const nonRepetableStates = states.filter(
+                ({ repeatable = false }) => repeatable === false,
+            );
+            repetableStates = states.filter(({ repeatable = false }) => repeatable === true);
+            finalFields = nonRepetableStates.reduce((acc, it) => {
+                const { fields: itemFields = [] } = it || {};
+                if (itemFields !== null && itemFields.length > 0) {
+                    return acc.concat(itemFields);
+                }
+                return acc;
+            }, finalFields);
+        }
 
         const newThemeValue = themeValue === null && themeBackground !== null ? {} : themeValue;
 
@@ -90,18 +109,30 @@ class ThemeParser {
         }
 
         const newScreenValue = Object.keys(value).reduce((currentValue, key) => {
-            const fieldDefinition = fields.find((it) => it.name === key) || {};
+            let repetableState = null;
+            if (repetableStates.length > 0) {
+                repetableState =
+                    repetableStates.find(
+                        ({ id: stateId = null }) => stateId !== null && stateId === key,
+                    ) || null;
+            }
+
+            const fieldDefinition =
+                finalFields.find((it) => it.name === key) || repetableState || {};
+
             const fieldValue = value[key];
             const fieldThemeValue = newThemeValue !== null ? newThemeValue[key] || null : null;
+
+            // console.log('start', key, fieldValue);
             const newFieldValue = this.parseField(
-                key,
-                fieldDefinition,
                 fieldValue,
+                fieldDefinition,
                 fieldThemeValue,
                 themeColors,
                 themeTextStyles,
                 themeBoxStyles,
             );
+            // console.log('result', newFieldValue);
 
             // Only switch field if it has changed
             return newFieldValue !== fieldValue
@@ -121,21 +152,44 @@ class ThemeParser {
     }
 
     // eslint-disable-next-line class-methods-use-this
-    parseField(key, definition, value, themeValue, themeColors, themeTextStyles, themeBoxStyles) {
-        const { theme: fieldTheme = null } = definition;
-        // console.log('fieldTheme', id, fieldTheme);
+    parseField(value, definition, themeValue, themeColors, themeTextStyles, themeBoxStyles) {
+        const { theme: fieldTheme = null, fields: definitionFields = null } = definition;
+
+        if (definitionFields !== null && value !== null) {
+            return isArray(value)
+                ? value.map((innerFieldValue) => {
+                      if (innerFieldValue === null) {
+                          return innerFieldValue;
+                      }
+                      return this.parseInnerFields(
+                          innerFieldValue,
+                          definitionFields,
+                          themeValue,
+                          themeColors,
+                          themeTextStyles,
+                          themeBoxStyles,
+                      );
+                  })
+                : this.parseInnerFields(
+                      value,
+                      definitionFields,
+                      themeValue,
+                      themeColors,
+                      themeTextStyles,
+                      themeBoxStyles,
+                  );
+        }
 
         // Early return
         if (fieldTheme === null || !isObject(fieldTheme)) {
             return value;
         }
 
-        // @TODO very sloow
+        // @TODO very slooow...
         if (isArray(value)) {
             const newFieldValue = value.map((innerField) =>
                 innerField !== null
                     ? Object.keys(innerField).reduce((newInnerField, innerFieldName) => {
-                          // console.log('innerField', innerField);
                           // Early return
                           if (!isObject(innerField[innerFieldName])) {
                               return newInnerField;
@@ -155,8 +209,6 @@ class ThemeParser {
                           ) {
                               return newInnerField;
                           }
-
-                          // TODO: replace this with the recursive parseValue...
 
                           // Color
                           const colorValue =
@@ -232,6 +284,61 @@ class ThemeParser {
         }
 
         return value;
+    }
+
+    parseInnerFields(
+        value,
+        fieldsOrDefinition,
+        themeValue,
+        themeColors,
+        themeTextStyles,
+        themeBoxStyles,
+    ) {
+        const newValue = Object.keys(value).reduce((finalValue, innerFieldName) => {
+            const innerDefinition = isArray(fieldsOrDefinition)
+                ? fieldsOrDefinition.find((it) => it.name === innerFieldName) || null
+                : fieldsOrDefinition;
+            const { theme: idfTheme = null } = innerDefinition || {};
+            const innerValue = value[innerFieldName];
+
+            // For items fields
+            if (innerValue !== null && innerDefinition !== null && isArray(innerValue)) {
+                // eslint-disable-next-line no-param-reassign
+                finalValue[innerFieldName] = this.parseField(
+                    innerValue,
+                    innerDefinition,
+                    themeValue,
+                    themeColors,
+                    themeTextStyles,
+                    themeBoxStyles,
+                );
+                return finalValue;
+            }
+
+            // For fields with fields
+            if (
+                innerValue !== null &&
+                idfTheme !== null &&
+                isObject(idfTheme) &&
+                isObject(innerValue)
+            ) {
+                // eslint-disable-next-line no-param-reassign
+                finalValue[innerFieldName] = this.parseValue(
+                    innerValue,
+                    idfTheme,
+                    themeValue,
+                    themeColors,
+                    themeTextStyles,
+                    themeBoxStyles,
+                );
+                return finalValue;
+            }
+
+            // eslint-disable-next-line no-param-reassign
+            finalValue[innerFieldName] = value[innerFieldName];
+            return finalValue;
+        }, {});
+        return newValue;
     }
 
     // eslint-disable-next-line class-methods-use-this

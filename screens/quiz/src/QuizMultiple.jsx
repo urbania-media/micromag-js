@@ -257,11 +257,9 @@ const QuizMultipleScreen = ({
         if (!isResults) {
             return null;
         }
-
         if (stateId === 'results') {
             return (results || [])[parseInt(stateIndex, 10)] || null;
         }
-
         return (results || [])
             .sort(({ points: pointsA = 0 }, { points: pointsB = 0 }) => {
                 if (pointsA === pointsB) {

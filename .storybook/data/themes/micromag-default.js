@@ -1,6 +1,6 @@
 const text = {
-    color: { color: '#F00', alpha: 0.8 },
-    align: 'center',
+    color: { color: '#F00', alpha: 1 },
+    // align: 'center',
     fontStyle: { bold: true, italic: true, underline: true, transform: 'uppercase' },
     lineHeight: 1.3,
     letterSpacing: 1,
@@ -36,9 +36,13 @@ export const defaultTheme = {
         },
         button: {
             fontFamily: 'Times New Roman',
-            fontSize: 16,
-            fontStyle: { bold: true, italic: false, underline: false },
+            fontSize: 30,
+            fontStyle: { bold: true, italic: false, underline: true },
             ...text,
+            color: {
+                alpha: 0.8,
+                color: '#FFD',
+            },
         },
         text: {
             fontFamily: 'Georgia',
@@ -47,8 +51,8 @@ export const defaultTheme = {
         },
         cta: {
             color: {
-                alpha: 1,
-                color: '#222222',
+                alpha: 0.8,
+                color: '#F0D',
             },
             fontFamily: 'Agrandir',
             fontSize: 14,
@@ -92,7 +96,7 @@ export const defaultTheme = {
                 left: 10,
                 bottom: 5,
             },
-            borderColor: '#00F',
+            borderColor: '#F0F',
             borderStyle: 'solid',
             borderWidth: 5,
             backgroundColor: '#00F',

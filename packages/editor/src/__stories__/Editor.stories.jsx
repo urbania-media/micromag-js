@@ -7,8 +7,10 @@ import { callToAction, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import article from '../../../../.storybook/data/stories/article-generic';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
+import keypad from '../../../../.storybook/data/stories/keypad';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
 import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
+import quiz from '../../../../.storybook/data/stories/quiz';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
 import UrbaniaScreenComponents from '../../../../.storybook/data/stories/urbania-components';
@@ -137,6 +139,14 @@ export const TestUrbania = () => (
 export const TestUrbaniaArticle = () => <EditorContainer defaultValue={article} />;
 
 export const TestQuoteBadges = () => <EditorContainer defaultValue={textQuoteBadges} />;
+
+export const TestKeypad = () => (
+    <EditorContainer
+        defaultValue={{ title: 'Test KEYPAD', theme: defaultTheme, components: [keypad] }}
+    />
+);
+
+export const TestQuizzes = () => <EditorContainer defaultValue={quiz} />;
 
 export const TestArticleUrbania = () => (
     <EditorContainer
