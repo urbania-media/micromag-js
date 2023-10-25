@@ -284,11 +284,11 @@ const QuizMultipleScreen = ({
     });
 
     useEffect(() => {
-        if (!isResults || isEdit) {
+        if (!isResults || !isView) {
             return;
         }
         submitQuiz({ choice: userAnswers, value: currentPoints });
-    }, [isResults, userAnswers, submitQuiz]);
+    }, [isView, isResults, userAnswers, submitQuiz]);
 
     // Switch state
     useEffect(() => {

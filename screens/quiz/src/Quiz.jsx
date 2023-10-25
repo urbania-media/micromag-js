@@ -167,13 +167,16 @@ const QuizScreen = ({
     }, [isEdit, current, userAnswerIndex, setUserAnswerIndex]);
 
     useEffect(() => {
+        if (!isView) {
+            return;
+        }
         if (userAnswerIndex !== null) {
             const { good: isGood = false, label = {} } =
                 userAnswerIndex !== null && answers ? answers[userAnswerIndex] : {};
             const { body = '' } = label || {};
             submitQuiz({ choice: body || userAnswerIndex, value: isGood ? 1 : 0 });
         }
-    }, [userAnswerIndex, answers, submitQuiz]);
+    }, [isView, userAnswerIndex, answers, submitQuiz]);
 
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const [scrolledBottom, setScrolledBottom] = useState(false);
