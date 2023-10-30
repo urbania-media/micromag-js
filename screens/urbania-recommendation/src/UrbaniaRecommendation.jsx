@@ -247,10 +247,13 @@ const UrbaniaRecommendation = ({
                 setVisualModalOpened(true);
             }, 400);
         }
+        if (!current) {
+            setVisualModalOpened(false);
+        }
         return () => {
             clearTimeout(id);
         };
-    }, [visualModalTransitioning, setVisualModalTransitioning]);
+    }, [visualModalTransitioning, setVisualModalTransitioning, current]);
 
     const onClickVisual = useCallback(() => {
         if (!visualModalOpened) {
@@ -274,7 +277,7 @@ const UrbaniaRecommendation = ({
         } else {
             enableInteraction();
         }
-    }, [visualModalOpened]);
+    }, [current, visualModalOpened]);
 
     useEffect(() => {
         const keyup = (e) => {
