@@ -250,12 +250,13 @@ const UrbaniaArticleCard = ({
                                     ...springStyle,
                                 }}
                             >
-                                <div
+                                <button
+                                    type="button"
                                     {...bind()}
                                     style={{
                                         height: iframeOpened ? '100px' : height,
                                         width,
-                                        position: iframeOpened ? 'absolute' : 'relative',
+                                        // position: iframeOpened ? 'absolute' : 'relative',
                                         zIndex: 5,
                                     }}
                                     onClick={toggleIframe}
