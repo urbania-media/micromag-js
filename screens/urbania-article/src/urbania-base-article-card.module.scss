@@ -44,6 +44,7 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
         @extend %fullscreen;
         // position: relative;
         z-index: 5;
+        // opacity: 0.2;
 
         &.isPlaceholder {
             top: 55%;
@@ -53,6 +54,16 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
             border-top-left-radius: 1em;
             border-top-right-radius: 1em;
             background-color: $gray-600;
+        }
+    }
+
+    .popupContainer {
+        position: absolute;
+        transition: top 0.4s ease;
+
+        &.pulse {
+            animation: pulse 4s alternate infinite cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation-delay: 4s;
         }
     }
 
@@ -135,9 +146,6 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
     }
 }
 
-
-
-
 @keyframes popIn {
     from {
         transform: scale(0.8);
@@ -145,5 +153,19 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
 
     to {
         transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: translateY(0%);
+    }
+
+    50% {
+        transform: translateY(2%);
+    }
+
+    to {
+        transform: translateY(0%);
     }
 }
