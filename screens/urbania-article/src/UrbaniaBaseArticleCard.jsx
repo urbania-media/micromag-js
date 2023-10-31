@@ -152,8 +152,8 @@ const UrbaniaArticleCard = ({
         () => ({
             from: { y: height * 0.25 + 5 },
             to: { y: 0 },
-            // delay: hasIframeSlideIn ? 100 : 0,
-            loop: hasIframeSlideIn,
+            delay: hasIframeSlideIn ? 700 : 0,
+            // loop: hasIframeSlideIn,
             // onResolve: () => {
             //     onAnimationEnded(index);
             // },
