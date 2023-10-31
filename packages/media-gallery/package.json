@@ -1,6 +1,6 @@
 {
     "name": "@micromag/media-gallery",
-    "version": "0.3.418",
+    "version": "0.3.420",
     "private": false,
     "description": "",
     "keywords": [
@@ -60,8 +60,8 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.418",
-        "@micromag/data": "^0.3.418",
+        "@micromag/core": "^0.3.420",
+        "@micromag/data": "^0.3.420",
         "bootstrap": "5.2.0-beta1",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
