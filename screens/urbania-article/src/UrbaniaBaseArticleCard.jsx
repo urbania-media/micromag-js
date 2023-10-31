@@ -1,8 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-
-/* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, no-param-reassign, react/jsx-props-no-spreading */
 import { animated as a, useSpring, easings } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
@@ -99,10 +95,14 @@ const UrbaniaArticleCard = ({
     const backgroundPlaying = current && (isView || isEdit) && !iframeOpened;
 
     // iframe animation
-    const isAnimated = isView;
     const hasIframeSlideIn =
-        !isEdit && !isPlaceholder && isBackgroundVideo && backgroundPlaying && !firstInteraction;
-    const hasIframeBounce = !isEdit && !isPlaceholder && !firstInteraction;
+        !isEdit &&
+        !isPlaceholder &&
+        !isPreview &&
+        isBackgroundVideo &&
+        backgroundPlaying &&
+        !firstInteraction;
+    const hasIframeBounce = !isEdit && !isPlaceholder && !isPreview && !firstInteraction;
 
     const toggleIframe = useCallback(() => {
         setIframeOpened(!iframeOpened);
@@ -151,15 +151,13 @@ const UrbaniaArticleCard = ({
 
     const [springStyle, springApi] = useSpring(
         () => ({
-            from: { y: height * 0.25 + 5 },
+            from: { y: height * 0.25 + 2 },
             to: { y: 0 },
-            delay: hasIframeSlideIn ? 700 : 0,
-            immediate: !isAnimated || !hasIframeSlideIn,
-            // loop: hasIframeSlideIn,
+            delay: hasIframeSlideIn ? 2000 : 0,
             // onResolve: () => {
             //     onAnimationEnded(index);
             // },
-            // config: { mass: 1, tension: 140, friction: 14 },
+            // config: { tension: 40, friction: 14 },
             config: {
                 easing: easings.easeInOutElastic,
                 // frequency: 100,
@@ -248,7 +246,7 @@ const UrbaniaArticleCard = ({
                                 className={classNames([
                                     styles.popupContainer,
                                     {
-                                        [styles.pulse]: isAnimated && hasIframeBounce,
+                                        [styles.pulse]: hasIframeBounce,
                                     },
                                 ])}
                                 style={{
