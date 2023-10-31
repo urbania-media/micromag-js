@@ -57,11 +57,11 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
 
     .popupContainer {
         position: absolute;
-        transition: top 0.4s ease;
+        transition: transform 0.4s ease;
 
         &.pulse {
-            animation: pulse 4s alternate infinite cubic-bezier(0.34, 1.56, 0.64, 1);
-            animation-delay: 2s;
+            animation: pulse 2s alternate infinite cubic-bezier(0.68, -0.6, 0.32, 1.6);
+            animation-delay: 0.6s;
         }
     }
 

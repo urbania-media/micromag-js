@@ -99,6 +99,7 @@ const UrbaniaArticleCard = ({
     const backgroundPlaying = current && (isView || isEdit) && !iframeOpened;
 
     // iframe animation
+    const isAnimated = isView;
     const hasIframeSlideIn =
         !isEdit && !isPlaceholder && isBackgroundVideo && backgroundPlaying && !firstInteraction;
     const hasIframeBounce = !isEdit && !isPlaceholder && !firstInteraction;
@@ -153,6 +154,7 @@ const UrbaniaArticleCard = ({
             from: { y: height * 0.25 + 5 },
             to: { y: 0 },
             delay: hasIframeSlideIn ? 700 : 0,
+            immediate: !isAnimated || !hasIframeSlideIn,
             // loop: hasIframeSlideIn,
             // onResolve: () => {
             //     onAnimationEnded(index);
@@ -246,7 +248,7 @@ const UrbaniaArticleCard = ({
                                 className={classNames([
                                     styles.popupContainer,
                                     {
-                                        [styles.pulse]: hasIframeBounce,
+                                        [styles.pulse]: isAnimated && hasIframeBounce,
                                     },
                                 ])}
                                 style={{
