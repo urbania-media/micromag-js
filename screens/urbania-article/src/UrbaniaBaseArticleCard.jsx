@@ -1,4 +1,9 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 /* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
+import { animated as a, useSpring, easings } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -68,6 +73,10 @@ const UrbaniaArticleCard = ({
 }) => {
     const finalBackground = background !== null ? background : { image };
 
+    const { video: backgroundVideo = null } = finalBackground || {};
+
+    const isBackgroundVideo = backgroundVideo !== null;
+
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -81,16 +90,25 @@ const UrbaniaArticleCard = ({
     const hasHeader = isHeaderFilled(header);
     const hasText = isTextFilled(text);
 
-    const mediaShouldLoad = current || active;
-    const backgroundPlaying = current && (isView || isEdit);
-
     // iframe interaction
     const [iframeOpened, setIframeOpened] = useState(false);
     const [iframeInteractionEnabled, setIframeInteractionEnabled] = useState(false);
+    const [firstInteraction, setFirstInteraction] = useState(false);
+
+    const mediaShouldLoad = current || active;
+    const backgroundPlaying = current && (isView || isEdit) && !iframeOpened;
+
+    // iframe animation
+    const hasIframeSlideIn =
+        !isEdit && !isPlaceholder && isBackgroundVideo && backgroundPlaying && !firstInteraction;
+    const hasIframeBounce = !isEdit && !isPlaceholder && !firstInteraction;
 
     const toggleIframe = useCallback(() => {
         setIframeOpened(!iframeOpened);
-    }, [iframeOpened, setIframeOpened]);
+        if (firstInteraction === false) {
+            setFirstInteraction(true);
+        }
+    }, [iframeOpened, firstInteraction, setFirstInteraction, setIframeOpened]);
 
     useEffect(() => {
         let id = null;
@@ -128,6 +146,25 @@ const UrbaniaArticleCard = ({
             },
         },
         { drag: { axis: 'y' }, wheel: { axis: 'y' } },
+    );
+
+    const [springStyle, springApi] = useSpring(
+        () => ({
+            from: { y: height * 0.25 + 5 },
+            to: { y: 0 },
+            // delay: hasIframeSlideIn ? 100 : 0,
+            loop: hasIframeSlideIn,
+            // onResolve: () => {
+            //     onAnimationEnded(index);
+            // },
+            // config: { mass: 1, tension: 140, friction: 14 },
+            config: {
+                easing: easings.easeInOutElastic,
+                // frequency: 100,
+                duration: hasIframeSlideIn ? 300 : 2000,
+            },
+        }),
+        [],
     );
 
     return (
@@ -205,16 +242,30 @@ const UrbaniaArticleCard = ({
                         isEmpty={!hasUrl || !hasArticle}
                     >
                         {(!isPreview || !isPlaceholder) && hasArticle ? (
-                            <>
-                                <div
+                            <a.div
+                                className={classNames([
+                                    styles.popupContainer,
+                                    {
+                                        [styles.pulse]: hasIframeBounce,
+                                    },
+                                ])}
+                                style={{
+                                    height,
+                                    width,
+                                    top: iframeOpened ? 0 : '75%',
+                                    ...springStyle,
+                                }}
+                            >
+                                <button
+                                    type="button"
                                     {...bind()}
                                     style={{
                                         height: iframeOpened ? '100px' : height,
                                         width,
-                                        position: iframeOpened ? 'absolute' : 'relative',
-                                        // zIndex: iframeOpened ? 5 : 'auto',
+                                        // position: iframeOpened ? 'absolute' : 'relative',
                                         zIndex: 5,
                                     }}
+                                    onClick={toggleIframe}
                                     className={styles.interactiveZone}
                                 />
                                 {iframeInteractionEnabled ? (
@@ -229,12 +280,14 @@ const UrbaniaArticleCard = ({
                                             [styles.opened]: iframeOpened,
                                         },
                                     ])}
-                                    title={title}
+                                    title={title.body}
                                     src={url || 'about:blank'}
+                                    scrolling={iframeOpened ? 'yes' : 'no'} // @TODO: deprecated, find beter solution
                                     style={{
                                         width,
-                                        height: iframeOpened ? height : height * 0.25,
+                                        height,
                                         pointerEvents: iframeInteractionEnabled ? 'auto' : 'none',
+                                        overflow: iframeOpened ? 'hidden' : null,
                                     }}
                                 />
                                 <div
@@ -246,7 +299,7 @@ const UrbaniaArticleCard = ({
                                     ])}
                                     style={{ width, height: height * 0.25 }}
                                 />
-                            </>
+                            </a.div>
                         ) : null}
                     </ScreenElement>
                 </Container>
@@ -255,7 +308,7 @@ const UrbaniaArticleCard = ({
     );
 };
 
-UrbaniaArticleCard.propTypes = propTypes;
 UrbaniaArticleCard.defaultProps = defaultProps;
+UrbaniaArticleCard.propTypes = propTypes;
 
 export default React.memo(UrbaniaArticleCard);
