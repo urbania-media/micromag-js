@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenPlaceholder, ScreenPreview } from '@micromag/core/components';
+import { useIsVisible } from '@micromag/core/hooks';
 import { isMessage } from '@micromag/core/utils';
 
 import ScreenButton from './Screen';
@@ -56,44 +57,48 @@ const ScreenWithPreview = ({
     withIndexIndicator,
 }) => {
     const intl = useIntl();
+    const { ref, visible } = useIsVisible({ threshold: 0.1 });
 
     const ScreenComponent = withPlaceholder ? ScreenPlaceholder : ScreenPreview;
     const finalTitle = isMessage(title) ? intl.formatMessage(title) : title || null;
 
     return (
-        <ScreenButton
-            href={href}
-            active={active}
-            className={classNames([
-                styles.button,
-                {
-                    [className]: className !== null,
-                    [styles.withIndex]: withIndexIndicator || withName,
-                },
-            ])}
-            title={finalTitle}
-            onClick={() => {
-                if (onClick !== null) {
-                    onClick(screen, index);
-                }
-                if (onClickItem !== null) {
-                    onClickItem(screen, index);
-                }
-            }}
-        >
-            <ScreenComponent
-                screen={screen}
-                screenState={screenState}
-                className={styles.screen}
-                withSize
-            />
-            {index !== null && withIndexIndicator ? (
-                <div className={styles.index}>{index + 1}</div>
-            ) : null}
-            {withName && !withIndexIndicator ? (
-                <div className={styles.name}>{finalTitle || null}</div>
-            ) : null}
-        </ScreenButton>
+        <div ref={ref}>
+            <ScreenButton
+                href={href}
+                active={active}
+                className={classNames([
+                    styles.button,
+                    {
+                        [className]: className !== null,
+                        [styles.withIndex]: withIndexIndicator || withName,
+                    },
+                ])}
+                title={finalTitle}
+                onClick={() => {
+                    if (onClick !== null) {
+                        onClick(screen, index);
+                    }
+                    if (onClickItem !== null) {
+                        onClickItem(screen, index);
+                    }
+                }}
+            >
+                <ScreenComponent
+                    screen={screen}
+                    screenState={screenState}
+                    className={styles.screen}
+                    hidden={!visible}
+                    withSize
+                />
+                {index !== null && withIndexIndicator ? (
+                    <div className={styles.index}>{index + 1}</div>
+                ) : null}
+                {withName && !withIndexIndicator ? (
+                    <div className={styles.name}>{finalTitle || null}</div>
+                ) : null}
+            </ScreenButton>
+        </div>
     );
 };
 

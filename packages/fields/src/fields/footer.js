@@ -5,12 +5,6 @@ export default {
         {
             name: 'callToAction',
             type: 'call-to-action',
-            theme: {
-                boxStyle: 'cta',
-                label: {
-                    textStyle: 'cta',
-                },
-            },
         },
     ],
     // settings: [],

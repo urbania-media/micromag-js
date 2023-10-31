@@ -6,12 +6,6 @@ export default {
         {
             name: 'badge',
             type: 'badge',
-            theme: {
-                boxStyle: 'badge',
-                label: {
-                    textStyle: 'badge',
-                },
-            },
         },
         {
             name: 'shareIncentive',

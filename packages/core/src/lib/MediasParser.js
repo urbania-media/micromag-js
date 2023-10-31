@@ -7,6 +7,15 @@ class MediasParser {
         this.fieldsManager = fieldsManager;
         this.screensManager = screensManager;
         this.fieldsPatternCache = {};
+        this.parsedThemesCache = {};
+    }
+
+    getParsedStoryTheme(storyId, theme) {
+        if (typeof this.parsedThemesCache[storyId] === 'undefined') {
+            const { medias: themeMedias, ...newTheme } = this.toPath(theme);
+            this.parsedThemesCache[storyId] = { themeMedias, newTheme };
+        }
+        return this.parsedThemesCache[storyId];
     }
 
     getFieldsPatternByScreen(type) {
@@ -22,7 +31,7 @@ class MediasParser {
         if (story === null) {
             return story;
         }
-        const { theme = null, components = [] } = story || {};
+        const { id: storyId = null, theme = null, components = [] } = story || {};
         const { components: newComponents, medias } = components.reduce(
             ({ components: previousComponents, medias: currentMedias }, screen) => {
                 const { type } = screen;
@@ -43,7 +52,7 @@ class MediasParser {
         );
 
         if (theme !== null) {
-            const { medias: themeMedias, ...newTheme } = this.toPath(theme);
+            const { medias: themeMedias, ...newTheme } = this.getParsedStoryTheme(storyId, theme);
             return medias !== null || themeMedias !== null
                 ? {
                       ...story,

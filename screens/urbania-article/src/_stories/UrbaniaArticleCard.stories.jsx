@@ -12,7 +12,7 @@ import testVideoArticle from './video.json';
 const props = () => ({
     ...testArticle,
     // image: videoMedia(),
-    theme: 'card',
+    theme: null,
     url: 'https://simple.urbania.ca/article/mais-pourquoi-la-generation-boomer-ecrit-elle-comme-ca?=new',
     // background: backgroundColor(),
     // transitions: transitions(),
@@ -23,7 +23,7 @@ const props = () => ({
 
 export default {
     title: 'Urbania Screens/ArticleCard',
-    theme: 'card',
+    theme: null,
     component: Article,
     parameters: {
         intl: true,

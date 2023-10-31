@@ -6,7 +6,6 @@ class ThemeParser {
     constructor({ screensManager }) {
         this.screensManager = screensManager;
         this.definitionCache = {};
-        this.fieldsCache = {};
     }
 
     getDefinitionByScreen(type, themeComponents) {
@@ -16,36 +15,6 @@ class ThemeParser {
             this.definitionCache[type] = { definition, themeScreen };
         }
         return this.definitionCache[type];
-    }
-
-    getFieldsForDefinition(definition) {
-        const { id: definitionId = null, fields = [], states = [] } = definition || {};
-        if (typeof this.fieldsCache[definitionId] === 'undefined') {
-            if (states === null || states.length === 0) {
-                this.fieldsCache[definitionId] = { fields };
-            } else {
-                // TODO: test this
-                let finalFields = fields;
-                let repetableStates = [];
-                if (states !== null && states.length > 0) {
-                    const nonRepetableStates = states.filter(
-                        ({ repeatable = false }) => repeatable === false,
-                    );
-                    repetableStates = states.filter(
-                        ({ repeatable = false }) => repeatable === true,
-                    );
-                    finalFields = nonRepetableStates.reduce((acc, it) => {
-                        const { fields: itemFields = [] } = it || {};
-                        if (itemFields !== null && itemFields.length > 0) {
-                            return acc.concat(itemFields);
-                        }
-                        return acc;
-                    }, finalFields);
-                }
-                this.fieldsCache[definitionId] = { fields: finalFields, repetableStates };
-            }
-        }
-        return this.fieldsCache[definitionId];
     }
 
     parse(story) {
@@ -65,32 +34,6 @@ class ThemeParser {
             textStyles: themeTextStyles = null,
             boxStyles: themeBoxStyles = null,
         } = theme;
-
-        // Speed test
-        // const newComponents = [...components];
-        // for (let index = 0; index < components.length; index += 1) {
-        //     const screen = components[index] || {};
-        //     const { type } = screen;
-        //     const { definition, themeScreen } = this.getDefinitionByScreen(type, themeComponents);
-        //     const newScreen = this.parseScreen(
-        //         definition,
-        //         screen,
-        //         themeScreen,
-        //         themeBackground,
-        //         themeColors,
-        //         themeTextStyles,
-        //         themeBoxStyles,
-        //     );
-
-        //     if (newScreen !== screen || themeScreen !== null) {
-        //         newComponents[index] = {
-        //             ...themeScreen,
-        //             ...newScreen,
-        //         };
-        //     }
-        // }
-        // story.components = newComponents;
-        // return story;
 
         const newComponents = components.reduce((currentComponents, screen, index) => {
             const { type } = screen;
@@ -135,7 +78,24 @@ class ThemeParser {
         themeTextStyles,
         themeBoxStyles,
     ) {
-        const { fields = null, repetableStates = null } = this.getFieldsForDefinition(definition);
+        const { fields = [], states = [] } = definition || {};
+
+        // TODO: test this
+        let finalFields = fields;
+        let repetableStates = [];
+        if (states !== null && states.length > 0) {
+            const nonRepetableStates = states.filter(
+                ({ repeatable = false }) => repeatable === false,
+            );
+            repetableStates = states.filter(({ repeatable = false }) => repeatable === true);
+            finalFields = nonRepetableStates.reduce((acc, it) => {
+                const { fields: itemFields = [] } = it || {};
+                if (itemFields !== null && itemFields.length > 0) {
+                    return acc.concat(itemFields);
+                }
+                return acc;
+            }, finalFields);
+        }
 
         const newThemeValue = themeValue === null && themeBackground !== null ? {} : themeValue;
 
@@ -150,7 +110,7 @@ class ThemeParser {
 
         const newScreenValue = Object.keys(value).reduce((currentValue, key) => {
             let repetableState = null;
-            if (repetableStates !== null && repetableStates.length > 0) {
+            if (repetableStates.length > 0) {
                 repetableState =
                     repetableStates.find(
                         ({ id: stateId = null }) => stateId !== null && stateId === key,
@@ -158,19 +118,10 @@ class ThemeParser {
             }
 
             const fieldDefinition =
-                (fields || null).find((it) => it.name === key) || repetableState || {};
+                finalFields.find((it) => it.name === key) || repetableState || {};
 
             const fieldValue = value[key];
             const fieldThemeValue = newThemeValue !== null ? newThemeValue[key] || null : null;
-
-            // Try for early return
-            const { theme = null } = fieldDefinition || {};
-            if ((theme === null || !isObject(theme)) && fields === null) {
-                return {
-                    ...currentValue,
-                    [key]: fieldValue,
-                };
-            }
 
             // console.log('start', key, fieldValue);
             const newFieldValue = this.parseField(
@@ -182,8 +133,6 @@ class ThemeParser {
                 themeBoxStyles,
             );
             // console.log('result', newFieldValue);
-
-            // const newFieldValue = fieldValue;
 
             // Only switch field if it has changed
             return newFieldValue !== fieldValue
@@ -203,10 +152,9 @@ class ThemeParser {
     }
 
     // eslint-disable-next-line class-methods-use-this
-    parseField(value, fieldDefinition, themeValue, themeColors, themeTextStyles, themeBoxStyles) {
-        const { theme: fieldTheme = null, fields: definitionFields = null } = fieldDefinition;
+    parseField(value, definition, themeValue, themeColors, themeTextStyles, themeBoxStyles) {
+        const { theme: fieldTheme = null, fields: definitionFields = null } = definition;
 
-        // There are sub-fields in this definition
         if (definitionFields !== null && value !== null) {
             return isArray(value)
                 ? value.map((innerFieldValue) => {

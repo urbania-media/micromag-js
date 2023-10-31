@@ -2072,7 +2072,7 @@ msgstr "Collaborateur"
 #: iQ5Uf7
 msgctxt "iQ5Uf7"
 msgid "Default feedback"
-msgstr "Rétroaction"
+msgstr "Rétroaction par défaut"
 
 # Field label
 #: iipV5Q

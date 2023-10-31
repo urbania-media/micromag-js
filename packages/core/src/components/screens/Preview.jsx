@@ -2,10 +2,13 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import styles from '../../styles/screens/preview.module.scss';
+
 import Screen from './Screen';
 import ScreenSizer from './ScreenSizer';
+
+import styles from '../../styles/screens/preview.module.scss';
 
 const propTypes = {
     screen: MicromagPropTypes.component.isRequired,
@@ -16,6 +19,7 @@ const propTypes = {
     screenHeight: PropTypes.number,
     className: PropTypes.string,
     withSize: PropTypes.bool,
+    hidden: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -26,6 +30,7 @@ const defaultProps = {
     screenHeight: undefined,
     className: null,
     withSize: false,
+    hidden: false,
 };
 
 const ScreenPreview = ({
@@ -37,6 +42,7 @@ const ScreenPreview = ({
     screenHeight,
     className,
     withSize,
+    hidden,
     ...props
 }) => {
     const screenElement = (
@@ -56,6 +62,7 @@ const ScreenPreview = ({
         />
     );
 
+    const element = !hidden ? screenElement : <div />;
     const screenWithSize = withSize ? (
         <ScreenSizer
             className={className}
@@ -64,10 +71,10 @@ const ScreenPreview = ({
             width={width}
             height={height}
         >
-            {screenElement}
+            {element}
         </ScreenSizer>
     ) : (
-        screenElement
+        element
     );
 
     return screenWithSize;

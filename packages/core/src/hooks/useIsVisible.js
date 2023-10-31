@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+
 import { useIntersectionObserver } from './useObserver';
 
 const useIsVisible = ({ rootMargin, threshold = 1, persist = false } = {}) => {
