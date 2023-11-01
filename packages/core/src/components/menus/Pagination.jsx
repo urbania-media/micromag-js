@@ -1,12 +1,13 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import queryString from 'query-string';
+import React, { useCallback } from 'react';
 import { defineMessages } from 'react-intl';
 
+import Label from '../partials/Label';
 // import { PropTypes as MicromagPropTypes } from '../../lib';
 import Link from '../partials/Link';
-import Label from '../partials/Label';
 
 import styles from '../../styles/menus/pagination.module.scss';
 
@@ -23,8 +24,11 @@ const messages = defineMessages({
 
 const propTypes = {
     page: PropTypes.number,
+    lastPage: PropTypes.number,
+    maxPages: PropTypes.number,
     total: PropTypes.number,
     url: PropTypes.string,
+    query: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     withPreviousNext: PropTypes.bool,
     className: PropTypes.string,
     paginationClassName: PropTypes.string,
@@ -35,8 +39,11 @@ const propTypes = {
 
 const defaultProps = {
     page: 1,
+    lastPage: 1,
+    maxPages: 10,
     total: 1,
     url: null,
+    query: null,
     withPreviousNext: false,
     className: null,
     paginationClassName: null,
@@ -46,9 +53,12 @@ const defaultProps = {
 };
 
 const PaginationMenu = ({
-    page,
-    total,
+    page: parentPage,
+    lastPage: parentLastPage,
+    maxPages: parentMaxPages,
+    total: parentTotal,
     url,
+    query,
     withPreviousNext,
     className,
     paginationClassName,
@@ -59,13 +69,46 @@ const PaginationMenu = ({
     const getUrl = useCallback(
         (currentPage) =>
             url !== null
-                ? `${url}${
-                      url.indexOf('?') !== -1 ? `&page=${currentPage}` : `?page=${currentPage}`
-                  }`
+                ? `${url}?${queryString.stringify(
+                      { ...query, page: currentPage },
+                      {
+                          arrayFormat: 'bracket',
+                      },
+                  )}`
                 : null,
-        [url],
+        [url, query],
     );
-    const pages = [...Array(total).keys()].map((it) => it + 1);
+
+    // TODO: test this
+    // const pages = [...Array(total).keys()].map((it) => it + 1);
+
+    const page = parseInt(parentPage, 10);
+    const total = parseInt(parentTotal, 10);
+    const maxPages = parseInt(parentMaxPages, 10);
+    const lastPage = parseInt(parentLastPage, 10);
+
+    const pageNumbers = Array.from({ length: parseInt(lastPage, 10) }, (_, i) => i + 1);
+    const stripPages = maxPages !== null && lastPage > maxPages;
+    const startPage = stripPages
+        ? Math.min(Math.max(page - maxPages / 2, 1), lastPage - maxPages)
+        : null;
+    const endPage = stripPages ? startPage + maxPages : null;
+    const strippedPages = stripPages
+        ? pageNumbers.reduce((selectedPages, pageNumber) => {
+              if (pageNumber === 1 && startPage - 1 > 1) {
+                  return [pageNumber, '...'];
+              }
+              if (pageNumber === lastPage && endPage + 1 < lastPage) {
+                  return [...selectedPages, '...', pageNumber];
+              }
+              return pageNumber >= startPage && pageNumber <= endPage
+                  ? [...selectedPages, pageNumber]
+                  : selectedPages;
+          }, [])
+        : pageNumbers;
+
+    const pages = strippedPages.length > 0 ? strippedPages : [1];
+
     return (
         <nav
             className={classNames([
