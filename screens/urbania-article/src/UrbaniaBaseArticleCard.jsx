@@ -68,7 +68,6 @@ const UrbaniaArticleCard = ({
     className,
 }) => {
     const isSafari = navigator.userAgent.match(/safari/i) !== null;
-    console.log(isSafari);
 
     const finalBackground = background !== null ? background : { image };
 
@@ -112,13 +111,14 @@ const UrbaniaArticleCard = ({
         } else {
             enableInteraction();
         }
+
         setFirstInteraction(true);
-    }, [iframeOpened, setFirstInteraction, setIframeOpened]);
+    }, [iframeOpened, setFirstInteraction, setIframeOpened, disableInteraction, enableInteraction]);
 
     const bind = useGesture(
         {
-            onDrag: ({ movement: [, my], tap }) => {
-                if ((!iframeOpened && my < 0) || (iframeOpened && my > 0) || tap) {
+            onDrag: ({ movement: [, my] }) => {
+                if ((!iframeOpened && my < 0) || (iframeOpened && my > 0)) {
                     toggleIframe();
                 }
             },
@@ -128,7 +128,7 @@ const UrbaniaArticleCard = ({
                 }
             },
         },
-        { drag: { axis: 'y' }, wheel: { axis: 'y' } },
+        { drag: { axis: 'y', filterTaps: true, preventDefault: true }, wheel: { axis: 'y' } },
     );
 
     let y = 100;
@@ -260,7 +260,6 @@ const UrbaniaArticleCard = ({
                                 >
                                     <button
                                         type="button"
-                                        {...bind()}
                                         style={{
                                             height: iframeInteractionEnabled ? '100px' : height,
                                             width,
@@ -268,6 +267,7 @@ const UrbaniaArticleCard = ({
                                         }}
                                         onClick={toggleIframe}
                                         className={styles.interactiveZone}
+                                        {...(current ? bind() : null)}
                                     />
                                     {iframeInteractionEnabled ? (
                                         <Button className={styles.close} onClick={toggleIframe}>
