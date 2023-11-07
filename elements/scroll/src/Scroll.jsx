@@ -101,6 +101,7 @@ function Scroll({
             if (newWithArrow !== withArrow && showArrow) {
                 setWithArrow(newWithArrow);
             }
+
             reachedBottom.current = nowReachedBottom;
         },
         { enabled: !disabled },
@@ -166,7 +167,11 @@ function Scroll({
                         className={styles.arrow}
                         fill="currentColor"
                     >
-                        <polygon points=".38 11.38 5 16 9.62 11.38 8.56 10.32 5.75 13.13 5.75 1.61 4.25 1.61 4.25 13.13 1.44 10.32 .38 11.38" />
+                        <polygon
+                            // stroke="#000"
+                            // strokeWidth="0.5"
+                            points=".38 11.38 5 16 9.62 11.38 8.56 10.32 5.75 13.13 5.75 1.61 4.25 1.61 4.25 13.13 1.44 10.32 .38 11.38"
+                        />
                     </svg>
                 </div>
             ) : null}
