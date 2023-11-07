@@ -67,6 +67,9 @@ const UrbaniaArticleCard = ({
     spacing,
     className,
 }) => {
+    const isSafari = navigator.userAgent.match(/safari/i) !== null;
+    console.log(isSafari);
+
     const finalBackground = background !== null ? background : { image };
 
     const { video: backgroundVideo = null } = finalBackground || {};
@@ -95,43 +98,22 @@ const UrbaniaArticleCard = ({
     const backgroundPlaying = current && (isView || isEdit) && !iframeOpened;
 
     // iframe animation
-    const hasIframeSlideIn =
-        !isEdit &&
-        !isPlaceholder &&
-        !isPreview &&
-        isBackgroundVideo &&
-        backgroundPlaying &&
-        !firstInteraction;
-    const hasIframeBounce = !isEdit && !isPlaceholder && !isPreview && !firstInteraction;
+    const hasIframeAnimation =
+        !isEdit && !isPlaceholder && !isPreview && !isStatic && !firstInteraction;
+    const slideInDelay = hasIframeAnimation && isBackgroundVideo && backgroundPlaying;
+    const hasIframeBounce = hasIframeAnimation && current && !iframeOpened;
 
     const toggleIframe = useCallback(() => {
-        setIframeOpened(!iframeOpened);
-        if (firstInteraction === false) {
-            setFirstInteraction(true);
-        }
-    }, [iframeOpened, firstInteraction, setFirstInteraction, setIframeOpened]);
+        const newIframeOpened = !iframeOpened;
 
-    useEffect(() => {
-        let id = null;
-        if (iframeOpened) {
+        setIframeOpened(newIframeOpened);
+        if (newIframeOpened) {
             disableInteraction();
-            id = setTimeout(() => {
-                setIframeInteractionEnabled(true);
-            }, 200);
         } else {
             enableInteraction();
-            setIframeInteractionEnabled(false);
         }
-        return () => {
-            clearTimeout(id);
-        };
-    }, [iframeOpened, setIframeInteractionEnabled]);
-
-    useEffect(() => {
-        if (!current) {
-            setIframeOpened(false);
-        }
-    }, [current]);
+        setFirstInteraction(true);
+    }, [iframeOpened, setFirstInteraction, setIframeOpened]);
 
     const bind = useGesture(
         {
@@ -149,23 +131,38 @@ const UrbaniaArticleCard = ({
         { drag: { axis: 'y' }, wheel: { axis: 'y' } },
     );
 
-    const [springStyle, springApi] = useSpring(
-        () => ({
-            from: { y: height * 0.25 + 2 },
-            to: { y: 0 },
-            delay: hasIframeSlideIn ? 2000 : 0,
-            // onResolve: () => {
-            //     onAnimationEnded(index);
-            // },
-            // config: { tension: 40, friction: 14 },
-            config: {
-                easing: easings.easeInOutElastic,
-                // frequency: 100,
-                duration: hasIframeSlideIn ? 300 : 2000,
-            },
-        }),
-        [],
-    );
+    let y = 100;
+    if (current && iframeOpened) {
+        y = 0;
+    } else if (current) {
+        y = 75;
+    }
+
+    const springStyle = useSpring({
+        from: { y: 100 },
+        to: { y },
+        onStart: () => {
+            setIframeInteractionEnabled(false);
+        },
+        onResolve: () => {
+            if (iframeOpened) {
+                setIframeInteractionEnabled(true);
+            }
+        },
+        delay: slideInDelay ? 1500 : 0,
+        config: {
+            // easing: easings.easeInOutElastic,
+            easing: easings.easeInOutSine,
+            duration: y === 100 ? 1000 : 400,
+        },
+    });
+
+    useEffect(() => {
+        if (!current) {
+            setIframeOpened(false);
+            setFirstInteraction(false);
+        }
+    }, [current]);
 
     return (
         <div
@@ -243,62 +240,61 @@ const UrbaniaArticleCard = ({
                     >
                         {(!isPreview || !isPlaceholder) && hasArticle ? (
                             <a.div
-                                className={classNames([
-                                    styles.popupContainer,
-                                    {
-                                        [styles.pulse]: hasIframeBounce,
-                                    },
-                                ])}
+                                className={styles.popupContainer}
                                 style={{
                                     height,
                                     width,
-                                    top: iframeOpened ? 0 : '75%',
-                                    ...springStyle,
+                                    transform: springStyle.y.to((value) => `translateY(${value}%`),
+                                    // top: iframeOpened ? 0 : '75%',
+                                    // ...springStyle,
                                 }}
                             >
-                                <button
-                                    type="button"
-                                    {...bind()}
-                                    style={{
-                                        height: iframeOpened ? '100px' : height,
-                                        width,
-                                        // position: iframeOpened ? 'absolute' : 'relative',
-                                        zIndex: 5,
-                                    }}
-                                    onClick={toggleIframe}
-                                    className={styles.interactiveZone}
-                                />
-                                {iframeInteractionEnabled ? (
-                                    <Button className={styles.close} onClick={toggleIframe}>
-                                        <Close color="#000" className={styles.closeIcon} />
-                                    </Button>
-                                ) : null}
-                                <iframe
-                                    className={classNames([
-                                        styles.iframe,
-                                        {
-                                            [styles.opened]: iframeOpened,
-                                        },
-                                    ])}
-                                    title={title.body}
-                                    src={url || 'about:blank'}
-                                    scrolling={iframeOpened ? 'yes' : 'no'} // @TODO: deprecated, find beter solution
-                                    style={{
-                                        width,
-                                        height,
-                                        pointerEvents: iframeInteractionEnabled ? 'auto' : 'none',
-                                        overflow: iframeOpened ? 'hidden' : null,
-                                    }}
-                                />
                                 <div
                                     className={classNames([
-                                        styles.iframeBlocker,
+                                        styles.popupContainerInner,
                                         {
-                                            [styles.active]: !iframeInteractionEnabled,
+                                            [styles.opened]: iframeOpened,
+                                            [styles.pulse]: hasIframeBounce,
                                         },
                                     ])}
-                                    style={{ width, height: height * 0.25 }}
-                                />
+                                >
+                                    <button
+                                        type="button"
+                                        {...bind()}
+                                        style={{
+                                            height: iframeInteractionEnabled ? '100px' : height,
+                                            width,
+                                            zIndex: 5,
+                                        }}
+                                        onClick={toggleIframe}
+                                        className={styles.interactiveZone}
+                                    />
+                                    {iframeInteractionEnabled ? (
+                                        <Button className={styles.close} onClick={toggleIframe}>
+                                            <Close color="#000" className={styles.closeIcon} />
+                                        </Button>
+                                    ) : null}
+                                    <iframe
+                                        className={styles.iframe}
+                                        title={title.body}
+                                        src={url || 'about:blank'}
+                                        scrolling={!iframeOpened && !isSafari ? 'no' : 'auto'}
+                                        style={{
+                                            width: '100%',
+                                            height,
+                                            overflow: !iframeOpened ? 'hidden' : 'auto',
+                                        }}
+                                    />
+                                    <div
+                                        className={classNames([
+                                            styles.iframeBlocker,
+                                            {
+                                                [styles.active]: !iframeInteractionEnabled,
+                                            },
+                                        ])}
+                                        style={{ width, height: height * 0.25 }}
+                                    />
+                                </div>
                             </a.div>
                         ) : null}
                     </ScreenElement>
