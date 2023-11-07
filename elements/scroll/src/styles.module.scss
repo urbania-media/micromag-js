@@ -63,6 +63,7 @@
     left: 0;
     width: 100%;
     height: 5rem;
+    transform: translateZ(0);
     transition: opacity 0.3s ease;
     opacity: 0;
     text-align: center;
@@ -72,7 +73,7 @@
         &::after {
             content: '';
             position: absolute;
-            z-index: 2;
+            z-index: 3;
             top: 0;
             left: 0;
             width: 100%;
