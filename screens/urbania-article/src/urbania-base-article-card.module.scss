@@ -89,6 +89,7 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
         @extend %reset-button;
         position: absolute;
         touch-action: none;
+        transform: translateZ(0);
     }
 
     .close {
