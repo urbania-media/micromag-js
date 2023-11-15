@@ -15,6 +15,8 @@ function useMediaDuration(element, { id = null } = {}) {
 
     useEffect(() => {
         if (element === null) {
+            realDuration.current = 0;
+            setDuration(0);
             return () => {};
         }
         function updateDuration() {
