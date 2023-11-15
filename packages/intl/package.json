@@ -40,9 +40,13 @@
         "./locale": "./locale",
         "./locale/fr.json": "./locale/fr.json",
         "./locale/en.json": "./locale/en.json",
-        "./locale/*": {
-            "require": "./locale/*.cjs.js",
-            "import": "./locale/*.js"
+        "./locale/fr": {
+            "require": "./locale/fr.cjs.js",
+            "import": "./locale/fr.js"
+        },
+        "./locale/en": {
+            "require": "./locale/en.cjs.js",
+            "import": "./locale/en.js"
         }
     },
     "files": [
