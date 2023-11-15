@@ -478,6 +478,7 @@ const ContributionScreen = ({
                         disabled={scrollingDisabled}
                         onScrolledBottom={onScrolledBottom}
                         onScrolledNotBottom={onScrolledNotBottom}
+                        withShadow
                     >
                         {headerInScroll ? headerElement : null}
                         {items}

@@ -210,6 +210,7 @@ const ConversationScreen = ({
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
+                    withShadow
                 >
                     <div ref={contentRef}>
                         <Layout

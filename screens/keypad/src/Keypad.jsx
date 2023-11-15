@@ -520,6 +520,7 @@ const KeypadScreen = ({
                     height={height}
                     verticalAlign={layout}
                     withArrow={!showPopup}
+                    withShadow={!showPopup}
                     disabled={isPreview || isPlaceholder || showPopup}
                 >
                     <Layout

@@ -233,6 +233,7 @@ const GalleryFeedScreen = ({
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
+                    withShadow
                 >
                     <Layout
                         className={styles.layout}
