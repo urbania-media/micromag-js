@@ -41,7 +41,8 @@
             "require": "./lib/all.js",
             "import": "./es/all.js"
         },
-        "./scss/styles": "./scss/styles.scss"
+        "./scss/styles": "./scss/styles.scss",
+        "./scss/styles.scss": "./scss/styles.scss"
     },
     "browser": {
         ".": "./es/index.js",
