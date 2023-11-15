@@ -82,7 +82,6 @@
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
         "@use-gesture/react": "^10.2.4",
-        "camelcase": "^7.0.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -94,5 +93,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "8b87a7c069ebdfc1bd5c7dafe8879d2f96faf9b2"
+    "gitHead": "d22737eea1773c1a8c6907ab0bd598368bda615c"
 }

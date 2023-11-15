@@ -1,3 +1,4 @@
+export { default as camelCase } from './camelCase';
 export { default as convertStyleToString } from './convertStyleToString';
 export { default as copyToClipboard } from './copyToClipboard';
 export { default as createNullableOnChange } from './createNullableOnChange';

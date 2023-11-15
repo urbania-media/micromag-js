@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { animated } from '@react-spring/web';
-import camelCase from 'camelcase';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { camelCase } from '@micromag/core/utils';
 import { PlaceholderButton, ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,

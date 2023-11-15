@@ -49,7 +49,7 @@ export const createConfig = ({
             resolve({
                 modulesOnly: true,
                 resolveOnly: [
-                    /(query-string|decode-uri-component|split-on-first|filter-obj|screenfull|camelcase|change-case)/,
+                    /(query-string|decode-uri-component|split-on-first|filter-obj|screenfull|camelcase|[a-z]+-case)/,
                 ],
             }),
 
