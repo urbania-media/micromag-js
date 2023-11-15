@@ -1,6 +1,6 @@
 {
     "name": "@micromag/media-gallery",
-    "version": "0.3.423",
+    "version": "0.3.430",
     "private": false,
     "description": "",
     "keywords": [
@@ -33,7 +33,10 @@
     "main": "lib/index.js",
     "module": "es/index.js",
     "exports": {
-        ".": "./lib/index.js",
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
         "./scss/styles": "./scss/styles.scss",
         "./scss/styles.scss": "./scss/styles.scss",
         "./assets/css/styles.css": "./assets/css/styles.css"
@@ -60,8 +63,8 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.423",
-        "@micromag/data": "^0.3.423",
+        "@micromag/core": "^0.3.430",
+        "@micromag/data": "^0.3.430",
         "bootstrap": "5.2.0-beta1",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
@@ -75,5 +78,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "8b87a7c069ebdfc1bd5c7dafe8879d2f96faf9b2"
+    "gitHead": "d22737eea1773c1a8c6907ab0bd598368bda615c"
 }

@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-survey",
-    "version": "0.3.426",
+    "version": "0.3.430",
     "private": false,
     "description": "",
     "keywords": [
@@ -32,6 +32,14 @@
     "license": "ISC",
     "main": "lib/index.js",
     "module": "es/index.js",
+    "style": "assets/css/styles.css",
+    "exports": {
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
+        "./assets/css/*.css": "./assets/css/*.css"
+    },
     "files": [
         "lib",
         "es",
@@ -50,18 +58,18 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.423",
-        "@micromag/data": "^0.3.423",
-        "@micromag/element-background": "^0.3.423",
-        "@micromag/element-button": "^0.3.423",
-        "@micromag/element-container": "^0.3.423",
-        "@micromag/element-footer": "^0.3.423",
-        "@micromag/element-header": "^0.3.423",
-        "@micromag/element-heading": "^0.3.423",
-        "@micromag/element-layout": "^0.3.423",
-        "@micromag/element-scroll": "^0.3.426",
-        "@micromag/element-text": "^0.3.423",
-        "@micromag/transforms": "^0.3.423",
+        "@micromag/core": "^0.3.430",
+        "@micromag/data": "^0.3.430",
+        "@micromag/element-background": "^0.3.430",
+        "@micromag/element-button": "^0.3.430",
+        "@micromag/element-container": "^0.3.430",
+        "@micromag/element-footer": "^0.3.430",
+        "@micromag/element-header": "^0.3.430",
+        "@micromag/element-heading": "^0.3.430",
+        "@micromag/element-layout": "^0.3.430",
+        "@micromag/element-scroll": "^0.3.430",
+        "@micromag/element-text": "^0.3.430",
+        "@micromag/transforms": "^0.3.430",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -72,5 +80,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "8b87a7c069ebdfc1bd5c7dafe8879d2f96faf9b2"
+    "gitHead": "d22737eea1773c1a8c6907ab0bd598368bda615c"
 }

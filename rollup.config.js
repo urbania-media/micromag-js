@@ -46,6 +46,13 @@ export const createConfig = ({
         input: input || `src/${file}`,
         output: outputConfig,
         plugins: [
+            resolve({
+                modulesOnly: true,
+                resolveOnly: [
+                    /(query-string|decode-uri-component|split-on-first|filter-obj|screenfull|camelcase|[a-z]+-case)/,
+                ],
+            }),
+
             ...prependPlugins,
 
             imageAssets({

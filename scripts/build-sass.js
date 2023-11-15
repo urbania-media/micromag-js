@@ -6,6 +6,7 @@ const { program } = require('commander');
 const sass = require('sass');
 const tildeImporter = require('node-sass-tilde-importer');
 const postcss = require('postcss');
+const atImport = require('postcss-import');
 const postcssConfig = require('../postcss.config');
 
 let srcFile = null;
@@ -18,21 +19,50 @@ program.arguments('<src> <out>').action((src, out) => {
 
 program.parse(process.argv);
 
+// process.exit(0);
+
+// const sassContent = fs.readFileSync(srcFile);
+// postcss([
+//     require('@csstools/postcss-sass')({
+//         outputStyle: 'compressed',
+//         sourceMap: true,
+//         includePaths: [
+//             path.join(process.cwd(), 'node_modules'),
+//             path.join(__dirname, '../node_modules'),
+//         ],
+//     }),
+//     require('postcss-import'),
+//     ...postcssConfig.plugins
+// ]).process(sassContent, {
+//     from: srcFile,
+//     to: outFile,
+// })
+// .then((postCssResult) => {
+//     // console.log(postCssResult);
+//     mkdirp.sync(path.dirname(outFile));
+//     fs.writeFileSync(outFile, postCssResult.css);
+
+//     console.log(`Generated ${outFile}`);
+// });
+
 const result = sass.renderSync({
     file: srcFile,
     outFile,
     importer: tildeImporter,
     outputStyle: 'compressed',
     sourceMap: true,
-    includePaths: [path.join(process.cwd(), 'node_modules')],
+    includePaths: [
+        path.join(process.cwd(), 'node_modules'),
+        path.join(__dirname, '../node_modules'),
+    ],
 });
 
-postcss(postcssConfig.plugins)
+postcss([require('postcss-import'), ...postcssConfig.plugins])
     .process(result.css, {
         from: srcFile,
         to: outFile,
     })
-    .then(postCssResult => {
+    .then((postCssResult) => {
         mkdirp.sync(path.dirname(outFile));
         fs.writeFileSync(outFile, postCssResult.css);
 

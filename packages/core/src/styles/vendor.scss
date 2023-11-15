@@ -4,6 +4,8 @@
 @import './placeholders';
 @import './mixins';
 @import '~bootstrap/scss/bootstrap';
+@import '~@uppy/core/dist/style';
+@import '~@uppy/dashboard/dist/style';
 
 .container-small {
     @include make-container();

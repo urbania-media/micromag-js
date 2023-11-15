@@ -1,6 +1,6 @@
 {
     "name": "@micromag/fields",
-    "version": "0.3.423",
+    "version": "0.3.430",
     "private": false,
     "description": "",
     "keywords": [
@@ -34,8 +34,14 @@
     "module": "es/index.js",
     "style": "assets/css/styles.css",
     "exports": {
-        ".": "./lib/index.js",
-        "./manager": "./lib/manager.js",
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
+        "./manager": {
+            "require": "./lib/manager.js",
+            "import": "./es/manager.js"
+        },
         "./scss/placeholders": "./scss/_placeholders.scss",
         "./scss/placeholders.scss": "./scss/_placeholders.scss",
         "./scss/styles": "./scss/styles.scss",
@@ -71,12 +77,12 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/ckeditor": "^0.3.417",
-        "@micromag/core": "^0.3.423",
-        "@micromag/element-grid": "^0.3.423",
-        "@micromag/element-keypad": "^0.3.423",
-        "@micromag/element-map": "^0.3.423",
-        "@micromag/media-gallery": "^0.3.423",
+        "@micromag/ckeditor": "^0.3.429",
+        "@micromag/core": "^0.3.430",
+        "@micromag/element-grid": "^0.3.430",
+        "@micromag/element-keypad": "^0.3.430",
+        "@micromag/element-map": "^0.3.430",
+        "@micromag/media-gallery": "^0.3.430",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
         "fuse.js": "^6.4.3",
@@ -95,5 +101,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "8b87a7c069ebdfc1bd5c7dafe8879d2f96faf9b2"
+    "gitHead": "d22737eea1773c1a8c6907ab0bd598368bda615c"
 }

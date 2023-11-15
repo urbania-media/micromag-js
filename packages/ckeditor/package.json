@@ -1,6 +1,6 @@
 {
     "name": "@micromag/ckeditor",
-    "version": "0.3.417",
+    "version": "0.3.429",
     "private": false,
     "description": "",
     "keywords": [
@@ -33,7 +33,10 @@
     "main": "lib/index.js",
     "module": "es/index.js",
     "exports": {
-        ".": "./lib/index.js",
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
         "./build": "./dist/build.js"
     },
     "browser": {
@@ -82,5 +85,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "3221a816c93604d43c9bf7900506350b355fde9a"
+    "gitHead": "d22737eea1773c1a8c6907ab0bd598368bda615c"
 }

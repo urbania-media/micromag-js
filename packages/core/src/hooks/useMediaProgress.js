@@ -13,11 +13,11 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
 
     const [progress, setProgress] = useState(0);
     const realProgressRef = useRef(progress);
-    const updateTimeRef = useRef(new Date().getTime());
+    const updateTimeRef = useRef(Date.now() / 1000);
 
     const updateProgress = useCallback(
         (newProgress) => {
-            updateTimeRef.current = new Date().getTime();
+            updateTimeRef.current = Date.now() / 1000;
             realProgressRef.current = newProgress;
             setProgress(newProgress);
         },
@@ -95,10 +95,10 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
                 return;
             }
 
-            const newTime = new Date().getTime();
+            const newTime = Date.now() / 1000;
             const elapsed = newTime - updateTimeRef.current;
             updateTimeRef.current = newTime;
-            const step = elapsed / (duration * 1000);
+            const step = elapsed / duration;
             const newProgress = realProgressRef.current + step;
             updateProgress(newProgress);
             handle = raf(tick);

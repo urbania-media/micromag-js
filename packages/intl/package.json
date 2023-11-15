@@ -1,6 +1,6 @@
 {
     "name": "@micromag/intl",
-    "version": "0.3.423",
+    "version": "0.3.431",
     "private": false,
     "description": "",
     "keywords": [
@@ -33,9 +33,21 @@
     "main": "lib/index.js",
     "module": "es/index.js",
     "exports": {
-        ".": "./lib/index.js",
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
         "./locale": "./locale",
-        "./locale/*": "./locale/*.cjs.js"
+        "./locale/fr.json": "./locale/fr.json",
+        "./locale/en.json": "./locale/en.json",
+        "./locale/fr": {
+            "require": "./locale/fr.cjs.js",
+            "import": "./locale/fr.js"
+        },
+        "./locale/en": {
+            "require": "./locale/en.cjs.js",
+            "import": "./locale/en.js"
+        }
     },
     "files": [
         "locale",
@@ -59,7 +71,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@formatjs/cli": "^4.4.0",
-        "@micromag/core": "^0.3.423",
+        "@micromag/core": "^0.3.430",
         "commander": "^8.3.0",
         "fs-extra": "^10.0.0",
         "gettext-parser": "^4.0.4",
@@ -77,5 +89,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "8b87a7c069ebdfc1bd5c7dafe8879d2f96faf9b2"
+    "gitHead": "d22737eea1773c1a8c6907ab0bd598368bda615c"
 }

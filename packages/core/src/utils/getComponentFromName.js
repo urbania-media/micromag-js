@@ -1,4 +1,4 @@
-import { pascalCase } from 'change-case';
+import pascalCase from './pascalCase';
 
 const getComponentFromName = (name = null, components, defaultComponent = null) => {
     if (components === null || name === null) {
