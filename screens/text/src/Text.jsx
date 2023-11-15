@@ -232,4 +232,4 @@ const TextScreen = ({
 TextScreen.propTypes = propTypes;
 TextScreen.defaultProps = defaultProps;
 
-export default React.memo(TextScreen);
+export default TextScreen;

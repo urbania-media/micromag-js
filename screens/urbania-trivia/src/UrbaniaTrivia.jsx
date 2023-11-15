@@ -14,7 +14,6 @@ import {
     PlaceholderTitle,
     PlaceholderVideo,
     ScreenElement,
-    Transitions,
 } from '@micromag/core/components';
 import {
     useScreenRenderContext,
@@ -74,7 +73,6 @@ const propTypes = {
     spacing: PropTypes.number,
     padding: PropTypes.number,
     mediaRef: PropTypes.func,
-    transitions: PropTypes.any, // eslint-disable-line react/forbid-prop-types
     className: PropTypes.string,
 };
 
@@ -88,7 +86,6 @@ const defaultProps = {
     active: true,
     spacing: 20,
     padding: 20,
-    transitions: null,
     mediaRef: null,
     className: null,
 };
@@ -103,7 +100,6 @@ const UrbaniaTrivia = ({
     active,
     spacing,
     padding,
-    transitions,
     mediaRef: customMediaRef,
     className,
 }) => {
@@ -259,8 +255,6 @@ const UrbaniaTrivia = ({
 
     const hasVideo = video !== null;
     const [ready, setReady] = useState(hasVideo);
-    const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const finalVideo = useMemo(
         () =>
@@ -422,22 +416,16 @@ const UrbaniaTrivia = ({
                                     transform: `translate(0, -${viewerBottomHeight}px)`,
                                 }}
                             >
-                                <Transitions
-                                    playing={transitionPlaying}
-                                    transitions={transitions}
-                                    disabled={transitionDisabled}
-                                >
-                                    {closedCaptions !== null &&
-                                    !isPreview &&
-                                    !isCapture &&
-                                    !isStatic ? (
-                                        <ClosedCaptions
-                                            className={styles.closedCaptions}
-                                            media={closedCaptions}
-                                            currentTime={currentTime}
-                                        />
-                                    ) : null}
-                                </Transitions>
+                                {closedCaptions !== null &&
+                                !isPreview &&
+                                !isCapture &&
+                                !isStatic ? (
+                                    <ClosedCaptions
+                                        className={styles.closedCaptions}
+                                        media={closedCaptions}
+                                        currentTime={currentTime}
+                                    />
+                                ) : null}
                             </div>
                         ) : null}
                     </div>
@@ -504,4 +492,4 @@ const UrbaniaTrivia = ({
 UrbaniaTrivia.propTypes = propTypes;
 UrbaniaTrivia.defaultProps = defaultProps;
 
-export default React.memo(UrbaniaTrivia);
+export default UrbaniaTrivia;

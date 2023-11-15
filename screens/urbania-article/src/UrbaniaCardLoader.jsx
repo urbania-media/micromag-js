@@ -8,4 +8,4 @@ function UrbaniaCardLoader(props) {
     return <UrbaniaLoader component={UrbaniaBaseArticleCard} {...props} />;
 }
 
-export default React.memo(UrbaniaCardLoader);
+export default UrbaniaCardLoader;

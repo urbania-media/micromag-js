@@ -7,7 +7,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, Transitions } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -186,27 +186,20 @@ const ImageScreen = ({
                 isEmpty={!hasImage}
             >
                 {hasImage ? (
-                    <Transitions
-                        transitions={transitions}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                        fullscreen
-                    >
-                        <Visual
-                            className={styles.image}
-                            media={image}
-                            objectFit={finalImageFit}
-                            width={imageWidth}
-                            height={imageHeight}
-                            resolution={resolution}
-                            playing={backgroundPlaying}
-                            muted={muted}
-                            active={active}
-                            shouldLoad={mediaShouldLoad}
-                            withoutVideo={isPreview}
-                            onLoaded={onImageLoaded}
-                        />
-                    </Transitions>
+                    <Visual
+                        className={styles.image}
+                        media={image}
+                        objectFit={finalImageFit}
+                        width={imageWidth}
+                        height={imageHeight}
+                        resolution={resolution}
+                        playing={backgroundPlaying}
+                        muted={muted}
+                        active={active}
+                        shouldLoad={mediaShouldLoad}
+                        withoutVideo={isPreview}
+                        onLoaded={onImageLoaded}
+                    />
                 ) : null}
             </ScreenElement>
         </div>,
@@ -222,15 +215,9 @@ const ImageScreen = ({
                 isEmpty={!hasTitle}
             >
                 {hasTitle ? (
-                    <Transitions
-                        transitions={transitions}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                    >
-                        <div style={itemMarginStyle}>
-                            <Heading {...title} />
-                        </div>
-                    </Transitions>
+                    <div style={itemMarginStyle}>
+                        <Heading {...title} />
+                    </div>
                 ) : null}
             </ScreenElement>
         ),
@@ -246,15 +233,9 @@ const ImageScreen = ({
                 isEmpty={!hasText}
             >
                 {hasText ? (
-                    <Transitions
-                        transitions={transitions}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                    >
-                        <div style={itemMarginStyle}>
-                            <Text {...text} />
-                        </div>
-                    </Transitions>
+                    <div style={itemMarginStyle}>
+                        <Text {...text} />
+                    </div>
                 ) : null}
             </ScreenElement>
         ),
@@ -270,15 +251,9 @@ const ImageScreen = ({
                 isEmpty={!hasLegend}
             >
                 {hasLegend ? (
-                    <Transitions
-                        transitions={transitions}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                    >
-                        <div style={itemMarginStyle}>
-                            <Text {...legend} />
-                        </div>
-                    </Transitions>
+                    <div style={itemMarginStyle}>
+                        <Text {...legend} />
+                    </div>
                 ) : null}
             </ScreenElement>
         ),
@@ -420,4 +395,4 @@ const ImageScreen = ({
 ImageScreen.propTypes = propTypes;
 ImageScreen.defaultProps = defaultProps;
 
-export default React.memo(ImageScreen);
+export default ImageScreen;

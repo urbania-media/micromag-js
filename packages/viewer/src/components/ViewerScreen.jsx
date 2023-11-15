@@ -89,7 +89,7 @@ function ViewerScreen({
                     opacity: mounted ? 1 : null,
                 }}
             >
-                {mounted ? (
+                {mounted || current ? (
                     <Screen
                         screen={screen}
                         renderContext={renderContext}

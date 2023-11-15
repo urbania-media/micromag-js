@@ -307,4 +307,4 @@ const UrbaniaArticleCard = ({
 UrbaniaArticleCard.defaultProps = defaultProps;
 UrbaniaArticleCard.propTypes = propTypes;
 
-export default React.memo(UrbaniaArticleCard);
+export default UrbaniaArticleCard;

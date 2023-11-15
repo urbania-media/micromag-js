@@ -741,4 +741,4 @@ const UrbaniaRecommendation = ({
 UrbaniaRecommendation.propTypes = propTypes;
 UrbaniaRecommendation.defaultProps = defaultProps;
 
-export default React.memo(UrbaniaRecommendation);
+export default UrbaniaRecommendation;

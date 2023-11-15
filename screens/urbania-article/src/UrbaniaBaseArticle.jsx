@@ -416,4 +416,4 @@ const UrbaniaArticle = ({
 UrbaniaArticle.propTypes = propTypes;
 UrbaniaArticle.defaultProps = defaultProps;
 
-export default React.memo(UrbaniaArticle);
+export default UrbaniaArticle;

@@ -773,4 +773,4 @@ const KeypadScreen = ({
 KeypadScreen.propTypes = propTypes;
 KeypadScreen.defaultProps = defaultProps;
 
-export default React.memo(KeypadScreen);
+export default KeypadScreen;

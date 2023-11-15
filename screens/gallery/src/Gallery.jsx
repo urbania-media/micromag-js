@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, Transitions } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     useScreenRenderContext,
     useScreenSize,
@@ -68,8 +68,6 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -84,8 +82,6 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
-    transitions: null,
-    transitionStagger: 50,
     className: null,
 };
 
@@ -100,8 +96,6 @@ const GalleryScreen = ({
     active,
     spacing,
     captionMaxLines,
-    transitions,
-    transitionStagger,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
@@ -190,69 +184,54 @@ const GalleryScreen = ({
                         imagesEl.current[itemI] = el;
                     }}
                 >
-                    <Transitions
-                        transitions={transitions}
-                        delay={itemI * transitionStagger}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                        fullscreen
+                    <ScreenElement
+                        placeholder="image"
+                        placeholderProps={{ className: styles.placeholder, height: '100%' }}
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Image"
+                                description="Image placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyImage}
+                        isEmpty={!hasImage}
                     >
-                        <ScreenElement
-                            placeholder="image"
-                            placeholderProps={{ className: styles.placeholder, height: '100%' }}
-                            emptyLabel={
-                                <FormattedMessage
-                                    defaultMessage="Image"
-                                    description="Image placeholder"
-                                />
-                            }
-                            emptyClassName={styles.emptyImage}
-                            isEmpty={!hasImage}
-                        >
-                            {active || current ? (
-                                <Visual
-                                    className={styles.image}
-                                    {...finalImage}
-                                    {...imageSize}
-                                    resolution={resolution}
-                                    objectFit={{ fit: 'cover' }}
-                                    playing={backgroundPlaying}
-                                    active={active}
-                                    shouldLoad={mediaShouldLoad}
-                                    withoutVideo={isPreview}
-                                    onLoaded={onImageLoaded}
-                                />
-                            ) : null}
-                        </ScreenElement>
-                    </Transitions>
+                        {active || current ? (
+                            <Visual
+                                className={styles.image}
+                                {...finalImage}
+                                {...imageSize}
+                                resolution={resolution}
+                                objectFit={{ fit: 'cover' }}
+                                playing={backgroundPlaying}
+                                active={active}
+                                shouldLoad={mediaShouldLoad}
+                                withoutVideo={isPreview}
+                                onLoaded={onImageLoaded}
+                            />
+                        ) : null}
+                    </ScreenElement>
                 </div>
                 {withCaptions ? (
-                    <Transitions
-                        transitions={transitions}
-                        delay={itemI * transitionStagger}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
+                    <ScreenElement
+                        placeholder="line"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Caption"
+                                description="Caption placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyCaption}
+                        isEmpty={!hasCaption}
                     >
-                        <ScreenElement
-                            placeholder="line"
-                            emptyLabel={
-                                <FormattedMessage
-                                    defaultMessage="Caption"
-                                    description="Caption placeholder"
-                                />
-                            }
-                            emptyClassName={styles.emptyCaption}
-                            isEmpty={!hasCaption}
-                        >
-                            <div className={styles.caption}>
-                                <Text
-                                    {...caption}
-                                    className={styles.captionText}
-                                    lineClamp={captionMaxLines}
-                                />
-                            </div>
-                        </ScreenElement>
-                    </Transitions>
+                        <div className={styles.caption}>
+                            <Text
+                                {...caption}
+                                className={styles.captionText}
+                                lineClamp={captionMaxLines}
+                            />
+                        </div>
+                    </ScreenElement>
                 ) : null}
             </div>
         );
@@ -336,4 +315,4 @@ const GalleryScreen = ({
 GalleryScreen.propTypes = propTypes;
 GalleryScreen.defaultProps = defaultProps;
 
-export default React.memo(GalleryScreen);
+export default GalleryScreen;

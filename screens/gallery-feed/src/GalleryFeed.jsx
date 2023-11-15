@@ -302,4 +302,4 @@ const GalleryFeedScreen = ({
 GalleryFeedScreen.propTypes = propTypes;
 GalleryFeedScreen.defaultProps = defaultProps;
 
-export default React.memo(GalleryFeedScreen);
+export default GalleryFeedScreen;

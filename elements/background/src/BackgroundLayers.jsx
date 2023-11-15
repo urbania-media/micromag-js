@@ -76,6 +76,10 @@ const BackgroundLayers = ({
     const layers = useMemo(() => getLayersFromBackground(background), [background]);
     const maxZIndex = layers.length;
 
+    if (layers.length === 0) {
+        return null;
+    }
+
     // color
     const containerStyle = {
         ...(hasSize

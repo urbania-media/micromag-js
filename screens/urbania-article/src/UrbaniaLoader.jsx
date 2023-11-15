@@ -149,4 +149,4 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
 UrbaniaLoader.propTypes = propTypes;
 UrbaniaLoader.defaultProps = defaultProps;
 
-export default React.memo(UrbaniaLoader);
+export default UrbaniaLoader;

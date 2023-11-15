@@ -582,6 +582,17 @@ const Viewer = ({
         isView,
     ]);
 
+    const [preloadNeighbors, setPreloadNeighbors] = useState(false);
+    useEffect(() => {
+        setPreloadNeighbors(false);
+        const timeout = setTimeout(() => {
+            setPreloadNeighbors(true);
+        }, 1000);
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [screenIndex]);
+
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
@@ -692,7 +703,8 @@ const Viewer = ({
                                         const current = screenIndex === i;
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
-                                            i <= screenIndex + neighborScreensActive;
+                                            i <= screenIndex + neighborScreensActive &&
+                                            preloadNeighbors;
 
                                         const screenStyles = getScreenStylesByIndex(
                                             i,
@@ -717,7 +729,7 @@ const Viewer = ({
                                                         screenState={current ? screenState : null}
                                                         index={i}
                                                         current={current}
-                                                        active={active}
+                                                        active={active || current}
                                                         ready={current && transitioned}
                                                         mediaRef={(ref) => {
                                                             screensMediasRef.current[i] = ref;

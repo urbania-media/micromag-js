@@ -76,7 +76,6 @@ const AudioScreen = ({
         bottomSidesWidth: viewerBottomSidesWidth,
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
-
     const trackScreenMedia = useTrackScreenMedia('audio');
 
     const [ready, setReady] = useState(isStatic || isPlaceholder);
@@ -315,6 +314,7 @@ const AudioScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
                     withoutVideo={isPreview}
                     className={styles.background}
@@ -327,4 +327,4 @@ const AudioScreen = ({
 AudioScreen.propTypes = propTypes;
 AudioScreen.defaultProps = defaultProps;
 
-export default React.memo(AudioScreen);
+export default AudioScreen;
