@@ -55,7 +55,6 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
 
@@ -76,7 +75,6 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
-    transitions: null,
     className: null,
 };
 
@@ -97,12 +95,10 @@ const ImageScreen = ({
     footer,
     current,
     active,
-    transitions,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {
         topHeight: viewerTopHeight,
         bottomHeight: viewerBottomHeight,
@@ -124,8 +120,6 @@ const ImageScreen = ({
     const [ready, setReady] = useState(!hasImage);
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
-    const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const onImageLoaded = useCallback(() => {
         setReady(true);

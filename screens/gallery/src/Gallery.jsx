@@ -108,8 +108,7 @@ const GalleryScreen = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
 
@@ -126,8 +125,6 @@ const GalleryScreen = ({
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const imagesCount = images !== null ? Math.min(gridSpaces, images.length) : 0;
     const ready = imagesLoaded >= imagesCount;
-    const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded((count) => count + 1);

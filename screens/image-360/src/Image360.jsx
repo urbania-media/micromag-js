@@ -37,7 +37,6 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     type: PropTypes.string,
     spacing: PropTypes.number,
     className: PropTypes.string,
@@ -51,7 +50,6 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
-    transitions: null,
     type: null,
     spacing: 20,
     className: null,
@@ -65,7 +63,6 @@ const Image360Screen = ({
     footer,
     current,
     active,
-    transitions,
     type,
     spacing,
     className,
@@ -96,9 +93,6 @@ const Image360Screen = ({
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const [ready, setReady] = useState(!hasMedia);
-
-    const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const {
         metadata: imageMetadata = null,

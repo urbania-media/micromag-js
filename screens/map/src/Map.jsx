@@ -130,7 +130,6 @@ function MapScreen({
     const screenState = useScreenState();
 
     const [ready, setReady] = useState(false);
-    const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);

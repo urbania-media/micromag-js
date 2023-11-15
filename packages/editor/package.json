@@ -39,6 +39,7 @@
             "import": "./es/index.js"
         },
         "./scss/styles": "./scss/styles.scss",
+        "./assets/css/styles": "./assets/css/styles.css",
         "./assets/css/styles.css": "./assets/css/styles.css"
     },
     "files": [
