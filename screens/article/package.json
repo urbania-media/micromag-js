@@ -34,7 +34,8 @@
             "require": "./lib/index.js",
             "import": "./es/index.js"
         },
-        "./assets/css/*.css": "./assets/css/*.css"
+        "./assets/css/styles": "./assets/css/styles.css",
+        "./assets/css/styles.css": "./assets/css/styles.css"
     },
     "files": [
         "lib",
