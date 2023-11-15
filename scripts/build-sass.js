@@ -6,7 +6,7 @@ const { program } = require('commander');
 const sass = require('sass');
 const tildeImporter = require('node-sass-tilde-importer');
 const postcss = require('postcss');
-const atImport = require("postcss-import")
+const atImport = require('postcss-import');
 const postcssConfig = require('../postcss.config');
 
 let srcFile = null;
@@ -45,7 +45,6 @@ program.parse(process.argv);
 //     console.log(`Generated ${outFile}`);
 // });
 
-
 const result = sass.renderSync({
     file: srcFile,
     outFile,
@@ -58,7 +57,7 @@ const result = sass.renderSync({
     ],
 });
 
-postcss(postcssConfig.plugins)
+postcss([require('postcss-import'), ...postcssConfig.plugins])
     .process(result.css, {
         from: srcFile,
         to: outFile,
