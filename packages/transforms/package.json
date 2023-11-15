@@ -33,9 +33,18 @@
     "main": "lib/index.js",
     "module": "es/index.js",
     "exports": {
-        ".": "./lib/index.js",
-        "./apple-news": "./lib/apple-news.js",
-        "./utils": "./lib/utils.js"
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
+        "./apple-news": {
+            "require": "./lib/apple-news.js",
+            "import": "./es/apple-news.js"
+        },
+        "./utils": {
+            "require": "./lib/utils.js",
+            "import": "./es/utils.js"
+        }
     },
     "browser": {
         ".": "./es/index.js",

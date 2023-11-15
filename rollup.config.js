@@ -46,13 +46,14 @@ export const createConfig = ({
         input: input || `src/${file}`,
         output: outputConfig,
         plugins: [
-            ...prependPlugins,
             resolve({
                 modulesOnly: true,
                 resolveOnly: [
                     /(query-string|decode-uri-component|split-on-first|filter-obj|screenfull|camelcase|change-case)/,
                 ],
             }),
+
+            ...prependPlugins,
 
             imageAssets({
                 // limit: 0,

@@ -28,6 +28,12 @@
     "license": "ISC",
     "main": "lib/index.js",
     "module": "es/index.js",
+    "exports": {
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        }
+    },
     "files": [
         "lib",
         "es",

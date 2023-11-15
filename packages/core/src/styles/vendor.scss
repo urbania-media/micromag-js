@@ -3,7 +3,7 @@
 @import './variables';
 @import './placeholders';
 @import './mixins';
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 .container-small {
     @include make-container();

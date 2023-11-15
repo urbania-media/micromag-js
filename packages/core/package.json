@@ -34,11 +34,26 @@
     "module": "es/index.js",
     "style": "assets/css/styles.css",
     "exports": {
-        ".": "./lib/index.js",
-        "./components": "./lib/components.js",
-        "./contexts": "./lib/contexts.js",
-        "./hooks": "./lib/hooks.js",
-        "./utils": "./lib/utils.js",
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
+        "./components": {
+            "require": "./lib/components.js",
+            "import": "./es/components.js"
+        },
+        "./contexts": {
+            "require": "./lib/contexts.js",
+            "import": "./es/contexts.js"
+        },
+        "./hooks": {
+            "require": "./lib/hooks.js",
+            "import": "./es/hooks.js"
+        },
+        "./utils": {
+            "require": "./lib/utils.js",
+            "import": "./es/utils.js"
+        },
         "./scss/mixins": "./scss/_mixins.scss",
         "./scss/mixins.scss": "./scss/_mixins.scss",
         "./scss/placeholders": "./scss/_placeholders.scss",

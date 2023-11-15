@@ -34,8 +34,14 @@
     "module": "es/index.js",
     "style": "assets/css/styles.css",
     "exports": {
-        ".": "./lib/index.js",
-        "./manager": "./lib/manager.js",
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
+        "./manager": {
+            "require": "./lib/manager.js",
+            "import": "./es/manager.js"
+        },
         "./scss/placeholders": "./scss/_placeholders.scss",
         "./scss/placeholders.scss": "./scss/_placeholders.scss",
         "./scss/styles": "./scss/styles.scss",

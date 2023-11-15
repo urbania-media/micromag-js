@@ -33,7 +33,10 @@
     "main": "lib/index.js",
     "module": "es/index.js",
     "exports": {
-        ".": "./lib/index.js",
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
         "./build": "./dist/build.js"
     },
     "browser": {

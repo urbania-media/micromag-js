@@ -34,7 +34,10 @@
     "module": "es/index.js",
     "style": "assets/css/styles.css",
     "exports": {
-        ".": "./lib/index.js",
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
         "./scss/styles": "./scss/styles.scss",
         "./assets/css/styles.css": "./assets/css/styles.css"
     },

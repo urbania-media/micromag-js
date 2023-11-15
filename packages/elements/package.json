@@ -33,8 +33,14 @@
     "main": "lib/index.js",
     "module": "es/index.js",
     "exports": {
-        ".": "./lib/index.js",
-        "./all": "./lib/all.js",
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
+        "./all": {
+            "require": "./lib/all.js",
+            "import": "./es/all.js"
+        },
         "./scss/styles": "./scss/styles.scss"
     },
     "browser": {

@@ -28,6 +28,14 @@
     "license": "ISC",
     "main": "lib/index.js",
     "module": "es/index.js",
+    "style": "assets/css/styles.css",
+    "exports": {
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./es/index.js"
+        },
+        "./assets/css/*.css": "./assets/css/*.css"
+    },
     "files": [
         "lib",
         "es",
