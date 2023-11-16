@@ -111,8 +111,8 @@ $color-universities-text: #f33;
 }
 
 .content {
-    @extend %fullscreen;
     display: flex;
+    position: static;
     z-index: 2;
     flex-direction: column;
     width: 100%;

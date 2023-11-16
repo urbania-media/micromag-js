@@ -314,7 +314,6 @@ const UrbaniaArticle = ({
                 mediaRef={imageType !== 'video' && hasVideoBackground ? mediaRef : null}
                 withoutVideo={isPreview}
             />
-
             <Container className={styles.content} width={width} height={height}>
                 {!isPlaceholder && hasHeader ? (
                     <div
