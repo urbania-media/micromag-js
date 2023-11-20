@@ -10,18 +10,18 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FontFaces, Meta } from '@micromag/core/components';
 import {
     ScreenSizeProvider,
+    StoryProvider,
     ViewerProvider,
     usePlaybackContext,
-    StoryProvider,
 } from '@micromag/core/contexts';
 import {
+    useDimensionObserver,
+    useDragProgress,
     useFullscreen,
     useLoadedFonts,
     useParsedStory,
-    useDimensionObserver,
     useScreenSizeFromElement,
     useTrackScreenView,
-    useDragProgress,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
 import { ShareIncentive } from '@micromag/elements/all';
@@ -702,7 +702,7 @@ const Viewer = ({
                                     {screens.map((screen, i) => {
                                         const current = screenIndex === i;
                                         const active =
-                                            i >= screenIndex - neighborScreensActive &&
+                                            // i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive &&
                                             preloadNeighbors;
 
