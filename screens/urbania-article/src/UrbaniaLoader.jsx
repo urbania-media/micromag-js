@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { getJSON } from '@folklore/fetch';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { isTextFilled, isValidUrl } from '@micromag/core/utils';
@@ -26,12 +26,13 @@ const defaultProps = {
 
 const UrbaniaLoader = ({ component: Component, theme, url, article: initialArticle, ...props }) => {
     const [article, setArticle] = useState(initialArticle);
+    // const { isView } = useScreenRenderContext();
 
-    const hostname = useMemo(() => {
-        const { hostname: urlHostname = null } =
-            url !== null && isValidUrl(url) ? new URL(url) : {};
-        return urlHostname;
-    }, [url]);
+    // const hostname = useMemo(() => {
+    //     const { hostname: urlHostname = null } =
+    //         url !== null && isValidUrl(url) ? new URL(url) : {};
+    //     return urlHostname;
+    // }, [url]);
 
     useEffect(() => {
         if (url !== null && isValidUrl(url)) {
@@ -139,7 +140,7 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
                 },
             },
         };
-    }, [article, url, hostname, props]);
+    }, [article, url, props]);
 
     // console.log('full', { ...props, ...values });
 
