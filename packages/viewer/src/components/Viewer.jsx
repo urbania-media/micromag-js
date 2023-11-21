@@ -702,7 +702,7 @@ const Viewer = ({
                                     {screens.map((screen, i) => {
                                         const current = screenIndex === i;
                                         const active =
-                                            // i >= screenIndex - neighborScreensActive &&
+                                            i >= screenIndex - neighborScreensActive &&
                                             i <= screenIndex + neighborScreensActive &&
                                             preloadNeighbors;
 
