@@ -113,6 +113,9 @@
     "2pO2Cj": {
         "defaultMessage": "Url"
     },
+    "2uFkwE": {
+        "defaultMessage": "Override default timing"
+    },
     "31zuCS": {
         "defaultMessage": "Line height"
     },
@@ -926,6 +929,9 @@
     "eDMxHS": {
         "defaultMessage": "Font weight"
     },
+    "eNdbJF": {
+        "defaultMessage": "Appear delay (seconds)"
+    },
     "eWIM/8": {
         "defaultMessage": "Image with title and text"
     },
@@ -1024,6 +1030,9 @@
     },
     "iHV3W3": {
         "defaultMessage": "No entry..."
+    },
+    "iJ61ZT": {
+        "defaultMessage": "Writing state duration (seconds)"
     },
     "iL9RLu": {
         "defaultMessage": "Collaborator"

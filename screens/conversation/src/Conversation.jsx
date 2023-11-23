@@ -136,13 +136,18 @@ const ConversationScreen = ({
     const imageReadDelay = 5000; // 5 seconds
     const millisecondsPerWord = (60 * 1000) / readingSpeed;
     const filteredMessages = (messages || []).filter((m) => m !== null);
-    const timings = filteredMessages.map((messageParams, messageI) => {
-        const { timing = null, message = null, image, audio } = messageParams || {};
+    const timings = filteredMessages.map((messageParams, messageIndex) => {
+        if (messageIndex === 0) {
+            return 0;
+        }
+
+        const { timing = null, message = null, image, audio, timingOverrides } = messageParams || {};
         if (timing !== null) {
             return timing;
         }
-        if (messageI === 0) {
-            return 0;
+
+        if (timingOverrides?.enabled && Number.isFinite(timingOverrides?.writingDuration))  {
+            return (timingOverrides.writingDuration * 1000); // seconds to milliseconds
         }
 
         // if the current message has an audio attachment, use the time it takes to record that message
@@ -168,9 +173,14 @@ const ConversationScreen = ({
         return finalTimeMs;
     });
 
-    const hesitationTimings = filteredMessages.map(({ hesitation = null } = {}) =>
-        hesitation !== null ? hesitation : defaultHesitationDelay,
-    );
+    const hesitationTimings = filteredMessages.map((messageParams, messageIndex) => {
+        const { timingOverrides} = messageParams;
+        if (messageIndex !== 0 && timingOverrides?.enabled && Number.isFinite(timingOverrides?.appearDelay)) {
+            return (timingOverrides.appearDelay * 1000) // seconds to milliseconds
+        }
+
+        return defaultHesitationDelay;
+    });
     const messagesUniqueId = useMemo(() => (messages || []).map(() => uuid()), [messages]);
 
     // scroll

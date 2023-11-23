@@ -151,6 +151,10 @@
     "defaultMessage": "Url",
     "description": "Url field label"
   },
+  "2uFkwE": {
+    "defaultMessage": "Override default timing",
+    "description": "Field label"
+  },
   "31zuCS": {
     "defaultMessage": "Line height",
     "description": "Field label"
@@ -1234,6 +1238,10 @@
     "defaultMessage": "Font weight",
     "description": "Field label"
   },
+  "eNdbJF": {
+    "defaultMessage": "Appear delay (seconds)",
+    "description": "Field label"
+  },
   "eWIM/8": {
     "defaultMessage": "Image with title and text",
     "description": "ImageTitleText screen title"
@@ -1365,6 +1373,10 @@
   "iHV3W3": {
     "defaultMessage": "No entry...",
     "description": "Label when there is no item"
+  },
+  "iJ61ZT": {
+    "defaultMessage": "Writing state duration (seconds)",
+    "description": "Field label"
   },
   "iL9RLu": {
     "defaultMessage": "Collaborator",

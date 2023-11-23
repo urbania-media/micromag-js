@@ -1,0 +1,26 @@
+// stylelint-disable max-nesting-depth
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/variables';
+
+.container {
+    .field {
+        display: none;
+        margin-bottom: 0;
+
+        &:first-child {
+            display: block;
+
+            button {
+                display: block;
+                margin-left: auto;
+            }
+        }
+    }
+
+    &.enabled {
+        .field {
+            display: block;
+            margin-bottom: 1rem;
+        }
+    }
+}

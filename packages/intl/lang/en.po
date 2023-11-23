@@ -240,6 +240,12 @@ msgid "Url"
 msgstr "Url"
 
 # Field label
+#: 2uFkwE
+msgctxt "2uFkwE"
+msgid "Override default timing"
+msgstr "Override default timing"
+
+# Field label
 #: 31zuCS
 msgctxt "31zuCS"
 msgid "Line height"
@@ -1864,6 +1870,12 @@ msgctxt "eDMxHS"
 msgid "Font weight"
 msgstr "Font weight"
 
+# Field label
+#: eNdbJF
+msgctxt "eNdbJF"
+msgid "Appear delay (seconds)"
+msgstr "Appear delay (seconds)"
+
 # ImageTitleText screen title
 #: eWIM/8
 msgctxt "eWIM/8"
@@ -2061,6 +2073,12 @@ msgstr "Edit"
 msgctxt "iHV3W3"
 msgid "No entry..."
 msgstr "No entry..."
+
+# Field label
+#: iJ61ZT
+msgctxt "iJ61ZT"
+msgid "Writing state duration (seconds)"
+msgstr "Writing state duration (seconds)"
 
 # Field label
 #: iL9RLu
