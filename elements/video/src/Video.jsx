@@ -71,6 +71,7 @@ const defaultProps = {
     shouldLoad: true,
     withoutCors: false,
     className: null,
+    innerClassName: null,
     onReady: null,
     onPlay: null,
     onPause: null,
@@ -286,7 +287,14 @@ const Video = ({
             }
         >
             {isImageWithoutSourceFile && shouldLoad ? (
-                <img src={mediaUrl} alt={description} className={styles.video} />
+                <img
+                    src={mediaUrl}
+                    alt={description}
+                    className={classNames([
+                        styles.media,
+                        { [innerClassName]: innerClassName !== null },
+                    ])}
+                />
             ) : null}
             {!isImageWithoutSourceFile ? (
                 <video
@@ -318,7 +326,7 @@ const Video = ({
                     disablePictureInPicture={disablePictureInPicture}
                     tabIndex={focusable ? '0' : '-1'}
                     className={classNames([
-                        styles.video,
+                        styles.media,
                         { [innerClassName]: innerClassName !== null },
                     ])}
                     onPlay={onPlay}

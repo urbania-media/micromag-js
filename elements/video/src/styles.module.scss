@@ -4,7 +4,7 @@
 .container {
     position: relative;
 
-    .video {
+    .media {
         display: block;
         width: 100%;
     }
@@ -20,7 +20,7 @@
     }
 
     &.withSize {
-        .video {
+        .media {
             @extend %fullscreen;
         }
     }
