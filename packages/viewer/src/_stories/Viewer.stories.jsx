@@ -2,11 +2,9 @@
 import React, { useCallback, useState } from 'react';
 
 import {
-    audioMedia, // callToAction,
-    // callToActionWithStyles,
+    audioMedia, // callToActionWithStyles,
     imageMedia,
-    video360Media, // videoMedia,
-    // bigVideoMediaWithSound,
+    video360Media, // bigVideoMediaWithSound,
     // gifVideoMedia,
     webfont2Files,
     webfont3Files,
@@ -29,6 +27,7 @@ import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import Viewer from '../components/ViewerContainer';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
+import cointreau from '../../../../.storybook/data/stories/cointreau.json';
 import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
@@ -121,6 +120,8 @@ export const Urbania = () => (
 );
 
 export const Article = () => <Viewer story={article} />;
+
+export const Cointreau = () => <Viewer story={cointreau} />;
 
 export const TextQuoteBadges = () => <Viewer story={textQuoteBadges} withNavigationHint />;
 

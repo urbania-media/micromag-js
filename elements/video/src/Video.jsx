@@ -2,15 +2,15 @@
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
-import React, { useEffect, useMemo, useRef, useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Spinner } from '@micromag/core/components';
 import {
-    useMediaThumbnail,
     useMediaCurrentTime,
     useMediaDuration,
     useMediaReady,
+    useMediaThumbnail,
     useProgressSteps,
 } from '@micromag/core/hooks';
 import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
@@ -38,6 +38,7 @@ const propTypes = {
     shouldLoad: PropTypes.bool,
     withoutCors: PropTypes.bool,
     className: PropTypes.string,
+    innerClassName: PropTypes.string,
     onReady: PropTypes.func,
     onPlay: PropTypes.func,
     onPause: PropTypes.func,
@@ -101,6 +102,7 @@ const Video = ({
     shouldLoad,
     withoutCors,
     className,
+    innerClassName,
     onReady,
     onPlay: customOnPlay,
     onPause,
@@ -315,7 +317,10 @@ const Video = ({
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     disablePictureInPicture={disablePictureInPicture}
                     tabIndex={focusable ? '0' : '-1'}
-                    className={classNames(styles.video)}
+                    className={classNames([
+                        styles.video,
+                        { [innerClassName]: innerClassName !== null },
+                    ])}
                     onPlay={onPlay}
                     onPlaying={onPlaying}
                     onPause={onPause}

@@ -2,7 +2,7 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Image from '@micromag/element-image';
@@ -145,6 +145,7 @@ const Visual = ({
                     >
                         <Video
                             {...elProps}
+                            innerClassName={styles.videoTag}
                             mediaRef={mediaRef}
                             width={objectFit === null ? width : null}
                             height={objectFit === null ? height : null}
@@ -155,6 +156,7 @@ const Visual = ({
                             onReady={onLoaded}
                             autoPlay
                         />
+                        <div className={styles.videoTouchOverlay} />
                     </div>
                 </div>
             ) : null}

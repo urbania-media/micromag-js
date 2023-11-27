@@ -73,7 +73,7 @@
         "@micromag/screens": "^0.3.443",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
-        "@use-gesture/react": "^10.2.4",
+        "@use-gesture/react": "^10.3.0",
         "classnames": "^2.2.6",
         "detect-pointer-events": "^1.0.2",
         "lodash": "^4.17.21",

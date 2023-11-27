@@ -25,6 +25,8 @@ import signs from '../../../../screens/urbania-horoscope/src/data/signs';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import Editor from '../components/EditorContainer';
 
+import cointreau from '../../../../.storybook/data/stories/cointreau.json';
+
 // import manager from '../../../intl/src/manager';
 // import createDefaultStory from '../utils/createDefaultStory';
 
@@ -135,6 +137,8 @@ export const TestUrbania = () => (
         defaultValue={{ title: 'Test', theme: defaultTheme, components: UrbaniaScreenComponents }}
     />
 );
+
+export const TestCointreau = () => <EditorContainer defaultValue={cointreau} />;
 
 export const TestUrbaniaArticle = () => <EditorContainer defaultValue={article} />;
 
