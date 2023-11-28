@@ -35,7 +35,7 @@
     ],
     "scripts": {
         "clean": "rm -rf build",
-        "build": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build ./src/index.js",
+        "build": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build --merge-config=./webpack.config.js ./src/index.js",
         "prepublishOnly": "npm run clean && npm run build"
     },
     "publishConfig": {
@@ -50,6 +50,7 @@
         "@micromag/screens": "^0.3.445",
         "@micromag/transforms": "^0.3.444",
         "@micromag/viewer": "^0.3.445",
+        "lodash-webpack-plugin": "^0.11.6",
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     }

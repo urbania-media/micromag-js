@@ -23,6 +23,7 @@ module.exports = (api) => {
             ],
             plugins: [
                 [
+                    require.resolve('babel-plugin-lodash'),
                     require.resolve('babel-plugin-module-resolver'),
                     {
                         alias: {
@@ -87,6 +88,7 @@ module.exports = (api) => {
               ].filter(Boolean)
             : [],
         plugins: [
+            require.resolve('babel-plugin-lodash'),
             require.resolve('@babel/plugin-proposal-export-namespace-from'),
             [
                 require.resolve('babel-plugin-static-fs'),

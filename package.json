@@ -76,6 +76,7 @@
         "babel-plugin-module-resolver": "^5.0.0",
         "babel-plugin-static-fs": "^3.0.0",
         "babel-plugin-transform-assets-import-to-string": "^1.2.0",
+        "babel-plugin-lodash": "^3.3.4",
         "bootstrap": "5.2.0-beta1",
         "chalk": "^4.1.0",
         "chance": "^1.1.7",
