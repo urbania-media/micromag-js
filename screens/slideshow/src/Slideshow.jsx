@@ -102,7 +102,7 @@ const SlideshowScreen = ({
     });
 
     const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
-    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
+    const { ref: headerRef } = useDimensionObserver();
 
     const items = (slides || []).map((item, itemI) => {
         const { media = null, caption = null } = item || {};
@@ -264,4 +264,4 @@ const SlideshowScreen = ({
 SlideshowScreen.propTypes = propTypes;
 SlideshowScreen.defaultProps = defaultProps;
 
-export default React.memo(SlideshowScreen);
+export default SlideshowScreen;

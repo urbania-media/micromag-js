@@ -7,7 +7,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, Transitions } from '@micromag/core/components';
+import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -55,7 +55,6 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
 
@@ -76,7 +75,6 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
-    transitions: null,
     className: null,
 };
 
@@ -97,12 +95,10 @@ const ImageScreen = ({
     footer,
     current,
     active,
-    transitions,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
-        useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {
         topHeight: viewerTopHeight,
         bottomHeight: viewerBottomHeight,
@@ -124,8 +120,6 @@ const ImageScreen = ({
     const [ready, setReady] = useState(!hasImage);
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || active;
-    const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const onImageLoaded = useCallback(() => {
         setReady(true);
@@ -186,27 +180,20 @@ const ImageScreen = ({
                 isEmpty={!hasImage}
             >
                 {hasImage ? (
-                    <Transitions
-                        transitions={transitions}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                        fullscreen
-                    >
-                        <Visual
-                            className={styles.image}
-                            media={image}
-                            objectFit={finalImageFit}
-                            width={imageWidth}
-                            height={imageHeight}
-                            resolution={resolution}
-                            playing={backgroundPlaying}
-                            muted={muted}
-                            active={active}
-                            shouldLoad={mediaShouldLoad}
-                            withoutVideo={isPreview}
-                            onLoaded={onImageLoaded}
-                        />
-                    </Transitions>
+                    <Visual
+                        className={styles.image}
+                        media={image}
+                        objectFit={finalImageFit}
+                        width={imageWidth}
+                        height={imageHeight}
+                        resolution={resolution}
+                        playing={backgroundPlaying}
+                        muted={muted}
+                        active={active}
+                        shouldLoad={mediaShouldLoad}
+                        withoutVideo={isPreview}
+                        onLoaded={onImageLoaded}
+                    />
                 ) : null}
             </ScreenElement>
         </div>,
@@ -222,15 +209,9 @@ const ImageScreen = ({
                 isEmpty={!hasTitle}
             >
                 {hasTitle ? (
-                    <Transitions
-                        transitions={transitions}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                    >
-                        <div style={itemMarginStyle}>
-                            <Heading {...title} />
-                        </div>
-                    </Transitions>
+                    <div style={itemMarginStyle}>
+                        <Heading {...title} />
+                    </div>
                 ) : null}
             </ScreenElement>
         ),
@@ -246,15 +227,9 @@ const ImageScreen = ({
                 isEmpty={!hasText}
             >
                 {hasText ? (
-                    <Transitions
-                        transitions={transitions}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                    >
-                        <div style={itemMarginStyle}>
-                            <Text {...text} />
-                        </div>
-                    </Transitions>
+                    <div style={itemMarginStyle}>
+                        <Text {...text} />
+                    </div>
                 ) : null}
             </ScreenElement>
         ),
@@ -270,15 +245,9 @@ const ImageScreen = ({
                 isEmpty={!hasLegend}
             >
                 {hasLegend ? (
-                    <Transitions
-                        transitions={transitions}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                    >
-                        <div style={itemMarginStyle}>
-                            <Text {...legend} />
-                        </div>
-                    </Transitions>
+                    <div style={itemMarginStyle}>
+                        <Text {...legend} />
+                    </div>
                 ) : null}
             </ScreenElement>
         ),
@@ -420,4 +389,4 @@ const ImageScreen = ({
 ImageScreen.propTypes = propTypes;
 ImageScreen.defaultProps = defaultProps;
 
-export default React.memo(ImageScreen);
+export default ImageScreen;

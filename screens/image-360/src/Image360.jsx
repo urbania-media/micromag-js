@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import 'whatwg-fetch';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
+import { PlaceholderVideo360, ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext,
@@ -37,7 +37,6 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     type: PropTypes.string,
     spacing: PropTypes.number,
     className: PropTypes.string,
@@ -51,7 +50,6 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
-    transitions: null,
     type: null,
     spacing: 20,
     className: null,
@@ -65,7 +63,6 @@ const Image360Screen = ({
     footer,
     current,
     active,
-    transitions,
     type,
     spacing,
     className,
@@ -96,9 +93,6 @@ const Image360Screen = ({
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
     const [ready, setReady] = useState(!hasMedia);
-
-    const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const {
         metadata: imageMetadata = null,
@@ -381,49 +375,42 @@ const Image360Screen = ({
                         }
                         isEmpty={!withSphere}
                     >
-                        <Transitions
-                            playing={transitionPlaying}
-                            transitions={transitions}
-                            disabled={transitionDisabled}
-                            fullscreen
-                        >
-                            {withSphere ? (
-                                <>
-                                    <canvas ref={canvasRef} className={styles.canvas} />
-                                    <button
-                                        className={styles.canvasButton}
-                                        type="button"
-                                        aria-label="canvas-interaction"
-                                        onPointerDown={onPointerDown}
-                                        onPointerMove={onPointerMove}
-                                        onPointerUp={onPointerUp}
-                                        tabIndex={current && isView ? null : '-1'}
-                                    />
-                                </>
-                            ) : (
-                                <div
-                                    className={styles.videoContainer}
-                                    style={{
-                                        width: resizedImageWidth,
-                                        height: resizedImageHeight,
-                                        left: resizedImageLeft,
-                                        top: resizedImageTop,
+                        {withSphere ? (
+                            <>
+                                <canvas ref={canvasRef} className={styles.canvas} />
+                                <button
+                                    className={styles.canvasButton}
+                                    type="button"
+                                    aria-label="canvas-interaction"
+                                    onPointerDown={onPointerDown}
+                                    onPointerMove={onPointerMove}
+                                    onPointerUp={onPointerUp}
+                                    tabIndex={current && isView ? null : '-1'}
+                                />
+                            </>
+                        ) : (
+                            <div
+                                className={styles.videoContainer}
+                                style={{
+                                    width: resizedImageWidth,
+                                    height: resizedImageHeight,
+                                    left: resizedImageLeft,
+                                    top: resizedImageTop,
+                                }}
+                            >
+                                <Image
+                                    className={styles.video}
+                                    media={{
+                                        url: thumbnailUrl,
+                                        metadata: { width: imageWidth, height: imageHeight },
                                     }}
-                                >
-                                    <Image
-                                        className={styles.video}
-                                        media={{
-                                            url: thumbnailUrl,
-                                            metadata: { width: imageWidth, height: imageHeight },
-                                        }}
-                                        width={resizedImageWidth}
-                                        height={resizedImageHeight}
-                                        resolution={resolution}
-                                        shouldLoad={mediaShouldLoad}
-                                    />
-                                </div>
-                            )}
-                        </Transitions>
+                                    width={resizedImageWidth}
+                                    height={resizedImageHeight}
+                                    resolution={resolution}
+                                    shouldLoad={mediaShouldLoad}
+                                />
+                            </div>
+                        )}
                     </ScreenElement>
                     {!isPlaceholder && hasFooter ? (
                         <div
@@ -465,4 +452,4 @@ const Image360Screen = ({
 Image360Screen.propTypes = propTypes;
 Image360Screen.defaultProps = defaultProps;
 
-export default React.memo(Image360Screen);
+export default Image360Screen;

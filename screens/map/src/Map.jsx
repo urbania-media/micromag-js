@@ -5,7 +5,7 @@ import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderMap, Transitions, ScreenElement, Button } from '@micromag/core/components';
+import { PlaceholderMap, ScreenElement, Button } from '@micromag/core/components';
 import {
     useGoogleKeys,
     useScreenSize,
@@ -64,7 +64,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    transitions: MicromagPropTypes.transitions,
     // enableInteractions: PropTypes.func,
     // disableInteraction: PropTypes.func,
     type: PropTypes.string,
@@ -86,7 +85,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    transitions: null,
     type: null,
     className: null,
 };
@@ -106,7 +104,6 @@ function MapScreen({
     background,
     current,
     active,
-    transitions,
     // enableInteractions,
     // disableInteraction,
     type,
@@ -133,7 +130,6 @@ function MapScreen({
     const screenState = useScreenState();
 
     const [ready, setReady] = useState(false);
-    const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);
@@ -356,12 +352,7 @@ function MapScreen({
                 {isPlaceholder ? (
                     <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />
                 ) : (
-                    <Transitions
-                        transitions={transitions}
-                        playing={transitionPlaying}
-                        fullscreen
-                        disabled={transitionDisabled}
-                    >
+                    <>
                         {isPreview ? (
                             <ImageElement
                                 media={
@@ -526,7 +517,7 @@ function MapScreen({
                                 &times;
                             </Button>
                         ) : null}
-                    </Transitions>
+                    </>
                 )}
             </Container>
             {!isPlaceholder ? (

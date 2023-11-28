@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-text",
-    "version": "0.3.430",
+    "version": "0.3.444",
     "private": false,
     "description": "",
     "keywords": [
@@ -38,7 +38,8 @@
             "require": "./lib/index.js",
             "import": "./es/index.js"
         },
-        "./assets/css/*.css": "./assets/css/*.css"
+        "./assets/css/styles": "./assets/css/styles.css",
+        "./assets/css/styles.css": "./assets/css/styles.css"
     },
     "files": [
         "lib",
@@ -58,15 +59,15 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.430",
-        "@micromag/element-background": "^0.3.430",
-        "@micromag/element-container": "^0.3.430",
-        "@micromag/element-footer": "^0.3.430",
-        "@micromag/element-header": "^0.3.430",
-        "@micromag/element-heading": "^0.3.430",
-        "@micromag/element-layout": "^0.3.430",
-        "@micromag/element-text": "^0.3.430",
-        "@micromag/transforms": "^0.3.430",
+        "@micromag/core": "^0.3.444",
+        "@micromag/element-background": "^0.3.444",
+        "@micromag/element-container": "^0.3.444",
+        "@micromag/element-footer": "^0.3.444",
+        "@micromag/element-header": "^0.3.444",
+        "@micromag/element-heading": "^0.3.444",
+        "@micromag/element-layout": "^0.3.444",
+        "@micromag/element-text": "^0.3.444",
+        "@micromag/transforms": "^0.3.444",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",

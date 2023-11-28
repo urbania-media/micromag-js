@@ -268,15 +268,7 @@ const ContributionScreen = ({
             emptyClassName={styles.emptyTitle}
             isEmpty={!hasTitle}
         >
-            {hasTitle ? (
-                <Transitions
-                    transitions={transitions}
-                    playing={transitionPlaying}
-                    disabled={transitionDisabled}
-                >
-                    <Heading {...title} className={styles.title} />
-                </Transitions>
-            ) : null}
+            {hasTitle ? <Heading {...title} className={styles.title} /> : null}
         </ScreenElement>,
     ];
 
@@ -486,6 +478,7 @@ const ContributionScreen = ({
                         disabled={scrollingDisabled}
                         onScrolledBottom={onScrolledBottom}
                         onScrolledNotBottom={onScrolledNotBottom}
+                        withShadow
                     >
                         {headerInScroll ? headerElement : null}
                         {items}

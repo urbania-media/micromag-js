@@ -1,6 +1,6 @@
 {
     "name": "@micromag/media-gallery",
-    "version": "0.3.430",
+    "version": "0.3.445",
     "private": false,
     "description": "",
     "keywords": [
@@ -39,6 +39,7 @@
         },
         "./scss/styles": "./scss/styles.scss",
         "./scss/styles.scss": "./scss/styles.scss",
+        "./assets/css/styles": "./assets/css/styles.css",
         "./assets/css/styles.css": "./assets/css/styles.css"
     },
     "files": [
@@ -63,8 +64,8 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.430",
-        "@micromag/data": "^0.3.430",
+        "@micromag/core": "^0.3.444",
+        "@micromag/data": "^0.3.444",
         "bootstrap": "5.2.0-beta1",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",

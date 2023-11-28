@@ -28,7 +28,6 @@ import Scroll from '@micromag/element-scroll';
 import ConversationMessage from './ConversationMessage';
 
 import styles from './conversation.module.scss';
-import EventEmitter from 'wolfy87-eventemitter';
 
 const propTypes = {
     // id: PropTypes.string,
@@ -92,7 +91,7 @@ const ConversationScreen = ({
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
-    const audioEventsChannel = new BroadcastChannel(`conversation_${uuid()}_audioEvents`)
+    const audioEventsChannel = new BroadcastChannel(`conversation_${uuid()}_audioEvents`);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -135,15 +134,20 @@ const ConversationScreen = ({
     // sequence timings
     const defaultHesitationDelay = 1500;
     const imageReadDelay = 5000; // 5 seconds
-    const millisecondsPerWord = ((60 * 1000) / readingSpeed);
+    const millisecondsPerWord = (60 * 1000) / readingSpeed;
     const filteredMessages = (messages || []).filter((m) => m !== null);
-    const timings = filteredMessages.map((messageParams, messageI) => {
-        const { timing = null, message = null, image, audio } = messageParams || {};
+    const timings = filteredMessages.map((messageParams, messageIndex) => {
+        if (messageIndex === 0) {
+            return 0;
+        }
+
+        const { timing = null, message = null, image, audio, timingOverrides } = messageParams || {};
         if (timing !== null) {
             return timing;
         }
-        if (messageI === 0) {
-            return 0;
+
+        if (timingOverrides?.enabled && Number.isFinite(timingOverrides?.writingDuration))  {
+            return (timingOverrides.writingDuration * 1000); // seconds to milliseconds
         }
 
         // if the current message has an audio attachment, use the time it takes to record that message
@@ -152,29 +156,31 @@ const ConversationScreen = ({
         }
 
         // counting words: only keep whitespaces and alphanumeric characters, then split of whitespaces
-        const wordCount = (
-            message
+        const wordCount = message
             ? message
-                .replace(/[^\w\d\s]/g, '')
-                .trim()
-                .split(/\s/g)
-                .length
-            : 0
-        );
+                  .replace(/[^\w\d\s]/g, '')
+                  .trim()
+                  .split(/\s/g).length
+            : 0;
 
-        let finalTimeMs = wordCount * millisecondsPerWord
+        let finalTimeMs = wordCount * millisecondsPerWord;
 
         // if the message includes an image, add some more time to "read" it
         if (image) {
             finalTimeMs += imageReadDelay;
         }
 
-        return finalTimeMs
+        return finalTimeMs;
     });
 
-    const hesitationTimings = filteredMessages.map(({ hesitation = null } = {}) =>
-        hesitation !== null ? hesitation : defaultHesitationDelay,
-    );
+    const hesitationTimings = filteredMessages.map((messageParams, messageIndex) => {
+        const { timingOverrides} = messageParams;
+        if (messageIndex !== 0 && timingOverrides?.enabled && Number.isFinite(timingOverrides?.appearDelay)) {
+            return (timingOverrides.appearDelay * 1000) // seconds to milliseconds
+        }
+
+        return defaultHesitationDelay;
+    });
     const messagesUniqueId = useMemo(() => (messages || []).map(() => uuid()), [messages]);
 
     // scroll
@@ -214,6 +220,7 @@ const ConversationScreen = ({
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
+                    withShadow
                 >
                     <div ref={contentRef}>
                         <Layout
@@ -288,14 +295,18 @@ const ConversationScreen = ({
 
                                             const typingTiming = timings[messageI];
 
-                                            const messageId = `${m.message}-${messagesUniqueId[messageI]}`
+                                            const messageId = `${m.message}-${messagesUniqueId[messageI]}`;
 
-                                            const nextAudioMessage = filteredMessages.slice(messageI + 1).find(c => c.audio != null)
-                                            const nextAudioMessageId = (
-                                                nextAudioMessage
-                                                ? `${m.message}-${messagesUniqueId[filteredMessages.indexOf(nextAudioMessage)]}`
-                                                : null
-                                            )
+                                            const nextAudioMessage = filteredMessages
+                                                .slice(messageI + 1)
+                                                .find((c) => c.audio != null);
+                                            const nextAudioMessageId = nextAudioMessage
+                                                ? `${m.message}-${
+                                                      messagesUniqueId[
+                                                          filteredMessages.indexOf(nextAudioMessage)
+                                                      ]
+                                                  }`
+                                                : null;
 
                                             return (
                                                 <ConversationMessage
@@ -375,4 +386,4 @@ const ConversationScreen = ({
 ConversationScreen.propTypes = propTypes;
 ConversationScreen.defaultProps = defaultProps;
 
-export default React.memo(ConversationScreen);
+export default ConversationScreen;

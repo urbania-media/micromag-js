@@ -374,6 +374,7 @@ const Timeline = ({
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
+                    withShadow
                 >
                     <Layout
                         style={

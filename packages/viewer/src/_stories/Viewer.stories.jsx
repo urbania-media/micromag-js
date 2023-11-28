@@ -2,12 +2,9 @@
 import React, { useCallback, useState } from 'react';
 
 import {
-    audioMedia, // callToAction,
-    // callToActionWithStyles,
+    audioMedia,
     imageMedia,
-    video360Media, // videoMedia,
-    // bigVideoMediaWithSound,
-    // gifVideoMedia,
+    video360Media, // gifVideoMedia,
     webfont2Files,
     webfont3Files,
     webfontFiles,
@@ -29,7 +26,9 @@ import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import Viewer from '../components/ViewerContainer';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
+import cointreau from '../../../../.storybook/data/stories/cointreau.json';
 import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
+import lol from '../../../../.storybook/data/stories/lol.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
 import micromagAudio from '../../../../.storybook/examples/micromag-audio.json';
@@ -121,6 +120,10 @@ export const Urbania = () => (
 );
 
 export const Article = () => <Viewer story={article} />;
+
+export const Single = () => <Viewer story={lol} />;
+
+export const Cointreau = () => <Viewer story={cointreau} />;
 
 export const TextQuoteBadges = () => <Viewer story={textQuoteBadges} withNavigationHint />;
 

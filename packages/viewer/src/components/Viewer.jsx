@@ -10,18 +10,18 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FontFaces, Meta } from '@micromag/core/components';
 import {
     ScreenSizeProvider,
+    StoryProvider,
     ViewerProvider,
     usePlaybackContext,
-    StoryProvider,
 } from '@micromag/core/contexts';
 import {
+    useDimensionObserver,
+    useDragProgress,
     useFullscreen,
     useLoadedFonts,
     useParsedStory,
-    useDimensionObserver,
     useScreenSizeFromElement,
     useTrackScreenView,
-    useDragProgress,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
 import { ShareIncentive } from '@micromag/elements/all';
@@ -582,6 +582,17 @@ const Viewer = ({
         isView,
     ]);
 
+    const [preloadNeighbors, setPreloadNeighbors] = useState(false);
+    useEffect(() => {
+        setPreloadNeighbors(false);
+        const timeout = setTimeout(() => {
+            setPreloadNeighbors(true);
+        }, 1000);
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [screenIndex]);
+
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
@@ -692,7 +703,8 @@ const Viewer = ({
                                         const current = screenIndex === i;
                                         const active =
                                             i >= screenIndex - neighborScreensActive &&
-                                            i <= screenIndex + neighborScreensActive;
+                                            i <= screenIndex + neighborScreensActive &&
+                                            preloadNeighbors;
 
                                         const screenStyles = getScreenStylesByIndex(
                                             i,
@@ -717,7 +729,7 @@ const Viewer = ({
                                                         screenState={current ? screenState : null}
                                                         index={i}
                                                         current={current}
-                                                        active={active}
+                                                        active={active || current}
                                                         ready={current && transitioned}
                                                         mediaRef={(ref) => {
                                                             screensMediasRef.current[i] = ref;

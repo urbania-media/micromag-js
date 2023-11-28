@@ -10,6 +10,7 @@
         @extend %fullscreen;
 
         display: inline-block;
+        position: absolute !important;
     }
 
     .border {

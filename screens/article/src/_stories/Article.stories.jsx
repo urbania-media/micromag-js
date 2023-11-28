@@ -10,6 +10,7 @@ import {
     backgroundColor,
     transitions,
     headerFooter,
+    videoMedia,
 } from '../../../../.storybook/data';
 import ArticleScreen from '../Article';
 import definition from '../definition';
@@ -45,6 +46,10 @@ export const Capture = (storyProps) => <ArticleScreen {...storyProps} {...props}
 export const Edit = (storyProps) => <ArticleScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ArticleScreen {...storyProps} {...props} />;
+
+export const Video = (storyProps) => (
+    <ArticleScreen {...storyProps} {...props} image={videoMedia()} />
+);
 
 export const WithHeaderFooter = (storyProps) => (
     <ArticleScreen {...storyProps} {...headerFooter()} {...props} />

@@ -52,9 +52,6 @@ const Screen = ({
         components !== null ? getComponentFromName(type, components) || null : null;
     const ContextScreenComponent = useScreenComponent(type);
     const ScreenComponent = CustomScreenComponent || ContextScreenComponent;
-
-    // Comment
-
     return (
         <ScreenProvider data={screen} renderContext={renderContext} screenState={screenState}>
             {ScreenComponent !== null ? (

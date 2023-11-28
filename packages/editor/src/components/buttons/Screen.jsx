@@ -2,8 +2,10 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
+
 import styles from '../../styles/buttons/screen.module.scss';
 
 const propTypes = {

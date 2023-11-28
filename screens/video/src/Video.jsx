@@ -417,6 +417,7 @@ const VideoScreen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
                     withoutVideo={isPreview}
                 />
@@ -428,4 +429,4 @@ const VideoScreen = ({
 VideoScreen.propTypes = propTypes;
 VideoScreen.defaultProps = defaultProps;
 
-export default React.memo(VideoScreen);
+export default VideoScreen;

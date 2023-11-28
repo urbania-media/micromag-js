@@ -1,6 +1,6 @@
 {
     "name": "@micromag/fields",
-    "version": "0.3.430",
+    "version": "0.3.445",
     "private": false,
     "description": "",
     "keywords": [
@@ -46,6 +46,7 @@
         "./scss/placeholders.scss": "./scss/_placeholders.scss",
         "./scss/styles": "./scss/styles.scss",
         "./scss/styles.scss": "./scss/styles.scss",
+        "./assets/css/styles": "./assets/css/styles.css",
         "./assets/css/styles.css": "./assets/css/styles.css"
     },
     "browser": {
@@ -77,12 +78,12 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/ckeditor": "^0.3.429",
-        "@micromag/core": "^0.3.430",
-        "@micromag/element-grid": "^0.3.430",
-        "@micromag/element-keypad": "^0.3.430",
-        "@micromag/element-map": "^0.3.430",
-        "@micromag/media-gallery": "^0.3.430",
+        "@micromag/ckeditor": "^0.3.432",
+        "@micromag/core": "^0.3.444",
+        "@micromag/element-grid": "^0.3.444",
+        "@micromag/element-keypad": "^0.3.444",
+        "@micromag/element-map": "^0.3.444",
+        "@micromag/media-gallery": "^0.3.445",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
         "fuse.js": "^6.4.3",

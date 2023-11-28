@@ -279,4 +279,4 @@ const ShareScreen = ({
 ShareScreen.propTypes = propTypes;
 ShareScreen.defaultProps = defaultProps;
 
-export default React.memo(ShareScreen);
+export default ShareScreen;

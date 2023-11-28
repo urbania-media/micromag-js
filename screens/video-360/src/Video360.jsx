@@ -643,6 +643,7 @@ const Video360Screen = ({
                     height={height}
                     resolution={resolution}
                     playing={backgroundPlaying}
+                    muted={muted}
                     shouldLoad={mediaShouldLoad}
                     withoutVideo={isPreview}
                     className={styles.background}
@@ -655,4 +656,4 @@ const Video360Screen = ({
 Video360Screen.propTypes = propTypes;
 Video360Screen.defaultProps = defaultProps;
 
-export default React.memo(Video360Screen);
+export default Video360Screen;

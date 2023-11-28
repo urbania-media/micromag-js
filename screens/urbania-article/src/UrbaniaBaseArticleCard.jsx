@@ -1,22 +1,22 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, no-param-reassign, react/jsx-props-no-spreading */
-import { animated as a, useSpring, easings } from '@react-spring/web';
+import { animated as a, easings, useSpring } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Close, Empty, PlaceholderText, ScreenElement } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
     usePlaybackContext,
+    usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
     useViewerContext,
     useViewerInteraction,
-    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { isTextFilled, isHeaderFilled } from '@micromag/core/utils';
+import { isHeaderFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
@@ -164,6 +164,8 @@ const UrbaniaArticleCard = ({
         }
     }, [current]);
 
+    // console.log('load 1-2', mediaShouldLoad, finalBackground);
+
     return (
         <div
             className={classNames([
@@ -307,4 +309,4 @@ const UrbaniaArticleCard = ({
 UrbaniaArticleCard.defaultProps = defaultProps;
 UrbaniaArticleCard.propTypes = propTypes;
 
-export default React.memo(UrbaniaArticleCard);
+export default UrbaniaArticleCard;

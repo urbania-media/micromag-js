@@ -227,4 +227,4 @@ const QuoteScreen = ({
 QuoteScreen.propTypes = propTypes;
 QuoteScreen.defaultProps = defaultProps;
 
-export default React.memo(QuoteScreen);
+export default QuoteScreen;

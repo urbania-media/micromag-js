@@ -499,6 +499,12 @@ export const conversationMessage = PropTypes.shape({
     speaker: PropTypes.string,
     message: PropTypes.string,
     image: imageMedia,
+    audio: audioMedia,
+    timingOverrides: PropTypes.shape({
+        enabled: PropTypes.bool,
+        appearDelay: PropTypes.number,
+        writingStateDuration: PropTypes.number
+    })
 });
 export const conversationMessages = PropTypes.arrayOf(conversationMessage);
 

@@ -113,6 +113,9 @@
     "2pO2Cj": {
         "defaultMessage": "Url"
     },
+    "2uFkwE": {
+        "defaultMessage": "Durées personnalisées"
+    },
     "31zuCS": {
         "defaultMessage": "Hauteur de ligne"
     },
@@ -926,6 +929,9 @@
     "eDMxHS": {
         "defaultMessage": "Graisse"
     },
+    "eNdbJF": {
+        "defaultMessage": "Délai d'apparition de la bulle (en secondes)"
+    },
     "eWIM/8": {
         "defaultMessage": "Image avec titre et texte"
     },
@@ -1024,6 +1030,9 @@
     },
     "iHV3W3": {
         "defaultMessage": "Aucune entrée"
+    },
+    "iJ61ZT": {
+        "defaultMessage": "Durée d'écriture (en secondes)"
     },
     "iL9RLu": {
         "defaultMessage": "Collaborateur"

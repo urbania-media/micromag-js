@@ -532,4 +532,4 @@ const UrbaniaHoroscope = ({
 UrbaniaHoroscope.propTypes = propTypes;
 UrbaniaHoroscope.defaultProps = defaultProps;
 
-export default React.memo(UrbaniaHoroscope);
+export default UrbaniaHoroscope;

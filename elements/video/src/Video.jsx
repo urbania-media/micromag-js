@@ -2,15 +2,15 @@
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
-import React, { useEffect, useMemo, useRef, useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Spinner } from '@micromag/core/components';
 import {
-    useMediaThumbnail,
     useMediaCurrentTime,
     useMediaDuration,
     useMediaReady,
+    useMediaThumbnail,
     useProgressSteps,
 } from '@micromag/core/hooks';
 import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
@@ -38,6 +38,7 @@ const propTypes = {
     shouldLoad: PropTypes.bool,
     withoutCors: PropTypes.bool,
     className: PropTypes.string,
+    innerClassName: PropTypes.string,
     onReady: PropTypes.func,
     onPlay: PropTypes.func,
     onPause: PropTypes.func,
@@ -70,6 +71,7 @@ const defaultProps = {
     shouldLoad: true,
     withoutCors: false,
     className: null,
+    innerClassName: null,
     onReady: null,
     onPlay: null,
     onPause: null,
@@ -101,6 +103,7 @@ const Video = ({
     shouldLoad,
     withoutCors,
     className,
+    innerClassName,
     onReady,
     onPlay: customOnPlay,
     onPause,
@@ -284,7 +287,14 @@ const Video = ({
             }
         >
             {isImageWithoutSourceFile && shouldLoad ? (
-                <img src={mediaUrl} alt={description} className={styles.video} />
+                <img
+                    src={mediaUrl}
+                    alt={description}
+                    className={classNames([
+                        styles.media,
+                        { [innerClassName]: innerClassName !== null },
+                    ])}
+                />
             ) : null}
             {!isImageWithoutSourceFile ? (
                 <video
@@ -315,7 +325,10 @@ const Video = ({
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     disablePictureInPicture={disablePictureInPicture}
                     tabIndex={focusable ? '0' : '-1'}
-                    className={classNames(styles.video)}
+                    className={classNames([
+                        styles.media,
+                        { [innerClassName]: innerClassName !== null },
+                    ])}
                     onPlay={onPlay}
                     onPlaying={onPlaying}
                     onPause={onPause}

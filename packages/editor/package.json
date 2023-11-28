@@ -1,6 +1,6 @@
 {
     "name": "@micromag/editor",
-    "version": "0.3.431",
+    "version": "0.3.445",
     "private": false,
     "description": "",
     "keywords": [
@@ -39,6 +39,8 @@
             "import": "./es/index.js"
         },
         "./scss/styles": "./scss/styles.scss",
+        "./scss/styles.scss": "./scss/styles.scss",
+        "./assets/css/styles": "./assets/css/styles.css",
         "./assets/css/styles.css": "./assets/css/styles.css"
     },
     "files": [
@@ -67,11 +69,11 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.430",
-        "@micromag/elements": "^0.3.430",
-        "@micromag/fields": "^0.3.430",
-        "@micromag/screens": "^0.3.430",
-        "@micromag/viewer": "^0.3.431",
+        "@micromag/core": "^0.3.444",
+        "@micromag/elements": "^0.3.445",
+        "@micromag/fields": "^0.3.445",
+        "@micromag/screens": "^0.3.445",
+        "@micromag/viewer": "^0.3.445",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",

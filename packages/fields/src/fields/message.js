@@ -37,6 +37,40 @@ export default {
                 defaultMessage: 'Audio attachment',
                 description: 'Field label'
             })
+        },
+        {
+            name: 'timingOverrides',
+            component: 'toggle-section',
+            isList: true,
+            fields: [
+                {
+                    name: 'enabled',
+                    type: 'toggle',
+                    isHorizontal: true,
+                    label: defineMessage({
+                        defaultMessage: 'Override default timing',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'appearDelay',
+                    type: 'number',
+                    defaultValue: 2,
+                    label: defineMessage({
+                        defaultMessage: 'Appear delay (seconds)',
+                        description: 'Field label'
+                    })
+                },
+                {
+                    name: 'writingDuration',
+                    type: 'number',
+                    defaultValue: 5,
+                    label: defineMessage({
+                        defaultMessage: 'Writing state duration (seconds)',
+                        description: 'Field label'
+                    })
+                }
+            ]
         }
     ],
 };

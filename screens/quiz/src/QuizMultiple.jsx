@@ -429,6 +429,7 @@ const QuizMultipleScreen = ({
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     onScrollHeightChange={onScrollHeightChange}
+                    withShadow
                 >
                     <TransitionGroup>
                         {[

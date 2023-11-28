@@ -2,7 +2,7 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getOptimalImageUrl } from '@micromag/core/utils';

@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer-build",
-    "version": "0.3.431",
+    "version": "0.3.446",
     "private": false,
     "description": "",
     "keywords": [
@@ -35,7 +35,7 @@
     ],
     "scripts": {
         "clean": "rm -rf build",
-        "build": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build ./src/index.js",
+        "build": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build --merge-config=./webpack.config.js ./src/index.js",
         "prepublishOnly": "npm run clean && npm run build"
     },
     "publishConfig": {
@@ -45,11 +45,12 @@
     "gitHead": "d22737eea1773c1a8c6907ab0bd598368bda615c",
     "devDependencies": {
         "@folklore/cli": "^0.0.50",
-        "@micromag/core": "^0.3.430",
-        "@micromag/elements": "^0.3.430",
-        "@micromag/screens": "^0.3.430",
-        "@micromag/transforms": "^0.3.430",
-        "@micromag/viewer": "^0.3.431",
+        "@micromag/core": "^0.3.444",
+        "@micromag/elements": "^0.3.445",
+        "@micromag/screens": "^0.3.445",
+        "@micromag/transforms": "^0.3.444",
+        "@micromag/viewer": "^0.3.445",
+        "lodash-webpack-plugin": "^0.11.6",
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     }

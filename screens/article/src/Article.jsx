@@ -271,6 +271,7 @@ const ArticleScreen = ({
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
+                    withShadow
                 >
                     <Layout
                         className={styles.layout}
@@ -359,4 +360,4 @@ const ArticleScreen = ({
 ArticleScreen.propTypes = propTypes;
 ArticleScreen.defaultProps = defaultProps;
 
-export default React.memo(ArticleScreen);
+export default ArticleScreen;

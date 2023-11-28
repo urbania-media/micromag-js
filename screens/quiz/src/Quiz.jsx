@@ -243,6 +243,7 @@ const QuizScreen = ({
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     onScrollHeightChange={onScrollHeightChange}
+                    withShadow
                 >
                     {!isPlaceholder && hasHeader ? (
                         <div

@@ -6,7 +6,6 @@ import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react'
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { camelCase } from '@micromag/core/utils';
 import { PlaceholderButton, ScreenElement } from '@micromag/core/components';
 import {
     useScreenSize,
@@ -26,6 +25,7 @@ import {
     isHeaderFilled,
     isFooterFilled,
     getFooterProps,
+    camelCase,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -520,6 +520,7 @@ const KeypadScreen = ({
                     height={height}
                     verticalAlign={layout}
                     withArrow={!showPopup}
+                    withShadow={!showPopup}
                     disabled={isPreview || isPlaceholder || showPopup}
                 >
                     <Layout
@@ -773,4 +774,4 @@ const KeypadScreen = ({
 KeypadScreen.propTypes = propTypes;
 KeypadScreen.defaultProps = defaultProps;
 
-export default React.memo(KeypadScreen);
+export default KeypadScreen;

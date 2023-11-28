@@ -233,6 +233,7 @@ const GalleryFeedScreen = ({
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
+                    withShadow
                 >
                     <Layout
                         className={styles.layout}
@@ -302,4 +303,4 @@ const GalleryFeedScreen = ({
 GalleryFeedScreen.propTypes = propTypes;
 GalleryFeedScreen.defaultProps = defaultProps;
 
-export default React.memo(GalleryFeedScreen);
+export default GalleryFeedScreen;
