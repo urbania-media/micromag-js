@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons/faHeadphonesAlt';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons/faInfoCircle';

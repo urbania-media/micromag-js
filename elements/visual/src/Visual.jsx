@@ -82,7 +82,7 @@ const Visual = ({
             (!shouldLoad || withoutVideo) && isVideo
                 ? { ...elProps, media: { url: thumbnailUrl } }
                 : elProps;
-        return shouldLoad && !withoutVideo ? { ...elProps, media: { url } } : tmpProps;
+        return shouldLoad && !withoutVideo ? { ...elProps, media: { ...media, url } } : tmpProps;
     }, [isVideo, elProps, thumbnailUrl, url, shouldLoad]);
 
     let videoContainerStyle = null;
