@@ -2,7 +2,6 @@ import { defineMessage } from 'react-intl';
 
 import TimelineScreen from './Timeline';
 import TimelineIllustratedScreen from './TimelineIllustrated';
-import * as transforms from './transforms/index';
 
 export default [
     {
@@ -21,7 +20,7 @@ export default [
         }),
         component: TimelineScreen,
         layouts: ['normal'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'title',

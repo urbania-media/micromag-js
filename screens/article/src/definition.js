@@ -1,7 +1,8 @@
 import { defineMessage } from 'react-intl';
 
 import ArticleScreen from './Article';
-import * as transforms from './transforms/index';
+
+// import * as transforms from './transforms/index';
 
 export default [
     {
@@ -20,7 +21,7 @@ export default [
         }),
         component: ArticleScreen,
         layouts: ['normal'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'image',

@@ -1,7 +1,8 @@
 import { defineMessage } from 'react-intl';
 
 import ShareScreen from './Share';
-import * as transforms from './transforms/index';
+
+// import * as transforms from './transforms/index';
 
 export default {
     id: 'share',
@@ -19,7 +20,7 @@ export default {
     }),
     component: ShareScreen,
     layouts: ['top', 'middle', 'bottom'],
-    transforms,
+    // transforms,
     fields: [
         {
             name: 'layout',

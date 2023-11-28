@@ -2,7 +2,6 @@ import { defineMessage } from 'react-intl';
 
 import GalleryFeedScreen from './GalleryFeed';
 import GalleryFeedCaptionsScreen from './GalleryFeedCaptions';
-import * as transforms from './transforms/index';
 
 export default [
     {
@@ -21,7 +20,7 @@ export default [
         }),
         component: GalleryFeedScreen,
         layouts: ['normal'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'images',
@@ -89,7 +88,7 @@ export default [
         }),
         component: GalleryFeedCaptionsScreen,
         layouts: ['normal', 'reverse'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'layout',

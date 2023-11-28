@@ -8,7 +8,7 @@ class StoryParser {
         this.themeParser = new ThemeParser({ screensManager });
         this.mediasParser = new MediasParser({ screensManager, fieldsManager });
         this.fontsParser = new FontsParser({ screensManager, fieldsManager });
-        this.migrationsParser = new MigrationsParser({ screensManager, fieldsManager });
+        this.migrationsParser = new MigrationsParser({ screensManager });
     }
 
     parse(
