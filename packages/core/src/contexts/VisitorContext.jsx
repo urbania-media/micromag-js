@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { isString } from 'lodash';
+import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
 import React, { useContext, useState, useEffect, useMemo } from 'react';
 
