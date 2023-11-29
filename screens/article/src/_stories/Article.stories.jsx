@@ -20,7 +20,7 @@ const props = {
     title: { body: title() },
     surtitle: { body: title() },
     date: { body: '1969-04-20' },
-    author: { body: author() },
+    author: { name: { body: author() } },
     text: { body: paragraph({ min: 40, max: 400 }) },
     background: backgroundColor(),
     transitions: transitions(),
@@ -46,6 +46,10 @@ export const Capture = (storyProps) => <ArticleScreen {...storyProps} {...props}
 export const Edit = (storyProps) => <ArticleScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ArticleScreen {...storyProps} {...props} />;
+
+export const WithoutAuthor = (storyProps) => (
+    <ArticleScreen {...storyProps} {...props} author={null} />
+);
 
 export const Video = (storyProps) => (
     <ArticleScreen {...storyProps} {...props} image={videoMedia()} />
