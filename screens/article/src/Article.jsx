@@ -305,7 +305,7 @@ const ArticleScreen = ({
                             className={classNames([
                                 styles.main,
                                 {
-                                    [styles.hasText]: hasText,
+                                    [styles.hasText]: hasText && hasAuthor,
                                 },
                             ])}
                         >
