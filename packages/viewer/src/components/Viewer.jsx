@@ -74,6 +74,7 @@ const propTypes = {
     withNeighborScreens: PropTypes.bool,
     withNavigationHint: PropTypes.bool,
     withoutPlaybackControls: PropTypes.bool,
+    buttons: PropTypes.node,
     closeable: PropTypes.bool,
     onClose: PropTypes.func,
     onInteraction: PropTypes.func,
@@ -122,6 +123,7 @@ const defaultProps = {
     withoutPlaybackControls: false,
     menuIsScreenWidth: false,
     menuHeader: null,
+    buttons: null,
     closeable: false,
     onClose: null,
     onInteraction: null,
@@ -163,6 +165,7 @@ const Viewer = ({
     withoutPlaybackControls,
     menuIsScreenWidth,
     menuHeader,
+    buttons,
     closeable,
     onClose: onCloseViewer,
     onInteraction,
@@ -662,6 +665,7 @@ const Viewer = ({
                                 toggleFullscreen={toggleFullscreen}
                                 fullscreenActive={fullscreenActive}
                                 fullscreenEnabled={fullscreenEnabled}
+                                buttons={buttons}
                                 closeable={closeable}
                                 shareBasePath={basePath}
                                 screenSize={screenSize}

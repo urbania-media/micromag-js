@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react';
 import {
     audioMedia,
     imageMedia,
-    video360Media, // gifVideoMedia,
+    video360Media,
     webfont2Files,
     webfont3Files,
     webfontFiles,
@@ -124,6 +124,19 @@ export const Article = () => <Viewer story={article} />;
 export const Single = () => <Viewer story={lol} />;
 
 export const Cointreau = () => <Viewer story={cointreau} />;
+
+export const Closeable = () => <Viewer story={lol} closeable />;
+
+export const WithButtons = () => (
+    <Viewer
+        story={cointreau}
+        buttons={
+            <button type="button" onClick={() => console.log('click')}>
+                My button
+            </button>
+        }
+    />
+);
 
 export const TextQuoteBadges = () => <Viewer story={textQuoteBadges} withNavigationHint />;
 
