@@ -26,7 +26,7 @@ const propTypes = {
     toggleFullscreen: PropTypes.func,
     fullscreenActive: PropTypes.bool,
     fullscreenEnabled: PropTypes.bool,
-    buttons: PropTypes.node,
+    menuDotsButtons: PropTypes.node,
     closeable: PropTypes.bool,
     withShadow: PropTypes.bool,
     trackingEnabled: PropTypes.bool,
@@ -52,7 +52,7 @@ const defaultProps = {
     toggleFullscreen: null,
     fullscreenActive: false,
     fullscreenEnabled: false,
-    buttons: null,
+    menuDotsButtons: null,
     closeable: false,
     withShadow: false,
     trackingEnabled: false,
@@ -77,7 +77,7 @@ const ViewerMenu = ({
     toggleFullscreen,
     fullscreenActive,
     fullscreenEnabled,
-    buttons,
+    menuDotsButtons,
     closeable,
     withShadow,
     shareBasePath,
@@ -380,7 +380,7 @@ const ViewerMenu = ({
                     items={items}
                     onClickDot={onClickScreen}
                     onClickScreensMenu={onOpenMenu}
-                    buttons={buttons}
+                    buttons={menuDotsButtons}
                     closeable={closeable}
                     withItemClick={withDotItemClick}
                     withoutScreensMenu={withoutScreensMenu}

@@ -130,7 +130,7 @@ export const Closeable = () => <Viewer story={lol} closeable />;
 export const WithButtons = () => (
     <Viewer
         story={cointreau}
-        buttons={
+        menuDotsButtons={
             <button type="button" onClick={() => console.log('click')}>
                 My button
             </button>
