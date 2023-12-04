@@ -78,12 +78,13 @@
 
 .track {
     @extend %reset-button;
-    display: none;
+    // display: none;
     position: absolute;
     right: 0;
     left: 0;
     height: 5rem;
     transform: translateY(-50%);
+    // border: 1px solid red;
     background-color: transparent;
     touch-action: none;
 

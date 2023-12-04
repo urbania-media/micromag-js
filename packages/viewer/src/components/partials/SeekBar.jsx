@@ -47,9 +47,11 @@ const propTypes = {
     playing: PropTypes.bool,
     backgroundColor: PropTypes.string,
     progressColor: PropTypes.string,
+    onClick: PropTypes.func,
     onSeek: PropTypes.func,
     onSeekStart: PropTypes.func,
     onSeekEnd: PropTypes.func,
+    collapsed: PropTypes.bool,
     focusable: PropTypes.bool,
     className: PropTypes.string,
     withSeekHead: PropTypes.bool,
@@ -60,9 +62,11 @@ const defaultProps = {
     playing: false,
     backgroundColor: null,
     progressColor: null,
+    onClick: null,
     onSeek: null,
     onSeekStart: null,
     onSeekEnd: null,
+    collapsed: false,
     focusable: true,
     className: null,
     withSeekHead: true,
@@ -73,9 +77,11 @@ const SeekBar = ({
     playing,
     backgroundColor,
     progressColor,
+    onClick,
     onSeek,
     onSeekStart,
     onSeekEnd,
+    collapsed,
     focusable,
     className,
     withSeekHead,
@@ -93,6 +99,10 @@ const SeekBar = ({
             if (!active && elapsedTime > 300) {
                 return;
             }
+            if (collapsed) {
+                onClick();
+                return;
+            }
             const { left: elX = 0, width: elWidth = 0 } = currentTarget.getBoundingClientRect();
             const newProgress = Math.max(0, Math.min(1, (x - elX) / elWidth));
 
@@ -100,7 +110,7 @@ const SeekBar = ({
                 onSeek(newProgress, tap);
             }
         },
-        [onSeek],
+        [onSeek, onClick, collapsed],
     );
 
     const onDragStart = useCallback(() => {
