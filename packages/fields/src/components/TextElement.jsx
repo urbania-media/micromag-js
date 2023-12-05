@@ -41,6 +41,7 @@ const TextElement = ({ value, onChange, inline, textOnly, onFocus, disabled, ...
         },
         [value, onChange],
     );
+
     if (textOnly) {
         return inline ? (
             <TextField
