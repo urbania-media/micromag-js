@@ -4,7 +4,6 @@ import TitleScreen from './Title';
 import TitleSubtitleScreen from './TitleSubtitle';
 import TitleSubtitleCreditsScreen from './TitleSubtitleCredits';
 import TitleWithBoxScreen from './TitleWithBox';
-import * as transforms from './transforms/index';
 
 export default [
     {
@@ -23,7 +22,7 @@ export default [
         }),
         component: TitleScreen,
         layouts: ['top', 'middle', 'bottom'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'layout',
@@ -103,7 +102,7 @@ export default [
         }),
         component: TitleSubtitleScreen,
         layouts: ['top', 'middle', 'bottom', 'split'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'layout',
@@ -194,7 +193,7 @@ export default [
         }),
         component: TitleSubtitleCreditsScreen,
         layouts: ['top', 'middle', 'bottom', 'split-top', 'split-bottom'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'layout',
@@ -296,7 +295,7 @@ export default [
         }),
         component: TitleWithBoxScreen,
         layouts: ['top', 'middle', 'bottom', 'split-top', 'split-bottom'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'layout',

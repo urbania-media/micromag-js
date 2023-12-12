@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useViewerSize } from '@micromag/core/contexts';
-import { useTrackEvent, useDragProgress, useDimensionObserver } from '@micromag/core/hooks';
+import { useDimensionObserver, useDragProgress, useTrackEvent } from '@micromag/core/hooks';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 
@@ -26,6 +26,7 @@ const propTypes = {
     toggleFullscreen: PropTypes.func,
     fullscreenActive: PropTypes.bool,
     fullscreenEnabled: PropTypes.bool,
+    menuDotsButtons: PropTypes.node,
     closeable: PropTypes.bool,
     withShadow: PropTypes.bool,
     trackingEnabled: PropTypes.bool,
@@ -51,6 +52,7 @@ const defaultProps = {
     toggleFullscreen: null,
     fullscreenActive: false,
     fullscreenEnabled: false,
+    menuDotsButtons: null,
     closeable: false,
     withShadow: false,
     trackingEnabled: false,
@@ -75,6 +77,7 @@ const ViewerMenu = ({
     toggleFullscreen,
     fullscreenActive,
     fullscreenEnabled,
+    menuDotsButtons,
     closeable,
     withShadow,
     shareBasePath,
@@ -143,7 +146,7 @@ const ViewerMenu = ({
         // const base =
         //     typeof window !== 'undefined' ? window.location.origin.replace(/\/+$/, '') : '';
         // const path = shareBasePath !== null ? `${base}${shareBasePath}` : base;
-        const base = typeof window !== 'undefined' ? window.location.host : '';
+        const base = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : '';
         const path = shareBasePath !== null ? `${base}${shareBasePath}` : base;
         return path;
     }, [shareBasePath]);
@@ -343,7 +346,6 @@ const ViewerMenu = ({
                             />
                         </div>
                     ) : null}
-
                     {!withoutScreensMenu ? (
                         <div className={styles.menuItem} {...bindMenuDrag()}>
                             <ToggleButton
@@ -372,25 +374,21 @@ const ViewerMenu = ({
                         </div>
                     ) : null}
                 </nav>
-
                 <MenuDots
                     {...menuTheme}
                     direction="horizontal"
                     items={items}
                     onClickDot={onClickScreen}
                     onClickScreensMenu={onOpenMenu}
+                    buttons={menuDotsButtons}
                     closeable={closeable}
                     withItemClick={withDotItemClick}
                     withoutScreensMenu={withoutScreensMenu}
                     withoutShareMenu={withoutShareMenu}
                     onClose={onClickCloseViewer}
                     className={styles.dots}
-                    // style={{
-                    // opacity: dotsOpacity ** 5, // @note this is like a "quint" easing, meaning it'll go towards 1 slowly first and then fast as it approaches 1
-                    // }}
                 />
             </div>
-
             <MenuContainer
                 className={styles.menuContainer}
                 progressSpring={shareOpenedProgress}
@@ -413,7 +411,6 @@ const ViewerMenu = ({
                     />
                 ) : null}
             </MenuContainer>
-
             <MenuContainer
                 className={styles.menuContainer}
                 progressSpring={menuOpenedProgress}

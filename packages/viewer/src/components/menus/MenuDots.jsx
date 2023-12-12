@@ -20,6 +20,7 @@ const propTypes = {
         primary: PropTypes.string,
         secondary: PropTypes.string,
     }),
+    buttons: PropTypes.node,
     closeable: PropTypes.bool,
     withItemClick: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
@@ -33,6 +34,7 @@ const defaultProps = {
     onClickDot: null,
     onClickScreensMenu: null,
     colors: null,
+    buttons: null,
     closeable: false,
     withItemClick: false,
     withoutScreensMenu: false,
@@ -47,6 +49,7 @@ const ViewerMenuDots = ({
     onClickScreensMenu,
     colors,
     closeable,
+    buttons,
     withItemClick,
     withoutScreensMenu,
     onClose,
@@ -120,6 +123,7 @@ const ViewerMenuDots = ({
                         </button>
                     </li>
                 ) : null}
+                {buttons !== null ? <div className={styles.buttons}>{buttons}</div> : null}
             </ul>
         </nav>
     );

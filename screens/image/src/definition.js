@@ -5,7 +5,8 @@ import ImageLegendScreen from './ImageLegend';
 import ImageTextScreen from './ImageText';
 import ImageTitleScreen from './ImageTitle';
 import ImageTitleTextScreen from './ImageTitleText';
-import * as transforms from './transforms/index';
+
+// import * as transforms from './transforms/index';
 
 export default [
     {
@@ -24,7 +25,7 @@ export default [
         }),
         component: ImageScreen,
         layouts: ['normal', 'fullscreen'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'layout',
@@ -111,7 +112,7 @@ export default [
         }),
         component: ImageTitleScreen,
         layouts: ['normal', 'reverse', 'card', 'card-reverse'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'layout',
@@ -210,7 +211,7 @@ export default [
         }),
         component: ImageTextScreen,
         layouts: ['normal', 'reverse', 'card', 'card-reverse'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'layout',
@@ -308,7 +309,7 @@ export default [
         }),
         component: ImageTitleTextScreen,
         layouts: ['normal', 'reverse', 'title-top', 'card', 'card-reverse'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'layout',
@@ -419,7 +420,7 @@ export default [
         }),
         component: ImageLegendScreen,
         layouts: ['normal', 'reverse', 'card', 'card-reverse'],
-        transforms,
+        // transforms,
         fields: [
             {
                 name: 'layout',

@@ -161,6 +161,12 @@ function PlaybackControls({
         }
     }, [setPlaying, wasPlaying]);
 
+    const onSeekClick = useCallback(() => {
+        if (!controlsVisible && controls) {
+            showControls();
+        }
+    }, [controlsVisible, controls, showControls]);
+
     const hasMedia = mediaElement !== null;
     const mediaHasAudio = hasMedia && (hasAudio === null || hasAudio === true);
     const { color, progressColor, seekBarOnly } = customControlsTheme || {};
@@ -225,10 +231,12 @@ function PlaybackControls({
                 className={styles.seekBar}
                 media={mediaElement}
                 playing={playing}
+                onClick={onSeekClick}
                 onSeek={onSeek}
                 onSeekStart={onSeekStart}
                 onSeekEnd={onSeekEnd}
                 focusable={playing}
+                collapsed={isCollapsed}
                 withSeekHead={!isCollapsed && !seekBarOnly}
                 backgroundColor={color}
                 progressColor={progressColor}

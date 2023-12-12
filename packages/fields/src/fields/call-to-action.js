@@ -60,10 +60,10 @@ export default {
         {
             name: 'label',
             type: 'text-element',
-            textOnly: true,
+            withoutLink: true,
             fieldsProps: {
                 textStyle: {
-                    excludedFields: ['highlight', 'link'],
+                    excludedFields: ['link'],
                 },
             },
             label: defineMessage({

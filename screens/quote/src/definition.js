@@ -1,7 +1,8 @@
 import { defineMessage } from 'react-intl';
 
 import QuoteScreen from './Quote';
-import * as transforms from './transforms/index';
+
+// import * as transforms from './transforms/index';
 
 export default {
     id: 'quote',
@@ -19,7 +20,7 @@ export default {
     }),
     component: QuoteScreen,
     layouts: ['top', 'middle', 'bottom', 'split'],
-    transforms,
+    // transforms,
     fields: [
         {
             name: 'layout',

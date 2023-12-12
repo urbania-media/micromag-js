@@ -24,6 +24,7 @@ const propTypes = {
     inline: PropTypes.bool,
     withHighlightColors: PropTypes.bool,
     withFullEditor: PropTypes.bool,
+    withoutLink: PropTypes.bool,
     textStyle: PropTypes.shape({}),
     editorConfig: PropTypes.shape({}),
     onFocus: PropTypes.func,
@@ -38,6 +39,7 @@ const defaultProps = {
     inline: false,
     withHighlightColors: false,
     withFullEditor: false,
+    withoutLink: false,
     textStyle: null,
     editorConfig: {
         toolbar: ['bold', 'italic', 'highlight', '|', 'link'],
@@ -58,6 +60,7 @@ const TextEditorField = ({
     inline,
     withHighlightColors,
     withFullEditor,
+    withoutLink,
     onChange,
     onFocus,
     disabled,
@@ -70,6 +73,17 @@ const TextEditorField = ({
         () => (withHighlightColors ? getColors() : null) || [],
         [withHighlightColors, getColors],
     );
+
+    const defaultEditorConfig = useMemo(() => {
+        if (withoutLink) {
+            const { toolbar: items = null } = editorConfig || {};
+            return {
+                ...editorConfig,
+                toolbar: (items || []).filter((it) => it !== 'link' && it !== '|'),
+            };
+        }
+        return editorConfig;
+    }, [editorConfig, withoutLink]);
 
     const id = useMemo(() => `editor-${uuidv4()}`, []);
 
@@ -90,10 +104,31 @@ const TextEditorField = ({
                     })),
                 ],
             },
+            toolbar: {
+                items: [
+                    'undo',
+                    'redo',
+                    '|',
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    '|',
+                    'link',
+                    'uploadImage',
+                    'insertTable',
+                    'mediaEmbed',
+                    '|',
+                    'bulletedList',
+                    'numberedList',
+                    'outdent',
+                    'indent',
+                ],
+            },
             language: locale,
-            ...editorConfig,
+            ...defaultEditorConfig,
         }),
-        [editorConfig, inline, locale],
+        [defaultEditorConfig, inline, locale],
     );
 
     const onEditorReady = useCallback(() => {}, []);

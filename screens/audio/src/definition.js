@@ -1,7 +1,8 @@
 import { defineMessage } from 'react-intl';
 
 import AudioScreen from './Audio';
-import * as transforms from './transforms/index';
+
+// import * as transforms from './transforms/index';
 
 export default {
     id: 'audio',
@@ -19,7 +20,7 @@ export default {
     }),
     component: AudioScreen,
     layouts: ['middle'],
-    transforms,
+    // transforms,
     fields: [
         {
             name: 'audio',

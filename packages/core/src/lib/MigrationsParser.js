@@ -1,6 +1,5 @@
 class MigrationsParser {
-    constructor({ fieldsManager, screensManager }) {
-        this.fieldsManager = fieldsManager;
+    constructor({ screensManager }) {
         this.screensManager = screensManager;
     }
 

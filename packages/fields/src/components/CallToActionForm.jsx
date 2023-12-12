@@ -2,7 +2,7 @@
 // import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
-import { useIntl, defineMessage, FormattedMessage } from 'react-intl';
+import { FormattedMessage, defineMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromBox } from '@micromag/core/utils';
@@ -58,14 +58,7 @@ const CallToActionForm = ({ value, className, onChange, ...props }) => {
         [onChange, value],
     );
 
-    // eslint-disable-next-line
-    const {
-        paddingTop = null,
-        paddingLeft = null,
-        paddingRight,
-        paddingBottom,
-        ...stylesWithoutPadding
-    } = getStyleFromBox(value);
+    const { paddingRight, paddingBottom, ...stylesWithoutPadding } = getStyleFromBox(value);
     const previewElement =
         value !== null ? (
             <span className={styles.preview}>
@@ -80,19 +73,6 @@ const CallToActionForm = ({ value, className, onChange, ...props }) => {
         ) : null;
 
     return (
-        // <Fields
-        //     className={classNames([
-        //         styles.container,
-        //         {
-        //             [className]: className !== null,
-        //             [styles.active]: active,
-        //         },
-        //     ])}
-        //     fieldClassName={styles.field}
-        //     {...props}
-        //     value={value}
-        //     onChange={onUpdateValue}
-        // />
         <FieldWithForm
             isForm
             className={className}
