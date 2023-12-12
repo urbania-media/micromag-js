@@ -130,7 +130,7 @@
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "css-mediaquery": "^0.1.2",
-        "dayjs": "^1.10.4",
+        "dayjs": "^1.11.10",
         "debug": "^4.3.1",
         "flat": "^5.0.2",
         "hoist-non-react-statics": "^3.3.2",
