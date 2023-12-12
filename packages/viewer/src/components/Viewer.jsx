@@ -62,6 +62,8 @@ const propTypes = {
     neighborScreensActive: PropTypes.number,
     neighborScreenOffset: PropTypes.number,
     neighborScreenScale: PropTypes.number,
+    topSafezoneHeight: PropTypes.number,
+    bottomSafezoneHeight: PropTypes.number,
     withMetadata: PropTypes.bool,
     withoutGestures: PropTypes.bool,
     withoutMenu: PropTypes.bool,
@@ -108,6 +110,8 @@ const defaultProps = {
     neighborScreensActive: 1,
     neighborScreenOffset: 105,
     neighborScreenScale: 0.8,
+    topSafezoneHeight: null,
+    bottomSafezoneHeight: null,
     withMetadata: false,
     withNeighborScreens: false,
     withNavigationHint: false,
@@ -149,6 +153,8 @@ const Viewer = ({
     neighborScreensActive,
     neighborScreenOffset,
     neighborScreenScale,
+    topSafezoneHeight,
+    bottomSafezoneHeight,
     withMetadata,
     withoutGestures,
     withoutMenu,
@@ -593,6 +599,24 @@ const Viewer = ({
         };
     }, [screenIndex]);
 
+    let topHeight = 0;
+    if (topSafezoneHeight !== null) {
+        topHeight = topSafezoneHeight / screenScale;
+    } else if (menuOverScreen && currentScreenInteractionEnabled) {
+        topHeight = menuDotsContainerHeight / screenScale;
+    }
+
+    let bottomHeight = 0;
+    if (bottomSafezoneHeight !== null) {
+        bottomHeight = bottomSafezoneHeight / screenScale;
+    } else if (
+        playbackControls &&
+        (playbackcontrolsVisible || !playing) &&
+        currentScreenInteractionEnabled
+    ) {
+        bottomHeight = playbackControlsContainerHeight / screenScale;
+    }
+
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
@@ -603,18 +627,8 @@ const Viewer = ({
                     menuOverScreen={menuOverScreen}
                     width={viewerWidth}
                     height={viewerHeight}
-                    topHeight={
-                        menuOverScreen && currentScreenInteractionEnabled
-                            ? menuDotsContainerHeight / screenScale
-                            : 0
-                    }
-                    bottomHeight={
-                        playbackControls &&
-                        (playbackcontrolsVisible || !playing) &&
-                        currentScreenInteractionEnabled
-                            ? playbackControlsContainerHeight / screenScale
-                            : 0
-                    }
+                    topHeight={topHeight}
+                    bottomHeight={bottomHeight}
                     bottomSidesWidth={
                         (playbackcontrolsVisible || !playing || playbackMedia !== null) &&
                         currentScreenInteractionEnabled
