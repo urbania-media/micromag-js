@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import styles from '../../styles/partials/placeholder-block.module.scss';
 
@@ -11,7 +11,7 @@ const propTypes = {
     className: PropTypes.string,
     boxClassName: PropTypes.string,
     children: PropTypes.node,
-    withInvertedColors: PropTypes.bool
+    withInvertedColors: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -24,24 +24,32 @@ const defaultProps = {
     withInvertedColors: true,
 };
 
-const PlaceholderBlock = ({ width, height, outline, className, boxClassName, withInvertedColors, children }) => (
+const PlaceholderBlock = ({
+    width,
+    height,
+    outline,
+    className,
+    boxClassName,
+    withInvertedColors,
+    children,
+}) => (
     <div
         className={classNames([
             styles.container,
             {
                 [className]: className !== null,
                 [styles.outline]: outline,
-                [styles.withInvertedColors]: withInvertedColors
+                [styles.withInvertedColors]: withInvertedColors,
             },
         ])}
     >
         <div
             className={classNames([
                 styles.box,
-            {
-                [boxClassName]: boxClassName !== null,
-            },
-        ])}
+                {
+                    [boxClassName]: boxClassName !== null,
+                },
+            ])}
             style={{
                 width,
                 height,
