@@ -1,7 +1,7 @@
 {
     "$schema": "node_modules/lerna/schemas/lerna-schema.json",
     "useNx": true,
-    "version": "0.3.454",
+    "version": "0.3.456",
     "command": {
         "publish": {
             "allowBranch": ["master", "develop"],

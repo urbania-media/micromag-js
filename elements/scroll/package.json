@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-scroll",
-    "version": "0.3.454",
+    "version": "0.3.456",
     "private": false,
     "description": "",
     "keywords": [
@@ -61,7 +61,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.454",
+        "@micromag/core": "^0.3.456",
         "@use-gesture/react": "^10.3.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
@@ -73,5 +73,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "d22737eea1773c1a8c6907ab0bd598368bda615c"
+    "gitHead": "ec4f12cb131e883a9b9d0394c165be3bc3ca671d"
 }
