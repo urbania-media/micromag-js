@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenPlaceholder, ScreenPreview } from '@micromag/core/components';
@@ -23,8 +25,10 @@ const propTypes = {
     withPlaceholder: PropTypes.bool,
     withIndexIndicator: PropTypes.bool,
     withName: PropTypes.bool,
+    withDeleteButtonOnRepeatables: PropTypes.bool,
     onClick: PropTypes.func,
     onClickItem: PropTypes.func,
+    onDeleteButtonClick: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -37,8 +41,10 @@ const defaultProps = {
     withPlaceholder: false,
     withIndexIndicator: false,
     withName: false,
+    withDeleteButtonOnRepeatables: false,
     onClick: null,
     onClickItem: null,
+    onDeleteButtonClick: null,
     className: null,
 };
 
@@ -55,6 +61,8 @@ const ScreenWithPreview = ({
     withName,
     withPlaceholder,
     withIndexIndicator,
+    withDeleteButtonOnRepeatables,
+    onDeleteButtonClick,
 }) => {
     const intl = useIntl();
     const { ref, visible } = useIsVisible({ threshold: 0.1 });
@@ -96,6 +104,11 @@ const ScreenWithPreview = ({
                 ) : null}
                 {withName && !withIndexIndicator ? (
                     <div className={styles.name}>{finalTitle || null}</div>
+                ) : null}
+                {withDeleteButtonOnRepeatables ? (
+                    <div className={styles.deleteButton} onClick={onDeleteButtonClick}>
+                        <FontAwesomeIcon icon={faTimesCircle} />
+                    </div>
                 ) : null}
             </ScreenButton>
         </div>
