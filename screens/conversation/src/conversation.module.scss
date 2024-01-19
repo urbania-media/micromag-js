@@ -243,3 +243,13 @@
         height: 3em;
     }
 }
+
+.audioAttachment {
+    &.beforeText {
+        padding-bottom: 0.7em;
+    }
+
+    &.afterText {
+        padding-top: 0.7em;
+    }
+}

@@ -39,6 +39,14 @@ export default {
             })
         },
         {
+            name: 'putAudioBeforeText',
+            type: 'toggle',
+            label: defineMessage({
+                defaultMessage: 'Put audio attachments before message text',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'timingOverrides',
             component: 'toggle-section',
             isList: true,

@@ -44,7 +44,7 @@ const propTypes = {
     type: PropTypes.string,
     conversation: MicromagPropTypes.conversation,
     transitions: MicromagPropTypes.transitions,
-    className: PropTypes.string,
+    className: PropTypes.string
 };
 
 const defaultProps = {
@@ -61,7 +61,7 @@ const defaultProps = {
     type: null,
     conversation: null,
     transitions: null,
-    className: null,
+    className: null
 };
 
 const ConversationScreen = ({
@@ -78,7 +78,7 @@ const ConversationScreen = ({
     type,
     conversation,
     transitions,
-    className,
+    className
 }) => {
     const { width, height, resolution } = useScreenSize();
     const {

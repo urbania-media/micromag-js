@@ -22,6 +22,7 @@ import {
     shareIncentive,
     badge,
     conversation,
+    audioConversation,
     paragraph, // color,
 } from '../data';
 
@@ -190,6 +191,18 @@ export const allScreens = [
         layout: 'normal',
         title: { body: 'Une conversation particulièrement intéressante' },
         conversation: conversation(13, 4),
+        background: {
+            color: { alpha: 1, color: '#00000F' },
+        },
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
+    },
+    {
+        id: uuid(),
+        type: 'conversation',
+        layout: 'normal',
+        title: { body: 'Un échange de vocaux' },
+        conversation: audioConversation(13, 4),
         background: {
             color: { alpha: 1, color: '#00000F' },
         },

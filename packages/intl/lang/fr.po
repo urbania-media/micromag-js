@@ -1031,6 +1031,12 @@ msgctxt "K1BxIr"
 msgid "Edit metadata..."
 msgstr "Modifier les métadonnées"
 
+# Field label
+#: K4LAN4
+msgctxt "K4LAN4"
+msgid "Put audio attachments before message text"
+msgstr "Afficher l'audio joint avant le texte du message"
+
 # Search a place on Google Maps placeholder
 #: KB7N5E
 msgctxt "KB7N5E"
