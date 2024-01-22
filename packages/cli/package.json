@@ -1,6 +1,6 @@
 {
     "name": "@micromag/cli",
-    "version": "0.3.457",
+    "version": "0.3.458",
     "private": false,
     "description": "",
     "keywords": [
@@ -47,11 +47,11 @@
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.456",
         "@micromag/elements": "^0.3.456",
-        "@micromag/fields": "^0.3.457",
+        "@micromag/fields": "^0.3.458",
         "@micromag/screens": "^0.3.457",
         "@micromag/transforms": "^0.3.456",
-        "@micromag/viewer": "^0.3.457",
-        "@micromag/viewer-build": "^0.3.457",
+        "@micromag/viewer": "^0.3.458",
+        "@micromag/viewer-build": "^0.3.458",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "commander": "^8.3.0",
