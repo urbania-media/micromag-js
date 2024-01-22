@@ -42,7 +42,7 @@ export default {
             name: 'putAudioBeforeText',
             type: 'toggle',
             label: defineMessage({
-                defaultMessage: 'Put audio attachments before message text',
+                defaultMessage: 'Put audio before text',
                 description: 'Field label',
             }),
         },

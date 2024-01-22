@@ -509,9 +509,6 @@
     "K1BxIr": {
         "defaultMessage": "Edit metadata..."
     },
-    "K4LAN4": {
-        "defaultMessage": "Put audio attachments before message text"
-    },
     "KB7N5E": {
         "defaultMessage": "Search a place on Google Maps"
     },
@@ -1285,6 +1282,9 @@
     },
     "tmfbUn": {
         "defaultMessage": "Unused"
+    },
+    "trQFlb": {
+        "defaultMessage": "Put audio before text"
     },
     "tvl2Zc": {
         "defaultMessage": "Video"

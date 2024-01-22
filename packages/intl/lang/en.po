@@ -1031,12 +1031,6 @@ msgctxt "K1BxIr"
 msgid "Edit metadata..."
 msgstr "Edit metadata..."
 
-# Field label
-#: K4LAN4
-msgctxt "K4LAN4"
-msgid "Put audio attachments before message text"
-msgstr "Put audio attachments before message text"
-
 # Search a place on Google Maps placeholder
 #: KB7N5E
 msgctxt "KB7N5E"
@@ -2581,6 +2575,12 @@ msgstr "Font size"
 msgctxt "tmfbUn"
 msgid "Unused"
 msgstr "Unused"
+
+# Field label
+#: trQFlb
+msgctxt "trQFlb"
+msgid "Put audio before text"
+msgstr "Put audio before text"
 
 # Video field label
 #: tvl2Zc

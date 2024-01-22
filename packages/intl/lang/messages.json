@@ -679,10 +679,6 @@
     "defaultMessage": "Edit metadata...",
     "description": "No value field label"
   },
-  "K4LAN4": {
-    "defaultMessage": "Put audio attachments before message text",
-    "description": "Field label"
-  },
   "KB7N5E": {
     "defaultMessage": "Search a place on Google Maps",
     "description": "Search a place on Google Maps placeholder"
@@ -1711,6 +1707,10 @@
   "tmfbUn": {
     "defaultMessage": "Unused",
     "description": "Media label"
+  },
+  "trQFlb": {
+    "defaultMessage": "Put audio before text",
+    "description": "Field label"
   },
   "tvl2Zc": {
     "defaultMessage": "Video",
