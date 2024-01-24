@@ -8,12 +8,6 @@ export default {
         {
             name: 'label',
             type: 'text-element',
-            textOnly: true,
-            fieldsProps: {
-                textStyle: {
-                    excludedFields: ['highlight', 'link'],
-                },
-            },
             label: defineMessage({
                 defaultMessage: 'Label',
                 description: 'Field label',

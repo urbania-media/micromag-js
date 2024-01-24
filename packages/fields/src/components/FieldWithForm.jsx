@@ -22,6 +22,7 @@ const propTypes = {
     label: PropTypes.oneOfType([PropTypes.node, MicromagPropTypes.message]),
     thumbnail: PropTypes.node,
     labelPath: PropTypes.string,
+    withTitleLabel: PropTypes.bool,
     thumbnailPath: PropTypes.string,
     noValueLabel: MicromagPropTypes.label,
     isHorizontal: PropTypes.bool,
@@ -38,6 +39,7 @@ const defaultProps = {
     label: null,
     thumbnail: null,
     labelPath: 'label',
+    withTitleLabel: false,
     thumbnailPath: 'thumbnail',
     noValueLabel: null,
     isHorizontal: false,
@@ -54,6 +56,7 @@ const FieldWithForm = ({
     noValueLabel,
     label,
     labelPath,
+    withTitleLabel,
     thumbnail,
     thumbnailPath,
     isHorizontal,
@@ -126,7 +129,14 @@ const FieldWithForm = ({
             ])}
         >
             {thumbnailElement !== null || labelElement !== null ? (
-                <>
+                <span
+                    className="row px-0"
+                    title={
+                        withTitleLabel && (isString(labelString) || isString(label))
+                            ? labelString || label || ''
+                            : null
+                    }
+                >
                     {!isHorizontal && thumbnailElement !== null ? (
                         <span className="col-auto">{thumbnailElement}</span>
                     ) : null}
@@ -148,7 +158,7 @@ const FieldWithForm = ({
                     {isHorizontal && thumbnailElement !== null ? (
                         <span className="col-auto">{thumbnailElement}</span>
                     ) : null}
-                </>
+                </span>
             ) : (
                 <span
                     className={classNames([

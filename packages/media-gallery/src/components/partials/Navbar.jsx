@@ -266,7 +266,7 @@ function Navbar({
                                         className={classNames([
                                             styles.mediaLabel,
                                             'd-inline-block',
-                                            'text-truncate',
+                                            'text-break',
                                             'mx-1',
                                             'me-2',
                                         ])}

@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Fields from './Fields';
@@ -55,9 +56,7 @@ const AnswerField = ({ value, isForm, className, ...props }) => {
             ])}
         >
             {text !== null ? (
-                <>
-                    <span className={styles.value}>{text}</span>
-                </>
+                <span className={styles.value}>{text}</span>
             ) : (
                 <span className={styles.noValue}>Entrez une question...</span>
             )}

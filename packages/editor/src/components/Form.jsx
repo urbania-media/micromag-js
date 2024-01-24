@@ -153,9 +153,9 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     );
 
     const onClickDuplicate = useCallback(() => {
-        triggerOnChange(duplicateScreen(value, screenId));
+        triggerOnChange(duplicateScreen(value, screenId, screenIndex));
         setScreenSettingsOpened(false);
-    }, [value, screenId, triggerOnChange, setScreenSettingsOpened]);
+    }, [value, screenId, screenIndex, triggerOnChange, setScreenSettingsOpened]);
 
     const onClickDelete = useCallback(() => {
         setDeleteScreenModalOpened(true);

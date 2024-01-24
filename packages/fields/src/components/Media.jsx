@@ -50,7 +50,8 @@ const MediaField = ({
                 onChange(media !== null && value !== null && media.id === value.id ? null : media);
             }
             if (closeForm !== null) {
-                closeForm();
+                // NOTE: enable this for auto-back on select media
+                // closeForm();
             }
         },
         [value, onChange, closeForm],
@@ -70,6 +71,7 @@ const MediaField = ({
             onChange={onChange}
             noValueLabel={noValueLabel}
             label={label}
+            withTitleLabel={label !== null}
             thumbnailPath="thumbnail_url"
             {...props}
         >
