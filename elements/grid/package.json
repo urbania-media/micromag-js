@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-grid",
-    "version": "0.3.456",
+    "version": "0.3.459",
     "private": false,
     "description": "",
     "keywords": [
@@ -58,7 +58,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.456",
+        "@micromag/core": "^0.3.459",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
