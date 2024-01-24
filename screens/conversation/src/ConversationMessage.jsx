@@ -29,7 +29,7 @@ const propTypes = {
     speakerStyle: MicromagPropTypes.textStyle,
     messageStyle: MicromagPropTypes.textStyle,
     className: PropTypes.string,
-    audioEventsChannelName: PropTypes.string,
+    audioEventsChannelName: PropTypes.string
 };
 
 const defaultProps = {
@@ -69,9 +69,9 @@ const ConversationMessage = ({
     messageStyle,
     speakerStyle,
     className,
-    audioEventsChannelName,
+    audioEventsChannelName
 }) => {
-    const { message: messageBody, image = null, audio } = message || {};
+    const { message: messageBody, image = null, audio, putAudioBeforeText } = message || {};
     const {
         avatar: { url: avatarUrl = null } = {},
         name: speakerName,
@@ -123,6 +123,15 @@ const ConversationMessage = ({
     }, [messageState]);
 
     const betweenStyle = isNextSpeakerTheSame && nextMessageState;
+
+    const buildAudioAttachment = () => (
+        <ConversationAudioAttachment
+            audio={audio}
+            messageId={messageId}
+            nextAudioMessageId={nextAudioMessageId}
+            audioEventsChannelName={audioEventsChannelName}
+        />
+    )
 
     return messageState !== 'pause' ? (
         <div
@@ -197,18 +206,21 @@ const ConversationMessage = ({
                                 />
                             </div>
                         ) : null}
+
+                        {(audio && putAudioBeforeText) ? (
+                            <div className={classNames(styles.audioAttachment, styles.beforeText)}>
+                                {buildAudioAttachment()}
+                            </div>
+                        ) : null}
                         <Text
                             className={styles.messageBody}
                             body={messageBody}
                             textStyle={messageStyle}
                         />
-                        {audio ? (
-                            <ConversationAudioAttachment
-                                audio={audio}
-                                messageId={messageId}
-                                nextAudioMessageId={nextAudioMessageId}
-                                audioEventsChannelName={audioEventsChannelName}
-                            />
+                        {(audio && !putAudioBeforeText) ? (
+                            <div className={classNames(styles.audioAttachment, styles.afterText)}>
+                                {buildAudioAttachment()}
+                            </div>
                         ) : null}
                     </div>
                 </div>

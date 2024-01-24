@@ -2576,6 +2576,12 @@ msgctxt "tmfbUn"
 msgid "Unused"
 msgstr "Unused"
 
+# Field label
+#: trQFlb
+msgctxt "trQFlb"
+msgid "Put audio before text"
+msgstr "Put audio before text"
+
 # Video field label
 #: tvl2Zc
 msgctxt "tvl2Zc"

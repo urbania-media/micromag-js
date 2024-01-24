@@ -39,13 +39,25 @@
         pointer-events: none;
     }
 
+    .deleteButton {
+        position: absolute;
+        top: 4%;
+        right: 11%;
+        z-index: 3;
+        opacity: 0;
+        transition: opacity 0.15s ease;
+        cursor: pointer;
+        font-size: 0.90em;
+        font-weight: 600;
+    }
+
     &:hover {
         filter: grayscale(0.5);
     }
 
     &.withIndex {
         &:hover {
-            .index, .name {
+            .index, .name, .deleteButton {
                 opacity: 1;
             }
         }

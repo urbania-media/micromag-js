@@ -110,6 +110,31 @@ function ScreenStates({ screen, value, className, onChange }) {
                             field: [id, currentFieldValue.length],
                         });
                     };
+                    const onClickDelete = (indexToDelete) => {
+                        const { components: currentComponentsValue = [] } = value || {};
+                        const currentScreenIndex = currentComponentsValue.findIndex(
+                            ({ id: screenId }) => screen.id === screenId,
+                        );
+                        const currentScreenValue = currentComponentsValue[currentScreenIndex] || {};
+                        const currentFieldValue = currentScreenValue[fieldName || id] || [];
+                        const newValue = {
+                            ...value,
+                            components: [
+                                ...currentComponentsValue.slice(0, currentScreenIndex),
+                                {
+                                    ...currentScreenValue,
+                                    [fieldName || id]: (currentScreenValue[fieldName || id] || []).filter((_, index) => index !== indexToDelete)
+                                },
+                                ...currentComponentsValue.slice(currentScreenIndex + 1),
+                            ],
+                        };
+                        if (onChange !== null) {
+                            onChange(newValue);
+                        }
+                        push('screen', {
+                            screen: screen.id
+                        })
+                    }
                     return (
                         <div className="p-1 align-self-stretch d-flex flex-column">
                             <h6 className={classNames(['fw-normal', 'text-muted', styles.title])}>
@@ -122,6 +147,7 @@ function ScreenStates({ screen, value, className, onChange }) {
                                             <ScreenWithPreview
                                                 index={index}
                                                 withIndexIndicator
+                                                withDeleteButtonOnRepeatables
                                                 screen={screen}
                                                 screenState={`${id}.${index}`}
                                                 className={styles.button}
@@ -135,6 +161,7 @@ function ScreenStates({ screen, value, className, onChange }) {
                                                     screen: screen.id,
                                                     field: [id, index],
                                                 })}
+                                                onDeleteButtonClick={() => onClickDelete(index)}
                                             />
                                         </li>
                                     ))}
