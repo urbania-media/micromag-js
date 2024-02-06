@@ -30,16 +30,23 @@
     height: auto;
     max-height: 1.5rem;
     color: currentColor;
+
+    &.offset {
+        left: 0.13rem;
+    }
 }
 
 .spinner {
     display: block;
     position: relative;
     z-index: 1;
-    left: -0.5rem;
     width: 2rem;
     max-height: 2rem;
     color: currentColor;
+
+    &.offset {
+        left: -0.5rem;
+    }
 }
 
 .playPauseButton {
@@ -48,7 +55,7 @@
     pointer-events: none;
 
     // display the Play/Pause button
-    .withPlayPause & {
+    .withPlayPause &, .withSuggestPlay & {
         opacity: 1;
         pointer-events: auto;
     }
@@ -60,6 +67,43 @@
 
     &.loading {
         opacity: 1;
+    }
+
+    &.hidden {
+        opacity: 0;
+    }
+}
+
+.suggest {
+    @extend %reset-button;
+    display: flex;
+    position: fixed !important;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    transform: translate3d(-50%, -50%, 0);
+    transform-origin: center;
+    transition: opacity 0.5s $ease-in-out-sine;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    opacity: 1;
+    pointer-events: auto;
+
+    &.notPlaying {
+        svg {
+            margin-left: 2px;
+        }
+    }
+
+    &.loading {
+        opacity: 1;
+    }
+
+    &.hidden {
+        opacity: 0;
     }
 }
 
@@ -255,5 +299,15 @@
         &::after {
             transform: translate(0, 100%);
         }
+    }
+}
+
+.withSuggestPlay {
+    .muteButton, .playPauseButton, .seekBar {
+        opacity: 0.25 !important;
+    }
+
+    .suggest {
+        opacity: 1;
     }
 }

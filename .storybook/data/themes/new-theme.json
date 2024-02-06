@@ -1,0 +1,69 @@
+{
+    "title": "Mon nouveau thème",
+    "colors": {
+        "primary": null,
+        "secondary": null
+    },
+    "boxStyles": {
+        "cta": {
+            "borderColor": {
+                "alpha": 1,
+                "color": "#37718a"
+            },
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "backgroundColor": {
+                "color": "#e51111",
+                "alpha": 1
+            }
+        },
+        "badge": {
+            "backgroundColor": {
+                "alpha": 1,
+                "color": "#df79f0"
+            },
+            "borderRadius": 20,
+            "padding": {
+                "bottom": 20,
+                "top": 20
+            }
+        }
+    },
+    "textStyles": {
+        "badge": {
+            "fontSize": 32,
+            "color": {
+                "alpha": 1,
+                "color": "#1db019"
+            },
+            "fontFamily": "Times New Roman"
+        },
+        "text": null,
+        "heading3": null,
+        "button": null,
+        "heading2": null,
+        "heading1": {
+            "fontFamily": "Courier New"
+        },
+        "cta": {
+            "fontSize": 48,
+            "color": {
+                "alpha": 1,
+                "color": "#e2d0d0"
+            },
+            "fontFamily": "Courier New"
+        }
+    },
+    "components": [
+        {
+            "layout": "top",
+            "type": "title-with-box",
+            "id": "5c8ec790-f97e-11ed-a8de-7b9a51df122b"
+        }
+    ],
+    "id": "223",
+    "background": {
+        "image": null,
+        "color": null
+    }
+}

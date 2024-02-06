@@ -50,6 +50,7 @@ const propTypes = {
     onVolumeChange: PropTypes.func,
     onSuspend: PropTypes.func,
     onSuspended: PropTypes.func,
+    onPlayError: PropTypes.func,
     focusable: PropTypes.bool,
     withPoster: PropTypes.bool,
     withLoading: PropTypes.bool,
@@ -83,6 +84,7 @@ const defaultProps = {
     onVolumeChange: null,
     onSuspend: null,
     onSuspended: null,
+    onPlayError: null,
     focusable: true,
     withPoster: false,
     withLoading: false,
@@ -115,6 +117,7 @@ const Video = ({
     onVolumeChange: customOnVolumeChange,
     onSuspend: customOnSuspend,
     onSuspended,
+    onPlayError,
     focusable,
     withPoster,
     withLoading,
@@ -221,11 +224,13 @@ const Video = ({
         },
         [isSuspended, setIsSuspended, customOnPlay],
     );
+
     const onPlaying = useCallback(() => {
         if (isSuspended) {
             setIsSuspended(false);
         }
     }, [isSuspended, setIsSuspended]);
+
     const onSuspend = useCallback(
         (e) => {
             if (e.currentTarget.paused && !paused && !isSuspended) {
@@ -257,9 +262,13 @@ const Video = ({
         if (paused && !isPaused) {
             element.pause();
         } else if (!paused && isPaused) {
-            element.play();
+            element.play().catch((e) => {
+                if (onPlayError !== null) {
+                    onPlayError(e);
+                }
+            });
         }
-    }, [paused]);
+    }, [paused, media, onPlayError]); // test media here for fun
 
     useProgressSteps({
         currentTime,

@@ -112,7 +112,8 @@ const AudioScreen = ({
         : null;
     const hasClosedCaptions = closedCaptions !== null;
 
-    const { playing, muted, setControls, setControlsTheme, setPlaying } = usePlaybackContext();
+    const { playing, muted, setControls, setControlsSuggestPlay, setControlsTheme, setPlaying } =
+        usePlaybackContext();
 
     const mediaRef = usePlaybackMediaRef(current);
 
@@ -209,6 +210,13 @@ const AudioScreen = ({
         [trackScreenMedia, audio],
     );
 
+    const onPlayError = useCallback(() => {
+        if (isView && playing && current && hasAudio) {
+            setPlaying(false);
+            setControlsSuggestPlay(true);
+        }
+    }, [isView, current, playing, hasAudio, setPlaying, setControlsSuggestPlay]);
+
     return (
         <div
             className={classNames([
@@ -274,6 +282,7 @@ const AudioScreen = ({
                             onDurationChange={onDurationChange}
                             onSeeked={onSeeked}
                             onEnded={onEnded}
+                            onPlayError={onPlayError}
                             withWave={showWave && withWave}
                         />
                     </ScreenElement>

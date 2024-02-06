@@ -107,12 +107,14 @@ const VideoScreen = ({
         playing,
         muted,
         setControls,
+        setControlsSuggestPlay,
         setControlsTheme,
         setPlaying,
         controlsVisible,
         showControls,
         hideControls,
     } = usePlaybackContext();
+
     const mediaRef = usePlaybackMediaRef(current);
 
     const [hasPlayed, setHasPlayed] = useState(false);
@@ -287,6 +289,13 @@ const VideoScreen = ({
         }
     }, [current, playing, setPlaying]);
 
+    const onPlayError = useCallback(() => {
+        if (isView && playing && current && hasVideoUrl) {
+            setPlaying(false);
+            setControlsSuggestPlay(true);
+        }
+    }, [isView, current, playing, hasVideoUrl, setPlaying, setControlsSuggestPlay]);
+
     return (
         <div
             className={classNames([
@@ -375,6 +384,7 @@ const VideoScreen = ({
                                         onSeeked={onSeeked}
                                         onEnded={onEnded}
                                         onSuspended={onSuspended}
+                                        onPlayError={onPlayError}
                                         focusable={current && isView}
                                         shouldLoad={mediaShouldLoad}
                                     />

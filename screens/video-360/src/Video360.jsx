@@ -113,6 +113,7 @@ const Video360Screen = ({
         muted,
         setControls,
         setControlsTheme,
+        setControlsSuggestPlay,
         setMedia,
         setPlaying,
         showControls,
@@ -491,6 +492,13 @@ const Video360Screen = ({
         [gotoPreviousScreen, gotoNextScreen, landscape],
     );
 
+    const onPlayError = useCallback(() => {
+        if (isView && playing && current && hasVideoUrl) {
+            setPlaying(false);
+            setControlsSuggestPlay(true);
+        }
+    }, [isView, current, playing, hasVideoUrl, setPlaying, setControlsSuggestPlay]);
+
     return (
         <div
             className={classNames([
@@ -530,6 +538,8 @@ const Video360Screen = ({
                             onSeeked={onSeeked}
                             onEnded={onEnded}
                             onPosterLoaded={onPosterLoaded}
+                            onPlayError={onPlayError}
+                            setPlaying={setPlaying}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}
                         />

@@ -31,6 +31,7 @@ import planetsStory from '../../../../.storybook/data/stories/les-planetes.json'
 import lol from '../../../../.storybook/data/stories/lol.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
+import testTheme from '../../../../.storybook/data/themes/new-theme.json';
 import micromagAudio from '../../../../.storybook/examples/micromag-audio.json';
 
 const props = {
@@ -139,6 +140,9 @@ export const WithButtons = () => (
 );
 
 export const TextQuoteBadges = () => <Viewer story={textQuoteBadges} withNavigationHint />;
+export const TextQuoteBadgesThemed = () => (
+    <Viewer story={{ ...textQuoteBadges, theme: testTheme }} withNavigationHint />
+);
 
 export const QuizAndSurvey = () => <Viewer story={quiz} />;
 export const Empty = () => <Viewer basePath="/story-path" />;
@@ -347,6 +351,7 @@ export const WithCustomFonts = () => (
     />
 );
 export const WithTheme = () => <Viewer {...twoScreensProps} theme={viewerTheme} />;
+
 export const WithMenuTheme = () => (
     <Viewer
         {...twoScreensProps}

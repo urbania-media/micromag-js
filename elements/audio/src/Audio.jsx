@@ -52,6 +52,7 @@ const propTypes = {
     onProgressStep: PropTypes.func,
     onDurationChange: PropTypes.func,
     onVolumeChange: PropTypes.func,
+    onPlayError: PropTypes.func,
 };
 
 const defaultProps = {
@@ -79,6 +80,7 @@ const defaultProps = {
     onProgressStep: null,
     onDurationChange: null,
     onVolumeChange: null,
+    onPlayError: null,
 };
 
 const Audio = ({
@@ -106,6 +108,7 @@ const Audio = ({
     onProgressStep,
     onDurationChange: customOnDurationChange,
     onVolumeChange: customOnVolumeChange,
+    onPlayError,
 }) => {
     const { url = null } = media || {};
 
@@ -189,9 +192,13 @@ const Audio = ({
         if (paused && !isPaused) {
             element.pause();
         } else if (!paused && isPaused) {
-            element.play();
+            element.play().catch((e) => {
+                if (onPlayError !== null) {
+                    onPlayError(e);
+                }
+            });
         }
-    }, [paused, media]);
+    }, [paused, media, onPlayError]);
 
     useProgressSteps({
         currentTime,
@@ -239,8 +246,8 @@ const Audio = ({
                     className={classNames([
                         styles.wave,
                         {
-                            [styles.withAutoHeight]: autoWaveHeight
-                        }
+                            [styles.withAutoHeight]: autoWaveHeight,
+                        },
                     ])}
                     progress={progress}
                     // {...waveProps}

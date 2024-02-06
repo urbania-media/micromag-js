@@ -64,6 +64,7 @@ function PlaybackControls({
         setPlaying,
         setMuted,
         controls,
+        controlsSuggestPlay,
         controlsVisible,
         controlsTheme,
         showControls,
@@ -195,6 +196,7 @@ function PlaybackControls({
                 {
                     [className]: className !== null,
                     [styles.withPlayPause]: controls && !seekBarOnly,
+                    [styles.withSuggestPlay]: controlsSuggestPlay,
                     [styles.withMute]: hasMedia || controls,
                     [styles.withSeekBar]: controls,
                     [styles.withSeekBarOnly]: seekBarOnly,
@@ -204,10 +206,30 @@ function PlaybackControls({
                 },
             ])}
         >
+            {controlsSuggestPlay && !finalShowLoading ? (
+                <Button
+                    className={classNames([styles.suggest])}
+                    style={{
+                        color,
+                    }}
+                    onClick={playing ? onPause : onPlay}
+                    focusable={controlsVisible}
+                    icon={<PlayIcon className={classNames([styles.icon, styles.offset])} />}
+                    aria-label={intl.formatMessage({
+                        defaultMessage: 'Play',
+                        description: 'Button label',
+                    })}
+                    withoutBootstrapStyles
+                />
+            ) : null}
+
             <Button
                 className={classNames([
                     styles.playPauseButton,
-                    { [styles.loading]: finalShowLoading },
+                    {
+                        [styles.hidden]: controlsSuggestPlay && !controls,
+                        [styles.loading]: finalShowLoading,
+                    },
                 ])}
                 style={{
                     color,
@@ -215,7 +237,13 @@ function PlaybackControls({
                 onClick={playing ? onPause : onPlay}
                 focusable={controlsVisible}
                 disabled={finalShowLoading}
-                icon={finalShowLoading ? <Spinner className={styles.spinner} /> : playIcon}
+                icon={
+                    finalShowLoading ? (
+                        <Spinner className={classNames([styles.spinner, styles.offset])} />
+                    ) : (
+                        playIcon
+                    )
+                }
                 aria-label={
                     finalShowLoading
                         ? intl.formatMessage({

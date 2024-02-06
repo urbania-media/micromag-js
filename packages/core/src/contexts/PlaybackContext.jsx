@@ -15,6 +15,7 @@ const defaultValue = {
     paused: false,
     muted: true,
     controls: false,
+    controlsSuggestPlay: false,
     controlsVisible: false,
     media: null,
     controlsTheme: defaultControlsThemeValue,
@@ -56,6 +57,7 @@ export const usePlaybackMediaRef = (active) => {
 const propTypes = {
     children: PropTypes.node.isRequired,
     controls: PropTypes.bool,
+    controlsSuggestPlay: PropTypes.bool,
     controlsVisible: PropTypes.bool,
     controlsTheme: PropTypes.shape({
         seekBarOnly: PropTypes.bool,
@@ -76,6 +78,7 @@ export const PlaybackProvider = ({
     playing: initialPlaying,
     paused,
     controls: initialControls,
+    controlsSuggestPlay: initialControlsSuggestPlay,
     controlsVisible: initialControlsVisible,
     controlsTheme: initialControlsTheme,
     children,
@@ -84,6 +87,7 @@ export const PlaybackProvider = ({
     const [playing, setPlaying] = useState(initialPlaying);
     const [media, setMedia] = useState(null);
     const [controls, setControls] = useState(initialControls);
+    const [controlsSuggestPlay, setControlsSuggestPlay] = useState(initialControlsSuggestPlay);
     const [controlsVisible, setControlsVisible] = useState(initialControlsVisible);
     const [controlsTheme, setControlsTheme] = useState(initialControlsTheme);
 
@@ -92,12 +96,14 @@ export const PlaybackProvider = ({
             if (newControls) {
                 setControls(true);
                 setControlsVisible(true);
+                setControlsSuggestPlay(false);
             } else {
                 setControls(false);
                 setControlsVisible(false);
+                setControlsSuggestPlay(false);
             }
         },
-        [setControls, setControlsVisible],
+        [setControls, setControlsVisible, setControlsSuggestPlay],
     );
 
     const finalSetControlsTheme = useCallback(
@@ -106,6 +112,21 @@ export const PlaybackProvider = ({
         },
         [setControlsTheme],
     );
+
+    const finalSetPlaying = useCallback(
+        (value) => {
+            if (value) {
+                setControlsSuggestPlay(false);
+            }
+            setPlaying(value);
+        },
+        [setPlaying, setControlsSuggestPlay],
+    );
+
+    // Reset on media change
+    useEffect(() => {
+        setControlsSuggestPlay(false);
+    }, [media, setControlsSuggestPlay]);
 
     const showControls = useCallback(() => setControlsVisible(true), [setControlsVisible]);
     const hideControls = useCallback(() => setControlsVisible(false), [setControlsVisible]);
@@ -128,13 +149,15 @@ export const PlaybackProvider = ({
             muted,
             playing: playing && !paused,
             controls,
+            controlsSuggestPlay,
             controlsVisible,
             media,
             hasAudio,
             controlsTheme,
             setMuted,
-            setPlaying,
+            setPlaying: finalSetPlaying,
             setControls: finalSetControls,
+            setControlsSuggestPlay,
             setControlsVisible,
             setControlsTheme: finalSetControlsTheme,
             showControls,
@@ -146,14 +169,16 @@ export const PlaybackProvider = ({
             playing,
             paused,
             controls,
+            controlsSuggestPlay,
             controlsVisible,
             controlsTheme,
             media,
             hasAudio,
             setMuted,
-            setPlaying,
+            finalSetPlaying,
             finalSetControls,
             finalSetControlsTheme,
+            setControlsSuggestPlay,
             setControlsVisible,
             setControlsTheme,
             showControls,

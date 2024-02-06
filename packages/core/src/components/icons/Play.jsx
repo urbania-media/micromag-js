@@ -13,15 +13,15 @@ const defaultProps = {
 
 const PlayIcon = ({ color, className }) => (
     <svg
-        width="20"
-        height="23"
-        viewBox="0 0 20 23"
+        width="40"
+        height="45.1"
+        viewBox="0 0 40 45.1"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={className}
     >
         <path
-            d="M16.25 12.5574L2.74999 20.3516C1.74999 20.9289 0.499993 20.2073 0.499993 19.0526L0.499994 3.4641C0.499994 2.3094 1.74999 1.58771 2.74999 2.16506L16.25 9.95929C17.25 10.5366 17.25 11.98 16.25 12.5574Z"
+            d="M38.2,25.7L5.5,44.6C3,46,0,44.2,0,41.4L0,3.6c0-2.8,3-4.5,5.5-3.1l32.7,18.9C40.6,20.8,40.6,24.3,38.2,25.7z"
             fill={color}
             stroke={color}
         />
