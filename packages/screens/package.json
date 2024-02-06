@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.460",
+    "version": "0.3.461",
     "private": false,
     "description": "",
     "keywords": [
@@ -69,7 +69,7 @@
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.460",
         "@micromag/screen-article": "^0.3.460",
-        "@micromag/screen-audio": "^0.3.460",
+        "@micromag/screen-audio": "^0.3.461",
         "@micromag/screen-contribution": "^0.3.460",
         "@micromag/screen-conversation": "^0.3.460",
         "@micromag/screen-gallery": "^0.3.460",
@@ -90,8 +90,8 @@
         "@micromag/screen-urbania-horoscope": "^0.3.460",
         "@micromag/screen-urbania-recommendation": "^0.3.460",
         "@micromag/screen-urbania-trivia": "^0.3.460",
-        "@micromag/screen-video": "^0.3.460",
-        "@micromag/screen-video-360": "^0.3.460",
+        "@micromag/screen-video": "^0.3.461",
+        "@micromag/screen-video-360": "^0.3.461",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2"
