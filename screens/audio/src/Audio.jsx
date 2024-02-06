@@ -211,11 +211,11 @@ const AudioScreen = ({
     );
 
     const onPlayError = useCallback(() => {
-        if (isView && playing && current && hasAudio) {
+        if (isView && playing && current && hasAudio && autoPlay) {
             setPlaying(false);
             setControlsSuggestPlay(true);
         }
-    }, [isView, current, playing, hasAudio, setPlaying, setControlsSuggestPlay]);
+    }, [isView, current, playing, hasAudio, autoPlay, setPlaying, setControlsSuggestPlay]);
 
     return (
         <div

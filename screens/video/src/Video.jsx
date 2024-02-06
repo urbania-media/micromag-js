@@ -290,11 +290,11 @@ const VideoScreen = ({
     }, [current, playing, setPlaying]);
 
     const onPlayError = useCallback(() => {
-        if (isView && playing && current && hasVideoUrl) {
+        if (isView && playing && current && hasVideoUrl && autoPlay) {
             setPlaying(false);
             setControlsSuggestPlay(true);
         }
-    }, [isView, current, playing, hasVideoUrl, setPlaying, setControlsSuggestPlay]);
+    }, [isView, current, playing, hasVideoUrl, autoPlay, setPlaying, setControlsSuggestPlay]);
 
     return (
         <div
