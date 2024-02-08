@@ -1,5 +1,6 @@
 export { default as useActivityDetector } from './useActivityDetector';
 export { default as useAnimationFrame } from './useAnimationFrame';
+
 export * from './useDates';
 export { default as useDebounce } from './useDebounce';
 export { default as useDocumentEvent } from './useDocumentEvent';
@@ -11,6 +12,7 @@ export { default as useIsVisible } from './useIsVisible';
 export { default as useLoadedFonts } from './useLoadedFonts';
 export { default as useLongPress } from './useLongPress';
 export { default as useMediaApi } from './useMediaApi';
+export { default as useMediaBuffering } from './useMediaBuffering';
 export { default as useMediaCurrentTime } from './useMediaCurrentTime';
 export { default as useMediaDuration } from './useMediaDuration';
 export { default as useMediaLoad } from './useMediaLoad';
