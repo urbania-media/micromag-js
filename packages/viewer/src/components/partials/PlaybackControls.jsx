@@ -13,12 +13,13 @@ import {
     Spinner,
 } from '@micromag/core/components';
 import { usePlaybackContext } from '@micromag/core/contexts';
-import { useMediaReady } from '@micromag/core/hooks';
+import { useMediaReady, useMediaBuffering } from '@micromag/core/hooks';
 import { getColorAsString } from '@micromag/core/utils';
 
 import SeekBar from './SeekBar';
 
 import styles from '../../styles/partials/playback-controls.module.scss';
+import useMediaBuffering from '@micromag/core/src/hooks/useMediaBuffering';
 
 const propTypes = {
     defaultColor: PropTypes.shape({
@@ -78,19 +79,21 @@ function PlaybackControls({
     const ready = mediaElement === null || mediaReady;
     const finalShowLoading = showLoading && !ready;
 
+    const buffering = useMediaBuffering(mediaElement);
+
     useEffect(() => {
         let id = null;
         setShowLoading(false);
-        if (!ready && withLoading) {
+        if ((!ready || buffering) && withLoading) {
             id = setTimeout(() => {
                 setShowLoading(true);
-            }, 2000);
+            }, 1000);
         }
         return () => {
             setShowLoading(false);
             clearTimeout(id);
         };
-    }, [ready, withLoading, setShowLoading]);
+    }, [ready, buffering, withLoading, setShowLoading]);
 
     const [customControlsTheme, setCustomControlsTheme] = useState({
         color: getColorAsString(defaultColor),

@@ -15,6 +15,7 @@ import styles from '../../styles/menus/menu-preview.module.scss';
 const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
     header: PropTypes.node,
+    footer: PropTypes.node,
     screenSize: MicromagPropTypes.screenSize,
     title: PropTypes.string,
     menuWidth: PropTypes.number,
@@ -35,6 +36,7 @@ const propTypes = {
 const defaultProps = {
     viewerTheme: null,
     header: null,
+    footer: null,
     screenSize: null,
     title: null,
     menuWidth: null,
@@ -54,6 +56,7 @@ const defaultProps = {
 const ViewerMenuPreview = ({
     viewerTheme,
     header,
+    footer,
     screenSize,
     title,
     menuWidth,
@@ -192,6 +195,7 @@ const ViewerMenuPreview = ({
                             })}
                         </ul>
                     </nav>
+                    {footer}
                 </Scroll>
             </div>
         </div>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useViewerSize } from '@micromag/core/contexts';
+import { useFormsComponentsManager, useViewerSize } from '@micromag/core/contexts';
 import { useDimensionObserver, useDragProgress, useTrackEvent } from '@micromag/core/hooks';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
@@ -35,6 +35,7 @@ const propTypes = {
     screenSize: MicromagPropTypes.screenSize,
     menuWidth: PropTypes.number,
     previewHeader: PropTypes.node,
+    previewFooter: PropTypes.node,
     withDotItemClick: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
     withoutShareMenu: PropTypes.bool,
@@ -61,6 +62,7 @@ const defaultProps = {
     screenSize: null,
     menuWidth: null,
     previewHeader: null,
+    previewFooter: null,
     withDotItemClick: false,
     withoutScreensMenu: false,
     withoutShareMenu: false,
@@ -86,6 +88,7 @@ const ViewerMenu = ({
     screenSize,
     menuWidth,
     previewHeader,
+    previewFooter,
     withDotItemClick,
     withoutScreensMenu,
     withoutShareMenu,
@@ -421,6 +424,7 @@ const ViewerMenu = ({
                     <MenuPreview
                         viewerTheme={viewerTheme}
                         header={previewHeader}
+                        footer={previewFooter}
                         title={title}
                         className={styles.menuPreview}
                         screenSize={screenSize}
