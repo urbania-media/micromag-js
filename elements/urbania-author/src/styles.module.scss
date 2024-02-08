@@ -25,11 +25,14 @@
         display: block;
     }
 
-    .name, .prefix {
+    .name,
+    .prefix {
         min-height: 20px;
     }
 
-    .name, .prefix, .collaborator {
+    .name,
+    .prefix,
+    .collaborator {
         background-color: #efefef; // $gray-200;
         font-family: 'Agrandir';
         font-size: 10px;
@@ -62,11 +65,12 @@
         background-color: transparent;
         color: $white;
 
-        .collaboratorText{
+        .collaboratorText {
             padding-left: 7.3px;
             font-size: 0.9em;
             line-height: 1;
 
+            /* stylelint-disable-next-line selector-max-compound-selectors */
             p {
                 display: inline;
                 font-size: inherit;
@@ -85,13 +89,14 @@
     &.isSmall {
         font-size: 9px;
 
-        .name, .prefix {
+        .name,
+        .prefix {
             font-size: 9px;
             white-space: normal;
         }
 
         .image {
-            max-width: 30px;
+            max-width: 2.2em;
         }
     }
 
@@ -104,6 +109,14 @@
         .prefix {
             margin-right: 0;
             padding-right: 0.4em;
+        }
+    }
+
+    &.withoutBackground {
+        .name,
+        .prefix,
+        .collaborator {
+            background-color: transparent;
         }
     }
 }

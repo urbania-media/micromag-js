@@ -65,6 +65,7 @@
         "@micromag/element-background": "^0.3.460",
         "@micromag/element-button": "^0.3.460",
         "@micromag/element-closed-captions": "^0.3.460",
+        "@micromag/element-call-to-action": "^0.3.460",
         "@micromag/element-container": "^0.3.460",
         "@micromag/element-footer": "^0.3.460",
         "@micromag/element-header": "^0.3.460",

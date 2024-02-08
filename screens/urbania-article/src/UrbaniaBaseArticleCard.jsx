@@ -21,19 +21,25 @@ import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Header from '@micromag/element-header';
+import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
+import UrbaniaAuthor from '@micromag/element-urbania-author';
+
+import Arrow from './icons/ArrowIcon';
 
 import styles from './urbania-base-article-card.module.scss';
 
 const propTypes = {
     hasArticle: PropTypes.bool,
     url: PropTypes.string,
-    title: PropTypes.string,
+    title: MicromagPropTypes.headingElement,
+    author: MicromagPropTypes.authorElement,
     text: MicromagPropTypes.textElement,
     image: MicromagPropTypes.visualElement,
     header: MicromagPropTypes.header,
     background: MicromagPropTypes.backgroundElement,
+    callToAction: MicromagPropTypes.textElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     spacing: PropTypes.number,
@@ -44,10 +50,12 @@ const defaultProps = {
     hasArticle: false,
     url: null,
     title: null,
+    author: null,
     text: null,
     image: null,
     header: null,
     background: null,
+    callToAction: null,
     current: true,
     active: true,
     spacing: 20,
@@ -58,10 +66,12 @@ const UrbaniaArticleCard = ({
     hasArticle,
     url,
     title,
+    author,
     text,
     image,
     header,
     background,
+    callToAction,
     current,
     active,
     spacing,
@@ -87,6 +97,8 @@ const UrbaniaArticleCard = ({
     const hasUrl = url !== null && url.length > 0;
     const hasHeader = isHeaderFilled(header);
     const hasText = isTextFilled(text);
+    const hasTitle = isTextFilled(title);
+    const hasCta = isTextFilled(callToAction);
 
     // iframe interaction
     const [iframeOpened, setIframeOpened] = useState(false);
@@ -139,7 +151,7 @@ const UrbaniaArticleCard = ({
     }
 
     const springStyle = useSpring({
-        from: { y: 100 },
+        from: { y: isPreview ? y : 100 },
         to: { y },
         onStart: () => {
             setIframeInteractionEnabled(false);
@@ -151,7 +163,6 @@ const UrbaniaArticleCard = ({
         },
         delay: slideInDelay ? 1500 : 0,
         config: {
-            // easing: easings.easeInOutElastic,
             easing: easings.easeInOutSine,
             duration: y === 100 ? 1000 : 400,
         },
@@ -163,8 +174,6 @@ const UrbaniaArticleCard = ({
             setFirstInteraction(false);
         }
     }, [current]);
-
-    // console.log('load 1-2', mediaShouldLoad, finalBackground);
 
     return (
         <div
@@ -206,6 +215,7 @@ const UrbaniaArticleCard = ({
                     </div>
                 ) : null}
                 <Layout className={styles.layout} height={height * 0.65}>
+                    {isPreview ? <div className={styles.text}>PREVIEW</div> : null}
                     <ScreenElement
                         key="text"
                         empty={
@@ -240,15 +250,16 @@ const UrbaniaArticleCard = ({
                         emptyClassName={styles.empty}
                         isEmpty={!hasUrl || !hasArticle}
                     >
-                        {(!isPreview || !isPlaceholder) && hasArticle ? (
+                        {/* {(!isPreview || !isPlaceholder) && hasArticle ? ( */}
+                        {!isPlaceholder && hasArticle ? (
                             <a.div
                                 className={styles.popupContainer}
                                 style={{
                                     height,
                                     width,
-                                    transform: springStyle.y.to((value) => `translateY(${value}%`),
-                                    // top: iframeOpened ? 0 : '75%',
-                                    // ...springStyle,
+                                    transform: !isPreview
+                                        ? springStyle.y.to((value) => `translateY(${value}%`)
+                                        : 'translateY(75%)',
                                 }}
                             >
                                 <div
@@ -260,12 +271,18 @@ const UrbaniaArticleCard = ({
                                         },
                                     ])}
                                 >
+                                    {hasCta ? (
+                                        <div className={styles.callToAction}>
+                                            <Arrow strokeWidth={1} className={styles.arrow} />
+                                            <Text className={styles.ctaText} {...callToAction} />
+                                        </div>
+                                    ) : null}
                                     <button
                                         type="button"
                                         style={{
                                             height: iframeInteractionEnabled ? '100px' : height,
                                             width,
-                                            zIndex: 5,
+                                            zIndex: 6,
                                         }}
                                         onClick={toggleIframe}
                                         className={styles.interactiveZone}
@@ -276,6 +293,20 @@ const UrbaniaArticleCard = ({
                                             <Close color="#000" className={styles.closeIcon} />
                                         </Button>
                                     ) : null}
+                                    <div className={styles.articlePreview}>
+                                        {hasTitle ? (
+                                            <Heading
+                                                className={classNames([styles.articleTitle])}
+                                                {...title}
+                                            />
+                                        ) : null}
+                                        <UrbaniaAuthor
+                                            isSmall
+                                            withoutBackground
+                                            author={author}
+                                            shouldLoad={mediaShouldLoad}
+                                        />
+                                    </div>
                                     <iframe
                                         className={styles.iframe}
                                         title={title.body}
@@ -294,7 +325,10 @@ const UrbaniaArticleCard = ({
                                                 [styles.active]: !iframeInteractionEnabled,
                                             },
                                         ])}
-                                        style={{ width, height: height * 0.25 }}
+                                        style={{
+                                            width,
+                                            height: height * 0.25,
+                                        }}
                                     />
                                 </div>
                             </a.div>

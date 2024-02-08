@@ -28,6 +28,22 @@ export default {
             }),
         },
         {
+            name: 'title',
+            type: 'heading-element',
+            label: defineMessage({
+                defaultMessage: 'Title',
+                description: 'Title field label',
+            }),
+        },
+        {
+            name: 'author',
+            type: 'author-element',
+            label: defineMessage({
+                defaultMessage: 'Author',
+                description: 'Author field label',
+            }),
+        },
+        {
             name: 'text',
             type: 'text-element',
             fieldsProps: {
@@ -46,6 +62,19 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Background',
                 description: 'Background field label',
+            }),
+        },
+        {
+            name: 'cardCallToAction',
+            type: 'text-element',
+            fieldsProps: {
+                textStyle: {
+                    excludedFields: ['highlight', 'link'],
+                },
+            },
+            label: defineMessage({
+                defaultMessage: 'Call to Action',
+                description: 'Field label',
             }),
         },
         {

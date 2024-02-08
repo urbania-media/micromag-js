@@ -86,7 +86,6 @@ export default {
                 description: 'Author field label',
             }),
         },
-
         {
             name: 'sponsorLabel',
             type: 'heading-element',

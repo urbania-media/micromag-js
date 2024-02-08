@@ -67,6 +67,7 @@ export const URL = (storyProps) => (
         description={{
             body: '<p>L’orthophoniste, c’est la personne qui aide les élèves à mieux prononcer à l’école? Leur rôle est beaucoup plus large et compexe! </p>',
         }}
+        cardCallToAction={{ body: 'Lire l’article' }}
     />
 );
 
