@@ -90,6 +90,11 @@ const useMediaApi = ({
         setSuspended(false);
     }, [initialPlay, setPlaying, onPlay]);
 
+    const onCustomPlaying = useCallback(() => {
+        setPlaying(true);
+        setSuspended(false);
+    }, []);
+
     const onCustomPause = useCallback(
         (e) => {
             const { currentTarget: eventMedia } = e;
@@ -232,6 +237,7 @@ const useMediaApi = ({
         if (media !== null) {
             media.addEventListener('volumechange', onCustomVolumeChange);
             media.addEventListener('play', onCustomPlay);
+            media.addEventListener('playing', onCustomPlaying);
             media.addEventListener('pause', onCustomPause);
             media.addEventListener('ended', onCustomEnded);
             media.addEventListener('seeked', onCustomSeeked);
@@ -246,6 +252,7 @@ const useMediaApi = ({
             if (media !== null) {
                 media.removeEventListener('volumechange', onCustomVolumeChange);
                 media.removeEventListener('play', onCustomPlay);
+                media.removeEventListener('playing', onCustomPlaying);
                 media.removeEventListener('pause', onCustomPause);
                 media.removeEventListener('ended', onCustomEnded);
                 media.removeEventListener('seeked', onCustomSeeked);
@@ -290,7 +297,14 @@ const useMediaApi = ({
                 media.removeEventListener('suspend', onCustomSuspended);
             }
         };
-    }, [url, onCustomLoadStart, onCustomCanPlayThrough, onCustomCanPlay, onCustomLoadedMetadata, onCustomSuspended]);
+    }, [
+        url,
+        onCustomLoadStart,
+        onCustomCanPlayThrough,
+        onCustomCanPlay,
+        onCustomLoadedMetadata,
+        onCustomSuspended,
+    ]);
 
     // Duration
     useEffect(() => {

@@ -103,6 +103,7 @@ export const Basic = () => (
                 <div>Friend</div> MY KUSTOM TITLE
             </div>
         }
+        memoryRouter
         onMenuChange={(state) => console.log(state)}
     />
 );
@@ -116,21 +117,23 @@ export const Urbania = () => (
                 <div>Friend</div> MY KUSTOM TITLE
             </div>
         }
+        memoryRouter
         onMenuChange={(state) => console.log(state)}
     />
 );
 
-export const Article = () => <Viewer story={article} />;
+export const Article = () => <Viewer story={article} memoryRouter />;
 
-export const Single = () => <Viewer story={lol} />;
+export const Single = () => <Viewer story={lol} memoryRouter />;
 
-export const Cointreau = () => <Viewer story={cointreau} />;
+export const Cointreau = () => <Viewer story={cointreau} memoryRouter />;
 
-export const Closeable = () => <Viewer story={lol} closeable />;
+export const Closeable = () => <Viewer story={lol} closeable memoryRouter />;
 
 export const WithButtons = () => (
     <Viewer
         story={cointreau}
+        memoryRouter
         menuDotsButtons={
             <button type="button" onClick={() => console.log('click')}>
                 My button
@@ -139,15 +142,17 @@ export const WithButtons = () => (
     />
 );
 
-export const TextQuoteBadges = () => <Viewer story={textQuoteBadges} withNavigationHint />;
+export const TextQuoteBadges = () => (
+    <Viewer story={textQuoteBadges} withNavigationHint memoryRouter />
+);
 export const TextQuoteBadgesThemed = () => (
-    <Viewer story={{ ...textQuoteBadges, theme: testTheme }} withNavigationHint />
+    <Viewer story={{ ...textQuoteBadges, theme: testTheme }} withNavigationHint memoryRouter />
 );
 
-export const QuizAndSurvey = () => <Viewer story={quiz} />;
-export const Empty = () => <Viewer basePath="/story-path" />;
-export const TwoScreens = () => <Viewer {...twoScreensProps} />;
-export const Tree = () => <Viewer story={treeTheme} withNavigationHint />;
+export const QuizAndSurvey = () => <Viewer story={quiz} memoryRouter />;
+export const Empty = () => <Viewer basePath="/story-path" memoryRouter />;
+export const TwoScreens = () => <Viewer {...twoScreensProps} memoryRouter />;
+export const Tree = () => <Viewer story={treeTheme} withNavigationHint memoryRouter />;
 export const Custom = () => (
     <Viewer
         story={{ components: [{ id: '1324', type: 'custom' }] }}
@@ -163,26 +168,31 @@ export const Custom = () => (
                 </div>
             ),
         }}
+        memoryRouter
     />
 );
 
-export const MicromagExample = () => <Viewer {...micromagExample} />;
-export const MicromagExample2 = () => <Viewer {...micromagExample2} />;
-export const LesPlanetes = () => <Viewer {...planetsStory} />;
-export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint />;
+export const MicromagExample = () => <Viewer {...micromagExample} memoryRouter />;
+export const MicromagExample2 = () => <Viewer {...micromagExample2} memoryRouter />;
+export const LesPlanetes = () => <Viewer {...planetsStory} memoryRouter />;
+export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint memoryRouter />;
 
-export const AllScreens = () => <Viewer {...props} withNeighborScreens />;
-export const AllScreensWithoutHeader = () => <Viewer {...propsWithoutHeader} withNeighborScreens />;
-export const AllScreensWithoutFooter = () => <Viewer {...propsWithoutFooter} withNeighborScreens />;
+export const AllScreens = () => <Viewer {...props} withNeighborScreens memoryRouter />;
+export const AllScreensWithoutHeader = () => (
+    <Viewer {...propsWithoutHeader} withNeighborScreens memoryRouter />
+);
+export const AllScreensWithoutFooter = () => (
+    <Viewer {...propsWithoutFooter} withNeighborScreens memoryRouter />
+);
 
 const shareScreenProps = {
     screenId: shareScreensStory.components[0].id,
     story: shareScreensStory,
 };
-export const VideoAudio = () => <Viewer story={videoAudio} />;
-export const AudioOnly = () => <Viewer story={micromagAudio} />;
+export const VideoAudio = () => <Viewer story={videoAudio} memoryRouter />;
+export const AudioOnly = () => <Viewer story={micromagAudio} memoryRouter />;
 
-export const ShareScreens = () => <Viewer {...shareScreenProps} />;
+export const ShareScreens = () => <Viewer {...shareScreenProps} memoryRouter />;
 
 export const MultipleAudios = () => (
     <Viewer
@@ -212,14 +222,15 @@ export const MultipleAudios = () => (
                 },
             ],
         }}
+        memoryRouter
     />
 );
 export const MultipleVideos = () => (
-    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint />
+    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint memoryRouter />
 );
 
 export const MultipleVideosForcePaused = () => (
-    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint paused />
+    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint paused memoryRouter />
 );
 
 export const MultipleVideos360 = () => (
@@ -250,11 +261,14 @@ export const MultipleVideos360 = () => (
                 },
             ],
         }}
+        memoryRouter
     />
 );
-export const MultipleArticles = () => <Viewer screenId="42" story={multipleArticles} />;
+export const MultipleArticles = () => (
+    <Viewer screenId="42" story={multipleArticles} memoryRouter />
+);
 
-export const MultipleKeypads = () => <Viewer screenId="777" story={multipleKeypads} />;
+export const MultipleKeypads = () => <Viewer screenId="777" story={multipleKeypads} memoryRouter />;
 
 export const WithCustomFonts = () => (
     <Viewer
@@ -348,14 +362,16 @@ export const WithCustomFonts = () => (
             },
         }}
         screenId="1"
+        memoryRouter
     />
 );
-export const WithTheme = () => <Viewer {...twoScreensProps} theme={viewerTheme} />;
+export const WithTheme = () => <Viewer {...twoScreensProps} theme={viewerTheme} memoryRouter />;
 
 export const WithMenuTheme = () => (
     <Viewer
         {...twoScreensProps}
         theme={{ ...viewerTheme, menuTheme: { colors: { primary: '#F00', secondary: '#00F' } } }}
+        memoryRouter
     />
 );
 export const WithMenuTheme2 = () => (
@@ -372,6 +388,7 @@ export const WithMenuTheme2 = () => (
                 colors: { primary: '#5d73fe', secondary: { color: '#5d73fe', alpha: 0.8 } },
             },
         }}
+        memoryRouter
     />
 );
 export const WithScroll = () => (
@@ -387,12 +404,15 @@ export const WithScroll = () => (
                     onViewModeChange={() => {
                         // console.log(viewMode);
                     }}
+                    memoryRouter
                 />
             </div>
         </div>
     </div>
 );
-export const WithNeighborScreens = () => <Viewer {...faceAFaceProps} withNeighborScreens />;
+export const WithNeighborScreens = () => (
+    <Viewer {...faceAFaceProps} withNeighborScreens memoryRouter />
+);
 export const WithCustomNeighborScreens = () => (
     <Viewer
         {...faceAFaceProps}
@@ -403,14 +423,21 @@ export const WithCustomNeighborScreens = () => (
         withoutScreensMenu
         withoutShareMenu
         withoutMenuShadow
+        memoryRouter
     />
 );
 
-export const WithoutGestures = () => <Viewer story={faceAFace} withoutGestures />;
-export const WithoutNavigationArrows = () => <Viewer story={faceAFace} withoutNavigationArrow />;
-export const WithoutTransitions = () => <Viewer story={faceAFace} withoutTransitions />;
-export const WithoutPlaybackControls = () => <Viewer story={videoAudio} withoutPlaybackControls />;
-export const WithoutMenu = () => <Viewer story={videoAudio} withoutMenu />;
+export const WithoutGestures = () => <Viewer story={faceAFace} withoutGestures memoryRouter />;
+export const WithoutNavigationArrows = () => (
+    <Viewer story={faceAFace} withoutNavigationArrow memoryRouter />
+);
+export const WithoutTransitions = () => (
+    <Viewer story={faceAFace} withoutTransitions memoryRouter />
+);
+export const WithoutPlaybackControls = () => (
+    <Viewer story={videoAudio} withoutPlaybackControls memoryRouter />
+);
+export const WithoutMenu = () => <Viewer story={videoAudio} withoutMenu memoryRouter />;
 export const WithoutUserInterface = () => (
     <Viewer
         story={videoAudio}
@@ -442,6 +469,7 @@ export const WithViewerEvents = () => {
         <Viewer
             {...faceAFaceProps}
             closeable={fullscreen && !landscape}
+            memoryRouter
             onClose={onClose}
             onInteraction={onInteraction}
             onEnd={onEnd}
