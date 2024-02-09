@@ -462,6 +462,10 @@ const Viewer = ({
         onProgress: onScreenProgress,
         onTap,
         springParams,
+        drapOptions: {
+            filterTaps: true,
+            axis: 'y'
+        }
     });
 
     const getScreenStylesByIndex = (index, spring) => {

@@ -244,6 +244,9 @@ const ViewerMenu = ({
         progress: shareOpened ? 1 : 0,
         computeProgress: shareOpened ? computeShareProgressClose : computeShareProgress,
         springParams,
+        drapOptions: {
+            axis: 'y'
+        }
     });
 
     const computeMenuProgress = useCallback(
@@ -279,6 +282,9 @@ const ViewerMenu = ({
         progress: menuOpened ? 1 : 0,
         computeProgress: menuOpened ? computeMenuProgressClose : computeMenuProgress,
         springParams,
+        drapOptions: {
+            axis: 'y'
+        }
     });
 
     const keyboardShortcuts = useMemo(
