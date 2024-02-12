@@ -1,8 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-import { backgroundVideo } from '../../data';
-
-console.log('dfg', backgroundVideo());
+// import { backgroundVideo } from '../../data';
 
 export default {
     id: uuid(),
