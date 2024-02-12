@@ -42,28 +42,31 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
         if (media === null) {
             return () => {};
         }
-        function onResume() {
-            if (!playing) {
-                setPlaying(true);
-            }
-            updateProgress(media.currentTime / media.duration);
+        function onResume(e) {
+            setPlaying(true);
+            const newProgress = media.currentTime / media.duration;
+            updateProgress(newProgress);
+        }
+        function onUpdate(e) {
+            setPlaying(!e.currentTarget.paused && !e.currentTarget.ended);
+            const newProgress = media.currentTime / media.duration;
+            updateProgress(newProgress);
         }
         function onPause() {
-            if (playing) {
-                setPlaying(false);
-            }
-            updateProgress(media.currentTime / media.duration);
+            setPlaying(false);
+            const newProgress = media.currentTime / media.duration;
+            updateProgress(newProgress);
         }
         media.addEventListener('play', onResume);
-        media.addEventListener('seeked', onResume);
         media.addEventListener('playing', onResume);
-        // media.addEventListener('timeupdate', onResume);
+        media.addEventListener('seeked', onUpdate);
+        // media.addEventListener('timeupdate', onUpdate);
         media.addEventListener('pause', onPause);
         media.addEventListener('ended', onPause);
         media.addEventListener('waiting', onPause);
         media.addEventListener('stalled', onPause);
         media.addEventListener('seeking', onPause);
-        // media.addEventListener('suspend', onPause);
+        media.addEventListener('suspend', onUpdate);
         // if (media.paused) {
         //     onPause();
         // } else {
@@ -79,7 +82,7 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
             media.removeEventListener('waiting', onPause);
             media.removeEventListener('stalled', onPause);
             media.removeEventListener('seeking', onPause);
-            // media.removeEventListener('suspend', onPause);
+            media.removeEventListener('suspend', onUpdate);
         };
     }, [media, updateProgress, setPlaying, playing]);
 
@@ -90,6 +93,8 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
         let handle;
         let canceled = false;
 
+        let lastSync = 0;
+        const syncTime = 0.7;
         function tick() {
             if (canceled) {
                 return;
@@ -97,9 +102,15 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
 
             const newTime = Date.now() / 1000;
             const elapsed = newTime - updateTimeRef.current;
-            updateTimeRef.current = newTime;
             const step = elapsed / duration;
-            const newProgress = realProgressRef.current + step;
+            lastSync += elapsed;
+            const shouldSync = lastSync > syncTime;
+            const newProgress = realProgressRef.current < 0.1
+                    ? media.currentTime / media.duration
+                    : realProgressRef.current + step;
+            if (shouldSync) {
+                lastSync -= syncTime;
+            }
             updateProgress(newProgress);
             handle = raf(tick);
         }

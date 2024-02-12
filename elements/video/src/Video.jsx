@@ -259,6 +259,7 @@ const Video = ({
             return;
         }
         const { paused: isPaused } = element;
+
         if (paused && !isPaused) {
             element.pause();
         } else if (!paused && isPaused) {

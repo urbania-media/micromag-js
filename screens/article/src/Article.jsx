@@ -38,11 +38,11 @@ import styles from './article.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
-    image: MicromagPropTypes.visual,
-    title: MicromagPropTypes.title,
+    image: MicromagPropTypes.imageMedia,
+    title: MicromagPropTypes.text,
     surtitle: MicromagPropTypes.text,
-    date: MicromagPropTypes.date,
-    author: MicromagPropTypes.author,
+    date: PropTypes.string,
+    author: PropTypes.shape({}),
     // author: MicromagPropTypes.text,
     text: MicromagPropTypes.text,
     spacing: PropTypes.number,
