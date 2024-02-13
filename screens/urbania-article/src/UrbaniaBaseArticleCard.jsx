@@ -201,11 +201,12 @@ const UrbaniaArticleCard = ({
     });
     const { height: articlePreviewHeight = 0 } = articlePreviewContentRect || {};
 
+    const minimumVisibility = 20;
     let y = 100;
     if (current && articleOpened) {
         y = 0;
     } else if (current || isPreview) {
-        y = 100 - Math.max((articlePreviewHeight / height) * 100, 25);
+        y = 100 - Math.max((articlePreviewHeight / height) * 100, minimumVisibility);
     }
 
     const springStyle = useSpring({
@@ -321,7 +322,7 @@ const UrbaniaArticleCard = ({
                                     width,
                                     transform: !isPreview
                                         ? springStyle.y.to((value) => `translateY(${value}%`)
-                                        : 'translateY(75%)',
+                                        : `translateY(${100 - minimumVisibility}%)`,
                                 }}
                             >
                                 <button
