@@ -33,6 +33,7 @@ const propTypes = {
     children: PropTypes.node,
     loadingMode: PropTypes.string,
     shouldLoad: PropTypes.bool,
+    onPlayError: PropTypes.func,
     withoutVideo: PropTypes.bool,
     forceMuted: PropTypes.bool,
 };
@@ -54,6 +55,7 @@ const defaultProps = {
     children: null,
     loadingMode: 'lazy',
     shouldLoad: true,
+    onPlayError: null,
     withoutVideo: false,
     forceMuted: false,
 };
@@ -75,6 +77,7 @@ const Background = ({
     children,
     loadingMode,
     shouldLoad,
+    onPlayError,
     withoutVideo,
     forceMuted,
 }) => {
@@ -163,6 +166,7 @@ const Background = ({
                         paused={!playing}
                         muted={muted || forceMuted}
                         shouldLoad={shouldLoad}
+                        onPlayError={onPlayError}
                         disablePictureInPicture
                         autoPlay
                         loop

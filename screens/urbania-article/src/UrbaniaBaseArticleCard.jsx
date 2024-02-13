@@ -91,7 +91,8 @@ const UrbaniaArticleCard = ({
 
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
-    const { playing, muted, setControls, setControlsTheme } = usePlaybackContext();
+    const { playing, muted, setControls, setControlsTheme, setControlsSuggestPlay, setPlaying } =
+        usePlaybackContext();
 
     const { name: authorName = null } = author || {};
 
@@ -244,6 +245,13 @@ const UrbaniaArticleCard = ({
         }
     }, [current]);
 
+    const onPlayError = useCallback(() => {
+        if (isView && playing && current && isBackgroundVideo) {
+            setPlaying(false);
+            setControlsSuggestPlay(true);
+        }
+    }, [isView, current, playing, isBackgroundVideo, setPlaying, setControlsSuggestPlay]);
+
     return (
         <div
             className={classNames([
@@ -266,6 +274,7 @@ const UrbaniaArticleCard = ({
                 playing={backgroundPlaying}
                 muted={muted}
                 mediaRef={mediaRef}
+                onPlayError={onPlayError}
                 shouldLoad={mediaShouldLoad}
                 withoutVideo={isPreview}
             />

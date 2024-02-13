@@ -77,7 +77,7 @@
 .suggest {
     @extend %reset-button;
     display: flex;
-    position: fixed !important;
+    position: absolute !important;
     z-index: 2;
     top: 50%;
     left: 50%;
