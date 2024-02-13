@@ -92,7 +92,6 @@ const UrbaniaArticleCard = ({
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { playing, muted, setControls } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
 
     const { name: authorName = null } = author || {};
 
@@ -112,6 +111,8 @@ const UrbaniaArticleCard = ({
     const backgroundPlaying = current && (isView || isEdit) && !articleOpened && playing;
 
     const withIframe = hasUrl && !isPlaceholder && !isPreview && !isStatic;
+
+    const mediaRef = usePlaybackMediaRef(current && !articleOpened);
 
     // @TODO: collapsed card the height of articlePreview
     // const articlePreviewRef = useRef();
