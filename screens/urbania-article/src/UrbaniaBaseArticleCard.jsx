@@ -16,6 +16,7 @@ import {
     useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
+import { useResizeObserver } from '@micromag/core/hooks';
 import { isHeaderFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -89,7 +90,7 @@ const UrbaniaArticleCard = ({
     const { topHeight: viewerTopHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
-    const { muted } = usePlaybackContext();
+    const { muted, setControls } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
     const { name: authorName = null } = author || {};
@@ -101,14 +102,13 @@ const UrbaniaArticleCard = ({
     const hasAuthorName = isTextFilled(authorName);
     const hasCta = isTextFilled(callToAction);
 
-    const [firstInteraction, setFirstInteraction] = useState(false);
-    const [cardOpened, setCardOpened] = useState(false);
-    const [iframeInteractionEnabled, setIframeInteractionEnabled] = useState(false);
-    const [isIFrameLoaded, setIsIFrameLoaded] = useState(false);
-    const [showIFrameSpinner, setShowIFrameSpinner] = useState(false);
+    const [articleOpened, setArticleOpened] = useState(false);
+    const [iframeEnabled, setIframeEnabled] = useState(false);
+    const [iframeMounted, setIframeMounted] = useState(false);
+    const [iframeLoaded, setIframeLoaded] = useState(false);
 
     const mediaShouldLoad = current || active;
-    const backgroundPlaying = current && (isView || isEdit) && !cardOpened;
+    const backgroundPlaying = current && (isView || isEdit) && !articleOpened;
 
     const withIframe = hasUrl && !isPlaceholder && !isPreview && !isStatic;
 
@@ -125,58 +125,66 @@ const UrbaniaArticleCard = ({
     // }, [previewCurrent, height]);
 
     // card animations
-    const withCardAnimation = !isPlaceholder && !isPreview && !isStatic && !firstInteraction;
+    const withCardAnimation = !isPlaceholder && !isPreview && !isStatic && !iframeMounted;
     const slideInDelay = withCardAnimation && isBackgroundVideo && backgroundPlaying;
-    const withCardBounce = withCardAnimation && current && !cardOpened;
+    const withCardBounce = withCardAnimation && current && !articleOpened;
+
+    useEffect(() => {
+        if (!current) {
+            return () => {};
+        }
+
+        if (isBackgroundVideo && !articleOpened) {
+            setControls(true);
+        } else {
+            setControls(false);
+        }
+
+        return () => {
+            if (isBackgroundVideo && !articleOpened) {
+                setControls(false);
+            }
+        };
+    }, [current, setControls, isBackgroundVideo, articleOpened, setControls]);
 
     const toggleCard = useCallback(() => {
-        const newCardOpened = !cardOpened;
+        const newOpened = !articleOpened;
 
-        setCardOpened(newCardOpened);
-        if (newCardOpened) {
+        setArticleOpened(newOpened);
+        if (newOpened) {
             disableInteraction();
         } else {
             enableInteraction();
         }
 
-        setFirstInteraction(true);
-    }, [cardOpened, setFirstInteraction, setCardOpened, disableInteraction, enableInteraction]);
-
-    // show iframe spinner if load time > 3s
-    useEffect(() => {
-        if (isIFrameLoaded) {
-            return;
-        }
-        let id = null;
-        if (cardOpened) {
-            id = setTimeout(() => {
-                if (!isIFrameLoaded) {
-                    setShowIFrameSpinner(true);
-                }
-            }, 3000);
-        } else {
-            setShowIFrameSpinner(false);
-        }
-        // eslint-disable-next-line consistent-return
-        return () => {
-            clearTimeout(id);
-        };
-    }, [cardOpened, isIFrameLoaded]);
+        setIframeMounted(true);
+    }, [articleOpened, setIframeMounted, setArticleOpened, disableInteraction, enableInteraction]);
 
     const onIframeLoad = useCallback(() => {
-        setIsIFrameLoaded(true);
-        setShowIFrameSpinner(false);
-    }, [setIsIFrameLoaded, setShowIFrameSpinner]);
+        setIframeLoaded(true);
+    }, [setIframeLoaded]);
 
-    const bind = useGesture(
+    useEffect(() => {
+        if (!iframeMounted || iframeLoaded) {
+            return () => {};
+        }
+        const timeout = setTimeout(() => {
+            setIframeLoaded(true);
+        }, 2000);
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [iframeMounted, iframeLoaded]);
+
+    const bindGesture = useGesture(
         {
             onDrag: ({ movement: [, my] }) => {
-                if ((!cardOpened && my < 0) || (cardOpened && my > 0)) {
+                if ((!articleOpened && my < 0) || (articleOpened && my > 0)) {
                     toggleCard();
                 }
             },
             onWheel: ({ movement: [, my] }) => {
-                if ((!cardOpened && my > 0) || (cardOpened && my < 0)) {
+                if ((!articleOpened && my > 0) || (articleOpened && my < 0)) {
                     toggleCard();
                 }
             },
@@ -184,22 +192,34 @@ const UrbaniaArticleCard = ({
         { drag: { axis: 'y', filterTaps: true, preventDefault: true }, wheel: { axis: 'y' } },
     );
 
+    const {
+        ref: articlePreviewRef,
+        entry: { contentRect: articlePreviewContentRect = null },
+    } = useResizeObserver({
+        disabled: !articleOpened,
+    });
+    const { height: articlePreviewHeight = 0 } = articlePreviewContentRect || {};
+
     let y = 100;
-    if (current && cardOpened) {
+    if (current && articleOpened) {
         y = 0;
-    } else if (current) {
-        y = 75;
+    } else if (current || isPreview) {
+        y = 100 - Math.max((articlePreviewHeight / height) * 100, 25);
     }
 
     const springStyle = useSpring({
-        from: { y: isPreview ? y : 100 },
-        to: { y },
+        from: {
+            y: isPreview ? y : 100,
+        },
+        to: {
+            y,
+        },
         onStart: () => {
-            setIframeInteractionEnabled(false);
+            setIframeEnabled(false);
         },
         onResolve: () => {
-            if (cardOpened) {
-                setIframeInteractionEnabled(true);
+            if (articleOpened) {
+                setIframeEnabled(true);
             }
         },
         delay: slideInDelay ? 1500 : 0,
@@ -211,8 +231,9 @@ const UrbaniaArticleCard = ({
 
     useEffect(() => {
         if (!current) {
-            setCardOpened(false);
-            setFirstInteraction(false);
+            setArticleOpened(false);
+            setIframeMounted(false);
+            setIframeLoaded(false);
         }
     }, [current]);
 
@@ -222,6 +243,7 @@ const UrbaniaArticleCard = ({
                 styles.container,
                 {
                     [className]: className !== null,
+                    [styles.articleOpened]: articleOpened,
                     [styles.isCurrent]: current,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
@@ -301,11 +323,16 @@ const UrbaniaArticleCard = ({
                                         : 'translateY(75%)',
                                 }}
                             >
+                                <button
+                                    type="button"
+                                    onClick={toggleCard}
+                                    className={styles.dragHandle}
+                                    {...(current ? bindGesture() : null)}
+                                />
                                 <div
                                     className={classNames([
                                         styles.cardInner,
                                         {
-                                            [styles.opened]: cardOpened,
                                             [styles.pulse]: withCardBounce,
                                         },
                                     ])}
@@ -316,44 +343,40 @@ const UrbaniaArticleCard = ({
                                             <Text className={styles.ctaText} {...callToAction} />
                                         </div>
                                     ) : null}
-                                    <button
-                                        type="button"
-                                        style={{
-                                            height: iframeInteractionEnabled ? '100px' : height,
-                                            width,
-                                            zIndex: 6,
-                                        }}
+                                    <Button
+                                        className={styles.close}
+                                        disabled={!articleOpened}
                                         onClick={toggleCard}
-                                        className={styles.interactiveZone}
-                                        {...(current ? bind() : null)}
-                                    />
-                                    {iframeInteractionEnabled ? (
-                                        <Button className={styles.close} onClick={toggleCard}>
-                                            <Close color="#000" className={styles.closeIcon} />
-                                        </Button>
-                                    ) : null}
-                                    <div className={styles.articlePreview}>
-                                        {hasTitle ? (
-                                            <Heading
-                                                className={classNames([styles.articleTitle])}
-                                                {...title}
-                                            />
-                                        ) : null}
-                                        {hasAuthorName ? (
-                                            <UrbaniaAuthor
-                                                isSmall
-                                                withoutBackground
-                                                author={author}
-                                                shouldLoad={mediaShouldLoad}
-                                            />
-                                        ) : null}
+                                    >
+                                        <Close color="#000" className={styles.closeIcon} />
+                                    </Button>
+                                    <div className={styles.articlePreview} ref={articlePreviewRef}>
+                                        <div className={styles.articlePreviewInner}>
+                                            {hasTitle ? (
+                                                <Heading
+                                                    className={classNames([styles.articleTitle])}
+                                                    {...title}
+                                                />
+                                            ) : null}
+                                            {hasAuthorName ? (
+                                                <UrbaniaAuthor
+                                                    isSmall
+                                                    withoutBackground
+                                                    author={author}
+                                                    shouldLoad={mediaShouldLoad}
+                                                />
+                                            ) : null}
+                                        </div>
                                     </div>
-                                    {showIFrameSpinner ? (
+                                    {iframeMounted && !iframeLoaded ? (
                                         <div className={styles.spinnerContainer}>
                                             <Spinner className={styles.spinner} />
                                         </div>
                                     ) : null}
-                                    {(cardOpened || firstInteraction) && withIframe ? (
+                                    {!iframeEnabled && iframeMounted ? (
+                                        <div className={styles.iframeBlocker} />
+                                    ) : null}
+                                    {iframeMounted && withIframe ? (
                                         <iframe
                                             onLoad={onIframeLoad}
                                             className={styles.iframe}
@@ -365,19 +388,6 @@ const UrbaniaArticleCard = ({
                                             }}
                                         />
                                     ) : null}
-                                    {/* Blocker no longer necessary? */}
-                                    <div
-                                        className={classNames([
-                                            styles.iframeBlocker,
-                                            {
-                                                [styles.active]: !iframeInteractionEnabled,
-                                            },
-                                        ])}
-                                        style={{
-                                            width,
-                                            height: height * 0.25,
-                                        }}
-                                    />
                                 </div>
                             </a.div>
                         ) : null}

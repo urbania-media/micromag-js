@@ -464,7 +464,8 @@ const Viewer = ({
         springParams,
         drapOptions: {
             filterTaps: true,
-            axis: 'y'
+            axis: 'x',
+
         }
     });
 

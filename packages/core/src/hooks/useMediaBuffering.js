@@ -11,14 +11,12 @@ const useMediaBuffering = (mediaElement = null, interval = 50.0) => {
             // networkstate
             if (mediaElement.networkState === mediaElement.NETWORK_LOADING) {
                 // The user agent is actively trying to download data.
-                console.log('buffering? NETWORK_LOADING', e);
                 setBuffering(true);
             }
 
             // readystate
             if (mediaElement.readyState < mediaElement.HAVE_FUTURE_DATA) {
                 // There is not enough data to keep playing from this point
-                console.log('buffering? You have very little data', e);
                 setBuffering(true);
             }
         }
