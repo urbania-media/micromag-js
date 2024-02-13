@@ -91,7 +91,7 @@ const UrbaniaArticleCard = ({
 
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
-    const { muted, setControls } = usePlaybackContext();
+    const { playing, muted, setControls } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
     const { name: authorName = null } = author || {};
@@ -109,7 +109,7 @@ const UrbaniaArticleCard = ({
     const [iframeLoaded, setIframeLoaded] = useState(false);
 
     const mediaShouldLoad = current || active;
-    const backgroundPlaying = current && (isView || isEdit) && !articleOpened;
+    const backgroundPlaying = current && (isView || isEdit) && !articleOpened && playing;
 
     const withIframe = hasUrl && !isPlaceholder && !isPreview && !isStatic;
 
