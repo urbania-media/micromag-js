@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-quiz",
-    "version": "0.3.465",
+    "version": "0.3.471",
     "private": false,
     "description": "",
     "keywords": [
@@ -64,7 +64,7 @@
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.3.465",
         "@micromag/data": "^0.3.465",
-        "@micromag/element-background": "^0.3.465",
+        "@micromag/element-background": "^0.3.471",
         "@micromag/element-button": "^0.3.465",
         "@micromag/element-container": "^0.3.465",
         "@micromag/element-footer": "^0.3.465",
