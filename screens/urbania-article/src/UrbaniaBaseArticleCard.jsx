@@ -91,7 +91,7 @@ const UrbaniaArticleCard = ({
 
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
-    const { playing, muted, setControls } = usePlaybackContext();
+    const { playing, muted, setControls, setControlsTheme } = usePlaybackContext();
 
     const { name: authorName = null } = author || {};
 
@@ -136,6 +136,10 @@ const UrbaniaArticleCard = ({
             return () => {};
         }
 
+        setControlsTheme({
+            seekBarOnly: true,
+        });
+
         if (isBackgroundVideo && !articleOpened) {
             setControls(true);
         } else {
@@ -147,7 +151,7 @@ const UrbaniaArticleCard = ({
                 setControls(false);
             }
         };
-    }, [current, setControls, isBackgroundVideo, articleOpened, setControls]);
+    }, [current, setControls, isBackgroundVideo, articleOpened, setControls, setControlsTheme]);
 
     const toggleCard = useCallback(() => {
         const newOpened = !articleOpened;
