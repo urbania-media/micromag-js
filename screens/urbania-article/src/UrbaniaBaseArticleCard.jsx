@@ -87,7 +87,8 @@ const UrbaniaArticleCard = ({
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-    const { topHeight: viewerTopHeight } = useViewerContext();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
+
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { muted, setControls } = usePlaybackContext();
@@ -351,7 +352,15 @@ const UrbaniaArticleCard = ({
                                         <Close color="#000" className={styles.closeIcon} />
                                     </Button>
                                     <div className={styles.articlePreview} ref={articlePreviewRef}>
-                                        <div className={styles.articlePreviewInner}>
+                                        <div
+                                            className={styles.articlePreviewInner}
+                                            style={{
+                                                paddingBottom:
+                                                    current && !isPreview
+                                                        ? Math.max(viewerBottomHeight, 20)
+                                                        : null,
+                                            }}
+                                        >
                                             {hasTitle ? (
                                                 <Heading
                                                     className={classNames([styles.articleTitle])}
