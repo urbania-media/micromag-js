@@ -13,7 +13,8 @@ const props = () => ({
     ...testArticle,
     // image: videoMedia(),
     theme: null,
-    url: 'https://simple.urbania.ca/article/mais-pourquoi-la-generation-boomer-ecrit-elle-comme-ca?=new',
+    // url: 'https://urbania.ca/article/mais-pourquoi-la-generation-boomer-ecrit-elle-comme-ca?=new',
+    // url: 'https://simple.urbania.ca.test:8080/article/horoscope-semaine-du-12-fevrier-2024-venus-en-verseau',
     // background: backgroundColor(),
     // transitions: transitions(),
     text: {
@@ -67,7 +68,7 @@ export const URL = (storyProps) => (
         description={{
             body: '<p>L’orthophoniste, c’est la personne qui aide les élèves à mieux prononcer à l’école? Leur rôle est beaucoup plus large et compexe! </p>',
         }}
-        cardCallToAction={{ body: 'Lire l’article' }}
+        cardCallToAction={{ body: 'Consulter l’article' }}
     />
 );
 
@@ -75,7 +76,6 @@ export const ThemeUrl = (storyProps) => (
     <Article
         {...storyProps}
         url="https://urbania.ca/article/expose-plonger-dans-lorthophonie-scolaire-avec-mathilde-dupas"
-        // articleType="article"
     />
 );
 

@@ -6,7 +6,6 @@ import UrbaniaLoader from './UrbaniaLoader';
 
 function UrbaniaCardLoader(props) {
     const { cardCallToAction = {} } = props || {};
-
     return (
         <UrbaniaLoader
             component={UrbaniaBaseArticleCard}
