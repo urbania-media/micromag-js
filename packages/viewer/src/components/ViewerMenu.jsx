@@ -149,7 +149,10 @@ const ViewerMenu = ({
         // const base =
         //     typeof window !== 'undefined' ? window.location.origin.replace(/\/+$/, '') : '';
         // const path = shareBasePath !== null ? `${base}${shareBasePath}` : base;
-        const base = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : '';
+        const base =
+            typeof window !== 'undefined'
+                ? `${window.location.protocol}//${window.location.host}`
+                : '';
         const path = shareBasePath !== null ? `${base}${shareBasePath}` : base;
         return path;
     }, [shareBasePath]);
@@ -303,8 +306,6 @@ const ViewerMenu = ({
     // const dotsOpacity = useEffect(() => {
     //     Math.min(1, Math.max(0, 1 - (menuOpenedProgressValue + shareOpenedProgressValue)));
     // }, [menuOpenedProgressValue, shareOpenedProgressValue]);
-
-    // console.log(dotsOpacity);
 
     useEffect(() => {
         if ((menuOpened || draggingMenu) && !menuMounted) {

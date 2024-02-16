@@ -7,7 +7,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Close, Empty, PlaceholderText, ScreenElement } from '@micromag/core/components';
+import { Close, Empty, PlaceholderText, ScreenElement, Spinner } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -16,24 +16,31 @@ import {
     useViewerContext,
     useViewerInteraction,
 } from '@micromag/core/contexts';
+import { useResizeObserver } from '@micromag/core/hooks';
 import { isHeaderFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Header from '@micromag/element-header';
+import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
+import UrbaniaAuthor from '@micromag/element-urbania-author';
+
+import Arrow from './icons/ArrowIcon';
 
 import styles from './urbania-base-article-card.module.scss';
 
 const propTypes = {
     hasArticle: PropTypes.bool,
     url: PropTypes.string,
-    title: PropTypes.string,
+    title: MicromagPropTypes.headingElement,
+    author: MicromagPropTypes.authorElement,
     text: MicromagPropTypes.textElement,
     image: MicromagPropTypes.visualElement,
     header: MicromagPropTypes.header,
     background: MicromagPropTypes.backgroundElement,
+    callToAction: MicromagPropTypes.textElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     spacing: PropTypes.number,
@@ -44,10 +51,12 @@ const defaultProps = {
     hasArticle: false,
     url: null,
     title: null,
+    author: null,
     text: null,
     image: null,
     header: null,
     background: null,
+    callToAction: null,
     current: true,
     active: true,
     spacing: 20,
@@ -58,17 +67,17 @@ const UrbaniaArticleCard = ({
     hasArticle,
     url,
     title,
+    author,
     text,
     image,
     header,
     background,
+    callToAction,
     current,
     active,
     spacing,
     className,
 }) => {
-    const isSafari = navigator.userAgent.match(/safari/i) !== null;
-
     const finalBackground = background !== null ? background : { image };
 
     const { video: backgroundVideo = null } = finalBackground || {};
@@ -78,80 +87,151 @@ const UrbaniaArticleCard = ({
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-    const { topHeight: viewerTopHeight } = useViewerContext();
+    const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
+
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
-    const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const { playing, muted, setControls, setControlsTheme, setControlsSuggestPlay, setPlaying } =
+        usePlaybackContext();
+
+    const { name: authorName = null } = author || {};
 
     const hasUrl = url !== null && url.length > 0;
     const hasHeader = isHeaderFilled(header);
     const hasText = isTextFilled(text);
+    const hasTitle = isTextFilled(title);
+    const hasAuthorName = isTextFilled(authorName);
+    const hasCta = isTextFilled(callToAction);
 
-    // iframe interaction
-    const [iframeOpened, setIframeOpened] = useState(false);
-    const [iframeInteractionEnabled, setIframeInteractionEnabled] = useState(false);
-    const [firstInteraction, setFirstInteraction] = useState(false);
+    const [articleOpened, setArticleOpened] = useState(false);
+    const [iframeEnabled, setIframeEnabled] = useState(false);
+    const [iframeMounted, setIframeMounted] = useState(false);
+    const [iframeLoaded, setIframeLoaded] = useState(false);
 
     const mediaShouldLoad = current || active;
-    const backgroundPlaying = current && (isView || isEdit) && !iframeOpened;
+    const backgroundPlaying = current && (isView || isEdit) && !articleOpened && playing;
 
-    // iframe animation
-    const hasIframeAnimation =
-        !isEdit && !isPlaceholder && !isPreview && !isStatic && !firstInteraction;
-    const slideInDelay = hasIframeAnimation && isBackgroundVideo && backgroundPlaying;
-    const hasIframeBounce = hasIframeAnimation && current && !iframeOpened;
+    const withIframe = hasUrl && !isPlaceholder && !isPreview && !isStatic;
 
-    const toggleIframe = useCallback(() => {
-        const newIframeOpened = !iframeOpened;
+    const mediaRef = usePlaybackMediaRef(current && !articleOpened);
 
-        setIframeOpened(newIframeOpened);
-        if (newIframeOpened) {
+    // @TODO: collapsed card the height of articlePreview
+    // const articlePreviewRef = useRef();
+    // const previewCurrent = articlePreviewRef.current || null;
+
+    // const articlePreviewHeight = useMemo(() => {
+    //     if (previewCurrent !== null) {
+    //         const { height: previewHeight = 0 } = previewCurrent.getBoundingClientRect();
+    //         return previewHeight !== 0 ? previewHeight : 0;
+    //     }
+    //     return 0;
+    // }, [previewCurrent, height]);
+
+    // card animations
+    const withCardAnimation = !isPlaceholder && !isPreview && !isStatic && !iframeMounted;
+    const slideInDelay = withCardAnimation && isBackgroundVideo && backgroundPlaying;
+    const withCardBounce = withCardAnimation && current && !articleOpened;
+
+    useEffect(() => {
+        if (!current) {
+            return () => {};
+        }
+
+        setControlsTheme({
+            seekBarOnly: true,
+        });
+
+        if (isBackgroundVideo && !articleOpened) {
+            setControls(true);
+        } else {
+            setControls(false);
+        }
+
+        return () => {
+            if (isBackgroundVideo && !articleOpened) {
+                setControls(false);
+            }
+        };
+    }, [current, setControls, isBackgroundVideo, articleOpened, setControls, setControlsTheme]);
+
+    const toggleCard = useCallback(() => {
+        const newOpened = !articleOpened;
+
+        setArticleOpened(newOpened);
+        if (newOpened) {
             disableInteraction();
         } else {
             enableInteraction();
         }
 
-        setFirstInteraction(true);
-    }, [iframeOpened, setFirstInteraction, setIframeOpened, disableInteraction, enableInteraction]);
+        setIframeMounted(true);
+    }, [articleOpened, setIframeMounted, setArticleOpened, disableInteraction, enableInteraction]);
 
-    const bind = useGesture(
+    const onIframeLoad = useCallback(() => {
+        setIframeLoaded(true);
+    }, [setIframeLoaded]);
+
+    useEffect(() => {
+        if (!iframeMounted || iframeLoaded) {
+            return () => {};
+        }
+        const timeout = setTimeout(() => {
+            setIframeLoaded(true);
+        }, 2000);
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [iframeMounted, iframeLoaded]);
+
+    const bindGesture = useGesture(
         {
             onDrag: ({ movement: [, my] }) => {
-                if ((!iframeOpened && my < 0) || (iframeOpened && my > 0)) {
-                    toggleIframe();
+                if ((!articleOpened && my < 0) || (articleOpened && my > 0)) {
+                    toggleCard();
                 }
             },
             onWheel: ({ movement: [, my] }) => {
-                if ((!iframeOpened && my > 0) || (iframeOpened && my < 0)) {
-                    toggleIframe();
+                if ((!articleOpened && my > 0) || (articleOpened && my < 0)) {
+                    toggleCard();
                 }
             },
         },
         { drag: { axis: 'y', filterTaps: true, preventDefault: true }, wheel: { axis: 'y' } },
     );
 
+    const {
+        ref: articlePreviewRef,
+        entry: { contentRect: articlePreviewContentRect = null },
+    } = useResizeObserver({
+        disabled: !articleOpened,
+    });
+    const { height: articlePreviewHeight = 0 } = articlePreviewContentRect || {};
+
+    const minimumVisibility = 20;
     let y = 100;
-    if (current && iframeOpened) {
+    if (current && articleOpened) {
         y = 0;
-    } else if (current) {
-        y = 75;
+    } else if (current || isPreview) {
+        y = 100 - Math.max((articlePreviewHeight / height) * 100, minimumVisibility);
     }
 
     const springStyle = useSpring({
-        from: { y: 100 },
-        to: { y },
+        from: {
+            y: isPreview ? y : 100,
+        },
+        to: {
+            y,
+        },
         onStart: () => {
-            setIframeInteractionEnabled(false);
+            setIframeEnabled(false);
         },
         onResolve: () => {
-            if (iframeOpened) {
-                setIframeInteractionEnabled(true);
+            if (articleOpened) {
+                setIframeEnabled(true);
             }
         },
         delay: slideInDelay ? 1500 : 0,
         config: {
-            // easing: easings.easeInOutElastic,
             easing: easings.easeInOutSine,
             duration: y === 100 ? 1000 : 400,
         },
@@ -159,12 +239,18 @@ const UrbaniaArticleCard = ({
 
     useEffect(() => {
         if (!current) {
-            setIframeOpened(false);
-            setFirstInteraction(false);
+            setArticleOpened(false);
+            setIframeMounted(false);
+            setIframeLoaded(false);
         }
     }, [current]);
 
-    // console.log('load 1-2', mediaShouldLoad, finalBackground);
+    const onPlayError = useCallback(() => {
+        if (isView && playing && current && isBackgroundVideo) {
+            setPlaying(false);
+            setControlsSuggestPlay(true);
+        }
+    }, [isView, current, playing, isBackgroundVideo, setPlaying, setControlsSuggestPlay]);
 
     return (
         <div
@@ -172,6 +258,7 @@ const UrbaniaArticleCard = ({
                 styles.container,
                 {
                     [className]: className !== null,
+                    [styles.articleOpened]: articleOpened,
                     [styles.isCurrent]: current,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
@@ -187,6 +274,7 @@ const UrbaniaArticleCard = ({
                 playing={backgroundPlaying}
                 muted={muted}
                 mediaRef={mediaRef}
+                onPlayError={onPlayError}
                 shouldLoad={mediaShouldLoad}
                 withoutVideo={isPreview}
             />
@@ -223,7 +311,7 @@ const UrbaniaArticleCard = ({
                 </Layout>
                 <Container
                     className={classNames([
-                        styles.iframeContainer,
+                        styles.cardContainer,
                         {
                             [styles.isPlaceholder]: isPlaceholder,
                         },
@@ -240,62 +328,90 @@ const UrbaniaArticleCard = ({
                         emptyClassName={styles.empty}
                         isEmpty={!hasUrl || !hasArticle}
                     >
-                        {(!isPreview || !isPlaceholder) && hasArticle ? (
+                        {!isPlaceholder && hasArticle ? (
                             <a.div
-                                className={styles.popupContainer}
+                                className={styles.card}
                                 style={{
                                     height,
                                     width,
-                                    transform: springStyle.y.to((value) => `translateY(${value}%`),
-                                    // top: iframeOpened ? 0 : '75%',
-                                    // ...springStyle,
+                                    transform: !isPreview
+                                        ? springStyle.y.to((value) => `translateY(${value}%`)
+                                        : `translateY(${100 - minimumVisibility}%)`,
                                 }}
                             >
+                                <button
+                                    type="button"
+                                    onClick={toggleCard}
+                                    className={styles.dragHandle}
+                                    {...(current ? bindGesture() : null)}
+                                />
                                 <div
                                     className={classNames([
-                                        styles.popupContainerInner,
+                                        styles.cardInner,
                                         {
-                                            [styles.opened]: iframeOpened,
-                                            [styles.pulse]: hasIframeBounce,
+                                            [styles.pulse]: withCardBounce,
                                         },
                                     ])}
                                 >
-                                    <button
-                                        type="button"
-                                        style={{
-                                            height: iframeInteractionEnabled ? '100px' : height,
-                                            width,
-                                            zIndex: 5,
-                                        }}
-                                        onClick={toggleIframe}
-                                        className={styles.interactiveZone}
-                                        {...(current ? bind() : null)}
-                                    />
-                                    {iframeInteractionEnabled ? (
-                                        <Button className={styles.close} onClick={toggleIframe}>
-                                            <Close color="#000" className={styles.closeIcon} />
-                                        </Button>
+                                    {hasCta ? (
+                                        <div className={styles.callToAction}>
+                                            <Arrow strokeWidth={1} className={styles.arrow} />
+                                            <Text className={styles.ctaText} {...callToAction} />
+                                        </div>
                                     ) : null}
-                                    <iframe
-                                        className={styles.iframe}
-                                        title={title.body}
-                                        src={url || 'about:blank'}
-                                        scrolling={!iframeOpened && !isSafari ? 'no' : 'auto'}
-                                        style={{
-                                            width: '100%',
-                                            height,
-                                            overflow: !iframeOpened ? 'hidden' : 'auto',
-                                        }}
-                                    />
-                                    <div
-                                        className={classNames([
-                                            styles.iframeBlocker,
-                                            {
-                                                [styles.active]: !iframeInteractionEnabled,
-                                            },
-                                        ])}
-                                        style={{ width, height: height * 0.25 }}
-                                    />
+                                    <Button
+                                        className={styles.close}
+                                        disabled={!articleOpened}
+                                        onClick={toggleCard}
+                                    >
+                                        <Close color="#000" className={styles.closeIcon} />
+                                    </Button>
+                                    <div className={styles.articlePreview} ref={articlePreviewRef}>
+                                        <div
+                                            className={styles.articlePreviewInner}
+                                            style={{
+                                                paddingBottom:
+                                                    current && !isPreview
+                                                        ? Math.max(viewerBottomHeight, 20)
+                                                        : null,
+                                            }}
+                                        >
+                                            {hasTitle ? (
+                                                <Heading
+                                                    className={classNames([styles.articleTitle])}
+                                                    {...title}
+                                                />
+                                            ) : null}
+                                            {hasAuthorName ? (
+                                                <UrbaniaAuthor
+                                                    isSmall
+                                                    withoutBackground
+                                                    author={author}
+                                                    shouldLoad={mediaShouldLoad}
+                                                />
+                                            ) : null}
+                                        </div>
+                                    </div>
+                                    {iframeMounted && !iframeLoaded ? (
+                                        <div className={styles.spinnerContainer}>
+                                            <Spinner className={styles.spinner} />
+                                        </div>
+                                    ) : null}
+                                    {!iframeEnabled && iframeMounted ? (
+                                        <div className={styles.iframeBlocker} />
+                                    ) : null}
+                                    {iframeMounted && withIframe ? (
+                                        <iframe
+                                            onLoad={onIframeLoad}
+                                            className={styles.iframe}
+                                            title={title.body}
+                                            src={url || 'about:blank'}
+                                            style={{
+                                                width: '100%',
+                                                height,
+                                            }}
+                                        />
+                                    ) : null}
                                 </div>
                             </a.div>
                         ) : null}

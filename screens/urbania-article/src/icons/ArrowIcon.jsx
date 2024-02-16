@@ -3,15 +3,17 @@ import React from 'react';
 
 const propTypes = {
     color: PropTypes.string,
+    strokeWidth: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     color: 'currentColor',
+    strokeWidth: 3,
     className: null,
 };
 
-const Arrow = ({ color, className }) => (
+const Arrow = ({ color, strokeWidth, className }) => (
     <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +31,7 @@ const Arrow = ({ color, className }) => (
                 id="b"
                 fill="none"
                 stroke={color}
-                strokeWidth="3px"
+                strokeWidth={`${strokeWidth}px`}
                 strokeLinejoin="round"
                 strokeLinecap="round"
                 d="M1.5,10.88L24.26,1.5l22.77,9.38"

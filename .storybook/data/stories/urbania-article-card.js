@@ -1,26 +1,21 @@
 import { v4 as uuid } from 'uuid';
 
-// import { backgroundColor, backgroundVideo, transitions, videoMedia } from '../../data';
-
-// const video = (props) => ({
-//     ...props,
-//     type: 'video',
-//     media: videoMedia(),
-//     autoPlay: true,
-//     // article: testVideo,
-//     loop: false,
-// });
+import { backgroundColor } from '../../data';
 
 export default {
     id: uuid(),
-    // image: video(null),
     theme: null,
-    // article: testArticle,
-    // url: 'https://reader.quatre95.urbania.ca/article/homard-et-crabe-des-neiges-des-prix-qui-pincent',
-    url: 'https://quatre95.urbania.ca/article/combien-ca-coute-perdre-ses-cheveux',
-    // url: 'https://simple.urbania.ca/article/mais-pourquoi-la-generation-boomer-ecrit-elle-comme-ca',
-    // background: backgroundColor(),
-    // background: backgroundVideo(),
-    // transitions: transitions(),
-    // background: null,
+    url: 'https://urbania.ca/article/nicki-minaj-vs-megan-thee-stallion-ces-beefs-qui-font-vivre-le-rap',
+    background: backgroundColor(),
+    // background: {
+    //     video: {
+    //         type: 'video',
+    //         url: 'https://cdn.microm.ag/video/2024-02-02/33593-121707.mp4',
+    //         metadata: {
+    //             width: 1080,
+    //             height: 1920,
+    //         },
+    //     },
+    // },
+    cardCallToAction: { body: 'Lire l’article' },
 };

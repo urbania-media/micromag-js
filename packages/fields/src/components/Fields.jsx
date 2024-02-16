@@ -211,8 +211,6 @@ const Fields = ({
         ],
     );
 
-    // console.log('fields fields', fields);
-
     if (fieldsElements.length === 0) {
         return null;
     }

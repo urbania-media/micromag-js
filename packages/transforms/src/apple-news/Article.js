@@ -1,14 +1,12 @@
+import { validate } from '../utils';
 import getArticleComponents from './lib/getArticleComponents';
-import getArticleTextStyles from './lib/getArticleTextStyles';
-import getArticleLayouts from './lib/getArticleLayouts';
 import getArticleDocumentStyle from './lib/getArticleDocumentStyle';
+import getArticleLayouts from './lib/getArticleLayouts';
+import getArticleTextStyles from './lib/getArticleTextStyles';
+
 import ArticleDefinition from './definitions/ArticleDocument.json';
 
-import { validate } from '../utils';
-
 const Article = (story, settings) => {
-    // console.log('ARTICLE', story); // eslint-disable-line
-
     const { title = 'Article' } = story;
     const { identifier = 'testArticle' } = settings || {};
 
@@ -28,8 +26,6 @@ const Article = (story, settings) => {
         ...getArticleLayouts(story),
         ...getArticleComponents(story),
     };
-
-    // console.log('KONTENT', content);
 
     return validate(content, ArticleDefinition);
 };

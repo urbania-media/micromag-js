@@ -142,8 +142,6 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
         };
     }, [article, url, props]);
 
-    // console.log('full', { ...props, ...values });
-
     return <Component {...props} {...values} hasArticle={url !== null} />;
 };
 

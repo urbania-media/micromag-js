@@ -200,7 +200,7 @@ function PlaybackControls({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.withPlayPause]: controls && !seekBarOnly,
+                    [styles.withPlayPause]: controls && (!seekBarOnly || !playing),
                     [styles.withSuggestPlay]: controlsSuggestPlay,
                     [styles.withMute]: hasMedia || controls,
                     [styles.withSeekBar]: controls,

@@ -5,7 +5,14 @@ import UrbaniaBaseArticleCard from './UrbaniaBaseArticleCard';
 import UrbaniaLoader from './UrbaniaLoader';
 
 function UrbaniaCardLoader(props) {
-    return <UrbaniaLoader component={UrbaniaBaseArticleCard} {...props} />;
+    const { cardCallToAction = {} } = props || {};
+    return (
+        <UrbaniaLoader
+            component={UrbaniaBaseArticleCard}
+            callToAction={cardCallToAction}
+            {...props}
+        />
+    );
 }
 
 export default UrbaniaCardLoader;

@@ -36,6 +36,7 @@ const propTypes = {
     ]),
     shouldLoad: PropTypes.bool,
     withoutVideo: PropTypes.bool,
+    onPlayError: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -53,6 +54,7 @@ const defaultProps = {
     mediaRef: null,
     shouldLoad: true,
     withoutVideo: false,
+    onPlayError: null,
 };
 
 const BackgroundLayers = ({
@@ -70,6 +72,7 @@ const BackgroundLayers = ({
     mediaRef,
     shouldLoad,
     withoutVideo,
+    onPlayError,
 }) => {
     const hasSize = width > 0 && height > 0;
 
@@ -138,6 +141,7 @@ const BackgroundLayers = ({
                                 shouldLoad={shouldLoad}
                                 mediaRef={mediaRef}
                                 withoutVideo={withoutVideo}
+                                onPlayError={onPlayError}
                                 {...layer}
                             />
                         </div>
