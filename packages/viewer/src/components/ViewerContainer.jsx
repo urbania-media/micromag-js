@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { useMemoryRouter } from '@folklore/routes';
+import { RoutesProvider } from '@folklore/routes';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import { MemoryRouter } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'wouter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     GoogleMapsClientProvider,
     GoogleKeysProvider,
-    RoutesProvider,
     TrackingProvider,
     FieldsProvider,
     ComponentsProvider,
@@ -84,8 +84,6 @@ const ViewerContainer = ({
     pathWithIndex,
     ...otherProps
 }) => {
-    const Router = memoryRouter ? MemoryRouter : BrowserRouter;
-
     const finalTrackingVariables = useMemo(() => {
         if (story === null && trackingVariables === null) {
             return null;
@@ -142,10 +140,16 @@ const ViewerContainer = ({
         </IntlProvider>
     );
 
+    const { hook: memoryRouterHook, searchHook: memoryRouterSearchHook } = useMemoryRouter();
+
     return withoutRouter ? (
         content
     ) : (
-        <Router basename={!memoryRouter ? basePath : null}>
+        <Router
+            base={!memoryRouter ? basePath : null}
+            hook={!memoryRouter ? memoryRouterHook : null}
+            searchHook={!memoryRouter ? memoryRouterSearchHook : null}
+        >
             <RoutesProvider routes={routes}>{content}</RoutesProvider>
         </Router>
     );

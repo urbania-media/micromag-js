@@ -1,9 +1,11 @@
-import '../packages/core/src/styles/vendor.scss';
 import withGoogleKeys from './decorators/withGoogleKeys';
 import withIntlProvider from './decorators/withIntlProvider';
+import withRouter from './decorators/withRouter';
 import withScreenDefinition from './decorators/withScreenDefinition';
 import withScreenSize from './decorators/withScreenSize';
 import withVisitor from './decorators/withVisitor';
+
+import '../packages/core/src/styles/vendor.scss';
 import './fonts/fonts.scss';
 
 export const parameters = {
@@ -75,4 +77,5 @@ export const decorators = [
     withScreenDefinition,
     withGoogleKeys,
     withVisitor,
+    withRouter,
 ];

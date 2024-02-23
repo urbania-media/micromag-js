@@ -62,6 +62,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
+        "@folklore/routes": "^0.2.19",
         "@micromag/core": "^0.3.465",
         "@micromag/element-badge": "^0.3.465",
         "@micromag/element-scroll": "^0.3.465",
@@ -80,11 +81,10 @@
         "prop-types": "^15.7.2",
         "react-helmet": "^6.1.0",
         "react-intl": "^5.12.1",
-        "react-router": "^5.2.0",
-        "react-router-dom": "^5.2.0",
         "react-share": "^4.3.1",
         "react-spring": "^9.5.2",
-        "wolfy87-eventemitter": "^5.2.9"
+        "wolfy87-eventemitter": "^5.2.9",
+        "wouter": "^3.0.0"
     },
     "publishConfig": {
         "access": "public",
