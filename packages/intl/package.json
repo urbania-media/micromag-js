@@ -61,7 +61,6 @@
         "prepare": "rm -rf ./locale && npm run intl && ../../scripts/prepare-package.sh"
     },
     "devDependencies": {
-        "@formatjs/cli": "^4.4.0",
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
@@ -72,6 +71,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.473",
+        "@formatjs/cli": "^6.2.7",
         "commander": "^8.3.0",
         "fs-extra": "^10.0.0",
         "gettext-parser": "^4.0.4",
