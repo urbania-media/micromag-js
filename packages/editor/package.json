@@ -77,7 +77,7 @@
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
-        "react-intl": "^5.12.1",
+        "react-intl": "^6.6.2",
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
         "react-sortablejs": "^6.0.0",

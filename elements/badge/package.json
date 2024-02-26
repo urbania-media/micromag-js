@@ -59,7 +59,7 @@
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
-        "react-intl": "^5.12.1",
+        "react-intl": "^6.6.2",
         "uuid": "^9.0.0"
     },
     "publishConfig": {

@@ -1,5 +1,5 @@
 import isNumber from 'lodash/isNumber';
-import { paramCase } from 'param-case';
+import { paramCase } from 'change-case';
 
 const convertStyleToString = style =>
     style !== null
