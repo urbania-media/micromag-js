@@ -20,7 +20,12 @@ const useParsedStory = (
     const screensManager = useScreensManager();
     const fieldsManager = useFieldsManager();
     const parser = useMemo(
-        () => new StoryParser({ screensManager, fieldsManager }),
+        () =>
+            new StoryParser({
+                screensManager,
+                fieldsManager,
+                fieldsPattern: screensManager.getFieldsPattern(),
+            }),
         [screensManager, fieldsManager],
     );
     const newStory = useMemo(() => {

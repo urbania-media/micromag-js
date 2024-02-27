@@ -1,22 +1,20 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { useMemoryRouter } from '@folklore/routes';
+import { RoutesProvider } from '@folklore/routes';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import { MemoryRouter } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'wouter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     GoogleMapsClientProvider,
     GoogleKeysProvider,
-    RoutesProvider,
     TrackingProvider,
-    FieldsProvider,
     ComponentsProvider,
     PlaybackProvider,
     VisitorProvider,
     SCREENS_NAMESPACE,
 } from '@micromag/core/contexts';
-import fieldsManager from '@micromag/fields/manager';
 import { IntlProvider } from '@micromag/intl';
 import { ScreensProvider } from '@micromag/screens';
 
@@ -84,8 +82,6 @@ const ViewerContainer = ({
     pathWithIndex,
     ...otherProps
 }) => {
-    const Router = memoryRouter ? MemoryRouter : BrowserRouter;
-
     const finalTrackingVariables = useMemo(() => {
         if (story === null && trackingVariables === null) {
             return null;
@@ -108,44 +104,48 @@ const ViewerContainer = ({
         <IntlProvider locale={finalLocale} locales={locales} extraMessages={translations}>
             <GoogleKeysProvider apiKey={googleApiKey}>
                 <GoogleMapsClientProvider locale={finalLocale}>
-                    <FieldsProvider manager={fieldsManager}>
-                        <ScreensProvider>
-                            <ComponentsProvider
-                                namespace={SCREENS_NAMESPACE}
-                                components={screenComponents || {}}
-                            >
-                                <VisitorProvider visitor={visitor}>
-                                    <PlaybackProvider paused={paused}>
-                                        <TrackingProvider variables={finalTrackingVariables}>
-                                            {withoutRouter ? (
-                                                <Viewer
-                                                    story={story}
-                                                    basePath={basePath}
-                                                    {...otherProps}
-                                                />
-                                            ) : (
-                                                <ViewerRoutes
-                                                    story={story}
-                                                    basePath={basePath}
-                                                    pathWithIndex={pathWithIndex}
-                                                    {...otherProps}
-                                                />
-                                            )}
-                                        </TrackingProvider>
-                                    </PlaybackProvider>
-                                </VisitorProvider>
-                            </ComponentsProvider>
-                        </ScreensProvider>
-                    </FieldsProvider>
+                    <ScreensProvider>
+                        <ComponentsProvider
+                            namespace={SCREENS_NAMESPACE}
+                            components={screenComponents || {}}
+                        >
+                            <VisitorProvider visitor={visitor}>
+                                <PlaybackProvider paused={paused}>
+                                    <TrackingProvider variables={finalTrackingVariables}>
+                                        {withoutRouter ? (
+                                            <Viewer
+                                                story={story}
+                                                basePath={basePath}
+                                                {...otherProps}
+                                            />
+                                        ) : (
+                                            <ViewerRoutes
+                                                story={story}
+                                                basePath={basePath}
+                                                pathWithIndex={pathWithIndex}
+                                                {...otherProps}
+                                            />
+                                        )}
+                                    </TrackingProvider>
+                                </PlaybackProvider>
+                            </VisitorProvider>
+                        </ComponentsProvider>
+                    </ScreensProvider>
                 </GoogleMapsClientProvider>
             </GoogleKeysProvider>
         </IntlProvider>
     );
 
+    const { hook: memoryRouterHook, searchHook: memoryRouterSearchHook } = useMemoryRouter();
+
     return withoutRouter ? (
         content
     ) : (
-        <Router basename={!memoryRouter ? basePath : null}>
+        <Router
+            base={!memoryRouter ? basePath : null}
+            hook={!memoryRouter ? memoryRouterHook : null}
+            searchHook={!memoryRouter ? memoryRouterSearchHook : null}
+        >
             <RoutesProvider routes={routes}>{content}</RoutesProvider>
         </Router>
     );

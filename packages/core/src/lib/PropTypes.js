@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { snakeCase } from 'snake-case';
+import { snakeCase } from 'change-case';
 
 /**
  * Core

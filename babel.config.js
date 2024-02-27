@@ -23,7 +23,6 @@ module.exports = (api) => {
             ],
             plugins: [
                 [
-                    require.resolve('babel-plugin-lodash'),
                     require.resolve('babel-plugin-module-resolver'),
                     {
                         alias: {

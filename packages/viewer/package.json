@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer",
-    "version": "0.3.472",
+    "version": "0.3.480",
     "private": false,
     "description": "",
     "keywords": [
@@ -62,15 +62,15 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.465",
-        "@micromag/element-badge": "^0.3.465",
-        "@micromag/element-scroll": "^0.3.465",
-        "@micromag/element-share-options": "^0.3.465",
-        "@micromag/element-webview": "^0.3.465",
-        "@micromag/elements": "^0.3.471",
-        "@micromag/fields": "^0.3.465",
-        "@micromag/intl": "^0.3.465",
-        "@micromag/screens": "^0.3.471",
+        "@folklore/routes": "^0.2.19",
+        "@micromag/core": "^0.3.480",
+        "@micromag/element-badge": "^0.3.480",
+        "@micromag/element-scroll": "^0.3.480",
+        "@micromag/element-share-options": "^0.3.480",
+        "@micromag/element-webview": "^0.3.480",
+        "@micromag/elements": "^0.3.480",
+        "@micromag/intl": "^0.3.480",
+        "@micromag/screens": "^0.3.480",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
         "@use-gesture/react": "^10.3.0",
@@ -79,16 +79,15 @@
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "react-helmet": "^6.1.0",
-        "react-intl": "^5.12.1",
-        "react-router": "^5.2.0",
-        "react-router-dom": "^5.2.0",
+        "react-intl": "^6.6.2",
         "react-share": "^4.3.1",
         "react-spring": "^9.5.2",
-        "wolfy87-eventemitter": "^5.2.9"
+        "wolfy87-eventemitter": "^5.2.9",
+        "wouter": "^3.0.0"
     },
     "publishConfig": {
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "ec4f12cb131e883a9b9d0394c165be3bc3ca671d"
+    "gitHead": "ac9156585f2ad8739e7923902f680ce692f8bcca"
 }

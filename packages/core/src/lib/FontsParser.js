@@ -3,10 +3,10 @@ import isArray from 'lodash/isArray';
 import uniq from 'lodash/uniq';
 
 class FontsParser {
-    constructor({ fieldsManager, screensManager }) {
+    constructor({ fieldsManager, screensManager, fieldsPattern = {} }) {
         this.fieldsManager = fieldsManager;
         this.screensManager = screensManager;
-        this.fieldsPatternCache = {};
+        this.fieldsPatternCache = fieldsPattern || {};
     }
 
     getFieldsPatternByScreen(type) {

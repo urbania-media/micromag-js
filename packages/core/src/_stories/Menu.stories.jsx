@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { MemoryRouter } from 'react-router';
 
-import { RoutesProvider } from '../contexts/RoutesContext';
 import Menu from '../components/menus/Menu';
 
 const props = {
@@ -30,13 +28,8 @@ export default {
     title: 'Core/Menu',
     parameters: {
         intl: true,
+        router: true,
     },
 };
 
-export const Default = () => (
-    <RoutesProvider>
-        <MemoryRouter>
-            <Menu {...props} />
-        </MemoryRouter>
-    </RoutesProvider>
-);
+export const Default = () => <Menu {...props} />;

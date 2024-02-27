@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-scroll",
-    "version": "0.3.465",
+    "version": "0.3.480",
     "private": false,
     "description": "",
     "keywords": [
@@ -61,12 +61,12 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.465",
+        "@micromag/core": "^0.3.480",
         "@use-gesture/react": "^10.3.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
-        "react-intl": "^5.12.1",
+        "react-intl": "^6.6.2",
         "uuid": "^9.0.0"
     },
     "publishConfig": {

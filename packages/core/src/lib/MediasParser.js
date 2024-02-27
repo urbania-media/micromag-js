@@ -3,10 +3,10 @@ import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 
 class MediasParser {
-    constructor({ fieldsManager, screensManager }) {
+    constructor({ fieldsManager, screensManager, fieldsPattern = {} }) {
         this.fieldsManager = fieldsManager;
         this.screensManager = screensManager;
-        this.fieldsPatternCache = {};
+        this.fieldsPatternCache = fieldsPattern || {};
         this.parsedThemesCache = {};
     }
 
@@ -21,7 +21,7 @@ class MediasParser {
     getFieldsPatternByScreen(type) {
         if (typeof this.fieldsPatternCache[type] === 'undefined') {
             const { fields = [] } = this.screensManager.getDefinition(type) || {};
-            this.fieldsPatternCache[type] = this.getMediaFieldsPattern(fields);
+            this.fieldsPatternCache[type] = this.getFieldsPattern(fields);
         }
         return this.fieldsPatternCache[type];
     }
@@ -123,7 +123,7 @@ class MediasParser {
             : story;
     }
 
-    getMediaFieldsPattern(fields, namePrefix = null) {
+    getFieldsPattern(fields, namePrefix = null) {
         return fields.reduce((patterns, field) => {
             const { name = null, type = null } = field;
             const path = [namePrefix, name].filter((it) => it !== null).join('\\.');
@@ -144,10 +144,10 @@ class MediasParser {
                           new RegExp(`^${path}\\.variants\\.[0-9]+\\.media$`),
                       ]
                     : []),
-                ...this.getMediaFieldsPattern(subFields, path),
-                ...this.getMediaFieldsPattern(settings, path),
+                ...this.getFieldsPattern(subFields, path),
+                ...this.getFieldsPattern(settings, path),
                 ...(itemsField !== null
-                    ? this.getMediaFieldsPattern([itemsField], `${path}\\.[0-9]+`)
+                    ? this.getFieldsPattern([itemsField], `${path}\\.[0-9]+`)
                     : []),
             ];
         }, []);

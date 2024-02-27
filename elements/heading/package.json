@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-heading",
-    "version": "0.3.465",
+    "version": "0.3.480",
     "private": false,
     "description": "",
     "keywords": [
@@ -58,10 +58,10 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.465",
+        "@micromag/core": "^0.3.480",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
-        "react-intl": "^5.12.1",
+        "react-intl": "^6.6.2",
         "uuid": "^9.0.0"
     },
     "publishConfig": {
