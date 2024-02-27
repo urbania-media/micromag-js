@@ -29,6 +29,14 @@ class ScreensManager extends DefinitionsManager {
         // this.definitions = this.definitions.filter(filter);
         // return this;
     }
+
+    merge(manager) {
+        const newFieldsPattern = manager.getFieldsPattern();
+        if (newFieldsPattern !== null && this.fieldsPattern === null) {
+            this.fieldsPattern = newFieldsPattern;
+        }
+        return this.addDefinitions(manager.getDefinitions());
+    }
 }
 
 export default ScreensManager;
