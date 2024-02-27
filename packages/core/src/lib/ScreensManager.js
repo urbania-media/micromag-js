@@ -1,6 +1,11 @@
 import DefinitionsManager from './DefinitionsManager';
 
 class ScreensManager extends DefinitionsManager {
+    constructor(definitions = []) {
+        super(definitions);
+        this.fieldsPattern = null;
+    }
+
     getFields(id) {
         const { fields = null } = this.getDefinition(id) || {};
         return fields;
@@ -9,6 +14,14 @@ class ScreensManager extends DefinitionsManager {
     getLayouts(id) {
         const { layouts = null } = this.getDefinition(id) || {};
         return layouts;
+    }
+
+    getFieldsPattern() {
+        return this.fieldsPattern;
+    }
+
+    setFieldsPattern(fieldsPattern) {
+        this.fieldsPattern = fieldsPattern;
     }
 
     filter(filter) {

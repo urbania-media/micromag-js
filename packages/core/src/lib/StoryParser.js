@@ -4,10 +4,19 @@ import MigrationsParser from './MigrationsParser';
 import ThemeParser from './ThemeParser';
 
 class StoryParser {
-    constructor({ screensManager, fieldsManager }) {
+    constructor({ screensManager, fieldsManager, fieldsPattern }) {
+        const { medias: mediasPattern = null, fonts: fontsPattern = null } = fieldsPattern || {};
         this.themeParser = new ThemeParser({ screensManager });
-        this.mediasParser = new MediasParser({ screensManager, fieldsManager });
-        this.fontsParser = new FontsParser({ screensManager, fieldsManager });
+        this.mediasParser = new MediasParser({
+            screensManager,
+            fieldsManager,
+            fieldsPattern: mediasPattern,
+        });
+        this.fontsParser = new FontsParser({
+            screensManager,
+            fieldsManager,
+            fieldsPattern: fontsPattern,
+        });
         this.migrationsParser = new MigrationsParser({ screensManager });
     }
 
