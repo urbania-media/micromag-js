@@ -34,6 +34,8 @@ import micromagExample from '../../../../.storybook/data/stories/micromagExample
 import testTheme from '../../../../.storybook/data/themes/new-theme.json';
 import micromagAudio from '../../../../.storybook/examples/micromag-audio.json';
 
+import FieldsProvider from '../../../fields/src/FieldsProvider';
+
 const props = {
     screenId: allScreensStory.components[0].id,
     story: allScreensStory,
@@ -86,6 +88,11 @@ export default {
             >
                 <Story />
             </div>
+        ),
+        (Story) => (
+            <FieldsProvider>
+                <Story />
+            </FieldsProvider>
         ),
     ],
     title: 'Viewer/Viewer',
