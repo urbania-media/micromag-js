@@ -56,7 +56,7 @@
         "fields.json"
     ],
     "scripts": {
-        "build:fields": "babel-node --config-file=../../babel.config.scripts.js -i=[] ./scripts/buildFields.js",
+        "build:fields": "../../scripts/build-screen-fields.js ./",
         "scss": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.scss.ejs ./scss/styles.scss",
         "css": "../../scripts/build-sass.js ./scss/styles.scss ./assets/css/styles.css",
         "prepare": "npm run build:fields && ../../scripts/prepare-package.sh && npm run scss && npm run css",
