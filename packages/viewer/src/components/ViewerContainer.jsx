@@ -10,13 +10,11 @@ import {
     GoogleMapsClientProvider,
     GoogleKeysProvider,
     TrackingProvider,
-    FieldsProvider,
     ComponentsProvider,
     PlaybackProvider,
     VisitorProvider,
     SCREENS_NAMESPACE,
 } from '@micromag/core/contexts';
-import fieldsManager from '@micromag/fields/manager';
 import { IntlProvider } from '@micromag/intl';
 import { ScreensProvider } from '@micromag/screens';
 
@@ -106,35 +104,33 @@ const ViewerContainer = ({
         <IntlProvider locale={finalLocale} locales={locales} extraMessages={translations}>
             <GoogleKeysProvider apiKey={googleApiKey}>
                 <GoogleMapsClientProvider locale={finalLocale}>
-                    <FieldsProvider manager={fieldsManager}>
-                        <ScreensProvider>
-                            <ComponentsProvider
-                                namespace={SCREENS_NAMESPACE}
-                                components={screenComponents || {}}
-                            >
-                                <VisitorProvider visitor={visitor}>
-                                    <PlaybackProvider paused={paused}>
-                                        <TrackingProvider variables={finalTrackingVariables}>
-                                            {withoutRouter ? (
-                                                <Viewer
-                                                    story={story}
-                                                    basePath={basePath}
-                                                    {...otherProps}
-                                                />
-                                            ) : (
-                                                <ViewerRoutes
-                                                    story={story}
-                                                    basePath={basePath}
-                                                    pathWithIndex={pathWithIndex}
-                                                    {...otherProps}
-                                                />
-                                            )}
-                                        </TrackingProvider>
-                                    </PlaybackProvider>
-                                </VisitorProvider>
-                            </ComponentsProvider>
-                        </ScreensProvider>
-                    </FieldsProvider>
+                    <ScreensProvider>
+                        <ComponentsProvider
+                            namespace={SCREENS_NAMESPACE}
+                            components={screenComponents || {}}
+                        >
+                            <VisitorProvider visitor={visitor}>
+                                <PlaybackProvider paused={paused}>
+                                    <TrackingProvider variables={finalTrackingVariables}>
+                                        {withoutRouter ? (
+                                            <Viewer
+                                                story={story}
+                                                basePath={basePath}
+                                                {...otherProps}
+                                            />
+                                        ) : (
+                                            <ViewerRoutes
+                                                story={story}
+                                                basePath={basePath}
+                                                pathWithIndex={pathWithIndex}
+                                                {...otherProps}
+                                            />
+                                        )}
+                                    </TrackingProvider>
+                                </PlaybackProvider>
+                            </VisitorProvider>
+                        </ComponentsProvider>
+                    </ScreensProvider>
                 </GoogleMapsClientProvider>
             </GoogleKeysProvider>
         </IntlProvider>

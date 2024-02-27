@@ -69,7 +69,6 @@
         "@micromag/element-share-options": "^0.3.478",
         "@micromag/element-webview": "^0.3.478",
         "@micromag/elements": "^0.3.478",
-        "@micromag/fields": "^0.3.478",
         "@micromag/intl": "^0.3.478",
         "@micromag/screens": "^0.3.478",
         "@react-spring/core": "^9.6.1",
