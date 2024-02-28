@@ -45,7 +45,7 @@
     ],
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets",
-        "prepublishOnly": "../../scripts/prepare-package.sh"
+        "prepare": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -62,7 +62,7 @@
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "query-string": "^6.13.7",
-        "react-router": "^5.2.0"
+        "@folklore/routes": "^0.2.27"
     },
     "publishConfig": {
         "access": "public",

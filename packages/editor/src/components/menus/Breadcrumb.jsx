@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo, useCallback } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useHistory } from 'react-router';
+import { useLocation } from 'wouter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
@@ -42,7 +42,7 @@ const defaultProps = {
 const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
     const intl = useIntl();
     const { components: screens = [] } = story || {};
-    const history = useHistory();
+    const [,setLocation] = useLocation();
     const screensManager = useScreensManager();
     const fieldsManager = useFieldsManager();
     const fieldsComponentManager = useFieldsComponentsManager();
@@ -276,8 +276,8 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
     const { length: itemsLength } = items;
 
     const onClickBack = useCallback(() => {
-        history.push(items[itemsLength - 2].url);
-    }, [items]);
+        setLocation(items[itemsLength - 2].url);
+    }, [items, setLocation]);
     const withBack = itemsLength > 1;
 
     return (

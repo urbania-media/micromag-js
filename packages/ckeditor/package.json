@@ -51,7 +51,7 @@
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf dist",
         "build:ckeditor": "../../node_modules/.bin/webpack --mode production --config webpack.config.js",
-        "prepublishOnly": "rm -rf dist && ../../scripts/prepare-package.sh && npm run build:ckeditor"
+        "prepare": "rm -rf dist && ../../scripts/prepare-package.sh && npm run build:ckeditor"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

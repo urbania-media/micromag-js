@@ -42,7 +42,7 @@
         "clean": "rm -rf bin && rm -rf lib",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  -i '[]' --env-name=node",
         "export": "npm run node -- ./src/bin/export.js",
-        "prepublishOnly": "../../scripts/prepare-package.sh"
+        "prepare": "../../scripts/prepare-package.sh"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
@@ -53,7 +53,7 @@
         "@micromag/transforms": "^0.3.480",
         "@micromag/viewer": "^0.3.480",
         "@micromag/viewer-build": "^0.3.480",
-        "change-case": "^5.4.3",
+        "change-case": "^4.0.0",
         "classnames": "^2.2.6",
         "commander": "^8.3.0",
         "express": "^4.17.1",

@@ -59,7 +59,7 @@
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
         "scss": "../../scripts/build-packages-styles.js --pattern='@micromag/element-*' ./src/styles.scss.ejs ./scss/styles.scss",
         "css": "../../scripts/build-sass.js ./scss/styles.scss ./assets/css/styles.css",
-        "prepublishOnly": "../../scripts/prepare-package.sh && npm run scss && npm run css"
+        "prepare": "../../scripts/prepare-package.sh && npm run scss && npm run css"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

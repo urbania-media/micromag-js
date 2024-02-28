@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { createPathToRegexpParser, useMemoryRouter } from '@folklore/routes';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { MemoryRouter } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'wouter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
@@ -28,6 +28,8 @@ import Editor from './Editor';
 import FormsProvider from './forms/FormsProvider';
 
 import defaultRoutes from '../data/routes.json';
+
+const pathToRegexpParser = createPathToRegexpParser();
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -64,14 +66,19 @@ const EditorContainer = ({
     screenNamespaces,
     ...props
 }) => {
-    const Router = memoryRouter ? MemoryRouter : BrowserRouter;
     const { locale } = useIntl();
 
     // const { metadata } = value || {};
     // const { language:finalLocale = locale } = metadata || {};
+    const { hook: memoryLocationHook, searchHook: memorySearchHook } = useMemoryRouter();
 
     return (
-        <Router basename={!memoryRouter ? basePath : null}>
+        <Router
+            hook={memoryRouter ? memoryLocationHook : null}
+            searchHook={memoryRouter ? memorySearchHook : null}
+            parser={pathToRegexpParser}
+            base={!memoryRouter ? basePath : null}
+        >
             <UppyProvider {...uppy}>
                 <StoryProvider story={value}>
                     <ScreensProvider filterNamespaces namespaces={screenNamespaces}>

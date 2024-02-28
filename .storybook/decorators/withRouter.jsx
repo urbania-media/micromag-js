@@ -1,6 +1,7 @@
-import React from 'react';
+import { useMemoryRouter } from '@folklore/routes';
 import isObject from 'lodash/isObject';
-import { MemoryRouter } from 'react-router';
+import React from 'react';
+import { Router } from 'wouter';
 
 import { RoutesProvider } from '../../packages/core/src/contexts';
 
@@ -8,11 +9,13 @@ const withIntlProvider = (Story, { parameters: { router = null } }) => {
     const enabled = isObject(router) || router === true;
     const { ...opts } = isObject(router) ? router : {};
 
+    const { hook, searchHook } = useMemoryRouter();
+
     return enabled ? (
         <RoutesProvider>
-            <MemoryRouter>
+            <Router hook={hook} searchHook={searchHook}>
                 <Story />
-            </MemoryRouter>
+            </Router>
         </RoutesProvider>
     ) : (
         <Story />

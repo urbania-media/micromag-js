@@ -6,7 +6,7 @@ import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Route } from 'react-router';
+import { Route, Switch } from 'wouter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Empty, Navbar } from '@micromag/core/components';
@@ -191,14 +191,41 @@ const EditorScreens = ({
                 />
             </Navbar>
             <div className="flex-grow-1 d-flex w-100 p-2">
-                <Route
-                    path={[routes.screen, routes.home]}
-                    render={({
-                        match: {
-                            params: { screen: screenId = null },
-                        },
-                    }) =>
-                        screens.length > 0 ? (
+                <Switch>
+                    <Route path={`${routes.screen}/(.*)?`}>
+                        {({ screen: screenId = null }) =>
+                            screens.length > 0 ? (
+                                <ScreensMenu
+                                    items={screens.map((it) => ({
+                                        id: it.id,
+                                        screen: it,
+                                        href: url('screen', {
+                                            screen: it.id,
+                                        }),
+                                        active: it.id === screenId,
+                                    }))}
+                                    isVertical={isVertical}
+                                    withPreview
+                                    sortable={!isTree}
+                                    className="w-100"
+                                    onClickItem={onClickScreen}
+                                    onOrderChange={onOrderChange}
+                                    isTree={isTree}
+                                />
+                            ) : (
+                                <Empty className="flex-grow-1 p-2">
+                                    <Button theme="primary" onClick={onClickAdd}>
+                                        <FormattedMessage
+                                            defaultMessage="Create your first screen"
+                                            description="Button to create your first screen"
+                                        />
+                                    </Button>
+                                </Empty>
+                            )
+                        }
+                    </Route>
+                    <Route>
+                        {screens.length > 0 ? (
                             <ScreensMenu
                                 items={screens.map((it) => ({
                                     id: it.id,
@@ -206,7 +233,7 @@ const EditorScreens = ({
                                     href: url('screen', {
                                         screen: it.id,
                                     }),
-                                    active: it.id === screenId,
+                                    active: false,
                                 }))}
                                 isVertical={isVertical}
                                 withPreview
@@ -225,9 +252,9 @@ const EditorScreens = ({
                                     />
                                 </Button>
                             </Empty>
-                        )
-                    }
-                />
+                        )}
+                    </Route>
+                </Switch>
             </div>
             {createModalOpened ? (
                 <ScreenTypesModal

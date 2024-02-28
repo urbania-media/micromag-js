@@ -59,7 +59,7 @@
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets",
         "intl": "./scripts/build-intl.sh",
-        "prepublishOnly": "rm -rf ./locale && npm run intl && ../../scripts/prepare-package.sh"
+        "prepare": "rm -rf ./locale && npm run intl && ../../scripts/prepare-package.sh"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

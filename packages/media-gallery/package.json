@@ -50,7 +50,7 @@
     ],
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
-        "prepublishOnly": "../../scripts/prepare-package.sh --scss"
+        "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -73,7 +73,7 @@
         "pretty-bytes": "^5.3.0",
         "prop-types": "^15.7.2",
         "react-intl": "^6.6.2",
-        "react-router": "^5.2.0"
+        "wouter": "^3.0.0"
     },
     "publishConfig": {
         "access": "public",

@@ -62,7 +62,7 @@
     ],
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
-        "prepublishOnly": "../../scripts/prepare-package.sh --scss"
+        "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

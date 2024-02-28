@@ -51,7 +51,7 @@
     ],
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
-        "prepublishOnly": "../../scripts/prepare-package.sh --scss"
+        "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -63,7 +63,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@folklore/routes": "^0.2.19",
+        "@folklore/routes": "^0.2.27",
         "@micromag/core": "^0.3.480",
         "@micromag/element-badge": "^0.3.480",
         "@micromag/element-scroll": "^0.3.480",

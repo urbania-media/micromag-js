@@ -93,7 +93,7 @@
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
         "vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
-        "prepublishOnly": "../../scripts/prepare-package.sh --scss && npm run vendor"
+        "prepare": "../../scripts/prepare-package.sh --scss && npm run vendor"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -110,9 +110,11 @@
         "@folklore/services": "^0.1.24",
         "@folklore/size": "^0.1.20",
         "@folklore/tracking": "^0.0.9",
+        "@folklore/routes": "^0.2.27",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
+        "@panneau/core": "^3.0.119",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
         "@uppy/core": "^2.1.4",
@@ -128,7 +130,7 @@
         "@uppy/xhr-upload": "^2.0.7",
         "@use-gesture/react": "^10.3.0",
         "bootstrap": "5.2.0-beta1",
-        "change-case": "^5.4.3",
+        "change-case": "^4.0.0",
         "classnames": "^2.2.6",
         "css-mediaquery": "^0.1.2",
         "dayjs": "^1.11.10",
@@ -141,8 +143,7 @@
         "raf": "^3.4.1",
         "react-helmet": "^6.1.0",
         "react-intl": "^6.6.2",
-        "react-router": "^5.2.0",
-        "react-router-dom": "^5.2.0",
+        "wouter": "^3.0.0",
         "screenfull": "^5.1.0",
         "slugify": "^1.6.5",
         "tinycolor2": "^1.4.2",

@@ -1,75 +1,31 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { RoutesContext, RoutesProvider, useRoutes, useUrlGenerator } from '@folklore/routes';
 import isString from 'lodash/isString';
-import PropTypes from 'prop-types';
-import React, { useContext, useCallback, useMemo } from 'react';
-import { generatePath, useHistory } from 'react-router';
+import { useCallback } from 'react';
+import { useLocation } from 'wouter';
 
-export const RoutesContext = React.createContext(null);
-
-export const useRoutes = () => {
-    const { routes } = useContext(RoutesContext);
-    return routes;
-};
-
-export const useUrlGenerator = () => {
-    const { routes, basePath } = useContext(RoutesContext);
-    const urlGenerator = useCallback(
-        (key, data) => {
-            const url = generatePath(routes[key], data);
-            return basePath !== null
-                ? `${basePath.replace(/\/$/, '')}/${url.replace(/^\//, '')}`
-                : url;
-        },
-        [generatePath, routes, basePath],
-    );
-    return urlGenerator;
-};
+export { RoutesContext, useRoutes, useUrlGenerator, RoutesProvider };
 
 export const useRoutePush = () => {
     const url = useUrlGenerator();
-    const history = useHistory() || null;
+    const [, navigate] = useLocation();
     const push = useCallback(
         (route, data, ...args) => {
-            if (history !== null && history.push) {
-                if (isString(route)) {
-                    history.push(url(route, data), ...args);
-                } else {
-                    const { pathname = null, search = null } = route || {};
-                    history.push({ pathname: url(pathname, data), search }, ...args);
-                }
+            if (isString(route)) {
+                navigate(url(route, data), ...args);
+            } else {
+                const { pathname = null, search = null } = route || {};
+                navigate(`${url(pathname, data)}${search !== null ? `?${search}` : ''}`, ...args);
             }
         },
-        [history, url],
+        [navigate, url],
     );
     return push;
 };
 
 export const useRouteBack = () => {
     const url = useUrlGenerator();
-    const history = useHistory() || null;
-    const back = useCallback(() => {
-        if (history !== null && history.goBack) {
-            history.goBack();
-        }
-    }, [history, url]);
+    const [, navigate] = useLocation();
+    const back = useCallback(() => navigate(-1), [navigate, url]);
     return back;
 };
-
-const propTypes = {
-    children: PropTypes.node.isRequired,
-    routes: PropTypes.objectOf(PropTypes.string), // .isRequired,
-    basePath: PropTypes.string,
-};
-
-const defaultProps = {
-    routes: null,
-    basePath: null,
-};
-
-export const RoutesProvider = ({ routes, basePath, children }) => {
-    const value = useMemo(() => ({ routes, basePath }), []);
-    return <RoutesContext.Provider value={value}>{children}</RoutesContext.Provider>;
-};
-
-RoutesProvider.propTypes = propTypes;
-RoutesProvider.defaultProps = defaultProps;

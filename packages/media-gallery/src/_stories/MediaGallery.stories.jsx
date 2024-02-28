@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { MemoryRouter } from 'react-router';
+
 import sound from '../../../../.storybook/data/files/test.mp3';
 import video from '../../../../.storybook/data/files/test.mp4';
 import withUppy from '../../../../.storybook/decorators/withUppy';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import FieldsProvider from '../../../fields/src/FieldsProvider';
 import MediaGallery from '../components/MediaGallery';
+
 import list from './list.json';
 
 const hasWindow = typeof window !== 'undefined';
@@ -76,9 +77,7 @@ export function Normal() {
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
             <FieldsProvider>
-                <MemoryRouter>
-                    <MediaGallery />
-                </MemoryRouter>
+                <MediaGallery />
             </FieldsProvider>
         </ApiProvider>
     );
@@ -88,9 +87,7 @@ export function WithTypesRequest() {
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
             <FieldsProvider>
-                <MemoryRouter>
-                    <MediaGallery type={['image', 'video']} />
-                </MemoryRouter>
+                <MediaGallery type={['image', 'video']} />
             </FieldsProvider>
         </ApiProvider>
     );
@@ -100,9 +97,7 @@ export function WithTestMedia() {
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
             <FieldsProvider>
-                <MemoryRouter>
-                    <MediaGallery {...props} type="image" />
-                </MemoryRouter>
+                <MediaGallery {...props} type="image" />
             </FieldsProvider>
         </ApiProvider>
     );
@@ -112,22 +107,20 @@ export function WithSelectedMedia() {
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
             <FieldsProvider>
-                <MemoryRouter>
-                    <MediaGallery
-                        {...props}
-                        type="image"
-                        selectedMedia={{
-                            id: '1',
-                            type: 'video',
-                            thumbnail_url: 'https://picsum.photos/id/100/300/300',
-                            name: 'uuuuurbaniaDog1sdfasdflasdsdfadsfasdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
-                            url: video,
-                            metadata: {
-                                user: { id: 1, name: 'paul ' },
-                            },
-                        }}
-                    />
-                </MemoryRouter>
+                <MediaGallery
+                    {...props}
+                    type="image"
+                    selectedMedia={{
+                        id: '1',
+                        type: 'video',
+                        thumbnail_url: 'https://picsum.photos/id/100/300/300',
+                        name: 'uuuuurbaniaDog1sdfasdflasdsdfadsfasdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
+                        url: video,
+                        metadata: {
+                            user: { id: 1, name: 'paul ' },
+                        },
+                    }}
+                />
             </FieldsProvider>
         </ApiProvider>
     );
@@ -137,9 +130,7 @@ export function WithList() {
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
             <FieldsProvider>
-                <MemoryRouter>
-                    <MediaGallery medias={list} />
-                </MemoryRouter>
+                <MediaGallery medias={list} />
             </FieldsProvider>
         </ApiProvider>
     );
@@ -149,9 +140,7 @@ export function WithFontType() {
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
             <FieldsProvider>
-                <MemoryRouter>
-                    <MediaGallery type="font" />
-                </MemoryRouter>
+                <MediaGallery type="font" />
             </FieldsProvider>
         </ApiProvider>
     );
