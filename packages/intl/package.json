@@ -58,7 +58,7 @@
     ],
     "scripts": {
         "intl": "./scripts/build-intl.sh",
-        "prepare": "rm -rf ./locale && npm run intl && ../../scripts/prepare-package.sh"
+        "prepublishOnly": "rm -rf ./locale && npm run intl && ../../scripts/prepare-package.sh"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

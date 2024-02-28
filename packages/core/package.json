@@ -92,7 +92,7 @@
     ],
     "scripts": {
         "vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
-        "prepare": "../../scripts/prepare-package.sh --scss && npm run vendor"
+        "prepublishOnly": "../../scripts/prepare-package.sh --scss && npm run vendor"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

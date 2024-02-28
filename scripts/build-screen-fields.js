@@ -1,17 +1,18 @@
 #!/usr/bin/env node
+
+// require('@babel/register')({
+//     // This will override `node_modules` ignoring - you can alternatively pass
+//     // an array of strings to be explicitly matched or a regex / glob
+//     ignore: [],
+//     babelrc: false,
+//     configFile: `${__dirname}/../babel.config.scripts.js`,
+// });
+
 const path = require('path');
-
-require('@babel/register')({
-    // This will override `node_modules` ignoring - you can alternatively pass
-    // an array of strings to be explicitly matched or a regex / glob
-    ignore: [],
-    configFile: path.join(__dirname, '../babel.config.scripts.js'),
-});
-
 const { program } = require('commander');
 const fsExtra = require('fs-extra');
 
-const {default: getScreenFields} = require('./lib/getScreenFields');
+const { default: getScreenFields } = require('./lib/getScreenFields');
 
 let outDir;
 program.arguments('<out>').action((out) => {

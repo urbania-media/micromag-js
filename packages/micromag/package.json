@@ -42,7 +42,7 @@
         "css:vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
         "css:styles": "../../scripts/build-sass.js ./src/styles/styles.scss ./assets/css/styles.css",
         "css": "npm run css:vendor && npm run css:styles",
-        "prepare": "../../scripts/prepare-package.sh --scss && npm run css"
+        "prepublishOnly": "../../scripts/prepare-package.sh --scss && npm run css"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

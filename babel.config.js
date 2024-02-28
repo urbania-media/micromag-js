@@ -62,14 +62,12 @@ module.exports = (api) => {
                 [
                     require.resolve('babel-plugin-transform-assets-import-to-string'),
                     {
-                        extensions: ['.png'],
+                        extensions: ['.png', '.svg'],
                     },
                 ],
             ],
         };
     }
-
-    console.log('Babel env', api.env('development'));
 
     return {
         presets: api.env('development')

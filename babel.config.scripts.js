@@ -1,10 +1,10 @@
 const path = require('path');
 const getPackagesAliases = require('./scripts/lib/getPackagesAliases');
 
-console.log('AAAAAAAAA');
+console.log('AAAAAAAAA', process.cwd());
 
 module.exports = {
-    ignore: [],
+    ignore: [/node_modules\/(?!@micromag|change-case)/],
     presets: [
         [
             require('@babel/preset-env'),

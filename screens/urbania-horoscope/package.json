@@ -48,7 +48,7 @@
         "assets"
     ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh",
+        "prepublishOnly": "../../scripts/prepare-package.sh",
         "rollup": "../../node_modules/.bin/rollup --config ../../rollup.config.js"
     },
     "devDependencies": {
