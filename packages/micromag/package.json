@@ -39,6 +39,7 @@
         "scss"
     ],
     "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
         "css:vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
         "css:styles": "../../scripts/build-sass.js ./src/styles/styles.scss ./assets/css/styles.css",
         "css": "npm run css:vendor && npm run css:styles",

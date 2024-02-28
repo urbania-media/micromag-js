@@ -39,6 +39,7 @@
         "micromag-export": "./bin/export.js"
     },
     "scripts": {
+        "clean": "rm -rf bin && rm -rf lib",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  -i '[]' --env-name=node",
         "export": "npm run node -- ./src/bin/export.js",
         "prepublishOnly": "../../scripts/prepare-package.sh"

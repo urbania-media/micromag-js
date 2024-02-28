@@ -47,6 +47,7 @@
         "assets"
     ],
     "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
         "prepublishOnly": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
