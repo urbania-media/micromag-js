@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.3.480",
+    "version": "0.3.481",
     "private": false,
     "description": "",
     "keywords": [
@@ -107,10 +107,10 @@
         "@babel/runtime": "^7.13.10",
         "@folklore/fetch": "^0.1.17",
         "@folklore/forms": "^0.0.10",
+        "@folklore/routes": "^0.2.27",
         "@folklore/services": "^0.1.24",
         "@folklore/size": "^0.1.20",
         "@folklore/tracking": "^0.0.9",
-        "@folklore/routes": "^0.2.27",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
@@ -143,13 +143,13 @@
         "raf": "^3.4.1",
         "react-helmet": "^6.1.0",
         "react-intl": "^6.6.2",
-        "wouter": "^3.0.0",
         "screenfull": "^5.1.0",
         "slugify": "^1.6.5",
         "tinycolor2": "^1.4.2",
         "uuid": "^9.0.0",
         "webfontloader": "^1.6.28",
-        "wolfy87-eventemitter": "^5.2.9"
+        "wolfy87-eventemitter": "^5.2.9",
+        "wouter": "^3.0.0"
     },
     "publishConfig": {
         "access": "public",
