@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
-import 'whatwg-fetch';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, ScreenElement } from '@micromag/core/components';

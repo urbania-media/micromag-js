@@ -1,7 +1,7 @@
 import path from 'path';
 import { sync as syncGlob } from 'glob';
 import replace from '@rollup/plugin-replace';
-import { createConfig } from '../../rollup.config';
+import { default as configs, createConfig } from '../../rollup.config';
 import { supportedLocales as locales } from './package.json';
 
 const localesFiles = locales.reduce(
@@ -39,11 +39,6 @@ const localesFiles = locales.reduce(
 );
 
 export default [
-    createConfig({
-        format: 'both',
-    }),
-    // createConfig({
-    //     format: 'cjs',
-    // }),
+    ...configs,
     ...localesFiles,
 ];

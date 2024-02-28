@@ -10,7 +10,9 @@ import url from '@rollup/plugin-url';
 import path from 'path';
 // import copy from 'rollup-plugin-copy';
 import postcss from 'rollup-plugin-postcss';
+
 import generateScopedName from './scripts/lib/generateScopedName';
+
 import imageAssets from './scripts/rollup-image-assets';
 
 export const createConfig = ({
@@ -45,13 +47,18 @@ export const createConfig = ({
     return {
         input: input || `src/${file}`,
         output: outputConfig,
+        treeshake: {
+            moduleSideEffects: ['@micromag/intl/locale/fr', '@micromag/intl/locale/en'],
+        },
         plugins: [
-            resolve({
-                modulesOnly: true,
-                resolveOnly: [
-                    /(query-string|decode-uri-component|split-on-first|filter-obj|screenfull|camelcase|[a-z]+-case)/,
-                ],
-            }),
+            isCjs &&
+                resolve({
+                    modulesOnly: true,
+                    resolveOnly: [
+                        '@folklore/routes',
+                        /(query-string|decode-uri-component|split-on-first|filter-obj|screenfull|camelcase|[a-z]+-case|wouter)/,
+                    ],
+                }),
 
             ...prependPlugins,
 
@@ -62,7 +69,7 @@ export const createConfig = ({
                     'src/**/*.svg',
                     'src/**/*.jpg',
                     'src/**/*.gif',
-                    'src/**/*.webp',
+                    'src/**/*.webp'
                 ],
                 emitFiles: true,
                 // sourceDir: 'src/images',
@@ -155,4 +162,4 @@ export const createConfig = ({
     };
 };
 
-export default [createConfig({ format: 'both' }) /* , createConfig({ format: 'cjs' }) */];
+export default [createConfig({ format: 'es' }), createConfig({ format: 'cjs' })];

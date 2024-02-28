@@ -1,8 +1,7 @@
 import { FieldsManager } from '@micromag/core';
 
-import allManager from './all';
+import * as allFields from './all';
 
-const manager = new FieldsManager();
-manager.merge(allManager);
+const manager = new FieldsManager(Object.keys(allFields).map(key => allFields[key]));
 
 export default manager;

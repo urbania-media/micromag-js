@@ -4,7 +4,6 @@ import fetch from 'node-fetch';
 import parseSRT from 'parse-srt';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, useCallback } from 'react';
-import 'whatwg-fetch';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getSecondsFromTime } from '@micromag/core/utils';

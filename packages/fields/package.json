@@ -38,9 +38,9 @@
             "require": "./lib/index.js",
             "import": "./es/index.js"
         },
-        "./manager": {
-            "require": "./lib/manager.js",
-            "import": "./es/manager.js"
+        "./all": {
+            "require": "./lib/all.js",
+            "import": "./es/all.js"
         },
         "./scss/placeholders": "./scss/_placeholders.scss",
         "./scss/placeholders.scss": "./scss/_placeholders.scss",
@@ -51,14 +51,14 @@
     },
     "browser": {
         ".": "./es/index.js",
-        "./manager": "./es/manager.js"
+        "./all": "./es/all.js"
     },
     "files": [
         "lib",
         "es",
         "assets",
         "scss",
-        "manager.js"
+        "all.js"
     ],
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",

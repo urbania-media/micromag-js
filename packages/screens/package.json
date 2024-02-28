@@ -38,6 +38,10 @@
             "require": "./lib/index.js",
             "import": "./es/index.js"
         },
+        "./all": {
+            "require": "./lib/all.js",
+            "import": "./es/all.js"
+        },
         "./fields": "./fields.js",
         "./fields.json": "./fields.json",
         "./scss/styles": "./scss/styles.scss",
@@ -45,22 +49,26 @@
         "./assets/css/styles": "./assets/css/styles.css",
         "./assets/css/styles.css": "./assets/css/styles.css"
     },
+    "browser": {
+        ".": "./es/index.js",
+        "./all": "./es/all.js"
+    },
     "files": [
         "lib",
         "es",
         "assets",
         "scss",
         "fields.js",
-        "fields.json"
+        "fields.json",
+        "all.js"
     ],
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss && rm -rf fields.js && rm -rf fields.json",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  --ignore='[]' --env-name=node --no-babelrc",
-        "build:fields": "npm run node -- ../../scripts/build-screen-fields.js ./",
+        "build:fields": "rollup --config ./rollup.config.cli.js --bundleConfigAsCjs && node ./build-screen-fields.js ./ && rm -f ./build-screen-fields.js",
         "scss": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.scss.ejs ./scss/styles.scss",
         "css": "../../scripts/build-sass.js ./scss/styles.scss ./assets/css/styles.css",
-        "prepublishOnly": "npm run build:fields",
-        "prepare": "../../scripts/prepare-package.sh && npm run scss && npm run css",
+        "prepare": "npm run build:fields && ../../scripts/prepare-package.sh && npm run scss && npm run css",
         "all-styles": "npm run scss && npm run css"
     },
     "devDependencies": {

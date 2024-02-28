@@ -1,30 +1,27 @@
+import alias from '@rollup/plugin-alias';
 import resolve from '@rollup/plugin-node-resolve';
 import path from 'path';
 
 import { createConfig } from '../../rollup.config';
 
-export default [
-    createConfig({
-        format: 'mode',
-        resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-            resolveOnly: [new RegExp(path.join(__dirname, './src/ElementsProvider'))],
-        },
-    }),
-    // createConfig({
-    //     format: 'cjs',
-    //     resolveOptions: {
-    //         extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-    //         resolveOnly: [new RegExp(path.join(__dirname, './src/ElementsProvider'))],
-    //     },
-    // }),
+const files = {
+    'index.js': {},
+    'all.js': {},
+};
 
-    createConfig({
-        file: 'all.js',
-        format: 'both',
-    }),
-    // createConfig({
-    //     file: 'all.js',
-    //     format: 'cjs',
-    // }),
-];
+export default Object.keys(files).reduce(
+    (configs, file) => [
+        ...configs,
+        createConfig({
+            file,
+            format: 'es',
+            ...files[file],
+        }),
+        createConfig({
+            file,
+            format: 'cjs',
+            ...files[file],
+        }),
+    ],
+    [],
+);

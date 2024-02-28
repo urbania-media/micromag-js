@@ -65,8 +65,7 @@
         "parse-srt": "^1.0.0-alpha",
         "prop-types": "^15.7.2",
         "react-intl": "^6.6.2",
-        "uuid": "^9.0.0",
-        "whatwg-fetch": "^3.6.1"
+        "uuid": "^9.0.0"
     },
     "publishConfig": {
         "access": "public",
