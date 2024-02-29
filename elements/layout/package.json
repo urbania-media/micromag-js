@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-layout",
-    "version": "0.3.485",
+    "version": "0.3.486",
     "private": false,
     "description": "",
     "keywords": [
@@ -60,8 +60,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.485",
-        "@micromag/element-stack": "^0.3.485",
+        "@micromag/core": "^0.3.486",
+        "@micromag/element-stack": "^0.3.486",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
