@@ -35,8 +35,8 @@
     ],
     "scripts": {
         "clean": "rm -rf build",
-        "build": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build --merge-config=./webpack.config.js ./src/index.js",
-        "prepublishOnly": "npm run clean && npm run build"
+        "build": "npm run clean && flklr build --disable-source-map --html-path=./public/index.html --output-path=./build --merge-config=./webpack.config.js ./src/index.js",
+        "prepublishOnly": "npm run build"
     },
     "publishConfig": {
         "access": "public",

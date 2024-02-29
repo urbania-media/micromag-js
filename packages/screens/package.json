@@ -68,7 +68,8 @@
         "build:fields": "rollup --config ./rollup.config.cli.js --bundleConfigAsCjs && node ./build-screen-fields.js ./ && rm -f ./build-screen-fields.js",
         "scss": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.scss.ejs ./scss/styles.scss",
         "css": "../../scripts/build-sass.js ./scss/styles.scss ./assets/css/styles.css",
-        "prepare": "npm run build:fields && ../../scripts/prepare-package.sh && npm run scss && npm run css",
+        "prepublishOnly": "npm run build",
+        "build": "npm run build:fields && ../../scripts/prepare-package.sh && npm run scss && npm run css",
         "all-styles": "npm run scss && npm run css"
     },
     "devDependencies": {

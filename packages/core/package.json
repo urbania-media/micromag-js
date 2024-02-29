@@ -93,7 +93,8 @@
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
         "vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
-        "prepare": "../../scripts/prepare-package.sh --scss && npm run vendor"
+        "prepublishOnly": "npm run build",
+        "build": "../../scripts/prepare-package.sh --scss && npm run vendor"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

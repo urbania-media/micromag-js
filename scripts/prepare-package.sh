@@ -41,8 +41,10 @@ clean() {
 build_rollup() {
     echo "Building JS with rollup..."
     if [ -f ./rollup.config.js ]; then
+        mkdir ./es
         ../../node_modules/.bin/rollup --config ./rollup.config.js --bundleConfigAsCjs
     else
+        mkdir ./lib
         ../../node_modules/.bin/rollup --config ../../rollup.config.js --bundleConfigAsCjs
     fi
 }

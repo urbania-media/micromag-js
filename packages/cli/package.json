@@ -42,7 +42,8 @@
         "clean": "rm -rf bin && rm -rf lib",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  -i '[]' --env-name=node",
         "export": "npm run node -- ./src/bin/export.js",
-        "prepare": "../../scripts/prepare-package.sh"
+        "prepublishOnly": "npm run build",
+        "build": "../../scripts/prepare-package.sh"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",

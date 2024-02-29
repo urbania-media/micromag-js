@@ -48,7 +48,8 @@
     ],
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets",
-        "prepare": "../../scripts/prepare-package.sh"
+        "prepublishOnly": "npm run build",
+        "build": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
