@@ -47,9 +47,6 @@ const ViewerRoutes = ({ story, pathWithIndex, children, onScreenChange, ...other
 
     return (
         <Switch>
-            <Route path={routes.home}>
-                <Viewer {...otherProps} story={story} onScreenChange={finalOnScreenChange} />
-            </Route>
             <Route path={routes.screen}>
                 {({ screen: screenParam = null }) => {
                     const screenFromIndex =
@@ -68,6 +65,9 @@ const ViewerRoutes = ({ story, pathWithIndex, children, onScreenChange, ...other
                         />
                     );
                 }}
+            </Route>
+            <Route>
+                <Viewer {...otherProps} story={story} onScreenChange={finalOnScreenChange} />
             </Route>
         </Switch>
     );

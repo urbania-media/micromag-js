@@ -1,6 +1,6 @@
 {
     "name": "@micromag/ckeditor",
-    "version": "0.3.476",
+    "version": "0.3.482",
     "private": false,
     "description": "",
     "keywords": [
@@ -49,6 +49,7 @@
         "lib"
     ],
     "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf dist",
         "build:ckeditor": "../../node_modules/.bin/webpack --mode production --config webpack.config.js",
         "prepare": "rm -rf dist && ../../scripts/prepare-package.sh && npm run build:ckeditor"
     },
@@ -85,5 +86,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "d22737eea1773c1a8c6907ab0bd598368bda615c"
+    "gitHead": "7b04f92d09acec2ea0142fd4724e1a8c336078a5"
 }

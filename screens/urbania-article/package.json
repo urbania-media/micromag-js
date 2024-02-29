@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-article",
-    "version": "0.3.480",
+    "version": "0.3.482",
     "private": false,
     "description": "",
     "keywords": [
@@ -47,6 +47,7 @@
         "assets"
     ],
     "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
         "prepare": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
@@ -61,21 +62,21 @@
         "@babel/runtime": "^7.13.10",
         "@folklore/fetch": "^0.1.17",
         "@folklore/size": "^0.1.20",
-        "@micromag/core": "^0.3.480",
-        "@micromag/element-background": "^0.3.480",
-        "@micromag/element-button": "^0.3.480",
-        "@micromag/element-closed-captions": "^0.3.480",
-        "@micromag/element-container": "^0.3.480",
-        "@micromag/element-footer": "^0.3.480",
-        "@micromag/element-header": "^0.3.480",
-        "@micromag/element-heading": "^0.3.480",
-        "@micromag/element-image": "^0.3.480",
-        "@micromag/element-layout": "^0.3.480",
-        "@micromag/element-text": "^0.3.480",
-        "@micromag/element-urbania-author": "^0.3.480",
-        "@micromag/element-video": "^0.3.480",
-        "@micromag/element-visual": "^0.3.480",
-        "@micromag/transforms": "^0.3.480",
+        "@micromag/core": "^0.3.482",
+        "@micromag/element-background": "^0.3.482",
+        "@micromag/element-button": "^0.3.482",
+        "@micromag/element-closed-captions": "^0.3.482",
+        "@micromag/element-container": "^0.3.482",
+        "@micromag/element-footer": "^0.3.482",
+        "@micromag/element-header": "^0.3.482",
+        "@micromag/element-heading": "^0.3.482",
+        "@micromag/element-image": "^0.3.482",
+        "@micromag/element-layout": "^0.3.482",
+        "@micromag/element-text": "^0.3.482",
+        "@micromag/element-urbania-author": "^0.3.482",
+        "@micromag/element-video": "^0.3.482",
+        "@micromag/element-visual": "^0.3.482",
+        "@micromag/transforms": "^0.3.482",
         "@react-spring/web": "^9.6.1",
         "@use-gesture/react": "^10.3.0",
         "classnames": "^2.2.6",
@@ -88,5 +89,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "ec4f12cb131e883a9b9d0394c165be3bc3ca671d"
+    "gitHead": "7b04f92d09acec2ea0142fd4724e1a8c336078a5"
 }

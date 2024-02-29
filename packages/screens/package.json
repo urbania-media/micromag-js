@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.480",
+    "version": "0.3.482",
     "private": false,
     "description": "",
     "keywords": [
@@ -38,6 +38,10 @@
             "require": "./lib/index.js",
             "import": "./es/index.js"
         },
+        "./all": {
+            "require": "./lib/all.js",
+            "import": "./es/all.js"
+        },
         "./fields": "./fields.js",
         "./fields.json": "./fields.json",
         "./scss/styles": "./scss/styles.scss",
@@ -45,18 +49,23 @@
         "./assets/css/styles": "./assets/css/styles.css",
         "./assets/css/styles.css": "./assets/css/styles.css"
     },
+    "browser": {
+        ".": "./es/index.js",
+        "./all": "./es/all.js"
+    },
     "files": [
         "lib",
         "es",
         "assets",
         "scss",
-        "all.js",
-        "schemas.js",
         "fields.js",
-        "fields.json"
+        "fields.json",
+        "all.js"
     ],
     "scripts": {
-        "build:fields": "babel-node --config-file=../../babel.config.scripts.js -i=[] ./scripts/buildFields.js",
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss && rm -rf fields.js && rm -rf fields.json",
+        "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  --ignore='[]' --env-name=node --no-babelrc",
+        "build:fields": "rollup --config ./rollup.config.cli.js --bundleConfigAsCjs && node ./build-screen-fields.js ./ && rm -f ./build-screen-fields.js",
         "scss": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.scss.ejs ./scss/styles.scss",
         "css": "../../scripts/build-sass.js ./scss/styles.scss ./assets/css/styles.css",
         "prepare": "npm run build:fields && ../../scripts/prepare-package.sh && npm run scss && npm run css",
@@ -72,31 +81,31 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.480",
-        "@micromag/screen-article": "^0.3.480",
-        "@micromag/screen-audio": "^0.3.480",
-        "@micromag/screen-contribution": "^0.3.480",
-        "@micromag/screen-conversation": "^0.3.480",
-        "@micromag/screen-gallery": "^0.3.480",
-        "@micromag/screen-gallery-feed": "^0.3.480",
-        "@micromag/screen-image": "^0.3.480",
-        "@micromag/screen-keypad": "^0.3.480",
-        "@micromag/screen-map": "^0.3.480",
-        "@micromag/screen-quiz": "^0.3.480",
-        "@micromag/screen-quote": "^0.3.480",
-        "@micromag/screen-ranking": "^0.3.480",
-        "@micromag/screen-share": "^0.3.480",
-        "@micromag/screen-slideshow": "^0.3.480",
-        "@micromag/screen-survey": "^0.3.480",
-        "@micromag/screen-text": "^0.3.480",
-        "@micromag/screen-timeline": "^0.3.480",
-        "@micromag/screen-title": "^0.3.480",
-        "@micromag/screen-urbania-article": "^0.3.480",
-        "@micromag/screen-urbania-horoscope": "^0.3.480",
-        "@micromag/screen-urbania-recommendation": "^0.3.480",
-        "@micromag/screen-urbania-trivia": "^0.3.480",
-        "@micromag/screen-video": "^0.3.480",
-        "@micromag/screen-video-360": "^0.3.480",
+        "@micromag/core": "^0.3.482",
+        "@micromag/screen-article": "^0.3.482",
+        "@micromag/screen-audio": "^0.3.482",
+        "@micromag/screen-contribution": "^0.3.482",
+        "@micromag/screen-conversation": "^0.3.482",
+        "@micromag/screen-gallery": "^0.3.482",
+        "@micromag/screen-gallery-feed": "^0.3.482",
+        "@micromag/screen-image": "^0.3.482",
+        "@micromag/screen-keypad": "^0.3.482",
+        "@micromag/screen-map": "^0.3.482",
+        "@micromag/screen-quiz": "^0.3.482",
+        "@micromag/screen-quote": "^0.3.482",
+        "@micromag/screen-ranking": "^0.3.482",
+        "@micromag/screen-share": "^0.3.482",
+        "@micromag/screen-slideshow": "^0.3.482",
+        "@micromag/screen-survey": "^0.3.482",
+        "@micromag/screen-text": "^0.3.482",
+        "@micromag/screen-timeline": "^0.3.482",
+        "@micromag/screen-title": "^0.3.482",
+        "@micromag/screen-urbania-article": "^0.3.482",
+        "@micromag/screen-urbania-horoscope": "^0.3.482",
+        "@micromag/screen-urbania-recommendation": "^0.3.482",
+        "@micromag/screen-urbania-trivia": "^0.3.482",
+        "@micromag/screen-video": "^0.3.482",
+        "@micromag/screen-video-360": "^0.3.482",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2"
@@ -105,5 +114,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "ec4f12cb131e883a9b9d0394c165be3bc3ca671d"
+    "gitHead": "7b04f92d09acec2ea0142fd4724e1a8c336078a5"
 }

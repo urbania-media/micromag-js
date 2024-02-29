@@ -143,8 +143,8 @@ const ViewerContainer = ({
     ) : (
         <Router
             base={!memoryRouter ? basePath : null}
-            hook={!memoryRouter ? memoryRouterHook : null}
-            searchHook={!memoryRouter ? memoryRouterSearchHook : null}
+            hook={memoryRouter ? memoryRouterHook : null}
+            searchHook={memoryRouter ? memoryRouterSearchHook : null}
         >
             <RoutesProvider routes={routes}>{content}</RoutesProvider>
         </Router>

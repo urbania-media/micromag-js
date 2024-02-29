@@ -1,6 +1,6 @@
 {
     "name": "@micromag/editor",
-    "version": "0.3.480",
+    "version": "0.3.484",
     "private": false,
     "description": "",
     "keywords": [
@@ -50,6 +50,7 @@
         "scss"
     ],
     "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
         "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
@@ -65,29 +66,29 @@
         "@dnd-kit/core": "^6.0.6",
         "@dnd-kit/sortable": "^7.0.1",
         "@dnd-kit/utilities": "^3.2.1",
+        "@folklore/routes": "^0.2.27",
         "@folklore/size": "^0.1.20",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.3.480",
-        "@micromag/elements": "^0.3.480",
-        "@micromag/fields": "^0.3.480",
-        "@micromag/screens": "^0.3.480",
-        "@micromag/viewer": "^0.3.480",
+        "@micromag/core": "^0.3.482",
+        "@micromag/elements": "^0.3.482",
+        "@micromag/fields": "^0.3.482",
+        "@micromag/screens": "^0.3.482",
+        "@micromag/viewer": "^0.3.484",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "react-intl": "^6.6.2",
-        "react-router": "^5.2.0",
-        "react-router-dom": "^5.2.0",
         "react-sortablejs": "^6.0.0",
         "react-transition-group": "^4.4.2",
         "sortablejs": "^1.12.0",
-        "uuid": "^9.0.0"
+        "uuid": "^9.0.0",
+        "wouter": "^3.0.0"
     },
     "publishConfig": {
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "ac9156585f2ad8739e7923902f680ce692f8bcca"
+    "gitHead": "7b04f92d09acec2ea0142fd4724e1a8c336078a5"
 }

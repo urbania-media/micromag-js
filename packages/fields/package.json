@@ -1,6 +1,6 @@
 {
     "name": "@micromag/fields",
-    "version": "0.3.480",
+    "version": "0.3.482",
     "private": false,
     "description": "",
     "keywords": [
@@ -38,9 +38,9 @@
             "require": "./lib/index.js",
             "import": "./es/index.js"
         },
-        "./manager": {
-            "require": "./lib/manager.js",
-            "import": "./es/manager.js"
+        "./all": {
+            "require": "./lib/all.js",
+            "import": "./es/all.js"
         },
         "./scss/placeholders": "./scss/_placeholders.scss",
         "./scss/placeholders.scss": "./scss/_placeholders.scss",
@@ -51,16 +51,17 @@
     },
     "browser": {
         ".": "./es/index.js",
-        "./manager": "./es/manager.js"
+        "./all": "./es/all.js"
     },
     "files": [
         "lib",
         "es",
         "assets",
         "scss",
-        "manager.js"
+        "all.js"
     ],
     "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
         "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
@@ -78,12 +79,12 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/ckeditor": "^0.3.476",
-        "@micromag/core": "^0.3.480",
-        "@micromag/element-grid": "^0.3.480",
-        "@micromag/element-keypad": "^0.3.480",
-        "@micromag/element-map": "^0.3.480",
-        "@micromag/media-gallery": "^0.3.480",
+        "@micromag/ckeditor": "^0.3.482",
+        "@micromag/core": "^0.3.482",
+        "@micromag/element-grid": "^0.3.482",
+        "@micromag/element-keypad": "^0.3.482",
+        "@micromag/element-map": "^0.3.482",
+        "@micromag/media-gallery": "^0.3.482",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
         "fuse.js": "^6.4.3",
@@ -102,5 +103,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "ec4f12cb131e883a9b9d0394c165be3bc3ca671d"
+    "gitHead": "7b04f92d09acec2ea0142fd4724e1a8c336078a5"
 }

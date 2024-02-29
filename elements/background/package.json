@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-background",
-    "version": "0.3.480",
+    "version": "0.3.482",
     "private": false,
     "description": "",
     "keywords": [
@@ -46,6 +46,7 @@
         "assets"
     ],
     "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
         "prepare": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
@@ -57,8 +58,8 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.20",
-        "@micromag/core": "^0.3.480",
-        "@micromag/element-video": "^0.3.480",
+        "@micromag/core": "^0.3.482",
+        "@micromag/element-video": "^0.3.482",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -69,5 +70,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "ec4f12cb131e883a9b9d0394c165be3bc3ca671d"
+    "gitHead": "7b04f92d09acec2ea0142fd4724e1a8c336078a5"
 }

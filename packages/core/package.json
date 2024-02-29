@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.3.480",
+    "version": "0.3.482",
     "private": false,
     "description": "",
     "keywords": [
@@ -91,6 +91,7 @@
         "utils.js"
     ],
     "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
         "vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
         "prepare": "../../scripts/prepare-package.sh --scss && npm run vendor"
     },
@@ -106,12 +107,14 @@
         "@babel/runtime": "^7.13.10",
         "@folklore/fetch": "^0.1.17",
         "@folklore/forms": "^0.0.10",
+        "@folklore/routes": "^0.2.27",
         "@folklore/services": "^0.1.24",
         "@folklore/size": "^0.1.20",
         "@folklore/tracking": "^0.0.9",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
+        "@panneau/core": "^3.0.119",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
         "@uppy/core": "^2.1.4",
@@ -127,7 +130,7 @@
         "@uppy/xhr-upload": "^2.0.7",
         "@use-gesture/react": "^10.3.0",
         "bootstrap": "5.2.0-beta1",
-        "change-case": "^5.4.3",
+        "change-case": "^4.0.0",
         "classnames": "^2.2.6",
         "css-mediaquery": "^0.1.2",
         "dayjs": "^1.11.10",
@@ -140,18 +143,17 @@
         "raf": "^3.4.1",
         "react-helmet": "^6.1.0",
         "react-intl": "^6.6.2",
-        "react-router": "^5.2.0",
-        "react-router-dom": "^5.2.0",
         "screenfull": "^5.1.0",
         "slugify": "^1.6.5",
         "tinycolor2": "^1.4.2",
         "uuid": "^9.0.0",
         "webfontloader": "^1.6.28",
-        "wolfy87-eventemitter": "^5.2.9"
+        "wolfy87-eventemitter": "^5.2.9",
+        "wouter": "^3.0.0"
     },
     "publishConfig": {
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "ec4f12cb131e883a9b9d0394c165be3bc3ca671d"
+    "gitHead": "7b04f92d09acec2ea0142fd4724e1a8c336078a5"
 }

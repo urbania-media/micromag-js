@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link as ReactLink } from 'react-router-dom';
+import { Link as ReactLink } from 'wouter';
 
 import { PropTypes as MicromagPropTypes } from '../../lib';
 
@@ -44,7 +44,7 @@ const Link = ({ href, external, children, target, rel, className, withoutStyle, 
     ) : (
         <ReactLink
             className={classNames([className, { [styles.withoutStyle]: withoutStyle }])}
-            to={href}
+            href={href}
             {...props}
         >
             <Label>{children}</Label>

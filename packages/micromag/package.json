@@ -1,6 +1,6 @@
 {
     "name": "micromag",
-    "version": "0.3.480",
+    "version": "0.3.484",
     "private": false,
     "description": "",
     "keywords": [
@@ -39,10 +39,11 @@
         "scss"
     ],
     "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
         "css:vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
         "css:styles": "../../scripts/build-sass.js ./src/styles/styles.scss ./assets/css/styles.css",
         "css": "npm run css:vendor && npm run css:styles",
-        "prepare": "../../scripts/prepare-package.sh --scss && npm run css"
+        "prepublishOnly": "../../scripts/prepare-package.sh --scss && npm run css"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -54,10 +55,10 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.480",
-        "@micromag/editor": "^0.3.480",
-        "@micromag/viewer": "^0.3.480",
+        "@micromag/core": "^0.3.482",
+        "@micromag/editor": "^0.3.484",
+        "@micromag/viewer": "^0.3.484",
         "bootstrap": "5.2.0-beta1"
     },
-    "gitHead": "ac9156585f2ad8739e7923902f680ce692f8bcca"
+    "gitHead": "7b04f92d09acec2ea0142fd4724e1a8c336078a5"
 }

@@ -1,39 +1,48 @@
+import { useRouteMatcher } from '@folklore/routes';
 import { useMemo } from 'react';
-import { useRouteMatch } from 'react-router';
+import { useLocation } from 'wouter';
+
 import { useRoutes } from '@micromag/core/contexts';
 
 const useRouteParams = ({ screenOnly = false } = {}) => {
     const routes = useRoutes();
 
-    const path = useMemo(
-        () =>
-            screenOnly
-                ? [routes.screen, '*']
-                : [routes['screen.field.form'], routes['screen.field'], routes.screen, '*'],
-        [routes, screenOnly],
-    );
+    const [location] = useLocation();
+    const matcher = useRouteMatcher();
 
     const {
-        url,
-        params: { screen = null, field = null, form = null },
-    } = useRouteMatch({
-        path,
-    });
+        screen = null,
+        field = null,
+        form = null,
+    } = useMemo(() => {
+        const paths = screenOnly
+            ? [routes.screen]
+            : [routes['screen.field.form'], routes['screen.field'], routes.screen, '*'];
+        return (
+            paths.reduce((currentParams, path) => {
+                if (currentParams !== null) {
+                    return currentParams;
+                }
+                const [match = false, params] = matcher(path);
+                return match ? params : currentParams;
+            }, null) || {}
+        );
+    }, [routes, screenOnly, location, matcher]);
 
     const routeParams = useMemo(
         () =>
             screenOnly
                 ? {
-                      url,
+                      url: location,
                       screen,
                   }
                 : {
-                      url,
+                      url: location,
                       screen,
                       field,
                       form,
                   },
-        [screenOnly, url, screen, field, form],
+        [screenOnly, location, screen, field, form],
     );
     return routeParams;
 };

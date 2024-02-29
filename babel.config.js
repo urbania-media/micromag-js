@@ -4,7 +4,7 @@ const getPackagesAliases = require('./scripts/lib/getPackagesAliases');
 module.exports = (api) => {
     if (api.env('node')) {
         return {
-            ignore: [/node_modules\/(?!@micromag)/],
+            ignore: [/node_modules\/(?!@micromag|wouter)/],
             presets: [
                 [
                     require('@babel/preset-env'),
@@ -12,6 +12,7 @@ module.exports = (api) => {
                         targets: {
                             node: 'current',
                         },
+                        modules: 'cjs',
                     },
                 ],
                 [
@@ -30,7 +31,8 @@ module.exports = (api) => {
                             'react-dom/server': require.resolve('react-dom/server'),
                             'react-dom': require.resolve('react-dom'),
                             'react-intl': require.resolve('react-intl'),
-                            'react-router': require.resolve('react-router'),
+                            'wouter': require.resolve('wouter'),
+                            '@folklore/routes': require.resolve('@folklore/routes'),
                             '@react-spring/core': require.resolve('@react-spring/core'),
                             '@react-spring/web': require.resolve('@react-spring/web'),
                             '@use-gesture/react': require.resolve('@use-gesture/react'),
@@ -62,14 +64,12 @@ module.exports = (api) => {
                 [
                     require.resolve('babel-plugin-transform-assets-import-to-string'),
                     {
-                        extensions: ['.png'],
+                        extensions: ['.png', '.svg'],
                     },
                 ],
             ],
         };
     }
-
-    console.log('Babel env', api.env('development'));
 
     return {
         presets: api.env('development')

@@ -1,5 +1,6 @@
 {
     "home": "/",
+    "screen_wildcard": "/:screen/(.*)?",
     "screen": "/:screen",
     "screen.field": "/:screen/:field+",
     "screen.field.form": "/:screen/:field+/:form"

@@ -5,7 +5,6 @@ import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useMemo } from 'react';
-import 'whatwg-fetch';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';

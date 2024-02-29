@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { useLocation } from 'wouter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
@@ -40,7 +40,7 @@ const defaultProps = {
 
 const EditForm = ({ value, isTheme, className, onChange }) => {
     // Match routes
-    const history = useHistory();
+    const [, setLocation] = useLocation();
     const routePush = useRoutePush();
     const {
         url,
@@ -118,7 +118,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             const fieldKey = `${field}${formName !== null ? `:${formName}` : ''}`;
             const pastUrl = fieldForms[fieldKey] || null;
             if (pastUrl !== null) {
-                history.push(pastUrl);
+                setLocation(pastUrl);
             }
             setFieldForms(
                 Object.keys(fieldForms).reduce(
@@ -133,7 +133,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                 ),
             );
         },
-        [history, screenId, fieldForms, setFieldForms],
+        [setLocation, screenId, fieldForms, setFieldForms],
     );
 
     const triggerOnChange = useCallback(

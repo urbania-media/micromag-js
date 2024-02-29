@@ -1,6 +1,6 @@
 import { postJSON, getJSON, getCSRFHeaders } from '@folklore/fetch';
 import { stringify as stringifyQuery } from 'query-string';
-import { generatePath } from 'react-router';
+import { generatePath } from '@folklore/routes';
 
 class Base {
     constructor(opts = {}) {

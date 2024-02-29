@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'wouter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
@@ -218,7 +218,7 @@ const Button = ({
         ) : (
             <Link
                 {...props}
-                to={href}
+                href={href}
                 className={linkClassNames}
                 style={buttonStyles}
                 onClick={onClick}

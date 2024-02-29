@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'wouter';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import styles from '../../styles/menus/breadcrumb.module.scss';
 import Button from '../buttons/Button';
@@ -56,7 +56,7 @@ const Breadcrumb = ({ items, theme, separator, withoutBar, noWrap, className }) 
                     {active ? <Label>{label}</Label> : null}
                     {!active && url ? (
                         <Link
-                            to={url}
+                            href={url}
                             onClick={onClick}
                             className={classNames([
                                 'font-weight-bold',

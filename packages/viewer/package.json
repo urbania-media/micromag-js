@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer",
-    "version": "0.3.480",
+    "version": "0.3.484",
     "private": false,
     "description": "",
     "keywords": [
@@ -50,6 +50,7 @@
         "scss"
     ],
     "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
         "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
@@ -62,15 +63,15 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@folklore/routes": "^0.2.19",
-        "@micromag/core": "^0.3.480",
-        "@micromag/element-badge": "^0.3.480",
-        "@micromag/element-scroll": "^0.3.480",
-        "@micromag/element-share-options": "^0.3.480",
-        "@micromag/element-webview": "^0.3.480",
-        "@micromag/elements": "^0.3.480",
-        "@micromag/intl": "^0.3.480",
-        "@micromag/screens": "^0.3.480",
+        "@folklore/routes": "^0.2.27",
+        "@micromag/core": "^0.3.482",
+        "@micromag/element-badge": "^0.3.482",
+        "@micromag/element-scroll": "^0.3.482",
+        "@micromag/element-share-options": "^0.3.482",
+        "@micromag/element-webview": "^0.3.482",
+        "@micromag/elements": "^0.3.482",
+        "@micromag/intl": "^0.3.482",
+        "@micromag/screens": "^0.3.482",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
         "@use-gesture/react": "^10.3.0",
@@ -89,5 +90,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "ac9156585f2ad8739e7923902f680ce692f8bcca"
+    "gitHead": "7b04f92d09acec2ea0142fd4724e1a8c336078a5"
 }

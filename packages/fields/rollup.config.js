@@ -1,35 +1,12 @@
+import alias from '@rollup/plugin-alias';
+import resolve from '@rollup/plugin-node-resolve';
 import path from 'path';
 
 import { createConfig } from '../../rollup.config';
 
 const files = {
-    'index.js': {
-        // prependPlugins: [
-        //     alias({
-        //         entries: [
-        //             {
-        //                 find: /(\.|\.\.)\/(contexts|utils|hooks|components)\/?$/,
-        //                 replacement: '@micromag/core/$2',
-        //             },
-        //         ],
-        //     }),
-        // ],
-        resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-            resolveOnly: [
-                new RegExp(path.join(__dirname, './src/')),
-            ],
-        },
-    },
-
-    'manager.js': {
-        resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-            resolveOnly: [
-                new RegExp(path.join(__dirname, './src/fields')),
-            ],
-        },
-    },
+    'index.js': {},
+    'all.js': {},
 };
 
 export default Object.keys(files).reduce(
@@ -37,14 +14,14 @@ export default Object.keys(files).reduce(
         ...configs,
         createConfig({
             file,
-            format: 'both',
+            format: 'es',
             ...files[file],
         }),
-        // createConfig({
-        //     file,
-        //     format: 'cjs',
-        //     ...files[file],
-        // }),
+        createConfig({
+            file,
+            format: 'cjs',
+            ...files[file],
+        }),
     ],
     [],
 );
