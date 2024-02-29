@@ -111,7 +111,7 @@ const GalleryItem = ({
                     ) : null}
                     <div className={classNames(['text-truncate', styles.label])}>
                         <small>{title}</small>
-                        {size !== null ? <small className="text-muted ms-1">{size}</small> : null}
+                        {size !== null ? <small className="text-body-secondary ms-1">{size}</small> : null}
                     </div>
                 </>
             }

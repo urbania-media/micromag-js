@@ -163,7 +163,7 @@ const FieldWithForm = ({
                 <span
                     className={classNames([
                         'col',
-                        'text-muted',
+                        'text-body-secondary',
                         {
                             'text-start': !isHorizontal,
                             'text-end': isHorizontal,

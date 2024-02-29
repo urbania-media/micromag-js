@@ -305,7 +305,7 @@ function MediaMetadata({
                     {type !== null ? (
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-4 text-muted">
+                                <div className="col-4 text-body-secondary">
                                     <FormattedMessage
                                         defaultMessage="Type"
                                         description="Type Label in Media Gallery"
@@ -320,7 +320,7 @@ function MediaMetadata({
                     {filename !== null ? (
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-4 text-muted">
+                                <div className="col-4 text-body-secondary">
                                     <FormattedMessage
                                         defaultMessage="Filename"
                                         description="Label in Media Gallery"
@@ -335,7 +335,7 @@ function MediaMetadata({
                     {duration ? (
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-4 text-muted">
+                                <div className="col-4 text-body-secondary">
                                     <FormattedMessage
                                         defaultMessage="Duration"
                                         description="Label in Media Gallery"
@@ -350,7 +350,7 @@ function MediaMetadata({
                     {width !== null || height !== null ? (
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-4 text-muted">
+                                <div className="col-4 text-body-secondary">
                                     <FormattedMessage
                                         defaultMessage="Dimension"
                                         description="Label in Media Gallery"
@@ -367,7 +367,7 @@ function MediaMetadata({
                     {size !== null ? (
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-4 text-muted">
+                                <div className="col-4 text-body-secondary">
                                     <FormattedMessage
                                         defaultMessage="Size"
                                         description="Label in Media Gallery"
@@ -382,7 +382,7 @@ function MediaMetadata({
                     {description !== null ? (
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-4 text-muted">
+                                <div className="col-4 text-body-secondary">
                                     <FormattedMessage
                                         defaultMessage="Description"
                                         description="Label in Media Gallery"
@@ -397,7 +397,7 @@ function MediaMetadata({
                     {user !== null && user.name ? (
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-4 text-muted">
+                                <div className="col-4 text-body-secondary">
                                     <FormattedMessage
                                         defaultMessage="Author"
                                         description="Label in Media Gallery"

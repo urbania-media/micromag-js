@@ -137,7 +137,7 @@ function ScreenStates({ screen, value, className, onChange }) {
                     }
                     return (
                         <div className="p-1 align-self-stretch d-flex flex-column">
-                            <h6 className={classNames(['fw-normal', 'text-muted', styles.title])}>
+                            <h6 className={classNames(['fw-normal', 'text-body-secondary', styles.title])}>
                                 <FormattedMessage {...label} />
                             </h6>
                             {repeatable ? (

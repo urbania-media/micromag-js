@@ -23,7 +23,7 @@ const FieldErrors = ({ children, muted, className }) => (
         className={classNames([
             'form-text',
             {
-                'text-muted': muted,
+                'text-body-secondary': muted,
                 [className]: className !== null,
             },
         ])}
