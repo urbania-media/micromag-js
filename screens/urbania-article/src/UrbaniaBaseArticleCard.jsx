@@ -15,6 +15,7 @@ import {
     useScreenSize,
     useViewerContext,
     useViewerInteraction,
+    useViewerWebView,
 } from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
 import { isHeaderFilled, isTextFilled } from '@micromag/core/utils';
@@ -87,6 +88,7 @@ const UrbaniaArticleCard = ({
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+        const { open: openWebView } = useViewerWebView();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { enableInteraction, disableInteraction } = useViewerInteraction();
@@ -157,15 +159,19 @@ const UrbaniaArticleCard = ({
     const toggleCard = useCallback(() => {
         const newOpened = !articleOpened;
 
-        setArticleOpened(newOpened);
         if (newOpened) {
-            disableInteraction();
-        } else {
-            enableInteraction();
+            openWebView(url);
         }
 
-        setIframeMounted(true);
-    }, [articleOpened, setIframeMounted, setArticleOpened, disableInteraction, enableInteraction]);
+        // setArticleOpened(newOpened);
+        // if (newOpened) {
+        //     disableInteraction();
+        // } else {
+        //     enableInteraction();
+        // }
+
+        // setIframeMounted(true);
+    }, [articleOpened, setIframeMounted, setArticleOpened, disableInteraction, enableInteraction, openWebView]);
 
     const onIframeLoad = useCallback(() => {
         setIframeLoaded(true);
@@ -400,7 +406,7 @@ const UrbaniaArticleCard = ({
                                     {!iframeEnabled && iframeMounted ? (
                                         <div className={styles.iframeBlocker} />
                                     ) : null}
-                                    {iframeMounted && withIframe ? (
+                                    {/* {iframeMounted && withIframe ? (
                                         <iframe
                                             onLoad={onIframeLoad}
                                             className={styles.iframe}
@@ -411,7 +417,7 @@ const UrbaniaArticleCard = ({
                                                 height,
                                             }}
                                         />
-                                    ) : null}
+                                    ) : null} */}
                                 </div>
                             </a.div>
                         ) : null}
