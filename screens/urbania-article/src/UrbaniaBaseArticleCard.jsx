@@ -98,12 +98,15 @@ const UrbaniaArticleCard = ({
 
     const { name: authorName = null } = author || {};
 
+
     const hasUrl = url !== null && url.length > 0;
     const hasHeader = isHeaderFilled(header);
     const hasText = isTextFilled(text);
     const hasTitle = isTextFilled(title);
     const hasAuthorName = isTextFilled(authorName);
     const hasCta = isTextFilled(callToAction);
+
+    const finalUrl = hasUrl ? url.replace(/^https?:\/\/([^.]+\.)?urbania\.ca\/article\//, 'https://simple.urbania.ca/article/') : url;
 
     const [articleOpened, setArticleOpened] = useState(false);
     const [iframeEnabled, setIframeEnabled] = useState(false);
@@ -160,7 +163,7 @@ const UrbaniaArticleCard = ({
         const newOpened = !articleOpened;
 
         if (newOpened) {
-            openWebView(url);
+            openWebView(finalUrl);
         }
 
         // setArticleOpened(newOpened);
@@ -171,7 +174,7 @@ const UrbaniaArticleCard = ({
         // }
 
         // setIframeMounted(true);
-    }, [articleOpened, setIframeMounted, setArticleOpened, disableInteraction, enableInteraction, openWebView]);
+    }, [articleOpened, setIframeMounted, setArticleOpened, disableInteraction, enableInteraction, openWebView, finalUrl]);
 
     const onIframeLoad = useCallback(() => {
         setIframeLoaded(true);
@@ -411,7 +414,7 @@ const UrbaniaArticleCard = ({
                                             onLoad={onIframeLoad}
                                             className={styles.iframe}
                                             title={title.body}
-                                            src={url || 'about:blank'}
+                                            src={finalUrl || 'about:blank'}
                                             style={{
                                                 width: '100%',
                                                 height,
