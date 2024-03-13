@@ -49,14 +49,7 @@ export default {
                 description: 'Field label',
             }),
         },
-        {
-            name: 'closedCaptions',
-            type: 'closed-captions',
-            label: defineMessage({
-                defaultMessage: 'Closed captions',
-                description: 'Field label',
-            }),
-        },
+
         {
             name: 'color',
             type: 'color',
@@ -70,6 +63,14 @@ export default {
             type: 'color',
             label: defineMessage({
                 defaultMessage: 'Progress bar color',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'captions',
+            type: 'captions',
+            label: defineMessage({
+                defaultMessage: 'Closed captions',
                 description: 'Field label',
             }),
         },

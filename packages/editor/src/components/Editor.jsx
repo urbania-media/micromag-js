@@ -133,6 +133,8 @@ const Editor = ({
         }
     }, [screenId]);
 
+    // console.log('screenId', screenId);
+
     return (
         <ModalsProvider>
             <PanelsProvider>

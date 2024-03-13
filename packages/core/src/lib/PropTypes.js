@@ -252,6 +252,10 @@ export const closedCaptionsMedia = PropTypes.shape({
     type: PropTypes.oneOf(['closed-captions']),
 });
 
+
+
+
+
 /**
  * Style
  */
@@ -782,3 +786,9 @@ export const footer = PropTypes.shape({
 });
 
 export const reload = PropTypes.shape();
+
+export const closedCaptions = PropTypes.shape({
+    file: closedCaptionsMedia,
+    textStyle,
+    boxStyle,
+});

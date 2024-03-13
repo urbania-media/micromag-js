@@ -94,6 +94,7 @@ const AudioScreen = ({
         media: audioMedia = null,
         autoPlay = true,
         closedCaptions = null,
+        captions = null,
         withWave = false,
         withControls = false,
         withSeekBar = false,
@@ -110,7 +111,7 @@ const AudioScreen = ({
               autoPlay: !isPreview && !isStatic && !isCapture && autoPlay && current,
           }
         : null;
-    const hasClosedCaptions = closedCaptions !== null;
+    const hasClosedCaptions = (closedCaptions !== null || captions !== null);
 
     const { playing, muted, setControls, setControlsSuggestPlay, setControlsTheme, setPlaying } =
         usePlaybackContext();
@@ -306,6 +307,7 @@ const AudioScreen = ({
                                 <ClosedCaptions
                                     className={styles.closedCaptions}
                                     media={closedCaptions}
+                                    {...captions}
                                     currentTime={currentTime}
                                 />
                             ) : null}

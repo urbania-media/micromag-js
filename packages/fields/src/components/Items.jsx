@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
@@ -161,6 +162,7 @@ const ItemsField = ({
                 : null,
         [value, gotoFieldForm],
     );
+
     const closeForms = useMemo(
         () =>
             value !== null
@@ -174,8 +176,6 @@ const ItemsField = ({
     const hasItems = itemsLength > 0;
     const sortableItems = items.map((it, index) => ({ id: idMap.current[index], it, index }));
     const finalWithoutSort = withoutSort || !editing;
-
-    // console.log('items', items, itemsField, props);
 
     return (
         <div className={className}>

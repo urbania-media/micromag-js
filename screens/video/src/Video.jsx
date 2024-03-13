@@ -96,6 +96,7 @@ const VideoScreen = ({
         loop = false,
         media: videoMedia = null,
         thumbnail = null,
+        captions = null,
         closedCaptions = null,
         withSeekBar = false,
         withControls = false,
@@ -176,8 +177,13 @@ const VideoScreen = ({
     const [duration, setDuration] = useState(null);
 
     const onTimeUpdate = useCallback(
-        (time) => {
-            setCurrentTime(time);
+        (time = null) => {
+            if(time !== null && typeof time.currentTarget !== 'undefined') {
+                const { currentTime: targetTime = 0 } = time.currentTarget || {};
+                setCurrentTime(targetTime);
+            } else {
+                setCurrentTime(0);
+            }
         },
         [duration, setCurrentTime],
     );
@@ -283,11 +289,11 @@ const VideoScreen = ({
         setReady(true);
     }, [setReady]);
 
-    const onSuspended = useCallback(() => {
-        if (playing && current) {
-            setPlaying(false);
-        }
-    }, [current, playing, setPlaying]);
+    // const onSuspended = useCallback(() => {
+    //     if (playing && current) {
+    //         setPlaying(false);
+    //     }
+    // }, [current, playing, setPlaying]);
 
     const onPlayError = useCallback(() => {
         if (isView && playing && current && hasVideoUrl && autoPlay) {
@@ -408,10 +414,11 @@ const VideoScreen = ({
                                 paddingTop: 0,
                             }}
                         >
-                            {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
+                            {(closedCaptions !== null || captions !== null) && !isPreview && !isCapture && !isStatic ? (
                                 <ClosedCaptions
                                     className={styles.closedCaptions}
-                                    media={closedCaptions}
+                                    media={closedCaptions} // BW Compat
+                                    {...captions}
                                     currentTime={currentTime}
                                 />
                             ) : null}

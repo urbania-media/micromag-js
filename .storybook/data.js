@@ -248,6 +248,32 @@ export const closedCaptionsMedia = () => ({
     url: closedCaptionsFile,
 });
 
+export const closedCaptions = () => ({
+    media: {
+        type: 'closed-captions',
+        url: closedCaptionsFile,
+    },
+    textStyle: textStyle(),
+    boxStyle: {
+        borderWidth: 4,
+        borderRadius: 10,
+        padding: {
+            top: 5,
+            right: 20,
+            bottom: 5,
+            left: 20,
+        },
+        borderColor: {
+            alpha: 1,
+            color: '#fffc00',
+        },
+        backgroundColor: {
+            alpha: 0.2,
+            color: '#cc00ff',
+        },
+    },
+});
+
 export const medias = ({ count = 3, width = 800, height = 800, rand = false, gif = false } = {}) =>
     [...Array(count)].map((_, index) =>
         index % 3 === 0 ? videoMedia({ width, height }) : imageMedia({ width, height, rand, gif }),

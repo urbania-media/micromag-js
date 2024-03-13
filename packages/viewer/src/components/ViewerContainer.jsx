@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useMemoryRouter } from '@folklore/routes';
-import { RoutesProvider } from '@folklore/routes';
+import { useMemoryRouter, RoutesProvider } from '@folklore/routes';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { Router } from 'wouter';
@@ -137,14 +136,17 @@ const ViewerContainer = ({
     );
 
     const { hook: memoryRouterHook, searchHook: memoryRouterSearchHook } = useMemoryRouter();
+    const routerProps = useMemo(() => ({
+            hook: memoryRouter ? memoryRouterHook : null,
+            searchHook: memoryRouter ? memoryRouterSearchHook : null,
+            base: !memoryRouter ? basePath : null,
+    }), [basePath, memoryRouter]);
 
     return withoutRouter ? (
         content
     ) : (
         <Router
-            base={!memoryRouter ? basePath : null}
-            hook={memoryRouter ? memoryRouterHook : null}
-            searchHook={memoryRouter ? memoryRouterSearchHook : null}
+            {...routerProps}
         >
             <RoutesProvider routes={routes}>{content}</RoutesProvider>
         </Router>

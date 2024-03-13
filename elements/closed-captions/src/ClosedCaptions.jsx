@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect, useCallback } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getSecondsFromTime } from '@micromag/core/utils';
+import { getSecondsFromTime, getStyleFromBox } from '@micromag/core/utils';
+import TextElement from '@micromag/element-text';
 
 import styles from './styles.module.scss';
 
@@ -14,6 +15,8 @@ const propTypes = {
     media: MicromagPropTypes.closedCaptionsMedia,
     currentTime: PropTypes.number, // in seconds
     timeOffset: PropTypes.string, // in srt time format (10:00:01,034)
+    textStyle: MicromagPropTypes.textStyle,
+    boxStyle: MicromagPropTypes.boxStyle,
     className: PropTypes.string,
 };
 
@@ -21,10 +24,12 @@ const defaultProps = {
     media: null,
     currentTime: 0,
     timeOffset: null,
+    textStyle: null,
+    boxStyle: null,
     className: null,
 };
 
-const ClosedCaptions = ({ currentTime, timeOffset, media, className }) => {
+const ClosedCaptions = ({ currentTime, timeOffset, media, textStyle, boxStyle, className }) => {
     const { url = null } = media || {};
     const [lines, setLines] = useState([]);
     const [lineIndex, setLineIndex] = useState(-1);
@@ -71,6 +76,7 @@ const ClosedCaptions = ({ currentTime, timeOffset, media, className }) => {
 
     const line = lineIndex !== -1 ? lines[lineIndex] : null;
     const active = line !== null;
+    const finalBoxStyles = boxStyle !== null ? getStyleFromBox(boxStyle) : null;
 
     return (
         <div
@@ -80,12 +86,15 @@ const ClosedCaptions = ({ currentTime, timeOffset, media, className }) => {
                     [className]: className !== null,
                 },
             ])}
+
         >
             {active ? (
                 <div
                     className={styles.captions}
-                    dangerouslySetInnerHTML={active ? { __html: line.text } : null}
-                />
+                    style={finalBoxStyles}
+                >
+                    <TextElement textStyle={textStyle} body={line.text} />
+                </div>
             ) : null}
         </div>
     );

@@ -86,6 +86,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                               name === rootFieldName && currentStateId === fieldStateId,
                       ) || null
                     : null) || {};
+
             routePush(hasField ? fieldRoute : 'screen', {
                 screen: screenId,
                 field:
@@ -94,10 +95,12 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                         : null,
                 form: formName !== null ? slug(formName) : null,
             });
-            setFieldForms({
+
+            const nextFieldForms = {
                 ...fieldForms,
                 [`${field}${formName !== null ? `:${formName}` : ''}`]: url,
-            });
+            };
+            setFieldForms(nextFieldForms);
             setFieldContext(context);
         },
         [

@@ -129,35 +129,37 @@ const FieldWithForm = ({
             ])}
         >
             {thumbnailElement !== null || labelElement !== null ? (
-                <span
-                    className="row px-0"
-                    title={
-                        withTitleLabel && (isString(labelString) || isString(label))
-                            ? labelString || label || ''
-                            : null
-                    }
-                >
-                    {!isHorizontal && thumbnailElement !== null ? (
-                        <span className="col-auto">{thumbnailElement}</span>
-                    ) : null}
+                <span>
                     <span
-                        className={classNames([
-                            styles.label,
-                            'col',
-                            'text-monospace',
-                            'text-start',
-                            'text-truncate',
-                            {
-                                'text-start': !isHorizontal,
-                                'text-end': isHorizontal,
-                            },
-                        ])}
+                        className="row px-1"
+                        title={
+                            withTitleLabel && (isString(labelString) || isString(label))
+                                ? labelString || label || ''
+                                : null
+                        }
                     >
-                        {labelElement}
+                        {!isHorizontal && thumbnailElement !== null ? (
+                            <span className="col-auto">{thumbnailElement}</span>
+                        ) : null}
+                        <span
+                            className={classNames([
+                                styles.label,
+                                'col',
+                                'text-monospace',
+                                'text-start',
+                                'text-truncate',
+                                {
+                                    'text-start': !isHorizontal,
+                                    'text-end': isHorizontal,
+                                },
+                            ])}
+                        >
+                            {labelElement}
+                        </span>
+                        {isHorizontal && thumbnailElement !== null ? (
+                            <span className="col-auto">{thumbnailElement}</span>
+                        ) : null}
                     </span>
-                    {isHorizontal && thumbnailElement !== null ? (
-                        <span className="col-auto">{thumbnailElement}</span>
-                    ) : null}
                 </span>
             ) : (
                 <span

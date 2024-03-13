@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { createPathToRegexpParser, useMemoryRouter } from '@folklore/routes';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { Router } from 'wouter';
 
@@ -68,16 +68,17 @@ const EditorContainer = ({
 }) => {
     const { locale } = useIntl();
 
-    // const { metadata } = value || {};
-    // const { language:finalLocale = locale } = metadata || {};
     const { hook: memoryLocationHook, searchHook: memorySearchHook } = useMemoryRouter();
+    const routerProps = useMemo(() => ({
+        hook: memoryRouter ? memoryLocationHook : null,
+            searchHook: memoryRouter ? memorySearchHook : null,
+            parser: pathToRegexpParser,
+            base: !memoryRouter ? basePath : null,
+    }), [basePath, memoryRouter]);
 
     return (
         <Router
-            hook={memoryRouter ? memoryLocationHook : null}
-            searchHook={memoryRouter ? memorySearchHook : null}
-            parser={pathToRegexpParser}
-            base={!memoryRouter ? basePath : null}
+            {...routerProps}
         >
             <UppyProvider {...uppy}>
                 <StoryProvider story={value}>

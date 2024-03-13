@@ -44,7 +44,11 @@ export const WithSeekbar = (storyProps) => (
 );
 
 export const WithClosedCaptions = (storyProps) => (
-    <VideoScreen {...storyProps} {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }} />
+    <VideoScreen {...storyProps} {...{ ...props({
+        closedCaptions: closedCaptionsMedia(),
+        withSeekBar: true,
+        withControls: true
+    }) }} />
 );
 
 export const WithSeekbarAndClosedCaptions = (storyProps) => (

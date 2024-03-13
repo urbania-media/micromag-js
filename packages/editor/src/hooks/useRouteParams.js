@@ -4,6 +4,7 @@ import { useLocation } from 'wouter';
 
 import { useRoutes } from '@micromag/core/contexts';
 
+
 const useRouteParams = ({ screenOnly = false } = {}) => {
     const routes = useRoutes();
 
@@ -16,7 +17,7 @@ const useRouteParams = ({ screenOnly = false } = {}) => {
         form = null,
     } = useMemo(() => {
         const paths = screenOnly
-            ? [routes.screen]
+            ? [routes.screen, '/:screen/*', '*']
             : [routes['screen.field.form'], routes['screen.field'], routes.screen, '*'];
         return (
             paths.reduce((currentParams, path) => {

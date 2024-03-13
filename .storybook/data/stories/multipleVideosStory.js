@@ -4,6 +4,8 @@ import {
     video360Media,
     videoMedia,
     callToActionWithStyles,
+    closedCaptionsMedia,
+    closedCaptions
 } from '../../data';
 
 export default {
@@ -15,15 +17,27 @@ export default {
             video: {
                 // media: bigVideoMediaWithSound(),
                 media: videoMedia({ big: true }),
+                // closedCaptions: closedCaptionsMedia(),
                 withSeekBar: true,
                 withControls: true,
                 loop: false,
                 autoPlay: true,
+                captions: {
+                    media: closedCaptionsMedia(),
+                    textStyle: {
+                        color: "#0FF",
+                        fontSize: 12,
+                        fontFamily: "Courier"
+                    },
+                    boxStyle: {
+                        backgroundColor: { alpha: 0.5, color: '#FFFF00' },
+                    },
+                }
             },
             background: {
                 color: { alpha: 1, color: '#FFFF00' },
             },
-            gotoNextScreenOnEnd: true,
+            gotoNextScreenOnEnd: false,
         },
         {
             id: '2',
@@ -35,6 +49,7 @@ export default {
                 autoPlay: true,
                 color: { alpha: 1, color: '#012400' },
                 progressColor: { alpha: 1, color: '#8891cc' },
+                captions: closedCaptions()
             },
             background: {
                 color: { alpha: 1, color: '#123456' },

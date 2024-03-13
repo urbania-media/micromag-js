@@ -277,7 +277,8 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
 
     const onClickBack = useCallback(() => {
         setLocation(items[itemsLength - 2].url);
-    }, [items, setLocation]);
+    }, [items, setLocation, itemsLength]);
+
     const withBack = itemsLength > 1;
 
     return (

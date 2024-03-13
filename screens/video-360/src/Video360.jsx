@@ -98,6 +98,7 @@ const Video360Screen = ({
     const {
         media: videoMedia = null,
         closedCaptions = null,
+        captions = null,
         withSeekBar = false,
         withControls = false,
         autoPlay = true,
@@ -631,10 +632,11 @@ const Video360Screen = ({
                                 paddingTop: 0,
                             }}
                         >
-                            {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
+                            {(closedCaptions !== null || captions !== null) && !isPreview && !isCapture && !isStatic ? (
                                 <ClosedCaptions
                                     className={styles.closedCaptions}
                                     media={closedCaptions}
+                                    {...captions}
                                     currentTime={currentTime}
                                 />
                             ) : null}
