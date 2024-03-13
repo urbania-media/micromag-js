@@ -19,6 +19,7 @@ const propTypes = {
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     closeable: PropTypes.bool,
+    focusable: PropTypes.bool,
     onClose: PropTypes.func,
     className: PropTypes.string,
 };
@@ -29,11 +30,12 @@ const defaultProps = {
     width: null,
     height: null,
     closeable: false,
+    focusable: false,
     onClose: null,
     className: null,
 };
 
-function WebView({ iframeRef, url, width, height, closeable, onClose, className }) {
+function WebView({ iframeRef, url, width, height, closeable, focusable, onClose, className }) {
     return (
         <div
             className={classNames([
@@ -54,6 +56,7 @@ function WebView({ iframeRef, url, width, height, closeable, onClose, className 
             ) : null}
             <iframe
                 className={styles.iframe}
+                tabIndex={!focusable ? -1 : null }
                 ref={iframeRef}
                 title="Popup"
                 src={url || 'about:blank'}
