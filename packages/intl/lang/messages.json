@@ -779,6 +779,10 @@
     "defaultMessage": "Left",
     "description": "Field left label"
   },
+  "OEckOD": {
+    "defaultMessage": "Text style",
+    "description": "Field label"
+  },
   "OJi+eg": {
     "defaultMessage": "Label",
     "description": "Field label"
@@ -1392,6 +1396,10 @@
   },
   "irG6mX": {
     "defaultMessage": "Distance",
+    "description": "Field label"
+  },
+  "ivs8GN": {
+    "defaultMessage": "Closed captions file",
     "description": "Field label"
   },
   "j00v1T": {

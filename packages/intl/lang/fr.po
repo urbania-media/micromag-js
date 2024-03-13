@@ -1182,6 +1182,12 @@ msgid "Left"
 msgstr "Gauche"
 
 # Field label
+#: OEckOD
+msgctxt "OEckOD"
+msgid "Text style"
+msgstr "Style du texte"
+
+# Field label
 #: OJi+eg
 msgctxt "OJi+eg"
 msgid "Label"
@@ -2103,6 +2109,12 @@ msgstr "Type"
 msgctxt "irG6mX"
 msgid "Distance"
 msgstr "Distance"
+
+# Field label
+#: ivs8GN
+msgctxt "ivs8GN"
+msgid "Closed captions file"
+msgstr "Fichier de sous-titres"
 
 # Field label
 #: j00v1T
