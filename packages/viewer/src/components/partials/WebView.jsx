@@ -32,6 +32,8 @@ function WebViewContainer({ className, style }) {
     const wasPlayingRef = useRef(playing);
     const [currentUrl, setCurrentUrl] = useState(url);
 
+    const iframeRef = useRef(null)
+
     // Handle current webview url
     useEffect(() => {
         if (url !== null) {
@@ -52,6 +54,7 @@ function WebViewContainer({ className, style }) {
             if (playing) {
                 setPlaying(false);
             }
+            iframeRef.current.focus()
         } else {
             enableInteraction();
 
@@ -73,7 +76,9 @@ function WebViewContainer({ className, style }) {
             <WebView
                 url={url || currentUrl}
                 {...webViewProps}
-                closeable
+                closeable={opened}
+                focusable={opened}
+                iframeRef={iframeRef}
                 className={styles.webView}
                 onClose={close}
             />
