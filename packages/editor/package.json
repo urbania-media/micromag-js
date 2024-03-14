@@ -1,6 +1,6 @@
 {
     "name": "@micromag/editor",
-    "version": "0.3.491",
+    "version": "0.3.492",
     "private": false,
     "description": "",
     "keywords": [
@@ -76,7 +76,7 @@
         "@micromag/elements": "^0.3.491",
         "@micromag/fields": "^0.3.491",
         "@micromag/screens": "^0.3.491",
-        "@micromag/viewer": "^0.3.491",
+        "@micromag/viewer": "^0.3.492",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
