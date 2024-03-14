@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useFormsComponentsManager, useViewerSize } from '@micromag/core/contexts';
+import { useViewerSize } from '@micromag/core/contexts';
 import { useDimensionObserver, useDragProgress, useTrackEvent } from '@micromag/core/hooks';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
@@ -36,6 +36,8 @@ const propTypes = {
     menuWidth: PropTypes.number,
     previewHeader: PropTypes.node,
     previewFooter: PropTypes.node,
+    afterShareMenuButton: PropTypes.node,
+    beforeScreensMenuButton: PropTypes.node,
     withDotItemClick: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
     withoutShareMenu: PropTypes.bool,
@@ -63,6 +65,8 @@ const defaultProps = {
     menuWidth: null,
     previewHeader: null,
     previewFooter: null,
+    afterShareMenuButton: null,
+    beforeScreensMenuButton: null,
     withDotItemClick: false,
     withoutScreensMenu: false,
     withoutShareMenu: false,
@@ -89,6 +93,8 @@ const ViewerMenu = ({
     menuWidth,
     previewHeader,
     previewFooter,
+    afterShareMenuButton,
+    beforeScreensMenuButton,
     withDotItemClick,
     withoutScreensMenu,
     withoutShareMenu,
@@ -248,8 +254,8 @@ const ViewerMenu = ({
         computeProgress: shareOpened ? computeShareProgressClose : computeShareProgress,
         springParams,
         drapOptions: {
-            axis: 'y'
-        }
+            axis: 'y',
+        },
     });
 
     const computeMenuProgress = useCallback(
@@ -286,8 +292,8 @@ const ViewerMenu = ({
         computeProgress: menuOpened ? computeMenuProgressClose : computeMenuProgress,
         springParams,
         drapOptions: {
-            axis: 'y'
-        }
+            axis: 'y',
+        },
     });
 
     const keyboardShortcuts = useMemo(
@@ -329,58 +335,64 @@ const ViewerMenu = ({
                 style={{ width: menuWidth }}
             >
                 <nav className={styles.menuTopContainer} ref={navContainerRef}>
-                    {!withoutShareMenu ? (
+                    {!withoutShareMenu || afterShareMenuButton !== null ? (
                         <div className={styles.menuItem} {...bindShareDrag()}>
-                            <ToggleButton
-                                className={styles.slidingButton}
-                                button={
-                                    <ShareButton
-                                        className={styles.menuButton}
-                                        onClick={onOpenShare}
-                                        theme={menuTheme}
-                                        iconPosition="left"
-                                        focusable={!shareOpened}
-                                    />
-                                }
-                                toggledButton={
-                                    <CloseMenuButton
-                                        className={styles.menuButton}
-                                        onClick={onCloseShare}
-                                        theme={menuTheme}
-                                        iconPosition="left"
-                                        focusable={shareOpened}
-                                        single
-                                    />
-                                }
-                                progressSpring={shareOpenedProgress}
-                            />
+                            {!withoutShareMenu ? (
+                                <ToggleButton
+                                    className={styles.slidingButton}
+                                    button={
+                                        <ShareButton
+                                            className={styles.menuButton}
+                                            onClick={onOpenShare}
+                                            theme={menuTheme}
+                                            iconPosition="left"
+                                            focusable={!shareOpened}
+                                        />
+                                    }
+                                    toggledButton={
+                                        <CloseMenuButton
+                                            className={styles.menuButton}
+                                            onClick={onCloseShare}
+                                            theme={menuTheme}
+                                            iconPosition="left"
+                                            focusable={shareOpened}
+                                            single
+                                        />
+                                    }
+                                    progressSpring={shareOpenedProgress}
+                                />
+                            ) : null}
+                            {afterShareMenuButton}
                         </div>
                     ) : null}
-                    {!withoutScreensMenu ? (
+                    {!withoutScreensMenu || beforeScreensMenuButton !== null ? (
                         <div className={styles.menuItem} {...bindMenuDrag()}>
-                            <ToggleButton
-                                className={styles.slidingButton}
-                                button={
-                                    <MenuButton
-                                        className={styles.menuButton}
-                                        iconClassName={styles.menuButtonIcon}
-                                        onClick={onOpenMenu}
-                                        theme={menuTheme}
-                                        focusable={!menuOpened}
-                                    />
-                                }
-                                toggledButton={
-                                    <CloseMenuButton
-                                        className={styles.menuButton}
-                                        onClick={onCloseMenu}
-                                        theme={menuTheme}
-                                        iconPosition="right"
-                                        focusable={menuOpened}
-                                    />
-                                }
-                                progressSpring={menuOpenedProgress}
-                                toggledButtonClassName={styles.screensMenuButtonToggled}
-                            />
+                            {beforeScreensMenuButton}
+                            {!withoutScreensMenu ? (
+                                <ToggleButton
+                                    className={styles.slidingButton}
+                                    button={
+                                        <MenuButton
+                                            className={styles.menuButton}
+                                            iconClassName={styles.menuButtonIcon}
+                                            onClick={onOpenMenu}
+                                            theme={menuTheme}
+                                            focusable={!menuOpened}
+                                        />
+                                    }
+                                    toggledButton={
+                                        <CloseMenuButton
+                                            className={styles.menuButton}
+                                            onClick={onCloseMenu}
+                                            theme={menuTheme}
+                                            iconPosition="right"
+                                            focusable={menuOpened}
+                                        />
+                                    }
+                                    progressSpring={menuOpenedProgress}
+                                    toggledButtonClassName={styles.screensMenuButtonToggled}
+                                />
+                            ) : null}
                         </div>
                     ) : null}
                 </nav>

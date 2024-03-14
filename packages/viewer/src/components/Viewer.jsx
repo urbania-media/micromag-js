@@ -68,6 +68,8 @@ const propTypes = {
     menuIsScreenWidth: PropTypes.bool,
     menuHeader: PropTypes.node,
     menuFooter: PropTypes.node,
+    afterShareMenuButton: PropTypes.node,
+    beforeScreensMenuButton: PropTypes.node,
     closeable: PropTypes.bool,
     withMetadata: PropTypes.bool,
     withoutGestures: PropTypes.bool,
@@ -117,6 +119,8 @@ const defaultProps = {
     menuIsScreenWidth: false,
     menuHeader: null,
     menuFooter: null,
+    afterShareMenuButton: null,
+    beforeScreensMenuButton: null,
     menuDotsButtons: null,
     closeable: false,
     withMetadata: false,
@@ -163,6 +167,8 @@ const Viewer = ({
     menuHeader,
     menuDotsButtons,
     menuFooter,
+    afterShareMenuButton,
+    beforeScreensMenuButton,
     closeable,
     withMetadata,
     withoutGestures,
@@ -702,6 +708,8 @@ const Viewer = ({
                                 withDotItemClick={screenContainerWidth > 400}
                                 withoutScreensMenu={withoutScreensMenu}
                                 withoutShareMenu={withoutShareMenu}
+                                afterShareMenuButton={afterShareMenuButton}
+                                beforeScreensMenuButton={beforeScreensMenuButton}
                                 refDots={menuDotsContainerRef}
                             />
                         ) : null}
