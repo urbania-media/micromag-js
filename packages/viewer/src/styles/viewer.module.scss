@@ -112,19 +112,20 @@
 }
 
 .menuItem {
-    display: block;
-    width: 50%;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
     touch-action: none;
     font-size: 8px;
 
     &:last-child {
-        text-align: right;
+        justify-content: flex-end;
     }
 }
 
 .menuButton {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.8rem;
+    padding: 8px 10px;
+    font-size: 12px;
 
     // @media (min-width: 320px) {
     //     font-size: 1rem;
@@ -147,8 +148,8 @@
 .dots {
     position: relative;
     z-index: 3;
-    top: -0.25rem;
-    padding: 0 0.5rem;
+    top: -5px;
+    padding: 0 8px;
     transition: opacity 0.3s $ease-out-ramp;
 
     .hideMenu & {
@@ -179,11 +180,11 @@
     border: 0;
 
     &.previous {
-        left: 1.5rem;
+        left: 1.5em;
     }
 
     &.next {
-        right: 1.5rem;
+        right: 1.5em;
     }
 
     @media screen and (min-width: 1024px) {
