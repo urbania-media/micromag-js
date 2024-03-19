@@ -1,10 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useIntl } from 'react-intl';
 
 import { Close } from '@micromag/core/components';
 import Button from '@micromag/element-button';
+
+import useKeyboardShortcuts from '../../../packages/viewer/src/hooks/useKeyboardShortcuts';
 
 import styles from './styles.module.scss';
 
@@ -36,6 +39,15 @@ const defaultProps = {
 };
 
 function WebView({ iframeRef, url, width, height, closeable, focusable, onClose, className }) {
+    const intl = useIntl();
+
+    const keyboardShortcuts = useMemo(
+        () => ({
+            escape: () => onClose(),
+        }),
+        [onClose],
+    );
+    useKeyboardShortcuts(keyboardShortcuts);
     return (
         <div
             className={classNames([
@@ -49,14 +61,22 @@ function WebView({ iframeRef, url, width, height, closeable, focusable, onClose,
         >
             {closeable ? (
                 <div className={styles.top}>
-                    <Button className={styles.close} onClick={onClose}>
+                    <Button
+                        className={styles.close}
+                        aria-label={intl.formatMessage({
+                            defaultMessage: 'Close',
+                            description: 'Button label',
+                        })}
+                        onClick={onClose}
+                    >
                         <Close className={styles.closeIcon} />
                     </Button>
                 </div>
             ) : null}
             <iframe
                 className={styles.iframe}
-                tabIndex={!focusable ? -1 : null }
+                tabIndex={!focusable ? -1 : null}
+                aria-hidden={!focusable ? true : null}
                 ref={iframeRef}
                 title="Popup"
                 src={url || 'about:blank'}

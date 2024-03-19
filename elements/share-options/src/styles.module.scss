@@ -40,6 +40,10 @@
             color: $white;
         }
     }
+
+    &:focus-visible {
+        box-shadow: 0 0 2px 2px $white;
+    }
 }
 
 // @note there is repetition from the styles used in Button & IconButton from the Viewer package

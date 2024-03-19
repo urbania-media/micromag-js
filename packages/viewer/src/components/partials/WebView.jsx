@@ -3,7 +3,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react';
+import FocusLock, { useFocusInside } from 'react-focus-lock';
 
 import {
     useViewerInteraction,
@@ -11,6 +12,8 @@ import {
     usePlaybackContext,
 } from '@micromag/core/contexts';
 import WebView from '@micromag/element-webview';
+
+import useKeyboardShortcuts from '../../hooks/useKeyboardShortcuts';
 
 import styles from '../../styles/partials/web-view.module.scss';
 
@@ -32,7 +35,7 @@ function WebViewContainer({ className, style }) {
     const wasPlayingRef = useRef(playing);
     const [currentUrl, setCurrentUrl] = useState(url);
 
-    const iframeRef = useRef(null)
+    const ref = useRef(null);
 
     // Handle current webview url
     useEffect(() => {
@@ -54,7 +57,8 @@ function WebViewContainer({ className, style }) {
             if (playing) {
                 setPlaying(false);
             }
-            iframeRef.current.focus()
+            // iframeRef.current.focus();
+            // useFocusInside(ref);
         } else {
             enableInteraction();
 
@@ -64,6 +68,17 @@ function WebViewContainer({ className, style }) {
             }
         }
     }, [opened]);
+
+    const keyboardShortcuts = useMemo(
+        () => ({
+            escape: () => {
+                close();
+            },
+        }),
+        [close],
+    );
+    useKeyboardShortcuts(keyboardShortcuts);
+
     return (
         <div
             className={classNames([
@@ -72,16 +87,18 @@ function WebViewContainer({ className, style }) {
             ])}
             style={style}
             onTransitionEnd={onTransitionEnd}
+            ref={ref}
         >
-            <WebView
-                url={url || currentUrl}
-                {...webViewProps}
-                closeable={opened}
-                focusable={opened}
-                iframeRef={iframeRef}
-                className={styles.webView}
-                onClose={close}
-            />
+            <FocusLock disabled={!opened} className={styles.focusLock} returnFocus>
+                <WebView
+                    url={url || currentUrl}
+                    {...webViewProps}
+                    closeable={opened}
+                    focusable={opened}
+                    className={styles.webView}
+                    onClose={close}
+                />
+            </FocusLock>
         </div>
     );
 }

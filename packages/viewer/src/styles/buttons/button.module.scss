@@ -54,4 +54,8 @@
         text-decoration: none;
         pointer-events: none;
     }
+
+    &:focus-visible {
+        box-shadow: 0 0 2px 2px var(--micromag-focus-color);
+    }
 }

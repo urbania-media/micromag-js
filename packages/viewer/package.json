@@ -80,6 +80,7 @@
         "detect-pointer-events": "^1.0.2",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
+        "react-focus-lock": "^2.11.2",
         "react-helmet": "^6.1.0",
         "react-intl": "^6.6.2",
         "react-share": "^4.3.1",

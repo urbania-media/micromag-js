@@ -21,6 +21,7 @@
     border: 0 solid $white;
     border-radius: 0.45rem;
 
+    &:focus,
     &:focus-visible {
         outline: 0.25rem solid $purple;
         outline-offset: 0.25rem;
@@ -37,6 +38,10 @@
             border: 0.1rem solid $white;
         }
     }
+
+    // &:focus {
+    //     border: 0.1rem solid $white;
+    // }
 }
 
 .inner {

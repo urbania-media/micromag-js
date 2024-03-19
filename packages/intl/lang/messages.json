@@ -267,6 +267,10 @@
     "defaultMessage": "Images",
     "description": "visualsWithCaptions field label"
   },
+  "5gQz1q": {
+    "defaultMessage": "Skip to content",
+    "description": "Button label"
+  },
   "5mk1b+": {
     "defaultMessage": "Share",
     "description": "Share screen title"
@@ -482,6 +486,10 @@
   "CWnXWp": {
     "defaultMessage": "No button yet",
     "description": "Label when there is no item"
+  },
+  "CnVj9r": {
+    "defaultMessage": "Skip to controls",
+    "description": "Button label"
   },
   "CrzYgw": {
     "defaultMessage": "Quote",

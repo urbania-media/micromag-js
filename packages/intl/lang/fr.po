@@ -413,6 +413,12 @@ msgctxt "59f2bg"
 msgid "Images"
 msgstr "Images"
 
+# Button label
+#: 5gQz1q
+msgctxt "5gQz1q"
+msgid "Skip to content"
+msgstr "Aller au contenu"
+
 # Share screen title
 #: 5mk1b+
 msgctxt "5mk1b+"
@@ -736,6 +742,12 @@ msgstr "Image avec texte"
 msgctxt "CWnXWp"
 msgid "No button yet"
 msgstr "Aucun bouton"
+
+# Button label
+#: CnVj9r
+msgctxt "CnVj9r"
+msgid "Skip to controls"
+msgstr "Aller aux commandes de lecture"
 
 # Quote placeholder
 #: CrzYgw

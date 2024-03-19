@@ -3,7 +3,9 @@ import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useFocusInside } from 'react-focus-lock';
 import { Helmet } from 'react-helmet';
+import { FormattedMessage } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -23,7 +25,7 @@ import {
     useScreenSizeFromElement,
     useTrackScreenView,
 } from '@micromag/core/hooks';
-import { getDeviceScreens } from '@micromag/core/utils';
+import { getColorAsString, getDeviceScreens } from '@micromag/core/utils';
 import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
@@ -31,6 +33,7 @@ import useScreenInteraction from '../hooks/useScreenInteraction';
 
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
+import Button from './buttons/Button';
 import NavigationButton from './buttons/NavigationButton';
 import ArrowHint from './partials/ArrowHint';
 import PlaybackControls from './partials/PlaybackControls';
@@ -233,7 +236,11 @@ const Viewer = ({
     /**
      * Screen Layout
      */
-    const { textStyles } = viewerTheme || {};
+    const { textStyles, colors } = viewerTheme || {};
+    const { primary: primaryColor = null, focus: focusColor = { alpha: 1, color: '#ff33cc' } } =
+        colors || {};
+    const finalFocusColor = getColorAsString(focusColor || primaryColor);
+
     const { title: themeTextStyle = null } = textStyles || {};
     const { fontFamily: themeFont = null } = themeTextStyle || {};
 
@@ -300,6 +307,17 @@ const Viewer = ({
             onViewModeChange({ landscape, menuOverScreen });
         }
     }, [ready, landscape, menuOverScreen, onViewModeChange]);
+
+    // CSS variable
+    useEffect(() => {
+        if (containerRef.current === null) {
+            return;
+        }
+
+        if (finalFocusColor !== null) {
+            containerRef.current.style.setProperty('--micromag-focus-color', finalFocusColor);
+        }
+    }, [finalFocusColor]);
 
     /**
      * Screen Transitions
@@ -471,8 +489,7 @@ const Viewer = ({
         drapOptions: {
             filterTaps: true,
             axis: 'x',
-
-        }
+        },
     });
 
     const getScreenStylesByIndex = (index, spring) => {
@@ -568,6 +585,15 @@ const Viewer = ({
     useKeyboardShortcuts(keyboardShortcuts, {
         disabled: renderContext !== 'view',
     });
+
+    const onClickSkipToContent = useCallback(() => {
+        document.getElementById('content').focus();
+    }, []);
+    const onClickSkipToPlaybackControls = useCallback(() => {
+        // document.getElementById('controls').getElementsByTagName('button')[0].focus();
+        // document.getElementById('controls').getElementsByTagName('button')[0].focus();
+        useFocusInside(playbackControlsContainerRef);
+    }, [useFocusInside, playbackControlsContainerRef]);
 
     const [currentShareIncentive, setCurrentShareIncentive] = useState(null);
     const [shareIncentiveVisible, setShareIncentiveVisible] = useState(false);
@@ -685,6 +711,35 @@ const Viewer = ({
                         ref={containerRef}
                         onContextMenu={onContextMenu}
                     >
+                        <div
+                            className={styles.accessibilityLinks}
+                            // aria-hidden={menuOpened}
+                        >
+                            <a
+                                // href="#content"
+                                onClick={onClickSkipToContent}
+                                // aria-hidden={menuOpened}
+                                // tabIndex={menuOpened ? -1 : null}
+                            >
+                                <FormattedMessage
+                                    defaultMessage="Skip to content"
+                                    description="Button label"
+                                />
+                            </a>
+                            {!withoutPlaybackControls && playbackcontrolsVisible ? (
+                                <Button
+                                    // href="#controls"
+                                    onClick={onClickSkipToPlaybackControls}
+                                    // aria-hidden={menuOpened}
+                                    // tabIndex={menuOpened ? -1 : null}
+                                >
+                                    <FormattedMessage
+                                        defaultMessage="Skip to controls"
+                                        description="Button label"
+                                    />
+                                </Button>
+                            ) : null}
+                        </div>
                         {!withoutMenu ? (
                             <ViewerMenu
                                 story={parsedStory}
@@ -749,6 +804,7 @@ const Viewer = ({
                                         return (
                                             <animated.div
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
+                                                id="content"
                                                 style={screenStyles}
                                                 className={classNames([
                                                     styles.screenContainer,
@@ -792,6 +848,7 @@ const Viewer = ({
                                 {!withoutPlaybackControls ? (
                                     <div
                                         className={styles.playbackControls}
+                                        id="controls"
                                         ref={playbackControlsContainerRef}
                                     >
                                         <PlaybackControls className={styles.controls} />

@@ -2,6 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import FocusLock from 'react-focus-lock';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useViewerSize } from '@micromag/core/contexts';
@@ -350,14 +351,20 @@ const ViewerMenu = ({
                                         />
                                     }
                                     toggledButton={
-                                        <CloseMenuButton
-                                            className={styles.menuButton}
-                                            onClick={onCloseShare}
-                                            theme={menuTheme}
-                                            iconPosition="left"
-                                            focusable={shareOpened}
-                                            single
-                                        />
+                                        <FocusLock
+                                            group="share"
+                                            disabled={!shareOpened}
+                                            returnFocus
+                                        >
+                                            <CloseMenuButton
+                                                className={styles.menuButton}
+                                                onClick={onCloseShare}
+                                                theme={menuTheme}
+                                                iconPosition="left"
+                                                focusable={shareOpened}
+                                                single
+                                            />
+                                        </FocusLock>
                                     }
                                     progressSpring={shareOpenedProgress}
                                 />
@@ -381,13 +388,19 @@ const ViewerMenu = ({
                                         />
                                     }
                                     toggledButton={
-                                        <CloseMenuButton
-                                            className={styles.menuButton}
-                                            onClick={onCloseMenu}
-                                            theme={menuTheme}
-                                            iconPosition="right"
-                                            focusable={menuOpened}
-                                        />
+                                        <FocusLock
+                                            group="screens"
+                                            disabled={!menuOpened}
+                                            returnFocus
+                                        >
+                                            <CloseMenuButton
+                                                className={styles.menuButton}
+                                                onClick={onCloseMenu}
+                                                theme={menuTheme}
+                                                iconPosition="right"
+                                                focusable={menuOpened}
+                                            />
+                                        </FocusLock>
                                     }
                                     progressSpring={menuOpenedProgress}
                                     toggledButtonClassName={styles.screensMenuButtonToggled}
@@ -417,20 +430,22 @@ const ViewerMenu = ({
                 theme={viewerTheme}
             >
                 {draggingShare || shareOpened ? (
-                    <MenuShare
-                        viewerTheme={viewerTheme}
-                        className={styles.menuShare}
-                        title={title}
-                        description={description}
-                        menuWidth={menuWidth}
-                        paddingTop={navContainerHeight}
-                        focusable={shareOpened}
-                        items={items}
-                        currentScreenIndex={currentScreenIndex}
-                        shareUrl={shareUrl}
-                        onShare={onShare}
-                        onClose={onCloseShare}
-                    />
+                    <FocusLock group="share" disabled={!shareOpened} returnFocus>
+                        <MenuShare
+                            viewerTheme={viewerTheme}
+                            className={styles.menuShare}
+                            title={title}
+                            description={description}
+                            menuWidth={menuWidth}
+                            paddingTop={navContainerHeight}
+                            focusable={shareOpened}
+                            items={items}
+                            currentScreenIndex={currentScreenIndex}
+                            shareUrl={shareUrl}
+                            onShare={onShare}
+                            onClose={onCloseShare}
+                        />
+                    </FocusLock>
                 ) : null}
             </MenuContainer>
             <MenuContainer
@@ -439,26 +454,28 @@ const ViewerMenu = ({
                 theme={viewerTheme}
             >
                 {menuMounted ? (
-                    <MenuPreview
-                        viewerTheme={viewerTheme}
-                        header={previewHeader}
-                        footer={previewFooter}
-                        title={title}
-                        className={styles.menuPreview}
-                        screenSize={screenSize}
-                        menuWidth={menuWidth}
-                        paddingTop={navContainerHeight}
-                        items={items}
-                        currentScreenIndex={currentScreenIndex}
-                        shareUrl={shareUrl}
-                        onShare={onShare}
-                        onClickScreen={onClickScreen}
-                        onClose={onCloseMenu}
-                        scrollDisabled={draggingMenu}
-                        toggleFullscreen={toggleFullscreen}
-                        fullscreenActive={fullscreenActive}
-                        fullscreenEnabled={fullscreenEnabled}
-                    />
+                    <FocusLock group="screens" disabled={!menuOpened}>
+                        <MenuPreview
+                            viewerTheme={viewerTheme}
+                            header={previewHeader}
+                            footer={previewFooter}
+                            title={title}
+                            className={styles.menuPreview}
+                            screenSize={screenSize}
+                            menuWidth={menuWidth}
+                            paddingTop={navContainerHeight}
+                            items={items}
+                            currentScreenIndex={currentScreenIndex}
+                            shareUrl={shareUrl}
+                            onShare={onShare}
+                            onClickScreen={onClickScreen}
+                            onClose={onCloseMenu}
+                            scrollDisabled={draggingMenu}
+                            toggleFullscreen={toggleFullscreen}
+                            fullscreenActive={fullscreenActive}
+                            fullscreenEnabled={fullscreenEnabled}
+                        />
+                    </FocusLock>
                 ) : null}
             </MenuContainer>
         </>

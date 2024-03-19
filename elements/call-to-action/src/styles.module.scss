@@ -4,7 +4,7 @@
 @import '~@micromag/core/scss/mixins';
 
 @keyframes appear {
-    from  {
+    from {
         transform: scale(0);
         opacity: 1;
     }
@@ -43,13 +43,17 @@
         display: block;
         margin: 0 auto;
         padding: 5px 10px;
-        background-color: rgba(0,0,0,0);
+        background-color: rgba(0, 0, 0, 0);
         user-select: none;
         touch-action: none;
         -webkit-user-drag: none;
 
         &:hover {
             text-decoration: none;
+        }
+
+        &:focus {
+            box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
         }
     }
 
@@ -66,7 +70,7 @@
         transform: scale(0);
         animation: appear 0.5s ease both;
         opacity: 0;
-        background-color: #FFF;
+        background-color: #fff;
     }
 
     &.animationDisabled {
