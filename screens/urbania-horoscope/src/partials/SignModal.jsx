@@ -29,6 +29,7 @@ const propTypes = {
     subtitle: MicromagPropTypes.headingElement,
     current: PropTypes.bool,
     transitionDisabled: PropTypes.bool,
+    focusable: PropTypes.bool,
     onClick: PropTypes.func,
     className: PropTypes.string,
 };
@@ -40,6 +41,7 @@ const defaultProps = {
     subtitle: null,
     current: true,
     transitionDisabled: false,
+    focusable: true,
     onClick: null,
     className: null,
 };
@@ -51,6 +53,7 @@ const SignModal = ({
     subtitle,
     current,
     transitionDisabled,
+    focusable,
     onClick,
     className,
 }) => {
@@ -80,6 +83,7 @@ const SignModal = ({
             <button
                 type="button"
                 className={styles.modalButton}
+                tabIndex={focusable ? '0' : '-1'}
                 onClick={(e) => {
                     if (onClick !== null) {
                         onClick(e);

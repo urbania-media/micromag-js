@@ -77,15 +77,19 @@
     left: 10px;
     flex-direction: column;
     gap: 10px;
+    padding: 10px;
     transition: opacity 0.2s $ease-in-out-sine;
+    border-radius: 4px;
     opacity: 0;
+    background: rgba(0, 0, 0, 0.75);
     cursor: pointer;
 
     &:focus-within {
         opacity: 1;
     }
 
-    a {
+    .accessibilityButton {
+        padding: 4px;
         transition: opacity 0.5s $ease-in-out-sine;
         opacity: 0.75;
         color: $white;
@@ -260,6 +264,12 @@
     position: absolute;
     top: 70%;
     right: 5%;
+}
+
+.focusLock {
+    &:focus-within {
+        border: 5px solid red;
+    }
 }
 
 // Embedded webpage in iframe (article screen)

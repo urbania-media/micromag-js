@@ -382,6 +382,7 @@ const UrbaniaHoroscope = ({
                                 type="button"
                                 onClick={onOpenSignsGrid}
                                 withoutBootstrapStyles
+                                focusable={!isPreview && !isPlaceholder}
                                 {...button}
                             >
                                 <Text className={styles.buttonLabel} {...button} inline />
@@ -420,6 +421,7 @@ const UrbaniaHoroscope = ({
                                             <polygon points="9.95 4.11 8.89 3.05 5 6.94 1.11 3.05 0.05 4.11 3.94 8 0.05 11.89 1.11 12.95 5 9.06 8.89 12.95 9.95 11.89 6.06 8 9.95 4.11" />
                                         </svg>
                                     }
+                                    focusable={!isPreview && !isPlaceholder}
                                     withoutStyle
                                 />
                             </div>
@@ -446,6 +448,7 @@ const UrbaniaHoroscope = ({
                                             <SignCard
                                                 key={id}
                                                 sign={sign}
+                                                focusable={!isPreview && !isPlaceholder}
                                                 onClick={(e) => onSelectSign(e, id)}
                                             />
                                         </animated.div>
@@ -488,6 +491,7 @@ const UrbaniaHoroscope = ({
                             height={height}
                             sign={signs[selectedSign]}
                             subtitle={signSubtitle}
+                            focusable={!isPreview && !isPlaceholder}
                             onClick={onCloseModal}
                         />
                     </animated.div>

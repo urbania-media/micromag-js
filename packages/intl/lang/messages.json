@@ -1338,6 +1338,10 @@
     "defaultMessage": "Delete screen",
     "description": "Delete screen button label"
   },
+  "gfZs4J": {
+    "defaultMessage": "Skip Links",
+    "description": "Nav aria label"
+  },
   "gwPu/I": {
     "defaultMessage": "Buttons text",
     "description": "Field label"

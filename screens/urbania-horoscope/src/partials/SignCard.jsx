@@ -19,20 +19,18 @@ const propTypes = {
         word: MicromagPropTypes.headingElement,
         description: MicromagPropTypes.textElement,
     }),
-    onClick: PropTypes.func
+    focusable: PropTypes.bool,
+    onClick: PropTypes.func,
 };
 
 const defaultProps = {
     className: null,
     sign: null,
+    focusable: true,
     onClick: null,
 };
 
-const SignCard = ({
-    className,
-    sign,
-    onClick
-}) => {
+const SignCard = ({ className, sign, focusable, onClick }) => {
     const { id = null, thumbnail = null, label = null, date = null } = sign || {};
 
     return (
@@ -47,6 +45,7 @@ const SignCard = ({
             <button
                 className={classNames([styles.container, { [className]: className !== null }])}
                 type="button"
+                tabIndex={focusable ? '0' : -1}
                 onClick={onClick}
             >
                 {thumbnail !== null ? (

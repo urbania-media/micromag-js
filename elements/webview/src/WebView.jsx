@@ -63,7 +63,7 @@ function WebView({ iframeRef, url, width, height, closeable, focusable, onClose,
                 <div className={styles.top}>
                     <Button
                         className={styles.close}
-                        aria-label={intl.formatMessage({
+                        ariaLabel={intl.formatMessage({
                             defaultMessage: 'Close',
                             description: 'Button label',
                         })}

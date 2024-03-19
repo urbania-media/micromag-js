@@ -1,6 +1,10 @@
 .container {
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
+
+    &:focus-within {
+        box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
+    }
 }
 
 .normal {
@@ -9,7 +13,7 @@
 
 .toggled {
     position: absolute;
-    white-space: nowrap;
     top: 0;
     left: 0;
+    white-space: nowrap;
 }

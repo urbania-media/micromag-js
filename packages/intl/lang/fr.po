@@ -2020,6 +2020,12 @@ msgctxt "gRxcTc"
 msgid "Delete screen"
 msgstr "Supprimer l’écran"
 
+# Nav aria label
+#: gfZs4J
+msgctxt "gfZs4J"
+msgid "Skip Links"
+msgstr "Liens d’accessibilité"
+
 # Field label
 #: gwPu/I
 msgctxt "gwPu/I"

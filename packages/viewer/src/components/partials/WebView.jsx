@@ -4,7 +4,6 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react';
-import FocusLock, { useFocusInside } from 'react-focus-lock';
 
 import {
     useViewerInteraction,
@@ -57,8 +56,6 @@ function WebViewContainer({ className, style }) {
             if (playing) {
                 setPlaying(false);
             }
-            // iframeRef.current.focus();
-            // useFocusInside(ref);
         } else {
             enableInteraction();
 
@@ -89,16 +86,14 @@ function WebViewContainer({ className, style }) {
             onTransitionEnd={onTransitionEnd}
             ref={ref}
         >
-            <FocusLock disabled={!opened} className={styles.focusLock} returnFocus>
-                <WebView
-                    url={url || currentUrl}
-                    {...webViewProps}
-                    closeable={opened}
-                    focusable={opened}
-                    className={styles.webView}
-                    onClose={close}
-                />
-            </FocusLock>
+            <WebView
+                url={url || currentUrl}
+                {...webViewProps}
+                closeable={opened}
+                focusable={opened}
+                className={styles.webView}
+                onClose={close}
+            />
         </div>
     );
 }

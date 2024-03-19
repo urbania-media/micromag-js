@@ -3,9 +3,9 @@ import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useFocusInside } from 'react-focus-lock';
+import FocusLock, { AutoFocusInside } from 'react-focus-lock';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -15,6 +15,7 @@ import {
     StoryProvider,
     ViewerProvider,
     usePlaybackContext,
+    useViewerWebView,
 } from '@micromag/core/contexts';
 import {
     useDimensionObserver,
@@ -196,6 +197,7 @@ const Viewer = ({
     screenSizeOptions,
     className,
 }) => {
+    const intl = useIntl();
     /**
      * Screen Data + Processing
      */
@@ -237,8 +239,8 @@ const Viewer = ({
      * Screen Layout
      */
     const { textStyles, colors } = viewerTheme || {};
-    const { primary: primaryColor = null, focus: focusColor = { alpha: 1, color: '#ff33cc' } } =
-        colors || {};
+
+    const { primary: primaryColor = null, focus: focusColor = null } = colors || {};
     const finalFocusColor = getColorAsString(focusColor || primaryColor);
 
     const { title: themeTextStyle = null } = textStyles || {};
@@ -587,13 +589,17 @@ const Viewer = ({
     });
 
     const onClickSkipToContent = useCallback(() => {
-        document.getElementById('content').focus();
+        const contentElement = document.getElementById('content') || null;
+        if (contentElement !== null) {
+            contentElement.focus();
+        }
     }, []);
     const onClickSkipToPlaybackControls = useCallback(() => {
-        // document.getElementById('controls').getElementsByTagName('button')[0].focus();
-        // document.getElementById('controls').getElementsByTagName('button')[0].focus();
-        useFocusInside(playbackControlsContainerRef);
-    }, [useFocusInside, playbackControlsContainerRef]);
+        const controlsElement = document.getElementById('controls') || null;
+        if (controlsElement !== null) {
+            controlsElement.getElementsByTagName('button')[0].focus();
+        }
+    }, []);
 
     const [currentShareIncentive, setCurrentShareIncentive] = useState(null);
     const [shareIncentiveVisible, setShareIncentiveVisible] = useState(false);
@@ -660,6 +666,8 @@ const Viewer = ({
         bottomHeight = playbackControlsContainerHeight / screenScale;
     }
 
+    const { opened: webViewOpened = false } = useViewerWebView();
+
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
@@ -711,27 +719,26 @@ const Viewer = ({
                         ref={containerRef}
                         onContextMenu={onContextMenu}
                     >
-                        <div
+                        <nav
+                            aria-label={intl.formatMessage({
+                                defaultMessage: 'Skip Links',
+                                description: 'Nav aria label',
+                            })}
                             className={styles.accessibilityLinks}
-                            // aria-hidden={menuOpened}
                         >
-                            <a
-                                // href="#content"
+                            <Button
                                 onClick={onClickSkipToContent}
-                                // aria-hidden={menuOpened}
-                                // tabIndex={menuOpened ? -1 : null}
+                                className={styles.accessibilityButton}
                             >
                                 <FormattedMessage
                                     defaultMessage="Skip to content"
                                     description="Button label"
                                 />
-                            </a>
+                            </Button>
                             {!withoutPlaybackControls && playbackcontrolsVisible ? (
                                 <Button
-                                    // href="#controls"
                                     onClick={onClickSkipToPlaybackControls}
-                                    // aria-hidden={menuOpened}
-                                    // tabIndex={menuOpened ? -1 : null}
+                                    className={styles.accessibilityButton}
                                 >
                                     <FormattedMessage
                                         defaultMessage="Skip to controls"
@@ -739,7 +746,7 @@ const Viewer = ({
                                     />
                                 </Button>
                             ) : null}
-                        </div>
+                        </nav>
                         {!withoutMenu ? (
                             <ViewerMenu
                                 story={parsedStory}
@@ -779,6 +786,10 @@ const Viewer = ({
                                         direction="previous"
                                         className={classNames([styles.navButton, styles.previous])}
                                         onClick={gotoPreviousScreen}
+                                        ariaLabel={intl.formatMessage({
+                                            defaultMessage: 'Go to previous screen',
+                                            description: 'Button label',
+                                        })}
                                     />
                                 ) : null}
                                 <div
@@ -804,7 +815,8 @@ const Viewer = ({
                                         return (
                                             <animated.div
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
-                                                id="content"
+                                                id={current ? 'content' : null}
+                                                aria-hidden={!current}
                                                 style={screenStyles}
                                                 className={classNames([
                                                     styles.screenContainer,
@@ -843,6 +855,10 @@ const Viewer = ({
                                         direction="next"
                                         className={classNames([styles.navButton, styles.next])}
                                         onClick={gotoNextScreen}
+                                        ariaLabel={intl.formatMessage({
+                                            defaultMessage: 'Go to next screen',
+                                            description: 'Button label',
+                                        })}
                                     />
                                 ) : null}
                                 {!withoutPlaybackControls ? (
@@ -880,12 +896,21 @@ const Viewer = ({
                                 {...currentShareIncentive}
                             />
                         </div>
-                        <WebView
-                            className={styles.webView}
-                            style={{
-                                maxWidth: Math.max(screenContainerWidth, 600),
-                            }}
-                        />
+                        <FocusLock
+                            disabled={!webViewOpened}
+                            className={styles.focusLock}
+                            group="webview"
+                            returnFocus
+                        >
+                            <AutoFocusInside>
+                                <WebView
+                                    className={styles.webView}
+                                    style={{
+                                        maxWidth: Math.max(screenContainerWidth, 600),
+                                    }}
+                                />
+                            </AutoFocusInside>
+                        </FocusLock>
                     </div>
                 </ViewerProvider>
             </ScreenSizeProvider>
