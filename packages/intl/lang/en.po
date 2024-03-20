@@ -1151,6 +1151,12 @@ msgctxt "N25iDO"
 msgid "Title"
 msgstr "Title"
 
+# Field label
+#: N4lZhy
+msgctxt "N4lZhy"
+msgid "Without line"
+msgstr "Without line"
+
 # Placeholder label
 #: N7Kj8z
 msgctxt "N7Kj8z"
