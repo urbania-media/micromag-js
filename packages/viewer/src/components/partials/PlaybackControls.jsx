@@ -184,16 +184,6 @@ function PlaybackControls({
         <PlayIcon className={styles.icon} />
     );
 
-    const playLabel = playing
-        ? intl.formatMessage({
-              defaultMessage: 'Pause',
-              description: 'Button label',
-          })
-        : intl.formatMessage({
-              defaultMessage: 'Play',
-              description: 'Button label',
-          });
-
     return (
         <div
             className={classNames([
@@ -220,8 +210,9 @@ function PlaybackControls({
                     onClick={playing ? onPause : onPlay}
                     focusable={controlsVisible}
                     icon={<PlayIcon className={classNames([styles.icon, styles.offset])} />}
+                    aria-pressed={!playing}
                     aria-label={intl.formatMessage({
-                        defaultMessage: 'Play',
+                        defaultMessage: 'Pause',
                         description: 'Button label',
                     })}
                     withoutBootstrapStyles
@@ -240,7 +231,7 @@ function PlaybackControls({
                     color,
                 }}
                 onClick={playing ? onPause : onPlay}
-                focusable={controlsVisible}
+                focusable={controls && (!seekBarOnly || !playing)}
                 disabled={finalShowLoading}
                 icon={
                     finalShowLoading ? (
@@ -249,13 +240,17 @@ function PlaybackControls({
                         playIcon
                     )
                 }
+                aria-pressed={!playing}
                 aria-label={
                     finalShowLoading
                         ? intl.formatMessage({
                               defaultMessage: 'Loading',
                               description: 'Button label',
                           })
-                        : playLabel
+                        : intl.formatMessage({
+                              defaultMessage: 'Pause',
+                              description: 'Button label',
+                          })
                 }
                 withoutBootstrapStyles
             />
@@ -268,7 +263,7 @@ function PlaybackControls({
                 onSeek={onSeek}
                 onSeekStart={onSeekStart}
                 onSeekEnd={onSeekEnd}
-                focusable={playing}
+                focusable={controls && controlsVisible && !seekBarOnly}
                 collapsed={isCollapsed}
                 withSeekHead={!isCollapsed && !seekBarOnly}
                 backgroundColor={color}
@@ -289,17 +284,11 @@ function PlaybackControls({
                         <MuteIcon className={styles.icon} />
                     )
                 }
-                aria-label={
-                    muted
-                        ? intl.formatMessage({
-                              defaultMessage: 'Unmute',
-                              description: 'Button label',
-                          })
-                        : intl.formatMessage({
-                              defaultMessage: 'Mute',
-                              description: 'Button label',
-                          })
-                }
+                aria-pressed={!muted}
+                aria-label={intl.formatMessage({
+                    defaultMessage: 'Unmute',
+                    description: 'Button label',
+                })}
                 withoutBootstrapStyles
             />
         </div>

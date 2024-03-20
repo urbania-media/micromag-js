@@ -588,16 +588,23 @@ const Viewer = ({
         disabled: renderContext !== 'view',
     });
 
-    const onClickSkipToContent = useCallback(() => {
-        const contentElement = document.getElementById('content') || null;
-        if (contentElement !== null) {
-            contentElement.focus();
-        }
-    }, []);
+    // const onClickSkipToContent = useCallback(() => {
+    //     const contentElement = document.getElementById('content') || null;
+    //     if (contentElement !== null) {
+    //         contentElement.focus();
+    //     }
+    // }, []);
+
     const onClickSkipToPlaybackControls = useCallback(() => {
-        const controlsElement = document.getElementById('controls') || null;
-        if (controlsElement !== null) {
-            controlsElement.getElementsByTagName('button')[0].focus();
+        const controlsElement = document.getElementById('controls');
+
+        if (controlsElement) {
+            const buttons = controlsElement.querySelectorAll('button[tabindex]');
+            const firstFocusableButton = Array.from(buttons).find((button) => button.tabIndex >= 0);
+
+            if (firstFocusableButton) {
+                firstFocusableButton.focus();
+            }
         }
     }, []);
 
@@ -726,7 +733,9 @@ const Viewer = ({
                             })}
                             className={styles.accessibilityLinks}
                         >
-                            <Button
+                            {/* Browser requires a focusable element (a, button, etc.). Could be implemented in future with a screen wrapper with an aria-label like "main content — screen {index} of {screens.length}" 
+                            OR button jumps to first focusable content of screen if available */}
+                            {/* <Button
                                 onClick={onClickSkipToContent}
                                 className={styles.accessibilityButton}
                             >
@@ -734,18 +743,19 @@ const Viewer = ({
                                     defaultMessage="Skip to content"
                                     description="Button label"
                                 />
+                            </Button> */}
+                            {/* {!withoutPlaybackControls && playbackcontrolsVisible ? ( */}
+                            <Button
+                                onClick={onClickSkipToPlaybackControls}
+                                disabled={withoutPlaybackControls || !playbackcontrolsVisible}
+                                className={styles.accessibilityButton}
+                            >
+                                <FormattedMessage
+                                    defaultMessage="Skip to controls"
+                                    description="Button label"
+                                />
                             </Button>
-                            {!withoutPlaybackControls && playbackcontrolsVisible ? (
-                                <Button
-                                    onClick={onClickSkipToPlaybackControls}
-                                    className={styles.accessibilityButton}
-                                >
-                                    <FormattedMessage
-                                        defaultMessage="Skip to controls"
-                                        description="Button label"
-                                    />
-                                </Button>
-                            ) : null}
+                            {/* ) : null} */}
                         </nav>
                         {!withoutMenu ? (
                             <ViewerMenu

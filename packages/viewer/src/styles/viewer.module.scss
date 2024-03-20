@@ -84,6 +84,7 @@
     background: rgba(0, 0, 0, 0.75);
     cursor: pointer;
 
+    &:focus-visible,
     &:focus-within {
         opacity: 1;
     }
@@ -268,7 +269,7 @@
 
 .focusLock {
     &:focus-within {
-        border: 5px solid red;
+        border: 5px solid red; // not working!
     }
 }
 

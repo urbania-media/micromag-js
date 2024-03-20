@@ -123,8 +123,6 @@ const Button = ({
     const primaryColor = getStyleFromColor(brandPrimaryColor, 'color');
     const buttonStyles = { ...primaryColor };
 
-    console.log(ariaLabel);
-
     const content = (
         <>
             {hasInlineIcon ? (
