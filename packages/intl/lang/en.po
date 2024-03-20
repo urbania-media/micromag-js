@@ -413,12 +413,6 @@ msgctxt "59f2bg"
 msgid "Images"
 msgstr "Images"
 
-# Button label
-#: 5gQz1q
-msgctxt "5gQz1q"
-msgid "Skip to content"
-msgstr "Skip to content"
-
 # Share screen title
 #: 5mk1b+
 msgctxt "5mk1b+"
@@ -1594,6 +1588,12 @@ msgctxt "YWcp4v"
 msgid "Bullet filled"
 msgstr "Bullet filled"
 
+# Tooltip
+#: YXhRxW
+msgctxt "YXhRxW"
+msgid "No controls available"
+msgstr "No controls available"
+
 # Field label
 #: YwySSO
 msgctxt "YwySSO"
@@ -1671,12 +1671,6 @@ msgstr "Add an item"
 msgctxt "aarOkd"
 msgid "Color"
 msgstr "Color"
-
-# Button label
-#: ahSpiH
-msgctxt "ahSpiH"
-msgid "Play"
-msgstr "Play"
 
 # Font family group title
 #: al5xjv
@@ -2767,12 +2761,6 @@ msgstr "(current screen)"
 msgctxt "vxEtY1"
 msgid "Background image"
 msgstr "Background image"
-
-# Button label
-#: vzg8Es
-msgctxt "vzg8Es"
-msgid "Mute"
-msgstr "Mute"
 
 # No value label
 #: wChc+A

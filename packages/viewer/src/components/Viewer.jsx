@@ -578,8 +578,8 @@ const Viewer = ({
     const keyboardShortcuts = useMemo(
         () => ({
             f: () => toggleFullscreen(),
-            arrowleft: () => gotoPreviousScreen(),
-            arrowright: () => gotoNextScreen(),
+            // arrowleft: () => gotoPreviousScreen(),
+            // arrowright: () => gotoNextScreen(),
             ' ': () => gotoNextScreen(),
         }),
         [gotoPreviousScreen, gotoNextScreen],
@@ -744,18 +744,38 @@ const Viewer = ({
                                     description="Button label"
                                 />
                             </Button> */}
-                            {/* {!withoutPlaybackControls && playbackcontrolsVisible ? ( */}
+
                             <Button
                                 onClick={onClickSkipToPlaybackControls}
-                                disabled={withoutPlaybackControls || !playbackcontrolsVisible}
-                                className={styles.accessibilityButton}
+                                aria-disabled={withoutPlaybackControls || !playbackcontrolsVisible}
+                                aria-describedby="disabledReason"
+                                className={classNames([
+                                    styles.accessibilityButton,
+                                    {
+                                        [styles.disabled]:
+                                            withoutPlaybackControls || !playbackcontrolsVisible,
+                                    },
+                                ])}
                             >
                                 <FormattedMessage
                                     defaultMessage="Skip to controls"
                                     description="Button label"
                                 />
                             </Button>
-                            {/* ) : null} */}
+                            {withoutPlaybackControls || !playbackcontrolsVisible ? (
+                                <div
+                                    role="tooltip"
+                                    className={styles.tooltipBox}
+                                    id="disabledReason"
+                                >
+                                    <span className={styles.tooltip}>
+                                        <FormattedMessage
+                                            defaultMessage="No controls available"
+                                            description="Tooltip"
+                                        />
+                                    </span>
+                                </div>
+                            ) : null}
                         </nav>
                         {!withoutMenu ? (
                             <ViewerMenu

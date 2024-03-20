@@ -267,10 +267,6 @@
     "defaultMessage": "Images",
     "description": "visualsWithCaptions field label"
   },
-  "5gQz1q": {
-    "defaultMessage": "Skip to content",
-    "description": "Button label"
-  },
   "5mk1b+": {
     "defaultMessage": "Share",
     "description": "Share screen title"
@@ -1054,6 +1050,10 @@
     "defaultMessage": "Bullet filled",
     "description": "Field label"
   },
+  "YXhRxW": {
+    "defaultMessage": "No controls available",
+    "description": "Tooltip"
+  },
   "YwySSO": {
     "defaultMessage": "Vertical",
     "description": "Field label"
@@ -1105,10 +1105,6 @@
   "aarOkd": {
     "defaultMessage": "Color",
     "description": "Field label"
-  },
-  "ahSpiH": {
-    "defaultMessage": "Play",
-    "description": "Button label"
   },
   "al5xjv": {
     "defaultMessage": "Default fonts",
@@ -1835,10 +1831,6 @@
   "vxEtY1": {
     "defaultMessage": "Background image",
     "description": "Breadcrumb field label"
-  },
-  "vzg8Es": {
-    "defaultMessage": "Mute",
-    "description": "Button label"
   },
   "wChc+A": {
     "defaultMessage": "Edit style...",

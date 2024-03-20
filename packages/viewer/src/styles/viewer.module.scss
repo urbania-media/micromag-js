@@ -99,6 +99,14 @@
         &:focus {
             opacity: 1;
         }
+
+        &.disabled {
+            opacity: 0.75;
+        }
+    }
+
+    .tooltip {
+        font-size: 0.85rem;
     }
 }
 

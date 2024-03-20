@@ -200,9 +200,6 @@
     "59f2bg": {
         "defaultMessage": "Images"
     },
-    "5gQz1q": {
-        "defaultMessage": "Aller au contenu"
-    },
     "5mk1b+": {
         "defaultMessage": "Partager"
     },
@@ -791,6 +788,9 @@
     "YWcp4v": {
         "defaultMessage": "Point rempli"
     },
+    "YXhRxW": {
+        "defaultMessage": "Aucun contrôle disponible"
+    },
     "YwySSO": {
         "defaultMessage": "Vertical"
     },
@@ -829,9 +829,6 @@
     },
     "aarOkd": {
         "defaultMessage": "Couleur"
-    },
-    "ahSpiH": {
-        "defaultMessage": "Lecture"
     },
     "al5xjv": {
         "defaultMessage": "Polices par défaut"
@@ -1378,9 +1375,6 @@
     },
     "vxEtY1": {
         "defaultMessage": "Image d’arrière-plan"
-    },
-    "vzg8Es": {
-        "defaultMessage": "Désactiver le son"
     },
     "wChc+A": {
         "defaultMessage": "Modifier le style"

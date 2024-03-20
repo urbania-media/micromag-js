@@ -200,9 +200,6 @@
     "59f2bg": {
         "defaultMessage": "Images"
     },
-    "5gQz1q": {
-        "defaultMessage": "Skip to content"
-    },
     "5mk1b+": {
         "defaultMessage": "Share"
     },
@@ -791,6 +788,9 @@
     "YWcp4v": {
         "defaultMessage": "Bullet filled"
     },
+    "YXhRxW": {
+        "defaultMessage": "No controls available"
+    },
     "YwySSO": {
         "defaultMessage": "Vertical"
     },
@@ -829,9 +829,6 @@
     },
     "aarOkd": {
         "defaultMessage": "Color"
-    },
-    "ahSpiH": {
-        "defaultMessage": "Play"
     },
     "al5xjv": {
         "defaultMessage": "Default fonts"
@@ -1378,9 +1375,6 @@
     },
     "vxEtY1": {
         "defaultMessage": "Background image"
-    },
-    "vzg8Es": {
-        "defaultMessage": "Mute"
     },
     "wChc+A": {
         "defaultMessage": "Edit style..."
