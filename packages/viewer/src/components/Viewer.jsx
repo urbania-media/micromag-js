@@ -31,7 +31,6 @@ import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
-import checkClickable from '../lib/checkClickable';
 import checkDraggable from '../lib/checkDraggable';
 
 import ViewerMenu from './ViewerMenu';
@@ -739,9 +738,17 @@ const Viewer = ({
                         ref={containerRef}
                         onContextMenu={onContextMenu}
                     >
-                        {/* Announce screen change */}
-                        {/* <div className={styles.ariaAnnouncement} id="announce" aria-live="polite">Screen i of screens.length</div> */}
-
+                        {/* Announce screen change on screen reader */}
+                        <div className={styles.ariaAnnouncement} id="announce" aria-live="polite">
+                            <FormattedMessage
+                                defaultMessage="Screen {current} of {length}"
+                                description="Aria announcement"
+                                values={{
+                                    current: screenIndex + 1,
+                                    length: screens.length,
+                                }}
+                            />
+                        </div>
                         <nav
                             aria-label={intl.formatMessage({
                                 defaultMessage: 'Skip Links',
@@ -750,7 +757,7 @@ const Viewer = ({
                             className={styles.accessibilityLinks}
                         >
                             {/* Browser requires a focusable element (a, button, etc.). Could be implemented in future with a screen wrapper with an aria-label like "main content — screen {index} of {screens.length}" 
-                            OR button jumps to first focusable content of screen if available */}
+                            OR button jumps to first focusable element of screen if available */}
                             {/* <Button
                                 onClick={onClickSkipToContent}
                                 className={styles.accessibilityButton}
