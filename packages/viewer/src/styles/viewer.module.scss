@@ -219,13 +219,14 @@
 
 // Viewer Navigation: Left/Right icons on desktop
 .navButton {
-    display: none;
-    visibility: hidden;
     position: absolute;
     z-index: 3;
     top: 50%;
     transform: translateY(-50%);
+    transition: opacity 0.2s $ease-in-out-sine;
     border: 0;
+    opacity: 0;
+    pointer-events: none;
 
     &.previous {
         left: 1.5em;
@@ -235,9 +236,15 @@
         right: 1.5em;
     }
 
+    &:focus-visible {
+        opacity: 1;
+    }
+
     @media screen and (min-width: 1024px) {
         display: block;
         visibility: visible;
+        opacity: 1;
+        pointer-events: all;
     }
 }
 

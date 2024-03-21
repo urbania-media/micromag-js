@@ -439,6 +439,10 @@
     "defaultMessage": "Parameters",
     "description": "Screen label in the breadcrumb"
   },
+  "AIr8rM": {
+    "defaultMessage": "Screen {current} of {length}",
+    "description": "Aria announcement"
+  },
   "AQ8Aig": {
     "defaultMessage": "Used",
     "description": "Media label"
@@ -1173,6 +1177,10 @@
   "cGItoy": {
     "defaultMessage": "List",
     "description": "List screen group"
+  },
+  "cXt3NU": {
+    "defaultMessage": "Close Popup",
+    "description": "Button label"
   },
   "ceaRdq": {
     "defaultMessage": "Horoscope sign",

@@ -329,6 +329,9 @@
     "AHvHaY": {
         "defaultMessage": "Paramètres"
     },
+    "AIr8rM": {
+        "defaultMessage": "Écran {current} de {length}"
+    },
     "AQ8Aig": {
         "defaultMessage": "Utilisé"
     },
@@ -880,6 +883,9 @@
     },
     "cGItoy": {
         "defaultMessage": "Liste"
+    },
+    "cXt3NU": {
+        "defaultMessage": "Fermer la fenêtre contextuelle"
     },
     "ceaRdq": {
         "defaultMessage": "Signe astrologique"

@@ -671,6 +671,12 @@ msgctxt "AHvHaY"
 msgid "Parameters"
 msgstr "Paramètres"
 
+# Aria announcement
+#: AIr8rM
+msgctxt "AIr8rM"
+msgid "Screen {current} of {length}"
+msgstr "Écran {current} de {length}"
+
 # Media label
 #: AQ8Aig
 msgctxt "AQ8Aig"
@@ -1773,6 +1779,12 @@ msgstr "Arrière-plan"
 msgctxt "cGItoy"
 msgid "List"
 msgstr "Liste"
+
+# Button label
+#: cXt3NU
+msgctxt "cXt3NU"
+msgid "Close Popup"
+msgstr "Fermer la fenêtre contextuelle"
 
 # Sign placeholder
 #: ceaRdq

@@ -615,7 +615,7 @@ const Viewer = ({
             const firstFocusableButton = Array.from(buttons).find((button) => button.tabIndex >= 0);
 
             if (firstFocusableButton) {
-                firstFocusableButton.focus();
+                firstFocusableButton.focus({ preventScroll: true });
             }
         }
     }, []);
@@ -685,7 +685,15 @@ const Viewer = ({
         bottomHeight = playbackControlsContainerHeight / screenScale;
     }
 
-    const { opened: webViewOpened = false } = useViewerWebView();
+    const [webViewOpened, setWebViewOpened] = useState(false);
+    const onWebViewChange = useCallback(
+        (opened) => {
+            setWebViewOpened(opened);
+        },
+        [setWebViewOpened],
+    );
+
+    console.log(webViewOpened);
 
     return (
         <StoryProvider story={parsedStory}>
@@ -756,18 +764,6 @@ const Viewer = ({
                             })}
                             className={styles.accessibilityLinks}
                         >
-                            {/* Browser requires a focusable element (a, button, etc.). Could be implemented in future with a screen wrapper with an aria-label like "main content — screen {index} of {screens.length}" 
-                            OR button jumps to first focusable element of screen if available */}
-                            {/* <Button
-                                onClick={onClickSkipToContent}
-                                className={styles.accessibilityButton}
-                            >
-                                <FormattedMessage
-                                    defaultMessage="Skip to content"
-                                    description="Button label"
-                                />
-                            </Button> */}
-
                             <Button
                                 onClick={onClickSkipToPlaybackControls}
                                 aria-disabled={withoutPlaybackControls || !playbackcontrolsVisible}
@@ -845,6 +841,7 @@ const Viewer = ({
                                         })}
                                     />
                                 ) : null}
+
                                 <div
                                     className={styles.screensFrame}
                                     style={{
@@ -955,14 +952,13 @@ const Viewer = ({
                             group="webview"
                             returnFocus
                         >
-                            <AutoFocusInside>
-                                <WebView
-                                    className={styles.webView}
-                                    style={{
-                                        maxWidth: Math.max(screenContainerWidth, 600),
-                                    }}
-                                />
-                            </AutoFocusInside>
+                            <WebView
+                                className={styles.webView}
+                                onChange={onWebViewChange}
+                                style={{
+                                    maxWidth: Math.max(screenContainerWidth, 600),
+                                }}
+                            />
                         </FocusLock>
                     </div>
                 </ViewerProvider>

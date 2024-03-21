@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { Close } from '@micromag/core/components';
@@ -44,6 +44,7 @@ function WebView({ iframeRef, url, width, height, closeable, focusable, onClose,
             className={classNames([
                 styles.container,
                 {
+                    [styles.hidden]: !focusable,
                     [styles.closeable]: closeable,
                     [className]: className !== null,
                 },
@@ -54,8 +55,8 @@ function WebView({ iframeRef, url, width, height, closeable, focusable, onClose,
                 <div className={styles.top}>
                     <Button
                         className={styles.close}
-                        ariaLabel={intl.formatMessage({
-                            defaultMessage: 'Close',
+                        aria-label={intl.formatMessage({
+                            defaultMessage: 'Close Popup',
                             description: 'Button label',
                         })}
                         onClick={onClose}
@@ -67,7 +68,7 @@ function WebView({ iframeRef, url, width, height, closeable, focusable, onClose,
             <iframe
                 className={styles.iframe}
                 tabIndex={!focusable ? -1 : null}
-                aria-hidden={!focusable ? true : null}
+                aria-hidden={!focusable ? 'true' : null}
                 ref={iframeRef}
                 title="Popup"
                 src={url || 'about:blank'}

@@ -9,7 +9,6 @@ import {
     webfont3Files,
     webfontFiles,
 } from '../../../../.storybook/data';
-
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import article from '../../../../.storybook/data/stories/article-generic';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
@@ -24,6 +23,7 @@ import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
+import FieldsProvider from '../../../fields/src/FieldsProvider';
 import Viewer from '../components/ViewerContainer';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
@@ -34,8 +34,6 @@ import micromagExample2 from '../../../../.storybook/data/stories/micromagExampl
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
 import testTheme from '../../../../.storybook/data/themes/new-theme.json';
 import micromagAudio from '../../../../.storybook/examples/micromag-audio.json';
-
-import FieldsProvider from '../../../fields/src/FieldsProvider';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -126,7 +124,7 @@ export const Urbania = () => (
             </div>
         }
         memoryRouter
-        onMenuChange={(state) => console.log(state)}
+        // onMenuChange={(state) => console.log(state)}
     />
 );
 

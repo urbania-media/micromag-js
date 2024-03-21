@@ -671,6 +671,12 @@ msgctxt "AHvHaY"
 msgid "Parameters"
 msgstr "Parameters"
 
+# Aria announcement
+#: AIr8rM
+msgctxt "AIr8rM"
+msgid "Screen {current} of {length}"
+msgstr "Screen {current} of {length}"
+
 # Media label
 #: AQ8Aig
 msgctxt "AQ8Aig"
@@ -1773,6 +1779,12 @@ msgstr "Background"
 msgctxt "cGItoy"
 msgid "List"
 msgstr "List"
+
+# Button label
+#: cXt3NU
+msgctxt "cXt3NU"
+msgid "Close Popup"
+msgstr "Close Popup"
 
 # Sign placeholder
 #: ceaRdq

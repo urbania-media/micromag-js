@@ -329,6 +329,9 @@
     "AHvHaY": {
         "defaultMessage": "Parameters"
     },
+    "AIr8rM": {
+        "defaultMessage": "Screen {current} of {length}"
+    },
     "AQ8Aig": {
         "defaultMessage": "Used"
     },
@@ -880,6 +883,9 @@
     },
     "cGItoy": {
         "defaultMessage": "List"
+    },
+    "cXt3NU": {
+        "defaultMessage": "Close Popup"
     },
     "ceaRdq": {
         "defaultMessage": "Horoscope sign"

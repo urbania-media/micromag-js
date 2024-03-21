@@ -17,16 +17,18 @@ import useKeyboardShortcuts from '../../hooks/useKeyboardShortcuts';
 import styles from '../../styles/partials/web-view.module.scss';
 
 const propTypes = {
+    onChange: PropTypes.func,
     className: PropTypes.string,
     style: PropTypes.object,
 };
 
 const defaultProps = {
+    onChange: null,
     className: null,
     style: null,
 };
 
-function WebViewContainer({ className, style }) {
+function WebViewContainer({ onChange, className, style }) {
     const { opened, close, open, update, url = null, ...webViewProps } = useViewerWebView();
     const { disableInteraction, enableInteraction } = useViewerInteraction();
     const { playing, setPlaying } = usePlaybackContext();
@@ -36,15 +38,19 @@ function WebViewContainer({ className, style }) {
 
     const ref = useRef(null);
 
+    console.log('webview', opened);
+
     // Handle current webview url
     useEffect(() => {
         if (url !== null) {
             setCurrentUrl(url);
         }
     }, [url, setCurrentUrl]);
+
     const onTransitionEnd = useCallback(() => {
         if (url === null) {
             setCurrentUrl(null);
+            onChange(opened);
         }
     }, [url]);
 
