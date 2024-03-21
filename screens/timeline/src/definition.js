@@ -76,6 +76,15 @@ export default [
                 }),
             },
             {
+                name: 'withoutLine',
+                type: 'toggle',
+                defaultValue: false,
+                label: defineMessage({
+                    defaultMessage: 'Without line',
+                    description: 'Field label',
+                }),
+            },
+            {
                 name: 'bulletFilled',
                 type: 'toggle',
                 defaultValue: false,
@@ -195,6 +204,15 @@ export default [
                 },
                 label: defineMessage({
                     defaultMessage: 'Entries',
+                    description: 'Field label',
+                }),
+            },
+            {
+                name: 'withoutLine',
+                type: 'toggle',
+                defaultValue: false,
+                label: defineMessage({
+                    defaultMessage: 'Without line',
                     description: 'Field label',
                 }),
             },

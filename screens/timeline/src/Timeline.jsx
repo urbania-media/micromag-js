@@ -43,6 +43,7 @@ const propTypes = {
     ]),
     title: MicromagPropTypes.headingElement,
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
+    withoutLine: PropTypes.bool,
     bulletColor: MicromagPropTypes.color,
     lineColor: MicromagPropTypes.color,
     bulletShape: PropTypes.oneOf(['circle', 'square']),
@@ -62,6 +63,7 @@ const defaultProps = {
     layout: 'normal',
     title: null,
     items: [null],
+    withoutLine: false,
     bulletColor: null,
     lineColor: null,
     bulletShape: 'circle',
@@ -81,6 +83,7 @@ const Timeline = ({
     layout,
     title,
     items,
+    withoutLine,
     bulletColor,
     lineColor,
     bulletShape,
@@ -143,7 +146,11 @@ const Timeline = ({
     const [imageWidth, setImageWidth] = useState(0);
 
     useEffect(() => {
-        setImageWidth(firstContentRef.current.offsetWidth - firstLineRef.current.offsetWidth);
+        if (firstLineRef.current !== null) {
+            setImageWidth(firstContentRef.current.offsetWidth - firstLineRef.current.offsetWidth);
+        } else {
+            setImageWidth(firstContentRef.current.offsetWidth);
+        }
     }, [width, height]);
 
     const timelineElements = (finalItems || []).map((item, itemI) => {
@@ -275,48 +282,53 @@ const Timeline = ({
                             ])}
                             ref={itemI === 0 ? firstContentRef : null}
                         >
-                            <div
-                                className={styles.timeline}
-                                ref={itemI === 0 ? firstLineRef : null}
-                            >
+                            {!withoutLine ? (
                                 <div
-                                    className={classNames([
-                                        styles.line,
-                                        {
-                                            [styles.hidden]: topLineHidden,
-                                        },
-                                    ])}
-                                    style={{
-                                        ...(!topLineHidden
-                                            ? getStyleFromColor(lineColor, 'backgroundColor')
-                                            : null),
-                                    }}
-                                />
-                                {elementType === 'title' ? (
+                                    className={styles.timeline}
+                                    ref={itemI === 0 ? firstLineRef : null}
+                                >
                                     <div
-                                        className={styles.bullet}
+                                        className={classNames([
+                                            styles.line,
+                                            {
+                                                [styles.hidden]: topLineHidden,
+                                            },
+                                        ])}
                                         style={{
-                                            ...getStyleFromColor(bulletColor, 'borderColor'),
-                                            ...(bulletFilled
-                                                ? getStyleFromColor(bulletColor, 'backgroundColor')
+                                            ...(!topLineHidden
+                                                ? getStyleFromColor(lineColor, 'backgroundColor')
                                                 : null),
                                         }}
                                     />
-                                ) : null}
-                                <div
-                                    className={classNames([
-                                        styles.line,
-                                        {
-                                            [styles.hidden]: bottomLineHidden,
-                                        },
-                                    ])}
-                                    style={{
-                                        ...(!bottomLineHidden
-                                            ? getStyleFromColor(lineColor, 'backgroundColor')
-                                            : null),
-                                    }}
-                                />
-                            </div>
+                                    {elementType === 'title' ? (
+                                        <div
+                                            className={styles.bullet}
+                                            style={{
+                                                ...getStyleFromColor(bulletColor, 'borderColor'),
+                                                ...(bulletFilled
+                                                    ? getStyleFromColor(
+                                                          bulletColor,
+                                                          'backgroundColor',
+                                                      )
+                                                    : null),
+                                            }}
+                                        />
+                                    ) : null}
+                                    <div
+                                        className={classNames([
+                                            styles.line,
+                                            {
+                                                [styles.hidden]: bottomLineHidden,
+                                            },
+                                        ])}
+                                        style={{
+                                            ...(!bottomLineHidden
+                                                ? getStyleFromColor(lineColor, 'backgroundColor')
+                                                : null),
+                                        }}
+                                    />
+                                </div>
+                            ) : null}
                             <div
                                 className={classNames([
                                     styles.body,

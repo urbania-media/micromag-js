@@ -771,6 +771,10 @@
     "defaultMessage": "Title",
     "description": "Title field label"
   },
+  "N4lZhy": {
+    "defaultMessage": "Without line",
+    "description": "Field label"
+  },
   "N7Kj8z": {
     "defaultMessage": "Button",
     "description": "Placeholder label"

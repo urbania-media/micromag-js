@@ -64,6 +64,10 @@ export const Normal = (storyProps) => (
     <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
 );
 
+export const WithoutLine = (storyProps) => (
+    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} withoutLine />
+);
+
 export const WithHeaderFooter = (storyProps) => (
     <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} {...headerFooter()} />
 );
