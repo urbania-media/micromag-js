@@ -239,6 +239,12 @@ msgctxt "2pO2Cj"
 msgid "Url"
 msgstr "Url"
 
+# Button label
+#: 2prwZ7
+msgctxt "2prwZ7"
+msgid "Progress slider"
+msgstr "Progress slider"
+
 # Field label
 #: 2uFkwE
 msgctxt "2uFkwE"
@@ -724,6 +730,12 @@ msgstr "Success"
 msgctxt "BwYZbB"
 msgid "With controls button"
 msgstr "With controls button"
+
+# Seek bar value
+#: C1VUEY
+msgctxt "C1VUEY"
+msgid "{current} of {duration}"
+msgstr "{current} of {duration}"
 
 # ImageText screen title
 #: CJmQeh

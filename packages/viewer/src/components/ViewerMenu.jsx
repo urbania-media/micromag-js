@@ -254,8 +254,11 @@ const ViewerMenu = ({
         progress: shareOpened ? 1 : 0,
         computeProgress: shareOpened ? computeShareProgressClose : computeShareProgress,
         springParams,
-        drapOptions: {
+        dragOptions: {
             axis: 'y',
+            pointer: {
+                keys: false,
+            },
         },
     });
 
@@ -294,6 +297,9 @@ const ViewerMenu = ({
         springParams,
         drapOptions: {
             axis: 'y',
+            pointer: {
+                keys: false,
+            },
         },
     });
 

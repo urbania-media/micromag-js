@@ -113,6 +113,9 @@
     "2pO2Cj": {
         "defaultMessage": "Url"
     },
+    "2prwZ7": {
+        "defaultMessage": "Curseur de progression"
+    },
     "2uFkwE": {
         "defaultMessage": "Durées personnalisées"
     },
@@ -355,6 +358,9 @@
     },
     "BwYZbB": {
         "defaultMessage": "Avec les contrôles"
+    },
+    "C1VUEY": {
+        "defaultMessage": "{current} de {duration}"
     },
     "CJmQeh": {
         "defaultMessage": "Image avec texte"

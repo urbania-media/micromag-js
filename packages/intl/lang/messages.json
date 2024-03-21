@@ -151,6 +151,10 @@
     "defaultMessage": "Url",
     "description": "Url field label"
   },
+  "2prwZ7": {
+    "defaultMessage": "Progress slider",
+    "description": "Button label"
+  },
   "2uFkwE": {
     "defaultMessage": "Override default timing",
     "description": "Field label"
@@ -474,6 +478,10 @@
   "BwYZbB": {
     "defaultMessage": "With controls button",
     "description": "Field label"
+  },
+  "C1VUEY": {
+    "defaultMessage": "{current} of {duration}",
+    "description": "Seek bar value"
   },
   "CJmQeh": {
     "defaultMessage": "Image with text",

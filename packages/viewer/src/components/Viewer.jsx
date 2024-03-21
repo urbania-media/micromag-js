@@ -31,6 +31,8 @@ import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
+import checkClickable from '../lib/checkClickable';
+import checkDraggable from '../lib/checkDraggable';
 
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
@@ -488,9 +490,12 @@ const Viewer = ({
         onProgress: onScreenProgress,
         onTap,
         springParams,
-        drapOptions: {
+        dragOptions: {
             filterTaps: true,
             axis: 'x',
+            pointer: {
+                keys: false,
+            },
         },
     });
 
@@ -578,9 +583,17 @@ const Viewer = ({
     const keyboardShortcuts = useMemo(
         () => ({
             f: () => toggleFullscreen(),
-            // arrowleft: () => gotoPreviousScreen(),
-            // arrowright: () => gotoNextScreen(),
-            ' ': () => gotoNextScreen(),
+            arrowleft: () => {
+                if (!checkDraggable(document.activeElement)) {
+                    gotoPreviousScreen();
+                }
+            },
+            arrowright: () => {
+                if (!checkDraggable(document.activeElement)) {
+                    gotoNextScreen();
+                }
+            },
+            // ' ': () => gotoNextScreen(),
         }),
         [gotoPreviousScreen, gotoNextScreen],
     );
@@ -726,6 +739,9 @@ const Viewer = ({
                         ref={containerRef}
                         onContextMenu={onContextMenu}
                     >
+                        {/* Announce screen change */}
+                        {/* <div className={styles.ariaAnnouncement} id="announce" aria-live="polite">Screen i of screens.length</div> */}
+
                         <nav
                             aria-label={intl.formatMessage({
                                 defaultMessage: 'Skip Links',

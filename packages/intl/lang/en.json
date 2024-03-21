@@ -113,6 +113,9 @@
     "2pO2Cj": {
         "defaultMessage": "Url"
     },
+    "2prwZ7": {
+        "defaultMessage": "Progress slider"
+    },
     "2uFkwE": {
         "defaultMessage": "Override default timing"
     },
@@ -355,6 +358,9 @@
     },
     "BwYZbB": {
         "defaultMessage": "With controls button"
+    },
+    "C1VUEY": {
+        "defaultMessage": "{current} of {duration}"
     },
     "CJmQeh": {
         "defaultMessage": "Image with text"

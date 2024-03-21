@@ -7,8 +7,6 @@ import { useIntl } from 'react-intl';
 import { Close } from '@micromag/core/components';
 import Button from '@micromag/element-button';
 
-import useKeyboardShortcuts from '../../../packages/viewer/src/hooks/useKeyboardShortcuts';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -41,13 +39,6 @@ const defaultProps = {
 function WebView({ iframeRef, url, width, height, closeable, focusable, onClose, className }) {
     const intl = useIntl();
 
-    const keyboardShortcuts = useMemo(
-        () => ({
-            escape: () => onClose(),
-        }),
-        [onClose],
-    );
-    useKeyboardShortcuts(keyboardShortcuts);
     return (
         <div
             className={classNames([
