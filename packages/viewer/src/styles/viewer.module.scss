@@ -178,13 +178,10 @@
     padding: 8px 10px;
     font-size: 12px;
 
-    // @media (min-width: 320px) {
-    //     font-size: 1rem;
-    // }
-
-    // .menuButtonIcon {
-    //     width: 30px;
-    // }
+    &:focus-visible {
+        outline: 2px solid var(--micromag-focus-color, #fff) !important;
+        outline-offset: -2px !important;
+    }
 }
 
 .slidingButton {

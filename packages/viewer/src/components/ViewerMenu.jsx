@@ -460,7 +460,7 @@ const ViewerMenu = ({
                 theme={viewerTheme}
             >
                 {menuMounted ? (
-                    <FocusLock group="screens" disabled={!menuOpened}>
+                    <FocusLock group="screens" disabled={!menuOpened} returnFocus>
                         <MenuPreview
                             viewerTheme={viewerTheme}
                             header={previewHeader}
