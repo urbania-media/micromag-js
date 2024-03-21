@@ -197,6 +197,12 @@ msgctxt "17BMn2"
 msgid "Ranking"
 msgstr "Classement"
 
+# Popup label
+#: 17zT4Q
+msgctxt "17zT4Q"
+msgid "Popup"
+msgstr "Fenêtre contextuelle"
+
 # Item label in items field
 #: 2/F1Q7
 msgctxt "2/F1Q7"

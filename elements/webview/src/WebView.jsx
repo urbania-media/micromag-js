@@ -10,12 +10,6 @@ import Button from '@micromag/element-button';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    iframeRef: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.shape({
-            current: PropTypes.any, // eslint-disable-line
-        }),
-    ]),
     url: PropTypes.string,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -26,7 +20,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-    iframeRef: null,
     url: null,
     width: null,
     height: null,
@@ -36,7 +29,7 @@ const defaultProps = {
     className: null,
 };
 
-function WebView({ iframeRef, url, width, height, closeable, focusable, onClose, className }) {
+function WebView({ url, width, height, closeable, focusable, onClose, className }) {
     const intl = useIntl();
 
     return (
@@ -67,10 +60,11 @@ function WebView({ iframeRef, url, width, height, closeable, focusable, onClose,
             ) : null}
             <iframe
                 className={styles.iframe}
-                tabIndex={!focusable ? -1 : null}
                 aria-hidden={!focusable ? 'true' : null}
-                ref={iframeRef}
-                title="Popup"
+                title={intl.formatMessage({
+                    defaultMessage: 'Popup',
+                    description: 'Popup label',
+                })}
                 src={url || 'about:blank'}
             />
         </div>

@@ -123,6 +123,10 @@
     "defaultMessage": "Ranking",
     "description": "Ranking screen title"
   },
+  "17zT4Q": {
+    "defaultMessage": "Popup",
+    "description": "Popup label"
+  },
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
