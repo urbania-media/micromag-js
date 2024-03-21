@@ -282,12 +282,6 @@
     right: 5%;
 }
 
-.focusLock {
-    &:focus-within {
-        border: 5px solid red; // not working!
-    }
-}
-
 // Embedded webpage in iframe (article screen)
 .webView {
     z-index: 10;
