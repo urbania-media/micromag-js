@@ -113,7 +113,8 @@
     background-color: #fffc00;
     box-shadow: 0 0 0 6px rgba(255, 250, 0, 0.6);
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
         box-shadow: 0 0 0 12px rgba(255, 250, 0, 0.6);
     }
 
@@ -157,6 +158,10 @@
     align-items: center;
     margin-left: auto;
     font-weight: bold;
+
+    &:focus-visible {
+        box-shadow: 0 0 2px 0 #fff;
+    }
 }
 
 .signsGridContainer {

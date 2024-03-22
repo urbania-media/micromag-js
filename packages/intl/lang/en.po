@@ -1007,6 +1007,12 @@ msgctxt "IE7U/Q"
 msgid "Heading"
 msgstr "Heading"
 
+# Button label
+#: IoMJgw
+msgctxt "IoMJgw"
+msgid "Toggle article"
+msgstr "Toggle article"
+
 # Type field label
 #: J9e9Qb
 msgctxt "J9e9Qb"

@@ -3,7 +3,7 @@ import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import FocusLock, { AutoFocusInside } from 'react-focus-lock';
+import FocusLock from 'react-focus-lock';
 import { Helmet } from 'react-helmet';
 import { useIntl, FormattedMessage } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
@@ -15,7 +15,6 @@ import {
     StoryProvider,
     ViewerProvider,
     usePlaybackContext,
-    useViewerWebView,
 } from '@micromag/core/contexts';
 import {
     useDimensionObserver,

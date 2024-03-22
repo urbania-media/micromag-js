@@ -285,7 +285,7 @@ msgstr "Whatsapp"
 #: 3E57H7
 msgctxt "3E57H7"
 msgid "No marker..."
-msgstr "Aucun marqueur"
+msgstr "Aucun marqueur\\"
 
 # Field label
 #: 3LEBIA
@@ -1006,6 +1006,12 @@ msgstr "Liens"
 msgctxt "IE7U/Q"
 msgid "Heading"
 msgstr "Titre"
+
+# Button label
+#: IoMJgw
+msgctxt "IoMJgw"
+msgid "Toggle article"
+msgstr "Ouvrir l'article"
 
 # Type field label
 #: J9e9Qb

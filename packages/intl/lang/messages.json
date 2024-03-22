@@ -663,6 +663,10 @@
     "defaultMessage": "Heading",
     "description": "Placeholder label"
   },
+  "IoMJgw": {
+    "defaultMessage": "Toggle article",
+    "description": "Button label"
+  },
   "J9e9Qb": {
     "defaultMessage": "Video",
     "description": "Type field label"

@@ -135,7 +135,7 @@
         "defaultMessage": "Whatsapp"
     },
     "3E57H7": {
-        "defaultMessage": "Aucun marqueur"
+        "defaultMessage": "Aucun marqueur\\"
     },
     "3LEBIA": {
         "defaultMessage": "Angle"
@@ -496,6 +496,9 @@
     },
     "IE7U/Q": {
         "defaultMessage": "Titre"
+    },
+    "IoMJgw": {
+        "defaultMessage": "Ouvrir l'article"
     },
     "J9e9Qb": {
         "defaultMessage": "Vidéo"

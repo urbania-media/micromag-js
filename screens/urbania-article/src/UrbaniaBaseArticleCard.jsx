@@ -4,7 +4,7 @@ import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Close, Empty, PlaceholderText, ScreenElement, Spinner } from '@micromag/core/components';
@@ -79,6 +79,8 @@ const UrbaniaArticleCard = ({
     spacing,
     className,
 }) => {
+    const intl = useIntl();
+
     const finalBackground = background !== null ? background : { image };
 
     const { video: backgroundVideo = null } = finalBackground || {};
@@ -88,7 +90,7 @@ const UrbaniaArticleCard = ({
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-        const { open: openWebView } = useViewerWebView();
+    const { open: openWebView } = useViewerWebView();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { enableInteraction, disableInteraction } = useViewerInteraction();
@@ -98,7 +100,6 @@ const UrbaniaArticleCard = ({
 
     const { name: authorName = null } = author || {};
 
-
     const hasUrl = url !== null && url.length > 0;
     const hasHeader = isHeaderFilled(header);
     const hasText = isTextFilled(text);
@@ -106,7 +107,12 @@ const UrbaniaArticleCard = ({
     const hasAuthorName = isTextFilled(authorName);
     const hasCta = isTextFilled(callToAction);
 
-    const finalUrl = hasUrl ? url.replace(/^https?:\/\/([^.]+\.)?urbania\.ca\/article\//, 'https://simple.urbania.ca/article/') : url;
+    const finalUrl = hasUrl
+        ? url.replace(
+              /^https?:\/\/([^.]+\.)?urbania\.ca\/article\//,
+              'https://simple.urbania.ca/article/',
+          )
+        : url;
 
     const [articleOpened, setArticleOpened] = useState(false);
     const [iframeEnabled, setIframeEnabled] = useState(false);
@@ -115,8 +121,6 @@ const UrbaniaArticleCard = ({
 
     const mediaShouldLoad = current || active;
     const backgroundPlaying = current && (isView || isEdit) && !articleOpened && playing;
-
-    const withIframe = hasUrl && !isPlaceholder && !isPreview && !isStatic;
 
     const mediaRef = usePlaybackMediaRef(current && !articleOpened);
 
@@ -174,11 +178,15 @@ const UrbaniaArticleCard = ({
         // }
 
         // setIframeMounted(true);
-    }, [articleOpened, setIframeMounted, setArticleOpened, disableInteraction, enableInteraction, openWebView, finalUrl]);
-
-    const onIframeLoad = useCallback(() => {
-        setIframeLoaded(true);
-    }, [setIframeLoaded]);
+    }, [
+        articleOpened,
+        setIframeMounted,
+        setArticleOpened,
+        disableInteraction,
+        enableInteraction,
+        openWebView,
+        finalUrl,
+    ]);
 
     useEffect(() => {
         if (!iframeMounted || iframeLoaded) {
@@ -352,6 +360,12 @@ const UrbaniaArticleCard = ({
                                     type="button"
                                     onClick={toggleCard}
                                     className={styles.dragHandle}
+                                    tabIndex={articleOpened ? -1 : 0}
+                                    aria-label={intl.formatMessage({
+                                        defaultMessage: 'Toggle article',
+                                        description: 'Button label',
+                                    })}
+                                    aria-pressed={articleOpened}
                                     {...(current ? bindGesture() : null)}
                                 />
                                 <div

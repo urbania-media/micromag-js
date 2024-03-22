@@ -42,7 +42,7 @@
     }
 
     &:focus-visible {
-        box-shadow: 0 0 2px 2px $white;
+        box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
     }
 }
 
