@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
@@ -105,6 +105,8 @@ const UrbaniaRecommendation = ({
     active,
     className,
 }) => {
+    const intl = useIntl();
+
     const trackScreenEvent = useTrackScreenEvent();
 
     const { width, height, resolution } = useScreenSize();
@@ -464,6 +466,11 @@ const UrbaniaRecommendation = ({
                                                         backgroundAnimationStarted ||
                                                         visualModalOpened
                                                     }
+                                                    aria-label={intl.formatMessage({
+                                                        defaultMessage: 'Expand visual',
+                                                        description: 'Button label',
+                                                    })}
+                                                    aria-pressed={visualModalOpened}
                                                     style={{
                                                         transform: visualModalTransitioning
                                                             ? `scale(${width / textContainerWidth})`
