@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-video-360",
-    "version": "0.3.491",
+    "version": "0.3.495",
     "private": false,
     "description": "",
     "keywords": [
@@ -67,7 +67,7 @@
         "@micromag/element-closed-captions": "^0.3.491",
         "@micromag/element-container": "^0.3.491",
         "@micromag/element-footer": "^0.3.491",
-        "@micromag/element-header": "^0.3.491",
+        "@micromag/element-header": "^0.3.495",
         "@micromag/element-image": "^0.3.491",
         "@micromag/element-video": "^0.3.491",
         "@micromag/transforms": "^0.3.491",
