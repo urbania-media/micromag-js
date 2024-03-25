@@ -31,7 +31,7 @@ const defaultProps = {
 function WebViewContainer({ onChange, className, style }) {
     const { opened, close, open, update, url = null, ...webViewProps } = useViewerWebView();
     const { disableInteraction, enableInteraction } = useViewerInteraction();
-    const { playing, setPlaying } = usePlaybackContext();
+    const { playing, setPlaying, hideControls, showControls } = usePlaybackContext();
 
     const wasPlayingRef = useRef(playing);
     const [currentUrl, setCurrentUrl] = useState(url);
@@ -56,12 +56,14 @@ function WebViewContainer({ onChange, className, style }) {
     useEffect(() => {
         if (opened) {
             disableInteraction();
+            hideControls();
             wasPlayingRef.current = playing;
             if (playing) {
                 setPlaying(false);
             }
         } else {
             enableInteraction();
+            showControls();
 
             if (wasPlayingRef.current && !playing) {
                 wasPlayingRef.current = false;

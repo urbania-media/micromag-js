@@ -156,7 +156,6 @@ const KeypadScreen = ({
     active,
     className,
 }) => {
-    console.log(current);
     const containerRef = useRef(null);
     const popupInnerRef = useRef(null);
 

@@ -52,6 +52,7 @@ function WebView({ url, width, height, closeable, focusable, onClose, className 
                             defaultMessage: 'Close Popup',
                             description: 'Button label',
                         })}
+                        focusable={focusable}
                         onClick={onClose}
                     >
                         <Close className={styles.closeIcon} />

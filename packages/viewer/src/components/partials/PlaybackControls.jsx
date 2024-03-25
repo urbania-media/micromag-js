@@ -192,7 +192,8 @@ function PlaybackControls({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.withPlayPause]: controls && (!seekBarOnly || !playing),
+                    [styles.withPlayPause]:
+                        controlsVisible && controls && (!seekBarOnly || !playing),
                     [styles.withSuggestPlay]: controlsSuggestPlay,
                     [styles.withMute]: hasMedia || controls,
                     [styles.withSeekBar]: controls,
@@ -225,7 +226,7 @@ function PlaybackControls({
                 className={classNames([
                     styles.playPauseButton,
                     {
-                        [styles.hidden]: controlsSuggestPlay && !controls,
+                        [styles.hidden]: !controlsVisible || (controlsSuggestPlay && !controls),
                         [styles.loading]: finalShowLoading,
                     },
                 ])}
@@ -233,7 +234,7 @@ function PlaybackControls({
                     color,
                 }}
                 onClick={playing ? onPause : onPlay}
-                focusable={controls && (!seekBarOnly || !playing)}
+                focusable={controls && controlsVisible && (!seekBarOnly || !playing)}
                 disabled={finalShowLoading}
                 icon={
                     finalShowLoading ? (
