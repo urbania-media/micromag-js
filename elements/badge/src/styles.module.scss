@@ -10,8 +10,10 @@
     color: $gray-500;
     line-height: 1;
 
-    // Sometimes CKEditor adds a block element nested inside the badge
-    * {
-        display: inline;
+    .label {
+        // Sometimes CKEditor adds a block element nested inside the badge
+        * {
+            display: inline;
+        }
     }
 }

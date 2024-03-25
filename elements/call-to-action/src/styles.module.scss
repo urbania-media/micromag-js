@@ -4,7 +4,7 @@
 @import '~@micromag/core/scss/mixins';
 
 @keyframes appear {
-    from  {
+    from {
         transform: scale(0);
         opacity: 1;
     }
@@ -43,10 +43,15 @@
         display: block;
         margin: 0 auto;
         padding: 5px 10px;
-        background-color: rgba(0,0,0,0);
+        background-color: rgba(0, 0, 0, 0);
         user-select: none;
         touch-action: none;
         -webkit-user-drag: none;
+
+        // Sometimes CKEditor adds a block element nested inside the badge
+        * {
+            display: inline;
+        }
 
         &:hover {
             text-decoration: none;
@@ -66,7 +71,7 @@
         transform: scale(0);
         animation: appear 0.5s ease both;
         opacity: 0;
-        background-color: #FFF;
+        background-color: #fff;
     }
 
     &.animationDisabled {
