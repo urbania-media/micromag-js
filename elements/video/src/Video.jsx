@@ -68,7 +68,7 @@ const defaultProps = {
     loop: false,
     playsInline: true,
     preload: 'auto',
-    disablePictureInPicture: false,
+    disablePictureInPicture: true,
     shouldLoad: true,
     withoutCors: false,
     className: null,
@@ -300,6 +300,7 @@ const Video = ({
                 <img
                     src={mediaUrl}
                     alt={description}
+                    tabIndex="-1"
                     className={classNames([
                         styles.media,
                         { [innerClassName]: innerClassName !== null },
@@ -349,6 +350,7 @@ const Video = ({
                     onSuspend={onSuspend}
                     data-has-audio={hasAudio}
                     data-is-suspended={isSuspended}
+                    aria-hidden
                 >
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
                         <source

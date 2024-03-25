@@ -360,7 +360,7 @@ const UrbaniaArticleCard = ({
                                     type="button"
                                     onClick={toggleCard}
                                     className={styles.dragHandle}
-                                    tabIndex={articleOpened ? -1 : 0}
+                                    tabIndex={!current || articleOpened ? -1 : 0}
                                     aria-label={intl.formatMessage({
                                         defaultMessage: 'Toggle article',
                                         description: 'Button label',
@@ -384,7 +384,7 @@ const UrbaniaArticleCard = ({
                                     ) : null}
                                     <Button
                                         className={styles.close}
-                                        disabled={!articleOpened}
+                                        disabled={!current || !articleOpened}
                                         onClick={toggleCard}
                                     >
                                         <Close color="#000" className={styles.closeIcon} />

@@ -32,6 +32,7 @@ import planetsStory from '../../../../.storybook/data/stories/les-planetes.json'
 import lol from '../../../../.storybook/data/stories/lol.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
+import micromagExampleEarly2024 from '../../../../.storybook/data/stories/micromagExampleEarly2024.json';
 import testTheme from '../../../../.storybook/data/themes/new-theme.json';
 import micromagAudio from '../../../../.storybook/examples/micromag-audio.json';
 
@@ -180,6 +181,7 @@ export const Custom = () => (
 
 export const MicromagExample = () => <Viewer {...micromagExample} memoryRouter />;
 export const MicromagExample2 = () => <Viewer {...micromagExample2} memoryRouter />;
+export const MicromagExampleEarly2024 = () => <Viewer {...micromagExampleEarly2024} memoryRouter />;
 export const LesPlanetes = () => <Viewer {...planetsStory} memoryRouter />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint memoryRouter />;
 

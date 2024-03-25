@@ -156,6 +156,7 @@ const KeypadScreen = ({
     active,
     className,
 }) => {
+    console.log(current);
     const containerRef = useRef(null);
     const popupInnerRef = useRef(null);
 
@@ -390,7 +391,6 @@ const KeypadScreen = ({
                     (heading === null || headingBody === null || headingBody === '') &&
                     (content === null || contentBody === null || contentBody === '') &&
                     popupLargeVisual === null;
-
                 return (
                     <div key={key} className={styles.item}>
                         <Button
@@ -414,6 +414,7 @@ const KeypadScreen = ({
                             }}
                             external={isExternalLink}
                             href={isExternalLink ? url : null}
+                            focusable={current}
                             onClick={
                                 !isPopupEmpty || (url !== null && !isExternalLink)
                                     ? (e) => onItemClick(e, item)

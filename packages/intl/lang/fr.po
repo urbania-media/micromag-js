@@ -1558,6 +1558,12 @@ msgctxt "X97njD"
 msgid "Entry"
 msgstr "Entrée"
 
+# Button label
+#: XHO5Ua
+msgctxt "XHO5Ua"
+msgid "Expand visual"
+msgstr "Ouvrir visuel"
+
 # Breadcrumb field label
 #: XJ2Xc+
 msgctxt "XJ2Xc+"

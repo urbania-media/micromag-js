@@ -107,7 +107,8 @@
     transition: transform 0.3s $ease-in-kickback;
     font-weight: inherit;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
         transform: scale(1.05);
     }
 

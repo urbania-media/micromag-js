@@ -115,7 +115,7 @@
 
     &:hover,
     &:focus-visible {
-        box-shadow: 0 0 0 12px rgba(255, 250, 0, 0.6);
+        box-shadow: 0 0 0 12px rgba(255, 250, 0, 0.6) !important;
     }
 
     &:active {

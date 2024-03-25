@@ -83,6 +83,8 @@ function PlaybackControls({
         muted: wantedMuted,
     });
 
+    // console.log(controlsVisible);
+
     useEffect(() => {
         let id = null;
         setShowLoading(false);

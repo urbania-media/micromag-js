@@ -393,7 +393,7 @@ const UrbaniaHoroscope = ({
                                 type="button"
                                 onClick={onOpenSignsGrid}
                                 withoutBootstrapStyles
-                                focusable={!isPreview && !isPlaceholder}
+                                focusable={current && !isPreview && !isPlaceholder}
                                 {...button}
                             >
                                 <Text className={styles.buttonLabel} {...button} inline />

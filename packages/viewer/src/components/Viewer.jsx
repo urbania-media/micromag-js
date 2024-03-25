@@ -262,6 +262,7 @@ const Viewer = ({
 
     const {
         playing,
+        setControls,
         controls: playbackControls = false,
         controlsVisible: playbackcontrolsVisible = false,
         media: playbackMedia = null,
@@ -683,17 +684,6 @@ const Viewer = ({
     ) {
         bottomHeight = playbackControlsContainerHeight / screenScale;
     }
-
-    const [webViewOpened, setWebViewOpened] = useState(false);
-    const onWebViewChange = useCallback(
-        (opened) => {
-            setWebViewOpened(opened);
-        },
-        [setWebViewOpened],
-    );
-
-    console.log(webViewOpened);
-
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
@@ -867,6 +857,8 @@ const Viewer = ({
                                                 id={current ? 'content' : null}
                                                 aria-hidden={!current}
                                                 style={screenStyles}
+                                                tabIndex={current ? 0 : -1}
+                                                inert={!current}
                                                 className={classNames([
                                                     styles.screenContainer,
                                                     {
@@ -945,20 +937,20 @@ const Viewer = ({
                                 {...currentShareIncentive}
                             />
                         </div>
-                        <FocusLock
+                        {/* @TODO: FocusLock breaks transition animation */}
+                        {/* <FocusLock
                             disabled={!webViewOpened}
                             className={styles.focusLock}
                             group="webview"
                             returnFocus
-                        >
-                            <WebView
-                                className={styles.webView}
-                                onChange={onWebViewChange}
-                                style={{
-                                    maxWidth: Math.max(screenContainerWidth, 600),
-                                }}
-                            />
-                        </FocusLock>
+                        > */}
+                        <WebView
+                            className={styles.webView}
+                            style={{
+                                maxWidth: Math.max(screenContainerWidth, 600),
+                            }}
+                        />
+                        {/* </FocusLock> */}
                     </div>
                 </ViewerProvider>
             </ScreenSizeProvider>

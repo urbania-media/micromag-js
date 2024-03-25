@@ -38,8 +38,6 @@ function WebViewContainer({ onChange, className, style }) {
 
     const ref = useRef(null);
 
-    console.log('webview', opened);
-
     // Handle current webview url
     useEffect(() => {
         if (url !== null) {

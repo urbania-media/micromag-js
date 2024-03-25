@@ -466,6 +466,9 @@ const UrbaniaRecommendation = ({
                                                         backgroundAnimationStarted ||
                                                         visualModalOpened
                                                     }
+                                                    focusable={
+                                                        current && !isPreview && !visualModalOpened
+                                                    }
                                                     aria-label={intl.formatMessage({
                                                         defaultMessage: 'Expand visual',
                                                         description: 'Button label',
