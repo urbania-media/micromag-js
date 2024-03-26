@@ -858,7 +858,6 @@ const Viewer = ({
                                                 aria-hidden={!current}
                                                 style={screenStyles}
                                                 tabIndex={current ? 0 : -1}
-                                                inert={!current}
                                                 className={classNames([
                                                     styles.screenContainer,
                                                     {

@@ -91,8 +91,6 @@ export const PlaybackProvider = ({
     const [controlsVisible, setControlsVisible] = useState(initialControlsVisible);
     const [controlsTheme, setControlsTheme] = useState(initialControlsTheme);
 
-    console.log('controlsVisible', controlsVisible);
-
     const finalSetControls = useCallback(
         (newControls) => {
             if (newControls) {
