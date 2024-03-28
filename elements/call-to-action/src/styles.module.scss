@@ -48,6 +48,11 @@
         touch-action: none;
         -webkit-user-drag: none;
 
+        // Sometimes CKEditor adds a block element nested inside the badge
+        * {
+            display: inline;
+        }
+
         &:hover {
             text-decoration: none;
         }
