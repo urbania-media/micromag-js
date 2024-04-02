@@ -62,6 +62,7 @@ function WebView({ url, width, height, closeable, focusable, onClose, className 
             <iframe
                 className={styles.iframe}
                 aria-hidden={!focusable ? 'true' : null}
+                tabIndex={focusable ? '0' : '-1'}
                 title={intl.formatMessage({
                     defaultMessage: 'Popup',
                     description: 'Popup label',
