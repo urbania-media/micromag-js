@@ -92,6 +92,9 @@
     "17BMn2": {
         "defaultMessage": "Ranking"
     },
+    "17zT4Q": {
+        "defaultMessage": "Popup"
+    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -112,6 +115,9 @@
     },
     "2pO2Cj": {
         "defaultMessage": "Url"
+    },
+    "2prwZ7": {
+        "defaultMessage": "Progress slider"
     },
     "2uFkwE": {
         "defaultMessage": "Override default timing"
@@ -326,6 +332,9 @@
     "AHvHaY": {
         "defaultMessage": "Parameters"
     },
+    "AIr8rM": {
+        "defaultMessage": "Screen {current} of {length}"
+    },
     "AQ8Aig": {
         "defaultMessage": "Used"
     },
@@ -356,11 +365,17 @@
     "BwYZbB": {
         "defaultMessage": "With controls button"
     },
+    "C1VUEY": {
+        "defaultMessage": "{current} of {duration}"
+    },
     "CJmQeh": {
         "defaultMessage": "Image with text"
     },
     "CWnXWp": {
         "defaultMessage": "No button yet"
+    },
+    "CnVj9r": {
+        "defaultMessage": "Skip to controls"
     },
     "CrzYgw": {
         "defaultMessage": "Quote"
@@ -481,6 +496,9 @@
     },
     "IE7U/Q": {
         "defaultMessage": "Heading"
+    },
+    "IoMJgw": {
+        "defaultMessage": "Toggle article"
     },
     "J9e9Qb": {
         "defaultMessage": "Video"
@@ -755,6 +773,9 @@
     "X97njD": {
         "defaultMessage": "Entry"
     },
+    "XHO5Ua": {
+        "defaultMessage": "Expand visual"
+    },
     "XJ2Xc+": {
         "defaultMessage": "Answer"
     },
@@ -787,6 +808,9 @@
     },
     "YWcp4v": {
         "defaultMessage": "Bullet filled"
+    },
+    "YXhRxW": {
+        "defaultMessage": "No controls available"
     },
     "YwySSO": {
         "defaultMessage": "Vertical"
@@ -826,9 +850,6 @@
     },
     "aarOkd": {
         "defaultMessage": "Color"
-    },
-    "ahSpiH": {
-        "defaultMessage": "Play"
     },
     "al5xjv": {
         "defaultMessage": "Default fonts"
@@ -871,6 +892,9 @@
     },
     "cGItoy": {
         "defaultMessage": "List"
+    },
+    "cXt3NU": {
+        "defaultMessage": "Close Popup"
     },
     "ceaRdq": {
         "defaultMessage": "Horoscope sign"
@@ -1000,6 +1024,9 @@
     },
     "gRxcTc": {
         "defaultMessage": "Delete screen"
+    },
+    "gfZs4J": {
+        "defaultMessage": "Skip Links"
     },
     "gwPu/I": {
         "defaultMessage": "Buttons text"
@@ -1372,9 +1399,6 @@
     },
     "vxEtY1": {
         "defaultMessage": "Background image"
-    },
-    "vzg8Es": {
-        "defaultMessage": "Mute"
     },
     "wChc+A": {
         "defaultMessage": "Edit style..."

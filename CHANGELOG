@@ -2,6 +2,17 @@
 
 This is rather free-form for now, but eventually this will be properly timestamped, and will mention the version the changes apply to!
 
+2024-03-21 Joseph Blais <joseph@folkloreinc.ca>
+
+    * Improved accessibility in Viewer
+        - Visible focus state on buttons with keyboard navigation only (:focus-within)
+        - Added skip link to controls — first focusable element
+        - Focus-locks on menus (share & screens)
+        - Descriptive aria tags for interactive elements (buttons, toggles, seek bar)
+        - Politely announced screen state changes for screen readers
+    * To do:
+        - Implement a "Skip to content" link. Browser requires a focusable element (a, button, etc.). Could use a focusable screen wrapper with an aria-label like "main content — screen {index} of {screens.length}" OR button jumps to first focusable element of screen if available
+
 2022-09-20 Fred Mercy <fred@folkloreinc.ca>
 
     * Fixed an issue with the Horoscope screen signs not being editable

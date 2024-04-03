@@ -3,6 +3,7 @@ import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
+// import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -207,6 +208,11 @@ const UrbaniaHoroscope = ({
         progress: showSignsGrid ? 1 : 0,
         computeProgress: computeSignsGridProgress,
         springParams: { config: { tension: 300, friction: 30 } },
+        dragOptions: {
+            pointer: {
+                keys: false,
+            },
+        },
     });
 
     const computeModalProgress = useCallback(
@@ -232,6 +238,11 @@ const UrbaniaHoroscope = ({
         progress: showModal ? 1 : 0,
         computeProgress: computeModalProgress,
         springParams: { config: { tension: 300, friction: 30 } },
+        dragOptions: {
+            pointer: {
+                keys: false,
+            },
+        },
     });
 
     const getHeaderStyles = (spring) => ({
@@ -382,6 +393,7 @@ const UrbaniaHoroscope = ({
                                 type="button"
                                 onClick={onOpenSignsGrid}
                                 withoutBootstrapStyles
+                                focusable={current && !isPreview && !isPlaceholder}
                                 {...button}
                             >
                                 <Text className={styles.buttonLabel} {...button} inline />
@@ -420,6 +432,9 @@ const UrbaniaHoroscope = ({
                                             <polygon points="9.95 4.11 8.89 3.05 5 6.94 1.11 3.05 0.05 4.11 3.94 8 0.05 11.89 1.11 12.95 5 9.06 8.89 12.95 9.95 11.89 6.06 8 9.95 4.11" />
                                         </svg>
                                     }
+                                    focusable={
+                                        !isPreview && !isPlaceholder && (showSignsGrid || showModal)
+                                    }
                                     withoutStyle
                                 />
                             </div>
@@ -446,6 +461,12 @@ const UrbaniaHoroscope = ({
                                             <SignCard
                                                 key={id}
                                                 sign={sign}
+                                                focusable={
+                                                    !isPreview &&
+                                                    !isPlaceholder &&
+                                                    showSignsGrid &&
+                                                    !showModal
+                                                }
                                                 onClick={(e) => onSelectSign(e, id)}
                                             />
                                         </animated.div>
@@ -478,6 +499,7 @@ const UrbaniaHoroscope = ({
                         </animated.div>
                     ) : null}
 
+                    {/* TODO: figure out a way to use focus-lock with animated div */}
                     <animated.div
                         className={styles.modal}
                         style={getModalStyles(showModalProgress)}
@@ -488,6 +510,7 @@ const UrbaniaHoroscope = ({
                             height={height}
                             sign={signs[selectedSign]}
                             subtitle={signSubtitle}
+                            focusable={!isPreview && !isPlaceholder && showModal}
                             onClick={onCloseModal}
                         />
                     </animated.div>

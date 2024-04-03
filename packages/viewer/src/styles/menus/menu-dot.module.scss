@@ -40,7 +40,8 @@
         }
     }
 
-    &:active {
+    &:active,
+    &:focus-visible {
         .dot {
             transform: scaleY(1.5);
         }

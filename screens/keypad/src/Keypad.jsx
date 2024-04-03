@@ -390,7 +390,6 @@ const KeypadScreen = ({
                     (heading === null || headingBody === null || headingBody === '') &&
                     (content === null || contentBody === null || contentBody === '') &&
                     popupLargeVisual === null;
-
                 return (
                     <div key={key} className={styles.item}>
                         <Button
@@ -414,6 +413,7 @@ const KeypadScreen = ({
                             }}
                             external={isExternalLink}
                             href={isExternalLink ? url : null}
+                            focusable={current}
                             onClick={
                                 !isPopupEmpty || (url !== null && !isExternalLink)
                                     ? (e) => onItemClick(e, item)
@@ -622,10 +622,9 @@ const KeypadScreen = ({
                                 style={{
                                     transform: popupSpring.to(
                                         (p) =>
-                                            `translateY(${
-                                                100 * p
-                                                // 100 * (1 - (p < 0.2 && p > -0.2 ? 0.1 * p + p : p))
-                                            }%) scale(${1 - Math.abs(p * 0.5)})`,
+                                            `translateY(${100 * p}%) scale(${
+                                                1 - Math.abs(p * 0.5)
+                                            })`,
                                     ),
                                     pointerEvents: popupSpring.to((p) =>
                                         Math.abs(p) > 0.5 ? 'none' : 'auto',

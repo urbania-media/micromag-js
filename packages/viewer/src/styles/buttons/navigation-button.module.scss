@@ -1,6 +1,10 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
+.container {
+    padding: 4px 10px;
+}
+
 .arrow {
     width: 1rem;
     height: auto;

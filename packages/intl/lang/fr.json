@@ -92,6 +92,9 @@
     "17BMn2": {
         "defaultMessage": "Classement"
     },
+    "17zT4Q": {
+        "defaultMessage": "Fenêtre contextuelle"
+    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -113,6 +116,9 @@
     "2pO2Cj": {
         "defaultMessage": "Url"
     },
+    "2prwZ7": {
+        "defaultMessage": "Curseur de progression"
+    },
     "2uFkwE": {
         "defaultMessage": "Durées personnalisées"
     },
@@ -129,7 +135,7 @@
         "defaultMessage": "Whatsapp"
     },
     "3E57H7": {
-        "defaultMessage": "Aucun marqueur"
+        "defaultMessage": "Aucun marqueur\\"
     },
     "3LEBIA": {
         "defaultMessage": "Angle"
@@ -326,6 +332,9 @@
     "AHvHaY": {
         "defaultMessage": "Paramètres"
     },
+    "AIr8rM": {
+        "defaultMessage": "Écran {current} de {length}"
+    },
     "AQ8Aig": {
         "defaultMessage": "Utilisé"
     },
@@ -356,11 +365,17 @@
     "BwYZbB": {
         "defaultMessage": "Avec les contrôles"
     },
+    "C1VUEY": {
+        "defaultMessage": "{current} de {duration}"
+    },
     "CJmQeh": {
         "defaultMessage": "Image avec texte"
     },
     "CWnXWp": {
         "defaultMessage": "Aucun bouton"
+    },
+    "CnVj9r": {
+        "defaultMessage": "Aller aux commandes de lecture"
     },
     "CrzYgw": {
         "defaultMessage": "Citation"
@@ -481,6 +496,9 @@
     },
     "IE7U/Q": {
         "defaultMessage": "Titre"
+    },
+    "IoMJgw": {
+        "defaultMessage": "Ouvrir l'article"
     },
     "J9e9Qb": {
         "defaultMessage": "Vidéo"
@@ -755,6 +773,9 @@
     "X97njD": {
         "defaultMessage": "Entrée"
     },
+    "XHO5Ua": {
+        "defaultMessage": "Ouvrir visuel"
+    },
     "XJ2Xc+": {
         "defaultMessage": "Réponse"
     },
@@ -787,6 +808,9 @@
     },
     "YWcp4v": {
         "defaultMessage": "Point rempli"
+    },
+    "YXhRxW": {
+        "defaultMessage": "Aucun contrôle disponible"
     },
     "YwySSO": {
         "defaultMessage": "Vertical"
@@ -826,9 +850,6 @@
     },
     "aarOkd": {
         "defaultMessage": "Couleur"
-    },
-    "ahSpiH": {
-        "defaultMessage": "Lecture"
     },
     "al5xjv": {
         "defaultMessage": "Polices par défaut"
@@ -871,6 +892,9 @@
     },
     "cGItoy": {
         "defaultMessage": "Liste"
+    },
+    "cXt3NU": {
+        "defaultMessage": "Fermer la fenêtre contextuelle"
     },
     "ceaRdq": {
         "defaultMessage": "Signe astrologique"
@@ -1000,6 +1024,9 @@
     },
     "gRxcTc": {
         "defaultMessage": "Supprimer l’écran"
+    },
+    "gfZs4J": {
+        "defaultMessage": "Liens d’accessibilité"
     },
     "gwPu/I": {
         "defaultMessage": "Texte des boutons"
@@ -1372,9 +1399,6 @@
     },
     "vxEtY1": {
         "defaultMessage": "Image d’arrière-plan"
-    },
-    "vzg8Es": {
-        "defaultMessage": "Désactiver le son"
     },
     "wChc+A": {
         "defaultMessage": "Modifier le style"

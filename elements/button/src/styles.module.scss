@@ -15,6 +15,11 @@
     //     box-shadow: none !important;
     // }
 
+    &:focus-visible {
+        outline: 2px solid #000 !important;
+        box-shadow: 0 0 2px 0 var(--micromag-focus-color, #fff) !important;
+    }
+
     &:disabled,
     &.disabled {
         cursor: auto;

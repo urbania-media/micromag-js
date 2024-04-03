@@ -83,6 +83,8 @@ function PlaybackControls({
         muted: wantedMuted,
     });
 
+    // console.log(controlsVisible);
+
     useEffect(() => {
         let id = null;
         setShowLoading(false);
@@ -184,23 +186,14 @@ function PlaybackControls({
         <PlayIcon className={styles.icon} />
     );
 
-    const playLabel = playing
-        ? intl.formatMessage({
-              defaultMessage: 'Pause',
-              description: 'Button label',
-          })
-        : intl.formatMessage({
-              defaultMessage: 'Play',
-              description: 'Button label',
-          });
-
     return (
         <div
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.withPlayPause]: controls && (!seekBarOnly || !playing),
+                    [styles.withPlayPause]:
+                        controlsVisible && controls && (!seekBarOnly || !playing),
                     [styles.withSuggestPlay]: controlsSuggestPlay,
                     [styles.withMute]: hasMedia || controls,
                     [styles.withSeekBar]: controls,
@@ -220,8 +213,9 @@ function PlaybackControls({
                     onClick={playing ? onPause : onPlay}
                     focusable={controlsVisible}
                     icon={<PlayIcon className={classNames([styles.icon, styles.offset])} />}
+                    aria-pressed={!playing}
                     aria-label={intl.formatMessage({
-                        defaultMessage: 'Play',
+                        defaultMessage: 'Pause',
                         description: 'Button label',
                     })}
                     withoutBootstrapStyles
@@ -232,7 +226,7 @@ function PlaybackControls({
                 className={classNames([
                     styles.playPauseButton,
                     {
-                        [styles.hidden]: controlsSuggestPlay && !controls,
+                        [styles.hidden]: !controlsVisible || (controlsSuggestPlay && !controls),
                         [styles.loading]: finalShowLoading,
                     },
                 ])}
@@ -240,7 +234,7 @@ function PlaybackControls({
                     color,
                 }}
                 onClick={playing ? onPause : onPlay}
-                focusable={controlsVisible}
+                focusable={controls && controlsVisible && (!seekBarOnly || !playing)}
                 disabled={finalShowLoading}
                 icon={
                     finalShowLoading ? (
@@ -249,13 +243,17 @@ function PlaybackControls({
                         playIcon
                     )
                 }
+                aria-pressed={!playing}
                 aria-label={
                     finalShowLoading
                         ? intl.formatMessage({
                               defaultMessage: 'Loading',
                               description: 'Button label',
                           })
-                        : playLabel
+                        : intl.formatMessage({
+                              defaultMessage: 'Pause',
+                              description: 'Button label',
+                          })
                 }
                 withoutBootstrapStyles
             />
@@ -268,7 +266,7 @@ function PlaybackControls({
                 onSeek={onSeek}
                 onSeekStart={onSeekStart}
                 onSeekEnd={onSeekEnd}
-                focusable={playing}
+                focusable={controls && controlsVisible && !seekBarOnly}
                 collapsed={isCollapsed}
                 withSeekHead={!isCollapsed && !seekBarOnly}
                 backgroundColor={color}
@@ -289,17 +287,11 @@ function PlaybackControls({
                         <MuteIcon className={styles.icon} />
                     )
                 }
-                aria-label={
-                    muted
-                        ? intl.formatMessage({
-                              defaultMessage: 'Unmute',
-                              description: 'Button label',
-                          })
-                        : intl.formatMessage({
-                              defaultMessage: 'Mute',
-                              description: 'Button label',
-                          })
-                }
+                aria-pressed={!muted}
+                aria-label={intl.formatMessage({
+                    defaultMessage: 'Unmute',
+                    description: 'Button label',
+                })}
                 withoutBootstrapStyles
             />
         </div>

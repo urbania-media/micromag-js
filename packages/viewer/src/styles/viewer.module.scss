@@ -69,6 +69,57 @@
     }
 }
 
+.ariaAnnouncement {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.accessibilityLinks {
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    top: 60px; // header height
+    left: 10px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    transition: opacity 0.2s $ease-in-out-sine;
+    border-radius: 4px;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+
+    &:focus-visible,
+    &:focus-within {
+        opacity: 1;
+    }
+
+    .accessibilityButton {
+        padding: 4px;
+        transition: opacity 0.5s $ease-in-out-sine;
+        opacity: 0.75;
+        color: $white;
+
+        &:hover,
+        &:focus {
+            opacity: 1;
+        }
+
+        &.disabled {
+            opacity: 0.75;
+        }
+    }
+
+    .tooltip {
+        font-size: 0.85rem;
+    }
+}
+
 // Viewer Menu: Two buttons, the "menu dots", the menu overlays
 .menuNavContainer {
     position: absolute;
@@ -127,13 +178,10 @@
     padding: 8px 10px;
     font-size: 12px;
 
-    // @media (min-width: 320px) {
-    //     font-size: 1rem;
-    // }
-
-    // .menuButtonIcon {
-    //     width: 30px;
-    // }
+    &:focus-visible {
+        outline: 2px solid var(--micromag-focus-color, #fff) !important;
+        outline-offset: -2px !important;
+    }
 }
 
 .slidingButton {
@@ -171,13 +219,14 @@
 
 // Viewer Navigation: Left/Right icons on desktop
 .navButton {
-    display: none;
-    visibility: hidden;
     position: absolute;
     z-index: 3;
     top: 50%;
     transform: translateY(-50%);
+    transition: opacity 0.2s $ease-in-out-sine;
     border: 0;
+    opacity: 0;
+    pointer-events: none;
 
     &.previous {
         left: 1.5em;
@@ -187,9 +236,15 @@
         right: 1.5em;
     }
 
+    &:focus-visible {
+        opacity: 1;
+    }
+
     @media screen and (min-width: 1024px) {
         display: block;
         visibility: visible;
+        opacity: 1;
+        pointer-events: all;
     }
 }
 

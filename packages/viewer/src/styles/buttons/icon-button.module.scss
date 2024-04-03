@@ -27,6 +27,10 @@
         }
     }
 
+    &:focus-visible {
+        box-shadow: 0 0 0 2px var(--micromag-focus-color, #fff);
+    }
+
     &:active {
         .icon,
         .label {

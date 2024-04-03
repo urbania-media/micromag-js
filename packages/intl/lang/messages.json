@@ -123,6 +123,10 @@
     "defaultMessage": "Ranking",
     "description": "Ranking screen title"
   },
+  "17zT4Q": {
+    "defaultMessage": "Popup",
+    "description": "Popup label"
+  },
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
@@ -150,6 +154,10 @@
   "2pO2Cj": {
     "defaultMessage": "Url",
     "description": "Url field label"
+  },
+  "2prwZ7": {
+    "defaultMessage": "Progress slider",
+    "description": "Button label"
   },
   "2uFkwE": {
     "defaultMessage": "Override default timing",
@@ -435,6 +443,10 @@
     "defaultMessage": "Parameters",
     "description": "Screen label in the breadcrumb"
   },
+  "AIr8rM": {
+    "defaultMessage": "Screen {current} of {length}",
+    "description": "Aria announcement"
+  },
   "AQ8Aig": {
     "defaultMessage": "Used",
     "description": "Media label"
@@ -475,6 +487,10 @@
     "defaultMessage": "With controls button",
     "description": "Field label"
   },
+  "C1VUEY": {
+    "defaultMessage": "{current} of {duration}",
+    "description": "Seek bar value"
+  },
   "CJmQeh": {
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
@@ -482,6 +498,10 @@
   "CWnXWp": {
     "defaultMessage": "No button yet",
     "description": "Label when there is no item"
+  },
+  "CnVj9r": {
+    "defaultMessage": "Skip to controls",
+    "description": "Button label"
   },
   "CrzYgw": {
     "defaultMessage": "Quote",
@@ -642,6 +662,10 @@
   "IE7U/Q": {
     "defaultMessage": "Heading",
     "description": "Placeholder label"
+  },
+  "IoMJgw": {
+    "defaultMessage": "Toggle article",
+    "description": "Button label"
   },
   "J9e9Qb": {
     "defaultMessage": "Video",
@@ -1006,6 +1030,10 @@
     "defaultMessage": "Entry",
     "description": "Breadcrumb field label"
   },
+  "XHO5Ua": {
+    "defaultMessage": "Expand visual",
+    "description": "Button label"
+  },
   "XJ2Xc+": {
     "defaultMessage": "Answer",
     "description": "Breadcrumb field label"
@@ -1049,6 +1077,10 @@
   "YWcp4v": {
     "defaultMessage": "Bullet filled",
     "description": "Field label"
+  },
+  "YXhRxW": {
+    "defaultMessage": "No controls available",
+    "description": "Tooltip"
   },
   "YwySSO": {
     "defaultMessage": "Vertical",
@@ -1101,10 +1133,6 @@
   "aarOkd": {
     "defaultMessage": "Color",
     "description": "Field label"
-  },
-  "ahSpiH": {
-    "defaultMessage": "Play",
-    "description": "Button label"
   },
   "al5xjv": {
     "defaultMessage": "Default fonts",
@@ -1161,6 +1189,10 @@
   "cGItoy": {
     "defaultMessage": "List",
     "description": "List screen group"
+  },
+  "cXt3NU": {
+    "defaultMessage": "Close Popup",
+    "description": "Button label"
   },
   "ceaRdq": {
     "defaultMessage": "Horoscope sign",
@@ -1333,6 +1365,10 @@
   "gRxcTc": {
     "defaultMessage": "Delete screen",
     "description": "Delete screen button label"
+  },
+  "gfZs4J": {
+    "defaultMessage": "Skip Links",
+    "description": "Nav aria label"
   },
   "gwPu/I": {
     "defaultMessage": "Buttons text",
@@ -1827,10 +1863,6 @@
   "vxEtY1": {
     "defaultMessage": "Background image",
     "description": "Breadcrumb field label"
-  },
-  "vzg8Es": {
-    "defaultMessage": "Mute",
-    "description": "Button label"
   },
   "wChc+A": {
     "defaultMessage": "Edit style...",

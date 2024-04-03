@@ -178,7 +178,7 @@ const VideoScreen = ({
 
     const onTimeUpdate = useCallback(
         (time = null) => {
-            if(time !== null && typeof time.currentTarget !== 'undefined') {
+            if (time !== null && typeof time.currentTarget !== 'undefined') {
                 const { currentTime: targetTime = 0 } = time.currentTarget || {};
                 setCurrentTime(targetTime);
             } else {
@@ -391,6 +391,7 @@ const VideoScreen = ({
                                         onEnded={onEnded}
                                         // onSuspended={onSuspended}
                                         onPlayError={onPlayError}
+                                        disablePictureInPicture
                                         focusable={current && isView}
                                         shouldLoad={mediaShouldLoad}
                                     />
@@ -414,7 +415,10 @@ const VideoScreen = ({
                                 paddingTop: 0,
                             }}
                         >
-                            {(closedCaptions !== null || captions !== null) && !isPreview && !isCapture && !isStatic ? (
+                            {(closedCaptions !== null || captions !== null) &&
+                            !isPreview &&
+                            !isCapture &&
+                            !isStatic ? (
                                 <ClosedCaptions
                                     className={styles.closedCaptions}
                                     media={closedCaptions} // BW Compat

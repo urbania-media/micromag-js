@@ -129,7 +129,9 @@ export const PlaybackProvider = ({
     }, [media, setControlsSuggestPlay]);
 
     const showControls = useCallback(() => setControlsVisible(true), [setControlsVisible]);
-    const hideControls = useCallback(() => setControlsVisible(false), [setControlsVisible]);
+    const hideControls = useCallback(() => {
+        setControlsVisible(false);
+    }, [setControlsVisible]);
 
     const hasAudio = useMemo(() => {
         if (media === null || media.tagName.toLowerCase() !== 'video') {

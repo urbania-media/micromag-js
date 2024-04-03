@@ -56,6 +56,10 @@
         &:hover {
             text-decoration: none;
         }
+
+        &:focus {
+            box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
+        }
     }
 
     .selfTargetLink {

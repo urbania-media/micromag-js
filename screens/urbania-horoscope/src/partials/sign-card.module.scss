@@ -17,7 +17,8 @@
     -webkit-touch-callout: none;
     filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
         z-index: 2;
         transform: scale(1.05);
     }

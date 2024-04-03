@@ -107,10 +107,16 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
         z-index: 6;
         top: 0;
         left: 0;
-        width: 100%;
+        width: calc(100% - 30px);
         height: 100%;
+        margin-left: 15px;
         touch-action: none;
         transform: translateZ(0);
+
+        &:focus-visible {
+            // background-color: #03f;
+            box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
+        }
     }
 
     .close {

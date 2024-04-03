@@ -55,7 +55,8 @@
     pointer-events: none;
 
     // display the Play/Pause button
-    .withPlayPause &, .withSuggestPlay & {
+    .withPlayPause &,
+    .withSuggestPlay & {
         opacity: 1;
         pointer-events: auto;
     }
@@ -71,6 +72,10 @@
 
     &.hidden {
         opacity: 0;
+    }
+
+    &:focus-visible {
+        box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
     }
 }
 
@@ -138,6 +143,11 @@
     .withMute.isCollapsed.isMuted & {
         opacity: 1;
     }
+
+    &:focus-visible {
+        outline: 2px solid #000;
+        box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
+    }
 }
 
 .seekBar {
@@ -179,6 +189,12 @@
         transform: translateY(0);
         transition: transform 0.5s $ease-in-out-sine, bottom 0.5s $ease-in-out-sine,
             padding 0.5s 0.25s $ease-in-out-sine;
+    }
+
+    &:focus-visible {
+        &:focus-within {
+            box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
+        }
     }
 }
 
@@ -303,7 +319,9 @@
 }
 
 .withSuggestPlay {
-    .muteButton, .playPauseButton, .seekBar {
+    .muteButton,
+    .playPauseButton,
+    .seekBar {
         opacity: 0.25 !important;
     }
 

@@ -50,6 +50,12 @@
             }
         }
     }
+
+    &:focus-within {
+        .playHead {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
 }
 
 .scrubbedTime {
@@ -84,11 +90,14 @@
     left: 0;
     height: 5rem;
     transform: translateY(-50%);
-    // border: 1px solid red;
     background-color: transparent;
     touch-action: none;
 
     .withSeekHead & {
         display: block;
+    }
+
+    &:focus-visible {
+        box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
     }
 }

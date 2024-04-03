@@ -111,9 +111,12 @@ function CallToAction({
     const selfTargetLinkRef = useRef(null);
     const [leaving, setLeaving] = useState(false);
 
+    const [toggled, setToggled] = useState(false);
+
     // On click
     const onClickLink = useCallback(
         (e, action = 'click') => {
+            setToggled(!toggled);
             if (inWebView && openWebView !== null) {
                 openWebView({
                     url,
@@ -126,7 +129,7 @@ function CallToAction({
                 trackEvent('call_to_action', isString(action) ? action : 'click', url);
             }
         },
-        [url, onClick, trackEvent, inWebView, openWebView],
+        [toggled, url, onClick, trackEvent, inWebView, openWebView],
     );
 
     const onDrag = useCallback(({ event }) => {
@@ -222,6 +225,7 @@ function CallToAction({
                     focusable={focusable}
                     buttonStyle={boxStyle}
                     inline
+                    aria-pressed={toggled}
                     href={!inWebView ? url : null}
                     external
                     onClick={onClickLink}

@@ -2,7 +2,7 @@
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { useMediaProgress } from '@micromag/core/hooks';
@@ -94,8 +94,10 @@ const SeekBar = ({
     const { currentTime = null, duration = null } = media || {};
     const [showTimestamp, setShowTimestamp] = useState(false);
 
+    const startProgressRef = useRef(progress);
+
     const onDrag = useCallback(
-        ({ xy: [x], elapsedTime, active, tap, currentTarget }) => {
+        ({ movement: [x], elapsedTime, active, tap, currentTarget }) => {
             if (!active && elapsedTime > 300) {
                 return;
             }
@@ -103,8 +105,8 @@ const SeekBar = ({
                 onClick();
                 return;
             }
-            const { left: elX = 0, width: elWidth = 0 } = currentTarget.getBoundingClientRect();
-            const newProgress = Math.max(0, Math.min(1, (x - elX) / elWidth));
+            const { width: elWidth = 0 } = currentTarget.getBoundingClientRect();
+            const newProgress = Math.max(0, Math.min(1, startProgressRef.current + x / elWidth));
 
             if (onSeek !== null) {
                 onSeek(newProgress, tap);
@@ -114,11 +116,12 @@ const SeekBar = ({
     );
 
     const onDragStart = useCallback(() => {
+        startProgressRef.current = progress;
         setShowTimestamp(true);
         if (onSeekStart !== null) {
             onSeekStart();
         }
-    }, [onSeekStart, setShowTimestamp]);
+    }, [progress, onSeekStart, setShowTimestamp]);
 
     const onDragEnd = useCallback(() => {
         if (onSeekEnd !== null) {
@@ -181,13 +184,34 @@ const SeekBar = ({
                 <button
                     {...bind()}
                     type="button"
+                    role="slider"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={progress}
+                    aria-valuetext={intl.formatMessage(
+                        {
+                            defaultMessage: '{current} of {duration}',
+                            description: 'Seek bar value',
+                        },
+                        {
+                            current: getFormattedTimestamp(
+                                currentTime,
+                                duration < SHOW_MILLISECONDS_THRESHOLD,
+                            ),
+                            duration: getFormattedTimestamp(
+                                duration,
+                                duration < SHOW_MILLISECONDS_THRESHOLD,
+                            ),
+                        },
+                    )}
+                    data-draggable
                     className={styles.track}
                     title={intl.formatMessage({
                         defaultMessage: 'Seek',
                         description: 'Button label',
                     })}
                     aria-label={intl.formatMessage({
-                        defaultMessage: 'Seek',
+                        defaultMessage: 'Progress slider',
                         description: 'Button label',
                     })}
                     tabIndex={focusable ? '0' : '-1'}

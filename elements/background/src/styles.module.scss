@@ -3,6 +3,13 @@
 
 .container {
     overflow: hidden;
+
+    &:focus,
+    &:focus-within {
+        video {
+            border: 3px solid #f3f;
+        }
+    }
 }
 
 .videoContainer,

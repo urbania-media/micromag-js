@@ -197,6 +197,12 @@ msgctxt "17BMn2"
 msgid "Ranking"
 msgstr "Classement"
 
+# Popup label
+#: 17zT4Q
+msgctxt "17zT4Q"
+msgid "Popup"
+msgstr "Fenêtre contextuelle"
+
 # Item label in items field
 #: 2/F1Q7
 msgctxt "2/F1Q7"
@@ -239,6 +245,12 @@ msgctxt "2pO2Cj"
 msgid "Url"
 msgstr "Url"
 
+# Button label
+#: 2prwZ7
+msgctxt "2prwZ7"
+msgid "Progress slider"
+msgstr "Curseur de progression"
+
 # Field label
 #: 2uFkwE
 msgctxt "2uFkwE"
@@ -273,7 +285,7 @@ msgstr "Whatsapp"
 #: 3E57H7
 msgctxt "3E57H7"
 msgid "No marker..."
-msgstr "Aucun marqueur"
+msgstr "Aucun marqueur\\"
 
 # Field label
 #: 3LEBIA
@@ -665,6 +677,12 @@ msgctxt "AHvHaY"
 msgid "Parameters"
 msgstr "Paramètres"
 
+# Aria announcement
+#: AIr8rM
+msgctxt "AIr8rM"
+msgid "Screen {current} of {length}"
+msgstr "Écran {current} de {length}"
+
 # Media label
 #: AQ8Aig
 msgctxt "AQ8Aig"
@@ -725,6 +743,12 @@ msgctxt "BwYZbB"
 msgid "With controls button"
 msgstr "Avec les contrôles"
 
+# Seek bar value
+#: C1VUEY
+msgctxt "C1VUEY"
+msgid "{current} of {duration}"
+msgstr "{current} de {duration}"
+
 # ImageText screen title
 #: CJmQeh
 msgctxt "CJmQeh"
@@ -736,6 +760,12 @@ msgstr "Image avec texte"
 msgctxt "CWnXWp"
 msgid "No button yet"
 msgstr "Aucun bouton"
+
+# Button label
+#: CnVj9r
+msgctxt "CnVj9r"
+msgid "Skip to controls"
+msgstr "Aller aux commandes de lecture"
 
 # Quote placeholder
 #: CrzYgw
@@ -976,6 +1006,12 @@ msgstr "Liens"
 msgctxt "IE7U/Q"
 msgid "Heading"
 msgstr "Titre"
+
+# Button label
+#: IoMJgw
+msgctxt "IoMJgw"
+msgid "Toggle article"
+msgstr "Ouvrir l'article"
 
 # Type field label
 #: J9e9Qb
@@ -1522,6 +1558,12 @@ msgctxt "X97njD"
 msgid "Entry"
 msgstr "Entrée"
 
+# Button label
+#: XHO5Ua
+msgctxt "XHO5Ua"
+msgid "Expand visual"
+msgstr "Ouvrir visuel"
+
 # Breadcrumb field label
 #: XJ2Xc+
 msgctxt "XJ2Xc+"
@@ -1587,6 +1629,12 @@ msgstr "Description"
 msgctxt "YWcp4v"
 msgid "Bullet filled"
 msgstr "Point rempli"
+
+# Tooltip
+#: YXhRxW
+msgctxt "YXhRxW"
+msgid "No controls available"
+msgstr "Aucun contrôle disponible"
 
 # Field label
 #: YwySSO
@@ -1665,12 +1713,6 @@ msgstr "Ajouter un élement"
 msgctxt "aarOkd"
 msgid "Color"
 msgstr "Couleur"
-
-# Button label
-#: ahSpiH
-msgctxt "ahSpiH"
-msgid "Play"
-msgstr "Lecture"
 
 # Font family group title
 #: al5xjv
@@ -1755,6 +1797,12 @@ msgstr "Arrière-plan"
 msgctxt "cGItoy"
 msgid "List"
 msgstr "Liste"
+
+# Button label
+#: cXt3NU
+msgctxt "cXt3NU"
+msgid "Close Popup"
+msgstr "Fermer la fenêtre contextuelle"
 
 # Sign placeholder
 #: ceaRdq
@@ -2013,6 +2061,12 @@ msgstr "Contribution"
 msgctxt "gRxcTc"
 msgid "Delete screen"
 msgstr "Supprimer l’écran"
+
+# Nav aria label
+#: gfZs4J
+msgctxt "gfZs4J"
+msgid "Skip Links"
+msgstr "Liens d’accessibilité"
 
 # Field label
 #: gwPu/I
@@ -2755,12 +2809,6 @@ msgstr "(écran en cours)"
 msgctxt "vxEtY1"
 msgid "Background image"
 msgstr "Image d’arrière-plan"
-
-# Button label
-#: vzg8Es
-msgctxt "vzg8Es"
-msgid "Mute"
-msgstr "Désactiver le son"
 
 # No value label
 #: wChc+A

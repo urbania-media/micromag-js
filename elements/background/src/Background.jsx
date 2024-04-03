@@ -171,6 +171,7 @@ const Background = ({
                         autoPlay
                         loop
                         withPoster
+                        focusable={false}
                     />
                 </div>
             ) : null}

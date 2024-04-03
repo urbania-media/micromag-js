@@ -29,6 +29,7 @@ const propTypes = {
     disableOnLoading: PropTypes.bool,
     withoutTheme: PropTypes.bool,
     asLink: PropTypes.bool,
+    ariaLabel: PropTypes.string,
     className: PropTypes.string,
     iconClassName: PropTypes.string,
     labelClassName: PropTypes.string,
@@ -60,6 +61,7 @@ const defaultProps = {
     disableOnLoading: true,
     withoutTheme: false,
     asLink: false,
+    ariaLabel: null,
     className: null,
     iconClassName: null,
     labelClassName: null,
@@ -86,6 +88,7 @@ const Button = ({
     disableOnLoading,
     withoutTheme,
     asLink,
+    ariaLabel,
     onClick,
     className,
     iconClassName,
@@ -239,6 +242,7 @@ const Button = ({
             onClick={onClick}
             disabled={disabled || (disableOnLoading && loading)}
             ref={refButton}
+            aria-label={ariaLabel}
             tabIndex={focusable ? '0' : '-1'}
         >
             {content}

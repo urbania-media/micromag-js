@@ -8,7 +8,6 @@
     position: relative;
     width: 100%;
     height: 0;
-    overflow: hidden;
 }
 
 .button {
@@ -21,15 +20,17 @@
     border: 0 solid $white;
     border-radius: 0.45rem;
 
+    &:focus,
     &:focus-visible {
-        outline: 0.25rem solid $purple;
+        outline: 0.25rem solid var(--micromag-focus-color, #fff);
         outline-offset: 0.25rem;
+        box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
     }
 
     .isCurrent & {
         animation: pulse 0.75s $ease-in-out-soft-sine infinite alternate-reverse;
-        // @TODO: Add border-color from micomag theme
-        // border-color: #FFFC00;
+        // Add border-color from micomag theme
+        border-color: var(--micromag-focus-color, #fff);
     }
 
     @media (hover: hover) {
@@ -73,15 +74,11 @@
     fill: $white;
 }
 
-// @keyframes pulse {
-//     from {
-//         border-width: 0.25rem;
-//     }
+.screen {
+    overflow: hidden;
+    border-radius: 0.45rem;
+}
 
-//     to {
-//         border-width: 0.5rem;
-//     }
-// }
 @keyframes pulse {
     from {
         border-width: 0.1rem;

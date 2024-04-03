@@ -3,7 +3,9 @@ import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import FocusLock from 'react-focus-lock';
 import { Helmet } from 'react-helmet';
+import { useIntl, FormattedMessage } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -23,14 +25,16 @@ import {
     useScreenSizeFromElement,
     useTrackScreenView,
 } from '@micromag/core/hooks';
-import { getDeviceScreens } from '@micromag/core/utils';
+import { getColorAsString, getDeviceScreens } from '@micromag/core/utils';
 import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
+import checkDraggable from '../lib/checkDraggable';
 
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
+import Button from './buttons/Button';
 import NavigationButton from './buttons/NavigationButton';
 import ArrowHint from './partials/ArrowHint';
 import PlaybackControls from './partials/PlaybackControls';
@@ -193,6 +197,7 @@ const Viewer = ({
     screenSizeOptions,
     className,
 }) => {
+    const intl = useIntl();
     /**
      * Screen Data + Processing
      */
@@ -233,7 +238,11 @@ const Viewer = ({
     /**
      * Screen Layout
      */
-    const { textStyles } = viewerTheme || {};
+    const { textStyles, colors } = viewerTheme || {};
+
+    const { primary: primaryColor = null, focus: focusColor = null } = colors || {};
+    const finalFocusColor = getColorAsString(focusColor || primaryColor);
+
     const { title: themeTextStyle = null } = textStyles || {};
     const { fontFamily: themeFont = null } = themeTextStyle || {};
 
@@ -253,6 +262,7 @@ const Viewer = ({
 
     const {
         playing,
+        setControls,
         controls: playbackControls = false,
         controlsVisible: playbackcontrolsVisible = false,
         media: playbackMedia = null,
@@ -300,6 +310,17 @@ const Viewer = ({
             onViewModeChange({ landscape, menuOverScreen });
         }
     }, [ready, landscape, menuOverScreen, onViewModeChange]);
+
+    // CSS variable
+    useEffect(() => {
+        if (containerRef.current === null) {
+            return;
+        }
+
+        if (finalFocusColor !== null) {
+            containerRef.current.style.setProperty('--micromag-focus-color', finalFocusColor);
+        }
+    }, [finalFocusColor]);
 
     /**
      * Screen Transitions
@@ -468,11 +489,13 @@ const Viewer = ({
         onProgress: onScreenProgress,
         onTap,
         springParams,
-        drapOptions: {
+        dragOptions: {
             filterTaps: true,
             axis: 'x',
-
-        }
+            pointer: {
+                keys: false,
+            },
+        },
     });
 
     const getScreenStylesByIndex = (index, spring) => {
@@ -559,15 +582,43 @@ const Viewer = ({
     const keyboardShortcuts = useMemo(
         () => ({
             f: () => toggleFullscreen(),
-            arrowleft: () => gotoPreviousScreen(),
-            arrowright: () => gotoNextScreen(),
-            ' ': () => gotoNextScreen(),
+            arrowleft: () => {
+                if (!checkDraggable(document.activeElement)) {
+                    gotoPreviousScreen();
+                }
+            },
+            arrowright: () => {
+                if (!checkDraggable(document.activeElement)) {
+                    gotoNextScreen();
+                }
+            },
+            // ' ': () => gotoNextScreen(),
         }),
         [gotoPreviousScreen, gotoNextScreen],
     );
     useKeyboardShortcuts(keyboardShortcuts, {
         disabled: renderContext !== 'view',
     });
+
+    // const onClickSkipToContent = useCallback(() => {
+    //     const contentElement = document.getElementById('content') || null;
+    //     if (contentElement !== null) {
+    //         contentElement.focus();
+    //     }
+    // }, []);
+
+    const onClickSkipToPlaybackControls = useCallback(() => {
+        const controlsElement = document.getElementById('controls');
+
+        if (controlsElement) {
+            const buttons = controlsElement.querySelectorAll('button[tabindex]');
+            const firstFocusableButton = Array.from(buttons).find((button) => button.tabIndex >= 0);
+
+            if (firstFocusableButton) {
+                firstFocusableButton.focus({ preventScroll: true });
+            }
+        }
+    }, []);
 
     const [currentShareIncentive, setCurrentShareIncentive] = useState(null);
     const [shareIncentiveVisible, setShareIncentiveVisible] = useState(false);
@@ -633,7 +684,6 @@ const Viewer = ({
     ) {
         bottomHeight = playbackControlsContainerHeight / screenScale;
     }
-
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
@@ -685,6 +735,56 @@ const Viewer = ({
                         ref={containerRef}
                         onContextMenu={onContextMenu}
                     >
+                        {/* Announce screen change on screen reader */}
+                        <div className={styles.ariaAnnouncement} id="announce" aria-live="polite">
+                            <FormattedMessage
+                                defaultMessage="Screen {current} of {length}"
+                                description="Aria announcement"
+                                values={{
+                                    current: screenIndex + 1,
+                                    length: screens.length,
+                                }}
+                            />
+                        </div>
+                        <nav
+                            aria-label={intl.formatMessage({
+                                defaultMessage: 'Skip Links',
+                                description: 'Nav aria label',
+                            })}
+                            className={styles.accessibilityLinks}
+                        >
+                            <Button
+                                onClick={onClickSkipToPlaybackControls}
+                                aria-disabled={withoutPlaybackControls || !playbackcontrolsVisible}
+                                aria-describedby="disabledReason"
+                                className={classNames([
+                                    styles.accessibilityButton,
+                                    {
+                                        [styles.disabled]:
+                                            withoutPlaybackControls || !playbackcontrolsVisible,
+                                    },
+                                ])}
+                            >
+                                <FormattedMessage
+                                    defaultMessage="Skip to controls"
+                                    description="Button label"
+                                />
+                            </Button>
+                            {withoutPlaybackControls || !playbackcontrolsVisible ? (
+                                <div
+                                    role="tooltip"
+                                    className={styles.tooltipBox}
+                                    id="disabledReason"
+                                >
+                                    <span className={styles.tooltip}>
+                                        <FormattedMessage
+                                            defaultMessage="No controls available"
+                                            description="Tooltip"
+                                        />
+                                    </span>
+                                </div>
+                            ) : null}
+                        </nav>
                         {!withoutMenu ? (
                             <ViewerMenu
                                 story={parsedStory}
@@ -724,8 +824,13 @@ const Viewer = ({
                                         direction="previous"
                                         className={classNames([styles.navButton, styles.previous])}
                                         onClick={gotoPreviousScreen}
+                                        ariaLabel={intl.formatMessage({
+                                            defaultMessage: 'Go to previous screen',
+                                            description: 'Button label',
+                                        })}
                                     />
                                 ) : null}
+
                                 <div
                                     className={styles.screensFrame}
                                     style={{
@@ -749,7 +854,10 @@ const Viewer = ({
                                         return (
                                             <animated.div
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
+                                                id={current ? 'content' : null}
+                                                aria-hidden={!current}
                                                 style={screenStyles}
+                                                tabIndex={current ? 0 : -1}
                                                 className={classNames([
                                                     styles.screenContainer,
                                                     {
@@ -787,11 +895,16 @@ const Viewer = ({
                                         direction="next"
                                         className={classNames([styles.navButton, styles.next])}
                                         onClick={gotoNextScreen}
+                                        ariaLabel={intl.formatMessage({
+                                            defaultMessage: 'Go to next screen',
+                                            description: 'Button label',
+                                        })}
                                     />
                                 ) : null}
                                 {!withoutPlaybackControls ? (
                                     <div
                                         className={styles.playbackControls}
+                                        id="controls"
                                         ref={playbackControlsContainerRef}
                                     >
                                         <PlaybackControls className={styles.controls} />
@@ -823,12 +936,20 @@ const Viewer = ({
                                 {...currentShareIncentive}
                             />
                         </div>
+                        {/* @TODO: FocusLock breaks transition animation */}
+                        {/* <FocusLock
+                            disabled={!webViewOpened}
+                            className={styles.focusLock}
+                            group="webview"
+                            returnFocus
+                        > */}
                         <WebView
                             className={styles.webView}
                             style={{
                                 maxWidth: Math.max(screenContainerWidth, 600),
                             }}
                         />
+                        {/* </FocusLock> */}
                     </div>
                 </ViewerProvider>
             </ScreenSizeProvider>
