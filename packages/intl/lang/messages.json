@@ -47,6 +47,10 @@
     "defaultMessage": "Edit text",
     "description": "Modal title"
   },
+  "/2i9do": {
+    "defaultMessage": "Choose media",
+    "description": "Modal title"
+  },
   "/62oe4": {
     "defaultMessage": "My files",
     "description": "Media gallery source"

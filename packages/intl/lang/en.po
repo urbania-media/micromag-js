@@ -83,6 +83,12 @@ msgctxt "/0hgRs"
 msgid "Edit text"
 msgstr "Edit text"
 
+# Modal title
+#: /2i9do
+msgctxt "/2i9do"
+msgid "Choose media"
+msgstr "Choose media"
+
 # Media gallery source
 #: /62oe4
 msgctxt "/62oe4"
