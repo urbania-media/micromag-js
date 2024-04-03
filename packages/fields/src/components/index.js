@@ -54,6 +54,7 @@ export { default as Margin } from './Margin';
 export { default as Marker } from './Marker';
 export { default as Markers } from './Markers';
 export { default as Media } from './Media';
+export { default as MediaModal } from './MediaModal';
 export { default as MediaThumbnail } from './MediaThumbnail';
 export { default as Message } from './Message';
 export { default as Number } from './Number';

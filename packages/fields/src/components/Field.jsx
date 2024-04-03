@@ -21,6 +21,7 @@ const propTypes = {
     isSection: PropTypes.bool,
     isListItem: PropTypes.bool,
     withForm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    withModal: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     onChange: PropTypes.func,
     gotoFieldForm: PropTypes.func,
     closeFieldForm: PropTypes.func,
@@ -42,6 +43,7 @@ const defaultProps = {
     isSection: false,
     isListItem: false,
     withForm: null,
+    withModal: null,
     onChange: null,
     gotoFieldForm: null,
     closeFieldForm: null,
@@ -62,6 +64,7 @@ const Field = ({
     isSection,
     isListItem,
     withForm: providedWithForm,
+    withModal: providedWithModal,
     value,
     onChange,
     gotoFieldForm,
@@ -80,6 +83,7 @@ const Field = ({
         withoutLabel = false,
         withoutFieldRow = false,
         withForm = providedWithForm,
+        withModal = providedWithModal,
         isList = false,
         ...fieldProps
     } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
@@ -102,10 +106,15 @@ const Field = ({
     }
 
     const finalWithForm = withForm || FieldComponent.withForm || false;
+    const finalWithModal = withModal || FieldComponent.withModal || false;
+
     const finalIsHorizontal =
         isHorizontal !== null
             ? isHorizontal
-            : FieldComponent.isHorizontal || (finalWithForm !== false && isListItem) || null;
+            : FieldComponent.isHorizontal ||
+              (finalWithForm !== false && isListItem) ||
+              (finalWithModal !== false && isListItem) ||
+              null;
     const finalWithoutLabel = withoutLabel || FieldComponent.withoutLabel || false;
     const finalWithSettings =
         settings !== null ||

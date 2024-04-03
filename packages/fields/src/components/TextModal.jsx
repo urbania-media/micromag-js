@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import { getCSRFHeaders } from '@folklore/fetch';
 import classNames from 'classnames';
@@ -135,7 +137,7 @@ const TextModal = ({
 
     return (
         <>
-            <button className={styles.previewButton} type="button" onClick={onOpen}>
+            <button type="button" className={styles.previewButton} onClick={onOpen}>
                 <TextElement
                     className={styles.preview}
                     inline
