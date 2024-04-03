@@ -48,9 +48,11 @@ function WebViewContainer({ onChange, className, style }) {
     const onTransitionEnd = useCallback(() => {
         if (url === null) {
             setCurrentUrl(null);
+        }
+        if (onChange !== null) {
             onChange(opened);
         }
-    }, [url]);
+    }, [url, setCurrentUrl, onChange]);
 
     // Disable interaction and pause playback
     useEffect(() => {

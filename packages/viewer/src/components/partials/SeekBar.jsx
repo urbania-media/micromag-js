@@ -97,7 +97,8 @@ const SeekBar = ({
     const startProgressRef = useRef(progress);
 
     const onDrag = useCallback(
-        ({ movement: [x], elapsedTime, active, tap, currentTarget }) => {
+        // eslint-disable-next-line no-unused-vars
+        ({ xy: [xOffset], movement: [xMovement], elapsedTime, active, tap, currentTarget }) => {
             if (!active && elapsedTime > 300) {
                 return;
             }
@@ -105,9 +106,14 @@ const SeekBar = ({
                 onClick();
                 return;
             }
-            const { width: elWidth = 0 } = currentTarget.getBoundingClientRect();
-            const newProgress = Math.max(0, Math.min(1, startProgressRef.current + x / elWidth));
-
+            const { width: elWidth = 0, x: xGap = null } = currentTarget.getBoundingClientRect();
+            let newProgress = null;
+            if (tap) {
+                newProgress = Math.max(0, Math.min(1, (xOffset - xGap) / elWidth));
+            } else {
+                // startProgressRef.current + xMovement
+                newProgress = Math.max(0, Math.min(1, (xOffset - xGap) / elWidth));
+            }
             if (onSeek !== null) {
                 onSeek(newProgress, tap);
             }

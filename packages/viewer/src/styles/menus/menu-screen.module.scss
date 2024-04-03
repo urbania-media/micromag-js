@@ -28,9 +28,16 @@
     }
 
     .isCurrent & {
-        animation: pulse 0.75s $ease-in-out-soft-sine infinite alternate-reverse;
+        // animation: pulse 0.5s $ease-in-out-soft-sine infinite alternate-reverse;
         // Add border-color from micomag theme
+        border-width: 0.2rem;
         border-color: var(--micromag-focus-color, #fff);
+
+        @media (hover: hover) {
+            &:hover {
+                border: 0.25rem solid $white;
+            }
+        }
     }
 
     @media (hover: hover) {

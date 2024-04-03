@@ -152,7 +152,8 @@ function PlaybackControls({
     }, [playing, setWasPlaying, setPlaying]);
 
     const onSeek = useCallback(
-        (progress) => {
+        // eslint-disable-next-line no-unused-vars
+        (progress, tap = false) => {
             if (mediaElement !== null) {
                 mediaElement.currentTime = progress * mediaElement.duration;
             }
