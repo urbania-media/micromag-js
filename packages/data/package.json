@@ -63,7 +63,7 @@
         "@micromag/core": "^0.3.497",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
-        "query-string": "^6.13.7"
+        "query-string": "^9.0.0"
     },
     "publishConfig": {
         "access": "public",

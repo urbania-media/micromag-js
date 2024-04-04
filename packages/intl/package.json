@@ -80,7 +80,7 @@
         "glob": "^7.1.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
-        "react-intl": "^6.6.2"
+        "react-intl": "^6.6.4"
     },
     "lang": "locale",
     "supportedLocales": [

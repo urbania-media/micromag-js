@@ -20,6 +20,7 @@ import simpleTreeTheme from '../../../../.storybook/data/themes/simpletree';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import { theme as backgroundTheme } from '../../../../.storybook/data/themes/with-background';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
+import withIntlProvider from '../../../../.storybook/decorators/withIntlProvider';
 import withUppy from '../../../../.storybook/decorators/withUppy';
 import signs from '../../../../screens/urbania-horoscope/src/data/signs';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';

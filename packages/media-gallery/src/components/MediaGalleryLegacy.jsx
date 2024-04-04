@@ -10,10 +10,12 @@ import { Button, Spinner, UploadModal } from '@micromag/core/components';
 import { useStory } from '@micromag/core/contexts';
 import { useMediaAuthors, useMediaCreate, useMedias, useMediaTags } from '@micromag/data';
 
+import Gallery from './lists/Gallery';
+import MediaMetadata from './partials/MediaMetadata';
+import Navbar from './partials/Navbar';
+
 // import list from '../_stories/list.json';
 import styles from '../styles/media-gallery.module.scss';
-
-export { MediasBrowser, MediasPicker } from '@panneau/medias';
 
 const videoTypes = ['video', 'image/gif'];
 
@@ -197,7 +199,6 @@ function MediaGallery({
         },
         [createMedia, addedMedias, setAddedMedias],
     );
-
     const onUploadRequestClose = useCallback(
         () => setUploadModalOpened(false),
         [setUploadModalOpened],
@@ -213,7 +214,70 @@ function MediaGallery({
                 },
             ])}
         >
-            {/* {isPicker ? <MediaPicker /> : <MediaBrowser />} */}
+            <Navbar
+                types={isArray(type) ? type : [type]}
+                filters={filtersValue}
+                media={metadataMedia !== null ? metadataMedia : null}
+                selectedMedia={selectedMedia}
+                onFiltersChange={onFiltersChange}
+                onClickAdd={onClickAdd}
+                onClickItem={onClickItem}
+                onClickItemInfo={onClickItemInfo}
+                onClickBack={onClickBack}
+                onClickClear={onClearMedia}
+                withoutTitle={withoutTitle}
+                withoutSource={withoutSource}
+                withoutType={withoutType}
+                storyId={storyId}
+                authors={authors}
+                tags={tags}
+                loading={loading || uploading}
+                className={navbarClassName}
+            />
+            <div className={styles.content}>
+                <div className={styles.gallery}>
+                    {medias !== null && !uploading ? (
+                        <Gallery
+                            items={medias}
+                            selectedItem={selectedMedia}
+                            selectedFirst
+                            withInfoButton={isPicker}
+                            isSmall={isSmall}
+                            onClickItem={onClickItem}
+                            onClickItemInfo={onClickItemInfo}
+                            onClickRemoveItem={onClickRemoveItem}
+                        />
+                    ) : null}
+                    {!allLoaded ? (
+                        <div className="w-100 mb-2">
+                            {loading || uploading ? <Spinner className={styles.loading} /> : null}
+                            {!loading && !uploading ? (
+                                <Button
+                                    className="d-block mx-auto"
+                                    theme="secondary"
+                                    outline
+                                    onClick={loadNextPage}
+                                >
+                                    {intl.formatMessage({
+                                        defaultMessage: 'Load more',
+                                        description: 'Load button label in Media Gallery',
+                                    })}
+                                </Button>
+                            ) : null}
+                        </div>
+                    ) : null}
+                </div>
+                <div className={styles.mediaMetadata}>
+                    <MediaMetadata
+                        media={metadataMedia}
+                        tags={tags}
+                        onChange={onMetadataChange}
+                        onClickClose={onMetadataClickClose}
+                        // onClickSave={onMetadataClickSave}
+                        onClickDelete={onMetadataClickDelete}
+                    />
+                </div>
+            </div>
             {createPortal(
                 <UploadModal
                     type={type === 'video' ? videoTypes : type}

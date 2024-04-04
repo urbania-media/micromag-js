@@ -1,5 +1,5 @@
 import isString from 'lodash/isString';
-import { parse as parseQuery } from 'query-string';
+import queryString from 'query-string';
 import { useEffect, useState, useMemo, useCallback } from 'react';
 
 const useItems = ({
@@ -50,7 +50,7 @@ const useItems = ({
     const query = useMemo(
         () => ({
             ...(isString(pageQuery)
-                ? parseQuery(pageQuery || null, {
+                ? queryString.parse(pageQuery || null, {
                       arrayFormat: 'bracket',
                   })
                 : pageQuery),
