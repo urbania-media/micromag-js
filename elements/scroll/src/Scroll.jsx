@@ -19,7 +19,6 @@ const propTypes = {
     onScrolledBottom: PropTypes.func,
     onScrolledNotBottom: PropTypes.func,
     onScrollHeightChange: PropTypes.func,
-    contain: PropTypes.bool,
     scrollContainerRef: PropTypes.any, // eslint-disable-line
     withShadow: PropTypes.bool,
     withArrow: PropTypes.bool,
@@ -36,7 +35,6 @@ const defaultProps = {
     onScrolledBottom: null,
     onScrolledNotBottom: null,
     onScrollHeightChange: null,
-    contain: false,
     scrollContainerRef: null,
     withShadow: false,
     withArrow: true,
@@ -53,7 +51,6 @@ function Scroll({
     onScrolledBottom,
     onScrolledNotBottom,
     onScrollHeightChange,
-    contain,
     scrollContainerRef,
     withShadow,
     withArrow: showArrow,
@@ -143,7 +140,6 @@ function Scroll({
                 styles.container,
                 {
                     [styles.withScroll]: !disabled,
-                    [styles.containOverscroll]: contain,
                     [className]: className !== null,
                     [styles[verticalAlign]]: verticalAlign !== null,
                     [styles.withArrow]: showArrow && withArrow,
