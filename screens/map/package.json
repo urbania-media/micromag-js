@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-map",
-    "version": "0.3.497",
+    "version": "0.3.500",
     "private": false,
     "description": "",
     "keywords": [
@@ -70,7 +70,7 @@
         "@micromag/element-heading": "^0.3.497",
         "@micromag/element-image": "^0.3.497",
         "@micromag/element-map": "^0.3.497",
-        "@micromag/element-scroll": "^0.3.497",
+        "@micromag/element-scroll": "^0.3.500",
         "@micromag/element-text": "^0.3.497",
         "@micromag/transforms": "^0.3.497",
         "classnames": "^2.2.6",
