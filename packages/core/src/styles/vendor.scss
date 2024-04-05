@@ -7,6 +7,17 @@
 @import '~@uppy/core/dist/style';
 @import '~@uppy/dashboard/dist/style';
 
+// TODO add more when needed
+@import '~@panneau/fields/scss/styles';
+@import '~@panneau/displays/scss/styles';
+// @import '~@panneau/actions/scss/styles';
+// @import '~@panneau/forms/scss/styles';
+// @import '~@panneau/lists/scss/styles';
+@import '~@panneau/filters/scss/styles';
+// @import '~@panneau/modals/scss/styles';
+
+@import '~@panneau/element-grid/assets/css/styles';
+
 .container-small {
     @include make-container();
 

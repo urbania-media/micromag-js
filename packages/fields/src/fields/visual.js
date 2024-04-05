@@ -1,5 +1,6 @@
 export default {
     id: 'visual',
-    component: 'visual',
+    component: 'media-modal',
     media: true,
+    type: ['image', 'video'],
 };

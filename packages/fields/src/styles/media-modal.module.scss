@@ -2,21 +2,21 @@
 @import '~@micromag/core/scss/placeholders';
 
 .dialog {
-    width: 100vw !important;
-    padding: 0.5rem;
-    font-size: 1rem;
+    // width: 100vw !important;
+    // padding: 0.5rem;
+    // font-size: 1rem;
 
-    .selected {
-        background-color: $primary;
-    }
+    // .selected {
+    //     background-color: $primary;
+    // }
 
-    .editor {
-        position: relaive;
-        max-height: 100%;
-    }
+    // .editor {
+    //     position: relative;
+    //     max-height: 100%;
+    // }
 
     @media screen and (min-width: 768px) {
-        width: 50vw !important;
+        min-width: 90vw !important;
     }
 }
 
@@ -30,7 +30,7 @@
 
 .dialogBody {
     > div {
-        height: 50vh;
+        min-height: 75vh;
         overflow: hidden;
         overflow-y: scroll;
     }

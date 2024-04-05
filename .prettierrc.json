@@ -7,11 +7,12 @@
     "semi": true,
     "importOrder": [
         "<THIRD_PARTY_MODULES>",
-        "^@micromag/(.*)$",
+        "^@panneau/(.*)$",
         "^[./](.*)?/(utils|hooks|lib)",
         "^[./].*(?<!(\\.[a-z]+))$",
         "\\.scss$",
         "\\.[a-z]+$"
     ],
-    "importOrderSeparation": true
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
 }

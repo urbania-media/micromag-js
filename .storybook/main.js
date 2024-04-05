@@ -27,11 +27,42 @@ module.exports = {
                 rule: {
                     test: /\.module\.s[ca]ss$/,
                 },
+                // styleLoaderOptions: {
+                //     injectType: 'styleTag',
+                // },
                 cssLoaderOptions: {
                     modules: {
+                        auto: true,
+                        namedExport: false,
                         localIdentName: '[path][name]__[local]--[hash:base64:5]',
                     },
                 },
+                // sassLoaderOptions: {
+                //     sassOptions: (loaderContext) => {
+                //         // console.log('loaderContext', loaderContext);
+                //         // More information about available properties https://webpack.js.org/api/loaders/
+                //         const { resourcePath, rootContext } = loaderContext;
+                //         const relativePath = path.relative(rootContext, resourcePath);
+
+                //         console.log('path', relativePath);
+
+                //         if (relativePath === 'styles/foo.scss') {
+                //             return {
+                //                 includePaths: ['absolute/path/c', 'absolute/path/d'],
+                //             };
+                //         }
+
+                //         if (resourcePath.indexOf('node_modules') !== -1) {
+                //             console.log('resourcePath', resourcePath);
+                //         }
+
+                //         // console.log('hum');
+
+                //         return {
+                //             includePaths: ['node_modules'],
+                //         };
+                //     },
+                // },
             },
         },
         {
@@ -42,7 +73,7 @@ module.exports = {
                 },
             },
         },
-        '@storybook/addon-viewport/register',
+        '@storybook/addon-viewport',
         // '@storybook/addon-docs',
         '@storybook/addon-actions',
         // {

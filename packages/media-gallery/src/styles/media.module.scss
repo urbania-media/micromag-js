@@ -1,0 +1,38 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+%inactive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.container {
+    position: relative;
+
+    .content {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .loading {
+        display: block;
+        margin: 0.5rem auto;
+    }
+
+    &.metadataOpened {
+        .gallery {
+            @extend %inactive;
+            transform: translate(-100%, 0);
+        }
+
+        .mediaMetadata {
+            position: static;
+            width: auto;
+            transform: translate(0, 0);
+        }
+    }
+}

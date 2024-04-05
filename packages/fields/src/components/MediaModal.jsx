@@ -1,15 +1,15 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 // import { getCSRFHeaders } from '@folklore/fetch';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, ModalDialog as Dialog, Modal } from '@micromag/core/components';
+import { useUppyConfig } from '@micromag/core/contexts';
+import { getFileName } from '@micromag/core/utils';
+import MediaGallery from '@micromag/media-gallery';
 import classNames from 'classnames';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
-import { useIntl, FormattedMessage } from 'react-intl';
-
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Modal, ModalDialog as Dialog, Button } from '@micromag/core/components';
-import { useUppyConfig } from '@micromag/core/contexts';
-import { getFileName } from '@micromag/core/utils';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import FieldWithForm from './FieldWithForm';
 
@@ -96,6 +96,7 @@ const MediaModal = ({
 
     const onChangeMedia = useCallback(
         (media) => {
+            console.log('what', media);
             if (onChange !== null) {
                 onChange(media !== null && value !== null && media.id === value.id ? null : media);
             }
@@ -115,11 +116,13 @@ const MediaModal = ({
         }
     }, [value, onChange, onClose, autoClose]);
 
+    console.log('value', value);
+
     return (
         <>
             <FieldWithForm
                 value={value}
-                onChange={onChange}
+                // onChange={onChange}
                 noValueLabel={noValueLabel}
                 label={label}
                 withTitleLabel={label !== null}
@@ -141,7 +144,11 @@ const MediaModal = ({
                                 'text-end',
                             ])}
                         >
-                            {label}
+                            {label || (
+                                <span className="text-light">
+                                    <FormattedMessage defaultMessage="Select media..." />
+                                </span>
+                            )}
                         </span>
                         {thumbnailElement !== null ? (
                             <span className="col-auto">{thumbnailElement}</span>
@@ -168,6 +175,7 @@ const MediaModal = ({
                         ])}
                         bodyClassName={styles.dialogBody}
                         onClickClose={onClose}
+                        size="lg"
                         footer={
                             <div className="p-2">
                                 <Button className={styles.close} theme="primary" onClick={onClose}>
@@ -179,7 +187,13 @@ const MediaModal = ({
                             </div>
                         }
                     >
-                        Media modal d00d
+                        <MediaGallery
+                            value={value}
+                            type={type}
+                            isPicker
+                            onChange={onChangeMedia}
+                            onClear={onClearMedia}
+                        />
                     </Dialog>
                 </Modal>
             ) : null}

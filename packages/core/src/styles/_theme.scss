@@ -1,20 +1,33 @@
 $white: #fff;
-$black: #1C1C1C;
+$black: #1c1c1c;
 $font-weight-normal: 400;
-$purple: #A13DFF;
+$purple: #a13dff;
 $primary: $purple;
 $gray-200: #e9e9e9;
 $secondary: $gray-200;
-$green: #0ED88F;
+$green: #0ed88f;
 $gray-100: #f5f5f5;
-$input-bg: hsla(0,0%,100%,.07);
+$input-bg: hsla(0, 0%, 100%, 0.07);
 $gray-300: #dedede;
-$gray-400: #B3B3B3;
+$gray-400: #b3b3b3;
 $gray-500: #adadad;
 $gray-600: #6c6c6c;
 $gray-700: #494949;
 $gray-800: #343434;
-$font-family-sans-serif: "Libre Franklin",-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif:
+    'Libre Franklin',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
 $font-weight-bold: 600;
 $red: #ff2945;
 $yellow: #ffe535;
@@ -22,7 +35,7 @@ $blue: #2151ff;
 $info: $blue;
 $light: $white;
 $dark: #343434;
-$btn-disabled-opacity: .4;
+$btn-disabled-opacity: 0.4;
 $input-disabled-bg: rgba($white, 0.04);
 $input-placeholder-color: $gray-500;
 $custom-control-indicator-bg: $gray-200;
@@ -31,9 +44,9 @@ $custom-control-indicator-border-color: $gray-200;
 $breadcrumb-bg: transparent;
 $breadcrumb-padding-x: 0;
 $badge-font-weight: $font-weight-normal;
-$badge-padding-x: .8em;
-$badge-padding-y: .4em;
-$badge-pill-padding-x: .8em;
+$badge-padding-x: 0.8em;
+$badge-padding-y: 0.4em;
+$badge-pill-padding-x: 0.8em;
 
 $body-bg: $black;
 $input-border-width: 0;
@@ -41,37 +54,37 @@ $body-color: $gray-100;
 $link-color: $primary;
 $component-active-bg: $primary;
 $input-color: $white;
-$input-btn-focus-color: rgba($component-active-bg, .4);
+$input-btn-focus-color: rgba($component-active-bg, 0.4);
 $input-group-addon-bg: rgba($white, 0.12);
 $pagination-bg: rgba($white, 0.07);
 $pagination-border-width: 0;
 $pagination-hover-bg: rgba($white, 0.12);
 $pagination-hover-color: $link-color;
 $pagination-disabled-bg: rgba($white, 0.04);
-$card-bg: rgba($white, .07);
-$card-border-color: rgba($white, .13);
+$card-bg: rgba($white, 0.07);
+$card-border-color: rgba($white, 0.13);
 $card-border-width: 0;
-$card-cap-bg: rgba($white, .07);
+$card-cap-bg: rgba($white, 0.07);
 $list-group-bg: transparent;
-$list-group-border-color: rgba($white, .13);
-$gray-900: #2B2B2B;
+$list-group-border-color: rgba($white, 0.13);
+$gray-900: #2b2b2b;
 $modal-content-bg: $gray-900;
 $modal-header-border-color: rgba($white, 0.12);
 $line-height-base: 1.4;
 $font-size-base: 0.9rem;
 $headings-font-weight: 600;
 $text-muted: rgba($white, 0.4);
-$hr-border-color: rgba($white, .1);
+$hr-border-color: rgba($white, 0.1);
 $btn-font-weight: $font-weight-bold;
-$input-btn-padding-y: .5rem;
+$input-btn-padding-y: 0.5rem;
 $btn-padding-x: 1rem;
 $input-btn-padding-x-lg: 1.3rem;
-$input-btn-padding-x-sm: .75rem;
+$input-btn-padding-x-sm: 0.75rem;
 $list-group-color: $body-color;
 $list-group-action-color: $body-color;
 $list-group-hover-bg: rgba($body-color, 0.2);
 $dropdown-bg: $gray-800;
-$dropdown-divider-bg: rgba($white, .13);
+$dropdown-divider-bg: rgba($white, 0.13);
 $dropdown-link-color: $body-color;
 $dropdown-link-hover-bg: $primary;
 $dropdown-link-hover-color: $body-color;
@@ -87,13 +100,13 @@ $btn-active-bg-tint-amount: 50% !default;
 $btn-active-border-shade-amount: 50% !default;
 $btn-active-border-tint-amount: 25% !default;
 
-$ease-in-bounce: cubic-bezier(.075,1.5,.35,.95);
-$ease-in-out-bounce: cubic-bezier(.9,-0.5,.1,1.5);
-$ease-in-out-soft-sine: cubic-bezier(.4,0,.6,1);
-$ease-in-out-sine: cubic-bezier(.6,0,.4,1);
-$ease-in-out-hard-sine: cubic-bezier(.9,0,.1,1);
-$ease-in-ramp: cubic-bezier(.6,0,1,.5);
-$ease-out-ramp: cubic-bezier(0,.6,.5,1);
-$ease-in-kickback: cubic-bezier(.41,1.69,.04,.67);
-$ease-in-yo: cubic-bezier(.21,2.59,0,.9);
-$ease-in-bump: cubic-bezier(.4,1.69,0,1);
+$ease-in-bounce: cubic-bezier(0.075, 1.5, 0.35, 0.95);
+$ease-in-out-bounce: cubic-bezier(0.9, -0.5, 0.1, 1.5);
+$ease-in-out-soft-sine: cubic-bezier(0.4, 0, 0.6, 1);
+$ease-in-out-sine: cubic-bezier(0.6, 0, 0.4, 1);
+$ease-in-out-hard-sine: cubic-bezier(0.9, 0, 0.1, 1);
+$ease-in-ramp: cubic-bezier(0.6, 0, 1, 0.5);
+$ease-out-ramp: cubic-bezier(0, 0.6, 0.5, 1);
+$ease-in-kickback: cubic-bezier(0.41, 1.69, 0.04, 0.67);
+$ease-in-yo: cubic-bezier(0.21, 2.59, 0, 0.9);
+$ease-in-bump: cubic-bezier(0.4, 1.69, 0, 1);

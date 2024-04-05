@@ -13,7 +13,16 @@ export default {
     },
     plugins: [
         resolve({
-            resolveOnly: [/@micromag/, /@folklore/, '@folklore/routes', 'wouter'],
+            resolveOnly: [
+                /@micromag/,
+                /@folklore/,
+                '@folklore/routes',
+                'wouter',
+                'query-string',
+                'decode-uri-component',
+                'split-on-first',
+                'filter-obj',
+            ],
         }),
         url({
             emitFiles: false,

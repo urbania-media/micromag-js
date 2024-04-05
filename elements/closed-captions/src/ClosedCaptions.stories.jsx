@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 
-import { closedCaptionsMedia } from '../../../.storybook/data';
+// import { closedCaptionsMedia } from '../../../.storybook/data';
 import ClosedCaptions from './ClosedCaptions';
 
 export default {
@@ -9,7 +9,7 @@ export default {
     title: 'Elements/ClosedCaptions',
 };
 
-const props = { media: closedCaptionsMedia() };
+const props = { media: null };
 
 export const normal = () => <ClosedCaptions {...props} currentTime={2} />;
 

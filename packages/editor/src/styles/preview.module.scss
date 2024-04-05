@@ -69,16 +69,19 @@
     }
 }
 
-@include match-screen('medium') {
-    .top {
-        display: block;
-        // justify-content: center;
-        width: 100%;
-        overflow-x: auto;
-        text-align: center;
-    }
+// @include match-screen('medium') {
+@media screen and (min-width: 540px) {
+    .container {
+        .top {
+            display: block;
+            // justify-content: center;
+            width: 100%;
+            overflow-x: auto;
+            text-align: center;
+        }
 
-    .bottom {
-        padding: 50px 20px;
+        .bottom {
+            padding: 50px 20px;
+        }
     }
 }

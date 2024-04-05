@@ -63,7 +63,6 @@
         "@micromag/core": "^0.3.497",
         "@micromag/element-text": "^0.3.497",
         "classnames": "^2.2.6",
-        "node-fetch": "^2.6.1",
         "parse-srt": "^1.0.0-alpha",
         "prop-types": "^15.7.2",
         "react-intl": "^6.6.4",

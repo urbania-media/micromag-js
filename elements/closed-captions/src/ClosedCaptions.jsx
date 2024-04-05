@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 import classNames from 'classnames';
-import fetch from 'node-fetch';
 import parseSRT from 'parse-srt';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, useCallback } from 'react';
@@ -86,13 +85,9 @@ const ClosedCaptions = ({ currentTime, timeOffset, media, textStyle, boxStyle, c
                     [className]: className !== null,
                 },
             ])}
-
         >
             {active ? (
-                <div
-                    className={styles.captions}
-                    style={finalBoxStyles}
-                >
+                <div className={styles.captions} style={finalBoxStyles}>
                     <TextElement textStyle={textStyle} body={line.text} />
                 </div>
             ) : null}

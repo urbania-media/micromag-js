@@ -1,6 +1,6 @@
 export default {
     id: 'image',
-    component: 'image',
+    component: 'media-modal',
     media: true,
-    // type: 'image',
+    type: 'image',
 };

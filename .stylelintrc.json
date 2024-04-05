@@ -1,11 +1,6 @@
 {
-    "extends": [
-        "stylelint-config-sass-guidelines",
-        "stylelint-config-property-sort-order-smacss",
-        "stylelint-config-prettier"
-    ],
+    "extends": ["stylelint-config-sass-guidelines", "stylelint-config-property-sort-order-smacss"],
     "rules": {
-        "indentation": 4,
         "order/properties-alphabetical-order": null,
         "alpha-value-notation": "number",
         "selector-class-pattern": [

@@ -1,27 +1,29 @@
-import classNames from 'classnames';
-import isArray from 'lodash/isArray';
-import PropTypes from 'prop-types';
-import React, { useCallback, useMemo, useRef, useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { useIntl } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, Spinner, UploadModal } from '@micromag/core/components';
-import { useStory } from '@micromag/core/contexts';
-import { useMediaAuthors, useMediaCreate, useMedias, useMediaTags } from '@micromag/data';
+import { UploadModal } from '@micromag/core/components';
+import { useApi, useMediaAuthors, useMediaCreate, useMediaTags } from '@micromag/data';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
+
+import DisplaysProvider from '@panneau/displays';
+import FieldsProvider from '@panneau/fields';
+import FiltersProvider from '@panneau/filters';
+import { MediasBrowserContainer, MediasPickerContainer } from '@panneau/medias';
 
 // import list from '../_stories/list.json';
-import styles from '../styles/media-gallery.module.scss';
-
-export { MediasBrowser, MediasPicker } from '@panneau/medias';
+import styles from '../styles/media.module.scss';
 
 const videoTypes = ['video', 'image/gif'];
 
 const propTypes = {
+    value: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }),
     type: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     source: PropTypes.string,
     isPicker: PropTypes.bool,
-    isSmall: PropTypes.bool,
+    multiple: PropTypes.bool,
     withoutTitle: PropTypes.bool,
     withoutSource: PropTypes.bool,
     withoutType: PropTypes.bool,
@@ -35,10 +37,11 @@ const propTypes = {
 };
 
 const defaultProps = {
+    value: null,
     type: null,
     source: 'all',
     isPicker: false,
-    isSmall: false,
+    multiple: false,
     withoutTitle: false,
     withoutSource: false,
     withoutType: true,
@@ -52,10 +55,11 @@ const defaultProps = {
 };
 
 function MediaGallery({
+    value: initialValue,
     type,
     source,
     isPicker,
-    isSmall,
+    multiple,
     withoutTitle,
     withoutSource,
     withoutType,
@@ -67,120 +71,51 @@ function MediaGallery({
     onClickMedia,
     onClearMedia,
 }) {
-    const intl = useIntl();
-    // Base state for filters
-    const defaultFilters = {
-        type,
-        source,
-    };
+    const api = useApi();
+    const mediasApi = useMemo(
+        () => ({
+            get: (...args) =>
+                api.medias.get(...args).then((response) => {
+                    const { meta = null, pagination = null, data = null } = response || {};
+                    const finalMeta = meta !== null ? { ...meta, page: meta?.current_page } : null;
+                    return {
+                        data,
+                        pagination: pagination || finalMeta,
+                    };
+                }),
+            find: (...args) => api.medias.find(...args),
+            create: (...args) => api.medias.create(...args),
+            update: (...args) => api.medias.update(...args),
+            delete: (...args) => api.medias.delete(...args),
+        }),
+        [api],
+    );
 
-    // Filters
-    const throttle = useRef(null);
-    const [queryValue, setQueryValue] = useState(defaultFilters);
-    const [filtersValue, setFiltersValue] = useState(defaultFilters);
-
-    const story = useStory();
-    const { id: storyId = null } = story || {};
     const { tags } = useMediaTags();
     const { authors } = useMediaAuthors();
 
-    const onFiltersChange = useCallback(
-        (value) => {
-            if (throttle.current !== null) {
-                clearTimeout(throttle.current);
-            }
-            throttle.current = setTimeout(() => {
-                setQueryValue(value);
-                throttle.current = null;
-            }, 500);
-            setFiltersValue(value);
-        },
-        [setFiltersValue, setQueryValue, throttle],
-    );
-
-    const [defaultItems, setDefaultItems] = useState(initialMedias);
-
-    // Items
-    const {
-        items: loadedMedias,
-        loading = false,
-        loadNextPage = null,
-        allLoaded = false,
-        // reset,
-    } = useMedias(queryValue, 1, 30, {
-        pages: defaultItems,
-    });
-
-    // Temporary type filter
-    const [addedMedias, setAddedMedias] = useState([]);
-    const medias = useMemo(() => {
-        const allMedias = [...addedMedias, ...(loadedMedias || [])];
-        return allMedias.length > 0 ? allMedias : null;
-    }, [loadedMedias, addedMedias]);
+    // const throttle = useRef(null);
+    // const onFiltersChange = useCallback(
+    //     (value) => {
+    //         if (throttle.current !== null) {
+    //             clearTimeout(throttle.current);
+    //         }
+    //         throttle.current = setTimeout(() => {
+    //             setQueryValue(value);
+    //             throttle.current = null;
+    //         }, 500);
+    //         setFiltersValue(value);
+    //     },
+    //     [setFiltersValue, setQueryValue, throttle],
+    // );
 
     // Medias
-    const [metadataMedia, setMetadataMedia] = useState(null);
-    const onClickItem = useCallback(
-        (media) => {
-            const { id: mediaId = null } = media || {};
-            const { id: selectedId = null } = selectedMedia || {};
-            const different = mediaId !== selectedId;
-            if (!isPicker) {
-                setMetadataMedia(media);
-            } else if (onClickMedia !== null) {
-                if (different) {
-                    onClickMedia(media);
-                }
-            }
-        },
-        [isPicker, setMetadataMedia, onClickMedia, selectedMedia],
-    );
-    const onClickRemoveItem = useCallback(() => {
-        setMetadataMedia(null);
-        if (onClickMedia !== null) {
-            onClickMedia(null);
-        }
-    }, [isPicker, setMetadataMedia, onClickMedia]);
-
-    const onClickItemInfo = useCallback((media) => setMetadataMedia(media), [setMetadataMedia]);
-
-    const onMetadataClickClose = useCallback(() => {
-        setMetadataMedia(null);
-    }, [setMetadataMedia]);
-
-    const onMetadataClickDelete = useCallback(
-        (mediaId = null) => {
-            const { id: selectedId = null } = selectedMedia || {};
-            if (mediaId !== null && mediaId === selectedId && onClickMedia !== null) {
-                onClickMedia(null);
-            }
-            setMetadataMedia(null);
-        },
-        [setMetadataMedia, onClickMedia, selectedMedia],
-    );
-
     const onMetadataChange = useCallback(
         (val) => {
-            setMetadataMedia(val);
-            const { id: mediaId = null } = val || {};
-            const { id: selectedId = null } = selectedMedia || {};
-            if (onChange !== null && mediaId === selectedId) {
-                onChange(val);
-            }
+            console.log('do something');
         },
-        [setMetadataMedia, selectedMedia, onChange],
+        [selectedMedia, onChange],
     );
-
-    useEffect(() => {
-        if (metadataMedia !== null) {
-            window.scrollTo(0, 0);
-        }
-    }, [metadataMedia]);
-
-    // Navigation
-    const onClickBack = useCallback(() => {
-        setMetadataMedia(null);
-    }, [setMetadataMedia, setDefaultItems, setQueryValue]);
 
     // Upload modal
     const [uploading, setUploading] = useState(false);
@@ -190,12 +125,9 @@ function MediaGallery({
     const onUploadCompleted = useCallback(
         (newMedias) => {
             setUploading(true);
-            Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => {
-                setUploading(false);
-                return setAddedMedias([...addedMedias, ...newAddedMedias]);
-            });
+            console.log('do something');
         },
-        [createMedia, addedMedias, setAddedMedias],
+        [createMedia],
     );
 
     const onUploadRequestClose = useCallback(
@@ -203,17 +135,39 @@ function MediaGallery({
         [setUploadModalOpened],
     );
 
+    const partialValue = initialValue || selectedMedia || null;
+    const finalValue = multiple ? partialValue : [partialValue];
+
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles.metadataOpened]: metadataMedia !== null,
                     [className]: className,
                 },
             ])}
         >
-            {/* {isPicker ? <MediaPicker /> : <MediaBrowser />} */}
+            <FieldsProvider>
+                <DisplaysProvider>
+                    <FiltersProvider>
+                        {isPicker ? (
+                            <MediasPickerContainer
+                                api={mediasApi}
+                                theme="dark"
+                                items={initialMedias}
+                                value={finalValue}
+                                onChange={onChange}
+                            />
+                        ) : (
+                            <MediasBrowserContainer
+                                api={mediasApi}
+                                theme="dark"
+                                items={initialMedias}
+                            />
+                        )}
+                    </FiltersProvider>
+                </DisplaysProvider>
+            </FieldsProvider>
             {createPortal(
                 <UploadModal
                     type={type === 'video' ? videoTypes : type}

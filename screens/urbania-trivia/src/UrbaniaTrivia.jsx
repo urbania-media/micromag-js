@@ -2,12 +2,6 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
-import classNames from 'classnames';
-import isArray from 'lodash/isArray';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     Empty,
@@ -16,18 +10,18 @@ import {
     ScreenElement,
 } from '@micromag/core/components';
 import {
+    usePlaybackContext,
+    usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
-    useViewerNavigation,
-    usePlaybackContext,
-    useViewerContext,
-    usePlaybackMediaRef,
     useViewerContainer,
+    useViewerContext,
+    useViewerNavigation,
 } from '@micromag/core/contexts';
 import {
-    useTrackScreenMedia,
-    useDimensionObserver,
     useActivityDetector,
+    useDimensionObserver,
+    useTrackScreenMedia,
 } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
@@ -36,6 +30,11 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
+import classNames from 'classnames';
+import isArray from 'lodash/isArray';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import styles from './urbania-trivia.module.scss';
 
@@ -369,7 +368,6 @@ const UrbaniaTrivia = ({
                         className={styles.videoContainer}
                         style={{
                             width: Math.min(width, resizedVideoWidth),
-
                             height: resizedVideoHeight,
                             left: resizedVideoLeft > 0 ? resizedVideoLeft : null,
                             maxHeight: videoMaxHeight,
