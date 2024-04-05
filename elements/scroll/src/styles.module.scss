@@ -19,9 +19,9 @@
         .scrollable {
             @extend %hide-scrollbars;
 
-            position: absolute;
-            top: 0;
-            left: 0;
+            // position: absolute;
+            // top: 0;
+            // left: 0;
             overflow-x: hidden;
             overflow-y: auto;
         }
