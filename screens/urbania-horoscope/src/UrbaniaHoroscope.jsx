@@ -167,7 +167,7 @@ const UrbaniaHoroscope = ({
 
     const onCloseSignsGrid = useCallback(() => {
         setShowSignsGrid(false);
-        setShowModal(0); // can't have a modal if signs are closed
+        setShowModal(false); // can't have a modal if signs are closed
         enableInteraction();
         trackScreenEvent('close');
     }, [setShowSignsGrid, setShowModal, enableInteraction, trackScreenEvent]);
@@ -184,7 +184,7 @@ const UrbaniaHoroscope = ({
     );
 
     const onCloseModal = useCallback(() => {
-        setShowModal(0);
+        setShowModal(false);
         trackScreenEvent('close_sign');
     }, [setShowModal, trackScreenEvent]);
 
@@ -228,9 +228,10 @@ const UrbaniaHoroscope = ({
                 }
                 return reachedThreshold ? 0 : 1;
             }
+
             return 1 - progress;
         },
-        [onCloseModal],
+        [showModal, onCloseModal],
     );
 
     const { bind: bindModalDrag, progress: showModalProgress } = useDragProgress({
@@ -275,24 +276,24 @@ const UrbaniaHoroscope = ({
     const screenState = useScreenState();
 
     useEffect(() => {
-        setShowSignsGrid(0);
+        setShowSignsGrid(false);
 
         if (screenState === null || screenState === 'intro') {
-            setShowSignsGrid(0);
-            setShowModal(0);
+            setShowSignsGrid(false);
+            setShowModal(false);
         }
         if (screenState === 'grid') {
-            setShowSignsGrid(1);
+            setShowSignsGrid(true);
             setSelectedSign(null);
-            setShowModal(0);
+            setShowModal(false);
         }
         if (screenState !== null && screenState.includes('signs')) {
             const index = screenState.split('.').pop();
-            setShowSignsGrid(1);
-            setShowModal(1);
+            setShowSignsGrid(true);
+            setShowModal(true);
             setSelectedSign(index);
         }
-    }, [screenState]);
+    }, [screenState, setShowSignsGrid, setShowModal, setSelectedSign]);
 
     useEffect(() => {
         const keyup = (e) => {
