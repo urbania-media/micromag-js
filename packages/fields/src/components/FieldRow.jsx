@@ -222,7 +222,6 @@ const FieldRow = ({
                         'px-2',
                         {
                             'bg-dark': buttonTheme === null,
-                            // 'text-dark': buttonTheme === null,
                             [buttonClassName]: buttonClassName !== null,
                         },
                     ])}

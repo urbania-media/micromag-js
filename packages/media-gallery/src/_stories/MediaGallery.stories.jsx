@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState } from 'react';
 
 import sound from '../../../../.storybook/data/files/test.mp3';
 import video from '../../../../.storybook/data/files/test.mp4';
@@ -73,75 +73,53 @@ export default {
     },
 };
 
-export function Normal() {
+// eslint-disable-next-line react/prop-types
+const GalleryContainer = ({ value: defaultValue, ...containerProps }) => {
+    const [value, setValue] = useState(defaultValue);
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
             <FieldsProvider>
-                <MediaGallery />
+                <MediaGallery {...containerProps} selectedMedia={value} onChange={setValue} />
             </FieldsProvider>
         </ApiProvider>
     );
+};
+
+export function Normal() {
+    return <GalleryContainer />;
 }
 
 export function WithTypesRequest() {
-    return (
-        <ApiProvider baseUrl={apiBaseUrl}>
-            <FieldsProvider>
-                <MediaGallery type={['image', 'video']} />
-            </FieldsProvider>
-        </ApiProvider>
-    );
+    return <GalleryContainer type={['image', 'video']} />;
 }
 
 export function WithTestMedia() {
-    return (
-        <ApiProvider baseUrl={apiBaseUrl}>
-            <FieldsProvider>
-                <MediaGallery {...props} type="image" />
-            </FieldsProvider>
-        </ApiProvider>
-    );
+    return <GalleryContainer {...props} type="image" />;
 }
 
 export function WithSelectedMedia() {
     return (
-        <ApiProvider baseUrl={apiBaseUrl}>
-            <FieldsProvider>
-                <MediaGallery
-                    {...props}
-                    type="image"
-                    selectedMedia={{
-                        id: '1',
-                        type: 'video',
-                        thumbnail_url: 'https://picsum.photos/id/100/300/300',
-                        name: 'uuuuurbaniaDog1sdfasdflasdsdfadsfasdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
-                        url: video,
-                        metadata: {
-                            user: { id: 1, name: 'paul ' },
-                        },
-                    }}
-                />
-            </FieldsProvider>
-        </ApiProvider>
+        <GalleryContainer
+            {...props}
+            type="image"
+            value={{
+                id: '1',
+                type: 'video',
+                thumbnail_url: 'https://picsum.photos/id/100/300/300',
+                name: 'uuuuurbaniaDog1sdfasdflasdsdfadsfasdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
+                url: video,
+                metadata: {
+                    user: { id: 1, name: 'paul ' },
+                },
+            }}
+        />
     );
 }
 
 export function WithList() {
-    return (
-        <ApiProvider baseUrl={apiBaseUrl}>
-            <FieldsProvider>
-                <MediaGallery medias={list} />
-            </FieldsProvider>
-        </ApiProvider>
-    );
+    return <GalleryContainer medias={list} />;
 }
 
 export function WithFontType() {
-    return (
-        <ApiProvider baseUrl={apiBaseUrl}>
-            <FieldsProvider>
-                <MediaGallery type="font" />
-            </FieldsProvider>
-        </ApiProvider>
-    );
+    return <GalleryContainer type="font" />;
 }

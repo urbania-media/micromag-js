@@ -4,9 +4,9 @@ import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { Suspense, useCallback, useEffect, useMemo } from 'react';
 
-import { PropTypes as MicromagPropTypes } from '../../lib';
+import { useUppy } from '@panneau/uppy';
 
-import { useUppy } from '../../contexts';
+import { PropTypes as MicromagPropTypes } from '../../lib';
 
 import '../../styles/modals/upload.scss';
 

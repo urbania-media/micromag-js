@@ -8,6 +8,7 @@
     "importOrder": [
         "<THIRD_PARTY_MODULES>",
         "^@panneau/(.*)$",
+        "^@micromag/(.*)$",
         "^[./](.*)?/(utils|hooks|lib)",
         "^[./].*(?<!(\\.[a-z]+))$",
         "\\.scss$",

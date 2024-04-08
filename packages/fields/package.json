@@ -86,6 +86,7 @@
         "@micromag/element-keypad": "^0.3.497",
         "@micromag/element-map": "^0.3.497",
         "@micromag/media-gallery": "^0.3.497",
+        "@panneau/uppy": "^3.0.154",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
         "fuse.js": "^7.0.0",

@@ -1,6 +1,3 @@
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { UploadModal } from '@micromag/core/components';
-import { useApi, useMediaAuthors, useMediaCreate, useMediaTags } from '@micromag/data';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
@@ -10,6 +7,12 @@ import DisplaysProvider from '@panneau/displays';
 import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
 import { MediasBrowserContainer, MediasPickerContainer } from '@panneau/medias';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { UploadModal } from '@micromag/core/components';
+import { useApi, useMediaCreate } from '@micromag/data';
+
+import defaultFilters from './filters';
 
 // import list from '../_stories/list.json';
 import styles from '../styles/media.module.scss';
@@ -22,6 +25,7 @@ const propTypes = {
     }),
     type: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     source: PropTypes.string,
+    filters: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string })),
     isPicker: PropTypes.bool,
     multiple: PropTypes.bool,
     withoutTitle: PropTypes.bool,
@@ -40,6 +44,7 @@ const defaultProps = {
     value: null,
     type: null,
     source: 'all',
+    filters: null,
     isPicker: false,
     multiple: false,
     withoutTitle: false,
@@ -58,6 +63,7 @@ function MediaGallery({
     value: initialValue,
     type,
     source,
+    filters,
     isPicker,
     multiple,
     withoutTitle,
@@ -91,8 +97,8 @@ function MediaGallery({
         [api],
     );
 
-    const { tags } = useMediaTags();
-    const { authors } = useMediaAuthors();
+    // const { tags } = useMediaTags();
+    // const { authors } = useMediaAuthors();
 
     // const throttle = useRef(null);
     // const onFiltersChange = useCallback(
@@ -137,6 +143,9 @@ function MediaGallery({
 
     const partialValue = initialValue || selectedMedia || null;
     const finalValue = multiple ? partialValue : [partialValue];
+    const finalFilters = filters || defaultFilters() || undefined;
+
+    console.log('finalFilters', finalFilters);
 
     return (
         <div
@@ -155,14 +164,18 @@ function MediaGallery({
                                 api={mediasApi}
                                 theme="dark"
                                 items={initialMedias}
+                                filters={finalFilters}
                                 value={finalValue}
                                 onChange={onChange}
+                                uploadButton={{ id: 1 }}
                             />
                         ) : (
                             <MediasBrowserContainer
                                 api={mediasApi}
                                 theme="dark"
                                 items={initialMedias}
+                                filters={finalFilters}
+                                uploadButton={{ id: 1 }}
                             />
                         )}
                     </FiltersProvider>

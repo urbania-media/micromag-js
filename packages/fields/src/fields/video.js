@@ -1,6 +1,6 @@
 export default {
     id: 'video',
-    component: 'video',
+    component: 'media-modal',
     media: true,
     type: 'video',
 };

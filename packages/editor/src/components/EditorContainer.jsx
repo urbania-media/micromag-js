@@ -5,17 +5,18 @@ import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { Router } from 'wouter';
 
+import { UppyProvider } from '@panneau/uppy';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     ComponentsContext,
     EditorProvider,
-    FontsProvider,
     FORMS_NAMESPACE,
+    FontsProvider,
     GoogleKeysProvider,
     GoogleMapsClientProvider,
     RoutesProvider,
-    StoryProvider,
-    UppyProvider,
+    StoryProvider, // UppyProvider,
     VisitorProvider,
 } from '@micromag/core/contexts';
 import { slug } from '@micromag/core/utils';
@@ -69,17 +70,18 @@ const EditorContainer = ({
     const { locale } = useIntl();
 
     const { hook: memoryLocationHook, searchHook: memorySearchHook } = useMemoryRouter();
-    const routerProps = useMemo(() => ({
-        hook: memoryRouter ? memoryLocationHook : null,
+    const routerProps = useMemo(
+        () => ({
+            hook: memoryRouter ? memoryLocationHook : null,
             searchHook: memoryRouter ? memorySearchHook : null,
             parser: pathToRegexpParser,
             base: !memoryRouter ? basePath : null,
-    }), [basePath, memoryRouter]);
+        }),
+        [basePath, memoryRouter],
+    );
 
     return (
-        <Router
-            {...routerProps}
-        >
+        <Router {...routerProps}>
             <UppyProvider {...uppy}>
                 <StoryProvider story={value}>
                     <ScreensProvider filterNamespaces namespaces={screenNamespaces}>

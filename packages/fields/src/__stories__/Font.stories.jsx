@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { UppyProvider } from '../../../core/src/contexts';
+
+import { UppyProvider } from '@panneau/uppy';
+
 import FieldsProvider from '../FieldsProvider';
 import FontsField from '../components/Fonts';
 

@@ -605,6 +605,12 @@ msgctxt "8tANs8"
 msgid "Conversation"
 msgstr "Conversation"
 
+# Filter label
+#: 9/t5wK
+msgctxt "9/t5wK"
+msgid "Type"
+msgstr "Type"
+
 # Date field label
 #: 9AP246
 msgctxt "9AP246"
@@ -2062,6 +2068,11 @@ msgctxt "g6b9Lg"
 msgid "Contribution"
 msgstr "Contribution"
 
+#: gJTVcQ
+msgctxt "gJTVcQ"
+msgid "Select media..."
+msgstr "Select media..."
+
 # Delete screen button label
 #: gRxcTc
 msgctxt "gRxcTc"
@@ -2091,6 +2102,12 @@ msgstr "Mute audio of background video"
 msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
+
+# Filter label
+#: hnLSrX
+msgctxt "hnLSrX"
+msgid "Tag"
+msgstr "Tag"
 
 # Placeholder label
 #: hoDz0O
@@ -2624,6 +2641,12 @@ msgctxt "sXfFFw"
 msgid "Enter"
 msgstr "Enter"
 
+# Filter label
+#: skmuWU
+msgctxt "skmuWU"
+msgid "Author"
+msgstr "Author"
+
 # Label when there is no item in images field
 #: t+L1J/
 msgctxt "t+L1J/"
@@ -2876,6 +2899,12 @@ msgctxt "xL0GD2"
 msgid "Aug 23 - Sept 22"
 msgstr "Aug 23 - Sept 22"
 
+# Filter item label
+#: xSERPA
+msgctxt "xSERPA"
+msgid "Video"
+msgstr "Video"
+
 # Field label
 #: xT/onn
 msgctxt "xT/onn"
@@ -2954,11 +2983,23 @@ msgctxt "yEG9zh"
 msgid "Date"
 msgstr "Date"
 
+# Filter item label
+#: yHAmDD
+msgctxt "yHAmDD"
+msgid "Image"
+msgstr "Image"
+
 # Article placeholder
 #: yMpGIc
 msgctxt "yMpGIc"
 msgid "Article"
 msgstr "Article"
+
+# Filter item label
+#: yQRtgx
+msgctxt "yQRtgx"
+msgid "Audio"
+msgstr "Audio"
 
 # Call to action default label
 #: z/VBX0

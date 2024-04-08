@@ -5,10 +5,11 @@ import { getCSRFHeaders } from '@folklore/fetch';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import { Modal, ModalDialog as Dialog, Button } from '@micromag/core/components';
-import { useUppyConfig } from '@micromag/core/contexts';
+import { useUppyConfig } from '@panneau/uppy';
+
+import { Button, ModalDialog as Dialog, Modal } from '@micromag/core/components';
 
 import EditorField from './TextEditor';
 import TextElement from './TextElement';

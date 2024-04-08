@@ -296,6 +296,9 @@
     "8tANs8": {
         "defaultMessage": "Conversation"
     },
+    "9/t5wK": {
+        "defaultMessage": "Type"
+    },
     "9AP246": {
         "defaultMessage": "Date"
     },
@@ -1025,6 +1028,9 @@
     "g6b9Lg": {
         "defaultMessage": "Contribution"
     },
+    "gJTVcQ": {
+        "defaultMessage": "Select media..."
+    },
     "gRxcTc": {
         "defaultMessage": "Delete screen"
     },
@@ -1039,6 +1045,9 @@
     },
     "hVE7TA": {
         "defaultMessage": "Question"
+    },
+    "hnLSrX": {
+        "defaultMessage": "Tag"
     },
     "hoDz0O": {
         "defaultMessage": "Description"
@@ -1307,6 +1316,9 @@
     "sXfFFw": {
         "defaultMessage": "Enter"
     },
+    "skmuWU": {
+        "defaultMessage": "Author"
+    },
     "t+L1J/": {
         "defaultMessage": "No image..."
     },
@@ -1433,6 +1445,9 @@
     "xL0GD2": {
         "defaultMessage": "Aug 23 - Sept 22"
     },
+    "xSERPA": {
+        "defaultMessage": "Video"
+    },
     "xT/onn": {
         "defaultMessage": "Image"
     },
@@ -1472,8 +1487,14 @@
     "yEG9zh": {
         "defaultMessage": "Date"
     },
+    "yHAmDD": {
+        "defaultMessage": "Image"
+    },
     "yMpGIc": {
         "defaultMessage": "Article"
+    },
+    "yQRtgx": {
+        "defaultMessage": "Audio"
     },
     "z/VBX0": {
         "defaultMessage": "Learn more"

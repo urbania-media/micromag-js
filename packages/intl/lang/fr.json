@@ -296,6 +296,9 @@
     "8tANs8": {
         "defaultMessage": "Conversation"
     },
+    "9/t5wK": {
+        "defaultMessage": "Type"
+    },
     "9AP246": {
         "defaultMessage": "Date"
     },
@@ -1040,6 +1043,9 @@
     "hVE7TA": {
         "defaultMessage": "Question"
     },
+    "hnLSrX": {
+        "defaultMessage": "Tag"
+    },
     "hoDz0O": {
         "defaultMessage": "Description"
     },
@@ -1307,6 +1313,9 @@
     "sXfFFw": {
         "defaultMessage": "Entrer"
     },
+    "skmuWU": {
+        "defaultMessage": "Auteur"
+    },
     "t+L1J/": {
         "defaultMessage": "Pas d’image"
     },
@@ -1433,6 +1442,9 @@
     "xL0GD2": {
         "defaultMessage": "23 août au 22 sept"
     },
+    "xSERPA": {
+        "defaultMessage": "Vidéo"
+    },
     "xT/onn": {
         "defaultMessage": "Image"
     },
@@ -1472,8 +1484,14 @@
     "yEG9zh": {
         "defaultMessage": "Date"
     },
+    "yHAmDD": {
+        "defaultMessage": "Image"
+    },
     "yMpGIc": {
         "defaultMessage": "Article"
+    },
+    "yQRtgx": {
+        "defaultMessage": "Audio"
     },
     "z/VBX0": {
         "defaultMessage": "En savoir plus"

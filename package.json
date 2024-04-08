@@ -19,7 +19,8 @@
         "build:all": "nx run-many --target=build",
         "build:nocache": "nx run-many --target=build --skip-nx-cache",
         "build:viewer": "npm run build --workspace=@micromag/viewer-build",
-        "graph": "nx graph"
+        "graph": "nx graph",
+        "update-panneau": "npm update @panneau/core @panneau/medias @panneau/intl @panneau/uppy @panneau/fields @panneau/displays @panneau/filters"
     },
     "author": "",
     "license": "ISC",
@@ -69,6 +70,7 @@
         "@storybook/react-webpack5": "^7.0.6",
         "@trivago/prettier-plugin-sort-imports": "^4.0.0",
         "@use-gesture/react": "^10.3.0",
+        "@panneau/uppy": "^3.0.154",
         "babel-loader": "^9.1.2",
         "babel-plugin-css-modules-transform": "^1.6.2",
         "babel-plugin-dynamic-import-node": "^2.3.3",
@@ -100,7 +102,7 @@
         "eslint-plugin-storybook": "^0.6.11",
         "express": "^4.17.1",
         "fs-extra": "^11.2.0",
-        "gettext-parser": "^8.0.0",
+        "gettext-parser": "^7.0.1",
         "glob": "^10.3.12",
         "http-proxy-middleware": "^3.0.0",
         "lerna": "^8.1.2",

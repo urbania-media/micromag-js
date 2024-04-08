@@ -1,15 +1,15 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 // import { getCSRFHeaders } from '@folklore/fetch';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, ModalDialog as Dialog, Modal } from '@micromag/core/components';
-import { useUppyConfig } from '@micromag/core/contexts';
-import { getFileName } from '@micromag/core/utils';
-import MediaGallery from '@micromag/media-gallery';
 import classNames from 'classnames';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, ModalDialog as Dialog, Modal } from '@micromag/core/components';
+import { getFileName } from '@micromag/core/utils';
+import MediaGallery from '@micromag/media-gallery';
 
 import FieldWithForm from './FieldWithForm';
 
@@ -21,6 +21,7 @@ const propTypes = {
     type: PropTypes.string,
     noValueLabel: MicromagPropTypes.label,
     autoClose: PropTypes.bool,
+    isHorizontal: PropTypes.bool,
     onChange: PropTypes.func,
     onRequestClose: PropTypes.func,
     thumbnail: PropTypes.node,
@@ -39,6 +40,7 @@ const defaultProps = {
         />
     ),
     autoClose: true,
+    isHorizontal: false,
     onChange: null,
     onRequestClose: null,
     thumbnail: null,
@@ -52,6 +54,7 @@ const MediaModal = ({
     type,
     noValueLabel,
     autoClose,
+    isHorizontal,
     onRequestClose,
     onChange,
     thumbnail,
@@ -60,10 +63,6 @@ const MediaModal = ({
     ...props
 }) => {
     const [modalOpen, setModalOpen] = useState();
-
-    const { locale } = useIntl();
-    const { xhr } = useUppyConfig();
-    const { endpoint: xhrEndpoint = null } = xhr || {};
 
     const label = value !== null ? value.name || getFileName(value.url) || null : null;
 
@@ -96,7 +95,6 @@ const MediaModal = ({
 
     const onChangeMedia = useCallback(
         (media) => {
-            console.log('what', media);
             if (onChange !== null) {
                 onChange(media !== null && value !== null && media.id === value.id ? null : media);
             }
@@ -117,6 +115,8 @@ const MediaModal = ({
     }, [value, onChange, onClose, autoClose]);
 
     console.log('value', value);
+    console.log('type', type, isHorizontal);
+    console.log('props', props);
 
     return (
         <>
@@ -127,21 +127,36 @@ const MediaModal = ({
                 label={label}
                 withTitleLabel={label !== null}
                 thumbnailPath="thumbnail_url"
-                isHorizontal
                 isForm
+                isHorizontal={isHorizontal}
                 className="d-inline-block"
                 {...props}
             >
-                <button type="button" className={styles.previewButton} onClick={onOpen}>
+                <button
+                    type="button"
+                    className={classNames([
+                        styles.previewButton,
+                        {
+                            [styles.shaded]: !isHorizontal,
+                            'p-2': !isHorizontal,
+                            'mx-auto': !isHorizontal,
+                            'bg-dark': !isHorizontal,
+                        },
+                    ])}
+                    onClick={onOpen}
+                >
                     <span className="row">
                         <span
                             className={classNames([
                                 styles.label,
                                 'col',
                                 'text-monospace',
-                                'text-start',
                                 'text-truncate',
-                                'text-end',
+                                {
+                                    'fw-bold': value !== null,
+                                    'text-start': !isHorizontal,
+                                    'text-end': isHorizontal,
+                                },
                             ])}
                         >
                             {label || (
