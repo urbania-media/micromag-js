@@ -39,7 +39,7 @@ const defaultProps = {
             description="Label when no value is provided to Media field"
         />
     ),
-    autoClose: true,
+    autoClose: false,
     isHorizontal: false,
     onChange: null,
     onRequestClose: null,
@@ -204,10 +204,11 @@ const MediaModal = ({
                     >
                         <MediaGallery
                             value={value}
-                            type={type}
+                            types={type}
                             isPicker
                             onChange={onChangeMedia}
-                            onClear={onClearMedia}
+                            onClose={onClose}
+                            // onClear={onClearMedia}
                         />
                     </Dialog>
                 </Modal>

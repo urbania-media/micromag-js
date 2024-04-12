@@ -95,13 +95,15 @@ module.exports = {
             ...config.resolve,
             alias: {
                 ...config.resolve.alias,
-                // '@folklore/routes': require.resolve('@folklore/routes'),
-                // 'wouter': require.resolve('wouter'),
-                // 'react-intl': require.resolve('react-intl'),
+                '@folklore/routes': require.resolve('@folklore/routes'),
+                wouter: require.resolve('wouter'),
+                'react-intl': require.resolve('react-intl'),
+                'query-string': require.resolve('query-string'),
                 // '@uppy/core/dist/style.css': require.resolve('@uppy/core/dist/style.css'),
                 // '@uppy/core': require.resolve('@uppy/core'),
                 // '@uppy/react': require.resolve('@uppy/react'),
                 ...getPackagesAliases(),
+                '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/dist/index'),
             },
         },
         module: {

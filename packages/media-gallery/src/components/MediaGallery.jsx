@@ -23,7 +23,7 @@ const propTypes = {
     value: PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
-    type: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    types: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     source: PropTypes.string,
     filters: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string })),
     isPicker: PropTypes.bool,
@@ -42,7 +42,7 @@ const propTypes = {
 
 const defaultProps = {
     value: null,
-    type: null,
+    types: null,
     source: 'all',
     filters: null,
     isPicker: false,
@@ -61,7 +61,7 @@ const defaultProps = {
 
 function MediaGallery({
     value: initialValue,
-    type,
+    types,
     source,
     filters,
     isPicker,
@@ -144,8 +144,7 @@ function MediaGallery({
     const partialValue = initialValue || selectedMedia || null;
     const finalValue = multiple ? partialValue : [partialValue];
     const finalFilters = filters || defaultFilters() || undefined;
-
-    console.log('finalFilters', finalFilters);
+    const finalTypes = types === 'video' ? videoTypes : types;
 
     return (
         <div
@@ -163,6 +162,7 @@ function MediaGallery({
                             <MediasPickerContainer
                                 api={mediasApi}
                                 theme="dark"
+                                types={finalTypes}
                                 items={initialMedias}
                                 filters={finalFilters}
                                 value={finalValue}
@@ -173,6 +173,7 @@ function MediaGallery({
                             <MediasBrowserContainer
                                 api={mediasApi}
                                 theme="dark"
+                                types={finalTypes}
                                 items={initialMedias}
                                 filters={finalFilters}
                                 uploadButton={{ id: 1 }}
@@ -183,7 +184,7 @@ function MediaGallery({
             </FieldsProvider>
             {createPortal(
                 <UploadModal
-                    type={type === 'video' ? videoTypes : type}
+                    types={finalTypes}
                     opened={uploadModalOpened}
                     onUploaded={onUploadCompleted}
                     onRequestClose={onUploadRequestClose}

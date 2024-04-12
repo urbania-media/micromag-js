@@ -6,9 +6,9 @@ function filters() {
     const route = useUrlGenerator();
     return [
         {
-            id: 'type',
+            id: 'types',
             component: 'select',
-            name: 'type',
+            name: 'types',
             placeholder: <FormattedMessage defaultMessage="Type" description="Filter label" />,
             options: [
                 {

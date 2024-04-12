@@ -13,13 +13,17 @@ import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
 import { Paragraph, ParagraphButtonUI } from '@ckeditor/ckeditor5-paragraph';
 import { SimpleUploadAdapter } from '@ckeditor/ckeditor5-upload';
 
-// IMPORTANT: keep this in the same file to avoid ckeditor duplicated modules in build
+// Keep all editors in the same file to avoid ckeditor duplicated modules in build
 
 class NormalEditor extends InlineEditorBase {}
+// static builtinPlugins = [Essentials, Paragraph, Bold, Italic, Highlight, Link];
+// static defaultConfig = {};
+
 NormalEditor.builtinPlugins = [Essentials, Paragraph, Bold, Italic, Highlight, Link];
 NormalEditor.defaultConfig = {};
 
 class FullEditor extends ClassicEditorBase {}
+
 FullEditor.builtinPlugins = [
     Essentials,
     Paragraph,
@@ -38,6 +42,7 @@ FullEditor.builtinPlugins = [
     ParagraphButtonUI,
     List,
 ];
+
 FullEditor.defaultConfig = {
     mediaEmbed: {
         previewsInData: true,

@@ -67,7 +67,12 @@ const TextEditorField = ({
 }) => {
     const { locale } = useIntl();
     const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
-    const Editor = useCKEditor({ full: withFullEditor });
+    const CkEditor = useCKEditor({ full: withFullEditor });
+    const Editor = CkEditor !== null ? CkEditor.create() : null;
+
+    console.log('CkEditor', CkEditor);
+    console.log('Editor', Editor);
+
     const getColors = useGetColors();
     const colors = useMemo(
         () => (withHighlightColors ? getColors() : null) || [],
