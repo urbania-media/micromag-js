@@ -152,16 +152,13 @@ const ViewerMenu = ({
     );
 
     const shareUrl = useMemo(() => {
-        // @todo validate this
-        // const base =
-        //     typeof window !== 'undefined' ? window.location.origin.replace(/\/+$/, '') : '';
-        // const path = shareBasePath !== null ? `${base}${shareBasePath}` : base;
         const base =
             typeof window !== 'undefined'
                 ? `${window.location.protocol}//${window.location.host}`
                 : '';
-        const path = shareBasePath !== null ? `${base}${shareBasePath}` : base;
-        return path;
+        const isFull = shareBasePath !== null && shareBasePath.indexOf('http') !== -1;
+        const partialPath = shareBasePath !== null ? `${base}${shareBasePath}` : base;
+        return shareBasePath !== null && isFull ? shareBasePath.replace(/\/$/, '') : partialPath;
     }, [shareBasePath]);
 
     const onOpenMenu = useCallback(() => {

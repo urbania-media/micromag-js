@@ -72,6 +72,7 @@ const propTypes = {
     menuIsScreenWidth: PropTypes.bool,
     menuHeader: PropTypes.node,
     menuFooter: PropTypes.node,
+    shareBasePath: PropTypes.string,
     afterShareMenuButton: PropTypes.node,
     beforeScreensMenuButton: PropTypes.node,
     closeable: PropTypes.bool,
@@ -123,6 +124,7 @@ const defaultProps = {
     menuIsScreenWidth: false,
     menuHeader: null,
     menuFooter: null,
+    shareBasePath: null,
     afterShareMenuButton: null,
     beforeScreensMenuButton: null,
     menuDotsButtons: null,
@@ -171,6 +173,7 @@ const Viewer = ({
     menuHeader,
     menuDotsButtons,
     menuFooter,
+    shareBasePath,
     afterShareMenuButton,
     beforeScreensMenuButton,
     closeable,
@@ -795,7 +798,7 @@ const Viewer = ({
                                 fullscreenEnabled={fullscreenEnabled}
                                 menuDotsButtons={menuDotsButtons}
                                 closeable={closeable}
-                                shareBasePath={basePath}
+                                shareBasePath={shareBasePath || basePath}
                                 screenSize={screenSize}
                                 menuWidth={menuIsScreenWidth ? screenContainerWidth : null}
                                 theme={viewerTheme}

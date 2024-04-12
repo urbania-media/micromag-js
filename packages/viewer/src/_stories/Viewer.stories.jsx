@@ -197,7 +197,7 @@ const shareScreenProps = {
     screenId: shareScreensStory.components[0].id,
     story: shareScreensStory,
 };
-export const VideoAudio = () => <Viewer story={videoAudio} memoryRouter />;
+export const VideoAudio = () => <Viewer story={videoAudio} memoryRouter shareBasePath="https://micromag.ca" />;
 
 export const AudioOnly = () => <Viewer story={micromagAudio} memoryRouter />;
 

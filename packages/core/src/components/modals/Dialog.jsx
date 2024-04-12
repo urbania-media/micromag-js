@@ -61,6 +61,8 @@ const ModalDialog = ({
                     className={classNames([
                         'modal-header',
                         'p-2',
+                        'd-flex',
+                        'justify-content-between',
                         styles.header,
                         {
                             // 'bg-dark': theme === 'dark',
@@ -74,7 +76,7 @@ const ModalDialog = ({
                     </h5>
                     <button
                         type="button"
-                        className="btn-close"
+                        className="btn btn-close p-2"
                         aria-label="Close"
                         onClick={onClickClose}
                     />
