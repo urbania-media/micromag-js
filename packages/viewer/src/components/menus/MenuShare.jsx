@@ -2,7 +2,7 @@
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -76,7 +76,6 @@ const ViewerMenuShare = ({
             return current;
         });
         const { screen = null } = found || {};
-
         return screen;
     }, [items, currentScreenIndex, focusable]);
 
@@ -85,14 +84,10 @@ const ViewerMenuShare = ({
         setShareCurrentScreen((value) => !value);
     }, [setShareCurrentScreen]);
 
-    const [finalShareUrl, setFinalShareUrl] = useState(shareUrl);
-    useEffect(() => {
-        setFinalShareUrl(
-            shareCurrentScreen && currentScreenIndex !== 0
-                ? `${shareUrl}/${currentScreenIndex+1}`
-                : shareUrl,
-        );
-    }, [shareCurrentScreen, currentScreenIndex, setFinalShareUrl]);
+    const finalShareUrl = useMemo(() =>
+        shareCurrentScreen && currentScreenIndex !== 0 ?
+        `${shareUrl}/${currentScreenIndex+1}` : shareUrl,
+    [shareUrl, shareCurrentScreen, currentScreenIndex]);
 
     return (
         <div
