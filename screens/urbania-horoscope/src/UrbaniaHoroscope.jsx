@@ -166,11 +166,15 @@ const UrbaniaHoroscope = ({
     }, [disableInteraction, trackScreenEvent]);
 
     const onCloseSignsGrid = useCallback(() => {
+        if (showModal) {
+            setShowModal(false);
+            return;
+        }
         setShowSignsGrid(false);
         setShowModal(false); // can't have a modal if signs are closed
         enableInteraction();
         trackScreenEvent('close');
-    }, [setShowSignsGrid, setShowModal, enableInteraction, trackScreenEvent]);
+    }, [showModal, setShowSignsGrid, setShowModal, enableInteraction, trackScreenEvent]);
 
     const onSelectSign = useCallback(
         (e, id) => {
@@ -190,6 +194,9 @@ const UrbaniaHoroscope = ({
 
     const computeSignsGridProgress = useCallback(
         ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
+            console.log({
+                dragActive
+            });
             const progress = Math.max(0, my) / (window.innerHeight * 0.8);
             const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
             if (!dragActive) {
@@ -200,7 +207,7 @@ const UrbaniaHoroscope = ({
             }
             return 1 - progress;
         },
-        [onOpenSignsGrid, onCloseSignsGrid],
+        [onCloseSignsGrid],
     );
 
     const { bind: bindSignsDrag, progress: showSignsGridProgress } = useDragProgress({
@@ -214,6 +221,8 @@ const UrbaniaHoroscope = ({
             },
         },
     });
+
+    console.log(showSignsGrid);
 
     const computeModalProgress = useCallback(
         ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {

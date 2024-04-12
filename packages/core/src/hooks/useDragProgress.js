@@ -31,15 +31,18 @@ function useDragProgress({
             const { active, tap } = gestureState;
 
             if (disabled) {
+                refDragging.current = false;
                 return;
             }
 
             if (tap) {
+                refDragging.current = false;
                 if (onTap !== null) onTap(gestureState);
                 return;
             }
 
             if (dragDisabled) {
+                refDragging.current = false;
                 return;
             }
 
