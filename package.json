@@ -70,7 +70,7 @@
         "@storybook/react-webpack5": "^7.0.6",
         "@trivago/prettier-plugin-sort-imports": "^4.0.0",
         "@use-gesture/react": "^10.3.0",
-        "@panneau/uppy": "^3.0.154",
+        "@panneau/uppy": "^3.0.162",
         "babel-loader": "^9.1.2",
         "babel-plugin-css-modules-transform": "^1.6.2",
         "babel-plugin-dynamic-import-node": "^2.3.3",

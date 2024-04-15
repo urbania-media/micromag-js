@@ -117,7 +117,7 @@
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
-        "@panneau/uppy": "^3.0.154",
+        "@panneau/uppy": "^3.0.162",
         "@use-gesture/react": "^10.3.1",
         "bootstrap": "^5.3.1",
         "change-case": "^5.4.4",
