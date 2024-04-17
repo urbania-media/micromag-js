@@ -4,7 +4,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import DisplaysProvider from '@panneau/displays';
-import FieldsProvider from '@panneau/fields';
+// import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
 import { MediasBrowserContainer, MediasPickerContainer } from '@panneau/medias';
 
@@ -155,33 +155,33 @@ function MediaGallery({
                 },
             ])}
         >
-            <FieldsProvider>
-                <DisplaysProvider>
-                    <FiltersProvider>
-                        {isPicker ? (
-                            <MediasPickerContainer
-                                api={mediasApi}
-                                theme="dark"
-                                types={finalTypes}
-                                items={initialMedias}
-                                filters={finalFilters}
-                                value={finalValue}
-                                onChange={onChange}
-                                uploadButton={{ id: 1 }}
-                            />
-                        ) : (
-                            <MediasBrowserContainer
-                                api={mediasApi}
-                                theme="dark"
-                                types={finalTypes}
-                                items={initialMedias}
-                                filters={finalFilters}
-                                uploadButton={{ id: 1 }}
-                            />
-                        )}
-                    </FiltersProvider>
-                </DisplaysProvider>
-            </FieldsProvider>
+            {/* <FieldsProvider> */}
+            <DisplaysProvider>
+                <FiltersProvider>
+                    {isPicker ? (
+                        <MediasPickerContainer
+                            api={mediasApi}
+                            theme="dark"
+                            types={finalTypes}
+                            items={initialMedias}
+                            filters={finalFilters}
+                            value={finalValue}
+                            onChange={onChange}
+                            uploadButton={{ id: 1 }}
+                        />
+                    ) : (
+                        <MediasBrowserContainer
+                            api={mediasApi}
+                            theme="dark"
+                            types={finalTypes}
+                            items={initialMedias}
+                            filters={finalFilters}
+                            uploadButton={{ id: 1 }}
+                        />
+                    )}
+                </FiltersProvider>
+            </DisplaysProvider>
+            {/* </FieldsProvider> */}
             {createPortal(
                 <UploadModal
                     types={finalTypes}

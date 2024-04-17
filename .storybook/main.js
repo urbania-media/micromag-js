@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 const path = require('path');
 const webpack = require('webpack'); // eslint-disable-line no-unused-vars
+const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
 const { idInterpolationPattern } = require('../packages/intl/scripts/config');
@@ -99,64 +100,114 @@ module.exports = {
                 wouter: require.resolve('wouter'),
                 'react-intl': require.resolve('react-intl'),
                 'query-string': require.resolve('query-string'),
+                '@ckeditor/ckeditor5-editor-classic': require.resolve(
+                    '@ckeditor/ckeditor5-editor-classic',
+                ),
+                '@ckeditor/ckeditor5-editor-inline': require.resolve(
+                    '@ckeditor/ckeditor5-editor-inline',
+                ),
+                '@ckeditor/ckeditor5-react': require.resolve('@ckeditor/ckeditor5-react'),
                 // '@uppy/core/dist/style.css': require.resolve('@uppy/core/dist/style.css'),
                 // '@uppy/core': require.resolve('@uppy/core'),
                 // '@uppy/react': require.resolve('@uppy/react'),
                 ...getPackagesAliases(),
-                '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/dist/index'),
+                '@micromag/ckeditor/build': path.join(__dirname, '../packages/ckeditor/src/build'),
+                // '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/es/index'),
             },
         },
         module: {
             ...config.module,
             rules: [
-                ...config.module.rules,
-                // ...config.module.rules.map((rule, index) =>
-                //     index === 0
-                //         ? {
-                //               ...rule,
-                //               exclude: [rule.exclude, /@ckeditor/],
-                //           }
-                //         : rule,
-                // ),
-                ...getPackagesPaths().map((packagePath) => ({
-                    loader: require.resolve('babel-loader'),
-                    test: /\.(js|jsx)$/,
-                    include: path.join(packagePath, './src/'),
-                    exclude: /\/node_modules\//,
-                    options: {
-                        babelrc: false,
-                        presets: [
-                            [
-                                require.resolve('@babel/preset-env'),
-                                {
-                                    loose: true,
-                                },
-                            ],
-                        ],
-                        plugins: [
-                            [
-                                require.resolve('babel-plugin-react-intl'),
-                                {
-                                    ast: true,
-                                    extractFromFormatMessageCall: true,
-                                    idInterpolationPattern,
-                                },
-                            ],
-                        ],
-                    },
-                })),
-                // {
-                //     loader: require.resolve('babel-loader'),
-                //     test: /\.(js|jsx)$/,
-                //     include: /\/query-string\//,
-                //     options: {
-                //         babelrc: false,
-                //         plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
-                //     },
-                // },
                 {
-                    test: /\.(srt)$/,
-                    loader: require.resolve('file-loader'),
+                    oneOf: [
+                        {
+                            test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                            use: ['raw-loader'],
+                        },
+                        {
+                            test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+                            use: [
+                                {
+                                    loader: 'style-loader',
+                                    options: {
+                                        injectType: 'singletonStyleTag',
+                                        attributes: {
+                                            'data-cke': true,
+                                        },
+                                    },
+                                },
+                                'css-loader',
+                                {
+                                    loader: 'postcss-loader',
+                                    options: {
+                                        postcssOptions: styles.getPostCssConfig({
+                                            themeImporter: {
+                                                themePath: require.resolve(
+                                                    '@ckeditor/ckeditor5-theme-lark',
+                                                ),
+                                            },
+                                            minify: true,
+                                        }),
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            rules: [
+                                ...config.module.rules,
+
+                                // ...config.module.rules.map((rule, index) =>
+                                //     index === 0
+                                //         ? {
+                                //               ...rule,
+                                //               exclude: [rule.exclude, /@ckeditor/],
+                                //           }
+                                //         : rule,
+                                // ),
+                                ...getPackagesPaths().map((packagePath) => ({
+                                    loader: require.resolve('babel-loader'),
+                                    test: /\.(js|jsx)$/,
+                                    include: path.join(packagePath, './src/'),
+                                    exclude: /\/node_modules\//,
+                                    options: {
+                                        babelrc: false,
+                                        configFile: path.join(__dirname, '../babel.config.js'),
+                                        // presets: [
+                                        //     [
+                                        //         require.resolve('@babel/preset-env'),
+                                        //         {
+                                        //             loose: true,
+                                        //         },
+                                        //     ],
+                                        // ],
+                                        plugins: [
+                                            [
+                                                require.resolve('babel-plugin-react-intl'),
+                                                {
+                                                    ast: true,
+                                                    extractFromFormatMessageCall: true,
+                                                    idInterpolationPattern,
+                                                },
+                                            ],
+                                        ],
+                                    },
+                                })),
+                                // {
+                                //     loader: require.resolve('babel-loader'),
+                                //     test: /\.(js|jsx)$/,
+                                //     include: /\/query-string\//,
+                                //     options: {
+                                //         babelrc: false,
+                                //         plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
+                                //     },
+                                // },
+                                {
+                                    test: /\.(srt)$/,
+                                    loader: require.resolve('file-loader'),
+                                },
+                            ],
+                        },
+                    ],
                 },
             ],
         },
