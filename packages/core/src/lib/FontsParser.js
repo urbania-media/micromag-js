@@ -54,7 +54,7 @@ class FontsParser {
     getFieldsPattern(fields, namePrefix = null) {
         return fields.reduce((patterns, field) => {
             const { name = null, type = null } = field;
-            const path = [namePrefix, name].filter((it) => it !== null).join('\\.');
+            const path = [namePrefix, name].filter((it) => it !== null && it !== '').join('\\.');
             const fieldDefinition = {
                 ...(type !== null ? this.fieldsManager.getDefinition(type) : null),
                 ...field,
