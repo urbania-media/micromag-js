@@ -26,7 +26,6 @@
             .label {
                 transform: scale(1.05);
                 transition: transform 0.3s $ease-in-yo;
-                color: $white;
             }
         }
     }
@@ -37,7 +36,6 @@
         .label {
             transform: scale(1.05);
             transition: transform 0.3s $ease-in-kickback;
-            color: $white;
         }
     }
 
