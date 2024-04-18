@@ -1,6 +1,7 @@
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
 import uniq from 'lodash/uniq';
+import { getScreenFieldsWithStates } from '../utils';
 
 class FontsParser {
     constructor({ fieldsManager, screensManager, fieldsPattern = {} }) {
@@ -11,7 +12,7 @@ class FontsParser {
 
     getFieldsPatternByScreen(type) {
         if (typeof this.fieldsPatternCache[type] === 'undefined') {
-            const { fields = [] } = this.screensManager.getDefinition(type) || {};
+            const fields = getScreenFieldsWithStates(this.screensManager.getDefinition(type) || {});
             this.fieldsPatternCache[type] = this.getFieldsPattern(fields);
         }
         return this.fieldsPatternCache[type];

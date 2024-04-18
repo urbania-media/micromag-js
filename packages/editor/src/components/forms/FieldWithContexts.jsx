@@ -6,8 +6,7 @@ import React from 'react';
 import { FieldForm } from '@micromag/core/components';
 import { useScreenDefinition, useFormsComponents } from '@micromag/core/contexts';
 import { Fields } from '@micromag/fields';
-
-import getScreenFieldsWithStates from '../../utils/getScreenFieldsWithStates';
+import { getScreenFieldsWithStates } from '@micromag/core/utils';
 
 const propTypes = {
     name: PropTypes.string,

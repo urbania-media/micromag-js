@@ -15,10 +15,9 @@ import {
     useUrlGenerator,
     useFieldsComponentsManager,
 } from '@micromag/core/contexts';
-import { isMessage, getScreenExtraField } from '@micromag/core/utils';
+import { isMessage, getScreenExtraField, getScreenFieldsWithStates } from '@micromag/core/utils';
 
 import getFieldByName from '../../utils/getFieldByName';
-import getScreenFieldsWithStates from '../../utils/getScreenFieldsWithStates';
 
 import styles from '../../styles/menus/breadcrumb.module.scss';
 

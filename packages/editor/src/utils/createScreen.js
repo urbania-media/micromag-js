@@ -1,6 +1,7 @@
-import { v1 as uuid } from 'uuid';
 import isString from 'lodash/isString';
-import getScreenFieldsWithStates from './getScreenFieldsWithStates';
+import { v1 as uuid } from 'uuid';
+
+import { getScreenFieldsWithStates } from '@micromag/core/utils';
 
 const createScreen = (definition, data = {}) => {
     const finalDefinition = isString(definition) ? { id: definition } : definition;

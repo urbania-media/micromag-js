@@ -2,6 +2,8 @@ import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 
+import { getScreenFieldsWithStates } from '../utils';
+
 class MediasParser {
     constructor({ fieldsManager, screensManager, fieldsPattern = {} }) {
         this.fieldsManager = fieldsManager;
@@ -20,7 +22,7 @@ class MediasParser {
 
     getFieldsPatternByScreen(type) {
         if (typeof this.fieldsPatternCache[type] === 'undefined') {
-            const { fields = [] } = this.screensManager.getDefinition(type) || {};
+            const fields = getScreenFieldsWithStates(this.screensManager.getDefinition(type) || {});
             this.fieldsPatternCache[type] = this.getFieldsPattern(fields);
         }
         return this.fieldsPatternCache[type];

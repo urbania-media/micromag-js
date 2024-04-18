@@ -1,5 +1,6 @@
 import FontsParser from '../../packages/core/src/lib/FontsParser';
 import MediasParser from '../../packages/core/src/lib/MediasParser';
+import getScreenFieldsWithStates from '../../packages/core/src/utils/getScreenFieldsWithStates';
 
 import fieldsManager from '../../packages/fields/src/manager';
 import screensManager from '../../packages/screens/src/manager';
@@ -15,21 +16,23 @@ export default function getScreenFields() {
         fieldsManager,
     });
 
-    const mediasMap = screensManager.getDefinitions().reduce(
-        (map, { id, fields }) => ({
-            ...map,
-            [id]: mediasParser.getFieldsPattern(fields).map((it) => it.toString()),
-        }),
-        {},
-    );
+    const screens = screensManager.getDefinitions();
 
-    const fontsMap = screensManager.getDefinitions().reduce(
-        (map, { id, fields }) => ({
+    const mediasMap = screens.reduce((map, definition) => {
+        const fields = getScreenFieldsWithStates(definition);
+        return {
             ...map,
-            [id]: fontsParser.getFieldsPattern(fields).map((it) => it.toString()),
-        }),
-        {},
-    );
+            [definition.id]: mediasParser.getFieldsPattern(fields).map((it) => it.toString()),
+        };
+    }, {});
+
+    const fontsMap = screens.reduce((map, definition) => {
+        const fields = getScreenFieldsWithStates(definition);
+        return {
+            ...map,
+            [definition.id]: fontsParser.getFieldsPattern(fields).map((it) => it.toString()),
+        };
+    }, {});
 
     return {
         fonts: fontsMap,
