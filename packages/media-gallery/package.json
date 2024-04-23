@@ -55,7 +55,12 @@
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "@panneau/data": "^3.0.163",
+        "@panneau/displays": "^3.0.163",
+        "@panneau/fields": "^3.0.163",
+        "@panneau/filters": "^3.0.163",
+        "@panneau/uppy": "^3.0.162"
     },
     "peerDependencies": {
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -69,12 +74,7 @@
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@micromag/core": "^0.3.509",
         "@micromag/data": "^0.3.509",
-        "@panneau/data": "^3.0.163",
-        "@panneau/displays": "^3.0.163",
-        "@panneau/fields": "^3.0.163",
-        "@panneau/filters": "^3.0.163",
         "@panneau/medias": "^3.0.163",
-        "@panneau/uppy": "^3.0.162",
         "bootstrap": "^5.3.1",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",

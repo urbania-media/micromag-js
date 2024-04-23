@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
+import { QueryProvider } from '@panneau/data';
+import DisplaysProvider from '@panneau/displays';
+import FieldsProvider from '@panneau/fields';
+import FiltersProvider from '@panneau/filters';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { callToAction, videoMedia } from '../../../../.storybook/data';
@@ -48,16 +53,27 @@ const EditorContainer = ({ defaultValue, isTheme = false, viewerTheme }) => {
     const [value, setValue] = useState(defaultValue);
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
-            <Editor
-                value={value}
-                isTheme={isTheme}
-                fullscreen
-                onChange={setValue}
-                memoryRouter
-                viewerTheme={viewerTheme}
-                screenNamespaces={['urbania']}
-                uppy={{ transport: 'tus', xhr: { endpoint: `${apiBaseUrl}/xhr/upload` } }}
-            />
+            <QueryProvider>
+                <FieldsProvider>
+                    <DisplaysProvider>
+                        <FiltersProvider>
+                            <Editor
+                                value={value}
+                                isTheme={isTheme}
+                                fullscreen
+                                onChange={setValue}
+                                memoryRouter
+                                viewerTheme={viewerTheme}
+                                screenNamespaces={['urbania']}
+                                uppy={{
+                                    transport: 'tus',
+                                    xhr: { endpoint: `${apiBaseUrl}/xhr/upload` },
+                                }}
+                            />
+                        </FiltersProvider>
+                    </DisplaysProvider>
+                </FieldsProvider>
+            </QueryProvider>
         </ApiProvider>
     );
 };

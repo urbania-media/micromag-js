@@ -1,11 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 
+// import MicromagFieldsProvider from '../../../fields/src/FieldsProvider';
+import { QueryProvider } from '@panneau/data';
+import DisplaysProvider from '@panneau/displays';
+import FieldsProvider from '@panneau/fields';
+import FiltersProvider from '@panneau/filters';
+
 import sound from '../../../../.storybook/data/files/test.mp3';
 import video from '../../../../.storybook/data/files/test.mp4';
 import withUppy from '../../../../.storybook/decorators/withUppy';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
-import FieldsProvider from '../../../fields/src/FieldsProvider';
 import MediaGallery from '../components/MediaGallery';
 
 import list from './list.json';
@@ -79,9 +84,19 @@ const GalleryContainer = ({ value: defaultValue = null, ...containerProps }) => 
     return (
         <div style={{ padding: 20 }}>
             <ApiProvider baseUrl={apiBaseUrl}>
-                <FieldsProvider>
-                    <MediaGallery {...containerProps} value={value} onChange={setValue} />
-                </FieldsProvider>
+                <QueryProvider>
+                    <FieldsProvider>
+                        <DisplaysProvider>
+                            <FiltersProvider>
+                                <MediaGallery
+                                    {...containerProps}
+                                    value={value}
+                                    onChange={setValue}
+                                />
+                            </FiltersProvider>
+                        </DisplaysProvider>
+                    </FieldsProvider>
+                </QueryProvider>
             </ApiProvider>
         </div>
     );

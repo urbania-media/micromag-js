@@ -56,7 +56,7 @@ function filters() {
                             description="Filter item label"
                         />
                     ),
-                    value: 'video',
+                    value: 'document-1',
                 },
             ],
         },
@@ -64,23 +64,22 @@ function filters() {
             id: 'authors',
             component: 'select',
             name: 'authors',
-            placeholder: <FormattedMessage defaultMessage="Author" description="Filter label" />,
+            placeholder: <FormattedMessage defaultMessage="Authors" description="Filter label" />,
             requestUrl: route('medias.authors') || '/api/medias/authors',
             itemLabelPath: 'name',
+            itemValuePath: 'id',
             multiple: true,
         },
         {
             id: 'tags',
             component: 'select',
             name: 'tags',
-            placeholder: <FormattedMessage defaultMessage="Tag" description="Filter label" />,
-            requestUrl: route('medias.tags.get') || '/api/medias/tags',
+            placeholder: <FormattedMessage defaultMessage="Tags" description="Filter label" />,
+            requestUrl: route('medias.tags') || '/api/medias/tags',
             itemLabelPath: 'name',
             itemValuePath: 'id',
             multiple: true,
-            // requestQuery: { page: 1 },
             paginated: true,
-            // options: null,
         },
     ];
 }
