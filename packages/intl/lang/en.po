@@ -779,6 +779,12 @@ msgctxt "BgrRxZ"
 msgid "Intro"
 msgstr "Intro"
 
+# Field title
+#: BjSp56
+msgctxt "BjSp56"
+msgid "Test custom field"
+msgstr "Test custom field"
+
 # Field label
 #: BnRW4y
 msgctxt "BnRW4y"

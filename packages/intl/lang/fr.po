@@ -219,7 +219,7 @@ msgstr "Fenêtre contextuelle"
 #: 1dqmFw
 msgctxt "1dqmFw"
 msgid "Document"
-msgstr ""
+msgstr "Document"
 
 # Item label in items field
 #: 2/F1Q7
@@ -778,6 +778,12 @@ msgstr "Titre"
 msgctxt "BgrRxZ"
 msgid "Intro"
 msgstr "Intro"
+
+# Field title
+#: BjSp56
+msgctxt "BjSp56"
+msgid "Test custom field"
+msgstr "Champ custom test"
 
 # Field label
 #: BnRW4y

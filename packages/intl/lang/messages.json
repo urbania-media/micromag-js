@@ -511,6 +511,10 @@
     "defaultMessage": "Intro",
     "description": "State label"
   },
+  "BjSp56": {
+    "defaultMessage": "Test custom field",
+    "description": "Field title"
+  },
   "BnRW4y": {
     "defaultMessage": "Results title",
     "description": "Field label"

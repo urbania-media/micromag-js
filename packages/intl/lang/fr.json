@@ -98,6 +98,9 @@
     "17zT4Q": {
         "defaultMessage": "Fenêtre contextuelle"
     },
+    "1dqmFw": {
+        "defaultMessage": "Document"
+    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -376,6 +379,9 @@
     },
     "BgrRxZ": {
         "defaultMessage": "Intro"
+    },
+    "BjSp56": {
+        "defaultMessage": "Champ custom test"
     },
     "BnRW4y": {
         "defaultMessage": "Titre des résultats"
