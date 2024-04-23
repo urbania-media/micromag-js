@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-button",
-    "version": "0.3.508",
+    "version": "0.3.509",
     "private": false,
     "description": "",
     "keywords": [
@@ -60,7 +60,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.508",
+        "@micromag/core": "^0.3.509",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-intl": "^6.6.4",

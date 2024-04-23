@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.3.508",
+    "version": "0.3.509",
     "private": false,
     "description": "",
     "keywords": [
@@ -115,9 +115,9 @@
         "@fortawesome/fontawesome-svg-core": "^6.5.2",
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
         "@fortawesome/react-fontawesome": "^0.2.0",
+        "@panneau/uppy": "^3.0.162",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
-        "@panneau/uppy": "^3.0.162",
         "@use-gesture/react": "^10.3.1",
         "bootstrap": "^5.3.1",
         "change-case": "^5.4.4",
