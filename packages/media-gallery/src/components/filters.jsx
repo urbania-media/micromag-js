@@ -6,6 +6,11 @@ function filters() {
     const route = useUrlGenerator();
     return [
         {
+            id: 'search',
+            component: 'search',
+            name: 'search',
+        },
+        {
             id: 'types',
             component: 'select',
             name: 'types',
@@ -33,26 +38,49 @@ function filters() {
             multiple: true,
         },
         {
-            id: 'author',
+            id: 'source',
             component: 'select',
-            name: 'author',
+            placeholder: <FormattedMessage defaultMessage="Source" description="Filter label" />,
+            name: 'source',
+            options: [
+                {
+                    label: (
+                        <FormattedMessage defaultMessage="All" description="Filter item label" />
+                    ),
+                    value: 'all',
+                },
+                {
+                    label: (
+                        <FormattedMessage
+                            defaultMessage="This micromag"
+                            description="Filter item label"
+                        />
+                    ),
+                    value: 'video',
+                },
+            ],
+        },
+        {
+            id: 'authors',
+            component: 'select',
+            name: 'authors',
             placeholder: <FormattedMessage defaultMessage="Author" description="Filter label" />,
             requestUrl: route('medias.authors') || '/api/medias/authors',
             itemLabelPath: 'name',
             multiple: true,
         },
         {
-            id: 'tag',
+            id: 'tags',
             component: 'select',
-            name: 'tag',
+            name: 'tags',
             placeholder: <FormattedMessage defaultMessage="Tag" description="Filter label" />,
-            requestUrl: route('medias.tags') || '/api/medias/tags',
+            requestUrl: route('medias.tags.get') || '/api/medias/tags',
+            itemLabelPath: 'name',
+            itemValuePath: 'id',
             multiple: true,
-        },
-        {
-            id: 'search',
-            component: 'search',
-            name: 'search',
+            // requestQuery: { page: 1 },
+            paginated: true,
+            // options: null,
         },
     ];
 }

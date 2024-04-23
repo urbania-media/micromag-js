@@ -63,11 +63,13 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
+        "@folklore/routes": "^0.2.27",
         "@fortawesome/fontawesome-svg-core": "^6.5.2",
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@micromag/core": "^0.3.497",
         "@micromag/data": "^0.3.497",
+        "@panneau/data": "^3.0.163",
         "@panneau/fields": "^3.0.163",
         "@panneau/displays": "^3.0.163",
         "@panneau/filters": "^3.0.163",

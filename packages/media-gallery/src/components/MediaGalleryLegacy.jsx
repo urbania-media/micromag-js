@@ -1,14 +1,14 @@
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
-import React, { useCallback, useMemo, useRef, useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Spinner, UploadModal } from '@micromag/core/components';
 import { useStory } from '@micromag/core/contexts';
-import { useMediaAuthors, useMediaCreate, useMedias, useMediaTags } from '@micromag/data';
+import { useMediaAuthors, useMediaCreate, useMediaTags, useMedias } from '@micromag/data';
 
 import Gallery from './lists/Gallery';
 import MediaMetadata from './partials/MediaMetadata';
@@ -187,6 +187,7 @@ function MediaGallery({
     // Upload modal
     const [uploading, setUploading] = useState(false);
     const [uploadModalOpened, setUploadModalOpened] = useState(false);
+
     const { create: createMedia } = useMediaCreate();
     const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
     const onUploadCompleted = useCallback(
@@ -199,6 +200,7 @@ function MediaGallery({
         },
         [createMedia, addedMedias, setAddedMedias],
     );
+
     const onUploadRequestClose = useCallback(
         () => setUploadModalOpened(false),
         [setUploadModalOpened],

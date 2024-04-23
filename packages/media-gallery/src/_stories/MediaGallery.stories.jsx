@@ -74,14 +74,16 @@ export default {
 };
 
 // eslint-disable-next-line react/prop-types
-const GalleryContainer = ({ value: defaultValue, ...containerProps }) => {
+const GalleryContainer = ({ value: defaultValue = null, ...containerProps }) => {
     const [value, setValue] = useState(defaultValue);
     return (
-        <ApiProvider baseUrl={apiBaseUrl}>
-            <FieldsProvider>
-                <MediaGallery {...containerProps} selectedMedia={value} onChange={setValue} />
-            </FieldsProvider>
-        </ApiProvider>
+        <div style={{ padding: 20 }}>
+            <ApiProvider baseUrl={apiBaseUrl}>
+                <FieldsProvider>
+                    <MediaGallery {...containerProps} value={value} onChange={setValue} />
+                </FieldsProvider>
+            </ApiProvider>
+        </div>
     );
 };
 
@@ -90,7 +92,7 @@ export function Normal() {
 }
 
 export function WithTypesRequest() {
-    return <GalleryContainer type={['image', 'video']} />;
+    return <GalleryContainer types={['image', 'video']} />;
 }
 
 export function WithTestMedia() {

@@ -1,10 +1,12 @@
 import classNames from 'classnames';
+import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { QueryProvider } from '@panneau/data';
 import DisplaysProvider from '@panneau/displays';
-// import FieldsProvider from '@panneau/fields';
+import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
 import { MediasBrowserContainer, MediasPickerContainer } from '@panneau/medias';
 
@@ -15,7 +17,7 @@ import { useApi, useMediaCreate } from '@micromag/data';
 import defaultFilters from './filters';
 
 // import list from '../_stories/list.json';
-import styles from '../styles/media.module.scss';
+import styles from '../styles/new-media-gallery.module.scss';
 
 const videoTypes = ['video', 'image/gif'];
 
@@ -28,16 +30,10 @@ const propTypes = {
     filters: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string })),
     isPicker: PropTypes.bool,
     multiple: PropTypes.bool,
-    withoutTitle: PropTypes.bool,
-    withoutSource: PropTypes.bool,
-    withoutType: PropTypes.bool,
     medias: MicromagPropTypes.medias,
-    selectedMedia: MicromagPropTypes.media,
+    buttons: PropTypes.arrayOf(PropTypes.shape({})),
     className: PropTypes.string,
-    navbarClassName: PropTypes.string,
     onChange: PropTypes.func,
-    onClickMedia: PropTypes.func,
-    onClearMedia: PropTypes.func,
 };
 
 const defaultProps = {
@@ -47,93 +43,57 @@ const defaultProps = {
     filters: null,
     isPicker: false,
     multiple: false,
-    withoutTitle: false,
-    withoutSource: false,
-    withoutType: true,
     medias: null,
-    selectedMedia: null,
+    buttons: null,
     className: null,
-    navbarClassName: null,
     onChange: null,
-    onClickMedia: null,
-    onClearMedia: null,
 };
 
 function MediaGallery({
-    value: initialValue,
+    value,
     types,
     source,
     filters,
     isPicker,
     multiple,
-    withoutTitle,
-    withoutSource,
-    withoutType,
     medias: initialMedias,
-    selectedMedia,
+    buttons,
     className,
-    navbarClassName,
     onChange,
-    onClickMedia,
-    onClearMedia,
 }) {
     const api = useApi();
+
     const mediasApi = useMemo(
         () => ({
-            get: (...args) =>
-                api.medias.get(...args).then((response) => {
-                    const { meta = null, pagination = null, data = null } = response || {};
-                    const finalMeta = meta !== null ? { ...meta, page: meta?.current_page } : null;
-                    return {
-                        data,
-                        pagination: pagination || finalMeta,
-                    };
-                }),
+            get: (...args) => api.medias.get(...args),
+            getTrashed: (...args) => api.medias.get(...args),
             find: (...args) => api.medias.find(...args),
             create: (...args) => api.medias.create(...args),
             update: (...args) => api.medias.update(...args),
             delete: (...args) => api.medias.delete(...args),
+            trash: (...args) => api.medias.delete(...args),
         }),
         [api],
     );
 
-    // const { tags } = useMediaTags();
-    // const { authors } = useMediaAuthors();
-
-    // const throttle = useRef(null);
-    // const onFiltersChange = useCallback(
-    //     (value) => {
-    //         if (throttle.current !== null) {
-    //             clearTimeout(throttle.current);
-    //         }
-    //         throttle.current = setTimeout(() => {
-    //             setQueryValue(value);
-    //             throttle.current = null;
-    //         }, 500);
-    //         setFiltersValue(value);
-    //     },
-    //     [setFiltersValue, setQueryValue, throttle],
-    // );
-
-    // Medias
-    const onMetadataChange = useCallback(
-        (val) => {
-            console.log('do something');
-        },
-        [selectedMedia, onChange],
-    );
-
     // Upload modal
+    const [addedMedias, setAddedMedias] = useState([]);
     const [uploading, setUploading] = useState(false);
+
     const [uploadModalOpened, setUploadModalOpened] = useState(false);
-    const { create: createMedia } = useMediaCreate();
     const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
+
+    const { create: createMedia } = useMediaCreate();
+
     const onUploadCompleted = useCallback(
         (newMedias) => {
             setUploading(true);
-            console.log('do something');
+            Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => {
+                setUploading(false);
+                return setAddedMedias([...addedMedias, ...newAddedMedias]);
+            });
         },
-        [createMedia],
+        [createMedia, addedMedias, setAddedMedias],
     );
 
     const onUploadRequestClose = useCallback(
@@ -141,10 +101,32 @@ function MediaGallery({
         [setUploadModalOpened],
     );
 
-    const partialValue = initialValue || selectedMedia || null;
-    const finalValue = multiple ? partialValue : [partialValue];
-    const finalFilters = filters || defaultFilters() || undefined;
-    const finalTypes = types === 'video' ? videoTypes : types;
+    const partialFilters = filters || defaultFilters() || [];
+
+    const finalFilters = useMemo(
+        () =>
+            partialFilters.map((filter) => {
+                const { id = null } = filter || {};
+                if (id === 'sources') {
+                    return filter;
+                }
+                // if (id === 'tags' && tags !== null) {
+                //     return { ...filter, options: tags };
+                // }
+                return filter;
+            }),
+        [partialFilters],
+    );
+
+    const [query, setQuery] = useState(source !== null ? { source } : null);
+    const finalQuery = useMemo(() => {
+        setQuery({ ...(query || null), ...(source !== null ? { source } : null) });
+    }, [source, setQuery]);
+
+    // const finalValue = useMemo(() => {
+    //     const allMedias = [...addedMedias, ...(value || [])];
+    //     return allMedias.length > 0 ? allMedias : null;
+    // }, [value, addedMedias]);
 
     return (
         <div
@@ -155,33 +137,46 @@ function MediaGallery({
                 },
             ])}
         >
-            {/* <FieldsProvider> */}
-            <DisplaysProvider>
-                <FiltersProvider>
-                    {isPicker ? (
-                        <MediasPickerContainer
-                            api={mediasApi}
-                            theme="dark"
-                            types={finalTypes}
-                            items={initialMedias}
-                            filters={finalFilters}
-                            value={finalValue}
-                            onChange={onChange}
-                            uploadButton={{ id: 1 }}
-                        />
-                    ) : (
-                        <MediasBrowserContainer
-                            api={mediasApi}
-                            theme="dark"
-                            types={finalTypes}
-                            items={initialMedias}
-                            filters={finalFilters}
-                            uploadButton={{ id: 1 }}
-                        />
-                    )}
-                </FiltersProvider>
-            </DisplaysProvider>
-            {/* </FieldsProvider> */}
+            <QueryProvider>
+                <FieldsProvider>
+                    <DisplaysProvider>
+                        <FiltersProvider>
+                            {isPicker ? (
+                                <MediasPickerContainer
+                                    className={styles.browser}
+                                    api={mediasApi}
+                                    value={value}
+                                    theme="dark"
+                                    types={types}
+                                    query={finalQuery}
+                                    multiple={multiple}
+                                    items={initialMedias}
+                                    filters={finalFilters}
+                                    onChange={onChange}
+                                    buttons={buttons}
+                                    buttonsClassName="ms-xl-auto"
+                                    withStickySelection
+                                />
+                            ) : (
+                                <MediasBrowserContainer
+                                    className={styles.browser}
+                                    api={mediasApi}
+                                    value={value}
+                                    theme="dark"
+                                    types={types}
+                                    query={finalQuery}
+                                    multiple={multiple}
+                                    items={initialMedias}
+                                    filters={finalFilters}
+                                    buttons={buttons}
+                                    buttonsClassName="ms-xl-auto"
+                                    withStickySelection
+                                />
+                            )}
+                        </FiltersProvider>
+                    </DisplaysProvider>
+                </FieldsProvider>
+            </QueryProvider>
             {createPortal(
                 <UploadModal
                     types={finalTypes}

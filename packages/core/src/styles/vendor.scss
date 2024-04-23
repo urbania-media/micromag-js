@@ -17,6 +17,9 @@
 // @import '~@panneau/modals/scss/styles';
 
 @import '~@panneau/element-grid/assets/css/styles';
+@import '~@panneau/element-media-card/assets/css/styles';
+@import '~@panneau/element-media-player/assets/css/styles';
+@import '~@panneau/medias/assets/css/styles';
 
 .container-small {
     @include make-container();

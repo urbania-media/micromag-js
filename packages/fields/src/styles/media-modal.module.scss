@@ -1,6 +1,12 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+}
+
 .dialog {
     @media screen and (min-width: 768px) {
         min-width: 90vw !important;
@@ -25,12 +31,38 @@
 
 .previewButton {
     @extend %reset-button;
-    width: 100%;
+    // width: 100%;
     background-color: transparent;
 
     &.shaded {
         border-radius: 4px;
         background-color: $gray-700;
+    }
+
+    &.small {
+        width: 180px;
+    }
+}
+
+.clearButton {
+    @extend %reset-button;
+
+    display: flex;
+
+    position: relative;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    padding: 0 10px;
+    border-radius: 4px;
+    background-color: $gray-700;
+
+    svg {
+        display: block;
     }
 }
 

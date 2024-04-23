@@ -18,6 +18,7 @@ const useCKEditor = ({ inline = false } = {}) => {
                 canceled = true;
             };
         }
+
         import('@panneau/ckeditor').then(({ default: Editor, InlineEditor }) => {
             packageCache[key] = key === 'inline' ? InlineEditor : Editor;
             if (!canceled) {

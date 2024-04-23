@@ -707,6 +707,12 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Modifier l'action"
 
+# Filter item label
+#: AgH3AR
+msgctxt "AgH3AR"
+msgid "This micromag"
+msgstr ""
+
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -826,6 +832,12 @@ msgstr "Sélectionner une vidéo"
 msgctxt "DYjRd/"
 msgid "Sorry, this media could not be saved."
 msgstr "Désolé, ce média n'a pas pu être sauvegardé."
+
+# Filter item label
+#: DYxnlo
+msgctxt "DYxnlo"
+msgid "All"
+msgstr ""
 
 # Media Gallery
 #: EDFyUp
@@ -1306,6 +1318,12 @@ msgstr "Aucun item"
 msgctxt "PNMMo/"
 msgid "Audios"
 msgstr "Audios"
+
+# Filter label
+#: Pc4AD8
+msgctxt "Pc4AD8"
+msgid "Source"
+msgstr ""
 
 # Button label
 #: PyxZY2
@@ -2126,6 +2144,12 @@ msgstr "Supprimer l’écran"
 msgctxt "hqOIl4"
 msgid "Avatar"
 msgstr "Photo de profil"
+
+# Field label
+#: hrS5Pj
+msgctxt "hrS5Pj"
+msgid "Upload"
+msgstr ""
 
 # Field label
 #: hvxkzE

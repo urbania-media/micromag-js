@@ -463,6 +463,10 @@
     "defaultMessage": "Edit call to action...",
     "description": "No value label"
   },
+  "AgH3AR": {
+    "defaultMessage": "This micromag",
+    "description": "Filter item label"
+  },
   "B1MeY+": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
@@ -542,6 +546,10 @@
   "DYjRd/": {
     "defaultMessage": "Sorry, this media could not be saved.",
     "description": "Save error message in Media Gallery"
+  },
+  "DYxnlo": {
+    "defaultMessage": "All",
+    "description": "Filter item label"
   },
   "EDFyUp": {
     "defaultMessage": "Alternative text (accessibility)",
@@ -862,6 +870,10 @@
   "PNMMo/": {
     "defaultMessage": "Audios",
     "description": "Media label"
+  },
+  "Pc4AD8": {
+    "defaultMessage": "Source",
+    "description": "Filter label"
   },
   "PyxZY2": {
     "defaultMessage": "Cancel",
@@ -1407,6 +1419,10 @@
   },
   "hqOIl4": {
     "defaultMessage": "Avatar",
+    "description": "Field label"
+  },
+  "hrS5Pj": {
+    "defaultMessage": "Upload",
     "description": "Field label"
   },
   "hvxkzE": {

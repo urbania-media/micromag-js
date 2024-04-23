@@ -707,6 +707,12 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Edit call to action..."
 
+# Filter item label
+#: AgH3AR
+msgctxt "AgH3AR"
+msgid "This micromag"
+msgstr "This micromag"
+
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -826,6 +832,12 @@ msgstr "Select a video..."
 msgctxt "DYjRd/"
 msgid "Sorry, this media could not be saved."
 msgstr "Sorry, this media could not be saved."
+
+# Filter item label
+#: DYxnlo
+msgctxt "DYxnlo"
+msgid "All"
+msgstr "All"
 
 # Media Gallery
 #: EDFyUp
@@ -1306,6 +1318,12 @@ msgstr "No item..."
 msgctxt "PNMMo/"
 msgid "Audios"
 msgstr "Audios"
+
+# Filter label
+#: Pc4AD8
+msgctxt "Pc4AD8"
+msgid "Source"
+msgstr "Source"
 
 # Button label
 #: PyxZY2
@@ -2126,6 +2144,12 @@ msgstr "Delete screen"
 msgctxt "hqOIl4"
 msgid "Avatar"
 msgstr "Avatar"
+
+# Field label
+#: hrS5Pj
+msgctxt "hrS5Pj"
+msgid "Upload"
+msgstr "Upload"
 
 # Field label
 #: hvxkzE
