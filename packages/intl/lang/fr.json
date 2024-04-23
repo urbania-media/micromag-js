@@ -773,9 +773,6 @@
     "UUv8FR": {
         "defaultMessage": "Nom"
     },
-    "UbxbKP": {
-        "defaultMessage": "Prévisualisation"
-    },
     "UdrdRF": {
         "defaultMessage": "Style des numéros"
     },
@@ -1080,7 +1077,7 @@
         "defaultMessage": "Contribution"
     },
     "gJTVcQ": {
-        "defaultMessage": "Sélectionnez..."
+        "defaultMessage": "Sélectionnez un média..."
     },
     "gRxcTc": {
         "defaultMessage": "Supprimer l’écran"

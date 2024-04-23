@@ -1,34 +1,24 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-// import { getCSRFHeaders } from '@folklore/fetch';
+/* eslint-disable react/jsx-props-no-spreading, jsx-a11y/control-has-associated-label */
 import { faClose } from '@fortawesome/free-solid-svg-icons/faClose';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import get from 'lodash/get';
-import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
-import React, { useCallback, useMemo, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     Button,
     ModalDialog as Dialog,
-    Modal,
-    Spinner,
-    UploadModal,
+    Modal, // Spinner,
 } from '@micromag/core/components';
 import { getFileName } from '@micromag/core/utils';
-import { useMediaCreate } from '@micromag/data';
 import MediaGallery from '@micromag/media-gallery';
 
 import FieldWithForm from './FieldWithForm';
 
 import styles from '../styles/media-modal.module.scss';
-
-const videoTypes = ['video', 'image/gif'];
 
 const propTypes = {
     title: PropTypes.string,
@@ -131,46 +121,6 @@ const MediaModal = ({
 
     // Uploads
 
-    const loadedMedias = value !== null ? [value] : null;
-    const [addedMedias, setAddedMedias] = useState([]);
-
-    const medias = useMemo(() => {
-        const allMedias = [...addedMedias, ...(loadedMedias || [])];
-        return allMedias.length > 0 ? allMedias : null;
-    }, [loadedMedias, addedMedias]);
-
-    const [uploading, setUploading] = useState(false);
-    const [uploadModalOpened, setUploadModalOpened] = useState(false);
-
-    const { create: createMedia } = useMediaCreate();
-    const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
-    const onUploadCompleted = useCallback(
-        (newMedias) => {
-            console.log('what the hell', newMedias);
-            setUploading(true);
-            Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => {
-                console.log('what the hell created', newAddedMedias);
-                setUploading(false);
-                return setAddedMedias([...addedMedias, ...newAddedMedias]);
-            });
-        },
-        [createMedia, addedMedias, setAddedMedias],
-    );
-
-    const onUploadRequestClose = useCallback(
-        () => setUploadModalOpened(false),
-        [setUploadModalOpened],
-    );
-
-    const types = useMemo(() => {
-        const partialTypes = !isArray(type) ? [type] : type;
-        return type === 'video' ? videoTypes : partialTypes;
-    }, [type]);
-
-    // console.log('value', value);
-    // console.log('type', type, isHorizontal);
-    // console.log('props', props);
-
     return (
         <>
             <FieldWithForm
@@ -214,7 +164,7 @@ const MediaModal = ({
                                         'text-end': isHorizontal,
                                     },
                                 ])}
-                                style={{ maxWidth: 280 }}
+                                style={{ maxWidth: 270 }}
                             >
                                 {label || (
                                     <span className="text-light">
@@ -271,38 +221,16 @@ const MediaModal = ({
                     >
                         <MediaGallery
                             value={value}
-                            types={types}
+                            types={type}
+                            // TODO: add source from here
                             isPicker
                             onChange={onChangeMedia}
                             onClose={onClose}
-                            buttons={[
-                                {
-                                    id: 'upload',
-                                    theme: 'primary',
-                                    label: (
-                                        <FormattedMessage
-                                            defaultMessage="Upload"
-                                            description="Field label"
-                                        />
-                                    ),
-                                    onClick: onClickAdd,
-                                },
-                            ]}
-                            buttonsClassName={buttonsClassName}
                             onClear={onClearMedia}
                         />
                     </Dialog>
                 </Modal>
             ) : null}
-            {createPortal(
-                <UploadModal
-                    type={types}
-                    opened={uploadModalOpened}
-                    onUploaded={onUploadCompleted}
-                    onRequestClose={onUploadRequestClose}
-                />,
-                document.body,
-            )}
         </>
     );
 };

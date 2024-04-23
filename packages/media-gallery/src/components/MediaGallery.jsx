@@ -3,6 +3,7 @@ import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { FormattedMessage } from 'react-intl';
 
 import { MediasBrowserContainer, MediasPickerContainer } from '@panneau/medias';
 
@@ -16,7 +17,7 @@ import defaultFilters from './filters';
 
 import styles from '../styles/new-media-gallery.module.scss';
 
-// const videoTypes = ['video', 'image/gif'];
+const videoTypes = ['video', 'image/gif'];
 
 const propTypes = {
     value: PropTypes.shape({
@@ -134,10 +135,34 @@ function MediaGallery({
         if (addedMedias === null || addedMedias.length === 0) {
             return value;
         }
-        console.log('finalValue', addedMedias);
+        console.log('addedMedias', addedMedias);
+        if (!multiple) {
+            const [firstMedia = null] = addedMedias || [];
+            return firstMedia || null;
+        }
         const allMedias = [...addedMedias, ...(isArray(value) ? value || [] : [value])];
         return allMedias.length > 0 ? allMedias : null;
-    }, [value, addedMedias]);
+    }, [value, addedMedias, multiple]);
+
+    const finalButtons = useMemo(
+        () => [
+            {
+                id: 'upload',
+                theme: 'primary',
+                label: <FormattedMessage defaultMessage="Upload" description="Field label" />,
+                onClick: onClickAdd,
+                disabled: uploading,
+            },
+        ],
+        [onClickAdd, uploading],
+    );
+
+    const finalTypes = useMemo(() => {
+        const partialTypes = !isArray(types) ? [types] : types;
+        return types === 'video' ? videoTypes : partialTypes;
+    }, [types]);
+
+    console.log('yesh', uploadModalOpened);
 
     return (
         <div
@@ -154,7 +179,7 @@ function MediaGallery({
                     api={mediasApi}
                     value={finalValue}
                     theme="dark"
-                    types={types}
+                    types={finalTypes}
                     query={finalQuery}
                     multiple={multiple}
                     items={initialMedias}
@@ -162,7 +187,7 @@ function MediaGallery({
                     fields={fields}
                     columns={columns}
                     onChange={onChange}
-                    buttons={buttons}
+                    buttons={finalButtons}
                     buttonsClassName="ms-xl-auto"
                     withStickySelection
                 />
@@ -172,21 +197,21 @@ function MediaGallery({
                     api={mediasApi}
                     value={finalValue}
                     theme="dark"
-                    types={types}
+                    types={finalTypes}
                     query={finalQuery}
                     multiple={multiple}
                     items={initialMedias}
                     filters={finalFilters}
                     fields={fields}
                     columns={columns}
-                    buttons={buttons}
+                    buttons={finalButtons}
                     buttonsClassName="ms-xl-auto"
                     withStickySelection
                 />
             )}
             {createPortal(
                 <UploadModal
-                    types={types}
+                    types={finalTypes}
                     opened={uploadModalOpened}
                     onUploaded={onUploadCompleted}
                     onRequestClose={onUploadRequestClose}

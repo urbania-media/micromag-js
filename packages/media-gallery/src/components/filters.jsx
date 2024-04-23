@@ -56,7 +56,7 @@ function filters() {
                             description="Filter item label"
                         />
                     ),
-                    value: 'document',
+                    value: 'document-',
                 },
             ],
         },

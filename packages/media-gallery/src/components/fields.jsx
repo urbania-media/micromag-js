@@ -15,6 +15,14 @@ export default [
         component: 'text',
     },
     {
+        name: 'tags',
+        label: <FormattedMessage defaultMessage="Tags" description="Field name" />,
+        type: 'array',
+        component: 'select',
+        // requestUrl: route('medias.tags') || '/api/medias/tags',
+        //     itemLabelPath: 'name',
+    },
+    {
         id: 'custom_field',
         component: 'custom_field',
         label: <FormattedMessage defaultMessage="Test custom field" description="Field title" />,

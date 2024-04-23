@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 export default [
     {
         id: 'image',
-        label: <FormattedMessage defaultMessage="Preview" description="Field name" />,
+        label: null,
         component: 'image',
         path: 'thumbnail_url',
         sortable: false,

@@ -1073,6 +1073,12 @@ msgctxt "IE7U/Q"
 msgid "Heading"
 msgstr "Titre"
 
+# Field name
+#: IOVper
+msgctxt "IOVper"
+msgid "Tags"
+msgstr ""
+
 # Button label
 #: IoMJgw
 msgctxt "IoMJgw"
@@ -1563,12 +1569,6 @@ msgstr "Enlever"
 msgctxt "UUv8FR"
 msgid "Name"
 msgstr "Nom"
-
-# Field name
-#: UbxbKP
-msgctxt "UbxbKP"
-msgid "Preview"
-msgstr "Prévisualisation"
 
 # Numbers style field label
 #: UdrdRF
@@ -2179,7 +2179,7 @@ msgstr "Contribution"
 #: gJTVcQ
 msgctxt "gJTVcQ"
 msgid "Select media..."
-msgstr "Sélectionnez..."
+msgstr "Sélectionnez un média..."
 
 # Delete screen button label
 #: gRxcTc

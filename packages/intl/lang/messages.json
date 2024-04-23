@@ -707,6 +707,10 @@
     "defaultMessage": "Heading",
     "description": "Placeholder label"
   },
+  "IOVper": {
+    "defaultMessage": "Tags",
+    "description": "Field name"
+  },
   "IoMJgw": {
     "defaultMessage": "Toggle article",
     "description": "Button label"
@@ -1033,10 +1037,6 @@
   "UUv8FR": {
     "defaultMessage": "Name",
     "description": "Field label"
-  },
-  "UbxbKP": {
-    "defaultMessage": "Preview",
-    "description": "Field name"
   },
   "UdrdRF": {
     "defaultMessage": "Numbers style",
