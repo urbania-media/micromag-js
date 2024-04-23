@@ -15,6 +15,11 @@ export default [
         component: 'text',
     },
     {
+        id: 'custom_field',
+        component: 'custom_field',
+        label: <FormattedMessage defaultMessage="Test custom field" description="Field title" />,
+    },
+    {
         id: 'info',
         component: 'fields',
         label: <FormattedMessage defaultMessage="Informations" description="Field title" />,

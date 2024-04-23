@@ -194,9 +194,9 @@ const UrbaniaHoroscope = ({
 
     const computeSignsGridProgress = useCallback(
         ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
-            console.log({
-                dragActive
-            });
+            // console.log({
+            //     dragActive
+            // });
             const progress = Math.max(0, my) / (window.innerHeight * 0.8);
             const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
             if (!dragActive) {
@@ -222,7 +222,7 @@ const UrbaniaHoroscope = ({
         },
     });
 
-    console.log(showSignsGrid);
+    // console.log(showSignsGrid);
 
     const computeModalProgress = useCallback(
         ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {

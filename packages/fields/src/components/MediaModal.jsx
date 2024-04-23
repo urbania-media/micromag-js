@@ -146,8 +146,10 @@ const MediaModal = ({
     const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
     const onUploadCompleted = useCallback(
         (newMedias) => {
+            console.log('what the hell', newMedias);
             setUploading(true);
             Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => {
+                console.log('what the hell created', newAddedMedias);
                 setUploading(false);
                 return setAddedMedias([...addedMedias, ...newAddedMedias]);
             });
@@ -165,9 +167,9 @@ const MediaModal = ({
         return type === 'video' ? videoTypes : partialTypes;
     }, [type]);
 
-    console.log('value', value);
-    console.log('type', type, isHorizontal);
-    console.log('props', props);
+    // console.log('value', value);
+    // console.log('type', type, isHorizontal);
+    // console.log('props', props);
 
     return (
         <>

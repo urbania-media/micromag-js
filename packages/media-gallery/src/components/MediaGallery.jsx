@@ -93,6 +93,7 @@ function MediaGallery({
             console.log('newMedias', newMedias);
             setUploading(true);
             Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => {
+                console.log('not uploading anymore', newAddedMedias);
                 setUploading(false);
                 return setAddedMedias([...addedMedias, ...newAddedMedias]);
             });
