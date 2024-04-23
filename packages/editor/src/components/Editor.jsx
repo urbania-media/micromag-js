@@ -1,9 +1,4 @@
 /* eslint-disable react/no-array-index-key */
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Modals, Navbar } from '@micromag/core/components';
 import {
@@ -14,6 +9,10 @@ import {
 } from '@micromag/core/contexts';
 import { useMediasParser, useParsedStory, useScreenSizeFromElement } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import useRouteParams from '../hooks/useRouteParams';
 
@@ -75,6 +74,8 @@ const Editor = ({
     const onClickScreens = useCallback(() => setMobileView('screens'), [mobileView, setMobileView]);
     const onClickEdit = useCallback(() => setMobileView('form'), [setMobileView]);
     const onClickViewScreen = useCallback(() => setMobileView('preview'), [setMobileView]);
+
+    // console.log('mobileView', screenSize, isMobile, mobileView);
 
     // Apply base theme values to it's own components
     const { background = null, colors = null, textStyles = null, boxStyles = null } = value || {};

@@ -1,0 +1,9 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    .browser {
+        --bs-input-color: hsla(0, 0%, 100%, 0.07) !important;
+    }
+}

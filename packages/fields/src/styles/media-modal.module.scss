@@ -1,22 +1,15 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+}
+
 .dialog {
-    width: 100vw !important;
-    padding: 0.5rem;
-    font-size: 1rem;
-
-    .selected {
-        background-color: $primary;
-    }
-
-    .editor {
-        position: relaive;
-        max-height: 100%;
-    }
-
     @media screen and (min-width: 768px) {
-        width: 50vw !important;
+        min-width: 90vw !important;
     }
 }
 
@@ -30,7 +23,7 @@
 
 .dialogBody {
     > div {
-        height: 50vh;
+        min-height: 75vh;
         overflow: hidden;
         overflow-y: scroll;
     }
@@ -38,8 +31,39 @@
 
 .previewButton {
     @extend %reset-button;
-    width: 100%;
+    // width: 100%;
     background-color: transparent;
+
+    &.shaded {
+        border-radius: 4px;
+        background-color: $gray-700;
+    }
+
+    &.small {
+        width: 180px;
+    }
+}
+
+.clearButton {
+    @extend %reset-button;
+
+    display: flex;
+
+    position: relative;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    padding: 0 10px;
+    border-radius: 4px;
+    background-color: $gray-700;
+
+    svg {
+        display: block;
+    }
 }
 
 .preview {

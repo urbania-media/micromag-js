@@ -395,6 +395,10 @@
     "defaultMessage": "Conversation",
     "description": "Conversation field label"
   },
+  "9/t5wK": {
+    "defaultMessage": "Type",
+    "description": "Filter label"
+  },
   "9AP246": {
     "defaultMessage": "Date",
     "description": "Date field label"
@@ -458,6 +462,10 @@
   "AV6gfh": {
     "defaultMessage": "Edit call to action...",
     "description": "No value label"
+  },
+  "AgH3AR": {
+    "defaultMessage": "This micromag",
+    "description": "Filter item label"
   },
   "B1MeY+": {
     "defaultMessage": "Select an image...",
@@ -538,6 +546,10 @@
   "DYjRd/": {
     "defaultMessage": "Sorry, this media could not be saved.",
     "description": "Save error message in Media Gallery"
+  },
+  "DYxnlo": {
+    "defaultMessage": "All",
+    "description": "Filter item label"
   },
   "EDFyUp": {
     "defaultMessage": "Alternative text (accessibility)",
@@ -858,6 +870,10 @@
   "PNMMo/": {
     "defaultMessage": "Audios",
     "description": "Media label"
+  },
+  "Pc4AD8": {
+    "defaultMessage": "Source",
+    "description": "Filter label"
   },
   "PyxZY2": {
     "defaultMessage": "Cancel",
@@ -1366,6 +1382,9 @@
     "defaultMessage": "Contribution",
     "description": "Contribution screen title"
   },
+  "gJTVcQ": {
+    "defaultMessage": "Select media..."
+  },
   "gRxcTc": {
     "defaultMessage": "Delete screen",
     "description": "Delete screen button label"
@@ -1386,6 +1405,10 @@
     "defaultMessage": "Question",
     "description": "Question field label"
   },
+  "hnLSrX": {
+    "defaultMessage": "Tag",
+    "description": "Filter label"
+  },
   "hoDz0O": {
     "defaultMessage": "Description",
     "description": "Placeholder label"
@@ -1396,6 +1419,10 @@
   },
   "hqOIl4": {
     "defaultMessage": "Avatar",
+    "description": "Field label"
+  },
+  "hrS5Pj": {
+    "defaultMessage": "Upload",
     "description": "Field label"
   },
   "hvxkzE": {
@@ -1740,6 +1767,10 @@
     "defaultMessage": "Enter",
     "description": "Screen button label"
   },
+  "skmuWU": {
+    "defaultMessage": "Author",
+    "description": "Filter label"
+  },
   "t+L1J/": {
     "defaultMessage": "No image...",
     "description": "Label when there is no item in images field"
@@ -1908,6 +1939,10 @@
     "defaultMessage": "Aug 23 - Sept 22",
     "description": "Horoscope date"
   },
+  "xSERPA": {
+    "defaultMessage": "Video",
+    "description": "Filter item label"
+  },
   "xT/onn": {
     "defaultMessage": "Image",
     "description": "Field label"
@@ -1960,9 +1995,17 @@
     "defaultMessage": "Date",
     "description": "Text field label"
   },
+  "yHAmDD": {
+    "defaultMessage": "Image",
+    "description": "Filter item label"
+  },
   "yMpGIc": {
     "defaultMessage": "Article",
     "description": "Article placeholder"
+  },
+  "yQRtgx": {
+    "defaultMessage": "Audio",
+    "description": "Filter item label"
   },
   "z/VBX0": {
     "defaultMessage": "Learn more",

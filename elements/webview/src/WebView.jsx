@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { Close } from '@micromag/core/components';
+import Button from '@micromag/element-button';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
-
-import { Close } from '@micromag/core/components';
-import Button from '@micromag/element-button';
 
 import styles from './styles.module.scss';
 

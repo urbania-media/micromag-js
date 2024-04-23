@@ -605,6 +605,12 @@ msgctxt "8tANs8"
 msgid "Conversation"
 msgstr "Conversation"
 
+# Filter label
+#: 9/t5wK
+msgctxt "9/t5wK"
+msgid "Type"
+msgstr "Type"
+
 # Date field label
 #: 9AP246
 msgctxt "9AP246"
@@ -700,6 +706,12 @@ msgstr "Utilisé"
 msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Modifier l'action"
+
+# Filter item label
+#: AgH3AR
+msgctxt "AgH3AR"
+msgid "This micromag"
+msgstr ""
 
 # Label when no value is provided to Image field
 #: B1MeY+
@@ -820,6 +832,12 @@ msgstr "Sélectionner une vidéo"
 msgctxt "DYjRd/"
 msgid "Sorry, this media could not be saved."
 msgstr "Désolé, ce média n'a pas pu être sauvegardé."
+
+# Filter item label
+#: DYxnlo
+msgctxt "DYxnlo"
+msgid "All"
+msgstr ""
 
 # Media Gallery
 #: EDFyUp
@@ -1300,6 +1318,12 @@ msgstr "Aucun item"
 msgctxt "PNMMo/"
 msgid "Audios"
 msgstr "Audios"
+
+# Filter label
+#: Pc4AD8
+msgctxt "Pc4AD8"
+msgid "Source"
+msgstr ""
 
 # Button label
 #: PyxZY2
@@ -2062,6 +2086,11 @@ msgctxt "g6b9Lg"
 msgid "Contribution"
 msgstr "Contribution"
 
+#: gJTVcQ
+msgctxt "gJTVcQ"
+msgid "Select media..."
+msgstr ""
+
 # Delete screen button label
 #: gRxcTc
 msgctxt "gRxcTc"
@@ -2092,6 +2121,12 @@ msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
 
+# Filter label
+#: hnLSrX
+msgctxt "hnLSrX"
+msgid "Tag"
+msgstr "Tag"
+
 # Placeholder label
 #: hoDz0O
 msgctxt "hoDz0O"
@@ -2109,6 +2144,12 @@ msgstr "Supprimer l’écran"
 msgctxt "hqOIl4"
 msgid "Avatar"
 msgstr "Photo de profil"
+
+# Field label
+#: hrS5Pj
+msgctxt "hrS5Pj"
+msgid "Upload"
+msgstr ""
 
 # Field label
 #: hvxkzE
@@ -2624,6 +2665,12 @@ msgctxt "sXfFFw"
 msgid "Enter"
 msgstr "Entrer"
 
+# Filter label
+#: skmuWU
+msgctxt "skmuWU"
+msgid "Author"
+msgstr "Auteur"
+
 # Label when there is no item in images field
 #: t+L1J/
 msgctxt "t+L1J/"
@@ -2876,6 +2923,12 @@ msgctxt "xL0GD2"
 msgid "Aug 23 - Sept 22"
 msgstr "23 août au 22 sept"
 
+# Filter item label
+#: xSERPA
+msgctxt "xSERPA"
+msgid "Video"
+msgstr "Vidéo"
+
 # Field label
 #: xT/onn
 msgctxt "xT/onn"
@@ -2954,11 +3007,23 @@ msgctxt "yEG9zh"
 msgid "Date"
 msgstr "Date"
 
+# Filter item label
+#: yHAmDD
+msgctxt "yHAmDD"
+msgid "Image"
+msgstr "Image"
+
 # Article placeholder
 #: yMpGIc
 msgctxt "yMpGIc"
 msgid "Article"
 msgstr "Article"
+
+# Filter item label
+#: yQRtgx
+msgctxt "yQRtgx"
+msgid "Audio"
+msgstr "Audio"
 
 # Call to action default label
 #: z/VBX0

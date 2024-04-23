@@ -2,22 +2,22 @@
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 // import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
-    useScreenSize,
+    usePlaybackContext,
+    usePlaybackMediaRef,
     useScreenRenderContext,
+    useScreenSize,
     useScreenState,
     useViewerContext,
     useViewerInteraction,
-    usePlaybackContext,
-    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useDragProgress } from '@micromag/core/hooks';
+import { useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';

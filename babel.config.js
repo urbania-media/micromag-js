@@ -31,7 +31,7 @@ module.exports = (api) => {
                             'react-dom/server': require.resolve('react-dom/server'),
                             'react-dom': require.resolve('react-dom'),
                             'react-intl': require.resolve('react-intl'),
-                            'wouter': require.resolve('wouter'),
+                            wouter: require.resolve('wouter'),
                             '@folklore/routes': require.resolve('@folklore/routes'),
                             '@react-spring/core': require.resolve('@react-spring/core'),
                             '@react-spring/web': require.resolve('@react-spring/web'),

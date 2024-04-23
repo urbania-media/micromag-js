@@ -1,194 +1,90 @@
 import classNames from 'classnames';
-import isArray from 'lodash/isArray';
+// import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
-import React, { useCallback, useMemo, useRef, useState, useEffect } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useIntl } from 'react-intl';
+
+import { QueryProvider } from '@panneau/data';
+import DisplaysProvider from '@panneau/displays';
+import FieldsProvider from '@panneau/fields';
+import FiltersProvider from '@panneau/filters';
+import { MediasBrowserContainer, MediasPickerContainer } from '@panneau/medias';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, Spinner, UploadModal } from '@micromag/core/components';
-import { useStory } from '@micromag/core/contexts';
-import { useMediaAuthors, useMediaCreate, useMedias, useMediaTags } from '@micromag/data';
+import { UploadModal } from '@micromag/core/components';
+import { useApi, useMediaCreate } from '@micromag/data';
 
-import Gallery from './lists/Gallery';
-import MediaMetadata from './partials/MediaMetadata';
-import Navbar from './partials/Navbar';
+import defaultFilters from './filters';
 
 // import list from '../_stories/list.json';
-import styles from '../styles/media-gallery.module.scss';
+import styles from '../styles/new-media-gallery.module.scss';
 
-const videoTypes = ['video', 'image/gif'];
+// const videoTypes = ['video', 'image/gif'];
 
 const propTypes = {
-    type: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    value: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }),
+    types: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     source: PropTypes.string,
+    filters: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string })),
     isPicker: PropTypes.bool,
-    isSmall: PropTypes.bool,
-    withoutTitle: PropTypes.bool,
-    withoutSource: PropTypes.bool,
-    withoutType: PropTypes.bool,
+    multiple: PropTypes.bool,
     medias: MicromagPropTypes.medias,
-    selectedMedia: MicromagPropTypes.media,
+    buttons: PropTypes.arrayOf(PropTypes.shape({})),
     className: PropTypes.string,
-    navbarClassName: PropTypes.string,
     onChange: PropTypes.func,
-    onClickMedia: PropTypes.func,
-    onClearMedia: PropTypes.func,
 };
 
 const defaultProps = {
-    type: null,
+    value: null,
+    types: null,
     source: 'all',
+    filters: null,
     isPicker: false,
-    isSmall: false,
-    withoutTitle: false,
-    withoutSource: false,
-    withoutType: true,
+    multiple: false,
     medias: null,
-    selectedMedia: null,
+    buttons: null,
     className: null,
-    navbarClassName: null,
     onChange: null,
-    onClickMedia: null,
-    onClearMedia: null,
 };
 
 function MediaGallery({
-    type,
+    value,
+    types,
     source,
+    filters,
     isPicker,
-    isSmall,
-    withoutTitle,
-    withoutSource,
-    withoutType,
+    multiple,
     medias: initialMedias,
-    selectedMedia,
+    buttons,
     className,
-    navbarClassName,
     onChange,
-    onClickMedia,
-    onClearMedia,
 }) {
-    const intl = useIntl();
-    // Base state for filters
-    const defaultFilters = {
-        type,
-        source,
-    };
+    const api = useApi();
 
-    // Filters
-    const throttle = useRef(null);
-    const [queryValue, setQueryValue] = useState(defaultFilters);
-    const [filtersValue, setFiltersValue] = useState(defaultFilters);
-
-    const story = useStory();
-    const { id: storyId = null } = story || {};
-    const { tags } = useMediaTags();
-    const { authors } = useMediaAuthors();
-
-    const onFiltersChange = useCallback(
-        (value) => {
-            if (throttle.current !== null) {
-                clearTimeout(throttle.current);
-            }
-            throttle.current = setTimeout(() => {
-                setQueryValue(value);
-                throttle.current = null;
-            }, 500);
-            setFiltersValue(value);
-        },
-        [setFiltersValue, setQueryValue, throttle],
+    const mediasApi = useMemo(
+        () => ({
+            get: (...args) => api.medias.get(...args),
+            getTrashed: (...args) => api.medias.get(...args),
+            find: (...args) => api.medias.find(...args),
+            create: (...args) => api.medias.create(...args),
+            update: (...args) => api.medias.update(...args),
+            delete: (...args) => api.medias.delete(...args),
+            trash: (...args) => api.medias.delete(...args),
+        }),
+        [api],
     );
-
-    const [defaultItems, setDefaultItems] = useState(initialMedias);
-
-    // Items
-    const {
-        items: loadedMedias,
-        loading = false,
-        loadNextPage = null,
-        allLoaded = false,
-        // reset,
-    } = useMedias(queryValue, 1, 30, {
-        pages: defaultItems,
-    });
-
-    // Temporary type filter
-    const [addedMedias, setAddedMedias] = useState([]);
-    const medias = useMemo(() => {
-        const allMedias = [...addedMedias, ...(loadedMedias || [])];
-        return allMedias.length > 0 ? allMedias : null;
-    }, [loadedMedias, addedMedias]);
-
-    // Medias
-    const [metadataMedia, setMetadataMedia] = useState(null);
-    const onClickItem = useCallback(
-        (media) => {
-            const { id: mediaId = null } = media || {};
-            const { id: selectedId = null } = selectedMedia || {};
-            const different = mediaId !== selectedId;
-            if (!isPicker) {
-                setMetadataMedia(media);
-            } else if (onClickMedia !== null) {
-                if (different) {
-                    onClickMedia(media);
-                }
-            }
-        },
-        [isPicker, setMetadataMedia, onClickMedia, selectedMedia],
-    );
-    const onClickRemoveItem = useCallback(() => {
-        setMetadataMedia(null);
-        if (onClickMedia !== null) {
-            onClickMedia(null);
-        }
-    }, [isPicker, setMetadataMedia, onClickMedia]);
-
-    const onClickItemInfo = useCallback((media) => setMetadataMedia(media), [setMetadataMedia]);
-
-    const onMetadataClickClose = useCallback(() => {
-        setMetadataMedia(null);
-    }, [setMetadataMedia]);
-
-    const onMetadataClickDelete = useCallback(
-        (mediaId = null) => {
-            const { id: selectedId = null } = selectedMedia || {};
-            if (mediaId !== null && mediaId === selectedId && onClickMedia !== null) {
-                onClickMedia(null);
-            }
-            setMetadataMedia(null);
-        },
-        [setMetadataMedia, onClickMedia, selectedMedia],
-    );
-
-    const onMetadataChange = useCallback(
-        (val) => {
-            setMetadataMedia(val);
-            const { id: mediaId = null } = val || {};
-            const { id: selectedId = null } = selectedMedia || {};
-            if (onChange !== null && mediaId === selectedId) {
-                onChange(val);
-            }
-        },
-        [setMetadataMedia, selectedMedia, onChange],
-    );
-
-    useEffect(() => {
-        if (metadataMedia !== null) {
-            window.scrollTo(0, 0);
-        }
-    }, [metadataMedia]);
-
-    // Navigation
-    const onClickBack = useCallback(() => {
-        setMetadataMedia(null);
-    }, [setMetadataMedia, setDefaultItems, setQueryValue]);
 
     // Upload modal
+    const [addedMedias, setAddedMedias] = useState([]);
     const [uploading, setUploading] = useState(false);
+
     const [uploadModalOpened, setUploadModalOpened] = useState(false);
-    const { create: createMedia } = useMediaCreate();
     const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
+
+    const { create: createMedia } = useMediaCreate();
+
     const onUploadCompleted = useCallback(
         (newMedias) => {
             setUploading(true);
@@ -199,88 +95,91 @@ function MediaGallery({
         },
         [createMedia, addedMedias, setAddedMedias],
     );
+
     const onUploadRequestClose = useCallback(
         () => setUploadModalOpened(false),
         [setUploadModalOpened],
     );
+
+    const partialFilters = filters || defaultFilters() || [];
+
+    const finalFilters = useMemo(
+        () =>
+            partialFilters.map((filter) => {
+                const { id = null } = filter || {};
+                if (id === 'sources') {
+                    return filter;
+                }
+                // if (id === 'tags' && tags !== null) {
+                //     return { ...filter, options: tags };
+                // }
+                return filter;
+            }),
+        [partialFilters],
+    );
+
+    const [query, setQuery] = useState(source !== null ? { source } : null);
+    const finalQuery = useMemo(() => {
+        setQuery({ ...(query || null), ...(source !== null ? { source } : null) });
+    }, [source, setQuery]);
+
+    // const finalValue = useMemo(() => {
+    //     const allMedias = [...addedMedias, ...(value || [])];
+    //     return allMedias.length > 0 ? allMedias : null;
+    // }, [value, addedMedias]);
 
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles.metadataOpened]: metadataMedia !== null,
                     [className]: className,
                 },
             ])}
         >
-            <Navbar
-                types={isArray(type) ? type : [type]}
-                filters={filtersValue}
-                media={metadataMedia !== null ? metadataMedia : null}
-                selectedMedia={selectedMedia}
-                onFiltersChange={onFiltersChange}
-                onClickAdd={onClickAdd}
-                onClickItem={onClickItem}
-                onClickItemInfo={onClickItemInfo}
-                onClickBack={onClickBack}
-                onClickClear={onClearMedia}
-                withoutTitle={withoutTitle}
-                withoutSource={withoutSource}
-                withoutType={withoutType}
-                storyId={storyId}
-                authors={authors}
-                tags={tags}
-                loading={loading || uploading}
-                className={navbarClassName}
-            />
-            <div className={styles.content}>
-                <div className={styles.gallery}>
-                    {medias !== null && !uploading ? (
-                        <Gallery
-                            items={medias}
-                            selectedItem={selectedMedia}
-                            selectedFirst
-                            withInfoButton={isPicker}
-                            isSmall={isSmall}
-                            onClickItem={onClickItem}
-                            onClickItemInfo={onClickItemInfo}
-                            onClickRemoveItem={onClickRemoveItem}
-                        />
-                    ) : null}
-                    {!allLoaded ? (
-                        <div className="w-100 mb-2">
-                            {loading || uploading ? <Spinner className={styles.loading} /> : null}
-                            {!loading && !uploading ? (
-                                <Button
-                                    className="d-block mx-auto"
-                                    theme="secondary"
-                                    outline
-                                    onClick={loadNextPage}
-                                >
-                                    {intl.formatMessage({
-                                        defaultMessage: 'Load more',
-                                        description: 'Load button label in Media Gallery',
-                                    })}
-                                </Button>
-                            ) : null}
-                        </div>
-                    ) : null}
-                </div>
-                <div className={styles.mediaMetadata}>
-                    <MediaMetadata
-                        media={metadataMedia}
-                        tags={tags}
-                        onChange={onMetadataChange}
-                        onClickClose={onMetadataClickClose}
-                        // onClickSave={onMetadataClickSave}
-                        onClickDelete={onMetadataClickDelete}
-                    />
-                </div>
-            </div>
+            <QueryProvider>
+                <FieldsProvider>
+                    <DisplaysProvider>
+                        <FiltersProvider>
+                            {isPicker ? (
+                                <MediasPickerContainer
+                                    className={styles.browser}
+                                    api={mediasApi}
+                                    value={value}
+                                    theme="dark"
+                                    types={types}
+                                    query={finalQuery}
+                                    multiple={multiple}
+                                    items={initialMedias}
+                                    filters={finalFilters}
+                                    onChange={onChange}
+                                    buttons={buttons}
+                                    buttonsClassName="ms-xl-auto"
+                                    withStickySelection
+                                />
+                            ) : (
+                                <MediasBrowserContainer
+                                    className={styles.browser}
+                                    api={mediasApi}
+                                    value={value}
+                                    theme="dark"
+                                    types={types}
+                                    query={finalQuery}
+                                    multiple={multiple}
+                                    items={initialMedias}
+                                    filters={finalFilters}
+                                    buttons={buttons}
+                                    buttonsClassName="ms-xl-auto"
+                                    withStickySelection
+                                />
+                            )}
+                        </FiltersProvider>
+                    </DisplaysProvider>
+                </FieldsProvider>
+            </QueryProvider>
             {createPortal(
                 <UploadModal
-                    type={type === 'video' ? videoTypes : type}
+                    types={types}
                     opened={uploadModalOpened}
                     onUploaded={onUploadCompleted}
                     onRequestClose={onUploadRequestClose}

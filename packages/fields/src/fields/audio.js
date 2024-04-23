@@ -1,5 +1,6 @@
 export default {
     id: 'audio',
-    component: 'audio',
+    component: 'media-modal',
     media: true,
+    type: 'audio',
 };

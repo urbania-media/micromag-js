@@ -296,6 +296,9 @@
     "8tANs8": {
         "defaultMessage": "Conversation"
     },
+    "9/t5wK": {
+        "defaultMessage": "Type"
+    },
     "9AP246": {
         "defaultMessage": "Date"
     },
@@ -343,6 +346,9 @@
     },
     "AV6gfh": {
         "defaultMessage": "Edit call to action..."
+    },
+    "AgH3AR": {
+        "defaultMessage": "This micromag"
     },
     "B1MeY+": {
         "defaultMessage": "Select an image..."
@@ -403,6 +409,9 @@
     },
     "DYjRd/": {
         "defaultMessage": "Sorry, this media could not be saved."
+    },
+    "DYxnlo": {
+        "defaultMessage": "All"
     },
     "EDFyUp": {
         "defaultMessage": "Alternative text (accessibility)"
@@ -643,6 +652,9 @@
     },
     "PNMMo/": {
         "defaultMessage": "Audios"
+    },
+    "Pc4AD8": {
+        "defaultMessage": "Source"
     },
     "PyxZY2": {
         "defaultMessage": "Cancel"
@@ -1025,6 +1037,9 @@
     "g6b9Lg": {
         "defaultMessage": "Contribution"
     },
+    "gJTVcQ": {
+        "defaultMessage": "Select media..."
+    },
     "gRxcTc": {
         "defaultMessage": "Delete screen"
     },
@@ -1040,6 +1055,9 @@
     "hVE7TA": {
         "defaultMessage": "Question"
     },
+    "hnLSrX": {
+        "defaultMessage": "Tag"
+    },
     "hoDz0O": {
         "defaultMessage": "Description"
     },
@@ -1048,6 +1066,9 @@
     },
     "hqOIl4": {
         "defaultMessage": "Avatar"
+    },
+    "hrS5Pj": {
+        "defaultMessage": "Upload"
     },
     "hvxkzE": {
         "defaultMessage": "LinkedIn"
@@ -1307,6 +1328,9 @@
     "sXfFFw": {
         "defaultMessage": "Enter"
     },
+    "skmuWU": {
+        "defaultMessage": "Author"
+    },
     "t+L1J/": {
         "defaultMessage": "No image..."
     },
@@ -1433,6 +1457,9 @@
     "xL0GD2": {
         "defaultMessage": "Aug 23 - Sept 22"
     },
+    "xSERPA": {
+        "defaultMessage": "Video"
+    },
     "xT/onn": {
         "defaultMessage": "Image"
     },
@@ -1472,8 +1499,14 @@
     "yEG9zh": {
         "defaultMessage": "Date"
     },
+    "yHAmDD": {
+        "defaultMessage": "Image"
+    },
     "yMpGIc": {
         "defaultMessage": "Article"
+    },
+    "yQRtgx": {
+        "defaultMessage": "Audio"
     },
     "z/VBX0": {
         "defaultMessage": "Learn more"

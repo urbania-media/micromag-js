@@ -3,8 +3,11 @@
 import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { Suspense, useCallback, useEffect, useMemo } from 'react';
-import { useUppy } from '../../contexts';
+
+import { useUppy } from '@panneau/uppy';
+
 import { PropTypes as MicromagPropTypes } from '../../lib';
+
 import '../../styles/modals/upload.scss';
 
 const DashboardModal = React.lazy(() =>
@@ -54,7 +57,7 @@ const UploadModal = ({ type, opened, sources, onUploaded, onRequestClose }) => {
 
     useEffect(() => {
         if (uppy !== null && !opened) {
-            uppy.reset();
+            uppy.cancelAll();
         }
     }, [uppy, opened]);
 

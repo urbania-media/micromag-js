@@ -49,36 +49,39 @@
     }
 }
 
-@include match-screen('medium') {
-    > .top {
-        display: none;
-    }
+// @include match-screen('medium') {
+@media screen and (min-width: 540px) {
+    .container {
+        > .top {
+            display: none;
+        }
 
-    > .inner {
-        display: flex;
-        position: relative;
-        flex-direction: row;
-        width: 100%;
-        height: 100%;
-    }
+        > .inner {
+            display: flex;
+            position: relative;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
+        }
 
-    .left,
-    .center,
-    .right {
-        position: relative;
-        height: 100%;
-    }
+        .left,
+        .center,
+        .right {
+            position: relative;
+            height: 100%;
+        }
 
-    .left {
-        width: 140px;
-    }
+        .left {
+            width: 140px;
+        }
 
-    .center {
-        flex-grow: 1;
-        width: auto;
-    }
+        .center {
+            flex-grow: 1;
+            width: auto;
+        }
 
-    .right {
-        width: 320px;
+        .right {
+            width: 320px;
+        }
     }
 }

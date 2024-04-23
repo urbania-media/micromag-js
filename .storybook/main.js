@@ -1,283 +1,223 @@
 /* eslint-disable no-param-reassign */
-const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const path = require('path');
-// const webpack = require('webpack');
+const webpack = require('webpack'); // eslint-disable-line no-unused-vars
 const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
 const { idInterpolationPattern } = require('../packages/intl/scripts/config');
-
 require('dotenv').config();
 
-const getAbsolutePath = (filePath, relative = process.cwd()) => {
-    if (filePath === null) {
-        return null;
-    }
-    if (filePath[0] === '~') {
-        return path.join(process.env.HOME, filePath.slice(1));
-    }
-    return path.isAbsolute(filePath) ? filePath : path.join(relative, filePath);
-};
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // insecure
 
-const disableSourceMap = false;
-const absSrcPath = getAbsolutePath('./');
+// console.log(getPackagesPaths());
+
+console.log(
+    getPackagesPaths().map((packagePath) =>
+        path.join(packagePath, './src/**/*.stories.@(jsx|mdx)'),
+    ),
+);
 
 module.exports = {
-    stories: getPackagesPaths()
-        .filter((it) => it.match(/\/cli$/) === null)
-        .map((packagePath) => path.join(packagePath, './src/**/*.stories.@(jsx|mdx)')),
-    addons: ['@storybook/addon-viewport', '@storybook/addon-docs', '@storybook/addon-actions'],
-    features: {
-        babelModeV7: true,
-    },
-    core: {
-        builder: 'webpack5',
-    },
-    webpackFinal: async (config) => {
-        // console.log('config', config.module.rules);
-
-        const getStyleLoaders = (cssOptions, preProcessor) => {
-            const styleLoaders = [
-                require.resolve('style-loader'),
-                {
-                    loader: require.resolve('css-loader'),
-                    options: cssOptions,
+    stories: getPackagesPaths().map((packagePath) =>
+        path.join(packagePath, './src/**/*.stories.@(jsx|mdx)'),
+    ),
+    addons: [
+        {
+            name: '@storybook/preset-scss',
+            options: {
+                rule: {
+                    test: /\.module\.s[ca]ss$/,
                 },
+                // styleLoaderOptions: {
+                //     injectType: 'styleTag',
+                // },
+                cssLoaderOptions: {
+                    modules: {
+                        auto: true,
+                        namedExport: false,
+                        localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                    },
+                },
+                // sassLoaderOptions: {
+                //     sassOptions: (loaderContext) => {
+                //         // console.log('loaderContext', loaderContext);
+                //         // More information about available properties https://webpack.js.org/api/loaders/
+                //         const { resourcePath, rootContext } = loaderContext;
+                //         const relativePath = path.relative(rootContext, resourcePath);
+
+                //         console.log('path', relativePath);
+
+                //         if (relativePath === 'styles/foo.scss') {
+                //             return {
+                //                 includePaths: ['absolute/path/c', 'absolute/path/d'],
+                //             };
+                //         }
+
+                //         if (resourcePath.indexOf('node_modules') !== -1) {
+                //             console.log('resourcePath', resourcePath);
+                //         }
+
+                //         // console.log('hum');
+
+                //         return {
+                //             includePaths: ['node_modules'],
+                //         };
+                //     },
+                // },
+            },
+        },
+        {
+            name: '@storybook/preset-scss',
+            options: {
+                rule: {
+                    exclude: /\.module\.s[ca]ss$/,
+                },
+            },
+        },
+        '@storybook/addon-viewport',
+        // '@storybook/addon-docs',
+        '@storybook/addon-actions',
+        // {
+        //     name: '@storybook/addon-postcss',
+        //     options: {
+        //         postcssLoaderOptions: {
+        //             implementation: require('postcss'),
+        //         },
+        //     },
+        // },
+        // '@storybook/addon-mdx-gfm',
+    ],
+    // features: {
+    //     babelModeV7: true,
+    // },
+    webpackFinal: async (config) => ({
+        ...config,
+        resolve: {
+            ...config.resolve,
+            alias: {
+                ...config.resolve.alias,
+                '@folklore/routes': require.resolve('@folklore/routes'),
+                wouter: require.resolve('wouter'),
+                'react-intl': require.resolve('react-intl'),
+                'query-string': require.resolve('query-string'),
+                '@ckeditor/ckeditor5-editor-classic': require.resolve(
+                    '@ckeditor/ckeditor5-editor-classic',
+                ),
+                '@ckeditor/ckeditor5-editor-inline': require.resolve(
+                    '@ckeditor/ckeditor5-editor-inline',
+                ),
+                '@ckeditor/ckeditor5-react': require.resolve('@ckeditor/ckeditor5-react'),
+                // '@uppy/core/dist/style.css': require.resolve('@uppy/core/dist/style.css'),
+                // '@uppy/core': require.resolve('@uppy/core'),
+                // '@uppy/react': require.resolve('@uppy/react'),
+                ...getPackagesAliases(),
+                '@micromag/ckeditor/build': path.join(__dirname, '../packages/ckeditor/src/build'),
+                // '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/es/index'),
+            },
+        },
+        module: {
+            ...config.module,
+            rules: [
                 {
-                    loader: require.resolve('postcss-loader'),
-                    options: {
-                        postcssOptions: {
-                            implementation: require('postcss'),
-                            ident: 'postcss',
-                            plugins: [
-                                'postcss-flexbugs-fixes',
-                                [
-                                    'postcss-preset-env',
-                                    {
-                                        autoprefixer: {
-                                            flexbox: 'no-2009',
+                    oneOf: [
+                        {
+                            test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                            use: ['raw-loader'],
+                        },
+                        {
+                            test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+                            use: [
+                                {
+                                    loader: 'style-loader',
+                                    options: {
+                                        injectType: 'singletonStyleTag',
+                                        attributes: {
+                                            'data-cke': true,
                                         },
-                                        stage: 3,
                                     },
-                                ],
-                                'postcss-normalize',
+                                },
+                                'css-loader',
+                                {
+                                    loader: 'postcss-loader',
+                                    options: {
+                                        postcssOptions: styles.getPostCssConfig({
+                                            themeImporter: {
+                                                themePath: require.resolve(
+                                                    '@ckeditor/ckeditor5-theme-lark',
+                                                ),
+                                            },
+                                            minify: true,
+                                        }),
+                                    },
+                                },
                             ],
                         },
-                        sourceMap: !disableSourceMap,
-                    },
-                },
-            ].filter(Boolean);
-            if (preProcessor) {
-                styleLoaders.push(
-                    {
-                        loader: require.resolve('resolve-url-loader'),
-                        options: {
-                            sourceMap: !disableSourceMap,
-                            root: absSrcPath,
+                        {
+                            rules: [
+                                ...config.module.rules,
+
+                                // ...config.module.rules.map((rule, index) =>
+                                //     index === 0
+                                //         ? {
+                                //               ...rule,
+                                //               exclude: [rule.exclude, /@ckeditor/],
+                                //           }
+                                //         : rule,
+                                // ),
+                                ...getPackagesPaths().map((packagePath) => ({
+                                    loader: require.resolve('babel-loader'),
+                                    test: /\.(js|jsx)$/,
+                                    include: path.join(packagePath, './src/'),
+                                    exclude: /\/node_modules\//,
+                                    options: {
+                                        babelrc: false,
+                                        configFile: path.join(__dirname, '../babel.config.js'),
+                                        // presets: [
+                                        //     [
+                                        //         require.resolve('@babel/preset-env'),
+                                        //         {
+                                        //             loose: true,
+                                        //         },
+                                        //     ],
+                                        // ],
+                                        plugins: [
+                                            [
+                                                require.resolve('babel-plugin-react-intl'),
+                                                {
+                                                    ast: true,
+                                                    extractFromFormatMessageCall: true,
+                                                    idInterpolationPattern,
+                                                },
+                                            ],
+                                        ],
+                                    },
+                                })),
+                                // {
+                                //     loader: require.resolve('babel-loader'),
+                                //     test: /\.(js|jsx)$/,
+                                //     include: /\/query-string\//,
+                                //     options: {
+                                //         babelrc: false,
+                                //         plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
+                                //     },
+                                // },
+                                {
+                                    test: /\.(srt)$/,
+                                    loader: require.resolve('file-loader'),
+                                },
+                            ],
                         },
-                    },
-                    {
-                        loader: require.resolve(preProcessor),
-                        options: {
-                            sourceMap: !disableSourceMap,
-                        },
-                    },
-                );
-            }
-            return styleLoaders;
-        };
-
-        return {
-            ...config,
-
-            resolve: {
-                ...config.resolve,
-                alias: {
-                    ...config.resolve.alias,
-                    '@folklore/routes': require.resolve('@folklore/routes'),
-                    'wouter': require.resolve('wouter'),
-                    'react-intl': require.resolve('react-intl'),
-                    // '@uppy/core/dist/style.css': require.resolve('@uppy/core/dist/style.css'),
-                    // '@uppy/core': require.resolve('@uppy/core'),
-                    // '@uppy/tus': require.resolve('@uppy/tus'),
-                    // '@uppy/react': require.resolve('@uppy/react'),
-                    // '@uppy/xhr-upload': require.resolve('@uppy/xhr-upload'),
-                    ...getPackagesAliases(),
-                    // '@micromag/ckeditor/inline$': path.join(
-                    //     __dirname,
-                    //     '../packages/ckeditor/dist/inline',
-                    // ),
-                    '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/dist/index'),
+                    ],
                 },
-            },
-
-            module: {
-                ...config.module,
-                rules: [
-                    {
-                        oneOf: [
-                            {
-                                test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
-                                use: ['raw-loader'],
-                            },
-                            {
-                                test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
-                                use: [
-                                    {
-                                        loader: 'style-loader',
-                                        options: {
-                                            injectType: 'singletonStyleTag',
-                                            attributes: {
-                                                'data-cke': true,
-                                            },
-                                        },
-                                    },
-                                    'css-loader',
-                                    {
-                                        loader: 'postcss-loader',
-                                        options: {
-                                            postcssOptions: styles.getPostCssConfig({
-                                                themeImporter: {
-                                                    themePath: require.resolve(
-                                                        '@ckeditor/ckeditor5-theme-lark',
-                                                    ),
-                                                },
-                                                minify: true,
-                                            }),
-                                        },
-                                    },
-                                ],
-                            },
-                            {
-                                rules: [
-                                    {
-                                        test: /\.css$/,
-                                        exclude: /\.module\.css$/,
-                                        use: getStyleLoaders({
-                                            importLoaders: 1,
-                                            sourceMap: !disableSourceMap,
-                                            modules: {
-                                                mode: 'global',
-                                            },
-                                        }),
-                                        // Don't consider CSS imports dead code even if the
-                                        // containing package claims to have no side effects.
-                                        // Remove this when webpack adds a warning or an error for this.
-                                        // See https://github.com/webpack/webpack/issues/6571
-                                        sideEffects: true,
-                                    },
-                                    // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
-                                    // using the extension .module.css
-                                    {
-                                        test: /\.module\.css$/,
-                                        use: getStyleLoaders({
-                                            importLoaders: 1,
-                                            sourceMap: !disableSourceMap,
-                                            modules: {
-                                                mode: 'local',
-                                                getLocalIdent: getCSSModuleLocalIdent,
-                                            },
-                                        }),
-                                    },
-                                    {
-                                        test: /\.scss$/,
-                                        exclude: /\.module\.scss$/,
-                                        use: getStyleLoaders(
-                                            {
-                                                importLoaders: 3,
-                                                sourceMap: !disableSourceMap,
-                                                modules: {
-                                                    mode: 'global',
-                                                },
-                                            },
-                                            'sass-loader',
-                                        ),
-                                        // Don't consider CSS imports dead code even if the
-                                        // containing package claims to have no side effects.
-                                        // Remove this when webpack adds a warning or an error for this.
-                                        // See https://github.com/webpack/webpack/issues/6571
-                                        sideEffects: true,
-                                    },
-                                    // Adds support for CSS Modules, but using SASS
-                                    // using the extension .module.scss or .module.sass
-                                    {
-                                        test: /\.module\.scss$/,
-                                        use: getStyleLoaders(
-                                            {
-                                                importLoaders: 3,
-                                                sourceMap: !disableSourceMap,
-                                                modules: {
-                                                    mode: 'local',
-                                                    getLocalIdent: getCSSModuleLocalIdent,
-                                                },
-                                            },
-                                            'sass-loader',
-                                        ),
-                                    },
-                                    ...config.module.rules,
-                                    ...getPackagesPaths().map((packagePath) => ({
-                                        loader: require.resolve('babel-loader'),
-                                        test: /\.(js|jsx)$/,
-                                        include: path.join(packagePath, './src/'),
-                                        exclude: /\/node_modules\//,
-                                        options: {
-                                            babelrc: false,
-                                            presets: [
-                                                [
-                                                    require.resolve('@babel/preset-env'),
-                                                    {
-                                                        modules: false,
-                                                        useBuiltIns: 'entry',
-                                                        corejs: 3,
-                                                    },
-                                                ],
-                                                [
-                                                    require.resolve('@babel/preset-react'),
-                                                    {
-                                                        runtime: 'automatic',
-                                                        throwIfNamespace: false,
-                                                    },
-                                                ],
-                                            ],
-                                            plugins: [
-                                                [
-                                                    require.resolve('babel-plugin-formatjs'),
-                                                    {
-                                                        ast: true,
-                                                        extractFromFormatMessageCall: true,
-                                                        idInterpolationPattern,
-                                                    },
-                                                ],
-                                            ],
-                                            cacheDirectory: true,
-                                            cacheCompression: false,
-                                            compact: false,
-                                        },
-                                    })),
-                                    {
-                                        loader: require.resolve('babel-loader'),
-                                        test: /\.(js|jsx)$/,
-                                        include: /\/query-string\//,
-                                        options: {
-                                            babelrc: false,
-                                            plugins: [
-                                                require.resolve(
-                                                    '@babel/plugin-transform-modules-commonjs',
-                                                    '@babel/plugin-proposal-numeric-separator',
-                                                ),
-                                            ],
-                                        },
-                                    },
-                                    {
-                                        test: /\.(srt)$/,
-                                        loader: require.resolve('file-loader'),
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                ],
-            },
-        };
+            ],
+        },
+    }),
+    framework: {
+        name: '@storybook/react-webpack5',
+        options: {},
+    },
+    docs: {
+        autodocs: false,
+        defaultName: 'Docs', // set to change the name of generated docs entries
     },
 };

@@ -74,13 +74,13 @@
         "@babel/runtime": "^7.13.10",
         "@formatjs/cli": "^6.2.7",
         "@micromag/core": "^0.3.508",
-        "commander": "^8.3.0",
-        "fs-extra": "^10.0.0",
-        "gettext-parser": "^4.0.4",
-        "glob": "^7.1.6",
+        "commander": "^12.0.0",
+        "fs-extra": "^11.2.0",
+        "gettext-parser": "^7.0.1",
+        "glob": "^10.3.12",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
-        "react-intl": "^6.6.2"
+        "react-intl": "^6.6.4"
     },
     "lang": "locale",
     "supportedLocales": [

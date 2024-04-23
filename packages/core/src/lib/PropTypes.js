@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import { snakeCase } from 'change-case';
+import PropTypes from 'prop-types';
 
 /**
  * Core
@@ -252,10 +252,6 @@ export const closedCaptionsMedia = PropTypes.shape({
     type: PropTypes.oneOf(['closed-captions']),
 });
 
-
-
-
-
 /**
  * Style
  */
@@ -272,10 +268,12 @@ export const fonts = PropTypes.arrayOf(font);
 
 export const textAlign = PropTypes.oneOf(['left', 'right', 'center']);
 
-export const color = PropTypes.shape({
+export const colorObject = PropTypes.shape({
     color: PropTypes.string,
     alpha: PropTypes.number,
 });
+
+const color = PropTypes.oneOfType([colorObject, PropTypes.string]);
 
 export const textStyle = PropTypes.shape({
     fontFamily: font,
@@ -507,8 +505,8 @@ export const conversationMessage = PropTypes.shape({
     timingOverrides: PropTypes.shape({
         enabled: PropTypes.bool,
         appearDelay: PropTypes.number,
-        writingStateDuration: PropTypes.number
-    })
+        writingStateDuration: PropTypes.number,
+    }),
 });
 export const conversationMessages = PropTypes.arrayOf(conversationMessage);
 

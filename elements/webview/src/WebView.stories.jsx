@@ -6,6 +6,9 @@ import WebView from './WebView';
 export default {
     component: WebView,
     title: 'Elements/WebView',
+    parameters: {
+        intl: true,
+    },
 };
 
 const webViewProps = {

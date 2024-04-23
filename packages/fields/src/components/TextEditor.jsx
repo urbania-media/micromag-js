@@ -1,5 +1,14 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
+// import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
+import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
+import { Heading, HeadingButtonsUI } from '@ckeditor/ckeditor5-heading';
+import { Highlight } from '@ckeditor/ckeditor5-highlight';
+import { ImageInline, ImageToolbar, ImageUpload } from '@ckeditor/ckeditor5-image';
+import { List } from '@ckeditor/ckeditor5-list';
+import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
+import { ParagraphButtonUI } from '@ckeditor/ckeditor5-paragraph';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { SimpleUploadAdapter } from '@ckeditor/ckeditor5-upload';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
@@ -42,7 +51,7 @@ const defaultProps = {
     withoutLink: false,
     textStyle: null,
     editorConfig: {
-        toolbar: ['bold', 'italic', 'highlight', '|', 'link'],
+        toolbar: ['bold', 'italic', 'highlight', '|', 'link', 'blockquote'],
         link: {
             addTargetToExternalLinks: true,
         },
@@ -67,7 +76,8 @@ const TextEditorField = ({
 }) => {
     const { locale } = useIntl();
     const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
-    const Editor = useCKEditor({ full: withFullEditor });
+    const Editor = useCKEditor({ inline: inline || !withFullEditor });
+
     const getColors = useGetColors();
     const colors = useMemo(
         () => (withHighlightColors ? getColors() : null) || [],
@@ -89,7 +99,25 @@ const TextEditorField = ({
 
     const finalEditorConfig = useMemo(
         () => ({
-            extraPlugins: [MarkerPlugin, inline ? InlinePlugin : null].filter((it) => it !== null),
+            extraPlugins: [
+                Highlight,
+                MarkerPlugin,
+                inline ? InlinePlugin : null,
+                ...(withFullEditor
+                    ? [
+                          Heading,
+                          ImageInline,
+                          ImageToolbar,
+                          ImageUpload,
+                          SimpleUploadAdapter,
+                          MediaEmbed,
+                          BlockQuote,
+                          HeadingButtonsUI,
+                          ParagraphButtonUI,
+                          List,
+                      ]
+                    : []),
+            ].filter((it) => it !== null),
             highlight: {
                 options: [
                     {
@@ -127,8 +155,11 @@ const TextEditorField = ({
             },
             language: locale,
             ...defaultEditorConfig,
+            mediaEmbed: {
+                previewsInData: true,
+            },
         }),
-        [defaultEditorConfig, inline, locale],
+        [defaultEditorConfig, inline, locale, withFullEditor],
     );
 
     const onEditorReady = useCallback(() => {}, []);

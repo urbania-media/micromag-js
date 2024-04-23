@@ -1,6 +1,6 @@
 import { postJSON, getJSON, getCSRFHeaders } from '@folklore/fetch';
-import { stringify as stringifyQuery } from 'query-string';
 import { generatePath } from '@folklore/routes';
+import queryString from 'query-string';
 
 class Base {
     constructor(opts = {}) {
@@ -12,11 +12,13 @@ class Base {
     }
 
     requestGet(path, query = null) {
-        const queryString =
-            query !== null ? stringifyQuery(query, { arrayFormat: 'bracket' }) : null;
+        const finalQueryString =
+            query !== null ? queryString.stringify(query, { arrayFormat: 'bracket' }) : null;
         return getJSON(
             `${this.getFullUrl(path)}${
-                queryString !== null && queryString.length > 0 ? `?${queryString}` : ''
+                finalQueryString !== null && finalQueryString.length > 0
+                    ? `?${finalQueryString}`
+                    : ''
             }`,
             {
                 credentials: 'include',
