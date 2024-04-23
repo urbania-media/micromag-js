@@ -146,6 +146,9 @@
     "3OS3Ms": {
         "defaultMessage": "Légende"
     },
+    "3RT69u": {
+        "defaultMessage": "Informations"
+    },
     "3ext9Q": {
         "defaultMessage": "Vidéo"
     },
@@ -266,6 +269,9 @@
     "7mMPO4": {
         "defaultMessage": "Sagittaire"
     },
+    "7oXkoj": {
+        "defaultMessage": "Auteurs"
+    },
     "7tw6U2": {
         "defaultMessage": "Partager"
     },
@@ -314,6 +320,9 @@
     "9a5s+m": {
         "defaultMessage": "Titre avec encadré"
     },
+    "9mXl24": {
+        "defaultMessage": "Tags"
+    },
     "9n9+yP": {
         "defaultMessage": "Ajouter une image"
     },
@@ -346,6 +355,12 @@
     },
     "AV6gfh": {
         "defaultMessage": "Modifier l'action"
+    },
+    "AgH3AR": {
+        "defaultMessage": "Ce micromag"
+    },
+    "AwDQvD": {
+        "defaultMessage": "Image"
     },
     "B1MeY+": {
         "defaultMessage": "Sélectionner une image"
@@ -406,6 +421,9 @@
     },
     "DYjRd/": {
         "defaultMessage": "Désolé, ce média n'a pas pu être sauvegardé."
+    },
+    "DYxnlo": {
+        "defaultMessage": "Tout"
     },
     "EDFyUp": {
         "defaultMessage": "Texte alternatif (accessibilité)"
@@ -527,6 +545,9 @@
     "JoyIgA": {
         "defaultMessage": "Nb. minimum de points"
     },
+    "JuxiUN": {
+        "defaultMessage": "Format"
+    },
     "JzSBzL": {
         "defaultMessage": "Visuel"
     },
@@ -632,6 +653,9 @@
     "Op1ZIp": {
         "defaultMessage": "21 jan au 18 fév"
     },
+    "OzYWZz": {
+        "defaultMessage": "Créé le"
+    },
     "P1dwGU": {
         "defaultMessage": "Titre avec sous-titre"
     },
@@ -644,8 +668,14 @@
     "PKCv5M": {
         "defaultMessage": "Aucun item"
     },
+    "PN+75e": {
+        "defaultMessage": "Créé le"
+    },
     "PNMMo/": {
         "defaultMessage": "Audios"
+    },
+    "Pc4AD8": {
+        "defaultMessage": "Source"
     },
     "PyxZY2": {
         "defaultMessage": "Annuler"
@@ -737,6 +767,9 @@
     "UUv8FR": {
         "defaultMessage": "Nom"
     },
+    "UbxbKP": {
+        "defaultMessage": "Prévisualisation"
+    },
     "UdrdRF": {
         "defaultMessage": "Style des numéros"
     },
@@ -757,6 +790,9 @@
     },
     "W5qWPj": {
         "defaultMessage": "Centrer"
+    },
+    "WX83V9": {
+        "defaultMessage": "Nom du fichier"
     },
     "WY14Zu": {
         "defaultMessage": "Présentateur"
@@ -799,6 +835,9 @@
     },
     "XhgKcw": {
         "defaultMessage": "Déplacez la carte pour positionner"
+    },
+    "XnyI69": {
+        "defaultMessage": "Audio"
     },
     "Xr1v8l": {
         "defaultMessage": "points accumulés"
@@ -887,6 +926,9 @@
     "bv3rRe": {
         "defaultMessage": "Bouton"
     },
+    "c3hu9o": {
+        "defaultMessage": "Poids"
+    },
     "c7rrcG": {
         "defaultMessage": "Avec ligne anmée"
     },
@@ -962,6 +1004,9 @@
     "eBFxNl": {
         "defaultMessage": "Action"
     },
+    "eCe9ZY": {
+        "defaultMessage": "Dimensions"
+    },
     "eDMxHS": {
         "defaultMessage": "Graisse"
     },
@@ -1028,6 +1073,9 @@
     "g6b9Lg": {
         "defaultMessage": "Contribution"
     },
+    "gJTVcQ": {
+        "defaultMessage": "Sélectionnez..."
+    },
     "gRxcTc": {
         "defaultMessage": "Supprimer l’écran"
     },
@@ -1043,9 +1091,6 @@
     "hVE7TA": {
         "defaultMessage": "Question"
     },
-    "hnLSrX": {
-        "defaultMessage": "Tag"
-    },
     "hoDz0O": {
         "defaultMessage": "Description"
     },
@@ -1054,6 +1099,9 @@
     },
     "hqOIl4": {
         "defaultMessage": "Photo de profil"
+    },
+    "hrS5Pj": {
+        "defaultMessage": "Téléverser"
     },
     "hvxkzE": {
         "defaultMessage": "LinkedIn"
@@ -1138,6 +1186,9 @@
     },
     "mOSkbf": {
         "defaultMessage": "Utilisation"
+    },
+    "mQiyAm": {
+        "defaultMessage": "Vidéo"
     },
     "mTqcmA": {
         "defaultMessage": "Pause"
@@ -1283,11 +1334,17 @@
     "rhuDxI": {
         "defaultMessage": "Haut de l'écran"
     },
+    "rmJBin": {
+        "defaultMessage": "Dimensions"
+    },
     "ro6yHS": {
         "defaultMessage": "Carte avec images"
     },
     "rqbRV2": {
         "defaultMessage": "Désolé, ce média n'a pas pu être supprimé."
+    },
+    "rtwfuZ": {
+        "defaultMessage": "Actions"
     },
     "ru3tjH": {
         "defaultMessage": "Mauvaise réponse"
@@ -1312,9 +1369,6 @@
     },
     "sXfFFw": {
         "defaultMessage": "Entrer"
-    },
-    "skmuWU": {
-        "defaultMessage": "Auteur"
     },
     "t+L1J/": {
         "defaultMessage": "Pas d’image"
@@ -1415,6 +1469,9 @@
     "wChc+A": {
         "defaultMessage": "Modifier le style"
     },
+    "wU++NJ": {
+        "defaultMessage": "Durée"
+    },
     "wkysUu": {
         "defaultMessage": "Écrans"
     },
@@ -1438,6 +1495,9 @@
     },
     "xKG76H": {
         "defaultMessage": "Coins arrondis"
+    },
+    "xKUOLG": {
+        "defaultMessage": "Détails techniques"
     },
     "xL0GD2": {
         "defaultMessage": "23 août au 22 sept"
@@ -1475,6 +1535,9 @@
     "yA4B6h": {
         "defaultMessage": "Image de rétroaction"
     },
+    "yByaBh": {
+        "defaultMessage": "Ajouté par"
+    },
     "yCXMzz": {
         "defaultMessage": "Fermer"
     },
@@ -1492,6 +1555,9 @@
     },
     "yQRtgx": {
         "defaultMessage": "Audio"
+    },
+    "ygNvmz": {
+        "defaultMessage": "Description"
     },
     "z/VBX0": {
         "defaultMessage": "En savoir plus"

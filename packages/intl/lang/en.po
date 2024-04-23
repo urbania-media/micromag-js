@@ -155,6 +155,12 @@ msgctxt "/hupzO"
 msgid "Credits"
 msgstr "Credits"
 
+# Field name
+#: 002oWQ
+msgctxt "002oWQ"
+msgid "Duration"
+msgstr "Duration"
+
 # Cancel button label
 #: 0GT0SI
 msgctxt "0GT0SI"
@@ -208,6 +214,12 @@ msgstr "Ranking"
 msgctxt "17zT4Q"
 msgid "Popup"
 msgstr "Popup"
+
+# Media type
+#: 1dqmFw
+msgctxt "1dqmFw"
+msgid "Document"
+msgstr "Document"
 
 # Item label in items field
 #: 2/F1Q7
@@ -304,6 +316,12 @@ msgstr "Angle"
 msgctxt "3OS3Ms"
 msgid "Legend"
 msgstr "Legend"
+
+# Field title
+#: 3RT69u
+msgctxt "3RT69u"
+msgid "Informations"
+msgstr "Informations"
 
 # Video placeholder
 #: 3ext9Q
@@ -545,6 +563,12 @@ msgctxt "7mMPO4"
 msgid "Sagittarius"
 msgstr "Sagittarius"
 
+# Filter label
+#: 7oXkoj
+msgctxt "7oXkoj"
+msgid "Authors"
+msgstr "Authors"
+
 # Button label
 #: 7tw6U2
 msgctxt "7tw6U2"
@@ -641,6 +665,12 @@ msgctxt "9a5s+m"
 msgid "Title with box"
 msgstr "Title with box"
 
+# Filter label
+#: 9mXl24
+msgctxt "9mXl24"
+msgid "Tags"
+msgstr "Tags"
+
 # Button label in images with caption field
 #: 9n9+yP
 msgctxt "9n9+yP"
@@ -712,6 +742,12 @@ msgstr "Edit call to action..."
 msgctxt "AgH3AR"
 msgid "This micromag"
 msgstr "This micromag"
+
+# Media type
+#: AwDQvD
+msgctxt "AwDQvD"
+msgid "Image"
+msgstr "Image"
 
 # Label when no value is provided to Image field
 #: B1MeY+
@@ -1079,6 +1115,12 @@ msgctxt "JoyIgA"
 msgid "Minimum points for this result"
 msgstr "Minimum points for this result"
 
+# Field label
+#: JuxiUN
+msgctxt "JuxiUN"
+msgid "Format"
+msgstr "Format"
+
 # Text placeholder
 #: JzSBzL
 msgctxt "JzSBzL"
@@ -1289,6 +1331,12 @@ msgctxt "Op1ZIp"
 msgid "Jan 21 - Feb 18"
 msgstr "Jan 21 - Feb 18"
 
+# Field name
+#: OzYWZz
+msgctxt "OzYWZz"
+msgid "Created at"
+msgstr "Created at"
+
 # TitleSubtitle screen title
 #: P1dwGU
 msgctxt "P1dwGU"
@@ -1312,6 +1360,12 @@ msgstr "Bottom"
 msgctxt "PKCv5M"
 msgid "No item..."
 msgstr "No item..."
+
+# Field label
+#: PN+75e
+msgctxt "PN+75e"
+msgid "Created at"
+msgstr "Created at"
 
 # Media label
 #: PNMMo/
@@ -1504,6 +1558,12 @@ msgctxt "UUv8FR"
 msgid "Name"
 msgstr "Name"
 
+# Field name
+#: UbxbKP
+msgctxt "UbxbKP"
+msgid "Preview"
+msgstr "Preview"
+
 # Numbers style field label
 #: UdrdRF
 msgctxt "UdrdRF"
@@ -1545,6 +1605,12 @@ msgstr "Questions"
 msgctxt "W5qWPj"
 msgid "Center"
 msgstr "Center"
+
+# Field name
+#: WX83V9
+msgctxt "WX83V9"
+msgid "File name"
+msgstr "File name"
 
 # Text field label
 #: WY14Zu
@@ -1629,6 +1695,12 @@ msgstr "Cancel"
 msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Move the map to position the place"
+
+# Media type
+#: XnyI69
+msgctxt "XnyI69"
+msgid "Audio"
+msgstr "Audio"
 
 # Quiz label
 #: Xr1v8l
@@ -1804,6 +1876,12 @@ msgctxt "bv3rRe"
 msgid "Button"
 msgstr "Button"
 
+# Field name
+#: c3hu9o
+msgctxt "c3hu9o"
+msgid "Size"
+msgstr "Size"
+
 # Field label
 #: c7rrcG
 msgctxt "c7rrcG"
@@ -1953,6 +2031,12 @@ msgstr "Select a media..."
 msgctxt "eBFxNl"
 msgid "Call to Action"
 msgstr "Call to Action"
+
+# Field name
+#: eCe9ZY
+msgctxt "eCe9ZY"
+msgid "Dimensions"
+msgstr "Dimensions"
 
 # Field label
 #: eDMxHS
@@ -2120,12 +2204,6 @@ msgstr "Mute audio of background video"
 msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
-
-# Filter label
-#: hnLSrX
-msgctxt "hnLSrX"
-msgid "Tag"
-msgstr "Tag"
 
 # Placeholder label
 #: hoDz0O
@@ -2318,6 +2396,12 @@ msgstr "Size"
 msgctxt "mOSkbf"
 msgid "Usage"
 msgstr "Usage"
+
+# Media type
+#: mQiyAm
+msgctxt "mQiyAm"
+msgid "Video"
+msgstr "Video"
 
 # Button label
 #: mTqcmA
@@ -2605,6 +2689,12 @@ msgctxt "rhuDxI"
 msgid "Header"
 msgstr "Header"
 
+# Field label
+#: rmJBin
+msgctxt "rmJBin"
+msgid "Dimensions"
+msgstr "Dimensions"
+
 # Screen title
 #: ro6yHS
 msgctxt "ro6yHS"
@@ -2616,6 +2706,12 @@ msgstr "Map with image markers"
 msgctxt "rqbRV2"
 msgid "Sorry, this media could not be deleted."
 msgstr "Sorry, this media could not be deleted."
+
+# Field name
+#: rtwfuZ
+msgctxt "rtwfuZ"
+msgid "Actions"
+msgstr "Actions"
 
 # Field label
 #: ru3tjH
@@ -2664,12 +2760,6 @@ msgstr "Author"
 msgctxt "sXfFFw"
 msgid "Enter"
 msgstr "Enter"
-
-# Filter label
-#: skmuWU
-msgctxt "skmuWU"
-msgid "Author"
-msgstr "Author"
 
 # Label when there is no item in images field
 #: t+L1J/
@@ -2869,6 +2959,12 @@ msgctxt "wChc+A"
 msgid "Edit style..."
 msgstr "Edit style..."
 
+# Field label
+#: wU++NJ
+msgctxt "wU++NJ"
+msgid "Duration"
+msgstr "Duration"
+
 # Button to show screens
 #: wkysUu
 msgctxt "wkysUu"
@@ -2916,6 +3012,12 @@ msgstr "Link copied!"
 msgctxt "xKG76H"
 msgid "Rounded corners"
 msgstr "Rounded corners"
+
+# Field title
+#: xKUOLG
+msgctxt "xKUOLG"
+msgid "Technical details"
+msgstr "Technical details"
 
 # Horoscope date
 #: xL0GD2
@@ -2989,6 +3091,12 @@ msgctxt "yA4B6h"
 msgid "Result feedback image"
 msgstr "Result feedback image"
 
+# Field label
+#: yByaBh
+msgctxt "yByaBh"
+msgid "Added by"
+msgstr "Added by"
+
 # Close button label in Media Gallery
 #: yCXMzz
 msgctxt "yCXMzz"
@@ -3024,6 +3132,12 @@ msgstr "Article"
 msgctxt "yQRtgx"
 msgid "Audio"
 msgstr "Audio"
+
+# Field name
+#: ygNvmz
+msgctxt "ygNvmz"
+msgid "Description"
+msgstr "Description"
 
 # Call to action default label
 #: z/VBX0

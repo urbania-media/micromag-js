@@ -155,6 +155,12 @@ msgctxt "/hupzO"
 msgid "Credits"
 msgstr "Crédits"
 
+# Field name
+#: 002oWQ
+msgctxt "002oWQ"
+msgid "Duration"
+msgstr ""
+
 # Cancel button label
 #: 0GT0SI
 msgctxt "0GT0SI"
@@ -208,6 +214,12 @@ msgstr "Classement"
 msgctxt "17zT4Q"
 msgid "Popup"
 msgstr "Fenêtre contextuelle"
+
+# Media type
+#: 1dqmFw
+msgctxt "1dqmFw"
+msgid "Document"
+msgstr ""
 
 # Item label in items field
 #: 2/F1Q7
@@ -304,6 +316,12 @@ msgstr "Angle"
 msgctxt "3OS3Ms"
 msgid "Legend"
 msgstr "Légende"
+
+# Field title
+#: 3RT69u
+msgctxt "3RT69u"
+msgid "Informations"
+msgstr "Informations"
 
 # Video placeholder
 #: 3ext9Q
@@ -545,6 +563,12 @@ msgctxt "7mMPO4"
 msgid "Sagittarius"
 msgstr "Sagittaire"
 
+# Filter label
+#: 7oXkoj
+msgctxt "7oXkoj"
+msgid "Authors"
+msgstr "Auteurs"
+
 # Button label
 #: 7tw6U2
 msgctxt "7tw6U2"
@@ -641,6 +665,12 @@ msgctxt "9a5s+m"
 msgid "Title with box"
 msgstr "Titre avec encadré"
 
+# Filter label
+#: 9mXl24
+msgctxt "9mXl24"
+msgid "Tags"
+msgstr "Tags"
+
 # Button label in images with caption field
 #: 9n9+yP
 msgctxt "9n9+yP"
@@ -711,7 +741,13 @@ msgstr "Modifier l'action"
 #: AgH3AR
 msgctxt "AgH3AR"
 msgid "This micromag"
-msgstr ""
+msgstr "Ce micromag"
+
+# Media type
+#: AwDQvD
+msgctxt "AwDQvD"
+msgid "Image"
+msgstr "Image"
 
 # Label when no value is provided to Image field
 #: B1MeY+
@@ -837,7 +873,7 @@ msgstr "Désolé, ce média n'a pas pu être sauvegardé."
 #: DYxnlo
 msgctxt "DYxnlo"
 msgid "All"
-msgstr ""
+msgstr "Tout"
 
 # Media Gallery
 #: EDFyUp
@@ -1079,6 +1115,12 @@ msgctxt "JoyIgA"
 msgid "Minimum points for this result"
 msgstr "Nb. minimum de points"
 
+# Field label
+#: JuxiUN
+msgctxt "JuxiUN"
+msgid "Format"
+msgstr "Format"
+
 # Text placeholder
 #: JzSBzL
 msgctxt "JzSBzL"
@@ -1289,6 +1331,12 @@ msgctxt "Op1ZIp"
 msgid "Jan 21 - Feb 18"
 msgstr "21 jan au 18 fév"
 
+# Field name
+#: OzYWZz
+msgctxt "OzYWZz"
+msgid "Created at"
+msgstr "Créé le"
+
 # TitleSubtitle screen title
 #: P1dwGU
 msgctxt "P1dwGU"
@@ -1313,6 +1361,12 @@ msgctxt "PKCv5M"
 msgid "No item..."
 msgstr "Aucun item"
 
+# Field label
+#: PN+75e
+msgctxt "PN+75e"
+msgid "Created at"
+msgstr "Créé le"
+
 # Media label
 #: PNMMo/
 msgctxt "PNMMo/"
@@ -1323,7 +1377,7 @@ msgstr "Audios"
 #: Pc4AD8
 msgctxt "Pc4AD8"
 msgid "Source"
-msgstr ""
+msgstr "Source"
 
 # Button label
 #: PyxZY2
@@ -1504,6 +1558,12 @@ msgctxt "UUv8FR"
 msgid "Name"
 msgstr "Nom"
 
+# Field name
+#: UbxbKP
+msgctxt "UbxbKP"
+msgid "Preview"
+msgstr "Prévisualisation"
+
 # Numbers style field label
 #: UdrdRF
 msgctxt "UdrdRF"
@@ -1545,6 +1605,12 @@ msgstr "Questions"
 msgctxt "W5qWPj"
 msgid "Center"
 msgstr "Centrer"
+
+# Field name
+#: WX83V9
+msgctxt "WX83V9"
+msgid "File name"
+msgstr "Nom du fichier"
 
 # Text field label
 #: WY14Zu
@@ -1629,6 +1695,12 @@ msgstr "Annuler"
 msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Déplacez la carte pour positionner"
+
+# Media type
+#: XnyI69
+msgctxt "XnyI69"
+msgid "Audio"
+msgstr "Audio"
 
 # Quiz label
 #: Xr1v8l
@@ -1804,6 +1876,12 @@ msgctxt "bv3rRe"
 msgid "Button"
 msgstr "Bouton"
 
+# Field name
+#: c3hu9o
+msgctxt "c3hu9o"
+msgid "Size"
+msgstr "Poids"
+
 # Field label
 #: c7rrcG
 msgctxt "c7rrcG"
@@ -1954,6 +2032,12 @@ msgctxt "eBFxNl"
 msgid "Call to Action"
 msgstr "Action"
 
+# Field name
+#: eCe9ZY
+msgctxt "eCe9ZY"
+msgid "Dimensions"
+msgstr "Dimensions"
+
 # Field label
 #: eDMxHS
 msgctxt "eDMxHS"
@@ -2089,7 +2173,7 @@ msgstr "Contribution"
 #: gJTVcQ
 msgctxt "gJTVcQ"
 msgid "Select media..."
-msgstr ""
+msgstr "Sélectionnez..."
 
 # Delete screen button label
 #: gRxcTc
@@ -2121,12 +2205,6 @@ msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
 
-# Filter label
-#: hnLSrX
-msgctxt "hnLSrX"
-msgid "Tag"
-msgstr "Tag"
-
 # Placeholder label
 #: hoDz0O
 msgctxt "hoDz0O"
@@ -2149,7 +2227,7 @@ msgstr "Photo de profil"
 #: hrS5Pj
 msgctxt "hrS5Pj"
 msgid "Upload"
-msgstr ""
+msgstr "Téléverser"
 
 # Field label
 #: hvxkzE
@@ -2318,6 +2396,12 @@ msgstr "Taille"
 msgctxt "mOSkbf"
 msgid "Usage"
 msgstr "Utilisation"
+
+# Media type
+#: mQiyAm
+msgctxt "mQiyAm"
+msgid "Video"
+msgstr "Vidéo"
 
 # Button label
 #: mTqcmA
@@ -2605,6 +2689,12 @@ msgctxt "rhuDxI"
 msgid "Header"
 msgstr "Haut de l'écran"
 
+# Field label
+#: rmJBin
+msgctxt "rmJBin"
+msgid "Dimensions"
+msgstr "Dimensions"
+
 # Screen title
 #: ro6yHS
 msgctxt "ro6yHS"
@@ -2616,6 +2706,12 @@ msgstr "Carte avec images"
 msgctxt "rqbRV2"
 msgid "Sorry, this media could not be deleted."
 msgstr "Désolé, ce média n'a pas pu être supprimé."
+
+# Field name
+#: rtwfuZ
+msgctxt "rtwfuZ"
+msgid "Actions"
+msgstr "Actions"
 
 # Field label
 #: ru3tjH
@@ -2664,12 +2760,6 @@ msgstr "Auteur"
 msgctxt "sXfFFw"
 msgid "Enter"
 msgstr "Entrer"
-
-# Filter label
-#: skmuWU
-msgctxt "skmuWU"
-msgid "Author"
-msgstr "Auteur"
 
 # Label when there is no item in images field
 #: t+L1J/
@@ -2869,6 +2959,12 @@ msgctxt "wChc+A"
 msgid "Edit style..."
 msgstr "Modifier le style"
 
+# Field label
+#: wU++NJ
+msgctxt "wU++NJ"
+msgid "Duration"
+msgstr "Durée"
+
 # Button to show screens
 #: wkysUu
 msgctxt "wkysUu"
@@ -2916,6 +3012,12 @@ msgstr "Lien copié!"
 msgctxt "xKG76H"
 msgid "Rounded corners"
 msgstr "Coins arrondis"
+
+# Field title
+#: xKUOLG
+msgctxt "xKUOLG"
+msgid "Technical details"
+msgstr "Détails techniques"
 
 # Horoscope date
 #: xL0GD2
@@ -2989,6 +3091,12 @@ msgctxt "yA4B6h"
 msgid "Result feedback image"
 msgstr "Image de rétroaction"
 
+# Field label
+#: yByaBh
+msgctxt "yByaBh"
+msgid "Added by"
+msgstr "Ajouté par"
+
 # Close button label in Media Gallery
 #: yCXMzz
 msgctxt "yCXMzz"
@@ -3024,6 +3132,12 @@ msgstr "Article"
 msgctxt "yQRtgx"
 msgid "Audio"
 msgstr "Audio"
+
+# Field name
+#: ygNvmz
+msgctxt "ygNvmz"
+msgid "Description"
+msgstr "Description"
 
 # Call to action default label
 #: z/VBX0

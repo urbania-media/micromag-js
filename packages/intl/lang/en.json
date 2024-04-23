@@ -71,6 +71,9 @@
     "/hupzO": {
         "defaultMessage": "Credits"
     },
+    "002oWQ": {
+        "defaultMessage": "Duration"
+    },
     "0GT0SI": {
         "defaultMessage": "Cancel"
     },
@@ -97,6 +100,9 @@
     },
     "17zT4Q": {
         "defaultMessage": "Popup"
+    },
+    "1dqmFw": {
+        "defaultMessage": "Document"
     },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
@@ -145,6 +151,9 @@
     },
     "3OS3Ms": {
         "defaultMessage": "Legend"
+    },
+    "3RT69u": {
+        "defaultMessage": "Informations"
     },
     "3ext9Q": {
         "defaultMessage": "Video"
@@ -266,6 +275,9 @@
     "7mMPO4": {
         "defaultMessage": "Sagittarius"
     },
+    "7oXkoj": {
+        "defaultMessage": "Authors"
+    },
     "7tw6U2": {
         "defaultMessage": "Share"
     },
@@ -314,6 +326,9 @@
     "9a5s+m": {
         "defaultMessage": "Title with box"
     },
+    "9mXl24": {
+        "defaultMessage": "Tags"
+    },
     "9n9+yP": {
         "defaultMessage": "Add an image"
     },
@@ -349,6 +364,9 @@
     },
     "AgH3AR": {
         "defaultMessage": "This micromag"
+    },
+    "AwDQvD": {
+        "defaultMessage": "Image"
     },
     "B1MeY+": {
         "defaultMessage": "Select an image..."
@@ -533,6 +551,9 @@
     "JoyIgA": {
         "defaultMessage": "Minimum points for this result"
     },
+    "JuxiUN": {
+        "defaultMessage": "Format"
+    },
     "JzSBzL": {
         "defaultMessage": "Visual"
     },
@@ -638,6 +659,9 @@
     "Op1ZIp": {
         "defaultMessage": "Jan 21 - Feb 18"
     },
+    "OzYWZz": {
+        "defaultMessage": "Created at"
+    },
     "P1dwGU": {
         "defaultMessage": "Title with subtitle"
     },
@@ -649,6 +673,9 @@
     },
     "PKCv5M": {
         "defaultMessage": "No item..."
+    },
+    "PN+75e": {
+        "defaultMessage": "Created at"
     },
     "PNMMo/": {
         "defaultMessage": "Audios"
@@ -746,6 +773,9 @@
     "UUv8FR": {
         "defaultMessage": "Name"
     },
+    "UbxbKP": {
+        "defaultMessage": "Preview"
+    },
     "UdrdRF": {
         "defaultMessage": "Numbers style"
     },
@@ -766,6 +796,9 @@
     },
     "W5qWPj": {
         "defaultMessage": "Center"
+    },
+    "WX83V9": {
+        "defaultMessage": "File name"
     },
     "WY14Zu": {
         "defaultMessage": "Sponsor"
@@ -808,6 +841,9 @@
     },
     "XhgKcw": {
         "defaultMessage": "Move the map to position the place"
+    },
+    "XnyI69": {
+        "defaultMessage": "Audio"
     },
     "Xr1v8l": {
         "defaultMessage": "points gained"
@@ -896,6 +932,9 @@
     "bv3rRe": {
         "defaultMessage": "Button"
     },
+    "c3hu9o": {
+        "defaultMessage": "Size"
+    },
     "c7rrcG": {
         "defaultMessage": "With animated wave"
     },
@@ -970,6 +1009,9 @@
     },
     "eBFxNl": {
         "defaultMessage": "Call to Action"
+    },
+    "eCe9ZY": {
+        "defaultMessage": "Dimensions"
     },
     "eDMxHS": {
         "defaultMessage": "Font weight"
@@ -1054,9 +1096,6 @@
     },
     "hVE7TA": {
         "defaultMessage": "Question"
-    },
-    "hnLSrX": {
-        "defaultMessage": "Tag"
     },
     "hoDz0O": {
         "defaultMessage": "Description"
@@ -1153,6 +1192,9 @@
     },
     "mOSkbf": {
         "defaultMessage": "Usage"
+    },
+    "mQiyAm": {
+        "defaultMessage": "Video"
     },
     "mTqcmA": {
         "defaultMessage": "Pause"
@@ -1298,11 +1340,17 @@
     "rhuDxI": {
         "defaultMessage": "Header"
     },
+    "rmJBin": {
+        "defaultMessage": "Dimensions"
+    },
     "ro6yHS": {
         "defaultMessage": "Map with image markers"
     },
     "rqbRV2": {
         "defaultMessage": "Sorry, this media could not be deleted."
+    },
+    "rtwfuZ": {
+        "defaultMessage": "Actions"
     },
     "ru3tjH": {
         "defaultMessage": "Bad answer color"
@@ -1327,9 +1375,6 @@
     },
     "sXfFFw": {
         "defaultMessage": "Enter"
-    },
-    "skmuWU": {
-        "defaultMessage": "Author"
     },
     "t+L1J/": {
         "defaultMessage": "No image..."
@@ -1430,6 +1475,9 @@
     "wChc+A": {
         "defaultMessage": "Edit style..."
     },
+    "wU++NJ": {
+        "defaultMessage": "Duration"
+    },
     "wkysUu": {
         "defaultMessage": "Screens"
     },
@@ -1453,6 +1501,9 @@
     },
     "xKG76H": {
         "defaultMessage": "Rounded corners"
+    },
+    "xKUOLG": {
+        "defaultMessage": "Technical details"
     },
     "xL0GD2": {
         "defaultMessage": "Aug 23 - Sept 22"
@@ -1490,6 +1541,9 @@
     "yA4B6h": {
         "defaultMessage": "Result feedback image"
     },
+    "yByaBh": {
+        "defaultMessage": "Added by"
+    },
     "yCXMzz": {
         "defaultMessage": "Close"
     },
@@ -1507,6 +1561,9 @@
     },
     "yQRtgx": {
         "defaultMessage": "Audio"
+    },
+    "ygNvmz": {
+        "defaultMessage": "Description"
     },
     "z/VBX0": {
         "defaultMessage": "Learn more"
