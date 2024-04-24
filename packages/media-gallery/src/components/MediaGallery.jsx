@@ -2,13 +2,10 @@ import classNames from 'classnames';
 import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { FormattedMessage } from 'react-intl';
 
 import { MediasBrowserContainer, MediasPickerContainer } from '@panneau/medias';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { UploadModal } from '@micromag/core/components';
 import { useStory } from '@micromag/core/contexts';
 import { useApi, useMediaCreate } from '@micromag/data';
 
@@ -32,7 +29,6 @@ const propTypes = {
     isPicker: PropTypes.bool,
     multiple: PropTypes.bool,
     medias: MicromagPropTypes.medias,
-    buttons: PropTypes.arrayOf(PropTypes.shape({})),
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -47,7 +43,6 @@ const defaultProps = {
     isPicker: false,
     multiple: false,
     medias: null,
-    buttons: null,
     className: null,
     onChange: null,
 };
@@ -62,15 +57,12 @@ function MediaGallery({
     isPicker,
     multiple,
     medias: initialMedias,
-    buttons,
     className,
     onChange,
 }) {
     const api = useApi();
     const story = useStory();
     const { id: storyId = null } = story || {};
-
-    console.log('storyId', storyId);
 
     const mediasApi = useMemo(
         () => ({
@@ -85,61 +77,30 @@ function MediaGallery({
         [api],
     );
 
-    // Upload modal
-    const [addedMedias, setAddedMedias] = useState([]);
-    const [uploading, setUploading] = useState(false);
-
-    const [uploadModalOpened, setUploadModalOpened] = useState(false);
-    const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
+    const partialFilters = filters || defaultFilters() || [];
 
     const { create: createMedia } = useMediaCreate();
-
-    const onUploadCompleted = useCallback(
+    const onUpload = useCallback(
         (newMedias) => {
             console.log('newMedias', newMedias);
-            setUploading(true);
             Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => {
                 console.log('not uploading anymore', newAddedMedias);
-                setUploading(false);
-                return setAddedMedias([...addedMedias, ...newAddedMedias]);
+                return newAddedMedias;
             });
         },
-        [createMedia, addedMedias, setAddedMedias],
+        [createMedia],
     );
-
-    const onUploadRequestClose = useCallback(
-        () => setUploadModalOpened(false),
-        [setUploadModalOpened],
-    );
-
-    const partialFilters = filters || defaultFilters() || [];
 
     const finalFilters = useMemo(
         () =>
             partialFilters
                 .map((filter) => {
                     const { id = null } = filter || {};
-                    if (id === 'source' && storyId !== null) {
-                        const { options = null } = filter || {};
-                        const finalOptions =
-                            (options || []).length > 0
-                                ? [
-                                      ...options,
-                                      {
-                                          label: (
-                                              <FormattedMessage
-                                                  defaultMessage="This Micromag"
-                                                  description="Media gallery source"
-                                              />
-                                          ),
-                                          value: `document-${storyId}`,
-                                      },
-                                  ]
-                                : null;
-                        if (finalOptions === null) {
+                    if (id === 'source') {
+                        if (storyId === null) {
                             return null;
                         }
-                        return { ...filter, options: finalOptions };
+                        return { ...filter, value: `document-${storyId}` };
                     }
                     return filter;
                 })
@@ -152,38 +113,10 @@ function MediaGallery({
         setQuery({ ...(query || null), ...(source !== null ? { source } : null) });
     }, [source, setQuery]);
 
-    const finalValue = useMemo(() => {
-        if (addedMedias === null || addedMedias.length === 0) {
-            return value;
-        }
-        console.log('addedMedias', addedMedias);
-        if (!multiple) {
-            const [firstMedia = null] = addedMedias || [];
-            return firstMedia || null;
-        }
-        const allMedias = [...addedMedias, ...(isArray(value) ? value || [] : [value])];
-        return allMedias.length > 0 ? allMedias : null;
-    }, [value, addedMedias, multiple]);
-
-    const finalButtons = useMemo(
-        () => [
-            {
-                id: 'upload',
-                theme: 'primary',
-                label: <FormattedMessage defaultMessage="Upload" description="Field label" />,
-                onClick: onClickAdd,
-                disabled: uploading,
-            },
-        ],
-        [onClickAdd, uploading],
-    );
-
     const finalTypes = useMemo(() => {
         const partialTypes = !isArray(types) ? [types] : types;
         return types === 'video' ? videoTypes : partialTypes;
     }, [types]);
-
-    console.log('yesh', uploadModalOpened);
 
     return (
         <div
@@ -198,7 +131,7 @@ function MediaGallery({
                 <MediasPickerContainer
                     className={styles.browser}
                     api={mediasApi}
-                    value={finalValue}
+                    value={value}
                     theme="dark"
                     types={finalTypes}
                     query={finalQuery}
@@ -208,15 +141,14 @@ function MediaGallery({
                     fields={fields}
                     columns={columns}
                     onChange={onChange}
-                    buttons={buttons || finalButtons}
-                    buttonsClassName="ms-xl-auto"
+                    onUpload={onUpload}
                     withStickySelection
                 />
             ) : (
                 <MediasBrowserContainer
                     className={styles.browser}
                     api={mediasApi}
-                    value={finalValue}
+                    value={value}
                     theme="dark"
                     types={finalTypes}
                     query={finalQuery}
@@ -225,19 +157,9 @@ function MediaGallery({
                     filters={finalFilters}
                     fields={fields}
                     columns={columns}
-                    buttons={buttons || finalButtons}
-                    buttonsClassName="ms-xl-auto"
+                    onUpload={onUpload}
                     withStickySelection
                 />
-            )}
-            {createPortal(
-                <UploadModal
-                    types={finalTypes}
-                    opened={uploadModalOpened}
-                    onUploaded={onUploadCompleted}
-                    onRequestClose={onUploadRequestClose}
-                />,
-                document.body,
             )}
         </div>
     );

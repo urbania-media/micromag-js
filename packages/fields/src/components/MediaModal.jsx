@@ -8,11 +8,7 @@ import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import {
-    Button,
-    ModalDialog as Dialog,
-    Modal, // Spinner,
-} from '@micromag/core/components';
+import { ModalDialog as Dialog, Modal } from '@micromag/core/components';
 import { getFileName } from '@micromag/core/utils';
 import MediaGallery from '@micromag/media-gallery';
 
@@ -119,8 +115,6 @@ const MediaModal = ({
         }
     }, [value, onChange, onClose, autoClose]);
 
-    // Uploads
-
     return (
         <>
             <FieldWithForm
@@ -206,23 +200,12 @@ const MediaModal = ({
                             },
                         ])}
                         bodyClassName={styles.dialogBody}
-                        onClickClose={onClose}
                         size="lg"
-                        footer={
-                            <div className="p-2">
-                                <Button className={styles.close} theme="primary" onClick={onClose}>
-                                    <FormattedMessage
-                                        defaultMessage="Close"
-                                        description="Button label"
-                                    />
-                                </Button>
-                            </div>
-                        }
+                        onClose={onClose}
                     >
                         <MediaGallery
                             value={value}
                             types={type}
-                            // TODO: add source from here
                             isPicker
                             onChange={onChangeMedia}
                             onClose={onClose}

@@ -1,6 +1,6 @@
-import path from 'path';
-import resolve from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
+import resolve from '@rollup/plugin-node-resolve';
+import path from 'path';
 
 import { createConfig } from '../../rollup.config';
 
@@ -18,9 +18,7 @@ const files = {
         // ],
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-            resolveOnly: [
-                new RegExp(path.join(__dirname, './src/lib')),
-            ],
+            resolveOnly: [new RegExp(path.join(__dirname, './src/lib'))],
         },
     },
 
@@ -68,7 +66,7 @@ const files = {
             resolveOnly: [
                 new RegExp(path.join(__dirname, './src/components/namespaces')),
                 new RegExp(path.join(__dirname, './src/contexts')),
-                new RegExp(path.join(__dirname, './src/hooks/useUppyLocale')),
+                // new RegExp(path.join(__dirname, './src/hooks/useUppyLocale')),
                 new RegExp(path.join(__dirname, './src/utils/getTransloaditMediasFromResponse')),
             ],
         },
@@ -101,9 +99,7 @@ const files = {
     'utils.js': {
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-            resolveOnly: [
-                new RegExp(path.join(__dirname, './src/utils')),
-            ],
+            resolveOnly: [new RegExp(path.join(__dirname, './src/utils'))],
         },
     },
 };

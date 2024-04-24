@@ -17,7 +17,6 @@ const propTypes = {
     footer: PropTypes.node,
     size: PropTypes.string,
     buttons: MicromagPropTypes.buttons,
-    // theme: PropTypes.oneOf([null, 'dark', 'light']),
     onClickClose: PropTypes.func,
     className: PropTypes.string,
     bodyClassName: PropTypes.string,
@@ -30,7 +29,6 @@ const defaultProps = {
     footer: null,
     size: null,
     buttons: null,
-    // theme: 'dark',
     onClickClose: null,
     className: null,
     bodyClassName: null,
@@ -43,7 +41,6 @@ const ModalDialog = ({
     buttons,
     footer,
     size,
-    // theme,
     onClickClose,
     className,
     bodyClassName,
@@ -68,11 +65,6 @@ const ModalDialog = ({
                         'd-flex',
                         'justify-content-between',
                         styles.header,
-                        {
-                            // 'bg-dark': theme === 'dark',
-                            // 'border-dark': theme === 'dark',
-                            // 'text-light': theme === 'dark',
-                        },
                     ])}
                 >
                     <h5 className="modal-title">
@@ -92,9 +84,6 @@ const ModalDialog = ({
                     'p-2',
                     {
                         [bodyClassName]: bodyClassName !== null,
-                        // [`bg-${theme}`]: theme !== null,
-                        // 'text-light': theme === 'dark',
-                        // 'bg-dark': theme === 'dark',
                     },
                 ])}
             >

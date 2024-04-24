@@ -9,6 +9,7 @@ function filters() {
             id: 'search',
             component: 'search',
             name: 'search',
+            width: 220,
         },
         {
             id: 'types',
@@ -39,20 +40,9 @@ function filters() {
         },
         {
             id: 'source',
-            component: 'select',
-            placeholder: <FormattedMessage defaultMessage="Source" description="Filter label" />,
+            component: 'toggle',
+            label: <FormattedMessage defaultMessage="This micromag" description="Filter label" />,
             name: 'source',
-            options: [
-                {
-                    label: (
-                        <FormattedMessage
-                            defaultMessage="All medias"
-                            description="Filter item label"
-                        />
-                    ),
-                    value: 'all',
-                },
-            ],
         },
         // TODO: fix this on micromag.ca
         // {
