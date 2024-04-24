@@ -45,31 +45,26 @@ function filters() {
             options: [
                 {
                     label: (
-                        <FormattedMessage defaultMessage="All" description="Filter item label" />
-                    ),
-                    value: 'all',
-                },
-                {
-                    label: (
                         <FormattedMessage
-                            defaultMessage="This micromag"
+                            defaultMessage="All medias"
                             description="Filter item label"
                         />
                     ),
-                    value: 'document-',
+                    value: 'all',
                 },
             ],
         },
-        {
-            id: 'authors',
-            component: 'select',
-            name: 'authors',
-            placeholder: <FormattedMessage defaultMessage="Authors" description="Filter label" />,
-            requestUrl: route('medias.authors') || '/api/medias/authors',
-            itemLabelPath: 'name',
-            itemValuePath: 'id',
-            multiple: true,
-        },
+        // TODO: fix this on micromag.ca
+        // {
+        //     id: 'authors',
+        //     component: 'select',
+        //     name: 'authors',
+        //     placeholder: <FormattedMessage defaultMessage="Authors" description="Filter label" />,
+        //     requestUrl: route('medias.authors') || '/api/medias/authors',
+        //     itemLabelPath: 'name',
+        //     itemValuePath: 'id',
+        //     multiple: true,
+        // },
         {
             id: 'tags',
             component: 'select',

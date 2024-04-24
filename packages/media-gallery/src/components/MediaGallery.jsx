@@ -9,6 +9,7 @@ import { MediasBrowserContainer, MediasPickerContainer } from '@panneau/medias';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { UploadModal } from '@micromag/core/components';
+import { useStory } from '@micromag/core/contexts';
 import { useApi, useMediaCreate } from '@micromag/data';
 
 import defaultColumns from './columns';
@@ -66,6 +67,10 @@ function MediaGallery({
     onChange,
 }) {
     const api = useApi();
+    const story = useStory();
+    const { id: storyId = null } = story || {};
+
+    console.log('storyId', storyId);
 
     const mediasApi = useMemo(
         () => ({
@@ -114,16 +119,32 @@ function MediaGallery({
             partialFilters
                 .map((filter) => {
                     const { id = null } = filter || {};
-                    if (id === 'sources') {
-                        return filter;
+                    if (id === 'source' && storyId !== null) {
+                        const { options = null } = filter || {};
+                        const finalOptions =
+                            (options || []).length > 0
+                                ? [
+                                      ...options,
+                                      {
+                                          label: (
+                                              <FormattedMessage
+                                                  defaultMessage="This Micromag"
+                                                  description="Media gallery source"
+                                              />
+                                          ),
+                                          value: `document-${storyId}`,
+                                      },
+                                  ]
+                                : null;
+                        if (finalOptions === null) {
+                            return null;
+                        }
+                        return { ...filter, options: finalOptions };
                     }
-                    // if (id === 'tags' && tags !== null) {
-                    //     return { ...filter, options: tags };
-                    // }
                     return filter;
                 })
-                .concat(),
-        [partialFilters],
+                .filter((f) => f !== null),
+        [partialFilters, storyId],
     );
 
     const [query, setQuery] = useState(source !== null ? { source } : null);
@@ -187,7 +208,7 @@ function MediaGallery({
                     fields={fields}
                     columns={columns}
                     onChange={onChange}
-                    buttons={finalButtons}
+                    buttons={buttons || finalButtons}
                     buttonsClassName="ms-xl-auto"
                     withStickySelection
                 />
@@ -204,7 +225,7 @@ function MediaGallery({
                     filters={finalFilters}
                     fields={fields}
                     columns={columns}
-                    buttons={finalButtons}
+                    buttons={buttons || finalButtons}
                     buttonsClassName="ms-xl-auto"
                     withStickySelection
                 />
