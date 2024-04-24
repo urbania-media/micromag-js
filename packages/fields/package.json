@@ -1,6 +1,6 @@
 {
     "name": "@micromag/fields",
-    "version": "0.3.514",
+    "version": "0.3.515",
     "private": false,
     "description": "",
     "keywords": [
@@ -86,7 +86,7 @@
         "@micromag/element-grid": "^0.3.514",
         "@micromag/element-keypad": "^0.3.514",
         "@micromag/element-map": "^0.3.514",
-        "@micromag/media-gallery": "^0.3.514",
+        "@micromag/media-gallery": "^0.3.515",
         "@panneau/uppy": "^3.0.162",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
