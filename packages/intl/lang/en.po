@@ -563,12 +563,6 @@ msgctxt "7mMPO4"
 msgid "Sagittarius"
 msgstr "Sagittarius"
 
-# Filter label
-#: 7oXkoj
-msgctxt "7oXkoj"
-msgid "Authors"
-msgstr "Authors"
-
 # Button label
 #: 7tw6U2
 msgctxt "7tw6U2"
@@ -737,12 +731,6 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Edit call to action..."
 
-# Filter item label
-#: AgH3AR
-msgctxt "AgH3AR"
-msgid "This micromag"
-msgstr "This micromag"
-
 # Media type
 #: AwDQvD
 msgctxt "AwDQvD"
@@ -778,12 +766,6 @@ msgstr "Title"
 msgctxt "BgrRxZ"
 msgid "Intro"
 msgstr "Intro"
-
-# Field title
-#: BjSp56
-msgctxt "BjSp56"
-msgid "Test custom field"
-msgstr "Test custom field"
 
 # Field label
 #: BnRW4y
@@ -874,12 +856,6 @@ msgstr "Select a video..."
 msgctxt "DYjRd/"
 msgid "Sorry, this media could not be saved."
 msgstr "Sorry, this media could not be saved."
-
-# Filter item label
-#: DYxnlo
-msgctxt "DYxnlo"
-msgid "All"
-msgstr "All"
 
 # Media Gallery
 #: EDFyUp
@@ -1503,6 +1479,12 @@ msgstr "Columns"
 msgctxt "S9YpbV"
 msgid "Text"
 msgstr "Text"
+
+# Field title
+#: SrFsAq
+msgctxt "SrFsAq"
+msgid "Jobs"
+msgstr "Jobs"
 
 # Published name style field label
 #: SyMSDa
@@ -2508,6 +2490,12 @@ msgstr "Metadata"
 msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Button style"
+
+# Filter item label
+#: o+7d2z
+msgctxt "o+7d2z"
+msgid "All medias"
+msgstr "All medias"
 
 # Label when no value is provided to Closed captions field
 #: o3R+FM
