@@ -731,6 +731,12 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Modifier l'action"
 
+# Filter label
+#: AX9qes
+msgctxt "AX9qes"
+msgid "This micromag"
+msgstr ""
+
 # Media type
 #: AwDQvD
 msgctxt "AwDQvD"
@@ -1360,12 +1366,6 @@ msgstr "Créé le"
 msgctxt "PNMMo/"
 msgid "Audios"
 msgstr "Audios"
-
-# Filter label
-#: Pc4AD8
-msgctxt "Pc4AD8"
-msgid "Source"
-msgstr "Source"
 
 # Button label
 #: PyxZY2
@@ -2212,12 +2212,6 @@ msgid "Avatar"
 msgstr "Photo de profil"
 
 # Field label
-#: hrS5Pj
-msgctxt "hrS5Pj"
-msgid "Upload"
-msgstr "Téléverser"
-
-# Field label
 #: hvxkzE
 msgctxt "hvxkzE"
 msgid "LinkedIn"
@@ -2490,12 +2484,6 @@ msgstr "Métadonnées"
 msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Style du bouton"
-
-# Filter item label
-#: o+7d2z
-msgctxt "o+7d2z"
-msgid "All medias"
-msgstr "Tous les médias"
 
 # Label when no value is provided to Closed captions field
 #: o3R+FM

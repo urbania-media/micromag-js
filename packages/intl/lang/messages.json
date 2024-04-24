@@ -479,6 +479,10 @@
     "defaultMessage": "Edit call to action...",
     "description": "No value label"
   },
+  "AX9qes": {
+    "defaultMessage": "This micromag",
+    "description": "Filter label"
+  },
   "AwDQvD": {
     "defaultMessage": "Image",
     "description": "Media type"
@@ -898,10 +902,6 @@
   "PNMMo/": {
     "defaultMessage": "Audios",
     "description": "Media label"
-  },
-  "Pc4AD8": {
-    "defaultMessage": "Source",
-    "description": "Filter label"
   },
   "PyxZY2": {
     "defaultMessage": "Cancel",
@@ -1465,10 +1465,6 @@
     "defaultMessage": "Avatar",
     "description": "Field label"
   },
-  "hrS5Pj": {
-    "defaultMessage": "Upload",
-    "description": "Field label"
-  },
   "hvxkzE": {
     "defaultMessage": "LinkedIn",
     "description": "Field label"
@@ -1650,10 +1646,6 @@
   "nno1Pq": {
     "defaultMessage": "Button style",
     "description": "Field label"
-  },
-  "o+7d2z": {
-    "defaultMessage": "All medias",
-    "description": "Filter item label"
   },
   "o3R+FM": {
     "defaultMessage": "Select a closed captions file...",

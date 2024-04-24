@@ -359,6 +359,9 @@
     "AV6gfh": {
         "defaultMessage": "Edit call to action..."
     },
+    "AX9qes": {
+        "defaultMessage": "This micromag"
+    },
     "AwDQvD": {
         "defaultMessage": "Image"
     },
@@ -673,9 +676,6 @@
     },
     "PNMMo/": {
         "defaultMessage": "Audios"
-    },
-    "Pc4AD8": {
-        "defaultMessage": "Source"
     },
     "PyxZY2": {
         "defaultMessage": "Cancel"
@@ -1100,9 +1100,6 @@
     "hqOIl4": {
         "defaultMessage": "Avatar"
     },
-    "hrS5Pj": {
-        "defaultMessage": "Upload"
-    },
     "hvxkzE": {
         "defaultMessage": "LinkedIn"
     },
@@ -1240,9 +1237,6 @@
     },
     "nno1Pq": {
         "defaultMessage": "Button style"
-    },
-    "o+7d2z": {
-        "defaultMessage": "All medias"
     },
     "o3R+FM": {
         "defaultMessage": "Select a closed captions file..."
