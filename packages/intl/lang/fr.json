@@ -272,9 +272,6 @@
     "7mMPO4": {
         "defaultMessage": "Sagittaire"
     },
-    "7oXkoj": {
-        "defaultMessage": "Auteurs"
-    },
     "7tw6U2": {
         "defaultMessage": "Partager"
     },
@@ -359,9 +356,6 @@
     "AV6gfh": {
         "defaultMessage": "Modifier l'action"
     },
-    "AgH3AR": {
-        "defaultMessage": "Ce micromag"
-    },
     "AwDQvD": {
         "defaultMessage": "Image"
     },
@@ -379,9 +373,6 @@
     },
     "BgrRxZ": {
         "defaultMessage": "Intro"
-    },
-    "BjSp56": {
-        "defaultMessage": "Champ custom test"
     },
     "BnRW4y": {
         "defaultMessage": "Titre des résultats"
@@ -427,9 +418,6 @@
     },
     "DYjRd/": {
         "defaultMessage": "Désolé, ce média n'a pas pu être sauvegardé."
-    },
-    "DYxnlo": {
-        "defaultMessage": "Tout"
     },
     "EDFyUp": {
         "defaultMessage": "Texte alternatif (accessibilité)"
@@ -739,6 +727,9 @@
     },
     "S9YpbV": {
         "defaultMessage": "Texte"
+    },
+    "SrFsAq": {
+        "defaultMessage": "Tâches"
     },
     "SyMSDa": {
         "defaultMessage": "Style du nom publié"
@@ -1243,6 +1234,9 @@
     },
     "nno1Pq": {
         "defaultMessage": "Style du bouton"
+    },
+    "o+7d2z": {
+        "defaultMessage": "Tous les médias"
     },
     "o3R+FM": {
         "defaultMessage": "Choisir un fichier de sous-titres"

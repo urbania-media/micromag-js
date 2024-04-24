@@ -275,9 +275,6 @@
     "7mMPO4": {
         "defaultMessage": "Sagittarius"
     },
-    "7oXkoj": {
-        "defaultMessage": "Authors"
-    },
     "7tw6U2": {
         "defaultMessage": "Share"
     },
@@ -362,9 +359,6 @@
     "AV6gfh": {
         "defaultMessage": "Edit call to action..."
     },
-    "AgH3AR": {
-        "defaultMessage": "This micromag"
-    },
     "AwDQvD": {
         "defaultMessage": "Image"
     },
@@ -382,9 +376,6 @@
     },
     "BgrRxZ": {
         "defaultMessage": "Intro"
-    },
-    "BjSp56": {
-        "defaultMessage": "Test custom field"
     },
     "BnRW4y": {
         "defaultMessage": "Results title"
@@ -430,9 +421,6 @@
     },
     "DYjRd/": {
         "defaultMessage": "Sorry, this media could not be saved."
-    },
-    "DYxnlo": {
-        "defaultMessage": "All"
     },
     "EDFyUp": {
         "defaultMessage": "Alternative text (accessibility)"
@@ -745,6 +733,9 @@
     },
     "S9YpbV": {
         "defaultMessage": "Text"
+    },
+    "SrFsAq": {
+        "defaultMessage": "Jobs"
     },
     "SyMSDa": {
         "defaultMessage": "Published name style"
@@ -1249,6 +1240,9 @@
     },
     "nno1Pq": {
         "defaultMessage": "Button style"
+    },
+    "o+7d2z": {
+        "defaultMessage": "All medias"
     },
     "o3R+FM": {
         "defaultMessage": "Select a closed captions file..."
