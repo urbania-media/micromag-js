@@ -13,7 +13,7 @@ class FontsParser {
     getFieldsPatternByScreen(type) {
         if (typeof this.fieldsPatternCache[type] === 'undefined') {
             const fields = getScreenFieldsWithStates(this.screensManager.getDefinition(type) || {});
-            this.fieldsPatternCache[type] = this.getFieldsPattern(fields);
+            this.fieldsPatternCache[type] = this.getFieldsPattern(fields || []);
         }
         return this.fieldsPatternCache[type];
     }
@@ -53,7 +53,7 @@ class FontsParser {
     }
 
     getFieldsPattern(fields, namePrefix = null) {
-        return fields.reduce((patterns, field) => {
+        return (fields || []).reduce((patterns, field) => {
             const { name = null, type = null } = field;
             const path = [namePrefix, name].filter((it) => it !== null && it !== '').join('\\.');
             const fieldDefinition = {
