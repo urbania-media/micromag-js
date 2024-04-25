@@ -367,6 +367,10 @@
     "defaultMessage": "Sagittarius",
     "description": "Horoscope sign"
   },
+  "7oXkoj": {
+    "defaultMessage": "Authors",
+    "description": "Filter label"
+  },
   "7tw6U2": {
     "defaultMessage": "Share",
     "description": "Button label"

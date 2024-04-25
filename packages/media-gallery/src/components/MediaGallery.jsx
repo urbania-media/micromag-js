@@ -73,30 +73,23 @@ function MediaGallery({
     const mediasApi = useMemo(
         () => ({
             get: (...args) => api.medias.get(...args),
-            getTrashed: (...args) => api.medias.get(...args),
+            getTrashed: (...args) => api.medias.get(...args), // Change this
             find: (...args) => api.medias.find(...args),
             create: (...args) => api.medias.create(...args),
             update: (...args) => api.medias.update(...args),
             delete: (...args) => api.medias.delete(...args),
-            trash: (...args) => api.medias.delete(...args),
+            trash: (...args) => api.medias.delete(...args), // Change this
         }),
         [api],
     );
 
-    const partialFilters = filters || defaultFilters() || [];
-
+    // Upload
     const { create: createMedia } = useMediaCreate();
     const onMediaUploaded = useCallback(
-        (newMedias) => {
-            console.log('newMedias', newMedias);
-            return Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => {
-                console.log('done creating, not uploading anymore', newAddedMedias);
-                return newAddedMedias;
-            });
-        },
+        (newMedias) =>
+            Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => newAddedMedias),
         [createMedia],
     );
-
     const fileTypes = useMemo(() => {
         if (isArray(types)) {
             return types
@@ -114,6 +107,8 @@ function MediaGallery({
         [fileTypes],
     );
 
+    // Filters
+    const partialFilters = filters || defaultFilters() || [];
     const finalFilters = useMemo(
         () =>
             partialFilters
@@ -141,7 +136,19 @@ function MediaGallery({
         return types === 'video' ? videoTypes : partialTypes;
     }, [types]);
 
-    // console.log('value', value);
+    const finalOnChange = useCallback(
+        (newMedias) => {
+            if (multiple) {
+                onChange(newMedias || []);
+            } else if (isArray(newMedias)) {
+                const [firstMedia = null] = newMedias || [];
+                onChange(firstMedia || null);
+            } else {
+                onChange(newMedias || null);
+            }
+        },
+        [onChange, multiple],
+    );
 
     return (
         <div
@@ -165,7 +172,7 @@ function MediaGallery({
                     fields={fields}
                     columns={columns}
                     multiple={multiple}
-                    onChange={onChange}
+                    onChange={finalOnChange}
                     uppyConfig={uppyConfig}
                     onMediaUploaded={onMediaUploaded}
                     onMediaFormOpen={onMediaFormOpen}

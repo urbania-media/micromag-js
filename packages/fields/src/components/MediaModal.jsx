@@ -24,6 +24,7 @@ const propTypes = {
     isHorizontal: PropTypes.bool,
     onChange: PropTypes.func,
     onRequestClose: PropTypes.func,
+    multiple: PropTypes.bool,
     thumbnail: PropTypes.node,
     thumbnailPath: PropTypes.string,
     className: PropTypes.string,
@@ -43,6 +44,7 @@ const defaultProps = {
     isHorizontal: false,
     onChange: null,
     onRequestClose: null,
+    multiple: false,
     thumbnail: null,
     thumbnailPath: 'thumbnail_url',
     className: null,
@@ -55,8 +57,9 @@ const MediaModal = ({
     type,
     noValueLabel,
     isHorizontal,
-    onRequestClose,
     onChange,
+    onRequestClose,
+    multiple,
     thumbnail,
     thumbnailPath,
     className,
@@ -245,6 +248,7 @@ const MediaModal = ({
                             value={media}
                             types={type}
                             isPicker
+                            multiple={multiple}
                             onChange={onChangeMedia}
                             onClose={onClose}
                             onClear={onClearMedia}

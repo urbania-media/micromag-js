@@ -563,6 +563,12 @@ msgctxt "7mMPO4"
 msgid "Sagittarius"
 msgstr "Sagittaire"
 
+# Filter label
+#: 7oXkoj
+msgctxt "7oXkoj"
+msgid "Authors"
+msgstr ""
+
 # Button label
 #: 7tw6U2
 msgctxt "7tw6U2"
