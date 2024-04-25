@@ -136,19 +136,19 @@ function MediaGallery({
         return types === 'video' ? videoTypes : partialTypes;
     }, [types]);
 
-    const finalOnChange = useCallback(
-        (newMedias) => {
-            if (multiple) {
-                onChange(newMedias || []);
-            } else if (isArray(newMedias)) {
-                const [firstMedia = null] = newMedias || [];
-                onChange(firstMedia || null);
-            } else {
-                onChange(newMedias || null);
-            }
-        },
-        [onChange, multiple],
-    );
+    // const finalOnChange = useCallback(
+    //     (newMedias) => {
+    //         if (multiple) {
+    //             onChange(newMedias || []);
+    //         } else if (isArray(newMedias)) {
+    //             const [firstMedia = null] = newMedias || [];
+    //             onChange(firstMedia || null);
+    //         } else {
+    //             onChange(newMedias || null);
+    //         }
+    //     },
+    //     [onChange, multiple],
+    // );
 
     return (
         <div
@@ -172,7 +172,7 @@ function MediaGallery({
                     fields={fields}
                     columns={columns}
                     multiple={multiple}
-                    onChange={finalOnChange}
+                    onChange={onChange}
                     uppyConfig={uppyConfig}
                     onMediaUploaded={onMediaUploaded}
                     onMediaFormOpen={onMediaFormOpen}
