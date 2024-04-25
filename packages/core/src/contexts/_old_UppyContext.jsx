@@ -220,7 +220,7 @@ export const UppyProvider = ({
             } else if (transport === 'tus') {
                 newUppy.use(uppyTransport, {
                     endpoint: '/tus',
-                    resume: true,
+                    // resume: true, obsolete
                     retryDelays: [0, 1000, 3000, 5000],
                     ...tus,
                 });

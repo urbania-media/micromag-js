@@ -86,15 +86,32 @@ function MediaGallery({
     const partialFilters = filters || defaultFilters() || [];
 
     const { create: createMedia } = useMediaCreate();
-    const onUpload = useCallback(
+    const onMediaUploaded = useCallback(
         (newMedias) => {
             console.log('newMedias', newMedias);
-            Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => {
-                console.log('not uploading anymore', newAddedMedias);
+            return Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => {
+                console.log('done creating, not uploading anymore', newAddedMedias);
                 return newAddedMedias;
             });
         },
         [createMedia],
+    );
+
+    const fileTypes = useMemo(() => {
+        if (isArray(types)) {
+            return types
+                .map((t) => (['image', 'video', 'audio'].indexOf(t) !== -1 ? `${t}/*` : null))
+                .filter((t) => t !== null);
+        }
+        return ['image', 'video', 'audio'].indexOf(types) !== -1 ? [`${types}/*`] : null;
+    }, [types]);
+
+    const uppyConfig = useMemo(
+        () => ({
+            // sources, - uppy sources -
+            allowedFileTypes: fileTypes !== null && fileTypes.length > 0 ? fileTypes : null,
+        }),
+        [fileTypes],
     );
 
     const finalFilters = useMemo(
@@ -124,7 +141,7 @@ function MediaGallery({
         return types === 'video' ? videoTypes : partialTypes;
     }, [types]);
 
-    console.log('value', value);
+    // console.log('value', value);
 
     return (
         <div
@@ -149,7 +166,8 @@ function MediaGallery({
                     columns={columns}
                     multiple={multiple}
                     onChange={onChange}
-                    onUpload={onUpload}
+                    uppyConfig={uppyConfig}
+                    onMediaUploaded={onMediaUploaded}
                     onMediaFormOpen={onMediaFormOpen}
                     onMediaFormClose={onMediaFormClose}
                     withStickySelection
@@ -166,7 +184,8 @@ function MediaGallery({
                     filters={finalFilters}
                     fields={fields}
                     columns={columns}
-                    onUpload={onUpload}
+                    uppyConfig={uppyConfig}
+                    onMediaUploaded={onMediaUploaded}
                     withStickySelection
                 />
             )}

@@ -9,21 +9,28 @@ export default [
         component: 'text',
     },
     {
-        name: 'description',
-        label: <FormattedMessage defaultMessage="Description" description="Field name" />,
-        type: 'text',
-        component: 'text',
-    },
-    {
-        name: 'tags',
-        label: <FormattedMessage defaultMessage="Tags" description="Field name" />,
-        type: 'array',
-        component: 'select',
-        requestUrl: '/api/medias/tags',
-        optionLabelPath: 'name',
-        optionValuePath: 'id',
-        multiple: true,
-        paginated: false,
+        id: 'metadata',
+        component: 'fields',
+        name: 'metadata',
+        fields: [
+            {
+                name: 'description',
+                label: <FormattedMessage defaultMessage="Description" description="Field name" />,
+                type: 'text',
+                component: 'text',
+            },
+            {
+                name: 'tags',
+                label: <FormattedMessage defaultMessage="Tags" description="Field name" />,
+                type: 'array',
+                component: 'select',
+                requestUrl: '/api/medias/tags',
+                optionLabelPath: 'name',
+                optionValuePath: 'name', // Uses taggable
+                multiple: true,
+                paginated: false,
+            },
+        ],
     },
     {
         id: 'jobs',

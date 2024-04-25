@@ -38,17 +38,17 @@ function filters() {
             ],
             multiple: true,
         },
-        // TODO: fix this on micromag.ca
-        // {
-        //     id: 'authors',
-        //     component: 'select',
-        //     name: 'authors',
-        //     placeholder: <FormattedMessage defaultMessage="Authors" description="Filter label" />,
-        //     requestUrl: route('medias.authors') || '/api/medias/authors',
-        //     itemLabelPath: 'name',
-        //     itemValuePath: 'id',
-        //     multiple: true,
-        // },
+        {
+            id: 'authors',
+            component: 'select',
+            name: 'authors',
+            placeholder: <FormattedMessage defaultMessage="Authors" description="Filter label" />,
+            requestUrl: route('medias.authors') || '/api/medias/authors',
+            itemLabelPath: 'name',
+            itemValuePath: 'id',
+            multiple: true,
+            paginated: false,
+        },
         {
             id: 'tags',
             component: 'select',
@@ -58,7 +58,7 @@ function filters() {
             itemLabelPath: 'name',
             itemValuePath: 'id',
             multiple: true,
-            paginated: true,
+            paginated: false,
         },
         {
             id: 'source',
