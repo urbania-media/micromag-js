@@ -1791,6 +1791,10 @@
     "defaultMessage": "Bad answer color",
     "description": "Field label"
   },
+  "rvOVCV": {
+    "defaultMessage": "Confirm selection",
+    "description": "Button label"
+  },
   "rzXCu2": {
     "defaultMessage": "Label style",
     "description": "Field label"

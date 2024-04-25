@@ -38,12 +38,6 @@ function filters() {
             ],
             multiple: true,
         },
-        {
-            id: 'source',
-            component: 'toggle',
-            label: <FormattedMessage defaultMessage="This micromag" description="Filter label" />,
-            name: 'source',
-        },
         // TODO: fix this on micromag.ca
         // {
         //     id: 'authors',
@@ -65,6 +59,12 @@ function filters() {
             itemValuePath: 'id',
             multiple: true,
             paginated: true,
+        },
+        {
+            id: 'source',
+            component: 'toggle',
+            label: <FormattedMessage defaultMessage="This micromag" description="Filter label" />,
+            name: 'source',
         },
     ];
 }

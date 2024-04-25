@@ -159,7 +159,7 @@ msgstr "Crédits"
 #: 002oWQ
 msgctxt "002oWQ"
 msgid "Duration"
-msgstr ""
+msgstr "Durée"
 
 # Cancel button label
 #: 0GT0SI
@@ -303,7 +303,7 @@ msgstr "Whatsapp"
 #: 3E57H7
 msgctxt "3E57H7"
 msgid "No marker..."
-msgstr "Aucun marqueur\\"
+msgstr "Aucun marqueur"
 
 # Field label
 #: 3LEBIA
@@ -735,7 +735,7 @@ msgstr "Modifier l'action"
 #: AX9qes
 msgctxt "AX9qes"
 msgid "This micromag"
-msgstr ""
+msgstr "Ce micromag"
 
 # Media type
 #: AwDQvD
@@ -1059,7 +1059,7 @@ msgstr "Titre"
 #: IOVper
 msgctxt "IOVper"
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 # Button label
 #: IoMJgw
@@ -2700,6 +2700,12 @@ msgstr "Actions"
 msgctxt "ru3tjH"
 msgid "Bad answer color"
 msgstr "Mauvaise réponse"
+
+# Button label
+#: rvOVCV
+msgctxt "rvOVCV"
+msgid "Confirm selection"
+msgstr "Confirmer la sélection"
 
 # Field label
 #: rzXCu2

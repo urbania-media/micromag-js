@@ -2701,6 +2701,12 @@ msgctxt "ru3tjH"
 msgid "Bad answer color"
 msgstr "Bad answer color"
 
+# Button label
+#: rvOVCV
+msgctxt "rvOVCV"
+msgid "Confirm selection"
+msgstr "Confirm selection"
+
 # Field label
 #: rzXCu2
 msgctxt "rzXCu2"

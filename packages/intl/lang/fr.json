@@ -71,6 +71,9 @@
     "/hupzO": {
         "defaultMessage": "Crédits"
     },
+    "002oWQ": {
+        "defaultMessage": "Durée"
+    },
     "0GT0SI": {
         "defaultMessage": "Annuler"
     },
@@ -141,7 +144,7 @@
         "defaultMessage": "Whatsapp"
     },
     "3E57H7": {
-        "defaultMessage": "Aucun marqueur\\"
+        "defaultMessage": "Aucun marqueur"
     },
     "3LEBIA": {
         "defaultMessage": "Angle"
@@ -356,6 +359,9 @@
     "AV6gfh": {
         "defaultMessage": "Modifier l'action"
     },
+    "AX9qes": {
+        "defaultMessage": "Ce micromag"
+    },
     "AwDQvD": {
         "defaultMessage": "Image"
     },
@@ -514,6 +520,9 @@
     },
     "IE7U/Q": {
         "defaultMessage": "Titre"
+    },
+    "IOVper": {
+        "defaultMessage": "Tags"
     },
     "IoMJgw": {
         "defaultMessage": "Ouvrir l'article"
@@ -1336,6 +1345,9 @@
     },
     "ru3tjH": {
         "defaultMessage": "Mauvaise réponse"
+    },
+    "rvOVCV": {
+        "defaultMessage": "Confirmer la sélection"
     },
     "rzXCu2": {
         "defaultMessage": "Style du libellé"
