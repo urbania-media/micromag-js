@@ -118,7 +118,7 @@ function MediaGallery({
                         if (storyId === null) {
                             return null;
                         }
-                        return { ...filter, value: `document-${storyId}` };
+                        return { ...filter, queryValue: `document-${storyId}` };
                     }
                     return filter;
                 })

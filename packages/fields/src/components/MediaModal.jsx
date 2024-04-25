@@ -129,7 +129,7 @@ const MediaModal = ({
         }
     }, [value, onChange, onClose]);
 
-    console.log('media', media);
+    // console.log('media modal', media);
 
     return (
         <>
