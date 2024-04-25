@@ -1,9 +1,10 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Modal, ModalDialog as Dialog } from '@micromag/core/components';
+
+import { ModalDialog as Dialog, Modal } from '@micromag/core/components';
 
 import ScreenTypesMenu from '../menus/ScreenTypes';
 
@@ -38,7 +39,7 @@ const ScreenTypesModal = ({ selectedTypes, className, onRequestClose, onClickScr
                     [className]: className,
                 },
             ])}
-            onClickClose={onRequestClose}
+            onClose={onRequestClose}
         >
             <ScreenTypesMenu
                 selectedTypes={selectedTypes}

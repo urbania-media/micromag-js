@@ -165,7 +165,7 @@ const TextModal = ({
                             },
                         ])}
                         bodyClassName={styles.dialogBody}
-                        onClickClose={onClose}
+                        onClose={onClose}
                         footer={
                             <div className="p-2">
                                 <Button className={styles.close} theme="primary" onClick={onClose}>

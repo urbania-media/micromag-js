@@ -17,7 +17,7 @@ const propTypes = {
     footer: PropTypes.node,
     size: PropTypes.string,
     buttons: MicromagPropTypes.buttons,
-    onClickClose: PropTypes.func,
+    onClose: PropTypes.func,
     className: PropTypes.string,
     bodyClassName: PropTypes.string,
 };
@@ -29,7 +29,7 @@ const defaultProps = {
     footer: null,
     size: null,
     buttons: null,
-    onClickClose: null,
+    onClose: null,
     className: null,
     bodyClassName: null,
 };
@@ -41,7 +41,7 @@ const ModalDialog = ({
     buttons,
     footer,
     size,
-    onClickClose,
+    onClose,
     className,
     bodyClassName,
 }) => (
@@ -74,7 +74,7 @@ const ModalDialog = ({
                         type="button"
                         className="btn btn-close p-2"
                         aria-label="Close"
-                        onClick={onClickClose}
+                        onClick={onClose}
                     />
                 </div>
             )}
@@ -90,7 +90,7 @@ const ModalDialog = ({
                 {children}
             </div>
             {footer !== null || buttons !== null ? (
-                <div className={classNames(['modal-footer', styles.footer])}>
+                <div className={classNames(['modal-footer', 'p-2', styles.footer])}>
                     {footer}
                     {buttons !== null ? (
                         <Buttons buttons={buttons} className={styles.buttons} />

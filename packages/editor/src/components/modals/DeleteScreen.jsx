@@ -1,9 +1,10 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Button, Label, Modal, ModalDialog as Dialog } from '@micromag/core/components';
+
+import { Button, ModalDialog as Dialog, Label, Modal } from '@micromag/core/components';
 
 import styles from '../../styles/modals/delete-screen.module.scss';
 
@@ -34,7 +35,7 @@ const DeleteScreenModal = ({ className, onConfirm, onCancel }) => (
                     [className]: className,
                 },
             ])}
-            onClickClose={onCancel}
+            onClose={onCancel}
         >
             <div className={styles.description}>
                 <Label>

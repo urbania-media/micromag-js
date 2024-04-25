@@ -29,8 +29,10 @@ const propTypes = {
     isPicker: PropTypes.bool,
     multiple: PropTypes.bool,
     medias: MicromagPropTypes.medias,
-    className: PropTypes.string,
     onChange: PropTypes.func,
+    onMediaFormOpen: PropTypes.func,
+    onMediaFormClose: PropTypes.func,
+    className: PropTypes.string,
 };
 
 const defaultProps = {
@@ -43,8 +45,10 @@ const defaultProps = {
     isPicker: false,
     multiple: false,
     medias: null,
-    className: null,
     onChange: null,
+    onMediaFormOpen: null,
+    onMediaFormClose: null,
+    className: null,
 };
 
 function MediaGallery({
@@ -57,8 +61,10 @@ function MediaGallery({
     isPicker,
     multiple,
     medias: initialMedias,
-    className,
     onChange,
+    onMediaFormOpen,
+    onMediaFormClose,
+    className,
 }) {
     const api = useApi();
     const story = useStory();
@@ -118,6 +124,8 @@ function MediaGallery({
         return types === 'video' ? videoTypes : partialTypes;
     }, [types]);
 
+    console.log('value', value);
+
     return (
         <div
             className={classNames([
@@ -135,13 +143,15 @@ function MediaGallery({
                     theme="dark"
                     types={finalTypes}
                     query={finalQuery}
-                    multiple={multiple}
                     items={initialMedias}
                     filters={finalFilters}
                     fields={fields}
                     columns={columns}
+                    multiple={multiple}
                     onChange={onChange}
                     onUpload={onUpload}
+                    onMediaFormOpen={onMediaFormOpen}
+                    onMediaFormClose={onMediaFormClose}
                     withStickySelection
                 />
             ) : (
@@ -152,7 +162,6 @@ function MediaGallery({
                     theme="dark"
                     types={finalTypes}
                     query={finalQuery}
-                    multiple={multiple}
                     items={initialMedias}
                     filters={finalFilters}
                     fields={fields}

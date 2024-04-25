@@ -21,7 +21,6 @@ const propTypes = {
     value: MicromagPropTypes.media,
     type: PropTypes.string,
     noValueLabel: MicromagPropTypes.label,
-    autoClose: PropTypes.bool,
     isHorizontal: PropTypes.bool,
     onChange: PropTypes.func,
     onRequestClose: PropTypes.func,
@@ -41,7 +40,6 @@ const defaultProps = {
             description="Label when no value is provided to Media field"
         />
     ),
-    autoClose: true,
     isHorizontal: false,
     onChange: null,
     onRequestClose: null,
@@ -56,7 +54,6 @@ const MediaModal = ({
     value,
     type,
     noValueLabel,
-    autoClose,
     isHorizontal,
     onRequestClose,
     onChange,
@@ -67,6 +64,16 @@ const MediaModal = ({
     ...props
 }) => {
     const [modalOpen, setModalOpen] = useState();
+
+    const [mediaFormOpen, setMediaFormOpen] = useState(false);
+
+    const onMediaFormOpen = useCallback(() => {
+        setMediaFormOpen(true);
+    }, [setMediaFormOpen]);
+
+    const onMediaFormClose = useCallback(() => {
+        setMediaFormOpen(false);
+    }, [setMediaFormOpen]);
 
     const label = value !== null ? value.name || getFileName(value.url) || null : null;
 
@@ -97,29 +104,34 @@ const MediaModal = ({
         [setModalOpen, onRequestClose],
     );
 
+    const [media, setMedia] = useState(value);
+    const onConfirmSelection = useCallback(() => {
+        if (onChange !== null) {
+            onChange(media);
+        }
+        onClose();
+    }, [media, onClose]);
+
     const onChangeMedia = useCallback(
-        (media) => {
-            if (onChange !== null) {
-                onChange(media !== null && value !== null && media.id === value.id ? null : media);
-            }
-            if (autoClose) {
-                onClose();
-            }
+        (newMedia = null) => {
+            console.log('bro', newMedia);
+            setMedia(newMedia);
         },
-        [value, onChange, onClose, autoClose],
+        [value, onChange, onClose],
     );
 
     const onClearMedia = useCallback(() => {
         if (onChange !== null) {
             onChange(null);
         }
-    }, [value, onChange, onClose, autoClose]);
+    }, [value, onChange, onClose]);
+
+    console.log('media', media);
 
     return (
         <>
             <FieldWithForm
                 value={value}
-                // onChange={onChange}
                 noValueLabel={noValueLabel}
                 label={label}
                 withTitleLabel={label !== null}
@@ -202,14 +214,42 @@ const MediaModal = ({
                         bodyClassName={styles.dialogBody}
                         size="lg"
                         onClose={onClose}
+                        buttons={[
+                            {
+                                id: 'cancel',
+                                name: 'cancel',
+                                label: (
+                                    <FormattedMessage
+                                        defaultMessage="Cancel"
+                                        description="Button label"
+                                    />
+                                ),
+                                theme: 'secondary',
+                                onClick: onClose,
+                            },
+                            {
+                                id: 'confirm',
+                                name: 'confirm',
+                                label: (
+                                    <FormattedMessage
+                                        defaultMessage="Confirm selection"
+                                        description="Button label"
+                                    />
+                                ),
+                                theme: 'primary',
+                                onClick: onConfirmSelection,
+                            },
+                        ]}
                     >
                         <MediaGallery
-                            value={value}
+                            value={media}
                             types={type}
                             isPicker
                             onChange={onChangeMedia}
                             onClose={onClose}
                             onClear={onClearMedia}
+                            onMediaFormOpen={onMediaFormOpen}
+                            onMediaFormClose={onMediaFormClose}
                         />
                     </Dialog>
                 </Modal>
