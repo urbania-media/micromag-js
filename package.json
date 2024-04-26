@@ -50,6 +50,7 @@
         "@folklore/cli": "^0.0.50",
         "@folklore/routes": "^0.2.27",
         "@formatjs/cli": "^4.4.0",
+        "@panneau/uppy": "^3.0.162",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
         "@rollup/plugin-alias": "^5.0.1",
@@ -73,7 +74,6 @@
         "@storybook/react-webpack5": "^7.0.6",
         "@trivago/prettier-plugin-sort-imports": "^4.0.0",
         "@use-gesture/react": "^10.3.0",
-        "@panneau/uppy": "^3.0.162",
         "babel-loader": "^9.1.2",
         "babel-plugin-css-modules-transform": "^1.6.2",
         "babel-plugin-dynamic-import-node": "^2.3.3",
@@ -152,6 +152,7 @@
         "wouter": "^3.0.0"
     },
     "dependencies": {
+        "@panneau/medias": "^3.0.195",
         "react-transition-group": "^4.4.2"
     }
 }
