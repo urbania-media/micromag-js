@@ -33,11 +33,6 @@ export default [
         ],
     },
     {
-        id: 'jobs',
-        component: 'jobs',
-        label: <FormattedMessage defaultMessage="Jobs" description="Field title" />,
-    },
-    {
         id: 'info',
         component: 'fields',
         label: <FormattedMessage defaultMessage="Informations" description="Field title" />,
