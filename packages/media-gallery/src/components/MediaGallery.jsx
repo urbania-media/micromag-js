@@ -15,8 +15,6 @@ import defaultFilters from './filters';
 
 import styles from '../styles/new-media-gallery.module.scss';
 
-const videoTypes = ['video', 'image/gif'];
-
 const propTypes = {
     value: PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -90,18 +88,24 @@ function MediaGallery({
             Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => newAddedMedias),
         [createMedia],
     );
+
     const fileTypes = useMemo(() => {
+        let finalTypes = [];
         if (isArray(types)) {
-            return types
+            finalTypes = types
                 .map((t) => (['image', 'video', 'audio'].indexOf(t) !== -1 ? `${t}/*` : null))
                 .filter((t) => t !== null);
         }
-        return ['image', 'video', 'audio'].indexOf(types) !== -1 ? [`${types}/*`] : null;
+        finalTypes = ['image', 'video', 'audio'].indexOf(types) !== -1 ? [`${types}/*`] : null;
+        if (finalTypes !== null && isArray(finalTypes) && finalTypes.indexOf('video') !== -1) {
+            finalTypes.push('image/gif');
+        }
+        return finalTypes;
     }, [types]);
 
     const uppyConfig = useMemo(
         () => ({
-            // sources, - uppy sources -
+            // set sources ? - uppy sources -
             allowedFileTypes: fileTypes !== null && fileTypes.length > 0 ? fileTypes : null,
         }),
         [fileTypes],
@@ -131,24 +135,10 @@ function MediaGallery({
         setQuery({ ...(query || null), ...(source !== null ? { source } : null) });
     }, [source, setQuery]);
 
-    const finalTypes = useMemo(() => {
-        const partialTypes = !isArray(types) ? [types] : types;
-        return types === 'video' ? videoTypes : partialTypes;
-    }, [types]);
-
-    // const finalOnChange = useCallback(
-    //     (newMedias) => {
-    //         if (multiple) {
-    //             onChange(newMedias || []);
-    //         } else if (isArray(newMedias)) {
-    //             const [firstMedia = null] = newMedias || [];
-    //             onChange(firstMedia || null);
-    //         } else {
-    //             onChange(newMedias || null);
-    //         }
-    //     },
-    //     [onChange, multiple],
-    // );
+    const finalTypes = useMemo(
+        () => (!isArray(types) && types !== null ? [types] : types),
+        [types],
+    );
 
     return (
         <div
