@@ -138,5 +138,9 @@ export function WithList() {
 }
 
 export function WithFontType() {
-    return <GalleryContainer type="font" />;
+    return <GalleryContainer types="font" />;
+}
+
+export function WithVideoType() {
+    return <GalleryContainer types="video" />;
 }

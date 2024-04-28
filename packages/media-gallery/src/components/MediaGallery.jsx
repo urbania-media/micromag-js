@@ -97,7 +97,8 @@ function MediaGallery({
                 .filter((t) => t !== null);
         }
         finalTypes = ['image', 'video', 'audio'].indexOf(types) !== -1 ? [`${types}/*`] : null;
-        if (finalTypes !== null && isArray(finalTypes) && finalTypes.indexOf('video') !== -1) {
+
+        if (finalTypes !== null && isArray(finalTypes) && finalTypes.indexOf('video/*') !== -1) {
             finalTypes.push('image/gif');
         }
         return finalTypes;
