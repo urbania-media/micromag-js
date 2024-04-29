@@ -6,25 +6,19 @@
 // import { Highlight } from '@ckeditor/ckeditor5-highlight';
 // import { Link } from '@ckeditor/ckeditor5-link';
 // import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
-
 // // Keep all editors in the same file to avoid ckeditor duplicated modules in build
 // import { fullPlugins } from './plugins';
-
 // class NormalEditor extends InlineEditorBase {}
-
 // NormalEditor.builtinPlugins = [Essentials, Paragraph, Bold, Italic, Highlight, Link];
 // NormalEditor.defaultConfig = {};
-
 // class FullEditor extends ClassicEditorBase {}
-
 // FullEditor.builtinPlugins = [Essentials, Paragraph, Bold, Italic, Highlight, Link, ...fullPlugins];
-
 // FullEditor.defaultConfig = {
 //     mediaEmbed: {
 //         previewsInData: true,
 //     },
 // };
-
 // export { NormalEditor, FullEditor };
+import * as plugins from './plugins';
 
-export * from './plugins';
+export default plugins;

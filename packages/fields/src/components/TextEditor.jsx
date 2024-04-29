@@ -14,7 +14,7 @@ import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { v4 as uuidv4 } from 'uuid';
 
-import { defaultPlugins, fullPlugins, inlinePlugins } from '@micromag/ckeditor/build';
+import plugins from '@micromag/ckeditor/build';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import { useGetColors } from '@micromag/core/contexts';
@@ -23,6 +23,8 @@ import { getColorAsString, getStyleFromHighlight, getStyleFromLink } from '@micr
 import useCKEditor from '../hooks/useCKEditor';
 
 import styles from '../styles/text-editor.module.scss';
+
+const { defaultPlugins, fullPlugins, inlinePlugins } = plugins;
 
 const propTypes = {
     value: PropTypes.string,
