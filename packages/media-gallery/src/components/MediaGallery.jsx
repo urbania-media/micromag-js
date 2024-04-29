@@ -126,10 +126,10 @@ function MediaGallery({
                         return {
                             ...filter,
                             options: (options || []).map(
-                                ({ value: optionValue = null, ...props } = {}) =>
+                                ({ value: optionValue = null, label = null } = {}) =>
                                     optionValue === 'document-'
-                                        ? { value: `document-${storyId}`, ...props }
-                                        : { value: optionValue, ...props },
+                                        ? { value: `document-${storyId}`, label }
+                                        : { value: optionValue, label },
                             ),
                         };
                     }
