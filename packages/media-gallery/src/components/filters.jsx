@@ -9,7 +9,7 @@ function filters() {
             id: 'search',
             component: 'search',
             name: 'search',
-            width: 220,
+            width: 152,
         },
         {
             id: 'types',
