@@ -12,7 +12,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        library: 'MicromagEditor',
+        // library: 'MicromagEditor',
         libraryTarget: 'umd',
         libraryExport: 'default',
     },

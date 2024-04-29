@@ -1486,12 +1486,6 @@ msgctxt "S9YpbV"
 msgid "Text"
 msgstr "Texte"
 
-# Field title
-#: SrFsAq
-msgctxt "SrFsAq"
-msgid "Jobs"
-msgstr "Tâches"
-
 # Published name style field label
 #: SyMSDa
 msgctxt "SyMSDa"

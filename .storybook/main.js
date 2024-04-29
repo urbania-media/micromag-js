@@ -100,17 +100,18 @@ module.exports = {
                 wouter: require.resolve('wouter'),
                 'react-intl': require.resolve('react-intl'),
                 'query-string': require.resolve('query-string'),
-                '@ckeditor/ckeditor5-editor-classic': require.resolve(
-                    '@ckeditor/ckeditor5-editor-classic',
-                ),
-                '@ckeditor/ckeditor5-editor-inline': require.resolve(
-                    '@ckeditor/ckeditor5-editor-inline',
-                ),
-                '@ckeditor/ckeditor5-react': require.resolve('@ckeditor/ckeditor5-react'),
+                // '@ckeditor/ckeditor5-editor-classic': require.resolve(
+                //     '@ckeditor/ckeditor5-editor-classic',
+                // ),
+                // '@ckeditor/ckeditor5-editor-inline': require.resolve(
+                //     '@ckeditor/ckeditor5-editor-inline',
+                // ),
+                // '@ckeditor/ckeditor5-react': require.resolve('@ckeditor/ckeditor5-react'),
                 // '@uppy/core/dist/style.css': require.resolve('@uppy/core/dist/style.css'),
                 // '@uppy/core': require.resolve('@uppy/core'),
                 // '@uppy/react': require.resolve('@uppy/react'),
                 ...getPackagesAliases(),
+                '@panneau/ckeditor/build': require.resolve('@panneau/ckeditor'),
                 '@micromag/ckeditor/build': path.join(__dirname, '../packages/ckeditor/src/build'),
                 // '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/es/index'),
             },

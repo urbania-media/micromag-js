@@ -109,7 +109,7 @@ module.exports = {
                     //     __dirname,
                     //     '../packages/ckeditor/dist/inline',
                     // ),
-                    '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/dist/index'),
+                    // '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/dist/index'),
                 },
             },
 

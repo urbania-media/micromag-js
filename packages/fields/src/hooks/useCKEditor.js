@@ -19,14 +19,24 @@ const useCKEditor = ({ inline = false } = {}) => {
             };
         }
 
-        import('@panneau/ckeditor').then(({ default: Editor, InlineEditor }) => {
-            packageCache[key] = key === 'inline' ? InlineEditor : Editor;
-            if (!canceled) {
-                setLoadedPackage({
-                    [key]: packageCache[key],
-                });
-            }
-        });
+        import('@panneau/ckeditor/build').then(
+            ({ Editor = null, InlineEditor = null, default: defaultExport }) => {
+                const { Editor: defaultEditor = null, defaultInlineEditor = null } =
+                    defaultExport || {};
+
+                console.log('ed', { Editor, InlineEditor, defaultExport });
+
+                packageCache[key] =
+                    key === 'inline'
+                        ? defaultInlineEditor || InlineEditor
+                        : defaultEditor || Editor;
+                if (!canceled) {
+                    setLoadedPackage({
+                        [key]: packageCache[key],
+                    });
+                }
+            },
+        );
 
         return () => {
             canceled = true;
