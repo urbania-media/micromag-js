@@ -111,7 +111,6 @@ module.exports = {
                 // '@uppy/core': require.resolve('@uppy/core'),
                 // '@uppy/react': require.resolve('@uppy/react'),
                 ...getPackagesAliases(),
-                '@panneau/ckeditor/build': require.resolve('@panneau/ckeditor'),
                 '@micromag/ckeditor/build': path.join(__dirname, '../packages/ckeditor/src/build'),
                 // '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/es/index'),
             },

@@ -19,6 +19,8 @@
 //     },
 // };
 // export { NormalEditor, FullEditor };
+import { Editor, InlineEditor } from '@panneau/ckeditor';
+
 import * as plugins from './plugins';
 
-export default plugins;
+export default { Editor, InlineEditor, ...plugins };

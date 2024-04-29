@@ -3,13 +3,9 @@ import { useEffect, useMemo, useState } from 'react';
 /**
  * Locale loader
  */
-const packageCache = { build: null, inline: null };
-const useCKEditor = ({ inline = false } = {}) => {
-    const [packages, setLoadedPackage] = useState({
-        ...packageCache,
-    });
-    const key = useMemo(() => (inline ? 'inline' : 'build'), [inline]);
-    const loadedPackage = packages[key];
+let packageCache = null;
+const useCKEditor = () => {
+    const [loadedPackage, setLoadedPackage] = useState(packageCache);
 
     useEffect(() => {
         let canceled = false;
@@ -19,30 +15,18 @@ const useCKEditor = ({ inline = false } = {}) => {
             };
         }
 
-        import('@panneau/ckeditor/build').then(
-            ({ Editor = null, InlineEditor = null, default: defaultExport }) => {
-                const { Editor: defaultEditor = null, defaultInlineEditor = null } =
-                    defaultExport || {};
-
-                console.log('ed', { Editor, InlineEditor, defaultExport });
-
-                packageCache[key] =
-                    key === 'inline'
-                        ? defaultInlineEditor || InlineEditor
-                        : defaultEditor || Editor;
-                if (!canceled) {
-                    setLoadedPackage({
-                        [key]: packageCache[key],
-                    });
-                }
-            },
-        );
+        import('@micromag/ckeditor/build').then(({ default: defaultExport }) => {
+            packageCache = defaultExport;
+            if (!canceled) {
+                setLoadedPackage(packageCache);
+            }
+        });
 
         return () => {
             canceled = true;
         };
-    }, [loadedPackage, setLoadedPackage, key]);
-    return loadedPackage;
+    }, [loadedPackage, setLoadedPackage]);
+    return loadedPackage || {};
 };
 
 export default useCKEditor;

@@ -14,7 +14,6 @@ import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { v4 as uuidv4 } from 'uuid';
 
-import plugins from '@micromag/ckeditor/build';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import { useGetColors } from '@micromag/core/contexts';
@@ -23,8 +22,6 @@ import { getColorAsString, getStyleFromHighlight, getStyleFromLink } from '@micr
 import useCKEditor from '../hooks/useCKEditor';
 
 import styles from '../styles/text-editor.module.scss';
-
-const { defaultPlugins, fullPlugins, inlinePlugins } = plugins;
 
 const propTypes = {
     value: PropTypes.string,
@@ -77,9 +74,15 @@ const TextEditorField = ({
 }) => {
     const { locale } = useIntl();
     const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
-    const Editor = useCKEditor({ inline: inline || !withFullEditor });
+    const {
+        Editor = null,
+        InlineEditor = null,
+        defaultPlugins = [],
+        fullPlugins = [],
+        inlinePlugins = [],
+    } = useCKEditor();
 
-    console.log('editor', Editor);
+    console.log('editor', Editor, InlineEditor);
 
     const getColors = useGetColors();
     const colors = useMemo(
@@ -148,7 +151,15 @@ const TextEditorField = ({
                 previewsInData: true,
             },
         }),
-        [defaultEditorConfig, inline, locale, withFullEditor],
+        [
+            defaultEditorConfig,
+            inline,
+            locale,
+            withFullEditor,
+            defaultPlugins,
+            inlinePlugins,
+            fullPlugins,
+        ],
     );
 
     const onEditorReady = useCallback(() => {}, []);
@@ -176,7 +187,7 @@ const TextEditorField = ({
         >
             {Editor !== null ? (
                 <CKEditor
-                    editor={Editor}
+                    editor={inline ? InlineEditor : Editor}
                     config={finalEditorConfig}
                     data={value || ''}
                     onReady={onEditorReady}

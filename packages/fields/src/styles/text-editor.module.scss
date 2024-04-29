@@ -7,7 +7,8 @@
     /* stylelint-disable selector-class-pattern, max-nesting-depth, selector-max-compound-selectors, selector-pseudo-class-no-unknown, no-descending-specificity */
     :global {
         .ck {
-            &.ck-editor__editable {
+            &.ck-editor__editable,
+            &.ck-editor__main .ck-editor__editable {
                 border: $input-border-width solid $input-border-color;
                 outline: none;
                 background: $input-bg;
@@ -51,7 +52,8 @@
     &.size-sm {
         :global {
             .ck {
-                &.ck-editor__editable {
+                &.ck-editor__editable,
+                &.ck-editor__main .ck-editor__editable {
                     &:not(.ck-editor__nested-editable) {
                         &.ck-rounded-corners {
                             border-radius: $input-border-radius-sm;
@@ -73,7 +75,8 @@
     &.size-lg {
         :global {
             .ck {
-                &.ck-editor__editable {
+                &.ck-editor__editable,
+                &.ck-editor__main .ck-editor__editable {
                     &:not(.ck-editor__nested-editable) {
                         &.ck-rounded-corners {
                             border-radius: $input-border-radius-lg;
