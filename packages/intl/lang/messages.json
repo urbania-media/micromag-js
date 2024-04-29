@@ -719,6 +719,10 @@
     "defaultMessage": "Speakers",
     "description": "Field label"
   },
+  "JCex1R": {
+    "defaultMessage": "Tous les micromags",
+    "description": "Filter item label"
+  },
   "JDPMlG": {
     "defaultMessage": "Background color",
     "description": "Field label"
@@ -1452,6 +1456,10 @@
   "hVE7TA": {
     "defaultMessage": "Question",
     "description": "Question field label"
+  },
+  "hjgnYW": {
+    "defaultMessage": "Ce micromag",
+    "description": "Filter item label"
   },
   "hoDz0O": {
     "defaultMessage": "Description",

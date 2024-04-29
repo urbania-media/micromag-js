@@ -125,8 +125,11 @@ function MediaGallery({
                         }
                         return {
                             ...filter,
-                            options: (options || []).map(({ value: optionValue = null } = {}) =>
-                                optionValue === 'document-' ? `document-${storyId}` : optionValue,
+                            options: (options || []).map(
+                                ({ value: optionValue = null, ...props } = {}) =>
+                                    optionValue === 'document-'
+                                        ? { value: `document-${storyId}`, ...props }
+                                        : { value: optionValue, ...props },
                             ),
                         };
                     }

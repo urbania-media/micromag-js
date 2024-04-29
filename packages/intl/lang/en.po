@@ -1091,6 +1091,12 @@ msgctxt "JC9Qlf"
 msgid "Speakers"
 msgstr "Speakers"
 
+# Filter item label
+#: JCex1R
+msgctxt "JCex1R"
+msgid "Tous les micromags"
+msgstr "Tous les micromags"
+
 # Field label
 #: JDPMlG
 msgctxt "JDPMlG"
@@ -2192,6 +2198,12 @@ msgstr "Mute audio of background video"
 msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
+
+# Filter item label
+#: hjgnYW
+msgctxt "hjgnYW"
+msgid "Ce micromag"
+msgstr "Ce micromag"
 
 # Placeholder label
 #: hoDz0O

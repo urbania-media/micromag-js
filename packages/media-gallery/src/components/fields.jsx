@@ -26,7 +26,8 @@ export default [
                 component: 'select',
                 requestUrl: '/api/medias/tags',
                 optionLabelPath: 'name',
-                optionValuePath: 'name', // Uses taggable
+                optionValuePath: 'id', // Uses taggable so change the logic here
+                valueIsOption: true,
                 multiple: true,
                 paginated: false,
             },
