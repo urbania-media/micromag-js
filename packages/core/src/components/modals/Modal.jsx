@@ -2,9 +2,12 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import styles from '../../styles/modals/modal.module.scss';
+
 import { getDisplayName } from '../../utils';
+
 import Portal from './Portal';
+
+import styles from '../../styles/modals/modal.module.scss';
 
 const propTypes = {
     id: PropTypes.string,
@@ -38,7 +41,7 @@ const Modal = ({ id, children, position, title }) => {
                     },
                 ])}
             >
-                <div className={classNames([styles.inner, 'bg-dark'])}>{children}</div>
+                <div className={classNames([styles.inner, 'bg-dark', 'rounded'])}>{children}</div>
             </div>
         </Portal>
     );

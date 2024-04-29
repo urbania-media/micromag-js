@@ -62,9 +62,29 @@ function filters() {
         },
         {
             id: 'source',
-            component: 'toggle',
+            component: 'radios',
             label: <FormattedMessage defaultMessage="This micromag" description="Filter label" />,
             name: 'source',
+            options: [
+                {
+                    label: (
+                        <FormattedMessage
+                            defaultMessage="Tous les micromags"
+                            description="Filter item label"
+                        />
+                    ),
+                    value: 'all',
+                },
+                {
+                    label: (
+                        <FormattedMessage
+                            defaultMessage="Ce micromag"
+                            description="Filter item label"
+                        />
+                    ),
+                    value: 'document-',
+                },
+            ],
         },
     ];
 }

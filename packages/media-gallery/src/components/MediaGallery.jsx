@@ -118,12 +118,17 @@ function MediaGallery({
         () =>
             partialFilters
                 .map((filter) => {
-                    const { id = null } = filter || {};
+                    const { id = null, options = [] } = filter || {};
                     if (id === 'source') {
                         if (storyId === null) {
                             return null;
                         }
-                        return { ...filter, queryValue: `document-${storyId}` };
+                        return {
+                            ...filter,
+                            options: (options || []).map(({ value: optionValue = null } = {}) =>
+                                optionValue === 'document-' ? `document-${storyId}` : optionValue,
+                            ),
+                        };
                     }
                     return filter;
                 })

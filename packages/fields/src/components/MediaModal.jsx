@@ -117,7 +117,6 @@ const MediaModal = ({
 
     const onChangeMedia = useCallback(
         (newMedia = null) => {
-            console.log('bro', newMedia);
             setMedia(newMedia);
         },
         [value, onChange, onClose],
@@ -128,8 +127,6 @@ const MediaModal = ({
             onChange(null);
         }
     }, [value, onChange, onClose]);
-
-    // console.log('media modal', media);
 
     return (
         <>

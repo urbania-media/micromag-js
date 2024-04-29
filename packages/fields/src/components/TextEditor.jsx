@@ -1,13 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-// import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
-// import { Heading, HeadingButtonsUI } from '@ckeditor/ckeditor5-heading';
-// import { Highlight } from '@ckeditor/ckeditor5-highlight';
-// import { ImageInline, ImageToolbar, ImageUpload } from '@ckeditor/ckeditor5-image';
-// import { List } from '@ckeditor/ckeditor5-list';
-// import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
-// import { ParagraphButtonUI } from '@ckeditor/ckeditor5-paragraph';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-// import { SimpleUploadAdapter } from '@ckeditor/ckeditor5-upload';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
@@ -81,8 +73,6 @@ const TextEditorField = ({
         fullPlugins = [],
         inlinePlugins = [],
     } = useCKEditor();
-
-    console.log('editor', Editor, InlineEditor);
 
     const getColors = useGetColors();
     const colors = useMemo(
@@ -187,7 +177,7 @@ const TextEditorField = ({
         >
             {Editor !== null ? (
                 <CKEditor
-                    editor={inline ? InlineEditor : Editor}
+                    editor={!withFullEditor ? InlineEditor : Editor}
                     config={finalEditorConfig}
                     data={value || ''}
                     onReady={onEditorReady}
