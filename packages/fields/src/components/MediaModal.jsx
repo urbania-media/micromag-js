@@ -86,30 +86,32 @@ const MediaModal = ({
         thumbnailElement = <img src={thumbnailSrc} className={styles.thumbnail} alt={label} />;
     }
 
-    const onOpen = useCallback(
-        (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setModalOpen(true);
-        },
-        [setModalOpen],
-    );
-
-    const onClose = useCallback(
-        (e) => {
-            setModalOpen(false);
-            if (onRequestClose !== null) {
-                onRequestClose(e);
-            }
-        },
-        [setModalOpen, onRequestClose],
-    );
-
     // Temporary value
     const [media, setMedia] = useState(value);
     useEffect(() => {
         setMedia(value);
     }, [value, setMedia]);
+
+    const onOpen = useCallback(
+        (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setModalOpen(true);
+            setMedia(value);
+        },
+        [setModalOpen, setMedia, value],
+    );
+
+    const onClose = useCallback(
+        (e) => {
+            setModalOpen(false);
+            setMedia(null);
+            if (onRequestClose !== null) {
+                onRequestClose(e);
+            }
+        },
+        [setModalOpen, onRequestClose, setMedia],
+    );
 
     const onConfirmSelection = useCallback(() => {
         if (onChange !== null) {
@@ -128,8 +130,9 @@ const MediaModal = ({
     const onClearMedia = useCallback(() => {
         if (onChange !== null) {
             onChange(null);
+            setMedia(null);
         }
-    }, [value, onChange, onClose]);
+    }, [value, onChange, onClose, setMedia]);
 
     return (
         <>

@@ -737,12 +737,6 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Edit call to action..."
 
-# Filter label
-#: AX9qes
-msgctxt "AX9qes"
-msgid "This micromag"
-msgstr "This micromag"
-
 # Media type
 #: AwDQvD
 msgctxt "AwDQvD"
@@ -1090,12 +1084,6 @@ msgstr "Your message"
 msgctxt "JC9Qlf"
 msgid "Speakers"
 msgstr "Speakers"
-
-# Filter item label
-#: JCex1R
-msgctxt "JCex1R"
-msgid "Tous les micromags"
-msgstr "Tous les micromags"
 
 # Field label
 #: JDPMlG
@@ -2198,12 +2186,6 @@ msgstr "Mute audio of background video"
 msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
-
-# Filter item label
-#: hjgnYW
-msgctxt "hjgnYW"
-msgid "Ce micromag"
-msgstr "Ce micromag"
 
 # Placeholder label
 #: hoDz0O

@@ -70,6 +70,7 @@ function MediaGallery({
     onClearMedia,
 }) {
     const intl = useIntl();
+
     // Base state for filters
     const defaultFilters = {
         type,

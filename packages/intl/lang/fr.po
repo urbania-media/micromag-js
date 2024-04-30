@@ -1,15 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-14 14:06-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2024-04-30 14:33-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 3.2.0\n"
+"X-Generator: Poedit 3.4.2\n"
 
 # Audio and Video screen group
 #: +9akmg
@@ -737,12 +738,6 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Modifier l'action"
 
-# Filter label
-#: AX9qes
-msgctxt "AX9qes"
-msgid "This micromag"
-msgstr "Ce micromag"
-
 # Media type
 #: AwDQvD
 msgctxt "AwDQvD"
@@ -1090,12 +1085,6 @@ msgstr "Votre message"
 msgctxt "JC9Qlf"
 msgid "Speakers"
 msgstr "Interlocuteurs"
-
-# Filter item label
-#: JCex1R
-msgctxt "JCex1R"
-msgid "Tous les micromags"
-msgstr ""
 
 # Field label
 #: JDPMlG
@@ -2198,12 +2187,6 @@ msgstr "Vidéo d'arrière-plan en sourdine"
 msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
-
-# Filter item label
-#: hjgnYW
-msgctxt "hjgnYW"
-msgid "Ce micromag"
-msgstr ""
 
 # Placeholder label
 #: hoDz0O
