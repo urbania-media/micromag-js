@@ -71,12 +71,12 @@ function MediaGallery({
     const mediasApi = useMemo(
         () => ({
             get: (...args) => api.medias.get(...args),
-            getTrashed: (...args) => api.medias.get(...args), // Change this
+            getTrashed: (...args) => api.medias.getTrashed(...args),
             find: (...args) => api.medias.find(...args),
             create: (...args) => api.medias.create(...args),
             update: (...args) => api.medias.update(...args),
             delete: (...args) => api.medias.delete(...args),
-            trash: (...args) => api.medias.delete(...args), // Change this
+            trash: (...args) => api.medias.forceDelete(...args),
         }),
         [api],
     );
