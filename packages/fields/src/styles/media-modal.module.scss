@@ -9,8 +9,8 @@
 
 .dialog {
     @media screen and (min-width: 768px) {
-        width: 1200px;
-        max-width: 90vw;
+        width: 1200px !important;
+        max-width: 90vw !important;
     }
 }
 
