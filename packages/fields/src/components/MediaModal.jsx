@@ -218,7 +218,7 @@ const MediaModal = ({
                             },
                         ])}
                         bodyClassName={styles.dialogBody}
-                        size="md"
+                        size="xl"
                         onClose={onClose}
                         buttons={
                             !mediaFormOpen
