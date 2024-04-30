@@ -75,7 +75,11 @@ function MediaGallery({
             find: (...args) => api.medias.find(...args),
             create: (...args) => api.medias.create(...args),
             update: (...args) => api.medias.update(...args),
-            delete: (...args) => api.medias.forceDelete(...args),
+            delete: (...args) =>
+                typeof api.medias.forceDelete !== 'undefined'
+                    ? api.medias.forceDelete(...args)
+                    : api.medias.delete(...args),
+            // TODO: Temporary compat... see how this works
             trash: (...args) => api.medias.delete(...args),
         }),
         [api],
