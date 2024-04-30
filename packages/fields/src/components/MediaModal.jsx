@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -69,11 +69,9 @@ const MediaModal = ({
     const [modalOpen, setModalOpen] = useState();
 
     const [mediaFormOpen, setMediaFormOpen] = useState(false);
-
     const onMediaFormOpen = useCallback(() => {
         setMediaFormOpen(true);
     }, [setMediaFormOpen]);
-
     const onMediaFormClose = useCallback(() => {
         setMediaFormOpen(false);
     }, [setMediaFormOpen]);
@@ -107,7 +105,12 @@ const MediaModal = ({
         [setModalOpen, onRequestClose],
     );
 
+    // Temporary value
     const [media, setMedia] = useState(value);
+    useEffect(() => {
+        setMedia(value);
+    }, [value, setMedia]);
+
     const onConfirmSelection = useCallback(() => {
         if (onChange !== null) {
             onChange(media);
@@ -212,34 +215,38 @@ const MediaModal = ({
                             },
                         ])}
                         bodyClassName={styles.dialogBody}
-                        size="lg"
+                        size="md"
                         onClose={onClose}
-                        buttons={[
-                            {
-                                id: 'cancel',
-                                name: 'cancel',
-                                label: (
-                                    <FormattedMessage
-                                        defaultMessage="Cancel"
-                                        description="Button label"
-                                    />
-                                ),
-                                theme: 'secondary',
-                                onClick: onClose,
-                            },
-                            {
-                                id: 'confirm',
-                                name: 'confirm',
-                                label: (
-                                    <FormattedMessage
-                                        defaultMessage="Confirm selection"
-                                        description="Button label"
-                                    />
-                                ),
-                                theme: 'primary',
-                                onClick: onConfirmSelection,
-                            },
-                        ]}
+                        buttons={
+                            !mediaFormOpen
+                                ? [
+                                      {
+                                          id: 'cancel',
+                                          name: 'cancel',
+                                          label: (
+                                              <FormattedMessage
+                                                  defaultMessage="Cancel"
+                                                  description="Button label"
+                                              />
+                                          ),
+                                          theme: 'secondary',
+                                          onClick: onClose,
+                                      },
+                                      {
+                                          id: 'confirm',
+                                          name: 'confirm',
+                                          label: (
+                                              <FormattedMessage
+                                                  defaultMessage="Confirm selection"
+                                                  description="Button label"
+                                              />
+                                          ),
+                                          theme: 'primary',
+                                          onClick: onConfirmSelection,
+                                      },
+                                  ]
+                                : null
+                        }
                     >
                         <MediaGallery
                             value={media}

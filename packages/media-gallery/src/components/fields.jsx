@@ -30,6 +30,7 @@ export default [
                 valueIsOption: true,
                 multiple: true,
                 paginated: false,
+                // creatable: true, // TODO
             },
         ],
     },
