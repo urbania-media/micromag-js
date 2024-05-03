@@ -162,4 +162,4 @@ export const createConfig = ({
     };
 };
 
-export default [createConfig({ format: 'es' }), createConfig({ format: 'cjs' })];
+export default [createConfig({ format: 'es' }) /*, createConfig({ format: 'cjs' })*/];

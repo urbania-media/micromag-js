@@ -34,11 +34,10 @@
         }
     ],
     "license": "ISC",
-    "main": "lib/index.js",
+    "type": "module",
     "module": "es/index.js",
     "exports": {
         ".": {
-            "require": "./lib/index.js",
             "import": "./es/index.js"
         },
         "./assets/css/styles": "./assets/css/styles.css",

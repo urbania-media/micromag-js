@@ -20,20 +20,20 @@ const localesFiles = locales.reduce(
                 }),
             ],
         }),
-        createConfig({
-            input: 'src/lang.js',
-            output: `locale/${locale}.cjs.js`,
-            format: 'cjs',
-            prependPlugins: [
-                replace({
-                    values: {
-                        REPLACE_LOCALE: locale,
-                    },
-                    delimiters : ['', ''],
-                    preventAssignment: false,
-                }),
-            ],
-        }),
+        // createConfig({
+        //     input: 'src/lang.js',
+        //     output: `locale/${locale}.cjs.js`,
+        //     format: 'cjs',
+        //     prependPlugins: [
+        //         replace({
+        //             values: {
+        //                 REPLACE_LOCALE: locale,
+        //             },
+        //             delimiters : ['', ''],
+        //             preventAssignment: false,
+        //         }),
+        //     ],
+        // }),
     ],
     [],
 );

@@ -112,11 +112,11 @@ export default Object.keys(files).reduce(
             format: 'es',
             ...files[file],
         }),
-        createConfig({
-            file,
-            format: 'cjs',
-            ...files[file],
-        }),
+        // createConfig({
+        //     file,
+        //     format: 'cjs',
+        //     ...files[file],
+        // }),
     ],
     [],
 );

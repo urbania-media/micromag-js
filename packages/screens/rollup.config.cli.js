@@ -7,7 +7,7 @@ import url from '@rollup/plugin-url';
 export default {
     input: '../../scripts/build-screen-fields.js',
     output: {
-        file: 'build-screen-fields.js',
+        file: 'build-screen-fields.cjs',
         format: 'cjs',
         inlineDynamicImports: true,
     },

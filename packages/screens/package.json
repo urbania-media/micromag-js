@@ -30,12 +30,11 @@
         }
     ],
     "license": "ISC",
-    "main": "lib/index.js",
+    "type": "module",
     "module": "es/index.js",
     "style": "assets/css/styles.css",
     "exports": {
         ".": {
-            "require": "./lib/index.js",
             "import": "./es/index.js"
         },
         "./all": {
@@ -65,7 +64,7 @@
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss && rm -rf fields.js && rm -rf fields.json",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  --ignore='[]' --env-name=node --no-babelrc",
-        "build:fields": "rollup --config ./rollup.config.cli.js --bundleConfigAsCjs && node ./build-screen-fields.js ./ && rm -f ./build-screen-fields.js",
+        "build:fields": "rollup --config ./rollup.config.cli.js --bundleConfigAsCjs && node ./build-screen-fields.cjs ./ && rm -f ./build-screen-fields.cjs",
         "scss": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.scss.ejs ./scss/styles.scss",
         "css": "../../scripts/build-sass.js ./scss/styles.scss ./assets/css/styles.css",
         "prepublishOnly": "npm run build",
