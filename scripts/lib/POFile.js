@@ -1,7 +1,7 @@
 const fs = require('fs');
 const fsExtra = require('fs-extra');
-const gettextParser = require('gettext-parser');
 const isEmpty = require('lodash/isEmpty');
+const gettextParser = require('gettext-parser');
 
 class POFile {
     static parse(filePath) {
@@ -11,10 +11,9 @@ class POFile {
             (allTranslations, ctx) =>
                 Object.keys(po.translations[ctx]).reduce((currentTranslations, msg) => {
                     const translation = po.translations[ctx][msg] || null;
-                    return translation !== null && translation.msgid.length > 0 ? [
-                        ...currentTranslations,
-                        translation
-                    ] : currentTranslations;
+                    return translation !== null && translation.msgid.length > 0
+                        ? [...currentTranslations, translation]
+                        : currentTranslations;
                 }, allTranslations),
             [],
         );
@@ -47,7 +46,9 @@ class POFile {
         const newTranslations = Object.keys(messages).map((id) => {
             const { defaultMessage, description } = messages[id];
             const currentTranslation =
-                this.translations.find(({ comments: { reference }, msgctxt = null }) => (msgctxt || reference) === id) || null;
+                this.translations.find(
+                    ({ comments: { reference }, msgctxt = null }) => (msgctxt || reference) === id,
+                ) || null;
             const defaultValue = useDefaultMessage ? [defaultMessage] : [];
             return {
                 msgctxt: id,
@@ -71,10 +72,13 @@ class POFile {
             charset: 'utf-8',
             headers: this.headers,
             translations: {
-                '': this.translations.reduce((map, translation) => ({
-                    ...map,
-                    [translation.msgctxt]: translation,
-                }), {}),
+                '': this.translations.reduce(
+                    (map, translation) => ({
+                        ...map,
+                        [translation.msgctxt]: translation,
+                    }),
+                    {},
+                ),
             },
         });
 
