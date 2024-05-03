@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer-build",
-    "version": "0.3.541",
+    "version": "0.3.547",
     "private": false,
     "description": "",
     "keywords": [
@@ -45,10 +45,10 @@
     "gitHead": "bd9af820afe75f34206a846b5238c6c784608c57",
     "devDependencies": {
         "@folklore/cli": "^0.0.50",
-        "@micromag/core": "^0.3.541",
-        "@micromag/elements": "^0.3.541",
-        "@micromag/screens": "^0.3.541",
-        "@micromag/viewer": "^0.3.541",
+        "@micromag/core": "^0.3.547",
+        "@micromag/elements": "^0.3.547",
+        "@micromag/screens": "^0.3.547",
+        "@micromag/viewer": "^0.3.547",
         "lodash-webpack-plugin": "^0.11.6",
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"

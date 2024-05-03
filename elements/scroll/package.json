@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-scroll",
-    "version": "0.3.541",
+    "version": "0.3.547",
     "private": false,
     "description": "",
     "keywords": [
@@ -59,7 +59,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.541",
+        "@micromag/core": "^0.3.547",
         "@use-gesture/react": "^10.3.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
