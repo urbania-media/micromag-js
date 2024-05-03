@@ -4,7 +4,6 @@ const webpack = require('webpack'); // eslint-disable-line no-unused-vars
 const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
-const { idInterpolationPattern } = require('../packages/intl/scripts/config');
 require('dotenv').config();
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // insecure
@@ -192,7 +191,8 @@ module.exports = {
                                                 {
                                                     ast: true,
                                                     extractFromFormatMessageCall: true,
-                                                    idInterpolationPattern,
+                                                    idInterpolationPattern:
+                                                        '[sha512:contenthash:base64:6]',
                                                 },
                                             ],
                                         ],
