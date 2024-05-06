@@ -36,11 +36,11 @@
         ".": {
             "import": "./es/index.js"
         },
-        "./build": "./dist/build.js"
+        "./build": "./dist/build.cjs"
     },
     "browser": {
         ".": "./es/index.js",
-        "./build": "./dist/build.js"
+        "./build": "./dist/build.cjs"
     },
     "files": [
         "dist",
