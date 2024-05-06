@@ -197,7 +197,7 @@ function MediaGallery({
                     uppyConfig={uppyConfig}
                     onMediaUploaded={onMediaUploaded}
                     withStickySelection
-                    // withTrash TODO: temporary
+                    withTrash
                 />
             )}
         </div>
