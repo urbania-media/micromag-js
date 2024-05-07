@@ -276,6 +276,26 @@ module.exports = () => {
             res.sendStatus(404);
             return;
         }
+        // TODO implement trashed state
+        deleteResource(req, res);
+    });
+
+    router.post('/:resource/:id/restore', (req, res) => {
+        const { resource } = req.params;
+        if (!resourceExists(resource)) {
+            res.sendStatus(404);
+            return;
+        }
+        // TODO implement trashed state
+        res.sendStatus(200);
+    });
+
+    router.delete('/:resource/:id/forceDelete', (req, res) => {
+        const { resource } = req.params;
+        if (!resourceExists(resource)) {
+            res.sendStatus(404);
+            return;
+        }
         deleteResource(req, res);
     });
 
