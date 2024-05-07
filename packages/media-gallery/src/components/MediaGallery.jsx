@@ -81,6 +81,7 @@ function MediaGallery({
                     : api.medias.delete(...args),
             // TODO: Temporary compat... see how this works
             trash: (...args) => api.medias.delete(...args),
+            restore: (...args) => api.medias.restore(...args),
         }),
         [api],
     );
