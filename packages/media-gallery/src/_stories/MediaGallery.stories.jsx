@@ -7,6 +7,7 @@ import DisplaysProvider from '@panneau/displays';
 import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
 import ActionsProvider from '@panneau/actions';
+import ModalsProvider from '@panneau/modals';
 
 import sound from '../../../../.storybook/data/files/test.mp3';
 import video from '../../../../.storybook/data/files/test.mp4';
@@ -87,17 +88,19 @@ const GalleryContainer = ({ value: defaultValue = null, ...containerProps }) => 
             <ApiProvider baseUrl={apiBaseUrl}>
                 <QueryProvider>
                     <FieldsProvider>
-                        <DisplaysProvider>
-                            <FiltersProvider>
-                                <ActionsProvider>
-                                    <MediaGallery
-                                        {...containerProps}
-                                        value={value}
-                                        onChange={setValue}
-                                    />
-                                </ActionsProvider>
-                            </FiltersProvider>
-                        </DisplaysProvider>
+                        <ModalsProvider>
+                            <DisplaysProvider>
+                                <FiltersProvider>
+                                    <ActionsProvider>
+                                        <MediaGallery
+                                            {...containerProps}
+                                            value={value}
+                                            onChange={setValue}
+                                        />
+                                    </ActionsProvider>
+                                </FiltersProvider>
+                            </DisplaysProvider>
+                        </ModalsProvider>
                     </FieldsProvider>
                 </QueryProvider>
             </ApiProvider>

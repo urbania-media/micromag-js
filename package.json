@@ -154,6 +154,7 @@
     "dependencies": {
         "@panneau/actions": "^3.0.238",
         "@panneau/medias": "^3.0.195",
+        "@panneau/modals": "^3.0.238",
         "react-transition-group": "^4.4.2"
     }
 }
