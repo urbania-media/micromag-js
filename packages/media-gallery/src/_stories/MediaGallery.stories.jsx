@@ -6,6 +6,7 @@ import { QueryProvider } from '@panneau/data';
 import DisplaysProvider from '@panneau/displays';
 import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
+import ActionsProvider from '@panneau/actions';
 
 import sound from '../../../../.storybook/data/files/test.mp3';
 import video from '../../../../.storybook/data/files/test.mp4';
@@ -88,11 +89,13 @@ const GalleryContainer = ({ value: defaultValue = null, ...containerProps }) => 
                     <FieldsProvider>
                         <DisplaysProvider>
                             <FiltersProvider>
-                                <MediaGallery
-                                    {...containerProps}
-                                    value={value}
-                                    onChange={setValue}
-                                />
+                                <ActionsProvider>
+                                    <MediaGallery
+                                        {...containerProps}
+                                        value={value}
+                                        onChange={setValue}
+                                    />
+                                </ActionsProvider>
                             </FiltersProvider>
                         </DisplaysProvider>
                     </FieldsProvider>

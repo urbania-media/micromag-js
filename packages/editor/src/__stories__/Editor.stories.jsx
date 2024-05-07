@@ -5,6 +5,7 @@ import { QueryProvider } from '@panneau/data';
 import DisplaysProvider from '@panneau/displays';
 import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
+import ActionsProvider from '@panneau/actions';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
@@ -57,19 +58,21 @@ const EditorContainer = ({ defaultValue, isTheme = false, viewerTheme }) => {
                 <FieldsProvider>
                     <DisplaysProvider>
                         <FiltersProvider>
-                            <Editor
-                                value={value}
-                                isTheme={isTheme}
-                                fullscreen
-                                onChange={setValue}
-                                memoryRouter
-                                viewerTheme={viewerTheme}
-                                screenNamespaces={['urbania']}
-                                uppy={{
-                                    transport: 'tus',
-                                    xhr: { endpoint: `${apiBaseUrl}/xhr/upload` },
-                                }}
-                            />
+                            <ActionsProvider>
+                                <Editor
+                                    value={value}
+                                    isTheme={isTheme}
+                                    fullscreen
+                                    onChange={setValue}
+                                    memoryRouter
+                                    viewerTheme={viewerTheme}
+                                    screenNamespaces={['urbania']}
+                                    uppy={{
+                                        transport: 'tus',
+                                        xhr: { endpoint: `${apiBaseUrl}/xhr/upload` },
+                                    }}
+                                />
+                            </ActionsProvider>
                         </FiltersProvider>
                     </DisplaysProvider>
                 </FieldsProvider>

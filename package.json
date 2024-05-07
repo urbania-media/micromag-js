@@ -152,6 +152,7 @@
         "wouter": "^3.0.0"
     },
     "dependencies": {
+        "@panneau/actions": "^3.0.238",
         "@panneau/medias": "^3.0.195",
         "react-transition-group": "^4.4.2"
     }
