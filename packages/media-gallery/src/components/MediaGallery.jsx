@@ -197,6 +197,7 @@ function MediaGallery({
                     columns={columns}
                     uppyConfig={uppyConfig}
                     onMediaUploaded={onMediaUploaded}
+                    multipleSelection // allow multi-uploads in MediasBrowser
                     withStickySelection
                     withTrash
                 />
