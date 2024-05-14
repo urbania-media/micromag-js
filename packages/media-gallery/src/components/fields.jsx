@@ -22,6 +22,7 @@ export default [
             {
                 name: 'tags',
                 label: <FormattedMessage defaultMessage="Tags" description="Field name" />,
+                createPrefix: 'Create',
                 type: 'array',
                 component: 'select',
                 requestUrl: '/api/medias/tags',
@@ -30,7 +31,8 @@ export default [
                 valueIsOption: true,
                 multiple: true,
                 paginated: false,
-                // creatable: true, // TODO
+                creatable: true,
+                // onCreate...
             },
         ],
     },
