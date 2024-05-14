@@ -182,6 +182,7 @@ function MediaGallery({
                     onMediaFormOpen={onMediaFormOpen}
                     onMediaFormClose={onMediaFormClose}
                     withStickySelection
+                    withTrash
                 />
             ) : (
                 <MediasBrowserContainer
