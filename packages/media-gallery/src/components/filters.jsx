@@ -66,11 +66,7 @@ function filters() {
             name: 'source',
             options: [
                 {
-                    label: 'Tous les micromags',
-                    value: 'all',
-                },
-                {
-                    label: 'Ce micromag',
+                    label: <FormattedMessage defaultMessage="In this Micromag" description="Media gallery source filter" />,
                     value: 'document-',
                 },
             ],

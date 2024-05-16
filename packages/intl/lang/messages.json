@@ -1222,6 +1222,10 @@
     "defaultMessage": "Signs",
     "description": "UrbaniaHoroscope state"
   },
+  "bCtuS/": {
+    "defaultMessage": "In this Micromag",
+    "description": "Media gallery source filter"
+  },
   "bLYuuN": {
     "defaultMessage": "You are on screen {current} of {total}.",
     "description": "Nav ARIA label"

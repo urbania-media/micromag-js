@@ -1846,6 +1846,12 @@ msgctxt "ap68Fp"
 msgid "Signs"
 msgstr "Signes"
 
+# Media gallery source filter
+#: bCtuS/
+msgctxt "bCtuS/"
+msgid "In this Micromag"
+msgstr "Dans ce Micromag"
+
 # Nav ARIA label
 #: bLYuuN
 msgctxt "bLYuuN"
