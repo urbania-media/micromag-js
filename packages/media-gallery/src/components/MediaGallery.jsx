@@ -117,6 +117,11 @@ function MediaGallery({
         [fileTypes],
     );
 
+    const finalTypes = useMemo(
+        () => (!isArray(types) && types !== null ? [types] : types),
+        [types],
+    );
+
     // Filters
     const partialFilters = filters || defaultFilters() || [];
     const finalFilters = useMemo(
@@ -124,6 +129,9 @@ function MediaGallery({
             partialFilters
                 .map((filter) => {
                     const { id = null, options = [] } = filter || {};
+                    if (id === 'types' && finalTypes !== null) {
+                        return false;
+                    }
                     if (id === 'source') {
                         if (storyId === null) {
                             return null;
@@ -148,11 +156,6 @@ function MediaGallery({
     const finalQuery = useMemo(() => {
         setQuery({ ...(query || null), ...(source !== null ? { source } : null) });
     }, [source, setQuery]);
-
-    const finalTypes = useMemo(
-        () => (!isArray(types) && types !== null ? [types] : types),
-        [types],
-    );
 
     return (
         <div
