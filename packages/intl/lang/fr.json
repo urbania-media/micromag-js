@@ -86,6 +86,9 @@
     "0acGK7": {
         "defaultMessage": "Cancer"
     },
+    "0hMiRN": {
+        "defaultMessage": "Choisissez un fichier Son"
+    },
     "142Fjj": {
         "defaultMessage": "21 mai au 20 juin"
     },
@@ -269,11 +272,17 @@
     "75nZbY": {
         "defaultMessage": "Clavier"
     },
+    "790Q9C": {
+        "defaultMessage": "Choisissez un fichier de sous-titres"
+    },
     "7ZzlUE": {
         "defaultMessage": "23 oct au 22 nov"
     },
     "7mMPO4": {
         "defaultMessage": "Sagittaire"
+    },
+    "7oXkoj": {
+        "defaultMessage": "Auteurs"
     },
     "7tw6U2": {
         "defaultMessage": "Partager"
@@ -367,6 +376,9 @@
     },
     "B5C18D": {
         "defaultMessage": "Badge"
+    },
+    "B5Qrmw": {
+        "defaultMessage": "Choisissez un fichier de polices"
     },
     "BAfC6s": {
         "defaultMessage": "Ajouter un fichier de sous-titres"
@@ -659,6 +671,9 @@
     "P1dwGU": {
         "defaultMessage": "Titre avec sous-titre"
     },
+    "P6ZtIq": {
+        "defaultMessage": "Choisissez un document"
+    },
     "P9A8cx": {
         "defaultMessage": "align. milieu"
     },
@@ -941,6 +956,9 @@
     "ceaRdq": {
         "defaultMessage": "Signe astrologique"
     },
+    "cej3hp": {
+        "defaultMessage": "Choisissez une vidéo"
+    },
     "crLqJd": {
         "defaultMessage": "Sans pourcentage"
     },
@@ -1159,6 +1177,9 @@
     },
     "kf/5Tw": {
         "defaultMessage": "Droite"
+    },
+    "kxsaD3": {
+        "defaultMessage": "Choisissez une image"
     },
     "l/Y6or": {
         "defaultMessage": "Ajouter une entrée"

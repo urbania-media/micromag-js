@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -91,6 +91,35 @@ const MediaModal = ({
     useEffect(() => {
         setMedia(value);
     }, [value, setMedia]);
+
+    const dialogTitle = useMemo(() => {
+        if (title) {
+            return title
+        }
+
+        switch (type) {
+            case 'video':
+                return <FormattedMessage defaultMessage="Select Video" description="Modal title" />;
+
+            case 'image':
+                return <FormattedMessage defaultMessage="Select Image" description="Modal title" />;
+
+            case 'audio':
+                return <FormattedMessage defaultMessage="Select Audio File" description="Modal title" />;
+
+            case 'font':
+                return <FormattedMessage defaultMessage="Select Font File" description="Modal title" />;
+
+            case 'document':
+                return <FormattedMessage defaultMessage="Select Document" description="Modal title" />;
+
+            case 'subtitle':
+                return <FormattedMessage defaultMessage="Select Subtitles File" description="Modal title" />;
+
+            default:
+                return <FormattedMessage defaultMessage="Choose media" description="Modal title" />;
+        }
+    }, [title, type])
 
     const onOpen = useCallback(
         (e) => {
@@ -203,14 +232,7 @@ const MediaModal = ({
             {modalOpen ? (
                 <Modal>
                     <Dialog
-                        title={
-                            title || (
-                                <FormattedMessage
-                                    defaultMessage="Choose media"
-                                    description="Modal title"
-                                />
-                            )
-                        }
+                        title={dialogTitle}
                         className={classNames([
                             styles.dialog,
                             {

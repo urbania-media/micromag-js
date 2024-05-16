@@ -185,6 +185,12 @@ msgctxt "0acGK7"
 msgid "Cancer"
 msgstr "Cancer"
 
+# Modal title
+#: 0hMiRN
+msgctxt "0hMiRN"
+msgid "Select Audio File"
+msgstr "Choisissez un fichier Son"
+
 # Horoscope date
 #: 142Fjj
 msgctxt "142Fjj"
@@ -551,6 +557,12 @@ msgctxt "75nZbY"
 msgid "Keypad"
 msgstr "Clavier"
 
+# Modal title
+#: 790Q9C
+msgctxt "790Q9C"
+msgid "Select Subtitles File"
+msgstr "Choisissez un fichier de sous-titres"
+
 # Horoscope date
 #: 7ZzlUE
 msgctxt "7ZzlUE"
@@ -567,7 +579,7 @@ msgstr "Sagittaire"
 #: 7oXkoj
 msgctxt "7oXkoj"
 msgid "Authors"
-msgstr ""
+msgstr "Auteurs"
 
 # Button label
 #: 7tw6U2
@@ -754,6 +766,12 @@ msgstr "Sélectionner une image"
 msgctxt "B5C18D"
 msgid "Badge"
 msgstr "Badge"
+
+# Modal title
+#: B5Qrmw
+msgctxt "B5Qrmw"
+msgid "Select Font File"
+msgstr "Choisissez un fichier de polices"
 
 # Upload button label in Media Gallery
 #: BAfC6s
@@ -1337,6 +1355,12 @@ msgctxt "P1dwGU"
 msgid "Title with subtitle"
 msgstr "Titre avec sous-titre"
 
+# Modal title
+#: P6ZtIq
+msgctxt "P6ZtIq"
+msgid "Select Document"
+msgstr "Choisissez un document"
+
 # Alignment label
 #: P9A8cx
 msgctxt "P9A8cx"
@@ -1900,6 +1924,12 @@ msgctxt "ceaRdq"
 msgid "Horoscope sign"
 msgstr "Signe astrologique"
 
+# Modal title
+#: cej3hp
+msgctxt "cej3hp"
+msgid "Select Video"
+msgstr "Choisissez une vidéo"
+
 # Field label
 #: crLqJd
 msgctxt "crLqJd"
@@ -2336,6 +2366,12 @@ msgstr "Nom"
 msgctxt "kf/5Tw"
 msgid "Right"
 msgstr "Droite"
+
+# Modal title
+#: kxsaD3
+msgctxt "kxsaD3"
+msgid "Select Image"
+msgstr "Choisissez une image"
 
 # Button label
 #: l/Y6or

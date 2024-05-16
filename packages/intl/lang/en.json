@@ -86,6 +86,9 @@
     "0acGK7": {
         "defaultMessage": "Cancer"
     },
+    "0hMiRN": {
+        "defaultMessage": "Select Audio File"
+    },
     "142Fjj": {
         "defaultMessage": "May 21 - June 20"
     },
@@ -269,6 +272,9 @@
     "75nZbY": {
         "defaultMessage": "Keypad"
     },
+    "790Q9C": {
+        "defaultMessage": "Select Subtitles File"
+    },
     "7ZzlUE": {
         "defaultMessage": "Oct 23 - Nov 22"
     },
@@ -370,6 +376,9 @@
     },
     "B5C18D": {
         "defaultMessage": "Badge"
+    },
+    "B5Qrmw": {
+        "defaultMessage": "Select Font File"
     },
     "BAfC6s": {
         "defaultMessage": "Upload a closed captions file"
@@ -662,6 +671,9 @@
     "P1dwGU": {
         "defaultMessage": "Title with subtitle"
     },
+    "P6ZtIq": {
+        "defaultMessage": "Select Document"
+    },
     "P9A8cx": {
         "defaultMessage": "middle aligned"
     },
@@ -944,6 +956,9 @@
     "ceaRdq": {
         "defaultMessage": "Horoscope sign"
     },
+    "cej3hp": {
+        "defaultMessage": "Select Video"
+    },
     "crLqJd": {
         "defaultMessage": "Without percentage"
     },
@@ -1162,6 +1177,9 @@
     },
     "kf/5Tw": {
         "defaultMessage": "Right"
+    },
+    "kxsaD3": {
+        "defaultMessage": "Select Image"
     },
     "l/Y6or": {
         "defaultMessage": "Add an entry"

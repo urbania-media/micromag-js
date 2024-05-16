@@ -115,6 +115,10 @@
     "defaultMessage": "Cancer",
     "description": "Horoscope sign"
   },
+  "0hMiRN": {
+    "defaultMessage": "Select Audio File",
+    "description": "Modal title"
+  },
   "142Fjj": {
     "defaultMessage": "May 21 - June 20",
     "description": "Horoscope date"
@@ -359,6 +363,10 @@
     "defaultMessage": "Keypad",
     "description": "Keypad screen title"
   },
+  "790Q9C": {
+    "defaultMessage": "Select Subtitles File",
+    "description": "Modal title"
+  },
   "7ZzlUE": {
     "defaultMessage": "Oct 23 - Nov 22",
     "description": "Horoscope date"
@@ -494,6 +502,10 @@
   "B5C18D": {
     "defaultMessage": "Badge",
     "description": "Field label"
+  },
+  "B5Qrmw": {
+    "defaultMessage": "Select Font File",
+    "description": "Modal title"
   },
   "BAfC6s": {
     "defaultMessage": "Upload a closed captions file",
@@ -883,6 +895,10 @@
     "defaultMessage": "Title with subtitle",
     "description": "TitleSubtitle screen title"
   },
+  "P6ZtIq": {
+    "defaultMessage": "Select Document",
+    "description": "Modal title"
+  },
   "P9A8cx": {
     "defaultMessage": "middle aligned",
     "description": "Alignment label"
@@ -1258,6 +1274,10 @@
     "defaultMessage": "Horoscope sign",
     "description": "Sign placeholder"
   },
+  "cej3hp": {
+    "defaultMessage": "Select Video",
+    "description": "Modal title"
+  },
   "crLqJd": {
     "defaultMessage": "Without percentage",
     "description": "Field label"
@@ -1548,6 +1568,10 @@
   "kf/5Tw": {
     "defaultMessage": "Right",
     "description": "Direction"
+  },
+  "kxsaD3": {
+    "defaultMessage": "Select Image",
+    "description": "Modal title"
   },
   "l/Y6or": {
     "defaultMessage": "Add an entry",
