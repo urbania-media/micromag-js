@@ -75,6 +75,7 @@ function MediaGallery({
             find: (...args) => api.medias.find(...args),
             create: (...args) => api.medias.create(...args),
             update: (...args) => api.medias.update(...args),
+            replace: (...args) => api.medias.replace(...args),
             delete: (...args) =>
                 typeof api.medias.forceDelete !== 'undefined'
                     ? api.medias.forceDelete(...args)
