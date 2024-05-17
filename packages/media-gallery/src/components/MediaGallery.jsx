@@ -204,6 +204,7 @@ function MediaGallery({
                     multipleSelection // allow multi-uploads in MediasBrowser
                     withStickySelection
                     withTrash
+                    withReplace
                 />
             )}
         </div>
