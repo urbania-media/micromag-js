@@ -152,7 +152,7 @@ const ConversationScreen = ({
 
         // if the current message has an audio attachment, use the time it takes to record that message
         if (audio) {
-            return audio.metadata.duration;
+            return audio.metadata?.duration;
         }
 
         // counting words: only keep whitespaces and alphanumeric characters, then split of whitespaces
