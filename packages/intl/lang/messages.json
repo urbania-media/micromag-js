@@ -1434,6 +1434,10 @@
     "defaultMessage": "Select a size...",
     "description": "No value label"
   },
+  "fpQzza": {
+    "defaultMessage": "Font",
+    "description": "Filter item label"
+  },
   "fusnxf": {
     "defaultMessage": "Square",
     "description": "Square label"

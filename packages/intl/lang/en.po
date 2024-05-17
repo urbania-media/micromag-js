@@ -2164,6 +2164,12 @@ msgctxt "fbiNiR"
 msgid "Select a size..."
 msgstr "Select a size..."
 
+# Filter item label
+#: fpQzza
+msgctxt "fpQzza"
+msgid "Font"
+msgstr "Font"
+
 # Square label
 #: fusnxf
 msgctxt "fusnxf"

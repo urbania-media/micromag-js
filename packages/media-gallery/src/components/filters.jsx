@@ -35,6 +35,12 @@ function filters() {
                     ),
                     value: 'audio',
                 },
+                {
+                    label: (
+                        <FormattedMessage defaultMessage="Font" description="Filter item label" />
+                    ),
+                    value: 'font',
+                },
             ],
             multiple: true,
         },
