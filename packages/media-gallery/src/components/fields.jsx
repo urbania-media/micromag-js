@@ -24,14 +24,16 @@ export default [
                 label: <FormattedMessage defaultMessage="Tags" description="Field name" />,
                 createPrefix: 'Create',
                 type: 'array',
-                component: 'select',
+                component: 'item',
                 requestUrl: '/api/medias/tags',
-                optionLabelPath: 'name',
-                optionValuePath: 'id', // Uses taggable so change the logic here
+                itemLabelPath: 'name',
+                itemDescriptionPath: null,
+                itemValuePath: 'id', // Uses taggable so change the logic here
                 valueIsOption: true,
                 multiple: true,
                 paginated: false,
                 creatable: true,
+                // formatCreateLabel: (lab) => `Create ${lab}`,
                 // onCreate...
             },
         ],
