@@ -72,7 +72,12 @@ function filters() {
             name: 'source',
             options: [
                 {
-                    label: <FormattedMessage defaultMessage="In this Micromag" description="Media gallery source filter" />,
+                    label: (
+                        <FormattedMessage
+                            defaultMessage="In this Micromag"
+                            description="Media gallery source filter"
+                        />
+                    ),
                     value: 'document-',
                 },
             ],

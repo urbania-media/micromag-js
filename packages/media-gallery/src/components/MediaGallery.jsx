@@ -38,7 +38,7 @@ const defaultProps = {
     types: null,
     source: 'all',
     filters: null,
-    fields: defaultFields,
+    fields: null,
     columns: defaultColumns,
     isPicker: false,
     multiple: false,
@@ -54,7 +54,7 @@ function MediaGallery({
     types,
     source,
     filters,
-    fields,
+    fields: providedFields,
     columns,
     isPicker,
     multiple,
@@ -67,6 +67,7 @@ function MediaGallery({
     const api = useApi();
     const story = useStory();
     const { id: storyId = null } = story || {};
+    const fields = providedFields === null ? defaultFields() : providedFields;
 
     const mediasApi = useMemo(
         () => ({
