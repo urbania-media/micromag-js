@@ -62,7 +62,7 @@ function filters() {
             placeholder: <FormattedMessage defaultMessage="Tags" description="Filter label" />,
             requestUrl: route('medias.tags') || '/medias/tags',
             itemLabelPath: 'name',
-            itemValuePath: 'id',
+            itemValuePath: 'name',
             multiple: true,
             paginated: false,
         },
