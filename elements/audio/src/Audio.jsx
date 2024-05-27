@@ -113,8 +113,8 @@ const Audio = ({
     const { url = null, files = null } = media || {};
     const srcUrl = useMemo(() => {
         if (files) {
-            const filesAsEntries = Object.entries(files)
-            const [, mp3File] = filesAsEntries.find(([key]) => key === 'mp3');
+            const filesAsEntries = Object.entries(files);
+            const [, mp3File = null] = filesAsEntries.find(([key]) => key === 'mp3') || [];
             if (mp3File) {
                 return mp3File.url
             }
