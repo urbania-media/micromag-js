@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.3.566",
+    "version": "0.3.567",
     "private": false,
     "description": "",
     "keywords": [
@@ -72,7 +72,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.547",
-        "@micromag/element-audio": "^0.3.566",
+        "@micromag/element-audio": "^0.3.567",
         "@micromag/element-author": "^0.3.547",
         "@micromag/element-background": "^0.3.547",
         "@micromag/element-badge": "^0.3.547",
