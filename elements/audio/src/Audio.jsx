@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
@@ -110,22 +110,32 @@ const Audio = ({
     onVolumeChange: customOnVolumeChange,
     onPlayError,
 }) => {
-    const { url = null } = media || {};
+    const { url = null, files = null } = media || {};
+    const srcUrl = useMemo(() => {
+        if (files) {
+            const filesAsEntries = Object.entries(files)
+            const [, mp3File] = filesAsEntries.find(([key]) => key === 'mp3');
+            if (mp3File) {
+                return mp3File.url
+            }
+        }
+        return url;
+    }, [files, url]);
 
     const ref = useRef(null);
 
     const currentTime = useMediaCurrentTime(ref.current, {
-        id: url,
+        id: srcUrl,
         disabled: paused || (!withWave && onProgressStep === null),
         updateInterval,
     });
 
     const ready = useMediaReady(ref.current, {
-        id: url,
+        id: srcUrl,
     });
 
     const duration = useMediaDuration(ref.current, {
-        id: url,
+        id: srcUrl,
     });
 
     // const audioLevels = useMediaWaveform(media, {
@@ -219,7 +229,7 @@ const Audio = ({
             ])}
         >
             <audio
-                key={url}
+                key={srcUrl}
                 ref={(newRef) => {
                     ref.current = newRef;
                     if (mediaRef !== null && isFunction(mediaRef)) {
@@ -228,7 +238,7 @@ const Audio = ({
                         mediaRef.current = newRef;
                     }
                 }}
-                src={url}
+                src={srcUrl}
                 autoPlay={autoPlay}
                 muted={muted}
                 loop={loop}
