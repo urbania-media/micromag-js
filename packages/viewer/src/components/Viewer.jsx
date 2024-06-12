@@ -410,9 +410,9 @@ const Viewer = ({
 
     const onTap = useCallback(
         ({ currentTarget, event, target, xy: [x, y] }) => {
-            if (event) {
-                event.stopPropagation();
-            }
+            // if (event) {
+            //     event.stopPropagation();
+            // }
             interactWithScreen({
                 event,
                 target,
