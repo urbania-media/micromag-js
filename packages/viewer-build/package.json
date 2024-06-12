@@ -42,7 +42,7 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "bd9af820afe75f34206a846b5238c6c784608c57",
+    "gitHead": "e2f7117ec4e0056e064bb25a65823b7d0cdbbb2e",
     "devDependencies": {
         "@folklore/cli": "^0.0.50",
         "@micromag/core": "^0.3.547",
