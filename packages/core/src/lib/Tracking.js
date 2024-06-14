@@ -4,23 +4,7 @@ import { Tracking as BaseTracking } from '@folklore/tracking';
 class Tracking extends BaseTracking {
     constructor(opts = {}) {
         super(opts);
-        const { variables = null } = this.options;
-        this.variables = null;
         this.screensViewed = [];
-        if (variables !== null) {
-            this.setVariables(variables);
-        }
-    }
-
-    setVariables(variables) {
-        this.variables = variables;
-        if (variables !== null) {
-            this.push(variables);
-        }
-    }
-
-    getVariables() {
-        return this.variables;
     }
 
     trackScreenView(screen, screenIndex) {

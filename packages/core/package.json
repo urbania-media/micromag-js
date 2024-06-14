@@ -110,7 +110,7 @@
         "@folklore/routes": "^0.2.27",
         "@folklore/services": "^0.1.24",
         "@folklore/size": "^0.1.20",
-        "@folklore/tracking": "^0.0.9",
+        "@folklore/tracking": "^0.0.18",
         "@fortawesome/fontawesome-svg-core": "^6.5.2",
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
         "@fortawesome/react-fontawesome": "^0.2.0",

@@ -1,18 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useMemoryRouter, RoutesProvider } from '@folklore/routes';
+import { RoutesProvider, useMemoryRouter } from '@folklore/routes';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { Router } from 'wouter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
-    GoogleMapsClientProvider,
-    GoogleKeysProvider,
-    TrackingProvider,
     ComponentsProvider,
+    GoogleKeysProvider,
+    GoogleMapsClientProvider,
     PlaybackProvider,
-    VisitorProvider,
     SCREENS_NAMESPACE,
+    TrackingProvider,
+    VisitorProvider,
 } from '@micromag/core/contexts';
 import { IntlProvider } from '@micromag/intl';
 import { ScreensProvider } from '@micromag/screens';
@@ -42,6 +42,7 @@ const propTypes = {
     locales: PropTypes.arrayOf(PropTypes.string),
     translations: PropTypes.objectOf(PropTypes.string),
     pathWithIndex: PropTypes.bool,
+    trackingDisabled: PropTypes.bool,
     children: PropTypes.func,
 };
 
@@ -61,6 +62,7 @@ const defaultProps = {
     locales: ['fr', 'en'],
     translations: null,
     pathWithIndex: false,
+    trackingDisabled: false,
     children: null,
 };
 
@@ -79,6 +81,7 @@ const ViewerContainer = ({
     locales,
     translations,
     pathWithIndex,
+    trackingDisabled,
     ...otherProps
 }) => {
     const finalTrackingVariables = useMemo(() => {
@@ -110,7 +113,10 @@ const ViewerContainer = ({
                         >
                             <VisitorProvider visitor={visitor}>
                                 <PlaybackProvider paused={paused}>
-                                    <TrackingProvider variables={finalTrackingVariables}>
+                                    <TrackingProvider
+                                        variables={finalTrackingVariables}
+                                        disabled={trackingDisabled}
+                                    >
                                         {withoutRouter ? (
                                             <Viewer
                                                 story={story}
@@ -136,18 +142,19 @@ const ViewerContainer = ({
     );
 
     const { hook: memoryRouterHook, searchHook: memoryRouterSearchHook } = useMemoryRouter();
-    const routerProps = useMemo(() => ({
+    const routerProps = useMemo(
+        () => ({
             hook: memoryRouter ? memoryRouterHook : null,
             searchHook: memoryRouter ? memoryRouterSearchHook : null,
             base: !memoryRouter ? basePath : null,
-    }), [basePath, memoryRouter]);
+        }),
+        [basePath, memoryRouter],
+    );
 
     return withoutRouter ? (
         content
     ) : (
-        <Router
-            {...routerProps}
-        >
+        <Router {...routerProps}>
             <RoutesProvider routes={routes}>{content}</RoutesProvider>
         </Router>
     );
