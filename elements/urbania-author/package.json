@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-urbania-author",
-    "version": "0.3.569",
+    "version": "0.3.570",
     "private": false,
     "description": "",
     "keywords": [
@@ -59,10 +59,10 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.569",
-        "@micromag/element-button": "^0.3.569",
-        "@micromag/element-link": "^0.3.569",
-        "@micromag/element-text": "^0.3.569",
+        "@micromag/core": "^0.3.570",
+        "@micromag/element-button": "^0.3.570",
+        "@micromag/element-link": "^0.3.570",
+        "@micromag/element-text": "^0.3.570",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
