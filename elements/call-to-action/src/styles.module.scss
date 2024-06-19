@@ -53,6 +53,10 @@
             display: inline;
         }
 
+        &.withoutLinkStyle {
+            text-decoration: none;
+        }
+
         &:hover {
             text-decoration: none;
         }

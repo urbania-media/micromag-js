@@ -5,7 +5,7 @@ import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
-import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useTrackEvent } from '@micromag/core/hooks';
@@ -218,6 +218,7 @@ function CallToAction({
                     className={classNames([
                         styles.button,
                         {
+                            [styles.withoutLinkStyle]: !inWebView,
                             [buttonClassName]: buttonClassName !== null,
                         },
                     ])}
