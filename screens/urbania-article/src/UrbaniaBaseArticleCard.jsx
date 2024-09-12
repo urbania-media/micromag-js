@@ -2,9 +2,10 @@
 import { animated as a, easings, useSpring } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
+import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Close, Empty, PlaceholderText, ScreenElement, Spinner } from '@micromag/core/components';
@@ -100,19 +101,22 @@ const UrbaniaArticleCard = ({
 
     const { name: authorName = null } = author || {};
 
-    const hasUrl = url !== null && url.length > 0;
+    const hasUrl = url !== null && isString(url) && url.length > 0;
     const hasHeader = isHeaderFilled(header);
     const hasText = isTextFilled(text);
     const hasTitle = isTextFilled(title);
     const hasAuthorName = isTextFilled(authorName);
     const hasCta = isTextFilled(callToAction);
 
-    const finalUrl = hasUrl
-        ? url.replace(
-              /^https?:\/\/([^.]+\.)?urbania\.ca\/article\//,
-              'https://simple.urbania.ca/article/',
-          )
-        : url;
+    const isUrbania = hasUrl && url.indexOf('urbania.ca') === -1;
+    const isSimple = hasUrl && url.indexOf('simple.urbania.ca') !== -1;
+    const finalUrl =
+        hasUrl && isUrbania && !isSimple
+            ? url.replace(
+                  /^https?:\/\/([^.]+\.)?urbania\.ca\/article\//,
+                  'https://simple.urbania.ca/article/',
+              )
+            : url;
 
     const [articleOpened, setArticleOpened] = useState(false);
     const [iframeEnabled, setIframeEnabled] = useState(false);
