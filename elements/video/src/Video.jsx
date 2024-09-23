@@ -320,7 +320,7 @@ const Video = ({
                     }}
                     src={
                         sourceFiles === null || sourceFiles.length === 0
-                            ? `${mediaUrl}#t=0.1`
+                            ? `${mediaUrl}#t=0.001`
                             : null
                     }
                     autoPlay={autoPlay && !paused}
@@ -355,7 +355,7 @@ const Video = ({
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
                         <source
                             key={`${sourceUrl}-${sourceMime}`}
-                            src={sourceUrl !== null ? `${sourceUrl}#t=0.1` : null}
+                            src={sourceUrl !== null ? `${sourceUrl}#t=0.001` : null}
                             type={sourceMime}
                         />
                     ))}

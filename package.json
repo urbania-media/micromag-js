@@ -9,7 +9,7 @@
         "packages/*"
     ],
     "scripts": {
-        "storybook": "storybook dev --port 58800 --host localhost",
+        "storybook": "storybook dev --port 58800",
         "start": "npm run storybook",
         "server": "npm run storybook",
         "intl:tx-config": "./scripts/tx-config.js",
