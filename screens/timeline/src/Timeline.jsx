@@ -1,26 +1,26 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
+    usePlaybackContext,
+    usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
     useViewerContext,
     useViewerWebView,
-    usePlaybackContext,
-    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import {
-    getStyleFromColor,
-    isTextFilled,
-    isHeaderFilled,
-    isFooterFilled,
     getFooterProps,
+    getStyleFromColor,
+    isFooterFilled,
+    isHeaderFilled,
+    isTextFilled,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -146,12 +146,15 @@ const Timeline = ({
     const [imageWidth, setImageWidth] = useState(0);
 
     useEffect(() => {
+        if (firstContentRef.current === null) {
+            return;
+        }
         if (firstLineRef.current !== null) {
             setImageWidth(firstContentRef.current.offsetWidth - firstLineRef.current.offsetWidth);
         } else {
             setImageWidth(firstContentRef.current.offsetWidth);
         }
-    }, [width, height]);
+    }, [width, height, finalItems]);
 
     const timelineElements = (finalItems || []).map((item, itemI) => {
         const { title: itemTitle = null, description = null, image = null } = item || {};

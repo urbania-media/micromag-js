@@ -188,7 +188,7 @@ const Image = ({
     };
 
     const { width: finalWidth = null, height: finalHeight = null } = finalImageStyle;
-    const finalUrl = getOptimalImageUrl(media, finalWidth, finalHeight, {
+    const finalUrl = getOptimalImageUrl(media, finalWidth, finalHeight || finalWidth, {
         resolution,
     });
 

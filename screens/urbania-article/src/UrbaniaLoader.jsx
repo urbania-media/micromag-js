@@ -36,7 +36,18 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
 
     useEffect(() => {
         if (url !== null && isValidUrl(url)) {
-            getJSON(`${url}.json`, { mode: 'cors' }).then((art) => {
+            if (url.indexOf('urbania.ca') === -1) {
+                return;
+            }
+            let finalUrl = url;
+            const isSimple = url.indexOf('simple.urbania.ca') !== -1;
+            if (!isSimple) {
+                finalUrl = url.replace(
+                    /^https?:\/\/([^.]+\.)?urbania\.ca\/article\//,
+                    'https://simple.urbania.ca/article/',
+                );
+            }
+            getJSON(`${finalUrl}.json`, { mode: 'cors' }).then((art) => {
                 setArticle(art || null);
             });
         }
@@ -74,6 +85,7 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
             canonical = null,
             readerUrl = null,
         } = metadata || {};
+
         const { sizes = {} } = articleImage || {};
         const { medium = {}, large = {} } = sizes || {};
         const articleAuthor = (authors || []).length > 0 ? authors[0] : null;
