@@ -39,6 +39,7 @@ const useScreenSize = ({
             landscape,
             menuOverScreen,
             resolution: scale !== null ? scale * devicePixelRatio : devicePixelRatio,
+            imageResolution: scale !== null ? Math.max(scale, devicePixelRatio) : devicePixelRatio,
         };
     }, [screens, providedMedia, mediaType, width, height, landscape, menuOverScreen]);
     return screenSize;
