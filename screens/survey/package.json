@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-survey",
-    "version": "0.3.576",
+    "version": "0.3.577",
     "private": false,
     "description": "",
     "keywords": [
@@ -62,7 +62,7 @@
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.576",
         "@micromag/data": "^0.3.576",
-        "@micromag/element-background": "^0.3.576",
+        "@micromag/element-background": "^0.3.577",
         "@micromag/element-button": "^0.3.576",
         "@micromag/element-container": "^0.3.576",
         "@micromag/element-footer": "^0.3.576",
