@@ -168,14 +168,17 @@ const Video = ({
         }
         const sourceFilesMap = filesArray
             .filter((file) => {
-                const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
+                const fileHandle = file.handle || file.id;
+                const { mime = `video/${fileHandle === 'h264' ? 'mp4' : fileHandle}` } = file;
                 return supportedMimes.indexOf(mime) !== -1;
             })
             .reduce((filesMap, file) => {
-                const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
+                const fileHandle = file.handle || file.id;
+                const { mime = `video/${fileHandle === 'h264' ? 'mp4' : fileHandle}` } = file;
                 const currentMimeFile = filesMap[mime] || null;
-                const { id: currentMimeId = null } = currentMimeFile || {};
-                return currentMimeFile === null || currentMimeId !== 'original'
+                const { id: currentId = null, handle: currentHandle = null } = currentMimeFile || {};
+                const currentMimeHandle = currentHandle || currentId;
+                return currentMimeFile === null || currentMimeHandle === 'original'
                     ? {
                           ...filesMap,
                           [mime]: file,
