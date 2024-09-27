@@ -17,6 +17,8 @@ import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/uti
 
 import styles from './styles.module.scss';
 
+import Hls from 'hls.js';
+
 const propTypes = {
     media: MicromagPropTypes.videoMedia,
     thumbnail: PropTypes.oneOf([PropTypes.string, MicromagPropTypes.imageMedia]),
@@ -35,6 +37,7 @@ const propTypes = {
     playsInline: PropTypes.bool,
     preload: PropTypes.oneOf(['auto', 'metadata', 'none', null]),
     disablePictureInPicture: PropTypes.bool,
+    disableHls: PropTypes.bool,
     shouldLoad: PropTypes.bool,
     withoutCors: PropTypes.bool,
     className: PropTypes.string,
@@ -69,6 +72,7 @@ const defaultProps = {
     playsInline: true,
     preload: 'auto',
     disablePictureInPicture: true,
+    disableHls: false,
     shouldLoad: true,
     withoutCors: false,
     className: null,
@@ -122,6 +126,7 @@ const Video = ({
     withPoster,
     withLoading,
     disablePictureInPicture,
+    disableHls,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
     const {
@@ -133,6 +138,7 @@ const Video = ({
     const finalThumbnail = useMediaThumbnail(media, thumbnail);
 
     const ref = useRef(null);
+
     const currentTime = useMediaCurrentTime(ref.current, {
         id: mediaUrl,
         disabled: paused || onProgressStep === null,
@@ -158,8 +164,31 @@ const Video = ({
         };
     }, [mediaUrl, withLoading]);
 
+    const hlsIsSupported = useMemo(() => Hls.isSupported(), [Hls]);
+    const hlsSources = useMemo(() => {
+        if (filesArray.length === 0 || disableHls) {
+            return null;
+        }
+        return filesArray.filter(
+            ({ mime = null, name = null }) =>
+                mime === 'application/vnd.apple.mpegurl' || (name || '').endsWith('.m3u8'),
+        );
+    }, [filesArray, hlsIsSupported, disableHls]);
+
+    useEffect(() => {
+        if (ref.current === null || !hlsIsSupported) {
+            return;
+        }
+
+        if (hlsSources !== null && hlsSources.length > 0) {
+            const hls = new Hls();
+            hls.loadSource(hlsSources[0].url);
+            hls.attachMedia(ref.current);
+        }
+    }, [hlsIsSupported, hlsSources, ref]);
+
     const sourceFiles = useMemo(() => {
-        if (filesArray.length === 0) {
+        if (filesArray.length === 0 || (hlsSources !== null && hlsSources.length > 0)) {
             return null;
         }
         const supportedMimes = getVideoSupportedMimes();
@@ -176,7 +205,8 @@ const Video = ({
                 const fileHandle = file.handle || file.id;
                 const { mime = `video/${fileHandle === 'h264' ? 'mp4' : fileHandle}` } = file;
                 const currentMimeFile = filesMap[mime] || null;
-                const { id: currentId = null, handle: currentHandle = null } = currentMimeFile || {};
+                const { id: currentId = null, handle: currentHandle = null } =
+                    currentMimeFile || {};
                 const currentMimeHandle = currentHandle || currentId;
                 return currentMimeFile === null || currentMimeHandle === 'original'
                     ? {
@@ -186,7 +216,7 @@ const Video = ({
                     : filesMap;
             }, {});
         return Object.keys(sourceFilesMap).map((mime) => sourceFilesMap[mime]);
-    }, [filesArray]);
+    }, [filesArray, hlsSources]);
 
     // @NOTE: Media is an animated image and doesn't have source files in video formats
     const { type: originalType = null, mime: originalMime = mediaMime } =
@@ -322,7 +352,8 @@ const Video = ({
                         }
                     }}
                     src={
-                        sourceFiles === null || sourceFiles.length === 0
+                        (sourceFiles === null || sourceFiles.length === 0) &&
+                        (hlsSources === null || hlsSources.length === 0)
                             ? `${mediaUrl}#t=0.001`
                             : null
                     }
