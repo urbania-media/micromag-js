@@ -501,7 +501,7 @@ export const conversation = (messagesNumber = 10, speakersNumber = 2, timing = '
     const messages = [...Array(messagesNumber)].map(() => ({
         message: shortText({ likelyhood: 100, min: 2, max: 12 }),
         speaker: random(speakers).id,
-        image: Math.random() < 0.2 ? imageMedia({ gif: true }) : null
+        image: Math.random() < 0.2 ? imageMedia({ gif: true }) : null,
     }));
     return {
         speakers,
@@ -522,7 +522,7 @@ export const audioConversation = (messagesNumber = 10, speakersNumber = 2, timin
     const messages = [...Array(messagesNumber)].map(() => ({
         message: shortText({ likelyhood: 100, min: 2, max: 12 }),
         speaker: random(speakers).id,
-        audio: audioMedia()
+        audio: audioMedia(),
     }));
     return {
         speakers,
