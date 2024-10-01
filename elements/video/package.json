@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-video",
-    "version": "0.3.578",
+    "version": "0.3.579",
     "private": false,
     "description": "",
     "keywords": [
@@ -62,10 +62,10 @@
         "@micromag/core": "^0.3.578",
         "@micromag/element-closed-captions": "^0.3.578",
         "classnames": "^2.2.6",
+        "hls.js": "^1.5.15",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "react-intl": "^6.6.4",
-        "hls.js": "^1.5.15",
         "uuid": "^9.0.0"
     },
     "publishConfig": {
