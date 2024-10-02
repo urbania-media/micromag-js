@@ -175,15 +175,48 @@ const Video = ({
         );
     }, [filesArray, hlsIsSupported, disableHls]);
 
+    const [hlsJs, setHlsJs] = useState(null);
+    useEffect(() => {
+        if (hlsJs !== null && ref.current !== null) {
+            hlsJs.attachMedia(ref.current);
+        }
+
+        return () => {
+            if (hlsJs !== null) {
+                hlsJs.detachMedia();
+                hlsJs.destroy();
+            }
+        };
+    }, [hlsJs, ref.current]);
+
+    const [hlsTsOffset, setHlsTsOffset] = useState(0);
     useEffect(() => {
         if (ref.current === null || !hlsIsSupported) {
             return;
         }
 
         if (hlsSources !== null && hlsSources.length > 0) {
+            setHlsTsOffset(null);
             const hls = new Hls();
+
+            const onHlsBufferAppended = (eventName, { frag }) => {
+                const {
+                    start: fragStart,
+                    type: fragType,
+                    sn: fragSn = null,
+                    elementaryStreams: { video: videoStream = null },
+                } = frag;
+                const { startPTS: videoStartPTS = null } = videoStream || {};
+                if (fragType === 'main' && fragSn !== 'initSegment' && videoStartPTS !== null) {
+                    const tOffset = videoStartPTS - fragStart;
+                    hls.off(Hls.Events.BUFFER_APPENDED, onHlsBufferAppended);
+                    setHlsTsOffset(tOffset);
+                }
+            };
+            hls.on(Hls.Events.BUFFER_APPENDED, onHlsBufferAppended);
+
             hls.loadSource(hlsSources[0].url);
-            hls.attachMedia(ref.current);
+            setHlsJs(hls);
         }
     }, [hlsIsSupported, hlsSources, ref]);
 
