@@ -196,7 +196,7 @@ const Video = ({
         }
 
         if (hlsSources !== null && hlsSources.length > 0) {
-            setHlsTsOffset(null);
+            setHlsTsOffset(0);
             const hls = new Hls();
 
             const onHlsBufferAppended = (eventName, { frag }) => {
