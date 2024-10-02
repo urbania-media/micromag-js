@@ -1,5 +1,6 @@
-/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
+/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, import/order */
 import classNames from 'classnames';
+import Hls from 'hls.js';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -16,8 +17,6 @@ import {
 import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
-
-import Hls from 'hls.js';
 
 const propTypes = {
     media: MicromagPropTypes.videoMedia,

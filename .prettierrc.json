@@ -12,7 +12,7 @@
         "^[./](.*)?/(utils|hooks|lib)",
         "^[./].*(?<!(\\.[a-z]+))$",
         "\\.scss$",
-        "\\.[a-z]+$"
+        "\\/(.+)\\.[a-z]+$"
     ],
     "importOrderSeparation": true,
     "importOrderSortSpecifiers": true
