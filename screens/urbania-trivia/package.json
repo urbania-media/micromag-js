@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-trivia",
-    "version": "0.3.580",
+    "version": "0.3.581",
     "private": false,
     "description": "",
     "keywords": [
@@ -64,7 +64,7 @@
         "@folklore/size": "^0.1.20",
         "@micromag/core": "^0.3.578",
         "@micromag/element-background": "^0.3.580",
-        "@micromag/element-call-to-action": "^0.3.578",
+        "@micromag/element-call-to-action": "^0.3.581",
         "@micromag/element-closed-captions": "^0.3.578",
         "@micromag/element-container": "^0.3.578",
         "@micromag/element-heading": "^0.3.578",

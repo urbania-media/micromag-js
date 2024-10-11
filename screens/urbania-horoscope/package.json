@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-horoscope",
-    "version": "0.3.580",
+    "version": "0.3.581",
     "private": false,
     "description": "",
     "keywords": [
@@ -65,7 +65,7 @@
         "@micromag/core": "^0.3.578",
         "@micromag/element-background": "^0.3.580",
         "@micromag/element-button": "^0.3.578",
-        "@micromag/element-call-to-action": "^0.3.578",
+        "@micromag/element-call-to-action": "^0.3.581",
         "@micromag/element-container": "^0.3.578",
         "@micromag/element-grid": "^0.3.578",
         "@micromag/element-heading": "^0.3.578",
