@@ -2,30 +2,30 @@
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
-import { FormattedMessage } from 'react-intl';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderButton, ScreenElement } from '@micromag/core/components';
+import { Close, PlaceholderButton, ScreenElement } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenState,
-    useScreenRenderContext,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useScreenState,
     useViewerContext,
-    useViewerWebView,
     useViewerInteraction,
+    useViewerWebView,
 } from '@micromag/core/contexts';
-import { useDragProgress, useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
+import { useDimensionObserver, useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
 import {
-    isTextFilled,
-    getStyleFromText,
-    getStyleFromBox,
-    isHeaderFilled,
-    isFooterFilled,
-    getFooterProps,
     camelCase,
+    getFooterProps,
+    getStyleFromBox,
+    getStyleFromText,
+    isFooterFilled,
+    isHeaderFilled,
+    isTextFilled,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -122,6 +122,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    withoutCloseButton: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -138,6 +139,7 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
+    withoutCloseButton: false,
     className: null,
 };
 
@@ -154,8 +156,10 @@ const KeypadScreen = ({
     background,
     current,
     active,
+    withoutCloseButton,
     className,
 }) => {
+    const intl = useIntl();
     const containerRef = useRef(null);
     const popupInnerRef = useRef(null);
 
@@ -229,6 +233,7 @@ const KeypadScreen = ({
         largeVisual = null,
         button: popupButton = null,
     } = popup || {};
+
     const hasPopupHeading = isTextFilled(popupHeading);
     const { textStyle: popupHeadingTextStyle = null } = popupHeading || {};
     const hasPopupContent = isTextFilled(popupContent);
@@ -244,9 +249,7 @@ const KeypadScreen = ({
         (e, item) => {
             e.stopPropagation();
             trackScreenEvent('click_item', item);
-
             const { inWebView = false, url = null } = item || {};
-
             if (inWebView && url !== null) {
                 openWebView({
                     url,
@@ -256,13 +259,28 @@ const KeypadScreen = ({
             setPopup(item);
             setShowPopup(true);
         },
-        [disableInteraction, setPopup, trackScreenEvent],
+        [setPopup, setShowPopup, trackScreenEvent, openWebView],
     );
 
     const onCloseModal = useCallback(() => {
         setShowPopup(false);
         trackScreenEvent('close_modal');
-    }, [enableInteraction, setShowPopup, trackScreenEvent]);
+    }, [setShowPopup, trackScreenEvent]);
+
+    const onClickClose = useCallback(
+        (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onCloseModal();
+        },
+        [onCloseModal],
+    );
+
+    const onClickCta = useCallback((e = null) => {
+        if (e !== null) {
+            e.stopPropagation();
+        }
+    }, []);
 
     const [popupDragDirection, setPopupDragDirection] = useState(0);
 
@@ -283,13 +301,11 @@ const KeypadScreen = ({
             const delta = Math.abs(my) / window.innerHeight;
             const reachedThreshold = vy > 1 || delta > 0.3;
             let progress = 0;
-
             if (popupDragDirection === 'top' && my < 0) {
                 progress = delta * damper * -1;
             } else if (popupDragDirection === 'bottom' && my > 0) {
                 progress = delta * damper;
             }
-
             if (!dragActive) {
                 if (reachedThreshold) {
                     onCloseModal();
@@ -312,21 +328,22 @@ const KeypadScreen = ({
     }, [showPopup]);
 
     useEffect(() => {
-        function handleClickOutside(event) {
+        function handleClickOutside(e) {
             if (
                 (!current && isView) ||
                 (popupInnerRef.current &&
-                    !popupInnerRef.current.contains(event.target) &&
+                    !popupInnerRef.current.contains(e.target) &&
                     containerRef.current &&
-                    containerRef.current.contains(event.target) &&
+                    containerRef.current.contains(e.target) &&
                     !isInteractivePreview &&
                     !isEdit &&
                     showPopup)
             ) {
+                e.preventDefault();
+                e.stopPropagation();
                 onCloseModal();
             }
         }
-
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -348,6 +365,8 @@ const KeypadScreen = ({
         progress: showPopup ? 0 : 1,
         computeProgress: computePopupProgress,
         springParams: { config: { tension: 300, friction: 30 } },
+        dragOptions: { filterTaps: true, preventDefault: true },
+        onTap: onCloseModal,
     });
 
     useEffect(() => {
@@ -481,11 +500,13 @@ const KeypadScreen = ({
             setPopup(found);
             setShowPopup(true);
         }
-        if (screenState === null) {
+        if (screenState === null && !isView) {
             setPopup(null);
             setShowPopup(false);
         }
-    }, [screenState, items]);
+    }, [screenState, items, isView, showPopup, setPopup, setShowPopup]);
+
+    // console.log(showPopup, popup, isView);
 
     return (
         <div
@@ -513,6 +534,22 @@ const KeypadScreen = ({
                     mediaRef={mediaRef}
                     className={styles.background}
                 />
+            ) : null}
+            {isView && !isPlaceholder && !withoutCloseButton ? (
+                <animated.div
+                    className={classNames([styles.fixedHeader, { [styles.open]: showPopup }])}
+                >
+                    <div className={styles.buttons}>
+                        <Button
+                            className={styles.close}
+                            onClick={onClickClose}
+                            focusable={!isPreview && !isPlaceholder && showPopup}
+                            withoutStyle
+                        >
+                            <Close color="#000" className={styles.closeIcon} />
+                        </Button>
+                    </div>
+                </animated.div>
             ) : null}
             <Container width={width} height={height} className={styles.inner}>
                 <Scroll
@@ -589,6 +626,7 @@ const KeypadScreen = ({
                             spacing={isPlaceholder ? 2 : columnSpacing}
                             items={gridItems}
                         />
+
                         {!isPlaceholder && hasFooter ? (
                             <div
                                 ref={footerRef}
@@ -749,6 +787,7 @@ const KeypadScreen = ({
                                                         ...buttonLabel,
                                                     }}
                                                     url={buttonUrl}
+                                                    onClick={onClickCta}
                                                     inWebView={popupInWebView}
                                                     openWebView={openWebView}
                                                     type="click"

@@ -460,6 +460,7 @@ const UrbaniaHoroscope = ({
                             <Keypad
                                 columns={3}
                                 spacing={5}
+                                withoutCloseButton
                                 items={signs.map((sign) => {
                                     const { id = null } = sign || {};
                                     return (

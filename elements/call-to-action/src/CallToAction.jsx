@@ -122,7 +122,7 @@ function CallToAction({
                     url,
                 });
             }
-            if (onClick !== null && action === 'cllick') {
+            if (onClick !== null && action === 'click') {
                 onClick(e);
             }
             if (trackEvent !== null) {

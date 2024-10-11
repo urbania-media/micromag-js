@@ -2,7 +2,13 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, headerFooter, header, footer } from '../../../../.storybook/data';
+import {
+    backgroundColor,
+    footer,
+    header,
+    headerFooter,
+    imageMedia,
+} from '../../../../.storybook/data';
 import Keypad from '../Keypad';
 import definition from '../definition';
 
@@ -14,7 +20,8 @@ const props = {
             id: '1',
             label: '1',
             content: {
-                body: '<p>1 est un lorem ipsum dolor sit amet consectetur adipiscing</p>',
+                body: '<p>1 est un lorem ipsum dolor sit amet consectetur adipiscing lkasdhfklhds sadfdsa fhas dfh sadkfh ksadhf kashdf kjahsdf kh asdfh asdkffffhasjdfkasdhfasdhhhfsadf asdf kasdf jasdfhaksdj flashdfkjjjas djfh askjdfh kasdhf kjasdhfk ahsfdk </p>',
+                largeVisual: imageMedia(),
             },
         },
         {

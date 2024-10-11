@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Close } from '@micromag/core/components';
-import Button from '@micromag/element-button';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
+
+import { Close } from '@micromag/core/components';
+import Button from '@micromag/element-button';
 
 import styles from './styles.module.scss';
 
@@ -61,6 +62,7 @@ function WebView({ url, width, height, closeable, focusable, onClose, className 
             <iframe
                 className={styles.iframe}
                 aria-hidden={!focusable ? 'true' : null}
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                 tabIndex={focusable ? '0' : '-1'}
                 title={intl.formatMessage({
                     defaultMessage: 'Popup',

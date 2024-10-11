@@ -26,6 +26,50 @@
     z-index: 1;
 }
 
+.fixedHeader {
+    display: flex;
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    left: 0;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px;
+    opacity: 0;
+    pointer-events: none;
+
+    &.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.close {
+    @extend %reset-button;
+    @extend %focus-outline;
+
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    filter: invert(100%);
+    font-weight: bold;
+
+    &:focus-visible {
+        box-shadow: 0 0 2px 0 #fff;
+    }
+}
+
+.closeIcon {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+
+    border-radius: 50%;
+    color: #000;
+}
+
 .header {
     position: absolute;
     top: 0;
@@ -196,7 +240,7 @@
 .popup {
     @extend %reset-button;
     position: fixed;
-    z-index: 6; // @todo
+    z-index: 6;
     top: 0;
     right: 0;
     width: 100%;
