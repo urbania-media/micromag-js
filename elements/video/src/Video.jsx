@@ -53,9 +53,11 @@ const propTypes = {
     onSuspend: PropTypes.func,
     onSuspended: PropTypes.func,
     onPlayError: PropTypes.func,
+    onHlsLevelChange: PropTypes.func,
     focusable: PropTypes.bool,
     withPoster: PropTypes.bool,
     withLoading: PropTypes.bool,
+    hlsStartLevel: PropTypes.number,
 };
 
 const defaultProps = {
@@ -88,9 +90,11 @@ const defaultProps = {
     onSuspend: null,
     onSuspended: null,
     onPlayError: null,
+    onHlsLevelChange: null,
     focusable: true,
     withPoster: false,
     withLoading: false,
+    hlsStartLevel: -1,
 };
 
 const Video = ({
@@ -121,11 +125,13 @@ const Video = ({
     onSuspend: customOnSuspend,
     onSuspended,
     onPlayError,
+    onHlsLevelChange,
     focusable,
     withPoster,
     withLoading,
     disablePictureInPicture,
     disableHls,
+    hlsStartLevel,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
     const {
@@ -188,6 +194,12 @@ const Video = ({
         };
     }, [hlsJs, ref.current]);
 
+    useEffect(() => {
+        if (hlsJs !== null) {
+            hlsJs.startLevel = hlsStartLevel;
+        }
+    }, [hlsStartLevel]);
+
     const [hlsTsOffset, setHlsTsOffset] = useState(0);
     useEffect(() => {
         if (ref.current === null || !hlsIsSupported) {
@@ -196,7 +208,15 @@ const Video = ({
 
         if (hlsSources !== null && hlsSources.length > 0) {
             setHlsTsOffset(0);
-            const hls = new Hls();
+            const hls = new Hls({
+                startLevel: hlsStartLevel,
+            });
+
+            hls.on(Hls.Events.LEVEL_SWITCHED, (_, { level }) => {
+                if (onHlsLevelChange !== null) {
+                    onHlsLevelChange(level);
+                }
+            });
 
             const onHlsBufferAppended = (eventName, { frag }) => {
                 const {
