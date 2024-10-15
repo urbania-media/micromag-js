@@ -189,8 +189,8 @@ const Video = ({
             return;
         }
 
-        if (hlsSources !== null && hlsSources.length > 0) {
-            setHlsTsOffset(0);
+        setHlsTsOffset(0);
+        if (shouldLoad && hlsSources !== null && hlsSources.length > 0) {
             const hls = new Hls({
                 startLevel: hlsStartLevel,
             });
@@ -201,7 +201,8 @@ const Video = ({
                 }
             });
 
-            const onHlsBufferAppended = (eventName, { frag }) => {
+            // compute hls timestamp offset when we get the first video fragment
+            const onHlsBufferAppended = (_, { frag }) => {
                 const {
                     start: fragStart,
                     type: fragType,
@@ -220,7 +221,7 @@ const Video = ({
             hls.loadSource(hlsSources[0].url);
             setHlsJs(hls);
         }
-    }, [hlsIsSupported, hlsSources, ref]);
+    }, [shouldLoad, hlsIsSupported, hlsSources, ref]);
 
     // attach hls.js when the <video> ref is ready
     useEffect(() => {
