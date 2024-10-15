@@ -181,26 +181,9 @@ const Video = ({
     }, [filesArray, hlsIsSupported, disableHls]);
 
     const [hlsJs, setHlsJs] = useState(null);
-    useEffect(() => {
-        if (hlsJs !== null && ref.current !== null) {
-            hlsJs.attachMedia(ref.current);
-        }
-
-        return () => {
-            if (hlsJs !== null) {
-                hlsJs.detachMedia();
-                hlsJs.destroy();
-            }
-        };
-    }, [hlsJs, ref.current]);
-
-    useEffect(() => {
-        if (hlsJs !== null) {
-            hlsJs.startLevel = hlsStartLevel;
-        }
-    }, [hlsStartLevel]);
-
     const [hlsTsOffset, setHlsTsOffset] = useState(0);
+
+    // initialize hls instance if an hls source is provided
     useEffect(() => {
         if (ref.current === null || !hlsIsSupported) {
             return;
@@ -238,6 +221,27 @@ const Video = ({
             setHlsJs(hls);
         }
     }, [hlsIsSupported, hlsSources, ref]);
+
+    // attach hls.js when the <video> ref is ready
+    useEffect(() => {
+        if (hlsJs !== null && ref.current !== null) {
+            hlsJs.attachMedia(ref.current);
+        }
+
+        return () => {
+            if (hlsJs !== null) {
+                hlsJs.detachMedia();
+                hlsJs.destroy();
+            }
+        };
+    }, [hlsJs, ref.current]);
+
+    // handle changes of hlsStartLevel when an hls.js instance exists
+    useEffect(() => {
+        if (hlsJs !== null) {
+            hlsJs.startLevel = hlsStartLevel;
+        }
+    }, [hlsStartLevel]);
 
     const sourceFiles = useMemo(() => {
         if (filesArray.length === 0 || (hlsSources !== null && hlsSources.length > 0)) {
