@@ -53,11 +53,11 @@ const propTypes = {
     onSuspend: PropTypes.func,
     onSuspended: PropTypes.func,
     onPlayError: PropTypes.func,
-    onHlsLevelChange: PropTypes.func,
+    onQualityLevelChange: PropTypes.func,
     focusable: PropTypes.bool,
     withPoster: PropTypes.bool,
     withLoading: PropTypes.bool,
-    hlsStartLevel: PropTypes.number,
+    qualityStartLevel: PropTypes.number,
 };
 
 const defaultProps = {
@@ -90,11 +90,11 @@ const defaultProps = {
     onSuspend: null,
     onSuspended: null,
     onPlayError: null,
-    onHlsLevelChange: null,
+    onQualityLevelChange: null,
     focusable: true,
     withPoster: false,
     withLoading: false,
-    hlsStartLevel: -1,
+    qualityStartLevel: -1,
 };
 
 const Video = ({
@@ -125,13 +125,13 @@ const Video = ({
     onSuspend: customOnSuspend,
     onSuspended,
     onPlayError,
-    onHlsLevelChange,
+    onQualityLevelChange,
     focusable,
     withPoster,
     withLoading,
     disablePictureInPicture,
     disableHls,
-    hlsStartLevel,
+    qualityStartLevel,
 }) => {
     const { url: mediaUrl = null, files = null, metadata = null } = media || {};
     const {
@@ -192,12 +192,12 @@ const Video = ({
         setHlsTsOffset(0);
         if (shouldLoad && hlsSources !== null && hlsSources.length > 0) {
             const hls = new Hls({
-                startLevel: hlsStartLevel,
+                startLevel: qualityStartLevel,
             });
 
             hls.on(Hls.Events.LEVEL_SWITCHED, (_, { level }) => {
-                if (onHlsLevelChange !== null) {
-                    onHlsLevelChange(level);
+                if (onQualityLevelChange !== null) {
+                    onQualityLevelChange(level);
                 }
             });
 
@@ -237,12 +237,12 @@ const Video = ({
         };
     }, [hlsJs, ref.current]);
 
-    // handle changes of hlsStartLevel when an hls.js instance exists
+    // handle changes of qualityStartLevel when an hls.js instance exists
     useEffect(() => {
         if (hlsJs !== null) {
-            hlsJs.startLevel = hlsStartLevel;
+            hlsJs.startLevel = qualityStartLevel;
         }
-    }, [hlsStartLevel]);
+    }, [qualityStartLevel]);
 
     const sourceFiles = useMemo(() => {
         if (filesArray.length === 0 || (hlsSources !== null && hlsSources.length > 0)) {
