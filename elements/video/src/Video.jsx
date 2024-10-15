@@ -440,6 +440,8 @@ const Video = ({
                     onSuspend={onSuspend}
                     data-has-audio={hasAudio}
                     data-is-suspended={isSuspended}
+                    data-hls={hlsJs !== null}
+                    data-ts-offset={hlsTsOffset}
                     aria-hidden
                 >
                     {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
