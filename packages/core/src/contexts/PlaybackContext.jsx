@@ -2,7 +2,7 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
-import React, { useContext, useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 const defaultControlsThemeValue = {
     seekBarOnly: false,
@@ -19,6 +19,7 @@ const defaultValue = {
     controlsVisible: false,
     media: null,
     controlsTheme: defaultControlsThemeValue,
+    currentQualityLevel: null,
 };
 
 export const PlaybackContext = React.createContext({
@@ -31,6 +32,7 @@ export const PlaybackContext = React.createContext({
     showControls: () => {},
     hideControls: () => {},
     setMedia: () => {},
+    setCurrentQualityLevel: () => {},
 });
 
 export const usePlaybackContext = () => useContext(PlaybackContext);
@@ -67,6 +69,7 @@ const propTypes = {
     muted: PropTypes.bool,
     playing: PropTypes.bool,
     paused: PropTypes.bool,
+    currentQualityLevel: PropTypes.number,
 };
 
 const defaultProps = {
@@ -81,6 +84,7 @@ export const PlaybackProvider = ({
     controlsSuggestPlay: initialControlsSuggestPlay,
     controlsVisible: initialControlsVisible,
     controlsTheme: initialControlsTheme,
+    currentQualityLevel: initialCurrentQualityLevel,
     children,
 }) => {
     const [muted, setMuted] = useState(initialMuted);
@@ -90,6 +94,7 @@ export const PlaybackProvider = ({
     const [controlsSuggestPlay, setControlsSuggestPlay] = useState(initialControlsSuggestPlay);
     const [controlsVisible, setControlsVisible] = useState(initialControlsVisible);
     const [controlsTheme, setControlsTheme] = useState(initialControlsTheme);
+    const [currentQualityLevel, setCurrentQualityLevel] = useState(initialCurrentQualityLevel);
 
     const finalSetControls = useCallback(
         (newControls) => {
@@ -146,6 +151,15 @@ export const PlaybackProvider = ({
         return media.dataset.hasAudio === 'true' || media.dataset.hasAudio === true;
     }, [media]);
 
+    const finalSetCurrentQualityLevel = useCallback(
+        (level, fromRef = null) => {
+            if (fromRef === null || media === null || fromRef === media) {
+                setCurrentQualityLevel(level);
+            }
+        },
+        [setCurrentQualityLevel],
+    );
+
     const value = useMemo(
         () => ({
             muted,
@@ -156,6 +170,7 @@ export const PlaybackProvider = ({
             media,
             hasAudio,
             controlsTheme,
+            currentQualityLevel,
             setMuted,
             setPlaying: finalSetPlaying,
             setControls: finalSetControls,
@@ -165,6 +180,7 @@ export const PlaybackProvider = ({
             showControls,
             hideControls,
             setMedia,
+            setCurrentQualityLevel: finalSetCurrentQualityLevel,
         }),
         [
             muted,
@@ -176,6 +192,7 @@ export const PlaybackProvider = ({
             controlsTheme,
             media,
             hasAudio,
+            currentQualityLevel,
             setMuted,
             finalSetPlaying,
             finalSetControls,
@@ -186,6 +203,7 @@ export const PlaybackProvider = ({
             showControls,
             hideControls,
             setMedia,
+            setCurrentQualityLevel,
         ],
     );
 

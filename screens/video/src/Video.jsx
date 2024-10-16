@@ -2,28 +2,28 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderVideo, ScreenElement, Empty } from '@micromag/core/components';
+import { Empty, PlaceholderVideo, ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
-    useScreenSize,
     useScreenRenderContext,
+    useScreenSize,
+    useViewerContainer,
+    useViewerContext,
     useViewerNavigation,
     useViewerWebView,
-    useViewerContext,
-    useViewerContainer,
 } from '@micromag/core/contexts';
 import {
-    useDebounce,
-    useTrackScreenMedia,
-    useMediaThumbnail,
     useActivityDetector,
+    useDebounce,
+    useMediaThumbnail,
+    useTrackScreenMedia,
 } from '@micromag/core/hooks';
-import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
@@ -114,6 +114,8 @@ const VideoScreen = ({
         controlsVisible,
         showControls,
         hideControls,
+        currentQualityLevel,
+        setCurrentQualityLevel,
     } = usePlaybackContext();
 
     const mediaRef = usePlaybackMediaRef(current);
@@ -394,6 +396,8 @@ const VideoScreen = ({
                                         disablePictureInPicture
                                         focusable={current && isView}
                                         shouldLoad={mediaShouldLoad}
+                                        qualityStartLevel={currentQualityLevel}
+                                        onQualityLevelChange={setCurrentQualityLevel}
                                     />
                                 )}
                             </div>

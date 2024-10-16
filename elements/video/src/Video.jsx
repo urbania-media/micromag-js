@@ -94,7 +94,7 @@ const defaultProps = {
     focusable: true,
     withPoster: false,
     withLoading: false,
-    qualityStartLevel: -1,
+    qualityStartLevel: null,
 };
 
 const Video = ({
@@ -191,12 +191,12 @@ const Video = ({
         if (shouldLoad && ref.current !== null && hlsSources !== null && hlsSources.length > 0) {
             const hls = new Hls({
                 maxBufferLength: 15, // seconds. prevents loading too much per screen.
-                startLevel: qualityStartLevel,
+                startLevel: qualityStartLevel !== null ? qualityStartLevel : -1,
             });
 
             hls.on(Hls.Events.LEVEL_SWITCHED, (_, { level }) => {
                 if (onQualityLevelChange !== null) {
-                    onQualityLevelChange(level);
+                    onQualityLevelChange(level, ref.current);
                 }
             });
 
@@ -259,7 +259,11 @@ const Video = ({
     // handle changes of qualityStartLevel when an hls.js instance exists
     useEffect(() => {
         if (hlsJs !== null) {
-            hlsJs.startLevel = qualityStartLevel;
+            const qualityLevel = qualityStartLevel !== null ? qualityStartLevel : -1;
+            hlsJs.startLevel = qualityLevel;
+            if (ref.current !== null && ref.current.paused) {
+                hlsJs.currentLevel = qualityLevel;
+            }
         }
     }, [qualityStartLevel]);
 

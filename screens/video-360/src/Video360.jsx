@@ -2,29 +2,29 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, ScreenElement } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
     usePlaybackContext,
-    useViewerInteraction,
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContainer,
     useViewerContext,
+    useViewerInteraction,
     useViewerNavigation,
     useViewerWebView,
-    useViewerContainer,
 } from '@micromag/core/contexts';
 import {
+    useActivityDetector,
     useAnimationFrame,
     useDebounce,
     useTrackScreenEvent,
     useTrackScreenMedia,
-    useActivityDetector,
 } from '@micromag/core/hooks';
-import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
@@ -118,6 +118,8 @@ const Video360Screen = ({
         setPlaying,
         showControls,
         hideControls,
+        currentQualityLevel,
+        setCurrentQualityLevel,
     } = usePlaybackContext();
     const mediaRef = useRef(null);
 
@@ -542,6 +544,8 @@ const Video360Screen = ({
                             setPlaying={setPlaying}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}
+                            qualityStartLevel={currentQualityLevel}
+                            onQualityLevelChange={setCurrentQualityLevel}
                         />
                     </div>
                 ) : null}
@@ -632,7 +636,10 @@ const Video360Screen = ({
                                 paddingTop: 0,
                             }}
                         >
-                            {(closedCaptions !== null || captions !== null) && !isPreview && !isCapture && !isStatic ? (
+                            {(closedCaptions !== null || captions !== null) &&
+                            !isPreview &&
+                            !isCapture &&
+                            !isStatic ? (
                                 <ClosedCaptions
                                     className={styles.closedCaptions}
                                     media={closedCaptions}

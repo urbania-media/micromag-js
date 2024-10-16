@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { v1 as uuid } from 'uuid';
 
+import ActionsProvider from '@panneau/actions';
 import { QueryProvider } from '@panneau/data';
 import DisplaysProvider from '@panneau/displays';
 import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
-import ActionsProvider from '@panneau/actions';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import { callToAction, videoMedia } from '../../../../.storybook/data';
+import { callToAction, hlsVideoMedia, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import article from '../../../../.storybook/data/stories/article-generic';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
@@ -362,6 +363,40 @@ export const WithConversation = () => (
         defaultValue={{
             title: 'With conversation',
             components: [{ id: '1', type: 'conversation' }],
+        }}
+    />
+);
+
+export const QualityLevelInPlaybackContext = () => (
+    <EditorContainer
+        defaultValue={{
+            title: 'Quality level in PlaybackContext',
+            components: [
+                {
+                    id: uuid(),
+                    type: 'video',
+                    layout: 'full',
+                    video: {
+                        media: hlsVideoMedia(),
+                        autoPlay: true,
+                        loop: true,
+                        withSeekBar: true,
+                        withControls: true,
+                    },
+                },
+                {
+                    id: uuid(),
+                    type: 'video',
+                    layout: 'full',
+                    video: {
+                        media: hlsVideoMedia(),
+                        autoPlay: true,
+                        loop: true,
+                        withSeekBar: true,
+                        withControls: true,
+                    },
+                },
+            ],
         }}
     />
 );

@@ -232,6 +232,26 @@ export const image360Media = () => ({
     },
 });
 
+export const hlsVideoMedia = () => {
+    const baseMedia = videoMedia();
+    return {
+        ...baseMedia,
+        url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+        files: {
+            h264: {
+                handle: 'h264',
+                mime: 'video/mp4',
+                url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+            },
+            hls: {
+                handle: 'hls',
+                mime: 'application/vnd.apple.mpegurl',
+                url: 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8',
+            },
+        },
+    };
+};
+
 export const audioMedia = ({ withWaveform = false } = {}) => ({
     type: 'audio',
     url: audioFile,

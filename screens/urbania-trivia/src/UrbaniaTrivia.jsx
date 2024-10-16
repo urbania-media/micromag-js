@@ -2,6 +2,12 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
+import classNames from 'classnames';
+import isArray from 'lodash/isArray';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     Empty,
@@ -30,11 +36,6 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
-import classNames from 'classnames';
-import isArray from 'lodash/isArray';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 
 import styles from './urbania-trivia.module.scss';
 
@@ -135,6 +136,8 @@ const UrbaniaTrivia = ({
         setPlaying,
         showControls,
         hideControls,
+        currentQualityLevel,
+        setCurrentQualityLevel,
     } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
 
@@ -403,6 +406,8 @@ const UrbaniaTrivia = ({
                                 onEnded={onEnded}
                                 focusable={current && isView}
                                 shouldLoad={mediaShouldLoad}
+                                qualityStartLevel={currentQualityLevel}
+                                onQualityLevelChange={setCurrentQualityLevel}
                             />
                         )}
 
