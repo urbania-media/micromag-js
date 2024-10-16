@@ -190,6 +190,7 @@ const Video = ({
 
         if (shouldLoad && ref.current !== null && hlsSources !== null && hlsSources.length > 0) {
             const hls = new Hls({
+                maxBufferLength: 15, // seconds. prevents loading too much per screen.
                 startLevel: qualityStartLevel,
             });
 
