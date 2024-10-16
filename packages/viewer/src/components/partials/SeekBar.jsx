@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { useMediaProgress } from '@micromag/core/hooks';
+import { useMediaProgress, useMediaTimestampOffset } from '@micromag/core/hooks';
 
 import styles from '../../styles/partials/seek-bar.module.scss';
 
@@ -91,8 +91,13 @@ const SeekBar = ({
         disabled: !playing,
     });
 
-    const { currentTime = null, duration = null } = media || {};
+    const { currentTime: originalCurrentTime = null, duration: originalDuration = null } =
+        media || {};
     const [showTimestamp, setShowTimestamp] = useState(false);
+    const mediaTimestampOffset = useMediaTimestampOffset(media);
+
+    const currentTime = originalCurrentTime + mediaTimestampOffset;
+    const duration = originalDuration + mediaTimestampOffset;
 
     const startProgressRef = useRef(progress);
 

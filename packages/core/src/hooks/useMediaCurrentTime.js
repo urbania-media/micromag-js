@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+import useMediaTimestampOffset from './useMediaTimestampOffset';
 
 function useMediaCurrentTime(
     element,
@@ -7,13 +9,16 @@ function useMediaCurrentTime(
     const [currentTime, setCurrentTime] = useState(0);
     const realCurrentTime = useRef(currentTime);
 
+    const tsOffset = useMediaTimestampOffset(element);
+
     const finalId = id || element;
     const lastIdRef = useRef(finalId);
     const idChanged = lastIdRef.current !== finalId;
     const disabledRef = useRef(disabled);
     const disabledChanged = disabledRef.current !== disabled;
     if (idChanged || disabledChanged) {
-        realCurrentTime.current = element !== null ? element.currentTime || 0 : 0;
+        realCurrentTime.current =
+            element !== null ? Math.max((element.currentTime || 0) - tsOffset, 0) : 0;
         lastIdRef.current = finalId;
         disabledRef.current = disabled;
     }
@@ -24,7 +29,7 @@ function useMediaCurrentTime(
             return () => {};
         }
         function updateTime() {
-            const time = element.currentTime || 0;
+            const time = Math.max((element.currentTime || 0) - tsOffset, 0);
             if (time !== realCurrentTime.current) {
                 realCurrentTime.current = time;
                 setCurrentTime(time);
@@ -53,7 +58,7 @@ function useMediaCurrentTime(
         loop();
         return () => {
             if (element !== null) {
-                realCurrentTime.current = element.currentTime;
+                realCurrentTime.current = element.currentTime - tsOffset;
             }
             if (timeout !== null) {
                 clearInterval(timeout);

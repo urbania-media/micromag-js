@@ -1,7 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+import useMediaTimestampOffset from './useMediaTimestampOffset';
 
 function useMediaDuration(element, { id = null } = {}) {
     const [duration, setDuration] = useState(element !== null ? element.duration || 0 : 0);
+    const tsOffset = useMediaTimestampOffset(element);
 
     const realDuration = useRef(duration);
 
@@ -9,7 +12,8 @@ function useMediaDuration(element, { id = null } = {}) {
     const lastIdRef = useRef(finalId);
     const idChanged = lastIdRef.current !== finalId;
     if (idChanged) {
-        realDuration.current = element !== null ? element.duration || 0 : 0;
+        realDuration.current =
+            element !== null ? Math.max((element.duration || 0) - tsOffset, 0) : 0;
         lastIdRef.current = finalId;
     }
 
@@ -20,7 +24,7 @@ function useMediaDuration(element, { id = null } = {}) {
             return () => {};
         }
         function updateDuration() {
-            const newDuration = element.duration || 0;
+            const newDuration = Math.max((element.duration || 0) - tsOffset, 0);
             if (newDuration !== realDuration.current) {
                 realDuration.current = newDuration;
                 setDuration(newDuration);

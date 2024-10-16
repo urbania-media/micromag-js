@@ -19,6 +19,7 @@ export { default as useMediaDuration } from './useMediaDuration';
 export { default as useMediaLoad } from './useMediaLoad';
 export { default as useMediaProgress } from './useMediaProgress';
 export { default as useMediaReady } from './useMediaReady';
+export { default as useMediaTimestampOffset } from './useMediaTimestampOffset';
 export { default as useMediasParser } from './useMediasParser';
 export { default as useMediaThumbnail } from './useMediaThumbnail';
 export { default as useMediaWaveform } from './useMediaWaveform';
