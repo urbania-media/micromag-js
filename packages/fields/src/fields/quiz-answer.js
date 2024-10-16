@@ -24,11 +24,11 @@ export default {
         {
             name: 'customAnswerLabel',
             type: 'text-element',
-            textOnly: true,
+            // textOnly: true,
             fieldsProps: {
-                textStyle: {
-                    excludedFields: ['highlight', 'link'],
-                },
+                // textStyle: {
+                //     excludedFields: ['highlight', 'link'],
+                // },
             },
             label: defineMessage({
                 defaultMessage: 'Answer feedback',
