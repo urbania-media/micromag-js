@@ -263,6 +263,7 @@ const Video = ({
             hlsJs.startLevel = qualityLevel;
             if (ref.current !== null && ref.current.paused) {
                 hlsJs.currentLevel = qualityLevel;
+                hlsJs.nextLevel = -1; // force auto quality selection for the next fragment
             }
         }
     }, [qualityStartLevel]);
