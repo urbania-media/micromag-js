@@ -169,35 +169,54 @@ const Video = ({
         };
     }, [mediaUrl, withLoading]);
 
-    const hlsIsSupported = useMemo(() => Hls.isSupported(), [Hls]);
+    const [hlsFailed, setHlsFailed] = useState(false);
     const hlsSources = useMemo(() => {
-        if (filesArray.length === 0 || disableHls) {
+        if (filesArray.length === 0 || disableHls || !Hls.isSupported() || hlsFailed) {
             return null;
         }
         return filesArray.filter(
             ({ mime = null, name = null }) =>
                 mime === 'application/vnd.apple.mpegurl' || (name || '').endsWith('.m3u8'),
         );
-    }, [filesArray, hlsIsSupported, disableHls]);
+    }, [filesArray, disableHls, hlsFailed]);
 
     const [hlsJs, setHlsJs] = useState(null);
     const [hlsTsOffset, setHlsTsOffset] = useState(0);
 
     // initialize hls instance if an hls source is provided
     useEffect(() => {
-        if (ref.current === null || !hlsIsSupported) {
+        if (ref.current === null) {
             return;
         }
 
         setHlsTsOffset(0);
         if (shouldLoad && hlsSources !== null && hlsSources.length > 0) {
             const hls = new Hls({
+                backBufferLength: 10, // seconds. should suit most cases for micromag
                 startLevel: qualityStartLevel,
             });
 
             hls.on(Hls.Events.LEVEL_SWITCHED, (_, { level }) => {
                 if (onQualityLevelChange !== null) {
                     onQualityLevelChange(level);
+                }
+            });
+
+            hls.on(Hls.Events.ERROR, (_, { fatal: isFatal, type: errorType }) => {
+                if (isFatal) {
+                    switch (errorType) {
+                        case Hls.ErrorTypes.MEDIA_ERROR:
+                            // automatically try to recover from media errors
+                            hls.recoverMediaError();
+                            break;
+                        case Hls.ErrorTypes.NETWORK_ERROR:
+                            // happens when all retries and media options have been exhausted. in that case, fallback to mp4/webm playback
+                            setHlsJs(null);
+                            setHlsFailed(true);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             });
 
@@ -221,7 +240,7 @@ const Video = ({
             hls.loadSource(hlsSources[0].url);
             setHlsJs(hls);
         }
-    }, [shouldLoad, hlsIsSupported, hlsSources, ref]);
+    }, [shouldLoad, hlsSources, ref]);
 
     // attach hls.js when the <video> ref is ready
     useEffect(() => {
