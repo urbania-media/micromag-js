@@ -36,6 +36,8 @@ const propTypes = {
     onPlayError: PropTypes.func,
     withoutVideo: PropTypes.bool,
     forceMuted: PropTypes.bool,
+    qualityStartLevel: PropTypes.number,
+    onQualityLevelChange: PropTypes.func,
 };
 
 const defaultProps = {
@@ -58,6 +60,8 @@ const defaultProps = {
     onPlayError: null,
     withoutVideo: false,
     forceMuted: false,
+    qualityStartLevel: null,
+    onQualityLevelChange: null,
 };
 
 const Background = ({
@@ -80,6 +84,8 @@ const Background = ({
     onPlayError,
     withoutVideo,
     forceMuted,
+    qualityStartLevel,
+    onQualityLevelChange,
 }) => {
     const {
         type: mediaType = null,
@@ -172,6 +178,8 @@ const Background = ({
                         loop
                         withPoster
                         focusable={false}
+                        qualityStartLevel={qualityStartLevel}
+                        onQualityLevelChange={onQualityLevelChange}
                     />
                 </div>
             ) : null}

@@ -37,6 +37,8 @@ const propTypes = {
     shouldLoad: PropTypes.bool,
     withoutVideo: PropTypes.bool,
     onPlayError: PropTypes.bool,
+    qualityStartLevel: PropTypes.number,
+    onQualityLevelChange: PropTypes.func,
 };
 
 const defaultProps = {
@@ -55,6 +57,8 @@ const defaultProps = {
     shouldLoad: true,
     withoutVideo: false,
     onPlayError: null,
+    qualityStartLevel: null,
+    onQualityLevelChange: null,
 };
 
 const BackgroundLayers = ({
@@ -73,6 +77,8 @@ const BackgroundLayers = ({
     shouldLoad,
     withoutVideo,
     onPlayError,
+    qualityStartLevel,
+    onQualityLevelChange,
 }) => {
     const hasSize = width > 0 && height > 0;
 
@@ -142,6 +148,8 @@ const BackgroundLayers = ({
                                 mediaRef={mediaRef}
                                 withoutVideo={withoutVideo}
                                 onPlayError={onPlayError}
+                                qualityStartLevel={qualityStartLevel}
+                                onQualityLevelChange={onQualityLevelChange}
                                 {...layer}
                             />
                         </div>

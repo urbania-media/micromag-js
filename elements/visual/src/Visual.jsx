@@ -33,6 +33,8 @@ const propTypes = {
     className: PropTypes.string,
     imageClassName: PropTypes.string,
     videoClassName: PropTypes.string,
+    qualityStartLevel: PropTypes.number,
+    onQualityLevelChange: PropTypes.func,
 };
 
 const defaultProps = {
@@ -52,6 +54,8 @@ const defaultProps = {
     className: null,
     imageClassName: null,
     videoClassName: null,
+    qualityStartLevel: null,
+    onQualityLevelChange: null,
 };
 
 const Visual = ({
@@ -71,6 +75,8 @@ const Visual = ({
     imageClassName,
     videoClassName,
     withoutVideo,
+    qualityStartLevel,
+    onQualityLevelChange,
     ...props
 }) => {
     const { type = null, thumbnail_url: thumbnailUrl = null, url = null } = media || {};
@@ -155,6 +161,8 @@ const Visual = ({
                             shouldLoad={shouldLoad}
                             onReady={onLoaded}
                             autoPlay
+                            qualityStartLevel={qualityStartLevel}
+                            onQualityLevelChange={onQualityLevelChange}
                         />
                         <div className={styles.videoTouchOverlay} />
                     </div>
