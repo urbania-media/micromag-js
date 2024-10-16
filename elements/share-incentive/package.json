@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-share-incentive",
-    "version": "0.3.578",
+    "version": "0.3.583",
     "private": false,
     "description": "",
     "keywords": [
@@ -59,8 +59,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.578",
-        "@micromag/element-text": "^0.3.578",
+        "@micromag/core": "^0.3.583",
+        "@micromag/element-text": "^0.3.583",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-intl": "^6.6.4",
