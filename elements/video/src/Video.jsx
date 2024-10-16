@@ -190,7 +190,6 @@ const Video = ({
 
         if (shouldLoad && ref.current !== null && hlsSources !== null && hlsSources.length > 0) {
             const hls = new Hls({
-                backBufferLength: 10, // seconds. should suit most cases for micromag
                 startLevel: qualityStartLevel,
             });
 
