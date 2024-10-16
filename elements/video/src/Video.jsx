@@ -185,12 +185,10 @@ const Video = ({
 
     // initialize hls instance if an hls source is provided
     useEffect(() => {
-        if (ref.current === null) {
-            return;
-        }
-
         setHlsTsOffset(0);
-        if (shouldLoad && hlsSources !== null && hlsSources.length > 0) {
+        setHlsFailed(false);
+
+        if (shouldLoad && ref.current !== null && hlsSources !== null && hlsSources.length > 0) {
             const hls = new Hls({
                 backBufferLength: 10, // seconds. should suit most cases for micromag
                 startLevel: qualityStartLevel,
@@ -239,6 +237,8 @@ const Video = ({
 
             hls.loadSource(hlsSources[0].url);
             setHlsJs(hls);
+        } else {
+            setHlsJs(null);
         }
     }, [shouldLoad, hlsSources, ref]);
 
