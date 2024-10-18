@@ -73,7 +73,7 @@ const defaultProps = {
     playsInline: true,
     preload: 'auto',
     disablePictureInPicture: true,
-    disableHls: false,
+    disableHls: true,
     shouldLoad: true,
     withoutCors: false,
     className: null,
@@ -188,58 +188,59 @@ const Video = ({
         setHlsTsOffset(0);
         setHlsFailed(false);
 
-        if (shouldLoad && ref.current !== null && hlsSources !== null && hlsSources.length > 0) {
-            const hls = new Hls({
-                maxBufferLength: 15, // seconds. prevents loading too much per screen.
-                startLevel: qualityStartLevel !== null ? qualityStartLevel : -1,
-            });
-
-            hls.on(Hls.Events.LEVEL_SWITCHED, (_, { level }) => {
-                if (onQualityLevelChange !== null) {
-                    onQualityLevelChange(level, ref.current);
-                }
-            });
-
-            hls.on(Hls.Events.ERROR, (_, { fatal: isFatal, type: errorType }) => {
-                if (isFatal) {
-                    switch (errorType) {
-                        case Hls.ErrorTypes.MEDIA_ERROR:
-                            // automatically try to recover from media errors
-                            hls.recoverMediaError();
-                            break;
-                        case Hls.ErrorTypes.NETWORK_ERROR:
-                            // happens when all retries and media options have been exhausted. in that case, fallback to mp4/webm playback
-                            setHlsJs(null);
-                            setHlsFailed(true);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            });
-
-            // compute hls timestamp offset when we get the first video fragment
-            const onHlsBufferAppended = (_, { frag }) => {
-                const {
-                    start: fragStart,
-                    type: fragType,
-                    sn: fragSn = null,
-                    elementaryStreams: { video: videoStream = null },
-                } = frag;
-                const { startPTS: videoStartPTS = null } = videoStream || {};
-                if (fragType === 'main' && fragSn !== 'initSegment' && videoStartPTS !== null) {
-                    const tOffset = videoStartPTS - fragStart;
-                    hls.off(Hls.Events.BUFFER_APPENDED, onHlsBufferAppended);
-                    setHlsTsOffset(tOffset);
-                }
-            };
-            hls.on(Hls.Events.BUFFER_APPENDED, onHlsBufferAppended);
-
-            hls.loadSource(hlsSources[0].url);
-            setHlsJs(hls);
-        } else {
+        if (!shouldLoad || ref.current === null || hlsSources === null || hlsSources.length === 0) {
             setHlsJs(null);
+            return;
         }
+
+        const hls = new Hls({
+            maxBufferLength: 15, // seconds. prevents loading too much per screen.
+            startLevel: qualityStartLevel !== null ? qualityStartLevel : -1,
+        });
+
+        hls.on(Hls.Events.LEVEL_SWITCHED, (_, { level }) => {
+            if (onQualityLevelChange !== null) {
+                onQualityLevelChange(level, ref.current);
+            }
+        });
+
+        hls.on(Hls.Events.ERROR, (_, { fatal: isFatal, type: errorType }) => {
+            if (isFatal) {
+                switch (errorType) {
+                    case Hls.ErrorTypes.MEDIA_ERROR:
+                        // automatically try to recover from media errors
+                        hls.recoverMediaError();
+                        break;
+                    case Hls.ErrorTypes.NETWORK_ERROR:
+                        // happens when all retries and media options have been exhausted. in that case, fallback to mp4/webm playback
+                        setHlsJs(null);
+                        setHlsFailed(true);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        // compute hls timestamp offset when we get the first video fragment
+        const onHlsBufferAppended = (_, { frag }) => {
+            const {
+                start: fragStart,
+                type: fragType,
+                sn: fragSn = null,
+                elementaryStreams: { video: videoStream = null },
+            } = frag;
+            const { startPTS: videoStartPTS = null } = videoStream || {};
+            if (fragType === 'main' && fragSn !== 'initSegment' && videoStartPTS !== null) {
+                const tOffset = videoStartPTS - fragStart;
+                hls.off(Hls.Events.BUFFER_APPENDED, onHlsBufferAppended);
+                setHlsTsOffset(tOffset);
+            }
+        };
+        hls.on(Hls.Events.BUFFER_APPENDED, onHlsBufferAppended);
+
+        hls.loadSource(hlsSources[0].url);
+        setHlsJs(hls);
     }, [shouldLoad, hlsSources, ref]);
 
     // attach hls.js when the <video> ref is ready
