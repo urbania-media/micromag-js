@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-video-360",
-    "version": "0.3.586",
+    "version": "0.3.587",
     "private": false,
     "description": "",
     "keywords": [
@@ -62,13 +62,13 @@
         "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.20",
         "@micromag/core": "^0.3.585",
-        "@micromag/element-background": "^0.3.586",
+        "@micromag/element-background": "^0.3.587",
         "@micromag/element-closed-captions": "^0.3.585",
         "@micromag/element-container": "^0.3.585",
         "@micromag/element-footer": "^0.3.585",
         "@micromag/element-header": "^0.3.585",
         "@micromag/element-image": "^0.3.585",
-        "@micromag/element-video": "^0.3.586",
+        "@micromag/element-video": "^0.3.587",
         "@micromag/transforms": "^0.3.585",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
