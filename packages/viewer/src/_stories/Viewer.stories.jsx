@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading, no-console */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import {
     audioMedia,
@@ -197,7 +197,9 @@ const shareScreenProps = {
     screenId: shareScreensStory.components[0].id,
     story: shareScreensStory,
 };
-export const VideoAudio = () => <Viewer story={videoAudio} memoryRouter shareBasePath="https://micromag.ca" />;
+export const VideoAudio = () => (
+    <Viewer story={videoAudio} memoryRouter shareBasePath="https://micromag.ca" />
+);
 
 export const AudioOnly = () => <Viewer story={micromagAudio} memoryRouter />;
 
@@ -485,4 +487,37 @@ export const WithViewerEvents = () => {
             onViewModeChange={setViewMode}
         />
     );
+};
+
+export const LoadExternal = () => {
+    const storySlug = 'une-soiree-avec-pier-luc-funk-mm93';
+    const [story, setStory] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    useEffect(() => {
+        const url = `/api/proxyToProd/${storySlug}.json`;
+        fetch(url, { mode: 'cors' })
+            .then((response) => {
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setStory(data);
+                setErrorMessage(null);
+            })
+            .catch((error) => setErrorMessage(error.message));
+    }, [storySlug]);
+
+    if (errorMessage !== null) {
+        return <div>Error: {errorMessage}</div>;
+    }
+
+    if (story === null) {
+        return <div>Loading...</div>;
+    }
+
+    return <Viewer story={story} withNavigationHint memoryRouter />;
 };
