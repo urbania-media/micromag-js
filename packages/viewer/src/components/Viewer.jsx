@@ -863,10 +863,6 @@ const Viewer = ({
                                         const isBefore = i < screenIndex;
                                         const isAfter = i > screenIndex;
                                         const isNext = transitionDirection !== 0 && i === screenIndex + transitionDirection;
-                                        console.log({
-                                            i,
-                                            isNext,
-                                        });
                                         const activeRange = neighborScreensActive;
                                         const isInActiveRange =
                                             Math.abs(i - screenIndex) <= activeRange;
