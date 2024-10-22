@@ -4,6 +4,7 @@ const express = require('express');
 const _ = require('lodash');
 const dayjs = require('dayjs');
 const { sync: globSync } = require('glob');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = () => {
     const router = express.Router();
@@ -130,6 +131,19 @@ module.exports = () => {
         res.json(null);
         res.end();
     });
+
+    router.use(
+        '/proxyToProd',
+        createProxyMiddleware({
+            target: 'https://microm.ag',
+            changeOrigin: true,
+            followRedirects: true,
+            secure: true,
+            pathRewrite: {
+                '^/api/proxyToProd': '/',
+            },
+        }),
+    );
 
     /**
      * Resource index
