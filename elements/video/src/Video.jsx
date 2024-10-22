@@ -257,15 +257,6 @@ const Video = ({
         };
     }, [hlsJs, ref.current]);
 
-    useEffect(
-        () => () => {
-            ref.current.pause();
-            ref.current.removeAttribute('src');
-            ref.current.load();
-        },
-        [],
-    );
-
     // handle changes of qualityStartLevel when an hls.js instance exists
     useEffect(() => {
         if (hlsJs !== null) {
@@ -444,7 +435,7 @@ const Video = ({
                     }}
                     src={
                         (sourceFiles === null || sourceFiles.length === 0) &&
-                        (hlsSources === null || hlsSources.length === 0)
+                        (hlsSources === null || hlsSources.length === 0) && shouldLoad
                             ? `${mediaUrl}#t=0.001`
                             : null
                     }
@@ -479,13 +470,15 @@ const Video = ({
                     data-ts-offset={hlsTsOffset}
                     aria-hidden
                 >
-                    {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
-                        <source
-                            key={`${sourceUrl}-${sourceMime}`}
-                            src={sourceUrl !== null ? `${sourceUrl}#t=0.001` : null}
-                            type={sourceMime}
-                        />
-                    ))}
+                    {(shouldLoad ? sourceFiles || [] : []).map(
+                        ({ url: sourceUrl, mime: sourceMime }) => (
+                            <source
+                                key={`${sourceUrl}-${sourceMime}`}
+                                src={sourceUrl !== null ? `${sourceUrl}#t=0.001` : null}
+                                type={sourceMime}
+                            />
+                        ),
+                    )}
                 </video>
             ) : null}
             {!isImageWithoutSourceFile && !ready && showLoading ? (

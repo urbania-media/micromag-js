@@ -16,6 +16,7 @@ const propTypes = {
     screenState: PropTypes.string,
     index: PropTypes.number,
     active: PropTypes.bool,
+    preload: PropTypes.bool,
     current: PropTypes.bool,
     component: PropTypes.node,
     components: MicromagPropTypes.components,
@@ -29,6 +30,7 @@ const defaultProps = {
     screenState: null,
     index: null,
     current: false,
+    preload: true,
     component: null,
     components: null,
     className: null,
@@ -42,6 +44,7 @@ const Screen = ({
     index,
     active,
     current,
+    preload,
     components,
     component,
     className,
@@ -68,6 +71,7 @@ const Screen = ({
                         index={index}
                         active={active}
                         current={current}
+                        preload={preload}
                         mediaRef={mediaRef}
                     />
                 </div>

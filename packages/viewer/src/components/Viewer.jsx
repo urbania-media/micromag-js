@@ -860,7 +860,7 @@ const Viewer = ({
                                         const current = screenIndex === i;
                                         const isBefore = i < screenIndex;
                                         const isAfter = i > screenIndex;
-                                        const activeRange = neighborPreloadScreens;
+                                        const activeRange = neighborScreensActive;
                                         const isInActiveRange =
                                             Math.abs(i - screenIndex) <= activeRange;
                                         const preloadRange =
