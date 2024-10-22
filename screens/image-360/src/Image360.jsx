@@ -35,7 +35,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     type: PropTypes.string,
     spacing: PropTypes.number,
     className: PropTypes.string,
@@ -48,7 +48,7 @@ const defaultProps = {
     header: null,
     footer: null,
     current: true,
-    active: true,
+    preload: true,
     type: null,
     spacing: 20,
     className: null,
@@ -61,7 +61,7 @@ const Image360Screen = ({
     header,
     footer,
     current,
-    active,
+    preload,
     type,
     spacing,
     className,
@@ -80,7 +80,7 @@ const Image360Screen = ({
     const mediaRef = usePlaybackMediaRef(current);
 
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const canvasContainerRef = useRef();
 

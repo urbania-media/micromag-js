@@ -2,26 +2,26 @@
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useMemo } from 'react';
-import { useIntl, FormattedMessage } from 'react-intl';
+import React, { useCallback, useMemo, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
-    useViewerContext,
-    useViewerWebView,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerWebView,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import {
-    isTextFilled,
-    isHeaderFilled,
-    isFooterFilled,
     getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
     isImageFilled,
+    isTextFilled,
 } from '@micromag/core/utils';
 import Author from '@micromag/element-author';
 import Background from '@micromag/element-background';
@@ -50,7 +50,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -68,7 +68,7 @@ const defaultProps = {
     header: null,
     footer: null,
     current: true,
-    active: true,
+    preload: true,
     type: null,
     className: null,
 };
@@ -86,7 +86,7 @@ const ArticleScreen = ({
     header,
     footer,
     current,
-    active,
+    preload,
     type,
     className,
 }) => {
@@ -107,7 +107,7 @@ const ArticleScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const ready = true;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
@@ -167,6 +167,7 @@ const ArticleScreen = ({
                         // width={width - spacing * 2} // in layout flow
                         width={width}
                         height={mediaHeight}
+                        shouldLoad={mediaShouldLoad}
                         resolution={resolution}
                         className={styles.visual}
                     />

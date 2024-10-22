@@ -59,7 +59,7 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     spacing: PropTypes.number,
     className: PropTypes.string,
 };
@@ -80,7 +80,7 @@ const defaultProps = {
     footer: null,
     background: null,
     current: true,
-    active: true,
+    preload: true,
     spacing: 20,
     className: null,
 };
@@ -101,7 +101,7 @@ const UrbaniaArticle = ({
     footer,
     background,
     current,
-    active,
+    preload,
     spacing,
     className,
 }) => {
@@ -175,7 +175,7 @@ const UrbaniaArticle = ({
 
     const { video: backgroundVideo = null } = background || {};
     const hasVideoBackground = backgroundVideo !== null;
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
     const finalPlaying = playing && current;
     const backgroundPlaying = current && !openedWebView && (isView || isEdit);
 

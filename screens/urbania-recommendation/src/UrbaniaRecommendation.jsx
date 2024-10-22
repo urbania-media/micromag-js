@@ -67,6 +67,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    preload: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -85,6 +86,7 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
+    preload: true,
     className: null,
 };
 
@@ -103,6 +105,7 @@ const UrbaniaRecommendation = ({
     background,
     current,
     active,
+    preload,
     className,
 }) => {
     const intl = useIntl();
@@ -149,7 +152,7 @@ const UrbaniaRecommendation = ({
 
     const backgroundPlaying = current && (isView || isEdit);
     const videoPlaying = current && (isView || isEdit) && playing;
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const scrollingDisabled = (!isView && !isEdit) || !current;
 

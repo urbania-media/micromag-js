@@ -34,7 +34,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     mediaRef: PropTypes.func,
     showWave: PropTypes.bool,
     className: PropTypes.string,
@@ -48,7 +48,7 @@ const defaultProps = {
     header: null,
     footer: null,
     current: true,
-    active: true,
+    preload: true,
     mediaRef: null,
     showWave: true,
     className: null,
@@ -62,7 +62,7 @@ const AudioScreen = ({
     header,
     footer,
     current,
-    active,
+    preload,
     mediaRef: customMediaRef,
     showWave,
     className,
@@ -81,7 +81,7 @@ const AudioScreen = ({
     const [ready, setReady] = useState(isStatic || isPlaceholder);
 
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
     // const transitionPlaying = current && ready;
     // const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 

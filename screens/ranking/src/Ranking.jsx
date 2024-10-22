@@ -38,7 +38,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -54,7 +54,7 @@ const defaultProps = {
     header: null,
     footer: null,
     current: true,
-    active: true,
+    preload: true,
     type: null,
     className: null,
 };
@@ -70,7 +70,7 @@ const RankingScreen = ({
     header,
     footer,
     current,
-    active,
+    preload,
     type,
     className,
 }) => {
@@ -95,7 +95,7 @@ const RankingScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const hasTitle = isTextFilled(title);
 

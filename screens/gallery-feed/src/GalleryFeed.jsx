@@ -46,6 +46,7 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    preload: PropTypes.bool,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -60,6 +61,7 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
+    preload: true,
     type: null,
     className: null,
 };
@@ -74,6 +76,7 @@ const GalleryFeedScreen = ({
     footer,
     current,
     active,
+    preload,
     type,
     className,
 }) => {
@@ -91,7 +94,7 @@ const GalleryFeedScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
     const hasImages = images !== null;
     const imagesCount = hasImages ? images.length : 0;
     const [imagesLoaded, setImagesLoaded] = useState(0);

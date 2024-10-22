@@ -17,6 +17,7 @@ const propTypes = {
     screenState: PropTypes.string,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    preload: PropTypes.bool,
     mediaRef: PropTypes.func,
     width: PropTypes.number,
     index: PropTypes.number,
@@ -32,6 +33,7 @@ const defaultProps = {
     screenState: null,
     current: false,
     active: true,
+    preload: true,
     index: null,
     mediaRef: null,
     width: null,
@@ -96,6 +98,7 @@ function ViewerScreen({
                         screenState={screenState}
                         index={index}
                         active={active}
+                        preload={preload}
                         current={current}
                         mediaRef={mediaRef}
                     />

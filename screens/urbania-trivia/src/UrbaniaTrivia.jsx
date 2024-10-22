@@ -69,7 +69,7 @@ const propTypes = {
     gotoNextScreenOnEnd: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     spacing: PropTypes.number,
     padding: PropTypes.number,
     mediaRef: PropTypes.func,
@@ -83,7 +83,7 @@ const defaultProps = {
     gotoNextScreenOnEnd: false,
     background: null,
     current: true,
-    active: true,
+    preload: true,
     spacing: 20,
     padding: 20,
     mediaRef: null,
@@ -97,7 +97,7 @@ const UrbaniaTrivia = ({
     gotoNextScreenOnEnd,
     background,
     current,
-    active,
+    preload,
     spacing,
     padding,
     mediaRef: customMediaRef,
@@ -114,7 +114,7 @@ const UrbaniaTrivia = ({
     const hasTitle = isTextFilled(title);
 
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
     // get resized video style props

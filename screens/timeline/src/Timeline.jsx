@@ -55,6 +55,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    preload: PropTypes.bool,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -75,6 +76,7 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
+    preload: true,
     type: null,
     className: null,
 };
@@ -95,6 +97,7 @@ const Timeline = ({
     background,
     current,
     active,
+    preload,
     // transitions,
     // transitionStagger,
     type,
@@ -135,7 +138,7 @@ const Timeline = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded((count) => count + 1);

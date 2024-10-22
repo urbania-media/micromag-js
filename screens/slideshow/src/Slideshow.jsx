@@ -34,6 +34,7 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    preload: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
@@ -49,6 +50,7 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
+    preload: true,
     transitions: null,
     className: null,
 };
@@ -61,6 +63,7 @@ const SlideshowScreen = ({
     footer,
     current,
     active,
+    preload,
     spacing,
     transitionDelay,
     captionMaxLines,
@@ -74,7 +77,7 @@ const SlideshowScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 

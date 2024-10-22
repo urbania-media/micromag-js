@@ -44,7 +44,7 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     type: PropTypes.string,
     spacing: PropTypes.number,
     mediaRef: PropTypes.func,
@@ -58,7 +58,7 @@ const defaultProps = {
     footer: null,
     background: null,
     current: true,
-    active: true,
+    preload: true,
     type: null,
     spacing: 20,
     mediaRef: null,
@@ -72,7 +72,7 @@ const Video360Screen = ({
     footer,
     background,
     current,
-    active,
+    preload,
     type,
     spacing,
     mediaRef: customMediaRef,
@@ -94,7 +94,7 @@ const Video360Screen = ({
     const { open: openWebView } = useViewerWebView();
 
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
     const {
         media: videoMedia = null,
         closedCaptions = null,

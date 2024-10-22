@@ -55,6 +55,7 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    preload: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -75,6 +76,7 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
+    preload: true,
     className: null,
 };
 
@@ -95,6 +97,7 @@ const ImageScreen = ({
     footer,
     current,
     active,
+    preload,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
@@ -119,7 +122,7 @@ const ImageScreen = ({
 
     const [ready, setReady] = useState(!hasImage);
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const onImageLoaded = useCallback(() => {
         setReady(true);

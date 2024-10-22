@@ -83,7 +83,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     popupBackground: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -100,7 +100,7 @@ const defaultProps = {
     background: null,
     popupBackground: null,
     current: true,
-    active: true,
+    preload: true,
     type: 'horoscope',
     className: null,
 };
@@ -117,7 +117,7 @@ const UrbaniaHoroscope = ({
     background,
     popupBackground,
     current,
-    active,
+    preload,
     type,
     className,
 }) => {
@@ -150,7 +150,7 @@ const UrbaniaHoroscope = ({
     const hasButton = isTextFilled(button);
 
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = !isPlaceholder && (current || active);
+    const mediaShouldLoad = !isPlaceholder && (current || preload);
 
     const [showSignsGrid, setShowSignsGrid] = useState(false);
     const [selectedSign, setSelectedSign] = useState(null);

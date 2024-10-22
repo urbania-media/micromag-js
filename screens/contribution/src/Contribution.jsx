@@ -55,7 +55,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
@@ -77,7 +77,7 @@ const defaultProps = {
     header: null,
     footer: null,
     current: true,
-    active: true,
+    preload: true,
     transitions: null,
     transitionStagger: 100,
     resizeTransitionDuration: 750,
@@ -99,7 +99,7 @@ const ContributionScreen = ({
     header,
     footer,
     current,
-    active,
+    preload,
     transitions,
     transitionStagger,
     resizeTransitionDuration,
@@ -122,7 +122,7 @@ const ContributionScreen = ({
     const mediaRef = usePlaybackMediaRef(current);
 
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;

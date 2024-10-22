@@ -3,7 +3,7 @@ import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Close, PlaceholderButton, ScreenElement } from '@micromag/core/components';
@@ -121,7 +121,7 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     withoutCloseButton: PropTypes.bool,
     className: PropTypes.string,
 };
@@ -138,7 +138,7 @@ const defaultProps = {
     footer: null,
     background: null,
     current: true,
-    active: true,
+    preload: true,
     withoutCloseButton: false,
     className: null,
 };
@@ -155,11 +155,10 @@ const KeypadScreen = ({
     footer,
     background,
     current,
-    active,
+    preload,
     withoutCloseButton,
     className,
 }) => {
-    const intl = useIntl();
     const containerRef = useRef(null);
     const popupInnerRef = useRef(null);
 
@@ -191,7 +190,7 @@ const KeypadScreen = ({
     const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = !isPlaceholder && (current || active);
+    const mediaShouldLoad = !isPlaceholder && (current || preload);
     const isInteractivePreview = isEdit && screenState === null;
 
     const { layout: keypadLayout = null } = keypadSettings || {};

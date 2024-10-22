@@ -35,7 +35,7 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -49,7 +49,7 @@ const defaultProps = {
     footer: null,
     background: null,
     current: true,
-    active: true,
+    preload: true,
     className: null,
 };
 
@@ -63,7 +63,7 @@ const TextScreen = ({
     footer,
     background,
     current,
-    active,
+    preload,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
@@ -89,7 +89,7 @@ const TextScreen = ({
     const titleWithMargin = hasTitle && hasText && !isSplitted;
 
     const backgroundPlaying = current && (isView || isEdit);
-    const backgroundShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
@@ -219,7 +219,7 @@ const TextScreen = ({
                     resolution={resolution}
                     playing={backgroundPlaying}
                     muted={muted}
-                    shouldLoad={backgroundShouldLoad}
+                    shouldLoad={mediaShouldLoad}
                     mediaRef={mediaRef}
                     withoutVideo={isPreview}
                     className={styles.background}

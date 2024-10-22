@@ -44,7 +44,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.textElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     spacing: PropTypes.number,
     className: PropTypes.string,
 };
@@ -60,7 +60,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
-    active: true,
+    preload: true,
     spacing: 20,
     className: null,
 };
@@ -76,7 +76,7 @@ const UrbaniaArticleCard = ({
     background,
     callToAction,
     current,
-    active,
+    preload,
     spacing,
     className,
 }) => {
@@ -123,7 +123,7 @@ const UrbaniaArticleCard = ({
     const [iframeMounted, setIframeMounted] = useState(false);
     const [iframeLoaded, setIframeLoaded] = useState(false);
 
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
     const backgroundPlaying = current && (isView || isEdit) && !articleOpened && playing;
 
     const mediaRef = usePlaybackMediaRef(current && !articleOpened);

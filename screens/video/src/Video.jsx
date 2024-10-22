@@ -43,6 +43,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    preload: PropTypes.bool,
     spacing: PropTypes.number,
     mediaRef: PropTypes.func,
     className: PropTypes.string,
@@ -57,6 +58,7 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
+    preload: true,
     spacing: 20,
     mediaRef: null,
     className: null,
@@ -71,6 +73,7 @@ const VideoScreen = ({
     background,
     current,
     active,
+    preload,
     spacing,
     mediaRef: customMediaRef,
     className,
@@ -88,7 +91,7 @@ const VideoScreen = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
 
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
     const {

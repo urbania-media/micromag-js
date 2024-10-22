@@ -36,7 +36,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -49,7 +49,7 @@ const defaultProps = {
     header: null,
     footer: null,
     current: true,
-    active: true,
+    preload: true,
     className: null,
 };
 
@@ -62,7 +62,7 @@ const QuoteScreen = ({
     header,
     footer,
     current,
-    active,
+    preload,
     className,
 }) => {
     const { width, height, resolution } = useScreenSize();
@@ -91,7 +91,7 @@ const QuoteScreen = ({
 
     const quoteWithMargin = hasQuote && hasAuthor && !isSplitted;
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     return (
         <div

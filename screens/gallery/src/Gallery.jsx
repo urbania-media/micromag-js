@@ -68,6 +68,7 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    preload: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -82,6 +83,7 @@ const defaultProps = {
     footer: null,
     current: true,
     active: true,
+    preload: true,
     className: null,
 };
 
@@ -94,6 +96,7 @@ const GalleryScreen = ({
     footer,
     current,
     active,
+    preload,
     spacing,
     captionMaxLines,
     className,
@@ -110,7 +113,7 @@ const GalleryScreen = ({
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 

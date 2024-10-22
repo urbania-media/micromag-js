@@ -48,7 +48,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     ready: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -73,7 +73,7 @@ const defaultProps = {
     footer: null,
     background: null,
     current: true,
-    active: true,
+    preload: true,
     ready: true,
     transitions: null,
     transitionStagger: 100,
@@ -98,7 +98,7 @@ const QuizScreen = ({
     footer,
     background,
     current,
-    active,
+    preload,
     ready,
     transitions,
     transitionStagger,
@@ -124,7 +124,7 @@ const QuizScreen = ({
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);

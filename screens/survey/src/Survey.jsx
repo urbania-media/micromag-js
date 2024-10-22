@@ -58,7 +58,7 @@ const propTypes = {
     withoutPercentage: PropTypes.bool,
     withoutBar: PropTypes.bool,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     // transitionStagger: PropTypes.number,
     resultTransitionDuration: PropTypes.number,
@@ -81,7 +81,7 @@ const defaultProps = {
     withoutPercentage: false,
     withoutBar: false,
     current: true,
-    active: true,
+    preload: true,
     transitions: null,
     // transitionStagger: 100,
     resultTransitionDuration: 500,
@@ -104,7 +104,7 @@ const SurveyScreen = ({
     withoutPercentage,
     withoutBar,
     current,
-    active,
+    preload,
     transitions,
     // transitionStagger,
     resultTransitionDuration,
@@ -204,7 +204,7 @@ const SurveyScreen = ({
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
 
     const onAnswerClick = useCallback(
         (answerIndex) => {

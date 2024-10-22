@@ -40,7 +40,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    preload: PropTypes.bool,
     type: PropTypes.string,
     conversation: MicromagPropTypes.conversation,
     transitions: MicromagPropTypes.transitions,
@@ -57,7 +57,7 @@ const defaultProps = {
     header: null,
     footer: null,
     current: true,
-    active: true,
+    preload: true,
     type: null,
     conversation: null,
     transitions: null,
@@ -74,7 +74,7 @@ const ConversationScreen = ({
     header,
     footer,
     current,
-    active,
+    preload,
     type,
     conversation,
     transitions,
@@ -97,7 +97,7 @@ const ConversationScreen = ({
         useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || active;
+    const mediaShouldLoad = current || preload;
     const withAnimation = isView && !isStatic && timingMode === 'sequence';
     const { speakers = null, messages = [], messageStyle, speakerStyle } = conversation || {};
 

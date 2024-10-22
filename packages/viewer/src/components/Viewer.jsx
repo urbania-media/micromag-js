@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 // import FocusLock from 'react-focus-lock';
 import { Helmet } from 'react-helmet';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -66,6 +66,9 @@ const propTypes = {
     neighborScreensActive: PropTypes.number,
     neighborScreenOffset: PropTypes.number,
     neighborScreenScale: PropTypes.number,
+    neighborPreloadDelay: PropTypes.number,
+    neighborPreloadBackward: PropTypes.number,
+    neighborPreloadScreens: PropTypes.number,
     topSafezoneHeight: PropTypes.number,
     bottomSafezoneHeight: PropTypes.number,
     menuDotsButtons: PropTypes.node,
@@ -119,6 +122,9 @@ const defaultProps = {
     neighborScreensActive: 1,
     neighborScreenOffset: 105,
     neighborScreenScale: 0.8,
+    neighborPreloadDelay: 2000,
+    neighborPreloadBackward: false,
+    neighborPreloadScreens: null,
     topSafezoneHeight: null,
     bottomSafezoneHeight: null,
     menuIsScreenWidth: false,
@@ -167,6 +173,9 @@ const Viewer = ({
     neighborScreensActive,
     neighborScreenOffset,
     neighborScreenScale,
+    neighborPreloadDelay,
+    neighborPreloadBackward,
+    neighborPreloadScreens,
     topSafezoneHeight,
     bottomSafezoneHeight,
     menuIsScreenWidth,
@@ -325,6 +334,8 @@ const Viewer = ({
         }
     }, [finalFocusColor]);
 
+    const [preloadNeighbors, setPreloadNeighbors] = useState(false);
+
     /**
      * Screen Transitions
      */
@@ -341,6 +352,8 @@ const Viewer = ({
             if (index === screenIndex) {
                 return;
             }
+
+            setPreloadNeighbors(false);
 
             if (currentScreenMedia !== null) {
                 currentScreenMedia.current = screensMediasRef.current[index] || null;
@@ -659,16 +672,17 @@ const Viewer = ({
         isView,
     ]);
 
-    const [preloadNeighbors, setPreloadNeighbors] = useState(false);
     useEffect(() => {
-        setPreloadNeighbors(false);
+        if (preloadNeighbors) {
+            return () => {};
+        }
         const timeout = setTimeout(() => {
             setPreloadNeighbors(true);
-        }, 1000);
+        }, neighborPreloadDelay);
         return () => {
             clearTimeout(timeout);
         };
-    }, [screenIndex]);
+    }, [preloadNeighbors]);
 
     let topHeight = 0;
     if (topSafezoneHeight !== null) {
@@ -844,10 +858,25 @@ const Viewer = ({
                                 >
                                     {screens.map((screen, i) => {
                                         const current = screenIndex === i;
-                                        const active =
-                                            i >= screenIndex - neighborScreensActive &&
-                                            i <= screenIndex + neighborScreensActive &&
-                                            preloadNeighbors;
+                                        const isBefore = i < screenIndex;
+                                        const isAfter = i > screenIndex;
+                                        const activeRange = neighborPreloadScreens;
+                                        const isInActiveRange =
+                                            Math.abs(i - screenIndex) <= activeRange;
+                                        const preloadRange =
+                                            neighborPreloadScreens !== null
+                                                ? neighborPreloadScreens
+                                                : neighborScreensActive;
+                                        const isInPreloadRange =
+                                            Math.abs(i - screenIndex) <= preloadRange;
+                                        const active = isInActiveRange;
+                                        const preload =
+                                            current ||
+                                            (preloadNeighbors &&
+                                                ((isAfter && isInPreloadRange) ||
+                                                    (neighborPreloadBackward &&
+                                                        isBefore &&
+                                                        isInPreloadRange)));
 
                                         const screenStyles = getScreenStylesByIndex(
                                             i,
@@ -877,6 +906,7 @@ const Viewer = ({
                                                         current={current}
                                                         active={active || current}
                                                         ready={current && transitioned}
+                                                        preload={preload || current}
                                                         mediaRef={(ref) => {
                                                             screensMediasRef.current[i] = ref;
                                                         }}
