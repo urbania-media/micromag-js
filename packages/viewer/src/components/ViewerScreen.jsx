@@ -49,6 +49,7 @@ function ViewerScreen({
     index,
     screenState,
     active,
+    preload,
     current,
     mediaRef,
     width,

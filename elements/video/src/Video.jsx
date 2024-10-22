@@ -257,6 +257,15 @@ const Video = ({
         };
     }, [hlsJs, ref.current]);
 
+    useEffect(
+        () => () => {
+            ref.current.pause();
+            ref.current.removeAttribute('src');
+            ref.current.load();
+        },
+        [],
+    );
+
     // handle changes of qualityStartLevel when an hls.js instance exists
     useEffect(() => {
         if (hlsJs !== null) {
