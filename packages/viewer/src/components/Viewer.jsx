@@ -497,6 +497,7 @@ const Viewer = ({
         dragging: isDragging,
         progress: progressSpring,
         bind: dragContentBind,
+        direction: transitionDirection,
     } = useDragProgress({
         progress: screenIndex,
         disabled: !isView || withoutTransitions,
@@ -701,6 +702,7 @@ const Viewer = ({
     ) {
         bottomHeight = playbackControlsContainerHeight / screenScale;
     }
+
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
@@ -860,6 +862,11 @@ const Viewer = ({
                                         const current = screenIndex === i;
                                         const isBefore = i < screenIndex;
                                         const isAfter = i > screenIndex;
+                                        const isNext = transitionDirection !== 0 && i === screenIndex + transitionDirection;
+                                        console.log({
+                                            i,
+                                            isNext,
+                                        });
                                         const activeRange = neighborScreensActive;
                                         const isInActiveRange =
                                             Math.abs(i - screenIndex) <= activeRange;
@@ -869,14 +876,15 @@ const Viewer = ({
                                                 : neighborScreensActive;
                                         const isInPreloadRange =
                                             Math.abs(i - screenIndex) <= preloadRange;
-                                        const active = isInActiveRange;
+                                        const active = current || isInActiveRange || isNext;
                                         const preload =
                                             current ||
                                             (preloadNeighbors &&
                                                 ((isAfter && isInPreloadRange) ||
                                                     (neighborPreloadBackward &&
                                                         isBefore &&
-                                                        isInPreloadRange)));
+                                                        isInPreloadRange))) ||
+                                            isNext;
 
                                         const screenStyles = getScreenStylesByIndex(
                                             i,

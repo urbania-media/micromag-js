@@ -1,6 +1,6 @@
 import { useSpring } from '@react-spring/core';
 import { useDrag } from '@use-gesture/react';
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 function useDragProgress({
     progress: wantedProgress,
@@ -16,11 +16,19 @@ function useDragProgress({
 } = {}) {
     const refDragging = useRef(false);
     const refProgress = useRef(wantedProgress);
+    const wantedProgressRef = useRef(wantedProgress);
+    if (wantedProgress !== wantedProgressRef.current) {
+        wantedProgressRef.current = wantedProgress;
+    }
     const [dragging, setDragging] = useState(false);
+    const [direction, setDirection] = useState(0);
     const spring = useCallback(
         () => ({
             progress: wantedProgress,
             immediate: dragging || disabled,
+            onResolve: () => {
+                setDirection(0);
+            },
             ...springParams,
         }),
         [wantedProgress, disabled],
@@ -48,6 +56,7 @@ function useDragProgress({
 
             const newProgress = computeProgress(gestureState);
             refDragging.current = active;
+            setDirection(newProgress < wantedProgressRef.current ? -1 : 1);
             refProgress.current = newProgress;
             if (active !== dragging) {
                 setDragging(active);
@@ -55,6 +64,11 @@ function useDragProgress({
             api.start({
                 progress: newProgress,
                 immediate: active,
+                onResolve: !active
+                    ? () => {
+                          setDirection(0);
+                      }
+                    : () => {},
             });
             if (onProgress !== null) {
                 onProgress(newProgress, gestureState);
@@ -67,10 +81,14 @@ function useDragProgress({
 
     useEffect(() => {
         if (!refDragging.current && wantedProgress !== refProgress.current) {
+            setDirection(wantedProgress < refProgress.current ? -1 : 1);
             refProgress.current = wantedProgress;
             api.start({
                 progress: wantedProgress,
                 immediate: false,
+                onResolve: () => {
+                    setDirection(0);
+                },
             });
         }
     }, [wantedProgress]);
@@ -79,6 +97,7 @@ function useDragProgress({
         bind,
         dragging,
         progress,
+        direction,
     };
 }
 
