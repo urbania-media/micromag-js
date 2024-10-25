@@ -188,7 +188,7 @@ const Video = ({
         setHlsTsOffset(0);
         setHlsFailed(false);
 
-        if (!shouldLoad || ref.current === null || hlsSources === null || hlsSources.length === 0) {
+        if (!shouldLoad || hlsSources === null || hlsSources.length === 0) {
             setHlsJs(null);
             return;
         }
@@ -197,6 +197,7 @@ const Video = ({
             maxBufferLength: 15, // seconds. prevents loading too much per screen.
             startLevel: qualityStartLevel !== null ? qualityStartLevel : -1,
         });
+        // console.log('instanciated hls for', media.name);
 
         hls.on(Hls.Events.LEVEL_SWITCHED, (_, { level }) => {
             if (onQualityLevelChange !== null) {
@@ -241,21 +242,36 @@ const Video = ({
 
         hls.loadSource(hlsSources[0].url);
         setHlsJs(hls);
-    }, [shouldLoad, hlsSources, ref]);
+    }, [shouldLoad, hlsSources]);
 
-    // attach hls.js when the <video> ref is ready
+    // attach hls.js when the <video> ref or the hls.js instance is ready
     useEffect(() => {
         if (hlsJs !== null && ref.current !== null) {
             hlsJs.attachMedia(ref.current);
+            // if (onQualityLevelChange !== null) {
+            //     onQualityLevelChange(hlsJs.currentLevel, ref.current);
+            // }
         }
 
         return () => {
             if (hlsJs !== null) {
                 hlsJs.detachMedia();
-                hlsJs.destroy();
             }
         };
     }, [hlsJs, ref.current]);
+
+    // cleanup hls.js instance when it is no longer needed
+    useEffect(
+        () =>
+            // teardown func
+            () => {
+                if (hlsJs !== null) {
+                    hlsJs.destroy();
+                    // console.log('destroyed hls.js for ', media.name);
+                }
+            },
+        [hlsJs],
+    );
 
     // handle changes of qualityStartLevel when an hls.js instance exists
     useEffect(() => {
@@ -435,7 +451,8 @@ const Video = ({
                     }}
                     src={
                         (sourceFiles === null || sourceFiles.length === 0) &&
-                        (hlsSources === null || hlsSources.length === 0) && shouldLoad
+                        (hlsSources === null || hlsSources.length === 0) &&
+                        shouldLoad
                             ? `${mediaUrl}#t=0.001`
                             : null
                     }

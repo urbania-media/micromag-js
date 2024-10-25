@@ -498,7 +498,6 @@ export const LoadExternal = () => {
         const url = `/api/proxyToProd/${storySlug}.json`;
         fetch(url, { mode: 'cors' })
             .then((response) => {
-                console.log(response);
                 if (!response.ok) {
                     throw new Error(response.statusText);
                 }
