@@ -196,6 +196,13 @@ const Video = ({
         const hls = new Hls({
             maxBufferLength: 15, // seconds. prevents loading too much per screen.
             startLevel: qualityStartLevel !== null ? qualityStartLevel : -1,
+            lowLatencyMode: true,
+            enableWorker: true,
+            // debug: true,
+            // lowLatencyMode: true,
+            // backBufferLength: 90,
+            // testBandwidth: qualityStartLevel === null,
+            // startFragPrefetch: true,
         });
 
         hls.on(Hls.Events.LEVEL_SWITCHED, (_, { level }) => {
@@ -435,7 +442,8 @@ const Video = ({
                     }}
                     src={
                         (sourceFiles === null || sourceFiles.length === 0) &&
-                        (hlsSources === null || hlsSources.length === 0) && shouldLoad
+                        (hlsSources === null || hlsSources.length === 0) &&
+                        shouldLoad
                             ? `${mediaUrl}#t=0.001`
                             : null
                     }
