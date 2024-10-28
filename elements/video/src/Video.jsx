@@ -73,7 +73,7 @@ const defaultProps = {
     playsInline: true,
     preload: 'auto',
     disablePictureInPicture: true,
-    disableHls: true,
+    disableHls: false,
     shouldLoad: true,
     withoutCors: false,
     className: null,
@@ -196,7 +196,6 @@ const Video = ({
         const hls = new Hls({
             maxBufferLength: 15, // seconds. prevents loading too much per screen.
             startLevel: qualityStartLevel !== null ? qualityStartLevel : -1,
-            lowLatencyMode: true,
             enableWorker: true,
             // debug: true,
             // lowLatencyMode: true,
@@ -204,7 +203,6 @@ const Video = ({
             // testBandwidth: qualityStartLevel === null,
             // startFragPrefetch: true,
         });
-        // console.log('instanciated hls for', media.name);
 
         hls.on(Hls.Events.LEVEL_SWITCHED, (_, { level }) => {
             if (onQualityLevelChange !== null) {
@@ -274,7 +272,6 @@ const Video = ({
             () => {
                 if (hlsJs !== null) {
                     hlsJs.destroy();
-                    // console.log('destroyed hls.js for ', media.name);
                 }
             },
         [hlsJs],
