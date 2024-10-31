@@ -108,15 +108,14 @@ const UrbaniaArticleCard = ({
     const hasAuthorName = isTextFilled(authorName);
     const hasCta = isTextFilled(callToAction);
 
-    const isUrbania = hasUrl && url.indexOf('urbania.ca') === -1;
-    const isSimple = hasUrl && url.indexOf('simple.urbania.ca') !== -1;
-    const finalUrl =
-        hasUrl && isUrbania && !isSimple
-            ? url.replace(
-                  /^https?:\/\/([^.]+\.)?urbania\.ca\/article\//,
-                  'https://simple.urbania.ca/article/',
-              )
-            : url;
+    const isUrbania = hasUrl && url.indexOf('urbania.ca') !== -1;
+    // const isSimple = hasUrl && url.indexOf('simple.urbania.ca') !== -1;
+    const finalUrl = isUrbania
+        ? `${url.replace(
+              /^https?:\/\/([^.]+\.)?urbania\.(fr|ca)\//,
+              'https://urbania.$2/',
+          )}${url.indexOf('?') !== -1 ? '&' : '?'}reader`
+        : url;
 
     const [articleOpened, setArticleOpened] = useState(false);
     const [iframeEnabled, setIframeEnabled] = useState(false);
