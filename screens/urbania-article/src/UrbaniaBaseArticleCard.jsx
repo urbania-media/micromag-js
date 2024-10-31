@@ -108,9 +108,8 @@ const UrbaniaArticleCard = ({
     const hasAuthorName = isTextFilled(authorName);
     const hasCta = isTextFilled(callToAction);
 
-    const isUrbania = hasUrl && url.indexOf('urbania.ca') !== -1;
     // const isSimple = hasUrl && url.indexOf('simple.urbania.ca') !== -1;
-    const finalUrl = isUrbania
+    const finalUrl = hasUrl
         ? `${url.replace(
               /^https?:\/\/([^.]+\.)?urbania\.(fr|ca)\//,
               'https://urbania.$2/',

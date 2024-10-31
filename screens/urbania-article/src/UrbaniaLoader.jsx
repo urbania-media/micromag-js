@@ -34,24 +34,20 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
     //     return urlHostname;
     // }, [url]);
 
+    const finalUrl =
+        url !== null && isValidUrl(url)
+            ? url.replace(/^https?:\/\/([^.]+\.)?urbania\.(ca|ƒr)\//, 'https://urbania.$2/')
+            : url;
+
     useEffect(() => {
-        if (url !== null && isValidUrl(url)) {
-            if (url.indexOf('urbania.ca') === -1) {
-                return;
-            }
-            let finalUrl = url;
-            const isSimple = url.indexOf('simple.urbania.ca') !== -1;
-            if (!isSimple) {
-                finalUrl = url.replace(
-                    /^https?:\/\/([^.]+\.)?urbania\.ca\/article\//,
-                    'https://simple.urbania.ca/article/',
-                );
-            }
-            getJSON(`${finalUrl}.json`, { mode: 'cors' }).then((art) => {
-                setArticle(art || null);
-            });
+        if (finalUrl !== null && isValidUrl(finalUrl)) {
+            getJSON(`https://api.urbania.ca/documents?uri=${finalUrl}`, { mode: 'cors' }).then(
+                (art) => {
+                    setArticle(art || null);
+                },
+            );
         }
-    }, [url, setArticle]);
+    }, [finalUrl, setArticle]);
 
     const values = useMemo(() => {
         const {
@@ -78,18 +74,14 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
 
         const hasArticle = article !== null;
 
-        const {
-            authors = [],
-            sponsors = [],
-            site = null,
-            canonical = null,
-            readerUrl = null,
-        } = metadata || {};
+        const { credits = [], sponsors = [], brands = [] } = metadata || {};
+
+        const [{ author: creditAuthor = null } = {}] = credits || [];
+        const [{ handle: site = null } = {}] = brands || [];
 
         const { sizes = {} } = articleImage || {};
         const { medium = {}, large = {} } = sizes || {};
-        const articleAuthor = (authors || []).length > 0 ? authors[0] : null;
-        const { name: authorName = null, avatar: authorImage = null } = articleAuthor || {};
+        const { name: authorName = null, image: authorImage = null } = creditAuthor || {};
         const finalArticleAuthor = {
             ...(authorName !== null ? { name: { body: `<p>${authorName}</p>` } } : null),
             ...(authorImage !== null ? { image: authorImage } : null),
@@ -98,15 +90,11 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
         // Type
         const defaultType = articleType || type;
 
-        // Url
-        const finalReaderUrl =
-            readerUrl !== null ? `${readerUrl}${theme !== null ? `?theme=${theme}` : ''}` : null;
-
         // Sponsors
         const defaultSponsor =
             (sponsors || []).length > 0
                 ? (sponsors || [])
-                      .map(({ name = null }) => name)
+                      .map(({ organisation: { name = null } = {} }) => name)
                       .filter((name) => name !== null)
                       .join(', ')
                       .trim()
@@ -138,7 +126,7 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
                 imageUrl !== null && image !== null
                     ? image
                     : { type: 'image', ...articleImage, sizes: { medium, large } },
-            url: finalReaderUrl || canonical || url,
+            url: finalUrl,
             header,
             footer: {
                 ...footer,
@@ -147,14 +135,14 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
                     label: defaultType === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
                     inWebView: true,
                     ...callToAction,
-                    ...(hasArticle ? { active: url !== null } : null),
-                    url: ctaUrl || readerUrl || canonical,
+                    ...(hasArticle ? { active: finalUrl !== null } : null),
+                    url: ctaUrl || finalUrl,
                 },
             },
         };
-    }, [article, url, props]);
+    }, [article, finalUrl, props]);
 
-    return <Component {...props} {...values} hasArticle={url !== null} />;
+    return <Component {...props} {...values} hasArticle={finalUrl !== null} />;
 };
 
 UrbaniaLoader.propTypes = propTypes;
