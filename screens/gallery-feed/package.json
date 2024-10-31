@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-gallery-feed",
-    "version": "0.3.591",
+    "version": "0.3.592",
     "private": false,
     "description": "",
     "keywords": [
@@ -61,7 +61,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.590",
-        "@micromag/element-background": "^0.3.591",
+        "@micromag/element-background": "^0.3.592",
         "@micromag/element-container": "^0.3.590",
         "@micromag/element-footer": "^0.3.590",
         "@micromag/element-header": "^0.3.590",
@@ -69,7 +69,7 @@
         "@micromag/element-scroll": "^0.3.590",
         "@micromag/element-stack": "^0.3.590",
         "@micromag/element-text": "^0.3.590",
-        "@micromag/element-visual": "^0.3.591",
+        "@micromag/element-visual": "^0.3.592",
         "@micromag/transforms": "^0.3.590",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
