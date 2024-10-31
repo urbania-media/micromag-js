@@ -73,7 +73,7 @@ const defaultProps = {
     playsInline: true,
     preload: 'auto',
     disablePictureInPicture: true,
-    disableHls: false,
+    disableHls: true,
     shouldLoad: true,
     withoutCors: false,
     className: null,
