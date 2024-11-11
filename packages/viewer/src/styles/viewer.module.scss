@@ -285,8 +285,11 @@
 // Animated Arrow that points to the next screen (to hint that user needs to click/tap/swipe to go to next screen)
 .navigationHint {
     position: absolute;
+    z-index: 2;
     top: 70%;
     right: 5%;
+    width: 50px;
+    height: 50px;
 }
 
 // Embedded webpage in iframe (article screen)

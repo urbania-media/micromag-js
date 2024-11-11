@@ -36,12 +36,12 @@ import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
 import Button from './buttons/Button';
 import NavigationButton from './buttons/NavigationButton';
-import HandIcon from './icons/Hand';
 import ArrowHint from './partials/ArrowHint';
 import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
+import HandTap from './partials/HandTap';
 
 // @todo export from somewhere else; or use as props in possible component for screen transitions
 const SPRING_CONFIG_TIGHT = { tension: 300, friction: 35 }; // tight
@@ -704,7 +704,7 @@ const Viewer = ({
         bottomHeight = playbackControlsContainerHeight / screenScale;
     }
 
-    const NavigationHint = withNavigationHint === 'hand' ? HandIcon : ArrowHint;
+    const NavigationHint = withNavigationHint === 'hand' ? HandTap : ArrowHint;
 
     return (
         <StoryProvider story={parsedStory}>

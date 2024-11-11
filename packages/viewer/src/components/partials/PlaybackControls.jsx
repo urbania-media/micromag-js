@@ -187,14 +187,19 @@ function PlaybackControls({
         <PlayIcon className={styles.icon} />
     );
 
+    console.log({
+        controlsVisible,
+        controlsSuggestPlay,
+        controls
+    })
+
     return (
         <div
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.withPlayPause]:
-                        controlsVisible && controls && (!seekBarOnly || !playing),
+                    [styles.withPlayPause]: controls && !seekBarOnly,
                     [styles.withSuggestPlay]: controlsSuggestPlay,
                     [styles.withMute]: hasMedia || controls,
                     [styles.withSeekBar]: controls,
@@ -227,7 +232,7 @@ function PlaybackControls({
                 className={classNames([
                     styles.playPauseButton,
                     {
-                        [styles.hidden]: !controlsVisible || (controlsSuggestPlay && !controls),
+                        [styles.hidden]: (controlsSuggestPlay && !controls),
                         [styles.loading]: finalShowLoading,
                     },
                 ])}
