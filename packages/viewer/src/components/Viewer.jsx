@@ -138,7 +138,7 @@ const defaultProps = {
     closeable: false,
     withMetadata: false,
     withNeighborScreens: false,
-    withNavigationHint: false,
+    withNavigationHint: 'hand',
     withoutGestures: false,
     withoutMenu: false,
     withoutScreensMenu: false,

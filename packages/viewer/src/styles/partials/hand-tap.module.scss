@@ -52,7 +52,7 @@
         animation-delay: 0.05s;
         animation-iteration-count: infinite;
         animation-direction: alternate;
-        background-image: radial-gradient(rgba($gray-600, 0.4), rgba($gray-600, 0) 60%);
+        background-image: radial-gradient(rgba($black, 0.5), rgba($black, 0) 60%);
         animation-fill-mode: both;
     }
 }
@@ -86,10 +86,10 @@
 
 @keyframes shadowFade {
     from {
-        transform: translate(-50%, -50%) translateY(0) scale(0.85);
+        transform: translate(-50%, -50%) translateY(0);
     }
 
     to {
-        transform: translate(-50%, -50%) translateY(10px) scale(1.1);
+        transform: translate(-50%, -50%) translateY(10px);
     }
 }
