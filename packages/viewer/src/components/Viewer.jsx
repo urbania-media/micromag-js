@@ -36,6 +36,7 @@ import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
 import Button from './buttons/Button';
 import NavigationButton from './buttons/NavigationButton';
+import HandIcon from './icons/Hand';
 import ArrowHint from './partials/ArrowHint';
 import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
@@ -89,7 +90,7 @@ const propTypes = {
     withoutNavigationArrow: PropTypes.bool,
     withoutTransitions: PropTypes.bool,
     withNeighborScreens: PropTypes.bool,
-    withNavigationHint: PropTypes.bool,
+    withNavigationHint: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     withoutPlaybackControls: PropTypes.bool,
     onClose: PropTypes.func,
     onInteraction: PropTypes.func,
@@ -703,6 +704,8 @@ const Viewer = ({
         bottomHeight = playbackControlsContainerHeight / screenScale;
     }
 
+    const NavigationHint = withNavigationHint === 'hand' ? HandIcon : ArrowHint;
+
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
@@ -862,7 +865,9 @@ const Viewer = ({
                                         const current = screenIndex === i;
                                         const isBefore = i < screenIndex;
                                         const isAfter = i > screenIndex;
-                                        const isNext = transitionDirection !== 0 && i === screenIndex + transitionDirection;
+                                        const isNext =
+                                            transitionDirection !== 0 &&
+                                            i === screenIndex + transitionDirection;
                                         const activeRange = neighborScreensActive;
                                         const isInActiveRange =
                                             Math.abs(i - screenIndex) <= activeRange;
@@ -947,12 +952,12 @@ const Viewer = ({
                                         <PlaybackControls className={styles.controls} />
                                     </div>
                                 ) : null}
-                                {withNavigationHint &&
+                                {withNavigationHint !== false &&
                                 !withNeighborScreens &&
                                 !navigationDisabled &&
                                 screenIndex === 0 &&
                                 !hasInteracted ? (
-                                    <ArrowHint className={styles.arrowHint} />
+                                    <NavigationHint className={styles.navigationHint} />
                                 ) : null}
                             </div>
                         ) : null}
