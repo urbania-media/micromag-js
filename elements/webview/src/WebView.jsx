@@ -69,6 +69,9 @@ function WebView({ url, width, height, closeable, focusable, onClose, className 
                     description: 'Popup label',
                 })}
                 src={url || 'about:blank'}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowfullscreen
             />
         </div>
     );
