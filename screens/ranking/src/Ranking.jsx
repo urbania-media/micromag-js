@@ -1,21 +1,21 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
-    useViewerContext,
-    useViewerWebView,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerWebView,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
-import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -31,6 +31,8 @@ const propTypes = {
     layout: PropTypes.oneOf(['side', 'over']),
     title: MicromagPropTypes.headingElement,
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
+    itemTitleStyle: MicromagPropTypes.textStyle,
+    itemDescriptionStyle: MicromagPropTypes.textStyle,
     numbersStyle: MicromagPropTypes.textStyle,
     ascending: PropTypes.bool,
     spacing: PropTypes.number,
@@ -47,6 +49,8 @@ const defaultProps = {
     layout: 'side',
     title: null,
     items: [null],
+    itemTitleStyle: null,
+    itemDescriptionStyle: null,
     numbersStyle: null,
     ascending: false,
     spacing: 20,
@@ -63,6 +67,8 @@ const RankingScreen = ({
     layout,
     title,
     items,
+    itemTitleStyle,
+    itemDescriptionStyle,
     numbersStyle,
     ascending,
     spacing,
@@ -122,6 +128,9 @@ const RankingScreen = ({
         const hasItemTitle = isTextFilled(itemTitle);
         const hasDescription = isTextFilled(description);
 
+        const { textStyle: titleTextStyle = null } = itemTitle || {};
+        const { textStyle: descriptionTextStyle = null } = description || {};
+
         const itemTitleElement = (
             <div className={styles.itemTitle}>
                 <ScreenElement
@@ -135,7 +144,12 @@ const RankingScreen = ({
                     emptyClassName={styles.empty}
                     isEmpty={!hasItemTitle}
                 >
-                    {hasItemTitle ? <Heading {...itemTitle} /> : null}
+                    {hasItemTitle ? (
+                        <Heading
+                            {...itemTitle}
+                            textStyle={{ ...(itemTitleStyle || null), ...titleTextStyle }}
+                        />
+                    ) : null}
                 </ScreenElement>
             </div>
         );
@@ -153,7 +167,15 @@ const RankingScreen = ({
                     emptyClassName={styles.empty}
                     isEmpty={!hasDescription}
                 >
-                    {hasDescription ? <Text {...description} /> : null}
+                    {hasDescription ? (
+                        <Text
+                            {...description}
+                            textStyle={{
+                                ...(itemDescriptionStyle || null),
+                                ...descriptionTextStyle,
+                            }}
+                        />
+                    ) : null}
                 </ScreenElement>
             </div>
         );

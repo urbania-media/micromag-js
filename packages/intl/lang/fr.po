@@ -1444,6 +1444,12 @@ msgctxt "Qw8cb5"
 msgid "Sponsor color"
 msgstr "Couleur du présentateur"
 
+# Field label
+#: Qz7nUz
+msgctxt "Qz7nUz"
+msgid "Caption style"
+msgstr "Style des légendes"
+
 # Field section label
 #: R9DB4a
 msgctxt "R9DB4a"
@@ -3078,6 +3084,12 @@ msgstr "Horizontal"
 msgctxt "xYqGzM"
 msgid "Author"
 msgstr "Auteur"
+
+# Field label
+#: xac4z/
+msgctxt "xac4z/"
+msgid "Entry styles"
+msgstr "Styles des entrées"
 
 # UrbaniaHoroscope state
 #: xj0o1v

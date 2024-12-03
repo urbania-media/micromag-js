@@ -43,6 +43,8 @@ const propTypes = {
     ]),
     title: MicromagPropTypes.headingElement,
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
+    itemTitleStyle: MicromagPropTypes.textStyle,
+    itemDescriptionStyle: MicromagPropTypes.textStyle,
     withoutLine: PropTypes.bool,
     bulletColor: MicromagPropTypes.color,
     lineColor: MicromagPropTypes.color,
@@ -64,6 +66,8 @@ const defaultProps = {
     layout: 'normal',
     title: null,
     items: [null],
+    itemTitleStyle: null,
+    itemDescriptionStyle: null,
     withoutLine: false,
     bulletColor: null,
     lineColor: null,
@@ -85,6 +89,8 @@ const Timeline = ({
     layout,
     title,
     items,
+    itemTitleStyle,
+    itemDescriptionStyle,
     withoutLine,
     bulletColor,
     lineColor,
@@ -176,7 +182,10 @@ const Timeline = ({
         }
 
         const typesCount = elementsTypes.length;
+        const { textStyle: titleTextStyle } = itemTitle || {};
         const { textStyle: descriptionTextStyle } = description || {};
+
+        console.log('itemDescriptionStyle', itemDescriptionStyle);
 
         return (
             <div className={styles.item} key={`item-${itemI}`}>
@@ -200,7 +209,15 @@ const Timeline = ({
                                         emptyClassName={styles.empty}
                                         isEmpty={!hasItemTitle}
                                     >
-                                        {hasItemTitle ? <Heading {...itemTitle} /> : null}
+                                        {hasItemTitle ? (
+                                            <Heading
+                                                {...itemTitle}
+                                                textStyle={{
+                                                    ...(itemTitleStyle || null),
+                                                    ...titleTextStyle,
+                                                }}
+                                            />
+                                        ) : null}
                                     </ScreenElement>
                                 </div>
                             );
@@ -256,7 +273,10 @@ const Timeline = ({
                                         {hasDescription ? (
                                             <Text
                                                 {...description}
-                                                textStyle={{ ...descriptionTextStyle }}
+                                                textStyle={{
+                                                    ...(itemDescriptionStyle || null),
+                                                    ...descriptionTextStyle,
+                                                }}
                                             />
                                         ) : null}
                                     </ScreenElement>

@@ -8,20 +8,20 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
+    usePlaybackContext,
+    usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
     useViewerContext,
     useViewerWebView,
-    usePlaybackContext,
-    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
 import {
+    getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
     isImageFilled,
     isTextFilled,
-    isHeaderFilled,
-    isFooterFilled,
-    getFooterProps,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -61,6 +61,7 @@ const propTypes = {
     ]),
     images: PropTypes.oneOfType([MicromagPropTypes.imageMedias, MicromagPropTypes.imageElements]),
     withCaptions: PropTypes.bool,
+    imageCaptionStyle: MicromagPropTypes.textStyle,
     spacing: PropTypes.number,
     captionMaxLines: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -75,6 +76,7 @@ const propTypes = {
 const defaultProps = {
     layout: 'four-mosaic',
     withCaptions: false,
+    imageCaptionStyle: null,
     images: [],
     spacing: 20,
     captionMaxLines: 2,
@@ -91,6 +93,7 @@ const GalleryScreen = ({
     layout,
     images,
     withCaptions,
+    imageCaptionStyle,
     background,
     header,
     footer,
@@ -176,6 +179,8 @@ const GalleryScreen = ({
         const hasImage = isImageFilled(finalImage);
         const hasCaption = isTextFilled(caption);
 
+        const { textStyle = null } = caption || {};
+
         return (
             <div key={`item-${itemI}`} className={styles.gridItem}>
                 <div
@@ -229,6 +234,10 @@ const GalleryScreen = ({
                                 {...caption}
                                 className={styles.captionText}
                                 lineClamp={captionMaxLines}
+                                textStyle={{
+                                    ...(imageCaptionStyle || null),
+                                    ...textStyle,
+                                }}
                             />
                         </div>
                     </ScreenElement>

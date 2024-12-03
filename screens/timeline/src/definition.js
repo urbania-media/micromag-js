@@ -51,6 +51,32 @@ export default [
                 }),
             },
             {
+                type: 'fields',
+                label: defineMessage({
+                    defaultMessage: 'Entry styles',
+                    description: 'Field label',
+                }),
+                isList: true,
+                fields: [
+                    {
+                        name: 'itemTitleStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Title',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'itemDescriptionStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Description',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
+            },
+            {
                 name: 'bulletShape',
                 type: 'radios',
                 defaultValue: 'circle',
@@ -206,6 +232,32 @@ export default [
                     defaultMessage: 'Entries',
                     description: 'Field label',
                 }),
+            },
+            {
+                type: 'fields',
+                label: defineMessage({
+                    defaultMessage: 'Entry styles',
+                    description: 'Field label',
+                }),
+                isList: true,
+                fields: [
+                    {
+                        name: 'itemTitleStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Title',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'itemDescriptionStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Description',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
             },
             {
                 name: 'withoutLine',

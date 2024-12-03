@@ -168,6 +168,14 @@ export default [
                 }),
             },
             {
+                name: 'imageCaptionStyle',
+                type: 'text-style-form',
+                label: defineMessage({
+                    defaultMessage: 'Caption style',
+                    description: 'Field label',
+                }),
+            },
+            {
                 name: 'background',
                 type: 'background',
                 label: defineMessage({

@@ -16,6 +16,7 @@ import article from '../../../../.storybook/data/stories/article-generic';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import keypad from '../../../../.storybook/data/stories/keypad';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
+import multipleItems from '../../../../.storybook/data/stories/multipleItems';
 import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
 import quiz from '../../../../.storybook/data/stories/quiz';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
@@ -27,7 +28,7 @@ import simpleTreeTheme from '../../../../.storybook/data/themes/simpletree';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import { theme as backgroundTheme } from '../../../../.storybook/data/themes/with-background';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
-import withIntlProvider from '../../../../.storybook/decorators/withIntlProvider';
+// import withIntlProvider from '../../../../.storybook/decorators/withIntlProvider';
 import withUppy from '../../../../.storybook/decorators/withUppy';
 import signs from '../../../../screens/urbania-horoscope/src/data/signs';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
@@ -287,6 +288,7 @@ export const ShareScreens = () => <EditorContainer defaultValue={shareScreensSto
 export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
 export const MultipleArticles = () => <EditorContainer defaultValue={multipleArticles} />;
 export const MultipleKeypads = () => <EditorContainer defaultValue={multipleKeypads} />;
+export const MultipleItems = () => <EditorContainer defaultValue={multipleItems} />;
 
 export const WithTheme = () => (
     <EditorContainer

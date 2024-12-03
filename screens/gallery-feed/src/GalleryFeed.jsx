@@ -1,26 +1,26 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
-    useViewerContext,
-    useViewerWebView,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import {
+    getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
     isImageFilled,
     isTextFilled,
-    isHeaderFilled,
-    isFooterFilled,
-    getFooterProps,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -40,6 +40,7 @@ const propTypes = {
         MicromagPropTypes.imageMedias,
     ]),
     withCaptions: PropTypes.bool,
+    imageCaptionStyle: MicromagPropTypes.textStyle,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     header: MicromagPropTypes.header,
@@ -55,6 +56,7 @@ const defaultProps = {
     layout: 'normal',
     images: null,
     withCaptions: false,
+    imageCaptionStyle: null,
     spacing: 20,
     background: null,
     header: null,
@@ -70,6 +72,7 @@ const GalleryFeedScreen = ({
     layout,
     images,
     withCaptions,
+    imageCaptionStyle,
     spacing,
     background,
     header,
@@ -120,6 +123,7 @@ const GalleryFeedScreen = ({
         const { caption = null } = finalImage || {};
         const hasImage = isImageFilled(finalImage);
         const hasCaption = isTextFilled(caption);
+        const { textStyle = null } = caption || {};
 
         const imageElement = (
             <ScreenElement
@@ -176,7 +180,14 @@ const GalleryFeedScreen = ({
                                 marginBottom,
                             }}
                         >
-                            <Text {...caption} className={styles.captionText} />
+                            <Text
+                                {...caption}
+                                textStyle={{
+                                    ...(imageCaptionStyle || null),
+                                    ...textStyle,
+                                }}
+                                className={styles.captionText}
+                            />
                         </div>
                     ) : null}
                 </ScreenElement>

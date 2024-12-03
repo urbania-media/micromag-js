@@ -954,6 +954,10 @@
     "defaultMessage": "Sponsor color",
     "description": "Field label"
   },
+  "Qz7nUz": {
+    "defaultMessage": "Caption style",
+    "description": "Field label"
+  },
   "R9DB4a": {
     "defaultMessage": "Styles",
     "description": "Field section label"
@@ -2042,6 +2046,10 @@
   "xYqGzM": {
     "defaultMessage": "Author",
     "description": "Author placeholder"
+  },
+  "xac4z/": {
+    "defaultMessage": "Entry styles",
+    "description": "Field label"
   },
   "xj0o1v": {
     "defaultMessage": "Grid",

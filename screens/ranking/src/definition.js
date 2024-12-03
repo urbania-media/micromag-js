@@ -60,6 +60,43 @@ export default {
             }),
         },
         {
+            type: 'fields',
+            label: defineMessage({
+                defaultMessage: 'Entry styles',
+                description: 'Field label',
+            }),
+            isList: true,
+            fields: [
+                {
+                    name: 'itemTitleStyle',
+                    type: 'text-style-form',
+                    label: defineMessage({
+                        defaultMessage: 'Title',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'itemDescriptionStyle',
+                    type: 'text-style-form',
+                    label: defineMessage({
+                        defaultMessage: 'Description',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'numbersStyle',
+                    type: 'text-style-form',
+                    theme: {
+                        textStyle: 'heading1',
+                    },
+                    label: defineMessage({
+                        defaultMessage: 'Numbers style',
+                        description: 'Numbers style field label',
+                    }),
+                },
+            ],
+        },
+        {
             name: 'ascending',
             type: 'toggle',
             label: defineMessage({
@@ -67,17 +104,7 @@ export default {
                 description: 'Ascending field label',
             }),
         },
-        {
-            name: 'numbersStyle',
-            type: 'text-style',
-            theme: {
-                textStyle: 'heading1',
-            },
-            label: defineMessage({
-                defaultMessage: 'Numbers style',
-                description: 'Numbers style field label',
-            }),
-        },
+
         {
             name: 'background',
             type: 'background',
