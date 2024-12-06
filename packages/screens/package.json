@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.596",
+    "version": "0.3.597",
     "private": false,
     "description": "",
     "keywords": [
@@ -102,7 +102,7 @@
         "@micromag/screen-title": "^0.3.595",
         "@micromag/screen-urbania-article": "^0.3.595",
         "@micromag/screen-urbania-horoscope": "^0.3.595",
-        "@micromag/screen-urbania-recommendation": "^0.3.595",
+        "@micromag/screen-urbania-recommendation": "^0.3.597",
         "@micromag/screen-urbania-trivia": "^0.3.595",
         "@micromag/screen-video": "^0.3.595",
         "@micromag/screen-video-360": "^0.3.595",
