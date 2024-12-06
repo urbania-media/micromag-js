@@ -1,41 +1,41 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { useIntl, FormattedMessage } from 'react-intl';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
+    Close,
+    FullscreenIcon,
+    MuteIcon,
     PlaceholderImage,
     PlaceholderText,
     PlaceholderTitle,
     ScreenElement,
-    Close,
-    FullscreenIcon,
-    MuteIcon,
 } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
-    useViewerContext,
-    useViewerContainer,
-    useViewerWebView,
-    useViewerInteraction,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContainer,
+    useViewerContext,
+    useViewerInteraction,
+    useViewerWebView,
 } from '@micromag/core/contexts';
 import {
     useActivityDetector,
     useDebounce,
-    useTrackScreenEvent,
     useResizeObserver,
+    useTrackScreenEvent,
 } from '@micromag/core/hooks';
 import {
-    isTextFilled,
-    isHeaderFilled,
-    isFooterFilled,
     getFooterProps,
     getStyleFromText,
+    isFooterFilled,
+    isHeaderFilled,
+    isTextFilled,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -338,6 +338,10 @@ const UrbaniaRecommendation = ({
     }, [activityDetected, showControls, isVideo, hideControls]);
     useDebounce(toggleControlsVisibility, activityDetected, 1000);
 
+    const { textStyle = null } = title || {};
+    const { color = null } = textStyle || {};
+    const { color: titleColor = null } = color || {};
+
     return (
         <div
             className={classNames([
@@ -624,6 +628,10 @@ const UrbaniaRecommendation = ({
                                             {hasTitle ? (
                                                 <div className={styles.titleContainer}>
                                                     <Heading className={styles.title} {...title} />
+                                                    <hr
+                                                        className={styles.border}
+                                                        style={{ borderColor: titleColor }}
+                                                    />
                                                 </div>
                                             ) : null}
                                         </ScreenElement>
@@ -637,7 +645,13 @@ const UrbaniaRecommendation = ({
                                             }
                                         >
                                             {hasDate ? (
-                                                <Text className={styles.date} {...date} />
+                                                <>
+                                                    <Text className={styles.date} {...date} />
+                                                    <hr
+                                                        className={styles.border}
+                                                        style={{ borderColor: titleColor }}
+                                                    />
+                                                </>
                                             ) : null}
                                         </ScreenElement>
 
@@ -650,7 +664,16 @@ const UrbaniaRecommendation = ({
                                             }
                                         >
                                             {hasLocation ? (
-                                                <Text className={styles.location} {...location} />
+                                                <>
+                                                    <Text
+                                                        className={styles.location}
+                                                        {...location}
+                                                    />
+                                                    <hr
+                                                        className={styles.border}
+                                                        style={{ borderColor: titleColor }}
+                                                    />
+                                                </>
                                             ) : null}
                                         </ScreenElement>
 

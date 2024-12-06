@@ -35,7 +35,7 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         text-transform: uppercase;
         white-space: nowrap;
         writing-mode: vertical-lr;
-        // pointer-events: none;
+        // pointer-events: none;pointer-eventspointer-eventspointer-eventspointer-eventspointer-eventspointer-eventspointer-eventspointer-events
 
         &.hidden {
             opacity: 0;
@@ -321,7 +321,6 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
     }
 
     .title {
-        border-bottom: 1px solid #000;
         font-family: 'Agrandir Tight', sans-serif;
         font-size: 1.2rem;
         font-weight: 700;
@@ -331,9 +330,18 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
     .date,
     .location {
         padding-top: 3px;
-        border-bottom: 1px solid #000;
         font-family: 'Agrandir Tight', sans-serif;
         text-transform: uppercase;
+    }
+
+    .border {
+        display: block;
+        width: 100%;
+        height: 0;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid #000;
+        appearance: none;
     }
 
     .date {
