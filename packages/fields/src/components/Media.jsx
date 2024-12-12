@@ -74,7 +74,7 @@ const MediaField = ({
                 onChange(newValue);
             }
             if (closeForm !== null) {
-                console.log('close');
+                // console.log('close');
                 closeForm();
             }
         },

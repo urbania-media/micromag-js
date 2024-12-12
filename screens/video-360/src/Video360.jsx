@@ -344,14 +344,31 @@ const Video360Screen = ({
     useEffect(() => {
         if (THREE !== null && hasVideoUrl && withVideoSphere) {
             const {
-                Scene,
-                PerspectiveCamera,
-                SphereBufferGeometry,
-                VideoTexture,
-                MeshBasicMaterial,
-                Mesh,
-                WebGLRenderer,
-            } = THREE;
+                Scene = null,
+                PerspectiveCamera = null,
+                SphereBufferGeometry = null,
+                VideoTexture = null,
+                MeshBasicMaterial = null,
+                Mesh = null,
+                WebGLRenderer = null,
+            } = THREE || {};
+
+            if (
+                Scene === null ||
+                PerspectiveCamera === null ||
+                SphereBufferGeometry === null ||
+                VideoTexture === null ||
+                MeshBasicMaterial === null ||
+                Mesh === null ||
+                WebGLRenderer === null
+            ) {
+                return () => {
+                    camera.current = null;
+                    scene.current = null;
+                    renderer.current = null;
+                };
+            }
+
             const { offsetWidth: canvasWidth, offsetHeight: canvasHeight } = canvasRef.current;
             camera.current = new PerspectiveCamera(75, canvasWidth / canvasHeight, 1, 1100);
             scene.current = new Scene();

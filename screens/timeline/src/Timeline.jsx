@@ -185,8 +185,6 @@ const Timeline = ({
         const { textStyle: titleTextStyle } = itemTitle || {};
         const { textStyle: descriptionTextStyle } = description || {};
 
-        console.log('itemDescriptionStyle', itemDescriptionStyle);
-
         return (
             <div className={styles.item} key={`item-${itemI}`}>
                 {elementsTypes.map((elementType, typeI) => {

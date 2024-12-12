@@ -6,11 +6,11 @@ import { useIntl } from 'react-intl';
 
 import {
     Button,
-    PlayIcon,
-    PauseIcon,
     MuteIcon,
-    UnmuteIcon,
+    PauseIcon,
+    PlayIcon,
     Spinner,
+    UnmuteIcon,
 } from '@micromag/core/components';
 import { usePlaybackContext } from '@micromag/core/contexts';
 import { useMediaReady, useMediaState } from '@micromag/core/hooks';
@@ -82,8 +82,6 @@ function PlaybackControls({
         playing: wantedPlaying,
         muted: wantedMuted,
     });
-
-    // console.log(controlsVisible);
 
     useEffect(() => {
         let id = null;
@@ -187,12 +185,6 @@ function PlaybackControls({
         <PlayIcon className={styles.icon} />
     );
 
-    console.log({
-        controlsVisible,
-        controlsSuggestPlay,
-        controls
-    })
-
     return (
         <div
             className={classNames([
@@ -232,7 +224,7 @@ function PlaybackControls({
                 className={classNames([
                     styles.playPauseButton,
                     {
-                        [styles.hidden]: (controlsSuggestPlay && !controls),
+                        [styles.hidden]: controlsSuggestPlay && !controls,
                         [styles.loading]: finalShowLoading,
                     },
                 ])}
