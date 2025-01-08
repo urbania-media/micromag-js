@@ -42,6 +42,7 @@ const ScreenPreview = ({
     screenHeight,
     className,
     withSize,
+    fit,
     hidden,
     ...props
 }) => {
@@ -70,6 +71,7 @@ const ScreenPreview = ({
             screenHeight={screenHeight}
             width={width}
             height={height}
+            fit={fit}
         >
             {element}
         </ScreenSizer>
