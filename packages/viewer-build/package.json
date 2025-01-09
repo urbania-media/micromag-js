@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer-build",
-    "version": "0.3.600",
+    "version": "0.3.601",
     "private": false,
     "description": "",
     "keywords": [
@@ -42,13 +42,13 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "e2f7117ec4e0056e064bb25a65823b7d0cdbbb2e",
+    "gitHead": "4f8b08bb83c5a4c8ec92b0f43072e7d850930811",
     "devDependencies": {
         "@folklore/cli": "^0.0.50",
-        "@micromag/core": "^0.3.599",
-        "@micromag/elements": "^0.3.599",
-        "@micromag/screens": "^0.3.600",
-        "@micromag/viewer": "^0.3.600",
+        "@micromag/core": "^0.3.601",
+        "@micromag/elements": "^0.3.601",
+        "@micromag/screens": "^0.3.601",
+        "@micromag/viewer": "^0.3.601",
         "lodash-webpack-plugin": "^0.11.6",
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"

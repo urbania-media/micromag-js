@@ -1,6 +1,6 @@
 {
     "name": "@micromag/cli",
-    "version": "0.3.600",
+    "version": "0.3.601",
     "private": false,
     "description": "",
     "keywords": [
@@ -46,13 +46,13 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.599",
-        "@micromag/elements": "^0.3.599",
-        "@micromag/fields": "^0.3.599",
-        "@micromag/screens": "^0.3.600",
-        "@micromag/transforms": "^0.3.599",
-        "@micromag/viewer": "^0.3.600",
-        "@micromag/viewer-build": "^0.3.600",
+        "@micromag/core": "^0.3.601",
+        "@micromag/elements": "^0.3.601",
+        "@micromag/fields": "^0.3.601",
+        "@micromag/screens": "^0.3.601",
+        "@micromag/transforms": "^0.3.601",
+        "@micromag/viewer": "^0.3.601",
+        "@micromag/viewer-build": "^0.3.601",
         "change-case": "^5.4.4",
         "classnames": "^2.2.6",
         "commander": "^12.0.0",
@@ -70,5 +70,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "e2f7117ec4e0056e064bb25a65823b7d0cdbbb2e"
+    "gitHead": "4f8b08bb83c5a4c8ec92b0f43072e7d850930811"
 }

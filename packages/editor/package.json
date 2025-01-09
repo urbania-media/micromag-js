@@ -1,6 +1,6 @@
 {
     "name": "@micromag/editor",
-    "version": "0.3.600",
+    "version": "0.3.601",
     "private": false,
     "description": "",
     "keywords": [
@@ -71,11 +71,11 @@
         "@fortawesome/fontawesome-svg-core": "^6.5.2",
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
         "@fortawesome/react-fontawesome": "^0.2.0",
-        "@micromag/core": "^0.3.599",
-        "@micromag/elements": "^0.3.599",
-        "@micromag/fields": "^0.3.599",
-        "@micromag/screens": "^0.3.600",
-        "@micromag/viewer": "^0.3.600",
+        "@micromag/core": "^0.3.601",
+        "@micromag/elements": "^0.3.601",
+        "@micromag/fields": "^0.3.601",
+        "@micromag/screens": "^0.3.601",
+        "@micromag/viewer": "^0.3.601",
         "@panneau/uppy": "^3.0.162",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
@@ -91,5 +91,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "e2f7117ec4e0056e064bb25a65823b7d0cdbbb2e"
+    "gitHead": "4f8b08bb83c5a4c8ec92b0f43072e7d850930811"
 }
