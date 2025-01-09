@@ -2,14 +2,16 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromColor } from '@micromag/core/utils';
 // import { Label } from '@micromag/core/components';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './conversation.module.scss';
 import ConversationAudioAttachment from './ConversationAudioAttachment';
+
+import styles from './conversation.module.scss';
 
 const propTypes = {
     message: MicromagPropTypes.conversationMessage,
@@ -29,7 +31,7 @@ const propTypes = {
     speakerStyle: MicromagPropTypes.textStyle,
     messageStyle: MicromagPropTypes.textStyle,
     className: PropTypes.string,
-    audioEventsChannelName: PropTypes.string
+    audioEventsChannelName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -49,7 +51,7 @@ const defaultProps = {
     messageStyle: null,
     speakerStyle: null,
     className: null,
-    audioEventsChannelName: null
+    audioEventsChannelName: null,
 };
 
 const ConversationMessage = ({
@@ -69,16 +71,17 @@ const ConversationMessage = ({
     messageStyle,
     speakerStyle,
     className,
-    audioEventsChannelName
+    audioEventsChannelName,
 }) => {
     const { message: messageBody, image = null, audio, putAudioBeforeText } = message || {};
     const {
-        avatar: { url: avatarUrl = null } = {},
+        avatar = null,
         name: speakerName,
         side = 'left',
         id: currentSpeakerId,
         color,
     } = currentSpeaker || {};
+    const { url: avatarUrl = null } = avatar || {};
 
     const right = side === 'right';
 
@@ -131,7 +134,7 @@ const ConversationMessage = ({
             nextAudioMessageId={nextAudioMessageId}
             audioEventsChannelName={audioEventsChannelName}
         />
-    )
+    );
 
     return messageState !== 'pause' ? (
         <div
@@ -207,7 +210,7 @@ const ConversationMessage = ({
                             </div>
                         ) : null}
 
-                        {(audio && putAudioBeforeText) ? (
+                        {audio && putAudioBeforeText ? (
                             <div className={classNames(styles.audioAttachment, styles.beforeText)}>
                                 {buildAudioAttachment()}
                             </div>
@@ -217,7 +220,7 @@ const ConversationMessage = ({
                             body={messageBody}
                             textStyle={messageStyle}
                         />
-                        {(audio && !putAudioBeforeText) ? (
+                        {audio && !putAudioBeforeText ? (
                             <div className={classNames(styles.audioAttachment, styles.afterText)}>
                                 {buildAudioAttachment()}
                             </div>
