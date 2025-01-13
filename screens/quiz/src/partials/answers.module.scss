@@ -25,7 +25,7 @@
     position: relative;
     margin: 0;
     padding: 0;
-    transition: opacity 0.15s ease-out;
+    transition: opacity 0.6s ease-out;
 
     .isPlaceholder & {
         padding: 1px 0;
@@ -36,7 +36,7 @@
     }
 
     &.otherAnswer {
-        opacity: 0.7 !important;
+        opacity: 0.6 !important;
     }
 }
 

@@ -4,10 +4,10 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useTransition, animated, easings } from '@react-spring/web';
+import { animated, easings, useTransition } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState, useRef, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -147,10 +147,9 @@ const Answers = ({
         };
     }, [answersCollapsed]);
 
+    const [transitioned, setTransitioned] = useState(false);
     const onAnswerTransitionEnd = useCallback(() => {
-        if (onTransitionEnd !== null) {
-            onTransitionEnd();
-        }
+        setTransitioned(true);
         if (shouldCollapse && answersCollapsed && !answersDidCollapse) {
             setAnswersDidCollapse(true);
             if (onCollapsed !== null) {
@@ -218,8 +217,8 @@ const Answers = ({
                 answersFinalCollapse
                     ? 0
                     : maxHeight > 0
-                    ? maxHeight
-                    : null,
+                      ? maxHeight
+                      : null,
             height:
                 hidden &&
                 showAnimation &&
@@ -232,6 +231,12 @@ const Answers = ({
         // config: { tension: 300, friction: 35 },
         config: { duration: 300, easing: easings.easeOutSine },
     });
+
+    useEffect(() => {
+        if (transitioned && onTransitionEnd !== null) {
+            onTransitionEnd();
+        }
+    }, [transitioned, onTransitionEnd])
 
     return (
         <div
@@ -269,6 +274,7 @@ const Answers = ({
                                         [styles.otherAnswer]: withoutGoodAnswer && !userAnswer,
                                     },
                                 ])}
+                                onTransitionEnd={onAnswerTransitionEnd}
                                 style={{ ...style }}
                             >
                                 <div
@@ -298,7 +304,10 @@ const Answers = ({
                                                         e.button === 0
                                                     ) {
                                                         onClick(answer, answerI);
-                                                        onAnswerTransitionEnd();
+                                                        // onTransitionEnd();
+                                                        // setTimeout(() => {
+                                                        //     onTransitionEnd();
+                                                        // }, 2000);
                                                     }
                                                 }}
                                                 disabled={!visible || isPreview || answered}

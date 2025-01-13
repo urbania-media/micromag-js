@@ -10,113 +10,138 @@ const Quiz = {
     title: 'Multiple Quizzzes',
     theme: defaultTheme,
     components: [
-        // {
-        //     background: {
-        //         color: {
-        //             color: '#002200',
-        //             alpha: 1,
-        //         },
-        //         image: null,
-        //         video: null,
-        //     },
-        //     id: '9283645093465',
-        //     type: 'quiz-multiple',
-        //     group: null,
-        //     layout: 'bottom',
-        //     buttonsTextStyle: {
-        //         fontFamily: 'Courier New',
-        //     },
-        //     title: {
-        //         body: '<span>TITRE</span>',
-        //         textStyle: {
-        //             fontFamily: 'Agrandir',
-        //             fontSize: 24,
-        //             fontStyle: {
-        //                 bold: true,
-        //                 italic: true,
-        //                 underline: true,
-        //                 transform: 'uppercase',
-        //             },
-        //             color: {
-        //                 color: '#F00',
-        //                 alpha: 1,
-        //             },
-        //             lineHeight: 1.3,
-        //             letterSpacing: 1,
-        //         },
-        //     },
-        //     description: {
-        //         body: '<p>DESCRIPTION</p>',
-        //         textStyle: {
-        //             fontFamily: 'Georgia',
-        //             fontSize: 16,
-        //             color: {
-        //                 color: '#F00',
-        //                 alpha: 1,
-        //             },
-        //             fontStyle: {
-        //                 bold: true,
-        //                 italic: true,
-        //                 underline: true,
-        //                 transform: 'uppercase',
-        //             },
-        //             lineHeight: 1.3,
-        //             letterSpacing: 1,
-        //         },
-        //     },
-        //     introButton: {
-        //         body: '<span>BOUTON</span>',
-        //         textStyle: {
-        //             fontFamily: 'Times New Roman',
-        //             fontSize: 20,
-        //             fontStyle: {
-        //                 bold: true,
-        //                 italic: true,
-        //                 underline: true,
-        //                 transform: 'uppercase',
-        //             },
-        //             color: {
-        //                 color: '#F00',
-        //                 alpha: 1,
-        //             },
-        //             lineHeight: 1.3,
-        //             letterSpacing: 1,
-        //         },
-        //     },
-        //     questions: [
-        //         {
-        //             text: {
-        //                 body: '<span>Une question</span>',
-        //             },
-        //             answers: [
-        //                 {
-        //                     label: {
-        //                         body: 'Une réponse',
-        //                     },
-        //                     points: 2,
-        //                 },
-        //             ],
-        //         },
-        //     ],
-        //     results: [
-        //         {
-        //             layout: 'split',
-        //             title: {
-        //                 body: '<span>TITRE RÉSULTAT</span>',
-        //             },
-        //             description: {
-        //                 body: '<p>DESCRIPTION RÉSULTAT</p>',
-        //             },
-        //             points: 1,
-        //             background: {
-        //                 color: {
-        //                     color: '#45babb',
-        //                     alpha: 1,
-        //                 },
-        //             },
-        //         },
-        //     ],
-        // },
+        {
+            background: {
+                color: {
+                    color: '#002200',
+                    alpha: 1,
+                },
+                image: null,
+                video: null,
+            },
+            id: '9283645093465',
+            type: 'quiz-multiple',
+            group: null,
+            layout: 'bottom',
+            buttonsTextStyle: {
+                fontFamily: 'Courier New',
+            },
+            title: {
+                body: '<span>TITRE</span>',
+                textStyle: {
+                    fontFamily: 'Agrandir',
+                    fontSize: 24,
+                    fontStyle: {
+                        bold: true,
+                        italic: true,
+                        underline: true,
+                        transform: 'uppercase',
+                    },
+                    color: {
+                        color: '#F00',
+                        alpha: 1,
+                    },
+                    lineHeight: 1.3,
+                    letterSpacing: 1,
+                },
+            },
+            description: {
+                body: '<p>DESCRIPTION</p>',
+                textStyle: {
+                    fontFamily: 'Georgia',
+                    fontSize: 16,
+                    color: {
+                        color: '#F00',
+                        alpha: 1,
+                    },
+                    fontStyle: {
+                        bold: true,
+                        italic: true,
+                        underline: true,
+                        transform: 'uppercase',
+                    },
+                    lineHeight: 1.3,
+                    letterSpacing: 1,
+                },
+            },
+            introButton: {
+                body: '<span>BOUTON</span>',
+                textStyle: {
+                    fontFamily: 'Times New Roman',
+                    fontSize: 20,
+                    fontStyle: {
+                        bold: true,
+                        italic: true,
+                        underline: true,
+                        transform: 'uppercase',
+                    },
+                    color: {
+                        color: '#F00',
+                        alpha: 1,
+                    },
+                    lineHeight: 1.3,
+                    letterSpacing: 1,
+                },
+            },
+            questions: [
+                {
+                    text: {
+                        body: '<span>Question 1</span>',
+                    },
+                    answers: [
+                        {
+                            label: {
+                                body: 'Réponse 1.1',
+                            },
+                            points: 2,
+                        },
+                        {
+                            label: {
+                                body: 'Réponse 1.2',
+                            },
+                            points: 2,
+                        },
+                    ],
+                },
+                {
+                    text: {
+                        body: '<span>Question 2</span>',
+                    },
+                    answers: [
+                        {
+                            label: {
+                                body: 'Réponse 2.1',
+                            },
+                            points: 2,
+                        },
+                        {
+                            label: {
+                                body: 'Réponse 2.2',
+                            },
+                            points: 2,
+                        },
+                    ],
+                },
+            ],
+            results: [
+                {
+                    layout: 'split',
+                    title: {
+                        body: '<span>TITRE RÉSULTAT</span>',
+                    },
+                    description: {
+                        body: '<p>DESCRIPTION RÉSULTAT</p>',
+                    },
+                    points: 1,
+                    background: {
+                        color: {
+                            color: '#45babb',
+                            alpha: 1,
+                        },
+                    },
+                },
+            ],
+        },
         {
             id: 'quiz-micromag-34569824',
             type: 'quiz',
