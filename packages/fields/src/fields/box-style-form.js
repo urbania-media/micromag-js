@@ -5,5 +5,6 @@ const { fields } = def;
 export default {
     id: 'box-style-form',
     component: 'box-style-form',
+    canClear: true,
     fields,
 };

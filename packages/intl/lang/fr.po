@@ -2899,6 +2899,12 @@ msgctxt "udLCuY"
 msgid "Shadow"
 msgstr "Ombre"
 
+# Button label
+#: ufac8e
+msgctxt "ufac8e"
+msgid "Clear all"
+msgstr "Tout effacer"
+
 # State label
 #: uiTxd7
 msgctxt "uiTxd7"

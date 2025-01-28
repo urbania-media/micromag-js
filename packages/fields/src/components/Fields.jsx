@@ -5,6 +5,7 @@ import React, { useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button } from '@micromag/core/components';
 import { FieldsValueContextProvider } from '@micromag/core/contexts';
 import { createNullableOnChange } from '@micromag/core/utils';
 
@@ -26,6 +27,7 @@ const propTypes = {
     isHorizontal: PropTypes.bool,
     isList: PropTypes.bool,
     isFlushList: PropTypes.bool,
+    canClear: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
     fieldClassName: PropTypes.string,
@@ -48,6 +50,7 @@ const defaultProps = {
     isHorizontal: null,
     isList: false,
     isFlushList: false,
+    canClear: false,
     onChange: null,
     className: null,
     fieldClassName: null,
@@ -70,6 +73,7 @@ const Fields = ({
     isHorizontal: globalIsHorizontal,
     isList,
     isFlushList,
+    canClear,
     onChange,
     className,
     fieldClassName,
@@ -101,6 +105,11 @@ const Fields = ({
         },
         [value, nullableOnChange],
     );
+
+    const onClearField = useCallback(() => {
+        nullableOnChange(null);
+    }, [nullableOnChange]);
+
     const includedFields = fields.filter(
         ({ name = null, key = null }) =>
             (name === null && key === null) ||
@@ -214,6 +223,7 @@ const Fields = ({
     if (fieldsElements.length === 0) {
         return null;
     }
+
     return (
         <div
             className={classNames([
@@ -261,6 +271,13 @@ const Fields = ({
                     </FieldRow>
                 ) : null}
             </FieldsValueContextProvider>
+            {canClear ? (
+                <div className="mt-2">
+                    <Button theme="light" outline size="md" onClick={onClearField}>
+                        <FormattedMessage defaultMessage="Clear all" description="Button label" />
+                    </Button>
+                </div>
+            ) : null}
         </div>
     );
 };

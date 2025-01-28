@@ -5,5 +5,6 @@ const { fields } = def;
 export default {
     id: 'text-style-form',
     component: 'text-style-form',
+    canClear: true,
     fields,
 };

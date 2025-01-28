@@ -84,14 +84,14 @@ const ColorField = ({ value, onChange, closeForm, disableAlpha, ...props }) => {
                     disableAlpha={disableAlpha}
                 />
                 <div className="d-flex mt-4">
-                    <Button theme="light" size="sm" onClick={closeForm}>
+                    <Button theme="light" size="md" onClick={closeForm}>
                         <FormattedMessage defaultMessage="Close" description="Button label" />
                     </Button>
                     {value !== null ? (
                         <Button
                             outline
                             theme="secondary"
-                            size="sm"
+                            size="md"
                             className="ms-auto"
                             onClick={onClickReset}
                         >

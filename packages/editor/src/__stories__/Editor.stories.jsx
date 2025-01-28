@@ -310,6 +310,19 @@ export const WithThemeCTABadge = () => (
     />
 );
 
+export const WithThemeItems = () => (
+    <EditorContainer
+        defaultValue={{
+            ...textQuoteBadges,
+            title: 'With theme items',
+            theme: defaultTheme,
+            components: allScreensStory.components.filter(
+                ({ type = false }) => ['timeline'].indexOf(type) !== -1,
+            ),
+        }}
+    />
+);
+
 export const IsBackgroundTheme = () => <EditorContainer isTheme defaultValue={backgroundTheme} />;
 
 export const WithBackgroundTheme = () => (
