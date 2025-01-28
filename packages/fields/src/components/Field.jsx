@@ -90,6 +90,7 @@ const Field = ({
     } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
         component: providedComponent,
     };
+
     const FieldComponent = useFieldComponent(fieldComponent);
 
     const isFields = FieldComponent === FieldsComponent;

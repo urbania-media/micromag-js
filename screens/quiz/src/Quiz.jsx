@@ -8,15 +8,15 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import {
+    usePlaybackContext,
+    usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
     useViewerContext,
-    usePlaybackContext,
-    usePlaybackMediaRef,
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -39,7 +39,9 @@ const propTypes = {
     }),
     resultImage: MicromagPropTypes.visualElement,
     buttonsStyle: MicromagPropTypes.boxStyle,
+    inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
+    inactiveButtonsTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     withoutTrueFalse: PropTypes.bool,
@@ -64,7 +66,9 @@ const defaultProps = {
     result: null,
     resultImage: null,
     buttonsStyle: null,
+    inactiveButtonsStyle: null,
     buttonsTextStyle: null,
+    inactiveButtonsTextStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
     withoutTrueFalse: false,
@@ -89,7 +93,9 @@ const QuizScreen = ({
     result,
     resultImage,
     buttonsStyle,
+    inactiveButtonsStyle,
     buttonsTextStyle,
+    inactiveButtonsTextStyle,
     goodAnswerColor,
     badAnswerColor,
     withoutTrueFalse,
@@ -275,6 +281,8 @@ const QuizScreen = ({
                         answeredIndex={userAnswerIndex}
                         buttonsStyle={buttonsStyle}
                         buttonsTextStyle={buttonsTextStyle}
+                        inactiveButtonsStyle={inactiveButtonsStyle}
+                        inactiveButtonsTextStyle={inactiveButtonsTextStyle}
                         goodAnswerColor={goodAnswerColor}
                         badAnswerColor={badAnswerColor}
                         withoutTrueFalse={withoutTrueFalse}

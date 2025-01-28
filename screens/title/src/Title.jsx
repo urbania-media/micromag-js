@@ -7,19 +7,19 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
-    useViewerContext,
-    useViewerWebView,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerWebView,
 } from '@micromag/core/contexts';
 import {
-    isTextFilled,
-    getStyleFromBox,
-    isHeaderFilled,
-    isFooterFilled,
     getFooterProps,
+    getStyleFromBox,
+    isFooterFilled,
+    isHeaderFilled,
+    isTextFilled,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';

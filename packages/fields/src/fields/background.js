@@ -7,6 +7,7 @@ export default {
         {
             name: 'color',
             type: 'color',
+            withoutCaret: true,
             label: defineMessage({
                 defaultMessage: 'Color',
                 description: 'Field label',
@@ -67,9 +68,9 @@ export default {
                     type: 'toggle',
                     label: defineMessage({
                         defaultMessage: 'Mute audio of background video',
-                        description: 'Field label'
-                    })
-                }
+                        description: 'Field label',
+                    }),
+                },
             ],
         },
     ],

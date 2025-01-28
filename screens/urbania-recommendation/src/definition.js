@@ -96,7 +96,6 @@ export default [
                     description: 'Text field label',
                 }),
             },
-
             {
                 name: 'background',
                 type: 'background-recommendation',
@@ -104,6 +103,34 @@ export default [
                     defaultMessage: 'Background',
                     description: 'Background field label',
                 }),
+            },
+            {
+                id: 'recommendation',
+                type: 'fields',
+                isList: true,
+                label: defineMessage({
+                    defaultMessage: 'Box params',
+                    description: 'Custom styles',
+                }),
+                fields: [
+                    {
+                        name: 'cardBoxStyle',
+                        type: 'box-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Card box style',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'withoutZoom',
+                        type: 'toggle',
+                        defaultValue: false,
+                        label: defineMessage({
+                            defaultMessage: 'Without image zoom',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
             },
             {
                 name: 'header',

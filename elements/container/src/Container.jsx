@@ -16,6 +16,7 @@ const propTypes = {
     ]),
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
+    style: PropTypes.shape({}),
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -23,17 +24,20 @@ const propTypes = {
 const defaultProps = {
     containerRef: null,
     className: null,
+    style: null,
     children: null,
 };
 
-function Container({ containerRef, width, height, className, children }) {
+function Container({ containerRef, width, height, style, className, children }) {
     const hasSize = width > 0 && height > 0;
     const containerStyle = hasSize
         ? {
               width,
               height,
+              ...style,
           }
-        : null;
+        : style;
+
     return (
         <div
             ref={containerRef}

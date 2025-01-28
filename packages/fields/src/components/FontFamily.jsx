@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import isObject from 'lodash/isObject';
 import PropTypes from 'prop-types';
-import React, { useMemo, useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -27,6 +27,7 @@ const propTypes = {
     value: MicromagPropTypes.font,
     isForm: PropTypes.bool,
     isHorizontal: PropTypes.bool,
+    canClear: PropTypes.bool,
     maxFontsVisible: PropTypes.number,
     className: PropTypes.string,
     onChange: PropTypes.func,
@@ -37,13 +38,22 @@ const defaultProps = {
     value: null,
     isForm: false,
     isHorizontal: false,
+    canClear: true,
     maxFontsVisible: 10,
     className: null,
     onChange: null,
     closeForm: null,
 };
 
-const FontFamily = ({ value, onChange, closeForm, maxFontsVisible, isForm, ...props }) => {
+const FontFamily = ({
+    value,
+    onChange,
+    closeForm,
+    maxFontsVisible,
+    isForm,
+    canClear,
+    ...props
+}) => {
     const intl = useIntl();
     const { systemFonts, googleFonts, customFonts } = useFonts();
     const valueName = value !== null && isObject(value) ? value.name || null : value;
@@ -173,6 +183,7 @@ const FontFamily = ({ value, onChange, closeForm, maxFontsVisible, isForm, ...pr
                 />
             }
             isForm={isForm}
+            canClear={canClear}
             {...props}
         >
             <div className="p-2">
@@ -233,7 +244,7 @@ const FontFamily = ({ value, onChange, closeForm, maxFontsVisible, isForm, ...pr
                     <Button
                         outline
                         theme="secondary"
-                        size="sm"
+                        size="md"
                         className="ms-auto"
                         onClick={onClickReset}
                     >

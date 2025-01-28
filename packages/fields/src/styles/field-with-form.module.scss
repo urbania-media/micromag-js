@@ -11,3 +11,10 @@
 .label {
     min-width: 0;
 }
+
+.clearButton {
+    position: relative;
+    z-index: 1;
+    margin-right: 16px;
+    margin-left: 0;
+}

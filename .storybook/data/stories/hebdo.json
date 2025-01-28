@@ -1,0 +1,3177 @@
+{
+    "components": [
+        {
+            "background": { "color": null, "image": null },
+            "id": "f7502ea0-5788-11ee-a27c-29973c5d3f26",
+            "type": "video",
+            "layout": "full",
+            "video": {
+                "color": { "color": "#FFF", "alpha": 1 },
+                "autoPlay": true,
+                "media": "media://11546",
+                "loop": true
+            },
+            "gotoNextScreenOnEnd": false,
+            "parameters": {
+                "metadata": {
+                    "title": "Trump revient dans le game",
+                    "description": "Qui se cache dans son jeu ?"
+                }
+            },
+            "header": {
+                "badge": {
+                    "active": false,
+                    "label": { "body": "<p>COUV</p>" },
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                        "borderRadius": 10,
+                        "borderWidth": 1,
+                        "borderColor": { "color": "#000000", "alpha": 1 }
+                    }
+                }
+            },
+            "group": null,
+            "parentId": null
+        },
+        {
+            "background": {
+                "image": "media://11472",
+                "color": { "color": "#00e6d3", "alpha": 1 },
+                "video": "media://11473"
+            },
+            "id": "dcb4f300-9206-11ef-b933-95e461d39cd6",
+            "type": "image-title",
+            "layout": "normal",
+            "imageFit": "cover",
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83e\udea7SOMMAIRE</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 16
+                        }
+                    },
+                    "active": false,
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#00e6d3", "alpha": 1 },
+                        "borderWidth": 2,
+                        "borderRadius": 0,
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowAngle": 45
+                    }
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "image": null,
+            "parameters": { "metadata": { "title": "Sommaire" } }
+        },
+        {
+            "background": {
+                "color": { "color": "#000", "alpha": 1 },
+                "image": "media://11357",
+                "video": null
+            },
+            "id": "09e7c220-743b-11ee-ac1c-8ba7c408ef46",
+            "type": "title-with-box",
+            "layout": "middle",
+            "group": null,
+            "parentId": null,
+            "title": {
+                "body": "<span>\ud83e\udd14 T\u2019as retenu<br>quoi cette<br>semaine ?</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 26,
+                    "fontStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false,
+                        "transform": null
+                    },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "subtitle": {
+                "body": null,
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "BurbankBigRegular",
+                        "media": "media://5212",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 24,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "boxStyle": {
+                "shadowAngle": 45,
+                "borderStyle": "solid",
+                "borderRadius": 16,
+                "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                "borderColor": { "color": "#000000", "alpha": 1 },
+                "padding": { "left": 0, "right": 0, "top": 10, "bottom": 10 },
+                "shadowDistance": 5,
+                "shadowBlur": 0,
+                "borderWidth": 2
+            },
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83c\udf0d L'ACTU QUIZ</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "lineHeight": 1
+                        }
+                    },
+                    "active": true,
+                    "boxStyle": {
+                        "borderWidth": 2,
+                        "padding": { "top": 3, "bottom": 3, "left": 3, "right": 5 },
+                        "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                        "borderRadius": 0,
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowColor": { "color": "#000000", "alpha": 1 },
+                        "shadowAngle": 45
+                    }
+                }
+            },
+            "parameters": { "metadata": { "title": "L'actu quiz", "description": "Introduction" } }
+        },
+        {
+            "background": {
+                "color": { "color": "#000", "alpha": 1 },
+                "image": "media://11357",
+                "video": null
+            },
+            "id": "5dba5460-7442-11ee-ac1c-8ba7c408ef46",
+            "type": "quiz",
+            "layout": "middle",
+            "question": {
+                "body": "<span>Que risque<br>Marine&nbsp;Le Pen&nbsp;au proc\u00e8s&nbsp;des assistants parlementaires<br>europ\u00e9ens&nbsp;</span><span>du RN ?<br>&nbsp;</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 19,
+                    "fontStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false,
+                        "transform": null
+                    },
+                    "lineHeight": 1.1,
+                    "letterSpacing": 0
+                }
+            },
+            "answers": [
+                {
+                    "customAnswerLabel": {
+                        "body": "La cheffe du Rassemblement national (anciennement FN) et 27 membres du parti sont jug\u00e9s depuis lundi 30 septembre. Ils sont soup\u00e7onn\u00e9s d\u2019avoir d\u00e9tourn\u00e9 plusieurs milliers d\u2019euros de fonds europ\u00e9ens. Marine Le Pen reste pr\u00e9sum\u00e9e innocente jusqu\u2019\u00e0 la fin du proc\u00e8s qui va durer deux mois.",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 14,
+                            "align": "left",
+                            "lineHeight": 1.4,
+                            "link": { "color": { "color": "#000000", "alpha": 1 } },
+                            "highlight": { "color": { "color": "#000000", "alpha": 1 } }
+                        }
+                    },
+                    "label": {
+                        "body": "<p>Jusqu\u2019\u00e0 1 million d\u2019euro d'amende</p>",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "center",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": true
+                },
+                {
+                    "label": {
+                        "body": "<p>Jusqu\u2019\u00e0 10 ans d\u2019emprisonnement</p>",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "center",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": true,
+                    "customAnswerLabel": {
+                        "body": "La cheffe du Rassemblement national (anciennement FN) et 27 membres du parti sont jug\u00e9s depuis lundi 30 septembre. Ils sont soup\u00e7onn\u00e9s d\u2019avoir d\u00e9tourn\u00e9 plusieurs milliers d\u2019euros de fonds europ\u00e9ens. Marine Le Pen reste pr\u00e9sum\u00e9e innocente jusqu\u2019\u00e0 la fin du proc\u00e8s qui va durer deux mois.",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "align": "left",
+                            "link": { "color": { "color": "#000000", "alpha": 1 } },
+                            "highlight": {
+                                "textColor": { "color": "#060606", "alpha": 1 },
+                                "color": { "color": "#000000", "alpha": 1 }
+                            },
+                            "lineHeight": 1.4
+                        }
+                    }
+                },
+                {
+                    "label": {
+                        "body": "<p>Jusqu\u2019\u00e0 10 ans d\u2019in\u00e9ligibilit\u00e9</p>",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "center",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "customAnswerLabel": {
+                        "body": "La cheffe du Rassemblement national (anciennement FN) et 27 membres du parti sont jug\u00e9s depuis lundi 30 septembre. Ils sont soup\u00e7onn\u00e9s d\u2019avoir d\u00e9tourn\u00e9 plusieurs milliers d\u2019euros de fonds europ\u00e9ens. Marine Le Pen reste pr\u00e9sum\u00e9e innocente jusqu\u2019\u00e0 la fin du proc\u00e8s qui va durer deux mois.",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 14,
+                            "align": "left",
+                            "highlight": { "textColor": { "color": "#000000", "alpha": 1 } },
+                            "lineHeight": 1.4
+                        }
+                    },
+                    "good": true
+                },
+                {
+                    "label": {
+                        "body": "<p>Rien du tout</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "center",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": true,
+                    "customAnswerLabel": {
+                        "body": "La cheffe du Rassemblement national (anciennement FN) et 27 membres du parti sont jug\u00e9s depuis lundi 30 septembre. Ils sont soup\u00e7onn\u00e9s d\u2019avoir d\u00e9tourn\u00e9 plusieurs milliers d\u2019euros de fonds europ\u00e9ens. Marine Le Pen reste pr\u00e9sum\u00e9e innocente jusqu\u2019\u00e0 la fin du proc\u00e8s qui va durer deux mois.",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "highlight": { "textColor": { "color": "#000000", "alpha": 1 } },
+                            "lineHeight": 1.4
+                        }
+                    }
+                }
+            ],
+            "buttonsTextStyle": {
+                "fontFamily": {
+                    "name": "Gabarito Regular",
+                    "media": "media://10749",
+                    "variants": [],
+                    "type": "custom"
+                },
+                "fontSize": 16,
+                "color": { "color": "#000000", "alpha": 1 },
+                "letterSpacing": 0,
+                "lineHeight": 1
+            },
+            "buttonsStyle": {
+                "shadowAngle": 45,
+                "borderRadius": 16,
+                "padding": { "top": 0, "bottom": 0, "left": 25, "right": 25 },
+                "borderColor": { "color": "#000000", "alpha": 1 },
+                "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                "borderWidth": 2,
+                "shadowDistance": 5,
+                "shadowBlur": 0,
+                "borderStyle": "solid"
+            },
+            "result": {
+                "body": null,
+                "textStyle": {
+                    "color": { "color": "#FFF", "alpha": 1 },
+                    "align": "left",
+                    "fontFamily": {
+                        "name": "Loos-Compressed-Regular",
+                        "media": "media://9686",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 16,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "goodAnswerColor": { "color": "#00e6d3", "alpha": 1 },
+            "withoutTrueFalse": false,
+            "group": null,
+            "parentId": null,
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83c\udf0d L'ACTU QUIZ</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "color": { "color": "#000000", "alpha": 1 }
+                        }
+                    },
+                    "active": true,
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                        "borderWidth": 2,
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "shadowAngle": 45,
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "borderRadius": 0
+                    }
+                }
+            },
+            "footer": {
+                "callToAction": {
+                    "label": { "body": "<p>En savoir plus</p>" },
+                    "active": false,
+                    "type": "swipe-up"
+                }
+            },
+            "parameters": { "metadata": { "title": "Actu Quiz", "description": "Question 1" } }
+        },
+        {
+            "background": {
+                "color": { "color": "#000", "alpha": 1 },
+                "image": "media://11357",
+                "video": null
+            },
+            "id": "14b31f00-7446-11ee-ac1c-8ba7c408ef46",
+            "type": "quiz",
+            "layout": "middle",
+            "question": {
+                "body": "<span>Qui est&nbsp;<br>Hassan<br>Nasrallah ?<br>&nbsp;</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 19,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1.1,
+                    "letterSpacing": 0
+                }
+            },
+            "answers": [
+                {
+                    "customAnswerLabel": {
+                        "body": "Tu\u00e9 vendredi 27 septembre par l\u2019arm\u00e9e isra\u00e9lienne, il a \u00e9t\u00e9 pendant plus de 30 ans le visage du Hezbollah, milice vou\u00e9e \u00e0 la lutte arm\u00e9e contre l'\u00c9tat h\u00e9breu et consid\u00e9r\u00e9e comme un groupe terroriste par les Etats-Unis. Il est entr\u00e9 dans une nouvelle guerre contre Isra\u00ebl en octobre 2023 en soutien au Hamas et \u00e0 Gaza.",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Roboto Regular",
+                                "media": "media://10753",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 14,
+                            "align": "left",
+                            "lineHeight": 1.4
+                        }
+                    },
+                    "label": {
+                        "body": "<p>Le nouveau premier ministre autrichien</p>",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "center",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": false
+                },
+                {
+                    "label": {
+                        "body": "<p>Le leader du Hezbollah</p>",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "center",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": true,
+                    "customAnswerLabel": {
+                        "body": "Tu\u00e9 vendredi 27 septembre par l\u2019arm\u00e9e isra\u00e9lienne, il a \u00e9t\u00e9 pendant plus de 30 ans le visage du Hezbollah, milice vou\u00e9e \u00e0 la lutte arm\u00e9e contre l'\u00c9tat h\u00e9breu et consid\u00e9r\u00e9e comme un groupe terroriste par les Etats-Unis. Il est entr\u00e9 dans une nouvelle guerre contre Isra\u00ebl en octobre 2023 en soutien au Hamas et \u00e0 Gaza.",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Roboto Regular",
+                                "media": "media://10753",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 14,
+                            "align": "left",
+                            "lineHeight": 1.4
+                        }
+                    }
+                },
+                {
+                    "label": {
+                        "body": "<p>Le nouveau chef de l\u2019OTAN</p>",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 1.4,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": false,
+                    "customAnswerLabel": {
+                        "body": "<p>Tu\u00e9 vendredi 27 septembre par l\u2019arm\u00e9e isra\u00e9lienne, il a \u00e9t\u00e9 pendant plus de 30 ans le visage du Hezbollah, milice vou\u00e9e \u00e0 la lutte arm\u00e9e contre l'\u00c9tat h\u00e9breu et consid\u00e9r\u00e9e comme un groupe terroriste par les Etats-Unis. Il est entr\u00e9 dans une nouvelle guerre contre Isra\u00ebl en octobre 2023 en soutien au Hamas et \u00e0 Gaza.</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontFamily": {
+                                "name": "Roboto Regular",
+                                "media": "media://10753",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "align": "left"
+                        }
+                    }
+                }
+            ],
+            "buttonsTextStyle": {
+                "fontFamily": {
+                    "name": "Gabarito Regular",
+                    "media": "media://10749",
+                    "variants": [],
+                    "type": "custom"
+                },
+                "fontSize": 16,
+                "color": { "color": "#000000", "alpha": 1 },
+                "align": "center",
+                "lineHeight": 1
+            },
+            "buttonsStyle": {
+                "shadowAngle": 45,
+                "borderRadius": 16,
+                "padding": { "top": 0, "bottom": 0, "left": 25, "right": 25 },
+                "borderColor": { "color": "#000000", "alpha": 1 },
+                "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                "borderWidth": 2,
+                "shadowDistance": 5,
+                "shadowBlur": 0,
+                "borderStyle": "solid"
+            },
+            "result": {
+                "body": "<p>Tu\u00e9 vendredi 27 septembre par l\u2019arm\u00e9e isra\u00e9lienne, il a \u00e9t\u00e9 pendant plus de 30 ans le visage du Hezbollah, milice vou\u00e9e \u00e0 la lutte arm\u00e9e contre l'\u00c9tat h\u00e9breu et consid\u00e9r\u00e9e comme un groupe terroriste par les Etats-Unis. Il est entr\u00e9 dans une nouvelle guerre contre Isra\u00ebl en octobre 2023 en soutien au Hamas et \u00e0 Gaza.&nbsp;<br>&nbsp;</p>",
+                "textStyle": {
+                    "color": { "color": "#060606", "alpha": 1 },
+                    "align": "left",
+                    "fontFamily": {
+                        "name": "Roboto Regular",
+                        "media": "media://10753",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 14,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1.4,
+                    "letterSpacing": 0,
+                    "highlight": { "textColor": { "color": "#000000", "alpha": 1 } }
+                }
+            },
+            "goodAnswerColor": { "color": "#00e6d3", "alpha": 1 },
+            "withoutTrueFalse": false,
+            "group": null,
+            "parentId": null,
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83c\udf0d L'ACTU QUIZ</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 16
+                        }
+                    },
+                    "active": true,
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                        "borderWidth": 2,
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "borderRadius": 0,
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "shadowAngle": 45,
+                        "shadowDistance": 5,
+                        "shadowBlur": 0
+                    }
+                }
+            },
+            "parameters": { "metadata": { "title": "L'actu quiz", "description": "Question 2" } }
+        },
+        {
+            "background": {
+                "color": { "color": "#000", "alpha": 1 },
+                "image": "media://11357",
+                "video": null
+            },
+            "id": "2ed60150-7440-11ee-ac1c-8ba7c408ef46",
+            "type": "quiz",
+            "layout": "middle",
+            "question": {
+                "body": "<span>De quoi parle</span><span><br>\u201cThe Apprentice\u201d,&nbsp;<br>le film qui met&nbsp;<br>en sc\u00e8ne&nbsp;</span><span><br>Donald Trump&nbsp;?</span><span>&nbsp;</span><span>&nbsp;<br>&nbsp;</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 19,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1.1,
+                    "letterSpacing": 0
+                }
+            },
+            "answers": [
+                {
+                    "customAnswerLabel": {
+                        "body": "<p>En salle le 9 octobre, \u201cThe Apprentice\u201d revient sur les jeunes ann\u00e9es du milliardaire. Et c\u2019est Sebastian Stan (Bucky dans \u201cAvengers\u201d) qui incarne Trump. \u00c0 un mois de l\u2019\u00e9lection am\u00e9ricaine, le film fait pol\u00e9mique, l\u2019\u00e9quipe de l\u2019ancien pr\u00e9sident d\u00e9nonce \u00ab une pure fiction malveillante \u00bb.</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Roboto Regular",
+                                "media": "media://10753",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "lineHeight": 1.4
+                        }
+                    },
+                    "label": {
+                        "body": "<p>Son ascension comme&nbsp;homme&nbsp;<br>d'affaire dans&nbsp;les ann\u00e9es 70 et 80</p>",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "right",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 0.6,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": true,
+                    "buttonStyle": { "padding": { "top": 3, "left": 9, "right": 9, "bottom": 3 } }
+                },
+                {
+                    "label": {
+                        "body": "<p>Sa vie de Pr\u00e9sident des&nbsp;<br>\u00c9tats-Unis de 2017 \u00e0 2021</p>",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "right",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": false,
+                    "customAnswerLabel": {
+                        "body": "En salle le 9 octobre, \u201cThe Apprentice\u201d revient sur les jeunes ann\u00e9es du milliardaire. Et c\u2019est Sebastian Stan (Bucky dans Avengers) qui incarne Trump. \u00c0 un mois de l\u2019\u00e9lection am\u00e9ricaine, le film fait pol\u00e9mique, l\u2019\u00e9quipe de l\u2019ancien pr\u00e9sident d\u00e9nonce \u00ab une pure fiction malveillante \u00bb.",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 14,
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "lineHeight": 1.4
+                        }
+                    }
+                },
+                {
+                    "label": {
+                        "body": "<p>Son proc\u00e8s pour falsification<br>des comptes de campagne&nbsp;<br>en 2024&nbsp;</p>",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "center",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": false,
+                    "customAnswerLabel": {
+                        "body": "En salle le 9 octobre, \u201cThe Apprentice\u201d revient sur les jeunes ann\u00e9es du milliardaire. Et c\u2019est Sebastian Stan (Bucky dans Avengers) qui incarne Trump. \u00c0 un mois de l\u2019\u00e9lection am\u00e9ricaine, le film fait pol\u00e9mique, l\u2019\u00e9quipe de l\u2019ancien pr\u00e9sident d\u00e9nonce \u00ab une pure fiction malveillante \u00bb.",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "lineHeight": 1.4
+                        }
+                    }
+                }
+            ],
+            "buttonsTextStyle": {
+                "fontFamily": {
+                    "name": "Gabarito Regular",
+                    "media": "media://10749",
+                    "variants": [],
+                    "type": "custom"
+                },
+                "fontSize": 16,
+                "color": { "color": "#000000", "alpha": 1 },
+                "align": "center",
+                "lineHeight": 1
+            },
+            "buttonsStyle": {
+                "shadowAngle": 45,
+                "borderRadius": 16,
+                "padding": { "top": 0, "bottom": 0, "left": 25, "right": 25 },
+                "borderColor": { "color": "#000000", "alpha": 1 },
+                "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                "borderWidth": 2,
+                "shadowDistance": 5,
+                "shadowBlur": 0,
+                "borderStyle": "solid"
+            },
+            "result": {
+                "body": null,
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": null,
+                    "fontFamily": {
+                        "name": "Roboto Regular",
+                        "media": "media://10753",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 14,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1.4,
+                    "letterSpacing": 0
+                }
+            },
+            "goodAnswerColor": { "color": "#00e6d3", "alpha": 1 },
+            "withoutTrueFalse": false,
+            "group": null,
+            "parentId": null,
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83c\udf0d L'ACTU QUIZ</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 16
+                        }
+                    },
+                    "active": true,
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                        "borderWidth": 2,
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "shadowBlur": 0,
+                        "shadowDistance": 5,
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "borderRadius": 0,
+                        "shadowAngle": 45
+                    }
+                }
+            },
+            "parameters": { "metadata": { "title": "L'actu quiz", "description": "question 3" } }
+        },
+        {
+            "background": { "color": null, "image": "media://11357", "video": null },
+            "id": "19e867c0-7449-11ee-ac1c-8ba7c408ef46",
+            "type": "survey",
+            "layout": "middle",
+            "question": {
+                "body": "<span>\ud83c\udfc6Quel est ton score ?&nbsp;</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 19,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1.1,
+                    "letterSpacing": 0
+                }
+            },
+            "answers": [
+                {
+                    "label": {
+                        "body": "0/3, C'est la cata",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    }
+                },
+                {
+                    "label": {
+                        "body": "1/3,  je sauve les meubles",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "buttonStyle": { "padding": null }
+                },
+                {
+                    "label": {
+                        "body": "2/3, pas mal !",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    }
+                },
+                {
+                    "label": {
+                        "body": "3/3, c'est qui le boss ?",
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Rubik-Regular",
+                                "media": "media://9987",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    }
+                }
+            ],
+            "buttonsTextStyle": {
+                "fontFamily": {
+                    "name": "Gabarito Regular",
+                    "media": "media://10749",
+                    "variants": [],
+                    "type": "custom"
+                },
+                "color": { "color": "#000000", "alpha": 1 },
+                "fontSize": 16,
+                "align": "center",
+                "lineHeight": 1
+            },
+            "buttonsStyle": {
+                "borderRadius": 16,
+                "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                "borderStyle": "solid",
+                "borderColor": { "color": "#000000", "alpha": 1 },
+                "borderWidth": 2,
+                "shadowDistance": 5,
+                "shadowBlur": 0,
+                "shadowAngle": 45,
+                "padding": { "top": 10, "bottom": 10, "left": 15, "right": 15 }
+            },
+            "group": null,
+            "parentId": null,
+            "resultsStyle": {
+                "barColor": { "color": "#f8f13c", "alpha": 1 },
+                "percentageTextStyle": {
+                    "fontFamily": {
+                        "name": "Rubik-Bold",
+                        "media": "media://9993",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 16,
+                    "color": { "color": "#fe045c", "alpha": 1 }
+                }
+            },
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83c\udf0d L'ACTU QUIZ</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "color": { "color": "#000000", "alpha": 1 }
+                        }
+                    },
+                    "active": true,
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                        "borderWidth": 2,
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "borderRadius": 0,
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowAngle": 45
+                    }
+                },
+                "shareIncentive": { "active": false, "label": { "body": "Partagez ce micromag!" } }
+            },
+            "footer": {
+                "callToAction": {
+                    "label": { "body": "<p>En savoir plus</p>" },
+                    "active": false,
+                    "type": "swipe-up"
+                }
+            },
+            "parameters": {
+                "metadata": { "title": "L'actu quiz", "description": "Quel est ton score?" }
+            }
+        },
+        {
+            "background": {
+                "color": { "color": "#000", "alpha": 1 },
+                "image": null,
+                "video": "media://11350"
+            },
+            "id": "2fffbc60-cd0e-11ef-a233-39b11d21d262",
+            "type": "image-title-text",
+            "layout": "normal",
+            "imageFit": "contain",
+            "title": {
+                "body": "<span>\u00c0 78 ans, Donald Trump a r\u00e9ussi un come-back fracassant : \u00eatre \u00e9lu une deuxi\u00e8me fois pr\u00e9sident des \u00c9tats-Unis, quatre ans apr\u00e8s avoir \u00e9t\u00e9 battu. L\u2019homme le plus puissant du monde revient plus pr\u00e9par\u00e9 que jamais, avec une \u00e9quipe \u00e0 sa main, d\u00e9termin\u00e9e \u00e0 appliquer un programme&nbsp;<br>ultra-conservateur.&nbsp;</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "Gabarito Medium",
+                        "media": "media://10747",
+                        "variants": [{ "weight": null, "style": null, "fvd": null, "media": null }],
+                        "type": "custom"
+                    },
+                    "fontSize": 16,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1.2,
+                    "letterSpacing": 0
+                }
+            },
+            "text": {
+                "body": "<p><i>Textes : Apolline Guichet et Claire Le Nestour</i><br><i>Vid\u00e9o : Arthur Valentin</i></p>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "Roboto Regular",
+                        "media": "media://10753",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 12,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "image": "media://11615",
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83d\udc40 LE GROS DOSSIER</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "color": { "color": "#000000", "alpha": 1 }
+                        }
+                    },
+                    "active": true,
+                    "boxStyle": {
+                        "borderRadius": 0,
+                        "padding": { "top": 3, "bottom": 3, "left": 3, "right": 5 },
+                        "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                        "borderWidth": 2,
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowColor": { "color": "#000000", "alpha": 1 },
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "shadowAngle": 45
+                    }
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "parameters": {
+                "metadata": {
+                    "title": "Donald Trump revient dans le game",
+                    "description": "Un come back exceptionnel : \u00eatre \u00e9lu une deuxi\u00e8me fois pr\u00e9sident des \u00c9tats-Unis."
+                }
+            }
+        },
+        {
+            "background": { "image": null, "color": null, "video": "media://11350" },
+            "id": "292dc250-8638-11ef-bd6a-df4258769b11",
+            "type": "article",
+            "title": {
+                "body": "<span>Malgr\u00e9 sa mise en cause dans quatre affaires judiciaires,&nbsp;<br>Donald Trump est d\u00e9sormais&nbsp;<br>au centre du jeu. On t\u2019explique comment il en est arriv\u00e9 l\u00e0.</span>",
+                "textStyle": {
+                    "fontSize": 19,
+                    "fontFamily": {
+                        "name": "Gabarito Medium",
+                        "media": "media://10747",
+                        "variants": [{ "weight": null, "style": null, "fvd": null, "media": null }],
+                        "type": "custom"
+                    },
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontStyle": { "transform": null },
+                    "lineHeight": 1
+                }
+            },
+            "date": {
+                "body": null,
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Loos-Compressed-Regular",
+                        "media": "media://9686",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "color": { "color": "#000000", "alpha": 1 }
+                }
+            },
+            "author": {
+                "name": {
+                    "body": null,
+                    "textStyle": {
+                        "fontFamily": {
+                            "name": "Rubik-SemiBold",
+                            "media": "media://9988",
+                            "variants": [],
+                            "type": "custom"
+                        },
+                        "color": { "color": "#f8f13c", "alpha": 1 },
+                        "fontSize": 14
+                    }
+                },
+                "image": null
+            },
+            "text": {
+                "body": "<p><img src=\"https://cdn.microm.ag/image/2025-01-20/53366-123543.png\" width=\"720\" height=\"466\"></p><p><strong>\ud83d\udcb0\ud83d\udcb0\ud83d\udcb0 \u201cRichesse\u201d</strong>. N\u00e9e en \u00c9cosse, la m\u00e8re de Donald Trump est arriv\u00e9e aux \u00c9tats-Unis \u00e0 18 ans avec 50 dollars en poche. \u00c7a, c\u2019est vrai&nbsp;! Pour le reste, Donald Trump est assez loin de la figure du <i>self-made-man.</i> Son p\u00e8re a construit des dizaines de milliers d\u2019appartements \u00e0 New York, lou\u00e9s \u00e0 des familles de la classe moyenne.</p><blockquote><p>Donald Trump devient donc multimillionnaire d\u00e8s qu\u2019il reprend l\u2019empire immobilier familial.&nbsp;</p></blockquote><p>Il investit ensuite dans une \u00e9quipe de football am\u00e9ricain, une marque de vodka, une compagnie a\u00e9rienne, des casinos, des terrains de golf et ach\u00e8te m\u00eame le concours de Miss Univers\u2026 Mais il n\u2019a pas toujours \u00e9t\u00e9 heureux en affaires. Lorsque ses d\u00e9clarations fiscales ont \u00e9t\u00e9 rendues publiques, en 2016, les Am\u00e9ricains ont d\u00e9couvert que leur pr\u00e9sident payait peu d\u2019imp\u00f4ts car il perdait aussi beaucoup d\u2019argent.</p><h4><img src=\"https://cdn.microm.ag/image/2025-01-20/53367-123557.png\" width=\"720\" height=\"466\"></h4><p><strong>\ud83d\udd76\ufe0f\ud83d\udd76\ufe0f\ud83d\udd76\ufe0f\u201cPeople\u201d</strong>. Avant d\u2019annoncer sa candidature \u00e0 la primaire r\u00e9publicaine, en 2015, Donald Trump \u00e9tait une personnalit\u00e9 populaire\u2026 que peu de gens prenaient au s\u00e9rieux. <strong>Il \u00e9tait surtout connu pour sa vie de luxe, ses divorces affich\u00e9s dans les tablo\u00efds et </strong><i><strong>The Apprentice</strong></i><strong>. </strong>L\u2019\u00e9mission de t\u00e9l\u00e9r\u00e9alit\u00e9 qui a dur\u00e9 plus de dix ans a fait un carton, ce qui a permis \u00e0 Donald Trump d\u2019empocher jusqu\u2019\u00e0 1&nbsp;million de dollars par \u00e9pisode.&nbsp;</p><blockquote><p>Il a aussi pu utiliser sa notori\u00e9t\u00e9 pour jouer son propre r\u00f4le dans des s\u00e9ries t\u00e9l\u00e9 ou des films comme <i>Maman, j\u2019ai rat\u00e9 l\u2019avion&nbsp;!&nbsp;</i></p></blockquote><p><img src=\"https://cdn.microm.ag/image/2025-01-20/53368-123617.png\" width=\"720\" height=\"466\"></p><p><strong>\ud83d\ude20\ud83d\ude20\ud83d\ude20\u201cOutrage\u201d</strong>. Enfant, le petit Donald \u00e9tait col\u00e9rique et indisciplin\u00e9, si bien que ses parents l\u2019ont envoy\u00e9 en pensionnat militaire \u00e0 l\u2019\u00e2ge de 13&nbsp;ans. Soixante ans plus tard, lorsqu\u2019il se lance \u00e0 l\u2019assaut de la Maison-Blanche, son temp\u00e9rament n\u2019a pas chang\u00e9.&nbsp;</p><blockquote><p>Il capitalise sur la col\u00e8re d\u2019une partie de l\u2019Am\u00e9rique, fait un doigt d\u2019honneur \u00e0 ses opposants qu\u2019il accuse de diffuser des fake news, et tient des propos grossiers envers les femmes.&nbsp;</p></blockquote><p>Et apr\u00e8s avoir perdu face \u00e0 Joe Biden en 2020, il appelle ses soutiens \u00e0 marcher le 6 janvier 2021 vers le Capitole, l\u00e0 o\u00f9 le r\u00e9sultat de l'\u00e9lection est sur le point d'\u00eatre valid\u00e9.</p><p><img src=\"https://cdn.microm.ag/image/2025-01-20/53369-123630.png\" width=\"720\" height=\"466\"></p><p><strong>\u2696\ufe0f\u2696\ufe0f\u2696\ufe0f\u201cJustice\u201d</strong>. Deux proc\u00e9dures de destitution, quatre inculpations et de multiples amendes\u2026 Donald Trump est un habitu\u00e9 des d\u00e9boires judiciaires, qu\u2019il utilise \u00e0 des fins politiques en pr\u00e9tendant qu\u2019une chasse \u00e0 l\u2019homme est engag\u00e9e contre lui par des magistrats au service de ses opposants.</p><blockquote><p>\u00ab Cela a \u00e9t\u00e9 fait pour ab\u00eemer ma r\u00e9putation, afin que je perde l\u2019\u00e9lection \u00bb lan\u00e7ait-il, par exemple, le 10 janvier dernier .</p></blockquote><p>Trump venait d'\u00eatre d\u00e9finitivement condamn\u00e9 pour avoir dissimul\u00e9 le paiement de 121 000 \u20ac \u00e0 une ancienne star de films pornographiques, afin d\u2019\u00e9viter un scandale sexuel en 2016.</p><h3><strong><img><img src=\"https://cdn.microm.ag/image/2025-01-20/53370-123642.png\" width=\"720\" height=\"466\"></strong></h3><p><strong>\ud83c\udf1f\ud83c\udf1f\ud83c\udf1f\u201cMiracle\u201d</strong>. Le premier, c\u2019est son investiture en 2015 pour le parti r\u00e9publicain, alors qu\u2019il a financ\u00e9 le camp d\u00e9mocrate dix ans plus t\u00f4t. Le second, son \u00e9lection en tant que Pr\u00e9sident en 2016.&nbsp;</p><blockquote><p>Donald Trump a ensuite surv\u00e9cu \u00e0 deux tentatives d\u2019assassinat l\u2019ann\u00e9e derni\u00e8re, et r\u00e9ussi \u00e0 regagner la Maison-Blanche alors que Kamala Harris \u00e9tait donn\u00e9e gagnante.&nbsp;</p></blockquote><p>Maintenant, on t'explique qui se cache dans son jeu... \ud83d\udc49</p><p>&nbsp;</p>",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Roboto Regular",
+                        "media": {
+                            "id": "10753",
+                            "type": "font",
+                            "name": "Roboto-Regular.otf",
+                            "url": "https://cdn.microm.ag/font/2024-12-16/51267-033724.otf",
+                            "thumbnail_url": null,
+                            "files": {
+                                "original": {
+                                    "id": "51267",
+                                    "type": null,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "handle": "original",
+                                    "name": "Roboto-Regular.otf",
+                                    "url": "https://cdn.microm.ag/font/2024-12-16/51267-033724.otf"
+                                },
+                                "webfonts.otf": {
+                                    "id": "51268",
+                                    "type": null,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "handle": "webfonts.otf",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.otf",
+                                    "url": "https://cdn.microm.ag/font/2024-12-16/51268-033725.otf"
+                                },
+                                "webfonts.eot": {
+                                    "id": "51269",
+                                    "type": null,
+                                    "mime": "application/x-empty",
+                                    "handle": "webfonts.eot",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.eot",
+                                    "url": "https://cdn.microm.ag/2024-12-16/51269-033726.eot"
+                                },
+                                "webfonts.woff": {
+                                    "id": "51270",
+                                    "type": null,
+                                    "mime": "font/woff",
+                                    "handle": "webfonts.woff",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.woff",
+                                    "url": "https://cdn.microm.ag/2024-12-16/51270-033726.woff"
+                                },
+                                "webfonts.woff2": {
+                                    "id": "51271",
+                                    "type": null,
+                                    "mime": "font/woff2",
+                                    "handle": "webfonts.woff2",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.woff2",
+                                    "url": "https://cdn.microm.ag/font/2024-12-16/51271-033726.woff2"
+                                }
+                            },
+                            "metadata": {
+                                "filename": "Roboto-Regular.otf",
+                                "size": 186664,
+                                "mime": "application/vnd.ms-opentype",
+                                "tags": [],
+                                "description": null
+                            },
+                            "jobs": [
+                                {
+                                    "id": "6025",
+                                    "created_on": "2024-12-16T03:37:24-05:00",
+                                    "state": "started",
+                                    "pipeline_name": "font",
+                                    "display_name": "Traitement \u00e0 l'upload"
+                                }
+                            ],
+                            "created_at": "2024-12-16T08:37:24.000000Z"
+                        },
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "highlight": { "color": { "color": "#000000", "alpha": 1 } },
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "fontSize": 14,
+                    "lineHeight": 1.4
+                }
+            },
+            "image": "media://11616",
+            "group": null,
+            "parentId": null,
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83d\udc40LE GROS DOSSIER</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "color": { "color": "#000000", "alpha": 1 }
+                        }
+                    },
+                    "active": false,
+                    "boxStyle": {
+                        "borderWidth": 2,
+                        "backgroundColor": { "color": "#00e6d3", "alpha": 1 },
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "borderStyle": "solid",
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowColor": { "color": "#000000", "alpha": 1 },
+                        "borderRadius": 0,
+                        "shadowAngle": 45
+                    }
+                }
+            },
+            "parameters": {
+                "metadata": {
+                    "title": "Donald Trump, le ma\u00eetre du jeu",
+                    "description": "Comment en est-il arriv\u00e9 l\u00e0 ?"
+                }
+            }
+        },
+        {
+            "background": {
+                "color": { "color": "#000", "alpha": 1 },
+                "image": null,
+                "video": null
+            },
+            "id": "fdee9c90-cf3e-11ef-b5c5-83e479895e56",
+            "type": "video",
+            "layout": "full",
+            "video": {
+                "color": { "color": "#FFF", "alpha": 1 },
+                "autoPlay": true,
+                "withSeekBar": true,
+                "withControls": true,
+                "progressColor": { "color": "#f5093c", "alpha": 1 },
+                "media": "media://11547",
+                "thumbnail": "thumbnails.4"
+            },
+            "gotoNextScreenOnEnd": true,
+            "parameters": {
+                "metadata": {
+                    "title": "Donald Trump, le ma\u00eetre du jeu",
+                    "description": "Qui se cache dans son jeu ? vid\u00e9o"
+                }
+            },
+            "group": null,
+            "parentId": null
+        },
+        {
+            "background": {
+                "color": { "color": "#ffffff", "alpha": 1 },
+                "image": null,
+                "video": "media://11412"
+            },
+            "id": "ab7d5af0-cf2a-11ef-95b9-77fe9178bd82",
+            "type": "quiz",
+            "layout": "bottom",
+            "question": {
+                "body": "<span>Quelle mesure&nbsp;<br>n\u2019a pas (encore)&nbsp;<br>\u00e9t\u00e9 propos\u00e9e&nbsp;</span><span>&nbsp;</span><span><br>par Donald Trump ?</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 19,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1.1,
+                    "letterSpacing": 0
+                }
+            },
+            "answers": [
+                {
+                    "customAnswerLabel": {
+                        "body": "<p>Mais Trump n\u2019est pas pour non plus. Il a \u00e9t\u00e9 le premier pr\u00e9sident \u00e0 participer \u00e0 la Marche pour la vie, organis\u00e9e chaque ann\u00e9e \u00e0 Washington par les militants anti-IVG. Il a aussi fait en sorte que le droit \u00e0 l\u2019avortement ne soit plus garanti au niveau national. Depuis, 21 \u00c9tats ont d\u00e9j\u00e0 interdit ou restreint ce droit.</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Roboto Regular",
+                                "media": "media://10753",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 14,
+                            "align": "left",
+                            "lineHeight": 1.4
+                        }
+                    },
+                    "label": {
+                        "body": "<p>Forer de nouveaux puits de p\u00e9trole</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "center",
+                            "fontFamily": {
+                                "name": "Gabarito Regular",
+                                "media": "media://10749",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": false
+                },
+                {
+                    "label": {
+                        "body": "<p>Interdire l\u2019acc\u00e8s \u00e0 l\u2019IVG</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "center",
+                            "fontFamily": {
+                                "name": "Gabarito Regular",
+                                "media": "media://10749",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": true,
+                    "customAnswerLabel": {
+                        "body": "<p>Mais Trump n\u2019est pas pour non plus. Il a \u00e9t\u00e9 le premier pr\u00e9sident \u00e0 participer \u00e0 la Marche pour la vie, organis\u00e9e chaque ann\u00e9e \u00e0 Washington par les militants anti-IVG. Il a aussi fait en sorte que le droit \u00e0 l\u2019avortement ne soit plus garanti au niveau national. Depuis, 21 \u00c9tats ont d\u00e9j\u00e0 interdit ou restreint ce droit.</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Roboto Regular",
+                                "media": "media://10753",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 14,
+                            "align": "left",
+                            "lineHeight": 1.4
+                        }
+                    }
+                },
+                {
+                    "label": {
+                        "body": "<p>Annexer le canal du Panama et le Groenland</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Gabarito Regular",
+                                "media": "media://10749",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": null
+                            },
+                            "lineHeight": 1.4,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "good": false,
+                    "customAnswerLabel": {
+                        "body": "<p>Mais Trump n\u2019est pas pour non plus. Il a \u00e9t\u00e9 le premier pr\u00e9sident \u00e0 participer \u00e0 la Marche pour la vie, organis\u00e9e chaque ann\u00e9e \u00e0 Washington par les militants anti-IVG. Il a aussi fait en sorte que le droit \u00e0 l\u2019avortement ne soit plus garanti au niveau national. Depuis, 21 \u00c9tats ont d\u00e9j\u00e0 interdit ou restreint ce droit.</p><p><br>&nbsp;</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontFamily": {
+                                "name": "Roboto Regular",
+                                "media": "media://10753",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "align": "left"
+                        }
+                    }
+                },
+                {
+                    "label": {
+                        "body": "<p>Finir la construction du mur entre les \u00c9tats-Unis et le Mexique</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Gabarito Regular",
+                                "media": "media://10749",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "customAnswerLabel": {
+                        "body": "<p>Mais Trump n\u2019est pas pour non plus. Il a \u00e9t\u00e9 le premier pr\u00e9sident \u00e0 participer \u00e0 la Marche pour la vie, organis\u00e9e chaque ann\u00e9e \u00e0 Washington par les militants anti-IVG. Il a aussi fait en sorte que le droit \u00e0 l\u2019avortement ne soit plus garanti au niveau national. Depuis, 21 \u00c9tats ont d\u00e9j\u00e0 interdit ou restreint ce droit.</p>"
+                    },
+                    "good": false
+                }
+            ],
+            "buttonsTextStyle": {
+                "fontFamily": {
+                    "name": "Gabarito Regular",
+                    "media": "media://10749",
+                    "variants": [],
+                    "type": "custom"
+                },
+                "fontSize": 16,
+                "color": { "color": "#000000", "alpha": 1 },
+                "align": "center",
+                "lineHeight": 1
+            },
+            "buttonsStyle": {
+                "shadowAngle": 45,
+                "borderRadius": 16,
+                "padding": { "top": 0, "bottom": 0, "left": 25, "right": 25 },
+                "borderColor": { "color": "#000000", "alpha": 1 },
+                "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                "borderWidth": 2,
+                "shadowDistance": 5,
+                "shadowBlur": 0,
+                "borderStyle": "solid"
+            },
+            "result": {
+                "body": null,
+                "textStyle": {
+                    "color": { "color": "#060606", "alpha": 1 },
+                    "align": "left",
+                    "fontFamily": {
+                        "name": "Roboto Regular",
+                        "media": "media://10753",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 14,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1.4,
+                    "letterSpacing": 0,
+                    "highlight": { "textColor": { "color": "#000000", "alpha": 1 } }
+                }
+            },
+            "goodAnswerColor": { "color": "#00e6d3", "alpha": 1 },
+            "withoutTrueFalse": false,
+            "group": null,
+            "parentId": null,
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83e\udd14 QUIZ</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 16
+                        }
+                    },
+                    "active": true,
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                        "borderWidth": 2,
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "borderRadius": 0,
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "shadowAngle": 45,
+                        "shadowDistance": 5,
+                        "shadowBlur": 0
+                    }
+                }
+            },
+            "parameters": {
+                "metadata": {
+                    "title": "Quiz",
+                    "description": "Quelle mesure n'a pas (encore) \u00e9t\u00e9 propos\u00e9e par Donald Trump ?"
+                }
+            }
+        },
+        {
+            "background": { "color": { "color": "#000", "alpha": 1 }, "image": null },
+            "id": "1fefa2f0-bd95-11ef-99b7-059b4053d520",
+            "type": "video",
+            "layout": "full",
+            "video": {
+                "color": { "color": "#FFF", "alpha": 1 },
+                "autoPlay": true,
+                "media": "media://11637",
+                "withSeekBar": true,
+                "withControls": true,
+                "thumbnail": "thumbnails.3"
+            },
+            "gotoNextScreenOnEnd": true,
+            "group": null,
+            "parentId": null,
+            "parameters": { "metadata": { "title": "Le Monde", "description": "Vid\u00e9o" } }
+        },
+        {
+            "background": { "image": "media://10786", "color": { "color": "#ffffff", "alpha": 1 } },
+            "id": "8328f0d0-7a77-11ef-a388-372c6362c886",
+            "type": "article",
+            "title": {
+                "body": "<span>Argent de poche, nos conseils pour ren\u00e9gocier&nbsp;&nbsp;</span>",
+                "textStyle": {
+                    "fontSize": 26,
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "align": "center",
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "fontWeight": 800,
+                    "lineHeight": 1.1
+                }
+            },
+            "date": {
+                "body": null,
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Loos-Compressed-Regular",
+                        "media": "media://9686",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "color": { "color": "#ffffff", "alpha": 1 }
+                }
+            },
+            "author": {
+                "name": {
+                    "body": null,
+                    "textStyle": {
+                        "fontFamily": {
+                            "type": "google",
+                            "name": "Roboto Condensed",
+                            "variants": [
+                                "100",
+                                "200",
+                                "300",
+                                "regular",
+                                "500",
+                                "600",
+                                "700",
+                                "800",
+                                "900",
+                                "100italic",
+                                "200italic",
+                                "300italic",
+                                "italic",
+                                "500italic",
+                                "600italic",
+                                "700italic",
+                                "800italic",
+                                "900italic"
+                            ]
+                        },
+                        "fontSize": 13,
+                        "color": { "color": "#000000", "alpha": 1 },
+                        "align": "center",
+                        "fontStyle": { "bold": false, "italic": true, "underline": false }
+                    }
+                },
+                "image": null
+            },
+            "text": {
+                "body": "<p><strong>Tu aimerais avoir plus d\u2019argent de poche, mais tu ne sais pas comment t\u2019y prendre? Pas de panique, on te donne des astuces pour g\u00e9rer ta n\u00e9gociation et par la m\u00eame occasion, en apprendre un peu plus sur l\u2019\u00e9conomie.</strong></p><p><img src=\"https://cdn.microm.ag/image/2025-01-13/52825-080446.png\" width=\"1080\" height=\"359\"></p><ul><li>Avant de parler \u00ab&nbsp;argent de poche&nbsp;\u00bb avec tes parents, commence par <strong>d\u00e9finir ton budget.</strong> D\u2019un c\u00f4t\u00e9, liste l\u2019argent que tu re\u00e7ois (les recettes) et de l\u2019autre, l'argent que tu d\u00e9penses sur une m\u00eame p\u00e9riode (une semaine, un mois, un an\u2026). Cela te permettra de voir clairement combien tu as \u00e0 ta disposition. Tu r\u00e9aliseras peut-\u00eatre qu\u2019acheter deux paquets de bonbons par semaine, c\u2019est un peu excessif. En r\u00e9duisant ces d\u00e9penses, tu pourras \u00e9conomiser assez en deux mois pour t\u2019offrir le tee-shirt de tes r\u00eaves. Tu peux aussi placer l\u2019argent que tu \u00e9conomises \u00e0 la banque, ce qui te rapportera un peu. C\u2019est comme dans la fable, il y a la cigale qui veut tout d\u00e9penser tout de suite, et la fourmi qui \u00e9pargne. G\u00e9rer son argent, c\u2019est faire des choix.&nbsp;</li></ul><p><img src=\"https://cdn.microm.ag/image/2025-01-13/52824-080432.png\" width=\"1080\" height=\"326\"></p><ul><li>Toute n\u00e9gociation se pr\u00e9pare. Il est important de r\u00e9fl\u00e9chir \u00e0 tes arguments \u00e0 l\u2019avance. <strong>La n\u00e9gociation est un long processus</strong>, si l\u2019argent de poche est une recette pour toi, c\u2019est une d\u00e9pense pour tes parents, et ils veillent eux aussi \u00e0 \u00e9quilibrer leur budget. S\u2019ils refusent ta premi\u00e8re demande, \u00e9coute leurs remarques, ajuste tes arguments et fais des compromis. Par exemple, dans deux mois, si tu obtiens une bonne note au bac blanc, tu auras 3 \u20ac en plus, mais pas les quinze que tu r\u00e9clamais imm\u00e9diatement.&nbsp;</li></ul><p><img src=\"https://cdn.microm.ag/image/2025-01-24/53755-053926.png\" width=\"1080\" height=\"917\"></p><ul><li>Lorsqu\u2019on n\u00e9gocie son salaire, on se compare aux autres. Alors, n\u2019h\u00e9site pas \u00e0 sortir le grand jeu <strong>des statistiques</strong>. D\u2019apr\u00e8s le barom\u00e8tre Teenage Lab de Pixpay, la plupart des jeunes \u00e2g\u00e9s de 10 \u00e0 18 ans recevaient de l\u2019argent de poche en 2024. Les 14-16 ans touchent en moyenne 32&nbsp;\u20ac par mois tandis que les 16-18 ans ont 40&nbsp;\u20ac. Si tu as tout juste 15 ans et que tes parents te donnent d\u00e9j\u00e0&nbsp;50 \u20ac, tu peux t\u2019estimer chanceux et \u00e7a va \u00eatre compliqu\u00e9 de les convaincre de t\u2019en donner encore plus&nbsp;!&nbsp;</li></ul><p><img src=\"https://cdn.microm.ag/image/2025-01-13/52826-080502.png\" width=\"1080\" height=\"290\"></p><ul><li><strong>Demande plus d\u2019argent pour \u00eatre motiv\u00e9 </strong>\u00e0 r\u00e9viser et meilleur en cours. C\u2019est la science qui le dit (les chercheurs de Harvard m\u00eame)&nbsp;! Un salari\u00e9 qui est augment\u00e9 est plus heureux et quand il est heureux, il est plus performant. Il augmente sa productivit\u00e9 et sa pr\u00e9cision dans ses t\u00e2ches. Alors, pour que tu arr\u00eates de procrastiner sur tes devoirs, que tu rendes les DM optionnels et que tu passes de 10 \u00e0 15 en maths, il te faudrait s\u00fbrement un petit coup de pouce financier, non&nbsp;? <img src=\"https://cdn.microm.ag/image/2025-01-24/53756-053941.png\"></li></ul><p><i>*&nbsp;Merci \u00e0 Jean-Michel Paguet, Docteur en \u00e9conomie.</i><br><br><i>Texte : L\u00e9na Saint Jalmes</i><br><i>Illustrations : J\u00e9r\u00f4me Si\u00e9</i></p><p>&nbsp;</p>",
+                "textStyle": {
+                    "fontFamily": {
+                        "type": "google",
+                        "name": "Roboto",
+                        "variants": [
+                            "100",
+                            "100italic",
+                            "300",
+                            "300italic",
+                            "regular",
+                            "italic",
+                            "500",
+                            "500italic",
+                            "700",
+                            "700italic",
+                            "900",
+                            "900italic"
+                        ]
+                    },
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "fontSize": 14,
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "lineHeight": 1.4,
+                    "highlight": { "color": { "color": "#00e6d4", "alpha": 1 } }
+                }
+            },
+            "image": "media://11184",
+            "group": null,
+            "parentId": null,
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83d\udd0eZOOM SUR</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "color": { "color": "#000000", "alpha": 1 }
+                        }
+                    },
+                    "active": true,
+                    "boxStyle": {
+                        "borderWidth": 2,
+                        "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "borderStyle": "solid",
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowAngle": 45,
+                        "borderRadius": 0
+                    }
+                }
+            },
+            "surtitle": { "body": null },
+            "parameters": {
+                "metadata": {
+                    "title": "Comment ren\u00e9gocier mon argent de poche\u00a0?",
+                    "description": "Article sur l'art de n\u00e9gocier et en apprendre un peu plus sur l'\u00e9conomie."
+                }
+            }
+        },
+        {
+            "background": { "color": { "color": "#00e6d3", "alpha": 1 }, "image": null },
+            "id": "0c45fa00-578a-11ee-a27c-29973c5d3f26",
+            "type": "video",
+            "layout": "full",
+            "video": {
+                "color": { "color": "#FFF", "alpha": 1 },
+                "autoPlay": true,
+                "media": "media://11613",
+                "withSeekBar": true,
+                "progressColor": { "color": "#cf041a", "alpha": 1 },
+                "thumbnail": "media://11612",
+                "withControls": true,
+                "loop": false
+            },
+            "gotoNextScreenOnEnd": true,
+            "header": {
+                "badge": {
+                    "active": false,
+                    "label": {
+                        "body": "<p>\ud83e\udde0LE PETIT D\u00c9CRYPTAGE</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16
+                        }
+                    },
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                        "borderWidth": 2,
+                        "borderRadius": 0,
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowAngle": 45
+                    }
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "parameters": {
+                "metadata": {
+                    "title": "Comment \u00e7a marche Parcoursup ?",
+                    "description": "Tout savoir sur Parcoursup"
+                }
+            }
+        },
+        {
+            "background": { "color": { "color": "#ffffff", "alpha": 1 }, "image": "media://11355" },
+            "id": "5f392a50-d742-11ef-a917-c568ad6475f3",
+            "type": "article",
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83c\udf89 L'histoire de\u2026</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontSize": 16,
+                            "align": "center"
+                        }
+                    },
+                    "active": true,
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                        "borderRadius": 0,
+                        "borderWidth": 2,
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "borderStyle": "solid",
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowAngle": 45,
+                        "shadowColor": { "color": "#000000", "alpha": 1 },
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 }
+                    }
+                }
+            },
+            "image": "media://11263",
+            "author": {
+                "name": {
+                    "body": null,
+                    "textStyle": {
+                        "fontFamily": {
+                            "name": "Roboto Condensed Italic",
+                            "media": "media://10756",
+                            "variants": [],
+                            "type": "custom"
+                        },
+                        "color": { "color": "#000000", "alpha": 1 },
+                        "fontSize": 12
+                    }
+                },
+                "image": null
+            },
+            "text": {
+                "body": "<p><strong>On veut tous un 18e anniversaire dont on se souvient. Le mien fut inoubliable. </strong>Avec l\u2019une de mes meilleures amies, on cherchait un endroit o\u00f9 organiser la f\u00eate du si\u00e8cle. Un midi, alors que je d\u00e9jeunais \u00e0 la caf\u00e9t\u00e9ria, un membre du personnel avec qui j\u2019\u00e9tais amie, Aziz, a propos\u00e9 de nous pr\u00eater les cl\u00e9s de la caf\u00e8t\u2019\u2026 si on promettait de ne pas faire n\u2019importe quoi\u2009! Le samedi soir de la f\u00eate,&nbsp;<br>on d\u00e9barque environ une heure \u00e0 l\u2019avance.</p><p><img src=\"https://cdn.microm.ag/image/2025-01-15/52954-050602.png\" width=\"1080\" height=\"736\"></p><p><strong>On allume des bougies. On apporte des tonnes de nourriture.</strong> Aziz nous confie l\u2019endroit, et s\u2019en va. La trentaine d\u2019invit\u00e9s arrive, on allume l\u2019\u00e9norme sono. Assez vite, \u00e7a a d\u00e9rap\u00e9. Des gens marchaient avec leurs chaussures boueuses sur les tables, d\u2019autres \u00e9taient rentr\u00e9s dans la chambre froide\u2026 La situation d\u00e9g\u00e9n\u00e9rait.&nbsp;</p><p>Plusieurs gar\u00e7ons avaient pris des v\u00e9los, des ballons, des trottinettes dans la cour des primaires, se sont balad\u00e9s avec dans le parc. Et \u00e9taient revenus sans\u2026<strong> </strong>Arrive l\u2019heure des cadeaux\u2009. On boit du champagne dans des fl\u00fbtes en plastique, tout a l\u2019air de mieux se passer\u2026 jusqu\u2019\u00e0 ce qu\u2019on me dise qu\u2019un de mes potes, Cl\u00e9ment, est parti faire un tour avec sa voiture dans le parc de l\u2019\u00e9tablissement. On sait qu\u2019il adore conduire vite. Il revient hors de lui car il a embouti un poteau de la verri\u00e8re de la cour des sixi\u00e8mes. Moi, je flippe que le pr\u00e9au s\u2019\u00e9croule ! Il me rassure\u2009: il a juste laiss\u00e9 un peu de peinture de sa voiture sur le poteau, par contre les traces de pneus sur le goudron sont, elles, bien visibles\u2026</p><p><img src=\"https://cdn.microm.ag/image/2025-01-15/52957-051900.png\" width=\"1080\" height=\"876\"></p><p><strong>\u00c0 partir de l\u00e0, on a d\u00e9cid\u00e9 de l\u00e2cher prise. Le mal \u00e9tait fait.</strong> On a pr\u00e9f\u00e9r\u00e9 kiffer notre soir\u00e9e, puis on s\u2019est endormies avec mon amie sur un matelas gonflable. Au r\u00e9veil, l\u2019horreur. Le sol \u00e9tait jonch\u00e9 de bouteilles, de fl\u00fbtes en plastique explos\u00e9es. La cour des primaires \u00e9tait remplie de v\u00e9los, de ballons, de cerceaux abandonn\u00e9s. Et Aziz devait arriver vers midi pour v\u00e9rifier l\u2019\u00e9tat de la caf\u00e8t\u2019\u2009!&nbsp;</p><p><img src=\"https://cdn.microm.ag/image/2025-01-15/52958-051947.png\" width=\"1080\" height=\"953\"></p><p><strong>Heureusement, nos parents ont rapport\u00e9 des seaux, des serpilli\u00e8res, et nous ont aid\u00e9es \u00e0 nettoyer. </strong>On a r\u00e9ussi \u00e0 rattraper le maximum\u2009! Mais on avait oubli\u00e9 les v\u00e9los au fond du parc, et la peinture sur le poteau de la verri\u00e8re\u2009! Le lundi, le principal a convoqu\u00e9 Aziz. Il ne l\u2019a pas vir\u00e9. Mais on s\u2019en est beaucoup voulu. Et puis, l\u2019histoire s\u2019est tass\u00e9e. On a eu de la chance de s\u2019en sortir sans une convocation chez le principal. &nbsp; Mais quand tu organises une soir\u00e9e style &nbsp; &nbsp; &nbsp;\u00ab\u2009Projet&nbsp;X\u2009\u00bb, tu dois \u00eatre pr\u00eat \u00e0 parer \u00e0 toute \u00e9ventualit\u00e9\u2026 la situation peut vite t\u2019\u00e9chapper\u2009!<br>&nbsp;</p><p><i>Texte : Pierre Garrigues&nbsp;&nbsp;</i><br><i>Illustrations : Lo\u00efc S\u00e9cheresse</i></p><p>&nbsp;</p>",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Roboto Regular",
+                        "media": {
+                            "id": "10753",
+                            "type": "font",
+                            "name": "Roboto-Regular.otf",
+                            "url": "https://cdn.microm.ag/font/2024-12-16/51267-033724.otf",
+                            "thumbnail_url": null,
+                            "files": {
+                                "original": {
+                                    "id": "51267",
+                                    "type": null,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "handle": "original",
+                                    "name": "Roboto-Regular.otf",
+                                    "url": "https://cdn.microm.ag/font/2024-12-16/51267-033724.otf"
+                                },
+                                "webfonts.otf": {
+                                    "id": "51268",
+                                    "type": null,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "handle": "webfonts.otf",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.otf",
+                                    "url": "https://cdn.microm.ag/font/2024-12-16/51268-033725.otf"
+                                },
+                                "webfonts.eot": {
+                                    "id": "51269",
+                                    "type": null,
+                                    "mime": "application/x-empty",
+                                    "handle": "webfonts.eot",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.eot",
+                                    "url": "https://cdn.microm.ag/2024-12-16/51269-033726.eot"
+                                },
+                                "webfonts.woff": {
+                                    "id": "51270",
+                                    "type": null,
+                                    "mime": "font/woff",
+                                    "handle": "webfonts.woff",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.woff",
+                                    "url": "https://cdn.microm.ag/2024-12-16/51270-033726.woff"
+                                },
+                                "webfonts.woff2": {
+                                    "id": "51271",
+                                    "type": null,
+                                    "mime": "font/woff2",
+                                    "handle": "webfonts.woff2",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.woff2",
+                                    "url": "https://cdn.microm.ag/font/2024-12-16/51271-033726.woff2"
+                                }
+                            },
+                            "metadata": {
+                                "filename": "Roboto-Regular.otf",
+                                "size": 186664,
+                                "mime": "application/vnd.ms-opentype",
+                                "tags": [],
+                                "description": null
+                            },
+                            "jobs": [
+                                {
+                                    "id": "6025",
+                                    "created_on": "2024-12-16T03:37:24-05:00",
+                                    "state": "started",
+                                    "pipeline_name": "font",
+                                    "display_name": "Traitement \u00e0 l'upload"
+                                }
+                            ],
+                            "created_at": "2024-12-16T08:37:24.000000Z"
+                        },
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 14,
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "letterSpacing": 0,
+                    "lineHeight": 1.4
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "parameters": {
+                "metadata": {
+                    "title": "L'histoire de Nina, 21 ans",
+                    "description": "Pour mes 18 ans, j'ai organis\u00e9 une f\u00eate un peu trop inoubliable."
+                }
+            }
+        },
+        {
+            "background": { "color": { "color": "#fface4", "alpha": 1 }, "image": "media://11610" },
+            "id": "2a195d00-578b-11ee-a27c-29973c5d3f26",
+            "type": "conversation",
+            "timing": "sequence",
+            "header": {
+                "badge": {
+                    "active": true,
+                    "label": {
+                        "body": "<p>\ud83d\udce3 LAISSE-NOUS UN VOCAL</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontWeight": 100,
+                            "lineHeight": 1
+                        }
+                    },
+                    "boxStyle": {
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "padding": { "top": 3, "left": 6, "right": 0, "bottom": 3 },
+                        "borderRadius": 0,
+                        "borderWidth": 2,
+                        "borderStyle": "solid",
+                        "backgroundColor": { "color": "#ffffff", "alpha": 1 },
+                        "shadowDistance": 5,
+                        "shadowColor": { "color": "#000000", "alpha": 1 },
+                        "shadowBlur": 0,
+                        "shadowAngle": 45
+                    }
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "conversation": {
+                "speakers": [
+                    {
+                        "id": "b89278d0-5940-11ee-a258-0d31472b6698",
+                        "side": "left",
+                        "name": "Gaspard",
+                        "avatar": "media://11121",
+                        "color": { "color": "#80a0f6", "alpha": 1 }
+                    },
+                    {
+                        "id": "37e51390-5941-11ee-a258-0d31472b6698",
+                        "side": "right",
+                        "name": "Apolline, de Phosphore",
+                        "avatar": "media://5149",
+                        "color": { "color": "#f96a5c", "alpha": 1 }
+                    },
+                    {
+                        "id": "53fbeef0-5941-11ee-a258-0d31472b6698",
+                        "side": "left",
+                        "name": "Laurent, psychoth\u00e9rapeute",
+                        "avatar": "media://11192"
+                    }
+                ],
+                "messages": [
+                    {
+                        "audio": "media://11102",
+                        "speaker": "b89278d0-5940-11ee-a258-0d31472b6698",
+                        "message": "Salut Phosphore, c\u2019est Gaspard, je sors avec une fille depuis la rentr\u00e9e, \u00e7a se passe bien entre nous mais voil\u00e0, je me demande si je suis amoureux. Comment on fait pour savoir ?",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 10,
+                            "writingDuration": 1
+                        },
+                        "putAudioBeforeText": true
+                    },
+                    {
+                        "speaker": "37e51390-5941-11ee-a258-0d31472b6698",
+                        "message": "Salut Gaspard, c\u2019est Apolline de Phosphore ! Pour r\u00e9pondre \u00e0 ta question, j\u2019ai ajout\u00e9 Fran\u00e7ois \u00e0 la conversation. Il est psychologue chez Fil Sant\u00e9 Jeunes.",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 4,
+                            "writingDuration": 12
+                        }
+                    },
+                    {
+                        "message": "Bonjour Gaspard, c\u2019est une grande question sur laquelle repose un imaginaire tr\u00e8s fort, nourri notamment par les films et les s\u00e9ries !",
+                        "speaker": "53fbeef0-5941-11ee-a258-0d31472b6698",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 3,
+                            "writingDuration": 8
+                        }
+                    },
+                    {
+                        "message": "Pas merci les com\u00e9dies romantiques \ud83d\ude06",
+                        "speaker": "37e51390-5941-11ee-a258-0d31472b6698",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 2,
+                            "writingDuration": 4
+                        }
+                    },
+                    {
+                        "message": "Ce mythe qui entoure l\u2019amour suscite beaucoup de questions, comme si l\u2019amour \u00e9tait tellement diff\u00e9rent des autres sentiments qu\u2019on devrait ressentir une \u00e9vidence quand on le rencontre.",
+                        "speaker": "53fbeef0-5941-11ee-a258-0d31472b6698",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 2,
+                            "writingDuration": 4
+                        }
+                    },
+                    {
+                        "message": "Alors que l\u2019amour n\u2019est pas si diff\u00e9rent de l\u2019amiti\u00e9, de tous ces liens o\u00f9 l\u2019on ressent une connexion avec quelqu\u2019un.",
+                        "speaker": "37e51390-5941-11ee-a258-0d31472b6698",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 2,
+                            "writingDuration": 5
+                        }
+                    },
+                    {
+                        "message": "Tu peux ressentir des sensations physiques : des palpitations quand tu vois la personne, du stress quand tu lui parles parce que tu veux lui plaire, l'envie d\u2019\u00eatre proche physiquement. Tu te sens bien en sa pr\u00e9sence, tout simplement.",
+                        "speaker": "53fbeef0-5941-11ee-a258-0d31472b6698",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 2,
+                            "writingDuration": 5
+                        }
+                    },
+                    {
+                        "message": "Et il se passe aussi des choses dans la t\u00eate : tu penses beaucoup \u00e0 cette personne, tu as envie de la voir, de passer du temps avec elle.",
+                        "speaker": "37e51390-5941-11ee-a258-0d31472b6698",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 2,
+                            "writingDuration": 5
+                        }
+                    },
+                    {
+                        "message": "Voil\u00e0 quelques pistes\u2026 mais l\u2019amour est propre \u00e0 chacun et tu n\u2019es pas toujours amoureux de la m\u00eame fa\u00e7on, m\u00eame quand il s\u2019agit de la m\u00eame personne !",
+                        "speaker": "53fbeef0-5941-11ee-a258-0d31472b6698",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 2,
+                            "writingDuration": 6
+                        }
+                    },
+                    {
+                        "message": "C\u2019est ce qui fait que c\u2019est parfois compliqu\u00e9.  Mais souvent, quand on se pose la question, c\u2019est qu\u2019on a un d\u00e9but de r\u00e9ponse.",
+                        "speaker": "53fbeef0-5941-11ee-a258-0d31472b6698",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 2,
+                            "writingDuration": 4
+                        }
+                    },
+                    {
+                        "message": "Si tu veux en parler, n\u2019h\u00e9site pas \u00e0 appeler Fil Sant\u00e9 Jeunes. On est l\u00e0 tous les jours de 9h \u00e0 23h et notre num\u00e9ro est anonyme et gratuit : 0800 235 236.",
+                        "speaker": "53fbeef0-5941-11ee-a258-0d31472b6698",
+                        "timingOverrides": {
+                            "enabled": true,
+                            "appearDelay": 2,
+                            "writingDuration": 5
+                        }
+                    },
+                    {
+                        "speaker": "37e51390-5941-11ee-a258-0d31472b6698",
+                        "message": "Si tu as d\u2019autres questions, n\u2019h\u00e9site pas \u00e0 nous \u00e9crire \ud83d\udcac ou \u00e0 nous laisser un vocal au 06 86 32 01 14\u00a0! \u00c0 bient\u00f4t !"
+                    }
+                ],
+                "messageStyle": {
+                    "fontFamily": {
+                        "type": "google",
+                        "name": "Roboto",
+                        "variants": [
+                            "100",
+                            "100italic",
+                            "300",
+                            "300italic",
+                            "regular",
+                            "italic",
+                            "500",
+                            "500italic",
+                            "700",
+                            "700italic",
+                            "900",
+                            "900italic"
+                        ]
+                    },
+                    "fontSize": 14,
+                    "lineHeight": 1.4,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "highlight": {
+                        "color": { "color": "#cf041a", "alpha": 1 },
+                        "textColor": { "color": "#000000", "alpha": 1 }
+                    }
+                },
+                "speakerStyle": {
+                    "fontFamily": {
+                        "type": "google",
+                        "name": "Gabarito",
+                        "variants": ["regular", "500", "600", "700", "800", "900"]
+                    },
+                    "fontSize": 13,
+                    "fontStyle": { "bold": true, "italic": false, "underline": false }
+                }
+            },
+            "title": {
+                "body": "<span>\u21aa06 86 32 01 14<br><br>\u201cComment savoir&nbsp;<br>si je suis amoureux&nbsp;?</span><span>\u201d</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 24,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "footer": {
+                "callToAction": {
+                    "active": true,
+                    "type": "button",
+                    "label": {
+                        "body": null,
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Geomanist-Book",
+                                "media": "media://5218",
+                                "variants": [
+                                    {
+                                        "weight": "400",
+                                        "style": "normal",
+                                        "fvd": "n4",
+                                        "media": "media://5218"
+                                    },
+                                    {
+                                        "weight": "400",
+                                        "style": "italic",
+                                        "fvd": "i4",
+                                        "media": "media://5216"
+                                    }
+                                ],
+                                "type": "custom"
+                            },
+                            "color": { "color": "#238265", "alpha": 1 },
+                            "fontSize": 14
+                        }
+                    },
+                    "boxStyle": {
+                        "padding": { "top": 0, "bottom": 0, "left": 0, "right": 0 },
+                        "borderRadius": 0,
+                        "backgroundColor": { "color": "#fface4", "alpha": 1 },
+                        "borderWidth": 2,
+                        "shadowAngle": 90,
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "borderStyle": "solid",
+                        "shadowColor": { "color": "#000000", "alpha": 1 }
+                    }
+                }
+            },
+            "parameters": {
+                "metadata": {
+                    "title": "Laisse-nous un vocal",
+                    "description": "Comment savoir si je suis amoureux ?"
+                }
+            },
+            "readingSpeed": 600
+        },
+        {
+            "background": { "color": { "color": "#000", "alpha": 1 }, "image": null },
+            "id": "b8dfb3b0-dc99-11ef-9913-c55a565a340f",
+            "type": "image",
+            "layout": "fullscreen",
+            "imageFit": "cover",
+            "image": "media://11644",
+            "footer": {
+                "callToAction": {
+                    "label": { "body": "<p>En savoir plus</p>" },
+                    "active": true,
+                    "type": "button",
+                    "url": "https://phosphore.com",
+                    "inWebView": true
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "parameters": { "metadata": { "title": "page de promotion" } }
+        },
+        {
+            "background": {
+                "color": { "color": "#000", "alpha": 1 },
+                "image": null,
+                "video": "media://11409"
+            },
+            "id": "56620280-5caf-11ee-9fb4-9d5da1d49802",
+            "type": "urbania-recommendation",
+            "header": {
+                "badge": {
+                    "active": true,
+                    "label": {
+                        "body": "<p>\ud83c\udf7fCULTURE POP</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontWeight": 100,
+                            "lineHeight": 1,
+                            "align": "center"
+                        }
+                    },
+                    "boxStyle": {
+                        "borderRadius": 0,
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "borderWidth": 2,
+                        "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                        "borderStyle": "solid",
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowColor": { "color": "#000000", "alpha": 1 },
+                        "shadowAngle": 45
+                    }
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "visual": { "image": "media://11620" },
+            "category": {
+                "body": "<span><strong>MUSIQUE</strong></span>",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "MelunHigh-Regular",
+                        "media": "media://10602",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "fontSize": 28
+                }
+            },
+            "title": {
+                "body": "<span><i><strong>HURRY UP TOMORROW</strong></i></span><span><strong>&nbsp;</strong></span><span>&nbsp;</span><span><strong>&nbsp; DE THE WEEKND</strong></span>",
+                "textStyle": {
+                    "fontSize": 24,
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "fontStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false,
+                        "transform": "capitalize"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "description": {
+                "body": "<p>Le chanteur canadien The Weeknd nous d\u00e9livre un dernier album sous ce nom, cl\u00f4turant la trilogie entam\u00e9e avec <i>After Hours</i> (2020) et <i>Dawn FM</i> (2022).</p><p>\ud83d\udc99 <strong>La vari\u00e9t\u00e9 des ambiances musicales&nbsp;: </strong>pop 80\u2019s sur \u201cDancing In The Flames\u201d, rap sur \u201cTimeless\u201d ou musique br\u00e9silienne sur \u201cSa\u00f5 Paulo\u201d.<br>\ud83d\udc99 <strong>L\u2019univers de l\u2019album pens\u00e9 comme un thriller </strong>sera prolong\u00e9 par un film avec Jenna Ortega, en mai au cin\u00e9ma. &nbsp;</p><p><i>Polydor&nbsp;</i></p>",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Roboto Regular",
+                        "media": "media://10753",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 14,
+                    "lineHeight": 1.4
+                }
+            },
+            "date": {
+                "body": "<p>31 janvier 2025</p>",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Gabarito Bold",
+                        "media": "media://10748",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 12
+                }
+            },
+            "location": { "body": null },
+            "footer": {
+                "callToAction": {
+                    "active": false,
+                    "type": "swipe-up",
+                    "label": {
+                        "body": "\u00c0 \u00e9couter",
+                        "textStyle": {
+                            "color": { "color": "#ffffff", "alpha": 1 },
+                            "fontFamily": {
+                                "name": "Geomanist-Book",
+                                "media": "media://5218",
+                                "variants": [
+                                    {
+                                        "weight": "400",
+                                        "style": "normal",
+                                        "fvd": "n4",
+                                        "media": "media://5218"
+                                    },
+                                    {
+                                        "weight": "400",
+                                        "style": "italic",
+                                        "fvd": "i4",
+                                        "media": "media://5216"
+                                    }
+                                ],
+                                "type": "custom"
+                            },
+                            "fontSize": 14
+                        }
+                    },
+                    "url": "https://nuitincolore.lnk.to/Crush",
+                    "boxStyle": {
+                        "borderRadius": 30,
+                        "padding": { "top": 3, "bottom": 4, "left": 15, "right": 15 },
+                        "borderColor": null,
+                        "borderWidth": 0,
+                        "borderStyle": "solid",
+                        "shadowDistance": 2,
+                        "backgroundColor": { "color": "#0ec9ba", "alpha": 1 },
+                        "shadowAngle": 90,
+                        "shadowColor": { "color": "#0ec9ba", "alpha": 0.65 },
+                        "shadowBlur": 5
+                    },
+                    "inWebView": false
+                }
+            },
+            "parameters": { "metadata": { "title": "Culture Pop", "description": "Musique" } }
+        },
+        {
+            "background": {
+                "color": { "color": "#000", "alpha": 1 },
+                "image": null,
+                "video": "media://11408"
+            },
+            "id": "17933ca0-578b-11ee-a27c-29973c5d3f26",
+            "type": "urbania-recommendation",
+            "header": {
+                "badge": {
+                    "active": true,
+                    "label": {
+                        "body": "<p>\ud83c\udf7fCULTURE POP</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "fontWeight": 100,
+                            "lineHeight": 1
+                        }
+                    },
+                    "boxStyle": {
+                        "borderRadius": 0,
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "borderWidth": 2,
+                        "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                        "borderStyle": "solid",
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowAngle": 45
+                    }
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "visual": { "image": "media://11619" },
+            "category": {
+                "body": "<span>MANGA</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "fontFamily": {
+                        "name": "MelunHigh-Regular",
+                        "media": "media://10602",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 28
+                }
+            },
+            "title": {
+                "body": "<span>SHIN ZERO</span>",
+                "textStyle": {
+                    "fontSize": 24,
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "fontStyle": { "transform": "capitalize" },
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "description": {
+                "body": "<p>Depuis l\u2019\u00e9radication des monstres g\u00e9ants, les groupes de justiciers, appel\u00e9s sentai, vivotent en cumulant les petits jobs. Cinq jeunes colocs un peu paum\u00e9s choisissent cette option pour le meilleur\u2026 et pour le pire.</p><p>\ud83e\ude77 <strong>L\u2019uberisation et le mal-\u00eatre adolescent </strong>sont analys\u00e9s avec justesse.&nbsp; &nbsp;<br><strong>\ud83e\ude77 La direction artistique </strong>et ses touches de couleur<strong> </strong>m\u00eal\u00e9es au noir et blanc.<br>De M. Bablet et G. Singelin.&nbsp;<br>\u00e9d. Rue de S\u00e8vres, 13,90 \u20ac.</p>",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Roboto Regular",
+                        "media": "media://10753",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 14,
+                    "lineHeight": 1.4
+                }
+            },
+            "date": {
+                "body": "<p>En librairie</p>",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Gabarito Bold",
+                        "media": "media://10748",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 12
+                }
+            },
+            "location": { "body": null },
+            "sponsor": { "body": null },
+            "footer": {
+                "callToAction": {
+                    "active": false,
+                    "type": "swipe-up",
+                    "label": {
+                        "body": "<p>\u00c0 voir</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Geomanist-Book",
+                                "media": "media://5218",
+                                "variants": [
+                                    {
+                                        "weight": "400",
+                                        "style": "normal",
+                                        "fvd": "n4",
+                                        "media": "media://5218"
+                                    },
+                                    {
+                                        "weight": "400",
+                                        "style": "italic",
+                                        "fvd": "i4",
+                                        "media": "media://5216"
+                                    }
+                                ],
+                                "type": "custom"
+                            },
+                            "fontSize": 14
+                        }
+                    },
+                    "url": null,
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#f2702d", "alpha": 1 },
+                        "borderRadius": 30,
+                        "padding": { "top": 3, "bottom": 3, "left": 15, "right": 15 },
+                        "borderStyle": "solid",
+                        "shadowDistance": 2,
+                        "borderWidth": 1,
+                        "shadowAngle": 90,
+                        "shadowColor": { "color": "#f2702d", "alpha": 0.72 },
+                        "shadowBlur": 5,
+                        "borderColor": { "color": "#f2702d", "alpha": 1 }
+                    },
+                    "inWebView": false
+                }
+            },
+            "parameters": { "metadata": { "title": "Culture Pop", "description": "Manga" } }
+        },
+        {
+            "background": {
+                "color": { "color": "#000", "alpha": 1 },
+                "image": null,
+                "video": "media://11407"
+            },
+            "id": "feaeb570-578a-11ee-a27c-29973c5d3f26",
+            "type": "urbania-recommendation",
+            "header": {
+                "badge": {
+                    "active": true,
+                    "label": {
+                        "body": "<p>\ud83c\udf7fCULTURE POP</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "lineHeight": 1,
+                            "fontWeight": 100
+                        }
+                    },
+                    "boxStyle": {
+                        "borderRadius": 0,
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "borderWidth": 2,
+                        "shadowAngle": 45,
+                        "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                        "shadowDistance": 5,
+                        "shadowBlur": 0,
+                        "shadowColor": { "color": "#000000", "alpha": 1 }
+                    }
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "category": {
+                "body": "<span>S\u00c9RIE</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "fontFamily": {
+                        "name": "MelunHigh-Regular",
+                        "media": "media://10602",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "align": "center",
+                    "fontSize": 28
+                }
+            },
+            "title": {
+                "body": "<span><strong>Paradise</strong></span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "fontSize": 24,
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false,
+                        "transform": "capitalize"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "date": {
+                "body": "<p>Sur Disney +</p>",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Gabarito Bold",
+                        "media": "media://10748",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 12,
+                    "fontStyle": { "transform": "uppercase" }
+                }
+            },
+            "description": {
+                "body": "<p>Un meurtre vient troubler la paix d\u2019une communaut\u00e9 idyllique o\u00f9 se c\u00f4toient les VIP les plus influents de la plan\u00e8te. Le garde du corps du Pr\u00e9sident des \u00c9tats-Unis m\u00e8ne l\u2019enqu\u00eate dans un monde presque parfait, o\u00f9 les apparences se r\u00e9v\u00e8lent tr\u00e8s trompeuses.</p><p><strong>\ud83d\udc99 L\u2019intrigue chorale haletante</strong>, entre parano\u00efa et manipulations.<br><strong>\ud83d\udc99 Les cliffhangers \u00e0 la fin des \u00e9pisodes</strong>, sid\u00e9rants et addictifs.<br><i>De Yudori (\u00e9d. Delcourt, 20,50&nbsp;\u20ac).</i></p>",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Roboto Regular",
+                        "media": "media://10753",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 14,
+                    "lineHeight": 1.4,
+                    "color": { "color": "#000000", "alpha": 1 }
+                }
+            },
+            "visual": { "image": "media://11618" },
+            "footer": {
+                "callToAction": {
+                    "active": true,
+                    "type": "swipe-up",
+                    "label": {
+                        "body": "\u00c0 d\u00e9couvrir",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Geomanist-Book",
+                                "media": "media://5218",
+                                "variants": [
+                                    {
+                                        "weight": "400",
+                                        "style": "normal",
+                                        "fvd": "n4",
+                                        "media": "media://5218"
+                                    },
+                                    {
+                                        "weight": "400",
+                                        "style": "italic",
+                                        "fvd": "i4",
+                                        "media": "media://5216"
+                                    }
+                                ],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false }
+                        }
+                    },
+                    "url": "https://www.allocine.fr/series/ficheserie_gen_cserie=36027.html",
+                    "inWebView": true,
+                    "boxStyle": {
+                        "borderStyle": "solid",
+                        "borderWidth": 1,
+                        "borderRadius": 30,
+                        "backgroundColor": { "color": "#1a718b", "alpha": 1 },
+                        "padding": { "left": 15, "top": 3, "right": 15, "bottom": 4 },
+                        "shadowDistance": 2,
+                        "shadowAngle": 90,
+                        "shadowColor": { "color": "#1a718b", "alpha": 0.61 },
+                        "shadowBlur": 5,
+                        "borderColor": { "color": "#000000", "alpha": 1 }
+                    }
+                }
+            },
+            "location": { "body": null },
+            "parameters": { "metadata": { "description": "BD", "title": "Culture Pop" } },
+            "layout": "top",
+            "sponsor": { "body": null }
+        },
+        {
+            "background": { "color": { "color": "#ffffff", "alpha": 1 } },
+            "id": "36e0ea50-bec1-11ef-9659-61ab69ed65c5",
+            "type": "article",
+            "header": {
+                "badge": {
+                    "label": {
+                        "body": "<p>\ud83d\uddef\ufe0f BD</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "JGS Regular",
+                                "media": "media://10746",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 16,
+                            "color": { "color": "#000000", "alpha": 1 }
+                        }
+                    },
+                    "active": true,
+                    "boxStyle": {
+                        "backgroundColor": { "color": "#f8f13c", "alpha": 1 },
+                        "borderWidth": 2,
+                        "borderColor": { "color": "#000000", "alpha": 1 },
+                        "borderRadius": 0,
+                        "padding": { "top": 3, "left": 3, "right": 5, "bottom": 3 },
+                        "shadowAngle": 45,
+                        "shadowColor": { "color": "#000000", "alpha": 1 },
+                        "shadowDistance": 5,
+                        "shadowBlur": 0
+                    }
+                }
+            },
+            "image": "media://11470",
+            "author": {
+                "name": {
+                    "body": null,
+                    "textStyle": {
+                        "fontFamily": {
+                            "name": "Roboto Condensed Italic",
+                            "media": "media://10756",
+                            "variants": [],
+                            "type": "custom"
+                        },
+                        "fontSize": 14,
+                        "color": { "color": "#000000", "alpha": 1 }
+                    }
+                },
+                "image": null
+            },
+            "group": null,
+            "parentId": null,
+            "text": {
+                "body": null,
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Roboto Regular",
+                        "media": {
+                            "id": "10753",
+                            "type": "font",
+                            "name": "Roboto-Regular.otf",
+                            "url": "https://cdn.microm.ag/font/2024-12-16/51267-033724.otf",
+                            "thumbnail_url": null,
+                            "files": {
+                                "original": {
+                                    "id": "51267",
+                                    "type": null,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "handle": "original",
+                                    "name": "Roboto-Regular.otf",
+                                    "url": "https://cdn.microm.ag/font/2024-12-16/51267-033724.otf"
+                                },
+                                "webfonts.otf": {
+                                    "id": "51268",
+                                    "type": null,
+                                    "mime": "application/vnd.ms-opentype",
+                                    "handle": "webfonts.otf",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.otf",
+                                    "url": "https://cdn.microm.ag/font/2024-12-16/51268-033725.otf"
+                                },
+                                "webfonts.eot": {
+                                    "id": "51269",
+                                    "type": null,
+                                    "mime": "application/x-empty",
+                                    "handle": "webfonts.eot",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.eot",
+                                    "url": "https://cdn.microm.ag/2024-12-16/51269-033726.eot"
+                                },
+                                "webfonts.woff": {
+                                    "id": "51270",
+                                    "type": null,
+                                    "mime": "font/woff",
+                                    "handle": "webfonts.woff",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.woff",
+                                    "url": "https://cdn.microm.ag/2024-12-16/51270-033726.woff"
+                                },
+                                "webfonts.woff2": {
+                                    "id": "51271",
+                                    "type": null,
+                                    "mime": "font/woff2",
+                                    "handle": "webfonts.woff2",
+                                    "name": "mediatheque_pipeline_jobPipKaO-webfonts.woff2",
+                                    "url": "https://cdn.microm.ag/font/2024-12-16/51271-033726.woff2"
+                                }
+                            },
+                            "metadata": {
+                                "filename": "Roboto-Regular.otf",
+                                "size": 186664,
+                                "mime": "application/vnd.ms-opentype",
+                                "tags": [],
+                                "description": null
+                            },
+                            "jobs": [
+                                {
+                                    "id": "6025",
+                                    "created_on": "2024-12-16T03:37:24-05:00",
+                                    "state": "started",
+                                    "pipeline_name": "font",
+                                    "display_name": "Traitement \u00e0 l'upload"
+                                }
+                            ],
+                            "created_at": "2024-12-16T08:37:24.000000Z"
+                        },
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "fontSize": 13
+                }
+            },
+            "parameters": {
+                "metadata": {
+                    "title": "Les Tutos cuitos pour les nullos",
+                    "description": "La cuisson des p\u00e2tes"
+                }
+            }
+        },
+        {
+            "background": { "color": null, "image": "media://10730", "video": "media://11350" },
+            "id": "da18d990-75a5-11ef-8421-c7c1b178d5b8",
+            "type": "timeline",
+            "bulletShape": "circle",
+            "withoutLine": false,
+            "bulletFilled": true,
+            "bulletColor": { "color": "#ffffff", "alpha": 1 },
+            "lineColor": { "color": "#ffffff", "alpha": 1 },
+            "title": {
+                "body": "<span>\ud83d\udce3&nbsp;<br>Envie&nbsp;<br>de t\u00e9moigner&nbsp;<br>ou de participer&nbsp;<br>\u00e0 Phosphore ?&nbsp;<br>&nbsp;</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 26,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1.02,
+                    "letterSpacing": 0
+                }
+            },
+            "items": [
+                {
+                    "title": {
+                        "body": "<span>\u00c9cris-nous ou laisse-nous</span><span><br>un vocal sur WhatsApp<br>au&nbsp;</span><span>06 86 32 01 14&nbsp;</span>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Gabarito Bold",
+                                "media": "media://10748",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false,
+                                "transform": "uppercase"
+                            },
+                            "lineHeight": 1.2,
+                            "letterSpacing": null
+                        }
+                    },
+                    "description": {
+                        "body": null,
+                        "textStyle": {
+                            "color": { "color": "#FFF", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Geomanist",
+                                "media": "media://5225",
+                                "variants": [
+                                    {
+                                        "weight": "400",
+                                        "style": "italic",
+                                        "fvd": "i4",
+                                        "media": "media://5227"
+                                    },
+                                    {
+                                        "weight": "700",
+                                        "style": "normal",
+                                        "fvd": "n7",
+                                        "media": "media://5217"
+                                    },
+                                    {
+                                        "weight": "400",
+                                        "style": "normal",
+                                        "fvd": "n4",
+                                        "media": "media://5225"
+                                    },
+                                    {
+                                        "weight": "700",
+                                        "style": "italic",
+                                        "fvd": "i7",
+                                        "media": "media://5213"
+                                    },
+                                    { "weight": null, "style": null, "fvd": null, "media": null }
+                                ],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 1,
+                            "letterSpacing": 0
+                        }
+                    }
+                },
+                {
+                    "title": {
+                        "body": "<span>Qui fait Phosphore?</span>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Gabarito Bold",
+                                "media": "media://10748",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 0,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "description": {
+                        "body": "<p>Victoria Jacob (r\u00e9dactrice en chef),&nbsp;<br>St\u00e9phane Mattern (directeur artistique), Agn\u00e8s Massot (\u00e9ditrice web),&nbsp;<br>Nikita Castelain (r\u00e9dactrice graphiste) Kassandra Fourrez (alternante graphiste),&nbsp;<br>Apolline Guichet (cheffe de rubrique),&nbsp;<br>Claire Le Nestour (cheffe de rubrique),&nbsp;<br>Arthur Valentin (cadreur-monteur),&nbsp;<br>Ania Biszewska (iconographe).</p><p><br>Fr\u00e9d\u00e9rique Girard (responsable administrative et financi\u00e8re), St\u00e9phane Chagot (directeur marketing \u00e9diteur), Camille Choteau (responsable \u00e9ditoriale social media et web), Nathalie Becht (directrice Bayard Jeunesse), H\u00e9lo\u00efse des Monstiers (directrice adjointe de Bayard Jeunesse), Delphine Sauli\u00e8re (directrice des r\u00e9dactions presse jeunesse), Damien Giard (directeur du num\u00e9rique)&nbsp;</p><p><strong>Abonnez-vous </strong>sur bayard-jeunesse.com ou par t\u00e9l\u00e9phone au 0 825 825 830 (0,18\u2009\u20ac la min + prix de l\u2019appel). Bayard Jeunesse - TSA 50006, 59714 Lille Cedex 9. G\u00e9rez votre abonnement au\u2009: 01 74 31 15 06, depuis l\u2019\u00e9tranger\u2009: 00 33 1 74 31 15 06, par mail\u2009: jeunesse-contact@bayardweb.com, en ligne\u2009: https://e-bayard-jeunesse.com/, hors France m\u00e9tropolitaine\u2009: www.bayard-jeunesse.com/monde. Tarif public par abonnement France M\u00e9tropolitaine, un an, 22 num\u00e9ros : 106\u2009\u20ac.</p><p><strong>Publicit\u00e9\u2009: </strong>BAYARD m\u00e9dia d\u00e9veloppement. 01 74 31 49 86. Directrice g\u00e9n\u00e9rale\u2009: Sybille Le Maire - sibylle.le-maire@bayardmedia.fr ; Directrice g\u00e9n\u00e9rale adjointe : Fabienne Marquet - fabienne.marquet@bayardmedia.fr ; Consultante publicit\u00e9 :&nbsp;Tiphaine Machefer - tiphaine.machefer@bayardmedia.fr&nbsp;<br>ou 01 74 31 49 05, Mistral Media (formations/\u00e9tudes). Directeur G\u00e9n\u00e9ral\u2009: Luc Leh\u00e9ricy (luc.lehericy@mistralmedia.fr) ;&nbsp;<br>Chef de publicit\u00e9 : Julian Marie-Luce - julian.marieluce@mistralmedia.fr (01 40 02 99 00).</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Roboto Regular",
+                                "media": "media://10753",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 12,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 1.2,
+                            "letterSpacing": 0
+                        }
+                    }
+                },
+                {
+                    "title": {
+                        "body": "<span>Cr\u00e9dits</span>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Gabarito Bold",
+                                "media": "media://10748",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 0,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "description": {
+                        "body": "<p>Couverture</p><p>L'actu Quiz : textes d'Apolline Guichet et Claire Le Nestour, photos : Antoine Griezmann : Photo Sipa / Marco Canoniero ; McFly et Carlito : DR ; Marine Le PEN : G. Cezard_Sipa ; Hassan Nasrallah : REUTERS/Aziz Taher ; The apprentice : Metropolitan FilmExport</p><p>Trump revient dans le game : textes de Claire Le Nestour et Apolline Guichet. Photos : XXXX</p><p>Video TikTok Le Monde :&nbsp;</p><p>Comment ren\u00e9gocier mon argent de poche : texte de L\u00e9na Saint-Jalmes, illustrations de J\u00e9r\u00f4me Si\u00e9.&nbsp;</p><p>Comment \u00e7a marche Parcoursup : texte de Claire Le Nestour</p><p>\"Pour mes 18 ans, j'ai organis\u00e9 une f\u00eate un peu trop inoubliable\" : texte de Pierre Garrigues, illustrations de Lo\u00efc S\u00e9cheresse.</p><p>\"Comment savoir si je suis amoureux\" : texte d'Apolline Guichet</p><p>Pop culture : textes de Brice Bossavie, Matthieu Pinon, Katia de la Ballina&nbsp;</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Roboto Regular",
+                                "media": "media://10753",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 12,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 1.2,
+                            "letterSpacing": 0
+                        }
+                    }
+                },
+                {
+                    "title": {
+                        "body": "<span>Mentions l\u00e9gales</span>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Gabarito Bold",
+                                "media": "media://10748",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 14,
+                            "fontStyle": { "bold": false, "italic": false, "underline": false },
+                            "lineHeight": 0,
+                            "letterSpacing": 0
+                        }
+                    },
+                    "description": {
+                        "body": "<p>PHOSPHORE<strong> est \u00e9dit\u00e9</strong>&nbsp;par&nbsp;<strong>BAYARD</strong></p><p>Soci\u00e9t\u00e9 Anonyme \u00e0 directoire et conseil de surveillance au capital de 16 500 000 \u20ac<br>RCS Nanterre : 542 042&nbsp;486<br>Code TVA intracommunautaire : FR 70 542 042&nbsp;486</p><p>Si\u00e8ge Social : 18 rue Barb\u00e8s, 92120 Montrouge<br>mail : \u00e0 venir</p><p>Num\u00e9ro de t\u00e9l\u00e9phone&nbsp;: + 33 (0)1 74 31 60 60 ..</p><p>Pr\u00e9sident et directeur de la publication : Fran\u00e7ois Morini\u00e8re</p><p>Num\u00e9ro SPEL :&nbsp;en cours</p><p><strong>Coordonn\u00e9es de l\u2019h\u00e9bergeur du site :</strong></p><p>Bayard&nbsp;<br>18 rue Barb\u00e8s<br>92128 Montrouge Cedex<br>T\u00e9l : + 33 (0)1 74 31 60 60</p><p><strong>Bayard</strong>, \u00e9ditrice du service de presse en ligne Phosphore est une soci\u00e9t\u00e9 anonyme \u00e0 Directoire et Conseil de Surveillance. Le Directoire est compos\u00e9 de Fran\u00e7ois Morini\u00e8re (Pr\u00e9sident du Directoire et Directeur de la publication) et de Dominique Greiner (Directeur G\u00e9n\u00e9ral).</p><p>Le Conseil de Surveillance qui est charg\u00e9, conform\u00e9ment \u00e0 la loi, d\u2019exercer le contr\u00f4le permanent de la gestion de la soci\u00e9t\u00e9 Bayard par le Directoire, est pr\u00e9sid\u00e9 par Hubert Chicou.</p><p>Le capital social de Bayard est d\u00e9tenu \u00e0 93,7 % par la Congr\u00e9gation des Augustins de l\u2019Assomption.&nbsp;\u00bb</p><p>Cr\u00e9e et publi\u00e9 par Micromag, URBANIA&nbsp;<br>&nbsp;</p>",
+                        "textStyle": {
+                            "color": { "color": "#000000", "alpha": 1 },
+                            "align": "left",
+                            "fontFamily": {
+                                "name": "Roboto Regular",
+                                "media": "media://10753",
+                                "variants": [],
+                                "type": "custom"
+                            },
+                            "fontSize": 12,
+                            "fontStyle": { "bold": false, "italic": true, "underline": false },
+                            "lineHeight": 1.2,
+                            "letterSpacing": 0
+                        }
+                    }
+                }
+            ],
+            "group": null,
+            "parentId": null,
+            "itemTitleStyle": {
+                "fontFamily": {
+                    "name": "Gabarito Bold",
+                    "media": "media://10748",
+                    "variants": [],
+                    "type": "custom"
+                },
+                "color": { "color": "#000000", "alpha": 1 }
+            },
+            "itemDescriptionStyle": {
+                "fontFamily": {
+                    "name": "Roboto Regular",
+                    "media": "media://10753",
+                    "variants": [],
+                    "type": "custom"
+                },
+                "color": { "color": "#000000", "alpha": 1 },
+                "letterSpacing": null,
+                "fontSize": 14,
+                "lineHeight": 1.4
+            },
+            "parameters": { "metadata": { "title": "Cr\u00e9dits" } }
+        },
+        {
+            "background": { "color": { "color": "#000", "alpha": 1 }, "image": "media://11614" },
+            "id": "bb808fc0-da48-11ef-ad45-057e8860de43",
+            "type": "share",
+            "layout": "middle",
+            "heading": {
+                "body": "<span>Vous avez aim\u00e9 ?&nbsp;</span><span>&nbsp;</span><span><br>&nbsp;</span><span>Partagez !<br><br><br><br><br><br><br><br><br>&nbsp;</span>",
+                "textStyle": {
+                    "color": { "color": "#000000", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 20,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1.2,
+                    "letterSpacing": 0
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "buttonsTextStyle": {
+                "fontFamily": {
+                    "name": "Gabarito Regular",
+                    "media": "media://10749",
+                    "variants": [],
+                    "type": "custom"
+                },
+                "fontSize": 18
+            },
+            "options": {
+                "copylink": true,
+                "facebook": false,
+                "twitter": false,
+                "linkedin": false,
+                "email": false,
+                "whatsapp": true,
+                "sms": true
+            },
+            "buttonsStyle": {
+                "borderRadius": 16,
+                "borderWidth": 2,
+                "shadowDistance": 5,
+                "shadowAngle": 45,
+                "backgroundColor": { "color": "#fe365a", "alpha": 0.69 }
+            },
+            "parameters": {
+                "metadata": {
+                    "title": "Vous avez aim\u00e9 ? Partagez !",
+                    "description": "Phosphore #1 - Donald Trump revient dans le game"
+                }
+            }
+        },
+        {
+            "background": { "video": "media://11351" },
+            "id": "1d7d6090-d756-11ef-ac4e-b548daa734ae",
+            "type": "title-with-box",
+            "layout": "middle",
+            "title": {
+                "body": null,
+                "textStyle": {
+                    "color": { "color": "#FFF", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "MelunHigh-Bold",
+                        "media": "media://10601",
+                        "variants": [],
+                        "type": "custom"
+                    },
+                    "fontSize": 28,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "subtitle": {
+                "body": null,
+                "textStyle": {
+                    "color": { "color": "#FFF", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": "Arial",
+                    "fontSize": 24,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "description": {
+                "body": "<p>\ud83d\udc40 Dans le prochain num\u00e9ro,&nbsp;gr\u00e2ce \u00e0 Bayron, on te dit comment cartonner \u00e0 l'oral !&nbsp;</p>",
+                "textStyle": {
+                    "color": { "color": "#FFF", "alpha": 1 },
+                    "align": "center",
+                    "fontFamily": {
+                        "name": "Gabarito Medium",
+                        "media": "media://10747",
+                        "variants": [{ "weight": null, "style": null, "fvd": null, "media": null }],
+                        "type": "custom"
+                    },
+                    "fontSize": 18,
+                    "fontStyle": { "bold": false, "italic": false, "underline": false },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "group": null,
+            "parentId": null,
+            "boxStyle": {
+                "borderRadius": 16,
+                "borderWidth": 2,
+                "shadowDistance": 3,
+                "shadowBlur": 0,
+                "backgroundColor": { "color": "#9a93f5", "alpha": 0.71 },
+                "borderColor": { "color": "#000000", "alpha": 1 },
+                "shadowAngle": 45,
+                "shadowColor": { "color": "#000000", "alpha": 1 },
+                "borderStyle": "solid"
+            }
+        }
+    ]
+}

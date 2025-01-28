@@ -25,6 +25,7 @@ const propTypes = {
     isHorizontal: PropTypes.bool,
     isListItem: PropTypes.bool,
     withoutLabel: PropTypes.bool,
+    withoutCaret: PropTypes.bool,
     withSettings: PropTypes.bool,
     withForm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     withValue: PropTypes.bool,
@@ -46,6 +47,7 @@ const defaultProps = {
     isHorizontal: false,
     isListItem: false,
     withoutLabel: false,
+    withoutCaret: false,
     withSettings: false,
     withForm: false,
     withValue: false,
@@ -67,6 +69,7 @@ const FieldRow = ({
     isHorizontal,
     isListItem,
     withoutLabel,
+    withoutCaret,
     withSettings,
     withForm,
     withValue,
@@ -130,11 +133,12 @@ const FieldRow = ({
             </label>
         ) : null;
 
-    const arrowElement = isClickable ? (
-        <span className="col-auto align-self-center d-flex align-items-center mw-25">
-            <FontAwesomeIcon icon={faAngleRight} />
-        </span>
-    ) : null;
+    const arrowElement =
+        isClickable && !withoutCaret ? (
+            <span className="col-auto align-self-center d-flex align-items-center mw-25">
+                <FontAwesomeIcon icon={faAngleRight} />
+            </span>
+        ) : null;
 
     if (isHorizontal) {
         const rowInner = (

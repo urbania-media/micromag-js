@@ -4,11 +4,11 @@ import get from 'lodash/get';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Label } from '@micromag/core/components';
+import { ClearButton, Label } from '@micromag/core/components';
 import { isMessage } from '@micromag/core/utils';
 
 import Field from './Field';
@@ -19,6 +19,7 @@ import styles from '../styles/field-with-form.module.scss';
 const propTypes = {
     value: PropTypes.any, // eslint-disable-line
     isForm: PropTypes.bool,
+    canClear: PropTypes.bool,
     label: PropTypes.oneOfType([PropTypes.node, MicromagPropTypes.message]),
     thumbnail: PropTypes.node,
     labelPath: PropTypes.string,
@@ -36,6 +37,7 @@ const propTypes = {
 const defaultProps = {
     value: null,
     isForm: false,
+    canClear: false,
     label: null,
     thumbnail: null,
     labelPath: 'label',
@@ -53,6 +55,7 @@ const defaultProps = {
 const FieldWithForm = ({
     value,
     isForm,
+    canClear,
     noValueLabel,
     label,
     labelPath,
@@ -107,13 +110,27 @@ const FieldWithForm = ({
         labelElement = React.isValidElement(labelValue) ? labelValue : labelElement;
     }
 
-    let thumbnailElement = null;
-    const thumbnailSrc = get(value, thumbnailPath, null);
-    if (thumbnail !== null) {
-        thumbnailElement = thumbnail;
-    } else if (thumbnailSrc !== null) {
-        thumbnailElement = <img src={thumbnailSrc} className={styles.thumbnail} alt={label} />;
-    }
+    const thumbnailElement = useMemo(() => {
+        let thumbElement = null;
+        const thumbnailSrc = get(value, thumbnailPath, null);
+        if (thumbnail !== null) {
+            thumbElement = thumbnail;
+        } else if (thumbnailSrc !== null) {
+            thumbElement = <img src={thumbnailSrc} className={styles.thumbnail} alt={label} />;
+        }
+        return thumbElement;
+    }, [value, thumbnailPath, thumbnail, label]);
+
+    const onClear = useCallback(
+        (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (onChange !== null) {
+                onChange(null);
+            }
+        },
+        [onChange],
+    );
 
     return (
         <span
@@ -158,6 +175,9 @@ const FieldWithForm = ({
                         </span>
                         {isHorizontal && thumbnailElement !== null ? (
                             <span className="col-auto">{thumbnailElement}</span>
+                        ) : null}
+                        {value !== null && canClear ? (
+                            <ClearButton className={styles.clearButton} onClick={onClear} />
                         ) : null}
                     </span>
                 </span>

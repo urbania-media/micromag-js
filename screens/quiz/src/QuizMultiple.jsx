@@ -3,23 +3,23 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import {
-    useScreenRenderContext,
-    useScreenSize,
-    useViewerContext,
-    useScreenState,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useScreenState,
+    useViewerContext,
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -52,7 +52,9 @@ const propTypes = {
         }),
     ),
     buttonsStyle: MicromagPropTypes.boxStyle,
+    inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
+    inactiveButtonsTextStyle: MicromagPropTypes.textStyle,
     questionsHeadingStyle: MicromagPropTypes.textStyle,
     resultsHeadingStyle: MicromagPropTypes.textStyle,
     resultsTextStyle: MicromagPropTypes.textStyle,
@@ -81,7 +83,9 @@ const defaultProps = {
     questions: null,
     results: null,
     buttonsStyle: null,
+    inactiveButtonsStyle: null,
     buttonsTextStyle: null,
+    inactiveButtonsTextStyle: null,
     questionsHeadingStyle: null,
     resultsHeadingStyle: null,
     resultsTextStyle: null,
@@ -110,7 +114,9 @@ const QuizMultipleScreen = ({
     questions,
     results,
     buttonsStyle,
+    inactiveButtonsStyle,
     buttonsTextStyle,
+    inactiveButtonsTextStyle,
     questionsHeadingStyle,
     resultsHeadingStyle,
     resultsTextStyle,
@@ -482,7 +488,9 @@ const QuizMultipleScreen = ({
                                         answers={answers}
                                         answeredIndex={currentAnsweredIndex}
                                         buttonsStyle={buttonsStyle}
+                                        inactiveButtonsStyle={inactiveButtonsStyle}
                                         buttonsTextStyle={buttonsTextStyle}
+                                        inactiveButtonsTextStyle={inactiveButtonsTextStyle}
                                         questionsHeadingStyle={questionsHeadingStyle}
                                         goodAnswerColor={goodAnswerColor}
                                         badAnswerColor={badAnswerColor}

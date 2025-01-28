@@ -31,15 +31,15 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Left',
                         description: 'Field left label',
-                    })
+                    }),
                 },
                 {
                     value: 'right',
                     label: defineMessage({
                         defaultMessage: 'Right',
                         description: 'Field right label',
-                    })
-                }
+                    }),
+                },
             ],
             label: defineMessage({
                 defaultMessage: 'Side',
@@ -53,6 +53,6 @@ export default {
                 defaultMessage: 'Color',
                 description: 'Field label',
             }),
-        }
-    ]
+        },
+    ],
 };

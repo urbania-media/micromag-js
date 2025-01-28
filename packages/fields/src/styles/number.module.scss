@@ -1,4 +1,5 @@
 @import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
 
 .container {
     position: relative;
@@ -8,7 +9,7 @@
         &::-webkit-inner-spin-button {
             appearance: none;
         }
-        -moz-appearance: textfield; // stylelint-disable-line
+        appearance: textfield;
 
         max-width: 80px;
         margin-left: auto;
@@ -19,7 +20,7 @@
         display: flex;
         position: absolute;
         top: 0;
-        right: 0;
+        right: 4px;
         width: 20px;
         height: 100%;
         pointer-events: none;
@@ -30,26 +31,39 @@
         font-size: 10px;
     }
 
+    .clearButton {
+        @extend %reset-button;
+
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        right: 0;
+
+        transform: translateY(-50%);
+    }
+
     .dataListItems {
         position: absolute;
         z-index: 2;
         top: 100%;
         left: 0;
         width: 100%;
-        padding: 0;
+        padding: 2px 0;
         list-style-type: none;
         border-radius: 4px;
-        background-color: $white;
+        background-color: $gray-700;
     }
 
     .dataListItem {
         width: 100%;
+        padding: 0 2px;
     }
 
     .dataListItemButton {
         width: 100%;
         border: 0;
         background-color: rgba($black, 0);
+        color: $white;
         text-align: left;
 
         &:hover {

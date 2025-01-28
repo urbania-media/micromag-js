@@ -24,7 +24,9 @@ const propTypes = {
     answeredIndex: PropTypes.number,
     answersCollapseDelay: PropTypes.number,
     buttonsStyle: MicromagPropTypes.boxStyle,
+    inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
+    inactiveButtonsTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     showUserAnswer: PropTypes.bool,
@@ -44,7 +46,9 @@ const defaultProps = {
     answeredIndex: null,
     answersCollapseDelay: 1000,
     buttonsStyle: null,
+    inactiveButtonsStyle: null,
     buttonsTextStyle: null,
+    inactiveButtonsTextStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
     showUserAnswer: false,
@@ -65,7 +69,9 @@ const Answers = ({
     answeredIndex,
     answersCollapseDelay,
     buttonsStyle,
+    inactiveButtonsStyle,
     buttonsTextStyle,
+    inactiveButtonsTextStyle,
     goodAnswerColor,
     badAnswerColor,
     showUserAnswer,
@@ -236,7 +242,12 @@ const Answers = ({
         if (transitioned && onTransitionEnd !== null) {
             onTransitionEnd();
         }
-    }, [transitioned, onTransitionEnd])
+    }, [transitioned, onTransitionEnd]);
+
+    const hasOpacity = useMemo(() => {
+        const { backgroundColor = null } = inactiveButtonsStyle || {};
+        return backgroundColor === null;
+    }, [inactiveButtonsStyle]);
 
     return (
         <div
@@ -262,6 +273,14 @@ const Answers = ({
                         } = answer || {};
                         const { textStyle = null } = label || {};
                         const hasAnswer = isTextFilled(label);
+                        const isUserAnswer = withoutGoodAnswer && userAnswer;
+                        const isOtherAnswer = withoutGoodAnswer && !userAnswer;
+
+                        const inactiveButtonStyle = isOtherAnswer ? inactiveButtonsStyle : null;
+                        const inactiveButtonTextStyle = isOtherAnswer
+                            ? inactiveButtonsTextStyle
+                            : null;
+
                         return (
                             <animated.div
                                 key={`answer-${answerI}`}
@@ -270,8 +289,9 @@ const Answers = ({
                                     {
                                         [styles.rightAnswer]:
                                             !withoutGoodAnswer && rightAnswer === true,
-                                        [styles.userAnswer]: withoutGoodAnswer && userAnswer,
-                                        [styles.otherAnswer]: withoutGoodAnswer && !userAnswer,
+                                        [styles.userAnswer]: isUserAnswer,
+                                        [styles.otherAnswer]: isOtherAnswer,
+                                        [styles.withoutOpacity]: !hasOpacity,
                                     },
                                 ])}
                                 onTransitionEnd={onAnswerTransitionEnd}
@@ -314,10 +334,12 @@ const Answers = ({
                                                 focusable={focusable}
                                                 buttonStyle={{
                                                     ...buttonsStyle,
+                                                    ...inactiveButtonStyle,
                                                     ...answerButtonStyle,
                                                 }}
                                                 textStyle={{
                                                     ...buttonsTextStyle,
+                                                    ...inactiveButtonTextStyle,
                                                     ...answerButtonTextStyle,
                                                 }}
                                             >

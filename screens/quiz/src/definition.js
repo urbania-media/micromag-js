@@ -106,10 +106,26 @@ export default [
                         }),
                     },
                     {
+                        name: 'inactiveButtonsTextStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Inactive buttons text',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'inactiveButtonsStyle',
+                        type: 'box-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Inactive buttons',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
                         name: 'goodAnswerColor',
                         type: 'color',
                         label: defineMessage({
-                            defaultMessage: 'Good answer color',
+                            defaultMessage: 'Good answer icon color',
                             description: 'Field label',
                         }),
                     },
@@ -117,7 +133,7 @@ export default [
                         name: 'badAnswerColor',
                         type: 'color',
                         label: defineMessage({
-                            defaultMessage: 'Bad answer color',
+                            defaultMessage: 'Bad answer icon color',
                             description: 'Field label',
                         }),
                     },
