@@ -80,6 +80,8 @@
 .screen {
     overflow: hidden;
     border-radius: 0.45rem;
+    animation: intro 0.5s 50ms 1 forwards $ease-in-out-sine;
+    opacity: 0;
 }
 
 @keyframes pulse {
@@ -89,5 +91,11 @@
 
     to {
         border-width: 0.25rem;
+    }
+}
+
+@keyframes intro {
+    to {
+        opacity: 1;
     }
 }

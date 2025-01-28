@@ -270,8 +270,14 @@
 
 .screen {
     pointer-events: none;
+    content-visibility: hidden;
+
+    .visible & {
+        content-visibility: auto;
+    }
 
     .current & {
+        content-visibility: visible;
         pointer-events: auto;
     }
 }

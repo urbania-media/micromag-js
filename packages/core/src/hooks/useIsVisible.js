@@ -2,13 +2,12 @@ import { useRef } from 'react';
 
 import { useIntersectionObserver } from './useObserver';
 
-const useIsVisible = ({ rootMargin, threshold = 1, persist = false } = {}) => {
+const useIsVisible = ({ rootMargin,  persist = false } = {}) => {
     const {
         ref,
         entry: { isIntersecting },
     } = useIntersectionObserver({
         rootMargin,
-        threshold,
     });
 
     const wasIntersecting = useRef(isIntersecting);

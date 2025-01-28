@@ -7,6 +7,7 @@ import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenPreview } from '@micromag/core/components';
+import { useIsVisible } from '@micromag/core/hooks';
 
 import StackIcon from '../icons/Stack';
 
@@ -18,6 +19,7 @@ const propTypes = {
     index: PropTypes.number,
     onClick: PropTypes.func,
     screenSize: MicromagPropTypes.screenSize,
+    alwaysRender: PropTypes.bool,
     focusable: PropTypes.bool,
 };
 
@@ -27,13 +29,26 @@ const defaultProps = {
     index: 0,
     onClick: null,
     screenSize: null,
+    alwaysRender: false,
     focusable: true,
 };
 
-const ViewerMenuScreen = ({ className, item, index, onClick, screenSize, focusable }) => {
+const ViewerMenuScreen = ({
+    className,
+    item,
+    index,
+    onClick,
+    screenSize,
+    alwaysRender,
+    focusable,
+}) => {
     const intl = useIntl();
     const { current = false, screen, count = 1 } = item || {};
     const { width: screenWidth, height: screenHeight } = screenSize || {};
+    const { ref: refVisible, visible = false } = useIsVisible({
+        rootMargin: '100px',
+        persist: false,
+    });
     const screenAriaLabel = `${intl.formatMessage(
         {
             defaultMessage: 'Screen {index}',
@@ -61,6 +76,7 @@ const ViewerMenuScreen = ({ className, item, index, onClick, screenSize, focusab
             style={{
                 paddingBottom: `${(screenHeight / screenWidth) * 100}%`,
             }}
+            ref={refVisible}
         >
             <button
                 type="button"
@@ -83,7 +99,7 @@ const ViewerMenuScreen = ({ className, item, index, onClick, screenSize, focusab
                         <StackIcon className={styles.subScreenIcon} />
                     </div>
                 ) : null}
-                {screenWidth > 0 && screenHeight > 0 ? (
+                {screenWidth > 0 && screenHeight > 0 && (visible || alwaysRender) ? (
                     <ScreenPreview
                         className={styles.screen}
                         screenWidth={screenWidth}
