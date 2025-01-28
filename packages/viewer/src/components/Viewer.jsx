@@ -37,11 +37,11 @@ import ViewerScreen from './ViewerScreen';
 import Button from './buttons/Button';
 import NavigationButton from './buttons/NavigationButton';
 import ArrowHint from './partials/ArrowHint';
+import HandTap from './partials/HandTap';
 import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
 
 import styles from '../styles/viewer.module.scss';
-import HandTap from './partials/HandTap';
 
 // @todo export from somewhere else; or use as props in possible component for screen transitions
 const SPRING_CONFIG_TIGHT = { tension: 300, friction: 35 }; // tight
@@ -706,6 +706,12 @@ const Viewer = ({
 
     const NavigationHint = withNavigationHint === 'hand' ? HandTap : ArrowHint;
 
+    console.log({
+        screenIndex,
+        transitionDirection,
+        transitioned,
+    });
+
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
@@ -892,6 +898,14 @@ const Viewer = ({
                                             progressSpring,
                                         );
 
+                                        const isVisible =
+                                            current ||
+                                            (isDragging && isNext) ||
+                                            (transitionDirection !== 0 &&
+                                                !isDragging &&
+                                                i === screenIndex - transitionDirection) ||
+                                            (withNeighborScreens && active);
+
                                         return (
                                             <animated.div
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
@@ -902,6 +916,7 @@ const Viewer = ({
                                                 className={classNames([
                                                     styles.screenContainer,
                                                     {
+                                                        [styles.visible]: isVisible,
                                                         [styles.current]: current,
                                                     },
                                                 ])}

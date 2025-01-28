@@ -91,7 +91,6 @@ const ViewerMenuPreview = ({
     const { textAlign = null, ...otherTitleStyles } = titleStyles || {};
     const finalTitleStyles = titleStyles !== null ? getStyleFromText(otherTitleStyles) : null;
     // const { url: brandLogoUrl = null } = brandLogo || {};
-    const [screensMounted, setScreensMounted] = useState([]);
 
     const hasTitle = title !== null;
 
@@ -100,20 +99,6 @@ const ViewerMenuPreview = ({
     //     () => (!focusable ? items.map((s, i) => (i > 6 ? { screenId: s.screenId } : s)) : items),
     //     [items, focusable],
     // );
-
-    useEffect(() => {
-        if (items.length === screensMounted.length) {
-            return () => {};
-        }
-
-        const timeout = setTimeout(() => {
-            setScreensMounted([...screensMounted, true]);
-        }, 40);
-
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, [items, screensMounted, setScreensMounted]);
 
     const menuPaddingTop = paddingTop + 10;
 
@@ -156,7 +141,6 @@ const ViewerMenuPreview = ({
                                 };
                                 const { width: screenWidth, height: screenHeight } =
                                     screenSize || {};
-                                const screenMounted = screensMounted[index] || false;
 
                                 return (
                                     <li
@@ -169,7 +153,7 @@ const ViewerMenuPreview = ({
                                                 className={classNames([
                                                     styles.frame,
                                                     {
-                                                        [styles.isLoading]: !screenMounted,
+                                                        [styles.isLoading]: false,
                                                     },
                                                 ])}
                                                 style={{
@@ -178,16 +162,14 @@ const ViewerMenuPreview = ({
                                                     }%`,
                                                 }}
                                             >
-                                                {screenMounted ? (
-                                                    <MenuScreen
-                                                        className={styles.screen}
-                                                        item={item}
-                                                        index={index}
-                                                        screenSize={screenSize}
-                                                        onClick={onClickScreen}
-                                                        focusable={focusable}
-                                                    />
-                                                ) : null}
+                                                <MenuScreen
+                                                    className={styles.screen}
+                                                    item={item}
+                                                    index={index}
+                                                    screenSize={screenSize}
+                                                    onClick={onClickScreen}
+                                                    focusable={focusable}
+                                                />
                                             </div>
                                         </div>
                                     </li>
