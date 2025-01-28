@@ -85,6 +85,7 @@ const Field = ({
         withForm = providedWithForm,
         withModal = providedWithModal,
         isList = false,
+        canClear = false,
         ...fieldProps
     } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
         component: providedComponent,
@@ -126,6 +127,7 @@ const Field = ({
         <FieldComponent
             isHorizontal={finalIsHorizontal && !isFields}
             isList={isList}
+            canClear={canClear}
             labelClassName={classNames({
                 'col-sm-3': isHorizontal && isFields,
                 [labelClassName]: labelClassName !== null,

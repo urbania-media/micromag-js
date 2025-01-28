@@ -1923,6 +1923,10 @@
     "defaultMessage": "Shadow",
     "description": "Field label"
   },
+  "ufac8e": {
+    "defaultMessage": "Clear all",
+    "description": "Button label"
+  },
   "uiTxd7": {
     "defaultMessage": "Results",
     "description": "State label"

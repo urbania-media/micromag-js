@@ -2,6 +2,7 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'text-style',
+    canClear: true,
     fields: [
         {
             key: 'typography',

@@ -2,6 +2,7 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'box-style',
+    canClear: true,
     fields: [
         {
             type: 'fields',
