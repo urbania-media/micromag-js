@@ -46,7 +46,7 @@ const ViewerMenuScreen = ({
     const { current = false, screen, count = 1 } = item || {};
     const { width: screenWidth, height: screenHeight } = screenSize || {};
     const { ref: refVisible, visible = false } = useIsVisible({
-        rootMargin: '100px',
+        rootMargin: '200px',
         persist: false,
     });
     const screenAriaLabel = `${intl.formatMessage(
