@@ -1155,7 +1155,7 @@ msgstr "Chercher un lieu sur Google Maps"
 #: KCDOHI
 msgctxt "KCDOHI"
 msgid "No font..."
-msgstr "Aucune police..."
+msgstr "Aucune police"
 
 # Field label
 #: KHWeV7
@@ -1287,7 +1287,7 @@ msgstr "Ajuster la carte selon les marqueurs"
 #: NbTtNk
 msgctxt "NbTtNk"
 msgid "Bad answer icon color"
-msgstr "Couleur d'icône mauvaise rép."
+msgstr "Couleur mauvaise rép."
 
 # Conversation placeholder
 #: NmCfTO
@@ -1436,7 +1436,7 @@ msgstr "Sous-titre du signe"
 #: QfpTKK
 msgctxt "QfpTKK"
 msgid "Select a screen..."
-msgstr "Sélectionnez un écran..."
+msgstr "Sélectionner un écran"
 
 # Reading speed label
 #: QjbLZ9
@@ -1640,7 +1640,7 @@ msgstr "Présentateur"
 #: Wb5zY4
 msgctxt "Wb5zY4"
 msgid "Select a font file..."
-msgstr "Sélectionner un fichier de police"
+msgstr "Sélectionner un fichier de police..."
 
 # Upload button label in Media Gallery
 #: WeD4nB
@@ -2054,7 +2054,7 @@ msgstr "Résultats"
 #: e6+aGf
 msgctxt "e6+aGf"
 msgid "Select a media..."
-msgstr "Sélectionner un média"
+msgstr "Sélectionner un média..."
 
 # Field label
 #: eBFxNl
@@ -2180,7 +2180,7 @@ msgstr "Éléments"
 #: fbiNiR
 msgctxt "fbiNiR"
 msgid "Select a size..."
-msgstr "Choisir une taille..."
+msgstr "Choisir une taille"
 
 # Filter item label
 #: fpQzza
@@ -2215,7 +2215,7 @@ msgstr "Contribution"
 #: gJTVcQ
 msgctxt "gJTVcQ"
 msgid "Select media..."
-msgstr "Sélectionnez un média..."
+msgstr "Sélectionner un média"
 
 # Delete screen button label
 #: gRxcTc
@@ -2257,7 +2257,7 @@ msgstr "Question"
 #: hZcXoa
 msgctxt "hZcXoa"
 msgid "Good answer icon color"
-msgstr "Couleur d'icône bonne rép."
+msgstr "Couleur bonne rép."
 
 # Placeholder label
 #: hoDz0O
@@ -2513,7 +2513,7 @@ msgstr "Dimension"
 #: my7Kox
 msgctxt "my7Kox"
 msgid "Inactive buttons text"
-msgstr "Texte des boutons inactifs"
+msgstr "Texte des b. inactifs"
 
 # Input placeholder
 #: n/SxMs

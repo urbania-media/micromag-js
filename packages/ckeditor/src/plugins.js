@@ -1,3 +1,4 @@
+import { Superscript } from '@ckeditor/ckeditor5-basic-styles';
 import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
 import { Heading, HeadingButtonsUI } from '@ckeditor/ckeditor5-heading';
 import { Highlight } from '@ckeditor/ckeditor5-highlight';
@@ -10,12 +11,13 @@ import { SimpleUploadAdapter } from '@ckeditor/ckeditor5-upload';
 import InlinePlugin from './InlinePlugin';
 import MarkerPlugin from './MarkerPlugin';
 
-export const defaultPlugins = [Highlight, MarkerPlugin];
+export const defaultPlugins = [Highlight, Superscript, MarkerPlugin];
 
 export const inlinePlugins = [InlinePlugin];
 
 export const fullPlugins = [
     Heading,
+    Superscript,
     ImageInline,
     ImageToolbar,
     ImageUpload,

@@ -41,7 +41,7 @@ const defaultProps = {
     withoutLink: false,
     textStyle: null,
     editorConfig: {
-        toolbar: ['bold', 'italic', 'highlight', 'superscript', '|', 'link', 'blockquote'],
+        toolbar: ['bold', 'italic', 'superscript', 'highlight', '|', 'link', 'blockquote'],
         link: {
             addTargetToExternalLinks: true,
         },
@@ -120,10 +120,10 @@ const TextEditorField = ({
                     'redo',
                     '|',
                     'heading',
-                    'superscript',
                     '|',
                     'bold',
                     'italic',
+                    'superscript',
                     '|',
                     'link',
                     'uploadImage',

@@ -17,7 +17,8 @@
         "intl": "npm run intl --workspace=@micromag/intl",
         "build": "npm run build:all",
         "build:all": "nx run-many --target=build",
-        "build:nocache": "nx run-many --target=build --skip-nx-cache",
+        "build:linear": "nx run-many --target=build --parallel=false",
+        "build:nocache": "nx run-many --target=build --skip-nx-cache --parallel=false",
         "build:viewer": "npm run build --workspace=@micromag/viewer-build",
         "graph": "nx graph",
         "update-panneau": "npm update @panneau/core @panneau/medias @panneau/intl @panneau/uppy @panneau/fields @panneau/displays @panneau/filters"
@@ -112,6 +113,7 @@
         "lerna": "^8.1.2",
         "lodash": "^4.17.21",
         "minimatch": "^9.0.4",
+        "mitt": "^3.0.1",
         "mkdirp": "^3.0.1",
         "node-sass-tilde-importer": "^1.0.2",
         "nx": "^18.2.2",

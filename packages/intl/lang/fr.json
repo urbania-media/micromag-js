@@ -570,7 +570,7 @@
         "defaultMessage": "Chercher un lieu sur Google Maps"
     },
     "KCDOHI": {
-        "defaultMessage": "Aucune police..."
+        "defaultMessage": "Aucune police"
     },
     "KHWeV7": {
         "defaultMessage": "Réponses"
@@ -636,7 +636,7 @@
         "defaultMessage": "Ajuster la carte selon les marqueurs"
     },
     "NbTtNk": {
-        "defaultMessage": "Couleur d'icône mauvaise rép."
+        "defaultMessage": "Couleur mauvaise rép."
     },
     "NmCfTO": {
         "defaultMessage": "Conversation"
@@ -711,7 +711,7 @@
         "defaultMessage": "Sous-titre du signe"
     },
     "QfpTKK": {
-        "defaultMessage": "Sélectionnez un écran..."
+        "defaultMessage": "Sélectionner un écran"
     },
     "QjbLZ9": {
         "defaultMessage": "Vitesse de lecture (en Mots Par Minute)"
@@ -813,7 +813,7 @@
         "defaultMessage": "Présentateur"
     },
     "Wb5zY4": {
-        "defaultMessage": "Sélectionner un fichier de police"
+        "defaultMessage": "Sélectionner un fichier de police..."
     },
     "WeD4nB": {
         "defaultMessage": "Ajouter un fichier vidéo"
@@ -1020,7 +1020,7 @@
         "defaultMessage": "Résultats"
     },
     "e6+aGf": {
-        "defaultMessage": "Sélectionner un média"
+        "defaultMessage": "Sélectionner un média..."
     },
     "eBFxNl": {
         "defaultMessage": "Action"
@@ -1083,7 +1083,7 @@
         "defaultMessage": "Éléments"
     },
     "fbiNiR": {
-        "defaultMessage": "Choisir une taille..."
+        "defaultMessage": "Choisir une taille"
     },
     "fpQzza": {
         "defaultMessage": "Police de caractères"
@@ -1101,7 +1101,7 @@
         "defaultMessage": "Contribution"
     },
     "gJTVcQ": {
-        "defaultMessage": "Sélectionnez un média..."
+        "defaultMessage": "Sélectionner un média"
     },
     "gRxcTc": {
         "defaultMessage": "Supprimer l’écran"
@@ -1122,7 +1122,7 @@
         "defaultMessage": "Question"
     },
     "hZcXoa": {
-        "defaultMessage": "Couleur d'icône bonne rép."
+        "defaultMessage": "Couleur bonne rép."
     },
     "hoDz0O": {
         "defaultMessage": "Description"
@@ -1251,7 +1251,7 @@
         "defaultMessage": "Dimension"
     },
     "my7Kox": {
-        "defaultMessage": "Texte des boutons inactifs"
+        "defaultMessage": "Texte des b. inactifs"
     },
     "n/SxMs": {
         "defaultMessage": "Chercher dans les médias"
