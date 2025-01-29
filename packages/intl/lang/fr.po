@@ -227,6 +227,12 @@ msgctxt "1dqmFw"
 msgid "Document"
 msgstr "Document"
 
+# Field label
+#: 1yNxAl
+msgctxt "1yNxAl"
+msgid "Card box style"
+msgstr "Styles de carte"
+
 # Item label in items field
 #: 2/F1Q7
 msgctxt "2/F1Q7"
@@ -1043,12 +1049,6 @@ msgctxt "I1hyZY"
 msgid "Answer icon value"
 msgstr "Icône de réponse"
 
-# Field label
-#: I2bIHm
-msgctxt "I2bIHm"
-msgid "Good answer color"
-msgstr "Bonne réponse"
-
 # Category placeholder
 #: I5+AHN
 msgctxt "I5+AHN"
@@ -1282,6 +1282,12 @@ msgstr "Bouton"
 msgctxt "NVUpOG"
 msgid "Map fit markers"
 msgstr "Ajuster la carte selon les marqueurs"
+
+# Field label
+#: NbTtNk
+msgctxt "NbTtNk"
+msgid "Bad answer icon color"
+msgstr "Couleur d'icône mauvaise rép."
 
 # Conversation placeholder
 #: NmCfTO
@@ -2092,6 +2098,12 @@ msgctxt "ebsPd4"
 msgid "Image"
 msgstr "Image"
 
+# Field label
+#: ehuj8A
+msgctxt "ehuj8A"
+msgid "Without image zoom"
+msgstr "Sans zoom de l'image"
+
 # Media gallery source
 #: eiaIIB
 msgctxt "eiaIIB"
@@ -2223,6 +2235,12 @@ msgctxt "gwPu/I"
 msgid "Buttons text"
 msgstr "Texte des boutons"
 
+# Custom styles
+#: hPXJzA
+msgctxt "hPXJzA"
+msgid "Box params"
+msgstr "Paramètes de boîte"
+
 # Field label
 #: hUUIQt
 msgctxt "hUUIQt"
@@ -2234,6 +2252,12 @@ msgstr "Vidéo d'arrière-plan en sourdine"
 msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
+
+# Field label
+#: hZcXoa
+msgctxt "hZcXoa"
+msgid "Good answer icon color"
+msgstr "Couleur d'icône bonne rép."
 
 # Placeholder label
 #: hoDz0O
@@ -2484,6 +2508,12 @@ msgstr "Images"
 msgctxt "mv37oK"
 msgid "Dimension"
 msgstr "Dimension"
+
+# Field label
+#: my7Kox
+msgctxt "my7Kox"
+msgid "Inactive buttons text"
+msgstr "Texte des boutons inactifs"
 
 # Input placeholder
 #: n/SxMs
@@ -2742,12 +2772,6 @@ msgstr "Désolé, ce média n'a pas pu être supprimé."
 msgctxt "rtwfuZ"
 msgid "Actions"
 msgstr "Actions"
-
-# Field label
-#: ru3tjH
-msgctxt "ru3tjH"
-msgid "Bad answer color"
-msgstr "Mauvaise réponse"
 
 # Button label
 #: rvOVCV
@@ -3102,6 +3126,12 @@ msgstr "Styles des entrées"
 msgctxt "xj0o1v"
 msgid "Grid"
 msgstr "Grille"
+
+# Field label
+#: xlFOg3
+msgctxt "xlFOg3"
+msgid "Inactive buttons"
+msgstr "Boutons inactifs"
 
 # Field label
 #: xmp9nw

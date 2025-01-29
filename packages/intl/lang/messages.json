@@ -143,6 +143,10 @@
     "defaultMessage": "Document",
     "description": "Media type"
   },
+  "1yNxAl": {
+    "defaultMessage": "Card box style",
+    "description": "Field label"
+  },
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
@@ -687,10 +691,6 @@
     "defaultMessage": "Answer icon value",
     "description": "Field label"
   },
-  "I2bIHm": {
-    "defaultMessage": "Good answer color",
-    "description": "Field label"
-  },
   "I5+AHN": {
     "defaultMessage": "Category",
     "description": "Category placeholder"
@@ -845,6 +845,10 @@
   },
   "NVUpOG": {
     "defaultMessage": "Map fit markers",
+    "description": "Field label"
+  },
+  "NbTtNk": {
+    "defaultMessage": "Bad answer icon color",
     "description": "Field label"
   },
   "NmCfTO": {
@@ -1386,6 +1390,10 @@
     "defaultMessage": "Image",
     "description": "Image placeholder"
   },
+  "ehuj8A": {
+    "defaultMessage": "Without image zoom",
+    "description": "Field label"
+  },
   "eiaIIB": {
     "defaultMessage": "This Micromag",
     "description": "Media gallery source"
@@ -1473,6 +1481,10 @@
     "defaultMessage": "Buttons text",
     "description": "Field label"
   },
+  "hPXJzA": {
+    "defaultMessage": "Box params",
+    "description": "Custom styles"
+  },
   "hUUIQt": {
     "defaultMessage": "Mute audio of background video",
     "description": "Field label"
@@ -1480,6 +1492,10 @@
   "hVE7TA": {
     "defaultMessage": "Question",
     "description": "Question field label"
+  },
+  "hZcXoa": {
+    "defaultMessage": "Good answer icon color",
+    "description": "Field label"
   },
   "hoDz0O": {
     "defaultMessage": "Description",
@@ -1646,6 +1662,10 @@
   "mv37oK": {
     "defaultMessage": "Dimension",
     "description": "Label in Media Gallery"
+  },
+  "my7Kox": {
+    "defaultMessage": "Inactive buttons text",
+    "description": "Field label"
   },
   "n/SxMs": {
     "defaultMessage": "Search medias",
@@ -1818,10 +1838,6 @@
   "rtwfuZ": {
     "defaultMessage": "Actions",
     "description": "Field name"
-  },
-  "ru3tjH": {
-    "defaultMessage": "Bad answer color",
-    "description": "Field label"
   },
   "rvOVCV": {
     "defaultMessage": "Confirm selection",
@@ -2058,6 +2074,10 @@
   "xj0o1v": {
     "defaultMessage": "Grid",
     "description": "UrbaniaHoroscope state"
+  },
+  "xlFOg3": {
+    "defaultMessage": "Inactive buttons",
+    "description": "Field label"
   },
   "xmp9nw": {
     "defaultMessage": "Spacing",

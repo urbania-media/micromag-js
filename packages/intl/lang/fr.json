@@ -107,6 +107,9 @@
     "1dqmFw": {
         "defaultMessage": "Document"
     },
+    "1yNxAl": {
+        "defaultMessage": "Styles de carte"
+    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -515,9 +518,6 @@
     "I1hyZY": {
         "defaultMessage": "Icône de réponse"
     },
-    "I2bIHm": {
-        "defaultMessage": "Bonne réponse"
-    },
     "I5+AHN": {
         "defaultMessage": "Catégorie"
     },
@@ -634,6 +634,9 @@
     },
     "NVUpOG": {
         "defaultMessage": "Ajuster la carte selon les marqueurs"
+    },
+    "NbTtNk": {
+        "defaultMessage": "Couleur d'icône mauvaise rép."
     },
     "NmCfTO": {
         "defaultMessage": "Conversation"
@@ -1040,6 +1043,9 @@
     "ebsPd4": {
         "defaultMessage": "Image"
     },
+    "ehuj8A": {
+        "defaultMessage": "Sans zoom de l'image"
+    },
     "eiaIIB": {
         "defaultMessage": "Ce Micromag"
     },
@@ -1106,11 +1112,17 @@
     "gwPu/I": {
         "defaultMessage": "Texte des boutons"
     },
+    "hPXJzA": {
+        "defaultMessage": "Paramètes de boîte"
+    },
     "hUUIQt": {
         "defaultMessage": "Vidéo d'arrière-plan en sourdine"
     },
     "hVE7TA": {
         "defaultMessage": "Question"
+    },
+    "hZcXoa": {
+        "defaultMessage": "Couleur d'icône bonne rép."
     },
     "hoDz0O": {
         "defaultMessage": "Description"
@@ -1237,6 +1249,9 @@
     },
     "mv37oK": {
         "defaultMessage": "Dimension"
+    },
+    "my7Kox": {
+        "defaultMessage": "Texte des boutons inactifs"
     },
     "n/SxMs": {
         "defaultMessage": "Chercher dans les médias"
@@ -1366,9 +1381,6 @@
     },
     "rtwfuZ": {
         "defaultMessage": "Actions"
-    },
-    "ru3tjH": {
-        "defaultMessage": "Mauvaise réponse"
     },
     "rvOVCV": {
         "defaultMessage": "Confirmer la sélection"
@@ -1546,6 +1558,9 @@
     },
     "xj0o1v": {
         "defaultMessage": "Grille"
+    },
+    "xlFOg3": {
+        "defaultMessage": "Boutons inactifs"
     },
     "xmp9nw": {
         "defaultMessage": "Espacement"

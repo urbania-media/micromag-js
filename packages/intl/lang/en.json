@@ -107,6 +107,9 @@
     "1dqmFw": {
         "defaultMessage": "Document"
     },
+    "1yNxAl": {
+        "defaultMessage": "Card box style"
+    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -515,9 +518,6 @@
     "I1hyZY": {
         "defaultMessage": "Answer icon value"
     },
-    "I2bIHm": {
-        "defaultMessage": "Good answer color"
-    },
     "I5+AHN": {
         "defaultMessage": "Category"
     },
@@ -634,6 +634,9 @@
     },
     "NVUpOG": {
         "defaultMessage": "Map fit markers"
+    },
+    "NbTtNk": {
+        "defaultMessage": "Bad answer icon color"
     },
     "NmCfTO": {
         "defaultMessage": "Conversation"
@@ -1040,6 +1043,9 @@
     "ebsPd4": {
         "defaultMessage": "Image"
     },
+    "ehuj8A": {
+        "defaultMessage": "Without image zoom"
+    },
     "eiaIIB": {
         "defaultMessage": "This Micromag"
     },
@@ -1106,11 +1112,17 @@
     "gwPu/I": {
         "defaultMessage": "Buttons text"
     },
+    "hPXJzA": {
+        "defaultMessage": "Box params"
+    },
     "hUUIQt": {
         "defaultMessage": "Mute audio of background video"
     },
     "hVE7TA": {
         "defaultMessage": "Question"
+    },
+    "hZcXoa": {
+        "defaultMessage": "Good answer icon color"
     },
     "hoDz0O": {
         "defaultMessage": "Description"
@@ -1237,6 +1249,9 @@
     },
     "mv37oK": {
         "defaultMessage": "Dimension"
+    },
+    "my7Kox": {
+        "defaultMessage": "Inactive buttons text"
     },
     "n/SxMs": {
         "defaultMessage": "Search medias"
@@ -1366,9 +1381,6 @@
     },
     "rtwfuZ": {
         "defaultMessage": "Actions"
-    },
-    "ru3tjH": {
-        "defaultMessage": "Bad answer color"
     },
     "rvOVCV": {
         "defaultMessage": "Confirm selection"
@@ -1546,6 +1558,9 @@
     },
     "xj0o1v": {
         "defaultMessage": "Grid"
+    },
+    "xlFOg3": {
+        "defaultMessage": "Inactive buttons"
     },
     "xmp9nw": {
         "defaultMessage": "Spacing"
