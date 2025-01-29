@@ -706,11 +706,11 @@ const Viewer = ({
 
     const NavigationHint = withNavigationHint === 'hand' ? HandTap : ArrowHint;
 
-    console.log({
-        screenIndex,
-        transitionDirection,
-        transitioned,
-    });
+    // console.log({
+    //     screenIndex,
+    //     transitionDirection,
+    //     transitioned,
+    // });
 
     return (
         <StoryProvider story={parsedStory}>
