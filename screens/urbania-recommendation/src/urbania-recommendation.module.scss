@@ -32,7 +32,6 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         font-weight: 900;
         line-height: 0.9;
         text-align: center;
-        text-transform: uppercase;
         white-space: nowrap;
         writing-mode: vertical-lr;
 
@@ -188,7 +187,6 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         font-size: 10px;
         line-height: 1;
         text-align: center;
-        text-transform: uppercase;
 
         &.hasVisual {
             position: absolute;
@@ -299,7 +297,6 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         font-family: 'Agrandir Tight', sans-serif;
         font-size: 28px;
         text-align: center;
-        text-transform: uppercase;
     }
 
     .categoryPlaceholder {
@@ -331,14 +328,12 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
     .title {
         font-family: 'Agrandir Tight', sans-serif;
         font-size: 1.2rem;
-        text-transform: uppercase;
     }
 
     .date,
     .location {
         padding-top: 3px;
         font-family: 'Agrandir Tight', sans-serif;
-        text-transform: uppercase;
     }
 
     .border {

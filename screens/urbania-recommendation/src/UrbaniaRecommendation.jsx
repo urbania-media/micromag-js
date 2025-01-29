@@ -345,39 +345,105 @@ const UrbaniaRecommendation = ({
     }, [activityDetected, showControls, isVideo, hideControls]);
     useDebounce(toggleControlsVisibility, activityDetected, 1000);
 
-    // Default font weights for urbania styles
+    // Default font weights ++ for urbania styles
     const {
         titleTextStyle,
         titleColor,
         titleFontWeight,
+        titleFontStyle,
         categoryTextStyle,
         categoryFontWeight,
+        categoryFontStyle,
         descriptionTextStyle,
         descriptionFontWeight,
+        dateTextStyle,
+        dateFontStyle,
+        locationTextStyle,
+        locationFontStyle,
+        sponsorTextStyle,
+        sponsorFontStyle,
+        backgroundFontStyle,
     } = useMemo(() => {
         const { textStyle: finalTitleTextStyle = null } = title || {};
-        const { color: titleStyleColor = null, fontFamily: titleFontFamily = null } =
-            finalTitleTextStyle || {};
+        const {
+            color: titleStyleColor = null,
+            fontFamily: titleFontFamily = null,
+            fontStyle: titleFontStyles = null,
+        } = finalTitleTextStyle || {};
         const { color: finalTitleColor = null } = titleStyleColor || {};
+
         const finalTitleFontWeight = titleFontFamily === null ? 700 : null;
+        const finalTextTransform = titleFontFamily === null ? 'uppercase' : null;
+        const finalTitleFontStyle =
+            titleFontFamily === null
+                ? { ...titleFontStyles, transform: 'uppercase' }
+                : titleFontStyles;
 
         const { textStyle: finalCategoryTextStyle = null } = category || {};
-        const { fontFamily: categoryFontFamily = null } = finalCategoryTextStyle || {};
+        const { fontFamily: categoryFontFamily = null, fontStyle: categoryFontStyles = null } =
+            finalCategoryTextStyle || {};
         const finalCategoryFontWeight = categoryFontFamily === null ? 900 : null;
+        const finalCategoryFontStyle =
+            categoryFontFamily === null
+                ? { ...categoryFontStyles, transform: 'uppercase' }
+                : categoryFontStyles;
 
         const { textStyle: finalDescriptionTextStyle = null } = description || {};
         const { fontFamily: descriptionFontFamily = null } = finalDescriptionTextStyle || {};
         const finalDescriptionFontWeight = descriptionFontFamily === null ? 300 : null;
+
+        const { textStyle: finalDateTextStyle = null } = date || {};
+        const { fontFamily: dateFontFamily = null, fontStyle: dateFontStyles = null } =
+            finalDateTextStyle || {};
+
+        const finalDateFontStyle =
+            dateFontFamily === null
+                ? { ...dateFontStyles, transform: 'uppercase' }
+                : dateFontStyles;
+
+        const { textStyle: finalLocationTextStyle = null } = location || {};
+        const { fontFamily: locationFontFamily = null, fontStyle: locationFontStyles = null } =
+            finalLocationTextStyle || {};
+        const finalLocationFontStyle =
+            locationFontFamily === null
+                ? { ...locationFontStyles, transform: 'uppercase' }
+                : locationFontStyles;
+
+        const { textStyle: finalSponsorTextStyle = null } = sponsor || {};
+        const { fontFamily: sponsorFontFamily = null, fontStyle: sponsorFontStyles = null } =
+            finalSponsorTextStyle || {};
+        const finalSponsorFontStyle =
+            sponsorFontFamily === null
+                ? { ...sponsorFontStyles, transform: 'uppercase' }
+                : sponsorFontStyles;
+
+        const { fontFamily: backgroundFontFamily = null, fontStyle: backgroundFontStyles = null } =
+            backgroundTextStyle || {};
+        const finalBackgroundFontStyle =
+            backgroundFontFamily === null
+                ? { ...backgroundFontStyles, transform: 'uppercase' }
+                : backgroundFontStyles;
+
         return {
+            defaultTextTransform: finalTextTransform,
             titleColor: finalTitleColor,
             titleTextStyle: finalTitleTextStyle,
             titleFontWeight: finalTitleFontWeight,
+            titleFontStyle: finalTitleFontStyle,
             categoryTextStyle: finalCategoryTextStyle,
             categoryFontWeight: finalCategoryFontWeight,
+            categoryFontStyle: finalCategoryFontStyle,
             descriptionTextStyle: finalDescriptionTextStyle,
             descriptionFontWeight: finalDescriptionFontWeight,
+            dateTextStyle: finalDateTextStyle,
+            dateFontStyle: finalDateFontStyle,
+            locationTextStyle: finalLocationTextStyle,
+            locationFontStyle: finalLocationFontStyle,
+            sponsorTextStyle: finalSponsorTextStyle,
+            sponsorFontStyle: finalSponsorFontStyle,
+            backgroundFontStyle: finalBackgroundFontStyle,
         };
-    }, [title, category, description]);
+    }, [title, category, description, date, location, sponsor, backgroundTextStyle]);
 
     const layoutStyle = !isPlaceholder ? getStyleFromBox(cardBoxStyle) : null;
 
@@ -614,6 +680,10 @@ const UrbaniaRecommendation = ({
                                                     { [styles.hasVisual]: hasVisual },
                                                 ])}
                                                 {...sponsor}
+                                                textStyle={{
+                                                    ...sponsorTextStyle,
+                                                    fontStyle: sponsorFontStyle,
+                                                }}
                                             />
                                         ) : null}
                                     </ScreenElement>
@@ -646,6 +716,7 @@ const UrbaniaRecommendation = ({
                                                     textStyle={{
                                                         ...categoryTextStyle,
                                                         fontWeight: categoryFontWeight,
+                                                        fontStyle: categoryFontStyle,
                                                     }}
                                                 />
                                             </div>
@@ -679,6 +750,7 @@ const UrbaniaRecommendation = ({
                                                         textStyle={{
                                                             ...titleTextStyle,
                                                             fontWeight: titleFontWeight,
+                                                            fontStyle: titleFontStyle,
                                                         }}
                                                     />
                                                     <hr
@@ -699,7 +771,14 @@ const UrbaniaRecommendation = ({
                                         >
                                             {hasDate ? (
                                                 <>
-                                                    <Text className={styles.date} {...date} />
+                                                    <Text
+                                                        className={styles.date}
+                                                        {...date}
+                                                        textStyle={{
+                                                            ...dateTextStyle,
+                                                            fontStyle: dateFontStyle,
+                                                        }}
+                                                    />
                                                     <hr
                                                         className={styles.border}
                                                         style={{ borderColor: titleColor }}
@@ -721,6 +800,10 @@ const UrbaniaRecommendation = ({
                                                     <Text
                                                         className={styles.location}
                                                         {...location}
+                                                        textStyle={{
+                                                            ...locationTextStyle,
+                                                            fontStyle: locationFontStyle,
+                                                        }}
                                                     />
                                                     <hr
                                                         className={styles.border}
@@ -808,7 +891,6 @@ const UrbaniaRecommendation = ({
                                     key={`reco-background-text-${i + 1}`}
                                     className={classNames([styles.backgroundText], {
                                         [styles.hidden]: !current && isView && !isPreview,
-
                                         [styles.didAnimate]: didAnimate, // @TODO: optimise —> use animation-fill-mode?
                                         [styles.animateFromBottom]:
                                             backgroundAnimationStarted && i % 2 !== 0,
@@ -817,7 +899,10 @@ const UrbaniaRecommendation = ({
                                     })}
                                     style={{
                                         animationDelay: `${i * 100}ms`,
-                                        ...getStyleFromText(backgroundTextStyle),
+                                        ...getStyleFromText({
+                                            ...backgroundTextStyle,
+                                            fontStyle: backgroundFontStyle,
+                                        }),
                                     }}
                                 >
                                     {line}

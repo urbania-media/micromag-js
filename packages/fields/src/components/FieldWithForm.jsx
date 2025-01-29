@@ -165,6 +165,7 @@ const FieldWithForm = ({
                                 'text-monospace',
                                 'text-start',
                                 'text-truncate',
+                                'fw-bold',
                                 {
                                     'text-start': !isHorizontal,
                                     'text-end': isHorizontal,
@@ -174,7 +175,7 @@ const FieldWithForm = ({
                             {labelElement}
                         </span>
                         {isHorizontal && thumbnailElement !== null ? (
-                            <span className="col-auto">{thumbnailElement}</span>
+                            <span className="col-auto ps-0">{thumbnailElement}</span>
                         ) : null}
                         {value !== null && canClear ? (
                             <ClearButton className={styles.clearButton} onClick={onClear} />

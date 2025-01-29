@@ -134,7 +134,7 @@ const FieldRow = ({
         ) : null;
 
     const arrowElement =
-        isClickable && !withoutCaret ? (
+        isClickable && !withValue && !withoutCaret ? (
             <span className="col-auto align-self-center d-flex align-items-center mw-25">
                 <FontAwesomeIcon icon={faAngleRight} />
             </span>
