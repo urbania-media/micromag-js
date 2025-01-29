@@ -38,6 +38,10 @@
     &.otherAnswer {
         opacity: 0.6 !important;
     }
+
+    &.withoutOpacity {
+        opacity: 1 !important;
+    }
 }
 
 .button {

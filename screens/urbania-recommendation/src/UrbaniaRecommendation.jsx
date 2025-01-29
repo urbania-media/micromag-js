@@ -32,6 +32,7 @@ import {
 } from '@micromag/core/hooks';
 import {
     getFooterProps,
+    getStyleFromBox,
     getStyleFromText,
     isFooterFilled,
     isHeaderFilled,
@@ -65,6 +66,8 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
+    cardBoxStyle: MicromagPropTypes.boxStyle,
+    withoutZoom: PropTypes.bool,
     current: PropTypes.bool,
     active: PropTypes.bool,
     preload: PropTypes.bool,
@@ -84,6 +87,8 @@ const defaultProps = {
     header: null,
     footer: null,
     background: null,
+    cardBoxStyle: null,
+    withoutZoom: false,
     current: true,
     active: true,
     preload: true,
@@ -103,6 +108,8 @@ const UrbaniaRecommendation = ({
     header,
     footer,
     background,
+    cardBoxStyle,
+    withoutZoom,
     current,
     active,
     preload,
@@ -338,9 +345,41 @@ const UrbaniaRecommendation = ({
     }, [activityDetected, showControls, isVideo, hideControls]);
     useDebounce(toggleControlsVisibility, activityDetected, 1000);
 
-    const { textStyle = null } = title || {};
-    const { color = null } = textStyle || {};
-    const { color: titleColor = null } = color || {};
+    // Default font weights for urbania styles
+    const {
+        titleTextStyle,
+        titleColor,
+        titleFontWeight,
+        categoryTextStyle,
+        categoryFontWeight,
+        descriptionTextStyle,
+        descriptionFontWeight,
+    } = useMemo(() => {
+        const { textStyle: finalTitleTextStyle = null } = title || {};
+        const { color: titleStyleColor = null, fontFamily: titleFontFamily = null } =
+            finalTitleTextStyle || {};
+        const { color: finalTitleColor = null } = titleStyleColor || {};
+        const finalTitleFontWeight = titleFontFamily === null ? 700 : null;
+
+        const { textStyle: finalCategoryTextStyle = null } = category || {};
+        const { fontFamily: categoryFontFamily = null } = finalCategoryTextStyle || {};
+        const finalCategoryFontWeight = categoryFontFamily === null ? 900 : null;
+
+        const { textStyle: finalDescriptionTextStyle = null } = description || {};
+        const { fontFamily: descriptionFontFamily = null } = finalDescriptionTextStyle || {};
+        const finalDescriptionFontWeight = descriptionFontFamily === null ? 300 : null;
+        return {
+            titleColor: finalTitleColor,
+            titleTextStyle: finalTitleTextStyle,
+            titleFontWeight: finalTitleFontWeight,
+            categoryTextStyle: finalCategoryTextStyle,
+            categoryFontWeight: finalCategoryFontWeight,
+            descriptionTextStyle: finalDescriptionTextStyle,
+            descriptionFontWeight: finalDescriptionFontWeight,
+        };
+    }, [title, category, description]);
+
+    const layoutStyle = !isPlaceholder ? getStyleFromBox(cardBoxStyle) : null;
 
     return (
         <div
@@ -367,7 +406,6 @@ const UrbaniaRecommendation = ({
                     <Layout
                         className={styles.layout}
                         width={width}
-                        // height={height}
                         style={
                             !isPlaceholder
                                 ? {
@@ -411,6 +449,7 @@ const UrbaniaRecommendation = ({
                                         [styles.hidden]: !current && isView && !isPreview,
                                     },
                                 ])}
+                                style={layoutStyle}
                             >
                                 <div
                                     className={classNames([
@@ -465,13 +504,15 @@ const UrbaniaRecommendation = ({
                                                         {
                                                             [styles.transitioning]:
                                                                 visualModalTransitioning,
+                                                            [styles.disabled]: withoutZoom,
                                                         },
                                                     ])}
                                                     onClick={onClickVisual}
                                                     disabled={
                                                         isPreview ||
                                                         backgroundAnimationStarted ||
-                                                        visualModalOpened
+                                                        visualModalOpened ||
+                                                        withoutZoom
                                                     }
                                                     focusable={
                                                         current && !isPreview && !visualModalOpened
@@ -537,6 +578,7 @@ const UrbaniaRecommendation = ({
                                                                 {
                                                                     [styles.visualBottom]:
                                                                         layout === 'bottom',
+                                                                    [styles.hidden]: withoutZoom,
                                                                 },
                                                             ])}
                                                         >
@@ -601,6 +643,10 @@ const UrbaniaRecommendation = ({
                                                 <Heading
                                                     className={styles.category}
                                                     {...category}
+                                                    textStyle={{
+                                                        ...categoryTextStyle,
+                                                        fontWeight: categoryFontWeight,
+                                                    }}
                                                 />
                                             </div>
                                         ) : null}
@@ -627,7 +673,14 @@ const UrbaniaRecommendation = ({
                                         >
                                             {hasTitle ? (
                                                 <div className={styles.titleContainer}>
-                                                    <Heading className={styles.title} {...title} />
+                                                    <Heading
+                                                        className={styles.title}
+                                                        {...title}
+                                                        textStyle={{
+                                                            ...titleTextStyle,
+                                                            fontWeight: titleFontWeight,
+                                                        }}
+                                                    />
                                                     <hr
                                                         className={styles.border}
                                                         style={{ borderColor: titleColor }}
@@ -697,6 +750,10 @@ const UrbaniaRecommendation = ({
                                                 <Text
                                                     className={styles.description}
                                                     {...description}
+                                                    textStyle={{
+                                                        ...descriptionTextStyle,
+                                                        fontWeight: descriptionFontWeight,
+                                                    }}
                                                 />
                                             ) : null}
                                         </ScreenElement>

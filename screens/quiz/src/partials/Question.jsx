@@ -31,7 +31,9 @@ const propTypes = {
     totalCount: PropTypes.number,
     answeredIndex: PropTypes.number,
     buttonsStyle: MicromagPropTypes.boxStyle,
+    inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
+    inactiveButtonsTextStyle: MicromagPropTypes.textStyle,
     questionsHeadingStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
@@ -62,7 +64,9 @@ const defaultProps = {
     totalCount: null,
     answeredIndex: null,
     buttonsStyle: null,
+    inactiveButtonsStyle: null,
     buttonsTextStyle: null,
+    inactiveButtonsTextStyle: null,
     questionsHeadingStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
@@ -93,7 +97,9 @@ const Question = ({
     totalCount,
     answeredIndex,
     buttonsStyle,
+    inactiveButtonsStyle,
     buttonsTextStyle,
+    inactiveButtonsTextStyle,
     questionsHeadingStyle,
     goodAnswerColor,
     badAnswerColor,
@@ -208,7 +214,9 @@ const Question = ({
                     withoutIcon={withoutTrueFalse}
                     showUserAnswer={withoutTrueFalse}
                     buttonsStyle={buttonsStyle}
+                    inactiveButtonsStyle={inactiveButtonsStyle}
                     buttonsTextStyle={buttonsTextStyle}
+                    inactiveButtonsTextStyle={inactiveButtonsTextStyle}
                     focusable={focusable}
                     animated={animated}
                     transitions={transitions}

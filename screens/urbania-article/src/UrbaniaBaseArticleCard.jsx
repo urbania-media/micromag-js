@@ -91,7 +91,11 @@ const UrbaniaArticleCard = ({
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-    const { open: openWebView } = useViewerWebView();
+    const {
+        open: openWebView,
+        close: closeWebWiew,
+        opened: articleOpened = false,
+    } = useViewerWebView();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { enableInteraction, disableInteraction } = useViewerInteraction();
@@ -116,7 +120,7 @@ const UrbaniaArticleCard = ({
           )}${url.indexOf('?') !== -1 ? '&' : '?'}reader`
         : url;
 
-    const [articleOpened, setArticleOpened] = useState(false);
+    // const [articleOpened, setArticleOpened] = useState(false);
     const [iframeEnabled, setIframeEnabled] = useState(false);
     const [iframeMounted, setIframeMounted] = useState(false);
     const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -172,7 +176,6 @@ const UrbaniaArticleCard = ({
             openWebView(finalUrl);
         }
 
-        // setArticleOpened(newOpened);
         // if (newOpened) {
         //     disableInteraction();
         // } else {
@@ -183,7 +186,6 @@ const UrbaniaArticleCard = ({
     }, [
         articleOpened,
         setIframeMounted,
-        setArticleOpened,
         disableInteraction,
         enableInteraction,
         openWebView,
@@ -258,11 +260,11 @@ const UrbaniaArticleCard = ({
 
     useEffect(() => {
         if (!current) {
-            setArticleOpened(false);
+            closeWebWiew();
             setIframeMounted(false);
             setIframeLoaded(false);
         }
-    }, [current]);
+    }, [current, closeWebWiew, setIframeMounted, setIframeLoaded]);
 
     const onPlayError = useCallback(() => {
         if (isView && playing && current && isBackgroundVideo) {

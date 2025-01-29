@@ -20,6 +20,7 @@ const propTypes = {
     }),
     isForm: PropTypes.bool,
     isHorizontal: PropTypes.bool,
+    canClear: PropTypes.bool,
     disableAlpha: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
@@ -30,13 +31,14 @@ const defaultProps = {
     value: null,
     isForm: false,
     isHorizontal: false,
+    canClear: true,
     disableAlpha: false,
     className: null,
     onChange: null,
     closeForm: null,
 };
 
-const ColorField = ({ value, onChange, closeForm, disableAlpha, ...props }) => {
+const ColorField = ({ value, onChange, closeForm, disableAlpha, canClear, ...props }) => {
     const { color = null } = value || {};
 
     const hexColor = useMemo(
@@ -74,6 +76,7 @@ const ColorField = ({ value, onChange, closeForm, disableAlpha, ...props }) => {
             noValueLabel={
                 <FormattedMessage defaultMessage="Select a color..." description="No value label" />
             }
+            canClear={canClear}
             {...props}
         >
             <div className="p-2">

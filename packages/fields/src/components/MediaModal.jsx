@@ -1,6 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading, jsx-a11y/control-has-associated-label */
-import { faClose } from '@fortawesome/free-solid-svg-icons/faClose';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
@@ -8,7 +6,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ModalDialog as Dialog, Modal } from '@micromag/core/components';
+import { ClearButton, ModalDialog as Dialog, Modal } from '@micromag/core/components';
 import { getFileName } from '@micromag/core/utils';
 import MediaGallery from '@micromag/media-gallery';
 
@@ -94,7 +92,7 @@ const MediaModal = ({
 
     const dialogTitle = useMemo(() => {
         if (title) {
-            return title
+            return title;
         }
 
         switch (type) {
@@ -105,21 +103,35 @@ const MediaModal = ({
                 return <FormattedMessage defaultMessage="Select Image" description="Modal title" />;
 
             case 'audio':
-                return <FormattedMessage defaultMessage="Select Audio File" description="Modal title" />;
+                return (
+                    <FormattedMessage
+                        defaultMessage="Select Audio File"
+                        description="Modal title"
+                    />
+                );
 
             case 'font':
-                return <FormattedMessage defaultMessage="Select Font File" description="Modal title" />;
+                return (
+                    <FormattedMessage defaultMessage="Select Font File" description="Modal title" />
+                );
 
             case 'document':
-                return <FormattedMessage defaultMessage="Select Document" description="Modal title" />;
+                return (
+                    <FormattedMessage defaultMessage="Select Document" description="Modal title" />
+                );
 
             case 'subtitle':
-                return <FormattedMessage defaultMessage="Select Subtitles File" description="Modal title" />;
+                return (
+                    <FormattedMessage
+                        defaultMessage="Select Subtitles File"
+                        description="Modal title"
+                    />
+                );
 
             default:
                 return <FormattedMessage defaultMessage="Choose media" description="Modal title" />;
         }
-    }, [title, type])
+    }, [title, type]);
 
     const onOpen = useCallback(
         (e) => {
@@ -219,13 +231,10 @@ const MediaModal = ({
                         </span>
                     </button>
                     {value !== null ? (
-                        <button
-                            type="button"
+                        <ClearButton
                             className={classNames([styles.clearButton])}
                             onClick={onClearMedia}
-                        >
-                            <FontAwesomeIcon icon={faClose} />
-                        </button>
+                        />
                     ) : null}
                 </div>
             </FieldWithForm>

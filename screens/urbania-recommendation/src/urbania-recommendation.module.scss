@@ -35,7 +35,6 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         text-transform: uppercase;
         white-space: nowrap;
         writing-mode: vertical-lr;
-        // pointer-events: none;pointer-eventspointer-eventspointer-eventspointer-eventspointer-eventspointer-eventspointer-eventspointer-events
 
         &.hidden {
             opacity: 0;
@@ -233,6 +232,11 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
             transition: transform 0.4s $modal-transition-curve;
         }
 
+        &.disabled {
+            cursor: auto;
+            pointer-events: none;
+        }
+
         &:hover {
             filter: saturate(1.1);
 
@@ -260,6 +264,11 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
 
         &.visualBottom {
             bottom: 25px;
+        }
+
+        &.hidden {
+            display: none;
+            visibility: hidden;
         }
     }
 
@@ -289,7 +298,6 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         padding: 12px 10px 6px;
         font-family: 'Agrandir Tight', sans-serif;
         font-size: 28px;
-        font-weight: 900;
         text-align: center;
         text-transform: uppercase;
     }
@@ -323,7 +331,6 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
     .title {
         font-family: 'Agrandir Tight', sans-serif;
         font-size: 1.2rem;
-        font-weight: 700;
         text-transform: uppercase;
     }
 
@@ -367,7 +374,6 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         padding-top: 3px;
         font-family: 'Agrandir Tight', sans-serif;
         font-size: 12px;
-        font-weight: 300;
 
         p {
             margin-bottom: 0.5em;

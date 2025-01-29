@@ -35,6 +35,7 @@ import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import Editor from '../components/EditorContainer';
 
 import cointreau from '../../../../.storybook/data/stories/cointreau.json';
+import hebdo from '../../../../.storybook/data/stories/hebdo.json';
 
 // import manager from '../../../intl/src/manager';
 // import createDefaultStory from '../utils/createDefaultStory';
@@ -153,6 +154,8 @@ EditorContainer.defaultProps = {
     isTheme: false,
     viewerTheme: null,
 };
+
+export const TestHebdo = () => <EditorContainer defaultValue={hebdo} />;
 
 export const TestUrbania = () => (
     <EditorContainer

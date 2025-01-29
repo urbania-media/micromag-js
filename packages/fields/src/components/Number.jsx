@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
+
+import { ClearButton } from '@micromag/core/components';
+
 import styles from '../styles/number.module.scss';
 
 const propTypes = {
@@ -65,8 +68,6 @@ const NumberField = ({
         [onChange],
     );
 
-    // Datalist
-
     const hasDataList = dataList !== null;
     const [dataListActive, setDataListActive] = useState(false);
 
@@ -92,6 +93,12 @@ const NumberField = ({
         [onChange, setDataListActive],
     );
 
+    const onClear = useCallback(() => {
+        if (onChange !== null) {
+            onChange(null);
+        }
+    }, [onChange]);
+
     return (
         <div
             className={classNames([
@@ -114,10 +121,13 @@ const NumberField = ({
                 onBlur={onInputBlur}
                 placeholder={placeholder}
             />
-            {hasDataList ? (
+            {value === null && hasDataList ? (
                 <div className={styles.arrow}>
                     <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronDown} />
                 </div>
+            ) : null}
+            {value !== null ? (
+                <ClearButton className={styles.clearButton} onClick={onClear} />
             ) : null}
             {hasDataList && dataListActive ? (
                 <ul className={styles.dataListItems}>
