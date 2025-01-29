@@ -21,6 +21,7 @@ Thumbs.db
 nbproject
 devnotes.md
 _notes
+.nx
 
 # Folders to ignore
 .hg
