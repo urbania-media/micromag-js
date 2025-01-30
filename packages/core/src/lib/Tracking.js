@@ -26,7 +26,6 @@ class Tracking extends BaseTracking {
             screenId,
             screenType,
             screenIndex,
-            screensCount,
             screenTitle,
             screenDescrition,
             screenProgress:

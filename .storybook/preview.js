@@ -8,6 +8,10 @@ import withVisitor from './decorators/withVisitor';
 import '../packages/core/src/styles/vendor.scss';
 import './fonts/fonts.scss';
 
+if (typeof window !== 'undefined') {
+    window.dataLayer = window.dataLayer || [];
+}
+
 export const parameters = {
     viewport: {
         viewports: {
