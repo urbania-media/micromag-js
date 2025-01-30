@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
+
 import styles from '../../styles/sortable/sortable-tree-item-actions.module.scss';
 
 const propTypes = {
@@ -35,6 +36,8 @@ const propTypes = {
     showCount: PropTypes.bool,
     showCollapsedCount: PropTypes.bool,
     children: PropTypes.node,
+    // eslint-disable-next-line react/forbid-prop-types
+    containerRef: PropTypes.any,
 };
 
 const defaultProps = {
@@ -56,35 +59,34 @@ const defaultProps = {
     showCount: false,
     showCollapsedCount: false,
     children: null,
+    containerRef: null,
 };
 
-const SortableTreeItemActions = forwardRef(
-    (
-        {
-            childCount,
-            clone,
-            depth,
-            disableSelection,
-            disableInteraction,
-            ghost,
-            handleProps,
-            indentationWidth,
-            indicator,
-            collapsed,
-            onCollapse,
-            onRemove,
-            onClick,
-            style,
-            value,
-            wrapperRef,
-            showId,
-            showCount,
-            showCollapsedCount,
-            children,
-            ...props
-        },
-        ref,
-    ) => (
+const SortableTreeItemActions = function ({
+    childCount,
+    clone,
+    depth,
+    disableSelection,
+    disableInteraction,
+    ghost,
+    handleProps,
+    indentationWidth,
+    indicator,
+    collapsed,
+    onCollapse,
+    onRemove,
+    onClick,
+    style,
+    value,
+    wrapperRef,
+    showId,
+    showCount,
+    showCollapsedCount,
+    children,
+    containerRef,
+    ...props
+}) {
+    return (
         <div
             className={classNames([
                 styles.wrapper,
@@ -104,7 +106,7 @@ const SortableTreeItemActions = forwardRef(
             }}
             {...props}
         >
-            <div className={styles.inner} ref={ref} style={style}>
+            <div className={styles.inner} ref={containerRef} style={style}>
                 <button
                     className={classNames([styles.button, styles.handle])}
                     type="button"
@@ -143,10 +145,12 @@ const SortableTreeItemActions = forwardRef(
                 <div className={styles.children}>{children}</div>
             </div>
         </div>
-    ),
-);
+    );
+};
 
 SortableTreeItemActions.propTypes = propTypes;
 SortableTreeItemActions.defaultProps = defaultProps;
 
-export default SortableTreeItemActions;
+export default forwardRef((props, ref) => (
+    <SortableTreeItemActions {...props} containerRef={ref} />
+));

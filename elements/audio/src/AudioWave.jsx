@@ -12,6 +12,8 @@ import { getContrastingColor } from '@micromag/core/utils';
 
 import styles from './styles/audio-wave.module.scss';
 
+const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+
 const propTypes = {
     currentTime: PropTypes.number,
     duration: PropTypes.number,
@@ -161,7 +163,7 @@ function AudioWave({
         const canvasBg = canvasBackgroundRef.current;
         const canvasProgress = canvasProgressRef.current;
 
-        const scale = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
+        const scale = devicePixelRatio;
 
         canvasBg.width = canvasProgress.width = Math.floor(elWidth * scale);
         canvasBg.height = canvasProgress.height = Math.floor(elHeight * scale);

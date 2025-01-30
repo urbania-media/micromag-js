@@ -28,6 +28,8 @@ import useThree from './useThree';
 
 import styles from './image-360.module.scss';
 
+const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+
 const propTypes = {
     layout: PropTypes.oneOf(['full']),
     image: MicromagPropTypes.imageMedia,
@@ -209,9 +211,7 @@ const Image360Screen = ({
             scene.current.add(mesh);
 
             renderer.current = new WebGLRenderer({ canvas: canvasRef.current });
-            renderer.current.setPixelRatio(
-                typeof window !== 'undefined' ? window.devicePixelRatio : 1,
-            );
+            renderer.current.setPixelRatio(devicePixelRatio);
             renderer.current.setSize(canvasWidth, canvasHeight);
             render3D();
         }
