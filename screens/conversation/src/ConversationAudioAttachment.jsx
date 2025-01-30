@@ -79,7 +79,16 @@ const ConversationAudioAttachment = ({
     return (
         <div className={classNames([styles.audioMessageContainer])}>
             <div className={styles.playButtonContainer}>
-                <Button onClick={togglePaused} icon={paused ? <PlayIcon /> : <PauseIcon />} />
+                <Button
+                    onClick={togglePaused}
+                    icon={
+                        paused ? (
+                            <PlayIcon className={styles.icon} />
+                        ) : (
+                            <PauseIcon className={styles.icon} />
+                        )
+                    }
+                />
             </div>
             <Audio
                 withWave

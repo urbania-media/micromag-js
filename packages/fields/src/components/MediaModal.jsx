@@ -220,13 +220,13 @@ const MediaModal = ({
                                 style={{ maxWidth: 270 }}
                             >
                                 {label || (
-                                    <span className="text-light">
+                                    <span className="text-body-secondary">
                                         <FormattedMessage defaultMessage="Select media..." />
                                     </span>
                                 )}
                             </span>
                             {thumbnailElement !== null ? (
-                                <span className="col-auto">{thumbnailElement}</span>
+                                <span className="col-auto ps-0">{thumbnailElement}</span>
                             ) : null}
                         </span>
                     </button>

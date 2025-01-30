@@ -19,7 +19,6 @@
     width: auto;
     height: 1.3em;
     margin: 0;
-    margin-left: 0.5em;
 }
 
 .dialogBody {
@@ -34,7 +33,6 @@
 
 .previewButton {
     @extend %reset-button;
-    // width: 100%;
     background-color: transparent;
 
     &.shaded {
