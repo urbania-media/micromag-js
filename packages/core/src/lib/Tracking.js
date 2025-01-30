@@ -85,7 +85,7 @@ class Tracking extends BaseTracking {
             data.mediaCurrentTime = Math.round(currentTime);
         }
         if (currentTime !== null && duration !== null && duration > 0) {
-            data.mediaProgress = Math.round((currentTime / duration) * 100);
+            data.mediaProgress = currentTime / duration;
         }
         this.push(data);
     }
