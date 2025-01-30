@@ -12,7 +12,7 @@ class Tracking extends BaseTracking {
         const {
             id: screenId = null,
             type: screenType = null,
-            metadata = {},
+            metadata = null,
             parameters: { metadata: parametersMetadata } = {},
         } = screen || {};
 
