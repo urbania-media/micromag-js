@@ -95,10 +95,10 @@ module.exports = {
             ...config.resolve,
             alias: {
                 ...config.resolve.alias,
-                '@folklore/routes': require.resolve('@folklore/routes'),
-                wouter: require.resolve('wouter'),
-                'react-intl': require.resolve('react-intl'),
-                'query-string': require.resolve('query-string'),
+                // '@folklore/routes': require.resolve('@folklore/routes'),
+                // wouter: require.resolve('wouter'),
+                // 'react-intl': require.resolve('react-intl'),
+                // 'query-string': require.resolve('query-string'),
                 // '@ckeditor/ckeditor5-editor-classic': require.resolve(
                 //     '@ckeditor/ckeditor5-editor-classic',
                 // ),

@@ -29,7 +29,7 @@ const ToggleButton = ({
     toggledButton,
     toggledButtonClassName,
 }) => {
-    if (button === null) return false;
+    if (button === null) return null;
 
     return (
         <div

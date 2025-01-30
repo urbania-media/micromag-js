@@ -63,7 +63,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@folklore/routes": "^0.2.32",
+        "@folklore/routes": "^0.2.36",
         "@micromag/core": "^0.3.612",
         "@micromag/element-badge": "^0.3.612",
         "@micromag/element-scroll": "^0.3.612",
