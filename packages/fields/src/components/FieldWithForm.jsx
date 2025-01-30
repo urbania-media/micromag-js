@@ -135,12 +135,12 @@ const FieldWithForm = ({
     return (
         <span
             className={classNames([
-                'row',
                 'align-items-center',
                 'flex-nowrap',
                 'mw-100',
                 'w-100',
                 {
+                    row: thumbnailElement === null && labelElement === null,
                     [className]: className !== null,
                 },
             ])}
