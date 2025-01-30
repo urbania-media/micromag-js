@@ -9,8 +9,14 @@ class Tracking extends BaseTracking {
 
     trackScreenView(screen, screenIndex) {
         const { screensCount = null } = this.variables || {};
-        const { id: screenId = null, type: screenType = null, metadata = {} } = screen || {};
-        const { title: screenTitle } = metadata || {};
+        const {
+            id: screenId = null,
+            type: screenType = null,
+            metadata = {},
+            parameters: { metadata: parametersMetadata } = {},
+        } = screen || {};
+
+        const { title: screenTitle, description: screenDescrition } = metadata || parametersMetadata || {};
         if (this.screensViewed.indexOf(screenId || screenIndex) === -1) {
             this.screensViewed = [...this.screensViewed, screenId || screenIndex];
         }
@@ -20,7 +26,9 @@ class Tracking extends BaseTracking {
             screenId,
             screenType,
             screenIndex,
+            screensCount,
             screenTitle,
+            screenDescrition,
             screenProgress:
                 screensCount !== null && screenIndex !== null
                     ? (screenIndex + 1) / screensCount
