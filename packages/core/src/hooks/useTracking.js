@@ -70,7 +70,7 @@ export const useTrackScreenMedia = (type = null) => {
     }
 
     return useCallback(
-        (media = null, action = null, opts) => {
+        (media = null, action = null, opts = null) => {
             if (type !== null && media !== null && action !== null) {
                 tracking.trackMedia(`screen_${type}`, media, action, {
                     ...opts,

@@ -169,10 +169,10 @@ const AudioScreen = ({
     );
 
     const onProgressStep = useCallback(
-        (step) => {
-            trackScreenMedia(audio, `progress_${Math.round(step * 100, 10)}%`);
+        (step, meta) => {
+            trackScreenMedia(audioMedia, `progress_${Math.round(step * 100, 10)}%`, meta);
         },
-        [trackScreenMedia, audio],
+        [trackScreenMedia, audioMedia],
     );
 
     const onDurationChange = useCallback(
@@ -184,16 +184,16 @@ const AudioScreen = ({
 
     const onPlay = useCallback(
         ({ initial }) => {
-            trackScreenMedia(audio, initial ? 'play' : 'resume');
+            trackScreenMedia(audioMedia, initial ? 'play' : 'resume');
         },
-        [trackScreenMedia, audio],
+        [trackScreenMedia, audioMedia],
     );
 
     const onPause = useCallback(
         ({ midway }) => {
-            trackScreenMedia(audio, midway ? 'pause' : 'ended');
+            trackScreenMedia(audioMedia, midway ? 'pause' : 'ended');
         },
-        [trackScreenMedia, audio],
+        [trackScreenMedia, audioMedia],
     );
 
     const onEnded = useCallback(() => {
@@ -205,10 +205,10 @@ const AudioScreen = ({
     const onSeeked = useCallback(
         (time) => {
             if (time > 0) {
-                trackScreenMedia(audio, 'seek');
+                trackScreenMedia(audioMedia, 'seek');
             }
         },
-        [trackScreenMedia, audio],
+        [trackScreenMedia, audioMedia],
     );
 
     const onPlayError = useCallback(() => {

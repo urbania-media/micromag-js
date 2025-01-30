@@ -273,7 +273,7 @@ export const colorObject = PropTypes.shape({
     alpha: PropTypes.number,
 });
 
-const color = PropTypes.oneOfType([colorObject, PropTypes.string]);
+export const color = PropTypes.oneOfType([colorObject, PropTypes.string]);
 
 export const textStyle = PropTypes.shape({
     fontFamily: font,

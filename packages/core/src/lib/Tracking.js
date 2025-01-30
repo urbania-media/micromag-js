@@ -52,27 +52,33 @@ class Tracking extends BaseTracking {
     ) {
         const {
             id: mediaId = null,
-            name = null,
+            url: mediaUrl = null,
+            name: mediaName = null,
             duration: rootDuration = null,
             currentTime = optsCurrentTime,
             metadata = {},
         } = media || {};
         const { duration = rootDuration } = metadata || {};
-        const label = name;
         const data = {
             ...opts,
             event: 'eventInteraction',
             eventCategory: type,
             eventAction: action,
-            eventLabel: label,
+            eventLabel: mediaName || mediaUrl,
             eventValue: value,
             mediaId,
-            mediaCurrentTime: currentTime !== null ? Math.round(currentTime) : null,
-            mediaProgress:
-                currentTime !== null && duration !== null && duration > 0
-                    ? Math.round((currentTime / duration) * 100)
-                    : null,
+            mediaUrl,
+            mediaName,
         };
+        if (duration !== null) {
+            data.mediaDuration = Math.round(duration);
+        }
+        if (currentTime !== null) {
+            data.mediaCurrentTime = Math.round(currentTime);
+        }
+        if (currentTime !== null && duration !== null && duration > 0) {
+            data.mediaProgress = Math.round((currentTime / duration) * 100);
+        }
         this.push(data);
     }
 }

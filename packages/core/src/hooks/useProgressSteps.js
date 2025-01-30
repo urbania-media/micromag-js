@@ -19,7 +19,7 @@ function useProgressSteps({
         );
         stepsToTrack.forEach((step) => {
             if (onStep !== null) {
-                onStep(step);
+                onStep(step, { duration, currentTime });
             }
             currentSteps[step] = true;
         });

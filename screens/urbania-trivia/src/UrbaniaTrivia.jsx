@@ -184,10 +184,10 @@ const UrbaniaTrivia = ({
     );
 
     const onProgressStep = useCallback(
-        (step) => {
-            trackScreenMedia(video, `progress_${Math.round(step * 100, 10)}%`);
+        (step, meta) => {
+            trackScreenMedia(videoMedia, `progress_${Math.round(step * 100, 10)}%`, meta);
         },
-        [trackScreenMedia, video],
+        [trackScreenMedia, videoMedia],
     );
 
     const onDurationChange = useCallback(
@@ -199,25 +199,25 @@ const UrbaniaTrivia = ({
 
     const onPlay = useCallback(
         ({ initial }) => {
-            trackScreenMedia(video, initial ? 'play' : 'resume');
+            trackScreenMedia(videoMedia, initial ? 'play' : 'resume');
         },
-        [trackScreenMedia, video],
+        [trackScreenMedia, videoMedia],
     );
 
     const onPause = useCallback(
         ({ midway }) => {
-            trackScreenMedia(video, midway ? 'pause' : 'ended');
+            trackScreenMedia(videoMedia, midway ? 'pause' : 'ended');
         },
-        [trackScreenMedia, video],
+        [trackScreenMedia, videoMedia],
     );
 
     const onSeeked = useCallback(
         (time) => {
             if (time > 0) {
-                trackScreenMedia(video, 'seek');
+                trackScreenMedia(videoMedia, 'seek');
             }
         },
-        [trackScreenMedia, video],
+        [trackScreenMedia, videoMedia],
     );
 
     const onEnded = useCallback(() => {
