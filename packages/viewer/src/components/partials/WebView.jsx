@@ -3,12 +3,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
+    usePlaybackContext,
     useViewerInteraction,
     useViewerWebView,
-    usePlaybackContext,
 } from '@micromag/core/contexts';
 import WebView from '@micromag/element-webview';
 
@@ -83,6 +83,8 @@ function WebViewContainer({ onChange, className, style }) {
         [close],
     );
     useKeyboardShortcuts(keyboardShortcuts);
+
+    console.log('webview opened', opened);
 
     return (
         <div

@@ -276,8 +276,9 @@ const Answers = ({
                         const isUserAnswer = withoutGoodAnswer && userAnswer;
                         const isOtherAnswer = withoutGoodAnswer && !userAnswer;
 
-                        const inactiveButtonStyle = isOtherAnswer ? inactiveButtonsStyle : null;
-                        const inactiveButtonTextStyle = isOtherAnswer
+                        const isInactive = isOtherAnswer && answeredIndex !== null;
+                        const inactiveButtonStyle = isInactive ? inactiveButtonsStyle : null;
+                        const inactiveButtonTextStyle = isInactive
                             ? inactiveButtonsTextStyle
                             : null;
 
