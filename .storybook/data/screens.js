@@ -516,6 +516,13 @@ export const allScreens = [
         header: { badge: badge() },
         footer: { callToAction: callToAction() },
     },
+    {
+        id: uuid(),
+        type: 'slideshow',
+        // background: backgroundVideo(),
+        header: { badge: badge() },
+        footer: { callToAction: callToAction() },
+    },
 ];
 
 export default allScreens;

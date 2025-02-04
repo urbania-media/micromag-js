@@ -13,7 +13,7 @@ import {
     useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -230,7 +230,11 @@ const SlideshowScreen = ({
                         <div
                             className={styles.header}
                             ref={headerRef}
-                            style={{ padding: finalSpacing, paddingTop: finalSpacing / 2 }}
+                            style={{
+                                padding: finalSpacing,
+                                paddingTop: finalSpacing / 2,
+                                transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
+                            }}
                         >
                             <Header {...header} />
                         </div>
