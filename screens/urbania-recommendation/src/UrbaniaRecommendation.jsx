@@ -531,6 +531,20 @@ const UrbaniaRecommendation = ({
                                                 visualModalTransitioning || visualModalOpened,
                                         },
                                     ])}
+                                    style={
+                                        // eslint-disable-next-line no-nested-ternary
+                                        layoutBorderRadius !== null
+                                            ? layout === 'bottom'
+                                                ? {
+                                                      borderBottomLeftRadius: layoutBorderRadius,
+                                                      borderBottomRightRadius: layoutBorderRadius,
+                                                  }
+                                                : {
+                                                      borderTopLeftRadius: layoutBorderRadius,
+                                                      borderTopRightRadius: layoutBorderRadius,
+                                                  }
+                                            : null
+                                    }
                                 >
                                     <ScreenElement
                                         key="visual"
