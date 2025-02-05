@@ -67,15 +67,14 @@ export default [
                     description: 'Author field label',
                 }),
             },
-            // {
-            //     name: 'author',
-            //     type: 'text-element',
-            //     label: defineMessage({
-            //         defaultMessage: 'Author',
-            //         description: 'Author field label',
-            //     }),
-            // },
-
+            {
+                name: 'subtitle',
+                type: 'text-element',
+                label: defineMessage({
+                    defaultMessage: 'Subtitle',
+                    description: 'Subtitle field label',
+                }),
+            },
             {
                 name: 'text',
                 type: 'text-modal',
@@ -84,6 +83,33 @@ export default [
                     description: 'Text field label',
                 }),
             },
+            // TODO: think about how to implement this wthout injecting the styles
+            // {
+            //     type: 'fields',
+            //     isList: true,
+            //     label: defineMessage({
+            //         defaultMessage: 'Styles',
+            //         description: 'Field section label',
+            //     }),
+            //     fields: [
+            //         {
+            //             name: 'textTitleStyle',
+            //             type: 'text-style-form',
+            //             label: defineMessage({
+            //                 defaultMessage: 'Text title style',
+            //                 description: 'Field label',
+            //             }),
+            //         },
+            //         {
+            //             name: 'textQuoteStyle',
+            //             type: 'text-style-form',
+            //             label: defineMessage({
+            //                 defaultMessage: 'Text quote style',
+            //                 description: 'Field label',
+            //             }),
+            //         },
+            //     ],
+            // },
             {
                 name: 'background',
                 type: 'background',

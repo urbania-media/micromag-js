@@ -42,6 +42,7 @@ const propTypes = {
     inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
     inactiveButtonsTextStyle: MicromagPropTypes.textStyle,
+    feedbackTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     withoutTrueFalse: PropTypes.bool,
@@ -69,6 +70,7 @@ const defaultProps = {
     inactiveButtonsStyle: null,
     buttonsTextStyle: null,
     inactiveButtonsTextStyle: null,
+    feedbackTextStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
     withoutTrueFalse: false,
@@ -96,6 +98,7 @@ const QuizScreen = ({
     inactiveButtonsStyle,
     buttonsTextStyle,
     inactiveButtonsTextStyle,
+    feedbackTextStyle,
     goodAnswerColor,
     badAnswerColor,
     withoutTrueFalse,
@@ -283,6 +286,7 @@ const QuizScreen = ({
                         buttonsTextStyle={buttonsTextStyle}
                         inactiveButtonsStyle={inactiveButtonsStyle}
                         inactiveButtonsTextStyle={inactiveButtonsTextStyle}
+                        feedbackTextStyle={feedbackTextStyle}
                         goodAnswerColor={goodAnswerColor}
                         badAnswerColor={badAnswerColor}
                         withoutTrueFalse={withoutTrueFalse}

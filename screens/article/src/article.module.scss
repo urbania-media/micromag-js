@@ -21,6 +21,7 @@
 
     .emptyTitle,
     .emptyAuthor,
+    .emptySubtitle,
     .emptyText {
         @extend %empty;
         width: 100%;
@@ -56,6 +57,12 @@
         font-size: 12px;
     }
 
+    .subtitle {
+        width: 100%;
+        margin: 10px 0 0;
+        font-size: 12px;
+    }
+
     .date {
         width: 100%;
         font-size: 12px;
@@ -64,6 +71,10 @@
 
     .title {
         margin: 10px 0;
+    }
+
+    .author {
+        width: 100%;
     }
 
     .text {

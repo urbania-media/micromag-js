@@ -447,6 +447,9 @@ const UrbaniaRecommendation = ({
 
     const layoutStyle = !isPlaceholder ? getStyleFromBox(cardBoxStyle) : null;
 
+    const { borderRadius: layoutBorderRadius = null } = layoutStyle || {};
+    const withoutCorners = layoutBorderRadius === 0;
+
     return (
         <div
             className={classNames([
@@ -515,7 +518,10 @@ const UrbaniaRecommendation = ({
                                         [styles.hidden]: !current && isView && !isPreview,
                                     },
                                 ])}
-                                style={layoutStyle}
+                                style={{
+                                    ...layoutStyle,
+                                    ...(withoutCorners ? { borderRadius: 0 } : null),
+                                }}
                             >
                                 <div
                                     className={classNames([
@@ -557,7 +563,10 @@ const UrbaniaRecommendation = ({
                                                 ])}
                                                 style={
                                                     visualModalTransitioning || visualModalOpened
-                                                        ? { width, height }
+                                                        ? {
+                                                              width,
+                                                              height,
+                                                          }
                                                         : {
                                                               width: textContainerWidth,
                                                               height: 'auto',

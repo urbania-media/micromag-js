@@ -122,6 +122,14 @@ export default [
                         }),
                     },
                     {
+                        name: 'feedbackTextStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Feedback text',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
                         name: 'goodAnswerColor',
                         type: 'color',
                         label: defineMessage({
@@ -396,6 +404,22 @@ export default [
                         type: 'text-style-form',
                         label: defineMessage({
                             defaultMessage: 'Buttons text',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'inactiveButtonsTextStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Inactive buttons text',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'inactiveButtonsStyle',
+                        type: 'box-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Inactive buttons',
                             description: 'Field label',
                         }),
                     },

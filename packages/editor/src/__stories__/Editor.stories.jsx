@@ -165,7 +165,7 @@ export const TestUrbania = () => (
 
 export const TestCointreau = () => <EditorContainer defaultValue={cointreau} />;
 
-export const TestUrbaniaArticle = () => <EditorContainer defaultValue={article} />;
+export const TestArticle = () => <EditorContainer defaultValue={article} />;
 
 export const TestQuoteBadges = () => <EditorContainer defaultValue={textQuoteBadges} />;
 

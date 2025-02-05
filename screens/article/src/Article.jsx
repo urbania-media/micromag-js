@@ -45,6 +45,7 @@ const propTypes = {
     author: PropTypes.shape({}),
     // author: MicromagPropTypes.text,
     text: MicromagPropTypes.text,
+    subtitle: MicromagPropTypes.text,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     header: MicromagPropTypes.header,
@@ -62,6 +63,7 @@ const defaultProps = {
     surtitle: null,
     date: null,
     author: null,
+    subtitle: null,
     text: null,
     spacing: 20,
     background: null,
@@ -80,6 +82,7 @@ const ArticleScreen = ({
     surtitle,
     date,
     author,
+    subtitle,
     text,
     spacing,
     background,
@@ -124,6 +127,7 @@ const ArticleScreen = ({
     const hasFooter = isFooterFilled(footer);
     const hasTitle = isTextFilled(title);
     const hasSurtitle = isTextFilled(surtitle);
+    const hasSubtitle = isTextFilled(subtitle);
     const hasSimpleAuthor = isTextFilled(author); // legacy
     const hasAuthor =
         isTextFilled(authorName) || isImageFilled(authorImage) || isTextFilled(authorCollabs);
@@ -199,6 +203,20 @@ const ArticleScreen = ({
             isEmpty={!hasSurtitle}
         >
             {hasSurtitle ? <Text className={styles.surtitle} {...surtitle} /> : null}
+        </ScreenElement>
+    );
+
+    const subtitleElement = (
+        <ScreenElement
+            key="subtitle"
+            placeholder="line"
+            emptyLabel={
+                <FormattedMessage defaultMessage="Subtitle" description="Subtitle placeholder" />
+            }
+            emptyClassName={styles.emptySubtitle}
+            isEmpty={!hasSubtitle}
+        >
+            {hasSubtitle ? <Text className={styles.subtitle} {...subtitle} /> : null}
         </ScreenElement>
     );
 
@@ -317,9 +335,11 @@ const ArticleScreen = ({
                             </div>
                             {titleElement}
                             {authorElement}
+                            {subtitleElement}
                         </div>
 
                         {contentElement}
+
                         {!isPlaceholder && hasFooter ? (
                             <div
                                 className={classNames([

@@ -35,6 +35,7 @@ const propTypes = {
     buttonsTextStyle: MicromagPropTypes.textStyle,
     inactiveButtonsTextStyle: MicromagPropTypes.textStyle,
     questionsHeadingStyle: MicromagPropTypes.textStyle,
+    feedbackTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     focusable: PropTypes.bool,
@@ -68,6 +69,7 @@ const defaultProps = {
     buttonsTextStyle: null,
     inactiveButtonsTextStyle: null,
     questionsHeadingStyle: null,
+    feedbackTextStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
     focusable: false,
@@ -101,6 +103,7 @@ const Question = ({
     buttonsTextStyle,
     inactiveButtonsTextStyle,
     questionsHeadingStyle,
+    feedbackTextStyle,
     goodAnswerColor,
     badAnswerColor,
     focusable,
@@ -138,6 +141,8 @@ const Question = ({
     const hasResultVisual = isImageFilled(answerImage) || isImageFilled(resultImage);
     const defaultResult = isTextFilled(result) ? result : null;
     const customResult = isTextFilled(customAnswerLabel) ? customAnswerLabel : null;
+    const finalResult = customResult || defaultResult;
+    const { textStyle: resultTextStyle = null } = finalResult || {};
 
     const onAnswersCollapse = useCallback(() => {
         setResultVisible(true);
@@ -251,8 +256,12 @@ const Question = ({
                                     >
                                         {hasResult ? (
                                             <Text
-                                                {...(customResult || defaultResult)}
+                                                {...(finalResult || {})}
                                                 className={styles.resultText}
+                                                textStyle={{
+                                                    ...(feedbackTextStyle || null),
+                                                    ...(resultTextStyle || null),
+                                                }}
                                             />
                                         ) : null}
                                         {hasResultVisual ? (
