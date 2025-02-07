@@ -125,7 +125,7 @@ const UrbaniaArticleCard = ({
     const [iframeLoaded, setIframeLoaded] = useState(false);
 
     const mediaShouldLoad = current || preload;
-    const backgroundPlaying = current && (isView || isEdit) && !articleOpened && playing;
+    const backgroundPlaying = current && (isView || isEdit) && !articleOpened;
 
     const mediaRef = usePlaybackMediaRef(current && !articleOpened);
 
