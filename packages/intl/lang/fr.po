@@ -443,6 +443,12 @@ msgctxt "4kSwvn"
 msgid "Thumbnail"
 msgstr "Vignette"
 
+# Field label
+#: 4w7K2K
+msgctxt "4w7K2K"
+msgid "Feedback text"
+msgstr ""
+
 # Description placeholder
 #: 507VAi
 msgctxt "507VAi"

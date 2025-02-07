@@ -287,6 +287,10 @@
     "defaultMessage": "Thumbnail",
     "description": "Field label"
   },
+  "4w7K2K": {
+    "defaultMessage": "Feedback text",
+    "description": "Field label"
+  },
   "507VAi": {
     "defaultMessage": "Description",
     "description": "Description placeholder"
