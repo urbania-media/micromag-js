@@ -110,7 +110,7 @@ const Timeline = ({
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
-    const { width, height, imageResolution } = useScreenSize();
+    const { width, height, imageResolution, resolution } = useScreenSize();
     const {
         topHeight: viewerTopHeight,
         bottomHeight: viewerBottomHeight,
@@ -241,7 +241,7 @@ const Timeline = ({
                                                 videoClassName={styles.video}
                                                 media={image}
                                                 width={imageWidth}
-                                                resolution={imageResolution}
+                                                resolution={resolution}
                                                 playing={backgroundPlaying}
                                                 active={active}
                                                 shouldLoad={mediaShouldLoad}
