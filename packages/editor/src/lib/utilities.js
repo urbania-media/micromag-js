@@ -95,15 +95,15 @@ export function buildTree(flattenedItems) {
     const root = { id: 'root', children: [] };
     const nodes = { [root.id]: root };
     const items = flattenedItems.map((item) => ({ ...item, children: [] }));
-    console.log('buildTree', flattenedItems);
     const indexes = {};
     // eslint-disable-next-line no-restricted-syntax
     for (const item of items) {
         const { id, children } = item;
-        const parentId = item.parentId ?? root.id;
-        const parent = nodes[parentId] ?? findItem(items, parentId) ?? null;
+        let parentId = item.parentId ?? root.id;
+        let parent = nodes[parentId] ?? findItem(items, parentId) ?? null;
         if (parent === null) {
-            console.error('Parent not found', parentId, nodes);
+            parentId = root.id;
+            parent = nodes[parentId] ?? findItem(items, parentId) ?? null;
         }
         if (typeof indexes[parentId] !== 'undefined') {
             indexes[parentId] += 1;
