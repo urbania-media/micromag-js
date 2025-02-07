@@ -917,6 +917,7 @@ const Viewer = ({
                                                     styles.screenContainer,
                                                     {
                                                         [styles.visible]: isVisible,
+                                                        [styles.preload]: preload,
                                                         [styles.current]: current,
                                                     },
                                                 ])}

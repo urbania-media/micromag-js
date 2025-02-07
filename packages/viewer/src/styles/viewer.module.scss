@@ -273,7 +273,8 @@
     pointer-events: none;
     content-visibility: hidden;
 
-    .visible & {
+    .visible &,
+    .preload & {
         content-visibility: auto;
     }
 
