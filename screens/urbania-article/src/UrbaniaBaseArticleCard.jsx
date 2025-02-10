@@ -4,7 +4,8 @@ import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import queryString from 'query-string';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -112,12 +113,20 @@ const UrbaniaArticleCard = ({
     const hasCta = isTextFilled(callToAction);
 
     // const isSimple = hasUrl && url.indexOf('simple.urbania.ca') !== -1;
-    const finalUrl = hasUrl
-        ? `${url.replace(
-              /^https?:\/\/([^.]+\.)?urbania\.(fr|ca)\//,
-              'https://urbania.$2/',
-          )}${url.indexOf('?') !== -1 ? '&' : '?'}reader`
-        : url;
+    const finalUrl = useMemo(() => {
+        const cleanedUrl = hasUrl
+            ? url.replace(/^https?:\/\/([^.]+\.)?urbania\.(fr|ca)\//, 'https://urbania.$2/')
+            : url;
+        const currentQueryString = queryString.parse(
+            cleanedUrl !== null && cleanedUrl.indexOf('?') !== -1 ? cleanedUrl.split('?')[1] : '',
+        );
+        return cleanedUrl !== null
+            ? `${cleanedUrl.split('?')[0]}?${queryString.stringify({
+                  reader: true,
+                  ...currentQueryString,
+              })}`
+            : url;
+    }, [hasUrl, url]);
 
     const [articleOpened, setArticleOpened] = useState(false);
     const [iframeEnabled, setIframeEnabled] = useState(false);
