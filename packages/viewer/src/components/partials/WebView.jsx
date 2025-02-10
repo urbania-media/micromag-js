@@ -84,8 +84,6 @@ function WebViewContainer({ onChange, className, style }) {
     );
     useKeyboardShortcuts(keyboardShortcuts);
 
-    console.log('webview opened', opened);
-
     return (
         <div
             className={classNames([
