@@ -37,12 +37,13 @@ const propTypes = {
     withoutRouter: PropTypes.bool,
     googleApiKey: PropTypes.string,
     visitor: MicromagPropTypes.visitor,
-    trackingVariables: MicromagPropTypes.trackingVariables,
     locale: PropTypes.string,
     locales: PropTypes.arrayOf(PropTypes.string),
     translations: PropTypes.objectOf(PropTypes.string),
     pathWithIndex: PropTypes.bool,
+    trackingVariables: MicromagPropTypes.trackingVariables,
     trackingDisabled: PropTypes.bool,
+    trackingPaused: PropTypes.bool,
     children: PropTypes.func,
 };
 
@@ -57,12 +58,13 @@ const defaultProps = {
     withoutRouter: false,
     googleApiKey: null,
     visitor: null,
-    trackingVariables: null,
     locale: 'en',
     locales: ['fr', 'en'],
     translations: null,
     pathWithIndex: false,
+    trackingVariables: null,
     trackingDisabled: false,
+    trackingPaused: false,
     children: null,
 };
 
@@ -76,12 +78,13 @@ const ViewerContainer = ({
     withoutRouter,
     googleApiKey,
     visitor,
-    trackingVariables,
     locale,
     locales,
     translations,
     pathWithIndex,
+    trackingVariables,
     trackingDisabled,
+    trackingPaused,
     ...otherProps
 }) => {
     const finalTrackingVariables = useMemo(() => {
@@ -116,6 +119,7 @@ const ViewerContainer = ({
                                     <TrackingProvider
                                         variables={finalTrackingVariables}
                                         disabled={trackingDisabled}
+                                        paused={trackingPaused}
                                     >
                                         {withoutRouter ? (
                                             <Viewer

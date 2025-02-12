@@ -13,14 +13,16 @@ const propTypes = {
     children: PropTypes.node.isRequired,
     variables: MicromagPropTypes.trackingVariables,
     disabled: PropTypes.bool,
+    paused: PropTypes.bool,
 };
 
 const defaultProps = {
     variables: null,
     disabled: false,
+    paused: false,
 };
 
-export const TrackingProvider = ({ variables, disabled, children }) => {
+export const TrackingProvider = ({ variables, disabled, paused, children }) => {
     const contextTracking = useTracking() || null;
     const refTracking = useRef(null);
     const tracking = useMemo(() => {
@@ -31,6 +33,7 @@ export const TrackingProvider = ({ variables, disabled, children }) => {
                     ...variables,
                 },
                 disabled,
+                paused,
             });
         } else {
             refTracking.current.setVariables({
@@ -38,9 +41,10 @@ export const TrackingProvider = ({ variables, disabled, children }) => {
                 ...variables,
             });
             refTracking.current.setDisabled(disabled);
+            refTracking.current.setPaused(paused);
         }
         return refTracking.current;
-    }, [contextTracking, variables, disabled]);
+    }, [contextTracking, variables, disabled, paused]);
 
     return <TrackingContainer tracking={tracking}>{children}</TrackingContainer>;
 };
