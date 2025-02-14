@@ -277,8 +277,10 @@
 }
 
 .popupInner {
+    display: flex;
     position: relative;
     z-index: 40;
+    flex-direction: column;
     margin: 10% 7.5%;
     overflow: hidden;
     background-color: $black;

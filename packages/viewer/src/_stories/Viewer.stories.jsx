@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import {
     audioMedia,
+    conversation,
     imageMedia,
     video360Media,
     webfont2Files,
@@ -280,6 +281,24 @@ export const MultipleArticles = () => (
 );
 
 export const MultipleKeypads = () => <Viewer screenId="777" story={multipleKeypads} memoryRouter />;
+
+export const Conversation = () => (
+    <Viewer
+        screenId="727"
+        story={{
+            title: 'With conversation',
+            components: [
+                {
+                    id: '1',
+                    type: 'conversation',
+                    conversation: conversation(13, 4),
+                    readingSpeed: 600,
+                },
+            ],
+        }}
+        memoryRouter
+    />
+);
 
 export const WithCustomFonts = () => (
     <Viewer

@@ -8,15 +8,15 @@ import { v1 as uuid } from 'uuid';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
+    usePlaybackContext,
+    usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
     useViewerContext,
     useViewerWebView,
-    usePlaybackContext,
-    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -44,7 +44,7 @@ const propTypes = {
     type: PropTypes.string,
     conversation: MicromagPropTypes.conversation,
     transitions: MicromagPropTypes.transitions,
-    className: PropTypes.string
+    className: PropTypes.string,
 };
 
 const defaultProps = {
@@ -61,7 +61,7 @@ const defaultProps = {
     type: null,
     conversation: null,
     transitions: null,
-    className: null
+    className: null,
 };
 
 const ConversationScreen = ({
@@ -78,7 +78,7 @@ const ConversationScreen = ({
     type,
     conversation,
     transitions,
-    className
+    className,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const {
@@ -136,18 +136,25 @@ const ConversationScreen = ({
     const imageReadDelay = 5000; // 5 seconds
     const millisecondsPerWord = (60 * 1000) / readingSpeed;
     const filteredMessages = (messages || []).filter((m) => m !== null);
+
     const timings = filteredMessages.map((messageParams, messageIndex) => {
         if (messageIndex === 0) {
             return 0;
         }
 
-        const { timing = null, message = null, image, audio, timingOverrides } = messageParams || {};
+        const {
+            timing = null,
+            message = null,
+            image,
+            audio,
+            timingOverrides,
+        } = messageParams || {};
         if (timing !== null) {
             return timing;
         }
 
-        if (timingOverrides?.enabled && Number.isFinite(timingOverrides?.writingDuration))  {
-            return (timingOverrides.writingDuration * 1000); // seconds to milliseconds
+        if (timingOverrides?.enabled && Number.isFinite(timingOverrides?.writingDuration)) {
+            return timingOverrides.writingDuration * 1000; // seconds to milliseconds
         }
 
         // if the current message has an audio attachment, use the time it takes to record that message
@@ -174,9 +181,13 @@ const ConversationScreen = ({
     });
 
     const hesitationTimings = filteredMessages.map((messageParams, messageIndex) => {
-        const { timingOverrides} = messageParams;
-        if (messageIndex !== 0 && timingOverrides?.enabled && Number.isFinite(timingOverrides?.appearDelay)) {
-            return (timingOverrides.appearDelay * 1000) // seconds to milliseconds
+        const { timingOverrides } = messageParams;
+        if (
+            messageIndex !== 0 &&
+            timingOverrides?.enabled &&
+            Number.isFinite(timingOverrides?.appearDelay)
+        ) {
+            return timingOverrides.appearDelay * 1000; // seconds to milliseconds
         }
 
         return defaultHesitationDelay;
@@ -202,6 +213,8 @@ const ConversationScreen = ({
     const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
+
+    console.log('preload', preload);
 
     return (
         <div
@@ -263,6 +276,7 @@ const ConversationScreen = ({
                                     transitions={transitions}
                                     playing={current}
                                     disabled={transitionDisabled}
+                                    // delay={0}
                                 >
                                     {hasTitle ? (
                                         <Heading

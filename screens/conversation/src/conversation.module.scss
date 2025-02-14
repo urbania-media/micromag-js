@@ -148,6 +148,10 @@
             &.normalRight {
                 transform: translate(300px, 0) scale(0.5);
             }
+
+            &:first-child {
+                animation: 0s ease forwards appear;
+            }
         }
     }
 

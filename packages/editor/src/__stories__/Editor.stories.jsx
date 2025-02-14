@@ -10,7 +10,7 @@ import FiltersProvider from '@panneau/filters';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import { callToAction, hlsVideoMedia, videoMedia } from '../../../../.storybook/data';
+import { callToAction, conversation, hlsVideoMedia, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import article from '../../../../.storybook/data/stories/article-generic';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
@@ -376,11 +376,11 @@ export const WithSomeScreens = () => (
     />
 );
 
-export const WithConversation = () => (
+export const Conversation = () => (
     <EditorContainer
         defaultValue={{
             title: 'With conversation',
-            components: [{ id: '1', type: 'conversation' }],
+            components: [{ id: '1', type: 'conversation', conversation: conversation(13, 4) }],
         }}
     />
 );
