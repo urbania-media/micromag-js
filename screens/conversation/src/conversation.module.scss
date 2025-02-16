@@ -60,10 +60,14 @@
     .message {
         max-width: 80%;
         margin: 1px 0;
-        padding: 10px;
+        // padding: 10px;
         transition: border-radius 0.2s ease;
         background-color: #fff;
         overflow-wrap: break-word;
+
+        > :first-child {
+            padding-top: 10px;
+        }
 
         &.normalLeft {
             border-radius: 1px 15px 15px;
@@ -88,11 +92,11 @@
         }
     }
 
-    &:last-child {
-        .message {
-            &.last {
-                margin-bottom: 0;
-            }
+    .messageBody {
+        > * {
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
         }
     }
 
@@ -101,7 +105,8 @@
         align-items: center;
         justify-content: flex-start;
         width: 100%;
-        padding-bottom: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
 
         &.right {
             flex-direction: row-reverse;
@@ -222,27 +227,41 @@
             flex-direction: row-reverse;
         }
     }
+
+    &:last-child {
+        .message {
+            &.last {
+                margin-bottom: 0;
+            }
+        }
+    }
 }
 
 .audioMessageContainer {
     display: flex;
+    position: relative;
     flex-direction: row;
 
     .playButtonContainer {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
 
-        width: 3em;
+        width: 2em;
         height: 3em;
         margin-right: 0.5rem;
         margin-left: 0;
+    }
 
-        button {
-            border: 0;
-            background: transparent;
-        }
+    .button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: transparent;
     }
 
     .audioMessage {
@@ -254,15 +273,5 @@
     .icon {
         width: 2em;
         height: 2em;
-    }
-}
-
-.audioAttachment {
-    &.beforeText {
-        padding-bottom: 0.7em;
-    }
-
-    &.afterText {
-        padding-top: 0.7em;
     }
 }

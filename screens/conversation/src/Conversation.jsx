@@ -113,8 +113,9 @@ const ConversationScreen = ({
     const { ref: contentRef, height: scrollHeight } = useDimensionObserver();
 
     const scrollRef = useRef(null);
+    const [scrolledBottom, setScrolledBottom] = useState(false);
     useEffect(() => {
-        if (withAnimation && scrollRef.current !== null) {
+        if (withAnimation && scrollRef.current !== null && scrolledBottom) {
             scrollRef.current.scrollTo({ top: scrollHeight, behavior: 'smooth' });
         }
     }, [scrollHeight, withAnimation]);
@@ -198,7 +199,6 @@ const ConversationScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
-    const [scrolledBottom, setScrolledBottom] = useState(false);
     const showFooter = (animationFinished && !isPlaceholder && hasFooter) || !withAnimation;
 
     const onScrolledBottom = useCallback(
@@ -213,8 +213,6 @@ const ConversationScreen = ({
     const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
-
-    console.log('preload', preload);
 
     return (
         <div

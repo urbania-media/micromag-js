@@ -14,6 +14,7 @@ const propTypes = {
     audioEventsChannelName: PropTypes.string,
     messageId: PropTypes.string,
     nextAudioMessageId: PropTypes.string,
+    className: PropTypes.string,
 };
 
 const defaultProps = {
@@ -21,6 +22,7 @@ const defaultProps = {
     audioEventsChannelName: null,
     messageId: null,
     nextAudioMessageId: null,
+    className: null,
 };
 
 const ConversationAudioAttachment = ({
@@ -28,6 +30,7 @@ const ConversationAudioAttachment = ({
     audioEventsChannelName,
     messageId,
     nextAudioMessageId,
+    className,
 }) => {
     const [paused, setPaused] = useState(true);
 
@@ -77,18 +80,13 @@ const ConversationAudioAttachment = ({
     };
 
     return (
-        <div className={classNames([styles.audioMessageContainer])}>
+        <div className={classNames([styles.audioMessageContainer, className])}>
             <div className={styles.playButtonContainer}>
-                <Button
-                    onClick={togglePaused}
-                    icon={
-                        paused ? (
-                            <PlayIcon className={styles.icon} />
-                        ) : (
-                            <PauseIcon className={styles.icon} />
-                        )
-                    }
-                />
+                {paused ? (
+                    <PlayIcon className={styles.icon} />
+                ) : (
+                    <PauseIcon className={styles.icon} />
+                )}
             </div>
             <Audio
                 withWave
@@ -99,6 +97,7 @@ const ConversationAudioAttachment = ({
                 updateInterval={100}
                 onEnded={onAudioEnded}
             />
+            <Button onClick={togglePaused} className={styles.button} />
         </div>
     );
 };

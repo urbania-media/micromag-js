@@ -127,15 +127,6 @@ const ConversationMessage = ({
 
     const betweenStyle = isNextSpeakerTheSame && nextMessageState;
 
-    const buildAudioAttachment = () => (
-        <ConversationAudioAttachment
-            audio={audio}
-            messageId={messageId}
-            nextAudioMessageId={nextAudioMessageId}
-            audioEventsChannelName={audioEventsChannelName}
-        />
-    );
-
     return messageState !== 'pause' ? (
         <div
             className={classNames([
@@ -197,7 +188,6 @@ const ConversationMessage = ({
                             <Text body={speakerName} textStyle={speakerStyle} />
                         </div>
                     ) : null}
-                    <div />
                     <div className={styles.messageBody}>
                         {image !== null ? (
                             <div className={styles.imageContainer}>
@@ -211,19 +201,27 @@ const ConversationMessage = ({
                         ) : null}
 
                         {audio && putAudioBeforeText ? (
-                            <div className={classNames(styles.audioAttachment, styles.beforeText)}>
-                                {buildAudioAttachment()}
-                            </div>
+                            <ConversationAudioAttachment
+                                audio={audio}
+                                messageId={messageId}
+                                nextAudioMessageId={nextAudioMessageId}
+                                audioEventsChannelName={audioEventsChannelName}
+                                className={classNames(styles.audioAttachment, styles.beforeText)}
+                            />
                         ) : null}
                         <Text
-                            className={styles.messageBody}
+                            className={styles.messageText}
                             body={messageBody}
                             textStyle={messageStyle}
                         />
                         {audio && !putAudioBeforeText ? (
-                            <div className={classNames(styles.audioAttachment, styles.afterText)}>
-                                {buildAudioAttachment()}
-                            </div>
+                            <ConversationAudioAttachment
+                                audio={audio}
+                                messageId={messageId}
+                                nextAudioMessageId={nextAudioMessageId}
+                                audioEventsChannelName={audioEventsChannelName}
+                                className={classNames(styles.audioAttachment, styles.afterText)}
+                            />
                         ) : null}
                     </div>
                 </div>

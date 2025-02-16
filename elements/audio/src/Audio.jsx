@@ -42,6 +42,7 @@ const propTypes = {
     autoWaveHeight: PropTypes.bool,
     // reduceBufferFactor: PropTypes.number,
     updateInterval: PropTypes.number,
+    withoutSeek: PropTypes.bool,
     className: PropTypes.string,
     onReady: PropTypes.func,
     onPlay: PropTypes.func,
@@ -70,6 +71,7 @@ const defaultProps = {
     autoWaveHeight: false,
     // reduceBufferFactor: 100,
     updateInterval: 1000,
+    withoutSeek: false,
     className: null,
     onReady: null,
     onPlay: null,
@@ -99,6 +101,7 @@ const Audio = ({
     // reduceBufferFactor,
     updateInterval,
     className,
+    withoutSeek,
     onReady,
     onPlay,
     onPause,
@@ -263,7 +266,7 @@ const Audio = ({
                     // {...waveProps}
                     duration={duration}
                     playing={!paused}
-                    seek={onWaveSeek}
+                    seek={!withoutSeek ? onWaveSeek : null}
                     play={onWavePlay}
                 />
             ) : null}
