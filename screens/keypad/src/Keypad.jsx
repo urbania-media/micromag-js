@@ -223,8 +223,6 @@ const KeypadScreen = ({
         [popupLayout],
     );
 
-    console.log('popupLayoutClassName', popupLayoutClassName);
-
     const [showPopup, setShowPopup] = useState(false);
     const [popup, setPopup] = useState(null);
 

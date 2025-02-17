@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import {
     audioMedia,
     conversation,
+    hexColor,
     imageMedia,
     video360Media,
     webfont2Files,
@@ -26,6 +27,8 @@ import viewerTheme from '../../../../.storybook/data/viewerTheme';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import FieldsProvider from '../../../fields/src/FieldsProvider';
 import Viewer from '../components/ViewerContainer';
+
+import styles from './styles.module.scss';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
 import cointreau from '../../../../.storybook/data/stories/cointreau.json';
@@ -114,6 +117,25 @@ export const Basic = () => (
         memoryRouter
         onMenuChange={(state) => console.log(state)}
     />
+);
+
+export const BackgroundColor = () => (
+    <div style={{ width: '100%', height: '100%', backgroundColor: hexColor() }}>
+        <Viewer
+            story={allScreensStory}
+            withNavigationHint
+            withFullscreenWebView
+            menuHeader={
+                <div style={{ width: '100%', padding: '0 20 0 0', textAlign: 'center' }}>
+                    <div>Friend</div> MY KUSTOM TITLE
+                </div>
+            }
+            memoryRouter
+            onMenuChange={(state) => console.log(state)}
+            withoutMenuShadow
+            className={styles.transparentViewer}
+        />
+    </div>
 );
 
 export const Urbania = () => (
