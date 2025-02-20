@@ -509,6 +509,8 @@ export const color = () => ({
     color: `#${`${Math.random().toString(16)}000000`.substring(2, 8)}`,
 });
 
+export const hexColor = () => `#${`${Math.random().toString(16)}000000`.substring(2, 8)}`;
+
 export const conversation = (messagesNumber = 10, speakersNumber = 2, timing = 'sequence') => {
     const speakers = ([...Array(speakersNumber)] || []).map((s, idx) => ({
         id: `${idx}`,

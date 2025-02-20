@@ -90,6 +90,7 @@ const propTypes = {
     withoutNavigationArrow: PropTypes.bool,
     withoutTransitions: PropTypes.bool,
     withNeighborScreens: PropTypes.bool,
+    withFullscreenWebView: PropTypes.bool,
     withNavigationHint: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     withoutPlaybackControls: PropTypes.bool,
     onClose: PropTypes.func,
@@ -138,6 +139,7 @@ const defaultProps = {
     closeable: false,
     withMetadata: false,
     withNeighborScreens: false,
+    withFullscreenWebView: false,
     withNavigationHint: 'hand',
     withoutGestures: false,
     withoutMenu: false,
@@ -197,6 +199,7 @@ const Viewer = ({
     withoutNavigationArrow,
     withoutTransitions,
     withNeighborScreens,
+    withFullscreenWebView,
     withNavigationHint,
     withoutPlaybackControls,
     onClose: onCloseViewer,
@@ -965,7 +968,10 @@ const Viewer = ({
                                         id="controls"
                                         ref={playbackControlsContainerRef}
                                     >
-                                        <PlaybackControls className={styles.controls} />
+                                        <PlaybackControls
+                                            className={styles.controls}
+                                            withoutShadow={withoutMenuShadow}
+                                        />
                                     </div>
                                 ) : null}
                                 {withNavigationHint !== false &&
@@ -973,7 +979,10 @@ const Viewer = ({
                                 !navigationDisabled &&
                                 screenIndex === 0 &&
                                 !hasInteracted ? (
-                                    <NavigationHint className={styles.navigationHint} />
+                                    <NavigationHint
+                                        className={styles.navigationHint}
+                                        withoutShadow={withoutMenuShadow}
+                                    />
                                 ) : null}
                             </div>
                         ) : null}
@@ -1004,7 +1013,9 @@ const Viewer = ({
                         <WebView
                             className={styles.webView}
                             style={{
-                                maxWidth: Math.max(screenContainerWidth, 600),
+                                maxWidth: withFullscreenWebView
+                                    ? null
+                                    : Math.max(screenContainerWidth, 600),
                             }}
                         />
                         {/* </FocusLock> */}

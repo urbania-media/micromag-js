@@ -30,6 +30,7 @@ const propTypes = {
         alpha: PropTypes.number,
     }),
     withLoading: PropTypes.bool,
+    withoutShadow: PropTypes.bool,
     className: PropTypes.string,
     collapsedClassName: PropTypes.string,
 };
@@ -44,6 +45,7 @@ const defaultProps = {
         alpha: 1,
     },
     withLoading: true,
+    withoutShadow: false,
     className: null,
     collapsedClassName: null,
 };
@@ -52,6 +54,7 @@ function PlaybackControls({
     defaultColor,
     defaultProgressColor,
     withLoading,
+    withoutShadow,
     className,
     collapsedClassName,
 }) {
@@ -197,6 +200,7 @@ function PlaybackControls({
                     [styles.withSeekBar]: controls,
                     [styles.withSeekBarOnly]: seekBarOnly,
                     [styles.isCollapsed]: isCollapsed,
+                    [styles.withoutShadow]: withoutShadow,
                     [styles.isMuted]: muted,
                     [collapsedClassName]: collapsedClassName !== null && isCollapsed,
                 },

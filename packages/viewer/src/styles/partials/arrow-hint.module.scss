@@ -2,6 +2,12 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
+    &.withoutShadow {
+        .inner::after {
+            opacity: 0;
+        }
+    }
+
     @media screen and (min-width: 1024px) {
         display: none;
     }

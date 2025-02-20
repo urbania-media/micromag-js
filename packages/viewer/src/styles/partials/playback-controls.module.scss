@@ -244,6 +244,22 @@
                 }
             }
         }
+
+        &.withoutShadow {
+            .muteButton {
+                &::before {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    &.withoutShadow {
+        .muteButton {
+            &::before {
+                opacity: 0;
+            }
+        }
     }
 }
 
@@ -293,6 +309,22 @@
                 }
             }
         }
+
+        &.withoutShadow {
+            .playPauseButton {
+                &::before {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    &.withoutShadow {
+        .playPauseButton {
+            &::before {
+                opacity: 0;
+            }
+        }
     }
 }
 
@@ -314,6 +346,12 @@
     &.isCollapsed {
         &::after {
             transform: translate(0, 100%);
+        }
+    }
+
+    &.withoutShadow {
+        &::after {
+            background-image: none;
         }
     }
 }
