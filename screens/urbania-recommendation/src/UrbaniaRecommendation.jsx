@@ -126,7 +126,7 @@ const UrbaniaRecommendation = ({
         bottomSidesWidth: viewerBottomSidesWidth,
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
-    const { playing, setPlaying, muted, setMuted, setControls, showControls, hideControls } =
+    const { playing, setPlaying, muted, setMuted } =
         usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
@@ -313,37 +313,6 @@ const UrbaniaRecommendation = ({
         }
     }, [current, backgroundAnimationStarted]);
 
-    useEffect(() => {
-        if (!current) {
-            return () => {};
-        }
-
-        if (visualModalOpened && isVideo) {
-            setControls(true);
-        } else {
-            setControls(false);
-        }
-        return () => {
-            if (visualModalOpened) {
-                setControls(false);
-            }
-        };
-    }, [current, setControls, visualModalOpened, isVideo]);
-
-    const viewerContainer = useViewerContainer();
-    const { detected: activityDetected } = useActivityDetector({
-        element: viewerContainer,
-        disabled: !isView,
-        timeout: 2000,
-    });
-    const toggleControlsVisibility = useCallback(() => {
-        if (activityDetected && isVideo && visualModalOpened) {
-            showControls();
-        } else {
-            hideControls();
-        }
-    }, [activityDetected, showControls, isVideo, hideControls]);
-    useDebounce(toggleControlsVisibility, activityDetected, 1000);
 
     // Default font weights ++ for urbania styles
     const {
