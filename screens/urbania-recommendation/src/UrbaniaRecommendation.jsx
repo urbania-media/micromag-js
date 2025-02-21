@@ -19,17 +19,11 @@ import {
     usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
-    useViewerContainer,
     useViewerContext,
     useViewerInteraction,
     useViewerWebView,
 } from '@micromag/core/contexts';
-import {
-    useActivityDetector,
-    useDebounce,
-    useResizeObserver,
-    useTrackScreenEvent,
-} from '@micromag/core/hooks';
+import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import {
     getFooterProps,
     getStyleFromBox,
@@ -126,8 +120,7 @@ const UrbaniaRecommendation = ({
         bottomSidesWidth: viewerBottomSidesWidth,
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
-    const { playing, setPlaying, muted, setMuted } =
-        usePlaybackContext();
+    const { playing, setPlaying, muted, setMuted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
@@ -172,6 +165,7 @@ const UrbaniaRecommendation = ({
         ref: textContainerRef,
         entry: { contentRect: textContainerRect = null },
     } = useResizeObserver();
+
     const { width: textContainerWidth = 0, height: textContainerHeight = 0 } =
         textContainerRect || {};
 
@@ -313,7 +307,6 @@ const UrbaniaRecommendation = ({
         }
     }, [current, backgroundAnimationStarted]);
 
-
     // Default font weights ++ for urbania styles
     const {
         titleTextStyle,
@@ -434,7 +427,7 @@ const UrbaniaRecommendation = ({
                 <Scroll
                     width={width}
                     height={height}
-                    disabled={backgroundAnimationStarted || scrollingDisabled}
+                    disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="middle"

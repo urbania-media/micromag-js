@@ -321,6 +321,12 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
         }
     }
 
+    /* Tentative fix */
+    .category, .title, .description, .location, .date {
+        pointer-events: none;
+        user-select: none;
+    }
+
     .titleContainer {
         overflow-wrap: break-word;
     }
