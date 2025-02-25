@@ -300,6 +300,25 @@ export default [
                         }),
                     },
                     {
+                        name: 'result',
+                        type: 'text-element',
+                        theme: {
+                            textStyle: 'text',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Default feedback',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'resultImage',
+                        type: 'visual',
+                        label: defineMessage({
+                            defaultMessage: 'Result feedback image',
+                            description: 'Visual field label',
+                        }),
+                    },
+                    {
                         name: 'background',
                         type: 'background',
                         label: defineMessage({
@@ -448,6 +467,17 @@ export default [
                         }),
                     },
                 ],
+            },
+            {
+                name: 'nextButton',
+                type: 'button-element',
+                theme: {
+                    textStyle: 'button',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Next button',
+                    description: 'Field label',
+                }),
             },
             {
                 name: 'background',

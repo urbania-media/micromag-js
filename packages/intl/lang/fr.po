@@ -447,7 +447,7 @@ msgstr "Vignette"
 #: 4w7K2K
 msgctxt "4w7K2K"
 msgid "Feedback text"
-msgstr ""
+msgstr "Text de rétroaction"
 
 # Description placeholder
 #: 507VAi
@@ -1522,6 +1522,12 @@ msgctxt "S9YpbV"
 msgid "Text"
 msgstr "Texte"
 
+# Screen button label
+#: SVLGTA
+msgctxt "SVLGTA"
+msgid "Next"
+msgstr "Suivant"
+
 # Published name style field label
 #: SyMSDa
 msgctxt "SyMSDa"
@@ -1761,6 +1767,12 @@ msgstr "Point rempli"
 msgctxt "YXhRxW"
 msgid "No controls available"
 msgstr "Aucun contrôle disponible"
+
+# Field label
+#: Yu/PB5
+msgctxt "Yu/PB5"
+msgid "Next button"
+msgstr "Bouton suivant"
 
 # Field label
 #: YwySSO

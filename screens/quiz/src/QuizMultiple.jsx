@@ -8,7 +8,6 @@ import { FormattedMessage } from 'react-intl';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -19,13 +18,15 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
+import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
 import Scroll from '@micromag/element-scroll';
+import Text from '@micromag/element-text';
 
 import Question from './partials/Question';
 import Results from './partials/Results';
@@ -64,6 +65,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     introButton: MicromagPropTypes.textElement,
     introBackground: MicromagPropTypes.backgroundElement,
+    nextButton: MicromagPropTypes.textElement,
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     current: PropTypes.bool,
@@ -95,6 +97,7 @@ const defaultProps = {
     background: null,
     introButton: null,
     introBackground: null,
+    nextButton: null,
     header: null,
     footer: null,
     current: true,
@@ -126,6 +129,7 @@ const QuizMultipleScreen = ({
     background,
     introBackground,
     introButton,
+    nextButton,
     header,
     footer,
     current,
@@ -156,8 +160,9 @@ const QuizMultipleScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active;
 
-    // Call to Action
+    const hasButtonText = isTextFilled(nextButton);
 
+    // Call to Action
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
@@ -205,19 +210,6 @@ const QuizMultipleScreen = ({
         [userAnswers, setUserAnswers, trackScreenEvent, questions, questionIndex],
     );
 
-    const onAnswerTransitionEnd = useCallback(() => {
-        if (isEdit) {
-            return;
-        }
-        const nextIndex = questionIndex + 1;
-        const questionsCount = questions.length;
-        if (nextIndex < questionsCount) {
-            setQuestionIndex(nextIndex);
-        } else if (nextIndex === questionsCount) {
-            setQuestionIndex('results');
-        }
-    }, [questions, questionIndex, setQuestionIndex, isEdit]);
-
     const onClickIntroButton = useCallback(() => {
         setQuestionIndex(0);
     }, [setQuestionIndex]);
@@ -235,11 +227,38 @@ const QuizMultipleScreen = ({
         answers = [],
         background: questionBackground = null,
         layout: questionLayout = null,
-    } = currentQuestion;
+        result: questionResult = null,
+        resultImage: questionResultImage = null,
+    } = currentQuestion || {};
+
     const currentAnsweredIndex =
         userAnswers !== null && typeof userAnswers[questionIndex] !== 'undefined'
             ? userAnswers[questionIndex]
             : null;
+
+    const answer =
+        currentAnsweredIndex !== null && typeof answers[currentAnsweredIndex] !== 'undefined'
+            ? answers[currentAnsweredIndex]
+            : null;
+    const { customAnswerLabel = null } = answer || {};
+
+    const hasResult =
+        questionResult !== null || questionResultImage !== null || customAnswerLabel !== null;
+
+    // console.log('hasResult', hasResult, questionResult, questionResultImage, customAnswerLabel);
+
+    const onNextSlide = useCallback(() => {
+        if (isEdit) {
+            return;
+        }
+        const nextIndex = questionIndex + 1;
+        const questionsCount = questions.length;
+        if (nextIndex < questionsCount) {
+            setQuestionIndex(nextIndex);
+        } else if (nextIndex === questionsCount) {
+            setQuestionIndex('results');
+        }
+    }, [questions, questionIndex, setQuestionIndex, isEdit]);
 
     const currentPoints = useMemo(
         () =>
@@ -497,6 +516,9 @@ const QuizMultipleScreen = ({
                                         focusable={current && isView}
                                         showInstantAnswer={showInstantAnswer}
                                         layout={questionLayout || layout}
+                                        result={questionResult}
+                                        resultImage={questionResultImage}
+                                        withResult={hasResult}
                                         withoutGoodAnswer
                                         withoutTrueFalse
                                         transitions={transitions}
@@ -504,7 +526,7 @@ const QuizMultipleScreen = ({
                                         transitionStagger={transitionStagger}
                                         transitionDisabled={transitionDisabled}
                                         onAnswerClick={onAnswerClick}
-                                        onAnswerTransitionEnd={onAnswerTransitionEnd}
+                                        onAnswerTransitionEnd={hasResult ? null : onNextSlide}
                                         className={styles.question}
                                         style={
                                             !isPlaceholder
@@ -523,6 +545,50 @@ const QuizMultipleScreen = ({
                                                 : null
                                         }
                                     />
+                                </CSSTransition>
+                            ) : null,
+                            hasResult && currentAnsweredIndex !== null ? (
+                                <CSSTransition key="next" classNames={styles} timeout={0}>
+                                    <div
+                                        className={styles.next}
+                                        style={
+                                            !isPlaceholder
+                                                ? {
+                                                      padding: spacing,
+                                                      paddingTop:
+                                                          (current && !isPreview
+                                                              ? viewerTopHeight
+                                                              : 0) + (headerHeight || spacing),
+                                                      paddingBottom:
+                                                          (current && !isPreview
+                                                              ? viewerBottomHeight
+                                                              : 0) +
+                                                          (callToActionHeight || spacing),
+                                                  }
+                                                : null
+                                        }
+                                    >
+                                        <Button
+                                            disabled={currentAnsweredIndex === null}
+                                            focusable
+                                            buttonStyle={
+                                                nextButton !== null ? nextButton.buttonStyle : null
+                                            }
+                                            className={styles.nextButton}
+                                            onClick={onNextSlide}
+                                        >
+                                            {hasButtonText ? (
+                                                <Text {...nextButton} className={styles.label} />
+                                            ) : (
+                                                <span className={styles.label}>
+                                                    <FormattedMessage
+                                                        defaultMessage="Next"
+                                                        description="Screen button label"
+                                                    />
+                                                </span>
+                                            )}
+                                        </Button>
+                                    </div>
                                 </CSSTransition>
                             ) : null,
                             isResults ? (

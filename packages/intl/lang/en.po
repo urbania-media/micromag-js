@@ -1522,6 +1522,12 @@ msgctxt "S9YpbV"
 msgid "Text"
 msgstr "Text"
 
+# Screen button label
+#: SVLGTA
+msgctxt "SVLGTA"
+msgid "Next"
+msgstr "Next"
+
 # Published name style field label
 #: SyMSDa
 msgctxt "SyMSDa"
@@ -1761,6 +1767,12 @@ msgstr "Bullet filled"
 msgctxt "YXhRxW"
 msgid "No controls available"
 msgstr "No controls available"
+
+# Field label
+#: Yu/PB5
+msgctxt "Yu/PB5"
+msgid "Next button"
+msgstr "Next button"
 
 # Field label
 #: YwySSO

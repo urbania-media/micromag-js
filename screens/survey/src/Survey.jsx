@@ -10,21 +10,21 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
+    usePlaybackContext,
+    usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
     useViewerContext,
     useViewerWebView,
-    usePlaybackContext,
-    usePlaybackMediaRef,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import {
+    getFooterProps,
     getLargestRemainderRound,
     getStyleFromColor,
-    isTextFilled,
-    isHeaderFilled,
     isFooterFilled,
-    getFooterProps,
+    isHeaderFilled,
+    isTextFilled,
 } from '@micromag/core/utils';
 import { useQuiz, useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';

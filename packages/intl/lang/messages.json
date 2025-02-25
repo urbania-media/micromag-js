@@ -1006,6 +1006,10 @@
     "defaultMessage": "Text",
     "description": "Text screen title"
   },
+  "SVLGTA": {
+    "defaultMessage": "Next",
+    "description": "Screen button label"
+  },
   "SyMSDa": {
     "defaultMessage": "Published name style",
     "description": "Published name style field label"
@@ -1165,6 +1169,10 @@
   "YXhRxW": {
     "defaultMessage": "No controls available",
     "description": "Tooltip"
+  },
+  "Yu/PB5": {
+    "defaultMessage": "Next button",
+    "description": "Field label"
   },
   "YwySSO": {
     "defaultMessage": "Vertical",

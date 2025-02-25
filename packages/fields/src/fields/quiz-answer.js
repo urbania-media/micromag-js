@@ -50,7 +50,6 @@ export default {
                 {
                     name: 'textStyle',
                     type: 'text-style-form',
-
                     label: defineMessage({
                         defaultMessage: 'Button text style',
                         description: 'Field label',

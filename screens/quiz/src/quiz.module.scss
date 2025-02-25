@@ -31,6 +31,7 @@
     transform-origin: center;
     transition: opacity 0.15s ease-out, transform 0.15s ease-out;
     border: 0;
+    background-color: transparent;
 
     &:hover {
         border: 0;
@@ -97,6 +98,7 @@
     left: 0;
 }
 
+.nextButton,
 .question,
 .results,
 .intro {
@@ -137,6 +139,25 @@
         .left & {
             transform: translateX(100%);
         }
+    }
+}
+
+.nextButton {
+    @extend %focus-outline;
+
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    color: $white;
+
+    &:disabled {
+        opacity: 1;
+        pointer-events: none;
+    }
+
+    .withIcon & {
+        padding-right: 42px;
+        padding-left: 42px;
     }
 }
 

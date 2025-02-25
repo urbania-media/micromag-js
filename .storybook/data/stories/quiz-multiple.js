@@ -1,12 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import { backgroundColor, subtitle, transitions } from '../../data';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, headerFooter, subtitle, transitions } from '../../../../.storybook/data';
-import QuizMultipleScreen from '../QuizMultiple';
-import definition from '../definition';
-
-const props = {
+export default {
     questions: [
         {
             text: { body: 'Question 1?' },
@@ -19,6 +13,7 @@ const props = {
                     label: {
                         body: subtitle(),
                     },
+                    good: true,
                     points: 0,
                 },
                 { id: 2, label: { body: subtitle() }, points: 1 },
@@ -46,11 +41,6 @@ const props = {
     ],
     results: [
         {
-            title: { body: subtitle('Weak') },
-            description: { body: 'Weak' },
-            points: 0,
-        },
-        {
             title: { body: subtitle('Medium') },
             description: { body: 'Medium' },
             points: 4,
@@ -69,28 +59,3 @@ const props = {
     background: backgroundColor(),
     transitions: transitions(),
 };
-
-export default {
-    title: 'Screens/QuizMultiple',
-    component: QuizMultipleScreen,
-    parameters: {
-        intl: true,
-        screenDefinition: definition[0],
-    },
-};
-
-export const Placeholder = (storyProps) => <QuizMultipleScreen {...storyProps} />;
-
-export const Preview = (storyProps) => <QuizMultipleScreen {...storyProps} {...props} />;
-export const Static = (storyProps) => <QuizMultipleScreen {...storyProps} {...props} />;
-export const Capture = (storyProps) => <QuizMultipleScreen {...storyProps} {...props} />;
-
-export const Edit = (storyProps) => <QuizMultipleScreen {...storyProps} />;
-
-export const Normal = (storyProps) => <QuizMultipleScreen {...storyProps} {...props} />;
-
-export const WithHeaderFooter = (storyProps) => (
-    <QuizMultipleScreen {...storyProps} {...props} {...headerFooter()} />
-);
-
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
