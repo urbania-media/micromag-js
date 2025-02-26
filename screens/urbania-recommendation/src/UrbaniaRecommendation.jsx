@@ -416,9 +416,10 @@ const UrbaniaRecommendation = ({
     const { borderRadius: layoutBorderRadius = null } = layoutStyle || {};
     const withoutCorners = layoutBorderRadius === 0;
 
-    const finalBorderColor = lineColor !== null ? getColorAsString(lineColor) : titleColor;
-
-    console.log('lineColor', lineColor);
+    const finalBorderColor = useMemo(
+        () => (lineColor !== null ? getColorAsString(lineColor) : titleColor),
+        [lineColor, titleColor],
+    );
 
     return (
         <div
@@ -441,6 +442,7 @@ const UrbaniaRecommendation = ({
                     verticalAlign="middle"
                     withShadow={!visualModalOpened}
                     withArrow={!visualModalOpened}
+                    className={styles.scroll}
                 >
                     <Layout
                         className={styles.layout}

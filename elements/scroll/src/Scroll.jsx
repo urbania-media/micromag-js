@@ -101,7 +101,7 @@ function Scroll({
 
             reachedBottom.current = nowReachedBottom;
         },
-        { enabled: !disabled },
+        { enabled: !disabled, threshold: 10, axis: 'y', filterTaps: true },
     );
 
     // need to call scrolled callbacks on initial render also
