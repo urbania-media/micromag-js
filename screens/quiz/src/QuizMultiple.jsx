@@ -242,10 +242,14 @@ const QuizMultipleScreen = ({
             : null;
     const { customAnswerLabel = null } = answer || {};
 
-    const hasResult =
-        questionResult !== null || questionResultImage !== null || customAnswerLabel !== null;
+    const firstCustomAnswerLabel =
+        (answers || []).find(({ customAnswerLabel: cal = null } = {}) => cal !== null) || null;
 
-    // console.log('hasResult', hasResult, questionResult, questionResultImage, customAnswerLabel);
+    const hasResult =
+        questionResult !== null ||
+        questionResultImage !== null ||
+        customAnswerLabel !== null ||
+        firstCustomAnswerLabel !== null;
 
     const onNextSlide = useCallback(() => {
         if (isEdit) {

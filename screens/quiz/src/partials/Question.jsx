@@ -139,6 +139,7 @@ const Question = ({
 
     const hasResult = isTextFilled(customAnswerLabel) || isTextFilled(result);
     const hasResultVisual = isImageFilled(answerImage) || isImageFilled(resultImage);
+
     const defaultResult = isTextFilled(result) ? result : null;
     const customResult = isTextFilled(customAnswerLabel) ? customAnswerLabel : null;
     const finalResult = customResult || defaultResult;
@@ -157,6 +158,7 @@ const Question = ({
                 {
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles.resultVisible]: resultVisible,
+                    [styles.resultHidden]: !hasResult,
                     [className]: className !== null,
                 },
             ])}
@@ -233,7 +235,7 @@ const Question = ({
                     onTransitionEnd={onAnswerTransitionEnd}
                 />,
                 withResult ? (
-                    <div className={styles.result} key="results">
+                    <div className={classNames([styles.result])} key="results">
                         <div className={styles.resultContent}>
                             <ScreenElement
                                 emptyLabel={

@@ -2,10 +2,10 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, PlaybackProvider } from '@micromag/core/contexts';
+import { PlaybackProvider, useScreenSize } from '@micromag/core/contexts';
 import { useDimensionObserver, useParsedStory } from '@micromag/core/hooks';
 import { Viewer } from '@micromag/viewer';
 
@@ -162,6 +162,7 @@ const EditorPreview = ({
                                         interactions={null}
                                         renderContext="edit"
                                         onScreenChange={onScreenChange}
+                                        withNavigationHint={false}
                                         withoutNavigationArrow
                                         withoutTransitions
                                         withoutGestures

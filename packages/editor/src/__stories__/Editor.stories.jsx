@@ -20,6 +20,7 @@ import multipleItems from '../../../../.storybook/data/stories/multipleItems';
 import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
 import quiz from '../../../../.storybook/data/stories/quiz';
 import quizMultiple from '../../../../.storybook/data/stories/quiz-multiple';
+import quizMultipleSimple from '../../../../.storybook/data/stories/quiz-multiple-simple';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
 import UrbaniaScreenComponents from '../../../../.storybook/data/stories/urbania-components';
@@ -279,6 +280,14 @@ export const QuizMultiple = () => (
     <EditorContainer
         defaultValue={{
             components: [{ id: 'quiz-multiple', type: 'quiz-multiple', ...quizMultiple }],
+        }}
+    />
+);
+
+export const QuizMultipleSimple = () => (
+    <EditorContainer
+        defaultValue={{
+            components: [{ id: 'quiz-multiple', type: 'quiz-multiple', ...quizMultipleSimple }],
         }}
     />
 );

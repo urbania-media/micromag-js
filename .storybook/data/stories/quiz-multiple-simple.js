@@ -3,20 +3,16 @@ import { backgroundColor, subtitle, transitions } from '../../data';
 export default {
     type: 'quiz-multiple',
     title: { body: 'Quiz multiple' },
-    description: { body: 'Multiple questions with results' },
+    description: { body: 'Multiple questions, no results' },
     questions: [
         {
             text: { body: 'Question 1?' },
-            result: {
-                body: 'Result 1',
-            },
             answers: [
                 {
                     id: 1,
                     label: {
                         body: subtitle(),
                     },
-                    good: true,
                     points: 0,
                 },
                 { id: 2, label: { body: subtitle() }, points: 1 },
@@ -33,7 +29,6 @@ export default {
                     id: 1,
                     label: { body: subtitle() },
                     points: 0,
-                    customAnswerLabel: { body: 'HAHAHA' },
                 },
                 { id: 2, label: { body: subtitle() }, points: 3 },
                 { id: 3, label: { body: subtitle() }, points: 10 },

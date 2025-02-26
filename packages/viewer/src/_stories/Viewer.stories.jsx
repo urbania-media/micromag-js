@@ -18,6 +18,8 @@ import multipleArticles from '../../../../.storybook/data/stories/multipleArticl
 import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
 import multipleVideosStory from '../../../../.storybook/data/stories/multipleVideosStory';
 import quiz from '../../../../.storybook/data/stories/quiz';
+import quizMultiple from '../../../../.storybook/data/stories/quiz-multiple';
+import quizMultipleSimple from '../../../../.storybook/data/stories/quiz-multiple-simple';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
 import UrbaniaComponents from '../../../../.storybook/data/stories/urbania-components';
@@ -180,9 +182,39 @@ export const TextQuoteBadgesThemed = () => (
 );
 
 export const QuizAndSurvey = () => <Viewer story={quiz} memoryRouter />;
+
+export const QuizMultiple = () => (
+    <Viewer
+        screenId="ABC"
+        story={{
+            id: 'ABC',
+            title: 'ABC',
+            theme: null,
+            components: [{ id: 'ABC', ...quizMultipleSimple }],
+        }}
+        memoryRouter
+    />
+);
+
+export const QuizMultipleResults = () => (
+    <Viewer
+        screenId="123"
+        story={{
+            id: '123',
+            title: '123',
+            theme: null,
+            components: [{ id: '123', ...quizMultiple }],
+        }}
+        memoryRouter
+    />
+);
+
 export const Empty = () => <Viewer basePath="/story-path" memoryRouter />;
+
 export const TwoScreens = () => <Viewer {...twoScreensProps} memoryRouter />;
+
 export const Tree = () => <Viewer story={treeTheme} withNavigationHint memoryRouter />;
+
 export const Custom = () => (
     <Viewer
         story={{ components: [{ id: '1324', type: 'custom' }] }}
