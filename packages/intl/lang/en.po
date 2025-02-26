@@ -1134,6 +1134,12 @@ msgid "Minimum points for this result"
 msgstr "Minimum points for this result"
 
 # Field label
+#: Jti6I6
+msgctxt "Jti6I6"
+msgid "Lines color"
+msgstr "Lines color"
+
+# Field label
 #: JuxiUN
 msgctxt "JuxiUN"
 msgid "Format"
@@ -2676,6 +2682,12 @@ msgstr "Overtitle"
 msgctxt "pfvDzR"
 msgid "Added by"
 msgstr "Added by"
+
+# Field label
+#: ppGXAR
+msgctxt "ppGXAR"
+msgid "Show the answer count"
+msgstr "Show the answer count"
 
 # Type field label
 #: ppq6CK

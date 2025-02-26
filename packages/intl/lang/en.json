@@ -560,6 +560,9 @@
     "JoyIgA": {
         "defaultMessage": "Minimum points for this result"
     },
+    "Jti6I6": {
+        "defaultMessage": "Lines color"
+    },
     "JuxiUN": {
         "defaultMessage": "Format"
     },
@@ -1333,6 +1336,9 @@
     },
     "pfvDzR": {
         "defaultMessage": "Added by"
+    },
+    "ppGXAR": {
+        "defaultMessage": "Show the answer count"
     },
     "ppq6CK": {
         "defaultMessage": "Type"

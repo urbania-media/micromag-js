@@ -747,6 +747,10 @@
     "defaultMessage": "Minimum points for this result",
     "description": "Field label"
   },
+  "Jti6I6": {
+    "defaultMessage": "Lines color",
+    "description": "Field label"
+  },
   "JuxiUN": {
     "defaultMessage": "Format",
     "description": "Field label"
@@ -1774,6 +1778,10 @@
   "pfvDzR": {
     "defaultMessage": "Added by",
     "description": "Media label"
+  },
+  "ppGXAR": {
+    "defaultMessage": "Show the answer count",
+    "description": "Field label"
   },
   "ppq6CK": {
     "defaultMessage": "Type",
