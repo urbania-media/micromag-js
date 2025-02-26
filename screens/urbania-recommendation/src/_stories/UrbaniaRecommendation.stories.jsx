@@ -2,7 +2,7 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundVideo, imageMedia, headerFooter, videoMedia } from '../../../../.storybook/data';
+import { backgroundVideo, headerFooter, imageMedia, videoMedia } from '../../../../.storybook/data';
 import urbaniaReco from '../../../../.storybook/data/stories/urbania-reco';
 import UrbaniaRecommendation from '../UrbaniaRecommendation';
 import definition from '../definition';
@@ -38,6 +38,16 @@ export const Normal = (storyProps) => (
         {...props}
         // layout="bottom"
         visual={{ image: imageMedia({ width: 1309, height: 1223 }) }}
+    />
+);
+
+export const NoCategory = (storyProps) => (
+    <UrbaniaRecommendation
+        {...storyProps}
+        {...props}
+        // layout="bottom"
+        visual={{ image: imageMedia({ width: 1309, height: 1223 }) }}
+        category={null}
     />
 );
 

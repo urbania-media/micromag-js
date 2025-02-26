@@ -7,10 +7,10 @@ import UrbaniaTrivia from './urbania-trivia';
 import UrbaniaArticle from './urbania-article.json';
 
 export default [
+    { ...UrbaniaRecommandations, type: 'urbania-recommendation' },
     { ...UrbaniaHoroscope, type: 'urbania-horoscope' },
     { ...UrbaniaArticleCard, type: 'urbania-article-card' },
     { ...UrbaniaArticle, type: 'urbania-article' },
     // { ...UrbaniaArticleVideo, type: 'urbania-article-video' },
-    { ...UrbaniaRecommandations, type: 'urbania-recommendation' },
     { ...UrbaniaTrivia, type: 'urbania-trivia' },
 ];

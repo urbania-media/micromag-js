@@ -319,6 +319,12 @@ $modal-transition-curve: cubic-bezier(0.36, 0, 0.66, -0.56);
             padding: 10px;
             background-color: $gray-200;
         }
+
+        &.withoutCategory {
+            width: 100%;
+            padding-right: 14px;
+            padding-left: 14px;
+        }
     }
 
     /* Tentative fix */

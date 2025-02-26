@@ -497,6 +497,12 @@ const Viewer = ({
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
     const navigationDisabled = currentScreenInteractionEnabled === false;
 
+    // console.log(
+    //     'currentScreenInteractionEnabled',
+    //     currentScreenInteractionEnabled,
+    //     withoutGestures,
+    // );
+
     const {
         dragging: isDragging,
         progress: progressSpring,

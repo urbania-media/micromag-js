@@ -122,6 +122,14 @@ export default [
                         }),
                     },
                     {
+                        name: 'lineColor',
+                        type: 'color',
+                        label: defineMessage({
+                            defaultMessage: 'Lines color',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
                         name: 'withoutZoom',
                         type: 'toggle',
                         defaultValue: false,

@@ -31,4 +31,5 @@ export default {
         text: { body: 'Fun au théâtre' },
     },
     transitions: transitions(),
+    lineColor: { color: '#FF0000', alpha: 0.5 },
 };

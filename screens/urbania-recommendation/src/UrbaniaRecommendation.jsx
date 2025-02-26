@@ -25,6 +25,7 @@ import {
 } from '@micromag/core/contexts';
 import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import {
+    getColorAsString,
     getFooterProps,
     getStyleFromBox,
     getStyleFromText,
@@ -61,6 +62,7 @@ const propTypes = {
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
     cardBoxStyle: MicromagPropTypes.boxStyle,
+    lineColor: MicromagPropTypes.color,
     withoutZoom: PropTypes.bool,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -82,6 +84,7 @@ const defaultProps = {
     footer: null,
     background: null,
     cardBoxStyle: null,
+    lineColor: null,
     withoutZoom: false,
     current: true,
     active: true,
@@ -103,6 +106,7 @@ const UrbaniaRecommendation = ({
     footer,
     background,
     cardBoxStyle,
+    lineColor,
     withoutZoom,
     current,
     active,
@@ -332,7 +336,7 @@ const UrbaniaRecommendation = ({
             fontFamily: titleFontFamily = null,
             fontStyle: titleFontStyles = null,
         } = finalTitleTextStyle || {};
-        const { color: finalTitleColor = null } = titleStyleColor || {};
+        const finalTitleColor = getColorAsString(titleStyleColor);
 
         const finalTitleFontWeight = titleFontFamily === null ? 700 : null;
         const finalTextTransform = titleFontFamily === null ? 'uppercase' : null;
@@ -411,6 +415,10 @@ const UrbaniaRecommendation = ({
 
     const { borderRadius: layoutBorderRadius = null } = layoutStyle || {};
     const withoutCorners = layoutBorderRadius === 0;
+
+    const finalBorderColor = lineColor !== null ? getColorAsString(lineColor) : titleColor;
+
+    console.log('lineColor', lineColor);
 
     return (
         <div
@@ -712,6 +720,7 @@ const UrbaniaRecommendation = ({
                                             styles.textContent,
                                             {
                                                 [styles.isPlaceholder]: isPlaceholder,
+                                                [styles.withoutCategory]: !hasCategory,
                                             },
                                         ])}
                                     >
@@ -740,7 +749,7 @@ const UrbaniaRecommendation = ({
                                                     />
                                                     <hr
                                                         className={styles.border}
-                                                        style={{ borderColor: titleColor }}
+                                                        style={{ borderColor: finalBorderColor }}
                                                     />
                                                 </div>
                                             ) : null}
@@ -766,7 +775,7 @@ const UrbaniaRecommendation = ({
                                                     />
                                                     <hr
                                                         className={styles.border}
-                                                        style={{ borderColor: titleColor }}
+                                                        style={{ borderColor: finalBorderColor }}
                                                     />
                                                 </>
                                             ) : null}
@@ -792,7 +801,7 @@ const UrbaniaRecommendation = ({
                                                     />
                                                     <hr
                                                         className={styles.border}
-                                                        style={{ borderColor: titleColor }}
+                                                        style={{ borderColor: finalBorderColor }}
                                                     />
                                                 </>
                                             ) : null}
