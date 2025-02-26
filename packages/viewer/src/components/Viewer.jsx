@@ -525,7 +525,7 @@ const Viewer = ({
         },
     });
 
-    console.log('isDragging', isDragging, transitionDirection);
+    // console.log('isDragging', isDragging, transitionDirection);
 
     const getScreenStylesByIndex = (index, spring) => {
         if (transitionType === 'stack') {
