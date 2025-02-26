@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-contribution",
-    "version": "0.3.645",
+    "version": "0.3.646",
     "private": false,
     "description": "",
     "keywords": [
@@ -71,7 +71,7 @@
         "@micromag/element-footer": "^0.3.637",
         "@micromag/element-header": "^0.3.637",
         "@micromag/element-heading": "^0.3.637",
-        "@micromag/element-scroll": "^0.3.637",
+        "@micromag/element-scroll": "^0.3.646",
         "@micromag/element-share-incentive": "^0.3.645",
         "@micromag/element-text": "^0.3.637",
         "@micromag/element-text-input": "^0.3.637",
