@@ -1,16 +1,18 @@
+/* eslint-disable react/require-default-props */
+
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     useMediaCurrentTime,
-    useMediaReady,
     useMediaDuration,
-    useMediaLoad, // useMediaWaveform,
+    useMediaLoad,
+    useMediaReady, // useMediaWaveform,
     useProgressSteps,
 } from '@micromag/core/hooks';
 
@@ -56,62 +58,31 @@ const propTypes = {
     onPlayError: PropTypes.func,
 };
 
-const defaultProps = {
-    media: null,
-    mediaRef: null,
-    muted: false,
-    autoPlay: false,
-    paused: false,
-    loop: false,
-    preload: 'auto',
-    shouldLoad: true,
-    waveFake: false,
-    // waveProps: null,
-    withWave: false,
-    autoWaveHeight: false,
-    // reduceBufferFactor: 100,
-    updateInterval: 1000,
-    withoutSeek: false,
-    className: null,
-    onReady: null,
-    onPlay: null,
-    onPause: null,
-    onEnded: null,
-    onSeeked: null,
-    onTimeUpdate: null,
-    onProgressStep: null,
-    onDurationChange: null,
-    onVolumeChange: null,
-    onPlayError: null,
-};
-
 const Audio = ({
-    media,
-    mediaRef,
-    muted,
-    autoPlay,
-    paused,
-    loop,
-    preload,
-    shouldLoad,
-    waveFake,
-    // waveProps,
-    withWave,
-    autoWaveHeight,
-    // reduceBufferFactor,
-    updateInterval,
-    className,
-    withoutSeek,
-    onReady,
-    onPlay,
-    onPause,
-    onEnded,
-    onSeeked,
-    onTimeUpdate,
-    onProgressStep,
-    onDurationChange: customOnDurationChange,
-    onVolumeChange: customOnVolumeChange,
-    onPlayError,
+    media = null,
+    mediaRef = null,
+    muted = false,
+    autoPlay = false,
+    paused = false,
+    loop = false,
+    preload = 'auto',
+    shouldLoad = true,
+    waveFake = false,
+    withWave = false,
+    autoWaveHeight = false,
+    updateInterval = 1000,
+    className = null,
+    withoutSeek = false,
+    onReady = null,
+    onPlay = null,
+    onPause = null,
+    onEnded = null,
+    onSeeked = null,
+    onTimeUpdate = null,
+    onProgressStep = null,
+    onDurationChange: customOnDurationChange = null,
+    onVolumeChange: customOnVolumeChange = null,
+    onPlayError = null,
 }) => {
     const { url = null, files = null } = media || {};
     const srcUrl = useMemo(() => {
@@ -119,7 +90,7 @@ const Audio = ({
             const filesAsEntries = Object.entries(files);
             const [, mp3File = null] = filesAsEntries.find(([key]) => key === 'mp3') || [];
             if (mp3File) {
-                return mp3File.url
+                return mp3File.url;
             }
         }
         return url;
@@ -275,6 +246,5 @@ const Audio = ({
 };
 
 Audio.propTypes = propTypes;
-Audio.defaultProps = defaultProps;
 
 export default React.forwardRef((props, ref) => <Audio mediaRef={ref} {...props} />);

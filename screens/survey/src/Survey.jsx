@@ -55,6 +55,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
+    showCount: PropTypes.bool,
     withoutPercentage: PropTypes.bool,
     withoutBar: PropTypes.bool,
     current: PropTypes.bool,
@@ -78,6 +79,7 @@ const defaultProps = {
     header: null,
     footer: null,
     background: null,
+    showCount: false,
     withoutPercentage: false,
     withoutBar: false,
     current: true,
@@ -101,6 +103,7 @@ const SurveyScreen = ({
     header,
     footer,
     background,
+    showCount,
     withoutPercentage,
     withoutBar,
     current,
@@ -317,7 +320,7 @@ const SurveyScreen = ({
                             percentageTextStyle: answerResultPercentageTextStyle = null,
                         } = answerResultStyle || {};
                         const { body = null } = label || {};
-                        const { percent = 0 } =
+                        const { percent = 0, count = 0 } =
                             body !== null ? quizAnswersComputed[body] || {} : {};
                         const { textStyle = null } = label || {};
                         const { color: labelColor = null } = textStyle || {};
@@ -431,7 +434,11 @@ const SurveyScreen = ({
                                                                     }}
                                                                     inline
                                                                     className={styles.resultText}
-                                                                    body={`${percent}%`}
+                                                                    body={
+                                                                        showCount
+                                                                            ? count
+                                                                            : `${percent}%`
+                                                                    }
                                                                 />
                                                             </div>
                                                         ) : null}

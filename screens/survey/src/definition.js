@@ -61,6 +61,15 @@ export default {
             }),
             fields: [
                 {
+                    name: 'showCount',
+                    type: 'toggle',
+                    defaultValue: false,
+                    label: defineMessage({
+                        defaultMessage: 'Show the answer count',
+                        description: 'Field label',
+                    }),
+                },
+                {
                     name: 'withoutPercentage',
                     type: 'toggle',
                     defaultValue: false,

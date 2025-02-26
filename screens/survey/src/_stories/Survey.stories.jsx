@@ -2,7 +2,7 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
+import { backgroundColor, headerFooter, transitions } from '../../../../.storybook/data';
 import SurveyScreen from '../Survey';
 import definition from '../definition';
 
@@ -43,6 +43,8 @@ export const Capture = (storyProps) => <SurveyScreen {...storyProps} {...props} 
 export const Edit = (storyProps) => <SurveyScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+
+export const ShowCount = (storyProps) => <SurveyScreen {...storyProps} {...props} showCount />;
 
 export const WithoutPercentage = (storyProps) => (
     <SurveyScreen {...storyProps} {...props} withoutPercentage />
