@@ -60,6 +60,15 @@ export default {
                 description: 'Field section label',
             }),
             fields: [
+                // {
+                //     name: 'showInput',
+                //     type: 'toggle',
+                //     defaultValue: false,
+                //     label: defineMessage({
+                //         defaultMessage: 'Show input answer',
+                //         description: 'Field label',
+                //     }),
+                // },
                 {
                     name: 'showCount',
                     type: 'toggle',

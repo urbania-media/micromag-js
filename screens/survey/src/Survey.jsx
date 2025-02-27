@@ -36,6 +36,7 @@ import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
+import TextInput from '@micromag/element-text-input';
 
 import styles from './survey.module.scss';
 
@@ -55,6 +56,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
+    showInput: PropTypes.bool,
     showCount: PropTypes.bool,
     withoutPercentage: PropTypes.bool,
     withoutBar: PropTypes.bool,
@@ -79,6 +81,7 @@ const defaultProps = {
     header: null,
     footer: null,
     background: null,
+    showInput: false,
     showCount: false,
     withoutPercentage: false,
     withoutBar: false,
@@ -103,6 +106,7 @@ const SurveyScreen = ({
     header,
     footer,
     background,
+    showInput,
     showCount,
     withoutPercentage,
     withoutBar,
@@ -233,6 +237,15 @@ const SurveyScreen = ({
             setUserAnswerIndex(null);
         }
     }, [isEdit, current, userAnswerIndex, setUserAnswerIndex]);
+
+    const [textInput, setTextInput] = useState(null);
+    const onTextInputChange = useCallback(
+        (e) => {
+            const { value = null } = e.target || {};
+            setTextInput(value);
+        },
+        [setTextInput],
+    );
 
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
@@ -477,6 +490,21 @@ const SurveyScreen = ({
                     })}
                 </div>
             ) : null}
+            {/* {!isPlaceholder && showInput ? (
+                <div className={styles.input}>
+                    <TextInput
+                        className={styles.button}
+                        disabled={isPreview}
+                        focusable={current && isView}
+                        buttonStyle={buttonsStyle}
+                        textStyle={{
+                            ...buttonsTextStyle,
+                        }}
+                        value={textInput}
+                        onChange={onTextInputChange}
+                    />
+                </div>
+            ) : null} */}
         </div>,
     );
 

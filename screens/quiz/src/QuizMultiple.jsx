@@ -243,7 +243,7 @@ const QuizMultipleScreen = ({
     const { customAnswerLabel = null } = answer || {};
 
     const firstCustomAnswerLabel =
-        (answers || []).find(({ customAnswerLabel: cal = null } = {}) => cal !== null) || null;
+        (answers || []).find((it = null) => it?.customAnswerLabel !== null) || null;
 
     const hasResult =
         questionResult !== null ||

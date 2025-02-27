@@ -44,6 +44,8 @@ export const Edit = (storyProps) => <SurveyScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
 
+export const ShowInput = (storyProps) => <SurveyScreen {...storyProps} {...props} showInput />;
+
 export const ShowCount = (storyProps) => <SurveyScreen {...storyProps} {...props} showCount />;
 
 export const WithoutPercentage = (storyProps) => (

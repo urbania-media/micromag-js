@@ -278,7 +278,7 @@ const Viewer = ({
 
     const {
         playing,
-        setControls,
+        // setControls,
         controls: playbackControls = false,
         controlsVisible: playbackcontrolsVisible = false,
         media: playbackMedia = null,
