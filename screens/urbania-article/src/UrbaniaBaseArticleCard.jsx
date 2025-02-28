@@ -92,10 +92,7 @@ const UrbaniaArticleCard = ({
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
-    const {
-        open: openWebView,
-        // opened: webviewOpened = false,
-    } = useViewerWebView();
+    const { open: openWebView, opened: webviewOpened = false } = useViewerWebView();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
 
     const { enableInteraction, disableInteraction } = useViewerInteraction();
@@ -300,7 +297,7 @@ const UrbaniaArticleCard = ({
                 width={width}
                 height={height}
                 resolution={resolution}
-                playing={backgroundPlaying}
+                playing={backgroundPlaying && !webviewOpened}
                 muted={muted}
                 mediaRef={mediaRef}
                 onPlayError={onPlayError}

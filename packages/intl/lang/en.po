@@ -2827,12 +2827,6 @@ msgctxt "sESmah"
 msgid "Entries"
 msgstr "Entries"
 
-# Field label
-#: sLskqO
-msgctxt "sLskqO"
-msgid "Show input answer"
-msgstr "Show input answer"
-
 # Keypad item state
 #: sSahY1
 msgctxt "sSahY1"
