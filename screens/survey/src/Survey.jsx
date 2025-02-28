@@ -8,7 +8,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, Transitions } from '@micromag/core/components';
+import { ArrowIcon, ScreenElement, Transitions } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -239,12 +239,51 @@ const SurveyScreen = ({
     }, [isEdit, current, userAnswerIndex, setUserAnswerIndex]);
 
     const [textInput, setTextInput] = useState(null);
+    const [inputFocused, setInputFocused] = useState(false);
+    const inputDisabled = isPreview || answered;
+
+    const onInputFocused = useCallback(
+        (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setInputFocused(true);
+        },
+        [setInputFocused],
+    );
+
+    const onInputBlurred = useCallback(
+        (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setInputFocused(false);
+        },
+        [setInputFocused],
+    );
+
     const onTextInputChange = useCallback(
         (e) => {
             const { value = null } = e.target || {};
             setTextInput(value);
         },
         [setTextInput],
+    );
+
+    const onSubmitSuggestion = useCallback(
+        (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (textInput !== null && textInput !== '' && !answered) {
+                console.log('submitting survey suggestion', textInput);
+                submitQuiz({ choice: textInput, value: 1 });
+                setUserAnswerIndex('input');
+                setInputFocused(false);
+                trackScreenEvent('submit_answer', `Answer: ${textInput}`, {
+                    textInput,
+                    answerIndex: -1,
+                });
+            }
+        },
+        [textInput, submitQuiz, answered, setUserAnswerIndex, setInputFocused, trackScreenEvent],
     );
 
     const hasHeader = isHeaderFilled(header);
@@ -490,21 +529,6 @@ const SurveyScreen = ({
                     })}
                 </div>
             ) : null}
-            {/* {!isPlaceholder && showInput ? (
-                <div className={styles.input}>
-                    <TextInput
-                        className={styles.button}
-                        disabled={isPreview}
-                        focusable={current && isView}
-                        buttonStyle={buttonsStyle}
-                        textStyle={{
-                            ...buttonsTextStyle,
-                        }}
-                        value={textInput}
-                        onChange={onTextInputChange}
-                    />
-                </div>
-            ) : null} */}
         </div>,
     );
 
@@ -515,6 +539,7 @@ const SurveyScreen = ({
                 {
                     [className]: className !== null,
                     [styles.answered]: answered,
+                    [styles.inputFocused]: inputFocused,
                     [styles.withPercentage]: !withoutPercentage,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
@@ -568,6 +593,40 @@ const SurveyScreen = ({
                         }
                     >
                         {items}
+                        {!isPlaceholder && showInput ? (
+                            <form
+                                className={classNames([
+                                    styles.input,
+                                    {
+                                        [styles.focused]: inputFocused,
+                                        [styles.disabled]: inputDisabled,
+                                        [styles.selected]: userAnswerIndex === 'input',
+                                    },
+                                ])}
+                                onSubmit={onSubmitSuggestion}
+                            >
+                                <TextInput
+                                    className={styles.textInput}
+                                    disabled={inputDisabled}
+                                    focusable={current && isView}
+                                    buttonStyle={buttonsStyle}
+                                    textStyle={{
+                                        ...buttonsTextStyle,
+                                    }}
+                                    value={textInput}
+                                    onChange={onTextInputChange}
+                                    onFocus={onInputFocused}
+                                    onBlur={onInputBlurred}
+                                />
+                                <Button
+                                    className={styles.confirm}
+                                    type="submit"
+                                    disabled={inputDisabled}
+                                >
+                                    <ArrowIcon />
+                                </Button>
+                            </form>
+                        ) : null}
                     </Layout>
                 </Scroll>
                 {!isPlaceholder && hasFooter ? (

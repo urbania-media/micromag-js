@@ -150,8 +150,48 @@
         }
     }
 
-    &.answered {
+    .input {
+        position: relative;
+        margin: 5px 0;
 
+        &.disabled {
+            opacity: 0.5;
+
+            .textInput, .confirm {
+                background: transparent;
+            }
+        }
+
+        &.selected {
+            opacity: 1 !important;
+
+            .confirm {
+                opacity: 0;
+            }
+        }
+    }
+
+    .textInput {
+        display: flex;
+        position: relative;
+        z-index: 0;
+        width: 100%;
+        margin: 0;
+        padding: 10px 40px 10px 10px;
+        overflow: hidden;
+        transition: opacity 500ms ease-out;
+        color: $white;
+    }
+
+    .confirm {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    &.answered {
         line-height: 1;
 
         .resultContainer {
@@ -192,6 +232,12 @@
         .itemLabel {
             margin-right: 2em;
             margin-left: 2em;
+        }
+    }
+
+    &.inputFocused {
+        .question, .answers {
+            opacity: 0.5;
         }
     }
 

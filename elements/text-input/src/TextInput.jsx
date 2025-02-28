@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromText, getStyleFromMargin, getStyleFromBox } from '@micromag/core/utils';
+import { getStyleFromBox, getStyleFromMargin, getStyleFromText } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
