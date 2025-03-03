@@ -224,7 +224,7 @@ const QuizScreen = ({
 
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
-    const showReset = isEdit;
+    const showReset = isEdit && userAnswerIndex !== null;
 
     return (
         <div

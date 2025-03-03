@@ -1,6 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 
 /* eslint-disable react/jsx-props-no-spreading */
+import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import isNumber from 'lodash/isNumber';
 import PropTypes from 'prop-types';
@@ -242,6 +244,10 @@ const SurveyScreen = ({
         }
     }, [isEdit, current, userAnswerIndex, setUserAnswerIndex]);
 
+    const onQuizReset = useCallback(() => {
+        setUserAnswerIndex(null);
+    }, [setUserAnswerIndex]);
+
     const [textInput, setTextInput] = useState(null);
     const [inputFocused, setInputFocused] = useState(false);
     const inputDisabled = isPreview || answered;
@@ -366,6 +372,8 @@ const SurveyScreen = ({
         const { result: answerResult = null } = answer || {};
         return answerResult || defaultResult;
     }, [hasDefaultResult, result, answers, userAnswerIndex]);
+
+    const showReset = isEdit && userAnswerIndex !== null;
 
     items.push(
         <div key="answers" className={styles.answers}>
@@ -568,6 +576,13 @@ const SurveyScreen = ({
                     onScrollHeightChange={onScrollHeightChange}
                     withShadow
                 >
+                    {showReset ? (
+                        <Button
+                            className={styles.reset}
+                            icon={<FontAwesomeIcon icon={faRedo} size="md" />}
+                            onClick={onQuizReset}
+                        />
+                    ) : null}
                     {!isPlaceholder && hasHeader ? (
                         <div
                             className={classNames([

@@ -20,6 +20,14 @@ export default {
             }),
         },
         {
+            name: 'result',
+            type: 'text-element',
+            label: defineMessage({
+                defaultMessage: 'Answer feedback',
+                description: 'Field label',
+            }),
+        },
+        {
             type: 'fields',
             isList: true,
             fields: [

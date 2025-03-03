@@ -403,7 +403,7 @@ const QuizMultipleScreen = ({
     }
 
     const showPoints = isEdit;
-    const showReset = isEdit;
+    const showReset = isEdit && currentAnsweredIndex !== null;
 
     return (
         <div
