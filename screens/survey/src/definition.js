@@ -53,6 +53,17 @@ export default {
             }),
         },
         {
+            name: 'result',
+            type: 'text-element',
+            theme: {
+                textStyle: 'text',
+            },
+            label: defineMessage({
+                defaultMessage: 'Default feedback',
+                description: 'Field label',
+            }),
+        },
+        {
             type: 'fields',
             isList: true,
             label: defineMessage({
@@ -60,15 +71,15 @@ export default {
                 description: 'Field section label',
             }),
             fields: [
-                // {
-                //     name: 'showInput',
-                //     type: 'toggle',
-                //     defaultValue: false,
-                //     label: defineMessage({
-                //         defaultMessage: 'Show input answer',
-                //         description: 'Field label',
-                //     }),
-                // },
+                {
+                    name: 'showInput',
+                    type: 'toggle',
+                    defaultValue: false,
+                    label: defineMessage({
+                        defaultMessage: 'Show input answer',
+                        description: 'Field label',
+                    }),
+                },
                 {
                     name: 'showCount',
                     type: 'toggle',

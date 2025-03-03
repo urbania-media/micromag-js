@@ -135,13 +135,13 @@ const Question = ({
 
     const answered = answeredIndex !== null;
     const answer = answeredIndex !== null && answers[answeredIndex] ? answers[answeredIndex] : null;
-    const { customAnswerLabel = null, answerImage = null } = answer || {};
+    const { result: answerResult = null, answerImage = null } = answer || {};
 
-    const hasResult = isTextFilled(customAnswerLabel) || isTextFilled(result);
+    const hasResult = isTextFilled(answerResult) || isTextFilled(result);
     const hasResultVisual = isImageFilled(answerImage) || isImageFilled(resultImage);
 
     const defaultResult = isTextFilled(result) ? result : null;
-    const customResult = isTextFilled(customAnswerLabel) ? customAnswerLabel : null;
+    const customResult = isTextFilled(answerResult) ? answerResult : null;
     const finalResult = customResult || defaultResult;
     const { textStyle: resultTextStyle = null } = finalResult || {};
 

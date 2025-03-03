@@ -240,16 +240,15 @@ const QuizMultipleScreen = ({
         currentAnsweredIndex !== null && typeof answers[currentAnsweredIndex] !== 'undefined'
             ? answers[currentAnsweredIndex]
             : null;
-    const { customAnswerLabel = null } = answer || {};
+    const { result: answerResult = null } = answer || {};
 
-    const firstCustomAnswerLabel =
-        (answers || []).find((it = null) => it?.customAnswerLabel !== null) || null;
+    const firstCustomResult = (answers || []).find((it = null) => it?.result !== null) || null;
 
     const hasResult =
         questionResult !== null ||
         questionResultImage !== null ||
-        customAnswerLabel !== null ||
-        firstCustomAnswerLabel !== null;
+        answerResult !== null ||
+        firstCustomResult !== null;
 
     const onNextSlide = useCallback(() => {
         if (isEdit) {

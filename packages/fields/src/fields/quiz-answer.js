@@ -22,7 +22,7 @@ export default {
             }),
         },
         {
-            name: 'customAnswerLabel',
+            name: 'result',
             type: 'text-element',
             // textOnly: true,
             fieldsProps: {

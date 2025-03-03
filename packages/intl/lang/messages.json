@@ -1875,6 +1875,10 @@
     "defaultMessage": "Entries",
     "description": "Entries field label"
   },
+  "sLskqO": {
+    "defaultMessage": "Show input answer",
+    "description": "Field label"
+  },
   "sSahY1": {
     "defaultMessage": "Popup",
     "description": "Keypad item state"

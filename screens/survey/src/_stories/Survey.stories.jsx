@@ -22,6 +22,25 @@ const props = {
     transitions: transitions(),
 };
 
+const resultsProps = {
+    question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
+    result: {
+        body: 'Result 193857934',
+    },
+    answers: [
+        { id: 1, label: { body: 'Choix 1' }, percent: 34, buttonStyle: { borderRadius: '30px' } },
+        { id: 2, label: { body: 'Choix 2' }, percent: 12 },
+        {
+            id: 3,
+            label: { body: 'Choix vraiment plus long pour tester que tout fonctionne' },
+            percent: 38,
+        },
+        { id: 4, label: { body: 'Choix 4' }, percent: 16 },
+    ],
+    background: backgroundColor(),
+    transitions: transitions(),
+};
+
 export default {
     title: 'Screens/Survey',
     component: SurveyScreen,
@@ -43,6 +62,8 @@ export const Capture = (storyProps) => <SurveyScreen {...storyProps} {...props} 
 export const Edit = (storyProps) => <SurveyScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+
+export const WithResults = (storyProps) => <SurveyScreen {...storyProps} {...resultsProps} />;
 
 export const ShowInput = (storyProps) => <SurveyScreen {...storyProps} {...props} showInput />;
 

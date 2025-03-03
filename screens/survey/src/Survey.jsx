@@ -45,6 +45,7 @@ const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
     answers: MicromagPropTypes.answers,
+    result: MicromagPropTypes.result,
     buttonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
     resultsStyle: PropTypes.shape({
@@ -74,6 +75,7 @@ const defaultProps = {
     layout: 'middle',
     question: null,
     answers: null,
+    result: null,
     buttonsStyle: null,
     buttonsTextStyle: null,
     resultsStyle: null,
@@ -99,6 +101,7 @@ const SurveyScreen = ({
     layout,
     question,
     answers,
+    result,
     buttonsStyle,
     buttonsTextStyle,
     resultsStyle,
@@ -153,6 +156,7 @@ const SurveyScreen = ({
     });
 
     const hasQuestion = isTextFilled(question);
+    const hasDefaultResult = isTextFilled(result);
 
     const showInstantAnswer = isStatic || isCapture;
     const [userAnswerIndex, setUserAnswerIndex] = useState(showInstantAnswer ? -1 : null);
@@ -273,7 +277,7 @@ const SurveyScreen = ({
             e.preventDefault();
             e.stopPropagation();
             if (textInput !== null && textInput !== '' && !answered) {
-                console.log('submitting survey suggestion', textInput);
+                // console.log('submitting survey suggestion', textInput);
                 submitQuiz({ choice: textInput, value: 1 });
                 setUserAnswerIndex('input');
                 setInputFocused(false);
@@ -345,13 +349,23 @@ const SurveyScreen = ({
         items.push(<Spacer key="spacer" />);
     }
 
-    const finalTransitionDuration = showInstantAnswer ? 0 : `${resultTransitionDuration}ms`;
+    const finalTransitionDuration = useMemo(
+        () => (showInstantAnswer ? 0 : `${resultTransitionDuration}ms`),
+        [showInstantAnswer, resultTransitionDuration],
+    );
 
     const {
         barColor: resultsBarColor = null,
         textColor: resultsTextColor = null,
         percentageTextStyle: resultsPercentageTextStyle = null,
     } = resultsStyle || {};
+
+    const finalResult = useMemo(() => {
+        const defaultResult = hasDefaultResult ? result : null;
+        const answer = userAnswerIndex !== null ? answers[userAnswerIndex] : null;
+        const { result: answerResult = null } = answer || {};
+        return answerResult || defaultResult;
+    }, [hasDefaultResult, result, answers, userAnswerIndex]);
 
     items.push(
         <div key="answers" className={styles.answers}>
@@ -626,6 +640,15 @@ const SurveyScreen = ({
                                     <ArrowIcon />
                                 </Button>
                             </form>
+                        ) : null}
+                        {userAnswerIndex !== null && finalResult !== null ? (
+                            <Transitions
+                                transitions={transitions}
+                                playing={transitionPlaying}
+                                disabled={transitionDisabled}
+                            >
+                                <Text {...(finalResult || {})} className={styles.resultText} />
+                            </Transitions>
                         ) : null}
                     </Layout>
                 </Scroll>

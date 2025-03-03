@@ -21,6 +21,7 @@ import quiz from '../../../../.storybook/data/stories/quiz';
 import quizMultiple from '../../../../.storybook/data/stories/quiz-multiple';
 import quizMultipleSimple from '../../../../.storybook/data/stories/quiz-multiple-simple';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
+import survey from '../../../../.storybook/data/stories/survey';
 import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
 import UrbaniaComponents from '../../../../.storybook/data/stories/urbania-components';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
@@ -180,6 +181,8 @@ export const TextQuoteBadges = () => (
 export const TextQuoteBadgesThemed = () => (
     <Viewer story={{ ...textQuoteBadges, theme: testTheme }} withNavigationHint memoryRouter />
 );
+
+export const Survey = () => <Viewer story={survey} memoryRouter />;
 
 export const QuizAndSurvey = () => <Viewer story={quiz} memoryRouter />;
 

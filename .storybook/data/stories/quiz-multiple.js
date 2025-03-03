@@ -33,7 +33,7 @@ export default {
                     id: 1,
                     label: { body: subtitle() },
                     points: 0,
-                    customAnswerLabel: { body: 'HAHAHA' },
+                    result: { body: 'HAHAHA' },
                 },
                 { id: 2, label: { body: subtitle() }, points: 3 },
                 { id: 3, label: { body: subtitle() }, points: 10 },
