@@ -28,20 +28,20 @@ export default {
                 description: 'Field label',
             }),
         },
-        {
-            name: 'result',
-            type: 'text-element',
-            // textOnly: true,
-            fieldsProps: {
-                // textStyle: {
-                //     excludedFields: ['highlight', 'link'],
-                // },
-            },
-            label: defineMessage({
-                defaultMessage: 'Answer feedback',
-                description: 'Field label',
-            }),
-        },
+        // {
+        //     name: 'result',
+        //     type: 'text-element',
+        //     // textOnly: true,
+        //     fieldsProps: {
+        //         // textStyle: {
+        //         //     excludedFields: ['highlight', 'link'],
+        //         // },
+        //     },
+        //     label: defineMessage({
+        //         defaultMessage: 'Answer feedback',
+        //         description: 'Field label',
+        //     }),
+        // },
         {
             type: 'fields',
             isList: true,

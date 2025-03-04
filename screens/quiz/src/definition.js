@@ -299,17 +299,17 @@ export default [
                             description: 'Field label',
                         }),
                     },
-                    {
-                        name: 'result',
-                        type: 'text-element',
-                        theme: {
-                            textStyle: 'text',
-                        },
-                        label: defineMessage({
-                            defaultMessage: 'Default feedback',
-                            description: 'Field label',
-                        }),
-                    },
+                    // {
+                    //     name: 'result',
+                    //     type: 'text-element',
+                    //     theme: {
+                    //         textStyle: 'text',
+                    //     },
+                    //     label: defineMessage({
+                    //         defaultMessage: 'Default feedback',
+                    //         description: 'Field label',
+                    //     }),
+                    // },
                     {
                         name: 'resultImage',
                         type: 'visual',
