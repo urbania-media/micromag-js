@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
+    usePlaybackContext,
     useScreenRenderContext,
     useScreenSize,
     useViewerContext,
@@ -78,6 +79,7 @@ const SlideshowScreen = ({
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || preload;
+    const { muted } = usePlaybackContext();
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 
@@ -147,6 +149,7 @@ const SlideshowScreen = ({
                                 <Visual
                                     className={styles.image}
                                     media={media}
+                                    muted={muted}
                                     {...imageSize}
                                     resolution={resolution}
                                     objectFit={{ fit: 'cover' }}
@@ -258,6 +261,7 @@ const SlideshowScreen = ({
                     width={width}
                     height={height}
                     resolution={resolution}
+                    muted={muted}
                     playing={backgroundPlaying}
                     shouldLoad={mediaShouldLoad}
                     withoutVideo={isPreview}
