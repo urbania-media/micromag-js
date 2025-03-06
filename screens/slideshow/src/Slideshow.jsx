@@ -8,6 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
     usePlaybackContext,
+    usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
     useViewerContext,
@@ -80,6 +81,7 @@ const SlideshowScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || preload;
     const { muted } = usePlaybackContext();
+    const mediaRef = usePlaybackMediaRef(current);
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 
@@ -262,6 +264,7 @@ const SlideshowScreen = ({
                     height={height}
                     resolution={resolution}
                     muted={muted}
+                    mediaRef={mediaRef}
                     playing={backgroundPlaying}
                     shouldLoad={mediaShouldLoad}
                     withoutVideo={isPreview}

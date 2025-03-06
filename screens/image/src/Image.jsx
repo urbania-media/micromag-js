@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -11,13 +11,13 @@ import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
-    useScreenSize,
     useScreenRenderContext,
+    useScreenSize,
     useViewerContext,
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { isTextFilled, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
