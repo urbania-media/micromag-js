@@ -102,6 +102,14 @@ export default [
                                     description: 'Field label',
                                 }),
                             },
+                            {
+                                name: 'alignment',
+                                type: 'alignment',
+                                label: defineMessage({
+                                    defaultMessage: 'Button alignment',
+                                    description: 'Field label',
+                                }),
+                            },
                         ],
                     },
                 ],

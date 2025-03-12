@@ -14,6 +14,7 @@ import {
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import article from '../../../../.storybook/data/stories/article-generic';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
+import keypad from '../../../../.storybook/data/stories/keypad';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
 import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
 import multipleVideosStory from '../../../../.storybook/data/stories/multipleVideosStory';
@@ -180,6 +181,18 @@ export const TextQuoteBadges = () => (
 );
 export const TextQuoteBadgesThemed = () => (
     <Viewer story={{ ...textQuoteBadges, theme: testTheme }} withNavigationHint memoryRouter />
+);
+
+export const Keypad = () => (
+    <Viewer
+        story={{
+            id: 'KEYPAD',
+            title: 'KEYPAD',
+            theme: null,
+            components: [{ id: 'K', ...keypad }],
+        }}
+        memoryRouter
+    />
 );
 
 export const Survey = () => <Viewer story={survey} memoryRouter />;

@@ -38,6 +38,14 @@ export default {
             }),
         },
         {
+            name: 'alignment',
+            type: 'alignment',
+            label: defineMessage({
+                defaultMessage: 'Button alignment',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'url',
             type: 'url',
             label: defineMessage({

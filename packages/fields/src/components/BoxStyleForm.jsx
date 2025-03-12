@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
 import React from 'react';
-// import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -13,8 +12,10 @@ import styles from '../styles/box-style.module.scss';
 
 const propTypes = {
     value: MicromagPropTypes.boxStyle,
+    fields: PropTypes.arrayOf(MicromagPropTypes.formField),
     isForm: PropTypes.bool,
     isHorizontal: PropTypes.bool,
+    withAlignment: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
     closeForm: PropTypes.func,
@@ -22,14 +23,16 @@ const propTypes = {
 
 const defaultProps = {
     value: null,
+    fields: null,
     isForm: false,
     isHorizontal: false,
+    withAlignment: false,
     className: null,
     onChange: null,
     closeForm: null,
 };
 
-const BoxStyleForm = ({ value, onChange, closeForm, ...props }) => {
+const BoxStyleForm = ({ value, fields, onChange, closeForm, withAlignment, ...props }) => {
     const previewElement =
         value !== null ? (
             <span className={styles.preview}>
@@ -42,11 +45,11 @@ const BoxStyleForm = ({ value, onChange, closeForm, ...props }) => {
                 />
             </span>
         ) : null;
-
     return (
         <FieldWithForm
             isForm
             value={value}
+            fields={fields}
             onChange={onChange}
             thumbnail={previewElement}
             noValueLabel={

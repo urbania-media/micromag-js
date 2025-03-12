@@ -1,4 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
+import { faDotCircle } from '@fortawesome/free-solid-svg-icons/faDotCircle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
@@ -10,14 +16,38 @@ import styles from '../styles/alignment.module.scss';
 
 const icons = {
     horizontal: {
-        left: (props) => <div {...props}>left</div>,
-        middle: (props) => <div {...props}>middle</div>,
-        right: (props) => <div {...props}>right</div>,
+        left: (props) => (
+            <div {...props}>
+                <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} />
+            </div>
+        ),
+        middle: (props) => (
+            <div {...props}>
+                <FontAwesomeIcon icon={faDotCircle} className={styles.icon} />
+            </div>
+        ),
+        right: (props) => (
+            <div {...props}>
+                <FontAwesomeIcon icon={faArrowRight} className={styles.icon} />
+            </div>
+        ),
     },
     vertical: {
-        top: (props) => <div {...props}>top</div>,
-        middle: (props) => <div {...props}>middle</div>,
-        bottom: (props) => <div {...props}>bottom</div>,
+        top: (props) => (
+            <div {...props}>
+                <FontAwesomeIcon icon={faArrowUp} className={styles.icon} />
+            </div>
+        ),
+        middle: (props) => (
+            <div {...props}>
+                <FontAwesomeIcon icon={faDotCircle} className={styles.icon} />
+            </div>
+        ),
+        bottom: (props) => (
+            <div {...props}>
+                <FontAwesomeIcon icon={faArrowDown} className={styles.icon} />
+            </div>
+        ),
     },
 };
 
@@ -47,23 +77,29 @@ const defaultProps = {
 const Alignment = ({ alignment, value, className, onChange }) => {
     const onVerticalAlignChange = useCallback(
         (newVal) => {
-            const v = newVal === value ? null : newVal;
-            onChange({
-                ...value,
-                vertical: v,
-            });
+            const { vertical = null, horizontal = null } = value || {};
+            const v = newVal === vertical ? null : newVal;
+            const nextValue =
+                v === null && horizontal === null ? null : { ...(value || null), vertical: v };
+            onChange(nextValue);
         },
-        [alignment, value],
+        [value, onChange],
     );
+
     const onHorizontalAlignChange = useCallback(
         (newVal) => {
-            const h = newVal === value ? null : newVal;
-            onChange({
-                ...value,
-                horizontal: h,
-            });
+            const { horizontal = null, vertical = null } = value || {};
+            const h = newVal === horizontal ? null : newVal;
+            const nextValue =
+                h === null && vertical === null
+                    ? null
+                    : {
+                          ...(value || null),
+                          horizontal: h,
+                      };
+            onChange(nextValue);
         },
-        [alignment, value],
+        [value, onChange],
     );
 
     return (
@@ -75,58 +111,47 @@ const Alignment = ({ alignment, value, className, onChange }) => {
                 },
             ])}
         >
-            {Object.keys(alignment).map((axis) =>
-                axis(
-                    <div
-                        key={axis}
-                        className={classNames(['d-flex', 'align-items-center', 'mb-2'])}
-                    >
-                        <small className={styles.label}>
-                            {axis === 'horizontal' ? (
-                                <FormattedMessage
-                                    defaultMessage="Horizontal"
-                                    description="Field label"
-                                />
-                            ) : (
-                                <FormattedMessage
-                                    defaultMessage="Vertical"
-                                    description="Field label"
-                                />
-                            )}
-                        </small>
-                        <Radios
-                            options={(axis === 'horizontal'
-                                ? ['left', 'middle', 'right']
-                                : ['top', 'middle', 'bottom']
-                            ).map((type) => {
-                                const Icon = icons[axis][type];
-
-                                return {
-                                    value: type,
-                                    label: (
-                                        <div className={styles.type}>
-                                            <Icon className={styles.icon} />
-                                        </div>
-                                    ),
-                                };
-                            })}
-                            value={value !== null ? value[axis] : null}
-                            className={classNames([
-                                styles.container,
-                                {
-                                    [className]: className !== null,
-                                },
-                            ])}
-                            buttonClassName={styles.button}
-                            onChange={
-                                axis === 'horizontal'
-                                    ? onHorizontalAlignChange
-                                    : onVerticalAlignChange
-                            }
-                        />
-                    </div>,
-                ),
-            )}
+            {Object.keys(alignment).map((axis) => (
+                <div key={axis} className={classNames(['d-flex', 'align-items-center', 'mb-2'])}>
+                    <small className={styles.label}>
+                        {axis === 'horizontal' ? (
+                            <FormattedMessage
+                                defaultMessage="Horizontal"
+                                description="Field label"
+                            />
+                        ) : (
+                            <FormattedMessage defaultMessage="Vertical" description="Field label" />
+                        )}
+                    </small>
+                    <Radios
+                        options={(axis === 'horizontal'
+                            ? ['left', 'middle', 'right']
+                            : ['top', 'middle', 'bottom']
+                        ).map((type) => {
+                            const Icon = icons[axis][type];
+                            return {
+                                value: type,
+                                label: (
+                                    <div className={styles.type}>
+                                        <Icon className={styles.icon} />
+                                    </div>
+                                ),
+                            };
+                        })}
+                        value={value !== null ? value[axis] : null}
+                        className={classNames([
+                            styles.container,
+                            {
+                                [className]: className !== null,
+                            },
+                        ])}
+                        buttonClassName={styles.button}
+                        onChange={
+                            axis === 'horizontal' ? onHorizontalAlignChange : onVerticalAlignChange
+                        }
+                    />
+                </div>
+            ))}
         </div>
     );
 };

@@ -82,9 +82,16 @@ const FieldWithForm = ({
                 value={value}
                 onChange={onChange}
                 buttonTheme="primary"
+                canClear={canClear}
             />
         ) : (
-            <Fields className="p-2" {...props} value={value} onChange={onChange} />
+            <Fields
+                className="p-2"
+                {...props}
+                canClear={canClear}
+                value={value}
+                onChange={onChange}
+            />
         );
     }
 

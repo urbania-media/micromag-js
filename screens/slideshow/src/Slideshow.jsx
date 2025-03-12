@@ -75,9 +75,9 @@ const SlideshowScreen = ({
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
-
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || preload;
     const { muted } = usePlaybackContext();

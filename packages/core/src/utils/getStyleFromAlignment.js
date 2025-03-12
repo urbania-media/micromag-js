@@ -11,21 +11,25 @@ function getAlignItems(vertical) {
     return null;
 }
 
-const getStyleFromAlignment = (value) => {
+const getStyleFromAlignment = (value, invertAxis = false, defaultAlignment = null) => {
     if (value === null) {
         return null;
     }
-    const {
-        horizontal = null,
-        vertical = null,
-    } = value;
+    const { horizontal = null, vertical = null } = value;
 
     const justifyContent = getJustifyContent(horizontal);
     const alignItems = getAlignItems(vertical);
 
+    if (invertAxis) {
+        return {
+            justifyContent: alignItems || defaultAlignment,
+            alignItems: justifyContent || defaultAlignment,
+        };
+    }
+
     return {
-        justifyContent,
-        alignItems,
+        justifyContent: justifyContent || defaultAlignment,
+        alignItems: alignItems || alignItems,
     };
 };
 

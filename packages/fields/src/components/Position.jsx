@@ -8,9 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import styles from '../styles/position.module.scss';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import getSelectOptions from '../utils/getSelectOptions';
+
+import styles from '../styles/position.module.scss';
 
 const propTypes = {
     name: PropTypes.string,

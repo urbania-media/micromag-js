@@ -2,6 +2,7 @@ export { default as audio } from './audio';
 export { default as audioElement } from './audio-element';
 export { default as alignHorizontal } from './align-horizontal';
 export { default as alignVertical } from './align-vertical';
+export { default as alignment } from './alignment';
 export { default as answer } from './answer';
 export { default as answers } from './answers';
 export { default as authorElement } from './author-element';

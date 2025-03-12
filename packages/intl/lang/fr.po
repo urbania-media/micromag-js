@@ -2254,6 +2254,12 @@ msgid "Skip Links"
 msgstr "Liens d’accessibilité"
 
 # Field label
+#: ggNi0P
+msgctxt "ggNi0P"
+msgid "Button alignment"
+msgstr "Alignement du bouton"
+
+# Field label
 #: gwPu/I
 msgctxt "gwPu/I"
 msgid "Buttons text"

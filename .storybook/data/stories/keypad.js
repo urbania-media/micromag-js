@@ -1,20 +1,33 @@
 import { v1 as uuid } from 'uuid';
 
 import { signs } from '../../../screens/urbania-horoscope';
-import { callToAction, badge } from '../../data';
+import { badge, callToAction, imageMedia, paragraph } from '../../data';
 
 export default {
     id: uuid(),
     type: 'keypad',
-    items: signs.map(({ id = '' }) => ({
+    title: {
+        body: 'Horoscope 2.0',
+    },
+    items: signs.map(({ id = 'sign' }) => ({
         label: id,
+        value: id,
+        heading: {
+            body: id,
+        },
+        content: {
+            body: paragraph(),
+        },
+        image: imageMedia(),
     })),
     keypadLayout: {
         columnAlign: 'middle',
         columns: 3,
         spacing: 10,
     },
-    // background: backgroundVideo(),
+    background: {
+        color: { color: '#f0f0f0', alpha: 1 },
+    },
     header: { badge: badge() },
     footer: { callToAction: callToAction() },
     buttonStyles: {

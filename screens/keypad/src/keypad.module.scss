@@ -284,7 +284,10 @@
     margin: 10% 7.5%;
     overflow: hidden;
     background-color: $black;
-    box-shadow: 0 0 2px $black;
+
+    &.withShadow {
+        box-shadow: 0 0 2px $black;
+    }
 
     // @todo fighting specificity because of some weird reset
     // I don't understand it; need to investigate deeper

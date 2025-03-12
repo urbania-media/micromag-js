@@ -21,6 +21,7 @@ import { useDimensionObserver, useDragProgress, useTrackScreenEvent } from '@mic
 import {
     camelCase,
     getFooterProps,
+    getStyleFromAlignment,
     getStyleFromBox,
     getStyleFromText,
     isFooterFilled,
@@ -53,6 +54,7 @@ const placeholders = [
     { id: '8' },
     { id: '9' },
 ];
+
 const placeholderPopupBoxStyles = {
     padding: {
         left: 30,
@@ -110,6 +112,7 @@ const propTypes = {
         layout: PropTypes.string,
         textStyle: MicromagPropTypes.textStyle,
         boxStyle: MicromagPropTypes.boxStyle,
+        alignment: MicromagPropTypes.alignment,
     }),
     popupStyles: PropTypes.shape({
         layout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
@@ -205,6 +208,7 @@ const KeypadScreen = ({
         layout: buttonLayout = null,
         textStyle: buttonTextStyle = null,
         boxStyle: buttonBoxStyle = null,
+        alignment: buttonAlignment = null,
     } = buttonStyles || {};
 
     const {
@@ -391,12 +395,14 @@ const KeypadScreen = ({
                     visual = null,
                     textStyle = null,
                     boxStyle = null,
+                    alignment = null,
                     heading = null,
                     content = null,
                     url = null,
                     inWebView = false,
                     largeVisual: popupLargeVisual = null,
                 } = item || {};
+
                 const { url: visualUrl = null } = visual || {};
                 const { body: headingBody = null } = heading || {};
                 const { body: contentBody = null } = content || {};
@@ -408,6 +414,7 @@ const KeypadScreen = ({
                     (heading === null || headingBody === null || headingBody === '') &&
                     (content === null || contentBody === null || contentBody === '') &&
                     popupLargeVisual === null;
+
                 return (
                     <div key={key} className={styles.item}>
                         <Button
@@ -428,6 +435,11 @@ const KeypadScreen = ({
                                 ...getStyleFromText(buttonTextStyle),
                                 ...getStyleFromBox(boxStyle),
                                 ...getStyleFromText(textStyle),
+                                ...getStyleFromAlignment(
+                                    alignment || buttonAlignment,
+                                    true,
+                                    'flex-start',
+                                ),
                             }}
                             external={isExternalLink}
                             href={isExternalLink ? url : null}
@@ -481,7 +493,15 @@ const KeypadScreen = ({
                     </div>
                 );
             }),
-        [items, screenState, keypadSettings],
+        [
+            items,
+            screenState,
+            keypadSettings,
+            buttonAlignment,
+            buttonBoxStyle,
+            buttonTextStyle,
+            buttonLayout,
+        ],
     );
 
     useEffect(() => {
@@ -504,8 +524,6 @@ const KeypadScreen = ({
             setShowPopup(false);
         }
     }, [screenState, items, isView, showPopup, setPopup, setShowPopup]);
-
-    // console.log(showPopup, popup, isView);
 
     return (
         <div
@@ -685,6 +703,9 @@ const KeypadScreen = ({
                                         className={classNames([
                                             styles.popupInner,
                                             styles[popupLayoutClassName],
+                                            {
+                                                [styles.withShadow]: popupBoxStyle === null,
+                                            },
                                         ])}
                                         style={{
                                             ...getStyleFromBox(placeholderPopupBoxStyles),

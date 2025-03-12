@@ -1493,6 +1493,10 @@
     "defaultMessage": "Skip Links",
     "description": "Nav aria label"
   },
+  "ggNi0P": {
+    "defaultMessage": "Button alignment",
+    "description": "Field label"
+  },
   "gwPu/I": {
     "defaultMessage": "Buttons text",
     "description": "Field label"

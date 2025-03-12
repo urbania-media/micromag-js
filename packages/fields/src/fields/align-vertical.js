@@ -1,4 +1,4 @@
 export default {
-    id: 'alignVertical',
+    id: 'align-vertical',
     component: 'align-vertical',
 };
