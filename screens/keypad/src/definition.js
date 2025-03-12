@@ -106,7 +106,7 @@ export default [
                                 name: 'fillImage',
                                 type: 'toggle',
                                 label: defineMessage({
-                                    defaultMessage: 'Fill image',
+                                    defaultMessage: 'Fill with image',
                                     description: 'Field label',
                                 }),
                             },

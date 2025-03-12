@@ -504,6 +504,12 @@ msgid "Timing"
 msgstr "Mode"
 
 # Field label
+#: 6LFjCH
+msgctxt "6LFjCH"
+msgid "Fill with image"
+msgstr "Remplir avec l'image"
+
+# Field label
 #: 6MxaVf
 msgctxt "6MxaVf"
 msgid "Style"
