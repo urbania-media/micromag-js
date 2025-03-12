@@ -103,13 +103,22 @@ export default [
                                 }),
                             },
                             {
-                                name: 'alignment',
-                                type: 'alignment',
+                                name: 'fillImage',
+                                type: 'toggle',
                                 label: defineMessage({
-                                    defaultMessage: 'Button alignment',
+                                    defaultMessage: 'Fill image',
                                     description: 'Field label',
                                 }),
                             },
+                            // This works but might not be the best way
+                            // {
+                            //     name: 'alignment',
+                            //     type: 'alignment',
+                            //     label: defineMessage({
+                            //         defaultMessage: 'Button alignment',
+                            //         description: 'Field label',
+                            //     }),
+                            // },
                         ],
                     },
                 ],

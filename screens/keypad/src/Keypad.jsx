@@ -112,6 +112,7 @@ const propTypes = {
         layout: PropTypes.string,
         textStyle: MicromagPropTypes.textStyle,
         boxStyle: MicromagPropTypes.boxStyle,
+        fillImage: PropTypes.bool,
         alignment: MicromagPropTypes.alignment,
     }),
     popupStyles: PropTypes.shape({
@@ -208,6 +209,7 @@ const KeypadScreen = ({
         layout: buttonLayout = null,
         textStyle: buttonTextStyle = null,
         boxStyle: buttonBoxStyle = null,
+        fillImage = false,
         alignment: buttonAlignment = null,
     } = buttonStyles || {};
 
@@ -425,6 +427,7 @@ const KeypadScreen = ({
                                     [styles.layoutLabelTop]: buttonLayout === 'label-top',
                                     [styles.layoutNoLabel]: buttonLayout === 'no-label',
                                     [styles.layoutLabelOver]: buttonLayout === 'label-over',
+                                    [styles.fillImage]: fillImage === true,
                                     [styles.isEmpty]: isEmpty,
                                     [styles.isLink]: url !== null,
                                     [styles.disableHover]: isPopupEmpty && url === null,
@@ -785,6 +788,7 @@ const KeypadScreen = ({
                                                 />
                                             ) : null}
                                         </ScreenElement>
+
                                         <ScreenElement
                                             placeholder="button"
                                             emptyLabel={

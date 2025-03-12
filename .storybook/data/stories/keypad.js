@@ -18,7 +18,7 @@ export default {
         content: {
             body: paragraph(),
         },
-        image: imageMedia(),
+        visual: imageMedia({ rand: true, width: Math.floor(Math.random() * 300) }),
     })),
     keypadLayout: {
         columnAlign: 'middle',
