@@ -3,15 +3,16 @@ import { defineMessage } from 'react-intl';
 export default {
     id: 'button',
     component: 'field-with-form',
-    labelPath: 'label',
+    labelPath: 'label.body',
     fields: [
         {
             name: 'label',
-            type: 'text',
+            type: 'button-element',
             label: defineMessage({
                 defaultMessage: 'Label',
                 description: 'Field label',
             }),
+            withSettings: false,
         },
         {
             name: 'visual',
@@ -21,30 +22,31 @@ export default {
                 description: 'Field label',
             }),
         },
-        {
-            name: 'textStyle',
-            type: 'text-style-form',
-            label: defineMessage({
-                defaultMessage: 'Label style',
-                description: 'Field label',
-            }),
-        },
-        {
-            name: 'boxStyle',
-            type: 'box-style-form',
-            label: defineMessage({
-                defaultMessage: 'Button style',
-                description: 'Field label',
-            }),
-        },
-        {
-            name: 'alignment',
-            type: 'alignment',
-            label: defineMessage({
-                defaultMessage: 'Button alignment',
-                description: 'Field label',
-            }),
-        },
+        // Moved to label
+        // {
+        //     name: 'textStyle',
+        //     type: 'text-style-form',
+        //     label: defineMessage({
+        //         defaultMessage: 'Label style',
+        //         description: 'Field label',
+        //     }),
+        // },
+        // {
+        //     name: 'boxStyle',
+        //     type: 'box-style-form',
+        //     label: defineMessage({
+        //         defaultMessage: 'Button style',
+        //         description: 'Field label',
+        //     }),
+        // },
+        // {
+        //     name: 'alignment',
+        //     type: 'alignment',
+        //     label: defineMessage({
+        //         defaultMessage: 'Button alignment',
+        //         description: 'Field label',
+        //     }),
+        // },
         {
             name: 'url',
             type: 'url',

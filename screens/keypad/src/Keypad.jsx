@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
+import { isString } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -243,6 +244,7 @@ const KeypadScreen = ({
     const { textStyle: popupHeadingTextStyle = null } = popupHeading || {};
     const hasPopupContent = isTextFilled(popupContent);
     const { textStyle: popupContentTextStyle = null } = popupContent || {};
+
     const {
         label: buttonLabel = null,
         url: buttonUrl = null,
@@ -393,7 +395,7 @@ const KeypadScreen = ({
             (items === null || items.length === 0 ? placeholders : items).map((item) => {
                 const {
                     id = null,
-                    label = null,
+                    label: itemLabel = null,
                     visual = null,
                     textStyle = null,
                     boxStyle = null,
@@ -408,6 +410,10 @@ const KeypadScreen = ({
                 const { url: visualUrl = null } = visual || {};
                 const { body: headingBody = null } = heading || {};
                 const { body: contentBody = null } = content || {};
+                const finalLabel = isString(itemLabel) ? { body: itemLabel } : itemLabel || {};
+
+                const { body: label = null, buttonStyle: labelButtonStyle = null } =
+                    finalLabel || {};
                 const key = label || visualUrl || id;
 
                 const isEmpty = label === null && visual === null;
@@ -436,7 +442,7 @@ const KeypadScreen = ({
                             style={{
                                 ...getStyleFromBox(buttonBoxStyle),
                                 ...getStyleFromText(buttonTextStyle),
-                                ...getStyleFromBox(boxStyle),
+                                ...getStyleFromBox(labelButtonStyle || boxStyle),
                                 ...getStyleFromText(textStyle),
                                 ...getStyleFromAlignment(
                                     alignment || buttonAlignment,
@@ -489,7 +495,7 @@ const KeypadScreen = ({
                                 isEmpty={label === null}
                             >
                                 {label !== null || !isInteractivePreview ? (
-                                    <div className={styles.buttonLabel}>{label}</div>
+                                    <Text className={styles.buttonLabel} {...finalLabel} />
                                 ) : null}
                             </ScreenElement>
                         </Button>

@@ -141,7 +141,8 @@ function Scroll({
                 {
                     [styles.withScroll]: !disabled,
                     [className]: className !== null,
-                    [styles[verticalAlign]]: verticalAlign !== null,
+                    [styles[verticalAlign]]:
+                        verticalAlign !== null && scrolleeHeight < scrollableHeight,
                     [styles.withArrow]: showArrow && withArrow,
                     [styles.withShadow]: withShadow,
                 },

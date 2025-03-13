@@ -2260,12 +2260,6 @@ msgid "Skip Links"
 msgstr "Skip Links"
 
 # Field label
-#: ggNi0P
-msgctxt "ggNi0P"
-msgid "Button alignment"
-msgstr "Button alignment"
-
-# Field label
 #: gwPu/I
 msgctxt "gwPu/I"
 msgid "Buttons text"

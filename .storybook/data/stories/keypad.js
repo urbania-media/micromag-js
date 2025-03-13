@@ -1,7 +1,7 @@
 import { v1 as uuid } from 'uuid';
 
 import { signs } from '../../../screens/urbania-horoscope';
-import { badge, callToAction, imageMedia, paragraph } from '../../data';
+import { callToAction, imageMedia, paragraph } from '../../data';
 
 export default {
     id: uuid(),
@@ -11,6 +11,13 @@ export default {
     },
     items: signs.map(({ id = 'sign' }) => ({
         label: id,
+        textStyle: {
+            color: { color: '#00F', alpha: 1 },
+        },
+        boxStyle: {
+            backgroundColor: { color: '#f2702d', alpha: 1 },
+            borderRadius: 30,
+        },
         value: id,
         heading: {
             body: id,
@@ -28,7 +35,7 @@ export default {
     background: {
         color: { color: '#f0f0f0', alpha: 1 },
     },
-    header: { badge: badge() },
+    header: null,
     footer: { callToAction: callToAction() },
     buttonStyles: {
         textStyle: {

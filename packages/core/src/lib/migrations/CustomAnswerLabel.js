@@ -5,7 +5,7 @@ class CustomAnswerLabel {
         if (answers === null || answers.length === 0) {
             return false;
         }
-        const hasCustomAnswerLabel = answers.some(
+        const hasCustomAnswerLabel = (answers || []).some(
             (answer = null) => answer !== null && typeof answer.customAnswerLabel !== 'undefined',
         );
         if (!hasCustomAnswerLabel) {
