@@ -10,7 +10,7 @@ export default {
         {
             name: 'buttonStyle',
             type: 'box-style',
-            className: 'mt-4'
+            className: 'mt-4',
         },
-    ]
+    ],
 };

@@ -7,7 +7,7 @@ export default {
     fields: [
         {
             name: 'label',
-            type: 'button-element',
+            type: 'text-element',
             label: defineMessage({
                 defaultMessage: 'Label',
                 description: 'Field label',
@@ -22,23 +22,15 @@ export default {
                 description: 'Field label',
             }),
         },
-        // Moved to label
-        // {
-        //     name: 'textStyle',
-        //     type: 'text-style-form',
-        //     label: defineMessage({
-        //         defaultMessage: 'Label style',
-        //         description: 'Field label',
-        //     }),
-        // },
-        // {
-        //     name: 'boxStyle',
-        //     type: 'box-style-form',
-        //     label: defineMessage({
-        //         defaultMessage: 'Button style',
-        //         description: 'Field label',
-        //     }),
-        // },
+        {
+            name: 'boxStyle',
+            type: 'box-style-form',
+            label: defineMessage({
+                defaultMessage: 'Button style',
+                description: 'Field label',
+            }),
+        },
+        // If necessary some day
         // {
         //     name: 'alignment',
         //     type: 'alignment',

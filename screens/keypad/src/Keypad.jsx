@@ -412,8 +412,7 @@ const KeypadScreen = ({
                 const { body: contentBody = null } = content || {};
                 const finalLabel = isString(itemLabel) ? { body: itemLabel } : itemLabel || {};
 
-                const { body: label = null, buttonStyle: labelButtonStyle = null } =
-                    finalLabel || {};
+                const { body: label = null } = finalLabel || {};
                 const key = label || visualUrl || id;
 
                 const isEmpty = label === null && visual === null;
@@ -442,7 +441,7 @@ const KeypadScreen = ({
                             style={{
                                 ...getStyleFromBox(buttonBoxStyle),
                                 ...getStyleFromText(buttonTextStyle),
-                                ...getStyleFromBox(labelButtonStyle || boxStyle),
+                                ...getStyleFromBox(boxStyle),
                                 ...getStyleFromText(textStyle),
                                 ...getStyleFromAlignment(
                                     alignment || buttonAlignment,

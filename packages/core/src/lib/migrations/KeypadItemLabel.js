@@ -24,10 +24,10 @@ class KeypadItemLabel {
                 if (item === null || !isString(item?.label)) {
                     return item;
                 }
-                const { label, textStyle, boxStyle, ...restAnswer } = item || {};
+                const { label, textStyle, ...restAnswer } = item || {};
                 return {
                     ...restAnswer,
-                    label: { body: label, textStyle, buttonStyle: boxStyle },
+                    label: { body: label, textStyle },
                 };
             }),
         };
