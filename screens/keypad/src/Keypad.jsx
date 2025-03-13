@@ -397,7 +397,6 @@ const KeypadScreen = ({
                     id = null,
                     label: itemLabel = null,
                     visual = null,
-                    textStyle = null,
                     boxStyle = null,
                     alignment = null,
                     heading = null,
@@ -412,7 +411,7 @@ const KeypadScreen = ({
                 const { body: contentBody = null } = content || {};
                 const finalLabel = isString(itemLabel) ? { body: itemLabel } : itemLabel || {};
 
-                const { body: label = null } = finalLabel || {};
+                const { body: label = null, textStyle = null } = finalLabel || {};
                 const key = label || visualUrl || id;
 
                 const isEmpty = label === null && visual === null;
@@ -440,9 +439,7 @@ const KeypadScreen = ({
                             ])}
                             style={{
                                 ...getStyleFromBox(buttonBoxStyle),
-                                ...getStyleFromText(buttonTextStyle),
                                 ...getStyleFromBox(boxStyle),
-                                ...getStyleFromText(textStyle),
                                 ...getStyleFromAlignment(
                                     alignment || buttonAlignment,
                                     true,
@@ -494,7 +491,14 @@ const KeypadScreen = ({
                                 isEmpty={label === null}
                             >
                                 {label !== null || !isInteractivePreview ? (
-                                    <Text className={styles.buttonLabel} {...finalLabel} />
+                                    <Text
+                                        className={styles.buttonLabel}
+                                        {...finalLabel}
+                                        textStyle={{
+                                            ...getStyleFromText(buttonTextStyle),
+                                            ...getStyleFromText(textStyle),
+                                        }}
+                                    />
                                 ) : null}
                             </ScreenElement>
                         </Button>
