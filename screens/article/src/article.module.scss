@@ -78,6 +78,9 @@
     }
 
     .text {
+        pointer-events: none;
+        user-select: none;
+
         h2,
         h3,
         p,
