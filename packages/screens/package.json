@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.661",
+    "version": "0.3.662",
     "private": false,
     "description": "",
     "keywords": [
@@ -82,7 +82,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.660",
-        "@micromag/screen-article": "^0.3.660",
+        "@micromag/screen-article": "^0.3.662",
         "@micromag/screen-audio": "^0.3.660",
         "@micromag/screen-contribution": "^0.3.660",
         "@micromag/screen-conversation": "^0.3.660",
