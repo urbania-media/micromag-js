@@ -18,7 +18,13 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
+import {
+    getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
+    isImageFilled,
+    isTextFilled,
+} from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -242,13 +248,14 @@ const QuizMultipleScreen = ({
             : null;
     const { result: answerResult = null } = answer || {};
 
-    const firstCustomResult = (answers || []).find((it = null) => it?.result !== null) || null;
+    // Think abouut this
+    // const firstCustomResult = (answers || []).find((it = null) => it?.result !== null) || null;
+    // console.log('firstCustomResult', firstCustomResult, answers);
 
-    const hasResult =
-        questionResult !== null ||
-        questionResultImage !== null ||
-        answerResult !== null ||
-        firstCustomResult !== null;
+    const questionResultHasText = isTextFilled(questionResult);
+    const questionResultHasImage = isImageFilled(questionResultImage);
+    const answerResultHasText = isTextFilled(answerResult);
+    const hasResult = questionResultHasText || questionResultHasImage || answerResultHasText;
 
     const onNextSlide = useCallback(() => {
         if (isEdit) {
