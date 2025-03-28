@@ -133,7 +133,6 @@ export default [
                         defaultValue: {
                             layout: 'content-top',
                         },
-                        isList: true,
                         fields: [
                             {
                                 name: 'layout',
@@ -160,8 +159,17 @@ export default [
                                 }),
                             },
                             {
+                                name: 'boxStyle',
+                                type: 'box-style-form',
+                                label: defineMessage({
+                                    defaultMessage: 'Box style',
+                                    description: 'Field label',
+                                }),
+                            },
+                            {
                                 name: 'button',
                                 type: 'fields',
+                                isList: true,
                                 label: defineMessage({
                                     defaultMessage: 'Button',
                                     description: 'Field label',
@@ -184,14 +192,6 @@ export default [
                                         }),
                                     },
                                 ],
-                            },
-                            {
-                                name: 'boxStyle',
-                                type: 'box-style-form',
-                                label: defineMessage({
-                                    defaultMessage: 'Box style',
-                                    description: 'Field label',
-                                }),
                             },
                         ],
                     },
@@ -234,6 +234,14 @@ export default [
                         type: 'visual',
                         label: defineMessage({
                             defaultMessage: 'Visual',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'popupBoxStyle',
+                        type: 'box-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Box style',
                             description: 'Field label',
                         }),
                     },

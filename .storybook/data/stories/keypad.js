@@ -14,10 +14,6 @@ export default {
         textStyle: {
             color: { color: '#00F', alpha: 1 },
         },
-        boxStyle: {
-            backgroundColor: { color: '#f2702d', alpha: 1 },
-            borderRadius: 30,
-        },
         value: id,
         heading: {
             body: id,
@@ -26,6 +22,14 @@ export default {
             body: paragraph(),
         },
         visual: imageMedia({ rand: true, width: Math.floor(Math.random() * 300) }),
+        boxStyle: {
+            backgroundColor: { color: '#00ff77', alpha: 1 },
+            borderRadius: 30,
+        },
+        // popupBoxStyle: {
+        //     backgroundColor: { color: '#ff00ff', alpha: 1 },
+        //     borderRadius: 10,
+        // },
     })),
     keypadLayout: {
         columnAlign: 'middle',
@@ -40,6 +44,12 @@ export default {
     buttonStyles: {
         textStyle: {
             color: { color: '#F00', alpha: 0.8 },
+        },
+    },
+    popupStyles: {
+        boxStyle: {
+            backgroundColor: { color: '#f2702d', alpha: 1 },
+            borderRadius: 30,
         },
     },
 };

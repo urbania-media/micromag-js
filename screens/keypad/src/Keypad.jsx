@@ -238,6 +238,7 @@ const KeypadScreen = ({
         content: popupContent = null,
         largeVisual = null,
         button: popupButton = null,
+        popupBoxStyle: singlePopupBoxStyle = null,
     } = popup || {};
 
     const hasPopupHeading = isTextFilled(popupHeading);
@@ -722,6 +723,7 @@ const KeypadScreen = ({
                                         style={{
                                             ...getStyleFromBox(placeholderPopupBoxStyles),
                                             ...getStyleFromBox(popupBoxStyle),
+                                            ...getStyleFromBox(singlePopupBoxStyle),
                                         }}
                                     >
                                         <ScreenElement
