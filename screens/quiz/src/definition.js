@@ -310,14 +310,14 @@ export default [
                     //         description: 'Field label',
                     //     }),
                     // },
-                    {
-                        name: 'resultImage',
-                        type: 'visual',
-                        label: defineMessage({
-                            defaultMessage: 'Result feedback image',
-                            description: 'Visual field label',
-                        }),
-                    },
+                    // {
+                    //     name: 'resultImage',
+                    //     type: 'visual',
+                    //     label: defineMessage({
+                    //         defaultMessage: 'Result feedback image',
+                    //         description: 'Visual field label',
+                    //     }),
+                    // },
                     {
                         name: 'background',
                         type: 'background',
