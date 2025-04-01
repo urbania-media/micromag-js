@@ -120,6 +120,55 @@ const simpleProps = {
     transitions: transitions(),
 };
 
+const withTrueFalse = {
+    // goodAnswerColor: {
+    //     alpha: 1,
+    //     color: '#00ff2d',
+    // },
+    questions: [
+        {
+            text: { body: 'Question 1? .. .. . .. . . .. . ' },
+            answers: [
+                {
+                    id: 1,
+                    label: {
+                        body: subtitle(),
+                    },
+                    good: false,
+                },
+                { id: 2, label: { body: subtitle() }, good: true },
+                { id: 3, label: { body: subtitle() } },
+                { id: 4, label: { body: subtitle() } },
+                { id: 5, label: { body: subtitle() } },
+                { id: 6, label: { body: subtitle() } },
+            ],
+        },
+        {
+            text: { body: 'Question 2 ... ... .. . .. . .... ?' },
+            answers: [
+                {
+                    id: 1,
+                    label: { body: subtitle() },
+                    result: { body: 'HAHAHA' },
+                },
+                { id: 2, label: { body: subtitle() } },
+                { id: 3, label: { body: subtitle() }, good: true },
+                { id: 4, label: { body: subtitle() }, good: true },
+            ],
+            background: backgroundColor(),
+        },
+    ],
+    results: [
+        {
+            title: { body: subtitle('High') },
+            description: { body: 'High' },
+            points: 0,
+        },
+    ],
+    background: backgroundColor(),
+    transitions: transitions(),
+};
+
 export default {
     title: 'Screens/QuizMultiple',
     component: QuizMultipleScreen,
@@ -142,6 +191,10 @@ export const Edit = (storyProps) => <QuizMultipleScreen {...storyProps} />;
 export const Normal = (storyProps) => <QuizMultipleScreen {...storyProps} {...props} />;
 
 export const Simple = (storyProps) => <QuizMultipleScreen {...storyProps} {...simpleProps} />;
+
+export const WithTrueFalse = (storyProps) => (
+    <QuizMultipleScreen {...storyProps} {...withTrueFalse} />
+);
 
 export const WithHeaderFooter = (storyProps) => (
     <QuizMultipleScreen {...storyProps} {...props} {...headerFooter()} />

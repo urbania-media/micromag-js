@@ -32,4 +32,6 @@ class CustomAnswerLabel {
     }
 }
 
+CustomAnswerLabel.prototype.priority = 1;
+
 export default CustomAnswerLabel;

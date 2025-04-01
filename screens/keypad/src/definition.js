@@ -275,6 +275,17 @@ export default [
                 }),
             },
             {
+                name: 'subtitle',
+                type: 'text-element',
+                theme: {
+                    textStyle: 'text',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Subtitle',
+                    description: 'Subtitle field label',
+                }),
+            },
+            {
                 name: 'background',
                 type: 'background',
                 label: defineMessage({

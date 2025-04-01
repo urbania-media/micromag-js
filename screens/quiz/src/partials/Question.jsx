@@ -36,6 +36,7 @@ const propTypes = {
     inactiveButtonsTextStyle: MicromagPropTypes.textStyle,
     questionsHeadingStyle: MicromagPropTypes.textStyle,
     feedbackTextStyle: MicromagPropTypes.textStyle,
+    numbersTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     focusable: PropTypes.bool,
@@ -52,6 +53,7 @@ const propTypes = {
     transitionDisabled: PropTypes.bool,
     onAnswerClick: PropTypes.func,
     onAnswerTransitionEnd: PropTypes.func,
+    withoutCollapse: PropTypes.bool,
     className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
@@ -70,6 +72,7 @@ const defaultProps = {
     inactiveButtonsTextStyle: null,
     questionsHeadingStyle: null,
     feedbackTextStyle: null,
+    numbersTextStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
     focusable: false,
@@ -86,6 +89,7 @@ const defaultProps = {
     transitionDisabled: false,
     onAnswerClick: null,
     onAnswerTransitionEnd: null,
+    withoutCollapse: false,
     className: null,
     style: null,
 };
@@ -104,6 +108,7 @@ const Question = ({
     inactiveButtonsTextStyle,
     questionsHeadingStyle,
     feedbackTextStyle,
+    numbersTextStyle,
     goodAnswerColor,
     badAnswerColor,
     focusable,
@@ -120,6 +125,7 @@ const Question = ({
     transitionDisabled,
     onAnswerClick,
     onAnswerTransitionEnd,
+    withoutCollapse,
     className,
     style,
 }) => {
@@ -177,9 +183,11 @@ const Question = ({
                                 playing={transitionPlaying}
                                 disabled={transitionDisabled}
                             >
-                                <div className={styles.index}>
-                                    {index + 1} / {totalCount}
-                                </div>
+                                <Text
+                                    className={styles.index}
+                                    body={`${index + 1} / ${totalCount}`}
+                                    textStyle={numbersTextStyle}
+                                />
                             </Transitions>
                         ) : null}
                     </ScreenElement>
@@ -233,9 +241,10 @@ const Question = ({
                     onClick={onAnswerClick}
                     onCollapse={onAnswersCollapse}
                     onTransitionEnd={onAnswerTransitionEnd}
+                    withoutCollapse={withoutCollapse}
                 />,
                 withResult ? (
-                    <div className={classNames([styles.result])} key="results">
+                    <div className={styles.result} key="results">
                         <div className={styles.resultContent}>
                             <ScreenElement
                                 emptyLabel={

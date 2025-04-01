@@ -39,6 +39,7 @@ const propTypes = {
     onCollapse: PropTypes.func,
     onCollapsed: PropTypes.func,
     onTransitionEnd: PropTypes.func,
+    withoutCollapse: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -61,6 +62,7 @@ const defaultProps = {
     onCollapse: null,
     onCollapsed: null,
     onTransitionEnd: null,
+    withoutCollapse: false,
     className: null,
 };
 
@@ -84,6 +86,7 @@ const Answers = ({
     onCollapse,
     onCollapsed,
     onTransitionEnd,
+    withoutCollapse,
     className,
 }) => {
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -100,7 +103,8 @@ const Answers = ({
             : false;
     const finalShowUserAnswer = showUserAnswer || !hasRightAnswer;
 
-    const shouldCollapse = !withoutGoodAnswer || (finalShowUserAnswer && answeredIndex !== null);
+    const shouldCollapse =
+        (!withoutGoodAnswer || (finalShowUserAnswer && answeredIndex !== null)) && !withoutCollapse;
     const [answersCollapsed, setAnswersCollapsed] = useState(answeredIndex !== null);
     const [answersDidCollapse, setAnswersDidCollapse] = useState(
         initialCollapsed || answeredIndex !== null,
@@ -121,6 +125,18 @@ const Answers = ({
                 },
                 hasAnsweredRight || finalShowUserAnswer ? 500 : answersCollapseDelay,
             );
+        } else if (answeredIndex !== null && !shouldCollapse) {
+            timeout = setTimeout(() => {
+                if (onCollapse !== null) {
+                    onCollapse();
+                }
+                if (onCollapsed !== null) {
+                    onCollapsed();
+                }
+                if (onTransitionEnd !== null) {
+                    onTransitionEnd();
+                }
+            }, answersCollapseDelay);
         } else if (answeredIndex === null && shouldCollapse) {
             setAnswersCollapsed(false);
         }
@@ -134,9 +150,12 @@ const Answers = ({
         withoutGoodAnswer,
         setAnswersCollapsed,
         onCollapse,
+        onCollapsed,
+        onTransitionEnd,
         answersCollapseDelay,
         hasAnsweredRight,
         finalShowUserAnswer,
+        shouldCollapse,
     ]);
 
     useEffect(() => {

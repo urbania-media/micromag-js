@@ -20,6 +20,14 @@ export default {
             }),
         },
         {
+            name: 'good',
+            type: 'true-false',
+            label: defineMessage({
+                defaultMessage: 'Answer icon value',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'points',
             type: 'number',
             isHorizontal: true,

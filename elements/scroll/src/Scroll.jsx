@@ -15,7 +15,7 @@ const propTypes = {
     verticalAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
     className: PropTypes.string,
     children: PropTypes.node,
-    scrollPosition: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+    scrollPosition: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     onScrolledBottom: PropTypes.func,
     onScrolledNotBottom: PropTypes.func,
     onScrollHeightChange: PropTypes.func,

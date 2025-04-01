@@ -11,6 +11,8 @@
     line-height: 1;
 
     .label {
+        display: inline-flex;
+
         // Sometimes CKEditor adds a block element nested inside the badge
         * {
             display: inline;

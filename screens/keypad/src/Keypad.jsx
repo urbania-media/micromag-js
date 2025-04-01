@@ -42,6 +42,8 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
+import { description } from '../../../.storybook/data';
+
 import styles from './keypad.module.scss';
 
 const placeholders = [
@@ -99,6 +101,7 @@ const propTypes = {
         }),
     ),
     title: MicromagPropTypes.headingElement,
+    subtitle: MicromagPropTypes.textElement,
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
     spacing: PropTypes.number,
     keypadSettings: PropTypes.shape({
@@ -134,6 +137,7 @@ const propTypes = {
 const defaultProps = {
     items: null,
     title: null,
+    subtitle: null,
     layout: null,
     spacing: 20,
     keypadSettings: null,
@@ -151,6 +155,7 @@ const defaultProps = {
 const KeypadScreen = ({
     items,
     title,
+    subtitle,
     layout,
     spacing,
     keypadSettings,
@@ -190,6 +195,8 @@ const KeypadScreen = ({
 
     const hasTitle = isTextFilled(title);
     const { textStyle: titleTextStyle = null } = title || {};
+
+    const hasSubtitle = isTextFilled(subtitle);
 
     const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
     const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
@@ -373,7 +380,7 @@ const KeypadScreen = ({
         progress: showPopup ? 0 : 1,
         computeProgress: computePopupProgress,
         springParams: { config: { tension: 300, friction: 30 } },
-        dragOptions: { filterTaps: true, preventDefault: true },
+        dragOptions: { filterTaps: true, preventDefault: true, stopPropagation: true },
         onTap: onCloseModal,
     });
 
@@ -643,6 +650,22 @@ const KeypadScreen = ({
                                     {...title}
                                     textStyle={titleTextStyle}
                                 />
+                            ) : null}
+                        </ScreenElement>
+
+                        <ScreenElement
+                            placeholder="Subtitle"
+                            emptyLabel={
+                                <FormattedMessage
+                                    defaultMessage="Subtitle"
+                                    description="Placeholder label"
+                                />
+                            }
+                            emptyClassName={classNames([styles.empty, styles.emptyHeading])}
+                            isEmpty={!hasSubtitle}
+                        >
+                            {hasSubtitle ? (
+                                <Text className={styles.subtitle} {...subtitle} />
                             ) : null}
                         </ScreenElement>
 

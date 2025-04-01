@@ -466,6 +466,14 @@ export default [
                             description: 'Field label',
                         }),
                     },
+                    {
+                        name: 'numbersTextStyle',
+                        type: 'text-style-form',
+                        label: defineMessage({
+                            defaultMessage: 'Numbers text',
+                            description: 'Field label',
+                        }),
+                    },
                 ],
             },
             {

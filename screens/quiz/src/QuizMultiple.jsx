@@ -65,6 +65,8 @@ const propTypes = {
     questionsHeadingStyle: MicromagPropTypes.textStyle,
     resultsHeadingStyle: MicromagPropTypes.textStyle,
     resultsTextStyle: MicromagPropTypes.textStyle,
+    feedbackTextStyle: MicromagPropTypes.textStyle,
+    numbersTextStyle: MicromagPropTypes.textStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     spacing: PropTypes.number,
@@ -97,6 +99,8 @@ const defaultProps = {
     questionsHeadingStyle: null,
     resultsHeadingStyle: null,
     resultsTextStyle: null,
+    feedbackTextStyle: null,
+    numbersTextStyle: null,
     goodAnswerColor: null,
     badAnswerColor: null,
     spacing: 20,
@@ -129,6 +133,8 @@ const QuizMultipleScreen = ({
     questionsHeadingStyle,
     resultsHeadingStyle,
     resultsTextStyle,
+    feedbackTextStyle,
+    numbersTextStyle,
     goodAnswerColor,
     badAnswerColor,
     spacing,
@@ -248,9 +254,13 @@ const QuizMultipleScreen = ({
             : null;
     const { result: answerResult = null } = answer || {};
 
-    // Think abouut this
-    // const firstCustomResult = (answers || []).find((it = null) => it?.result !== null) || null;
-    // console.log('firstCustomResult', firstCustomResult, answers);
+    const hasTrueFalse =
+        answers !== null
+            ? (answers || []).find((ans) => ans?.good === true || ans?.good === false) !== undefined
+            : false;
+    const goodAnswerIndex =
+        answers !== null ? answers.findIndex((ans) => ans !== null && ans.good === true) : null;
+    const withoutGoodAnswer = goodAnswerIndex === null || goodAnswerIndex === -1;
 
     const questionResultHasText = isTextFilled(questionResult);
     const questionResultHasImage = isImageFilled(questionResultImage);
@@ -521,6 +531,8 @@ const QuizMultipleScreen = ({
                                         buttonsTextStyle={buttonsTextStyle}
                                         inactiveButtonsTextStyle={inactiveButtonsTextStyle}
                                         questionsHeadingStyle={questionsHeadingStyle}
+                                        feedbackTextStyle={feedbackTextStyle}
+                                        numbersTextStyle={numbersTextStyle}
                                         goodAnswerColor={goodAnswerColor}
                                         badAnswerColor={badAnswerColor}
                                         focusable={current && isView}
@@ -529,8 +541,9 @@ const QuizMultipleScreen = ({
                                         result={questionResult}
                                         resultImage={questionResultImage}
                                         withResult={hasResult}
-                                        withoutGoodAnswer
-                                        withoutTrueFalse
+                                        withoutGoodAnswer={withoutGoodAnswer}
+                                        withoutTrueFalse={!hasTrueFalse}
+                                        withoutCollapse={hasTrueFalse}
                                         transitions={transitions}
                                         transitionPlaying={transitionPlaying}
                                         transitionStagger={transitionStagger}

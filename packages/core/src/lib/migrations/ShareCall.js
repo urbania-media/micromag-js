@@ -42,4 +42,6 @@ class ShareCall {
     }
 }
 
+ShareCall.prototype.priority = 0;
+
 export default ShareCall;

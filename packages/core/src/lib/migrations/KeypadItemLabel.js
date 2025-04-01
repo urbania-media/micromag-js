@@ -34,4 +34,6 @@ class KeypadItemLabel {
     }
 }
 
+KeypadItemLabel.prototype.priority = 1;
+
 export default KeypadItemLabel;

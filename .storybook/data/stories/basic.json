@@ -31,12 +31,48 @@
                 "image": null
             },
             "layout": "middle",
+            "header": {
+                "badge": {
+                    "inWebView": true,
+                    "active": true,
+                    "url": "https://urbania.ca",
+                    "label": {
+                        "body": "En apprendre plusse",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Agrandir Tight"
+                            }
+                        }
+                    },
+                    "boxStyle": {
+                        "borderRadius": 5,
+                        "shadowAngle": 45,
+                        "shadowDistance": 6,
+                        "shadowBlur": 0,
+                        "shadowColor": {
+                            "color": "#ff0000",
+                            "alpha": 1
+                        },
+                        "padding": {
+                            "top": 12,
+                            "left": 20,
+                            "bottom": 20,
+                            "right": 20
+                        }
+                    }
+                }
+            },
             "callToAction": {
                 "inWebView": true,
                 "active": true,
                 "url": "https://urbania.ca",
                 "label": {
-                    "body": "En apprendre plusse"
+                    "body": "En apprendre plusse",
+                    "textStyle": {
+                        "fontFamily": {
+                            "name": "Agrandir Tight"
+                        }
+                    }
                 },
                 "boxStyle": {
                     "borderRadius": 5,
@@ -46,6 +82,12 @@
                     "shadowColor": {
                         "color": "#ff0000",
                         "alpha": 1
+                    },
+                    "padding": {
+                        "top": 1,
+                        "left": 20,
+                        "bottom": 10,
+                        "right": 20
                     }
                 }
             },
@@ -108,7 +150,20 @@
                 "active": true,
                 "url": "https://urbania.ca",
                 "label": {
-                    "body": "En apprendre plusse"
+                    "body": "En apprendre plussse",
+                    "textStyle": {
+                        "fontFamily": {
+                            "name": "Agrandir Tight"
+                        }
+                    }
+                },
+                "boxStyle": {
+                    "padding": {
+                        "top": 40,
+                        "left": 20,
+                        "bottom": 30,
+                        "right": 20
+                    }
                 }
             }
         }
