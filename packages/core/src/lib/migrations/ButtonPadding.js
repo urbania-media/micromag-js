@@ -22,7 +22,7 @@ const testPadding = (element) => {
         return false;
     }
 
-    if (top < bottom - 2) {
+    if (top <= bottom - 2) {
         return true;
     }
 
