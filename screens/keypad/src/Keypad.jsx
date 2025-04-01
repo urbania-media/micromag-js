@@ -42,8 +42,6 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import { description } from '../../../.storybook/data';
-
 import styles from './keypad.module.scss';
 
 const placeholders = [

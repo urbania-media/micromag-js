@@ -1210,6 +1210,10 @@
     "defaultMessage": "Description",
     "description": "Field label"
   },
+  "ZG8/oK": {
+    "defaultMessage": "Subtitle",
+    "description": "Placeholder label"
+  },
   "ZLDmja": {
     "defaultMessage": "Submit",
     "description": "Submit form button"
@@ -1567,6 +1571,10 @@
   },
   "iipV5Q": {
     "defaultMessage": "Type",
+    "description": "Field label"
+  },
+  "iltluX": {
+    "defaultMessage": "Numbers text",
     "description": "Field label"
   },
   "irG6mX": {

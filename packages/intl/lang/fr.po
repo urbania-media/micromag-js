@@ -1828,6 +1828,12 @@ msgctxt "ZCe0r4"
 msgid "Description"
 msgstr "Description"
 
+# Placeholder label
+#: ZG8/oK
+msgctxt "ZG8/oK"
+msgid "Subtitle"
+msgstr ""
+
 # Submit form button
 #: ZLDmja
 msgctxt "ZLDmja"
@@ -2366,6 +2372,12 @@ msgstr "Rétroaction par défaut"
 msgctxt "iipV5Q"
 msgid "Type"
 msgstr "Type"
+
+# Field label
+#: iltluX
+msgctxt "iltluX"
+msgid "Numbers text"
+msgstr ""
 
 # Field label
 #: irG6mX
