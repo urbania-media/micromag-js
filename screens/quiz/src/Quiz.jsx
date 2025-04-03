@@ -221,6 +221,7 @@ const QuizScreen = ({
     }, [setUserAnswerIndex]);
 
     const numberOfAnswers = (answers || []).length;
+
     useEffect(() => {
         onQuizReset();
     }, [numberOfAnswers, onQuizReset]);

@@ -357,9 +357,9 @@ const KeypadScreen = ({
                 onCloseModal();
             }
         }
-        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('mouseup', handleClickOutside);
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mouseup', handleClickOutside);
         };
     }, [current, popupInnerRef, containerRef, isInteractivePreview, isEdit, showPopup]);
 
@@ -373,13 +373,17 @@ const KeypadScreen = ({
         setPopupDragDisabled(true);
     }, [setPopupDragDisabled]);
 
+    const onTap = useCallback(() => {
+        onCloseModal();
+    }, [onCloseModal]);
+
     const { bind: bindPopupDrag, progress: popupSpring } = useDragProgress({
         disabled: !isView || popupDragDisabled,
         progress: showPopup ? 0 : 1,
         computeProgress: computePopupProgress,
         springParams: { config: { tension: 300, friction: 30 } },
         dragOptions: { filterTaps: true, preventDefault: true, stopPropagation: true },
-        onTap: onCloseModal,
+        onTap,
     });
 
     useEffect(() => {

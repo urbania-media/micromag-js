@@ -268,7 +268,7 @@ const QuizMultipleScreen = ({
     const hasResult = questionResultHasText || questionResultHasImage || answerResultHasText;
 
     const onNextSlide = useCallback(() => {
-        if (isEdit) {
+        if (isEdit || isPreview) {
             return;
         }
         const nextIndex = questionIndex + 1;
@@ -278,7 +278,7 @@ const QuizMultipleScreen = ({
         } else if (nextIndex === questionsCount) {
             setQuestionIndex('results');
         }
-    }, [questions, questionIndex, setQuestionIndex, isEdit]);
+    }, [questions, questionIndex, setQuestionIndex, isEdit, isPreview]);
 
     const currentPoints = useMemo(
         () =>
@@ -347,7 +347,7 @@ const QuizMultipleScreen = ({
         } else if (stateId === 'intro') {
             setQuestionIndex('intro');
         }
-    }, [stateId, stateIndex, isEdit, setQuestionIndex]);
+    }, [stateId, stateIndex, isEdit, isPreview, setQuestionIndex]);
 
     let finalBackground = background;
     let backgroundKey = 'background';

@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading, no-console */
 import React, { useCallback, useEffect, useState } from 'react';
+import { v1 as uuid } from 'uuid';
 
 import {
     audioMedia,
@@ -189,7 +190,31 @@ export const Keypad = () => (
             id: 'KEYPAD',
             title: 'KEYPAD',
             theme: null,
-            components: [{ id: 'K', ...keypad }],
+            components: [
+                {
+                    ...keypad,
+                    id: uuid(),
+                    type: 'keypad',
+                    title: {
+                        body: 'Horoscope 1.0',
+                    },
+                },
+                {
+                    ...keypad,
+                    id: uuid(),
+                    type: 'keypad',
+                    title: {
+                        body: 'Horoscope 2.0',
+                    },
+                },
+                {
+                    ...keypad,
+                    id: uuid(),
+                    title: {
+                        body: 'Horoscope 3.0',
+                    },
+                },
+            ],
         }}
         memoryRouter
     />
