@@ -351,6 +351,10 @@
     "defaultMessage": "Virgo",
     "description": "Horoscope sign"
   },
+  "6eZW8C": {
+    "defaultMessage": "Created with",
+    "description": "Micromag branding"
+  },
   "6iR9Mt": {
     "defaultMessage": "Heading",
     "description": "Field label"

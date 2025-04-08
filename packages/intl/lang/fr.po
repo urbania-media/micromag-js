@@ -539,6 +539,12 @@ msgctxt "6bd963"
 msgid "Virgo"
 msgstr "Vierge"
 
+# Micromag branding
+#: 6eZW8C
+msgctxt "6eZW8C"
+msgid "Created with"
+msgstr "Créé avec"
+
 # Field label
 #: 6iR9Mt
 msgctxt "6iR9Mt"
@@ -1832,7 +1838,7 @@ msgstr "Description"
 #: ZG8/oK
 msgctxt "ZG8/oK"
 msgid "Subtitle"
-msgstr ""
+msgstr "Sous-titre"
 
 # Submit form button
 #: ZLDmja
@@ -2377,7 +2383,7 @@ msgstr "Type"
 #: iltluX
 msgctxt "iltluX"
 msgid "Numbers text"
-msgstr ""
+msgstr "Texte des numéros"
 
 # Field label
 #: irG6mX

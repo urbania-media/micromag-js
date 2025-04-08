@@ -263,6 +263,9 @@
     "6bd963": {
         "defaultMessage": "Vierge"
     },
+    "6eZW8C": {
+        "defaultMessage": "Créé avec"
+    },
     "6iR9Mt": {
         "defaultMessage": "Titre"
     },
@@ -908,6 +911,9 @@
     "ZCe0r4": {
         "defaultMessage": "Description"
     },
+    "ZG8/oK": {
+        "defaultMessage": "Sous-titre"
+    },
     "ZLDmja": {
         "defaultMessage": "Envoyer"
     },
@@ -1177,6 +1183,9 @@
     },
     "iipV5Q": {
         "defaultMessage": "Type"
+    },
+    "iltluX": {
+        "defaultMessage": "Texte des numéros"
     },
     "irG6mX": {
         "defaultMessage": "Distance"
