@@ -39,6 +39,7 @@ const propTypes = {
     previewFooter: PropTypes.node,
     afterShareMenuButton: PropTypes.node,
     beforeScreensMenuButton: PropTypes.node,
+    withMicromagBranding: PropTypes.bool,
     withDotItemClick: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
     withoutShareMenu: PropTypes.bool,
@@ -68,6 +69,7 @@ const defaultProps = {
     previewFooter: null,
     afterShareMenuButton: null,
     beforeScreensMenuButton: null,
+    withMicromagBranding: false,
     withDotItemClick: false,
     withoutScreensMenu: false,
     withoutShareMenu: false,
@@ -96,6 +98,7 @@ const ViewerMenu = ({
     previewFooter,
     afterShareMenuButton,
     beforeScreensMenuButton,
+    withMicromagBranding,
     withDotItemClick,
     withoutScreensMenu,
     withoutShareMenu,
@@ -477,6 +480,7 @@ const ViewerMenu = ({
                             toggleFullscreen={toggleFullscreen}
                             fullscreenActive={fullscreenActive}
                             fullscreenEnabled={fullscreenEnabled}
+                            withMicromagBranding={withMicromagBranding}
                         />
                     </FocusLock>
                 ) : null}

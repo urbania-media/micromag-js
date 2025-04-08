@@ -27,6 +27,12 @@
     @extend %fullscreen;
 }
 
+.scrollee {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+}
+
 .buttons {
     display: flex;
     position: relative;
@@ -123,6 +129,18 @@
     opacity: 0;
     box-shadow: 0 0 2px $black;
     content-visibility: auto;
+}
+
+.micromagBrandingSeparator {
+    width: 100%;
+    height: 35px;
+}
+
+.micromagBrandingContainer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
 }
 
 @keyframes intro {

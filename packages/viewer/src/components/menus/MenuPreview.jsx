@@ -1,13 +1,14 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading, arrow-body-style */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
 import { getStyleFromText } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
 
+import MicromagBranding from '../partials/MicromagBranding';
 import MenuScreen from './MenuScreen';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
@@ -25,6 +26,7 @@ const propTypes = {
     maxThumbsWidth: PropTypes.number,
     paddingTop: PropTypes.number,
     scrollDisabled: PropTypes.bool,
+    withMicromagBranding: PropTypes.bool,
     // @todo to reimplement:
     // shouldLoad: PropTypes.bool,
     // toggleFullscreen: PropTypes.func,
@@ -47,6 +49,7 @@ const defaultProps = {
     maxThumbsWidth: 140,
     paddingTop: null,
     scrollDisabled: false,
+    withMicromagBranding: false,
     // toggleFullscreen: null,
     // fullscreenActive: false,
     // fullscreenEnabled: false,
@@ -66,6 +69,7 @@ const ViewerMenuPreview = ({
     maxThumbsWidth,
     paddingTop,
     scrollDisabled,
+    withMicromagBranding,
     // toggleFullscreen,
     // fullscreenActive,
     // fullscreenEnabled,
@@ -114,7 +118,11 @@ const ViewerMenuPreview = ({
             aria-hidden={focusable ? null : 'true'}
         >
             <div className={styles.content} ref={containerRef}>
-                <Scroll className={styles.scroll} disabled={scrollDisabled}>
+                <Scroll
+                    className={styles.scroll}
+                    scrolleeClassName={styles.scrollee}
+                    disabled={scrollDisabled}
+                >
                     {hasTitle && header === null ? (
                         <div
                             className={styles.titleContainer}
@@ -178,6 +186,12 @@ const ViewerMenuPreview = ({
                         </ul>
                     </nav>
                     {footer}
+                    {withMicromagBranding ? (
+                        <>
+                            <div className={styles.micromagBrandingSeparator} />
+                            <MicromagBranding className={styles.micromagBrandingContainer} />
+                        </>
+                    ) : null}
                 </Scroll>
             </div>
         </div>

@@ -121,6 +121,7 @@ export const Basic = () => (
         }
         memoryRouter
         onMenuChange={(state) => console.log(state)}
+        withMicromagBranding
     />
 );
 
@@ -153,6 +154,7 @@ export const Urbania = () => (
             </div>
         }
         memoryRouter
+        withMicromagBranding
         // onMenuChange={(state) => console.log(state)}
     />
 );
@@ -281,10 +283,14 @@ export const MicromagExampleEarly2024 = () => <Viewer {...micromagExampleEarly20
 export const LesPlanetes = () => <Viewer {...planetsStory} memoryRouter />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint memoryRouter />;
 
-export const AllScreens = () => <Viewer {...props} withNeighborScreens memoryRouter />;
+export const AllScreens = () => (
+    <Viewer {...props} withNeighborScreens memoryRouter withMicromagBranding />
+);
+
 export const AllScreensWithoutHeader = () => (
     <Viewer {...propsWithoutHeader} withNeighborScreens memoryRouter />
 );
+
 export const AllScreensWithoutFooter = () => (
     <Viewer {...propsWithoutFooter} withNeighborScreens memoryRouter />
 );

@@ -81,6 +81,7 @@ const propTypes = {
     beforeScreensMenuButton: PropTypes.node,
     closeable: PropTypes.bool,
     withMetadata: PropTypes.bool,
+    withMicromagBranding: PropTypes.bool,
     withoutGestures: PropTypes.bool,
     withoutMenu: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
@@ -138,6 +139,7 @@ const defaultProps = {
     menuDotsButtons: null,
     closeable: false,
     withMetadata: false,
+    withMicromagBranding: false,
     withNeighborScreens: false,
     withFullscreenWebView: false,
     withNavigationHint: 'hand',
@@ -190,6 +192,7 @@ const Viewer = ({
     beforeScreensMenuButton,
     closeable,
     withMetadata,
+    withMicromagBranding,
     withoutGestures,
     withoutMenu,
     withoutScreensMenu,
@@ -849,6 +852,7 @@ const Viewer = ({
                                 withoutShareMenu={withoutShareMenu}
                                 afterShareMenuButton={afterShareMenuButton}
                                 beforeScreensMenuButton={beforeScreensMenuButton}
+                                withMicromagBranding={withMicromagBranding}
                                 refDots={menuDotsContainerRef}
                             />
                         ) : null}
