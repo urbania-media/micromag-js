@@ -3,7 +3,13 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { useDimensionObserver } from './useObserver';
 
-const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+export const useDevicePixelRatio = () => {
+    const [pixelRatio, setPixelRatio] = useState(1);
+    useEffect(() => {
+        setPixelRatio(typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1);
+    }, [setPixelRatio]);
+    return pixelRatio;
+}
 
 const useScreenSize = ({
     width = null,
@@ -15,6 +21,7 @@ const useScreenSize = ({
     media: providedMedia = null,
     scale = null,
 }) => {
+    const devicePixelRatio = useDevicePixelRatio();
     const screenSize = useMemo(() => {
         const media =
             providedMedia !== null
@@ -51,6 +58,7 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
         width: calculatedWidth = 0,
         height: calculatedHeight = 0,
     } = useDimensionObserver();
+    const devicePixelRatio = useDevicePixelRatio();
     const fullWidth = width !== null ? width : calculatedWidth;
     const fullHeight = height !== null ? height : calculatedHeight;
 

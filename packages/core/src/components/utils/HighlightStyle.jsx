@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { convertStyleToString } from '../../utils';
 
 const propTypes = {
@@ -16,9 +17,14 @@ const defaultProps = {
 
 const HighlightStyle = ({ selector, highlightSelector, style }) =>
     style !== null ? (
-        <style type="text/css">{`${[selector, highlightSelector]
-            .filter((it) => it !== null)
-            .join(' ')}{${convertStyleToString(style)}}`}</style>
+        <style
+            type="text/css"
+            dangerouslySetInnerHTML={{
+                __html: `${[selector, highlightSelector]
+                    .filter((it) => it !== null)
+                    .join(' ')}{${convertStyleToString(style)}}`,
+            }}
+        />
     ) : null;
 
 HighlightStyle.propTypes = propTypes;

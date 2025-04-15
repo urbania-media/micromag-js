@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { convertStyleToString } from '../../utils';
 
 const propTypes = {
@@ -16,9 +17,14 @@ const defaultProps = {
 
 const LinkStyle = ({ selector, linkSelector, style }) =>
     style !== null ? (
-        <style type="text/css">{`${[selector, linkSelector].filter(it => it !== null).join(' ')}{${convertStyleToString(
-            style,
-        )}}`}</style>
+        <style
+            type="text/css"
+            dangerouslySetInnerHTML={{
+                __html: `${[selector, linkSelector].filter((it) => it !== null).join(' ')}{${convertStyleToString(
+                    style,
+                )}}`,
+            }}
+        />
     ) : null;
 
 LinkStyle.propTypes = propTypes;

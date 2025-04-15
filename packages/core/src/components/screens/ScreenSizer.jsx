@@ -4,14 +4,12 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 
-import { useDimensionObserver } from '../../hooks';
+import { useDevicePixelRatio, useDimensionObserver } from '../../hooks';
 
 // import { PropTypes as MicromagPropTypes } from '../../lib';
 import { ScreenSizeProvider } from '../../contexts';
 
 import styles from '../../styles/screens/screen-sizer.module.scss';
-
-const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
 
 const propTypes = {
     width: PropTypes.number,
@@ -94,6 +92,7 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
         };
     }, [screenWidth, screenHeight, width, height, fit, calculatedWidth, calculatedHeight, hasSize]);
 
+    const devicePixelRatio = useDevicePixelRatio();
     const screenSize = useMemo(
         () => ({
             screen: 'mobile',

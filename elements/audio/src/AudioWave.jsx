@@ -7,12 +7,10 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useDimensionObserver } from '@micromag/core/hooks';
+import { useDimensionObserver, useDevicePixelRatio } from '@micromag/core/hooks';
 import { getContrastingColor } from '@micromag/core/utils';
 
 import styles from './styles/audio-wave.module.scss';
-
-const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
 
 const propTypes = {
     currentTime: PropTypes.number,
@@ -163,6 +161,7 @@ function AudioWave({
         const canvasBg = canvasBackgroundRef.current;
         const canvasProgress = canvasProgressRef.current;
 
+        const devicePixelRatio = useDevicePixelRatio();
         const scale = devicePixelRatio;
 
         canvasBg.width = canvasProgress.width = Math.floor(elWidth * scale);

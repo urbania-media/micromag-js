@@ -608,7 +608,10 @@ const Viewer = ({
 
     // hmm?
     const overscrollStyle = (
-        <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
+        <style
+            type="text/css"
+            dangerouslySetInnerHTML={{ __html: `body { overscroll-behavior: contain; }` }}
+        />
     );
 
     const keyboardShortcuts = useMemo(

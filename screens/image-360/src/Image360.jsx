@@ -16,7 +16,7 @@ import {
     usePlaybackMediaRef,
     useViewerWebView,
 } from '@micromag/core/contexts';
-import { useAnimationFrame, useTrackScreenEvent } from '@micromag/core/hooks';
+import { useAnimationFrame, useTrackScreenEvent, useDevicePixelRatio } from '@micromag/core/hooks';
 import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -27,8 +27,6 @@ import Image from '@micromag/element-image';
 import useThree from './useThree';
 
 import styles from './image-360.module.scss';
-
-const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
 
 const propTypes = {
     layout: PropTypes.oneOf(['full']),
@@ -85,6 +83,7 @@ const Image360Screen = ({
     const mediaShouldLoad = current || preload;
 
     const canvasContainerRef = useRef();
+    const devicePixelRatio = useDevicePixelRatio();
 
     // ------------------------------------
 

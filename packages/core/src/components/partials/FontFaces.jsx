@@ -2,6 +2,7 @@
 import isObject from 'lodash/isObject';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '../../lib';
 
 const getUrlsFromMedia = (media, formats) => {
@@ -96,7 +97,9 @@ const FontFaces = ({ fonts, formats }) => {
             ];
         }, [])
         .filter((it) => it !== null);
-    return fontFaces.length > 0 ? <style type="text/css">{fontFaces.join('\n')}</style> : null;
+    return fontFaces.length > 0 ? (
+        <style type="text/css" dangerouslySetInnerHTML={{ __html: fontFaces.join('\n') }} />
+    ) : null;
 };
 
 FontFaces.propTypes = propTypes;

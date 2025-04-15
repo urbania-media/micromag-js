@@ -24,7 +24,12 @@ import {
     useTrackScreenEvent,
     useTrackScreenMedia,
 } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
+import {
+    getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
+    useDevicePixelRatio,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
@@ -36,8 +41,6 @@ import Video from '@micromag/element-video';
 import useThree from './useThree';
 
 import styles from './video-360.module.scss';
-
-const devicePixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
 
 const propTypes = {
     layout: PropTypes.oneOf(['full']),
@@ -94,6 +97,7 @@ const Video360Screen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { open: openWebView } = useViewerWebView();
+    const devicePixelRatio = useDevicePixelRatio();
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || preload;
