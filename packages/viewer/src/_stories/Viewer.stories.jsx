@@ -36,12 +36,14 @@ import Viewer from '../components/ViewerContainer';
 import styles from './styles.module.scss';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
+import bayard from '../../../../.storybook/data/stories/bayard.json';
 import cointreau from '../../../../.storybook/data/stories/cointreau.json';
 import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import lol from '../../../../.storybook/data/stories/lol.json';
 import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
 import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
 import micromagExampleEarly2024 from '../../../../.storybook/data/stories/micromagExampleEarly2024.json';
+import tnm from '../../../../.storybook/data/stories/tnm.json';
 import testTheme from '../../../../.storybook/data/themes/new-theme.json';
 import micromagAudio from '../../../../.storybook/examples/micromag-audio.json';
 
@@ -160,6 +162,10 @@ export const Urbania = () => (
 );
 
 export const Article = () => <Viewer story={article} memoryRouter />;
+
+export const Bayard = () => <Viewer story={bayard} memoryRouter />;
+
+export const TNM = () => <Viewer story={tnm} memoryRouter />;
 
 export const Single = () => <Viewer story={lol} memoryRouter />;
 

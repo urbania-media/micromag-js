@@ -248,11 +248,11 @@ const QuizMultipleScreen = ({
             ? userAnswers[questionIndex]
             : null;
 
-    // const answer =
-    //     currentAnsweredIndex !== null && typeof answers[currentAnsweredIndex] !== 'undefined'
-    //         ? answers[currentAnsweredIndex]
-    //         : null;
-    // const { result: answerResult = null } = answer || {};
+    const answer =
+        currentAnsweredIndex !== null && typeof answers[currentAnsweredIndex] !== 'undefined'
+            ? answers[currentAnsweredIndex]
+            : null;
+    const { result: answerResult = null } = answer || {};
 
     const hasTrueFalse =
         answers !== null
@@ -264,10 +264,11 @@ const QuizMultipleScreen = ({
 
     const questionResultHasText = isTextFilled(questionResult);
     const questionResultHasImage = isImageFilled(questionResultImage);
-    // const answerResultHasText = isTextFilled(answerResult);
-    const hasResult = questionResultHasText || questionResultHasImage;
+    const answerResultHasText = isTextFilled(answerResult);
+    const hasResult = questionResultHasText || questionResultHasImage || answerResultHasText;
 
     const onNextSlide = useCallback(() => {
+        // console.log('onNextSlide', isEdit, isPreview);
         if (isEdit || isPreview) {
             return;
         }

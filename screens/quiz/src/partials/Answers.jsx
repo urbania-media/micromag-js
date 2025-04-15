@@ -104,7 +104,7 @@ const Answers = ({
     const finalShowUserAnswer = showUserAnswer || !hasRightAnswer;
 
     const shouldCollapse =
-        (!withoutGoodAnswer || (finalShowUserAnswer && answeredIndex !== null)) && !withoutCollapse;
+        !withoutGoodAnswer || (finalShowUserAnswer && answeredIndex !== null && !withoutCollapse);
     const [answersCollapsed, setAnswersCollapsed] = useState(answeredIndex !== null);
     const [answersDidCollapse, setAnswersDidCollapse] = useState(
         initialCollapsed || answeredIndex !== null,
@@ -118,6 +118,7 @@ const Answers = ({
         if (answeredIndex !== null && shouldCollapse) {
             timeout = setTimeout(
                 () => {
+                    // console.log('ok should collapse');
                     setAnswersCollapsed(true);
                     if (onCollapse !== null) {
                         onCollapse();
@@ -127,6 +128,7 @@ const Answers = ({
             );
         } else if (answeredIndex !== null && !shouldCollapse) {
             timeout = setTimeout(() => {
+                // console.log('ok no collapse');
                 if (onCollapse !== null) {
                     onCollapse();
                 }
@@ -160,17 +162,27 @@ const Answers = ({
 
     useEffect(() => {
         let timeout = null;
+        let endTimeout = null;
         if (answersCollapsed) {
             timeout = setTimeout(() => {
                 setAnswersFinalCollapse(true);
             }, 300);
+            endTimeout = setTimeout(() => {
+                // Failsafe cause collapse transition is not always active
+                if (onTransitionEnd !== null) {
+                    onTransitionEnd();
+                }
+            }, 625);
         }
         return () => {
             if (timeout !== null) {
                 clearTimeout(timeout);
             }
+            if (endTimeout !== null) {
+                clearTimeout(endTimeout);
+            }
         };
-    }, [answersCollapsed]);
+    }, [answersCollapsed, onTransitionEnd, setAnswersFinalCollapse]);
 
     const [transitioned, setTransitioned] = useState(false);
     const onAnswerTransitionEnd = useCallback(() => {
@@ -225,11 +237,13 @@ const Answers = ({
         if (answeredIndex !== null && showAnimation && answersCollapsed && !rightAnswer) {
             hidden = true;
         }
-        return { ...answer, hidden, userAnswer, index: answerI, maxHeight: height };
+        const { label = null } = answer || {};
+        const key = `key-${answerI}-${label?.body || null}`;
+        return { ...answer, hidden, userAnswer, index: answerI, maxHeight: height, key };
     });
 
     const transitions = useTransition(filteredListOfItems, {
-        key: ({ index = 0, label = null }) => `key-${index}-${label?.body || null}`,
+        key: ({ key }) => key,
         update: ({ hidden = false, maxHeight = 0 }) => ({
             opacity: hidden && showAnimation && !withoutGoodAnswer ? 0 : 1,
             // Animate this, not height
@@ -344,10 +358,6 @@ const Answers = ({
                                                         e.button === 0
                                                     ) {
                                                         onClick(answer, answerI);
-                                                        // onTransitionEnd();
-                                                        // setTimeout(() => {
-                                                        //     onTransitionEnd();
-                                                        // }, 2000);
                                                     }
                                                 }}
                                                 disabled={!visible || isPreview || answered}
