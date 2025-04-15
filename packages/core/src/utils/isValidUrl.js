@@ -1,4 +1,8 @@
 const isValidUrl = (string) => {
+    if (string === null || typeof string === 'undefined') {
+        return false;
+    }
+
     let url;
 
     try {

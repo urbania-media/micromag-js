@@ -25,11 +25,6 @@ export default {
             name: 'result',
             type: 'text-element',
             // textOnly: true,
-            fieldsProps: {
-                // textStyle: {
-                //     excludedFields: ['highlight', 'link'],
-                // },
-            },
             label: defineMessage({
                 defaultMessage: 'Answer feedback',
                 description: 'Field label',
