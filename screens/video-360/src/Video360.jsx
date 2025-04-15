@@ -23,12 +23,12 @@ import {
     useDebounce,
     useTrackScreenEvent,
     useTrackScreenMedia,
+    useDevicePixelRatio,
 } from '@micromag/core/hooks';
 import {
     getFooterProps,
     isFooterFilled,
     isHeaderFilled,
-    useDevicePixelRatio,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
