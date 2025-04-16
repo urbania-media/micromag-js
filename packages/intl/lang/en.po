@@ -539,12 +539,6 @@ msgctxt "6bd963"
 msgid "Virgo"
 msgstr "Virgo"
 
-# Micromag branding
-#: 6eZW8C
-msgctxt "6eZW8C"
-msgid "Created with"
-msgstr "Created with"
-
 # Field label
 #: 6iR9Mt
 msgctxt "6iR9Mt"
@@ -1229,6 +1223,12 @@ msgctxt "LOknw0"
 msgid "Styles"
 msgstr "Styles"
 
+# Micromag branding
+#: LiMAIC
+msgctxt "LiMAIC"
+msgid "This Micromag was"
+msgstr "This Micromag was"
+
 # Button label
 #: LkVfwW
 msgctxt "LkVfwW"
@@ -1563,6 +1563,12 @@ msgstr "With seek bar"
 msgctxt "T9NZPQ"
 msgid "Images"
 msgstr "Images"
+
+# Micromag branding
+#: TDAOl2
+msgctxt "TDAOl2"
+msgid "created with"
+msgstr "created with"
 
 # Longitude description
 #: THKV4v

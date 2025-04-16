@@ -25,7 +25,12 @@ const MicromagBranding = ({ className = null }) => (
             className={styles.link}
         >
             <span className={styles.text}>
-                <FormattedMessage defaultMessage="Created with" description="Micromag branding" />
+                <FormattedMessage
+                    defaultMessage="This Micromag was"
+                    description="Micromag branding"
+                />
+                <br />
+                <FormattedMessage defaultMessage="created with" description="Micromag branding" />
             </span>
             <MicromagIcon className={styles.icon} />
         </a>

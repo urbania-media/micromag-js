@@ -263,9 +263,6 @@
     "6bd963": {
         "defaultMessage": "Virgo"
     },
-    "6eZW8C": {
-        "defaultMessage": "Created with"
-    },
     "6iR9Mt": {
         "defaultMessage": "Heading"
     },
@@ -608,6 +605,9 @@
     "LOknw0": {
         "defaultMessage": "Styles"
     },
+    "LiMAIC": {
+        "defaultMessage": "This Micromag was"
+    },
     "LkVfwW": {
         "defaultMessage": "Screen {index}"
     },
@@ -775,6 +775,9 @@
     },
     "T9NZPQ": {
         "defaultMessage": "Images"
+    },
+    "TDAOl2": {
+        "defaultMessage": "created with"
     },
     "THKV4v": {
         "defaultMessage": "Longitude"

@@ -172,7 +172,7 @@ const Answers = ({
                 if (onTransitionEnd !== null) {
                     onTransitionEnd();
                 }
-            }, 625);
+            }, 500);
         }
         return () => {
             if (timeout !== null) {

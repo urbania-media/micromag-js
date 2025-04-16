@@ -263,9 +263,6 @@
     "6bd963": {
         "defaultMessage": "Vierge"
     },
-    "6eZW8C": {
-        "defaultMessage": "Créé avec"
-    },
     "6iR9Mt": {
         "defaultMessage": "Titre"
     },
@@ -608,6 +605,9 @@
     "LOknw0": {
         "defaultMessage": "Styles"
     },
+    "LiMAIC": {
+        "defaultMessage": "Ce Micromag a"
+    },
     "LkVfwW": {
         "defaultMessage": "Écran {index}"
     },
@@ -775,6 +775,9 @@
     },
     "T9NZPQ": {
         "defaultMessage": "Images"
+    },
+    "TDAOl2": {
+        "defaultMessage": "été créé à l'aide de"
     },
     "THKV4v": {
         "defaultMessage": "Longitude"

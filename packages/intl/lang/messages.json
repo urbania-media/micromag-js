@@ -351,10 +351,6 @@
     "defaultMessage": "Virgo",
     "description": "Horoscope sign"
   },
-  "6eZW8C": {
-    "defaultMessage": "Created with",
-    "description": "Micromag branding"
-  },
   "6iR9Mt": {
     "defaultMessage": "Heading",
     "description": "Field label"
@@ -811,6 +807,10 @@
     "defaultMessage": "Styles",
     "description": "Field label"
   },
+  "LiMAIC": {
+    "defaultMessage": "This Micromag was",
+    "description": "Micromag branding"
+  },
   "LkVfwW": {
     "defaultMessage": "Screen {index}",
     "description": "Button label"
@@ -1033,6 +1033,10 @@
   "T9NZPQ": {
     "defaultMessage": "Images",
     "description": "Field label"
+  },
+  "TDAOl2": {
+    "defaultMessage": "created with",
+    "description": "Micromag branding"
   },
   "THKV4v": {
     "defaultMessage": "Longitude",
