@@ -12,6 +12,7 @@ import {
     useViewerInteraction,
     useViewerWebView,
 } from '@micromag/core/contexts';
+import { useTrackEvent } from '@micromag/core/hooks';
 import WebView from '@micromag/element-webview';
 
 import useKeyboardShortcuts from '../../hooks/useKeyboardShortcuts';
@@ -20,17 +21,19 @@ import styles from '../../styles/partials/web-view.module.scss';
 
 const propTypes = {
     onChange: PropTypes.func,
+    trackingEnabled: PropTypes.bool,
     className: PropTypes.string,
     style: PropTypes.object,
 };
 
 const defaultProps = {
     onChange: null,
+    trackingEnabled: false,
     className: null,
     style: null,
 };
 
-function WebViewContainer({ onChange, className, style }) {
+function WebViewContainer({ onChange, trackingEnabled, className, style }) {
     const {
         opened,
         close,
@@ -42,6 +45,7 @@ function WebViewContainer({ onChange, className, style }) {
     } = useViewerWebView();
     const { disableInteraction, enableInteraction } = useViewerInteraction();
     const { playing, setPlaying, hideControls, showControls } = usePlaybackContext();
+    const trackEvent = useTrackEvent();
 
     const wasPlayingRef = useRef(playing);
     const [currentUrl, setCurrentUrl] = useState(url);
@@ -83,7 +87,10 @@ function WebViewContainer({ onChange, className, style }) {
                 setPlaying(true);
             }
         }
-    }, [opened]);
+        if (trackingEnabled) {
+            trackEvent('viewer_webview', opened ? 'open' : 'close', currentUrl, { source });
+        }
+    }, [opened, trackEvent]);
 
     const keyboardShortcuts = useMemo(
         () => ({

@@ -26,6 +26,7 @@ export { default as Color } from './Color';
 export { default as ColorPicker } from './ColorPicker';
 export { default as ContainerStyle } from './ContainerStyle';
 export { default as Conversation } from './Conversation';
+export { default as CustomAnswer } from './CustomAnswer';
 export { default as Element } from './Element';
 export { default as ElementList } from './ElementList';
 export { default as Fields } from './Fields';

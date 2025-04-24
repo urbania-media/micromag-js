@@ -173,6 +173,12 @@
                 opacity: 0;
             }
         }
+
+        &.focused {
+            .confirm {
+                opacity: 1;
+            }
+        }
     }
 
     .textInput {
@@ -181,10 +187,11 @@
         z-index: 0;
         width: 100%;
         margin: 0;
-        padding: 10px 40px 10px 10px;
+        padding: 10px 40px;
         overflow: hidden;
-        transition: opacity 500ms ease-out;
+        transition: margin-left 300ms ease-out, transform 300ms ease-out, opacity 500ms ease-out;
         color: $white;
+        text-align: center;
     }
 
     .confirm {
@@ -193,6 +200,14 @@
         top: 0;
         right: 0;
         bottom: 0;
+        transition: opacity 0.15s ease-out;
+        opacity: 0;
+
+        &.disabled {
+            .icon {
+                opacity: 0.5;
+            }
+        }
     }
 
     &.answered {
@@ -225,9 +240,19 @@
             text-align: left;
         }
 
+        .textInput {
+            padding: 10px;
+            text-align: left;
+            pointer-events: none;
+        }
+
         &.withPercentage {
             .itemText {
                 transform: translate(-2em, 0);
+            }
+
+            .textInput {
+                transform: translate(0, 0);
             }
         }
     }

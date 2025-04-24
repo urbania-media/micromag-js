@@ -31,14 +31,15 @@ export default {
             type: 'fields',
             isList: true,
             fields: [
-                {
-                    name: 'textStyle',
-                    type: 'text-style-form',
-                    label: defineMessage({
-                        defaultMessage: 'Button text style',
-                        description: 'Field label',
-                    }),
-                },
+                // Removed cause redundant with text-element styles
+                // {
+                //     name: 'textStyle',
+                //     type: 'text-style-form',
+                //     label: defineMessage({
+                //         defaultMessage: 'Button text style',
+                //         description: 'Field label',
+                //     }),
+                // },
                 {
                     type: 'box-style-form',
                     name: 'buttonStyle',

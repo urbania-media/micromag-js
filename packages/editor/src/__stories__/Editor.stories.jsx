@@ -22,6 +22,7 @@ import quiz from '../../../../.storybook/data/stories/quiz';
 import quizMultiple from '../../../../.storybook/data/stories/quiz-multiple';
 import quizMultipleSimple from '../../../../.storybook/data/stories/quiz-multiple-simple';
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
+import survey from '../../../../.storybook/data/stories/survey';
 import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
 import UrbaniaScreenComponents from '../../../../.storybook/data/stories/urbania-components';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
@@ -272,6 +273,8 @@ export const Survey = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'survey', type: 'survey' }] }} />
 );
 
+export const Surveys = () => <EditorContainer defaultValue={survey} />;
+
 export const Quiz = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'quiz', type: 'quiz' }] }} />
 );
@@ -297,6 +300,7 @@ export const VideoCustom = () => (
         defaultValue={{ components: [{ id: 'video', type: 'video', video: videoMedia() }] }}
     />
 );
+
 export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
 export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;
 export const ShareScreens = () => <EditorContainer defaultValue={shareScreensStory} />;

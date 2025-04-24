@@ -120,6 +120,7 @@ const UrbaniaArticleCard = ({
         return cleanedUrl !== null
             ? `${cleanedUrl.split('?')[0]}?${queryString.stringify({
                   reader: true,
+                  _ref: 'micromag',
                   ...currentQueryString,
               })}`
             : url;

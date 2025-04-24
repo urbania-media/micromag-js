@@ -17,6 +17,7 @@ export const normal = () => {
         />
     );
 };
+
 export const multiline = () => {
     const [value, setValue] = useState();
     return (
@@ -25,6 +26,19 @@ export const multiline = () => {
             multiline
             value={value}
             onChange={(e) => setValue(e.target.value)}
+        />
+    );
+};
+
+export const placeholder = () => {
+    const [value, setValue] = useState();
+    return (
+        <TextInput
+            label="PLACEHOLDER"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            textStyle={{ color: '#fff' }}
+            placeholderTextStyle={{ color: '#ff00ff', textAlign: 'center' }}
         />
     );
 };

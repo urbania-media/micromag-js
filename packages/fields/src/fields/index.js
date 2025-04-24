@@ -22,6 +22,7 @@ export { default as buttonLink } from './button-link';
 export { default as captions } from './captions';
 export { default as callToAction } from './call-to-action';
 export { default as callToActionForm } from './call-to-action-form';
+export { default as customAnswer } from './custom-answer';
 export { default as dateElement } from './date-element';
 export { default as date } from './date';
 export { default as datetime } from './datetime';

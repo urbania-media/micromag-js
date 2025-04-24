@@ -1027,6 +1027,7 @@ const Viewer = ({
                         > */}
                         <WebView
                             className={styles.webView}
+                            trackingEnabled={trackingEnabled}
                             style={{
                                 maxWidth: withFullscreenWebView
                                     ? null

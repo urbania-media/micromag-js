@@ -6,6 +6,100 @@ const Quiz = {
     theme: defaultTheme,
     components: [
         {
+            id: '2e0f52d0-a3f3-11ed-b465-489593279',
+            type: 'survey',
+            question: {
+                body: '<span><strong>Quel est ton nom de famille?</strong></span>',
+            },
+            parameters: {
+                metadata: {
+                    title: 'Sondage',
+                    description: 'Matchmaker',
+                },
+            },
+            customAnswer: {
+                active: true,
+                placeholder: {
+                    body: 'Placeholder',
+                    textStyle: {
+                        color: {
+                            alpha: 1,
+                            color: '#ff00ff',
+                        },
+                        textAlign: 'center',
+                    },
+                },
+                textStyle: {
+                    fontSize: 12,
+                    color: {
+                        alpha: 1,
+                        color: '#fff',
+                    },
+                },
+            },
+            buttonsStyle: {
+                background: {
+                    color: '#000',
+                },
+            },
+            buttonsTextStyle: {
+                fontSize: 11,
+                color: {
+                    alpha: 0.2,
+                    color: '#0f0',
+                },
+            },
+            group: null,
+            parentId: null,
+            result: {
+                body: 'HAHAHA loser',
+                textStyle: {
+                    color: {
+                        alpha: 1,
+                        color: '#00ff00',
+                    },
+                },
+            },
+            answers: [
+                {
+                    label: {
+                        body: 'Tremblay',
+                        textStyle: {
+                            fontSize: 14,
+                            color: {
+                                alpha: 1,
+                                color: '#ff0000',
+                            },
+                        },
+                    },
+                },
+                {
+                    label: {
+                        body: 'Lavoie',
+                    },
+                },
+                {
+                    label: {
+                        body: 'Cracker',
+                        textStyle: {
+                            fontSize: 19,
+                            color: {
+                                alpha: 1,
+                                color: '#ff0000',
+                            },
+                        },
+                    },
+                },
+            ],
+            background: {
+                color: {
+                    color: '#223322',
+                },
+                video: 'media://3799',
+                image: null,
+            },
+        },
+        {
             id: '440f52d0-sdfa-11ed-b465-sdfkasgd',
             type: 'survey',
             question: {

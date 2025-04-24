@@ -228,7 +228,7 @@ export const Keypad = () => (
     />
 );
 
-export const Survey = () => <Viewer story={survey} memoryRouter />;
+export const Surveys = () => <Viewer story={survey} memoryRouter />;
 
 export const QuizAndSurvey = () => <Viewer story={quiz} memoryRouter />;
 

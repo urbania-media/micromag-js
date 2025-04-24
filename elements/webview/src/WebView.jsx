@@ -31,7 +31,6 @@ const defaultProps = {
 
 function WebView({ url, width, height, closeable, focusable, onClose, className }) {
     const intl = useIntl();
-
     return (
         <div
             className={classNames([

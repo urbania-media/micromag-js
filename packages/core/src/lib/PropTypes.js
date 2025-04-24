@@ -775,6 +775,13 @@ export const badge = PropTypes.shape({
     buttonStyle: boxStyle,
 });
 
+export const customAnswer = PropTypes.shape({
+    active: PropTypes.bool,
+    placeholder: textElement,
+    textStyle,
+    boxStyle,
+});
+
 export const header = PropTypes.shape({
     badge,
 });

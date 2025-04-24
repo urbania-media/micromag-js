@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-
 /* eslint-disable react/jsx-props-no-spreading */
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -59,14 +57,13 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
-    showInput: PropTypes.bool,
+    customAnswer: PropTypes.bool,
     showCount: PropTypes.bool,
     withoutPercentage: PropTypes.bool,
     withoutBar: PropTypes.bool,
     current: PropTypes.bool,
     preload: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
-    // transitionStagger: PropTypes.number,
     resultTransitionDuration: PropTypes.number,
     type: PropTypes.string,
     className: PropTypes.string,
@@ -85,14 +82,13 @@ const defaultProps = {
     header: null,
     footer: null,
     background: null,
-    showInput: false,
+    customAnswer: false,
     showCount: false,
     withoutPercentage: false,
     withoutBar: false,
     current: true,
     preload: true,
     transitions: null,
-    // transitionStagger: 100,
     resultTransitionDuration: 500,
     type: null,
     className: null,
@@ -111,14 +107,13 @@ const SurveyScreen = ({
     header,
     footer,
     background,
-    showInput,
+    customAnswer,
     showCount,
     withoutPercentage,
     withoutBar,
     current,
     preload,
     transitions,
-    // transitionStagger,
     resultTransitionDuration,
     type,
     className,
@@ -159,6 +154,16 @@ const SurveyScreen = ({
 
     const hasQuestion = isTextFilled(question);
     const hasDefaultResult = isTextFilled(result);
+
+    const {
+        active: allowCustomAnswer = false,
+        placeholder = null,
+        textStyle: customAnswerTextStyle = null,
+        boxStyle: customAnswerBoxStyle = null,
+    } = customAnswer || {};
+
+    const { body: placeholderBody = null, textStyle: placeholderTextStyle = null } =
+        placeholder || {};
 
     const showInstantAnswer = isStatic || isCapture;
     const [userAnswerIndex, setUserAnswerIndex] = useState(showInstantAnswer ? -1 : null);
@@ -210,7 +215,6 @@ const SurveyScreen = ({
     }, [answers, quizAnswers, userAnswerIndex]);
 
     const isSplitted = layout === 'split';
-    // const isTopLayout = layout === 'top';
     const isMiddleLayout = layout === 'middle';
     const verticalAlign = isSplitted ? null : layout;
 
@@ -231,6 +235,7 @@ const SurveyScreen = ({
                     {
                         answer,
                         answerIndex,
+                        answerType: 'button',
                     },
                 );
             }
@@ -273,7 +278,7 @@ const SurveyScreen = ({
     const onTextInputChange = useCallback(
         (e) => {
             const { value = null } = e.target || {};
-            setTextInput(value);
+            setTextInput(value !== '' ? value : null);
         },
         [setTextInput],
     );
@@ -283,13 +288,13 @@ const SurveyScreen = ({
             e.preventDefault();
             e.stopPropagation();
             if (textInput !== null && textInput !== '' && !answered) {
-                // console.log('submitting survey suggestion', textInput);
                 submitQuiz({ choice: textInput, value: 1 });
                 setUserAnswerIndex('input');
                 setInputFocused(false);
-                trackScreenEvent('submit_answer', `Answer: ${textInput}`, {
+                trackScreenEvent('click_answer', `Answer: ${textInput}`, {
                     textInput,
-                    answerIndex: -1,
+                    answerIndex: null,
+                    answerType: 'custom',
                 });
             }
         },
@@ -384,7 +389,7 @@ const SurveyScreen = ({
                         const {
                             label = null,
                             buttonStyle: answerButtonStyle = null,
-                            textStyle: answerButtonTextStyle = null,
+                            textStyle: answerButtonTextStyle = null, // for backwards compat, leave there
                             resultStyle: answerResultStyle = null,
                         } = answer || {};
 
@@ -393,11 +398,13 @@ const SurveyScreen = ({
                             textColor: answerResultTextColor,
                             percentageTextStyle: answerResultPercentageTextStyle = null,
                         } = answerResultStyle || {};
+
                         const { body = null } = label || {};
                         const { percent = 0, count = 0 } =
                             body !== null ? quizAnswersComputed[body] || {} : {};
                         const { textStyle = null } = label || {};
                         const { color: labelColor = null } = textStyle || {};
+
                         const hasAnswerLabel = isTextFilled(label);
                         const userAnswer = userAnswerIndex === answerIndex;
                         const buttonStyles = {
@@ -417,7 +424,7 @@ const SurveyScreen = ({
 
                         return (
                             <div
-                                key={`answer-${answerIndex}`}
+                                key={`answer-${answerIndex + 1}`}
                                 className={classNames([
                                     styles.item,
                                     {
@@ -460,8 +467,8 @@ const SurveyScreen = ({
                                                     focusable={current && isView}
                                                     buttonStyle={buttonStyles}
                                                     textStyle={{
-                                                        ...textStyle,
                                                         ...buttonsTextStyle,
+                                                        ...textStyle,
                                                         ...answerButtonTextStyle,
                                                     }}
                                                 >
@@ -469,8 +476,8 @@ const SurveyScreen = ({
                                                         <Text
                                                             {...label}
                                                             textStyle={{
-                                                                ...textStyle,
                                                                 ...buttonsTextStyle,
+                                                                ...textStyle,
                                                                 ...answerButtonTextStyle,
                                                             }}
                                                             inline
@@ -498,8 +505,8 @@ const SurveyScreen = ({
                                                                 <Text
                                                                     {...label}
                                                                     textStyle={{
-                                                                        ...textStyle,
                                                                         ...buttonsTextStyle,
+                                                                        ...textStyle,
                                                                         ...answerButtonTextStyle,
                                                                         ...resultsTextColor,
                                                                         ...resultsPercentageTextStyle,
@@ -622,7 +629,7 @@ const SurveyScreen = ({
                         }
                     >
                         {items}
-                        {!isPlaceholder && showInput ? (
+                        {!isPlaceholder && allowCustomAnswer ? (
                             <form
                                 className={classNames([
                                     styles.input,
@@ -638,21 +645,40 @@ const SurveyScreen = ({
                                     className={styles.textInput}
                                     disabled={inputDisabled}
                                     focusable={current && isView}
-                                    buttonStyle={buttonsStyle}
+                                    buttonStyle={{ ...buttonsStyle, ...customAnswerBoxStyle }}
                                     textStyle={{
                                         ...buttonsTextStyle,
+                                        ...customAnswerTextStyle,
+                                        // ...(answered ? { textAlign: 'left' } : null),
+                                    }}
+                                    placeholderTextStyle={{
+                                        ...buttonsTextStyle,
+                                        ...customAnswerTextStyle,
+                                        ...placeholderTextStyle,
+                                        // ...(answered ? { textAlign: 'left' } : null),
                                     }}
                                     value={textInput}
+                                    label={placeholderBody}
                                     onChange={onTextInputChange}
                                     onFocus={onInputFocused}
                                     onBlur={onInputBlurred}
                                 />
                                 <Button
-                                    className={styles.confirm}
+                                    className={classNames([
+                                        styles.confirm,
+                                        {
+                                            [styles.disabled]:
+                                                inputDisabled ||
+                                                textInput === null ||
+                                                textInput === '',
+                                        },
+                                    ])}
                                     type="submit"
-                                    disabled={inputDisabled}
+                                    disabled={
+                                        inputDisabled || textInput === null || textInput === ''
+                                    }
                                 >
-                                    <ArrowIcon />
+                                    <ArrowIcon className={styles.icon} />
                                 </Button>
                             </form>
                         ) : null}

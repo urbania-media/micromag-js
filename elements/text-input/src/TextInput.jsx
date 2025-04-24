@@ -2,8 +2,10 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { usePlaceholderStyle } from '@micromag/core/hooks';
 import { getStyleFromBox, getStyleFromMargin, getStyleFromText } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
@@ -13,6 +15,7 @@ const propTypes = {
     labelOutside: PropTypes.bool,
     labelClassName: PropTypes.string,
     textStyle: MicromagPropTypes.textStyle,
+    placeholderTextStyle: MicromagPropTypes.textStyle,
     buttonStyle: MicromagPropTypes.boxStyle,
     labelOutsideStyle: MicromagPropTypes.textStyle,
     margin: MicromagPropTypes.margin,
@@ -32,6 +35,7 @@ const defaultProps = {
     labelOutside: false,
     labelClassName: null,
     textStyle: null,
+    placeholderTextStyle: null,
     buttonStyle: null,
     labelOutsideStyle: null,
     margin: null,
@@ -51,6 +55,7 @@ const TextInput = ({
     labelOutside,
     labelClassName,
     textStyle,
+    placeholderTextStyle,
     buttonStyle,
     labelOutsideStyle,
     margin,
@@ -67,6 +72,7 @@ const TextInput = ({
     let containerStyle = {};
     let labelStyle = {};
     let elementStyle = {};
+    let placeholderStyle = {};
 
     if (margin !== null) {
         containerStyle = {
@@ -96,6 +102,13 @@ const TextInput = ({
         };
     }
 
+    if (placeholderTextStyle !== null) {
+        placeholderStyle = {
+            ...placeholderStyle,
+            ...getStyleFromText(placeholderTextStyle),
+        };
+    }
+
     const containerProps = {
         className: classNames([
             styles.container,
@@ -120,20 +133,33 @@ const TextInput = ({
         disabled,
     };
 
+    console.log('elementStyle', elementStyle);
+
     const element = multiline ? (
         <textarea {...elementProps} tabIndex={focusable ? '0' : '-1'} />
     ) : (
         <input {...elementProps} type="text" tabIndex={focusable ? '0' : '-1'} />
     );
 
+    const placeholderStyles = usePlaceholderStyle(styles.element, placeholderStyle);
+    const placeholderStyleElement = (
+        <Helmet>
+            <style>{placeholderStyles}</style>
+        </Helmet>
+    );
+
     return !labelOutside ? (
-        element
+        <>
+            {element}
+            {placeholderStyleElement}
+        </>
     ) : (
         <label {...containerProps}>
             <div className={labelClassName} style={labelStyle}>
                 {label}
             </div>
             {element}
+            {placeholderStyleElement}
         </label>
     );
 };

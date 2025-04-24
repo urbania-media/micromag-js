@@ -64,6 +64,18 @@ export default {
             }),
         },
         {
+            name: 'customAnswer',
+            type: 'custom-answer',
+            defaultValue: false,
+            isList: true,
+            theme: {
+                textStyle: 'button',
+                // placeholder: {
+                //     textStyle: 'text',
+                // },
+            },
+        },
+        {
             type: 'fields',
             isList: true,
             label: defineMessage({
@@ -71,15 +83,6 @@ export default {
                 description: 'Field section label',
             }),
             fields: [
-                {
-                    name: 'showInput',
-                    type: 'toggle',
-                    defaultValue: false,
-                    label: defineMessage({
-                        defaultMessage: 'Show input answer',
-                        description: 'Field label',
-                    }),
-                },
                 {
                     name: 'showCount',
                     type: 'toggle',
