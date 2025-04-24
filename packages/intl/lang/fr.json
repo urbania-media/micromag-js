@@ -1424,9 +1424,6 @@
     "sESmah": {
         "defaultMessage": "Entrées"
     },
-    "sLskqO": {
-        "defaultMessage": "Champ suggestion"
-    },
     "sSahY1": {
         "defaultMessage": "Pop-up"
     },
@@ -1456,6 +1453,9 @@
     },
     "trQFlb": {
         "defaultMessage": "Audio avant le texte"
+    },
+    "trSRbk": {
+        "defaultMessage": "Texte de substitution"
     },
     "tvl2Zc": {
         "defaultMessage": "Vidéo"
@@ -1624,6 +1624,9 @@
     },
     "yEG9zh": {
         "defaultMessage": "Date"
+    },
+    "yGd82s": {
+        "defaultMessage": "Réponse personnalisée"
     },
     "yHAmDD": {
         "defaultMessage": "Image"

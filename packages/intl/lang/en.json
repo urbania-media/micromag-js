@@ -1424,9 +1424,6 @@
     "sESmah": {
         "defaultMessage": "Entries"
     },
-    "sLskqO": {
-        "defaultMessage": "Show input answer"
-    },
     "sSahY1": {
         "defaultMessage": "Popup"
     },
@@ -1456,6 +1453,9 @@
     },
     "trQFlb": {
         "defaultMessage": "Put audio before text"
+    },
+    "trSRbk": {
+        "defaultMessage": "Placeholder"
     },
     "tvl2Zc": {
         "defaultMessage": "Video"
@@ -1624,6 +1624,9 @@
     },
     "yEG9zh": {
         "defaultMessage": "Date"
+    },
+    "yGd82s": {
+        "defaultMessage": "Custom answer"
     },
     "yHAmDD": {
         "defaultMessage": "Image"

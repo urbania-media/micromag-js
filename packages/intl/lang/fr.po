@@ -2857,12 +2857,6 @@ msgctxt "sESmah"
 msgid "Entries"
 msgstr "Entrées"
 
-# Field label
-#: sLskqO
-msgctxt "sLskqO"
-msgid "Show input answer"
-msgstr "Champ suggestion"
-
 # Keypad item state
 #: sSahY1
 msgctxt "sSahY1"
@@ -2922,6 +2916,12 @@ msgstr "Inutilisé"
 msgctxt "trQFlb"
 msgid "Put audio before text"
 msgstr "Audio avant le texte"
+
+# Field label
+#: trSRbk
+msgctxt "trSRbk"
+msgid "Placeholder"
+msgstr "Texte de substitution"
 
 # Video field label
 #: tvl2Zc
@@ -3258,6 +3258,12 @@ msgstr "23 nov au 21 déc"
 msgctxt "yEG9zh"
 msgid "Date"
 msgstr "Date"
+
+# Field label
+#: yGd82s
+msgctxt "yGd82s"
+msgid "Custom answer"
+msgstr "Réponse personnalisée"
 
 # Filter item label
 #: yHAmDD

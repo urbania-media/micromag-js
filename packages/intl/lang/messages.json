@@ -1895,10 +1895,6 @@
     "defaultMessage": "Entries",
     "description": "Entries field label"
   },
-  "sLskqO": {
-    "defaultMessage": "Show input answer",
-    "description": "Field label"
-  },
   "sSahY1": {
     "defaultMessage": "Popup",
     "description": "Keypad item state"
@@ -1937,6 +1933,10 @@
   },
   "trQFlb": {
     "defaultMessage": "Put audio before text",
+    "description": "Field label"
+  },
+  "trSRbk": {
+    "defaultMessage": "Placeholder",
     "description": "Field label"
   },
   "tvl2Zc": {
@@ -2162,6 +2162,10 @@
   "yEG9zh": {
     "defaultMessage": "Date",
     "description": "Text field label"
+  },
+  "yGd82s": {
+    "defaultMessage": "Custom answer",
+    "description": "Field label"
   },
   "yHAmDD": {
     "defaultMessage": "Image",
