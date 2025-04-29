@@ -87,10 +87,14 @@ function WebViewContainer({ onChange, trackingEnabled, className, style }) {
                 setPlaying(true);
             }
         }
-        if (trackingEnabled) {
-            trackEvent('viewer_webview', opened ? 'open' : 'close', currentUrl, { source });
-        }
     }, [opened, trackEvent]);
+
+    useEffect(() => {
+        if (!trackingEnabled || currentUrl === null) {
+            return;
+        }
+        trackEvent('viewer_webview', opened ? 'open' : 'close', currentUrl, { source });
+    }, [trackingEnabled, currentUrl, opened]);
 
     const keyboardShortcuts = useMemo(
         () => ({
