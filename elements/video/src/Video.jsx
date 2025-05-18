@@ -293,31 +293,29 @@ const Video = ({
         if (filesArray.length === 0 || (hlsSources !== null && hlsSources.length > 0)) {
             return null;
         }
-        const supportedMimes = getVideoSupportedMimes();
+        let supportedMimes = getVideoSupportedMimes();
         if (supportedMimes.length === 0) {
-            return null;
+            supportedMimes = ['video/mp4', 'video/webm'];
         }
-        const sourceFilesMap = filesArray
-            .filter((file) => {
-                const fileHandle = file.handle || file.id;
-                const { mime = `video/${fileHandle === 'h264' ? 'mp4' : fileHandle}` } = file;
-                return supportedMimes.indexOf(mime) !== -1;
-            })
-            .reduce((filesMap, file) => {
-                const fileHandle = file.handle || file.id;
-                const { mime = `video/${fileHandle === 'h264' ? 'mp4' : fileHandle}` } = file;
-                const currentMimeFile = filesMap[mime] || null;
-                const { id: currentId = null, handle: currentHandle = null } =
-                    currentMimeFile || {};
-                const currentMimeHandle = currentHandle || currentId;
-                return currentMimeFile === null || currentMimeHandle === 'original'
-                    ? {
-                          ...filesMap,
-                          [mime]: file,
-                      }
-                    : filesMap;
-            }, {});
-        return Object.keys(sourceFilesMap).map((mime) => sourceFilesMap[mime]);
+        const supportedFiles = filesArray.filter((file) => {
+            const fileHandle = file.handle || file.id;
+            const { mime = `video/${fileHandle === 'h264' ? 'mp4' : fileHandle}` } = file;
+            return supportedMimes.indexOf(mime) !== -1;
+        });
+        const supportedFilesWithoutOriginal = supportedFiles.filter((file) => {
+            const fileHandle = file.handle || file.id;
+            return fileHandle !== 'original';
+        });
+        return (
+            supportedFilesWithoutOriginal.length > 0
+                ? supportedFilesWithoutOriginal
+                : supportedFiles
+        ).sort(({ size: a = '' }, { size: b = '' }) => {
+            if (a === b) {
+                return 0;
+            }
+            return a > b ? 1 : -1;
+        });
     }, [filesArray, hlsSources]);
 
     // @NOTE: Media is an animated image and doesn't have source files in video formats
