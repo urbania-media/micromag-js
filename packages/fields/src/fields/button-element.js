@@ -2,6 +2,7 @@ export default {
     id: 'button-element',
     component: 'text-element',
     inline: true,
+    withoutLink: true,
     settings: [
         {
             name: 'textStyle',

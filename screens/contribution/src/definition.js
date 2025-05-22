@@ -99,6 +99,49 @@ export default {
             }),
         },
         {
+            name: 'settings',
+            component: 'toggle-section',
+            toggleField: 'canViewAnswers',
+            isList: true,
+            label: defineMessage({
+                defaultMessage: 'Answer settings',
+                description: 'Field section label',
+            }),
+            fields: [
+                {
+                    name: 'canViewAnswers',
+                    type: 'toggle',
+                    isHorizontal: true,
+                    label: defineMessage({
+                        defaultMessage: 'Can view answers',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'skipButton',
+                    type: 'button-element',
+                    theme: {
+                        textStyle: 'button',
+                    },
+                    label: defineMessage({
+                        defaultMessage: 'Skip button',
+                        description: 'Skip field label',
+                    }),
+                },
+                {
+                    name: 'backButton',
+                    type: 'button-element',
+                    theme: {
+                        textStyle: 'button',
+                    },
+                    label: defineMessage({
+                        defaultMessage: 'Back button',
+                        description: 'Back field label',
+                    }),
+                },
+            ],
+        },
+        {
             name: 'background',
             type: 'background',
             label: defineMessage({

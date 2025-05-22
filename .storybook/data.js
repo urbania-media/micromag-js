@@ -553,7 +553,7 @@ export const audioConversation = (messagesNumber = 10, speakersNumber = 2, timin
     };
 };
 
-export const badge = () => ({
+export const badge = (options = null) => ({
     active: true,
     label: {
         body:
@@ -574,6 +574,7 @@ export const badge = () => ({
         // shadowColor: color(),
         // shadowAngle: 45,
     },
+    ...options,
 });
 
 export const header = () => ({

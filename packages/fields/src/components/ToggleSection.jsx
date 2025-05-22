@@ -2,27 +2,29 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
-import { useIntl, defineMessage } from 'react-intl';
 
 import Fields from './Fields';
 
 import styles from '../styles/toggle-section.module.scss';
 
 const propTypes = {
+    // eslint-disable-next-line react/forbid-prop-types
     value: PropTypes.object,
+    toggleField: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
     value: null,
+    toggleField: null,
     className: null,
     onChange: null,
 };
 
-const ToggleSection = ({ value, className, onChange, ...props }) => {
+const ToggleSection = ({ value, toggleField, className, onChange, ...props }) => {
     const { enabled = false } = value || {};
-    const intl = useIntl();
+    const valueEnabled = toggleField !== null ? value?.[toggleField] || false : enabled;
 
     const onUpdateValue = useCallback(
         (newValue) => {
@@ -39,7 +41,7 @@ const ToggleSection = ({ value, className, onChange, ...props }) => {
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.enabled]: enabled,
+                    [styles.enabled]: valueEnabled,
                 },
             ])}
             fieldClassName={styles.field}

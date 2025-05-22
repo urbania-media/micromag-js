@@ -33,7 +33,7 @@
     .image,
     .imageContainer,
     .video {
-        position: relative !important; // TODO: find workaround for when styles are doubly applied, and override this declaration
+        position: relative !important; // TODO: find workaround for when styles are doubly applied, and override this declarationTODOTODO
     }
 
     .imageContainer {
@@ -51,6 +51,11 @@
             opacity: 0;
             pointer-events: none;
         }
+    }
+
+    .caption {
+        pointer-events: none;
+        user-select: none;
     }
 
     &.isPlaceholder {

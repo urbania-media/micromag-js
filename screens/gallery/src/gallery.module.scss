@@ -76,5 +76,7 @@
 
     .caption {
         padding: 10px 0;
+        pointer-events: none;
+        user-select: none;
     }
 }

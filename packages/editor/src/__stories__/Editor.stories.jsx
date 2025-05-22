@@ -13,6 +13,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { callToAction, conversation, hlsVideoMedia, videoMedia } from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import article from '../../../../.storybook/data/stories/article-generic';
+import contribution from '../../../../.storybook/data/stories/contribution';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import keypad from '../../../../.storybook/data/stories/keypad';
 import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
@@ -171,6 +172,12 @@ export const TestCointreau = () => <EditorContainer defaultValue={cointreau} />;
 export const TestArticle = () => <EditorContainer defaultValue={article} />;
 
 export const TestQuoteBadges = () => <EditorContainer defaultValue={textQuoteBadges} />;
+
+export const TestContribution = () => (
+    <EditorContainer
+        defaultValue={{ title: 'Test Contrib', theme: defaultTheme, components: [contribution] }}
+    />
+);
 
 export const TestKeypad = () => (
     <EditorContainer

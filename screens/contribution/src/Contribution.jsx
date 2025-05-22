@@ -1,33 +1,34 @@
 /* eslint-disable react/no-array-index-key */
 
 /* eslint-disable react/jsx-props-no-spreading */
+import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { FormattedMessage } from 'react-intl';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
-    useViewerContext,
-    useViewerWebView,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerWebView,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import {
-    isTextFilled,
-    isLabelFilled,
-    getStyleFromColor,
-    isHeaderFilled,
-    isFooterFilled,
     getFooterProps,
+    getStyleFromColor,
+    isFooterFilled,
+    isHeaderFilled,
+    isLabelFilled,
+    isTextFilled,
 } from '@micromag/core/utils';
-import { useContributions, useContributionCreate } from '@micromag/data';
+import { useContributionCreate, useContributions } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 // import CallToAction from '@micromag/element-call-to-action';
@@ -50,6 +51,11 @@ const propTypes = {
     submit: MicromagPropTypes.textElement,
     nameStyle: MicromagPropTypes.textStyle,
     messageStyle: MicromagPropTypes.textStyle,
+    settings: PropTypes.shape({
+        canViewAnswers: PropTypes.bool,
+        answerButton: MicromagPropTypes.buttonElement,
+        contributionButton: MicromagPropTypes.buttonElement,
+    }),
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     header: MicromagPropTypes.header,
@@ -72,6 +78,7 @@ const defaultProps = {
     submit: null,
     nameStyle: null,
     messageStyle: null,
+    settings: null,
     spacing: 20,
     background: null,
     header: null,
@@ -94,6 +101,7 @@ const ContributionScreen = ({
     submit,
     nameStyle,
     messageStyle,
+    settings,
     spacing,
     background,
     header,
@@ -106,6 +114,7 @@ const ContributionScreen = ({
     type,
     className,
 }) => {
+    const intl = useIntl();
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
 
@@ -146,6 +155,18 @@ const ContributionScreen = ({
     // 0 = default, 1 = submitting, 2 = submitted, 3 = resizing, 4 = done
     const [submitState, setSubmitState] = useState(isStatic || isCapture ? 4 : 0);
 
+    const { canViewAnswers = false, skipButton = null, backButton = null } = settings || {};
+    const answersButton = submitState === 4 ? backButton : skipButton;
+    const finalAnswersButton = isTextFilled(answersButton)
+        ? answersButton
+        : {
+              ...answersButton,
+              body:
+                  submitState === 4
+                      ? intl.formatMessage({ defaultMessage: 'Back', description: 'Button label' })
+                      : intl.formatMessage({ defaultMessage: 'Skip', description: 'Button label' }),
+          };
+
     const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
         trackScreenEvent('submit_success', `${userName}: ${userMessage}`);
@@ -170,6 +191,12 @@ const ContributionScreen = ({
         },
         [setUserMessage],
     );
+
+    const onContributionReset = useCallback(() => {
+        setUserName('');
+        setUserMessage('');
+        setSubmitState(0);
+    }, [setUserName, setUserMessage, setSubmitState]);
 
     const nameFilled = useRef(false);
     const onNameBlur = useCallback(
@@ -242,6 +269,16 @@ const ContributionScreen = ({
         ],
     );
 
+    const onClickSkip = useCallback(() => {
+        if (submitState === 4) {
+            setSubmitState(0);
+            trackScreenEvent('click_skip', 'Skip button');
+        } else {
+            setSubmitState(4);
+            trackScreenEvent('click_back', 'Back button');
+        }
+    }, [submitState, setSubmitState, trackScreenEvent]);
+
     useEffect(() => {
         let timeout = null;
         if (submitState === 2) {
@@ -273,7 +310,7 @@ const ContributionScreen = ({
     ];
 
     const allContributions = [
-        ...(userName !== null && userMessage !== null
+        ...(userName !== null && userName !== '' && userMessage !== null && userMessage !== ''
             ? [{ name: userName, message: userMessage }]
             : []),
         ...(contributions || []),
@@ -386,6 +423,38 @@ const ContributionScreen = ({
                     <FontAwesomeIcon className={styles.loadingIcon} icon={faSpinner} />
                 </div>
             </form>
+            {canViewAnswers ? (
+                <ScreenElement
+                    placeholder="button"
+                    emptyLabel={
+                        <FormattedMessage
+                            defaultMessage="Skip button"
+                            description="Skip placeholder"
+                        />
+                    }
+                    emptyClassName={styles.emptySubmit}
+                >
+                    <Transitions
+                        transitions={transitions}
+                        playing={transitionPlaying}
+                        delay={transitionStagger * 3}
+                        disabled={transitionDisabled}
+                    >
+                        <Button
+                            type="button"
+                            className={styles.buttonSubmit}
+                            disabled={isPreview}
+                            onClick={onClickSkip}
+                            buttonStyle={
+                                finalAnswersButton !== null ? finalAnswersButton.buttonStyle : null
+                            }
+                            focusable={current && isView}
+                        >
+                            <Text {...finalAnswersButton} inline />
+                        </Button>
+                    </Transitions>
+                </ScreenElement>
+            ) : null}
             <div
                 className={styles.contributionsContainer}
                 aria-hidden={submitState === 4 ? null : 'true'}
@@ -439,7 +508,10 @@ const ContributionScreen = ({
                 <Header {...header} />
             </div>
         ) : null;
+
     const headerInScroll = submitState >= 4;
+
+    const showReset = isEdit && submitState === 4;
 
     return (
         <div
@@ -456,6 +528,13 @@ const ContributionScreen = ({
             data-screen-ready
         >
             <Container width={width} height={height} className={styles.content}>
+                {showReset ? (
+                    <Button
+                        className={styles.reset}
+                        icon={<FontAwesomeIcon icon={faRedo} size="md" />}
+                        onClick={onContributionReset}
+                    />
+                ) : null}
                 <div
                     className={styles.inner}
                     style={

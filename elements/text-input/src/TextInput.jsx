@@ -133,7 +133,7 @@ const TextInput = ({
         disabled,
     };
 
-    console.log('elementStyle', elementStyle);
+    // console.log('elementStyle', elementStyle);
 
     const element = multiline ? (
         <textarea {...elementProps} tabIndex={focusable ? '0' : '-1'} />
