@@ -386,6 +386,9 @@
     "AwDQvD": {
         "defaultMessage": "Image"
     },
+    "AzN1aW": {
+        "defaultMessage": "Retour"
+    },
     "B1MeY+": {
         "defaultMessage": "Sélectionner une image"
     },
@@ -451,9 +454,6 @@
     },
     "DYjRd/": {
         "defaultMessage": "Désolé, ce média n'a pas pu être sauvegardé."
-    },
-    "DoFRL4": {
-        "defaultMessage": "Bouton voir les réponses"
     },
     "EDFyUp": {
         "defaultMessage": "Texte alternatif (accessibilité)"
@@ -811,6 +811,9 @@
     },
     "Tt4jN1": {
         "defaultMessage": "Ajouter"
+    },
+    "U2RZp5": {
+        "defaultMessage": "Voir les réponses"
     },
     "UBXIYP": {
         "defaultMessage": "Vidéo"

@@ -20,6 +20,14 @@
         @extend %fullscreen;
     }
 
+    .layout {
+        position: relative;
+    }
+
+    .scrollee {
+        min-height: 100%;
+    }
+
     .header {
         position: relative;
         top: 0;
@@ -40,7 +48,8 @@
     .emptyTitle,
     .emptyInputName,
     .emptyInputMessage,
-    .emptySubmit {
+    .emptySubmit,
+    .emptySkip {
         margin-bottom: 10px;
         padding: 10px;
     }
@@ -64,7 +73,8 @@
 
     .inputName,
     .inputMessage,
-    .buttonSubmit {
+    .buttonSubmit,
+    .buttonSkip {
         display: block;
         width: 100%;
         padding: 4px;
@@ -86,6 +96,18 @@
 
         &:disabled {
             opacity: 1;
+        }
+    }
+
+    .buttonSkip {
+        @extend %focus-outline;
+
+        margin-top: 20px;
+        border: 0;
+
+        &.showBack {
+            margin-top: 0;
+            margin-bottom: 20px;
         }
     }
 

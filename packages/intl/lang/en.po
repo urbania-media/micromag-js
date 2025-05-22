@@ -785,6 +785,12 @@ msgctxt "AwDQvD"
 msgid "Image"
 msgstr "Image"
 
+# Button placeholder
+#: AzN1aW
+msgctxt "AzN1aW"
+msgid "Back"
+msgstr "Back"
+
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -916,12 +922,6 @@ msgstr "Select a video..."
 msgctxt "DYjRd/"
 msgid "Sorry, this media could not be saved."
 msgstr "Sorry, this media could not be saved."
-
-# Skip placeholder
-#: DoFRL4
-msgctxt "DoFRL4"
-msgid "Skip button"
-msgstr "Skip button"
 
 # Media Gallery
 #: EDFyUp
@@ -1635,6 +1635,12 @@ msgstr "Clear"
 msgctxt "Tt4jN1"
 msgid "Add"
 msgstr "Add"
+
+# Button placeholder
+#: U2RZp5
+msgctxt "U2RZp5"
+msgid "Skip"
+msgstr "Skip"
 
 # Video screen title
 #: UBXIYP

@@ -386,6 +386,9 @@
     "AwDQvD": {
         "defaultMessage": "Image"
     },
+    "AzN1aW": {
+        "defaultMessage": "Back"
+    },
     "B1MeY+": {
         "defaultMessage": "Select an image..."
     },
@@ -451,9 +454,6 @@
     },
     "DYjRd/": {
         "defaultMessage": "Sorry, this media could not be saved."
-    },
-    "DoFRL4": {
-        "defaultMessage": "Skip button"
     },
     "EDFyUp": {
         "defaultMessage": "Alternative text (accessibility)"
@@ -811,6 +811,9 @@
     },
     "Tt4jN1": {
         "defaultMessage": "Add"
+    },
+    "U2RZp5": {
+        "defaultMessage": "Skip"
     },
     "UBXIYP": {
         "defaultMessage": "Video"

@@ -515,6 +515,10 @@
     "defaultMessage": "Image",
     "description": "Media type"
   },
+  "AzN1aW": {
+    "defaultMessage": "Back",
+    "description": "Button placeholder"
+  },
   "B1MeY+": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
@@ -602,10 +606,6 @@
   "DYjRd/": {
     "defaultMessage": "Sorry, this media could not be saved.",
     "description": "Save error message in Media Gallery"
-  },
-  "DoFRL4": {
-    "defaultMessage": "Skip button",
-    "description": "Skip placeholder"
   },
   "EDFyUp": {
     "defaultMessage": "Alternative text (accessibility)",
@@ -1081,6 +1081,10 @@
   "Tt4jN1": {
     "defaultMessage": "Add",
     "description": "Add button label in Media Gallery"
+  },
+  "U2RZp5": {
+    "defaultMessage": "Skip",
+    "description": "Button placeholder"
   },
   "UBXIYP": {
     "defaultMessage": "Video",

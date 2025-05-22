@@ -36,6 +36,7 @@ import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
 import Heading from '@micromag/element-heading';
+import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import TextInput from '@micromag/element-text-input';
@@ -154,6 +155,7 @@ const ContributionScreen = ({
 
     // 0 = default, 1 = submitting, 2 = submitted, 3 = resizing, 4 = done
     const [submitState, setSubmitState] = useState(isStatic || isCapture ? 4 : 0);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const { canViewAnswers = false, skipButton = null, backButton = null } = settings || {};
     const answersButton = submitState === 4 ? backButton : skipButton;
@@ -170,7 +172,8 @@ const ContributionScreen = ({
     const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
         trackScreenEvent('submit_success', `${userName}: ${userMessage}`);
-    }, [setSubmitState, trackScreenEvent, userName, userMessage]);
+        setHasSubmitted(true);
+    }, [setSubmitState, setHasSubmitted, trackScreenEvent, userName, userMessage]);
 
     const { create: submitContribution } = useContributionCreate({
         screenId,
@@ -196,7 +199,8 @@ const ContributionScreen = ({
         setUserName('');
         setUserMessage('');
         setSubmitState(0);
-    }, [setUserName, setUserMessage, setSubmitState]);
+        setHasSubmitted(false);
+    }, [setUserName, setUserMessage, setSubmitState, setHasSubmitted]);
 
     const nameFilled = useRef(false);
     const onNameBlur = useCallback(
@@ -423,16 +427,23 @@ const ContributionScreen = ({
                     <FontAwesomeIcon className={styles.loadingIcon} icon={faSpinner} />
                 </div>
             </form>
-            {canViewAnswers ? (
+            {canViewAnswers && !hasSubmitted ? (
                 <ScreenElement
                     placeholder="button"
                     emptyLabel={
-                        <FormattedMessage
-                            defaultMessage="Skip button"
-                            description="Skip placeholder"
-                        />
+                        submitState !== 4 ? (
+                            <FormattedMessage
+                                defaultMessage="Skip"
+                                description="Button placeholder"
+                            />
+                        ) : (
+                            <FormattedMessage
+                                defaultMessage="Back"
+                                description="Button placeholder"
+                            />
+                        )
                     }
-                    emptyClassName={styles.emptySubmit}
+                    emptyClassName={styles.emptySkip}
                 >
                     <Transitions
                         transitions={transitions}
@@ -442,7 +453,10 @@ const ContributionScreen = ({
                     >
                         <Button
                             type="button"
-                            className={styles.buttonSubmit}
+                            className={classNames([
+                                styles.buttonSkip,
+                                { [styles.showBack]: submitState === 4 },
+                            ])}
                             disabled={isPreview}
                             onClick={onClickSkip}
                             buttonStyle={
@@ -509,8 +523,6 @@ const ContributionScreen = ({
             </div>
         ) : null;
 
-    const headerInScroll = submitState >= 4;
-
     const showReset = isEdit && submitState === 4;
 
     return (
@@ -535,32 +547,34 @@ const ContributionScreen = ({
                         onClick={onContributionReset}
                     />
                 ) : null}
-                <div
-                    className={styles.inner}
-                    style={
-                        !isPlaceholder
-                            ? {
-                                  paddingLeft: spacing,
-                                  paddingRight: spacing,
-                                  paddingTop:
-                                      (!isPreview ? viewerTopHeight : 0) +
-                                      (hasHeader ? spacing / 2 : spacing),
-                                  paddingBottom:
-                                      (current && !isPreview ? viewerBottomHeight : 0) + spacing,
-                              }
-                            : null
-                    }
-                >
-                    {!headerInScroll ? headerElement : null}
+                <div className={styles.inner}>
                     <Scroll
                         verticalAlign={layout}
                         disabled={scrollingDisabled}
                         onScrolledBottom={onScrolledBottom}
                         onScrolledNotBottom={onScrolledNotBottom}
+                        scrolleeClassName={styles.scrollee}
                         withShadow
                     >
-                        {headerInScroll ? headerElement : null}
-                        {items}
+                        <Layout
+                            className={styles.layout}
+                            style={
+                                !isPlaceholder
+                                    ? {
+                                          padding: spacing,
+                                          paddingTop: hasHeader
+                                              ? spacing / 2 + (!isPreview ? viewerTopHeight : 0)
+                                              : spacing / 2,
+                                          paddingBottom:
+                                              (current && !isPreview ? viewerBottomHeight : 0) +
+                                              spacing / 2,
+                                      }
+                                    : null
+                            }
+                        >
+                            {headerElement}
+                            {items}
+                        </Layout>
                     </Scroll>
                     {!isPlaceholder && hasFooter ? (
                         <div
