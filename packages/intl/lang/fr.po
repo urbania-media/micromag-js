@@ -1071,7 +1071,7 @@ msgstr "Surbrillance"
 #: HpkW4J
 msgctxt "HpkW4J"
 msgid "Skip"
-msgstr "Bouton voir les réponses"
+msgstr "Voir les réponses"
 
 # Button to edit a screen
 #: HseFdk
