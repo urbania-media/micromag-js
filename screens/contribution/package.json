@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-contribution",
-    "version": "0.3.683",
+    "version": "0.3.685",
     "private": false,
     "description": "",
     "keywords": [
@@ -67,11 +67,11 @@
         "@micromag/data": "^0.3.679",
         "@micromag/element-background": "^0.3.682",
         "@micromag/element-button": "^0.3.679",
-        "@micromag/element-layout": "^0.3.679",
         "@micromag/element-container": "^0.3.679",
         "@micromag/element-footer": "^0.3.679",
         "@micromag/element-header": "^0.3.679",
         "@micromag/element-heading": "^0.3.679",
+        "@micromag/element-layout": "^0.3.679",
         "@micromag/element-scroll": "^0.3.679",
         "@micromag/element-share-incentive": "^0.3.679",
         "@micromag/element-text": "^0.3.679",

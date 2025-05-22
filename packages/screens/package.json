@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.683",
+    "version": "0.3.685",
     "private": false,
     "description": "",
     "keywords": [
@@ -84,7 +84,7 @@
         "@micromag/core": "^0.3.679",
         "@micromag/screen-article": "^0.3.682",
         "@micromag/screen-audio": "^0.3.682",
-        "@micromag/screen-contribution": "^0.3.683",
+        "@micromag/screen-contribution": "^0.3.685",
         "@micromag/screen-conversation": "^0.3.682",
         "@micromag/screen-gallery": "^0.3.683",
         "@micromag/screen-gallery-feed": "^0.3.683",
