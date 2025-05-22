@@ -635,6 +635,12 @@ msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Paramètres"
 
+# Button label
+#: 8NyYTH
+msgctxt "8NyYTH"
+msgid "Back"
+msgstr "Retour"
+
 # Button label in Media Gallery
 #: 8TbpT7
 msgctxt "8TbpT7"
@@ -706,6 +712,12 @@ msgstr "Tags"
 msgctxt "9n9+yP"
 msgid "Add an image"
 msgstr "Ajouter une image"
+
+# Field section label
+#: 9omJnT
+msgctxt "9omJnT"
+msgid "Answer settings"
+msgstr "Paramètres de réponse"
 
 # Label when there is no item
 #: A+a0kL
@@ -851,6 +863,12 @@ msgctxt "CnVj9r"
 msgid "Skip to controls"
 msgstr "Aller aux commandes de lecture"
 
+# Skip field label
+#: CpCykm
+msgctxt "CpCykm"
+msgid "Skip button"
+msgstr "Bouton voir les réponses"
+
 # Quote placeholder
 #: CrzYgw
 msgctxt "CrzYgw"
@@ -898,6 +916,12 @@ msgstr "Sélectionner une vidéo"
 msgctxt "DYjRd/"
 msgid "Sorry, this media could not be saved."
 msgstr "Désolé, ce média n'a pas pu être sauvegardé."
+
+# Skip placeholder
+#: DoFRL4
+msgctxt "DoFRL4"
+msgid "Skip button"
+msgstr "Bouton voir les réponses"
 
 # Media Gallery
 #: EDFyUp
@@ -1043,6 +1067,12 @@ msgctxt "HWpflq"
 msgid "Highlight"
 msgstr "Surbrillance"
 
+# Button label
+#: HpkW4J
+msgctxt "HpkW4J"
+msgid "Skip"
+msgstr "Bouton voir les réponses"
+
 # Button to edit a screen
 #: HseFdk
 msgctxt "HseFdk"
@@ -1180,6 +1210,12 @@ msgstr "Aucune police"
 msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Réponses"
+
+# Back field label
+#: KIXg9M
+msgctxt "KIXg9M"
+msgid "Back button"
+msgstr "Bouton retour"
 
 # Upload button label in Media Gallery
 #: KK5teQ
@@ -3186,6 +3222,12 @@ msgstr "Auteur"
 msgctxt "xac4z/"
 msgid "Entry styles"
 msgstr "Styles des entrées"
+
+# Field label
+#: xcHW4o
+msgctxt "xcHW4o"
+msgid "Can view answers"
+msgstr "Réponses disponibles"
 
 # UrbaniaHoroscope state
 #: xj0o1v

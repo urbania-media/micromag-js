@@ -311,6 +311,9 @@
     "8A8cuq": {
         "defaultMessage": "Paramètres"
     },
+    "8NyYTH": {
+        "defaultMessage": "Retour"
+    },
     "8TbpT7": {
         "defaultMessage": "Enlever"
     },
@@ -346,6 +349,9 @@
     },
     "9n9+yP": {
         "defaultMessage": "Ajouter une image"
+    },
+    "9omJnT": {
+        "defaultMessage": "Paramètres de réponse"
     },
     "A+a0kL": {
         "defaultMessage": "Aucune réponse"
@@ -419,6 +425,9 @@
     "CnVj9r": {
         "defaultMessage": "Aller aux commandes de lecture"
     },
+    "CpCykm": {
+        "defaultMessage": "Bouton voir les réponses"
+    },
     "CrzYgw": {
         "defaultMessage": "Citation"
     },
@@ -442,6 +451,9 @@
     },
     "DYjRd/": {
         "defaultMessage": "Désolé, ce média n'a pas pu être sauvegardé."
+    },
+    "DoFRL4": {
+        "defaultMessage": "Bouton voir les réponses"
     },
     "EDFyUp": {
         "defaultMessage": "Texte alternatif (accessibilité)"
@@ -515,6 +527,9 @@
     "HWpflq": {
         "defaultMessage": "Surbrillance"
     },
+    "HpkW4J": {
+        "defaultMessage": "Bouton voir les réponses"
+    },
     "HseFdk": {
         "defaultMessage": "Modifier"
     },
@@ -583,6 +598,9 @@
     },
     "KHWeV7": {
         "defaultMessage": "Réponses"
+    },
+    "KIXg9M": {
+        "defaultMessage": "Bouton retour"
     },
     "KK5teQ": {
         "defaultMessage": "Ajouter un visuel"
@@ -1588,6 +1606,9 @@
     },
     "xac4z/": {
         "defaultMessage": "Styles des entrées"
+    },
+    "xcHW4o": {
+        "defaultMessage": "Réponses disponibles"
     },
     "xj0o1v": {
         "defaultMessage": "Grille"

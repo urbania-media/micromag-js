@@ -415,6 +415,10 @@
     "defaultMessage": "Parameters",
     "description": "field label"
   },
+  "8NyYTH": {
+    "defaultMessage": "Back",
+    "description": "Button label"
+  },
   "8TbpT7": {
     "defaultMessage": "Remove",
     "description": "Button label in Media Gallery"
@@ -462,6 +466,10 @@
   "9n9+yP": {
     "defaultMessage": "Add an image",
     "description": "Button label in images with caption field"
+  },
+  "9omJnT": {
+    "defaultMessage": "Answer settings",
+    "description": "Field section label"
   },
   "A+a0kL": {
     "defaultMessage": "No answer...",
@@ -559,6 +567,10 @@
     "defaultMessage": "Skip to controls",
     "description": "Button label"
   },
+  "CpCykm": {
+    "defaultMessage": "Skip button",
+    "description": "Skip field label"
+  },
   "CrzYgw": {
     "defaultMessage": "Quote",
     "description": "Quote placeholder"
@@ -590,6 +602,10 @@
   "DYjRd/": {
     "defaultMessage": "Sorry, this media could not be saved.",
     "description": "Save error message in Media Gallery"
+  },
+  "DoFRL4": {
+    "defaultMessage": "Skip button",
+    "description": "Skip placeholder"
   },
   "EDFyUp": {
     "defaultMessage": "Alternative text (accessibility)",
@@ -687,6 +703,10 @@
     "defaultMessage": "Highlight",
     "description": "Fields section label"
   },
+  "HpkW4J": {
+    "defaultMessage": "Skip",
+    "description": "Button label"
+  },
   "HseFdk": {
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
@@ -778,6 +798,10 @@
   "KHWeV7": {
     "defaultMessage": "Answers",
     "description": "Field label"
+  },
+  "KIXg9M": {
+    "defaultMessage": "Back button",
+    "description": "Back field label"
   },
   "KK5teQ": {
     "defaultMessage": "Upload a visual file",
@@ -2113,6 +2137,10 @@
   },
   "xac4z/": {
     "defaultMessage": "Entry styles",
+    "description": "Field label"
+  },
+  "xcHW4o": {
+    "defaultMessage": "Can view answers",
     "description": "Field label"
   },
   "xj0o1v": {

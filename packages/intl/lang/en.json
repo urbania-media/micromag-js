@@ -311,6 +311,9 @@
     "8A8cuq": {
         "defaultMessage": "Parameters"
     },
+    "8NyYTH": {
+        "defaultMessage": "Back"
+    },
     "8TbpT7": {
         "defaultMessage": "Remove"
     },
@@ -346,6 +349,9 @@
     },
     "9n9+yP": {
         "defaultMessage": "Add an image"
+    },
+    "9omJnT": {
+        "defaultMessage": "Answer settings"
     },
     "A+a0kL": {
         "defaultMessage": "No answer..."
@@ -419,6 +425,9 @@
     "CnVj9r": {
         "defaultMessage": "Skip to controls"
     },
+    "CpCykm": {
+        "defaultMessage": "Skip button"
+    },
     "CrzYgw": {
         "defaultMessage": "Quote"
     },
@@ -442,6 +451,9 @@
     },
     "DYjRd/": {
         "defaultMessage": "Sorry, this media could not be saved."
+    },
+    "DoFRL4": {
+        "defaultMessage": "Skip button"
     },
     "EDFyUp": {
         "defaultMessage": "Alternative text (accessibility)"
@@ -515,6 +527,9 @@
     "HWpflq": {
         "defaultMessage": "Highlight"
     },
+    "HpkW4J": {
+        "defaultMessage": "Skip"
+    },
     "HseFdk": {
         "defaultMessage": "Edit"
     },
@@ -583,6 +598,9 @@
     },
     "KHWeV7": {
         "defaultMessage": "Answers"
+    },
+    "KIXg9M": {
+        "defaultMessage": "Back button"
     },
     "KK5teQ": {
         "defaultMessage": "Upload a visual file"
@@ -1588,6 +1606,9 @@
     },
     "xac4z/": {
         "defaultMessage": "Entry styles"
+    },
+    "xcHW4o": {
+        "defaultMessage": "Can view answers"
     },
     "xj0o1v": {
         "defaultMessage": "Grid"
