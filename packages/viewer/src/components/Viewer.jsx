@@ -283,9 +283,14 @@ const Viewer = ({
         playing,
         // setControls,
         controls: playbackControls = false,
-        controlsVisible: playbackcontrolsVisible = false,
+        controlsVisible: playbackControlsVisible = false,
         media: playbackMedia = null,
     } = usePlaybackContext();
+
+    const playbackHelpVisible = useMemo(
+        () => playbackControls && playbackControlsVisible,
+        [playbackControls, playbackControlsVisible],
+    );
 
     const { ref: playbackControlsContainerRef, height: playbackControlsContainerHeight = 0 } =
         useDimensionObserver();
@@ -715,7 +720,7 @@ const Viewer = ({
         bottomHeight = bottomSafezoneHeight / screenScale;
     } else if (
         playbackControls &&
-        (playbackcontrolsVisible || !playing) &&
+        (playbackControlsVisible || !playing) &&
         currentScreenInteractionEnabled
     ) {
         bottomHeight = playbackControlsContainerHeight / screenScale;
@@ -742,7 +747,7 @@ const Viewer = ({
                     topHeight={topHeight}
                     bottomHeight={bottomHeight}
                     bottomSidesWidth={
-                        (playbackcontrolsVisible || !playing || playbackMedia !== null) &&
+                        (playbackControlsVisible || !playing || playbackMedia !== null) &&
                         currentScreenInteractionEnabled
                             ? 60 / screenScale
                             : 0
@@ -770,7 +775,7 @@ const Viewer = ({
                                 [styles.hideMenu]: !menuVisible,
                                 [styles.disableMenu]: navigationDisabled,
                                 [styles.fadeMenu]:
-                                    playing && playbackControls && !playbackcontrolsVisible,
+                                    playing && playbackControls && !playbackControlsVisible,
                                 [styles.ready]: ready || withoutScreensTransforms,
                                 [styles.hasInteracted]: hasInteracted,
                                 [styles.isDragging]: isDragging,
@@ -798,36 +803,43 @@ const Viewer = ({
                             })}
                             className={styles.accessibilityLinks}
                         >
-                            <Button
-                                onClick={onClickSkipToPlaybackControls}
-                                aria-disabled={withoutPlaybackControls || !playbackcontrolsVisible}
-                                aria-describedby="disabledReason"
-                                className={classNames([
-                                    styles.accessibilityButton,
-                                    {
-                                        [styles.disabled]:
-                                            withoutPlaybackControls || !playbackcontrolsVisible,
-                                    },
-                                ])}
-                            >
-                                <FormattedMessage
-                                    defaultMessage="Skip to controls"
-                                    description="Button label"
-                                />
-                            </Button>
-                            {withoutPlaybackControls || !playbackcontrolsVisible ? (
-                                <div
-                                    role="tooltip"
-                                    className={styles.tooltipBox}
-                                    id="disabledReason"
-                                >
-                                    <span className={styles.tooltip}>
+                            {playbackHelpVisible ? (
+                                <>
+                                    <Button
+                                        onClick={onClickSkipToPlaybackControls}
+                                        aria-disabled={
+                                            withoutPlaybackControls || !playbackControlsVisible
+                                        }
+                                        aria-describedby="disabledReason"
+                                        className={classNames([
+                                            styles.accessibilityButton,
+                                            {
+                                                [styles.disabled]:
+                                                    withoutPlaybackControls ||
+                                                    !playbackControlsVisible,
+                                            },
+                                        ])}
+                                    >
                                         <FormattedMessage
-                                            defaultMessage="No controls available"
-                                            description="Tooltip"
+                                            defaultMessage="Skip to controls"
+                                            description="Button label"
                                         />
-                                    </span>
-                                </div>
+                                    </Button>
+                                    {withoutPlaybackControls || !playbackControlsVisible ? (
+                                        <div
+                                            role="tooltip"
+                                            className={styles.tooltipBox}
+                                            id="disabledReason"
+                                        >
+                                            <span className={styles.tooltip}>
+                                                <FormattedMessage
+                                                    defaultMessage="No controls available"
+                                                    description="Tooltip"
+                                                />
+                                            </span>
+                                        </div>
+                                    ) : null}
+                                </>
                             ) : null}
                         </nav>
                         {!withoutMenu ? (
