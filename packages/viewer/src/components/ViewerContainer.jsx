@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { RoutesProvider, useMemoryRouter } from '@folklore/routes';
+import isEmpty from 'lodash/isEmpty';
+import uniq from 'lodash/uniq';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { Router } from 'wouter';
@@ -91,8 +93,26 @@ const ViewerContainer = ({
         if (story === null && trackingVariables === null) {
             return null;
         }
-        const { id = null, document_id: documentId, slug = null, title = null, components = [], organisation } = story || {};
-        const { slug: organisationSlug } = organisation || {};
+        const {
+            id = null,
+            document_id: documentId,
+            slug = null,
+            title = null,
+            components = [],
+            organisation,
+            settings,
+        } = story || {};
+        const { slug: organisationSlug, tracking: orgTracking } = organisation || {};
+        const { codes: orgCodes = [] } = orgTracking || {};
+        const { tracking: storyTracking } = settings || {};
+        const { codes: storyCodes = [] } = storyTracking || {};
+
+        const googleAnalyticsIds = [...(orgCodes || []), ...(storyCodes || [])]
+            .filter((storyCode) => {
+                const { type, id: trackingId } = storyCode || {};
+                return (type === 'ga' || type === 'ga4') && !isEmpty(trackingId);
+            })
+            .map(({ id: trackingId }) => trackingId);
 
         return {
             documentId,
@@ -101,6 +121,7 @@ const ViewerContainer = ({
             storyTitle: title,
             screensCount: (components || []).length,
             organisationSlug,
+            googleAnalyticsIds: uniq(googleAnalyticsIds),
             ...trackingVariables,
         };
     }, [story, trackingVariables]);
