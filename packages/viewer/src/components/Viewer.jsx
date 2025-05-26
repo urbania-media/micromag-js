@@ -233,7 +233,7 @@ const Viewer = ({
         [screenId, screens],
     );
     const currentScreen = screens[screenIndex] || null;
-    const { parameters: screenParameters } = currentScreen || {};
+    const { id: currentScreenId, parameters: screenParameters } = currentScreen || {};
     const { metadata: screenMetadata } = screenParameters || {};
     const { title: screenTitle = null, description: screenDescription = null } =
         screenMetadata || {};
@@ -327,7 +327,7 @@ const Viewer = ({
         if (trackingEnabled && currentScreen !== null) {
             trackScreenView(currentScreen, screenIndex);
         }
-    }, [currentScreen, trackScreenView, trackingEnabled]);
+    }, [currentScreenId, trackScreenView, trackingEnabled]);
 
     useEffect(() => {
         if (ready && onViewModeChange !== null) {
