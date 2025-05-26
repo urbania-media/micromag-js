@@ -91,13 +91,16 @@ const ViewerContainer = ({
         if (story === null && trackingVariables === null) {
             return null;
         }
-        const { id = null, slug = null, title = null, components = [] } = story || {};
+        const { id = null, document_id: documentId, slug = null, title = null, components = [], organisation } = story || {};
+        const { slug: organisationSlug } = organisation || {};
 
         return {
+            documentId,
             storyId: id,
             storySlug: slug,
             storyTitle: title,
             screensCount: (components || []).length,
+            organisationSlug,
             ...trackingVariables,
         };
     }, [story, trackingVariables]);
