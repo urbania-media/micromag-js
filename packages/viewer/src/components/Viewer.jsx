@@ -233,7 +233,7 @@ const Viewer = ({
         [screenId, screens],
     );
     const currentScreen = screens[screenIndex] || null;
-    const { id: currentScreenId, parameters: screenParameters } = currentScreen || {};
+    const { id: currentScreenId = screenIndex, parameters: screenParameters } = currentScreen || {};
     const { metadata: screenMetadata } = screenParameters || {};
     const { title: screenTitle = null, description: screenDescription = null } =
         screenMetadata || {};
