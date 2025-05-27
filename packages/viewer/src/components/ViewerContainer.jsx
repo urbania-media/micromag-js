@@ -110,7 +110,7 @@ const ViewerContainer = ({
         const googleAnalyticsIds = [...(orgCodes || []), ...(storyCodes || [])]
             .filter((storyCode) => {
                 const { type, id: trackingId } = storyCode || {};
-                return (type === 'ga' || type === 'ga4') && !isEmpty(trackingId);
+                return (type === 'ga4') && !isEmpty(trackingId);
             })
             .map(({ id: trackingId }) => trackingId);
 
