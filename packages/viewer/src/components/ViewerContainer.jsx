@@ -121,7 +121,7 @@ const ViewerContainer = ({
             storyTitle: title,
             screensCount: (components || []).length,
             organisationSlug,
-            extraGaIds: uniq(googleAnalyticsIds),
+            googleAnalyticsIds: uniq(googleAnalyticsIds),
             ...trackingVariables,
         };
     }, [story, trackingVariables]);
