@@ -214,18 +214,17 @@
         padding: 10px;
         transition: opacity 0.15s ease-out;
         opacity: 0;
+        background-color: transparent;
+
+        .icon {
+            width: 10px;
+            height: 10px;
+            margin: 0 auto;
+        }
 
         &.disabled {
             .icon {
                 opacity: 0.5;
-            }
-        }
-
-        &.isClear {
-            .icon {
-                width: 10px;
-                height: 10px;
-                margin: 0 auto;
             }
         }
     }

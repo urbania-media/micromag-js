@@ -65,13 +65,5 @@ export default {
                 description: 'Field label',
             }),
         },
-        {
-            name: 'iconBoxStyle',
-            type: 'box-style-form',
-            label: defineMessage({
-                defaultMessage: 'Icon box style',
-                description: 'Field label',
-            }),
-        },
     ],
 };

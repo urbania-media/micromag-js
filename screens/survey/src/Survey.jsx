@@ -161,7 +161,6 @@ const SurveyScreen = ({
         placeholder = null,
         textStyle: customAnswerTextStyle = null,
         boxStyle: customAnswerBoxStyle = null,
-        iconBoxStyle: customAnswerIconBoxStyle = null,
         submit: customAnswerSubmit = null,
         multiline: customAnswerMultiline = false,
     } = customAnswer || {};
@@ -570,8 +569,6 @@ const SurveyScreen = ({
         </div>,
     );
 
-    const isClear = answers === null || answers.length === 0 || customAnswerMultiline;
-
     return (
         <div
             className={classNames([
@@ -686,24 +683,18 @@ const SurveyScreen = ({
                                                     inputDisabled ||
                                                     textInput === null ||
                                                     textInput === '',
-                                                [styles.isClear]: isClear,
                                             },
                                         ])}
-                                        type={isClear ? 'button' : 'submit'}
-                                        onClick={isClear ? onTextInputClear : null}
-                                        buttonStyle={customAnswerIconBoxStyle}
+                                        type="button"
+                                        onClick={onTextInputClear}
                                         disabled={
                                             inputDisabled || textInput === null || textInput === ''
                                         }
                                     >
-                                        {isClear ? (
-                                            <CloseIcon className={styles.icon} />
-                                        ) : (
-                                            <ArrowIcon className={styles.icon} />
-                                        )}
+                                        <CloseIcon className={styles.icon} />
                                     </Button>
                                 ) : null}
-                                {isClear && !answered ? (
+                                {!answered ? (
                                     <Button
                                         className={classNames([
                                             styles.submit,
