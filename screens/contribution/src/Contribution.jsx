@@ -5,6 +5,7 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
+import DOMPurify from 'dompurify';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -183,14 +184,16 @@ const ContributionScreen = ({
 
     const onNameChange = useCallback(
         (e) => {
-            setUserName(e.currentTarget.value);
+            const value = DOMPurify.sanitize(e.currentTarget.value || '');
+            setUserName(value);
         },
         [setUserName],
     );
 
     const onMessageChange = useCallback(
         (e) => {
-            setUserMessage(e.currentTarget.value);
+            const value = DOMPurify.sanitize(e.currentTarget.value || '');
+            setUserMessage(value);
         },
         [setUserMessage],
     );

@@ -2,6 +2,7 @@
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
+import DOMPurify from 'dompurify';
 import isNumber from 'lodash/isNumber';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -227,7 +228,7 @@ const SurveyScreen = ({
         (answerIndex) => {
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(answerIndex);
-                const answer = answers[answerIndex];
+                const answer = answers !== null ? answers[answerIndex] : null;
                 submitQuiz({ choice: answer.label.body || answerIndex, value: 1 });
                 trackScreenEvent(
                     'click_answer',
@@ -277,7 +278,7 @@ const SurveyScreen = ({
 
     const onTextInputChange = useCallback(
         (e) => {
-            const { value = null } = e.target || {};
+            const value = DOMPurify.sanitize(e.currentTarget.value || '');
             setTextInput(value !== '' ? value : null);
         },
         [setTextInput],
@@ -291,7 +292,7 @@ const SurveyScreen = ({
                 submitQuiz({ choice: textInput, value: 1 });
                 setUserAnswerIndex('input');
                 setInputFocused(false);
-                trackScreenEvent('click_answer', `Answer: ${textInput}`, {
+                trackScreenEvent('click_answer', `Answer input: ${textInput}`, {
                     textInput,
                     answerIndex: null,
                     answerType: 'custom',
@@ -373,7 +374,8 @@ const SurveyScreen = ({
 
     const finalResult = useMemo(() => {
         const defaultResult = hasDefaultResult ? result : null;
-        const answer = userAnswerIndex !== null ? answers[userAnswerIndex] : null;
+        const answer =
+            answers !== null && userAnswerIndex !== null ? answers[userAnswerIndex] : null;
         const { result: answerResult = null } = answer || {};
         return answerResult || defaultResult;
     }, [hasDefaultResult, result, answers, userAnswerIndex]);

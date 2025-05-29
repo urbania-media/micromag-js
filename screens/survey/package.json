@@ -76,6 +76,7 @@
         "@micromag/element-text": "^0.3.679",
         "@micromag/element-text-input": "^0.3.683",
         "@micromag/transforms": "^0.3.679",
+        "dompurify": "^3.2.6",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
