@@ -379,6 +379,10 @@
     "defaultMessage": "Select Subtitles File",
     "description": "Modal title"
   },
+  "7O5F6g": {
+    "defaultMessage": "Icon box style",
+    "description": "Field label"
+  },
   "7ZzlUE": {
     "defaultMessage": "Oct 23 - Nov 22",
     "description": "Horoscope date"
@@ -759,6 +763,10 @@
     "defaultMessage": "Background color",
     "description": "Field label"
   },
+  "JMmYwg": {
+    "defaultMessage": "Submit button",
+    "description": "Field label"
+  },
   "JRZoe6": {
     "defaultMessage": "Content",
     "description": "Placeholder label"
@@ -786,6 +794,10 @@
   "K1BxIr": {
     "defaultMessage": "Edit metadata...",
     "description": "No value field label"
+  },
+  "K7AvPE": {
+    "defaultMessage": "Multiline input",
+    "description": "Field label"
   },
   "KB7N5E": {
     "defaultMessage": "Search a place on Google Maps",

@@ -284,6 +284,9 @@
     "790Q9C": {
         "defaultMessage": "Choisissez un fichier de sous-titres"
     },
+    "7O5F6g": {
+        "defaultMessage": "Style de boîte avec icône"
+    },
     "7ZzlUE": {
         "defaultMessage": "23 oct au 22 nov"
     },
@@ -569,6 +572,9 @@
     "JDPMlG": {
         "defaultMessage": "Couleur de l'arrière-plan"
     },
+    "JMmYwg": {
+        "defaultMessage": "Bouton envoyer"
+    },
     "JRZoe6": {
         "defaultMessage": "Contenu"
     },
@@ -589,6 +595,9 @@
     },
     "K1BxIr": {
         "defaultMessage": "Modifier les métadonnées"
+    },
+    "K7AvPE": {
+        "defaultMessage": "Multilignes"
     },
     "KB7N5E": {
         "defaultMessage": "Chercher un lieu sur Google Maps"

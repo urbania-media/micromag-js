@@ -581,6 +581,12 @@ msgctxt "790Q9C"
 msgid "Select Subtitles File"
 msgstr "Choisissez un fichier de sous-titres"
 
+# Field label
+#: 7O5F6g
+msgctxt "7O5F6g"
+msgid "Icon box style"
+msgstr "Style de boîte avec icône"
+
 # Horoscope date
 #: 7ZzlUE
 msgctxt "7ZzlUE"
@@ -1151,6 +1157,12 @@ msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
 
+# Field label
+#: JMmYwg
+msgctxt "JMmYwg"
+msgid "Submit button"
+msgstr "Bouton envoyer"
+
 # Placeholder label
 #: JRZoe6
 msgctxt "JRZoe6"
@@ -1192,6 +1204,12 @@ msgstr "Visuel"
 msgctxt "K1BxIr"
 msgid "Edit metadata..."
 msgstr "Modifier les métadonnées"
+
+# Field label
+#: K7AvPE
+msgctxt "K7AvPE"
+msgid "Multiline input"
+msgstr "Multilignes"
 
 # Search a place on Google Maps placeholder
 #: KB7N5E

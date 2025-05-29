@@ -284,6 +284,9 @@
     "790Q9C": {
         "defaultMessage": "Select Subtitles File"
     },
+    "7O5F6g": {
+        "defaultMessage": "Icon box style"
+    },
     "7ZzlUE": {
         "defaultMessage": "Oct 23 - Nov 22"
     },
@@ -569,6 +572,9 @@
     "JDPMlG": {
         "defaultMessage": "Background color"
     },
+    "JMmYwg": {
+        "defaultMessage": "Submit button"
+    },
     "JRZoe6": {
         "defaultMessage": "Content"
     },
@@ -589,6 +595,9 @@
     },
     "K1BxIr": {
         "defaultMessage": "Edit metadata..."
+    },
+    "K7AvPE": {
+        "defaultMessage": "Multiline input"
     },
     "KB7N5E": {
         "defaultMessage": "Search a place on Google Maps"
