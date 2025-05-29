@@ -14,6 +14,15 @@ export default {
             }),
         },
         {
+            name: 'multiline',
+            type: 'toggle',
+            isHorizontal: true,
+            label: defineMessage({
+                defaultMessage: 'Multiline input',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'placeholder',
             type: 'text-element',
             withoutLink: true,
@@ -53,6 +62,14 @@ export default {
             type: 'box-style-form',
             label: defineMessage({
                 defaultMessage: 'Box style',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'iconBoxStyle',
+            type: 'box-style-form',
+            label: defineMessage({
+                defaultMessage: 'Icon box style',
                 description: 'Field label',
             }),
         },

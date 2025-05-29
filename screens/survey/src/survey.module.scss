@@ -179,6 +179,16 @@
                 opacity: 1;
             }
         }
+
+        &.multiline {
+            .textInput {
+                min-height: 80px;
+            }
+
+            .confirm {
+                bottom: auto;
+            }
+        }
     }
 
     .textInput {
@@ -187,15 +197,12 @@
         z-index: 0;
         width: 100%;
         margin: 0;
-        padding: 10px 35px;
+        padding: 10px calc(10px + 2em);
         overflow: hidden;
         transition: margin-left 300ms ease-out, transform 300ms ease-out, opacity 500ms ease-out;
         color: $white;
+        line-height: inherit;
         text-align: center;
-
-        &.padded {
-            padding: 10px 40px;
-        }
     }
 
     .confirm {

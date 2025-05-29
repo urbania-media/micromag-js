@@ -161,7 +161,9 @@ const SurveyScreen = ({
         placeholder = null,
         textStyle: customAnswerTextStyle = null,
         boxStyle: customAnswerBoxStyle = null,
+        iconBoxStyle: customAnswerIconBoxStyle = null,
         submit: customAnswerSubmit = null,
+        multiline: customAnswerMultiline = false,
     } = customAnswer || {};
 
     const { body: placeholderBody = null, textStyle: placeholderTextStyle = null } =
@@ -568,7 +570,7 @@ const SurveyScreen = ({
         </div>,
     );
 
-    const isClear = answers === null || answers.length === 0;
+    const isClear = answers === null || answers.length === 0 || customAnswerMultiline;
 
     return (
         <div
@@ -647,15 +649,13 @@ const SurveyScreen = ({
                                         [styles.filled]: textInput !== null && textInput !== '',
                                         [styles.disabled]: inputDisabled,
                                         [styles.selected]: userAnswerIndex === 'input',
+                                        [styles.multiline]: customAnswerMultiline,
                                     },
                                 ])}
                                 onSubmit={onSubmitSuggestion}
                             >
                                 <TextInput
-                                    className={classNames([
-                                        styles.textInput,
-                                        { [styles.padded]: answers !== null && answers.length > 0 },
-                                    ])}
+                                    className={styles.textInput}
                                     disabled={inputDisabled}
                                     focusable={current && isView}
                                     buttonStyle={{ ...buttonsStyle, ...customAnswerBoxStyle }}
@@ -675,6 +675,7 @@ const SurveyScreen = ({
                                     onChange={onTextInputChange}
                                     onFocus={onInputFocused}
                                     onBlur={onInputBlurred}
+                                    multiline={customAnswerMultiline}
                                 />
                                 {!answered ? (
                                     <Button
@@ -690,6 +691,7 @@ const SurveyScreen = ({
                                         ])}
                                         type={isClear ? 'button' : 'submit'}
                                         onClick={isClear ? onTextInputClear : null}
+                                        buttonStyle={customAnswerIconBoxStyle}
                                         disabled={
                                             inputDisabled || textInput === null || textInput === ''
                                         }
@@ -701,7 +703,7 @@ const SurveyScreen = ({
                                         )}
                                     </Button>
                                 ) : null}
-                                {(answers === null || answers.length === 0) && !answered ? (
+                                {isClear && !answered ? (
                                     <Button
                                         className={classNames([
                                             styles.submit,
