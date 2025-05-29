@@ -18,6 +18,7 @@ export default {
             type: 'text-element',
             withoutLink: true,
             textOnly: true,
+            inline: true,
             fieldsProps: {
                 textStyle: {
                     excludedFields: ['link', 'highlight'],
@@ -25,6 +26,16 @@ export default {
             },
             label: defineMessage({
                 defaultMessage: 'Placeholder',
+                description: 'Field label',
+            }),
+        },
+        {
+            name: 'submit',
+            type: 'button-element',
+            withoutLink: true,
+            textOnly: true,
+            label: defineMessage({
+                defaultMessage: 'Submit button',
                 description: 'Field label',
             }),
         },

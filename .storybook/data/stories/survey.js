@@ -6,6 +6,61 @@ const Quiz = {
     theme: defaultTheme,
     components: [
         {
+            id: '2e0f52d0-a3f3-11ed-b465-6492836429',
+            type: 'survey',
+            question: {
+                body: '<span><strong>Quel est ton nom?</strong></span>',
+            },
+            parameters: {
+                metadata: {
+                    title: 'Sondage',
+                    description: 'Matchmaker',
+                },
+            },
+            customAnswer: {
+                active: true,
+                placeholder: {
+                    body: 'Ton Nom',
+                    textStyle: {
+                        color: {
+                            alpha: 1,
+                            color: '#ff00ff',
+                        },
+                        textAlign: 'center',
+                    },
+                },
+                submit: {
+                    body: 'Submit!',
+                    textStyle: {
+                        color: {
+                            alpha: 1,
+                            color: '#00ff00',
+                        },
+                        textAlign: 'right',
+                    },
+                },
+                textStyle: {
+                    fontSize: 12,
+                    color: {
+                        alpha: 1,
+                        color: '#fff',
+                    },
+                },
+            },
+
+            group: null,
+            parentId: null,
+            result: null,
+            answers: [],
+            background: {
+                color: {
+                    color: '#223322',
+                },
+                video: 'media://3799',
+                image: null,
+            },
+        },
+        {
             id: '2e0f52d0-a3f3-11ed-b465-489593279',
             type: 'survey',
             question: {

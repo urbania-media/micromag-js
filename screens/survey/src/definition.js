@@ -70,9 +70,6 @@ export default {
             isList: true,
             theme: {
                 textStyle: 'button',
-                // placeholder: {
-                //     textStyle: 'text',
-                // },
             },
         },
         {

@@ -9,7 +9,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ArrowIcon, ScreenElement, Transitions } from '@micromag/core/components';
+import { ArrowIcon, CloseIcon, ScreenElement, Transitions } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -161,6 +161,7 @@ const SurveyScreen = ({
         placeholder = null,
         textStyle: customAnswerTextStyle = null,
         boxStyle: customAnswerBoxStyle = null,
+        submit: customAnswerSubmit = null,
     } = customAnswer || {};
 
     const { body: placeholderBody = null, textStyle: placeholderTextStyle = null } =
@@ -283,6 +284,10 @@ const SurveyScreen = ({
         },
         [setTextInput],
     );
+
+    const onTextInputClear = useCallback(() => {
+        setTextInput('');
+    }, [setTextInput]);
 
     const onSubmitSuggestion = useCallback(
         (e) => {
@@ -563,6 +568,8 @@ const SurveyScreen = ({
         </div>,
     );
 
+    const isClear = answers === null || answers.length === 0;
+
     return (
         <div
             className={classNames([
@@ -637,6 +644,7 @@ const SurveyScreen = ({
                                     styles.input,
                                     {
                                         [styles.focused]: inputFocused,
+                                        [styles.filled]: textInput !== null && textInput !== '',
                                         [styles.disabled]: inputDisabled,
                                         [styles.selected]: userAnswerIndex === 'input',
                                     },
@@ -644,7 +652,10 @@ const SurveyScreen = ({
                                 onSubmit={onSubmitSuggestion}
                             >
                                 <TextInput
-                                    className={styles.textInput}
+                                    className={classNames([
+                                        styles.textInput,
+                                        { [styles.padded]: answers !== null && answers.length > 0 },
+                                    ])}
                                     disabled={inputDisabled}
                                     focusable={current && isView}
                                     buttonStyle={{ ...buttonsStyle, ...customAnswerBoxStyle }}
@@ -665,23 +676,51 @@ const SurveyScreen = ({
                                     onFocus={onInputFocused}
                                     onBlur={onInputBlurred}
                                 />
-                                <Button
-                                    className={classNames([
-                                        styles.confirm,
-                                        {
-                                            [styles.disabled]:
-                                                inputDisabled ||
-                                                textInput === null ||
-                                                textInput === '',
-                                        },
-                                    ])}
-                                    type="submit"
-                                    disabled={
-                                        inputDisabled || textInput === null || textInput === ''
-                                    }
-                                >
-                                    <ArrowIcon className={styles.icon} />
-                                </Button>
+                                {!answered ? (
+                                    <Button
+                                        className={classNames([
+                                            styles.confirm,
+                                            {
+                                                [styles.disabled]:
+                                                    inputDisabled ||
+                                                    textInput === null ||
+                                                    textInput === '',
+                                                [styles.isClear]: isClear,
+                                            },
+                                        ])}
+                                        type={isClear ? 'button' : 'submit'}
+                                        onClick={isClear ? onTextInputClear : null}
+                                        disabled={
+                                            inputDisabled || textInput === null || textInput === ''
+                                        }
+                                    >
+                                        {isClear ? (
+                                            <CloseIcon className={styles.icon} />
+                                        ) : (
+                                            <ArrowIcon className={styles.icon} />
+                                        )}
+                                    </Button>
+                                ) : null}
+                                {(answers === null || answers.length === 0) && !answered ? (
+                                    <Button
+                                        className={classNames([
+                                            styles.submit,
+                                            {
+                                                [styles.disabled]:
+                                                    inputDisabled ||
+                                                    textInput === null ||
+                                                    textInput === '',
+                                            },
+                                        ])}
+                                        type="submit"
+                                        buttonStyle={customAnswerSubmit?.buttonStyle}
+                                        disabled={
+                                            inputDisabled || textInput === null || textInput === ''
+                                        }
+                                    >
+                                        <Text {...customAnswerSubmit} inline />
+                                    </Button>
+                                ) : null}
                             </form>
                         ) : null}
                         {userAnswerIndex !== null && finalResult !== null ? (
