@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { useVisitor, useStory } from '@micromag/core/contexts';
+import { useStory, useVisitor } from '@micromag/core/contexts';
 
 import { useApi } from '../contexts/ApiContext';
 
@@ -13,7 +13,7 @@ export const useQuizCreate = ({
     const api = useApi();
     const [creating, setCreating] = useState(false);
     const { id: visitorId } = useVisitor() || {};
-    const { id: storyId } = useStory() || {};
+    const { id: storyId, document_id: documentId } = useStory() || {};
 
     const create = useCallback(
         (data) => {
@@ -25,7 +25,7 @@ export const useQuizCreate = ({
                 .create({
                     screen_id: screenId,
                     visitor_id: providedVisitorId || visitorId,
-                    story_id: providedStoryId || storyId,
+                    story_id: documentId || providedStoryId || storyId,
                     ...data,
                 })
                 .then((response) => {
@@ -36,7 +36,16 @@ export const useQuizCreate = ({
                     return response;
                 });
         },
-        [api, setCreating, onSuccess, screenId, visitorId, storyId, providedVisitorId, providedStoryId],
+        [
+            api,
+            setCreating,
+            onSuccess,
+            screenId,
+            visitorId,
+            storyId,
+            providedVisitorId,
+            providedStoryId,
+        ],
     );
     return { create, creating };
 };
