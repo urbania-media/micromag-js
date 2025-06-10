@@ -14,11 +14,12 @@ class QuizApi extends Base {
         });
     }
 
-    results(screenId) {
+    results(screenId, query = {}) {
         return this.requestGet(
             this.route('results', {
                 screen: screenId,
             }),
+            query,
         );
     }
 
