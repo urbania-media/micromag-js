@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, import/order */
 import classNames from 'classnames';
+import Hls from 'hls.js';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Spinner } from '@micromag/core/components';
@@ -13,6 +14,7 @@ import {
     useMediaThumbnail,
     useProgressSteps,
 } from '@micromag/core/hooks';
+import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
 
 import useSources from './useSources';
 
@@ -36,6 +38,7 @@ const propTypes = {
     playsInline: PropTypes.bool,
     preload: PropTypes.oneOf(['auto', 'metadata', 'none', null]),
     disablePictureInPicture: PropTypes.bool,
+    disableHls: PropTypes.bool,
     shouldLoad: PropTypes.bool,
     withoutCors: PropTypes.bool,
     className: PropTypes.string,
@@ -52,9 +55,11 @@ const propTypes = {
     onSuspend: PropTypes.func,
     onSuspended: PropTypes.func,
     onPlayError: PropTypes.func,
+    onQualityLevelChange: PropTypes.func,
     focusable: PropTypes.bool,
     withPoster: PropTypes.bool,
     withLoading: PropTypes.bool,
+    qualityStartLevel: PropTypes.number,
 };
 
 const defaultProps = {
@@ -70,6 +75,7 @@ const defaultProps = {
     playsInline: true,
     preload: 'auto',
     disablePictureInPicture: true,
+    disableHls: true,
     shouldLoad: true,
     withoutCors: false,
     className: null,
@@ -86,9 +92,11 @@ const defaultProps = {
     onSuspend: null,
     onSuspended: null,
     onPlayError: null,
+    onQualityLevelChange: null,
     focusable: true,
     withPoster: false,
     withLoading: false,
+    qualityStartLevel: null,
 };
 
 const Video = ({
@@ -119,16 +127,21 @@ const Video = ({
     onSuspend: customOnSuspend,
     onSuspended,
     onPlayError,
+    onQualityLevelChange,
     focusable,
     withPoster,
     withLoading,
     disablePictureInPicture,
+    disableHls,
+    qualityStartLevel,
 }) => {
     const { url: mediaUrl = null, metadata = null } = media || {};
-    const { description = null, has_audio: hasAudio = null } = metadata || {};
+    const {
+        description = null,
+        has_audio: hasAudio = null,
+    } = metadata || {};
+    const { sources, isImage, files } = useSources(media);
     const finalThumbnail = useMediaThumbnail(media, thumbnail);
-    const { sources, isImage } = useSources(media);
-    const isImageWithoutSourceFile = isImage && (sources === null || sources.length === 0);
 
     const ref = useRef(null);
 
@@ -156,6 +169,128 @@ const Video = ({
             clearTimeout(id);
         };
     }, [mediaUrl, withLoading]);
+
+    const [hlsFailed, setHlsFailed] = useState(false);
+    const hlsSources = useMemo(() => {
+        if (files.length === 0 || disableHls || !Hls.isSupported() || hlsFailed) {
+            return null;
+        }
+        return files.filter(
+            ({ mime = null, name = null }) =>
+                mime === 'application/vnd.apple.mpegurl' || (name || '').endsWith('.m3u8'),
+        );
+    }, [files, disableHls, hlsFailed]);
+
+    const [hlsJs, setHlsJs] = useState(null);
+    const [hlsTsOffset, setHlsTsOffset] = useState(0);
+
+    // initialize hls instance if an hls source is provided
+    useEffect(() => {
+        setHlsTsOffset(0);
+        setHlsFailed(false);
+
+        if (!shouldLoad || hlsSources === null || hlsSources.length === 0) {
+            setHlsJs(null);
+            return;
+        }
+
+        const hls = new Hls({
+            maxBufferLength: 15, // seconds. prevents loading too much per screen.
+            startLevel: qualityStartLevel !== null ? qualityStartLevel : -1,
+            enableWorker: true,
+            // debug: true,
+            // lowLatencyMode: true,
+            // backBufferLength: 90,
+            // testBandwidth: qualityStartLevel === null,
+            // startFragPrefetch: true,
+        });
+
+        hls.on(Hls.Events.LEVEL_SWITCHED, (_, { level }) => {
+            if (onQualityLevelChange !== null) {
+                onQualityLevelChange(level, ref.current);
+            }
+        });
+
+        hls.on(Hls.Events.ERROR, (_, { fatal: isFatal, type: errorType }) => {
+            if (isFatal) {
+                switch (errorType) {
+                    case Hls.ErrorTypes.MEDIA_ERROR:
+                        // automatically try to recover from media errors
+                        hls.recoverMediaError();
+                        break;
+                    case Hls.ErrorTypes.NETWORK_ERROR:
+                        // happens when all retries and media options have been exhausted. in that case, fallback to mp4/webm playback
+                        setHlsJs(null);
+                        setHlsFailed(true);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        // compute hls timestamp offset when we get the first video fragment
+        const onHlsBufferAppended = (_, { frag }) => {
+            const {
+                start: fragStart,
+                type: fragType,
+                sn: fragSn = null,
+                elementaryStreams: { video: videoStream = null },
+            } = frag;
+            const { startPTS: videoStartPTS = null } = videoStream || {};
+            if (fragType === 'main' && fragSn !== 'initSegment' && videoStartPTS !== null) {
+                const tOffset = videoStartPTS - fragStart;
+                hls.off(Hls.Events.BUFFER_APPENDED, onHlsBufferAppended);
+                setHlsTsOffset(tOffset);
+            }
+        };
+        hls.on(Hls.Events.BUFFER_APPENDED, onHlsBufferAppended);
+
+        hls.loadSource(hlsSources[0].url);
+        setHlsJs(hls);
+    }, [shouldLoad, hlsSources]);
+
+    // attach hls.js when the <video> ref or the hls.js instance is ready
+    useEffect(() => {
+        if (hlsJs !== null && ref.current !== null) {
+            hlsJs.attachMedia(ref.current);
+            // if (onQualityLevelChange !== null) {
+            //     onQualityLevelChange(hlsJs.currentLevel, ref.current);
+            // }
+        }
+
+        return () => {
+            if (hlsJs !== null) {
+                hlsJs.detachMedia();
+            }
+        };
+    }, [hlsJs, ref.current]);
+
+    // cleanup hls.js instance when it is no longer needed
+    useEffect(
+        () =>
+            // teardown func
+            () => {
+                if (hlsJs !== null) {
+                    hlsJs.destroy();
+                }
+            },
+        [hlsJs],
+    );
+
+    // handle changes of qualityStartLevel when an hls.js instance exists
+    useEffect(() => {
+        if (hlsJs !== null) {
+            const qualityLevel = qualityStartLevel !== null ? qualityStartLevel : -1;
+            hlsJs.startLevel = qualityLevel;
+            if (ref.current !== null && ref.current.paused) {
+                hlsJs.currentLevel = qualityLevel;
+                hlsJs.nextLevel = -1; // force auto quality selection for the next fragment
+            }
+        }
+    }, [qualityStartLevel]);
+
+    const isImageWithoutSourceFile = isImage && (sources === null || sources.length === 0);
 
     const withSize = width !== null && height !== null;
 
@@ -247,9 +382,9 @@ const Video = ({
             className={classNames([
                 styles.container,
                 {
+                    [className]: className !== null,
                     [styles.withSize]: withSize,
                 },
-                className,
             ])}
             style={
                 withSize
@@ -265,7 +400,10 @@ const Video = ({
                     src={mediaUrl}
                     alt={description}
                     tabIndex="-1"
-                    className={classNames([styles.media, innerClassName])}
+                    className={classNames([
+                        styles.media,
+                        { [innerClassName]: innerClassName !== null },
+                    ])}
                 />
             ) : null}
             {!isImageWithoutSourceFile ? (
@@ -279,7 +417,13 @@ const Video = ({
                             mediaRef.current = newRef;
                         }
                     }}
-                    src={sources === null && shouldLoad ? `${mediaUrl}#t=0.001` : null}
+                    src={
+                        sources === null &&
+                        (hlsSources === null || hlsSources.length === 0) &&
+                        shouldLoad
+                            ? `${mediaUrl}#t=0.001`
+                            : null
+                    }
                     autoPlay={autoPlay && !paused}
                     loop={loop}
                     muted={muted}
@@ -293,7 +437,10 @@ const Video = ({
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     disablePictureInPicture={disablePictureInPicture}
                     tabIndex={focusable ? '0' : '-1'}
-                    className={classNames([styles.media, innerClassName])}
+                    className={classNames([
+                        styles.media,
+                        { [innerClassName]: innerClassName !== null },
+                    ])}
                     onPlay={onPlay}
                     onPlaying={onPlaying}
                     onPause={onPause}
@@ -304,12 +451,14 @@ const Video = ({
                     onSuspend={onSuspend}
                     data-has-audio={hasAudio}
                     data-is-suspended={isSuspended}
+                    data-hls={hlsJs !== null}
+                    data-ts-offset={hlsTsOffset}
                     aria-hidden
                 >
                     {(shouldLoad && sources !== null ? sources : []).map(
                         ({ url: sourceUrl, mime: sourceMime }) => (
                             <source
-                                key={`source-${sourceUrl}-${sourceMime}`}
+                                key={`${sourceUrl}-${sourceMime}`}
                                 src={sourceUrl !== null ? `${sourceUrl}#t=0.001` : null}
                                 type={sourceMime}
                             />
