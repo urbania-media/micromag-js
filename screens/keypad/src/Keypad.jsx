@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
-import { isString } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -259,18 +260,36 @@ const KeypadScreen = ({
     } = popupButton || {};
 
     const onItemClick = useCallback(
-        (e, item) => {
+        (e, item, index) => {
             e.stopPropagation();
-            trackScreenEvent('click_item', item);
-            const { inWebView = false, url = null } = item || {};
+            const {
+                label: itemLabel = null,
+                heading = null,
+                inWebView = false,
+                url = null,
+            } = item || {};
+
             if (inWebView && url !== null) {
                 openWebView({
                     url,
                 });
-                return;
+            } else {
+                setPopup(item);
+                setShowPopup(true);
             }
-            setPopup(item);
-            setShowPopup(true);
+
+            const { body: headingBody = null } = heading || {};
+            const finalLabel = isString(itemLabel) ? itemLabel : (itemLabel || {}).body || null;
+            trackScreenEvent(
+                'click_item',
+                [`#${index + 1}`, finalLabel || headingBody || '']
+                    .filter((it) => !isEmpty(it))
+                    .join(' '),
+                {
+                    linkType: 'keypad_item',
+                    linkUrl: url || null,
+                },
+            );
         },
         [setPopup, setShowPopup, trackScreenEvent, openWebView],
     );
@@ -402,7 +421,7 @@ const KeypadScreen = ({
 
     const gridItems = useMemo(
         () =>
-            (items === null || items.length === 0 ? placeholders : items).map((item) => {
+            (items === null || items.length === 0 ? placeholders : items).map((item, index) => {
                 const {
                     id = null,
                     label: itemLabel = null,
@@ -461,7 +480,7 @@ const KeypadScreen = ({
                             focusable={current}
                             onClick={
                                 !isPopupEmpty || (url !== null && !isExternalLink)
-                                    ? (e) => onItemClick(e, item)
+                                    ? (e) => onItemClick(e, item, index)
                                     : null
                             }
                         >
