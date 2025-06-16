@@ -212,6 +212,7 @@ const QuizMultipleScreen = ({
                 'click_answer',
                 `Question #${questionIndex + 1} ${answerIndex + 1}: ${answer.label.body}`,
                 {
+                    linkType: 'quiz_answer',
                     question: questions[questionIndex],
                     questionIndex,
                     answer,

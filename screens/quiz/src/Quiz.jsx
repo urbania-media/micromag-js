@@ -165,6 +165,7 @@ const QuizScreen = ({
             }
             setUserAnswerIndex(answerI);
             trackScreenEvent('click_answer', `${userAnswerIndex + 1}: ${answer.label.body}`, {
+                linkType: 'quiz_answer',
                 answer,
                 answerIndex: answerI,
             });

@@ -236,6 +236,7 @@ const SurveyScreen = ({
                     'click_answer',
                     `Answer ${userAnswerIndex + 1}: ${answer.label.body}`,
                     {
+                        linkType: 'survey_answer',
                         answer,
                         answerIndex,
                         answerType: 'button',
