@@ -266,12 +266,10 @@
         .itemLabel {
             margin-right: 0;
             margin-left: 0;
-            text-align: left;
         }
 
         .textInput {
             padding: 10px;
-            text-align: left;
             pointer-events: none;
         }
 
@@ -282,6 +280,12 @@
 
             .textInput {
                 transform: translate(0, 0);
+            }
+        }
+
+        &.withPercentage, &.withBar {
+            .itemLabel, .textInput {
+                text-align: left;
             }
         }
     }

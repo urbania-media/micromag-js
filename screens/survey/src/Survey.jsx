@@ -579,6 +579,7 @@ const SurveyScreen = ({
                     [styles.answered]: answered,
                     [styles.inputFocused]: inputFocused,
                     [styles.withPercentage]: !withoutPercentage,
+                    [styles.withBar]: !withoutBar,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}

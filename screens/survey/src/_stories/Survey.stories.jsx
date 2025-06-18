@@ -75,6 +75,10 @@ export const WithoutPercentage = (storyProps) => (
 
 export const WithoutBar = (storyProps) => <SurveyScreen {...storyProps} {...props} withoutBar />;
 
+export const WithoutAll = (storyProps) => (
+    <SurveyScreen {...storyProps} {...props} withoutPercentage withoutBar />
+);
+
 export const WithoutResults = (storyProps) => (
     <SurveyScreen {...storyProps} {...props} withoutPercentage withoutBar />
 );
