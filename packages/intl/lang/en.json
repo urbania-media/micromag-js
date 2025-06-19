@@ -17,6 +17,9 @@
     "+Ok+7S": {
         "defaultMessage": "Answer"
     },
+    "+Ptk0B": {
+        "defaultMessage": "Your privacy settings"
+    },
     "+SlKOi": {
         "defaultMessage": "Published message style"
     },
@@ -284,9 +287,6 @@
     "790Q9C": {
         "defaultMessage": "Select Subtitles File"
     },
-    "7O5F6g": {
-        "defaultMessage": "Icon box style"
-    },
     "7ZzlUE": {
         "defaultMessage": "Oct 23 - Nov 22"
     },
@@ -328,6 +328,9 @@
     },
     "8tANs8": {
         "defaultMessage": "Conversation"
+    },
+    "8yRYcm": {
+        "defaultMessage": "Edit my settings"
     },
     "9/t5wK": {
         "defaultMessage": "Type"
@@ -538,6 +541,9 @@
     },
     "HwqzVR": {
         "defaultMessage": "Visual"
+    },
+    "HxW2pw": {
+        "defaultMessage": "Accept all"
     },
     "I1hyZY": {
         "defaultMessage": "Answer icon value"
@@ -878,6 +884,9 @@
     "X97njD": {
         "defaultMessage": "Entry"
     },
+    "X9mFEG": {
+        "defaultMessage": "Reject all"
+    },
     "XHO5Ua": {
         "defaultMessage": "Expand visual"
     },
@@ -1022,6 +1031,48 @@
     "cej3hp": {
         "defaultMessage": "Select Video"
     },
+    "consent.ad_personalization_description": {
+        "defaultMessage": "Cookies used for ad targeting."
+    },
+    "consent.ad_personalization_title": {
+        "defaultMessage": "Ad Personalization"
+    },
+    "consent.ad_storage_description": {
+        "defaultMessage": "Cookies used for advertising purposes."
+    },
+    "consent.ad_storage_title": {
+        "defaultMessage": "Ad Storage"
+    },
+    "consent.ad_user_data_description": {
+        "defaultMessage": "Cookies used for user-specific ad data."
+    },
+    "consent.ad_user_data_title": {
+        "defaultMessage": "User Ad Data"
+    },
+    "consent.analytics_description": {
+        "defaultMessage": "Cookies used to measure user behavior."
+    },
+    "consent.analytics_title": {
+        "defaultMessage": "Analytics"
+    },
+    "consent.functionality_description": {
+        "defaultMessage": "Cookies required for the site to function properly."
+    },
+    "consent.functionality_title": {
+        "defaultMessage": "Functionnal"
+    },
+    "consent.personalization_storage_description": {
+        "defaultMessage": "Cookies used for personalizing user experience."
+    },
+    "consent.personalization_storage_title": {
+        "defaultMessage": "Personalization Storage"
+    },
+    "consent.security_storage_description": {
+        "defaultMessage": "Cookies used for security purposes."
+    },
+    "consent.security_storage_title": {
+        "defaultMessage": "Security Storage"
+    },
     "crLqJd": {
         "defaultMessage": "Without percentage"
     },
@@ -1063,6 +1114,9 @@
     },
     "dqnkQk": {
         "defaultMessage": "Legend"
+    },
+    "dsRGuG": {
+        "defaultMessage": "We use cookies to improve your experience on our site and for marketing purposes. By accepting, you consent to the use of these cookies."
     },
     "dxAumJ": {
         "defaultMessage": "Pisces"
@@ -1274,6 +1328,9 @@
     "liyV7Y": {
         "defaultMessage": "Size"
     },
+    "lvPGoX": {
+        "defaultMessage": "Our terms and conditions"
+    },
     "mOSkbf": {
         "defaultMessage": "Usage"
     },
@@ -1453,6 +1510,9 @@
     },
     "sESmah": {
         "defaultMessage": "Entries"
+    },
+    "sHYAUa": {
+        "defaultMessage": "Save my preferences"
     },
     "sSahY1": {
         "defaultMessage": "Popup"
@@ -1672,6 +1732,9 @@
     },
     "ygNvmz": {
         "defaultMessage": "Description"
+    },
+    "ylHNR3": {
+        "defaultMessage": "Learn more about our privacy policy"
     },
     "z/VBX0": {
         "defaultMessage": "Learn more"

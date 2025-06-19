@@ -17,6 +17,9 @@
     "+Ok+7S": {
         "defaultMessage": "Réponse"
     },
+    "+Ptk0B": {
+        "defaultMessage": "Vos paramètres de confidentialité"
+    },
     "+SlKOi": {
         "defaultMessage": "Style de message publié"
     },
@@ -284,9 +287,6 @@
     "790Q9C": {
         "defaultMessage": "Choisissez un fichier de sous-titres"
     },
-    "7O5F6g": {
-        "defaultMessage": "Style de boîte avec icône"
-    },
     "7ZzlUE": {
         "defaultMessage": "23 oct au 22 nov"
     },
@@ -328,6 +328,9 @@
     },
     "8tANs8": {
         "defaultMessage": "Conversation"
+    },
+    "8yRYcm": {
+        "defaultMessage": "Modifier mes paramètres"
     },
     "9/t5wK": {
         "defaultMessage": "Type"
@@ -538,6 +541,9 @@
     },
     "HwqzVR": {
         "defaultMessage": "Visuel"
+    },
+    "HxW2pw": {
+        "defaultMessage": "Tout accepter"
     },
     "I1hyZY": {
         "defaultMessage": "Icône de réponse"
@@ -878,6 +884,9 @@
     "X97njD": {
         "defaultMessage": "Entrée"
     },
+    "X9mFEG": {
+        "defaultMessage": "Tout rejeter"
+    },
     "XHO5Ua": {
         "defaultMessage": "Ouvrir visuel"
     },
@@ -1022,6 +1031,48 @@
     "cej3hp": {
         "defaultMessage": "Choisissez une vidéo"
     },
+    "consent.ad_personalization_description": {
+        "defaultMessage": "Témoins utilisés pour le ciblage publicitaire."
+    },
+    "consent.ad_personalization_title": {
+        "defaultMessage": "Publicités personnalisées"
+    },
+    "consent.ad_storage_description": {
+        "defaultMessage": "Témoins utilisés pour les publicités."
+    },
+    "consent.ad_storage_title": {
+        "defaultMessage": "Publicité"
+    },
+    "consent.ad_user_data_description": {
+        "defaultMessage": "Témoins utilisés pour les données spécifiques à un utilisateur."
+    },
+    "consent.ad_user_data_title": {
+        "defaultMessage": "Données publicitaires de l'utilisateur"
+    },
+    "consent.analytics_description": {
+        "defaultMessage": "Témoins utilisés pour mesurer le comportement des utilisateurs."
+    },
+    "consent.analytics_title": {
+        "defaultMessage": "Statistiques"
+    },
+    "consent.functionality_description": {
+        "defaultMessage": "Témoins requis pour le bon fonctionnement du site."
+    },
+    "consent.functionality_title": {
+        "defaultMessage": "Fonctionnel"
+    },
+    "consent.personalization_storage_description": {
+        "defaultMessage": "Témoins utilisés pour personnaliser l'expérience utilisateur."
+    },
+    "consent.personalization_storage_title": {
+        "defaultMessage": "Personnalisation"
+    },
+    "consent.security_storage_description": {
+        "defaultMessage": "Témoins utilisés pour la sécurité et la connexion au site."
+    },
+    "consent.security_storage_title": {
+        "defaultMessage": "Sécurité"
+    },
     "crLqJd": {
         "defaultMessage": "Sans pourcentage"
     },
@@ -1063,6 +1114,9 @@
     },
     "dqnkQk": {
         "defaultMessage": "Légende"
+    },
+    "dsRGuG": {
+        "defaultMessage": "Nous utilisons des témoins de connexion (cookies) pour améliorer votre expérience sur notre site et optimiser nos efforts de marketing. En acceptant, vous consentez à l'utilisation de ces témoins."
     },
     "dxAumJ": {
         "defaultMessage": "Poissons"
@@ -1274,6 +1328,9 @@
     "liyV7Y": {
         "defaultMessage": "Taille"
     },
+    "lvPGoX": {
+        "defaultMessage": "Nos conditions d'utilisation"
+    },
     "mOSkbf": {
         "defaultMessage": "Utilisation"
     },
@@ -1453,6 +1510,9 @@
     },
     "sESmah": {
         "defaultMessage": "Entrées"
+    },
+    "sHYAUa": {
+        "defaultMessage": "Sauvegarder mes préférences"
     },
     "sSahY1": {
         "defaultMessage": "Pop-up"
@@ -1672,6 +1732,9 @@
     },
     "ygNvmz": {
         "defaultMessage": "Description"
+    },
+    "ylHNR3": {
+        "defaultMessage": "Lire notre politique de confidentialité"
     },
     "z/VBX0": {
         "defaultMessage": "En savoir plus"

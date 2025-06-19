@@ -118,7 +118,7 @@
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
         "@use-gesture/react": "^10.3.1",
-        "bootstrap": "^5.3.1",
+        "bootstrap": "^5.3.7",
         "change-case": "^5.4.4",
         "classnames": "^2.2.6",
         "css-mediaquery": "^0.1.2",

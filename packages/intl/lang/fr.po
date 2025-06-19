@@ -47,6 +47,12 @@ msgctxt "+Ok+7S"
 msgid "Answer"
 msgstr "Réponse"
 
+# Cookies title
+#: +Ptk0B
+msgctxt "+Ptk0B"
+msgid "Your privacy settings"
+msgstr "Vos paramètres de confidentialité"
+
 # Published message style field label
 #: +SlKOi
 msgctxt "+SlKOi"
@@ -581,12 +587,6 @@ msgctxt "790Q9C"
 msgid "Select Subtitles File"
 msgstr "Choisissez un fichier de sous-titres"
 
-# Field label
-#: 7O5F6g
-msgctxt "7O5F6g"
-msgid "Icon box style"
-msgstr "Style de boîte avec icône"
-
 # Horoscope date
 #: 7ZzlUE
 msgctxt "7ZzlUE"
@@ -670,6 +670,12 @@ msgstr "Ajouter un fichier de polices"
 msgctxt "8tANs8"
 msgid "Conversation"
 msgstr "Conversation"
+
+# Button label
+#: 8yRYcm
+msgctxt "8yRYcm"
+msgid "Edit my settings"
+msgstr "Modifier mes paramètres"
 
 # Filter label
 #: 9/t5wK
@@ -1090,6 +1096,12 @@ msgstr "Modifier"
 msgctxt "HwqzVR"
 msgid "Visual"
 msgstr "Visuel"
+
+# Button label
+#: HxW2pw
+msgctxt "HxW2pw"
+msgid "Accept all"
+msgstr "Tout accepter"
 
 # Field label
 #: I1hyZY
@@ -1769,6 +1781,12 @@ msgid "Entry"
 msgstr "Entrée"
 
 # Button label
+#: X9mFEG
+msgctxt "X9mFEG"
+msgid "Reject all"
+msgstr "Tout rejeter"
+
+# Button label
 #: XHO5Ua
 msgctxt "XHO5Ua"
 msgid "Expand visual"
@@ -2056,6 +2074,76 @@ msgctxt "cej3hp"
 msgid "Select Video"
 msgstr "Choisissez une vidéo"
 
+#: consent.ad_personalization_description
+msgctxt "consent.ad_personalization_description"
+msgid "Cookies used for ad targeting."
+msgstr "Témoins utilisés pour le ciblage publicitaire."
+
+#: consent.ad_personalization_title
+msgctxt "consent.ad_personalization_title"
+msgid "Ad Personalization"
+msgstr "Publicités personnalisées"
+
+#: consent.ad_storage_description
+msgctxt "consent.ad_storage_description"
+msgid "Cookies used for advertising purposes."
+msgstr "Témoins utilisés pour les publicités."
+
+#: consent.ad_storage_title
+msgctxt "consent.ad_storage_title"
+msgid "Ad Storage"
+msgstr "Publicité"
+
+#: consent.ad_user_data_description
+msgctxt "consent.ad_user_data_description"
+msgid "Cookies used for user-specific ad data."
+msgstr "Témoins utilisés pour les données spécifiques à un utilisateur."
+
+#: consent.ad_user_data_title
+msgctxt "consent.ad_user_data_title"
+msgid "User Ad Data"
+msgstr "Données publicitaires de l'utilisateur"
+
+#: consent.analytics_description
+msgctxt "consent.analytics_description"
+msgid "Cookies used to measure user behavior."
+msgstr "Témoins utilisés pour mesurer le comportement des utilisateurs."
+
+#: consent.analytics_title
+msgctxt "consent.analytics_title"
+msgid "Analytics"
+msgstr "Statistiques"
+
+#: consent.functionality_description
+msgctxt "consent.functionality_description"
+msgid "Cookies required for the site to function properly."
+msgstr "Témoins requis pour le bon fonctionnement du site."
+
+#: consent.functionality_title
+msgctxt "consent.functionality_title"
+msgid "Functionnal"
+msgstr "Fonctionnel"
+
+#: consent.personalization_storage_description
+msgctxt "consent.personalization_storage_description"
+msgid "Cookies used for personalizing user experience."
+msgstr "Témoins utilisés pour personnaliser l'expérience utilisateur."
+
+#: consent.personalization_storage_title
+msgctxt "consent.personalization_storage_title"
+msgid "Personalization Storage"
+msgstr "Personnalisation"
+
+#: consent.security_storage_description
+msgctxt "consent.security_storage_description"
+msgid "Cookies used for security purposes."
+msgstr "Témoins utilisés pour la sécurité et la connexion au site."
+
+#: consent.security_storage_title
+msgctxt "consent.security_storage_title"
+msgid "Security Storage"
+msgstr "Sécurité"
+
 # Field label
 #: crLqJd
 msgctxt "crLqJd"
@@ -2139,6 +2227,17 @@ msgstr "Ajustement de l’image"
 msgctxt "dqnkQk"
 msgid "Legend"
 msgstr "Légende"
+
+# Cookies message
+#: dsRGuG
+msgctxt "dsRGuG"
+msgid ""
+"We use cookies to improve your experience on our site and for marketing "
+"purposes. By accepting, you consent to the use of these cookies."
+msgstr ""
+"Nous utilisons des témoins de connexion (cookies) pour améliorer votre "
+"expérience sur notre site et optimiser nos efforts de marketing. En "
+"acceptant, vous consentez à l'utilisation de ces témoins."
 
 # Horoscope sign
 #: dxAumJ
@@ -2559,6 +2658,12 @@ msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Taille"
 
+# Cookies message
+#: lvPGoX
+msgctxt "lvPGoX"
+msgid "Our terms and conditions"
+msgstr "Nos conditions d'utilisation"
+
 # Media label
 #: mOSkbf
 msgctxt "mOSkbf"
@@ -2916,6 +3021,12 @@ msgstr "Interlocuteur"
 msgctxt "sESmah"
 msgid "Entries"
 msgstr "Entrées"
+
+# Button label
+#: sHYAUa
+msgctxt "sHYAUa"
+msgid "Save my preferences"
+msgstr "Sauvegarder mes préférences"
 
 # Keypad item state
 #: sSahY1
@@ -3354,6 +3465,12 @@ msgstr "Audio"
 msgctxt "ygNvmz"
 msgid "Description"
 msgstr "Description"
+
+# Cookies message
+#: ylHNR3
+msgctxt "ylHNR3"
+msgid "Learn more about our privacy policy"
+msgstr "Lire notre politique de confidentialité"
 
 # Call to action default label
 #: z/VBX0

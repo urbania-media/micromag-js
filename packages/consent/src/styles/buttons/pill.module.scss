@@ -1,0 +1,14 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    @extend %reset-button;
+    padding: 6px 10px;
+    border : 1px solid #FFF;
+
+    &:hover, &:active {
+        background-color: var(--color-primary);
+        color: #FFF;
+    }
+}

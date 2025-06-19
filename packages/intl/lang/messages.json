@@ -23,6 +23,10 @@
     "defaultMessage": "Answer",
     "description": "Answer placeholder"
   },
+  "+Ptk0B": {
+    "defaultMessage": "Your privacy settings",
+    "description": "Cookies title"
+  },
   "+SlKOi": {
     "defaultMessage": "Published message style",
     "description": "Published message style field label"
@@ -379,10 +383,6 @@
     "defaultMessage": "Select Subtitles File",
     "description": "Modal title"
   },
-  "7O5F6g": {
-    "defaultMessage": "Icon box style",
-    "description": "Field label"
-  },
   "7ZzlUE": {
     "defaultMessage": "Oct 23 - Nov 22",
     "description": "Horoscope date"
@@ -438,6 +438,10 @@
   "8tANs8": {
     "defaultMessage": "Conversation",
     "description": "Conversation field label"
+  },
+  "8yRYcm": {
+    "defaultMessage": "Edit my settings",
+    "description": "Button label"
   },
   "9/t5wK": {
     "defaultMessage": "Type",
@@ -718,6 +722,10 @@
   "HwqzVR": {
     "defaultMessage": "Visual",
     "description": "Field label"
+  },
+  "HxW2pw": {
+    "defaultMessage": "Accept all",
+    "description": "Button label"
   },
   "I1hyZY": {
     "defaultMessage": "Answer icon value",
@@ -1170,6 +1178,10 @@
     "defaultMessage": "Entry",
     "description": "Breadcrumb field label"
   },
+  "X9mFEG": {
+    "defaultMessage": "Reject all",
+    "description": "Button label"
+  },
   "XHO5Ua": {
     "defaultMessage": "Expand visual",
     "description": "Button label"
@@ -1362,6 +1374,48 @@
     "defaultMessage": "Select Video",
     "description": "Modal title"
   },
+  "consent.ad_personalization_description": {
+    "defaultMessage": "Cookies used for ad targeting."
+  },
+  "consent.ad_personalization_title": {
+    "defaultMessage": "Ad Personalization"
+  },
+  "consent.ad_storage_description": {
+    "defaultMessage": "Cookies used for advertising purposes."
+  },
+  "consent.ad_storage_title": {
+    "defaultMessage": "Ad Storage"
+  },
+  "consent.ad_user_data_description": {
+    "defaultMessage": "Cookies used for user-specific ad data."
+  },
+  "consent.ad_user_data_title": {
+    "defaultMessage": "User Ad Data"
+  },
+  "consent.analytics_description": {
+    "defaultMessage": "Cookies used to measure user behavior."
+  },
+  "consent.analytics_title": {
+    "defaultMessage": "Analytics"
+  },
+  "consent.functionality_description": {
+    "defaultMessage": "Cookies required for the site to function properly."
+  },
+  "consent.functionality_title": {
+    "defaultMessage": "Functionnal"
+  },
+  "consent.personalization_storage_description": {
+    "defaultMessage": "Cookies used for personalizing user experience."
+  },
+  "consent.personalization_storage_title": {
+    "defaultMessage": "Personalization Storage"
+  },
+  "consent.security_storage_description": {
+    "defaultMessage": "Cookies used for security purposes."
+  },
+  "consent.security_storage_title": {
+    "defaultMessage": "Security Storage"
+  },
   "crLqJd": {
     "defaultMessage": "Without percentage",
     "description": "Field label"
@@ -1417,6 +1471,10 @@
   "dqnkQk": {
     "defaultMessage": "Legend",
     "description": "Legend placeholder"
+  },
+  "dsRGuG": {
+    "defaultMessage": "We use cookies to improve your experience on our site and for marketing purposes. By accepting, you consent to the use of these cookies.",
+    "description": "Cookies message"
   },
   "dxAumJ": {
     "defaultMessage": "Pisces",
@@ -1697,6 +1755,10 @@
     "defaultMessage": "Size",
     "description": "Label in Media Gallery"
   },
+  "lvPGoX": {
+    "defaultMessage": "Our terms and conditions",
+    "description": "Cookies message"
+  },
   "mOSkbf": {
     "defaultMessage": "Usage",
     "description": "Media label"
@@ -1934,6 +1996,10 @@
   "sESmah": {
     "defaultMessage": "Entries",
     "description": "Entries field label"
+  },
+  "sHYAUa": {
+    "defaultMessage": "Save my preferences",
+    "description": "Button label"
   },
   "sSahY1": {
     "defaultMessage": "Popup",
@@ -2226,6 +2292,10 @@
   "ygNvmz": {
     "defaultMessage": "Description",
     "description": "Field name"
+  },
+  "ylHNR3": {
+    "defaultMessage": "Learn more about our privacy policy",
+    "description": "Cookies message"
   },
   "z/VBX0": {
     "defaultMessage": "Learn more",

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { TrackingContainer, TrackingContext } from '@folklore/tracking';
 import PropTypes from 'prop-types';
-import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import React, { useContext, useMemo, useRef } from 'react';
 
 import { PropTypes as MicromagPropTypes, Tracking } from '../lib';
 

@@ -47,6 +47,12 @@ msgctxt "+Ok+7S"
 msgid "Answer"
 msgstr "Answer"
 
+# Cookies title
+#: +Ptk0B
+msgctxt "+Ptk0B"
+msgid "Your privacy settings"
+msgstr "Your privacy settings"
+
 # Published message style field label
 #: +SlKOi
 msgctxt "+SlKOi"
@@ -581,12 +587,6 @@ msgctxt "790Q9C"
 msgid "Select Subtitles File"
 msgstr "Select Subtitles File"
 
-# Field label
-#: 7O5F6g
-msgctxt "7O5F6g"
-msgid "Icon box style"
-msgstr "Icon box style"
-
 # Horoscope date
 #: 7ZzlUE
 msgctxt "7ZzlUE"
@@ -670,6 +670,12 @@ msgstr "Add an font file"
 msgctxt "8tANs8"
 msgid "Conversation"
 msgstr "Conversation"
+
+# Button label
+#: 8yRYcm
+msgctxt "8yRYcm"
+msgid "Edit my settings"
+msgstr "Edit my settings"
 
 # Filter label
 #: 9/t5wK
@@ -1090,6 +1096,12 @@ msgstr "Edit"
 msgctxt "HwqzVR"
 msgid "Visual"
 msgstr "Visual"
+
+# Button label
+#: HxW2pw
+msgctxt "HxW2pw"
+msgid "Accept all"
+msgstr "Accept all"
 
 # Field label
 #: I1hyZY
@@ -1769,6 +1781,12 @@ msgid "Entry"
 msgstr "Entry"
 
 # Button label
+#: X9mFEG
+msgctxt "X9mFEG"
+msgid "Reject all"
+msgstr "Reject all"
+
+# Button label
 #: XHO5Ua
 msgctxt "XHO5Ua"
 msgid "Expand visual"
@@ -2056,6 +2074,76 @@ msgctxt "cej3hp"
 msgid "Select Video"
 msgstr "Select Video"
 
+#: consent.ad_personalization_description
+msgctxt "consent.ad_personalization_description"
+msgid "Cookies used for ad targeting."
+msgstr "Cookies used for ad targeting."
+
+#: consent.ad_personalization_title
+msgctxt "consent.ad_personalization_title"
+msgid "Ad Personalization"
+msgstr "Ad Personalization"
+
+#: consent.ad_storage_description
+msgctxt "consent.ad_storage_description"
+msgid "Cookies used for advertising purposes."
+msgstr "Cookies used for advertising purposes."
+
+#: consent.ad_storage_title
+msgctxt "consent.ad_storage_title"
+msgid "Ad Storage"
+msgstr "Ad Storage"
+
+#: consent.ad_user_data_description
+msgctxt "consent.ad_user_data_description"
+msgid "Cookies used for user-specific ad data."
+msgstr "Cookies used for user-specific ad data."
+
+#: consent.ad_user_data_title
+msgctxt "consent.ad_user_data_title"
+msgid "User Ad Data"
+msgstr "User Ad Data"
+
+#: consent.analytics_description
+msgctxt "consent.analytics_description"
+msgid "Cookies used to measure user behavior."
+msgstr "Cookies used to measure user behavior."
+
+#: consent.analytics_title
+msgctxt "consent.analytics_title"
+msgid "Analytics"
+msgstr "Analytics"
+
+#: consent.functionality_description
+msgctxt "consent.functionality_description"
+msgid "Cookies required for the site to function properly."
+msgstr "Cookies required for the site to function properly."
+
+#: consent.functionality_title
+msgctxt "consent.functionality_title"
+msgid "Functionnal"
+msgstr "Functionnal"
+
+#: consent.personalization_storage_description
+msgctxt "consent.personalization_storage_description"
+msgid "Cookies used for personalizing user experience."
+msgstr "Cookies used for personalizing user experience."
+
+#: consent.personalization_storage_title
+msgctxt "consent.personalization_storage_title"
+msgid "Personalization Storage"
+msgstr "Personalization Storage"
+
+#: consent.security_storage_description
+msgctxt "consent.security_storage_description"
+msgid "Cookies used for security purposes."
+msgstr "Cookies used for security purposes."
+
+#: consent.security_storage_title
+msgctxt "consent.security_storage_title"
+msgid "Security Storage"
+msgstr "Security Storage"
+
 # Field label
 #: crLqJd
 msgctxt "crLqJd"
@@ -2139,6 +2227,16 @@ msgstr "Image fit"
 msgctxt "dqnkQk"
 msgid "Legend"
 msgstr "Legend"
+
+# Cookies message
+#: dsRGuG
+msgctxt "dsRGuG"
+msgid ""
+"We use cookies to improve your experience on our site and for marketing "
+"purposes. By accepting, you consent to the use of these cookies."
+msgstr ""
+"We use cookies to improve your experience on our site and for marketing "
+"purposes. By accepting, you consent to the use of these cookies."
 
 # Horoscope sign
 #: dxAumJ
@@ -2559,6 +2657,12 @@ msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Size"
 
+# Cookies message
+#: lvPGoX
+msgctxt "lvPGoX"
+msgid "Our terms and conditions"
+msgstr "Our terms and conditions"
+
 # Media label
 #: mOSkbf
 msgctxt "mOSkbf"
@@ -2916,6 +3020,12 @@ msgstr "Speaker"
 msgctxt "sESmah"
 msgid "Entries"
 msgstr "Entries"
+
+# Button label
+#: sHYAUa
+msgctxt "sHYAUa"
+msgid "Save my preferences"
+msgstr "Save my preferences"
 
 # Keypad item state
 #: sSahY1
@@ -3354,6 +3464,12 @@ msgstr "Audio"
 msgctxt "ygNvmz"
 msgid "Description"
 msgstr "Description"
+
+# Cookies message
+#: ylHNR3
+msgctxt "ylHNR3"
+msgid "Learn more about our privacy policy"
+msgstr "Learn more about our privacy policy"
 
 # Call to action default label
 #: z/VBX0
