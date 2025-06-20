@@ -14,7 +14,6 @@ import Link from '../partials/Link';
 import styles from '../../styles/forms/cookies.module.scss';
 
 const propTypes = {
-    consent: PropTypes.shape({}),
     urls: PropTypes.shape({
         privacy: PropTypes.string,
     }),
@@ -31,7 +30,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-    consent: null,
     urls: null,
     labels: null,
     onChange: null,
@@ -42,7 +40,6 @@ const defaultProps = {
 };
 
 const Cookies = ({
-    consent,
     onChange,
     onSubmit,
     onClose,
@@ -52,8 +49,13 @@ const Cookies = ({
     className,
     ...props
 }) => {
-    const { choices, onClickChoice, onClickConfirm, onClickAccept, onClickDeny } = useConsent({
-        consent,
+    const {
+        consent: choices,
+        onClickChoice,
+        onClickConfirm,
+        onClickAccept,
+        onClickDeny,
+    } = useConsent({
         onChange,
         onSubmit,
         onClose,
@@ -103,7 +105,7 @@ const Cookies = ({
                 </p>
             </div>
             {showChoices
-                ? choices.map(
+                ? (choices || []).map(
                       ({
                           id = null,
                           label = null,
@@ -120,7 +122,7 @@ const Cookies = ({
                                       onClick={() => onClickChoice(id, !value)}
                                   />
                               </div>
-                              <p className={styles.itemDescription}>
+                              <p className={styles.label}>
                                   {isString(choiceDescription) ? (
                                       choiceDescription
                                   ) : (

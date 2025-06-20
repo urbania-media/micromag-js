@@ -1,4 +1,5 @@
 export * from './ComponentsContext';
+export * from './ConsentContext';
 export * from './EditorContext';
 export * from './FieldsContext';
 export * from './FieldsValueContext';

@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react';
 import FieldsProvider from '@panneau/fields';
 import ModalsProvider from '@panneau/modals';
 
-import { TrackingProvider } from '@micromag/core/contexts';
+import { ConsentProvider, TrackingProvider } from '@micromag/core/contexts';
 
 import Consent from '../components/Consent';
 
@@ -22,7 +22,7 @@ export default {
 };
 
 // eslint-disable-next-line react/prop-types
-const ConsentContainer = ({ value: defaultValue = null, ...containerProps }) => {
+const ConsentContainer = ({ value: defaultValue = null, consent = null, ...containerProps }) => {
     const [value, setValue] = useState(defaultValue);
     const [open, setOpen] = useState(true);
 
@@ -48,15 +48,17 @@ const ConsentContainer = ({ value: defaultValue = null, ...containerProps }) => 
         <div style={{ padding: 20, backgroundColor: '#f0f0f0' }}>
             <FieldsProvider>
                 <ModalsProvider>
-                    <TrackingProvider>
-                        <Consent
-                            {...containerProps}
-                            value={value}
-                            onSubmit={onSubmit}
-                            onChange={onChange}
-                            onClose={onClose}
-                        />
-                    </TrackingProvider>
+                    <ConsentProvider consent={consent}>
+                        <TrackingProvider>
+                            <Consent
+                                {...containerProps}
+                                value={value}
+                                onSubmit={onSubmit}
+                                onChange={onChange}
+                                onClose={onClose}
+                            />
+                        </TrackingProvider>
+                    </ConsentProvider>
                 </ModalsProvider>
             </FieldsProvider>
         </div>
@@ -64,7 +66,7 @@ const ConsentContainer = ({ value: defaultValue = null, ...containerProps }) => 
 };
 
 export function Normal() {
-    return <ConsentContainer {...props} />;
+    return <ConsentContainer {...props} consent={['ad_storage', 'ad_personalization']} />;
 }
 
 export function withClose() {

@@ -8,7 +8,6 @@ import CookiesForm from './forms/Cookies';
 import styles from '../styles/consent.module.scss';
 
 const propTypes = {
-    consent: PropTypes.arrayOf(PropTypes.string),
     urls: PropTypes.shape({
         privacy: PropTypes.string,
         terms: PropTypes.string,
@@ -28,13 +27,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-    consent: [
-        'functionality_storage',
-        'analytics_storage',
-        'ad_storage',
-        'ad_personalization',
-        'ad_user_data',
-    ],
     urls: null,
     labels: null,
     onChange: null,
@@ -45,17 +37,7 @@ const defaultProps = {
     children: null,
 };
 
-function Consent({
-    consent,
-    urls,
-    labels,
-    onChange,
-    onSubmit,
-    onClose,
-    withClose,
-    className,
-    children,
-}) {
+function Consent({ urls, labels, onChange, onSubmit, onClose, withClose, className, children }) {
     return (
         <div
             className={classNames([
@@ -76,7 +58,6 @@ function Consent({
             {children}
             <CookiesForm
                 className={styles.form}
-                consent={consent}
                 urls={urls}
                 labels={labels}
                 onChange={onChange}
