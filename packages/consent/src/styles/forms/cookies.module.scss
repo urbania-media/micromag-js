@@ -3,24 +3,18 @@
 @import '~@micromag/core/scss/mixins';
 
 .container {
-    position: fixed;
-    z-index: 99999;
-    right: 10px;
-    bottom: 10px;
+    position: relative;
     max-height: calc(100vh - 20px);
-    margin-top: 10px;
-    margin-left: 10px;
     padding: 15px;
     overflow-y: scroll;
-    border-radius: 10px;
 
-    .close {
-        position: absolute;
-        top: 15px;
-        right: 15px;
+    .title, .description {
+        margin-bottom: 1rem;
     }
 
     .button {
         margin: 0 5px 5px 0;
+        border-radius: 10px;
+        font-weight: bold;
     }
 }

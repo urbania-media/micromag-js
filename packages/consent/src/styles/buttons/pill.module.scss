@@ -8,7 +8,7 @@
     border : 1px solid #FFF;
 
     &:hover, &:active {
-        background-color: var(--color-primary);
+        background-color: var(--color-primary, #0b57d0);
         color: #FFF;
     }
 }

@@ -155,6 +155,7 @@
         "wouter": "^3.0.0"
     },
     "dependencies": {
+        "@micromag/consent": "^0.3.703",
         "@panneau/actions": "^3.0.238",
         "@panneau/medias": "^3.0.195",
         "@panneau/modals": "^3.0.238",

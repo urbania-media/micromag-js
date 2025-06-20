@@ -85,7 +85,7 @@ const Cookies = ({
             {...props}
         >
             <div className={styles.top}>
-                <h3>
+                <h3 className={styles.title}>
                     {title || (
                         <FormattedMessage
                             defaultMessage="Your privacy settings"
@@ -120,7 +120,7 @@ const Cookies = ({
                                       onClick={() => onClickChoice(id, !value)}
                                   />
                               </div>
-                              <p className={styles.description}>
+                              <p className={styles.itemDescription}>
                                   {isString(choiceDescription) ? (
                                       choiceDescription
                                   ) : (

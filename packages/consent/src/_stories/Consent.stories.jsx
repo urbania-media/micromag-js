@@ -14,7 +14,7 @@ const props = {
 
 export default {
     component: Consent,
-    title: 'Editor/Consent',
+    title: 'Viewer/Consent',
     decorators: [],
     parameters: {
         intl: true,
@@ -45,7 +45,7 @@ const ConsentContainer = ({ value: defaultValue = null, ...containerProps }) => 
     }, [setOpen]);
 
     return (
-        <div style={{ padding: 20 }}>
+        <div style={{ padding: 20, backgroundColor: '#f0f0f0' }}>
             <FieldsProvider>
                 <ModalsProvider>
                     <TrackingProvider>
