@@ -49,7 +49,7 @@ const useConsentActions = ({
             value: !it.disabled ? true : it.value,
         }));
         onSubmitForm(items);
-    }, [onSubmitForm]);
+    }, [consent, onSubmitForm]);
 
     const onClickDeny = useCallback(() => {
         const items = (consent || []).map((it) => ({
@@ -57,7 +57,7 @@ const useConsentActions = ({
             value: !it.disabled ? false : it.value,
         }));
         onSubmitForm(items);
-    }, [onSubmitForm]);
+    }, [consent, onSubmitForm]);
 
     return {
         consent,

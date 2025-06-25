@@ -180,7 +180,7 @@ export const ConsentProvider = ({
     );
     const [consent, setConsentState] = useState(null);
     const setConsent = useCallback(
-        (values) => {
+        (values = null, initial = false) => {
             const hasConsented = values !== null && typeof values !== 'undefined';
             JSCookie.set('has_consented', hasConsented, {
                 secure: true,
@@ -203,14 +203,14 @@ export const ConsentProvider = ({
             }, {});
 
             if (typeof gtag === 'function') {
-                gtag('consent', 'update', tagManagerConsent);
+                gtag('consent', initial === true ? 'default' : 'update', tagManagerConsent);
             }
 
             setConsentState(values);
-            return values;
         },
         [setConsentState, expiration],
     );
+
     useEffect(() => {
         if (baseConsent !== null && baseConsent.length > 0) {
             setConsent(baseConsent);

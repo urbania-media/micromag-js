@@ -24,7 +24,7 @@ export default {
 // eslint-disable-next-line react/prop-types
 const ConsentContainer = ({ value: defaultValue = null, consent = null, ...containerProps }) => {
     const [value, setValue] = useState(defaultValue);
-    const [open, setOpen] = useState(true);
+    const [consented, setConsented] = useState(false);
 
     const onSubmit = useCallback(
         (val) => {
@@ -41,18 +41,14 @@ const ConsentContainer = ({ value: defaultValue = null, consent = null, ...conta
     );
 
     const onClose = useCallback(() => {
-        setOpen(false);
-    }, [setOpen]);
+        setConsented(true);
+    }, [setConsented]);
 
     return (
         <div style={{ padding: 20, backgroundColor: '#f0f0f0' }}>
             <FieldsProvider>
                 <ModalsProvider>
-                    <ConsentProvider
-                        consent={consent}
-                        hasConsented={open}
-                        onConsentChange={onChange}
-                    >
+                    <ConsentProvider consent={consent} consented={consented}>
                         <TrackingProvider>
                             <Consent
                                 {...containerProps}
