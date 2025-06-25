@@ -122,6 +122,8 @@ export const useConsent = () => useContext(ConsentContext);
 const propTypes = {
     children: PropTypes.node.isRequired,
     consent: MicromagPropTypes.consent,
+    consented: PropTypes.bool,
+    expiration: PropTypes.number,
 };
 
 const defaultProps = {
@@ -132,9 +134,24 @@ const defaultProps = {
         'ad_personalization',
         'ad_user_data',
     ],
+    consented: false,
+    expiration: 182, // Default expiration in days
 };
 
-export const ConsentProvider = ({ consent: providedConsent, children }) => {
+export const ConsentProvider = ({
+    consent: providedConsent,
+    consented: initialConsented,
+    expiration,
+    children,
+}) => {
+    const cookieConsented = JSCookie.get('has_consented') === 'true';
+    const [consented, setConsented] = useState(initialConsented || cookieConsented);
+    useEffect(() => {
+        if (initialConsented) {
+            setConsented(initialConsented);
+        }
+    }, [initialConsented, setConsented]);
+
     const baseConsent = useMemo(
         () =>
             (providedConsent || consentStates || [])
@@ -167,30 +184,35 @@ export const ConsentProvider = ({ consent: providedConsent, children }) => {
 
     const setConsent = useCallback(
         (values) => {
-            JSCookie.set('show_consent', values === null || values === undefined, {
+            const hasConsented = values !== null && typeof values !== 'undefined';
+            JSCookie.set('has_consented', hasConsented, {
                 secure: true,
-                expires: 182,
+                expires: expiration,
             });
+            setConsented(hasConsented);
+
             (values || []).forEach((it) => {
                 if (it.value === true) {
-                    JSCookie.set(it.id, 'granted', { secure: true, expires: 182 });
+                    JSCookie.set(it.id, 'granted', { secure: true, expires: expiration });
                 } else if (it.value === false) {
-                    JSCookie.set(it.id, 'denied', { secure: true, expires: 182 });
+                    JSCookie.set(it.id, 'denied', { secure: true, expires: expiration });
                 } else {
                     JSCookie.remove(it.id);
                 }
             });
             setConsentState(values);
+            return values;
         },
-        [setConsentState],
+        [setConsentState, expiration],
     );
 
     const value = useMemo(
         () => ({
             consent,
             setConsent,
+            consented,
         }),
-        [consent, setConsent],
+        [consent, setConsent, consented],
     );
 
     return <ConsentContext.Provider value={value}>{children}</ConsentContext.Provider>;

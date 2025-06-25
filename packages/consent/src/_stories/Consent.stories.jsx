@@ -48,7 +48,11 @@ const ConsentContainer = ({ value: defaultValue = null, consent = null, ...conta
         <div style={{ padding: 20, backgroundColor: '#f0f0f0' }}>
             <FieldsProvider>
                 <ModalsProvider>
-                    <ConsentProvider consent={consent}>
+                    <ConsentProvider
+                        consent={consent}
+                        hasConsented={open}
+                        onConsentChange={onChange}
+                    >
                         <TrackingProvider>
                             <Consent
                                 {...containerProps}
