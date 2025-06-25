@@ -1,4 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
+
+/* global gtag */
 import JSCookie from 'js-cookie';
 import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
@@ -144,6 +146,7 @@ export const ConsentProvider = ({
     expiration,
     children,
 }) => {
+    // Has consented or not to cookies
     const cookieConsented = JSCookie.get('has_consented') === 'true';
     const [consented, setConsented] = useState(initialConsented || cookieConsented);
     useEffect(() => {
@@ -152,6 +155,7 @@ export const ConsentProvider = ({
         }
     }, [initialConsented, setConsented]);
 
+    // The consent state itself
     const baseConsent = useMemo(
         () =>
             (providedConsent || consentStates || [])
@@ -174,14 +178,7 @@ export const ConsentProvider = ({
                 })),
         [providedConsent],
     );
-
-    const [consent, setConsentState] = useState(baseConsent);
-    useEffect(() => {
-        if (baseConsent) {
-            setConsentState(baseConsent);
-        }
-    }, [baseConsent, setConsentState]);
-
+    const [consent, setConsentState] = useState(null);
     const setConsent = useCallback(
         (values) => {
             const hasConsented = values !== null && typeof values !== 'undefined';
@@ -191,20 +188,34 @@ export const ConsentProvider = ({
             });
             setConsented(hasConsented);
 
-            (values || []).forEach((it) => {
+            const tagManagerConsent = (values || []).reduce((acc, it) => {
                 if (it.value === true) {
                     JSCookie.set(it.id, 'granted', { secure: true, expires: expiration });
+                    acc[it.id] = 'granted';
                 } else if (it.value === false) {
                     JSCookie.set(it.id, 'denied', { secure: true, expires: expiration });
+                    acc[it.id] = 'denied';
                 } else {
                     JSCookie.remove(it.id);
+                    acc[it.id] = 'denied';
                 }
-            });
+                return acc;
+            }, {});
+
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', tagManagerConsent);
+            }
+
             setConsentState(values);
             return values;
         },
         [setConsentState, expiration],
     );
+    useEffect(() => {
+        if (baseConsent !== null && baseConsent.length > 0) {
+            setConsent(baseConsent);
+        }
+    }, [baseConsent, setConsent]);
 
     const value = useMemo(
         () => ({
