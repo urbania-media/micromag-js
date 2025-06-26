@@ -211,6 +211,11 @@ export const ConsentProvider = ({
 
             if (typeof gtag === 'function') {
                 gtag('consent', initial === true ? 'default' : 'update', tagManagerConsent);
+                gtag(
+                    'event',
+                    initial === true ? 'consent_default' : 'consent_update',
+                    tagManagerConsent,
+                );
             }
             setConsentState(values);
         },
