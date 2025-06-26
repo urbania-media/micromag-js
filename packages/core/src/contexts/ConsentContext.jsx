@@ -147,10 +147,24 @@ export const ConsentProvider = ({
     children,
 }) => {
     // Has consented or not to cookies
-    const cookieConsented = JSCookie.get('has_consented') === 'true';
-    const [consented, setConsented] = useState(initialConsented || cookieConsented);
+    const initialCookieConsented = JSCookie.get('has_consented') === 'true';
+    const baseConsented = initialConsented || initialCookieConsented;
+    const [consented, setConsentedState] = useState(baseConsented);
+
+    const setConsented = useCallback(
+        (accept = null) => {
+            const hasConsented = accept || false;
+            JSCookie.set('has_consented', hasConsented, {
+                secure: true,
+                expires: expiration,
+            });
+            setConsentedState(hasConsented);
+        },
+        [expiration, setConsentedState],
+    );
+
     useEffect(() => {
-        if (initialConsented) {
+        if (initialConsented === true || initialConsented === false) {
             setConsented(initialConsented);
         }
     }, [initialConsented, setConsented]);
@@ -181,13 +195,6 @@ export const ConsentProvider = ({
     const [consent, setConsentState] = useState(null);
     const setConsent = useCallback(
         (values = null, initial = false) => {
-            const hasConsented = values !== null && typeof values !== 'undefined';
-            JSCookie.set('has_consented', hasConsented, {
-                secure: true,
-                expires: expiration,
-            });
-            setConsented(hasConsented);
-
             const tagManagerConsent = (values || []).reduce((acc, it) => {
                 if (it.value === true) {
                     JSCookie.set(it.id, 'granted', { secure: true, expires: expiration });
@@ -205,7 +212,6 @@ export const ConsentProvider = ({
             if (typeof gtag === 'function') {
                 gtag('consent', initial === true ? 'default' : 'update', tagManagerConsent);
             }
-
             setConsentState(values);
         },
         [setConsentState, expiration],
@@ -222,8 +228,9 @@ export const ConsentProvider = ({
             consent,
             setConsent,
             consented,
+            setConsented,
         }),
-        [consent, setConsent, consented],
+        [consent, setConsent, consented, setConsented],
     );
 
     return <ConsentContext.Provider value={value}>{children}</ConsentContext.Provider>;

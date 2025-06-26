@@ -8,11 +8,12 @@ const useConsentActions = ({
     onClose = null,
     autoClose = true,
 }) => {
-    const { consent, setConsent } = useConsent();
+    const { consent, setConsent, setConsented } = useConsent();
 
     const onSubmitForm = useCallback(
         (values = null) => {
             setConsent(values);
+            setConsented(true);
             if (onSubmit !== null) {
                 onSubmit(values || []);
             }
