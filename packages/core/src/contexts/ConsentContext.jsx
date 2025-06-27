@@ -207,13 +207,14 @@ export const ConsentProvider = ({
                 return acc;
             }, {});
 
-            if (typeof gtag === 'function') {
-                gtag('consent', initial === true ? 'default' : 'update', tagManagerConsent);
-                gtag(
+            if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                window.gtag('consent', initial === true ? 'default' : 'update', tagManagerConsent);
+                window.gtag(
                     'event',
                     initial === true ? 'consent_default' : 'consent_update',
                     tagManagerConsent,
                 );
+                console.log('consent', initial === true ? 'default' : 'update', tagManagerConsent);
             }
             setConsentState(values);
         },
