@@ -136,7 +136,7 @@ const defaultProps = {
         'ad_personalization',
         'ad_user_data',
     ],
-    consented: false,
+    consented: null,
     expiration: 182, // Default expiration in days
 };
 
