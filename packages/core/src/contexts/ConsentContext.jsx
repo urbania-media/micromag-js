@@ -7,8 +7,6 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { defineMessages } from 'react-intl';
 
-import { PropTypes as MicromagPropTypes } from '../lib';
-
 const messages = defineMessages({
     functionality_title: {
         id: 'consent.functionality_title',
@@ -86,31 +84,31 @@ const consentStates = [
         id: 'personalization_storage',
         label: messages.personalization_storage_title,
         description: messages.personalization_storage_description,
-        value: true,
+        value: false,
     },
     {
         id: 'analytics_storage',
         label: messages.analytics_title,
         description: messages.analytics_description,
-        value: true,
+        value: false,
     },
     {
         id: 'ad_storage',
         label: messages.ad_storage_title,
         description: messages.ad_storage_description,
-        value: true,
+        value: false,
     },
     {
         id: 'ad_personalization',
         label: messages.ad_personalization_title,
         description: messages.ad_personalization_description,
-        value: true,
+        value: false,
     },
     {
         id: 'ad_user_data',
         label: messages.ad_user_data_title,
         description: messages.ad_user_data_description,
-        value: true,
+        value: false,
     },
 ];
 
@@ -123,7 +121,7 @@ export const useConsent = () => useContext(ConsentContext);
 
 const propTypes = {
     children: PropTypes.node.isRequired,
-    consent: MicromagPropTypes.consent,
+    consent: PropTypes.arrayOf(PropTypes.shape({})),
     consented: PropTypes.bool,
     expiration: PropTypes.number,
 };
