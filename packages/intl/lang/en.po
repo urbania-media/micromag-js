@@ -186,6 +186,12 @@ msgid "Message"
 msgstr "Message"
 
 # Field label
+#: 0N19DP
+msgctxt "0N19DP"
+msgid "Invalid buttons style"
+msgstr "Invalid buttons style"
+
+# Field label
 #: 0R+nB5
 msgctxt "0R+nB5"
 msgid "Custom URL"
@@ -556,12 +562,6 @@ msgstr "Side"
 msgctxt "6bd963"
 msgid "Virgo"
 msgstr "Virgo"
-
-# Field label
-#: 6bqjZK
-msgctxt "6bqjZK"
-msgid "Valid button style"
-msgstr "Valid button style"
 
 # Field label
 #: 6iR9Mt
@@ -1404,12 +1404,6 @@ msgid "Button"
 msgstr "Button"
 
 # Field label
-#: NPpncq
-msgctxt "NPpncq"
-msgid "Invalid button style"
-msgstr "Invalid button style"
-
-# Field label
 #: NVUpOG
 msgctxt "NVUpOG"
 msgid "Map fit markers"
@@ -1450,12 +1444,6 @@ msgstr "Text style"
 msgctxt "OJi+eg"
 msgid "Label"
 msgstr "Label"
-
-# Game Sort screen title
-#: OOIQh7
-msgctxt "OOIQh7"
-msgid "Game Sort"
-msgstr "Game Sort"
 
 # Field label
 #: OPxJx/
@@ -2334,6 +2322,12 @@ msgctxt "eDMxHS"
 msgid "Font weight"
 msgstr "Font weight"
 
+# Sort game screen title
+#: eJMcXw
+msgctxt "eJMcXw"
+msgid "Sort game"
+msgstr "Sort game"
+
 # Field label
 #: eNdbJF
 msgctxt "eNdbJF"
@@ -3028,6 +3022,12 @@ msgid "Header"
 msgstr "Header"
 
 # Field label
+#: rlOUqL
+msgctxt "rlOUqL"
+msgid "Buttons style"
+msgstr "Buttons style"
+
+# Field label
 #: rmJBin
 msgctxt "rmJBin"
 msgid "Dimensions"
@@ -3326,6 +3326,12 @@ msgstr "Game"
 msgctxt "wChc+A"
 msgid "Edit style..."
 msgstr "Edit style..."
+
+# Field label
+#: wJm7+k
+msgctxt "wJm7+k"
+msgid "Valid buttons style"
+msgstr "Valid buttons style"
 
 # Field label
 #: wU++NJ

@@ -15,8 +15,8 @@ export default {
         order: 12,
     },
     title: defineMessage({
-        defaultMessage: 'Game Sort',
-        description: 'Game Sort screen title',
+        defaultMessage: 'Sort game',
+        description: 'Sort game screen title',
     }),
     component: GameSortScreen,
     layouts: ['top', 'middle', 'bottom'],
@@ -54,12 +54,6 @@ export default {
         {
             name: 'buttonStyles',
             type: 'fields',
-            defaultValue: {
-                layout: 'label-bottom',
-                boxStyle: {
-                    backgroundColor: { alpha: 0.15, color: '#000000' },
-                },
-            },
             isList: true,
             fields: [
                 {
@@ -82,7 +76,7 @@ export default {
                     name: 'boxStyle',
                     type: 'box-style-form',
                     label: defineMessage({
-                        defaultMessage: 'Button style',
+                        defaultMessage: 'Buttons style',
                         description: 'Field label',
                     }),
                 },
@@ -90,7 +84,7 @@ export default {
                     name: 'validBoxStyle',
                     type: 'box-style-form',
                     label: defineMessage({
-                        defaultMessage: 'Valid button style',
+                        defaultMessage: 'Valid buttons style',
                         description: 'Field label',
                     }),
                 },
@@ -98,7 +92,7 @@ export default {
                     name: 'invalidBoxStyle',
                     type: 'box-style-form',
                     label: defineMessage({
-                        defaultMessage: 'Invalid button style',
+                        defaultMessage: 'Invalid buttons style',
                         description: 'Field label',
                     }),
                 },

@@ -186,6 +186,12 @@ msgid "Message"
 msgstr "Message"
 
 # Field label
+#: 0N19DP
+msgctxt "0N19DP"
+msgid "Invalid buttons style"
+msgstr "Style des boutons invalides"
+
+# Field label
 #: 0R+nB5
 msgctxt "0R+nB5"
 msgid "Custom URL"
@@ -519,7 +525,7 @@ msgstr "Mode"
 #: 6EF9gy
 msgctxt "6EF9gy"
 msgid "Validated button style"
-msgstr "Style du bouton validé"
+msgstr "Style du bouton Validé"
 
 # Field label
 #: 6LFjCH
@@ -556,12 +562,6 @@ msgstr "Côté"
 msgctxt "6bd963"
 msgid "Virgo"
 msgstr "Vierge"
-
-# Field label
-#: 6bqjZK
-msgctxt "6bqjZK"
-msgid "Valid button style"
-msgstr "Style du bouton valide"
 
 # Field label
 #: 6iR9Mt
@@ -1404,12 +1404,6 @@ msgid "Button"
 msgstr "Bouton"
 
 # Field label
-#: NPpncq
-msgctxt "NPpncq"
-msgid "Invalid button style"
-msgstr "Style du bouton invalide"
-
-# Field label
 #: NVUpOG
 msgctxt "NVUpOG"
 msgid "Map fit markers"
@@ -1450,12 +1444,6 @@ msgstr "Style du texte"
 msgctxt "OJi+eg"
 msgid "Label"
 msgstr "Libellé"
-
-# Game Sort screen title
-#: OOIQh7
-msgctxt "OOIQh7"
-msgid "Game Sort"
-msgstr "Jeu Ordre"
 
 # Field label
 #: OPxJx/
@@ -2335,6 +2323,12 @@ msgctxt "eDMxHS"
 msgid "Font weight"
 msgstr "Graisse"
 
+# Sort game screen title
+#: eJMcXw
+msgctxt "eJMcXw"
+msgid "Sort game"
+msgstr "Jeu de l'ordre"
+
 # Field label
 #: eNdbJF
 msgctxt "eNdbJF"
@@ -3029,6 +3023,12 @@ msgid "Header"
 msgstr "Haut de l'écran"
 
 # Field label
+#: rlOUqL
+msgctxt "rlOUqL"
+msgid "Buttons style"
+msgstr "Style des boutons"
+
+# Field label
 #: rmJBin
 msgctxt "rmJBin"
 msgid "Dimensions"
@@ -3327,6 +3327,12 @@ msgstr "Jeu"
 msgctxt "wChc+A"
 msgid "Edit style..."
 msgstr "Modifier le style"
+
+# Field label
+#: wJm7+k
+msgctxt "wJm7+k"
+msgid "Valid buttons style"
+msgstr "Style des boutons valides"
 
 # Field label
 #: wU++NJ

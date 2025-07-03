@@ -115,6 +115,10 @@
     "defaultMessage": "Message",
     "description": "Breadcrumb field label"
   },
+  "0N19DP": {
+    "defaultMessage": "Invalid buttons style",
+    "description": "Field label"
+  },
   "0R+nB5": {
     "defaultMessage": "Custom URL",
     "description": "Field label"
@@ -362,10 +366,6 @@
   "6bd963": {
     "defaultMessage": "Virgo",
     "description": "Horoscope sign"
-  },
-  "6bqjZK": {
-    "defaultMessage": "Valid button style",
-    "description": "Field label"
   },
   "6iR9Mt": {
     "defaultMessage": "Heading",
@@ -927,10 +927,6 @@
     "defaultMessage": "Button",
     "description": "Placeholder label"
   },
-  "NPpncq": {
-    "defaultMessage": "Invalid button style",
-    "description": "Field label"
-  },
   "NVUpOG": {
     "defaultMessage": "Map fit markers",
     "description": "Field label"
@@ -958,10 +954,6 @@
   "OJi+eg": {
     "defaultMessage": "Label",
     "description": "Field label"
-  },
-  "OOIQh7": {
-    "defaultMessage": "Game Sort",
-    "description": "Game Sort screen title"
   },
   "OPxJx/": {
     "defaultMessage": "Layout",
@@ -1540,6 +1532,10 @@
     "defaultMessage": "Font weight",
     "description": "Field label"
   },
+  "eJMcXw": {
+    "defaultMessage": "Sort game",
+    "description": "Sort game screen title"
+  },
   "eNdbJF": {
     "defaultMessage": "Appear delay (seconds)",
     "description": "Field label"
@@ -2001,6 +1997,10 @@
     "defaultMessage": "Header",
     "description": "Field label"
   },
+  "rlOUqL": {
+    "defaultMessage": "Buttons style",
+    "description": "Field label"
+  },
   "rmJBin": {
     "defaultMessage": "Dimensions",
     "description": "Field label"
@@ -2200,6 +2200,10 @@
   "wChc+A": {
     "defaultMessage": "Edit style...",
     "description": "No value label"
+  },
+  "wJm7+k": {
+    "defaultMessage": "Valid buttons style",
+    "description": "Field label"
   },
   "wU++NJ": {
     "defaultMessage": "Duration",

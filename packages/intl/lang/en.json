@@ -86,6 +86,9 @@
     "0GzLBc": {
         "defaultMessage": "Message"
     },
+    "0N19DP": {
+        "defaultMessage": "Invalid buttons style"
+    },
     "0R+nB5": {
         "defaultMessage": "Custom URL"
     },
@@ -271,9 +274,6 @@
     },
     "6bd963": {
         "defaultMessage": "Virgo"
-    },
-    "6bqjZK": {
-        "defaultMessage": "Valid button style"
     },
     "6iR9Mt": {
         "defaultMessage": "Heading"
@@ -695,9 +695,6 @@
     "N7Kj8z": {
         "defaultMessage": "Button"
     },
-    "NPpncq": {
-        "defaultMessage": "Invalid button style"
-    },
     "NVUpOG": {
         "defaultMessage": "Map fit markers"
     },
@@ -718,9 +715,6 @@
     },
     "OJi+eg": {
         "defaultMessage": "Label"
-    },
-    "OOIQh7": {
-        "defaultMessage": "Game Sort"
     },
     "OPxJx/": {
         "defaultMessage": "Layout"
@@ -1166,6 +1160,9 @@
     "eDMxHS": {
         "defaultMessage": "Font weight"
     },
+    "eJMcXw": {
+        "defaultMessage": "Sort game"
+    },
     "eNdbJF": {
         "defaultMessage": "Appear delay (seconds)"
     },
@@ -1514,6 +1511,9 @@
     "rhuDxI": {
         "defaultMessage": "Header"
     },
+    "rlOUqL": {
+        "defaultMessage": "Buttons style"
+    },
     "rmJBin": {
         "defaultMessage": "Dimensions"
     },
@@ -1663,6 +1663,9 @@
     },
     "wChc+A": {
         "defaultMessage": "Edit style..."
+    },
+    "wJm7+k": {
+        "defaultMessage": "Valid buttons style"
     },
     "wU++NJ": {
         "defaultMessage": "Duration"

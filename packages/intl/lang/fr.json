@@ -86,6 +86,9 @@
     "0GzLBc": {
         "defaultMessage": "Message"
     },
+    "0N19DP": {
+        "defaultMessage": "Style des boutons invalides"
+    },
     "0R+nB5": {
         "defaultMessage": "URL personnalisée"
     },
@@ -252,7 +255,7 @@
         "defaultMessage": "Mode"
     },
     "6EF9gy": {
-        "defaultMessage": "Style du bouton validé"
+        "defaultMessage": "Style du bouton Validé"
     },
     "6LFjCH": {
         "defaultMessage": "Remplir avec l'image"
@@ -271,9 +274,6 @@
     },
     "6bd963": {
         "defaultMessage": "Vierge"
-    },
-    "6bqjZK": {
-        "defaultMessage": "Style du bouton valide"
     },
     "6iR9Mt": {
         "defaultMessage": "Titre"
@@ -695,9 +695,6 @@
     "N7Kj8z": {
         "defaultMessage": "Bouton"
     },
-    "NPpncq": {
-        "defaultMessage": "Style du bouton invalide"
-    },
     "NVUpOG": {
         "defaultMessage": "Ajuster la carte selon les marqueurs"
     },
@@ -718,9 +715,6 @@
     },
     "OJi+eg": {
         "defaultMessage": "Libellé"
-    },
-    "OOIQh7": {
-        "defaultMessage": "Jeu Ordre"
     },
     "OPxJx/": {
         "defaultMessage": "Disposition"
@@ -1166,6 +1160,9 @@
     "eDMxHS": {
         "defaultMessage": "Graisse"
     },
+    "eJMcXw": {
+        "defaultMessage": "Jeu de l'ordre"
+    },
     "eNdbJF": {
         "defaultMessage": "Délai d'apparition de la bulle (en secondes)"
     },
@@ -1514,6 +1511,9 @@
     "rhuDxI": {
         "defaultMessage": "Haut de l'écran"
     },
+    "rlOUqL": {
+        "defaultMessage": "Style des boutons"
+    },
     "rmJBin": {
         "defaultMessage": "Dimensions"
     },
@@ -1663,6 +1663,9 @@
     },
     "wChc+A": {
         "defaultMessage": "Modifier le style"
+    },
+    "wJm7+k": {
+        "defaultMessage": "Style des boutons valides"
     },
     "wU++NJ": {
         "defaultMessage": "Durée"
