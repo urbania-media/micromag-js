@@ -401,11 +401,15 @@ const ShareScreen = ({
                                             [styles.invalid]: validated !== null && !isValid,
                                         },
                                     ])}
-                                    style={props}
                                     ref={(ref) => {
                                         itemsRef.current[itemIndex] = ref;
                                     }}
                                     {...bind(itemIndex)}
+                                    style={{
+                                        ...props,
+                                        ...getStyleFromText(buttonTextStyle),
+                                        ...getStyleFromText(textStyle),
+                                    }}
                                     // onClick={(e) => onItemClick(e, item)}
                                 >
                                     <div
