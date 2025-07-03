@@ -77,6 +77,9 @@
     "002oWQ": {
         "defaultMessage": "Durée"
     },
+    "03U69o": {
+        "defaultMessage": "Boutons"
+    },
     "0GT0SI": {
         "defaultMessage": "Annuler"
     },
@@ -248,6 +251,9 @@
     "6DV50M": {
         "defaultMessage": "Mode"
     },
+    "6EF9gy": {
+        "defaultMessage": "Style du bouton validé"
+    },
     "6LFjCH": {
         "defaultMessage": "Remplir avec l'image"
     },
@@ -265,6 +271,9 @@
     },
     "6bd963": {
         "defaultMessage": "Vierge"
+    },
+    "6bqjZK": {
+        "defaultMessage": "Style du bouton valide"
     },
     "6iR9Mt": {
         "defaultMessage": "Titre"
@@ -343,6 +352,9 @@
     },
     "9PfjeE": {
         "defaultMessage": "Style du nom"
+    },
+    "9QP1Kj": {
+        "defaultMessage": "Style du bouton Envoyer"
     },
     "9ZdD+Q": {
         "defaultMessage": "Bibliothèque pour"
@@ -427,6 +439,9 @@
     },
     "CJmQeh": {
         "defaultMessage": "Image avec texte"
+    },
+    "CTculh": {
+        "defaultMessage": "Validé"
     },
     "CWnXWp": {
         "defaultMessage": "Aucun bouton"
@@ -563,6 +578,9 @@
     "IOVper": {
         "defaultMessage": "Tags"
     },
+    "IbZVf0": {
+        "defaultMessage": "Envoyer"
+    },
     "IoMJgw": {
         "defaultMessage": "Ouvrir l'article"
     },
@@ -677,6 +695,9 @@
     "N7Kj8z": {
         "defaultMessage": "Bouton"
     },
+    "NPpncq": {
+        "defaultMessage": "Style du bouton invalide"
+    },
     "NVUpOG": {
         "defaultMessage": "Ajuster la carte selon les marqueurs"
     },
@@ -697,6 +718,9 @@
     },
     "OJi+eg": {
         "defaultMessage": "Libellé"
+    },
+    "OOIQh7": {
+        "defaultMessage": "Jeu Ordre"
     },
     "OPxJx/": {
         "defaultMessage": "Disposition"
@@ -856,6 +880,9 @@
     },
     "VMd1oG": {
         "defaultMessage": "Questions"
+    },
+    "Vuj0dX": {
+        "defaultMessage": "Libellé du bouton Envoyer"
     },
     "W5qWPj": {
         "defaultMessage": "Centrer"
@@ -1538,6 +1565,9 @@
     "tYGev7": {
         "defaultMessage": "Taille de la police"
     },
+    "tbrIgP": {
+        "defaultMessage": "Libellé du bouton Validé"
+    },
     "tmfbUn": {
         "defaultMessage": "Inutilisé"
     },
@@ -1627,6 +1657,9 @@
     },
     "vxEtY1": {
         "defaultMessage": "Image d’arrière-plan"
+    },
+    "w3+kFW": {
+        "defaultMessage": "Jeu"
     },
     "wChc+A": {
         "defaultMessage": "Modifier le style"

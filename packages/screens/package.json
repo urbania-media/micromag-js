@@ -88,6 +88,7 @@
         "@micromag/screen-conversation": "^0.3.713",
         "@micromag/screen-gallery": "^0.3.713",
         "@micromag/screen-gallery-feed": "^0.3.713",
+        "@micromag/screen-game-sort": "^0.3.713",
         "@micromag/screen-image": "^0.3.713",
         "@micromag/screen-keypad": "^0.3.713",
         "@micromag/screen-map": "^0.3.713",

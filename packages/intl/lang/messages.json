@@ -103,6 +103,10 @@
     "defaultMessage": "Duration",
     "description": "Field name"
   },
+  "03U69o": {
+    "defaultMessage": "Buttons",
+    "description": "Title placeholder"
+  },
   "0GT0SI": {
     "defaultMessage": "Cancel",
     "description": "Cancel button label"
@@ -331,6 +335,10 @@
     "defaultMessage": "Timing",
     "description": "Timing field label"
   },
+  "6EF9gy": {
+    "defaultMessage": "Validated button style",
+    "description": "Field label"
+  },
   "6LFjCH": {
     "defaultMessage": "Fill with image",
     "description": "Field label"
@@ -354,6 +362,10 @@
   "6bd963": {
     "defaultMessage": "Virgo",
     "description": "Horoscope sign"
+  },
+  "6bqjZK": {
+    "defaultMessage": "Valid button style",
+    "description": "Field label"
   },
   "6iR9Mt": {
     "defaultMessage": "Heading",
@@ -457,6 +469,10 @@
   },
   "9PfjeE": {
     "defaultMessage": "Speaker style",
+    "description": "Field label"
+  },
+  "9QP1Kj": {
+    "defaultMessage": "Submit button style",
     "description": "Field label"
   },
   "9ZdD+Q": {
@@ -570,6 +586,10 @@
   "CJmQeh": {
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
+  },
+  "CTculh": {
+    "defaultMessage": "Validated",
+    "description": "Button label"
   },
   "CWnXWp": {
     "defaultMessage": "No button yet",
@@ -751,6 +771,10 @@
     "defaultMessage": "Tags",
     "description": "Field name"
   },
+  "IbZVf0": {
+    "defaultMessage": "Submit",
+    "description": "Button label"
+  },
   "IoMJgw": {
     "defaultMessage": "Toggle article",
     "description": "Button label"
@@ -903,6 +927,10 @@
     "defaultMessage": "Button",
     "description": "Placeholder label"
   },
+  "NPpncq": {
+    "defaultMessage": "Invalid button style",
+    "description": "Field label"
+  },
   "NVUpOG": {
     "defaultMessage": "Map fit markers",
     "description": "Field label"
@@ -930,6 +958,10 @@
   "OJi+eg": {
     "defaultMessage": "Label",
     "description": "Field label"
+  },
+  "OOIQh7": {
+    "defaultMessage": "Game Sort",
+    "description": "Game Sort screen title"
   },
   "OPxJx/": {
     "defaultMessage": "Layout",
@@ -1141,6 +1173,10 @@
   "VMd1oG": {
     "defaultMessage": "Questions",
     "description": "State label"
+  },
+  "Vuj0dX": {
+    "defaultMessage": "Submit button label",
+    "description": "Button label field"
   },
   "W5qWPj": {
     "defaultMessage": "Center",
@@ -2033,6 +2069,10 @@
     "defaultMessage": "Font size",
     "description": "Field label"
   },
+  "tbrIgP": {
+    "defaultMessage": "Validated button label",
+    "description": "Button label field"
+  },
   "tmfbUn": {
     "defaultMessage": "Unused",
     "description": "Media label"
@@ -2152,6 +2192,10 @@
   "vxEtY1": {
     "defaultMessage": "Background image",
     "description": "Breadcrumb field label"
+  },
+  "w3+kFW": {
+    "defaultMessage": "Game",
+    "description": "Screen group"
   },
   "wChc+A": {
     "defaultMessage": "Edit style...",

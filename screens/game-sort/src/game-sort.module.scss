@@ -1,0 +1,140 @@
+// stylelint-disable max-nesting-depth
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %screen;
+
+    .background {
+        @extend %fullscreen;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .heading {
+        margin-bottom: 10px;
+    }
+}
+
+.layout {
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    @extend %hide-scrollbars;
+}
+
+.emptyHeading,
+.emptyItems {
+    @extend %empty;
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.emptyItems {
+    padding: 40px;
+}
+
+.header {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 0;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 0;
+}
+
+.items {
+    user-select: none;
+}
+
+.item {
+    display: block;
+    width: 100%;
+
+    padding-bottom: 10px;
+    transform-origin: 50% 50%;
+    border-radius: 0;
+    opacity: 0;
+
+    touch-action: none;
+
+    // &:last-child {
+    //     margin-bottom: 0;
+    // }
+
+    .sorted & {
+        opacity: 1;
+    }
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-clip: padding-box;
+    background-color: rgba(255, 255, 255, 0.1);
+    text-align: center;
+
+    .isEmpty & {
+        min-height: 2em;
+    }
+
+    .valid & {
+        background: rgba(0, 255, 0, 0.4);
+    }
+
+    .invalid & {
+        background: rgba(255, 0, 0, 0.4);
+    }
+
+    &.layoutLabelTop {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    &.layoutNoLabel {
+        .buttonLabel {
+            display: none;
+        }
+    }
+
+    &.layoutLabelOver {
+        .buttonVisual {
+            position: relative;
+            z-index: 1;
+        }
+
+        .buttonLabel {
+            @extend %fullscreen;
+            display: block;
+            z-index: 2;
+            top: auto;
+            bottom: 0;
+            height: auto;
+            background-image: linear-gradient(to bottom, rgba($black, 0), rgba($black, 0.75));
+        }
+    }
+}
+
+.submitButton {
+    padding: 10px;
+    background: #fff;
+    color: #000;
+
+    &:disabled {
+        opacity: 0.5;
+    }
+}

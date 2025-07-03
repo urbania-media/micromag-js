@@ -167,6 +167,12 @@ msgctxt "002oWQ"
 msgid "Duration"
 msgstr "Durée"
 
+# Title placeholder
+#: 03U69o
+msgctxt "03U69o"
+msgid "Buttons"
+msgstr "Boutons"
+
 # Cancel button label
 #: 0GT0SI
 msgctxt "0GT0SI"
@@ -510,6 +516,12 @@ msgid "Timing"
 msgstr "Mode"
 
 # Field label
+#: 6EF9gy
+msgctxt "6EF9gy"
+msgid "Validated button style"
+msgstr "Style du bouton validé"
+
+# Field label
 #: 6LFjCH
 msgctxt "6LFjCH"
 msgid "Fill with image"
@@ -544,6 +556,12 @@ msgstr "Côté"
 msgctxt "6bd963"
 msgid "Virgo"
 msgstr "Vierge"
+
+# Field label
+#: 6bqjZK
+msgctxt "6bqjZK"
+msgid "Valid button style"
+msgstr "Style du bouton valide"
 
 # Field label
 #: 6iR9Mt
@@ -700,6 +718,12 @@ msgstr "Ordre croissant"
 msgctxt "9PfjeE"
 msgid "Speaker style"
 msgstr "Style du nom"
+
+# Field label
+#: 9QP1Kj
+msgctxt "9QP1Kj"
+msgid "Submit button style"
+msgstr "Style du bouton Envoyer"
 
 # Library source menu
 #: 9ZdD+Q
@@ -868,6 +892,12 @@ msgstr "{current} de {duration}"
 msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image avec texte"
+
+# Button label
+#: CTculh
+msgctxt "CTculh"
+msgid "Validated"
+msgstr "Validé"
 
 # Label when there is no item
 #: CWnXWp
@@ -1140,6 +1170,12 @@ msgid "Tags"
 msgstr "Tags"
 
 # Button label
+#: IbZVf0
+msgctxt "IbZVf0"
+msgid "Submit"
+msgstr "Envoyer"
+
+# Button label
 #: IoMJgw
 msgctxt "IoMJgw"
 msgid "Toggle article"
@@ -1368,6 +1404,12 @@ msgid "Button"
 msgstr "Bouton"
 
 # Field label
+#: NPpncq
+msgctxt "NPpncq"
+msgid "Invalid button style"
+msgstr "Style du bouton invalide"
+
+# Field label
 #: NVUpOG
 msgctxt "NVUpOG"
 msgid "Map fit markers"
@@ -1408,6 +1450,12 @@ msgstr "Style du texte"
 msgctxt "OJi+eg"
 msgid "Label"
 msgstr "Libellé"
+
+# Game Sort screen title
+#: OOIQh7
+msgctxt "OOIQh7"
+msgid "Game Sort"
+msgstr "Jeu Ordre"
 
 # Field label
 #: OPxJx/
@@ -1725,6 +1773,12 @@ msgstr "Google Fonts"
 msgctxt "VMd1oG"
 msgid "Questions"
 msgstr "Questions"
+
+# Button label field
+#: Vuj0dX
+msgctxt "Vuj0dX"
+msgid "Submit button label"
+msgstr "Libellé du bouton Envoyer"
 
 # Field label
 #: W5qWPj
@@ -3076,6 +3130,12 @@ msgctxt "tYGev7"
 msgid "Font size"
 msgstr "Taille de la police"
 
+# Button label field
+#: tbrIgP
+msgctxt "tbrIgP"
+msgid "Validated button label"
+msgstr "Libellé du bouton Validé"
+
 # Media label
 #: tmfbUn
 msgctxt "tmfbUn"
@@ -3255,6 +3315,12 @@ msgstr "(écran en cours)"
 msgctxt "vxEtY1"
 msgid "Background image"
 msgstr "Image d’arrière-plan"
+
+# Screen group
+#: w3+kFW
+msgctxt "w3+kFW"
+msgid "Game"
+msgstr "Jeu"
 
 # No value label
 #: wChc+A

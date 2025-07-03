@@ -77,6 +77,9 @@
     "002oWQ": {
         "defaultMessage": "Duration"
     },
+    "03U69o": {
+        "defaultMessage": "Buttons"
+    },
     "0GT0SI": {
         "defaultMessage": "Cancel"
     },
@@ -248,6 +251,9 @@
     "6DV50M": {
         "defaultMessage": "Timing"
     },
+    "6EF9gy": {
+        "defaultMessage": "Validated button style"
+    },
     "6LFjCH": {
         "defaultMessage": "Fill with image"
     },
@@ -265,6 +271,9 @@
     },
     "6bd963": {
         "defaultMessage": "Virgo"
+    },
+    "6bqjZK": {
+        "defaultMessage": "Valid button style"
     },
     "6iR9Mt": {
         "defaultMessage": "Heading"
@@ -343,6 +352,9 @@
     },
     "9PfjeE": {
         "defaultMessage": "Speaker style"
+    },
+    "9QP1Kj": {
+        "defaultMessage": "Submit button style"
     },
     "9ZdD+Q": {
         "defaultMessage": "Library for"
@@ -427,6 +439,9 @@
     },
     "CJmQeh": {
         "defaultMessage": "Image with text"
+    },
+    "CTculh": {
+        "defaultMessage": "Validated"
     },
     "CWnXWp": {
         "defaultMessage": "No button yet"
@@ -563,6 +578,9 @@
     "IOVper": {
         "defaultMessage": "Tags"
     },
+    "IbZVf0": {
+        "defaultMessage": "Submit"
+    },
     "IoMJgw": {
         "defaultMessage": "Toggle article"
     },
@@ -677,6 +695,9 @@
     "N7Kj8z": {
         "defaultMessage": "Button"
     },
+    "NPpncq": {
+        "defaultMessage": "Invalid button style"
+    },
     "NVUpOG": {
         "defaultMessage": "Map fit markers"
     },
@@ -697,6 +718,9 @@
     },
     "OJi+eg": {
         "defaultMessage": "Label"
+    },
+    "OOIQh7": {
+        "defaultMessage": "Game Sort"
     },
     "OPxJx/": {
         "defaultMessage": "Layout"
@@ -856,6 +880,9 @@
     },
     "VMd1oG": {
         "defaultMessage": "Questions"
+    },
+    "Vuj0dX": {
+        "defaultMessage": "Submit button label"
     },
     "W5qWPj": {
         "defaultMessage": "Center"
@@ -1538,6 +1565,9 @@
     "tYGev7": {
         "defaultMessage": "Font size"
     },
+    "tbrIgP": {
+        "defaultMessage": "Validated button label"
+    },
     "tmfbUn": {
         "defaultMessage": "Unused"
     },
@@ -1627,6 +1657,9 @@
     },
     "vxEtY1": {
         "defaultMessage": "Background image"
+    },
+    "w3+kFW": {
+        "defaultMessage": "Game"
     },
     "wChc+A": {
         "defaultMessage": "Edit style..."
