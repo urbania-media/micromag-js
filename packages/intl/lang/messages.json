@@ -115,10 +115,6 @@
     "defaultMessage": "Message",
     "description": "Breadcrumb field label"
   },
-  "0N19DP": {
-    "defaultMessage": "Invalid buttons style",
-    "description": "Field label"
-  },
   "0R+nB5": {
     "defaultMessage": "Custom URL",
     "description": "Field label"
@@ -339,10 +335,6 @@
     "defaultMessage": "Timing",
     "description": "Timing field label"
   },
-  "6EF9gy": {
-    "defaultMessage": "Validated button style",
-    "description": "Field label"
-  },
   "6LFjCH": {
     "defaultMessage": "Fill with image",
     "description": "Field label"
@@ -419,6 +411,10 @@
     "defaultMessage": "Intro",
     "description": " UrbaniaHoroscope state"
   },
+  "83959F": {
+    "defaultMessage": "Items style",
+    "description": "Field label"
+  },
   "862eE3": {
     "defaultMessage": "Border",
     "description": "Field label"
@@ -455,6 +451,10 @@
     "defaultMessage": "Edit my settings",
     "description": "Button label"
   },
+  "8ySjDc": {
+    "defaultMessage": "Item",
+    "description": "Breadcrumb field label"
+  },
   "9/t5wK": {
     "defaultMessage": "Type",
     "description": "Filter label"
@@ -469,10 +469,6 @@
   },
   "9PfjeE": {
     "defaultMessage": "Speaker style",
-    "description": "Field label"
-  },
-  "9QP1Kj": {
-    "defaultMessage": "Submit button style",
     "description": "Field label"
   },
   "9ZdD+Q": {
@@ -594,6 +590,10 @@
   "CWnXWp": {
     "defaultMessage": "No button yet",
     "description": "Label when there is no item"
+  },
+  "Cg3LGu": {
+    "defaultMessage": "Label",
+    "description": "Button label field"
   },
   "CnVj9r": {
     "defaultMessage": "Skip to controls",
@@ -795,6 +795,10 @@
     "defaultMessage": "Background color",
     "description": "Field label"
   },
+  "JLYWNN": {
+    "defaultMessage": "Invalid box style",
+    "description": "Field label"
+  },
   "JMmYwg": {
     "defaultMessage": "Submit button",
     "description": "Field label"
@@ -991,6 +995,10 @@
     "defaultMessage": "middle aligned",
     "description": "Alignment label"
   },
+  "PAQRf4": {
+    "defaultMessage": "No item yet",
+    "description": "Label when there is no item"
+  },
   "PFNMAQ": {
     "defaultMessage": "Bottom",
     "description": "Direction"
@@ -1166,10 +1174,6 @@
     "defaultMessage": "Questions",
     "description": "State label"
   },
-  "Vuj0dX": {
-    "defaultMessage": "Submit button label",
-    "description": "Button label field"
-  },
   "W5qWPj": {
     "defaultMessage": "Center",
     "description": "Field label"
@@ -1189,6 +1193,10 @@
   "WeD4nB": {
     "defaultMessage": "Upload a video file",
     "description": "Upload button label in Media Gallery"
+  },
+  "WjigmA": {
+    "defaultMessage": "Submit button",
+    "description": "Submit button section label"
   },
   "WlNxMj": {
     "defaultMessage": "Repeat",
@@ -1332,6 +1340,10 @@
   },
   "amEvH1": {
     "defaultMessage": "Fit",
+    "description": "Field label"
+  },
+  "ao5VYd": {
+    "defaultMessage": "Valid box style",
     "description": "Field label"
   },
   "aovRFH": {
@@ -1568,6 +1580,10 @@
     "defaultMessage": "Duration",
     "description": "Label in Media Gallery"
   },
+  "ex1Bgx": {
+    "defaultMessage": "Results style",
+    "description": "Field label"
+  },
   "f1XHNG": {
     "defaultMessage": "Button",
     "description": "Breadcrumb field label"
@@ -1750,6 +1766,10 @@
   "k+coTi": {
     "defaultMessage": "Image",
     "description": "Visuals field label"
+  },
+  "k4gTZl": {
+    "defaultMessage": "Add an item",
+    "description": "Button label"
   },
   "k81FRn": {
     "defaultMessage": "Message style",
@@ -1997,10 +2017,6 @@
     "defaultMessage": "Header",
     "description": "Field label"
   },
-  "rlOUqL": {
-    "defaultMessage": "Buttons style",
-    "description": "Field label"
-  },
   "rmJBin": {
     "defaultMessage": "Dimensions",
     "description": "Field label"
@@ -2068,10 +2084,6 @@
   "tYGev7": {
     "defaultMessage": "Font size",
     "description": "Field label"
-  },
-  "tbrIgP": {
-    "defaultMessage": "Validated button label",
-    "description": "Button label field"
   },
   "tmfbUn": {
     "defaultMessage": "Unused",
@@ -2201,9 +2213,9 @@
     "defaultMessage": "Edit style...",
     "description": "No value label"
   },
-  "wJm7+k": {
-    "defaultMessage": "Valid buttons style",
-    "description": "Field label"
+  "wROB6F": {
+    "defaultMessage": "Validated label",
+    "description": "Button label field"
   },
   "wU++NJ": {
     "defaultMessage": "Duration",

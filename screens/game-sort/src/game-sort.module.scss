@@ -17,8 +17,8 @@
 
     .heading {
         margin-bottom: 0.5em;
-    font-size: 1rem;
-    font-weight: normal;
+        font-size: 1rem;
+        font-weight: normal;
     }
 }
 
@@ -66,7 +66,6 @@
     display: block;
     width: 100%;
 
-    padding-bottom: 0.3em;
     transform-origin: 50% 50%;
     border-radius: 0;
     opacity: 0;
@@ -77,6 +76,10 @@
     //     margin-bottom: 0;
     // }
 
+    .button {
+        margin-bottom: 0.3em;
+    }
+
     .sorted & {
         opacity: 1;
     }
@@ -84,11 +87,40 @@
 
 .button {
     display: block;
+    position: relative;
     width: 100%;
     padding: 0.5em;
     background-clip: padding-box;
     background-color: rgba(255, 255, 255, 0.1);
     text-align: center;
+
+    .buttonLabel {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .results {
+        margin-left: auto;
+        padding-left: 2em;
+        animation: fadeIn 0.2s ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .label {
+        transition: text-align 0.2s ease-in-out;
+    }
 
     .isEmpty & {
         min-height: 2em;
@@ -100,6 +132,12 @@
 
     .invalid & {
         background: rgba(255, 0, 0, 0.4);
+    }
+
+    .resultsVisible & {
+        .label {
+            text-align: left;
+        }
     }
 
     &.layoutLabelTop {
@@ -114,6 +152,8 @@
     }
 
     &.layoutLabelOver {
+        min-height: 2em;
+
         .buttonVisual {
             position: relative;
             z-index: 1;
@@ -121,11 +161,11 @@
 
         .buttonLabel {
             @extend %fullscreen;
-            display: block;
             z-index: 2;
             top: auto;
             bottom: 0;
             height: auto;
+            padding: 0.5em;
             background-image: linear-gradient(to bottom, rgba($black, 0), rgba($black, 0.75));
         }
     }

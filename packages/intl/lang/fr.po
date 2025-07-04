@@ -186,12 +186,6 @@ msgid "Message"
 msgstr "Message"
 
 # Field label
-#: 0N19DP
-msgctxt "0N19DP"
-msgid "Invalid buttons style"
-msgstr "Style des boutons invalides"
-
-# Field label
 #: 0R+nB5
 msgctxt "0R+nB5"
 msgid "Custom URL"
@@ -522,12 +516,6 @@ msgid "Timing"
 msgstr "Mode"
 
 # Field label
-#: 6EF9gy
-msgctxt "6EF9gy"
-msgid "Validated button style"
-msgstr "Style du bouton Validé"
-
-# Field label
 #: 6LFjCH
 msgctxt "6LFjCH"
 msgid "Fill with image"
@@ -642,6 +630,12 @@ msgid "Intro"
 msgstr "Intro"
 
 # Field label
+#: 83959F
+msgctxt "83959F"
+msgid "Items style"
+msgstr "Style des éléments"
+
+# Field label
 #: 862eE3
 msgctxt "862eE3"
 msgid "Border"
@@ -695,6 +689,12 @@ msgctxt "8yRYcm"
 msgid "Edit my settings"
 msgstr "Modifier mes paramètres"
 
+# Breadcrumb field label
+#: 8ySjDc
+msgctxt "8ySjDc"
+msgid "Item"
+msgstr "Élément"
+
 # Filter label
 #: 9/t5wK
 msgctxt "9/t5wK"
@@ -718,12 +718,6 @@ msgstr "Ordre croissant"
 msgctxt "9PfjeE"
 msgid "Speaker style"
 msgstr "Style du nom"
-
-# Field label
-#: 9QP1Kj
-msgctxt "9QP1Kj"
-msgid "Submit button style"
-msgstr "Style du bouton Envoyer"
 
 # Library source menu
 #: 9ZdD+Q
@@ -904,6 +898,12 @@ msgstr "Validé"
 msgctxt "CWnXWp"
 msgid "No button yet"
 msgstr "Aucun bouton"
+
+# Button label field
+#: Cg3LGu
+msgctxt "Cg3LGu"
+msgid "Label"
+msgstr "Libellé"
 
 # Button label
 #: CnVj9r
@@ -1206,6 +1206,12 @@ msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
 
 # Field label
+#: JLYWNN
+msgctxt "JLYWNN"
+msgid "Invalid box style"
+msgstr "Style de boîte invalide"
+
+# Field label
 #: JMmYwg
 msgctxt "JMmYwg"
 msgid "Submit button"
@@ -1499,6 +1505,12 @@ msgctxt "P9A8cx"
 msgid "middle aligned"
 msgstr "align. milieu"
 
+# Label when there is no item
+#: PAQRf4
+msgctxt "PAQRf4"
+msgid "No item yet"
+msgstr "Aucun élément."
+
 # Direction
 #: PFNMAQ
 msgctxt "PFNMAQ"
@@ -1762,12 +1774,6 @@ msgctxt "VMd1oG"
 msgid "Questions"
 msgstr "Questions"
 
-# Button label field
-#: Vuj0dX
-msgctxt "Vuj0dX"
-msgid "Submit button label"
-msgstr "Libellé du bouton Envoyer"
-
 # Field label
 #: W5qWPj
 msgctxt "W5qWPj"
@@ -1797,6 +1803,12 @@ msgstr "Sélectionner un fichier de police..."
 msgctxt "WeD4nB"
 msgid "Upload a video file"
 msgstr "Ajouter un fichier vidéo"
+
+# Submit button section label
+#: WjigmA
+msgctxt "WjigmA"
+msgid "Submit button"
+msgstr "Bouton Envoyer"
 
 # Field label
 #: WlNxMj
@@ -2013,6 +2025,12 @@ msgstr "Polices par défaut"
 msgctxt "amEvH1"
 msgid "Fit"
 msgstr "Ajustement"
+
+# Field label
+#: ao5VYd
+msgctxt "ao5VYd"
+msgid "Valid box style"
+msgstr "Style de boîte valide"
 
 # Label in Media Gallery
 #: aovRFH
@@ -2377,6 +2395,12 @@ msgctxt "eoW0tZ"
 msgid "Duration"
 msgstr "Durée"
 
+# Field label
+#: ex1Bgx
+msgctxt "ex1Bgx"
+msgid "Results style"
+msgstr "Style des résultats"
+
 # Breadcrumb field label
 #: f1XHNG
 msgctxt "f1XHNG"
@@ -2651,6 +2675,12 @@ msgstr "Sélectionner une image"
 msgctxt "k+coTi"
 msgid "Image"
 msgstr "Image"
+
+# Button label
+#: k4gTZl
+msgctxt "k4gTZl"
+msgid "Add an item"
+msgstr "Ajouter un élément"
 
 # Field label
 #: k81FRn
@@ -3023,12 +3053,6 @@ msgid "Header"
 msgstr "Haut de l'écran"
 
 # Field label
-#: rlOUqL
-msgctxt "rlOUqL"
-msgid "Buttons style"
-msgstr "Style des boutons"
-
-# Field label
 #: rmJBin
 msgctxt "rmJBin"
 msgid "Dimensions"
@@ -3129,12 +3153,6 @@ msgstr "Ajouter une diapositive"
 msgctxt "tYGev7"
 msgid "Font size"
 msgstr "Taille de la police"
-
-# Button label field
-#: tbrIgP
-msgctxt "tbrIgP"
-msgid "Validated button label"
-msgstr "Libellé du bouton Validé"
 
 # Media label
 #: tmfbUn
@@ -3328,11 +3346,11 @@ msgctxt "wChc+A"
 msgid "Edit style..."
 msgstr "Modifier le style"
 
-# Field label
-#: wJm7+k
-msgctxt "wJm7+k"
-msgid "Valid buttons style"
-msgstr "Style des boutons valides"
+# Button label field
+#: wROB6F
+msgctxt "wROB6F"
+msgid "Validated label"
+msgstr "Libellé Validé"
 
 # Field label
 #: wU++NJ

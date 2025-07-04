@@ -41,23 +41,24 @@ export default {
         },
         {
             name: 'items',
-            type: 'buttons',
+            type: 'game-sort-items',
             label: defineMessage({
-                defaultMessage: 'Buttons',
+                defaultMessage: 'Items',
                 description: 'Field label',
             }),
-            itemsProps: {
-                excludedFields: ['url', 'inWebView'],
-            },
             isSection: true,
         },
         {
-            name: 'buttonStyles',
+            label: defineMessage({
+                defaultMessage: 'Items style',
+                description: 'Field label',
+            }),
             type: 'fields',
             isList: true,
+            isSection: true,
             fields: [
                 {
-                    name: 'layout',
+                    name: 'itemsLayout',
                     type: 'button-layout',
                     label: defineMessage({
                         defaultMessage: 'Layout',
@@ -65,7 +66,7 @@ export default {
                     }),
                 },
                 {
-                    name: 'textStyle',
+                    name: 'itemsTextStyle',
                     type: 'text-style-form',
                     label: defineMessage({
                         defaultMessage: 'Label style',
@@ -73,10 +74,18 @@ export default {
                     }),
                 },
                 {
-                    name: 'boxStyle',
+                    name: 'resultsTextStyle',
+                    type: 'text-style-form',
+                    label: defineMessage({
+                        defaultMessage: 'Results style',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'itemsBoxStyle',
                     type: 'box-style-form',
                     label: defineMessage({
-                        defaultMessage: 'Buttons style',
+                        defaultMessage: 'Box style',
                         description: 'Field label',
                     }),
                 },
@@ -84,7 +93,7 @@ export default {
                     name: 'validBoxStyle',
                     type: 'box-style-form',
                     label: defineMessage({
-                        defaultMessage: 'Valid buttons style',
+                        defaultMessage: 'Valid box style',
                         description: 'Field label',
                     }),
                 },
@@ -92,40 +101,51 @@ export default {
                     name: 'invalidBoxStyle',
                     type: 'box-style-form',
                     label: defineMessage({
-                        defaultMessage: 'Invalid buttons style',
+                        defaultMessage: 'Invalid box style',
                         description: 'Field label',
+                    }),
+                },
+            ],
+        },
+        {
+            label: defineMessage({
+                defaultMessage: 'Submit button',
+                description: 'Submit button section label',
+            }),
+            type: 'fields',
+            isList: true,
+            isSection: true,
+            fields: [
+                {
+                    name: 'submitButtonLabel',
+                    type: 'text',
+                    label: defineMessage({
+                        defaultMessage: 'Label',
+                        description: 'Button label field',
+                    }),
+                },
+                {
+                    name: 'validatedButtonLabel',
+                    type: 'text',
+                    label: defineMessage({
+                        defaultMessage: 'Validated label',
+                        description: 'Button label field',
                     }),
                 },
                 {
                     name: 'submitBoxStyle',
                     type: 'box-style-form',
                     label: defineMessage({
-                        defaultMessage: 'Submit button style',
+                        defaultMessage: 'Button style',
                         description: 'Field label',
                     }),
                 },
                 {
-                    name: 'validatedBoxStyle',
+                    name: 'submitTextStyle',
                     type: 'box-style-form',
                     label: defineMessage({
-                        defaultMessage: 'Validated button style',
+                        defaultMessage: 'Text style',
                         description: 'Field label',
-                    }),
-                },
-                {
-                    name: 'submitButtonLabel',
-                    type: 'text-element',
-                    label: defineMessage({
-                        defaultMessage: 'Submit button label',
-                        description: 'Button label field',
-                    }),
-                },
-                {
-                    name: 'validatedButtonLabel',
-                    type: 'text-element',
-                    label: defineMessage({
-                        defaultMessage: 'Validated button label',
-                        description: 'Button label field',
                     }),
                 },
             ],

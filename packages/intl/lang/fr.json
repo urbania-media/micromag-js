@@ -86,9 +86,6 @@
     "0GzLBc": {
         "defaultMessage": "Message"
     },
-    "0N19DP": {
-        "defaultMessage": "Style des boutons invalides"
-    },
     "0R+nB5": {
         "defaultMessage": "URL personnalisée"
     },
@@ -254,9 +251,6 @@
     "6DV50M": {
         "defaultMessage": "Mode"
     },
-    "6EF9gy": {
-        "defaultMessage": "Style du bouton Validé"
-    },
     "6LFjCH": {
         "defaultMessage": "Remplir avec l'image"
     },
@@ -314,6 +308,9 @@
     "82g1F5": {
         "defaultMessage": "Intro"
     },
+    "83959F": {
+        "defaultMessage": "Style des éléments"
+    },
     "862eE3": {
         "defaultMessage": "Bordure"
     },
@@ -341,6 +338,9 @@
     "8yRYcm": {
         "defaultMessage": "Modifier mes paramètres"
     },
+    "8ySjDc": {
+        "defaultMessage": "Élément"
+    },
     "9/t5wK": {
         "defaultMessage": "Type"
     },
@@ -352,9 +352,6 @@
     },
     "9PfjeE": {
         "defaultMessage": "Style du nom"
-    },
-    "9QP1Kj": {
-        "defaultMessage": "Style du bouton Envoyer"
     },
     "9ZdD+Q": {
         "defaultMessage": "Bibliothèque pour"
@@ -445,6 +442,9 @@
     },
     "CWnXWp": {
         "defaultMessage": "Aucun bouton"
+    },
+    "Cg3LGu": {
+        "defaultMessage": "Libellé"
     },
     "CnVj9r": {
         "defaultMessage": "Aller aux commandes de lecture"
@@ -596,6 +596,9 @@
     "JDPMlG": {
         "defaultMessage": "Couleur de l'arrière-plan"
     },
+    "JLYWNN": {
+        "defaultMessage": "Style de boîte invalide"
+    },
     "JMmYwg": {
         "defaultMessage": "Bouton envoyer"
     },
@@ -743,6 +746,9 @@
     "P9A8cx": {
         "defaultMessage": "align. milieu"
     },
+    "PAQRf4": {
+        "defaultMessage": "Aucun élément."
+    },
     "PFNMAQ": {
         "defaultMessage": "Bas"
     },
@@ -875,9 +881,6 @@
     "VMd1oG": {
         "defaultMessage": "Questions"
     },
-    "Vuj0dX": {
-        "defaultMessage": "Libellé du bouton Envoyer"
-    },
     "W5qWPj": {
         "defaultMessage": "Centrer"
     },
@@ -892,6 +895,9 @@
     },
     "WeD4nB": {
         "defaultMessage": "Ajouter un fichier vidéo"
+    },
+    "WjigmA": {
+        "defaultMessage": "Bouton Envoyer"
     },
     "WlNxMj": {
         "defaultMessage": "Répéter"
@@ -1000,6 +1006,9 @@
     },
     "amEvH1": {
         "defaultMessage": "Ajustement"
+    },
+    "ao5VYd": {
+        "defaultMessage": "Style de boîte valide"
     },
     "aovRFH": {
         "defaultMessage": "Nom du fichier"
@@ -1187,6 +1196,9 @@
     "eoW0tZ": {
         "defaultMessage": "Durée"
     },
+    "ex1Bgx": {
+        "defaultMessage": "Style des résultats"
+    },
     "f1XHNG": {
         "defaultMessage": "Bouton"
     },
@@ -1324,6 +1336,9 @@
     },
     "k+coTi": {
         "defaultMessage": "Image"
+    },
+    "k4gTZl": {
+        "defaultMessage": "Ajouter un élément"
     },
     "k81FRn": {
         "defaultMessage": "Style du texte"
@@ -1511,9 +1526,6 @@
     "rhuDxI": {
         "defaultMessage": "Haut de l'écran"
     },
-    "rlOUqL": {
-        "defaultMessage": "Style des boutons"
-    },
     "rmJBin": {
         "defaultMessage": "Dimensions"
     },
@@ -1564,9 +1576,6 @@
     },
     "tYGev7": {
         "defaultMessage": "Taille de la police"
-    },
-    "tbrIgP": {
-        "defaultMessage": "Libellé du bouton Validé"
     },
     "tmfbUn": {
         "defaultMessage": "Inutilisé"
@@ -1664,8 +1673,8 @@
     "wChc+A": {
         "defaultMessage": "Modifier le style"
     },
-    "wJm7+k": {
-        "defaultMessage": "Style des boutons valides"
+    "wROB6F": {
+        "defaultMessage": "Libellé Validé"
     },
     "wU++NJ": {
         "defaultMessage": "Durée"

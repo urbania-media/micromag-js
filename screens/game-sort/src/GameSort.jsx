@@ -1,4 +1,5 @@
 /* eslint-disable react/no-array-index-key */
+
 /* eslint-disable react/jsx-props-no-spreading */
 import { animated, useSprings } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
@@ -45,12 +46,19 @@ const propTypes = {
     // eslint-disable-next-line react/forbid-prop-types
     items: PropTypes.array,
     spacing: PropTypes.number,
-    buttonStyles: PropTypes.shape({}),
+    itemsLayout: PropTypes.oneOf(['label-bottom', 'label-top', 'no-label', 'label-over']),
+    itemsBoxStyle: MicromagPropTypes.boxStyle,
+    itemsTextStyle: MicromagPropTypes.textStyle,
+    resultsTextStyle: MicromagPropTypes.textStyle,
+    validBoxStyle: MicromagPropTypes.boxStyle,
+    invalidBoxStyle: MicromagPropTypes.boxStyle,
+    submitBoxStyle: MicromagPropTypes.boxStyle,
+    submitTextStyle: MicromagPropTypes.textStyle,
+    submitButtonLabel: PropTypes.string,
+    validatedButtonLabel: PropTypes.string,
     background: MicromagPropTypes.backgroundElement,
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
-    id: PropTypes.string,
-    index: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,
     className: PropTypes.string,
@@ -60,13 +68,20 @@ const defaultProps = {
     layout: 'top',
     heading: null,
     items: null,
-    buttonStyles: null,
     spacing: 20,
+    itemsLayout: 'label-bottom',
+    itemsBoxStyle: null,
+    itemsTextStyle: null,
+    resultsTextStyle: null,
+    validBoxStyle: null,
+    invalidBoxStyle: null,
+    submitBoxStyle: null,
+    submitTextStyle: null,
+    submitButtonLabel: null,
+    validatedButtonLabel: null,
     background: null,
     header: null,
     footer: null,
-    id: null,
-    index: null,
     current: true,
     active: true,
     className: null,
@@ -76,13 +91,20 @@ const ShareScreen = ({
     layout,
     heading,
     items,
-    buttonStyles,
     spacing,
+    itemsLayout,
+    itemsBoxStyle,
+    itemsTextStyle,
+    resultsTextStyle,
+    validBoxStyle,
+    invalidBoxStyle,
+    submitBoxStyle,
+    submitTextStyle,
+    submitButtonLabel,
+    validatedButtonLabel,
     background,
     header,
     footer,
-    id,
-    index,
     current,
     active,
     className,
@@ -106,17 +128,6 @@ const ShareScreen = ({
     const hasFooter = isFooterFilled(footer);
     const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
 
-    const {
-        layout: buttonLayout = null,
-        textStyle: buttonTextStyle = null,
-        boxStyle: buttonBoxStyle = null,
-        validBoxStyle = null,
-        invalidBoxStyle = null,
-        submitBoxStyle = null,
-        submitButtonLabel = null,
-        validatedButtonLabel = null,
-    } = buttonStyles || {};
-
     const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
     const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
@@ -126,6 +137,11 @@ const ShareScreen = ({
     const [sortedItems, setSortedItems] = useState(isView ? shuffle(items || []) : items || []);
     const sortedItemsRef = useRef(sortedItems);
     const currentItemsRef = useRef(items);
+    const elementsRef = useRef([]);
+    const [initialSorted, setInitialSorted] = useState(false);
+    const [validated, setValidated] = useState(null);
+    const initialSortedItemsRef = useRef(sortedItems);
+    const [resultsVisible, setResultsVisible] = useState(false);
     useEffect(() => {
         if (currentItemsRef.current !== items) {
             const newSortedItems = isView ? shuffle(items || []) : items || [];
@@ -135,7 +151,7 @@ const ShareScreen = ({
         }
     }, [items]);
 
-    const getNewSortedItems = useCallback((currentItems, item, newIndex, replace = true) => {
+    const getNewSortedItems = useCallback((currentItems, item, newIndex) => {
         const currentIndex = currentItems.findIndex((it) => it === item);
         const newSortedItems = [...currentItems];
         const currentItem = newSortedItems[newIndex];
@@ -162,11 +178,9 @@ const ShareScreen = ({
         [],
     );
 
-    const itemsRef = useRef([]);
-    const [initialSorted, setInitialSorted] = useState(false);
     const updateSpring = useCallback(
         (currentItems, { dragItem, dragY, initial = false } = {}) => {
-            const heights = itemsRef.current.map(
+            const heights = elementsRef.current.map(
                 (item) => item?.getBoundingClientRect()?.height || 0,
             );
             api.start((itemIndex) => {
@@ -211,7 +225,6 @@ const ShareScreen = ({
         [api],
     );
 
-    const initialSortedItemsRef = useRef(sortedItems);
     useEffect(() => {
         if (!isView) {
             return;
@@ -221,7 +234,6 @@ const ShareScreen = ({
         });
     }, [sortedItems]);
 
-    const [validated, setValidated] = useState(null);
     const bind = useDrag(
         ({ args: [itemIndex], active: dragActive, movement: [, movementY], tap }) => {
             const item = items[itemIndex] || {};
@@ -233,14 +245,15 @@ const ShareScreen = ({
             }
             const sortedIndex = sortedItems.findIndex((it) => it === item);
             const heights = sortedItems.map((sortedItem) => {
-                const index = items.findIndex((it) => it === sortedItem);
-                return itemsRef.current[index]?.getBoundingClientRect()?.height || 0;
+                const elementIndex = items.findIndex((it) => it === sortedItem);
+                return elementsRef.current[elementIndex]?.getBoundingClientRect()?.height || 0;
             });
-            const ys = heights.map((itemHeight, index) => {
-                const endY = itemHeight + heights.slice(0, index).reduce((acc, h) => acc + h, 0);
+            const ys = heights.map((itemHeight, heightIndex) => {
+                const endY =
+                    itemHeight + heights.slice(0, heightIndex).reduce((acc, h) => acc + h, 0);
                 return {
-                    isStart: index === 0,
-                    isEnd: index === heights.length - 1,
+                    isStart: heightIndex === 0,
+                    isEnd: heightIndex === heights.length - 1,
                     start: endY - itemHeight,
                     end: endY,
                 };
@@ -261,31 +274,20 @@ const ShareScreen = ({
                 setSortedItems(sortedItemsRef.current);
                 // updateIndex(item, newIndex !== -1 ? newIndex : sortedIndex);
             }
-            // console.log({
-            //     movementY,
-            //     newY,
-            //     itemIndex,
-            //     sortedIndex,
-            //     newIndex,
-            //     ys,
-            //     items: sortedItemsRef.current.map(({ label }) => label),
-            // });
         },
         {
             axis: 'y',
             preventDefault: true,
             filterTaps: true,
             enabled: isView && active && current && validated === null,
-            // preventScroll: 250,
-            // preventScrollAxis: 'y',
         },
     );
 
     const onClickSubmit = useCallback(() => {
         setValidated(
-            items.map((it, index) => {
+            items.map((it, itemIndex) => {
                 const sortedIndex = sortedItems.findIndex((sortedItem) => sortedItem === it);
-                return index === sortedIndex;
+                return itemIndex === sortedIndex;
             }),
         );
     }, [items, sortedItems]);
@@ -297,7 +299,8 @@ const ShareScreen = ({
 
         const timeout = setTimeout(() => {
             setSortedItems(items);
-        }, 2000);
+            setResultsVisible(true);
+        }, 1000);
         return () => {
             clearTimeout(timeout);
         };
@@ -310,6 +313,7 @@ const ShareScreen = ({
                 {
                     [className]: className !== null,
                     [styles.sorted]: initialSorted || !isView,
+                    [styles.resultsVisible]: resultsVisible,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
@@ -379,13 +383,19 @@ const ShareScreen = ({
                         emptyClassName={styles.emptyItems}
                         isEmpty={(items || []).length === 0}
                     >
-                        {springs.map((props, itemIndex) => {
+                        {springs.map(({ y, scale }, itemIndex) => {
                             const item = items[itemIndex] || {};
-                            const { visual = null, label: itemLabel, boxStyle = null } = item || {};
+                            const {
+                                visual = null,
+                                label: itemLabel,
+                                boxStyle = null,
+                                results = null,
+                            } = item || {};
                             const finalLabel = isString(itemLabel)
                                 ? { body: itemLabel }
                                 : itemLabel || {};
-                            const { body: label = null, textStyle = null } = finalLabel || {};
+                            const { body: label = null, textStyle: labelTextStyle } =
+                                finalLabel || {};
                             const isEmpty = label === null && visual === null;
                             const isValid = validated !== null && validated[itemIndex];
                             return (
@@ -400,31 +410,34 @@ const ShareScreen = ({
                                         },
                                     ])}
                                     ref={(ref) => {
-                                        itemsRef.current[itemIndex] = ref;
+                                        elementsRef.current[itemIndex] = ref;
+                                    }}
+                                    style={{
+                                        transform: y.to((yValue) => `translateY(${yValue})`),
+                                        ...getStyleFromBox(itemsTextStyle),
+                                        ...getStyleFromText(labelTextStyle),
                                     }}
                                     {...bind(itemIndex)}
-                                    style={{
-                                        ...props,
-                                        ...getStyleFromText(buttonTextStyle),
-                                        ...getStyleFromText(textStyle),
-                                    }}
                                     // onClick={(e) => onItemClick(e, item)}
                                 >
-                                    <div
+                                    <animated.div
                                         className={classNames([
                                             styles.button,
                                             {
                                                 [styles.layoutLabelBottom]:
-                                                    buttonLayout === 'label-bottom',
+                                                    itemsLayout === 'label-bottom',
                                                 [styles.layoutLabelTop]:
-                                                    buttonLayout === 'label-top',
-                                                [styles.layoutNoLabel]: buttonLayout === 'no-label',
+                                                    itemsLayout === 'label-top',
+                                                [styles.layoutNoLabel]: itemsLayout === 'no-label',
                                                 [styles.layoutLabelOver]:
-                                                    buttonLayout === 'label-over',
+                                                    itemsLayout === 'label-over',
                                             },
                                         ])}
                                         style={{
-                                            ...getStyleFromBox(buttonBoxStyle),
+                                            transform: scale.to(
+                                                (scaleValue) => `scale(${scaleValue})`,
+                                            ),
+                                            ...getStyleFromBox(itemsBoxStyle),
                                             ...getStyleFromBox(boxStyle),
                                             ...getStyleFromBox(
                                                 validated && isValid ? validBoxStyle : null,
@@ -443,17 +456,30 @@ const ShareScreen = ({
                                                 width="auto"
                                             />
                                         ) : null}
-                                        {label !== null ? (
-                                            <Text
-                                                className={styles.buttonLabel}
-                                                {...finalLabel}
-                                                textStyle={{
-                                                    ...getStyleFromText(buttonTextStyle),
-                                                    ...getStyleFromText(textStyle),
-                                                }}
-                                            />
+                                        {label !== null || (results !== null && resultsVisible) ? (
+                                            <div className={styles.buttonLabel}>
+                                                {label !== null ? (
+                                                    <Text
+                                                        {...finalLabel}
+                                                        style={null}
+                                                        className={styles.label}
+                                                    />
+                                                ) : null}
+                                                {results !== null && resultsVisible ? (
+                                                    <Text
+                                                        {...results}
+                                                        className={styles.results}
+                                                        style={{
+                                                            ...getStyleFromText(resultsTextStyle),
+                                                            ...getStyleFromText(
+                                                                results.textStyle || null,
+                                                            ),
+                                                        }}
+                                                    />
+                                                ) : null}
+                                            </div>
                                         ) : null}
-                                    </div>
+                                    </animated.div>
                                 </animated.div>
                             );
                         })}
@@ -463,27 +489,22 @@ const ShareScreen = ({
                         disabled={validated !== null}
                         type="button"
                         onClick={onClickSubmit}
-                        style={getStyleFromBox(submitBoxStyle)}
+                        style={{
+                            ...getStyleFromBox(submitBoxStyle),
+                            ...getStyleFromText(submitTextStyle),
+                        }}
                     >
-                        {validated !== null ? (
-                            <Text
-                                className={styles.buttonLabel}
-                                body={intl.formatMessage({
-                                    defaultMessage: 'Validated',
-                                    description: 'Button label',
-                                })}
-                                {...validatedButtonLabel}
-                            />
-                        ) : (
-                            <Text
-                                className={styles.buttonLabel}
-                                body={intl.formatMessage({
-                                    defaultMessage: 'Submit',
-                                    description: 'Button label',
-                                })}
-                                {...submitButtonLabel}
-                            />
-                        )}
+                        {validated !== null
+                            ? validatedButtonLabel ||
+                              intl.formatMessage({
+                                  defaultMessage: 'Validated',
+                                  description: 'Button label',
+                              })
+                            : submitButtonLabel ||
+                              intl.formatMessage({
+                                  defaultMessage: 'Submit',
+                                  description: 'Button label',
+                              })}
                     </Button>
                     {!isPlaceholder && hasFooter ? (
                         <div
