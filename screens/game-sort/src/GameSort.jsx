@@ -418,8 +418,9 @@ const ShareScreen = ({
                                     key={`button-${itemIndex}`}
                                     className={classNames([
                                         styles.item,
-                                        'clickable',
+
                                         {
+                                            clickable: dragEnabled,
                                             [styles.isEmpty]: isEmpty,
                                             [styles.valid]: validated !== null && isValid,
                                             [styles.invalid]: validated !== null && !isValid,
