@@ -245,6 +245,9 @@ const ShareScreen = ({
                 const currentIndex = sortedItems.findIndex((it) => it === item);
                 const newIndex = currentIndex === 0 ? sortedItems.length - 1 : currentIndex - 1;
                 updateIndex(item, newIndex);
+                if (trackingEnabled) {
+                    trackEvent('tap', `item_${itemIndex}`);
+                }
                 return;
             }
             const sortedIndex = sortedItems.findIndex((it) => it === item);
@@ -276,6 +279,9 @@ const ShareScreen = ({
                 });
             } else {
                 setSortedItems(sortedItemsRef.current);
+                if (trackingEnabled) {
+                    trackEvent('drag', `item_${itemIndex}`);
+                }
                 // updateIndex(item, newIndex !== -1 ? newIndex : sortedIndex);
             }
         },
@@ -288,13 +294,17 @@ const ShareScreen = ({
     );
 
     const onClickSubmit = useCallback(() => {
-        setValidated(
-            items.map((it, itemIndex) => {
-                const sortedIndex = sortedItems.findIndex((sortedItem) => sortedItem === it);
-                return itemIndex === sortedIndex;
-            }),
-        );
-    }, [items, sortedItems]);
+        const newValidated = items.map((it, itemIndex) => {
+            const sortedIndex = sortedItems.findIndex((sortedItem) => sortedItem === it);
+            return itemIndex === sortedIndex;
+        });
+        setValidated(newValidated);
+        const allValid = newValidated.reduce((acc, isValid) => acc && isValid, true);
+        const invalidCount = newValidated.filter((isValid) => !isValid).length;
+        if (trackingEnabled) {
+            trackEvent('submit', allValid ? 'valid' : `invalid_${invalidCount}`);
+        }
+    }, [items, sortedItems, trackingEnabled, trackEvent]);
 
     useEffect(() => {
         if (validated === null) {
