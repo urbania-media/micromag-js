@@ -1,6 +1,6 @@
 function checkClickable(el, options = {}, parentDistance = 1) {
     const { maxParentDistance = 5, tags = ['BUTTON', 'A', 'INPUT', 'TEXTAREA'] } = options || {};
-    const { tagName = null, parentNode = null, dataset = {} } = el || {};
+    const { tagName = null, parentNode = null, dataset = {}, classList = null } = el || {};
 
     if (tagName === 'BODY') {
         return false;
@@ -15,7 +15,10 @@ function checkClickable(el, options = {}, parentDistance = 1) {
     //     return true;
     // }
 
-    if (tags.map((it) => it.toLowerCase()).indexOf(tagName.toLowerCase()) !== -1) {
+    if (
+        tags.map((it) => it.toLowerCase()).indexOf(tagName.toLowerCase()) !== -1 ||
+        (classList !== null && classList.contains('clickable'))
+    ) {
         return true;
     }
 
