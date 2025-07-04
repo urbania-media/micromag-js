@@ -461,7 +461,10 @@ const ShareScreen = ({
                                                 {label !== null ? (
                                                     <Text
                                                         {...finalLabel}
-                                                        style={null}
+                                                        style={{
+                                                            ...getStyleFromBox(itemsTextStyle),
+                                                            ...getStyleFromText(labelTextStyle),
+                                                        }}
                                                         className={styles.label}
                                                     />
                                                 ) : null}
