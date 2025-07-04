@@ -147,7 +147,7 @@ const ShareScreen = ({
     const [resultsVisible, setResultsVisible] = useState(false);
     const dragEnabled = isView && active && current && validated === null;
     useEffect(() => {
-        if (currentItemsRef.current !== items) {
+        if (currentItemsRef.current !== items && !isView) {
             const newSortedItems = isView ? shuffle(items || []) : items || [];
             setSortedItems(newSortedItems);
             sortedItemsRef.current = newSortedItems;
