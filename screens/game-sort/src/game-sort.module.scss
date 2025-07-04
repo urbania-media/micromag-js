@@ -101,21 +101,11 @@
         justify-content: center;
     }
 
-    .results {
+    .buttonResults {
         margin-left: auto;
         padding-left: 2em;
         animation: fadeIn 0.2s ease-in-out;
         animation-fill-mode: forwards;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
     }
 
     .label {
@@ -179,5 +169,21 @@
 
     &:disabled {
         opacity: 0.5;
+    }
+}
+
+.results {
+    margin-top: 0.3em;
+    animation: fadeIn 0.2s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }

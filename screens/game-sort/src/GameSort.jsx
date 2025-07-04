@@ -49,13 +49,14 @@ const propTypes = {
     itemsLayout: PropTypes.oneOf(['label-bottom', 'label-top', 'no-label', 'label-over']),
     itemsBoxStyle: MicromagPropTypes.boxStyle,
     itemsTextStyle: MicromagPropTypes.textStyle,
-    resultsTextStyle: MicromagPropTypes.textStyle,
+    itemsResultsTextStyle: MicromagPropTypes.textStyle,
     validBoxStyle: MicromagPropTypes.boxStyle,
     invalidBoxStyle: MicromagPropTypes.boxStyle,
     submitBoxStyle: MicromagPropTypes.boxStyle,
     submitTextStyle: MicromagPropTypes.textStyle,
     submitButtonLabel: PropTypes.string,
-    validatedButtonLabel: PropTypes.string,
+    results: MicromagPropTypes.textElement,
+    resultsBoxStyle: MicromagPropTypes.boxStyle,
     background: MicromagPropTypes.backgroundElement,
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
@@ -72,13 +73,14 @@ const defaultProps = {
     itemsLayout: 'label-bottom',
     itemsBoxStyle: null,
     itemsTextStyle: null,
-    resultsTextStyle: null,
+    itemsResultsTextStyle: null,
     validBoxStyle: null,
     invalidBoxStyle: null,
     submitBoxStyle: null,
     submitTextStyle: null,
     submitButtonLabel: null,
-    validatedButtonLabel: null,
+    results: null,
+    resultsBoxStyle: null,
     background: null,
     header: null,
     footer: null,
@@ -95,13 +97,14 @@ const ShareScreen = ({
     itemsLayout,
     itemsBoxStyle,
     itemsTextStyle,
-    resultsTextStyle,
+    itemsResultsTextStyle,
     validBoxStyle,
     invalidBoxStyle,
     submitBoxStyle,
     submitTextStyle,
     submitButtonLabel,
-    validatedButtonLabel,
+    results,
+    resultsBoxStyle,
     background,
     header,
     footer,
@@ -389,7 +392,7 @@ const ShareScreen = ({
                                 visual = null,
                                 label: itemLabel,
                                 boxStyle = null,
-                                results = null,
+                                results: itemResults = null,
                             } = item || {};
                             const finalLabel = isString(itemLabel)
                                 ? { body: itemLabel }
@@ -456,7 +459,8 @@ const ShareScreen = ({
                                                 width="auto"
                                             />
                                         ) : null}
-                                        {label !== null || (results !== null && resultsVisible) ? (
+                                        {label !== null ||
+                                        (itemResults !== null && resultsVisible) ? (
                                             <div className={styles.buttonLabel}>
                                                 {label !== null ? (
                                                     <Text
@@ -468,14 +472,16 @@ const ShareScreen = ({
                                                         className={styles.label}
                                                     />
                                                 ) : null}
-                                                {results !== null && resultsVisible ? (
+                                                {itemResults !== null && resultsVisible ? (
                                                     <Text
-                                                        {...results}
-                                                        className={styles.results}
+                                                        {...itemResults}
+                                                        className={styles.buttonResults}
                                                         style={{
-                                                            ...getStyleFromText(resultsTextStyle),
                                                             ...getStyleFromText(
-                                                                results.textStyle || null,
+                                                                itemsResultsTextStyle,
+                                                            ),
+                                                            ...getStyleFromText(
+                                                                itemResults.textStyle || null,
                                                             ),
                                                         }}
                                                     />
@@ -487,28 +493,32 @@ const ShareScreen = ({
                             );
                         })}
                     </ScreenElement>
-                    <Button
-                        className={styles.submitButton}
-                        disabled={validated !== null}
-                        type="button"
-                        onClick={onClickSubmit}
-                        style={{
-                            ...getStyleFromBox(submitBoxStyle),
-                            ...getStyleFromText(submitTextStyle),
-                        }}
-                    >
-                        {validated !== null
-                            ? validatedButtonLabel ||
-                              intl.formatMessage({
-                                  defaultMessage: 'Validated',
-                                  description: 'Button label',
-                              })
-                            : submitButtonLabel ||
-                              intl.formatMessage({
-                                  defaultMessage: 'Submit',
-                                  description: 'Button label',
-                              })}
-                    </Button>
+                    {resultsVisible && results !== null ? (
+                        <Text
+                            {...results}
+                            className={styles.results}
+                            style={{
+                                ...getStyleFromBox(resultsBoxStyle),
+                            }}
+                        />
+                    ) : (
+                        <Button
+                            className={styles.submitButton}
+                            disabled={validated !== null}
+                            type="button"
+                            onClick={onClickSubmit}
+                            style={{
+                                ...getStyleFromBox(submitBoxStyle),
+                                ...getStyleFromText(submitTextStyle),
+                            }}
+                        >
+                            {submitButtonLabel ||
+                                intl.formatMessage({
+                                    defaultMessage: 'Submit',
+                                    description: 'Button label',
+                                })}
+                        </Button>
+                    )}
                     {!isPlaceholder && hasFooter ? (
                         <div
                             className={styles.footer}

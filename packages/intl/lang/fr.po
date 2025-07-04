@@ -887,12 +887,6 @@ msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image avec texte"
 
-# Button label
-#: CTculh
-msgctxt "CTculh"
-msgid "Validated"
-msgstr "Validé"
-
 # Label when there is no item
 #: CWnXWp
 msgctxt "CWnXWp"
@@ -1984,6 +1978,12 @@ msgctxt "ZLDmja"
 msgid "Submit"
 msgstr "Envoyer"
 
+# Field label
+#: ZMS1Wv
+msgctxt "ZMS1Wv"
+msgid "Text"
+msgstr "Texte"
+
 # Placeholder label
 #: Zbu5Uk
 msgctxt "Zbu5Uk"
@@ -2645,6 +2645,12 @@ msgstr "Vrai"
 msgctxt "jEK6B8"
 msgid "By"
 msgstr "Par"
+
+# Section label
+#: jINZkT
+msgctxt "jINZkT"
+msgid "Results"
+msgstr "Résultats"
 
 # Field label
 #: jWAJW4
@@ -3345,12 +3351,6 @@ msgstr "Jeu"
 msgctxt "wChc+A"
 msgid "Edit style..."
 msgstr "Modifier le style"
-
-# Button label field
-#: wROB6F
-msgctxt "wROB6F"
-msgid "Validated label"
-msgstr "Libellé Validé"
 
 # Field label
 #: wU++NJ

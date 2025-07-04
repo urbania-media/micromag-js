@@ -437,9 +437,6 @@
     "CJmQeh": {
         "defaultMessage": "Image with text"
     },
-    "CTculh": {
-        "defaultMessage": "Validated"
-    },
     "CWnXWp": {
         "defaultMessage": "No button yet"
     },
@@ -986,6 +983,9 @@
     "ZLDmja": {
         "defaultMessage": "Submit"
     },
+    "ZMS1Wv": {
+        "defaultMessage": "Text"
+    },
     "Zbu5Uk": {
         "defaultMessage": "Label"
     },
@@ -1321,6 +1321,9 @@
     },
     "jEK6B8": {
         "defaultMessage": "By"
+    },
+    "jINZkT": {
+        "defaultMessage": "Results"
     },
     "jWAJW4": {
         "defaultMessage": "Points"
@@ -1672,9 +1675,6 @@
     },
     "wChc+A": {
         "defaultMessage": "Edit style..."
-    },
-    "wROB6F": {
-        "defaultMessage": "Validated label"
     },
     "wU++NJ": {
         "defaultMessage": "Duration"

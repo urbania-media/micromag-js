@@ -125,14 +125,6 @@ export default {
                     }),
                 },
                 {
-                    name: 'validatedButtonLabel',
-                    type: 'text',
-                    label: defineMessage({
-                        defaultMessage: 'Validated label',
-                        description: 'Button label field',
-                    }),
-                },
-                {
                     name: 'submitBoxStyle',
                     type: 'box-style-form',
                     label: defineMessage({
@@ -145,6 +137,36 @@ export default {
                     type: 'box-style-form',
                     label: defineMessage({
                         defaultMessage: 'Text style',
+                        description: 'Field label',
+                    }),
+                },
+            ],
+        },
+        {
+            label: defineMessage({
+                defaultMessage: 'Results',
+                description: 'Section label',
+            }),
+            type: 'fields',
+            isList: true,
+            isSection: true,
+            fields: [
+                {
+                    name: 'results',
+                    type: 'text-element',
+                    theme: {
+                        textStyle: 'text',
+                    },
+                    label: defineMessage({
+                        defaultMessage: 'Text',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'resultsBoxStyle',
+                    type: 'box-style-form',
+                    label: defineMessage({
+                        defaultMessage: 'Box style',
                         description: 'Field label',
                     }),
                 },

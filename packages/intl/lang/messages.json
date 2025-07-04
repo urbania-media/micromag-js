@@ -583,10 +583,6 @@
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
   },
-  "CTculh": {
-    "defaultMessage": "Validated",
-    "description": "Button label"
-  },
   "CWnXWp": {
     "defaultMessage": "No button yet",
     "description": "Label when there is no item"
@@ -1314,6 +1310,10 @@
     "defaultMessage": "Submit",
     "description": "Submit form button"
   },
+  "ZMS1Wv": {
+    "defaultMessage": "Text",
+    "description": "Field label"
+  },
   "Zbu5Uk": {
     "defaultMessage": "Label",
     "description": "Placeholder label"
@@ -1746,6 +1746,10 @@
   "jEK6B8": {
     "defaultMessage": "By",
     "description": "Author label"
+  },
+  "jINZkT": {
+    "defaultMessage": "Results",
+    "description": "Section label"
   },
   "jWAJW4": {
     "defaultMessage": "Points",
@@ -2212,10 +2216,6 @@
   "wChc+A": {
     "defaultMessage": "Edit style...",
     "description": "No value label"
-  },
-  "wROB6F": {
-    "defaultMessage": "Validated label",
-    "description": "Button label field"
   },
   "wU++NJ": {
     "defaultMessage": "Duration",
