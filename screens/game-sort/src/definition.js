@@ -134,7 +134,7 @@ export default {
                 },
                 {
                     name: 'submitTextStyle',
-                    type: 'box-style-form',
+                    type: 'text-style-form',
                     label: defineMessage({
                         defaultMessage: 'Text style',
                         description: 'Field label',
