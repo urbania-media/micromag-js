@@ -145,6 +145,7 @@ const ShareScreen = ({
     const [validated, setValidated] = useState(null);
     const initialSortedItemsRef = useRef(sortedItems);
     const [resultsVisible, setResultsVisible] = useState(false);
+    const dragEnabled = isView && active && current && validated === null;
     useEffect(() => {
         if (currentItemsRef.current !== items) {
             const newSortedItems = isView ? shuffle(items || []) : items || [];
@@ -282,7 +283,7 @@ const ShareScreen = ({
             axis: 'y',
             preventDefault: true,
             filterTaps: true,
-            enabled: isView && active && current && validated === null,
+            enabled: dragEnabled,
         },
     );
 
@@ -316,6 +317,7 @@ const ShareScreen = ({
                 {
                     [className]: className !== null,
                     [styles.sorted]: initialSorted || !isView,
+                    [styles.draggable]: dragEnabled,
                     [styles.resultsVisible]: resultsVisible,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
@@ -417,7 +419,7 @@ const ShareScreen = ({
                                     }}
                                     style={{
                                         transform: y.to((yValue) => `translateY(${yValue})`),
-                                        ...getStyleFromBox(itemsTextStyle),
+                                        ...getStyleFromText(itemsTextStyle),
                                         ...getStyleFromText(labelTextStyle),
                                     }}
                                     {...bind(itemIndex)}
@@ -465,9 +467,9 @@ const ShareScreen = ({
                                                 {label !== null ? (
                                                     <Text
                                                         {...finalLabel}
-                                                        style={{
-                                                            ...getStyleFromBox(itemsTextStyle),
-                                                            ...getStyleFromText(labelTextStyle),
+                                                        textStyle={{
+                                                            ...itemsTextStyle,
+                                                            ...labelTextStyle,
                                                         }}
                                                         className={styles.label}
                                                     />
@@ -476,13 +478,9 @@ const ShareScreen = ({
                                                     <Text
                                                         {...itemResults}
                                                         className={styles.buttonResults}
-                                                        style={{
-                                                            ...getStyleFromText(
-                                                                itemsResultsTextStyle,
-                                                            ),
-                                                            ...getStyleFromText(
-                                                                itemResults.textStyle || null,
-                                                            ),
+                                                        textStyle={{
+                                                            ...itemsResultsTextStyle,
+                                                            ...itemResults.textStyle,
                                                         }}
                                                     />
                                                 ) : null}
@@ -494,13 +492,14 @@ const ShareScreen = ({
                         })}
                     </ScreenElement>
                     {resultsVisible && results !== null ? (
-                        <Text
-                            {...results}
+                        <div
                             className={styles.results}
                             style={{
                                 ...getStyleFromBox(resultsBoxStyle),
                             }}
-                        />
+                        >
+                            <Text {...results} />
+                        </div>
                     ) : (
                         <Button
                             className={styles.submitButton}
