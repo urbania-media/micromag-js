@@ -330,6 +330,12 @@ msgid "No marker..."
 msgstr "No marker..."
 
 # Field label
+#: 3I2Xl7
+msgctxt "3I2Xl7"
+msgid "WebM"
+msgstr "WebM"
+
+# Field label
 #: 3LEBIA
 msgctxt "3LEBIA"
 msgid "Angle"
@@ -400,6 +406,12 @@ msgstr "View screen"
 msgctxt "4R/bdr"
 msgid "Message"
 msgstr "Message"
+
+# Field label
+#: 4RV6+9
+msgctxt "4RV6+9"
+msgid "H264"
+msgstr "H264"
 
 # No value label
 #: 4YiKNK
@@ -2936,6 +2948,12 @@ msgstr "Delete screen"
 msgctxt "p85qJD"
 msgid "Caption"
 msgstr "Caption"
+
+# Field title
+#: pBNrdH
+msgctxt "pBNrdH"
+msgid "Conversion"
+msgstr "Conversion"
 
 # Type field label
 #: pE7UhY
