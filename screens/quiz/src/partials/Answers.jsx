@@ -118,7 +118,7 @@ const Answers = ({
         if (answeredIndex !== null && shouldCollapse) {
             timeout = setTimeout(
                 () => {
-                    // console.log('ok should collapse');
+                    // console.log('ok should collapse whatever');
                     setAnswersCollapsed(true);
                     if (onCollapse !== null) {
                         onCollapse();

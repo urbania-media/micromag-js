@@ -37,6 +37,7 @@ import styles from './styles.module.scss';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
 import bayard from '../../../../.storybook/data/stories/bayard.json';
+import cannabis from '../../../../.storybook/data/stories/cannabis-quebec-france.json';
 import cointreau from '../../../../.storybook/data/stories/cointreau.json';
 import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
 import lol from '../../../../.storybook/data/stories/lol.json';
@@ -164,6 +165,8 @@ export const Urbania = () => (
 export const Article = () => <Viewer story={article} memoryRouter />;
 
 export const Bayard = () => <Viewer story={bayard} memoryRouter />;
+
+export const Cannabis = () => <Viewer story={cannabis} memoryRouter />;
 
 export const TNM = () => <Viewer story={tnm} memoryRouter />;
 
