@@ -28,6 +28,7 @@ const propTypes = {
     itemFieldLabel: PropTypes.oneOfType([PropTypes.func, MicromagPropTypes.label]),
     itemComponent: PropTypes.elementType,
     itemsField: MicromagPropTypes.formField,
+    itemsProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     className: PropTypes.string,
     withoutSort: PropTypes.bool,
     withoutAddItem: PropTypes.bool,
@@ -61,6 +62,7 @@ const defaultProps = {
     ),
     itemComponent: null,
     itemsField: null,
+    itemsProps: null,
     className: null,
     withoutSort: false,
     withoutAddItem: false,
@@ -80,6 +82,7 @@ const ItemsField = ({
     itemFieldLabel,
     itemComponent,
     itemsField,
+    itemsProps,
     className,
     withoutSort,
     withoutAddItem,
@@ -219,6 +222,7 @@ const ItemsField = ({
                                     component={itemComponent}
                                     {...itemsField}
                                     {...props}
+                                    {...itemsProps}
                                     key={`item-${index}`}
                                     label={
                                         isFunction(itemFieldLabel) ? (

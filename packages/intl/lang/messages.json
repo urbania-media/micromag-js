@@ -103,6 +103,10 @@
     "defaultMessage": "Duration",
     "description": "Field name"
   },
+  "03U69o": {
+    "defaultMessage": "Buttons",
+    "description": "Title placeholder"
+  },
   "0GT0SI": {
     "defaultMessage": "Cancel",
     "description": "Cancel button label"
@@ -407,6 +411,10 @@
     "defaultMessage": "Intro",
     "description": " UrbaniaHoroscope state"
   },
+  "83959F": {
+    "defaultMessage": "Items style",
+    "description": "Field label"
+  },
   "862eE3": {
     "defaultMessage": "Border",
     "description": "Field label"
@@ -442,6 +450,10 @@
   "8yRYcm": {
     "defaultMessage": "Edit my settings",
     "description": "Button label"
+  },
+  "8ySjDc": {
+    "defaultMessage": "Item",
+    "description": "Breadcrumb field label"
   },
   "9/t5wK": {
     "defaultMessage": "Type",
@@ -574,6 +586,10 @@
   "CWnXWp": {
     "defaultMessage": "No button yet",
     "description": "Label when there is no item"
+  },
+  "Cg3LGu": {
+    "defaultMessage": "Label",
+    "description": "Button label field"
   },
   "CnVj9r": {
     "defaultMessage": "Skip to controls",
@@ -751,6 +767,10 @@
     "defaultMessage": "Tags",
     "description": "Field name"
   },
+  "IbZVf0": {
+    "defaultMessage": "Submit",
+    "description": "Button label"
+  },
   "IoMJgw": {
     "defaultMessage": "Toggle article",
     "description": "Button label"
@@ -769,6 +789,10 @@
   },
   "JDPMlG": {
     "defaultMessage": "Background color",
+    "description": "Field label"
+  },
+  "JLYWNN": {
+    "defaultMessage": "Invalid box style",
     "description": "Field label"
   },
   "JMmYwg": {
@@ -967,6 +991,10 @@
     "defaultMessage": "middle aligned",
     "description": "Alignment label"
   },
+  "PAQRf4": {
+    "defaultMessage": "No item yet",
+    "description": "Label when there is no item"
+  },
   "PFNMAQ": {
     "defaultMessage": "Bottom",
     "description": "Direction"
@@ -1162,6 +1190,10 @@
     "defaultMessage": "Upload a video file",
     "description": "Upload button label in Media Gallery"
   },
+  "WjigmA": {
+    "defaultMessage": "Submit button",
+    "description": "Submit button section label"
+  },
   "WlNxMj": {
     "defaultMessage": "Repeat",
     "description": "Field label"
@@ -1278,6 +1310,10 @@
     "defaultMessage": "Submit",
     "description": "Submit form button"
   },
+  "ZMS1Wv": {
+    "defaultMessage": "Text",
+    "description": "Field label"
+  },
   "Zbu5Uk": {
     "defaultMessage": "Label",
     "description": "Placeholder label"
@@ -1304,6 +1340,10 @@
   },
   "amEvH1": {
     "defaultMessage": "Fit",
+    "description": "Field label"
+  },
+  "ao5VYd": {
+    "defaultMessage": "Valid box style",
     "description": "Field label"
   },
   "aovRFH": {
@@ -1504,6 +1544,10 @@
     "defaultMessage": "Font weight",
     "description": "Field label"
   },
+  "eJMcXw": {
+    "defaultMessage": "Sort game",
+    "description": "Sort game screen title"
+  },
   "eNdbJF": {
     "defaultMessage": "Appear delay (seconds)",
     "description": "Field label"
@@ -1535,6 +1579,10 @@
   "eoW0tZ": {
     "defaultMessage": "Duration",
     "description": "Label in Media Gallery"
+  },
+  "ex1Bgx": {
+    "defaultMessage": "Results style",
+    "description": "Field label"
   },
   "f1XHNG": {
     "defaultMessage": "Button",
@@ -1699,6 +1747,10 @@
     "defaultMessage": "By",
     "description": "Author label"
   },
+  "jINZkT": {
+    "defaultMessage": "Results",
+    "description": "Section label"
+  },
   "jWAJW4": {
     "defaultMessage": "Points",
     "description": "Field label"
@@ -1718,6 +1770,10 @@
   "k+coTi": {
     "defaultMessage": "Image",
     "description": "Visuals field label"
+  },
+  "k4gTZl": {
+    "defaultMessage": "Add an item",
+    "description": "Button label"
   },
   "k81FRn": {
     "defaultMessage": "Message style",
@@ -2152,6 +2208,10 @@
   "vxEtY1": {
     "defaultMessage": "Background image",
     "description": "Breadcrumb field label"
+  },
+  "w3+kFW": {
+    "defaultMessage": "Game",
+    "description": "Screen group"
   },
   "wChc+A": {
     "defaultMessage": "Edit style...",

@@ -77,6 +77,9 @@
     "002oWQ": {
         "defaultMessage": "Duration"
     },
+    "03U69o": {
+        "defaultMessage": "Buttons"
+    },
     "0GT0SI": {
         "defaultMessage": "Cancel"
     },
@@ -305,6 +308,9 @@
     "82g1F5": {
         "defaultMessage": "Intro"
     },
+    "83959F": {
+        "defaultMessage": "Items style"
+    },
     "862eE3": {
         "defaultMessage": "Border"
     },
@@ -331,6 +337,9 @@
     },
     "8yRYcm": {
         "defaultMessage": "Edit my settings"
+    },
+    "8ySjDc": {
+        "defaultMessage": "Item"
     },
     "9/t5wK": {
         "defaultMessage": "Type"
@@ -430,6 +439,9 @@
     },
     "CWnXWp": {
         "defaultMessage": "No button yet"
+    },
+    "Cg3LGu": {
+        "defaultMessage": "Label"
     },
     "CnVj9r": {
         "defaultMessage": "Skip to controls"
@@ -563,6 +575,9 @@
     "IOVper": {
         "defaultMessage": "Tags"
     },
+    "IbZVf0": {
+        "defaultMessage": "Submit"
+    },
     "IoMJgw": {
         "defaultMessage": "Toggle article"
     },
@@ -577,6 +592,9 @@
     },
     "JDPMlG": {
         "defaultMessage": "Background color"
+    },
+    "JLYWNN": {
+        "defaultMessage": "Invalid box style"
     },
     "JMmYwg": {
         "defaultMessage": "Submit button"
@@ -725,6 +743,9 @@
     "P9A8cx": {
         "defaultMessage": "middle aligned"
     },
+    "PAQRf4": {
+        "defaultMessage": "No item yet"
+    },
     "PFNMAQ": {
         "defaultMessage": "Bottom"
     },
@@ -872,6 +893,9 @@
     "WeD4nB": {
         "defaultMessage": "Upload a video file"
     },
+    "WjigmA": {
+        "defaultMessage": "Submit button"
+    },
     "WlNxMj": {
         "defaultMessage": "Repeat"
     },
@@ -959,6 +983,9 @@
     "ZLDmja": {
         "defaultMessage": "Submit"
     },
+    "ZMS1Wv": {
+        "defaultMessage": "Text"
+    },
     "Zbu5Uk": {
         "defaultMessage": "Label"
     },
@@ -979,6 +1006,9 @@
     },
     "amEvH1": {
         "defaultMessage": "Fit"
+    },
+    "ao5VYd": {
+        "defaultMessage": "Valid box style"
     },
     "aovRFH": {
         "defaultMessage": "Filename"
@@ -1139,6 +1169,9 @@
     "eDMxHS": {
         "defaultMessage": "Font weight"
     },
+    "eJMcXw": {
+        "defaultMessage": "Sort game"
+    },
     "eNdbJF": {
         "defaultMessage": "Appear delay (seconds)"
     },
@@ -1162,6 +1195,9 @@
     },
     "eoW0tZ": {
         "defaultMessage": "Duration"
+    },
+    "ex1Bgx": {
+        "defaultMessage": "Results style"
     },
     "f1XHNG": {
         "defaultMessage": "Button"
@@ -1286,6 +1322,9 @@
     "jEK6B8": {
         "defaultMessage": "By"
     },
+    "jINZkT": {
+        "defaultMessage": "Results"
+    },
     "jWAJW4": {
         "defaultMessage": "Points"
     },
@@ -1300,6 +1339,9 @@
     },
     "k+coTi": {
         "defaultMessage": "Image"
+    },
+    "k4gTZl": {
+        "defaultMessage": "Add an item"
     },
     "k81FRn": {
         "defaultMessage": "Message style"
@@ -1627,6 +1669,9 @@
     },
     "vxEtY1": {
         "defaultMessage": "Background image"
+    },
+    "w3+kFW": {
+        "defaultMessage": "Game"
     },
     "wChc+A": {
         "defaultMessage": "Edit style..."

@@ -410,6 +410,53 @@ export const Conversation = () => (
     />
 );
 
+export const GameSort = () => (
+    <Viewer
+        story={{
+            title: 'Game sort',
+            components: [
+                {
+                    id: '1',
+                    type: 'game-sort',
+                    heading: {
+                        body: 'Mettre dans le bon ordre',
+                    },
+                    items: [
+                        {
+                            label: 'Item 1',
+                        },
+                        {
+                            label: 'Item 2',
+                        },
+                        {
+                            label: 'Item 3',
+                        }
+                    ]
+                },
+                {
+                    id: '2',
+                    type: 'game-sort',
+                    heading: {
+                        body: 'Mettre dans le bon ordre',
+                    },
+                    items: [
+                        {
+                            label: 'Item 1.1',
+                        },
+                        {
+                            label: 'Item 2.1',
+                        },
+                        {
+                            label: 'Item 3.1',
+                        }
+                    ]
+                },
+            ],
+        }}
+        memoryRouter
+    />
+);
+
 export const WithCustomFonts = () => (
     <Viewer
         story={{

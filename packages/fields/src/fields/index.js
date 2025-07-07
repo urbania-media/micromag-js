@@ -49,6 +49,8 @@ export { default as fontFamily } from './font-family';
 export { default as fontSize } from './font-size';
 export { default as fontWeight } from './font-weight';
 export { default as footer } from './footer';
+export { default as gameSortItem } from './game-sort-item';
+export { default as gameSortItems } from './game-sort-items';
 export { default as geoPosition } from './geo-position';
 export { default as graphBarStyle } from './graph-bar-style';
 export { default as graphBarStyleForm } from './graph-bar-style-form';

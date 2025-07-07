@@ -408,6 +408,15 @@ export const Conversation = () => (
     />
 );
 
+export const GameSort = () => (
+    <EditorContainer
+        defaultValue={{
+            title: 'With game sort',
+            components: [{ id: '1', type: 'game-sort' }],
+        }}
+    />
+);
+
 export const QualityLevelInPlaybackContext = () => (
     <EditorContainer
         defaultValue={{

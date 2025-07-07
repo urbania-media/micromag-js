@@ -46,6 +46,7 @@ const FieldForm = ({
     const fieldsManager = useFieldsManager();
 
     const field = getFieldFromPath(name.split('.'), fields, fieldsManager);
+    const parentField = name.match(/\.[0-9]+$/) !== null ? getFieldFromPath(name.split('.').slice(0, -1), fields, fieldsManager) : null;
 
     const { type = null, ...fieldProps } = field || {};
 
@@ -93,6 +94,8 @@ const FieldForm = ({
         ) : null;
     }
 
+    const { itemsProps } = parentField || {};
+
     // Use field component with isForm props
     return FieldComponent !== null ? (
         <FieldContextProvider context={fieldContext}>
@@ -100,6 +103,7 @@ const FieldForm = ({
                 className={className}
                 {...definitionProps}
                 {...fieldProps}
+                {...itemsProps}
                 isForm
                 {...formProps}
             />

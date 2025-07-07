@@ -4,6 +4,7 @@ export { default as contribution } from '@micromag/screen-contribution';
 export { default as conversation } from '@micromag/screen-conversation';
 export { default as gallery } from '@micromag/screen-gallery';
 export { default as galleryFeed } from '@micromag/screen-gallery-feed';
+export { default as gameSort } from '@micromag/screen-game-sort';
 export { default as image } from '@micromag/screen-image';
 export { default as keypad } from '@micromag/screen-keypad';
 export { default as map } from '@micromag/screen-map';

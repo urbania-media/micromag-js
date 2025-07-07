@@ -167,6 +167,12 @@ msgctxt "002oWQ"
 msgid "Duration"
 msgstr "Durée"
 
+# Title placeholder
+#: 03U69o
+msgctxt "03U69o"
+msgid "Buttons"
+msgstr "Boutons"
+
 # Cancel button label
 #: 0GT0SI
 msgctxt "0GT0SI"
@@ -624,6 +630,12 @@ msgid "Intro"
 msgstr "Intro"
 
 # Field label
+#: 83959F
+msgctxt "83959F"
+msgid "Items style"
+msgstr "Style des éléments"
+
+# Field label
 #: 862eE3
 msgctxt "862eE3"
 msgid "Border"
@@ -676,6 +688,12 @@ msgstr "Conversation"
 msgctxt "8yRYcm"
 msgid "Edit my settings"
 msgstr "Modifier mes paramètres"
+
+# Breadcrumb field label
+#: 8ySjDc
+msgctxt "8ySjDc"
+msgid "Item"
+msgstr "Élément"
 
 # Filter label
 #: 9/t5wK
@@ -874,6 +892,12 @@ msgstr "Image avec texte"
 msgctxt "CWnXWp"
 msgid "No button yet"
 msgstr "Aucun bouton"
+
+# Button label field
+#: Cg3LGu
+msgctxt "Cg3LGu"
+msgid "Label"
+msgstr "Libellé"
 
 # Button label
 #: CnVj9r
@@ -1140,6 +1164,12 @@ msgid "Tags"
 msgstr "Tags"
 
 # Button label
+#: IbZVf0
+msgctxt "IbZVf0"
+msgid "Submit"
+msgstr "Envoyer"
+
+# Button label
 #: IoMJgw
 msgctxt "IoMJgw"
 msgid "Toggle article"
@@ -1168,6 +1198,12 @@ msgstr "Interlocuteurs"
 msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
+
+# Field label
+#: JLYWNN
+msgctxt "JLYWNN"
+msgid "Invalid box style"
+msgstr "Style de boîte invalide"
 
 # Field label
 #: JMmYwg
@@ -1463,6 +1499,12 @@ msgctxt "P9A8cx"
 msgid "middle aligned"
 msgstr "align. milieu"
 
+# Label when there is no item
+#: PAQRf4
+msgctxt "PAQRf4"
+msgid "No item yet"
+msgstr "Aucun élément."
+
 # Direction
 #: PFNMAQ
 msgctxt "PFNMAQ"
@@ -1756,6 +1798,12 @@ msgctxt "WeD4nB"
 msgid "Upload a video file"
 msgstr "Ajouter un fichier vidéo"
 
+# Submit button section label
+#: WjigmA
+msgctxt "WjigmA"
+msgid "Submit button"
+msgstr "Bouton Envoyer"
+
 # Field label
 #: WlNxMj
 msgctxt "WlNxMj"
@@ -1930,6 +1978,12 @@ msgctxt "ZLDmja"
 msgid "Submit"
 msgstr "Envoyer"
 
+# Field label
+#: ZMS1Wv
+msgctxt "ZMS1Wv"
+msgid "Text"
+msgstr "Texte"
+
 # Placeholder label
 #: Zbu5Uk
 msgctxt "Zbu5Uk"
@@ -1971,6 +2025,12 @@ msgstr "Polices par défaut"
 msgctxt "amEvH1"
 msgid "Fit"
 msgstr "Ajustement"
+
+# Field label
+#: ao5VYd
+msgctxt "ao5VYd"
+msgid "Valid box style"
+msgstr "Style de boîte valide"
 
 # Label in Media Gallery
 #: aovRFH
@@ -2281,6 +2341,12 @@ msgctxt "eDMxHS"
 msgid "Font weight"
 msgstr "Graisse"
 
+# Sort game screen title
+#: eJMcXw
+msgctxt "eJMcXw"
+msgid "Sort game"
+msgstr "Jeu de l'ordre"
+
 # Field label
 #: eNdbJF
 msgctxt "eNdbJF"
@@ -2328,6 +2394,12 @@ msgstr "Avancé"
 msgctxt "eoW0tZ"
 msgid "Duration"
 msgstr "Durée"
+
+# Field label
+#: ex1Bgx
+msgctxt "ex1Bgx"
+msgid "Results style"
+msgstr "Style des résultats"
 
 # Breadcrumb field label
 #: f1XHNG
@@ -2574,6 +2646,12 @@ msgctxt "jEK6B8"
 msgid "By"
 msgstr "Par"
 
+# Section label
+#: jINZkT
+msgctxt "jINZkT"
+msgid "Results"
+msgstr "Résultats"
+
 # Field label
 #: jWAJW4
 msgctxt "jWAJW4"
@@ -2603,6 +2681,12 @@ msgstr "Sélectionner une image"
 msgctxt "k+coTi"
 msgid "Image"
 msgstr "Image"
+
+# Button label
+#: k4gTZl
+msgctxt "k4gTZl"
+msgid "Add an item"
+msgstr "Ajouter un élément"
 
 # Field label
 #: k81FRn
@@ -3255,6 +3339,12 @@ msgstr "(écran en cours)"
 msgctxt "vxEtY1"
 msgid "Background image"
 msgstr "Image d’arrière-plan"
+
+# Screen group
+#: w3+kFW
+msgctxt "w3+kFW"
+msgid "Game"
+msgstr "Jeu"
 
 # No value label
 #: wChc+A

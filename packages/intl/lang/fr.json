@@ -77,6 +77,9 @@
     "002oWQ": {
         "defaultMessage": "Durée"
     },
+    "03U69o": {
+        "defaultMessage": "Boutons"
+    },
     "0GT0SI": {
         "defaultMessage": "Annuler"
     },
@@ -305,6 +308,9 @@
     "82g1F5": {
         "defaultMessage": "Intro"
     },
+    "83959F": {
+        "defaultMessage": "Style des éléments"
+    },
     "862eE3": {
         "defaultMessage": "Bordure"
     },
@@ -331,6 +337,9 @@
     },
     "8yRYcm": {
         "defaultMessage": "Modifier mes paramètres"
+    },
+    "8ySjDc": {
+        "defaultMessage": "Élément"
     },
     "9/t5wK": {
         "defaultMessage": "Type"
@@ -430,6 +439,9 @@
     },
     "CWnXWp": {
         "defaultMessage": "Aucun bouton"
+    },
+    "Cg3LGu": {
+        "defaultMessage": "Libellé"
     },
     "CnVj9r": {
         "defaultMessage": "Aller aux commandes de lecture"
@@ -563,6 +575,9 @@
     "IOVper": {
         "defaultMessage": "Tags"
     },
+    "IbZVf0": {
+        "defaultMessage": "Envoyer"
+    },
     "IoMJgw": {
         "defaultMessage": "Ouvrir l'article"
     },
@@ -577,6 +592,9 @@
     },
     "JDPMlG": {
         "defaultMessage": "Couleur de l'arrière-plan"
+    },
+    "JLYWNN": {
+        "defaultMessage": "Style de boîte invalide"
     },
     "JMmYwg": {
         "defaultMessage": "Bouton envoyer"
@@ -725,6 +743,9 @@
     "P9A8cx": {
         "defaultMessage": "align. milieu"
     },
+    "PAQRf4": {
+        "defaultMessage": "Aucun élément."
+    },
     "PFNMAQ": {
         "defaultMessage": "Bas"
     },
@@ -872,6 +893,9 @@
     "WeD4nB": {
         "defaultMessage": "Ajouter un fichier vidéo"
     },
+    "WjigmA": {
+        "defaultMessage": "Bouton Envoyer"
+    },
     "WlNxMj": {
         "defaultMessage": "Répéter"
     },
@@ -959,6 +983,9 @@
     "ZLDmja": {
         "defaultMessage": "Envoyer"
     },
+    "ZMS1Wv": {
+        "defaultMessage": "Texte"
+    },
     "Zbu5Uk": {
         "defaultMessage": "Libellé"
     },
@@ -979,6 +1006,9 @@
     },
     "amEvH1": {
         "defaultMessage": "Ajustement"
+    },
+    "ao5VYd": {
+        "defaultMessage": "Style de boîte valide"
     },
     "aovRFH": {
         "defaultMessage": "Nom du fichier"
@@ -1139,6 +1169,9 @@
     "eDMxHS": {
         "defaultMessage": "Graisse"
     },
+    "eJMcXw": {
+        "defaultMessage": "Jeu de l'ordre"
+    },
     "eNdbJF": {
         "defaultMessage": "Délai d'apparition de la bulle (en secondes)"
     },
@@ -1162,6 +1195,9 @@
     },
     "eoW0tZ": {
         "defaultMessage": "Durée"
+    },
+    "ex1Bgx": {
+        "defaultMessage": "Style des résultats"
     },
     "f1XHNG": {
         "defaultMessage": "Bouton"
@@ -1286,6 +1322,9 @@
     "jEK6B8": {
         "defaultMessage": "Par"
     },
+    "jINZkT": {
+        "defaultMessage": "Résultats"
+    },
     "jWAJW4": {
         "defaultMessage": "Points"
     },
@@ -1300,6 +1339,9 @@
     },
     "k+coTi": {
         "defaultMessage": "Image"
+    },
+    "k4gTZl": {
+        "defaultMessage": "Ajouter un élément"
     },
     "k81FRn": {
         "defaultMessage": "Style du texte"
@@ -1627,6 +1669,9 @@
     },
     "vxEtY1": {
         "defaultMessage": "Image d’arrière-plan"
+    },
+    "w3+kFW": {
+        "defaultMessage": "Jeu"
     },
     "wChc+A": {
         "defaultMessage": "Modifier le style"
