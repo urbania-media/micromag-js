@@ -211,6 +211,10 @@
     "defaultMessage": "No marker...",
     "description": "Label when there is no item in markers field"
   },
+  "3I2Xl7": {
+    "defaultMessage": "WebM",
+    "description": "Field label"
+  },
   "3LEBIA": {
     "defaultMessage": "Angle",
     "description": "Field label"
@@ -257,6 +261,10 @@
   },
   "4R/bdr": {
     "defaultMessage": "Message",
+    "description": "Field label"
+  },
+  "4RV6+9": {
+    "defaultMessage": "H264",
     "description": "Field label"
   },
   "4YiKNK": {
@@ -1940,6 +1948,10 @@
   "p85qJD": {
     "defaultMessage": "Caption",
     "description": "Field label"
+  },
+  "pBNrdH": {
+    "defaultMessage": "Conversion",
+    "description": "Field title"
   },
   "pE7UhY": {
     "defaultMessage": "Article",

@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 
+import ActionsProvider from '@panneau/actions';
 // import MicromagFieldsProvider from '../../../fields/src/FieldsProvider';
 import { QueryProvider } from '@panneau/data';
 import DisplaysProvider from '@panneau/displays';
 import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
-import ActionsProvider from '@panneau/actions';
 import ModalsProvider from '@panneau/modals';
 
 import sound from '../../../../.storybook/data/files/test.mp3';

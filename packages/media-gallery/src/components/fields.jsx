@@ -118,6 +118,31 @@ function fields() {
                 },
             ],
         },
+        {
+            id: 'conversion',
+            component: 'fields',
+            label: <FormattedMessage defaultMessage="Conversion" description="Field title" />,
+            isList: true,
+            hideWithoutValue: true,
+            fields: [
+                {
+                    id: 'h264',
+                    label: <FormattedMessage defaultMessage="H264" description="Field label" />,
+                    type: 'text',
+                    component: 'text',
+                    name: 'files.h264.url',
+                    horizontal: true,
+                },
+                {
+                    id: 'webm',
+                    label: <FormattedMessage defaultMessage="WebM" description="Field label" />,
+                    type: 'text',
+                    component: 'text',
+                    name: 'files.webm.url',
+                    horizontal: true,
+                },
+            ],
+        },
     ];
 }
 
