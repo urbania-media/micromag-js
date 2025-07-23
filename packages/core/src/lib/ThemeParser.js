@@ -266,6 +266,11 @@ class ThemeParser {
                               return newInnerField;
                           }
 
+                          const {
+                              textStyle: valueTextStyle = false,
+                              boxStyle: valueBoxStyle = false,
+                          } = innerField[innerFieldName] || {};
+
                           // Color
                           const colorValue =
                               innerFieldColor !== null
@@ -281,26 +286,34 @@ class ThemeParser {
                           const textStyleValue =
                               innerFieldTextStyle !== null
                                   ? {
-                                        textStyle: {
-                                            ...(innerFieldTextStyle !== null &&
-                                            themeTextStyles !== null
-                                                ? themeTextStyles[innerFieldTextStyle] || null
-                                                : null),
-                                            ...(innerField[innerFieldName].textStyle || null),
-                                        },
+                                        textStyle:
+                                            valueTextStyle !== false
+                                                ? valueTextStyle
+                                                : {
+                                                      ...(innerFieldTextStyle !== null &&
+                                                      themeTextStyles !== null
+                                                          ? themeTextStyles[innerFieldTextStyle] ||
+                                                            null
+                                                          : null),
+                                                      ...valueTextStyle,
+                                                  },
                                     }
                                   : null;
 
                           const boxStyleValue =
                               innerFieldBoxStyle !== null
                                   ? {
-                                        boxStyle: {
-                                            ...(innerFieldBoxStyle !== null &&
-                                            themeBoxStyles !== null
-                                                ? themeBoxStyles[innerFieldBoxStyle] || null
-                                                : null),
-                                            ...(innerField[innerFieldName].boxStyle || null),
-                                        },
+                                        boxStyle:
+                                            valueBoxStyle !== false
+                                                ? valueBoxStyle
+                                                : {
+                                                      ...(innerFieldBoxStyle !== null &&
+                                                      themeBoxStyles !== null
+                                                          ? themeBoxStyles[innerFieldBoxStyle] ||
+                                                            null
+                                                          : null),
+                                                      ...valueBoxStyle,
+                                                  },
                                     }
                                   : null;
 

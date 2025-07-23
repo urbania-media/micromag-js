@@ -450,3 +450,413 @@ export const QualityLevelInPlaybackContext = () => (
         }}
     />
 );
+
+export const BugfixWithTheme = () => (
+    <EditorContainer
+        defaultValue={{
+            theme: {
+                title: 'Default theme',
+                colors: {
+                    primary: {
+                        color: '#FFF',
+                        alpha: 1,
+                    },
+                    secondary: {
+                        color: '#999',
+                        alpha: 1,
+                    },
+                },
+                background: {
+                    color: {
+                        color: '#000',
+                        alpha: 1,
+                    },
+                    image: null,
+                    video: null,
+                },
+                textStyles: {
+                    heading1: {
+                        color: {
+                            color: '#FFF',
+                            alpha: 1,
+                        },
+                        align: 'left',
+                        fontFamily: 'Arial',
+                        fontSize: 32,
+                        fontStyle: {
+                            bold: false,
+                            italic: false,
+                            underline: false,
+                        },
+                        lineHeight: 1,
+                        letterSpacing: 0,
+                    },
+                    heading2: {
+                        color: {
+                            color: '#FFF',
+                            alpha: 1,
+                        },
+                        align: 'left',
+                        fontFamily: 'Arial',
+                        fontSize: 24,
+                        fontStyle: {
+                            bold: false,
+                            italic: false,
+                            underline: false,
+                        },
+                        lineHeight: 1,
+                        letterSpacing: 0,
+                    },
+                    heading3: {
+                        color: {
+                            color: '#FFF',
+                            alpha: 1,
+                        },
+                        align: 'left',
+                        fontFamily: 'Arial',
+                        fontSize: 20,
+                        fontStyle: {
+                            bold: false,
+                            italic: false,
+                            underline: false,
+                        },
+                        lineHeight: 1,
+                        letterSpacing: 0,
+                    },
+                    button: {
+                        color: {
+                            color: '#FFF',
+                            alpha: 1,
+                        },
+                        align: 'left',
+                        fontFamily: 'Arial',
+                        fontSize: 16,
+                        fontStyle: {
+                            bold: true,
+                            italic: false,
+                            underline: false,
+                        },
+                        lineHeight: 1,
+                        letterSpacing: 0,
+                    },
+                    text: {
+                        color: {
+                            color: '#FFF',
+                            alpha: 1,
+                        },
+                        align: 'left',
+                        fontFamily: 'Georgia',
+                        fontSize: 16,
+                        fontStyle: {
+                            bold: false,
+                            italic: false,
+                            underline: false,
+                        },
+                        lineHeight: 1,
+                        letterSpacing: 0,
+                    },
+                },
+            },
+            metadata: [],
+            settings: [],
+            components: [
+                {
+                    background: {
+                        color: {
+                            color: '#000',
+                            alpha: 1,
+                        },
+                        image: null,
+                    },
+                    id: 'ff86a460-67de-11f0-928c-23fe9f2cc927',
+                    type: 'quiz',
+                    layout: 'top',
+                    question: {
+                        body: '<span>Question test</span>',
+                        textStyle: {
+                            color: {
+                                color: '#FFF',
+                                alpha: 1,
+                            },
+                            align: 'left',
+                            fontFamily: 'Arial',
+                            fontSize: 24,
+                            fontStyle: {
+                                bold: false,
+                                italic: false,
+                                underline: false,
+                            },
+                            lineHeight: 1,
+                            letterSpacing: 0,
+                        },
+                    },
+                    answers: [
+                        {
+                            label: {
+                                body: 'Test 1',
+                                textStyle: {
+                                    color: {
+                                        color: '#FFF',
+                                        alpha: 1,
+                                    },
+                                    align: 'left',
+                                    fontFamily: 'Arial',
+                                    fontSize: 16,
+                                    fontStyle: {
+                                        bold: true,
+                                        italic: false,
+                                        underline: false,
+                                    },
+                                    lineHeight: 1,
+                                    letterSpacing: 0,
+                                },
+                            },
+                        },
+                        {
+                            label: {
+                                body: 'Test 2',
+                                textStyle: {
+                                    color: {
+                                        color: '#FFF',
+                                        alpha: 1,
+                                    },
+                                    align: 'left',
+                                    fontFamily: 'Arial',
+                                    fontSize: 16,
+                                    fontStyle: {
+                                        bold: true,
+                                        italic: false,
+                                        underline: false,
+                                    },
+                                    lineHeight: 1,
+                                    letterSpacing: 0,
+                                },
+                            },
+                        },
+                        {
+                            label: {
+                                body: 'Test 3',
+                                textStyle: {
+                                    color: {
+                                        color: '#FFF',
+                                        alpha: 1,
+                                    },
+                                    align: 'left',
+                                    fontFamily: 'Arial',
+                                    fontSize: 16,
+                                    fontStyle: {
+                                        bold: true,
+                                        italic: false,
+                                        underline: false,
+                                    },
+                                    lineHeight: 1,
+                                    letterSpacing: 0,
+                                },
+                            },
+                        },
+                    ],
+                    buttonsTextStyle: {
+                        highlight: {
+                            color: null,
+                        },
+                        fontFamily: {
+                            name: 'Apercu_Bold',
+                            media: 'media://62',
+                            variants: [],
+                            type: 'custom',
+                        },
+                        fontStyle: {
+                            bold: false,
+                            italic: false,
+                            underline: false,
+                        },
+                        color: {
+                            color: '#00ff11',
+                            alpha: 1,
+                        },
+                        fontSize: 24,
+                    },
+                },
+                {
+                    background: {
+                        color: {
+                            color: '#000',
+                            alpha: 1,
+                        },
+                        image: null,
+                    },
+                    id: '016bdf20-67df-11f0-928c-23fe9f2cc927',
+                    type: 'quiz-multiple',
+                    introLayout: 'middle',
+                    layout: 'top',
+                    questions: [
+                        {
+                            text: {
+                                body: '<span>Ceci est une question test</span>',
+                                textStyle: null,
+                            },
+                            answers: [
+                                {
+                                    label: {
+                                        body: 'Test 1',
+                                        textStyle: null,
+                                    },
+                                },
+                                {
+                                    label: {
+                                        body: 'Test 2',
+                                    },
+                                },
+                                {
+                                    label: {
+                                        body: 'Test 3',
+                                        textStyle: {
+                                            color: {
+                                                color: '#FFF',
+                                                alpha: 1,
+                                            },
+                                            align: 'left',
+                                            fontFamily: 'Arial',
+                                            fontSize: 16,
+                                            fontStyle: {
+                                                bold: true,
+                                                italic: false,
+                                                underline: false,
+                                            },
+                                            lineHeight: 1,
+                                            letterSpacing: 0,
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    questionsHeadingStyle: {
+                        fontFamily: {
+                            name: 'GarageGothic-Bold',
+                            media: 'media://60',
+                            variants: [],
+                            type: 'custom',
+                        },
+                        color: {
+                            color: '#00ff1f',
+                            alpha: 1,
+                        },
+                    },
+                    buttonsTextStyle: {
+                        fontFamily: {
+                            name: 'Agrandir Tight',
+                            media: 'media://2452',
+                            variants: [
+                                {
+                                    weight: '700',
+                                    style: 'normal',
+                                    fvd: 'n7',
+                                    media: 'media://2519',
+                                },
+                                {
+                                    weight: '900',
+                                    style: 'normal',
+                                    fvd: 'n9',
+                                    media: 'media://2457',
+                                },
+                                {
+                                    weight: '500',
+                                    style: 'normal',
+                                    fvd: 'n5',
+                                    media: 'media://2522',
+                                },
+                            ],
+                            type: 'custom',
+                        },
+                        fontStyle: {
+                            bold: true,
+                            italic: false,
+                            underline: false,
+                        },
+                        color: {
+                            color: '#e000ff',
+                            alpha: 1,
+                        },
+                    },
+                },
+                {
+                    background: {
+                        color: {
+                            color: '#000',
+                            alpha: 1,
+                        },
+                        image: null,
+                    },
+                    id: '057dbde0-67df-11f0-928c-23fe9f2cc927',
+                    type: 'survey',
+                    layout: 'top',
+                    customAnswer: false,
+                    question: {
+                        body: '<span>Question test</span>',
+                        textStyle: {
+                            color: {
+                                color: '#FFF',
+                                alpha: 1,
+                            },
+                            align: 'left',
+                            fontFamily: 'Arial',
+                            fontSize: 24,
+                            fontStyle: {
+                                bold: false,
+                                italic: false,
+                                underline: false,
+                            },
+                            lineHeight: 1,
+                            letterSpacing: 0,
+                        },
+                    },
+                    answers: [
+                        {
+                            label: {
+                                body: 'Test sondage 1',
+                                textStyle: {
+                                    color: {
+                                        color: '#FFF',
+                                        alpha: 1,
+                                    },
+                                    align: 'left',
+                                    fontFamily: 'Arial',
+                                    fontSize: 16,
+                                    fontStyle: {
+                                        bold: true,
+                                        italic: false,
+                                        underline: false,
+                                    },
+                                    lineHeight: 1,
+                                    letterSpacing: 0,
+                                },
+                            },
+                        },
+                        {
+                            label: {
+                                body: 'Test sondage 2',
+                                textStyle: {
+                                    color: {
+                                        color: '#FFF',
+                                        alpha: 1,
+                                    },
+                                    align: 'left',
+                                    fontFamily: 'Arial',
+                                    fontSize: 16,
+                                    fontStyle: {
+                                        bold: true,
+                                        italic: false,
+                                        underline: false,
+                                    },
+                                    lineHeight: 1,
+                                    letterSpacing: 0,
+                                },
+                            },
+                        },
+                    ],
+                },
+            ],
+        }}
+    />
+);
