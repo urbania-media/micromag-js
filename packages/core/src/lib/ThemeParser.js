@@ -436,7 +436,7 @@ class ThemeParser {
                 }, {});
             }
 
-            const { textStyle: valueTextStyle = null, boxStyle: valueBoxStyle = null } =
+            const { textStyle: valueTextStyle = false, boxStyle: valueBoxStyle = false } =
                 value || {};
 
             // Color
@@ -464,11 +464,14 @@ class ThemeParser {
             const textStyleValue =
                 fieldTextStyle !== null || fieldThemeComponentTextStyle !== null
                     ? {
-                          textStyle: {
-                              ...fieldTextStyle,
-                              ...fieldThemeComponentTextStyle,
-                              ...(valueTextStyle || null),
-                          },
+                          textStyle:
+                              valueTextStyle !== false
+                                  ? valueTextStyle
+                                  : {
+                                        ...fieldTextStyle,
+                                        ...fieldThemeComponentTextStyle,
+                                        ...(valueTextStyle || null),
+                                    },
                       }
                     : null;
 
@@ -484,11 +487,14 @@ class ThemeParser {
             const boxStyleValue =
                 fieldBoxStyle !== null || fieldThemeComponentBoxStyle !== null
                     ? {
-                          boxStyle: {
-                              ...fieldBoxStyle,
-                              ...fieldThemeComponentBoxStyle,
-                              ...(valueBoxStyle || null),
-                          },
+                          boxStyle:
+                              valueBoxStyle !== false
+                                  ? valueBoxStyle
+                                  : {
+                                        ...fieldBoxStyle,
+                                        ...fieldThemeComponentBoxStyle,
+                                        ...(valueBoxStyle || null),
+                                    },
                       }
                     : null;
 
