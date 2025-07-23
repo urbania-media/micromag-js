@@ -94,7 +94,11 @@ class ThemeParser {
 
         const newComponents = components.reduce((currentComponents, screen, index) => {
             const { type } = screen;
-            const { definition, themeScreen } = this.getDefinitionByScreen(type, themeComponents);
+            const { definition /* themeScreen */ } = this.getDefinitionByScreen(
+                type,
+                themeComponents,
+            );
+            const themeScreen = null;
             const newScreen = this.parseScreen(
                 definition,
                 screen,

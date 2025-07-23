@@ -409,8 +409,8 @@ const Answers = ({
                                                     {...label}
                                                     className={styles.optionLabel}
                                                     textStyle={{
-                                                        ...textStyle,
                                                         ...buttonsTextStyle,
+                                                        ...textStyle,
                                                         ...answerButtonTextStyle,
                                                     }}
                                                 />
