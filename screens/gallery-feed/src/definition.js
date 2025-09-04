@@ -31,6 +31,16 @@ export default [
                 }),
             },
             {
+                name: 'spacing',
+                type: 'number',
+                defaultValue: 20,
+                isHorizontal: true,
+                label: defineMessage({
+                    defaultMessage: 'Spacing',
+                    description: 'Spacing field label',
+                }),
+            },
+            {
                 name: 'background',
                 type: 'background',
                 label: defineMessage({
@@ -110,6 +120,16 @@ export default [
                 label: defineMessage({
                     defaultMessage: 'Images',
                     description: 'Field label',
+                }),
+            },
+            {
+                name: 'spacing',
+                type: 'number',
+                defaultValue: 20,
+                isHorizontal: true,
+                label: defineMessage({
+                    defaultMessage: 'Spacing',
+                    description: 'Spacing field label',
                 }),
             },
             {

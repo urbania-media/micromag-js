@@ -74,14 +74,15 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
 
         const hasArticle = article !== null;
 
-        const { credits = [], sponsors = [], brands = [] } = metadata || {};
+        const { authors = [], sponsors = [], brands = [] } = metadata || {};
 
-        const [{ author: creditAuthor = null } = {}] = credits || [];
+        const [creditAuthor = null] = authors || [];
         const [{ handle: site = null } = {}] = brands || [];
 
         const { sizes = {} } = articleImage || {};
         const { medium = {}, large = {} } = sizes || {};
         const { name: authorName = null, image: authorImage = null } = creditAuthor || {};
+
         const finalArticleAuthor = {
             ...(authorName !== null ? { name: { body: `<p>${authorName}</p>` } } : null),
             ...(authorImage !== null ? { image: authorImage } : null),

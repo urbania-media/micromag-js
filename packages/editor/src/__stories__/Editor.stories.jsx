@@ -38,6 +38,7 @@ import signs from '../../../../screens/urbania-horoscope/src/data/signs';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import Editor from '../components/EditorContainer';
 
+import galleries from '../../../../.storybook/data/galleries.js';
 import cointreau from '../../../../.storybook/data/stories/cointreau.json';
 import hebdo from '../../../../.storybook/data/stories/hebdo.json';
 
@@ -262,6 +263,8 @@ export const TestReco = () => (
 export const Empty = () => <EditorContainer defaultValue={{ title: 'Empty' }} />;
 
 export const VideoAudio = () => <EditorContainer defaultValue={videoAudio} />;
+
+export const Galleries = () => <EditorContainer defaultValue={{ components: galleries }} />;
 
 export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
 

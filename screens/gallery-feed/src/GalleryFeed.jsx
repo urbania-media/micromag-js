@@ -73,7 +73,7 @@ const GalleryFeedScreen = ({
     images,
     withCaptions,
     imageCaptionStyle,
-    spacing,
+    spacing: initialSpacing,
     background,
     header,
     footer,
@@ -93,6 +93,7 @@ const GalleryFeedScreen = ({
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
+    const spacing = initialSpacing !== null ? Math.max(0, initialSpacing || 0) : 20;
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();

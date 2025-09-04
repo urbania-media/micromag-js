@@ -100,7 +100,7 @@ const GalleryScreen = ({
     current,
     active,
     preload,
-    spacing,
+    spacing: initialSpacing,
     captionMaxLines,
     className,
 }) => {
@@ -113,6 +113,8 @@ const GalleryScreen = ({
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
     const mediaRef = usePlaybackMediaRef(current);
+
+    const spacing = initialSpacing !== null ? Math.max(0, initialSpacing || 0) : 20;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
