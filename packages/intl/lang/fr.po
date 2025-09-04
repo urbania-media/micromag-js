@@ -333,7 +333,7 @@ msgstr "Aucun marqueur"
 #: 3I2Xl7
 msgctxt "3I2Xl7"
 msgid "WebM"
-msgstr ""
+msgstr "WebM"
 
 # Field label
 #: 3LEBIA
@@ -411,7 +411,7 @@ msgstr "Message"
 #: 4RV6+9
 msgctxt "4RV6+9"
 msgid "H264"
-msgstr ""
+msgstr "H264"
 
 # No value label
 #: 4YiKNK
@@ -2014,6 +2014,12 @@ msgctxt "ZiWlL6"
 msgid "Questions"
 msgstr "Questions"
 
+# Spacing field label
+#: Zpl5bJ
+msgctxt "Zpl5bJ"
+msgid "Spacing"
+msgstr "Espacement"
+
 # Button label in items field
 #: ZxgNge
 msgctxt "ZxgNge"
@@ -2954,7 +2960,7 @@ msgstr "Légende"
 #: pBNrdH
 msgctxt "pBNrdH"
 msgid "Conversion"
-msgstr ""
+msgstr "Conversion"
 
 # Type field label
 #: pE7UhY

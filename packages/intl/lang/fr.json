@@ -158,6 +158,9 @@
     "3E57H7": {
         "defaultMessage": "Aucun marqueur"
     },
+    "3I2Xl7": {
+        "defaultMessage": "WebM"
+    },
     "3LEBIA": {
         "defaultMessage": "Angle"
     },
@@ -193,6 +196,9 @@
     },
     "4R/bdr": {
         "defaultMessage": "Message"
+    },
+    "4RV6+9": {
+        "defaultMessage": "H264"
     },
     "4YiKNK": {
         "defaultMessage": "Sélectionner une couleur"
@@ -995,6 +1001,9 @@
     "ZiWlL6": {
         "defaultMessage": "Questions"
     },
+    "Zpl5bJ": {
+        "defaultMessage": "Espacement"
+    },
     "ZxgNge": {
         "defaultMessage": "Ajouter un élement"
     },
@@ -1468,6 +1477,9 @@
     },
     "p85qJD": {
         "defaultMessage": "Légende"
+    },
+    "pBNrdH": {
+        "defaultMessage": "Conversion"
     },
     "pE7UhY": {
         "defaultMessage": "Article"

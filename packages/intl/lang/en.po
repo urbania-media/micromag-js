@@ -2014,6 +2014,12 @@ msgctxt "ZiWlL6"
 msgid "Questions"
 msgstr "Questions"
 
+# Spacing field label
+#: Zpl5bJ
+msgctxt "Zpl5bJ"
+msgid "Spacing"
+msgstr "Spacing"
+
 # Button label in items field
 #: ZxgNge
 msgctxt "ZxgNge"

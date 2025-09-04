@@ -1334,6 +1334,10 @@
     "defaultMessage": "Questions",
     "description": "Screen group"
   },
+  "Zpl5bJ": {
+    "defaultMessage": "Spacing",
+    "description": "Spacing field label"
+  },
   "ZxgNge": {
     "defaultMessage": "Add an item",
     "description": "Button label in items field"
