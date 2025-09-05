@@ -48,8 +48,8 @@ const parsePadding = (element) => {
             ...boxStyle,
             padding: {
                 ...padding,
-                top: bottom,
-                bottom,
+                // top: bottom,
+                // bottom,
             },
         },
     };
@@ -72,7 +72,6 @@ class ButtonPadding {
         }
 
         const callHasPadding = testPadding(callToAction);
-
         if (callHasPadding) {
             return true;
         }
