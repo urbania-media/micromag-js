@@ -21,11 +21,10 @@ class MigrationsParser {
             return story;
         }
         const { components = [], ...restStory } = story || {};
-
         const finalComponents = components.reduce((currentComponents, screen) => {
             const newScreen = this.parsers.reduce((currentScreen, parser) => {
-                if (parser.test(currentScreen)) {
-                    return parser.parse(currentScreen);
+                if (parser.test(currentScreen, story)) {
+                    return parser.parse(currentScreen, story);
                 }
                 return currentScreen;
             }, screen);

@@ -1,3 +1,6 @@
+import dayjs from 'dayjs';
+import isString from 'lodash/isString';
+
 /* eslint-disable class-methods-use-this */
 const testPadding = (element) => {
     const { boxStyle = null, label = null } = element || {};
@@ -8,7 +11,7 @@ const testPadding = (element) => {
     const { textStyle = null } = label || {};
     const { fontFamily = null } = textStyle || {};
     const { name: fontName = null } = fontFamily || {};
-    if (fontName !== 'Agrandir Tight') {
+    if (fontName !== 'Agrandir Tight' && fontName !== 'Verdana') {
         return false;
     }
 
@@ -48,16 +51,18 @@ const parsePadding = (element) => {
             ...boxStyle,
             padding: {
                 ...padding,
-                // top: bottom,
-                // bottom,
+                top: bottom,
+                bottom,
             },
         },
     };
 };
 
 class ButtonPadding {
-    test(screen) {
+    test(screen, story) {
+        const { created_at: createdAt = null } = story || {};
         const { footer = null, header = null } = screen || {};
+
         if (header === null || footer === null) {
             return false;
         }
@@ -71,6 +76,10 @@ class ButtonPadding {
             return false;
         }
 
+        if (createdAt === null) {
+            return false;
+        }
+
         const callHasPadding = testPadding(callToAction);
         if (callHasPadding) {
             return true;
@@ -79,6 +88,16 @@ class ButtonPadding {
         const badgeHasPadding = testPadding(badge);
         if (badgeHasPadding) {
             return true;
+        }
+
+        const dateToFormat = isString(createdAt) ? dayjs(createdAt) : null;
+        if (dateToFormat === null) {
+            return false;
+        }
+
+        // Only the old micromags
+        if (dateToFormat.isAfter(dayjs('2025-05-20T00:00:00.000Z'))) {
+            return false;
         }
 
         return false;
