@@ -243,6 +243,7 @@ function CallToAction({
                         {icon !== null ? <div className={styles.icon}>{icon}</div> : null}
                         <Text
                             {...label}
+                            className={styles.text}
                             textStyle={{ ...textStyle, lineHeight: lineHeight || 1 }}
                             inline
                         />
