@@ -326,7 +326,10 @@ export const imagesWithCaptions = ({
 } = {}) =>
     [...Array(count)].map(() => ({
         media: imageMedia({ width, height, rand, gif }),
-        caption: Math.random() > 0.5 ? text() : null,
+        caption:
+            Math.random() > 0.1
+                ? { ...text(), body: `<p>Hello: <a href="https://www.google.com">Google</a></p>` }
+                : null,
     }));
 
 export const backgroundColor = () => ({
