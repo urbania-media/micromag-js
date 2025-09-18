@@ -20,7 +20,7 @@ const getStyleFromText = (value) => {
         italic = false,
         bold = false,
         underline = false,
-        transform: textTransform,
+        transform: textTransform = null,
         outline = false,
     } = fontStyle || {};
     return {

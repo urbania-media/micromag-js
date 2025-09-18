@@ -249,6 +249,7 @@ const KeypadScreen = ({
 
     const hasPopupHeading = isTextFilled(popupHeading);
     const { textStyle: popupHeadingTextStyle = null } = popupHeading || {};
+
     const hasPopupContent = isTextFilled(popupContent);
     const { textStyle: popupContentTextStyle = null } = popupContent || {};
 
@@ -440,15 +441,21 @@ const KeypadScreen = ({
                 const { body: contentBody = null } = content || {};
                 const finalLabel = isString(itemLabel) ? { body: itemLabel } : itemLabel || {};
 
-                const { body: label = null, textStyle = null } = finalLabel || {};
-                const key = label || visualUrl || id;
+                const { body: label = null, textStyle: finalLabelTextStyle = null } =
+                    finalLabel || {};
 
-                const isEmpty = label === null && visual === null;
+                const key = label || visualUrl || id;
+                const itemIsEmpty = label === null && visual === null;
                 const isExternalLink = url !== null && !inWebView;
                 const isPopupEmpty =
                     (heading === null || headingBody === null || headingBody === '') &&
                     (content === null || contentBody === null || contentBody === '') &&
                     popupLargeVisual === null;
+
+                const finalTextStyle = {
+                    ...buttonTextStyle,
+                    ...finalLabelTextStyle,
+                };
 
                 return (
                     <div key={key} className={styles.item}>
@@ -461,7 +468,7 @@ const KeypadScreen = ({
                                     [styles.layoutNoLabel]: buttonLayout === 'no-label',
                                     [styles.layoutLabelOver]: buttonLayout === 'label-over',
                                     [styles.fillImage]: fillImage === true,
-                                    [styles.isEmpty]: isEmpty,
+                                    [styles.isEmpty]: itemIsEmpty,
                                     [styles.isLink]: url !== null,
                                     [styles.disableHover]: isPopupEmpty && url === null,
                                 },
@@ -523,10 +530,7 @@ const KeypadScreen = ({
                                     <Text
                                         className={styles.buttonLabel}
                                         {...finalLabel}
-                                        textStyle={{
-                                            ...getStyleFromText(buttonTextStyle),
-                                            ...getStyleFromText(textStyle),
-                                        }}
+                                        textStyle={finalTextStyle}
                                     />
                                 ) : null}
                             </ScreenElement>
