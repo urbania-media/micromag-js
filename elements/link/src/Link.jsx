@@ -1,8 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/no-danger */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
-import { v1 as uuid } from 'uuid';
+import React, { useId } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromMargin } from '@micromag/core/utils';
@@ -50,10 +49,8 @@ const Link = ({
         };
     }
 
-    const id = useMemo(
-        () => (finalStyle !== null ? `link-component-${uuid()}` : null),
-        [finalStyle !== null],
-    );
+    const uniqueId = useId();
+    const id = finalStyle !== null ? `link-component-${uniqueId}` : null;
 
     const { target, rel } = external
         ? { target: '_blank', rel: 'noopener noreferer' }

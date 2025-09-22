@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
-import { v1 as uuid } from 'uuid';
+import React, { useId } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import {
+    addNonBreakingSpaces,
     getStyleFromHighlight,
     getStyleFromLink,
     getStyleFromMargin,
@@ -21,6 +21,7 @@ const propTypes = {
     textStyle: MicromagPropTypes.textStyle,
     linksStyle: MicromagPropTypes.textStyle,
     margin: MicromagPropTypes.margin,
+    withoutNonBreakingSpaces: PropTypes.bool,
     className: PropTypes.string,
     headingRef: PropTypes.shape({}),
 };
@@ -31,11 +32,21 @@ const defaultProps = {
     textStyle: null,
     linksStyle: null,
     margin: null,
+    withoutNonBreakingSpaces: false,
     className: null,
     headingRef: null,
 };
 
-const Heading = ({ size, body, textStyle, linksStyle, margin, className, headingRef }) => {
+const Heading = ({
+    size,
+    body,
+    textStyle,
+    linksStyle,
+    margin,
+    withoutNonBreakingSpaces,
+    className,
+    headingRef,
+}) => {
     const HeadingComponent = `h${size}`;
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = null;
@@ -61,25 +72,22 @@ const Heading = ({ size, body, textStyle, linksStyle, margin, className, heading
         };
     }
     const needsId = finalLinkStyle !== null || highlightStyle !== null;
-    const id = useMemo(() => (needsId ? `text-component-${uuid()}` : null), [needsId]);
+    const id = useId();
     return (
         <>
             {finalLinkStyle !== null ? (
-                <LinkStyle selector={`#${id}`} style={finalLinkStyle} />
+                <LinkStyle selector={`#text-component-${id}`} style={finalLinkStyle} />
             ) : null}
             {finalHighlightStyle !== null ? (
-                <HighlightStyle selector={`#${id}`} style={finalHighlightStyle} />
+                <HighlightStyle selector={`#text-component-${id}`} style={finalHighlightStyle} />
             ) : null}
             <HeadingComponent
-                id={id}
-                className={classNames([
-                    styles.container,
-                    {
-                        [className]: className !== null,
-                    },
-                ])}
+                id={needsId ? `text-component-${id}` : null}
+                className={classNames([styles.container, className])}
                 style={finalStyle}
-                dangerouslySetInnerHTML={{ __html: body }}
+                dangerouslySetInnerHTML={{
+                    __html: !withoutNonBreakingSpaces ? addNonBreakingSpaces(body) : body,
+                }}
                 ref={headingRef}
             />
         </>

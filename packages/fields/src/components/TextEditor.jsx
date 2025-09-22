@@ -2,9 +2,8 @@
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useId, useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import { v4 as uuidv4 } from 'uuid';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
@@ -91,7 +90,8 @@ const TextEditorField = ({
         return editorConfig;
     }, [editorConfig, withoutLink]);
 
-    const id = useMemo(() => `editor-${uuidv4()}`, []);
+    const uniqueId = useId();
+    const id = `editor-${uniqueId}`;
 
     const finalEditorConfig = useMemo(
         () => ({

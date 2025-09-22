@@ -1,16 +1,15 @@
 /* eslint-disable react/no-array-index-key, react/no-danger */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
-import { v1 as uuid } from 'uuid';
+import React, { useId } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { LinkStyle, HighlightStyle } from '@micromag/core/components';
+import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import {
-    getStyleFromText,
-    getStyleFromMargin,
     getStyleFromHighlight,
     getStyleFromLink,
+    getStyleFromMargin,
+    getStyleFromText,
 } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
@@ -63,10 +62,8 @@ const Quote = ({ body, textStyle, linksStyle, margin, showEmpty, className, empt
         };
     }
 
-    const id = useMemo(
-        () => (finalLinkStyle !== null ? `quote-component-${uuid()}` : null),
-        [finalLinkStyle !== null],
-    );
+    const uniqueId = useId();
+    const id = finalLinkStyle !== null ? `quote-component-${uniqueId}` : null;
 
     return (
         <>

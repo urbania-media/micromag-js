@@ -3,8 +3,7 @@
 /* eslint-disable react/no-array-index-key, react/no-danger */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
-import { v1 as uuid } from 'uuid';
+import React, { useId } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
@@ -92,7 +91,8 @@ const Text = ({
     }
 
     const needsId = finalLinkStyle !== null || highlightStyle !== null;
-    const id = useMemo(() => (needsId ? `text-component-${uuid()}` : null), [needsId]);
+    const uniqueId = useId();
+    const id = needsId ? `text-component-${uniqueId}` : null;
 
     const tagProps = {
         id,
