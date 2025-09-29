@@ -185,6 +185,10 @@ const zzzz = ({
     const updateSpring = useCallback(
         (currentItems, { dragItem, dragY, initial = false } = {}) => {
             const refs = currentItems.map((it) => elementsRef.current[it.id] || null);
+            const initialRefs = (items || []).map((it) => elementsRef.current[it.id] || null);
+            const initialHeights = initialRefs.map(
+                (it) => it?.getBoundingClientRect()?.height || 0,
+            );
             const heights = refs.map((it) => it?.getBoundingClientRect()?.height || 0);
             // console.log('heights', heights);
             api.start((itemIndex) => {
@@ -192,8 +196,8 @@ const zzzz = ({
 
                 const sortedIndex = currentItems.findIndex((it) => it.id === item.id);
 
-                const currentHeight = heights[itemIndex] || 0;
-                const currentY = heights
+                const currentHeight = initialHeights[itemIndex] || 0;
+                const currentY = initialHeights
                     .slice(0, itemIndex)
                     .reduce((acc, itemHeight) => acc + itemHeight, 0);
 
@@ -207,13 +211,13 @@ const zzzz = ({
                     };
                 }
 
-                if (itemIndex === sortedIndex) {
-                    return {
-                        y: `0%`,
-                        scale: 1,
-                        immediate: initial,
-                    };
-                }
+                // if (itemIndex === sortedIndex) {
+                //     return {
+                //         y: `0%`,
+                //         scale: 1,
+                //         immediate: initial,
+                //     };
+                // }
 
                 const newY = heights
                     .slice(0, sortedIndex)
