@@ -444,31 +444,31 @@ export const GameSort = () => (
                         }
                     ]
                 },
-                // {
-                //     id: '2',
-                //     type: 'game-sort',
-                //     heading: {
-                //         body: 'Mettre dans le bon ordre',
-                //     },
-                //     items: [
-                //         {
-                //             id: '1',
-                //             label: 'Item 1.1',
-                //         },
-                //         {
-                //             id: '2',
-                //             label: 'Item 2.1',
-                //         },
-                //         {
-                //             id: '3',
-                //             label: 'Item 3.1 Item 3.1 Item 3.1 Item 3.1 Item 3.1 Item 3.1',
-                //         },
-                //         {
-                //             id: '4',
-                //             label: 'Item 4.1',
-                //         }
-                //     ]
-                // },
+                {
+                    id: '2',
+                    type: 'game-sort',
+                    heading: {
+                        body: 'Mettre dans le bon ordre',
+                    },
+                    items: [
+                        {
+                            id: '1',
+                            label: 'Item 1.1',
+                        },
+                        {
+                            id: '2',
+                            label: 'Item 2.1',
+                        },
+                        {
+                            id: '3',
+                            label: 'Item 3.1',
+                        },
+                        {
+                            id: '4',
+                            label: 'Item 4.1',
+                        }
+                    ]
+                },
             ],
         }}
         memoryRouter
