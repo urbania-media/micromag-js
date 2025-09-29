@@ -140,7 +140,7 @@ const GameSort = ({
     const items = useMemo(
         () =>
             (initialItems || []).map((item, itemIndex) => ({
-                id: itemIndex,
+                id: `item-${itemIndex}`,
                 ...item,
             })),
         [initialItems],
