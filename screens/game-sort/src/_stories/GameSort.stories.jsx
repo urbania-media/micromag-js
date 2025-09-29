@@ -4,8 +4,8 @@ import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import {
     backgroundColor,
-    color,
-    headerFooter,
+    color, // headerFooter,
+    sortItems,
     title,
     transitions,
 } from '../../../../.storybook/data';
@@ -14,6 +14,7 @@ import definition from '../definition';
 
 const props = {
     heading: title(),
+    items: sortItems() || null,
     shareUrl: null,
     options: {
         email: true,

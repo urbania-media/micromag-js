@@ -10,7 +10,13 @@ import FiltersProvider from '@panneau/filters';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import { callToAction, conversation, hlsVideoMedia, videoMedia } from '../../../../.storybook/data';
+import {
+    callToAction,
+    conversation,
+    hlsVideoMedia,
+    sortItems,
+    videoMedia,
+} from '../../../../.storybook/data';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import article from '../../../../.storybook/data/stories/article-generic';
 import contribution from '../../../../.storybook/data/stories/contribution';
@@ -196,7 +202,7 @@ export const TestArticleUrbania = () => (
             components: [
                 {
                     id: '1cb8a4be-5c1a-11eb-985f-ad6fce99d848',
-                    type: 'urbania-article',
+                    type: 'urbania-article-card',
                     url: 'https://urbania.ca/article/tous-les-dechets-sen-vont-a-la-meme-place-et-autres-mythes-sur-le-compostage',
                     title: {
                         body: null,
@@ -415,7 +421,7 @@ export const GameSort = () => (
     <EditorContainer
         defaultValue={{
             title: 'With game sort',
-            components: [{ id: '1', type: 'game-sort' }],
+            components: [{ id: '1', type: 'game-sort', items: sortItems(5) }],
         }}
     />
 );

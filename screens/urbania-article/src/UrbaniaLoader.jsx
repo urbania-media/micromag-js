@@ -41,11 +41,11 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
 
     useEffect(() => {
         if (finalUrl !== null && isValidUrl(finalUrl)) {
-            getJSON(`https://api.urbania.ca/documents?uri=${finalUrl}`, { mode: 'cors' }).then(
-                (art) => {
+            getJSON(`https://api.urbania.ca/documents?uri=${finalUrl}`, { mode: 'cors' })
+                .then((art) => {
                     setArticle(art || null);
-                },
-            );
+                })
+                .catch(() => setArticle(null));
         }
     }, [finalUrl, setArticle]);
 
@@ -60,6 +60,7 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
             header = {},
             footer = {},
         } = props || {};
+
         const { url: imageUrl = null } = image || {};
         const { callToAction = null } = footer || {};
         const { url: ctaUrl = null } = callToAction || {};
@@ -143,7 +144,7 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
         };
     }, [article, finalUrl, props]);
 
-    return <Component {...props} {...values} hasArticle={finalUrl !== null} />;
+    return <Component {...props} {...values} hasArticle={finalUrl !== null && article !== null} />;
 };
 
 UrbaniaLoader.propTypes = propTypes;

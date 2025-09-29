@@ -528,6 +528,7 @@ export const conversation = (messagesNumber = 10, speakersNumber = 2, timing = '
         speaker: random(speakers).id,
         image: Math.random() < 0.2 ? imageMedia({ gif: true }) : null,
     }));
+
     return {
         speakers,
         timing,
@@ -554,6 +555,18 @@ export const audioConversation = (messagesNumber = 10, speakersNumber = 2, timin
         timing,
         messages,
     };
+};
+
+export const sortItems = (messagesNumber = 5) => {
+    const items = ([...Array(messagesNumber)] || []).map((s, idx) => ({
+        id: `${idx}`,
+        label: {
+            body: Math.random() > 0.5 ? words(100, 2, 4) : words(100, 8, 10),
+            textStyle: { color: color() },
+        },
+        color: color(),
+    }));
+    return items;
 };
 
 export const badge = (options = null) => ({

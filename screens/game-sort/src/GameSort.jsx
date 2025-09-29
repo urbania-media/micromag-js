@@ -89,7 +89,7 @@ const defaultProps = {
     className: null,
 };
 
-const ShareScreen = ({
+const zzzz = ({
     layout,
     heading,
     items,
@@ -140,7 +140,7 @@ const ShareScreen = ({
     const [sortedItems, setSortedItems] = useState(isView ? shuffle(items || []) : items || []);
     const sortedItemsRef = useRef(sortedItems);
     const currentItemsRef = useRef(items);
-    const elementsRef = useRef([]);
+    const elementsRef = useRef({});
     const [initialSorted, setInitialSorted] = useState(false);
     const [validated, setValidated] = useState(null);
     const initialSortedItemsRef = useRef(sortedItems);
@@ -184,17 +184,21 @@ const ShareScreen = ({
 
     const updateSpring = useCallback(
         (currentItems, { dragItem, dragY, initial = false } = {}) => {
-            const heights = elementsRef.current.map(
-                (item) => item?.getBoundingClientRect()?.height || 0,
-            );
+            const refs = currentItems.map((it) => elementsRef.current[it.id] || null);
+            const heights = refs.map((it) => it?.getBoundingClientRect()?.height || 0);
+            // console.log('heights', heights);
             api.start((itemIndex) => {
                 const item = (items || [])[itemIndex] || null;
-                const sortedIndex = currentItems.findIndex((it) => it === item);
+
+                const sortedIndex = currentItems.findIndex((it) => it.id === item.id);
+
                 const currentHeight = heights[itemIndex] || 0;
+                const currentY = heights
+                    .slice(0, itemIndex)
+                    .reduce((acc, itemHeight) => acc + itemHeight, 0);
+
+                // This works
                 if (item === dragItem) {
-                    const currentY = heights
-                        .slice(0, itemIndex)
-                        .reduce((acc, itemHeight) => acc + itemHeight, 0);
                     const deltaY = dragY - currentY;
                     return {
                         y: `${(deltaY / currentHeight) * 100}%`,
@@ -202,6 +206,7 @@ const ShareScreen = ({
                         immediate: true,
                     };
                 }
+
                 if (itemIndex === sortedIndex) {
                     return {
                         y: `0%`,
@@ -209,13 +214,13 @@ const ShareScreen = ({
                         immediate: initial,
                     };
                 }
-                const currentY = heights
-                    .slice(0, itemIndex)
-                    .reduce((acc, itemHeight) => acc + itemHeight, 0);
+
                 const newY = heights
                     .slice(0, sortedIndex)
                     .reduce((acc, itemHeight) => acc + itemHeight, 0);
+
                 const deltaY = newY - currentY;
+
                 return {
                     y: `${(deltaY / currentHeight) * 100}%`,
                     scale: 1,
@@ -251,10 +256,15 @@ const ShareScreen = ({
                 return;
             }
             const sortedIndex = sortedItems.findIndex((it) => it === item);
-            const heights = sortedItems.map((sortedItem) => {
-                const elementIndex = items.findIndex((it) => it === sortedItem);
-                return elementsRef.current[elementIndex]?.getBoundingClientRect()?.height || 0;
-            });
+
+            // const heights = sortedItems.map((sortedItem) => {
+            //     const elementIndex = items.findIndex((it) => it === sortedItem);
+            //     return elementsRef.current[elementIndex]?.getBoundingClientRect()?.height || 0;
+            // });
+
+            const refs = sortedItems.map((it) => elementsRef.current[it.id] || null);
+            const heights = refs.map((it) => it?.getBoundingClientRect()?.height || 0);
+
             const ys = heights.map((itemHeight, heightIndex) => {
                 const endY =
                     itemHeight + heights.slice(0, heightIndex).reduce((acc, h) => acc + h, 0);
@@ -401,6 +411,7 @@ const ShareScreen = ({
                         {springs.map(({ y, scale }, itemIndex) => {
                             const item = items[itemIndex] || {};
                             const {
+                                id = null,
                                 visual = null,
                                 label: itemLabel,
                                 boxStyle = null,
@@ -427,7 +438,7 @@ const ShareScreen = ({
                                         },
                                     ])}
                                     ref={(ref) => {
-                                        elementsRef.current[itemIndex] = ref;
+                                        elementsRef.current[id] = ref;
                                     }}
                                     style={{
                                         transform: y.to((yValue) => `translateY(${yValue})`),
@@ -564,7 +575,7 @@ const ShareScreen = ({
     );
 };
 
-ShareScreen.propTypes = propTypes;
-ShareScreen.defaultProps = defaultProps;
+zzzz.propTypes = propTypes;
+zzzz.defaultProps = defaultProps;
 
-export default ShareScreen;
+export default zzzz;
