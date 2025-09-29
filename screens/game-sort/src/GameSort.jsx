@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import isString from 'lodash/isString';
 import shuffle from 'lodash/shuffle';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -89,10 +89,10 @@ const defaultProps = {
     className: null,
 };
 
-const zzzz = ({
+const GameSort = ({
     layout,
     heading,
-    items,
+    items: initialItems,
     spacing,
     itemsLayout,
     itemsBoxStyle,
@@ -137,6 +137,14 @@ const zzzz = ({
     const trackingEnabled = isView;
     const trackEvent = useTrackScreenEvent('game-sort');
 
+    const items = useMemo(
+        () =>
+            (initialItems || []).map((item, itemIndex) => ({
+                id: itemIndex,
+                ...item,
+            })),
+        [initialItems],
+    );
     const [sortedItems, setSortedItems] = useState(isView ? shuffle(items || []) : items || []);
     const sortedItemsRef = useRef(sortedItems);
     const currentItemsRef = useRef(items);
@@ -579,7 +587,7 @@ const zzzz = ({
     );
 };
 
-zzzz.propTypes = propTypes;
-zzzz.defaultProps = defaultProps;
+GameSort.propTypes = propTypes;
+GameSort.defaultProps = defaultProps;
 
-export default zzzz;
+export default GameSort;
