@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import isString from 'lodash/isString';
 import shuffle from 'lodash/shuffle';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -89,10 +89,10 @@ const defaultProps = {
     className: null,
 };
 
-const zzzz = ({
+const GameSort = ({
     layout,
     heading,
-    items,
+    items: initialItems,
     spacing,
     itemsLayout,
     itemsBoxStyle,
@@ -133,11 +133,23 @@ const zzzz = ({
 
     const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
     const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
+    const { ref: itemsRef, height: itemsHeight = 0 } = useDimensionObserver();
 
     const trackingEnabled = isView;
     const trackEvent = useTrackScreenEvent('game-sort');
 
-    const [sortedItems, setSortedItems] = useState(isView ? shuffle(items || []) : items || []);
+    const items = useMemo(
+        () =>
+            (initialItems || []).map((item, itemIndex) => ({
+                id: `item-${itemIndex}`,
+                ...item,
+            })),
+        [initialItems],
+    );
+    const shouldShuffle = isView;
+    const [sortedItems, setSortedItems] = useState(
+        shouldShuffle ? shuffle(items || []) : items || [],
+    );
     const sortedItemsRef = useRef(sortedItems);
     const currentItemsRef = useRef(items);
     const elementsRef = useRef({});
@@ -148,7 +160,7 @@ const zzzz = ({
     const dragEnabled = isView && active && current && validated === null;
     useEffect(() => {
         if (currentItemsRef.current !== items && !isView) {
-            const newSortedItems = isView ? shuffle(items || []) : items || [];
+            const newSortedItems = shouldShuffle ? shuffle(items || []) : items || [];
             setSortedItems(newSortedItems);
             sortedItemsRef.current = newSortedItems;
             currentItemsRef.current = items;
@@ -185,6 +197,10 @@ const zzzz = ({
     const updateSpring = useCallback(
         (currentItems, { dragItem, dragY, initial = false } = {}) => {
             const refs = currentItems.map((it) => elementsRef.current[it.id] || null);
+            const initialRefs = (items || []).map((it) => elementsRef.current[it.id] || null);
+            const initialHeights = initialRefs.map(
+                (it) => it?.getBoundingClientRect()?.height || 0,
+            );
             const heights = refs.map((it) => it?.getBoundingClientRect()?.height || 0);
             // console.log('heights', heights);
             api.start((itemIndex) => {
@@ -192,8 +208,8 @@ const zzzz = ({
 
                 const sortedIndex = currentItems.findIndex((it) => it.id === item.id);
 
-                const currentHeight = heights[itemIndex] || 0;
-                const currentY = heights
+                const currentHeight = initialHeights[itemIndex] || 0;
+                const currentY = initialHeights
                     .slice(0, itemIndex)
                     .reduce((acc, itemHeight) => acc + itemHeight, 0);
 
@@ -207,13 +223,13 @@ const zzzz = ({
                     };
                 }
 
-                if (itemIndex === sortedIndex) {
-                    return {
-                        y: `0%`,
-                        scale: 1,
-                        immediate: initial,
-                    };
-                }
+                // if (itemIndex === sortedIndex) {
+                //     return {
+                //         y: `0%`,
+                //         scale: 1,
+                //         immediate: initial,
+                //     };
+                // }
 
                 const newY = heights
                     .slice(0, sortedIndex)
@@ -238,10 +254,11 @@ const zzzz = ({
         if (!isView) {
             return;
         }
+
         updateSpring(sortedItems, {
             initial: initialSortedItemsRef.current === sortedItems,
         });
-    }, [sortedItems]);
+    }, [sortedItems, itemsHeight]);
 
     const bind = useDrag(
         ({ args: [itemIndex], active: dragActive, movement: [, movementY], tap }) => {
@@ -394,126 +411,132 @@ const zzzz = ({
                             <Heading className={classNames([styles.heading])} {...heading} />
                         ) : null}
                     </ScreenElement>
-                    <Spacer key="spacer" size={5} />
-                    <ScreenElement
-                        key="items"
-                        placeholder="items"
-                        emptyLabel={
-                            <FormattedMessage
-                                defaultMessage="Buttons"
-                                description="Title placeholder"
-                            />
-                        }
-                        className={styles.items}
-                        emptyClassName={styles.emptyItems}
-                        isEmpty={(items || []).length === 0}
-                    >
-                        {springs.map(({ y, scale }, itemIndex) => {
-                            const item = items[itemIndex] || {};
-                            const {
-                                id = null,
-                                visual = null,
-                                label: itemLabel,
-                                boxStyle = null,
-                                results: itemResults = null,
-                            } = item || {};
-                            const finalLabel = isString(itemLabel)
-                                ? { body: itemLabel }
-                                : itemLabel || {};
-                            const { body: label = null, textStyle: labelTextStyle } =
-                                finalLabel || {};
-                            const isEmpty = label === null && visual === null;
-                            const isValid = validated !== null && validated[itemIndex];
-                            return (
-                                <animated.div
-                                    key={`button-${itemIndex}`}
-                                    className={classNames([
-                                        styles.item,
-
-                                        {
-                                            clickable: dragEnabled,
-                                            [styles.isEmpty]: isEmpty,
-                                            [styles.valid]: validated !== null && isValid,
-                                            [styles.invalid]: validated !== null && !isValid,
-                                        },
-                                    ])}
-                                    ref={(ref) => {
-                                        elementsRef.current[id] = ref;
-                                    }}
-                                    style={{
-                                        transform: y.to((yValue) => `translateY(${yValue})`),
-                                        ...getStyleFromText(itemsTextStyle),
-                                        ...getStyleFromText(labelTextStyle),
-                                    }}
-                                    {...bind(itemIndex)}
-                                    // onClick={(e) => onItemClick(e, item)}
-                                >
+                    <div className={styles.items} ref={itemsRef}>
+                        <Spacer key="spacer" size={5} />
+                        <ScreenElement
+                            key="items"
+                            placeholder="items"
+                            emptyLabel={
+                                <FormattedMessage
+                                    defaultMessage="Buttons"
+                                    description="Title placeholder"
+                                />
+                            }
+                            emptyClassName={styles.emptyItems}
+                            isEmpty={(items || []).length === 0}
+                        >
+                            {springs.map(({ y, scale }, itemIndex) => {
+                                const item = items[itemIndex] || {};
+                                const {
+                                    id = null,
+                                    visual = null,
+                                    label: itemLabel,
+                                    boxStyle = null,
+                                    results: itemResults = null,
+                                } = item || {};
+                                const finalLabel = isString(itemLabel)
+                                    ? { body: itemLabel }
+                                    : itemLabel || {};
+                                const { body: label = null, textStyle: labelTextStyle } =
+                                    finalLabel || {};
+                                const isEmpty = label === null && visual === null;
+                                const isValid = validated !== null && validated[itemIndex];
+                                return (
                                     <animated.div
+                                        key={`button-${itemIndex}`}
                                         className={classNames([
-                                            styles.button,
+                                            styles.item,
+
                                             {
-                                                [styles.layoutLabelBottom]:
-                                                    itemsLayout === 'label-bottom',
-                                                [styles.layoutLabelTop]:
-                                                    itemsLayout === 'label-top',
-                                                [styles.layoutNoLabel]: itemsLayout === 'no-label',
-                                                [styles.layoutLabelOver]:
-                                                    itemsLayout === 'label-over',
+                                                clickable: dragEnabled,
+                                                [styles.isEmpty]: isEmpty,
+                                                [styles.valid]: validated !== null && isValid,
+                                                [styles.invalid]: validated !== null && !isValid,
                                             },
                                         ])}
-                                        style={{
-                                            transform: scale.to(
-                                                (scaleValue) => `scale(${scaleValue})`,
-                                            ),
-                                            ...getStyleFromBox(itemsBoxStyle),
-                                            ...getStyleFromBox(boxStyle),
-                                            ...getStyleFromBox(
-                                                validated && isValid ? validBoxStyle : null,
-                                            ),
-                                            ...getStyleFromBox(
-                                                validated && !isValid ? invalidBoxStyle : null,
-                                            ),
+                                        ref={(ref) => {
+                                            elementsRef.current[id] = ref;
                                         }}
-                                        // onClick={(e) => onItemClick(e, item, itemIndex)}
+                                        style={{
+                                            transform: y.to((yValue) => `translateY(${yValue})`),
+                                            ...getStyleFromText(itemsTextStyle),
+                                            ...getStyleFromText(labelTextStyle),
+                                        }}
+                                        {...bind(itemIndex)}
+                                        // onClick={(e) => onItemClick(e, item)}
                                     >
-                                        {visual !== null ? (
-                                            <Visual
-                                                className={styles.buttonVisual}
-                                                imageClassName={styles.thumbnail}
-                                                media={visual}
-                                                width="auto"
-                                            />
-                                        ) : null}
-                                        {label !== null ||
-                                        (itemResults !== null && resultsVisible) ? (
-                                            <div className={styles.buttonLabel}>
-                                                {label !== null ? (
-                                                    <Text
-                                                        {...finalLabel}
-                                                        textStyle={{
-                                                            ...itemsTextStyle,
-                                                            ...labelTextStyle,
-                                                        }}
-                                                        className={styles.label}
+                                        <div className={styles.itemInner}>
+                                            <animated.div
+                                                className={classNames([
+                                                    styles.button,
+                                                    {
+                                                        [styles.layoutLabelBottom]:
+                                                            itemsLayout === 'label-bottom',
+                                                        [styles.layoutLabelTop]:
+                                                            itemsLayout === 'label-top',
+                                                        [styles.layoutNoLabel]:
+                                                            itemsLayout === 'no-label',
+                                                        [styles.layoutLabelOver]:
+                                                            itemsLayout === 'label-over',
+                                                    },
+                                                ])}
+                                                style={{
+                                                    transform: scale.to(
+                                                        (scaleValue) => `scale(${scaleValue})`,
+                                                    ),
+                                                    ...getStyleFromBox(itemsBoxStyle),
+                                                    ...getStyleFromBox(boxStyle),
+                                                    ...getStyleFromBox(
+                                                        validated && isValid ? validBoxStyle : null,
+                                                    ),
+                                                    ...getStyleFromBox(
+                                                        validated && !isValid
+                                                            ? invalidBoxStyle
+                                                            : null,
+                                                    ),
+                                                }}
+                                                // onClick={(e) => onItemClick(e, item, itemIndex)}
+                                            >
+                                                {visual !== null ? (
+                                                    <Visual
+                                                        className={styles.buttonVisual}
+                                                        imageClassName={styles.thumbnail}
+                                                        media={visual}
+                                                        width="auto"
                                                     />
                                                 ) : null}
-                                                {itemResults !== null && resultsVisible ? (
-                                                    <Text
-                                                        {...itemResults}
-                                                        className={styles.buttonResults}
-                                                        textStyle={{
-                                                            ...itemsResultsTextStyle,
-                                                            ...itemResults.textStyle,
-                                                        }}
-                                                    />
+                                                {label !== null ||
+                                                (itemResults !== null && resultsVisible) ? (
+                                                    <div className={styles.buttonLabel}>
+                                                        {label !== null ? (
+                                                            <Text
+                                                                {...finalLabel}
+                                                                textStyle={{
+                                                                    ...itemsTextStyle,
+                                                                    ...labelTextStyle,
+                                                                }}
+                                                                className={styles.label}
+                                                            />
+                                                        ) : null}
+                                                        {itemResults !== null && resultsVisible ? (
+                                                            <Text
+                                                                {...itemResults}
+                                                                className={styles.buttonResults}
+                                                                textStyle={{
+                                                                    ...itemsResultsTextStyle,
+                                                                    ...itemResults.textStyle,
+                                                                }}
+                                                            />
+                                                        ) : null}
+                                                    </div>
                                                 ) : null}
-                                            </div>
-                                        ) : null}
+                                            </animated.div>
+                                        </div>
                                     </animated.div>
-                                </animated.div>
-                            );
-                        })}
-                    </ScreenElement>
+                                );
+                            })}
+                        </ScreenElement>
+                    </div>
                     {resultsVisible && results !== null ? (
                         <div
                             className={styles.results}
@@ -575,7 +598,7 @@ const zzzz = ({
     );
 };
 
-zzzz.propTypes = propTypes;
-zzzz.defaultProps = defaultProps;
+GameSort.propTypes = propTypes;
+GameSort.defaultProps = defaultProps;
 
-export default zzzz;
+export default GameSort;

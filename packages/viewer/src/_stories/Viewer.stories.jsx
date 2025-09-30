@@ -423,13 +423,24 @@ export const GameSort = () => (
                     },
                     items: [
                         {
+                            id: '1',
                             label: 'Item 1',
                         },
                         {
-                            label: 'Item 2',
+                            id: '2',
+                            label: 'Item 2 Item 2 Item 2 Item 2 Item 2 Item 2 Item 2',
                         },
                         {
+                            id: '3',
                             label: 'Item 3',
+                        },
+                        {
+                            id: '4',
+                            label: 'Item 4',
+                        },
+                        {
+                            id: '5',
+                            label: 'Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5',
                         }
                     ]
                 },
@@ -441,13 +452,20 @@ export const GameSort = () => (
                     },
                     items: [
                         {
+                            id: '1',
                             label: 'Item 1.1',
                         },
                         {
+                            id: '2',
                             label: 'Item 2.1',
                         },
                         {
+                            id: '3',
                             label: 'Item 3.1',
+                        },
+                        {
+                            id: '4',
+                            label: 'Item 4.1',
                         }
                     ]
                 },
