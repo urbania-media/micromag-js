@@ -62,6 +62,10 @@
     li {
         font-weight: inherit;
     }
+
+    mark, .mark {
+        color: inherit;
+    }
 }
 
 %reset-button {
