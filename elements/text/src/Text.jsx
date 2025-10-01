@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useId } from 'react';
 
+// import { v4 as uuid } from 'uuid';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import {
@@ -66,6 +67,10 @@ const Text = ({
     const finalHighlightStyle =
         highlightStyle !== null ? getStyleFromHighlight(highlightStyle) : null;
 
+    if (highlightStyle !== null) {
+        console.log('highlightStyle', highlightStyle);
+    }
+
     if (textStyle !== null) {
         finalStyle = {
             ...finalStyle,
@@ -115,10 +120,10 @@ const Text = ({
     return (
         <>
             {finalLinkStyle !== null ? (
-                <LinkStyle selector={`#${id}`} style={finalLinkStyle} />
+                <LinkStyle selector={`#${CSS.escape(id)}`} style={finalLinkStyle} />
             ) : null}
             {finalHighlightStyle !== null ? (
-                <HighlightStyle selector={`#${id}`} style={finalHighlightStyle} />
+                <HighlightStyle selector={`#${CSS.escape(id)}`} style={finalHighlightStyle} />
             ) : null}
             <Tag {...tagProps} />
         </>

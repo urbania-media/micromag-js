@@ -71,18 +71,21 @@ const Heading = ({
             ...getStyleFromText(linksStyle),
         };
     }
+
     const needsId = finalLinkStyle !== null || highlightStyle !== null;
-    const id = useId();
+    const uniqueId = useId();
+    const id = needsId ? `heading-component-${uniqueId}` : null;
+
     return (
         <>
             {finalLinkStyle !== null ? (
-                <LinkStyle selector={`#text-component-${id}`} style={finalLinkStyle} />
+                <LinkStyle selector={`#${CSS.escape(id)}`} style={finalLinkStyle} />
             ) : null}
             {finalHighlightStyle !== null ? (
-                <HighlightStyle selector={`#text-component-${id}`} style={finalHighlightStyle} />
+                <HighlightStyle selector={`#${CSS.escape(id)}`} style={finalHighlightStyle} />
             ) : null}
             <HeadingComponent
-                id={needsId ? `text-component-${id}` : null}
+                id={id}
                 className={classNames([styles.container, className])}
                 style={finalStyle}
                 dangerouslySetInnerHTML={{

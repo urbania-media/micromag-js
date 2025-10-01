@@ -1,7 +1,7 @@
 export default [
-    'The sky',
+    'The <sup>sky</sup>',
     'above',
-    'the port',
+    '<mark>the port</mark>',
     'was',
     'the color of television',
     'tuned',

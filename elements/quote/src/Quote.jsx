@@ -68,10 +68,10 @@ const Quote = ({ body, textStyle, linksStyle, margin, showEmpty, className, empt
     return (
         <>
             {finalLinkStyle !== null ? (
-                <LinkStyle selector={`#${id}`} style={finalLinkStyle} />
+                <LinkStyle selector={`#${CSS.escape(id)}`} style={finalLinkStyle} />
             ) : null}
             {finalHighlightStyle !== null ? (
-                <HighlightStyle selector={`#${id}`} style={finalHighlightStyle} />
+                <HighlightStyle selector={`#${CSS.escape(id)}`} style={finalHighlightStyle} />
             ) : null}
             <blockquote
                 id={id}

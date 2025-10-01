@@ -167,6 +167,7 @@ const TextEditorField = ({
 
     return (
         <div
+            id={id}
             className={classNames([
                 styles.container,
                 {
@@ -174,7 +175,6 @@ const TextEditorField = ({
                     [className]: className !== null,
                 },
             ])}
-            id={id}
         >
             {Editor !== null ? (
                 <CKEditor
@@ -188,11 +188,14 @@ const TextEditorField = ({
                 />
             ) : null}
             {linkStyle !== null ? (
-                <LinkStyle selector={`#${id} .ck-content`} style={getStyleFromLink(linkStyle)} />
+                <LinkStyle
+                    selector={`#${CSS.escape(id)} .ck-content`}
+                    style={getStyleFromLink(linkStyle)}
+                />
             ) : null}
             {highlightStyle !== null ? (
                 <HighlightStyle
-                    selector={`#${id} .ck-content`}
+                    selector={`#${CSS.escape(id)} .ck-content`}
                     style={getStyleFromHighlight(highlightStyle)}
                 />
             ) : null}
