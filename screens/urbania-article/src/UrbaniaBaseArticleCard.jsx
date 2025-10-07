@@ -279,8 +279,6 @@ const UrbaniaArticleCard = ({
         }
     }, [isView, current, playing, isBackgroundVideo, setPlaying, setControlsSuggestPlay]);
 
-    console.log('hasUrl, hasArticle', hasUrl, hasArticle);
-
     return (
         <div
             className={classNames([

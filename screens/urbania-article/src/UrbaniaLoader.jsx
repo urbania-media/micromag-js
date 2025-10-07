@@ -4,13 +4,26 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { isTextFilled, isValidUrl } from '@micromag/core/utils';
 
 import UrbaniaBaseArticle from './UrbaniaBaseArticle';
 
 const propTypes = {
     component: PropTypes.elementType,
-    theme: PropTypes.string,
+    // theme: PropTypes.string,
+    title: MicromagPropTypes.headingElement,
+    articleType: PropTypes.string,
+    overTitle: PropTypes.shape({
+        body: PropTypes.string,
+    }),
+    sponsorLabel: PropTypes.shape({
+        body: PropTypes.string,
+    }),
+    author: MicromagPropTypes.authorElement,
+    image: MicromagPropTypes.image,
+    header: MicromagPropTypes.header,
+    footer: MicromagPropTypes.footer,
     url: PropTypes.string,
     article: PropTypes.shape({
         type: PropTypes.string,
@@ -19,48 +32,56 @@ const propTypes = {
 
 const defaultProps = {
     component: UrbaniaBaseArticle,
-    theme: null,
+    // theme: null,
+    title: null,
+    articleType: null,
+    overTitle: null,
+    sponsorLabel: null,
+    author: null,
+    image: null,
+    header: null,
+    footer: null,
     url: null,
     article: null,
 };
 
-const UrbaniaLoader = ({ component: Component, theme, url, article: initialArticle, ...props }) => {
+const UrbaniaLoader = ({
+    component: Component,
+    // theme = null,
+    title = null,
+    articleType = null,
+    overTitle = null,
+    sponsorLabel = null,
+    author = null,
+    image = null,
+    header = null,
+    footer = null,
+    url = null,
+    article: initialArticle,
+    ...props
+}) => {
     const [article, setArticle] = useState(initialArticle);
-    // const { isView } = useScreenRenderContext();
-
-    // const hostname = useMemo(() => {
-    //     const { hostname: urlHostname = null } =
-    //         url !== null && isValidUrl(url) ? new URL(url) : {};
-    //     return urlHostname;
-    // }, [url]);
 
     const finalUrl =
         url !== null && isValidUrl(url)
             ? url.replace(/^https?:\/\/([^.]+\.)?urbania\.(ca|ƒr)\//, 'https://urbania.$2/')
-            : url;
+            : null;
 
     useEffect(() => {
-        if (finalUrl !== null && isValidUrl(finalUrl)) {
+        if (finalUrl !== null) {
             getJSON(`https://api.urbania.ca/documents?uri=${finalUrl}`, { mode: 'cors' })
                 .then((art) => {
+                    console.log('art loaded', art);
                     setArticle(art || null);
                 })
-                .catch(() => setArticle(null));
+                .catch((e) => {
+                    console.log('art error', e);
+                    setArticle(null);
+                });
         }
-    }, [finalUrl, setArticle]);
+    }, [url, finalUrl, setArticle]);
 
     const values = useMemo(() => {
-        const {
-            articleType = null,
-            title = {},
-            overTitle = {},
-            sponsorLabel = {},
-            author = null,
-            image = {},
-            header = {},
-            footer = {},
-        } = props || {};
-
         const { url: imageUrl = null } = image || {};
         const { callToAction = null } = footer || {};
         const { url: ctaUrl = null } = callToAction || {};
@@ -142,9 +163,25 @@ const UrbaniaLoader = ({ component: Component, theme, url, article: initialArtic
                 },
             },
         };
-    }, [article, finalUrl, props]);
+    }, [
+        article,
+        url,
+        title,
+        finalUrl,
+        props,
+        articleType,
+        overTitle,
+        sponsorLabel,
+        author,
+        image,
+        header,
+        footer,
+    ]);
 
-    return <Component {...props} {...values} hasArticle={finalUrl !== null && article !== null} />;
+    const { title: articleTitle = null } = values || {};
+    const { body: titleBody = null } = articleTitle || {};
+
+    return <Component {...props} {...values} hasArticle={titleBody !== null} />;
 };
 
 UrbaniaLoader.propTypes = propTypes;
