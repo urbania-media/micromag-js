@@ -5,6 +5,7 @@ $curve: cubic-bezier(0.5, 0, 0.75, 0);
 
 .container {
     @extend %screen;
+    position: absolute;
 
     .background {
         z-index: 1;

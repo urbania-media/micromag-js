@@ -71,11 +71,11 @@ const UrbaniaLoader = ({
         if (finalUrl !== null) {
             getJSON(`https://api.urbania.ca/documents?uri=${finalUrl}`, { mode: 'cors' })
                 .then((art) => {
-                    console.log('art loaded', art);
+                    // console.log('art loaded', art);
                     setArticle(art || null);
                 })
                 .catch((e) => {
-                    console.log('art error', e);
+                    // console.log('art error', e);
                     setArticle(null);
                 });
         }

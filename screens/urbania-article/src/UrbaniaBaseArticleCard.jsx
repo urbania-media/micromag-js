@@ -82,7 +82,14 @@ const UrbaniaArticleCard = ({
 }) => {
     const intl = useIntl();
 
-    const finalBackground = background !== null ? background : { image };
+    const finalBackground =
+        background !== null &&
+        ((typeof background.color !== 'undefined' && background.color !== null) ||
+            (typeof background.image !== 'undefined' && background.image !== null) ||
+            (typeof background.video !== 'undefined' && background.video !== null))
+            ? background
+            : { image };
+
     const { video: backgroundVideo = null } = finalBackground || {};
     const isBackgroundVideo = backgroundVideo !== null;
     const { width, height, resolution } = useScreenSize();
