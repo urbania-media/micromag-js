@@ -105,8 +105,10 @@ const UrbaniaLoader = ({
         const { medium = {}, large = {} } = sizes || {};
         const { name: authorName = null, image: authorImage = null } = creditAuthor || {};
 
+        const hasCreditAuthorName = authorName !== null && authorName !== '';
+
         const finalArticleAuthor = {
-            ...(authorName !== null ? { name: { body: `<p>${authorName}</p>` } } : null),
+            ...(hasCreditAuthorName ? { name: { body: `<p>${authorName}</p>` } } : null),
             ...(authorImage !== null ? { image: authorImage } : null),
         };
 
@@ -127,6 +129,7 @@ const UrbaniaLoader = ({
         const hasTitle = isTextFilled(title);
         const hasOverTitle = isTextFilled(overTitle);
         const hasSponsorProps = isTextFilled(sponsorLabel);
+        const hasAuthorProps = author !== null && author.name !== null && isTextFilled(author.name);
 
         const sponsorPrefix =
             !hasSponsorProps && defaultSponsor !== null ? (
@@ -138,7 +141,7 @@ const UrbaniaLoader = ({
             title: hasTitle ? title : { ...title, body: articleTitle },
             articleTitle,
             overTitle: hasOverTitle ? overTitle : { ...overTitle, body: 'En vedette' },
-            author: { ...finalArticleAuthor, ...author },
+            author: { ...finalArticleAuthor, ...(hasAuthorProps ? author : null) },
             sponsors:
                 defaultSponsor !== null && !hasSponsorProps
                     ? [{ ...sponsorLabel, body: `<strong>${defaultSponsor}</strong>` }]
