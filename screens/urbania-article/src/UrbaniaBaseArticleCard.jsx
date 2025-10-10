@@ -146,8 +146,6 @@ const UrbaniaArticleCard = ({
     const slideInDelay = withCardAnimation && isBackgroundVideo && backgroundPlaying;
     const withCardBounce = withCardAnimation && current;
 
-    console.log('withCardBounce', withCardBounce);
-
     useEffect(() => {
         if (!current) {
             return () => {};
@@ -175,11 +173,11 @@ const UrbaniaArticleCard = ({
 
         if (newOpened) {
             openWebView(finalUrl);
-            console.log('open');
+            console.log('web open');
             disableInteraction();
         } else {
             enableInteraction();
-            console.log('not open');
+            console.log('web not open');
         }
     }, [webviewOpened, disableInteraction, enableInteraction, openWebView, finalUrl]);
 
@@ -231,7 +229,7 @@ const UrbaniaArticleCard = ({
 
     useEffect(() => {
         if (!current && webviewOpened && closeWebView !== null) {
-            console.log('close');
+            console.log('web close');
             closeWebView();
             enableInteraction();
         }
