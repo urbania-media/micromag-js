@@ -230,8 +230,8 @@ const UrbaniaArticleCard = ({
     useEffect(() => {
         if (!current && webviewOpened && closeWebView !== null) {
             console.log('web close');
-            closeWebView();
-            enableInteraction();
+            // closeWebView();
+            // enableInteraction();
         }
     }, [current, webviewOpened, closeWebView, enableInteraction]);
 
