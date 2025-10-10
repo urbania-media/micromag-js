@@ -144,7 +144,9 @@ const UrbaniaArticleCard = ({
     // card animations
     const withCardAnimation = !isPlaceholder && !isPreview && !isStatic;
     const slideInDelay = withCardAnimation && isBackgroundVideo && backgroundPlaying;
-    const withCardBounce = withCardAnimation && current && !webviewOpened;
+    const withCardBounce = withCardAnimation && current;
+
+    console.log('withCardBounce', withCardBounce);
 
     useEffect(() => {
         if (!current) {
@@ -154,11 +156,13 @@ const UrbaniaArticleCard = ({
         setControlsTheme({
             seekBarOnly: true,
         });
+
         if (isBackgroundVideo && !webviewOpened) {
             setControls(true);
         } else {
             setControls(false);
         }
+
         return () => {
             if (isBackgroundVideo && !webviewOpened) {
                 setControls(false);
@@ -171,9 +175,11 @@ const UrbaniaArticleCard = ({
 
         if (newOpened) {
             openWebView(finalUrl);
+            console.log('open');
             disableInteraction();
         } else {
             enableInteraction();
+            console.log('not open');
         }
     }, [webviewOpened, disableInteraction, enableInteraction, openWebView, finalUrl]);
 
@@ -224,10 +230,12 @@ const UrbaniaArticleCard = ({
     });
 
     useEffect(() => {
-        if (!current && closeWebView !== null) {
+        if (!current && webviewOpened && closeWebView !== null) {
+            console.log('close');
             closeWebView();
+            enableInteraction();
         }
-    }, [current, closeWebView]);
+    }, [current, webviewOpened, closeWebView, enableInteraction]);
 
     const onPlayError = useCallback(() => {
         if (isView && playing && current && isBackgroundVideo) {
