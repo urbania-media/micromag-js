@@ -265,16 +265,16 @@
 
     display: flex;
     height: 100%;
-    opacity: 0; /* transitions styles will override this one */
     contain: size layout style paint;
 }
 
 .screen {
     pointer-events: none;
     content-visibility: hidden;
+    contain-intrinsic-size: auto 100vw auto 100vh;
 
     .preload & {
-        content-visibility: auto;
+        content-visibility: visible;
     }
 
     .visible & {
