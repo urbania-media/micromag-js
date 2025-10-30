@@ -9,22 +9,16 @@
     margin: 0 auto;
 
     .scrollable {
+        @extend %hide-scrollbars;
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         min-height: inherit;
+        overflow-x: hidden;
+        overflow-y: auto;
         overscroll-behavior: contain;
-    }
-
-    &.withScroll {
-        .scrollable {
-            @extend %hide-scrollbars;
-
-            position: absolute;
-            top: 0;
-            left: 0;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
     }
 
     &.top {
@@ -58,6 +52,17 @@
     &.withArrow {
         .arrowContainer {
             opacity: 1;
+        }
+    }
+
+    &.disabled {
+        .scrollable {
+            position: static;
+            overflow: visible;
+        }
+
+        .scrollee {
+            margin: 0;
         }
     }
 }

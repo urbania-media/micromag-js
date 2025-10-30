@@ -276,10 +276,13 @@
 
     .preload & {
         display: block;
+        content-visibility: auto;
+        contain-intrinsic-size: auto 100vw auto 100vh;
     }
 
     .visible & {
         display: block;
+        content-visibility: visible;
     }
 
     .current & {

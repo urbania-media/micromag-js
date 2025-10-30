@@ -145,31 +145,22 @@ function Scroll({
             className={classNames([
                 styles.container,
                 {
-                    [styles.withScroll]: !disabled,
-                    [className]: className !== null,
+                    [styles.disabled]: disabled,
                     [styles[verticalAlign]]:
                         verticalAlign !== null && scrolleeHeight < scrollableHeight,
                     [styles.withArrow]: showArrow && withArrow,
                     [styles.withShadow]: withShadow,
+                    className,
                 },
             ])}
             style={finalStyle}
         >
             <div
-                className={classNames([
-                    styles.scrollable,
-                    { [scrollableClassName]: scrollableClassName !== null },
-                ])}
+                className={classNames([styles.scrollable, scrollableClassName])}
                 ref={scrollableRef}
                 {...bind()}
             >
-                <div
-                    className={classNames([
-                        styles.scrollee,
-                        { [scrolleeClassName]: scrolleeClassName !== null },
-                    ])}
-                    ref={scrolleeRef}
-                >
+                <div className={classNames([styles.scrollee, scrolleeClassName])} ref={scrolleeRef}>
                     {children}
                 </div>
             </div>

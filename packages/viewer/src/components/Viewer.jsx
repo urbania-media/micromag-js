@@ -126,7 +126,7 @@ const defaultProps = {
     neighborScreenOffset: 105,
     neighborScreenScale: 0.8,
     neighborPreloadDelay: 2000,
-    neighborPreloadBackward: false,
+    neighborPreloadBackward: true,
     neighborPreloadScreens: null,
     topSafezoneHeight: null,
     bottomSafezoneHeight: null,
@@ -544,7 +544,7 @@ const Viewer = ({
                     const t = index - progress;
                     const invert = Math.min(1, Math.max(0, -t));
                     if (Math.abs(t) > neighborScreensActive) return 0;
-                    return Math.max(0, 1 - 0.75 * invert + (t + 1));
+                    return Math.min(Math.max(0, 1 - 0.75 * invert + (t + 1)), 1);
                 }),
                 transform: spring.to((progress) => {
                     const t = index - progress;

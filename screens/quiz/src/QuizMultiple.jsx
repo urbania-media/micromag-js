@@ -383,7 +383,7 @@ const QuizMultipleScreen = ({
         return 'right';
     }, [questionIndex]);
 
-    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
+    const scrollingDisabled = (!isEdit && transitionDisabled) || !current || isIntro;
     const [scrolledBottom, setScrolledBottom] = useState(false);
 
     const onScrolledBottom = useCallback(
