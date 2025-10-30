@@ -268,26 +268,21 @@
     display: flex;
     height: 100%;
     contain: size layout style paint;
-
-    &.visible {
-        contain: size layout style;
-    }
 }
 
 .screen {
-    visibility: hidden;
+    display: none;
     pointer-events: none;
 
     .preload & {
-        visibility: visible;
+        display: block;
     }
 
     .visible & {
-        visibility: visible;
+        display: block;
     }
 
     .current & {
-        visibility: visible;
         pointer-events: auto;
     }
 }

@@ -1,6 +1,6 @@
 import { useSpring } from '@react-spring/core';
 import { useDrag } from '@use-gesture/react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 function useDragProgress({
     progress: wantedProgress,
@@ -93,7 +93,13 @@ function useDragProgress({
         }
     }, [wantedProgress]);
 
+    const transitioning = useMemo(
+        () => wantedProgress !== progress.get() || progress.isAnimating || dragging,
+        [wantedProgress, progress.isAnimating, dragging],
+    );
+
     return {
+        transitioning,
         bind,
         dragging,
         progress,

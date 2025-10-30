@@ -513,6 +513,7 @@ const Viewer = ({
 
     const {
         dragging: isDragging,
+        transitioning,
         progress: progressSpring,
         bind: dragContentBind,
         direction: transitionDirection,
@@ -948,7 +949,7 @@ const Viewer = ({
                                                     {
                                                         [styles.visible]: isVisible,
                                                         [styles.preload]: preload,
-                                                        [styles.current]: current,
+                                                        [styles.current]: current && !transitioning,
                                                     },
                                                 ])}
                                             >
