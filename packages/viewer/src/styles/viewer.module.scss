@@ -128,7 +128,9 @@
     top: 0;
     width: 100%;
     touch-action: none;
-    transition: opacity 0.5s $ease-in-out-sine, background-image 0.5s $ease-in-out-sine;
+    transition:
+        opacity 0.5s $ease-in-out-sine,
+        background-image 0.5s $ease-in-out-sine;
     contain: content;
 
     /* if playing a media and the controls are "collapsed", fade the buttons, too */
@@ -269,20 +271,19 @@
 }
 
 .screen {
+    visibility: hidden;
     pointer-events: none;
-    content-visibility: hidden;
-    contain-intrinsic-size: auto 100vw auto 100vh;
 
     .preload & {
-        content-visibility: visible;
+        visibility: visible;
     }
 
     .visible & {
-        content-visibility: visible;
+        visibility: visible;
     }
 
     .current & {
-        content-visibility: visible;
+        visibility: visible;
         pointer-events: auto;
     }
 }
@@ -326,13 +327,17 @@ $ease-hard-sine: cubic-bezier(0.9, 0, 0.2, 1);
 .shareIncentive {
     display: inline-block;
     transform: translateY(-10px);
-    transition: opacity 0.3s $ease-hard-sine, transform 0.3s $ease-hard-sine;
+    transition:
+        opacity 0.3s $ease-hard-sine,
+        transform 0.3s $ease-hard-sine;
     opacity: 0;
     pointer-events: auto;
 
     .shareIncentiveVisible & {
         transform: translateY(0);
-        transition: opacity 0.3s 0.5s $ease-woosh, transform 0.3s 0.5s $ease-woosh;
+        transition:
+            opacity 0.3s 0.5s $ease-woosh,
+            transform 0.3s 0.5s $ease-woosh;
         opacity: 1;
     }
 }
