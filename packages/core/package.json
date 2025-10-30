@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.3.752",
+    "version": "0.3.753",
     "private": false,
     "description": "",
     "keywords": [
@@ -100,8 +100,6 @@
         "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
         "@panneau/displays": "^3.0.301",
         "@panneau/element-button": "^3.0.300",
         "@panneau/element-buttons": "^3.0.300",
@@ -116,7 +114,9 @@
         "@panneau/fields": "^3.0.301",
         "@panneau/filters": "^3.0.301",
         "@panneau/medias": "^3.0.300",
-        "@panneau/uppy": "^3.0.162"
+        "@panneau/uppy": "^3.0.162",
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
