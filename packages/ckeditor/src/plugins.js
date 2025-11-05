@@ -13,7 +13,7 @@ import MarkerPlugin from './MarkerPlugin';
 
 export const defaultPlugins = [Highlight, Superscript, MarkerPlugin];
 
-export const inlinePlugins = [InlinePlugin];
+export const inlinePlugins = [InlinePlugin, BlockQuote];
 
 export const fullPlugins = [
     Heading,

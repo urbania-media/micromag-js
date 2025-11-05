@@ -111,7 +111,7 @@
         "@panneau/element-media-card": "^3.0.300",
         "@panneau/element-media-player": "^3.0.300",
         "@panneau/element-modal": "^3.0.300",
-        "@panneau/fields": "^3.0.301",
+        "@panneau/fields": "^3.0.306",
         "@panneau/filters": "^3.0.301",
         "@panneau/medias": "^3.0.300",
         "@panneau/uppy": "^3.0.162",

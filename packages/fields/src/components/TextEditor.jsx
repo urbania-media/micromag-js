@@ -90,11 +90,13 @@ const TextEditorField = ({
         return editorConfig;
     }, [editorConfig, withoutLink]);
 
-    const uniqueId = useId();
+    // const uniqueId = useId();
+    const uniqueId = 'fdsfsdfs';
     const id = `editor-${uniqueId}`;
 
     const finalEditorConfig = useMemo(
         () => ({
+            licenseKey: 'GPL',
             extraPlugins: [
                 ...defaultPlugins,
                 ...(inline ? inlinePlugins : []),
@@ -152,6 +154,10 @@ const TextEditorField = ({
             fullPlugins,
         ],
     );
+
+    console.log({
+        finalEditorConfig,
+    })
 
     const onEditorReady = useCallback(() => {}, []);
 

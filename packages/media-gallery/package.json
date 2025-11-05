@@ -55,7 +55,7 @@
     "devDependencies": {
         "@panneau/data": "^3.0.163",
         "@panneau/displays": "^3.0.163",
-        "@panneau/fields": "^3.0.163",
+        "@panneau/fields": "^3.0.306",
         "@panneau/filters": "^3.0.163",
         "@panneau/uppy": "^3.0.162",
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

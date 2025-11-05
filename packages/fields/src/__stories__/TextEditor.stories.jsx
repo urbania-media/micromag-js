@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import TextEditor from '../components/TextEditor';
 
 export default {
@@ -10,8 +11,8 @@ export default {
 };
 
 const FieldContainer = () => {
-    const [value, setValue] = useState(null);
-    return <TextEditor value={value} onChange={setValue} />;
+    const [value, setValue] = useState('Test');
+    return <TextEditor value={value} inline onChange={setValue} />;
 };
 
 export const normal = () => (
