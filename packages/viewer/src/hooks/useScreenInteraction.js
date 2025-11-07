@@ -65,7 +65,6 @@ function useScreenInteraction({
             if (
                 (disableCurrentScreenNavigation && tappedCurrent) ||
                 checkClickable(target) ||
-                checkClickable(currentTarget) ||
                 (tappedCurrent && !currentScreenInteractionEnabled)
             ) {
                 return;

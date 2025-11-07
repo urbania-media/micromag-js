@@ -1,5 +1,5 @@
 function checkClickable(el, options = {}, parentDistance = 1) {
-    const { maxParentDistance = 5, tags = ['BUTTON', 'A', 'INPUT', 'TEXTAREA'] } = options || {};
+    const { maxParentDistance = 7, tags = ['BUTTON', 'A', 'INPUT', 'TEXTAREA'] } = options || {};
     const { tagName = null, parentNode = null, dataset = {}, classList = null } = el || {};
 
     if (tagName === 'BODY') {
