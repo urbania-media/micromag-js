@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.757",
+    "version": "0.3.759",
     "private": false,
     "description": "",
     "keywords": [
@@ -90,7 +90,7 @@
         "@micromag/screen-gallery-feed": "^0.3.757",
         "@micromag/screen-game-sort": "^0.3.757",
         "@micromag/screen-image": "^0.3.757",
-        "@micromag/screen-keypad": "^0.3.757",
+        "@micromag/screen-keypad": "^0.3.759",
         "@micromag/screen-map": "^0.3.757",
         "@micromag/screen-quiz": "^0.3.757",
         "@micromag/screen-quote": "^0.3.757",
