@@ -558,7 +558,7 @@ const KeypadScreen = ({
             buttonBoxStyle,
             buttonTextStyle,
             buttonLayout,
-            clickDisabled,
+            isNotInteractive,
         ],
     );
 
