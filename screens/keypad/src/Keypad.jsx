@@ -202,6 +202,7 @@ const KeypadScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = !isPlaceholder && (current || preload);
     const isInteractivePreview = isEdit && screenState === null;
+    const isNotInteractive = isEdit && screenState !== null;
 
     const { layout: keypadLayout = null } = keypadSettings || {};
     const {
@@ -262,6 +263,11 @@ const KeypadScreen = ({
     const onItemClick = useCallback(
         (e, item, index) => {
             e.stopPropagation();
+
+            if (isNotInteractive) {
+                return;
+            }
+
             const {
                 label: itemLabel = null,
                 heading = null,
@@ -291,21 +297,27 @@ const KeypadScreen = ({
                 },
             );
         },
-        [setPopup, setShowPopup, trackScreenEvent, openWebView],
+        [setPopup, setShowPopup, trackScreenEvent, openWebView, isNotInteractive],
     );
 
     const onCloseModal = useCallback(() => {
+        if (isNotInteractive) {
+            return;
+        }
         setShowPopup(false);
         trackScreenEvent('close_modal');
-    }, [setShowPopup, trackScreenEvent]);
+    }, [setShowPopup, trackScreenEvent, isNotInteractive]);
 
     const onClickClose = useCallback(
         (e) => {
+            if (isNotInteractive) {
+            return;
+        }
             e.preventDefault();
             e.stopPropagation();
             onCloseModal();
         },
-        [onCloseModal],
+        [onCloseModal, isNotInteractive],
     );
 
     const onClickCta = useCallback((e = null) => {
@@ -418,6 +430,7 @@ const KeypadScreen = ({
             document.removeEventListener('keyup', keyup);
         };
     }, [showPopup, onCloseModal]);
+
 
     const gridItems = useMemo(
         () =>
@@ -545,6 +558,7 @@ const KeypadScreen = ({
             buttonBoxStyle,
             buttonTextStyle,
             buttonLayout,
+            clickDisabled,
         ],
     );
 
@@ -582,7 +596,6 @@ const KeypadScreen = ({
             ])}
             data-screen-ready
         >
-            {isEdit && screenState !== null ? <div {...mouseBlocker} /> : null}
             {!isPlaceholder ? (
                 <Background
                     background={background}
