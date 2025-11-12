@@ -100,6 +100,14 @@
     text-align: center;
 }
 
+.title {
+    width: 100%;
+}
+
+.subtitle {
+    width: 100%;
+}
+
 .emptyTitle,
 .emptyText {
     @extend %empty;
