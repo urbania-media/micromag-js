@@ -1,5 +1,5 @@
 import { useSpring } from '@react-spring/core';
-import { useDrag } from '@use-gesture/react';
+import { useDrag, useGesture } from '@use-gesture/react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 function useDragProgress({
@@ -9,6 +9,7 @@ function useDragProgress({
     dragDisabled = false,
     computeProgress = null,
     onProgress = null,
+    onPointerDown = null,
     springParams = undefined,
     dragOptions = {
         filterTaps: true,
@@ -77,7 +78,15 @@ function useDragProgress({
         [setDragging, disabled, onTap, computeProgress, dragging, onProgress],
     );
 
-    const bind = useDrag(onDrag, dragOptions);
+    const bind = useGesture(
+        {
+            onDrag,
+            onPointerDown,
+        },
+        {
+            drag: dragOptions,
+        },
+    );
 
     useEffect(() => {
         if (!refDragging.current && wantedProgress !== refProgress.current) {

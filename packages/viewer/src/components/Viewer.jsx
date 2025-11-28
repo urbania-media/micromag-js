@@ -63,6 +63,8 @@ const propTypes = {
     renderContext: MicromagPropTypes.renderContext,
     onScreenChange: PropTypes.func,
     tapNextScreenWidthPercent: PropTypes.number,
+    tapMaximumDuration: PropTypes.number,
+    longPressPauseDelay: PropTypes.number,
     storyIsParsed: PropTypes.bool,
     neighborScreensActive: PropTypes.number,
     neighborScreenOffset: PropTypes.number,
@@ -121,6 +123,8 @@ const defaultProps = {
     renderContext: 'view',
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.8,
+    tapMaximumDuration: 1500,
+    longPressPauseDelay: 300,
     storyIsParsed: false,
     neighborScreensActive: 1,
     neighborScreenOffset: 105,
@@ -174,6 +178,8 @@ const Viewer = ({
     deviceScreens,
     renderContext,
     tapNextScreenWidthPercent,
+    tapMaximumDuration,
+    longPressPauseDelay,
     storyIsParsed,
     neighborScreensActive,
     neighborScreenOffset,
@@ -281,6 +287,7 @@ const Viewer = ({
 
     const {
         playing,
+        setPlaying,
         // setControls,
         controls: playbackControls = false,
         controlsVisible: playbackControlsVisible = false,
@@ -433,8 +440,42 @@ const Viewer = ({
         onNavigate: onScreenNavigate,
     });
 
+    // Long press to pause playback
+    const [pointerDownTime, setPointerDownTime] = useState(null);
+    const [longPressPaused, setLongPressPaused] = useState(false);
+    useEffect(() => {
+        setLongPressPaused(false);
+        setPointerDownTime(null);
+    }, [screenIndex]);
+    useEffect(() => {
+        if (pointerDownTime === null || !playing) {
+            return () => {};
+        }
+        const interval = setTimeout(() => {
+            setPlaying(false);
+            setLongPressPaused(true);
+        }, longPressPauseDelay);
+        return () => clearInterval(interval);
+    }, [playing, pointerDownTime, longPressPauseDelay]);
+    const onPointerDown = useCallback(() => {
+        setPointerDownTime(Date.now());
+    }, []);
+
     const onTap = useCallback(
-        ({ currentTarget, event, target, xy: [x, y] }) => {
+        ({ currentTarget, event, target, xy: [x, y], elapsedTime, args: [bindState] }) => {
+            setPointerDownTime(null);
+            const {
+                playing: currentPlaying = false,
+                longPressPaused: currentLongPressPaused = false,
+            } = bindState || {};
+            if (!currentPlaying && currentLongPressPaused) {
+                setPlaying(true);
+                setLongPressPaused(false);
+                return;
+            }
+            if (tapMaximumDuration !== null && elapsedTime > tapMaximumDuration) {
+                return;
+            }
             // if (event) {
             //     event.stopPropagation();
             // }
@@ -447,7 +488,7 @@ const Viewer = ({
                 y,
             });
         },
-        [interactWithScreen, screenIndex],
+        [interactWithScreen, screenIndex, tapMaximumDuration],
     );
 
     const computeScreenProgress = useCallback(
@@ -471,7 +512,15 @@ const Viewer = ({
     );
 
     const onScreenProgress = useCallback(
-        (progress, { active }) => {
+        (progress, { active, args: [bindState] }) => {
+            const {
+                playing: currentPlaying = false,
+                longPressPaused: currentLongPressPaused = false,
+            } = bindState || {};
+            if (!active && !currentPlaying && currentLongPressPaused) {
+                setPlaying(true);
+                setLongPressPaused(false);
+            }
             const delta = Math.abs(progress - screenIndex);
             const reachedBounds = progress < 0 || progress >= screensCount; // have we reached the end of the stack?
             if (!active && delta === 1 && !reachedBounds) {
@@ -523,6 +572,7 @@ const Viewer = ({
         dragDisabled: withoutGestures || !currentScreenInteractionEnabled,
         computeProgress: computeScreenProgress,
         onProgress: onScreenProgress,
+        onPointerDown,
         onTap,
         springParams,
         dragOptions: {
@@ -873,7 +923,10 @@ const Viewer = ({
                             />
                         ) : null}
                         {ready || withoutScreensTransforms ? (
-                            <div className={styles.content} {...dragContentBind()}>
+                            <div
+                                className={styles.content}
+                                {...dragContentBind({ playing, longPressPaused })}
+                            >
                                 {!withoutNavigationArrow &&
                                 !withNeighborScreens &&
                                 !navigationDisabled &&

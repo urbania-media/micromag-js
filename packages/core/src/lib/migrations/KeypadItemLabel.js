@@ -1,4 +1,4 @@
-import { isString } from 'lodash';
+import isString from 'lodash/isString';
 
 /* eslint-disable class-methods-use-this */
 class KeypadItemLabel {
