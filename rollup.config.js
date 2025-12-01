@@ -17,6 +17,7 @@ import imageAssets from './scripts/rollup-image-assets';
 
 export const createConfig = ({
     file = 'index.js',
+    outputConfig = null,
     input = null,
     output = null,
     banner = null,
@@ -38,15 +39,15 @@ export const createConfig = ({
         file: output || `es/${file}`,
         banner,
     };
-    let outputConfig;
-    if (format === 'both') {
-        outputConfig = [outputCjs, outputEs];
-    } else {
-        outputConfig = isCjs ? outputCjs : outputEs;
+    let finalOutputConfig = outputConfig;
+    if (outputConfig === null && format === 'both') {
+        finalOutputConfig = [outputCjs, outputEs];
+    } else if (outputConfig === null) {
+        finalOutputConfig = isCjs ? outputCjs : outputEs;
     }
     return {
         input: input || `src/${file}`,
-        output: outputConfig,
+        output: finalOutputConfig,
         treeshake: {
             moduleSideEffects: ['@micromag/intl/locale/fr', '@micromag/intl/locale/en'],
         },
@@ -69,7 +70,7 @@ export const createConfig = ({
                     'src/**/*.svg',
                     'src/**/*.jpg',
                     'src/**/*.gif',
-                    'src/**/*.webp'
+                    'src/**/*.webp',
                 ],
                 emitFiles: true,
                 // sourceDir: 'src/images',

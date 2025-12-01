@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ReactDOMServer from 'react-dom/server';
+import { renderToStaticMarkup } from 'react-dom/server';
 import Viewer from '@micromag/viewer';
 
 const getStoryHtmlSSR = (story, settings = {}) => {
@@ -13,6 +13,6 @@ const getStoryHtmlSSR = (story, settings = {}) => {
         googleApiKey,
         memoryRouter: true,
     });
-    return ReactDOMServer.renderToStaticMarkup(element);
+    return renderToStaticMarkup(element);
 };
 export default getStoryHtmlSSR;

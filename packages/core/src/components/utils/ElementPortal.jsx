@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import { useEffect, useMemo } from 'react';
-import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -33,7 +33,7 @@ const ElementPortal = ({ id, data, children, container, register, unregister }) 
             }
         };
     }, [finalId, data]);
-    return container !== null ? ReactDOM.createPortal(children, container) : null;
+    return container !== null ? createPortal(children, container) : null;
 };
 
 ElementPortal.propTypes = propTypes;

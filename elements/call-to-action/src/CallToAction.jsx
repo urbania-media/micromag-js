@@ -1,6 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading, jsx-a11y/control-has-associated-label */
-// import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
