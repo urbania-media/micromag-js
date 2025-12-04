@@ -182,6 +182,7 @@ const KeypadScreen = ({
         bottomHeight: viewerBottomHeight,
         bottomSidesWidth: viewerBottomSidesWidth,
     } = useViewerContext();
+
     const { open: openWebView } = useViewerWebView();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
@@ -209,9 +210,11 @@ const KeypadScreen = ({
         columnAlign = null,
         columns = null,
         spacing: columnSpacing = null,
-        imageHeight = null,
+        image: keypadImage = null,
         withSquareItems = false,
     } = keypadLayout || {};
+
+    const { width: imageWidth = null, height: imageHeight = null } = keypadImage || {};
 
     const {
         layout: buttonLayout = null,
@@ -469,8 +472,6 @@ const KeypadScreen = ({
                     ...finalLabelTextStyle,
                 };
 
-                const itemWidth = 'auto';
-
                 return (
                     <div key={key} className={styles.item}>
                         <Button
@@ -524,12 +525,17 @@ const KeypadScreen = ({
                                         className={styles.buttonVisual}
                                         imageClassName={classNames([
                                             styles.thumbnail,
-                                            { [styles.withImageHeight]: imageHeight !== null },
+                                            {
+                                                [styles.withImageSize]:
+                                                    imageWidth !== null || imageHeight !== null,
+                                            },
                                         ])}
                                         media={visual}
                                         resolution={resolution}
-                                        width={itemWidth}
-                                        height={imageHeight || 50} // Also hard coded in css... add control
+                                        width={imageWidth || 'auto'}
+                                        height={
+                                            imageHeight || (imageWidth !== null ? 'auto' : null)
+                                        }
                                     />
                                 ) : null}
                             </ScreenElement>

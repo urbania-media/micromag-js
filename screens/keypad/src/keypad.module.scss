@@ -212,8 +212,8 @@
     pointer-events: none;
     user-select: none;
 
-    &.withImageHeight {
-        max-height: none;
+    &.withImageSize {
+        max-height: 100%;
     }
 }
 

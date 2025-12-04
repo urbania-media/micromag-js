@@ -48,13 +48,33 @@ export default {
             }),
         },
         {
-            name: 'imageHeight',
-            type: 'number',
-            isHorizontal: true,
+            name: 'image',
+            type: 'fields',
             label: defineMessage({
-                defaultMessage: 'Image height',
-                description: 'Field label',
+                defaultMessage: 'Image',
+                description: 'Fields section label',
             }),
+            isList: true,
+            fields: [
+                {
+                    name: 'width',
+                    type: 'number',
+                    isHorizontal: true,
+                    label: defineMessage({
+                        defaultMessage: 'Width',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'height',
+                    type: 'number',
+                    isHorizontal: true,
+                    label: defineMessage({
+                        defaultMessage: 'Height',
+                        description: 'Field label',
+                    }),
+                },
+            ],
         },
         {
             name: 'withSquareItems',
