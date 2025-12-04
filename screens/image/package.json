@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-image",
-    "version": "0.3.763",
+    "version": "0.3.764",
     "private": false,
     "description": "",
     "keywords": [
@@ -68,7 +68,7 @@
         "@micromag/element-heading": "^0.3.763",
         "@micromag/element-layout": "^0.3.763",
         "@micromag/element-text": "^0.3.763",
-        "@micromag/element-visual": "^0.3.763",
+        "@micromag/element-visual": "^0.3.764",
         "@micromag/transforms": "^0.3.763",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
