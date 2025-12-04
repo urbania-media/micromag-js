@@ -65,28 +65,28 @@ const placeholderPopupBoxStyles = {
     },
 };
 
-const stopDragEventsPropagation = {
-    onTouchMove: (e) => e.stopPropagation(),
-    onTouchStart: (e) => e.stopPropagation(),
-    onTouchEnd: (e) => e.stopPropagation(),
-    onPointerMove: (e) => e.stopPropagation(),
-    onPointerUp: (e) => e.stopPropagation(),
-    onPointerDown: (e) => e.stopPropagation(),
-};
+// const stopDragEventsPropagation = {
+//     onTouchMove: (e) => e.stopPropagation(),
+//     onTouchStart: (e) => e.stopPropagation(),
+//     onTouchEnd: (e) => e.stopPropagation(),
+//     onPointerMove: (e) => e.stopPropagation(),
+//     onPointerUp: (e) => e.stopPropagation(),
+//     onPointerDown: (e) => e.stopPropagation(),
+// };
 
-const mouseBlocker = {
-    ...stopDragEventsPropagation,
-    onClick: (e) => e.stopPropagation(),
-    style: {
-        position: 'fixed',
-        zIndex: '1000',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        cursor: 'default',
-    },
-};
+// const mouseBlocker = {
+//     ...stopDragEventsPropagation,
+//     onClick: (e) => e.stopPropagation(),
+//     style: {
+//         position: 'fixed',
+//         zIndex: '1000',
+//         top: 0,
+//         right: 0,
+//         bottom: 0,
+//         left: 0,
+//         cursor: 'default',
+//     },
+// };
 
 const propTypes = {
     items: PropTypes.arrayOf(
@@ -209,6 +209,7 @@ const KeypadScreen = ({
         columnAlign = null,
         columns = null,
         spacing: columnSpacing = null,
+        imageHeight = null,
         withSquareItems = false,
     } = keypadLayout || {};
 
@@ -521,11 +522,14 @@ const KeypadScreen = ({
                                 {visual !== null ? (
                                     <Visual
                                         className={styles.buttonVisual}
-                                        imageClassName={styles.thumbnail}
+                                        imageClassName={classNames([
+                                            styles.thumbnail,
+                                            { [styles.withImageHeight]: imageHeight !== null },
+                                        ])}
                                         media={visual}
                                         resolution={resolution}
                                         width={itemWidth}
-                                        height={50} // Also hard coded in css... add control
+                                        height={imageHeight || 50} // Also hard coded in css... add control
                                     />
                                 ) : null}
                             </ScreenElement>

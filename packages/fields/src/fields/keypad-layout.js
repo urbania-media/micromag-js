@@ -48,6 +48,15 @@ export default {
             }),
         },
         {
+            name: 'imageHeight',
+            type: 'number',
+            isHorizontal: true,
+            label: defineMessage({
+                defaultMessage: 'Image height',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'withSquareItems',
             type: 'toggle',
             label: defineMessage({

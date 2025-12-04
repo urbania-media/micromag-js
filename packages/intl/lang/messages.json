@@ -1178,6 +1178,10 @@
     "defaultMessage": "Questions",
     "description": "State label"
   },
+  "VyXoBp": {
+    "defaultMessage": "Image height",
+    "description": "Field label"
+  },
   "W5qWPj": {
     "defaultMessage": "Center",
     "description": "Field label"

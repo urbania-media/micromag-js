@@ -211,6 +211,10 @@
     max-height: 50px;
     pointer-events: none;
     user-select: none;
+
+    &.withImageHeight {
+        max-height: none;
+    }
 }
 
 .buttonLabel {

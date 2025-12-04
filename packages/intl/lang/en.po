@@ -1781,6 +1781,12 @@ msgid "Questions"
 msgstr "Questions"
 
 # Field label
+#: VyXoBp
+msgctxt "VyXoBp"
+msgid "Image height"
+msgstr "Image height"
+
+# Field label
 #: W5qWPj
 msgctxt "W5qWPj"
 msgid "Center"
