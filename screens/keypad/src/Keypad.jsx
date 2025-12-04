@@ -311,8 +311,8 @@ const KeypadScreen = ({
     const onClickClose = useCallback(
         (e) => {
             if (isNotInteractive) {
-            return;
-        }
+                return;
+            }
             e.preventDefault();
             e.stopPropagation();
             onCloseModal();
@@ -431,7 +431,6 @@ const KeypadScreen = ({
         };
     }, [showPopup, onCloseModal]);
 
-
     const gridItems = useMemo(
         () =>
             (items === null || items.length === 0 ? placeholders : items).map((item, index) => {
@@ -468,6 +467,8 @@ const KeypadScreen = ({
                     ...buttonTextStyle,
                     ...finalLabelTextStyle,
                 };
+
+                const itemWidth = 'auto';
 
                 return (
                     <div key={key} className={styles.item}>
@@ -522,7 +523,9 @@ const KeypadScreen = ({
                                         className={styles.buttonVisual}
                                         imageClassName={styles.thumbnail}
                                         media={visual}
-                                        width="auto"
+                                        resolution={resolution}
+                                        width={itemWidth}
+                                        height={50} // Also hard coded in css... add control
                                     />
                                 ) : null}
                             </ScreenElement>
@@ -855,6 +858,7 @@ const KeypadScreen = ({
                                                 <Visual
                                                     className={styles.popupVisual}
                                                     media={largeVisual}
+                                                    resolution={resolution}
                                                     width="100%"
                                                 />
                                             ) : null}

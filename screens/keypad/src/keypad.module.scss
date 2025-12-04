@@ -124,7 +124,8 @@
 }
 
 .grid {
-    width: 85%; // @note: leaves a bigger left/right gutter for onClick navigation between screens
+    width: 85%;
+    // @note: leaves a bigger left/right gutter for onClick navigation between screens
 }
 
 .item {
@@ -411,9 +412,6 @@
 
     .thumbnail {
         width: 100% !important;
-        // object-fit: cover;
-        // width: 100%;
-        // max-height: 100px;
         max-height: none;
 
         .withSquareItems & {

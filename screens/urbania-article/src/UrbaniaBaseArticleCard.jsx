@@ -227,6 +227,7 @@ const UrbaniaArticleCard = ({
         },
     });
 
+    // TODIO: current switches on/off for a split second and fucks this up
     useEffect(() => {
         if (!current && webviewOpened && closeWebView !== null) {
             console.log('web close');

@@ -192,6 +192,8 @@ const Image = ({
         resolution,
     });
 
+    console.log('image finalWidth, finalHeight, resolution', finalImageStyle, resolution, finalUrl);
+
     return (
         <div
             className={classNames([
