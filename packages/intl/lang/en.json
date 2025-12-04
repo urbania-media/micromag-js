@@ -884,11 +884,11 @@
     "VMd1oG": {
         "defaultMessage": "Questions"
     },
-    "VyXoBp": {
-        "defaultMessage": "Image height"
-    },
     "W5qWPj": {
         "defaultMessage": "Center"
+    },
+    "WOStf5": {
+        "defaultMessage": "Image"
     },
     "WX83V9": {
         "defaultMessage": "File name"
@@ -1006,6 +1006,9 @@
     },
     "Zpl5bJ": {
         "defaultMessage": "Spacing"
+    },
+    "Zw4vWC": {
+        "defaultMessage": "Height"
     },
     "ZxgNge": {
         "defaultMessage": "Add an item"
@@ -1396,6 +1399,9 @@
     },
     "mXeSkg": {
         "defaultMessage": "Link"
+    },
+    "mY0bHb": {
+        "defaultMessage": "Width"
     },
     "menus.pagination.next": {
         "defaultMessage": "next"

@@ -1781,16 +1781,16 @@ msgid "Questions"
 msgstr "Questions"
 
 # Field label
-#: VyXoBp
-msgctxt "VyXoBp"
-msgid "Image height"
-msgstr "Image height"
-
-# Field label
 #: W5qWPj
 msgctxt "W5qWPj"
 msgid "Center"
 msgstr "Center"
+
+# Fields section label
+#: WOStf5
+msgctxt "WOStf5"
+msgid "Image"
+msgstr "Image"
 
 # Field name
 #: WX83V9
@@ -2025,6 +2025,12 @@ msgstr "Questions"
 msgctxt "Zpl5bJ"
 msgid "Spacing"
 msgstr "Spacing"
+
+# Field label
+#: Zw4vWC
+msgctxt "Zw4vWC"
+msgid "Height"
+msgstr "Height"
 
 # Button label in items field
 #: ZxgNge
@@ -2794,6 +2800,12 @@ msgstr "Pause"
 msgctxt "mXeSkg"
 msgid "Link"
 msgstr "Link"
+
+# Field label
+#: mY0bHb
+msgctxt "mY0bHb"
+msgid "Width"
+msgstr "Width"
 
 #: menus.pagination.next
 msgctxt "menus.pagination.next"
