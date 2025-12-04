@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-visual",
-    "version": "0.3.764",
+    "version": "0.3.765",
     "private": false,
     "description": "",
     "keywords": [
@@ -61,7 +61,7 @@
         "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.20",
         "@micromag/core": "^0.3.763",
-        "@micromag/element-image": "^0.3.764",
+        "@micromag/element-image": "^0.3.765",
         "@micromag/element-video": "^0.3.763",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",

@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-conversation",
-    "version": "0.3.764",
+    "version": "0.3.765",
     "private": false,
     "description": "",
     "keywords": [
@@ -69,7 +69,7 @@
         "@micromag/element-layout": "^0.3.763",
         "@micromag/element-scroll": "^0.3.763",
         "@micromag/element-text": "^0.3.763",
-        "@micromag/element-visual": "^0.3.764",
+        "@micromag/element-visual": "^0.3.765",
         "@micromag/transforms": "^0.3.763",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",

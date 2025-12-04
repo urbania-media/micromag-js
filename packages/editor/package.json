@@ -1,6 +1,6 @@
 {
     "name": "@micromag/editor",
-    "version": "0.3.764",
+    "version": "0.3.765",
     "private": false,
     "description": "",
     "keywords": [
@@ -72,10 +72,10 @@
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@micromag/core": "^0.3.763",
-        "@micromag/elements": "^0.3.764",
-        "@micromag/fields": "^0.3.764",
-        "@micromag/screens": "^0.3.764",
-        "@micromag/viewer": "^0.3.764",
+        "@micromag/elements": "^0.3.765",
+        "@micromag/fields": "^0.3.765",
+        "@micromag/screens": "^0.3.765",
+        "@micromag/viewer": "^0.3.765",
         "@panneau/uppy": "^3.0.162",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
