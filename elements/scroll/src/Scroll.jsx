@@ -144,6 +144,7 @@ function Scroll({
         <div
             className={classNames([
                 styles.container,
+                styles.withScroll,
                 {
                     [styles.disabled]: disabled,
                     [styles[verticalAlign]]:
