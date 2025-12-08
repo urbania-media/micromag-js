@@ -304,13 +304,18 @@ const KeypadScreen = ({
         [setPopup, setShowPopup, trackScreenEvent, openWebView, isNotInteractive],
     );
 
-    const onCloseModal = useCallback(() => {
-        if (isNotInteractive) {
-            return;
-        }
-        setShowPopup(false);
-        trackScreenEvent('close_modal');
-    }, [setShowPopup, trackScreenEvent, isNotInteractive]);
+    const onCloseModal = useCallback(
+        (isShowPopup = false) => {
+            if (isNotInteractive) {
+                return;
+            }
+            if (isShowPopup) {
+                trackScreenEvent('close_modal');
+            }
+            setShowPopup(false);
+        },
+        [setShowPopup, trackScreenEvent, isNotInteractive],
+    );
 
     const onClickClose = useCallback(
         (e) => {
@@ -319,9 +324,9 @@ const KeypadScreen = ({
             }
             e.preventDefault();
             e.stopPropagation();
-            onCloseModal();
+            onCloseModal(showPopup);
         },
-        [onCloseModal, isNotInteractive],
+        [onCloseModal, isNotInteractive, showPopup],
     );
 
     const onClickCta = useCallback((e = null) => {
@@ -356,7 +361,7 @@ const KeypadScreen = ({
             }
             if (!dragActive) {
                 if (reachedThreshold) {
-                    onCloseModal();
+                    onCloseModal(true);
                     return 1;
                 }
                 return 0;
@@ -389,7 +394,7 @@ const KeypadScreen = ({
             ) {
                 e.preventDefault();
                 e.stopPropagation();
-                onCloseModal();
+                onCloseModal(showPopup);
             }
         }
         document.addEventListener('mouseup', handleClickOutside);
@@ -409,8 +414,8 @@ const KeypadScreen = ({
     }, [setPopupDragDisabled]);
 
     const onTap = useCallback(() => {
-        onCloseModal();
-    }, [onCloseModal]);
+        onCloseModal(showPopup);
+    }, [onCloseModal, showPopup]);
 
     const { bind: bindPopupDrag, progress: popupSpring } = useDragProgress({
         disabled: !isView || popupDragDisabled,
@@ -425,7 +430,7 @@ const KeypadScreen = ({
         const keyup = (e) => {
             if (e.key === 'Escape') {
                 if (showPopup) {
-                    onCloseModal();
+                    onCloseModal(showPopup);
                 }
             }
         };

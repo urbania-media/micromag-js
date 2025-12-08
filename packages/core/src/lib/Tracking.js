@@ -16,7 +16,8 @@ class Tracking extends BaseTracking {
             parameters: { metadata: parametersMetadata } = {},
         } = screen || {};
 
-        const { title: screenTitle, description: screenDescrition } = metadata || parametersMetadata || {};
+        const { title: screenTitle, description: screenDescrition } =
+            metadata || parametersMetadata || {};
         if (this.screensViewed.indexOf(screenId || screenIndex) === -1) {
             this.screensViewed = [...this.screensViewed, screenId || screenIndex];
         }
@@ -39,9 +40,10 @@ class Tracking extends BaseTracking {
         this.push(data);
     }
 
-    trackEvent(category, action, label, { value = null, ...opts } = {}) {
+    trackEvent(category = null, action = null, label = null, opts = null) {
+        const { value = null, ...otherOpts } = opts || {};
         const data = {
-            ...opts,
+            ...(otherOpts || null),
             event: 'eventInteraction',
             eventCategory: category,
             eventAction: action,
@@ -51,12 +53,8 @@ class Tracking extends BaseTracking {
         this.push(data);
     }
 
-    trackMedia(
-        type,
-        media,
-        action,
-        { value = null, currentTime: optsCurrentTime = null, ...opts } = {},
-    ) {
+    trackMedia(type = null, media = null, action = null, opts = null) {
+        const { value = null, currentTime: optsCurrentTime = null, ...otherOpts } = opts || {};
         const {
             id: mediaId = null,
             url: mediaUrl = null,
@@ -67,7 +65,7 @@ class Tracking extends BaseTracking {
         } = media || {};
         const { duration = rootDuration } = metadata || {};
         const data = {
-            ...opts,
+            ...(otherOpts || null),
             event: 'eventInteraction',
             eventCategory: type,
             eventAction: action,
