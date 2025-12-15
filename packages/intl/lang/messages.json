@@ -1182,6 +1182,10 @@
     "defaultMessage": "Center",
     "description": "Field label"
   },
+  "WOStf5": {
+    "defaultMessage": "Image",
+    "description": "Fields section label"
+  },
   "WX83V9": {
     "defaultMessage": "File name",
     "description": "Field name"
@@ -1337,6 +1341,10 @@
   "Zpl5bJ": {
     "defaultMessage": "Spacing",
     "description": "Spacing field label"
+  },
+  "Zw4vWC": {
+    "defaultMessage": "Height",
+    "description": "Field label"
   },
   "ZxgNge": {
     "defaultMessage": "Add an item",
@@ -1841,6 +1849,10 @@
   },
   "mXeSkg": {
     "defaultMessage": "Link",
+    "description": "Field label"
+  },
+  "mY0bHb": {
+    "defaultMessage": "Width",
     "description": "Field label"
   },
   "menus.pagination.next": {

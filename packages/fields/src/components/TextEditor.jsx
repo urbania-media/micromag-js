@@ -155,9 +155,9 @@ const TextEditorField = ({
         ],
     );
 
-    console.log({
-        finalEditorConfig,
-    })
+    // console.log({
+    //     finalEditorConfig,
+    // })
 
     const onEditorReady = useCallback(() => {}, []);
 

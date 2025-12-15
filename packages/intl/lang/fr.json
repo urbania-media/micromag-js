@@ -887,6 +887,9 @@
     "W5qWPj": {
         "defaultMessage": "Centrer"
     },
+    "WOStf5": {
+        "defaultMessage": "Image"
+    },
     "WX83V9": {
         "defaultMessage": "Nom du fichier"
     },
@@ -1003,6 +1006,9 @@
     },
     "Zpl5bJ": {
         "defaultMessage": "Espacement"
+    },
+    "Zw4vWC": {
+        "defaultMessage": "Hauteur"
     },
     "ZxgNge": {
         "defaultMessage": "Ajouter un élement"
@@ -1393,6 +1399,9 @@
     },
     "mXeSkg": {
         "defaultMessage": "Lien"
+    },
+    "mY0bHb": {
+        "defaultMessage": "Largeur"
     },
     "menus.pagination.next": {
         "defaultMessage": "suivant"

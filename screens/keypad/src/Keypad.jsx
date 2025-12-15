@@ -65,28 +65,28 @@ const placeholderPopupBoxStyles = {
     },
 };
 
-const stopDragEventsPropagation = {
-    onTouchMove: (e) => e.stopPropagation(),
-    onTouchStart: (e) => e.stopPropagation(),
-    onTouchEnd: (e) => e.stopPropagation(),
-    onPointerMove: (e) => e.stopPropagation(),
-    onPointerUp: (e) => e.stopPropagation(),
-    onPointerDown: (e) => e.stopPropagation(),
-};
+// const stopDragEventsPropagation = {
+//     onTouchMove: (e) => e.stopPropagation(),
+//     onTouchStart: (e) => e.stopPropagation(),
+//     onTouchEnd: (e) => e.stopPropagation(),
+//     onPointerMove: (e) => e.stopPropagation(),
+//     onPointerUp: (e) => e.stopPropagation(),
+//     onPointerDown: (e) => e.stopPropagation(),
+// };
 
-const mouseBlocker = {
-    ...stopDragEventsPropagation,
-    onClick: (e) => e.stopPropagation(),
-    style: {
-        position: 'fixed',
-        zIndex: '1000',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        cursor: 'default',
-    },
-};
+// const mouseBlocker = {
+//     ...stopDragEventsPropagation,
+//     onClick: (e) => e.stopPropagation(),
+//     style: {
+//         position: 'fixed',
+//         zIndex: '1000',
+//         top: 0,
+//         right: 0,
+//         bottom: 0,
+//         left: 0,
+//         cursor: 'default',
+//     },
+// };
 
 const propTypes = {
     items: PropTypes.arrayOf(
@@ -182,6 +182,7 @@ const KeypadScreen = ({
         bottomHeight: viewerBottomHeight,
         bottomSidesWidth: viewerBottomSidesWidth,
     } = useViewerContext();
+
     const { open: openWebView } = useViewerWebView();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
@@ -209,8 +210,11 @@ const KeypadScreen = ({
         columnAlign = null,
         columns = null,
         spacing: columnSpacing = null,
+        image: keypadImage = null,
         withSquareItems = false,
     } = keypadLayout || {};
+
+    const { width: imageWidth = null, height: imageHeight = null } = keypadImage || {};
 
     const {
         layout: buttonLayout = null,
@@ -300,24 +304,29 @@ const KeypadScreen = ({
         [setPopup, setShowPopup, trackScreenEvent, openWebView, isNotInteractive],
     );
 
-    const onCloseModal = useCallback(() => {
-        if (isNotInteractive) {
-            return;
-        }
-        setShowPopup(false);
-        trackScreenEvent('close_modal');
-    }, [setShowPopup, trackScreenEvent, isNotInteractive]);
+    const onCloseModal = useCallback(
+        (isShowPopup = false) => {
+            if (isNotInteractive) {
+                return;
+            }
+            if (isShowPopup) {
+                trackScreenEvent('close_modal');
+            }
+            setShowPopup(false);
+        },
+        [setShowPopup, trackScreenEvent, isNotInteractive],
+    );
 
     const onClickClose = useCallback(
         (e) => {
             if (isNotInteractive) {
-            return;
-        }
+                return;
+            }
             e.preventDefault();
             e.stopPropagation();
-            onCloseModal();
+            onCloseModal(showPopup);
         },
-        [onCloseModal, isNotInteractive],
+        [onCloseModal, isNotInteractive, showPopup],
     );
 
     const onClickCta = useCallback((e = null) => {
@@ -352,7 +361,7 @@ const KeypadScreen = ({
             }
             if (!dragActive) {
                 if (reachedThreshold) {
-                    onCloseModal();
+                    onCloseModal(true);
                     return 1;
                 }
                 return 0;
@@ -385,7 +394,7 @@ const KeypadScreen = ({
             ) {
                 e.preventDefault();
                 e.stopPropagation();
-                onCloseModal();
+                onCloseModal(showPopup);
             }
         }
         document.addEventListener('mouseup', handleClickOutside);
@@ -405,8 +414,8 @@ const KeypadScreen = ({
     }, [setPopupDragDisabled]);
 
     const onTap = useCallback(() => {
-        onCloseModal();
-    }, [onCloseModal]);
+        onCloseModal(showPopup);
+    }, [onCloseModal, showPopup]);
 
     const { bind: bindPopupDrag, progress: popupSpring } = useDragProgress({
         disabled: !isView || popupDragDisabled,
@@ -421,7 +430,7 @@ const KeypadScreen = ({
         const keyup = (e) => {
             if (e.key === 'Escape') {
                 if (showPopup) {
-                    onCloseModal();
+                    onCloseModal(showPopup);
                 }
             }
         };
@@ -430,7 +439,6 @@ const KeypadScreen = ({
             document.removeEventListener('keyup', keyup);
         };
     }, [showPopup, onCloseModal]);
-
 
     const gridItems = useMemo(
         () =>
@@ -520,9 +528,19 @@ const KeypadScreen = ({
                                 {visual !== null ? (
                                     <Visual
                                         className={styles.buttonVisual}
-                                        imageClassName={styles.thumbnail}
+                                        imageClassName={classNames([
+                                            styles.thumbnail,
+                                            {
+                                                [styles.withImageSize]:
+                                                    imageWidth !== null || imageHeight !== null,
+                                            },
+                                        ])}
                                         media={visual}
-                                        width="auto"
+                                        resolution={resolution}
+                                        width={imageWidth || 'auto'}
+                                        height={
+                                            imageHeight || (imageWidth !== null ? 'auto' : null)
+                                        }
                                     />
                                 ) : null}
                             </ScreenElement>
@@ -855,6 +873,7 @@ const KeypadScreen = ({
                                                 <Visual
                                                     className={styles.popupVisual}
                                                     media={largeVisual}
+                                                    resolution={resolution}
                                                     width="100%"
                                                 />
                                             ) : null}

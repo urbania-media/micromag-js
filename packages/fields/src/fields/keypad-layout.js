@@ -48,6 +48,35 @@ export default {
             }),
         },
         {
+            name: 'image',
+            type: 'fields',
+            label: defineMessage({
+                defaultMessage: 'Image',
+                description: 'Fields section label',
+            }),
+            isList: true,
+            fields: [
+                {
+                    name: 'width',
+                    type: 'number',
+                    isHorizontal: true,
+                    label: defineMessage({
+                        defaultMessage: 'Width',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'height',
+                    type: 'number',
+                    isHorizontal: true,
+                    label: defineMessage({
+                        defaultMessage: 'Height',
+                        description: 'Field label',
+                    }),
+                },
+            ],
+        },
+        {
             name: 'withSquareItems',
             type: 'toggle',
             label: defineMessage({

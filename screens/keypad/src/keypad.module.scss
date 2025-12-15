@@ -124,7 +124,8 @@
 }
 
 .grid {
-    width: 85%; // @note: leaves a bigger left/right gutter for onClick navigation between screens
+    width: 85%;
+    // @note: leaves a bigger left/right gutter for onClick navigation between screens
 }
 
 .item {
@@ -210,6 +211,10 @@
     max-height: 50px;
     pointer-events: none;
     user-select: none;
+
+    &.withImageSize {
+        max-height: 100%;
+    }
 }
 
 .buttonLabel {
@@ -411,9 +416,6 @@
 
     .thumbnail {
         width: 100% !important;
-        // object-fit: cover;
-        // width: 100%;
-        // max-height: 100px;
         max-height: none;
 
         .withSquareItems & {

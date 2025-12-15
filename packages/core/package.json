@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.3.763",
+    "version": "0.3.767",
     "private": false,
     "description": "",
     "keywords": [
@@ -129,7 +129,7 @@
         "@folklore/routes": "^0.2.36",
         "@folklore/services": "^0.1.24",
         "@folklore/size": "^0.1.20",
-        "@folklore/tracking": "~0.0.28",
+        "@folklore/tracking": "^0.0.34",
         "@fortawesome/fontawesome-svg-core": "^6.5.2",
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
         "@fortawesome/react-fontawesome": "^0.2.0",
