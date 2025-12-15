@@ -109,7 +109,8 @@ export default Object.keys(files).reduce(
         ...configs,
         createConfig({
             file,
-            format: 'es',
+            format: 'both',
+            // outputCjs: `lib/${file.replace('.js', '.cjs')}`,
             ...files[file],
         }),
         // createConfig({

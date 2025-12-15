@@ -20,6 +20,7 @@ export const createConfig = ({
     outputConfig = null,
     input = null,
     output = null,
+    outputCjs: outputCjsFile = null,
     banner = null,
     format = null,
     withoutPostCss = false,
@@ -27,11 +28,12 @@ export const createConfig = ({
     resolveOptions = null,
     prependPlugins = [],
     appendPlugins = [],
+    afterResolvePlugins = [],
 } = {}) => {
     const isNode = format === 'node';
     const isCjs = format === 'cjs' || format === 'node';
     const outputCjs = {
-        file: output || `lib/${file}`,
+        file: outputCjsFile || output || `lib/${file}`,
         format: 'cjs',
         banner,
     };
@@ -82,6 +84,8 @@ export const createConfig = ({
                 jail: path.join(process.cwd(), 'src'),
                 ...resolveOptions,
             }),
+
+            ...afterResolvePlugins,
             commonjs(),
             babel({
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],

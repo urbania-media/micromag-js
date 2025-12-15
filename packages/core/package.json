@@ -30,7 +30,7 @@
         }
     ],
     "license": "ISC",
-    "type": "module",
+    "main": "lib/index.js",
     "module": "es/index.js",
     "style": "assets/css/styles.css",
     "sideEffects": [
@@ -39,7 +39,8 @@
     ],
     "exports": {
         ".": {
-            "import": "./es/index.js"
+            "import": "./es/index.js",
+            "require": "./lib/index.js"
         },
         "./components": {
             "require": "./lib/components.js",
