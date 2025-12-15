@@ -23,6 +23,7 @@ import styles from '../styles/viewer.module.scss';
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
+    menuItems: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.node])),
     currentScreenIndex: PropTypes.number,
     toggleFullscreen: PropTypes.func,
     fullscreenActive: PropTypes.bool,
@@ -53,6 +54,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    menuItems: ['share', 'main'],
     currentScreenIndex: 0,
     toggleFullscreen: null,
     fullscreenActive: false,
@@ -82,6 +84,7 @@ const defaultProps = {
 
 const ViewerMenu = ({
     story,
+    menuItems,
     currentScreenIndex,
     toggleFullscreen,
     fullscreenActive,
@@ -342,78 +345,85 @@ const ViewerMenu = ({
                 style={{ width: menuWidth }}
             >
                 <nav className={styles.menuTopContainer} ref={navContainerRef}>
-                    {!withoutShareMenu || afterShareMenuButton !== null ? (
-                        <div className={styles.menuItem} {...bindShareDrag()}>
-                            {!withoutShareMenu ? (
-                                <ToggleButton
-                                    className={styles.slidingButton}
-                                    button={
-                                        <ShareButton
-                                            className={styles.menuButton}
-                                            onClick={onOpenShare}
-                                            theme={menuTheme}
-                                            iconPosition="left"
-                                            focusable={!shareOpened}
+                    {menuItems.map((item) => {
+                        if (item === 'share') {
+                            return !withoutShareMenu || afterShareMenuButton !== null ? (
+                                <div className={styles.menuItem} {...bindShareDrag()}>
+                                    {!withoutShareMenu ? (
+                                        <ToggleButton
+                                            className={styles.slidingButton}
+                                            button={
+                                                <ShareButton
+                                                    className={styles.menuButton}
+                                                    onClick={onOpenShare}
+                                                    theme={menuTheme}
+                                                    iconPosition="left"
+                                                    focusable={!shareOpened}
+                                                />
+                                            }
+                                            toggledButton={
+                                                <FocusLock
+                                                    group="share"
+                                                    disabled={!shareOpened}
+                                                    returnFocus
+                                                >
+                                                    <CloseMenuButton
+                                                        className={styles.menuButton}
+                                                        onClick={onCloseShare}
+                                                        theme={menuTheme}
+                                                        iconPosition="left"
+                                                        focusable={shareOpened}
+                                                        single
+                                                    />
+                                                </FocusLock>
+                                            }
+                                            progressSpring={shareOpenedProgress}
                                         />
-                                    }
-                                    toggledButton={
-                                        <FocusLock
-                                            group="share"
-                                            disabled={!shareOpened}
-                                            returnFocus
-                                        >
-                                            <CloseMenuButton
-                                                className={styles.menuButton}
-                                                onClick={onCloseShare}
-                                                theme={menuTheme}
-                                                iconPosition="left"
-                                                focusable={shareOpened}
-                                                single
-                                            />
-                                        </FocusLock>
-                                    }
-                                    progressSpring={shareOpenedProgress}
-                                />
-                            ) : null}
-                            {afterShareMenuButton}
-                        </div>
-                    ) : null}
-                    {!withoutScreensMenu || beforeScreensMenuButton !== null ? (
-                        <div className={styles.menuItem} {...bindMenuDrag()}>
-                            {beforeScreensMenuButton}
-                            {!withoutScreensMenu ? (
-                                <ToggleButton
-                                    className={styles.slidingButton}
-                                    button={
-                                        <MenuButton
-                                            className={styles.menuButton}
-                                            iconClassName={styles.menuButtonIcon}
-                                            onClick={onOpenMenu}
-                                            theme={menuTheme}
-                                            focusable={!menuOpened}
+                                    ) : null}
+                                    {afterShareMenuButton}
+                                </div>
+                            ) : null;
+                        }
+                        if (item === 'main') {
+                            return !withoutScreensMenu || beforeScreensMenuButton !== null ? (
+                                <div className={styles.menuItem} {...bindMenuDrag()}>
+                                    {beforeScreensMenuButton}
+                                    {!withoutScreensMenu ? (
+                                        <ToggleButton
+                                            className={styles.slidingButton}
+                                            button={
+                                                <MenuButton
+                                                    className={styles.menuButton}
+                                                    iconClassName={styles.menuButtonIcon}
+                                                    onClick={onOpenMenu}
+                                                    theme={menuTheme}
+                                                    focusable={!menuOpened}
+                                                />
+                                            }
+                                            toggledButton={
+                                                <FocusLock
+                                                    group="screens"
+                                                    disabled={!menuOpened}
+                                                    returnFocus
+                                                >
+                                                    <CloseMenuButton
+                                                        className={styles.menuButton}
+                                                        onClick={onCloseMenu}
+                                                        theme={menuTheme}
+                                                        iconPosition="right"
+                                                        focusable={menuOpened}
+                                                    />
+                                                </FocusLock>
+                                            }
+                                            progressSpring={menuOpenedProgress}
+                                            toggledButtonClassName={styles.screensMenuButtonToggled}
                                         />
-                                    }
-                                    toggledButton={
-                                        <FocusLock
-                                            group="screens"
-                                            disabled={!menuOpened}
-                                            returnFocus
-                                        >
-                                            <CloseMenuButton
-                                                className={styles.menuButton}
-                                                onClick={onCloseMenu}
-                                                theme={menuTheme}
-                                                iconPosition="right"
-                                                focusable={menuOpened}
-                                            />
-                                        </FocusLock>
-                                    }
-                                    progressSpring={menuOpenedProgress}
-                                    toggledButtonClassName={styles.screensMenuButtonToggled}
-                                />
-                            ) : null}
-                        </div>
-                    ) : null}
+                                    ) : null}
+                                </div>
+                            ) : null;
+                        }
+                        return item || null;
+                    })}
                 </nav>
                 <MenuDots
                     {...menuTheme}

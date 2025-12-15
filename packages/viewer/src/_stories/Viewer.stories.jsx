@@ -441,8 +441,8 @@ export const GameSort = () => (
                         {
                             id: '5',
                             label: 'Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5',
-                        }
-                    ]
+                        },
+                    ],
                 },
                 {
                     id: '2',
@@ -466,8 +466,8 @@ export const GameSort = () => (
                         {
                             id: '4',
                             label: 'Item 4.1',
-                        }
-                    ]
+                        },
+                    ],
                 },
             ],
         }}
@@ -579,7 +579,8 @@ export const WithMenuTheme = () => (
         memoryRouter
     />
 );
-export const WithMenuTheme2 = () => (
+
+export const WithMenuThemeAndMenuItems = () => (
     <Viewer
         {...faceAFaceProps}
         theme={{
@@ -594,8 +595,37 @@ export const WithMenuTheme2 = () => (
             },
         }}
         memoryRouter
+        menuItems={['main', 'share']}
+        beforeScreensMenuButton={<div>Custom item before screens button blablabla</div>}
+        afterShareMenuButton={<div>Custom item after share button lalalalala</div>}
     />
 );
+
+export const WithMenuItems = () => (
+    <Viewer
+        {...faceAFaceProps}
+        theme={{
+            background: {
+                color: {
+                    color: '#e4cdcf',
+                    alpha: 0.75,
+                },
+            },
+            menuTheme: {
+                colors: { primary: '#5d73fe', secondary: { color: '#5d73fe', alpha: 0.8 } },
+            },
+        }}
+        memoryRouter
+        menuItems={[
+            <div style={{ marginLeft: '10px' }}>Here Goes Logo and home screen</div>,
+            'main',
+            'share',
+        ]}
+        // menuHeader={<div style={{ padding: '10px' }}>Custom header content</div>}
+        // menuFooter={<div style={{ padding: '10px' }}>Custom footer content</div>}
+    />
+);
+
 export const WithScroll = () => (
     <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'scroll' }}>
         <div style={{ position: 'relative', width: '100%', height: 2000 }}>

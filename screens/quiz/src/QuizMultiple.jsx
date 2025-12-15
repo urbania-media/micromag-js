@@ -323,6 +323,16 @@ const QuizMultipleScreen = ({
             }, null);
     }, [isResults, results, currentPoints, stateId, stateIndex]);
 
+    useEffect(() => {
+        if (currentResult !== null && isResults) {
+            const { title: resultTitle = null, points = null } = currentResult || {};
+            trackScreenEvent('view_result', `Result: ${resultTitle?.body || 'No title'}`, {
+                resultPoints: points || null,
+                userPoints: currentPoints || null,
+            });
+        }
+    }, [currentResult, currentPoints, isResults, trackScreenEvent]);
+
     const { background: resultBackground = null, layout: resultLayout = null } =
         currentResult || {};
 

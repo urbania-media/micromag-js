@@ -78,6 +78,7 @@ const propTypes = {
     menuIsScreenWidth: PropTypes.bool,
     menuHeader: PropTypes.node,
     menuFooter: PropTypes.node,
+    menuItems: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.node])),
     shareBasePath: PropTypes.string,
     afterShareMenuButton: PropTypes.node,
     beforeScreensMenuButton: PropTypes.node,
@@ -137,6 +138,7 @@ const defaultProps = {
     menuIsScreenWidth: false,
     menuHeader: null,
     menuFooter: null,
+    menuItems: ['share', 'main'],
     shareBasePath: null,
     afterShareMenuButton: null,
     beforeScreensMenuButton: null,
@@ -191,11 +193,12 @@ const Viewer = ({
     bottomSafezoneHeight,
     menuIsScreenWidth,
     menuHeader,
-    menuDotsButtons,
     menuFooter,
+    menuItems,
     shareBasePath,
     afterShareMenuButton,
     beforeScreensMenuButton,
+    menuDotsButtons,
     closeable,
     withMetadata,
     withMicromagBranding,
@@ -916,6 +919,7 @@ const Viewer = ({
                                 withDotItemClick={screenContainerWidth > 400}
                                 withoutScreensMenu={withoutScreensMenu}
                                 withoutShareMenu={withoutShareMenu}
+                                menuItems={menuItems}
                                 afterShareMenuButton={afterShareMenuButton}
                                 beforeScreensMenuButton={beforeScreensMenuButton}
                                 withMicromagBranding={withMicromagBranding}

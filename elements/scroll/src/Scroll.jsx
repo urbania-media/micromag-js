@@ -18,6 +18,8 @@ const propTypes = {
     scrolleeClassName: PropTypes.string,
     children: PropTypes.node,
     scrollPosition: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    triggers: PropTypes.arrayOf(PropTypes.number),
+    onScrolledTrigger: PropTypes.func,
     onScrolledBottom: PropTypes.func,
     onScrolledNotBottom: PropTypes.func,
     onScrollHeightChange: PropTypes.func,
@@ -36,6 +38,8 @@ const defaultProps = {
     scrolleeClassName: null,
     children: null,
     scrollPosition: null,
+    triggers: [0.25, 0.5, 0.75, 1.0],
+    onScrolledTrigger: null,
     onScrolledBottom: null,
     onScrolledNotBottom: null,
     onScrollHeightChange: null,
@@ -54,6 +58,8 @@ function Scroll({
     scrolleeClassName,
     children,
     scrollPosition,
+    triggers,
+    onScrolledTrigger,
     onScrolledBottom,
     onScrolledNotBottom,
     onScrollHeightChange,
@@ -65,6 +71,8 @@ function Scroll({
         width,
         height,
     };
+
+    const triggersCompletedRef = useRef([]);
 
     const [withArrow, setWithArrow] = useState(false);
 
@@ -86,6 +94,25 @@ function Scroll({
             const maxScrollAmount = scrolleeHeight - scrollableHeight;
 
             const nowReachedBottom = scrollY + 1 >= maxScrollAmount;
+
+            const progress = Math.min(Math.max(scrollY + 1 / maxScrollAmount, 0), 1);
+
+            const newTriggersCompleted = (triggers || []).filter(
+                (step) => progress >= step && triggersCompletedRef.current.indexOf(step) === -1,
+            );
+
+            newTriggersCompleted.forEach((step) => {
+                if (onScrolledTrigger != null) {
+                    onScrolledTrigger(step);
+                }
+            });
+
+            if (newTriggersCompleted.length > 0) {
+                triggersCompletedRef.current = [
+                    ...triggersCompletedRef.current,
+                    ...newTriggersCompleted,
+                ];
+            }
 
             if (nowReachedBottom) {
                 if (!reachedBottom.current) {

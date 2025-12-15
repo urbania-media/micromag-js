@@ -168,6 +168,7 @@ const QuizScreen = ({
                 linkType: 'quiz_answer',
                 answer,
                 answerIndex: answerI,
+                isGood: answer.good || false,
             });
         },
         [userAnswerIndex, setUserAnswerIndex, trackScreenEvent, answers],
