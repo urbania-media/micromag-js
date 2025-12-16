@@ -390,6 +390,16 @@ const Timeline = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const onScrolledTrigger = useCallback(
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
+        },
+        [trackScreenEvent],
+    );
+
     return (
         <div
             className={classNames([
@@ -408,6 +418,7 @@ const Timeline = ({
                     className={styles.scroll}
                     verticalAlign="middle"
                     disabled={scrollingDisabled}
+                    onScrolledTrigger={onScrolledTrigger}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     withShadow

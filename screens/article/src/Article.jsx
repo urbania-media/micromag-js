@@ -271,11 +271,13 @@ const ArticleScreen = ({
     );
 
     const onScrolledTrigger = useCallback(
-        (trigger) => {
-            const scrollPercent = Math.round(trigger * 100);
-            trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
         },
-        [trackScreenEvent, scrolledBottom, setScrolledBottom],
+        [trackScreenEvent],
     );
 
     const onScrolledNotBottom = useCallback(() => {

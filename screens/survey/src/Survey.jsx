@@ -333,6 +333,16 @@ const SurveyScreen = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const onScrolledTrigger = useCallback(
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
+        },
+        [trackScreenEvent],
+    );
+
     const [hasScroll, setHasScroll] = useState(false);
     const onScrollHeightChange = useCallback(
         ({ canScroll = false }) => {
@@ -588,6 +598,7 @@ const SurveyScreen = ({
                 <Scroll
                     verticalAlign={verticalAlign}
                     disabled={scrollingDisabled}
+                    onScrolledTrigger={onScrolledTrigger}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     onScrollHeightChange={onScrollHeightChange}

@@ -252,6 +252,16 @@ const ContributionScreen = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const onScrolledTrigger = useCallback(
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
+        },
+        [trackScreenEvent],
+    );
+
     const onSubmit = useCallback(
         (e) => {
             e.preventDefault();
@@ -554,6 +564,7 @@ const ContributionScreen = ({
                     <Scroll
                         verticalAlign={layout}
                         disabled={scrollingDisabled}
+                        onScrolledTrigger={onScrolledTrigger}
                         onScrolledBottom={onScrolledBottom}
                         onScrolledNotBottom={onScrolledNotBottom}
                         scrolleeClassName={styles.scrollee}

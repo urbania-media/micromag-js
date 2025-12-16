@@ -67,9 +67,9 @@ const Text = ({
     const finalHighlightStyle =
         highlightStyle !== null ? getStyleFromHighlight(highlightStyle) : null;
 
-    if (highlightStyle !== null) {
-        console.log('highlightStyle', highlightStyle);
-    }
+    // if (highlightStyle !== null) {
+    //     console.log('highlightStyle', highlightStyle);
+    // }
 
     if (textStyle !== null) {
         finalStyle = {

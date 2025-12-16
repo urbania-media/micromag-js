@@ -95,7 +95,7 @@ function Scroll({
 
             const nowReachedBottom = scrollY + 1 >= maxScrollAmount;
 
-            const progress = Math.min(Math.max(scrollY + 1 / maxScrollAmount, 0), 1);
+            const progress = Math.min(Math.max((scrollY + 1) / maxScrollAmount, 0), 1);
 
             const newTriggersCompleted = (triggers || []).filter(
                 (step) => progress >= step && triggersCompletedRef.current.indexOf(step) === -1,
@@ -103,6 +103,7 @@ function Scroll({
 
             newTriggersCompleted.forEach((step) => {
                 if (onScrolledTrigger != null) {
+                    // console.log('call me', step, progress);
                     onScrolledTrigger(step);
                 }
             });
