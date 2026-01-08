@@ -82,6 +82,7 @@ const propTypes = {
     shareBasePath: PropTypes.string,
     afterShareMenuButton: PropTypes.node,
     beforeScreensMenuButton: PropTypes.node,
+    backToFirstScreenTimeout: PropTypes.number,
     closeable: PropTypes.bool,
     withMetadata: PropTypes.bool,
     withMicromagBranding: PropTypes.bool,
@@ -142,6 +143,7 @@ const defaultProps = {
     shareBasePath: null,
     afterShareMenuButton: null,
     beforeScreensMenuButton: null,
+    backToFirstScreenTimeout: null,
     menuDotsButtons: null,
     closeable: false,
     withMetadata: false,
@@ -198,6 +200,7 @@ const Viewer = ({
     shareBasePath,
     afterShareMenuButton,
     beforeScreensMenuButton,
+    backToFirstScreenTimeout,
     menuDotsButtons,
     closeable,
     withMetadata,
@@ -587,8 +590,6 @@ const Viewer = ({
         },
     });
 
-    // console.log('isDragging', isDragging, transitionDirection);
-
     const getScreenStylesByIndex = (index, spring) => {
         if (transitionType === 'stack') {
             return {
@@ -782,11 +783,19 @@ const Viewer = ({
 
     const NavigationHint = withNavigationHint === 'hand' ? HandTap : ArrowHint;
 
-    // console.log({
-    //     screenIndex,
-    //     transitionDirection,
-    //     transitioned,
-    // });
+    useEffect(() => {
+        let timeout = null;
+        if (backToFirstScreenTimeout !== null && isView && screensCount > 1 && screenIndex !== 0) {
+            timeout = setTimeout(() => {
+                changeIndex(0);
+            }, backToFirstScreenTimeout);
+        }
+        return () => {
+            if (timeout !== null) {
+                clearTimeout(timeout);
+            }
+        };
+    }, [backToFirstScreenTimeout, isView, screenIndex, screensCount, changeIndex, isDragging]);
 
     return (
         <StoryProvider story={parsedStory}>
