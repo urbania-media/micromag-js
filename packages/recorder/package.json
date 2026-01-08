@@ -1,6 +1,6 @@
 {
     "name": "@micromag/recorder",
-    "version": "0.3.772",
+    "version": "0.3.773",
     "private": false,
     "description": "",
     "keywords": [
@@ -57,7 +57,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/viewer": "^0.3.772",
+        "@micromag/viewer": "^0.3.773",
         "lodash": "^4.17.21",
         "object-hash": "^3.0.0",
         "prop-types": "^15.7.2",
