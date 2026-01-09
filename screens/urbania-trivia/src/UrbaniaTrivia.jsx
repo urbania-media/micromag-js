@@ -318,125 +318,6 @@ const UrbaniaTrivia = ({
         setReady(true);
     }, [setReady]);
 
-    const items = [
-        <Container className={styles.itemsContainer} style={{ marginTop: -spacing / 2 }}>
-            <ScreenElement
-                key="heading"
-                className={styles.headingScreenElement}
-                placeholder={
-                    <PlaceholderTitle className={styles.placeholder} {...placeholderProps} />
-                }
-                empty={
-                    <div className={styles.emptyContainer}>
-                        <Empty className={styles.empty}>
-                            <FormattedMessage
-                                defaultMessage="Heading"
-                                description="Header placeholder"
-                            />
-                        </Empty>
-                    </div>
-                }
-                isEmpty={!hasTitle}
-            >
-                {hasTitle ? (
-                    <div ref={titleRef}>
-                        <Heading
-                            className={styles.heading}
-                            // body={body}
-                            {...title}
-                        />
-                    </div>
-                ) : null}
-            </ScreenElement>
-            <ScreenElement
-                key="video"
-                className={styles.videoScreenElement}
-                placeholder={
-                    <PlaceholderVideo className={styles.videoPlaceholder} {...placeholderProps} />
-                }
-                empty={
-                    <div className={styles.emptyContainer}>
-                        <Empty className={styles.empty}>
-                            <FormattedMessage
-                                defaultMessage="Video"
-                                description="Video placeholder"
-                            />
-                        </Empty>
-                    </div>
-                }
-                isEmpty={!hasVideoUrl}
-            >
-                {hasVideoUrl ? (
-                    <div
-                        className={styles.videoContainer}
-                        style={{
-                            width: Math.min(width, resizedVideoWidth),
-                            height: resizedVideoHeight,
-                            left: resizedVideoLeft > 0 ? resizedVideoLeft : null,
-                            maxHeight: videoMaxHeight,
-                        }}
-                    >
-                        {isPreview || isCapture ? (
-                            <Image
-                                className={styles.image}
-                                media={{
-                                    url: thumbnailUrl,
-                                    metadata: { width: videoWidth, height: videoHeight },
-                                }}
-                                width={Math.min(width, resizedVideoWidth)}
-                                height={resizedVideoHeight}
-                                resolution={resolution}
-                            />
-                        ) : (
-                            <Video
-                                {...finalVideo}
-                                mediaRef={mediaRef}
-                                paused={!current || !playing}
-                                muted={muted}
-                                width={resizedVideoWidth}
-                                height={resizedVideoHeight}
-                                className={styles.video}
-                                onReady={onVideoReady}
-                                onPlay={onPlay}
-                                onPause={onPause}
-                                onTimeUpdate={onTimeUpdate}
-                                onProgressStep={onProgressStep}
-                                onDurationChange={onDurationChange}
-                                onSeeked={onSeeked}
-                                onEnded={onEnded}
-                                focusable={current && isView}
-                                shouldLoad={mediaShouldLoad}
-                                qualityStartLevel={currentQualityLevel}
-                                onQualityLevelChange={setCurrentQualityLevel}
-                            />
-                        )}
-
-                        {current && !isPlaceholder ? (
-                            <div
-                                key="bottom-content"
-                                className={styles.bottomContent}
-                                style={{
-                                    transform: `translate(0, -${viewerBottomHeight}px)`,
-                                }}
-                            >
-                                {closedCaptions !== null &&
-                                !isPreview &&
-                                !isCapture &&
-                                !isStatic ? (
-                                    <ClosedCaptions
-                                        className={styles.closedCaptions}
-                                        media={closedCaptions}
-                                        currentTime={currentTime}
-                                    />
-                                ) : null}
-                            </div>
-                        ) : null}
-                    </div>
-                ) : null}
-            </ScreenElement>
-        </Container>,
-    ];
-
     return (
         <div
             className={classNames([
@@ -457,7 +338,134 @@ const UrbaniaTrivia = ({
                             : null
                     }
                 >
-                    {items}
+                    <Container
+                        className={styles.itemsContainer}
+                        style={{ marginTop: -spacing / 2 }}
+                    >
+                        <ScreenElement
+                            key="heading"
+                            className={styles.headingScreenElement}
+                            placeholder={
+                                <PlaceholderTitle
+                                    className={styles.placeholder}
+                                    {...placeholderProps}
+                                />
+                            }
+                            empty={
+                                <div className={styles.emptyContainer}>
+                                    <Empty className={styles.empty}>
+                                        <FormattedMessage
+                                            defaultMessage="Heading"
+                                            description="Header placeholder"
+                                        />
+                                    </Empty>
+                                </div>
+                            }
+                            isEmpty={!hasTitle}
+                        >
+                            {hasTitle ? (
+                                <div ref={titleRef}>
+                                    <Heading
+                                        className={styles.heading}
+                                        // body={body}
+                                        {...title}
+                                    />
+                                </div>
+                            ) : null}
+                        </ScreenElement>
+                        <ScreenElement
+                            key="video"
+                            className={styles.videoScreenElement}
+                            placeholder={
+                                <PlaceholderVideo
+                                    className={styles.videoPlaceholder}
+                                    {...placeholderProps}
+                                />
+                            }
+                            empty={
+                                <div className={styles.emptyContainer}>
+                                    <Empty className={styles.empty}>
+                                        <FormattedMessage
+                                            defaultMessage="Video"
+                                            description="Video placeholder"
+                                        />
+                                    </Empty>
+                                </div>
+                            }
+                            isEmpty={!hasVideoUrl}
+                        >
+                            {hasVideoUrl ? (
+                                <div
+                                    className={styles.videoContainer}
+                                    style={{
+                                        width: Math.min(width, resizedVideoWidth),
+                                        height: resizedVideoHeight,
+                                        left: resizedVideoLeft > 0 ? resizedVideoLeft : null,
+                                        maxHeight: videoMaxHeight,
+                                    }}
+                                >
+                                    {isPreview || isCapture ? (
+                                        <Image
+                                            className={styles.image}
+                                            media={{
+                                                url: thumbnailUrl,
+                                                metadata: {
+                                                    width: videoWidth,
+                                                    height: videoHeight,
+                                                },
+                                            }}
+                                            width={Math.min(width, resizedVideoWidth)}
+                                            height={resizedVideoHeight}
+                                            resolution={resolution}
+                                        />
+                                    ) : (
+                                        <Video
+                                            {...finalVideo}
+                                            mediaRef={mediaRef}
+                                            paused={!current || !playing}
+                                            muted={muted}
+                                            width={resizedVideoWidth}
+                                            height={resizedVideoHeight}
+                                            className={styles.video}
+                                            onReady={onVideoReady}
+                                            onPlay={onPlay}
+                                            onPause={onPause}
+                                            onTimeUpdate={onTimeUpdate}
+                                            onProgressStep={onProgressStep}
+                                            onDurationChange={onDurationChange}
+                                            onSeeked={onSeeked}
+                                            onEnded={onEnded}
+                                            focusable={current && isView}
+                                            shouldLoad={mediaShouldLoad}
+                                            qualityStartLevel={currentQualityLevel}
+                                            onQualityLevelChange={setCurrentQualityLevel}
+                                        />
+                                    )}
+
+                                    {current && !isPlaceholder ? (
+                                        <div
+                                            key="bottom-content"
+                                            className={styles.bottomContent}
+                                            style={{
+                                                transform: `translate(0, -${viewerBottomHeight}px)`,
+                                            }}
+                                        >
+                                            {closedCaptions !== null &&
+                                            !isPreview &&
+                                            !isCapture &&
+                                            !isStatic ? (
+                                                <ClosedCaptions
+                                                    className={styles.closedCaptions}
+                                                    media={closedCaptions}
+                                                    currentTime={currentTime}
+                                                />
+                                            ) : null}
+                                        </div>
+                                    ) : null}
+                                </div>
+                            ) : null}
+                        </ScreenElement>
+                    </Container>
                 </div>
             </Container>
             {!isPlaceholder ? (

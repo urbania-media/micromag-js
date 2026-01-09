@@ -248,6 +248,16 @@ const UrbaniaRecommendation = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const onScrolledTrigger = useCallback(
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
+        },
+        [trackScreenEvent],
+    );
+
     // modal
     useEffect(() => {
         let id = null;
@@ -437,6 +447,7 @@ const UrbaniaRecommendation = ({
                     width={width}
                     height={height}
                     disabled={scrollingDisabled}
+                    onScrolledTrigger={onScrolledTrigger}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     verticalAlign="middle"

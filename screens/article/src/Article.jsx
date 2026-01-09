@@ -270,6 +270,16 @@ const ArticleScreen = ({
         [trackScreenEvent],
     );
 
+    const onScrolledTrigger = useCallback(
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
+        },
+        [trackScreenEvent],
+    );
+
     const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
@@ -288,6 +298,7 @@ const ArticleScreen = ({
             <Container width={width} height={height} className={styles.content}>
                 <Scroll
                     disabled={scrollingDisabled}
+                    onScrolledTrigger={onScrolledTrigger}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     withShadow

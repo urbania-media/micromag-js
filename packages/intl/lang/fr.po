@@ -1349,6 +1349,12 @@ msgctxt "LkVfwW"
 msgid "Screen {index}"
 msgstr "Écran {index}"
 
+# Spacing field label
+#: Lp0bG4
+msgctxt "Lp0bG4"
+msgid "Bottom spacing"
+msgstr "Espacement inférieur"
+
 # Button label
 #: LrRW+9
 msgctxt "LrRW+9"

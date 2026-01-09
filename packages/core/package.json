@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.3.767",
+    "version": "0.3.776",
     "private": false,
     "description": "",
     "keywords": [
@@ -164,5 +164,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "249b31c773377c2269267c02e9ebe3048615bd7b"
+    "gitHead": "2d7ab35ccd74d8fa00b86e4df509d664025da18f"
 }

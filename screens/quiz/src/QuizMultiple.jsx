@@ -323,6 +323,16 @@ const QuizMultipleScreen = ({
             }, null);
     }, [isResults, results, currentPoints, stateId, stateIndex]);
 
+    useEffect(() => {
+        if (currentResult !== null && isResults) {
+            const { title: resultTitle = null, points = null } = currentResult || {};
+            trackScreenEvent('view_result', `Result: ${resultTitle?.body || 'No title'}`, {
+                resultPoints: points || null,
+                userPoints: currentPoints || null,
+            });
+        }
+    }, [currentResult, currentPoints, isResults, trackScreenEvent]);
+
     const { background: resultBackground = null, layout: resultLayout = null } =
         currentResult || {};
 
@@ -400,6 +410,16 @@ const QuizMultipleScreen = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const onScrolledTrigger = useCallback(
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
+        },
+        [trackScreenEvent],
+    );
+
     const [hasScroll, setHasScroll] = useState(false);
     const onScrollHeightChange = useCallback(
         ({ canScroll = false }) => {
@@ -473,6 +493,7 @@ const QuizMultipleScreen = ({
                 <Scroll
                     verticalAlign={verticalAlign}
                     disabled={scrollingDisabled}
+                    onScrolledTrigger={onScrolledTrigger}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     onScrollHeightChange={onScrollHeightChange}

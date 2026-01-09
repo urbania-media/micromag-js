@@ -78,9 +78,11 @@ const propTypes = {
     menuIsScreenWidth: PropTypes.bool,
     menuHeader: PropTypes.node,
     menuFooter: PropTypes.node,
+    menuItems: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.node])),
     shareBasePath: PropTypes.string,
     afterShareMenuButton: PropTypes.node,
     beforeScreensMenuButton: PropTypes.node,
+    backToFirstScreenTimeout: PropTypes.number,
     closeable: PropTypes.bool,
     withMetadata: PropTypes.bool,
     withMicromagBranding: PropTypes.bool,
@@ -137,9 +139,11 @@ const defaultProps = {
     menuIsScreenWidth: false,
     menuHeader: null,
     menuFooter: null,
+    menuItems: ['share', 'main'],
     shareBasePath: null,
     afterShareMenuButton: null,
     beforeScreensMenuButton: null,
+    backToFirstScreenTimeout: null,
     menuDotsButtons: null,
     closeable: false,
     withMetadata: false,
@@ -191,11 +195,13 @@ const Viewer = ({
     bottomSafezoneHeight,
     menuIsScreenWidth,
     menuHeader,
-    menuDotsButtons,
     menuFooter,
+    menuItems,
     shareBasePath,
     afterShareMenuButton,
     beforeScreensMenuButton,
+    backToFirstScreenTimeout,
+    menuDotsButtons,
     closeable,
     withMetadata,
     withMicromagBranding,
@@ -292,6 +298,7 @@ const Viewer = ({
         controls: playbackControls = false,
         controlsVisible: playbackControlsVisible = false,
         media: playbackMedia = null,
+        completed: mediaCompleted = false,
     } = usePlaybackContext();
 
     const playbackHelpVisible = useMemo(
@@ -457,6 +464,7 @@ const Viewer = ({
         }, longPressPauseDelay);
         return () => clearInterval(interval);
     }, [playing, pointerDownTime, longPressPauseDelay]);
+
     const onPointerDown = useCallback(() => {
         setPointerDownTime(Date.now());
     }, []);
@@ -583,8 +591,6 @@ const Viewer = ({
             },
         },
     });
-
-    // console.log('isDragging', isDragging, transitionDirection);
 
     const getScreenStylesByIndex = (index, spring) => {
         if (transitionType === 'stack') {
@@ -779,11 +785,38 @@ const Viewer = ({
 
     const NavigationHint = withNavigationHint === 'hand' ? HandTap : ArrowHint;
 
-    // console.log({
-    //     screenIndex,
-    //     transitionDirection,
-    //     transitioned,
-    // });
+    useEffect(() => {
+        let timeout = null;
+        const hasMediaCompleted = playbackMedia !== null ? mediaCompleted : true;
+
+        if (
+            backToFirstScreenTimeout !== null &&
+            isView &&
+            screensCount > 1 &&
+            screenIndex !== 0 &&
+            hasMediaCompleted
+        ) {
+            timeout = setTimeout(() => {
+                changeIndex(0);
+            }, backToFirstScreenTimeout);
+        }
+        return () => {
+            if (timeout !== null) {
+                clearTimeout(timeout);
+            }
+        };
+    }, [
+        backToFirstScreenTimeout,
+        isView,
+        screenIndex,
+        screensCount,
+        changeIndex,
+        playbackMedia,
+        mediaCompleted,
+        isDragging,
+    ]);
+
+    console.log('mc', mediaCompleted, playbackMedia);
 
     return (
         <StoryProvider story={parsedStory}>
@@ -916,6 +949,7 @@ const Viewer = ({
                                 withDotItemClick={screenContainerWidth > 400}
                                 withoutScreensMenu={withoutScreensMenu}
                                 withoutShareMenu={withoutShareMenu}
+                                menuItems={menuItems}
                                 afterShareMenuButton={afterShareMenuButton}
                                 beforeScreensMenuButton={beforeScreensMenuButton}
                                 withMicromagBranding={withMicromagBranding}

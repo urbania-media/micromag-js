@@ -168,6 +168,7 @@ const QuizScreen = ({
                 linkType: 'quiz_answer',
                 answer,
                 answerIndex: answerI,
+                isGood: answer.good || false,
             });
         },
         [userAnswerIndex, setUserAnswerIndex, trackScreenEvent, answers],
@@ -207,6 +208,16 @@ const QuizScreen = ({
     const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
+
+    const onScrolledTrigger = useCallback(
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
+        },
+        [trackScreenEvent],
+    );
 
     const [hasScroll, setHasScroll] = useState(false);
 
@@ -254,6 +265,7 @@ const QuizScreen = ({
                     verticalAlign={verticalAlign}
                     // disabled={scrollingDisabled || userAnswerIndex !== null}
                     disabled={scrollingDisabled}
+                    onScrolledTrigger={onScrolledTrigger}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     onScrollHeightChange={onScrollHeightChange}

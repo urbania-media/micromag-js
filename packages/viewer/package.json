@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer",
-    "version": "0.3.767",
+    "version": "0.3.776",
     "private": false,
     "description": "",
     "keywords": [
@@ -64,14 +64,14 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/routes": "^0.2.36",
-        "@micromag/core": "^0.3.767",
-        "@micromag/element-badge": "^0.3.767",
-        "@micromag/element-scroll": "^0.3.767",
-        "@micromag/element-share-options": "^0.3.767",
-        "@micromag/element-webview": "^0.3.767",
-        "@micromag/elements": "^0.3.767",
-        "@micromag/intl": "^0.3.767",
-        "@micromag/screens": "^0.3.767",
+        "@micromag/core": "^0.3.776",
+        "@micromag/element-badge": "^0.3.776",
+        "@micromag/element-scroll": "^0.3.776",
+        "@micromag/element-share-options": "^0.3.776",
+        "@micromag/element-webview": "^0.3.776",
+        "@micromag/elements": "^0.3.776",
+        "@micromag/intl": "^0.3.776",
+        "@micromag/screens": "^0.3.776",
         "@react-spring/core": "^9.6.1",
         "@react-spring/web": "^9.6.1",
         "@use-gesture/react": "^10.3.0",
@@ -91,5 +91,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "850d3bb0b6f18eed7d55c90e50fd67ede8a8aa68"
+    "gitHead": "2d7ab35ccd74d8fa00b86e4df509d664025da18f"
 }

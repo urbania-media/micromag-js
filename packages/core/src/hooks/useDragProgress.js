@@ -1,5 +1,5 @@
 import { useSpring } from '@react-spring/core';
-import { useDrag, useGesture } from '@use-gesture/react';
+import { useGesture } from '@use-gesture/react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 function useDragProgress({
@@ -81,7 +81,7 @@ function useDragProgress({
     const bind = useGesture(
         {
             onDrag,
-            onPointerDown,
+            onPointerDown: onPointerDown !== null ? onPointerDown : () => {},
         },
         {
             drag: dragOptions,

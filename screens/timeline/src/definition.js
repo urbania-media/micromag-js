@@ -51,6 +51,16 @@ export default [
                 }),
             },
             {
+                name: 'spacing',
+                type: 'number',
+                defaultValue: 20,
+                isHorizontal: true,
+                label: defineMessage({
+                    defaultMessage: 'Spacing',
+                    description: 'Spacing field label',
+                }),
+            },
+            {
                 type: 'fields',
                 label: defineMessage({
                     defaultMessage: 'Entry styles',
@@ -72,6 +82,16 @@ export default [
                         label: defineMessage({
                             defaultMessage: 'Description',
                             description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'itemBottomSpacing',
+                        type: 'number',
+                        defaultValue: 20,
+                        isHorizontal: true,
+                        label: defineMessage({
+                            defaultMessage: 'Bottom spacing',
+                            description: 'Spacing field label',
                         }),
                     },
                 ],
@@ -234,6 +254,16 @@ export default [
                 }),
             },
             {
+                name: 'spacing',
+                type: 'number',
+                defaultValue: 20,
+                isHorizontal: true,
+                label: defineMessage({
+                    defaultMessage: 'Spacing',
+                    description: 'Spacing field label',
+                }),
+            },
+            {
                 type: 'fields',
                 label: defineMessage({
                     defaultMessage: 'Entry styles',
@@ -255,6 +285,16 @@ export default [
                         label: defineMessage({
                             defaultMessage: 'Description',
                             description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'itemBottomSpacing',
+                        type: 'number',
+                        defaultValue: 20,
+                        isHorizontal: true,
+                        label: defineMessage({
+                            defaultMessage: 'Bottom spacing',
+                            description: 'Spacing field label',
                         }),
                     },
                 ],

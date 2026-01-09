@@ -13,6 +13,7 @@ const defaultControlsThemeValue = {
 const defaultValue = {
     playing: false,
     paused: false,
+    completed: false,
     muted: true,
     controls: false,
     controlsSuggestPlay: false,
@@ -133,6 +134,21 @@ export const PlaybackProvider = ({
         setControlsSuggestPlay(false);
     }, [media, setControlsSuggestPlay]);
 
+    // Handle media ended
+    const [completed, setCompleted] = useState(false);
+    const onMediaCompleted = useCallback(() => setCompleted(true), [setCompleted]);
+    useEffect(() => {
+        if (media !== null) {
+            media.addEventListener('ended', onMediaCompleted);
+        }
+        return () => {
+            if (media !== null) {
+                media.removeEventListener('ended', onMediaCompleted);
+            }
+            setCompleted(false);
+        };
+    }, [media, onMediaCompleted, setCompleted]);
+
     const showControls = useCallback(() => setControlsVisible(true), [setControlsVisible]);
     const hideControls = useCallback(() => {
         setControlsVisible(false);
@@ -164,6 +180,7 @@ export const PlaybackProvider = ({
         () => ({
             muted,
             playing: playing && !paused,
+            completed,
             controls,
             controlsSuggestPlay,
             controlsVisible,
@@ -185,6 +202,7 @@ export const PlaybackProvider = ({
         [
             muted,
             playing,
+            completed,
             paused,
             controls,
             controlsSuggestPlay,

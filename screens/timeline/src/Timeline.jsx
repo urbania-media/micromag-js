@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
+import { isNumber } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -97,7 +98,8 @@ const Timeline = ({
     bulletShape,
     bulletFilled,
     illustrated,
-    spacing,
+    spacing: initialSpacing = null,
+    itemBottomSpacing: initialItemBottomSpacing = null,
     header,
     footer,
     background,
@@ -128,6 +130,21 @@ const Timeline = ({
     );
 
     const hasTitle = isTextFilled(title);
+
+    const spacing = useMemo(
+        () => (initialSpacing !== null ? Math.max(0, initialSpacing || 0) : 20),
+        [initialSpacing],
+    );
+    const itemBottomSpacing = useMemo(
+        () =>
+            // eslint-disable-next-line no-nested-ternary
+            isPlaceholder
+                ? 4
+                : initialItemBottomSpacing !== null
+                  ? Math.max(0, initialItemBottomSpacing || 0)
+                  : 20,
+        [isPlaceholder, initialItemBottomSpacing],
+    );
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
     const hasItems = finalItems !== null && itemsCount;
@@ -354,10 +371,10 @@ const Timeline = ({
                                 </div>
                             ) : null}
                             <div
-                                className={classNames([
-                                    styles.body,
-                                    { [styles.last]: lastType && !lastItem },
-                                ])}
+                                className={styles.body}
+                                style={{
+                                    marginBottom: lastType && !lastItem ? itemBottomSpacing : 0,
+                                }}
                             >
                                 {elementContent}
                             </div>
@@ -390,6 +407,16 @@ const Timeline = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const onScrolledTrigger = useCallback(
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
+        },
+        [trackScreenEvent],
+    );
+
     return (
         <div
             className={classNames([
@@ -408,6 +435,7 @@ const Timeline = ({
                     className={styles.scroll}
                     verticalAlign="middle"
                     disabled={scrollingDisabled}
+                    onScrolledTrigger={onScrolledTrigger}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                     withShadow

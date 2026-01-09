@@ -413,6 +413,16 @@ const KeypadScreen = ({
         setPopupDragDisabled(true);
     }, [setPopupDragDisabled]);
 
+    const onScrolledTrigger = useCallback(
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
+        },
+        [trackScreenEvent],
+    );
+
     const onTap = useCallback(() => {
         onCloseModal(showPopup);
     }, [onCloseModal, showPopup]);
@@ -651,6 +661,7 @@ const KeypadScreen = ({
                     withArrow={!showPopup}
                     withShadow={!showPopup}
                     disabled={isPreview || isPlaceholder || showPopup}
+                    onScrolledTrigger={onScrolledTrigger}
                 >
                     <Layout
                         className={styles.layout}
