@@ -1,17 +1,36 @@
+import resolve from '@rollup/plugin-node-resolve';
+
 import { createConfig } from '../../rollup.config';
 
-const files = {
-
+export default {
+    input: 'src/cli.js',
+    output: {
+        file: 'bin/recorder.js',
+        format: 'cjs',
+        banner: '#!/usr/bin/env node',
+    },
+    plugins: [resolve({
+        preferBuiltins: true,
+        resolveOnly: [
+            /get-port/
+        ],
+    })],
 };
 
-export default Object.keys(files).reduce(
-    (configs, file) => [
-        ...configs,
-        createConfig({
-            file,
-            format: 'both',
-            ...files[file],
-        }),
-    ],
-    [],
-);
+// export default [
+//     createConfig({
+//         input: 'src/cli.js',
+//         output: 'bin/recorder.js',
+//         banner: '#!/usr/bin/env node',
+//         format: 'node',
+//         prependPlugins: [
+//             resolve({
+//                 modulesOnly: true,
+//                 resolveOnly: (...args) => {
+//                     console.log(args);
+//                     return false;
+//                 },
+//             })
+//         ]
+//     }),
+// ];
