@@ -32,7 +32,7 @@ const defaultProps = {
 
 const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className, children }) => {
     const hasSize = width !== null || height !== null;
-
+    //
     const {
         ref: refContainer,
         width: calculatedWidth = 0,
