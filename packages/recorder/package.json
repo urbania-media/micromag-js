@@ -30,13 +30,14 @@
         }
     ],
     "license": "ISC",
-    "main": "cli/index.js",
+    "main": "bin/recorder.js",
+    "type": "commonjs",
     "bin": {
-        "micromag-recorder": "cli/index.js"
+        "micromag-recorder": "bin/recorder.js"
     },
     "files": [
         "build",
-        "cli"
+        "bin"
     ],
     "scripts": {
         "clean": "rm -rf cli && rm -rf build",
@@ -57,10 +58,15 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
+        "@folklore/fetch": "^0.1.14",
         "@micromag/viewer": "^0.3.767",
+        "express": "^5.2.1",
+        "get-port": "^7.1.0",
         "lodash": "^4.17.21",
         "object-hash": "^3.0.0",
         "prop-types": "^15.7.2",
+        "puppeteer": "^24.33.0",
+        "puppeteer-screen-recorder": "^3.0.6",
         "uuid": "^9.0.0"
     },
     "publishConfig": {
