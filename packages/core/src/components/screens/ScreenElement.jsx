@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import isString from 'lodash/isString';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import { PropTypes as MicromagPropTypes } from '../../lib';
+import { getComponentFromName } from '../../utils';
 
 import { useScreenRenderContext } from '../../contexts';
-import { getComponentFromName } from '../../utils';
-import { PropTypes as MicromagPropTypes } from '../../lib';
-import * as Placeholders from '../placeholders/index';
 import Empty from '../partials/Empty';
+import * as Placeholders from '../placeholders/index';
 
 const propTypes = {
     children: PropTypes.node,

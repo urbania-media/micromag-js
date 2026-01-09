@@ -2,10 +2,13 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import styles from '../../styles/screens/screen-placeholder.module.scss';
+
 import Screen from './Screen';
 import ScreenSizer from './ScreenSizer';
+
+import styles from '../../styles/screens/screen-placeholder.module.scss';
 
 const propTypes = {
     screen: MicromagPropTypes.component.isRequired,
