@@ -69,10 +69,6 @@
 
     .body {
         flex-grow: 1;
-
-        &.last {
-            margin-bottom: 20px;
-        }
     }
 
     .title,
@@ -123,12 +119,6 @@
             border-color: rgba($white, 0.6);
             background-color: rgba($white, 0.6);
             mix-blend-mode: difference;
-        }
-
-        .body {
-            &.last {
-                margin-bottom: 4px;
-            }
         }
 
         .title,

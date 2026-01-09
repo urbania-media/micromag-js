@@ -891,6 +891,10 @@
     "defaultMessage": "Screen {index}",
     "description": "Button label"
   },
+  "Lp0bG4": {
+    "defaultMessage": "Bottom spacing",
+    "description": "Spacing field label"
+  },
   "LrRW+9": {
     "defaultMessage": "Add a button",
     "description": "Button label"

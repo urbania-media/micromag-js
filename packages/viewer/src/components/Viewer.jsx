@@ -298,6 +298,7 @@ const Viewer = ({
         controls: playbackControls = false,
         controlsVisible: playbackControlsVisible = false,
         media: playbackMedia = null,
+        completed: mediaCompleted = false,
     } = usePlaybackContext();
 
     const playbackHelpVisible = useMemo(
@@ -463,6 +464,7 @@ const Viewer = ({
         }, longPressPauseDelay);
         return () => clearInterval(interval);
     }, [playing, pointerDownTime, longPressPauseDelay]);
+
     const onPointerDown = useCallback(() => {
         setPointerDownTime(Date.now());
     }, []);
@@ -785,7 +787,15 @@ const Viewer = ({
 
     useEffect(() => {
         let timeout = null;
-        if (backToFirstScreenTimeout !== null && isView && screensCount > 1 && screenIndex !== 0) {
+        const hasMediaCompleted = playbackMedia !== null ? mediaCompleted : true;
+
+        if (
+            backToFirstScreenTimeout !== null &&
+            isView &&
+            screensCount > 1 &&
+            screenIndex !== 0 &&
+            hasMediaCompleted
+        ) {
             timeout = setTimeout(() => {
                 changeIndex(0);
             }, backToFirstScreenTimeout);
@@ -795,7 +805,18 @@ const Viewer = ({
                 clearTimeout(timeout);
             }
         };
-    }, [backToFirstScreenTimeout, isView, screenIndex, screensCount, changeIndex, isDragging]);
+    }, [
+        backToFirstScreenTimeout,
+        isView,
+        screenIndex,
+        screensCount,
+        changeIndex,
+        playbackMedia,
+        mediaCompleted,
+        isDragging,
+    ]);
+
+    console.log('mc', mediaCompleted, playbackMedia);
 
     return (
         <StoryProvider story={parsedStory}>
