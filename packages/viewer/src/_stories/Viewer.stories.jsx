@@ -164,7 +164,7 @@ export const Urbania = () => (
 
 export const Article = () => <Viewer story={article} memoryRouter />;
 
-export const Bayard = () => <Viewer story={bayard} memoryRouter />;
+export const Bayard = () => <Viewer story={bayard} memoryRouter backToFirstScreenTimeout={5000} />;
 
 export const Cannabis = () => <Viewer story={cannabis} memoryRouter />;
 

@@ -9,7 +9,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ArrowIcon, CloseIcon, ScreenElement, Transitions } from '@micromag/core/components';
+import { CloseIcon, ScreenElement, Transitions } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -134,7 +134,7 @@ const SurveyScreen = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const { quiz: allQuizAnswers = [] } = useQuiz({ screenId, opts: { autoload: !isPlaceholder } });
     const quizAnswers = allQuizAnswers.filter((item) => {

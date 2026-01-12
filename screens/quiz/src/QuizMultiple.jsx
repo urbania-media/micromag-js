@@ -162,7 +162,7 @@ const QuizMultipleScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
     const { open: openWebView } = useViewerWebView();
     const screenState = useScreenState();
     const [stateId = null, stateIndex = 0] = screenState !== null ? screenState.split('.') : [];

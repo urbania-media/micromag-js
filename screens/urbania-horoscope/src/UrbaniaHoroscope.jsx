@@ -125,7 +125,7 @@ const UrbaniaHoroscope = ({
     const trackScreenEvent = useTrackScreenEvent(type);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
     const hasAuthor = author !== null && isTextFilled(author.name);
 
     const signs = useMemo(

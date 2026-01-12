@@ -125,7 +125,7 @@ const UrbaniaRecommendation = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { playing, setPlaying, muted, setMuted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic } = useScreenRenderContext();

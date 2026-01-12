@@ -2,22 +2,22 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, ScreenElement } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
-    useViewerNavigation,
-    useViewerContext,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerNavigation,
     useViewerWebView,
 } from '@micromag/core/contexts';
-import { useAnimationFrame, useTrackScreenEvent, useDevicePixelRatio } from '@micromag/core/hooks';
-import { isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { useAnimationFrame, useDevicePixelRatio, useTrackScreenEvent } from '@micromag/core/hooks';
+import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -77,7 +77,7 @@ const Image360Screen = ({
     const { bottomHeight: viewerBottomHeight, bottomSidesWidth: viewerBottomSidesWidth } =
         useViewerContext();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || preload;

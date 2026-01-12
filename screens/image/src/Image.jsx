@@ -109,7 +109,7 @@ const ImageScreen = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);

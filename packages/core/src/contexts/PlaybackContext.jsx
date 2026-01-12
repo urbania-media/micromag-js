@@ -38,21 +38,23 @@ export const PlaybackContext = React.createContext({
 
 export const usePlaybackContext = () => useContext(PlaybackContext);
 
-export const usePlaybackMediaRef = (active) => {
-    const { setMedia } = usePlaybackContext();
+export const usePlaybackMediaRef = (active = false, background = false) => {
+    const { setMedia, setIsBackground } = usePlaybackContext();
     const mediaRef = useRef(null);
 
     useEffect(() => {
         if (!active) {
             return () => {};
         }
+        setIsBackground(background);
         if (mediaRef.current !== null) {
             setMedia(mediaRef.current);
         }
         return () => {
             setMedia(null);
+            setIsBackground(false);
         };
-    }, [setMedia, active]);
+    }, [setMedia, setIsBackground, active, background]);
 
     return mediaRef;
 };
@@ -91,6 +93,7 @@ export const PlaybackProvider = ({
     const [muted, setMuted] = useState(initialMuted);
     const [playing, setPlaying] = useState(initialPlaying);
     const [media, setMedia] = useState(null);
+    const [isBackground, setIsBackground] = useState(false);
     const [controls, setControls] = useState(initialControls);
     const [controlsSuggestPlay, setControlsSuggestPlay] = useState(initialControlsSuggestPlay);
     const [controlsVisible, setControlsVisible] = useState(initialControlsVisible);
@@ -189,6 +192,8 @@ export const PlaybackProvider = ({
             controlsTheme,
             currentQualityLevel,
             setMuted,
+            setIsBackground,
+            isBackground,
             setPlaying: finalSetPlaying,
             setControls: finalSetControls,
             setControlsSuggestPlay,
@@ -212,6 +217,8 @@ export const PlaybackProvider = ({
             hasAudio,
             currentQualityLevel,
             setMuted,
+            setIsBackground,
+            isBackground,
             finalSetPlaying,
             finalSetControls,
             finalSetControlsTheme,

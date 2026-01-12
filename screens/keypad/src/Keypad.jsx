@@ -172,7 +172,7 @@ const KeypadScreen = ({
 
     const trackScreenEvent = useTrackScreenEvent('keypad');
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const screenState = useScreenState();
 

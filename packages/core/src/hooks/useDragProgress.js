@@ -10,6 +10,7 @@ function useDragProgress({
     computeProgress = null,
     onProgress = null,
     onPointerDown = null,
+    onScroll = null,
     springParams = undefined,
     dragOptions = {
         filterTaps: true,
@@ -82,6 +83,7 @@ function useDragProgress({
         {
             onDrag,
             onPointerDown: onPointerDown !== null ? onPointerDown : () => {},
+            onScroll: onScroll !== null ? onScroll : () => {},
         },
         {
             drag: dragOptions,

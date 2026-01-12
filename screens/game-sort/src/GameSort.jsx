@@ -122,7 +122,7 @@ const GameSort = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active;

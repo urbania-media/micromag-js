@@ -89,7 +89,7 @@ const ConversationScreen = ({
     const { open: openWebView } = useViewerWebView();
     const trackScreenEvent = useTrackScreenEvent(type);
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const audioEventsChannel = new BroadcastChannel(`conversation_${uuid()}_audioEvents`);
 

@@ -130,7 +130,7 @@ const ContributionScreen = ({
         useScreenRenderContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || preload;

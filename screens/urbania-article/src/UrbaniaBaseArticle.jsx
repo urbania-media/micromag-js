@@ -6,28 +6,28 @@ import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
-    ScreenElement,
     Empty,
     PlaceholderImage,
     PlaceholderSubtitle,
     PlaceholderTitle,
+    ScreenElement,
 } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
-    useViewerWebView,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
     useViewerContext,
     useViewerInteraction,
+    useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
 import {
-    isTextFilled,
-    getStyleFromColor,
-    isHeaderFilled,
-    isFooterFilled,
     getFooterProps,
+    getStyleFromColor,
+    isFooterFilled,
+    isHeaderFilled,
+    isTextFilled,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -115,7 +115,6 @@ const UrbaniaArticle = ({
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { muted, playing } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
 
     const {
         ref: contentRef,
@@ -178,6 +177,9 @@ const UrbaniaArticle = ({
     const mediaShouldLoad = current || preload;
     const finalPlaying = playing && current;
     const backgroundPlaying = current && !openedWebView && (isView || isEdit);
+
+    const isVideoBackground = imageType !== 'video' && hasVideoBackground;
+    const mediaRef = usePlaybackMediaRef(current, isVideoBackground);
 
     const items = [
         <ScreenElement
@@ -311,7 +313,7 @@ const UrbaniaArticle = ({
                 playing={backgroundPlaying}
                 muted={muted}
                 shouldLoad={mediaShouldLoad}
-                mediaRef={imageType !== 'video' && hasVideoBackground ? mediaRef : null}
+                mediaRef={isVideoBackground ? mediaRef : null}
                 withoutVideo={isPreview}
             />
             <Container className={styles.content} width={width} height={height}>

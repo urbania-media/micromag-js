@@ -120,7 +120,7 @@ const Timeline = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();

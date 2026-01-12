@@ -103,7 +103,7 @@ const ArticleScreen = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const { ref: imageCntRef, height: imageHeight } = useDimensionObserver();
 

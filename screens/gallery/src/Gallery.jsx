@@ -112,7 +112,7 @@ const GalleryScreen = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const spacing = initialSpacing !== null ? Math.max(0, initialSpacing || 0) : 20;
 

@@ -81,7 +81,7 @@ const SlideshowScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || preload;
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 

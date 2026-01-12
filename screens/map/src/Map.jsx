@@ -1,21 +1,21 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderMap, ScreenElement, Button } from '@micromag/core/components';
+import { Button, PlaceholderMap, ScreenElement } from '@micromag/core/components';
 import {
     useGoogleKeys,
-    useScreenSize,
-    useScreenRenderContext,
-    useScreenState,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useScreenState,
     useViewerInteraction,
 } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useDimensionObserver } from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import {
     getStyleFromColor,
     isTextFilled, // isHeaderFilled,
@@ -120,7 +120,7 @@ function MapScreen({
 
     const { width, height, resolution } = useScreenSize();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const { color: backgroundColor } = background || {};
     const markerOverlayContentStyle = getStyleFromColor(backgroundColor);

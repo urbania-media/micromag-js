@@ -100,7 +100,7 @@ const TitleScreen = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const mediaRef = usePlaybackMediaRef(current, true);
 
     const hasTitle = isTextFilled(title);
     const hasSubtitle = isTextFilled(subtitle);

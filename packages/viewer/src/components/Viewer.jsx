@@ -25,6 +25,7 @@ import {
     useScreenSizeFromElement,
     useTrackScreenView,
 } from '@micromag/core/hooks';
+import { useActivityDetector } from '@micromag/core/hooks';
 import { getColorAsString, getDeviceScreens } from '@micromag/core/utils';
 import { ShareIncentive } from '@micromag/elements/all';
 
@@ -299,6 +300,7 @@ const Viewer = ({
         controlsVisible: playbackControlsVisible = false,
         media: playbackMedia = null,
         completed: mediaCompleted = false,
+        isBackground: isBackgroundVideo = false,
     } = usePlaybackContext();
 
     const playbackHelpVisible = useMemo(
@@ -422,7 +424,6 @@ const Viewer = ({
     }, [changeIndex, screenIndex]);
 
     const [hasInteracted, setHasInteracted] = useState(false);
-
     const onInteractionPrivate = useCallback(() => {
         if (onInteraction !== null) {
             onInteraction();
@@ -561,12 +562,6 @@ const Viewer = ({
 
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
     const navigationDisabled = currentScreenInteractionEnabled === false;
-
-    // console.log(
-    //     'currentScreenInteractionEnabled',
-    //     currentScreenInteractionEnabled,
-    //     withoutGestures,
-    // );
 
     const {
         dragging: isDragging,
@@ -785,16 +780,26 @@ const Viewer = ({
 
     const NavigationHint = withNavigationHint === 'hand' ? HandTap : ArrowHint;
 
+    const { detected: activityDetected } = useActivityDetector({
+        element: containerRef.current,
+        disabled: !isView,
+        timeout: 2000,
+    });
+
     useEffect(() => {
         let timeout = null;
-        const hasMediaCompleted = playbackMedia !== null ? mediaCompleted : true;
+        // const looping = playbackMedia !== null ? playbackMedia.loop || false : false;
+        const hasMediaCompleted =
+            playbackMedia !== null && !isBackgroundVideo ? mediaCompleted : true;
 
         if (
             backToFirstScreenTimeout !== null &&
             isView &&
             screensCount > 1 &&
             screenIndex !== 0 &&
-            hasMediaCompleted
+            hasMediaCompleted &&
+            !isDragging &&
+            !activityDetected
         ) {
             timeout = setTimeout(() => {
                 changeIndex(0);
@@ -814,9 +819,12 @@ const Viewer = ({
         playbackMedia,
         mediaCompleted,
         isDragging,
+        activityDetected,
+        isBackgroundVideo,
     ]);
 
-    console.log('mc', mediaCompleted, playbackMedia);
+    // console.log('mediaCompleted', mediaCompleted, playbackMedia);
+    // console.log('activityDetected', activityDetected);
 
     return (
         <StoryProvider story={parsedStory}>
