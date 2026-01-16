@@ -33,6 +33,7 @@ const propTypes = {
     withShadow: PropTypes.bool,
     trackingEnabled: PropTypes.bool,
     shareBasePath: PropTypes.string,
+    shareOptions: PropTypes.arrayOf(PropTypes.string),
     theme: MicromagPropTypes.viewerTheme,
     screenSize: MicromagPropTypes.screenSize,
     menuWidth: PropTypes.number,
@@ -64,6 +65,7 @@ const defaultProps = {
     withShadow: false,
     trackingEnabled: false,
     shareBasePath: null,
+    shareOptions: null,
     theme: null,
     screenSize: null,
     menuWidth: null,
@@ -93,6 +95,7 @@ const ViewerMenu = ({
     closeable,
     withShadow,
     shareBasePath,
+    shareOptions,
     trackingEnabled,
     theme: viewerTheme,
     screenSize,
@@ -456,6 +459,7 @@ const ViewerMenu = ({
                             paddingTop={navContainerHeight}
                             focusable={shareOpened}
                             items={items}
+                            shareOptions={shareOptions}
                             currentScreenIndex={currentScreenIndex}
                             shareUrl={shareUrl}
                             onShare={onShare}

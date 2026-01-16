@@ -81,6 +81,7 @@ const propTypes = {
     menuFooter: PropTypes.node,
     menuItems: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.node])),
     shareBasePath: PropTypes.string,
+    shareOptions: PropTypes.arrayOf(PropTypes.string),
     afterShareMenuButton: PropTypes.node,
     beforeScreensMenuButton: PropTypes.node,
     backToFirstScreenTimeout: PropTypes.number,
@@ -142,6 +143,7 @@ const defaultProps = {
     menuFooter: null,
     menuItems: ['share', 'main'],
     shareBasePath: null,
+    shareOptions: null,
     afterShareMenuButton: null,
     beforeScreensMenuButton: null,
     backToFirstScreenTimeout: null,
@@ -199,6 +201,7 @@ const Viewer = ({
     menuFooter,
     menuItems,
     shareBasePath,
+    shareOptions,
     afterShareMenuButton,
     beforeScreensMenuButton,
     backToFirstScreenTimeout,
@@ -945,6 +948,7 @@ const Viewer = ({
                                 menuDotsButtons={menuDotsButtons}
                                 closeable={closeable}
                                 shareBasePath={shareBasePath || basePath}
+                                shareOptions={shareOptions}
                                 screenSize={screenSize}
                                 menuWidth={menuIsScreenWidth ? screenContainerWidth : null}
                                 theme={viewerTheme}

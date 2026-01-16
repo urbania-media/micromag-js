@@ -2,7 +2,7 @@
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -19,6 +19,7 @@ const propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     items: MicromagPropTypes.menuItems,
+    shareOptions: PropTypes.arrayOf(PropTypes.string),
     focusable: PropTypes.bool,
     paddingTop: PropTypes.number,
     currentScreenIndex: PropTypes.number,
@@ -33,6 +34,7 @@ const defaultProps = {
     title: null,
     description: null,
     items: [],
+    shareOptions: null,
     focusable: true,
     paddingTop: null,
     currentScreenIndex: 0,
@@ -47,6 +49,7 @@ const ViewerMenuShare = ({
     title,
     description,
     items,
+    shareOptions,
     focusable,
     paddingTop,
     currentScreenIndex,
@@ -84,10 +87,13 @@ const ViewerMenuShare = ({
         setShareCurrentScreen((value) => !value);
     }, [setShareCurrentScreen]);
 
-    const finalShareUrl = useMemo(() =>
-        shareCurrentScreen && currentScreenIndex !== 0 ?
-        `${shareUrl}/${currentScreenIndex+1}` : shareUrl,
-    [shareUrl, shareCurrentScreen, currentScreenIndex]);
+    const finalShareUrl = useMemo(
+        () =>
+            shareCurrentScreen && currentScreenIndex !== 0
+                ? `${shareUrl}/${currentScreenIndex + 1}`
+                : shareUrl,
+        [shareUrl, shareCurrentScreen, currentScreenIndex],
+    );
 
     return (
         <div
@@ -136,6 +142,7 @@ const ViewerMenuShare = ({
                             itemClassName={styles.optionItem}
                             buttonClassName={styles.optionButton}
                             title={title}
+                            options={shareOptions}
                             url={finalShareUrl}
                             focusable={focusable}
                             onShare={onShare}

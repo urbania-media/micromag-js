@@ -1,28 +1,29 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
+import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import {
-    EmailShareButton, // EmailIcon,
+    EmailShareButton,
+    FacebookIcon, // EmailIcon,
     FacebookShareButton,
-    FacebookIcon,
-    TwitterShareButton,
-    TwitterIcon,
-    LinkedinShareButton,
     LinkedinIcon,
-    WhatsappShareButton,
+    LinkedinShareButton,
+    TwitterIcon,
+    TwitterShareButton,
     WhatsappIcon, // FacebookMessengerShareButton,
     // FacebookMessengerIcon,
+    WhatsappShareButton,
 } from 'react-share';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import {
-    getStyleFromText,
-    getStyleFromColor,
-    getStyleFromBox,
     copyToClipboard,
+    getStyleFromBox,
+    getStyleFromColor,
+    getStyleFromText,
 } from '@micromag/core/utils';
 
 import EmailIcon from './EmailIcon';
@@ -194,7 +195,7 @@ const ShareOptions = ({
                             { [labelClassName]: labelClassName !== null },
                         ])}
                     >
-                        Twitter
+                        X (Twitter)
                     </div>
                     <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </TwitterShareButton>
@@ -340,7 +341,9 @@ const ShareOptions = ({
 
     const hasShareLink = options !== null ? options.includes('copylink') : true; // default is true
     const selectedOptions =
-        options !== null ? shareOptions.filter((opt) => options.includes(opt.id)) : shareOptions;
+        options !== null && isArray(options)
+            ? shareOptions.filter((opt) => options.includes(opt.id))
+            : shareOptions;
 
     return (
         <div className={classNames([styles.container, { [className]: className !== null }])}>
