@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-share-options",
-    "version": "0.3.781",
+    "version": "0.3.782",
     "private": false,
     "description": "",
     "keywords": [
@@ -65,10 +65,10 @@
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.781",
         "classnames": "^2.2.6",
+        "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "react-intl": "^6.6.4",
         "react-share": "^5.1.0",
-        "lodash": "^4.17.21",
         "uuid": "^9.0.0"
     },
     "publishConfig": {
