@@ -290,8 +290,11 @@ export const MicromagExample = () => (
     <Viewer {...micromagExample} memoryRouter shareOptions={['linkedin', 'email']} />
 );
 export const MicromagExample2 = () => <Viewer {...micromagExample2} memoryRouter />;
+
 export const MicromagExampleEarly2024 = () => <Viewer {...micromagExampleEarly2024} memoryRouter />;
+
 export const LesPlanetes = () => <Viewer {...planetsStory} memoryRouter />;
+
 export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint memoryRouter />;
 
 export const AllScreens = () => (
