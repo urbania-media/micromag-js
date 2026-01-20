@@ -168,7 +168,7 @@ export const Bayard = () => <Viewer story={bayard} memoryRouter backToFirstScree
 
 export const Cannabis = () => <Viewer story={cannabis} memoryRouter />;
 
-export const TNM = () => <Viewer story={tnm} memoryRouter />;
+export const TNM = () => <Viewer story={tnm} memoryRouter muted={false} />;
 
 export const Single = () => <Viewer story={lol} memoryRouter />;
 

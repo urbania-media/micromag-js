@@ -31,6 +31,7 @@ import defaultRoutes from '../data/routes.json';
 const propTypes = {
     story: MicromagPropTypes.story,
     paused: PropTypes.bool,
+    muted: PropTypes.bool,
     screen: PropTypes.string,
     screenComponents: PropTypes.objectOf(PropTypes.elementType),
     memoryRouter: PropTypes.bool,
@@ -52,6 +53,7 @@ const propTypes = {
 const defaultProps = {
     story: null,
     paused: false,
+    muted: true,
     screen: null,
     screenComponents: null,
     memoryRouter: false,
@@ -73,6 +75,7 @@ const defaultProps = {
 const ViewerContainer = ({
     story,
     paused,
+    muted,
     screenComponents,
     memoryRouter,
     basePath,
@@ -110,7 +113,7 @@ const ViewerContainer = ({
         const googleAnalyticsIds = [...(orgCodes || []), ...(storyCodes || [])]
             .filter((storyCode) => {
                 const { type, id: trackingId } = storyCode || {};
-                return (type === 'ga4') && !isEmpty(trackingId);
+                return type === 'ga4' && !isEmpty(trackingId);
             })
             .map(({ id: trackingId }) => trackingId);
 
@@ -139,7 +142,7 @@ const ViewerContainer = ({
                             components={screenComponents || {}}
                         >
                             <VisitorProvider visitor={visitor}>
-                                <PlaybackProvider paused={paused}>
+                                <PlaybackProvider paused={paused} muted={muted}>
                                     <TrackingProvider
                                         variables={finalTrackingVariables}
                                         disabled={trackingDisabled}
