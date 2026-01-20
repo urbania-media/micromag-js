@@ -100,6 +100,7 @@ const propTypes = {
     withFullscreenWebView: PropTypes.bool,
     withNavigationHint: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     withoutPlaybackControls: PropTypes.bool,
+    withoutAutoUnmute: PropTypes.bool,
     onClose: PropTypes.func,
     onInteraction: PropTypes.func,
     onEnd: PropTypes.func,
@@ -163,6 +164,7 @@ const defaultProps = {
     withoutTransitions: false,
     withoutNavigationArrow: false,
     withoutPlaybackControls: false,
+    withoutAutoUnmute: false,
     onClose: null,
     onInteraction: null,
     onEnd: null,
@@ -221,6 +223,7 @@ const Viewer = ({
     withFullscreenWebView,
     withNavigationHint,
     withoutPlaybackControls,
+    withoutAutoUnmute,
     onClose: onCloseViewer,
     onInteraction,
     onEnd,
@@ -304,6 +307,7 @@ const Viewer = ({
         media: playbackMedia = null,
         completed: mediaCompleted = false,
         isBackground: isBackgroundVideo = false,
+        setMuted = null,
     } = usePlaybackContext();
 
     const playbackHelpVisible = useMemo(
@@ -433,8 +437,11 @@ const Viewer = ({
         }
         if (!hasInteracted) {
             setHasInteracted(true);
+            if (!withoutAutoUnmute && setMuted !== null) {
+                setMuted(false);
+            }
         }
-    }, [onInteraction, hasInteracted, setHasInteracted]);
+    }, [onInteraction, hasInteracted, setHasInteracted, withoutAutoUnmute, setMuted]);
 
     const {
         interact: interactWithScreen,
