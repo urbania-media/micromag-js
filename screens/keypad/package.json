@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-keypad",
-    "version": "0.3.781",
+    "version": "0.3.786",
     "private": false,
     "description": "",
     "keywords": [
@@ -68,9 +68,9 @@
         "@micromag/core": "^0.3.781",
         "@micromag/element-background": "^0.3.781",
         "@micromag/element-button": "^0.3.781",
-        "@micromag/element-call-to-action": "^0.3.781",
+        "@micromag/element-call-to-action": "^0.3.786",
         "@micromag/element-container": "^0.3.781",
-        "@micromag/element-footer": "^0.3.781",
+        "@micromag/element-footer": "^0.3.786",
         "@micromag/element-grid": "^0.3.781",
         "@micromag/element-header": "^0.3.781",
         "@micromag/element-heading": "^0.3.781",

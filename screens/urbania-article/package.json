@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-article",
-    "version": "0.3.781",
+    "version": "0.3.786",
     "private": false,
     "description": "",
     "keywords": [
@@ -67,7 +67,7 @@
         "@micromag/element-button": "^0.3.781",
         "@micromag/element-closed-captions": "^0.3.781",
         "@micromag/element-container": "^0.3.781",
-        "@micromag/element-footer": "^0.3.781",
+        "@micromag/element-footer": "^0.3.786",
         "@micromag/element-header": "^0.3.781",
         "@micromag/element-heading": "^0.3.781",
         "@micromag/element-image": "^0.3.781",
