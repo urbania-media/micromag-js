@@ -38,6 +38,7 @@ const propTypes = {
     labelClassName: PropTypes.string,
     arrowClassName: PropTypes.string,
     focusable: PropTypes.bool,
+    external: PropTypes.bool,
     openWebView: PropTypes.func,
     onClick: PropTypes.func,
 };
@@ -60,6 +61,7 @@ const defaultProps = {
     labelClassName: null,
     arrowClassName: null,
     focusable: true,
+    external: true,
     openWebView: null,
     onClick: null,
 };
@@ -82,6 +84,7 @@ function CallToAction({
     labelClassName,
     arrowClassName,
     focusable,
+    external,
     openWebView,
     onClick,
 }) {
@@ -226,7 +229,7 @@ function CallToAction({
                     inline
                     aria-pressed={toggled}
                     href={!inWebView ? url : null}
-                    external
+                    external={!inWebView ? external : false}
                     onClick={onClickLink}
                     {...(swipeUpEnabled && !disabled ? bind() : null)}
                 >
