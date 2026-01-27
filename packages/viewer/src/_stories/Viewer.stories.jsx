@@ -353,12 +353,8 @@ export const MultipleAudios = () => (
     />
 );
 
-const videoSettings = {
-    supportedVideoMimes: ['video/mp4'],
-}
-
 export const MultipleVideos = () => (
-    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint memoryRouter settings={videoSettings} />
+    <Viewer screenId="1" story={multipleVideosStory} withNavigationHint memoryRouter />
 );
 
 export const MultipleVideosForcePaused = () => (
