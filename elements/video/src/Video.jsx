@@ -217,6 +217,9 @@ const Video = ({
         }
     }, [ready, onReady]);
 
+    const finalPreload = shouldLoad ? preload : 'none';
+    const preloadRef = useRef(finalPreload);
+
     useEffect(() => {
         const { current: element = null } = ref;
         if (element === null) {
@@ -227,6 +230,10 @@ const Video = ({
         if (paused && !isPaused) {
             element.pause();
         } else if (!paused && isPaused) {
+            if (preloadRef.current === 'none') {
+                element.load();
+                preloadRef.current = finalPreload;
+            }
             element.play().catch((e) => {
                 if (onPlayError !== null) {
                     onPlayError(e);
@@ -288,7 +295,7 @@ const Video = ({
                             ? finalThumbnail.url || null
                             : null
                     }
-                    preload={shouldLoad ? preload : 'none'}
+                    preload={finalPreload}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     disablePictureInPicture={disablePictureInPicture}
