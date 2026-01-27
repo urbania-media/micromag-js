@@ -13,6 +13,7 @@ import {
     GoogleMapsClientProvider,
     PlaybackProvider,
     SCREENS_NAMESPACE,
+    SettingsProvider,
     TrackingProvider,
     VisitorProvider,
 } from '@micromag/core/contexts';
@@ -21,7 +22,6 @@ import { ScreensProvider } from '@micromag/screens';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
 
-import { SettingsProvider } from '../../../core/src/contexts';
 import Viewer from './Viewer';
 import ViewerRoutes from './ViewerRoutes';
 

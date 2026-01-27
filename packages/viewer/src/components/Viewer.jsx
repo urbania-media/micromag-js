@@ -24,8 +24,8 @@ import {
     useParsedStory,
     useScreenSizeFromElement,
     useTrackScreenView,
+    useActivityDetector,
 } from '@micromag/core/hooks';
-import { useActivityDetector } from '@micromag/core/hooks';
 import { getColorAsString, getDeviceScreens } from '@micromag/core/utils';
 import { ShareIncentive } from '@micromag/elements/all';
 
