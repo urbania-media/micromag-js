@@ -8,8 +8,6 @@ import { useUppy } from '@panneau/uppy';
 
 import { PropTypes as MicromagPropTypes } from '../../lib';
 
-import '../../styles/modals/upload.scss';
-
 const DashboardModal = React.lazy(() =>
     import('@uppy/react').then(({ DashboardModal: Component }) => ({ default: Component })),
 );

@@ -4,8 +4,8 @@
 @import './placeholders';
 @import './mixins';
 @import '~bootstrap/scss/bootstrap';
-@import '~@uppy/core/dist/style';
-@import '~@uppy/dashboard/dist/style';
+@import '@uppy/core/css/style.min.css';
+@import '@uppy/dashboard/css/style.min.css';
 
 // TODO add more when needed
 @import '~@panneau/fields/scss/styles';

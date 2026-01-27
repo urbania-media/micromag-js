@@ -57,7 +57,17 @@ const result = sass.renderSync({
     ],
 });
 
-postcss([require('postcss-import'), ...postcssConfig.plugins])
+postcss([
+    atImport({
+        resolve: (id, basedir, importOptions) => {
+            if (id.match(/^@uppy\/([^/]+)\/css/)) {
+                return id.replace('/css/', '/dist/');
+            }
+            return id;
+        },
+    }),
+    ...postcssConfig.plugins,
+])
     .process(result.css, {
         from: srcFile,
         to: outFile,

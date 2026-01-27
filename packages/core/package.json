@@ -120,6 +120,9 @@
         "@panneau/filters": "^3.0.301",
         "@panneau/medias": "^3.0.300",
         "@panneau/uppy": "^3.0.162",
+        "@uppy/core": "^5.1.1",
+        "@uppy/dashboard": "^5.0.4",
+        "@uppy/react": "^5.1.1",
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
