@@ -138,7 +138,7 @@ const FontFaces = ({ fonts, formats }) => {
             //     }),
             // ];
         }, {});
-    return fontFaces.length > 0 ? (
+    return Object.keys(fontFaces).length > 0 ? (
         <style
             type="text/css"
             dangerouslySetInnerHTML={{
