@@ -65,6 +65,7 @@ const defaultProps = {
 };
 
 const VideoScreen = ({
+    index,
     layout,
     video,
     gotoNextScreenOnEnd,
@@ -122,6 +123,12 @@ const VideoScreen = ({
     } = usePlaybackContext();
 
     const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current);
+    if (current) {
+        console.log({
+            index,
+            isCurrentMedia,
+        });
+    }
 
     const [hasPlayed, setHasPlayed] = useState(false);
     const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);

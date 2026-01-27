@@ -44,20 +44,47 @@ export const usePlaybackMediaRef = (active = false, background = false) => {
     const { setMedia, setIsBackground, media } = usePlaybackContext();
     const mediaRef = useRef(null);
 
-    useEffect(() => {
-        if (!active) {
-            if (mediaRef.current === media) {
+    useEffect(
+        () => () => {
+            if (active) {
                 setMedia(null);
                 setIsBackground(false);
             }
-            return () => {};
+        },
+        [active],
+    );
+
+    useEffect(() => {
+        if (!active || mediaRef.current === null || media !== null) {
+            return;
         }
         setIsBackground(background);
-        if (mediaRef.current !== null && media === null) {
-            setMedia(mediaRef.current);
-        }
-        return () => {};
-    }, [setMedia, setIsBackground, active, background, media]);
+        setMedia(mediaRef.current);
+    }, [active, background, media]);
+
+    // const shouldSetMedia = active && media === null && mediaRef.current !== null;
+    // useEffect(
+    //     () => () => {
+    //         if (active) {
+    //             console.log('DESTROY unset media');
+    //             setMedia(null);
+    //             setIsBackground(false);
+    //         }
+    //     },
+    //     [active],
+    // );
+
+    // useEffect(() => {
+    //     if (active && mediaRef.current !== null && media === null) {
+    //         console.log('SET media');
+    //         setIsBackground(background);
+    //         setMedia(mediaRef.current);
+    //     } else if (!active && mediaRef.current === media && media !== null) {
+    //         console.log('Unset media');
+    //         setMedia(null);
+    //         setIsBackground(false);
+    //     }
+    // }, [active, background, media]);
 
     return { ref: mediaRef, isCurrent: mediaRef.current === media };
 };
