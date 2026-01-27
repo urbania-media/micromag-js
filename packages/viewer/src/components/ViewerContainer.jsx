@@ -21,6 +21,7 @@ import { ScreensProvider } from '@micromag/screens';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
 
+import { SettingsProvider } from '../../../core/src/contexts';
 import Viewer from './Viewer';
 import ViewerRoutes from './ViewerRoutes';
 
@@ -47,6 +48,7 @@ const propTypes = {
     trackingVariables: MicromagPropTypes.trackingVariables,
     trackingDisabled: PropTypes.bool,
     trackingPaused: PropTypes.bool,
+    settings: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     children: PropTypes.func,
 };
 
@@ -69,6 +71,7 @@ const defaultProps = {
     trackingVariables: null,
     trackingDisabled: false,
     trackingPaused: false,
+    settings: null,
     children: null,
 };
 
@@ -90,6 +93,7 @@ const ViewerContainer = ({
     trackingVariables,
     trackingDisabled,
     trackingPaused,
+    settings,
     ...otherProps
 }) => {
     const finalTrackingVariables = useMemo(() => {
@@ -103,11 +107,11 @@ const ViewerContainer = ({
             title = null,
             components = [],
             organisation,
-            settings,
+            settings: storySettings,
         } = story || {};
         const { slug: organisationSlug, tracking: orgTracking } = organisation || {};
         const { codes: orgCodes = [] } = orgTracking || {};
-        const { tracking: storyTracking } = settings || {};
+        const { tracking: storyTracking } = storySettings || {};
         const { codes: storyCodes = [] } = storyTracking || {};
 
         const googleAnalyticsIds = [...(orgCodes || []), ...(storyCodes || [])]
@@ -133,43 +137,45 @@ const ViewerContainer = ({
     const { language: finalLocale = locale } = metadata || {};
 
     const content = (
-        <IntlProvider locale={finalLocale} locales={locales} extraMessages={translations}>
-            <GoogleKeysProvider apiKey={googleApiKey}>
-                <GoogleMapsClientProvider locale={finalLocale}>
-                    <ScreensProvider>
-                        <ComponentsProvider
-                            namespace={SCREENS_NAMESPACE}
-                            components={screenComponents || {}}
-                        >
-                            <VisitorProvider visitor={visitor}>
-                                <PlaybackProvider paused={paused} muted={muted}>
-                                    <TrackingProvider
-                                        variables={finalTrackingVariables}
-                                        disabled={trackingDisabled}
-                                        paused={trackingPaused}
-                                    >
-                                        {withoutRouter ? (
-                                            <Viewer
-                                                story={story}
-                                                basePath={basePath}
-                                                {...otherProps}
-                                            />
-                                        ) : (
-                                            <ViewerRoutes
-                                                story={story}
-                                                basePath={basePath}
-                                                pathWithIndex={pathWithIndex}
-                                                {...otherProps}
-                                            />
-                                        )}
-                                    </TrackingProvider>
-                                </PlaybackProvider>
-                            </VisitorProvider>
-                        </ComponentsProvider>
-                    </ScreensProvider>
-                </GoogleMapsClientProvider>
-            </GoogleKeysProvider>
-        </IntlProvider>
+        <SettingsProvider settings={settings}>
+            <IntlProvider locale={finalLocale} locales={locales} extraMessages={translations}>
+                <GoogleKeysProvider apiKey={googleApiKey}>
+                    <GoogleMapsClientProvider locale={finalLocale}>
+                        <ScreensProvider>
+                            <ComponentsProvider
+                                namespace={SCREENS_NAMESPACE}
+                                components={screenComponents || {}}
+                            >
+                                <VisitorProvider visitor={visitor}>
+                                    <PlaybackProvider paused={paused} muted={muted}>
+                                        <TrackingProvider
+                                            variables={finalTrackingVariables}
+                                            disabled={trackingDisabled}
+                                            paused={trackingPaused}
+                                        >
+                                            {withoutRouter ? (
+                                                <Viewer
+                                                    story={story}
+                                                    basePath={basePath}
+                                                    {...otherProps}
+                                                />
+                                            ) : (
+                                                <ViewerRoutes
+                                                    story={story}
+                                                    basePath={basePath}
+                                                    pathWithIndex={pathWithIndex}
+                                                    {...otherProps}
+                                                />
+                                            )}
+                                        </TrackingProvider>
+                                    </PlaybackProvider>
+                                </VisitorProvider>
+                            </ComponentsProvider>
+                        </ScreensProvider>
+                    </GoogleMapsClientProvider>
+                </GoogleKeysProvider>
+            </IntlProvider>
+        </SettingsProvider>
     );
 
     const { hook: memoryRouterHook, searchHook: memoryRouterSearchHook } = useMemoryRouter();

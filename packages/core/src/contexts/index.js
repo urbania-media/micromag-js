@@ -12,6 +12,7 @@ export * from './ModalsContext';
 export * from './PanelsContext';
 export * from './PlaybackContext';
 export * from './RoutesContext';
+export * from './SettingsContext';
 export * from './ScreenContext';
 export * from './ScreensContext';
 export * from './ScreenSizeContext';

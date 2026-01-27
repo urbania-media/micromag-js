@@ -3,7 +3,10 @@ let supportedMimes = null;
 function getVideoSupportedMimes(mimes = possibleMimes) {
     if (supportedMimes === null) {
         const video = document.createElement('video');
-        supportedMimes = mimes.filter((mime) => video.canPlayType(mime) !== '');
+        console.log({
+            checkMimes: mimes || possibleMimes,
+        })
+        supportedMimes = (mimes || possibleMimes).filter((mime) => video.canPlayType(mime) !== '');
     }
     return supportedMimes;
 }

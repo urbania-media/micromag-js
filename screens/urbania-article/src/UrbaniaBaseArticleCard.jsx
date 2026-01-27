@@ -173,11 +173,11 @@ const UrbaniaArticleCard = ({
 
         if (newOpened) {
             openWebView(finalUrl);
-            console.log('web open');
+            // console.log('web open');
             disableInteraction();
         } else {
             enableInteraction();
-            console.log('web not open');
+            // console.log('web not open');
         }
     }, [webviewOpened, disableInteraction, enableInteraction, openWebView, finalUrl]);
 
@@ -230,7 +230,7 @@ const UrbaniaArticleCard = ({
     // TODIO: current switches on/off for a split second and fucks this up
     useEffect(() => {
         if (!current && webviewOpened && closeWebView !== null) {
-            console.log('web close');
+            // console.log('web close');
             // closeWebView();
             // enableInteraction();
         }

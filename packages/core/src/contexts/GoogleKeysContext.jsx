@@ -2,6 +2,8 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useMemo } from 'react';
 
+import { useSetting } from './SettingsContext';
+
 export const GoogleKeysContext = React.createContext({
     apiKey: null,
 });
@@ -19,7 +21,11 @@ const defaultProps = {
 
 export const GoogleKeysProvider = ({ children, apiKey }) => {
     const { apiKey: previousApiKey } = useGoogleKeys();
-    const value = useMemo(() => ({ apiKey: apiKey || previousApiKey }), [apiKey, previousApiKey]);
+    const settingApiKey = useSetting('googleApiKey');
+    const value = useMemo(
+        () => ({ apiKey: apiKey || previousApiKey || settingApiKey }),
+        [apiKey, previousApiKey, settingApiKey],
+    );
     return <GoogleKeysContext.Provider value={value}>{children}</GoogleKeysContext.Provider>;
 };
 
