@@ -44,7 +44,7 @@
         "prepublishOnly": "npm run build",
         "build:viewer": "flklr build --disable-source-map --html-path=./src/index.html.ejs --output-path=./build --merge-config=./webpack.config.js ./src/web.jsx",
         "build:cli": "../../scripts/prepare-package.sh",
-        "build": "npm run clean && npm run build:viewer && npm run build:cli"
+        "build": "npm run clean && npm run build:cli"
     },
     "devDependencies": {
         "@folklore/cli": "^0.0.50",

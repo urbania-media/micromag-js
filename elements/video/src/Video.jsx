@@ -219,6 +219,7 @@ const Video = ({
 
     const finalPreload = shouldLoad ? preload : 'none';
     const preloadRef = useRef(finalPreload);
+    const hasPlayedRef = useRef(false);
 
     useEffect(() => {
         const { current: element = null } = ref;
@@ -234,6 +235,7 @@ const Video = ({
                 element.load();
                 preloadRef.current = finalPreload;
             }
+            hasPlayedRef.current = true;
             element.play().catch((e) => {
                 if (onPlayError !== null) {
                     onPlayError(e);
@@ -287,7 +289,7 @@ const Video = ({
                         }
                     }}
                     src={sources === null && shouldLoad ? `${mediaUrl}#t=0.001` : null}
-                    autoPlay={autoPlay && !paused}
+                    autoPlay={autoPlay && !paused && !hasPlayedRef.current}
                     loop={loop}
                     muted={muted}
                     poster={
