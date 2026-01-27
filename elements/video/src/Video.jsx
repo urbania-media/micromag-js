@@ -289,7 +289,7 @@ const Video = ({
                         }
                     }}
                     src={sources === null && shouldLoad ? `${mediaUrl}#t=0.001` : null}
-                    autoPlay={autoPlay && !paused && !hasPlayedRef.current}
+                    autoPlay={autoPlay && !paused && !hasPlayedRef.current && muted}
                     loop={loop}
                     muted={muted}
                     poster={
