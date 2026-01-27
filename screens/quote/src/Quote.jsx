@@ -74,7 +74,7 @@ const QuoteScreen = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
 
     const isSplitted = layout === 'split';
     const isTopLayout = layout === 'top';
@@ -90,7 +90,7 @@ const QuoteScreen = ({
     const hasAuthor = isTextFilled(author);
 
     const quoteWithMargin = hasQuote && hasAuthor && !isSplitted;
-    const backgroundPlaying = current && (isView || isEdit);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = current || preload;
 
     return (

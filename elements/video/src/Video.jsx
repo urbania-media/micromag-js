@@ -218,12 +218,10 @@ const Video = ({
     }, [ready, onReady]);
 
     const finalPreload = shouldLoad ? preload : 'none';
-    const preloadRef = useRef(finalPreload);
-    const hasPlayedRef = useRef(false);
 
     useEffect(() => {
         const { current: element = null } = ref;
-        if (element === null) {
+        if (element === null || mediaUrl === null) {
             return;
         }
         const { paused: isPaused } = element;
@@ -231,18 +229,13 @@ const Video = ({
         if (paused && !isPaused) {
             element.pause();
         } else if (!paused && isPaused) {
-            if (preloadRef.current === 'none') {
-                element.load();
-                preloadRef.current = finalPreload;
-            }
-            hasPlayedRef.current = true;
             element.play().catch((e) => {
                 if (onPlayError !== null) {
                     onPlayError(e);
                 }
             });
         }
-    }, [paused, media, onPlayError]); // test media here for fun
+    }, [paused, media, mediaUrl, onPlayError]);
 
     useProgressSteps({
         currentTime,
@@ -289,7 +282,7 @@ const Video = ({
                         }
                     }}
                     src={sources === null && shouldLoad ? `${mediaUrl}#t=0.001` : null}
-                    autoPlay={autoPlay && !paused && !hasPlayedRef.current && muted}
+                    autoPlay={autoPlay && !paused}
                     loop={loop}
                     muted={muted}
                     poster={

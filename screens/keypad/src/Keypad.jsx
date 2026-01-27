@@ -172,7 +172,7 @@ const KeypadScreen = ({
 
     const trackScreenEvent = useTrackScreenEvent('keypad');
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
 
     const screenState = useScreenState();
 
@@ -200,7 +200,7 @@ const KeypadScreen = ({
     const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
     const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
-    const backgroundPlaying = current && (isView || isEdit);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = !isPlaceholder && (current || preload);
     const isInteractivePreview = isEdit && screenState === null;
     const isNotInteractive = isEdit && screenState !== null;

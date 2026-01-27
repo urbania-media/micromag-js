@@ -176,10 +176,10 @@ const UrbaniaArticle = ({
     const hasVideoBackground = backgroundVideo !== null;
     const mediaShouldLoad = current || preload;
     const finalPlaying = playing && current;
-    const backgroundPlaying = current && !openedWebView && (isView || isEdit);
 
     const isVideoBackground = imageType !== 'video' && hasVideoBackground;
-    const mediaRef = usePlaybackMediaRef(current, isVideoBackground);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, isVideoBackground);
+    const backgroundPlaying = current && !openedWebView && (isView || isEdit) && (isCurrentMedia || !isView);
 
     const items = [
         <ScreenElement

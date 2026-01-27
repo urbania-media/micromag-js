@@ -120,7 +120,7 @@ const Timeline = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -160,7 +160,7 @@ const Timeline = ({
     // const transitionsPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
-    const backgroundPlaying = current && (isView || isEdit);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = current || preload;
 
     const onImageLoaded = useCallback(() => {

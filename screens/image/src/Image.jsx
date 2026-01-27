@@ -109,7 +109,7 @@ const ImageScreen = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
 
     const hasHeader = isHeaderFilled(header);
     const hasFooter = isFooterFilled(footer);
@@ -121,7 +121,7 @@ const ImageScreen = ({
     const hasLegend = isTextFilled(legend);
 
     const [ready, setReady] = useState(!hasImage);
-    const backgroundPlaying = current && (isView || isEdit);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = current || preload;
 
     const onImageLoaded = useCallback(() => {

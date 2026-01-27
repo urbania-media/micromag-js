@@ -137,9 +137,9 @@ const UrbaniaArticleCard = ({
     }, [hasUrl, url]);
 
     const mediaShouldLoad = current || preload;
-    const backgroundPlaying = current && (isView || isEdit);
 
-    const mediaRef = usePlaybackMediaRef(current && !webviewOpened, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current && !webviewOpened, true);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
 
     // card animations
     const withCardAnimation = !isPlaceholder && !isPreview && !isStatic;

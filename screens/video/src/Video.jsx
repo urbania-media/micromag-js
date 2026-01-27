@@ -2,7 +2,7 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -121,11 +121,11 @@ const VideoScreen = ({
         setCurrentQualityLevel,
     } = usePlaybackContext();
 
-    const mediaRef = usePlaybackMediaRef(current);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current);
 
     const [hasPlayed, setHasPlayed] = useState(false);
-    const backgroundPlaying = current && (isView || isEdit);
-    const videoPlaying = current && (isView || isEdit) && playing;
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
+    const videoPlaying = current && (isView || isEdit) && playing && (isCurrentMedia || !isView);
     const shouldDisplayPoster = isPreview || isCapture;
 
     useEffect(() => {

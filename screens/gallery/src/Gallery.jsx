@@ -112,12 +112,12 @@ const GalleryScreen = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
 
     const spacing = initialSpacing !== null ? Math.max(0, initialSpacing || 0) : 20;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
-    const backgroundPlaying = current && (isView || isEdit);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = current || preload;
 
     const finalSpacing = isPlaceholder ? 5 : spacing;

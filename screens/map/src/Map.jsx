@@ -120,7 +120,7 @@ function MapScreen({
 
     const { width, height, resolution } = useScreenSize();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
 
     const { color: backgroundColor } = background || {};
     const markerOverlayContentStyle = getStyleFromColor(backgroundColor);
@@ -132,7 +132,7 @@ function MapScreen({
     const [ready, setReady] = useState(false);
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
-    const backgroundPlaying = current && (isView || isEdit);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     // const backgroundShouldLoad = current || active;
     const backgroundShouldLoad = current || active;
     const [opened, setOpened] = useState(isStatic || isCapture);

@@ -89,14 +89,14 @@ const ConversationScreen = ({
     const { open: openWebView } = useViewerWebView();
     const trackScreenEvent = useTrackScreenEvent(type);
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
 
     const audioEventsChannel = new BroadcastChannel(`conversation_${uuid()}_audioEvents`);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
-    const backgroundPlaying = current && (isView || isEdit);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = current || preload;
     const withAnimation = isView && !isStatic && timingMode === 'sequence';
     const { speakers = null, messages = [], messageStyle, speakerStyle } = conversation || {};

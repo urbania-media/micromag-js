@@ -77,9 +77,9 @@ const Image360Screen = ({
     const { bottomHeight: viewerBottomHeight, bottomSidesWidth: viewerBottomSidesWidth } =
         useViewerContext();
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
 
-    const backgroundPlaying = current && (isView || isEdit);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = current || preload;
 
     const canvasContainerRef = useRef();

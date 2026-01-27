@@ -116,7 +116,8 @@ const AudioScreen = ({
     const { playing, muted, setControls, setControlsSuggestPlay, setControlsTheme, setPlaying } =
         usePlaybackContext();
 
-    const mediaRef = usePlaybackMediaRef(current);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current);
+    const paused = !current || !playing || (!isCurrentMedia && isView);
 
     useEffect(() => {
         if (!current) {
@@ -272,7 +273,7 @@ const AudioScreen = ({
                                       }
                                     : { backgroundColor: color, progressColor }
                             }
-                            paused={!current || !playing}
+                            paused={paused}
                             muted={muted}
                             className={styles.audio}
                             onReady={onAudioReady}

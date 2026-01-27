@@ -78,10 +78,10 @@ const SlideshowScreen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
-    const backgroundPlaying = current && (isView || isEdit);
-    const mediaShouldLoad = current || preload;
     const { muted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
+    const mediaShouldLoad = current || preload;
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 

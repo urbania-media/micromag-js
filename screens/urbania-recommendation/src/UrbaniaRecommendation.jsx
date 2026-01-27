@@ -125,7 +125,7 @@ const UrbaniaRecommendation = ({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { playing, setPlaying, muted, setMuted } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic } = useScreenRenderContext();
@@ -154,8 +154,8 @@ const UrbaniaRecommendation = ({
     const hasTextCard =
         hasCategory || hasTitle || hasDate || hasLocation || hasDescription || hasSponsor;
 
-    const backgroundPlaying = current && (isView || isEdit);
-    const videoPlaying = current && (isView || isEdit) && playing;
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
+    const videoPlaying = current && (isView || isEdit) && playing && (isCurrentMedia || !isView);
     const mediaShouldLoad = current || preload;
 
     const scrollingDisabled = (!isView && !isEdit) || !current;

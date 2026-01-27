@@ -4,6 +4,8 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
+import { ref } from '../lib/PropTypes';
+
 const defaultControlsThemeValue = {
     seekBarOnly: false,
     color: null,
@@ -39,24 +41,25 @@ export const PlaybackContext = React.createContext({
 export const usePlaybackContext = () => useContext(PlaybackContext);
 
 export const usePlaybackMediaRef = (active = false, background = false) => {
-    const { setMedia, setIsBackground } = usePlaybackContext();
+    const { setMedia, setIsBackground, media } = usePlaybackContext();
     const mediaRef = useRef(null);
 
     useEffect(() => {
         if (!active) {
+            if (mediaRef.current === media) {
+                setMedia(null);
+                setIsBackground(false);
+            }
             return () => {};
         }
         setIsBackground(background);
-        if (mediaRef.current !== null) {
+        if (mediaRef.current !== null && media === null) {
             setMedia(mediaRef.current);
         }
-        return () => {
-            setMedia(null);
-            setIsBackground(false);
-        };
-    }, [setMedia, setIsBackground, active, background]);
+        return () => {};
+    }, [setMedia, setIsBackground, active, background, media]);
 
-    return mediaRef;
+    return { ref: mediaRef, isCurrent: mediaRef.current === media };
 };
 
 const propTypes = {

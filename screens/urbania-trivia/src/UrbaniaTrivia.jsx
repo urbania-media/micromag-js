@@ -139,7 +139,7 @@ const UrbaniaTrivia = ({
         currentQualityLevel,
         setCurrentQualityLevel,
     } = usePlaybackContext();
-    const mediaRef = usePlaybackMediaRef(current);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current);
 
     useEffect(() => {
         if (!current) {
@@ -422,7 +422,7 @@ const UrbaniaTrivia = ({
                                         <Video
                                             {...finalVideo}
                                             mediaRef={mediaRef}
-                                            paused={!current || !playing}
+                                            paused={!current || !playing || (!isCurrentMedia && isView)}
                                             muted={muted}
                                             width={resizedVideoWidth}
                                             height={resizedVideoHeight}
