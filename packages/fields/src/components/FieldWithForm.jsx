@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
@@ -15,6 +17,15 @@ import Field from './Field';
 import Fields from './Fields';
 
 import styles from '../styles/field-with-form.module.scss';
+
+function getItemLabel(item, labelPath, defaultValue) {
+    return (isArray(labelPath) ? labelPath : [labelPath]).reduce((acc, path) => {
+        if (!isEmpty(acc)) {
+            return acc;
+        }
+        return path !== null ? get(item, path, defaultValue) : defaultValue;
+    }, defaultValue);
+}
 
 const propTypes = {
     value: PropTypes.any, // eslint-disable-line
@@ -95,7 +106,7 @@ const FieldWithForm = ({
         );
     }
 
-    const labelValue = label !== null ? label : get(value, labelPath, null);
+    const labelValue = label !== null ? label : getItemLabel(value, labelPath, null);
 
     let labelElement = null;
     let labelString = null;

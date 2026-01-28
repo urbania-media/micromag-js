@@ -3,7 +3,7 @@ import { defineMessage } from 'react-intl';
 export default {
     id: 'entry',
     component: 'field-with-form',
-    labelPath: 'title.body',
+    labelPath: ['title.body', 'description.body'],
     fields: [
         {
             name: 'title',
