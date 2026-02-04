@@ -672,20 +672,6 @@ const Timeline = ({
                     </div>
                 ) : null}
             </Container>
-            {!isPlaceholder ? (
-                <Background
-                    background={background}
-                    width={width}
-                    height={height}
-                    resolution={imageResolution}
-                    playing={backgroundPlaying}
-                    muted={muted}
-                    shouldLoad={mediaShouldLoad}
-                    mediaRef={audioAlternativeMedia === null ? mediaRef : null}
-                    withoutVideo={isPreview}
-                    className={styles.background}
-                />
-            ) : null}
             {audioAlternativeMedia !== null ? (
                 <Audio
                     {...finalAudioAlternative}
@@ -702,6 +688,20 @@ const Timeline = ({
                     onDurationChange={onAudioDurationChange}
                     onSeeked={onAudioSeeked}
                     onEnded={onAudioEnded}
+                />
+            ) : null}
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={imageResolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={audioAlternativeMedia === null ? mediaRef : null}
+                    withoutVideo={isPreview}
+                    className={styles.background}
                 />
             ) : null}
         </div>
