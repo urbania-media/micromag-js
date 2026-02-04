@@ -521,6 +521,12 @@ msgctxt "65rc70"
 msgid "Edit style..."
 msgstr "Edit style..."
 
+# Background field label
+#: 68NE9W
+msgctxt "68NE9W"
+msgid "Alternatives"
+msgstr "Alternatives"
+
 # Timing field label
 #: 6DV50M
 msgctxt "6DV50M"
@@ -2596,6 +2602,12 @@ msgstr "Avatar"
 msgctxt "hvxkzE"
 msgid "LinkedIn"
 msgstr "LinkedIn"
+
+# Field label
+#: hzt68m
+msgctxt "hzt68m"
+msgid "Audio"
+msgstr "Audio"
 
 # Title field label
 #: hzvEim

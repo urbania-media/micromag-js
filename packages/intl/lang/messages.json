@@ -339,6 +339,10 @@
     "defaultMessage": "Edit style...",
     "description": "No value field label"
   },
+  "68NE9W": {
+    "defaultMessage": "Alternatives",
+    "description": "Background field label"
+  },
   "6DV50M": {
     "defaultMessage": "Timing",
     "description": "Timing field label"
@@ -1713,6 +1717,10 @@
   },
   "hvxkzE": {
     "defaultMessage": "LinkedIn",
+    "description": "Field label"
+  },
+  "hzt68m": {
+    "defaultMessage": "Audio",
     "description": "Field label"
   },
   "hzvEim": {

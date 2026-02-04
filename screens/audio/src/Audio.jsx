@@ -1,21 +1,21 @@
 /* eslint-disable no-param-reassign, jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
-    useScreenSize,
-    useScreenRenderContext,
-    useViewerContext,
     usePlaybackContext,
     usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useTrackScreenMedia } from '@micromag/core/hooks';
-import { isIos, isHeaderFilled, isFooterFilled, getFooterProps } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled, isIos } from '@micromag/core/utils';
 import Audio from '@micromag/element-audio';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -111,7 +111,7 @@ const AudioScreen = ({
               autoPlay: !isPreview && !isStatic && !isCapture && autoPlay && current,
           }
         : null;
-    const hasClosedCaptions = (closedCaptions !== null || captions !== null);
+    const hasClosedCaptions = closedCaptions !== null || captions !== null;
 
     const { playing, muted, setControls, setControlsSuggestPlay, setControlsTheme, setPlaying } =
         usePlaybackContext();

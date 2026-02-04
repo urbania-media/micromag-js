@@ -47,6 +47,7 @@ import micromagExampleEarly2024 from '../../../../.storybook/data/stories/microm
 import tnm from '../../../../.storybook/data/stories/tnm.json';
 import testTheme from '../../../../.storybook/data/themes/new-theme.json';
 import micromagAudio from '../../../../.storybook/examples/micromag-audio.json';
+import timeline from '../../../../.storybook/data/stories/timeline';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -256,6 +257,19 @@ export const QuizMultipleResults = () => (
             title: '123',
             theme: null,
             components: [{ id: '123', ...quizMultiple }],
+        }}
+        memoryRouter
+    />
+);
+
+export const Timeline = () => (
+    <Viewer
+        screenId="123"
+        story={{
+            id: '123',
+            title: '123',
+            theme: null,
+            components: [timeline],
         }}
         memoryRouter
     />

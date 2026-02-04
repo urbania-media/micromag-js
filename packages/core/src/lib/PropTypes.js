@@ -516,6 +516,10 @@ export const conversation = PropTypes.shape({
     messages: conversationMessages,
 });
 
+export const alternatives = PropTypes.shape({
+    audio: audioElement,
+});
+
 /**
  * Definitions
  */

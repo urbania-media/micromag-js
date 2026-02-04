@@ -31,6 +31,7 @@ import quizMultipleSimple from '../../../../.storybook/data/stories/quiz-multipl
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import survey from '../../../../.storybook/data/stories/survey';
 import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
+import timeline from '../../../../.storybook/data/stories/timeline';
 import UrbaniaScreenComponents from '../../../../.storybook/data/stories/urbania-components';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
@@ -189,6 +190,12 @@ export const TestContribution = () => (
 export const TestKeypad = () => (
     <EditorContainer
         defaultValue={{ title: 'Test KEYPAD', theme: defaultTheme, components: [keypad] }}
+    />
+);
+
+export const TestTimeline = () => (
+    <EditorContainer
+        defaultValue={{ title: 'Test Timeline', theme: defaultTheme, components: [timeline] }}
     />
 );
 

@@ -158,6 +158,14 @@ export default [
                 }),
             },
             {
+                name: 'alternatives',
+                type: 'alternatives',
+                label: defineMessage({
+                    defaultMessage: 'Alternatives',
+                    description: 'Background field label',
+                }),
+            },
+            {
                 name: 'background',
                 type: 'background',
                 label: defineMessage({
@@ -358,6 +366,14 @@ export default [
                 label: defineMessage({
                     defaultMessage: 'Line color',
                     description: 'Field label',
+                }),
+            },
+            {
+                name: 'alternatives',
+                type: 'alternatives',
+                label: defineMessage({
+                    defaultMessage: 'Alternatives',
+                    description: 'Background field label',
                 }),
             },
             {

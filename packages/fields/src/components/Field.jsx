@@ -65,6 +65,7 @@ const Field = ({
     isListItem,
     withForm: providedWithForm,
     withModal: providedWithModal,
+    withToggle: providedWithToggle,
     value,
     onChange,
     gotoFieldForm,
@@ -86,6 +87,7 @@ const Field = ({
         withModal = providedWithModal,
         isList = false,
         canClear = false,
+        withToggle = providedWithToggle,
         ...fieldProps
     } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
         component: providedComponent,
@@ -124,7 +126,7 @@ const Field = ({
         typeof FieldComponent.settingsComponent !== 'undefined' ||
         false;
 
-    const fieldElement = (
+    const fieldElement = !withToggle || value !== null ? (
         <FieldComponent
             isHorizontal={finalIsHorizontal && !isFields}
             isList={isList}
@@ -144,12 +146,14 @@ const Field = ({
             gotoFieldForm={gotoFieldForm}
             gotoForm={gotoForm}
         />
-    );
+    ) : null;
 
     return !withoutFieldRow ? (
         <FieldRow
             {...props}
             {...fieldProps}
+            value={value}
+            onChange={onChange}
             label={label}
             errors={errors}
             help={help}
@@ -158,6 +162,7 @@ const Field = ({
             isListItem={isListItem}
             withoutLabel={finalWithoutLabel}
             withSettings={finalWithSettings}
+            withToggle={withToggle}
             withForm={finalWithForm}
             withValue={value !== null}
             gotoSettings={gotoSettings}

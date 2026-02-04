@@ -13,6 +13,7 @@ import { Button, Label } from '@micromag/core/components';
 
 import FieldErrors from './FieldErrors';
 import FieldHelp from './FieldHelp';
+import ToggleField from './Toggle';
 
 import styles from '../styles/field-row.module.scss';
 
@@ -20,6 +21,8 @@ const propTypes = {
     label: MicromagPropTypes.label,
     errors: MicromagPropTypes.errors,
     help: MicromagPropTypes.label,
+    value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+    defaultValue: PropTypes.any, // eslint-disable-line react/forbid-prop-types
     children: PropTypes.node,
     isSection: PropTypes.bool,
     isHorizontal: PropTypes.bool,
@@ -27,12 +30,14 @@ const propTypes = {
     withoutLabel: PropTypes.bool,
     withoutCaret: PropTypes.bool,
     withSettings: PropTypes.bool,
+    withToggle: PropTypes.bool,
     withForm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     withValue: PropTypes.bool,
     buttonTheme: MicromagPropTypes.buttonTheme,
     buttonOutline: PropTypes.bool,
     gotoSettings: PropTypes.func,
     gotoForm: PropTypes.func,
+    onChange: PropTypes.func,
     className: PropTypes.string,
     labelClassName: PropTypes.string,
     buttonClassName: PropTypes.string,
@@ -43,18 +48,22 @@ const defaultProps = {
     errors: null,
     help: null,
     children: null,
+    value: null,
+    defaultValue: null,
     isSection: false,
     isHorizontal: false,
     isListItem: false,
     withoutLabel: false,
     withoutCaret: false,
     withSettings: false,
+    withToggle: false,
     withForm: false,
     withValue: false,
     buttonTheme: null,
     buttonOutline: false,
     gotoSettings: null,
     gotoForm: null,
+    onChange: null,
     className: null,
     labelClassName: null,
     buttonClassName: null,
@@ -64,6 +73,8 @@ const FieldRow = ({
     label,
     errors,
     help,
+    value,
+    defaultValue,
     children,
     isSection,
     isHorizontal,
@@ -71,12 +82,14 @@ const FieldRow = ({
     withoutLabel,
     withoutCaret,
     withSettings,
+    withToggle,
     withForm,
     withValue,
     buttonTheme,
     buttonOutline,
     gotoForm,
     gotoSettings,
+    onChange,
     className,
     labelClassName,
     buttonClassName,
@@ -110,6 +123,8 @@ const FieldRow = ({
         errors !== null && errors.length > 0 ? <FieldErrors errors={errors} /> : null;
 
     const hasIndicationsUnder = helpElement !== null || errorsElement !== null;
+
+    const toggled = !withToggle || value !== null;
 
     const labelElement =
         label !== null ? (
@@ -155,7 +170,7 @@ const FieldRow = ({
                         },
                     ])}
                 >
-                    <span className={classNames(['d-flex', 'justify-content-end', 'me-1'])}>
+                    <span className={classNames(['d-flex', 'justify-content-end'])}>
                         {children}
                     </span>
                     {helpElement !== null || errorsElement !== null ? (
@@ -196,26 +211,46 @@ const FieldRow = ({
             <div className={containerClassName}>{rowInner}</div>
         );
     }
+
+    const onToggleChange = useCallback(
+        (newValue) => {
+            if (onChange !== null) {
+                onChange(newValue ? defaultValue || {} : null);
+            }
+        },
+        [withToggle, onChange, defaultValue],
+    );
+
+    const toggleElement = withToggle ? (
+        <div className={classNames(['col-auto'])}>
+            <ToggleField value={toggled} onChange={onToggleChange} className="ms-1" />
+        </div>
+    ) : null;
+
+    const settingsElement =
+        toggled && withSettings ? (
+            <div className={classNames(['col-auto'])}>
+                <Button
+                    className={styles.settingsButton}
+                    withoutStyle
+                    onClick={gotoSettings}
+                    disabled={!withValue}
+                >
+                    <FontAwesomeIcon icon={faSlidersH} />
+                </Button>
+            </div>
+        ) : null;
+
     return (
         <div className={containerClassName}>
-            {withLabel ? (
-                withSettings ? (
-                    <div className={classNames(['row', 'align-items-center', 'gx-1'])}>
-                        {labelElement}
-                        <div className={classNames(['col-auto'])}>
-                            <Button
-                                className={styles.settingsButton}
-                                withoutStyle
-                                onClick={gotoSettings}
-                                disabled={!withValue}
-                            >
-                                <FontAwesomeIcon icon={faSlidersH} />
-                            </Button>
-                        </div>
-                    </div>
-                ) : (
-                    labelElement
-                )
+            {withLabel && (settingsElement !== null || toggleElement !== null) ? (
+                <div className={classNames(['row', 'align-items-center', 'gx-1'])}>
+                    {labelElement}
+                    {settingsElement}
+                    {toggleElement}
+                </div>
+            ) : withLabel ? (
+                labelElement
             ) : null}
             {isClickable ? (
                 <Button

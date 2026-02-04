@@ -12,10 +12,17 @@ import {
     usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
+    useViewerContainer,
     useViewerContext,
     useViewerWebView,
 } from '@micromag/core/contexts';
-import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import {
+    useActivityDetector,
+    useDebounce,
+    useDimensionObserver,
+    useTrackScreenEvent,
+    useTrackScreenMedia,
+} from '@micromag/core/hooks';
 import {
     getFooterProps,
     getStyleFromColor,
@@ -23,6 +30,7 @@ import {
     isHeaderFilled,
     isTextFilled,
 } from '@micromag/core/utils';
+import Audio from '@micromag/element-audio';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -56,6 +64,7 @@ const propTypes = {
     header: MicromagPropTypes.header,
     footer: MicromagPropTypes.footer,
     background: MicromagPropTypes.backgroundElement,
+    alternatives: MicromagPropTypes.alternatives,
     current: PropTypes.bool,
     active: PropTypes.bool,
     preload: PropTypes.bool,
@@ -79,6 +88,7 @@ const defaultProps = {
     header: null,
     footer: null,
     background: null,
+    alternatives: null,
     current: true,
     active: true,
     preload: true,
@@ -103,6 +113,7 @@ const Timeline = ({
     header,
     footer,
     background,
+    alternatives,
     current,
     active,
     preload,
@@ -119,11 +130,157 @@ const Timeline = ({
         bottomSidesWidth: viewerBottomSidesWidth,
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
-    const { muted } = usePlaybackContext();
-    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
-
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
+    const {
+        muted,
+        playing,
+        setControls,
+        setControlsSuggestPlay,
+        setControlsTheme,
+        setPlaying,
+        controlsVisible,
+        showControls,
+        hideControls,
+    } = usePlaybackContext();
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current);
+
+    const { audio: audioAlternative } = alternatives || {};
+    const {
+        autoPlay = true,
+        loop = false,
+        media: audioAlternativeMedia = null,
+        withSeekBar = false,
+        withControls = false,
+        color = null,
+        progressColor = null,
+    } = audioAlternative || {};
+
+    const [hasPlayed, setHasPlayed] = useState(false);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
+    const audioPlaying = current && (isView || isEdit) && playing && (isCurrentMedia || !isView);
+
+    console.log({
+        playing,
+        audioPlaying,
+    })
+
+    useEffect(() => {
+        if (!current) {
+            return () => {};
+        }
+
+        setControlsTheme({
+            seekBarOnly: withSeekBar && !withControls,
+            color,
+            progressColor,
+        });
+
+        if (withControls || withSeekBar) {
+            setControls(true);
+        } else {
+            setControls(false);
+        }
+        return () => {
+            if (withControls || withSeekBar) {
+                setControls(false);
+            }
+        };
+    }, [current, withControls, setControls, withSeekBar, color, progressColor]);
+
+    useEffect(() => {
+        if (current && autoPlay) {
+            setPlaying(true);
+        }
+    }, [current, autoPlay]);
+    const viewerContainer = useViewerContainer();
+    const { detected: activityDetected } = useActivityDetector({
+        element: viewerContainer,
+        disabled: !isView,
+        timeout: 2000,
+    });
+    const toggleControlsVisibility = useCallback(() => {
+        if (activityDetected) {
+            showControls();
+        } else {
+            hideControls();
+        }
+    }, [activityDetected, showControls, hideControls]);
+    useDebounce(toggleControlsVisibility, activityDetected, 1000);
+
+    const trackScreenMedia = useTrackScreenMedia('video');
+    const [currentTime, setCurrentTime] = useState(null);
+    const [duration, setDuration] = useState(null);
+
+    const [audioReady, setAudioReady] = useState(audioAlternativeMedia === null);
+
+    const onAudioReady = useCallback(() => {
+        setAudioReady(true);
+    }, [setAudioReady]);
+
+    const onAudioTimeUpdate = useCallback(
+        (time = null) => {
+            if (time !== null && typeof time.currentTarget !== 'undefined') {
+                const { currentTime: targetTime = 0 } = time.currentTarget || {};
+                setCurrentTime(targetTime);
+            } else {
+                setCurrentTime(0);
+            }
+        },
+        [duration, setCurrentTime],
+    );
+
+    const onAudioProgressStep = useCallback(
+        (step, meta) => {
+            trackScreenMedia(
+                audioAlternativeMedia,
+                `progress_${Math.round(step * 100, 10)}%`,
+                meta,
+            );
+        },
+        [trackScreenMedia, audioAlternativeMedia],
+    );
+
+    const onAudioDurationChange = useCallback(
+        (dur) => {
+            setDuration(dur);
+        },
+        [setDuration],
+    );
+
+    const onAudioPlay = useCallback(
+        ({ initial }) => {
+            if (!hasPlayed) {
+                setHasPlayed(true);
+            }
+            trackScreenMedia(audioAlternativeMedia, initial ? 'play' : 'resume');
+        },
+        [trackScreenMedia, audioAlternativeMedia],
+    );
+
+    const onAudioPause = useCallback(
+        ({ midway }) => {
+            trackScreenMedia(audioAlternativeMedia, midway ? 'pause' : 'ended');
+        },
+        [trackScreenMedia, audioAlternativeMedia],
+    );
+
+    const onAudioSeeked = useCallback(
+        (time) => {
+            if (time > 0) {
+                trackScreenMedia(audioAlternativeMedia, 'seek', { currentTime: time });
+            }
+        },
+        [trackScreenMedia, audioAlternativeMedia],
+    );
+
+    const onAudioEnded = useCallback(() => {
+        console.log('ENDED');
+        if (current && !loop) {
+            setPlaying(false);
+        }
+    }, [loop, current]);
+
     const finalItems = useMemo(
         () => (isPlaceholder ? [...new Array(5)].map(() => ({})) : items || [null]),
         [isPlaceholder, items],
@@ -156,11 +313,10 @@ const Timeline = ({
         : 0;
 
     const [imagesLoaded, setImagesLoaded] = useState(0);
-    const ready = imagesLoaded >= imagesCount;
+    const ready = imagesLoaded >= imagesCount && audioReady;
     // const transitionsPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
-    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = current || preload;
 
     const onImageLoaded = useCallback(() => {
@@ -520,9 +676,27 @@ const Timeline = ({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={audioAlternativeMedia === null ? mediaRef : null}
                     withoutVideo={isPreview}
                     className={styles.background}
+                />
+            ) : null}
+            {audioAlternativeMedia !== null ? (
+                <Audio
+                    {...audioAlternative}
+                    paused={!audioPlaying}
+                    mediaRef={mediaRef}
+                    muted={muted}
+                    className={styles.audio}
+                    shouldLoad={mediaShouldLoad}
+                    onReady={onAudioReady}
+                    onPlay={onAudioPlay}
+                    onPause={onAudioPause}
+                    onTimeUpdate={onAudioTimeUpdate}
+                    onProgressStep={onAudioProgressStep}
+                    onDurationChange={onAudioDurationChange}
+                    onSeeked={onAudioSeeked}
+                    onEnded={onAudioEnded}
                 />
             ) : null}
         </div>
