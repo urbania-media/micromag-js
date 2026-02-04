@@ -275,7 +275,6 @@ const Timeline = ({
     );
 
     const onAudioEnded = useCallback(() => {
-        console.log('ENDED');
         if (current && !loop) {
             setPlaying(false);
         }

@@ -213,7 +213,7 @@ const Audio = ({
                     }
                 }}
                 src={srcUrl}
-                autoPlay={autoPlay}
+                autoPlay={autoPlay && !paused}
                 muted={muted}
                 loop={loop}
                 crossOrigin="anonymous"
