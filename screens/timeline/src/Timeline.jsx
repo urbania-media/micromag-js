@@ -145,9 +145,9 @@ const Timeline = ({
     } = usePlaybackContext();
     const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current);
 
-    const { audio: audioAlternative } = alternatives || {};
+    const { audio: audioAlternative = null } = alternatives || {};
     const {
-        autoPlay = true,
+        autoPlay = false,
         loop = false,
         media: audioAlternativeMedia = null,
         withSeekBar = false,
@@ -156,14 +156,20 @@ const Timeline = ({
         progressColor = null,
     } = audioAlternative || {};
 
+    const finalAudioAlternative = useMemo(
+        () =>
+            audioAlternative !== null
+                ? {
+                      ...audioAlternative,
+                      autoPlay: !isPreview && !isStatic && !isCapture && autoPlay && current,
+                  }
+                : null,
+        [audioAlternative, isPreview, isStatic, isCapture, autoPlay, current],
+    );
+
     const [hasPlayed, setHasPlayed] = useState(false);
     const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const audioPlaying = current && (isView || isEdit) && playing && (isCurrentMedia || !isView);
-
-    console.log({
-        playing,
-        audioPlaying,
-    })
 
     useEffect(() => {
         if (!current) {
@@ -682,7 +688,7 @@ const Timeline = ({
             ) : null}
             {audioAlternativeMedia !== null ? (
                 <Audio
-                    {...audioAlternative}
+                    {...finalAudioAlternative}
                     paused={!audioPlaying}
                     mediaRef={mediaRef}
                     muted={muted}
