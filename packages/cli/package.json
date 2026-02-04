@@ -1,6 +1,6 @@
 {
     "name": "@micromag/cli",
-    "version": "0.3.803",
+    "version": "0.3.804",
     "private": false,
     "description": "",
     "keywords": [
@@ -51,8 +51,8 @@
         "@micromag/fields": "^0.3.803",
         "@micromag/screens": "^0.3.803",
         "@micromag/transforms": "^0.3.803",
-        "@micromag/viewer": "^0.3.803",
-        "@micromag/viewer-build": "^0.3.803",
+        "@micromag/viewer": "^0.3.804",
+        "@micromag/viewer-build": "^0.3.804",
         "change-case": "^5.4.4",
         "classnames": "^2.2.6",
         "commander": "^12.0.0",
