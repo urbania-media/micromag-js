@@ -17,6 +17,7 @@ import {
     usePlaybackContext,
 } from '@micromag/core/contexts';
 import {
+    useActivityDetector,
     useDimensionObserver,
     useDragProgress,
     useFullscreen,
@@ -24,7 +25,6 @@ import {
     useParsedStory,
     useScreenSizeFromElement,
     useTrackScreenView,
-    useActivityDetector,
 } from '@micromag/core/hooks';
 import { getColorAsString, getDeviceScreens } from '@micromag/core/utils';
 import { ShareIncentive } from '@micromag/elements/all';
@@ -307,6 +307,7 @@ const Viewer = ({
         media: playbackMedia = null,
         completed: mediaCompleted = false,
         isBackground: isBackgroundVideo = false,
+        mediaRef: playbackMediaRef = null,
         setMuted = null,
     } = usePlaybackContext();
 
@@ -461,12 +462,15 @@ const Viewer = ({
     // Long press to pause playback
     const [pointerDownTime, setPointerDownTime] = useState(null);
     const [longPressPaused, setLongPressPaused] = useState(false);
+
     useEffect(() => {
         setLongPressPaused(false);
         setPointerDownTime(null);
     }, [screenIndex]);
     useEffect(() => {
-        if (pointerDownTime === null || !playing) {
+        const { tagName: mediaTagName } = playbackMediaRef.current || {};
+        const mediaIsVideo = mediaTagName === 'VIDEO';
+        if (pointerDownTime === null || !playing || !mediaIsVideo) {
             return () => {};
         }
         const interval = setTimeout(() => {
