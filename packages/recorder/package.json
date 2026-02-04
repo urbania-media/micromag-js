@@ -1,6 +1,6 @@
 {
     "name": "@micromag/recorder",
-    "version": "0.3.802",
+    "version": "0.3.803",
     "private": false,
     "description": "",
     "keywords": [
@@ -59,7 +59,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/fetch": "^0.1.14",
-        "@micromag/viewer": "^0.3.802",
+        "@micromag/viewer": "^0.3.803",
         "express": "^5.2.1",
         "get-port": "^7.1.0",
         "lodash": "^4.17.21",
