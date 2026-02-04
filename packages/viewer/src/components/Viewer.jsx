@@ -307,7 +307,6 @@ const Viewer = ({
         media: playbackMedia = null,
         completed: mediaCompleted = false,
         isBackground: isBackgroundVideo = false,
-        mediaRef: playbackMediaRef = null,
         setMuted = null,
     } = usePlaybackContext();
 
@@ -468,7 +467,7 @@ const Viewer = ({
         setPointerDownTime(null);
     }, [screenIndex]);
     useEffect(() => {
-        const { tagName: mediaTagName } = playbackMediaRef.current || {};
+        const { tagName: mediaTagName } = playbackMedia || {};
         const mediaIsVideo = mediaTagName === 'VIDEO';
         if (pointerDownTime === null || !playing || !mediaIsVideo) {
             return () => {};
@@ -478,7 +477,7 @@ const Viewer = ({
             setLongPressPaused(true);
         }, longPressPauseDelay);
         return () => clearInterval(interval);
-    }, [playing, pointerDownTime, longPressPauseDelay]);
+    }, [playing, pointerDownTime, longPressPauseDelay, playbackMedia]);
 
     const onPointerDown = useCallback(() => {
         setPointerDownTime(Date.now());
