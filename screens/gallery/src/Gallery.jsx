@@ -208,6 +208,7 @@ const GalleryScreen = ({
                                 className={styles.image}
                                 {...finalImage}
                                 {...imageSize}
+                                loadingMode="lazy"
                                 resolution={resolution}
                                 objectFit={{ fit: 'cover' }}
                                 playing={backgroundPlaying}

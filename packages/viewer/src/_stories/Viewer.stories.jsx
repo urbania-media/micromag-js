@@ -25,6 +25,7 @@ import quizMultipleSimple from '../../../../.storybook/data/stories/quiz-multipl
 import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
 import survey from '../../../../.storybook/data/stories/survey';
 import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
+import timeline from '../../../../.storybook/data/stories/timeline';
 import UrbaniaComponents from '../../../../.storybook/data/stories/urbania-components';
 import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
@@ -47,7 +48,6 @@ import micromagExampleEarly2024 from '../../../../.storybook/data/stories/microm
 import tnm from '../../../../.storybook/data/stories/tnm.json';
 import testTheme from '../../../../.storybook/data/themes/new-theme.json';
 import micromagAudio from '../../../../.storybook/examples/micromag-audio.json';
-import timeline from '../../../../.storybook/data/stories/timeline';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -269,7 +269,20 @@ export const Timeline = () => (
             id: '123',
             title: '123',
             theme: null,
-            components: [timeline],
+            components: [
+                timeline,
+                {
+                    ...timeline,
+                    id: '124',
+                    alternatives: {
+                        audio: {
+                            ...timeline.alternatives.audio,
+                            autoPlay: false,
+                        },
+                    },
+                },
+                ...videoAudio.components
+            ],
         }}
         memoryRouter
     />

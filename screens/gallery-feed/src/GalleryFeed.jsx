@@ -139,6 +139,7 @@ const GalleryFeedScreen = ({
                 <div className={styles.imageContainer} ref={index === 0 ? firstImageRef : null}>
                     <Visual
                         {...finalImage}
+                        loadingMode="lazy"
                         className={styles.image}
                         videoClassName={styles.video}
                         width={firstImageRefWidth}

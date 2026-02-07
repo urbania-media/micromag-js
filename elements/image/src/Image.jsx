@@ -2,7 +2,7 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { forwardRef, useCallback, useRef, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getOptimalImageUrl } from '@micromag/core/utils';
@@ -23,6 +23,12 @@ const propTypes = {
     onLoaded: PropTypes.func,
     loadingMode: PropTypes.string,
     shouldLoad: PropTypes.bool,
+    containerRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            current: PropTypes.any,
+        }),
+    ]),
 };
 
 const defaultProps = {
@@ -39,6 +45,7 @@ const defaultProps = {
     onLoaded: null,
     loadingMode: 'lazy',
     shouldLoad: true,
+    containerRef: null,
 };
 
 const Image = ({
@@ -55,6 +62,7 @@ const Image = ({
     onLoaded,
     loadingMode,
     shouldLoad,
+    containerRef,
 }) => {
     const { metadata = null } = media || {};
     const {
@@ -203,6 +211,7 @@ const Image = ({
                 },
             ])}
             style={finalContainerStyle}
+            ref={containerRef}
         >
             {finalUrl !== null && finalShouldLoad ? (
                 <img
@@ -226,4 +235,4 @@ const Image = ({
 Image.propTypes = propTypes;
 Image.defaultProps = defaultProps;
 
-export default Image;
+export default forwardRef((props, ref) => <Image containerRef={ref} {...props} />);

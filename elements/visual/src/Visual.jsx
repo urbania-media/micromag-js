@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useIsVisible } from '@micromag/core/hooks';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 
@@ -26,6 +27,7 @@ const propTypes = {
     playing: PropTypes.bool,
     muted: PropTypes.bool,
     shouldLoad: PropTypes.bool,
+    loadingMode: PropTypes.string,
     videoLoop: PropTypes.bool,
     withoutVideo: PropTypes.bool,
     videoInitialMuted: PropTypes.bool,
@@ -46,6 +48,7 @@ const defaultProps = {
     objectFit: null,
     playing: true,
     muted: true,
+    loadingMode: null,
     shouldLoad: true,
     videoLoop: true,
     withoutVideo: false,
@@ -67,6 +70,7 @@ const Visual = ({
     objectFit,
     playing,
     muted,
+    loadingMode,
     shouldLoad,
     videoLoop,
     videoInitialMuted,
@@ -82,6 +86,13 @@ const Visual = ({
     const { type = null, thumbnail_url: thumbnailUrl = null, url = null } = media || {};
     const isVideo = type === 'video';
     const elProps = useMemo(() => ({ ...props, media }), [props, media]);
+    const isLazyLoading = loadingMode === 'lazy';
+    const { ref: refVisible, visible: isVisible } = useIsVisible({
+        rootMargin: '200px',
+        persist: true,
+        disabled: !isLazyLoading,
+    });
+    const finalShouldLoad = (!isLazyLoading || isVisible) && shouldLoad;
 
     const imageElProps = useMemo(() => {
         const tmpProps =
@@ -127,11 +138,13 @@ const Visual = ({
             {type === 'image' || !shouldLoad || withoutVideo ? (
                 <Image
                     {...imageElProps}
+                    ref={refVisible}
+                    loadingMode={loadingMode !== 'lazy' ? 'lazy' : null}
                     objectFit={objectFit}
                     width={width}
                     height={height}
                     resolution={resolution}
-                    shouldLoad={shouldLoad}
+                    shouldLoad={finalShouldLoad}
                     onLoaded={onLoaded}
                     className={classNames([styles.container, { [className]: className !== null }])}
                     imageClassName={imageClassName}
@@ -141,6 +154,7 @@ const Visual = ({
                 <div
                     className={classNames([styles.container, { [className]: className !== null }])}
                     style={{ width, height }}
+                    ref={refVisible}
                 >
                     <div
                         className={classNames([
@@ -158,7 +172,7 @@ const Visual = ({
                             paused={!playing}
                             muted={muted}
                             loop={videoLoop}
-                            shouldLoad={shouldLoad}
+                            shouldLoad={finalShouldLoad}
                             onReady={onLoaded}
                             autoPlay
                             qualityStartLevel={qualityStartLevel}
