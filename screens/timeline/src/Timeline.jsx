@@ -417,7 +417,7 @@ const Timeline = ({
                                             <Visual
                                                 className={styles.image}
                                                 videoClassName={styles.video}
-                                                loadindMode="lazy"
+                                                loadingMode="lazy"
                                                 media={image}
                                                 width={imageWidth}
                                                 resolution={resolution}
