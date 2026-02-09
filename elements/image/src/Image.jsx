@@ -78,6 +78,7 @@ const Image = ({
         height: mediaHeight,
     });
     const supportsWebp = useSetting('supportsWebp', false);
+    const imageResolution = useSetting('imageResolution', resolution);
 
     const wasLoadedRef = useRef(shouldLoad);
     if (shouldLoad && !wasLoadedRef.current) {
@@ -199,7 +200,7 @@ const Image = ({
 
     const { width: finalWidth = null, height: finalHeight = null } = finalImageStyle;
     const finalUrl = getOptimalImageUrl(media, finalWidth, finalHeight || finalWidth, {
-        resolution,
+        resolution: imageResolution,
         supportsWebp,
     });
 

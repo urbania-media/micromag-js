@@ -33,7 +33,11 @@ const defaultProps = {
 
 const Avatar = ({ image, width, height, resolution, shape, isTag, className, shouldLoad }) => {
     const supportsWebp = useSetting('supportsWebp', false);
-    const imageAtSize = getOptimalImageUrl(image, width, height, { resolution, supportsWebp });
+    const imageResolution = useSetting('imageResolution', resolution);
+    const imageAtSize = getOptimalImageUrl(image, width, height, {
+        resolution: imageResolution,
+        supportsWebp,
+    });
     const finalShape = shape !== null ? pascalCase(shape) : null;
     return (
         <span
