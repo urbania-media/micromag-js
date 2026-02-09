@@ -3,21 +3,23 @@ const getOptimalImageUrl = (
     media = null,
     containerWidth = null,
     containerHeight = null,
-    { resolution = 1, maxDiff = 800 } = {},
+    { resolution = 1, maxDiff = 800, supportsWebp = false } = {},
 ) => {
     const {
         sizes = null,
         url: defaultUrl = null,
+        webp_url: defaultWebpUrl = null,
         metadata: { width: imgWidth, height: imgHeight } = {},
     } = media || {};
+    const finalDefaultUrl = supportsWebp && defaultWebpUrl !== null ? defaultWebpUrl : defaultUrl;
 
     if (sizes === null || (containerWidth === null && containerHeight === null)) {
-        return defaultUrl;
+        return finalDefaultUrl;
     }
 
     const finalSizes = {
         original: {
-            url: defaultUrl,
+            url: finalDefaultUrl,
             width: imgWidth,
             height: imgHeight,
         },
@@ -36,7 +38,11 @@ const getOptimalImageUrl = (
     const { url: finalUrl } = Object.keys(finalSizes).reduce(
         (acc, key) => {
             const { diff: currentDiff, isLarger: currentIsLarger, size: currentSize } = acc;
-            const { url, width = null, height = null } = finalSizes[key];
+            const { url, webp_url: webpUrl = null, width = null, height = null } = finalSizes[key];
+            const sizeUrl = supportsWebp && webpUrl !== null ? webpUrl : url;
+                console.log({
+                    sizeUrl,
+                })
             const diffWidth =
                 width !== null && finalContainerWidth !== null ? width - finalContainerWidth : null;
             const diffHeight =
@@ -66,17 +72,27 @@ const getOptimalImageUrl = (
                 // Image is larger than previous
                 (diff <= maxDiff && !currentIsLarger && !isLarger && sizeIsLarger)
             ) {
+                console.log({
+                    sizeUrl,
+                })
                 return {
                     key,
-                    url,
+                    url: sizeUrl,
                     diff,
                     isLarger,
                 };
             }
             return acc;
         },
-        { key: null, url: defaultUrl, diff: Infinity, isLarger: false, size: 0 },
+        { key: null, url: finalDefaultUrl, diff: Infinity, isLarger: false, size: 0 },
     );
+    console.log({
+        finalUrl,
+        finalDefaultUrl,
+        supportsWebp,
+        defaultWebpUrl,
+        defaultUrl
+    })
 
     return finalUrl;
 };

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useCallback, useRef, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useSupportsWebp } from '@micromag/core/hooks';
 import { getOptimalImageUrl } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
@@ -195,9 +196,14 @@ const Image = ({
         ...imageStyle,
     };
 
+    const supportsWebp = useSupportsWebp();
+    console.log({
+        supportsWebp
+    })
     const { width: finalWidth = null, height: finalHeight = null } = finalImageStyle;
     const finalUrl = getOptimalImageUrl(media, finalWidth, finalHeight || finalWidth, {
         resolution,
+        supportsWebp,
     });
 
     // console.log('image finalWidth, finalHeight, resolution', finalImageStyle, resolution, finalUrl);

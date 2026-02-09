@@ -29,6 +29,7 @@ export { default as usePlaceholderStyle } from './usePlaceholderStyle';
 export { default as useProgressSteps } from './useProgressSteps';
 export * from './useScreenSize';
 export { default as useSpringValue } from './useSpringValue';
+export { default as useSupportsWebp } from './useSupportsWebp';
 export * from './useSwipe';
 export { default as useThemeParser } from './useThemeParser';
 export * from './useTracking';

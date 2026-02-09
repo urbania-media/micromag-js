@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useSupportsWebp } from '@micromag/core/hooks';
 import { getOptimalImageUrl, getStyleFromColor } from '@micromag/core/utils';
 import Video from '@micromag/element-video';
 
@@ -111,13 +112,15 @@ const Background = ({
         ...getStyleFromColor(color),
     };
 
+    const supportsWebp = useSupportsWebp();
+
     // image
     if (media !== null && (isImage || (isVideo && (!shouldLoad || withoutVideo)))) {
         const finalUrl = getOptimalImageUrl(
             isVideo ? { url: mediaThumbnailUrl } : media,
             width,
             height,
-            { resolution },
+            { resolution, supportsWebp },
         );
         containerStyle.backgroundImage =
             finalUrl !== null && finalShouldLoad ? `url("${finalUrl}")` : null;

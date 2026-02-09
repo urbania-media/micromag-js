@@ -2363,6 +2363,7 @@
                     "type": "image",
                     "name": "SOMMAIRE.jpg",
                     "url": "https://cdn.microm.ag/image/2022-06-03/11126-114617.jpg",
+                    "webp_url": "https://cdn.microm.ag/image/2022-06-03/11126-114617.jpg.webp",
                     "thumbnail_url": "https://img.microm.ag/image/2022-06-03/filters/thumbnail/11126-114617.jpg",
                     "files": {
                         "original": {
@@ -2371,25 +2372,29 @@
                             "mime": "image/jpeg",
                             "handle": "original",
                             "name": "SOMMAIRE.jpg",
-                            "url": "https://cdn.microm.ag/image/2022-06-03/11126-114617.jpg"
+                            "url": "https://cdn.microm.ag/image/2022-06-03/11126-114617.jpg",
+                            "webp_url": "https://cdn.microm.ag/image/2022-06-03/11126-114617.jpg.webp"
                         }
                     },
                     "sizes": {
                         "large": {
                             "id": "large",
                             "url": "https://img.microm.ag/image/2022-06-03/filters/large/11126-114617.jpg",
+                            "webp_url": "https://img.microm.ag/image/2022-06-03/filters/large/11126-114617.jpg.webp",
                             "width": 788,
                             "height": 1400
                         },
                         "medium": {
                             "id": "medium",
                             "url": "https://img.microm.ag/image/2022-06-03/filters/medium/11126-114617.jpg",
+                            "webp_url": "https://img.microm.ag/image/2022-06-03/filters/medium/11126-114617.jpg.webp",
                             "width": 563,
                             "height": 1000
                         },
                         "small": {
                             "id": "small",
                             "url": "https://img.microm.ag/image/2022-06-03/filters/small/11126-114617.jpg",
+                            "webp_url": "https://img.microm.ag/image/2022-06-03/filters/small/11126-114617.jpg.webp",
                             "width": 338,
                             "height": 600
                         }
@@ -12638,6 +12643,7 @@
                 "type": "image",
                 "name": "SOMMAIRE.jpg",
                 "url": "https://cdn.microm.ag/image/2022-06-03/11126-114617.jpg",
+                "webp_url": "https://cdn.microm.ag/image/2022-06-03/11126-114617.jpg.webp",
                 "thumbnail_url": "https://img.microm.ag/image/2022-06-03/filters/thumbnail/11126-114617.jpg",
                 "files": {
                     "original": {
@@ -12653,18 +12659,21 @@
                     "large": {
                         "id": "large",
                         "url": "https://img.microm.ag/image/2022-06-03/filters/large/11126-114617.jpg",
+                        "webp_url": "https://img.microm.ag/image/2022-06-03/filters/large/11126-114617.jpg.webp",
                         "width": 788,
                         "height": 1400
                     },
                     "medium": {
                         "id": "medium",
                         "url": "https://img.microm.ag/image/2022-06-03/filters/medium/11126-114617.jpg",
+                        "webp_url": "https://img.microm.ag/image/2022-06-03/filters/medium/11126-114617.jpg.webp",
                         "width": 563,
                         "height": 1000
                     },
                     "small": {
                         "id": "small",
                         "url": "https://img.microm.ag/image/2022-06-03/filters/small/11126-114617.jpg",
+                        "webp_url": "https://img.microm.ag/image/2022-06-03/filters/small/11126-114617.jpg.webp",
                         "width": 338,
                         "height": 600
                     }
