@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useSetting } from '@micromag/core/contexts';
 import { getOptimalImageUrl, pascalCase } from '@micromag/core/utils';
-import { useSupportsWebp } from '@micromag/core/hooks';
 
 import styles from './avatar.module.scss';
 
@@ -32,7 +32,7 @@ const defaultProps = {
 };
 
 const Avatar = ({ image, width, height, resolution, shape, isTag, className, shouldLoad }) => {
-    const supportsWebp = useSupportsWebp();
+    const supportsWebp = useSetting('supportsWebp', false);
     const imageAtSize = getOptimalImageUrl(image, width, height, { resolution, supportsWebp });
     const finalShape = shape !== null ? pascalCase(shape) : null;
     return (

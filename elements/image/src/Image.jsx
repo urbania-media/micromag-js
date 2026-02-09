@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useCallback, useRef, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useSupportsWebp } from '@micromag/core/hooks';
+import { useSetting } from '@micromag/core/contexts';
 import { getOptimalImageUrl } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
@@ -77,6 +77,7 @@ const Image = ({
         width: mediaWidth,
         height: mediaHeight,
     });
+    const supportsWebp = useSetting('supportsWebp', false);
 
     const wasLoadedRef = useRef(shouldLoad);
     if (shouldLoad && !wasLoadedRef.current) {
@@ -196,10 +197,6 @@ const Image = ({
         ...imageStyle,
     };
 
-    const supportsWebp = useSupportsWebp();
-    console.log({
-        supportsWebp
-    })
     const { width: finalWidth = null, height: finalHeight = null } = finalImageStyle;
     const finalUrl = getOptimalImageUrl(media, finalWidth, finalHeight || finalWidth, {
         resolution,

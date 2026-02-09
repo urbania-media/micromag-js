@@ -17,6 +17,7 @@ import {
     TrackingProvider,
     VisitorProvider,
 } from '@micromag/core/contexts';
+import { useSupportsWebp } from '@micromag/core/hooks';
 import { IntlProvider } from '@micromag/intl';
 import { ScreensProvider } from '@micromag/screens';
 
@@ -136,8 +137,17 @@ const ViewerContainer = ({
     const { metadata } = story || {};
     const { language: finalLocale = locale } = metadata || {};
 
+    const supportsWebp = useSupportsWebp();
+    const finalSettings = useMemo(
+        () => ({
+            supportsWebp,
+            ...settings,
+        }),
+        [settings, supportsWebp],
+    );
+
     const content = (
-        <SettingsProvider settings={settings}>
+        <SettingsProvider settings={finalSettings}>
             <IntlProvider locale={finalLocale} locales={locales} extraMessages={translations}>
                 <GoogleKeysProvider apiKey={googleApiKey}>
                     <GoogleMapsClientProvider locale={finalLocale}>
