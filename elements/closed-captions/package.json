@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-closed-captions",
-    "version": "0.3.810",
+    "version": "0.3.811",
     "private": false,
     "description": "",
     "keywords": [
@@ -59,8 +59,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.810",
-        "@micromag/element-text": "^0.3.810",
+        "@micromag/core": "^0.3.811",
+        "@micromag/element-text": "^0.3.811",
         "classnames": "^2.2.6",
         "parse-srt": "^1.0.0-alpha",
         "prop-types": "^15.7.2",
@@ -71,5 +71,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "d56839d15865de882ffbe33127aef7ea8b8bd195"
+    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
 }

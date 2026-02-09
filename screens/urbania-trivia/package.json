@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-trivia",
-    "version": "0.3.810",
+    "version": "0.3.811",
     "private": false,
     "description": "",
     "keywords": [
@@ -62,15 +62,15 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.20",
-        "@micromag/core": "^0.3.810",
-        "@micromag/element-background": "^0.3.810",
-        "@micromag/element-call-to-action": "^0.3.810",
-        "@micromag/element-closed-captions": "^0.3.810",
-        "@micromag/element-container": "^0.3.810",
-        "@micromag/element-heading": "^0.3.810",
-        "@micromag/element-image": "^0.3.810",
-        "@micromag/element-video": "^0.3.810",
-        "@micromag/transforms": "^0.3.810",
+        "@micromag/core": "^0.3.811",
+        "@micromag/element-background": "^0.3.811",
+        "@micromag/element-call-to-action": "^0.3.811",
+        "@micromag/element-closed-captions": "^0.3.811",
+        "@micromag/element-container": "^0.3.811",
+        "@micromag/element-heading": "^0.3.811",
+        "@micromag/element-image": "^0.3.811",
+        "@micromag/element-video": "^0.3.811",
+        "@micromag/transforms": "^0.3.811",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -81,5 +81,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "d56839d15865de882ffbe33127aef7ea8b8bd195"
+    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
 }

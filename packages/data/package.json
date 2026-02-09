@@ -1,6 +1,6 @@
 {
     "name": "@micromag/data",
-    "version": "0.3.810",
+    "version": "0.3.811",
     "private": false,
     "description": "",
     "keywords": [
@@ -59,7 +59,7 @@
         "@babel/runtime": "^7.13.10",
         "@folklore/fetch": "^0.1.17",
         "@folklore/routes": "^0.2.36",
-        "@micromag/core": "^0.3.810",
+        "@micromag/core": "^0.3.811",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "query-string": "^9.0.0"
@@ -68,5 +68,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "d56839d15865de882ffbe33127aef7ea8b8bd195"
+    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
 }
