@@ -10,7 +10,7 @@ export default function useSources(media, { possibleMimes = null } = {}) {
     const { files: mediaFiles = null, metadata = null } = media || {};
     const { mime: mediaMime = null } = metadata || {};
     const settingsPossibleMimes = useSetting('supportedVideoMimes');
-    const finalPossibleMimes = possibleMimes || settingsPossibleMimes;
+    const finalPossibleMimes = possibleMimes || settingsPossibleMimes || ['video/mp4'];
     const files = useMemo(() => getMediaFilesAsArray(mediaFiles), [mediaFiles]);
     const [supportedMimes, setSupportedMimes] = useState(finalPossibleMimes);
     useEffect(() => {
