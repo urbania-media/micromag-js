@@ -1,3 +1,4 @@
+import { useWindowSize } from '@folklore/hooks';
 import { match as matchMediaQuery } from 'css-mediaquery';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -9,7 +10,7 @@ export const useDevicePixelRatio = () => {
         setPixelRatio(typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1);
     }, [setPixelRatio]);
     return pixelRatio;
-}
+};
 
 const useScreenSize = ({
     width = null,
@@ -120,24 +121,8 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
     };
 };
 
-const getWindowSize = () => ({
-    width: typeof window !== 'undefined' ? window.innerWidth : null,
-    height: typeof window !== 'undefined' ? window.innerHæeight : null,
-});
-
 export const useScreenSizeFromWindow = (opts) => {
-    const [windowSize, setWindowSize] = useState(getWindowSize());
-    useEffect(() => {
-        const onResize = () => setWindowSize(getWindowSize());
-        if (typeof window !== 'undefined') {
-            window.addEventListener('resize', onResize);
-        }
-        return () => {
-            if (typeof window !== 'undefined') {
-                window.removeEventListener('resize', onResize);
-            }
-        };
-    }, [setWindowSize]);
+    const windowSize = useWindowSize();
     return useScreenSize({
         ...opts,
         ...windowSize,

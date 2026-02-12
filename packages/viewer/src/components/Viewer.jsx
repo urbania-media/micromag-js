@@ -86,6 +86,7 @@ const propTypes = {
     beforeScreensMenuButton: PropTypes.node,
     backToFirstScreenTimeout: PropTypes.number,
     closeable: PropTypes.bool,
+    readyWithoutSize: PropTypes.bool,
     withMetadata: PropTypes.bool,
     withMicromagBranding: PropTypes.bool,
     withoutGestures: PropTypes.bool,
@@ -150,6 +151,7 @@ const defaultProps = {
     backToFirstScreenTimeout: null,
     menuDotsButtons: null,
     closeable: false,
+    readyWithoutSize: false,
     withMetadata: false,
     withMicromagBranding: false,
     withNeighborScreens: false,
@@ -209,6 +211,7 @@ const Viewer = ({
     backToFirstScreenTimeout,
     menuDotsButtons,
     closeable,
+    readyWithoutSize,
     withMetadata,
     withMicromagBranding,
     withoutGestures,
@@ -343,7 +346,7 @@ const Viewer = ({
     const screenContainerHeight = screenScale !== null ? screenHeight * screenScale : screenHeight;
 
     const hasSize = screenWidth > 0 && screenHeight > 0;
-    const ready = hasSize;
+    const ready = hasSize || readyWithoutSize;
 
     const trackingEnabled = isView;
     useEffect(() => {

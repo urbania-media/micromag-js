@@ -1,3 +1,4 @@
+import { useWindowSize } from '@folklore/hooks';
 import { useSprings } from '@react-spring/core';
 import { useDrag } from '@use-gesture/react';
 import clamp from 'lodash/clamp';
@@ -21,7 +22,7 @@ export const useSwipe = ({
     const lockedAxis = useRef(null);
 
     const hasWidth = width !== null;
-    const windowWidth = typeof window !== 'undefined' && !hasWidth ? window.innerWidth : null;
+    const { width: windowWidth } = useWindowSize();
     const currentWidth = hasWidth ? width : windowWidth;
 
     const count = items.length;
