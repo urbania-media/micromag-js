@@ -31,6 +31,7 @@ import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
+import checkClickable from '../lib/checkClickable';
 import checkDraggable from '../lib/checkDraggable';
 
 import ViewerMenu from './ViewerMenu';
@@ -434,17 +435,28 @@ const Viewer = ({
     }, [changeIndex, screenIndex]);
 
     const [hasInteracted, setHasInteracted] = useState(false);
-    const onInteractionPrivate = useCallback(() => {
-        if (onInteraction !== null) {
-            onInteraction();
-        }
-        if (!hasInteracted) {
-            setHasInteracted(true);
-            if (!withoutAutoUnmute && setMuted !== null) {
-                setMuted(false);
+    const [wasUnmuted, setWasUnmuted] = useState(false);
+    const onInteractionPrivate = useCallback(
+        ({ target = null } = {}) => {
+            if (onInteraction !== null) {
+                onInteraction();
             }
-        }
-    }, [onInteraction, hasInteracted, setHasInteracted, withoutAutoUnmute, setMuted]);
+            if (!hasInteracted) {
+                setHasInteracted(true);
+            }
+
+            if (
+                !withoutAutoUnmute &&
+                !wasUnmuted &&
+                setMuted !== null &&
+                (target === null || !checkClickable(target))
+            ) {
+                setMuted(false);
+                setWasUnmuted(true);
+            }
+        },
+        [onInteraction, hasInteracted, setHasInteracted, withoutAutoUnmute, setMuted, wasUnmuted],
+    );
 
     const {
         interact: interactWithScreen,
