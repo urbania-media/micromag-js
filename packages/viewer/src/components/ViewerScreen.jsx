@@ -73,6 +73,10 @@ function ViewerScreen({
         };
     }, [active, mounted, setMounted, index]);
 
+    if (!mounted && !current) {
+        return null;
+    }
+
     return (
         <div
             className={classNames([

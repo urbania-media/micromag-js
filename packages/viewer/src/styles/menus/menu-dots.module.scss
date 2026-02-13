@@ -4,21 +4,30 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
+    display: flex;
     position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
 
-    .items,
-    .item {
-        margin: 0;
-        padding: 0;
-        list-style: none;
+    .dot {
+        margin: 0 2px;
+        padding: 5px 0 15px;
+
+        &:first-child {
+            margin-left: 2px;
+        }
+
+        &:last-child {
+            margin-right: 2px;
+        }
     }
 
-    .items {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
-        width: 100%;
+    &.withButtons {
+        .dot {
+            padding: 10px 0;
+        }
     }
 
     .closeButton {

@@ -624,7 +624,7 @@ const Viewer = ({
                     const t = index - progress;
                     if (Math.abs(t) > neighborScreensActive) return null;
                     const clamped = Math.min(1, Math.max(0, t));
-                    return `0 0 ${4 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`;
+                    return `0 0 ${2 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`;
                 }),
             };
         }
