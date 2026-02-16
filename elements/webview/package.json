@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-webview",
-    "version": "0.3.813",
+    "version": "0.3.818",
     "private": false,
     "description": "",
     "keywords": [
@@ -59,8 +59,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.813",
-        "@micromag/element-button": "^0.3.813",
+        "@micromag/core": "^0.3.814",
+        "@micromag/element-button": "^0.3.814",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -71,5 +71,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
+    "gitHead": "90cc69d20d28f4e900eb19a1b2b41b32d424e646"
 }

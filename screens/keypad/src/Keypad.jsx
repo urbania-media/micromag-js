@@ -335,7 +335,8 @@ const KeypadScreen = ({
     const computePopupProgress = useCallback(
         ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
             const damper = 0.5;
-            const delta = Math.abs(my) / window.innerHeight;
+            const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+            const delta = windowHeight > 0 ? Math.abs(my) / windowHeight : 0;
             const reachedThreshold = vy > 1 || delta > 0.3;
             let progress = 0;
             if (popupDragDirection === 'top' && my < 0) {

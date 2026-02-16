@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.3.813",
+    "version": "0.3.814",
     "private": false,
     "description": "",
     "keywords": [
@@ -130,6 +130,7 @@
         "@babel/runtime": "^7.13.10",
         "@folklore/fetch": "^0.1.17",
         "@folklore/forms": "~0.0.23",
+        "@folklore/hooks": "^0.0.83",
         "@folklore/routes": "^0.2.36",
         "@folklore/services": "^0.1.24",
         "@folklore/size": "^0.1.20",

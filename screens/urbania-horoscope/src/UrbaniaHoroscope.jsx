@@ -197,7 +197,8 @@ const UrbaniaHoroscope = ({
             // console.log({
             //     dragActive
             // });
-            const progress = Math.max(0, my) / (window.innerHeight * 0.8);
+            const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+            const progress = windowHeight > 0 ? Math.max(0, my) / (windowHeight * 0.8) : 0;
             const reachedThreshold = vy > 0.3 || Math.abs(progress) > 0.3;
             if (!dragActive) {
                 if (reachedThreshold) {
@@ -227,7 +228,8 @@ const UrbaniaHoroscope = ({
     const computeModalProgress = useCallback(
         ({ active: dragActive, movement: [, my], velocity: [, vy] }) => {
             const damper = 0.5;
-            const p = Math.max(0, my) / window.innerHeight;
+            const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+            const p = windowHeight > 0 ? Math.max(0, my) / windowHeight : 0;
             const progress = p * damper;
             const reachedThreshold = vy > 0.3 || Math.abs(p) > 0.3;
 

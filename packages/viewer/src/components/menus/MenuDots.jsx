@@ -66,9 +66,10 @@ const ViewerMenuDots = ({
             className={classNames([
                 styles.container,
                 {
-                    [className]: className !== null,
+                    [styles.withButtons]: closeable || buttons !== null,
                     [styles.vertical]: direction === 'vertical',
                 },
+                className,
             ])}
             aria-label={intl.formatMessage(
                 {
@@ -82,49 +83,46 @@ const ViewerMenuDots = ({
             )}
             style={style}
         >
-            <ul className={styles.items}>
-                {items.map((item, index) => {
-                    const { current = false, count = 1, subIndex = 0 } = item || {};
-                    return (
-                        <MenuDot
-                            key={`item-${index + 1}`}
-                            current={current}
-                            active={index <= currentIndex}
-                            colors={colors}
-                            count={count}
-                            subIndex={subIndex}
-                            onClick={() => {
-                                if ((withItemClick || withoutScreensMenu) && onClickDot !== null) {
-                                    onClickDot(item);
-                                } else if (!withItemClick && onClickScreensMenu !== null) {
-                                    onClickScreensMenu();
-                                }
-                            }}
-                            vertical={direction === 'vertical'}
-                        />
-                    );
-                })}
-                {closeable ? (
-                    <li className={styles.closeButton} style={{ color: primary }}>
-                        <button
-                            type="button"
-                            className={styles.closeButton}
-                            onClick={onClose}
-                            title={intl.formatMessage({
-                                defaultMessage: 'Close',
-                                description: 'Button label',
-                            })}
-                            aria-label={intl.formatMessage({
-                                defaultMessage: 'Close',
-                                description: 'Button label',
-                            })}
-                        >
-                            <CloseIcon />
-                        </button>
-                    </li>
-                ) : null}
-                {buttons !== null ? <div className={styles.buttons}>{buttons}</div> : null}
-            </ul>
+            {items.map((item, index) => {
+                const { current = false, count = 1, subIndex = 0 } = item || {};
+                return (
+                    <MenuDot
+                        current={current}
+                        active={index <= currentIndex}
+                        colors={colors}
+                        count={count}
+                        subIndex={subIndex}
+                        className={styles.dot}
+                        onClick={() => {
+                            if ((withItemClick || withoutScreensMenu) && onClickDot !== null) {
+                                onClickDot(item);
+                            } else if (!withItemClick && onClickScreensMenu !== null) {
+                                onClickScreensMenu();
+                            }
+                        }}
+                        vertical={direction === 'vertical'}
+                    />
+                );
+            })}
+            {closeable ? (
+                <button
+                    type="button"
+                    className={styles.closeButton}
+                    onClick={onClose}
+                    title={intl.formatMessage({
+                        defaultMessage: 'Close',
+                        description: 'Button label',
+                    })}
+                    aria-label={intl.formatMessage({
+                        defaultMessage: 'Close',
+                        description: 'Button label',
+                    })}
+                    style={{ color: primary }}
+                >
+                    <CloseIcon />
+                </button>
+            ) : null}
+            {buttons !== null ? <div className={styles.buttons}>{buttons}</div> : null}
         </nav>
     );
 };

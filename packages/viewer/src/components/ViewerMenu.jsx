@@ -270,7 +270,8 @@ const ViewerMenu = ({
 
     const computeMenuProgress = useCallback(
         ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
-            const progress = Math.max(0, my) / (window.innerHeight * 0.8);
+            const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+            const progress = windowHeight > 0 ? Math.max(0, my) / (windowHeight * 0.8) : 0;
             const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
             if (!active) {
                 if (reachedThreshold) onOpenMenu();
@@ -282,7 +283,8 @@ const ViewerMenu = ({
     );
     const computeMenuProgressClose = useCallback(
         ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
-            const progress = Math.max(0, my) / (window.innerHeight * 0.8);
+            const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+            const progress = windowHeight > 0 ? Math.max(0, my) / (windowHeight * 0.8) : 0;
             const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
             if (!active) {
                 if (reachedThreshold) onCloseMenu();

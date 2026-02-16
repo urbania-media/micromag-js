@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-map",
-    "version": "0.3.813",
+    "version": "0.3.818",
     "private": false,
     "description": "",
     "keywords": [
@@ -60,18 +60,18 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.813",
-        "@micromag/element-background": "^0.3.813",
-        "@micromag/element-button": "^0.3.813",
-        "@micromag/element-container": "^0.3.813",
-        "@micromag/element-footer": "^0.3.813",
-        "@micromag/element-header": "^0.3.813",
-        "@micromag/element-heading": "^0.3.813",
-        "@micromag/element-image": "^0.3.813",
-        "@micromag/element-map": "^0.3.813",
-        "@micromag/element-scroll": "^0.3.813",
-        "@micromag/element-text": "^0.3.813",
-        "@micromag/transforms": "^0.3.813",
+        "@micromag/core": "^0.3.814",
+        "@micromag/element-background": "^0.3.816",
+        "@micromag/element-button": "^0.3.814",
+        "@micromag/element-container": "^0.3.814",
+        "@micromag/element-footer": "^0.3.818",
+        "@micromag/element-header": "^0.3.814",
+        "@micromag/element-heading": "^0.3.814",
+        "@micromag/element-image": "^0.3.814",
+        "@micromag/element-map": "^0.3.814",
+        "@micromag/element-scroll": "^0.3.814",
+        "@micromag/element-text": "^0.3.814",
+        "@micromag/transforms": "^0.3.814",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -82,5 +82,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
+    "gitHead": "90cc69d20d28f4e900eb19a1b2b41b32d424e646"
 }

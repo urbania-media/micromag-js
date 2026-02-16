@@ -1,6 +1,6 @@
 {
     "name": "@micromag/recorder",
-    "version": "0.3.813",
+    "version": "0.3.819",
     "private": false,
     "description": "",
     "keywords": [
@@ -59,7 +59,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/fetch": "^0.1.14",
-        "@micromag/viewer": "^0.3.813",
+        "@micromag/viewer": "^0.3.819",
         "express": "^5.2.1",
         "get-port": "^7.1.0",
         "lodash": "^4.17.21",
@@ -73,5 +73,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
+    "gitHead": "90cc69d20d28f4e900eb19a1b2b41b32d424e646"
 }

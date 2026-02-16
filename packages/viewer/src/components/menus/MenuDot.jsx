@@ -60,7 +60,8 @@ const ViewerMenuDot = ({
     }, [active, current, subIndex, count, setDotSpringProps]);
 
     return (
-        <li
+        <button
+            type="button"
             className={classNames([
                 styles.container,
                 {
@@ -69,37 +70,32 @@ const ViewerMenuDot = ({
                     [className]: className !== null,
                 },
             ])}
+            onClick={(e = null) => {
+                if (e !== null) {
+                    e.stopPropagation();
+                }
+                if (onClick !== null) {
+                    onClick();
+                }
+            }}
+            tabIndex="-1"
             aria-hidden="true"
         >
-            <button
-                type="button"
-                className={styles.button}
-                onClick={(e = null) => {
-                    if (e !== null) {
-                        e.stopPropagation();
-                    }
-                    if (onClick !== null) {
-                        onClick();
-                    }
+            <div
+                className={styles.dot}
+                style={{
+                    backgroundColor: secondary,
                 }}
-                tabIndex="-1"
             >
-                <div
-                    className={styles.dot}
+                <animated.div
+                    className={styles.progress}
                     style={{
-                        backgroundColor: secondary,
+                        ...dotSpringStyles,
+                        backgroundColor: primary,
                     }}
-                >
-                    <animated.div
-                        className={styles.progress}
-                        style={{
-                            ...dotSpringStyles,
-                            backgroundColor: primary,
-                        }}
-                    />
-                </div>
-            </button>
-        </li>
+                />
+            </div>
+        </button>
     );
 };
 ViewerMenuDot.propTypes = propTypes;

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { useSetting } from '@micromag/core/contexts';
 import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
@@ -10,15 +10,19 @@ export default function useSources(media, { possibleMimes = null } = {}) {
     const { files: mediaFiles = null, metadata = null } = media || {};
     const { mime: mediaMime = null } = metadata || {};
     const settingsPossibleMimes = useSetting('supportedVideoMimes');
-    const finalPossibleMimes = possibleMimes || settingsPossibleMimes;
+    const finalPossibleMimes = possibleMimes || settingsPossibleMimes || ['video/mp4'];
     const files = useMemo(() => getMediaFilesAsArray(mediaFiles), [mediaFiles]);
+    const [supportedMimes, setSupportedMimes] = useState(finalPossibleMimes);
+    useEffect(() => {
+        let newMimes = getVideoSupportedMimes(finalPossibleMimes);
+        if (newMimes.length === 0) {
+            newMimes = ['video/mp4'];
+        }
+        setSupportedMimes(newMimes);
+    }, [finalPossibleMimes]);
     const sources = useMemo(() => {
         if (files.length === 0) {
             return null;
-        }
-        let supportedMimes = getVideoSupportedMimes(finalPossibleMimes);
-        if (supportedMimes.length === 0) {
-            supportedMimes = ['video/mp4'];
         }
         const supportedFiles = files.filter((file) => {
             const fileHandle = file.handle || file.id;
@@ -39,7 +43,7 @@ export default function useSources(media, { possibleMimes = null } = {}) {
             }
             return a > b ? 1 : -1;
         });
-    }, [files, finalPossibleMimes]);
+    }, [files, supportedMimes]);
 
     // @NOTE: Media is an animated image and doesn't have source files in video formats
     const { type: originalType = null, mime: originalMime = mediaMime } =
