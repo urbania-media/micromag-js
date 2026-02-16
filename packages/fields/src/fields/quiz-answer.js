@@ -36,6 +36,22 @@ export default {
             }),
         },
         {
+            name: 'buttonLayout',
+            type: 'button-layout',
+            label: defineMessage({
+                defaultMessage: 'Layout',
+                description: 'Field label',
+            }),
+            types: [
+                'label-bottom',
+                'label-top',
+                'no-label',
+                'label-over',
+                'label-left',
+                'label-right',
+            ],
+        },
+        {
             name: 'result',
             type: 'text-element',
             // textOnly: true,
@@ -44,7 +60,6 @@ export default {
                 description: 'Field label',
             }),
         },
-
         {
             name: 'answerImage',
             type: 'visual',

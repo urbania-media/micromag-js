@@ -36,7 +36,7 @@ export default [
                     {
                         name: 'keypadLayout',
                         type: 'keypad-layout',
-                        isList: false,
+                        isList: true,
                         withoutLabel: true,
                         defaultValue: {
                             columnAlign: 'middle',

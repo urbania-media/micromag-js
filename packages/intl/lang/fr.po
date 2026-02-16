@@ -1065,7 +1065,7 @@ msgstr "Pop-ups"
 #: FjuRaw
 msgctxt "FjuRaw"
 msgid "Keypad settings"
-msgstr "Paramètres du clavier"
+msgstr "Paramètres des boutons"
 
 # Your name placeholder
 #: G/ITGY
