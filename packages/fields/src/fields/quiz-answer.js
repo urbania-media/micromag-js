@@ -20,6 +20,14 @@ export default {
             }),
         },
         {
+            name: 'visual',
+            type: 'visual',
+            label: defineMessage({
+                defaultMessage: 'Image',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'good',
             type: 'true-false',
             label: defineMessage({
@@ -36,6 +44,7 @@ export default {
                 description: 'Field label',
             }),
         },
+
         {
             name: 'answerImage',
             type: 'visual',
