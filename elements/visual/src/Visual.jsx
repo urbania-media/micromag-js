@@ -22,6 +22,7 @@ const propTypes = {
     ]),
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    ratio: PropTypes.number,
     resolution: PropTypes.number,
     objectFit: MicromagPropTypes.objectFit,
     playing: PropTypes.bool,
@@ -44,6 +45,7 @@ const defaultProps = {
     mediaRef: null,
     width: null,
     height: null,
+    ratio: null,
     resolution: 1,
     objectFit: null,
     playing: true,
@@ -66,6 +68,7 @@ const Visual = ({
     mediaRef,
     width,
     height,
+    ratio,
     resolution,
     objectFit,
     playing,
@@ -153,7 +156,7 @@ const Visual = ({
             {type === 'video' && shouldLoad && !withoutVideo ? (
                 <div
                     className={classNames([styles.container, { [className]: className !== null }])}
-                    style={{ width, height }}
+                    style={{ width, height, aspectRatio: ratio !== null ? `${ratio}` : null }}
                     ref={refVisible}
                 >
                     <div

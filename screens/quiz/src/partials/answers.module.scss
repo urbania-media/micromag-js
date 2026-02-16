@@ -60,6 +60,10 @@
         padding-right: 42px;
         padding-left: 42px;
     }
+
+    .withSquareItems & {
+        aspect-ratio: 1;
+    }
 }
 
 .resultIcon {
@@ -69,9 +73,9 @@
     left: 5px;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
-    margin-top: -16px;
+    width: 34px;
+    height: 34px;
+    margin-top: -18px;
     padding: 5px;
     transition: opacity 0.15s ease;
     border: 2px solid $black;
@@ -89,6 +93,7 @@
 
     .faIcon {
         display: block;
+        height: 24px;
     }
 }
 

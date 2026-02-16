@@ -1,7 +1,11 @@
-// import { imageMediaFromURL, videoMediaFromURL } from '../../data';
+import { imageMediaFromURL, videoMediaFromURL } from '../../data';
+import Test360 from '../files/test-360.mp4';
 // import bgVideo from '../files/signs/horoscope.mp4';
 // import signs from '../signs';
 import { defaultTheme } from '../themes/micromag-default';
+
+import aries from '../files/image-360.jpg';
+import aquarius from '../files/signs/aquarius.png';
 
 // import background from '../files/signs/horoscope-background.png';
 
@@ -93,12 +97,21 @@ const Quiz = {
                             label: {
                                 body: 'Réponse 1.1',
                             },
+                            visual: imageMediaFromURL(aquarius),
                             points: 2,
                         },
                         {
                             label: {
                                 body: 'Réponse 1.2',
                             },
+                            visual: imageMediaFromURL(aries),
+                            points: 2,
+                        },
+                        {
+                            label: {
+                                body: 'Réponse 1.3',
+                            },
+                            visual: videoMediaFromURL(Test360),
                             points: 2,
                         },
                     ],

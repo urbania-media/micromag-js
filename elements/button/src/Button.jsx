@@ -7,7 +7,7 @@ import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button as CoreButton } from '@micromag/core/components';
-import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
+import { getStyleFromBox, getStyleFromText } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -28,6 +28,7 @@ const propTypes = {
             current: PropTypes.any, // eslint-disable-line
         }),
     ]),
+    style: PropTypes.object, // eslint-disable-line
 };
 
 const defaultProps = {
@@ -42,6 +43,7 @@ const defaultProps = {
     className: null,
     withoutExternalBorder: true,
     refButton: null,
+    style: null,
 };
 
 const Button = ({
@@ -56,9 +58,11 @@ const Button = ({
     className,
     withoutExternalBorder,
     refButton,
+    style,
     ...buttonProps
 }) => {
-    let finalStyles = null;
+    let finalStyles = style;
+
     // eslint-disable-next-line no-unused-vars
     const { body = null, ...otherProps } = buttonProps || {};
 

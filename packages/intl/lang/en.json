@@ -260,9 +260,6 @@
     "6DV50M": {
         "defaultMessage": "Timing"
     },
-    "6LFjCH": {
-        "defaultMessage": "Fill with image"
-    },
     "6MxaVf": {
         "defaultMessage": "Style"
     },
@@ -406,6 +403,9 @@
     },
     "AV6gfh": {
         "defaultMessage": "Edit call to action..."
+    },
+    "Arl5Ze": {
+        "defaultMessage": "Button styles"
     },
     "AwDQvD": {
         "defaultMessage": "Image"
@@ -602,6 +602,9 @@
     "JDPMlG": {
         "defaultMessage": "Background color"
     },
+    "JGvpwT": {
+        "defaultMessage": "Visual width"
+    },
     "JLYWNN": {
         "defaultMessage": "Invalid box style"
     },
@@ -770,6 +773,9 @@
     "PNMMo/": {
         "defaultMessage": "Audios"
     },
+    "PYokTY": {
+        "defaultMessage": "Label box style"
+    },
     "PyxZY2": {
         "defaultMessage": "Cancel"
     },
@@ -781,9 +787,6 @@
     },
     "QSmRdP": {
         "defaultMessage": "Add an image"
-    },
-    "Qanvis": {
-        "defaultMessage": "Visual"
     },
     "Qe03Xz": {
         "defaultMessage": "Sign Subtitle"
@@ -893,9 +896,6 @@
     "W5qWPj": {
         "defaultMessage": "Center"
     },
-    "WOStf5": {
-        "defaultMessage": "Image"
-    },
     "WX83V9": {
         "defaultMessage": "File name"
     },
@@ -1001,9 +1001,6 @@
     "ZMS1Wv": {
         "defaultMessage": "Text"
     },
-    "Zbu5Uk": {
-        "defaultMessage": "Label"
-    },
     "ZeosMy": {
         "defaultMessage": "Mar 21 - Apr 19"
     },
@@ -1012,9 +1009,6 @@
     },
     "Zpl5bJ": {
         "defaultMessage": "Spacing"
-    },
-    "Zw4vWC": {
-        "defaultMessage": "Height"
     },
     "ZxgNge": {
         "defaultMessage": "Add an item"
@@ -1408,9 +1402,6 @@
     },
     "mXeSkg": {
         "defaultMessage": "Link"
-    },
-    "mY0bHb": {
-        "defaultMessage": "Width"
     },
     "menus.pagination.next": {
         "defaultMessage": "next"

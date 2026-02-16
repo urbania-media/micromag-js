@@ -24,8 +24,57 @@
     &.disabled {
         cursor: auto;
     }
+
+    &.rich {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &.layoutLabelBottom {
+            flex-direction: column;
+        }
+
+        &.layoutLabelTop {
+            flex-direction: column-reverse;
+        }
+
+        &.layoutNoLabel {
+            flex-direction: row;
+        }
+
+        &.layoutLabelLeft {
+            flex-direction: row-reverse;
+        }
+
+        &.layoutLabelOver {
+            position: relative;
+
+            .text {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                padding: 10px;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            }
+        }
+    }
+}
+
+.emptyButton {
+    padding: 10px 5px;
 }
 
 .border {
     display: block;
+}
+
+.visual {
+    flex-grow: 1;
+    flex-shrink: 0;
+    overflow: auto;
+}
+
+.video {
+    position: relative !important;
 }

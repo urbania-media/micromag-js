@@ -260,9 +260,6 @@
     "6DV50M": {
         "defaultMessage": "Mode"
     },
-    "6LFjCH": {
-        "defaultMessage": "Remplir avec l'image"
-    },
     "6MxaVf": {
         "defaultMessage": "Style"
     },
@@ -406,6 +403,9 @@
     },
     "AV6gfh": {
         "defaultMessage": "Modifier l'action"
+    },
+    "Arl5Ze": {
+        "defaultMessage": "Styles du bouton"
     },
     "AwDQvD": {
         "defaultMessage": "Image"
@@ -602,6 +602,9 @@
     "JDPMlG": {
         "defaultMessage": "Couleur de l'arrière-plan"
     },
+    "JGvpwT": {
+        "defaultMessage": "Largeur du visuel"
+    },
     "JLYWNN": {
         "defaultMessage": "Style de boîte invalide"
     },
@@ -770,6 +773,9 @@
     "PNMMo/": {
         "defaultMessage": "Audios"
     },
+    "PYokTY": {
+        "defaultMessage": "Style de boîte du libellé"
+    },
     "PyxZY2": {
         "defaultMessage": "Annuler"
     },
@@ -781,9 +787,6 @@
     },
     "QSmRdP": {
         "defaultMessage": "Ajouter une image"
-    },
-    "Qanvis": {
-        "defaultMessage": "Visuel"
     },
     "Qe03Xz": {
         "defaultMessage": "Sous-titre du signe"
@@ -893,9 +896,6 @@
     "W5qWPj": {
         "defaultMessage": "Centrer"
     },
-    "WOStf5": {
-        "defaultMessage": "Image"
-    },
     "WX83V9": {
         "defaultMessage": "Nom du fichier"
     },
@@ -1001,9 +1001,6 @@
     "ZMS1Wv": {
         "defaultMessage": "Texte"
     },
-    "Zbu5Uk": {
-        "defaultMessage": "Libellé"
-    },
     "ZeosMy": {
         "defaultMessage": "21 mars au 19 avr"
     },
@@ -1012,9 +1009,6 @@
     },
     "Zpl5bJ": {
         "defaultMessage": "Espacement"
-    },
-    "Zw4vWC": {
-        "defaultMessage": "Hauteur"
     },
     "ZxgNge": {
         "defaultMessage": "Ajouter un élement"
@@ -1408,9 +1402,6 @@
     },
     "mXeSkg": {
         "defaultMessage": "Lien"
-    },
-    "mY0bHb": {
-        "defaultMessage": "Largeur"
     },
     "menus.pagination.next": {
         "defaultMessage": "suivant"

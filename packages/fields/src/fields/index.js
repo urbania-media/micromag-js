@@ -87,6 +87,7 @@ export { default as quizAnswers } from './quiz-answers';
 export { default as quizPointsAnswer } from './quiz-points-answer';
 export { default as quizPointsAnswers } from './quiz-points-answers';
 export { default as radios } from './radios';
+export { default as richButtonStyles } from './rich-button-styles';
 export { default as screenLayout } from './screen-layout';
 export { default as select } from './select';
 export { default as shadowAngle } from './shadow-angle';

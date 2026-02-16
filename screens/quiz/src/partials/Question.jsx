@@ -22,6 +22,7 @@ import styles from './question.module.scss';
 const propTypes = {
     question: MicromagPropTypes.textElement,
     answers: MicromagPropTypes.quizAnswers,
+    keypadLayout: PropTypes.shape({}),
     result: PropTypes.shape({
         image: MicromagPropTypes.imageElement,
         text: MicromagPropTypes.textElement,
@@ -61,6 +62,7 @@ const propTypes = {
 const defaultProps = {
     question: null,
     answers: null,
+    keypadLayout: null,
     result: null,
     resultImage: null,
     index: null,
@@ -97,6 +99,7 @@ const defaultProps = {
 const Question = ({
     question,
     answers,
+    keypadLayout,
     result,
     resultImage,
     index,
@@ -222,6 +225,7 @@ const Question = ({
                 <Answers
                     key="answers"
                     items={answers || []}
+                    keypadLayout={keypadLayout}
                     answeredIndex={answeredIndex}
                     goodAnswerColor={goodAnswerColor}
                     badAnswerColor={badAnswerColor}

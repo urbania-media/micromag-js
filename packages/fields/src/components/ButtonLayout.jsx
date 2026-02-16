@@ -17,7 +17,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    types: ['label-bottom', 'label-top', 'no-label', 'label-over'],
+    types: ['label-bottom', 'label-top', 'no-label', 'label-over', 'label-right', 'label-left'],
     value: null,
     defaultValue: null,
     className: null,
@@ -28,12 +28,10 @@ const ButtonLayout = ({ types, value, defaultValue, className, onChange }) => {
     const finalValue = value === null && defaultValue !== null ? defaultValue : value;
 
     const onButtonLayoutChange = useCallback(
-        (newVal) => {
-            // const v = newVal === finalValue ? null : newVal;
-
+        (newVal = null) => {
             onChange(newVal);
         },
-        [finalValue],
+        [finalValue, onChange],
     );
 
     const getLayoutPreviewByType = useCallback((type) => {
@@ -80,6 +78,34 @@ const ButtonLayout = ({ types, value, defaultValue, className, onChange }) => {
                         />
                     </div>
                 );
+            case 'label-right':
+                return (
+                    <div className={classNames(['d-flex', 'flex-row', 'align-items-center'])}>
+                        <PlaceholderImage width="0.625em" height="1.25em" />
+                        <PlaceholderText
+                            className={classNames([
+                                styles.placeholderText,
+                                styles.placeholderTextRight,
+                            ])}
+                            lines={1}
+                            lineMargin={1}
+                        />
+                    </div>
+                );
+            case 'label-left':
+                return (
+                    <div className={classNames(['d-flex', 'flex-row', 'align-items-center'])}>
+                        <PlaceholderText
+                            className={classNames([
+                                styles.placeholderText,
+                                styles.placeholderTextRight,
+                            ])}
+                            lines={1}
+                            lineMargin={1}
+                        />
+                        <PlaceholderImage width="0.625em" height="1.25em" />
+                    </div>
+                );
             default:
                 return <div />;
         }
@@ -89,30 +115,29 @@ const ButtonLayout = ({ types, value, defaultValue, className, onChange }) => {
         <div
             className={classNames([
                 'd-flex',
+                'w-100',
                 {
                     [className]: className !== null,
                 },
             ])}
         >
-            <div className={classNames(['d-inline-flex', 'me-auto'])}>
-                <Radios
-                    options={types.map((type) => ({
-                        value: type,
-                        label: getLayoutPreviewByType(type),
-                    }))}
-                    value={finalValue || null}
-                    className={classNames([
-                        styles.container,
-                        {
-                            [className]: className !== null,
-                        },
-                    ])}
-                    buttonClassName={styles.button}
-                    activeClassName={styles.active}
-                    onChange={onButtonLayoutChange}
-                    uncheckable
-                />
-            </div>
+            <Radios
+                options={types.map((type) => ({
+                    value: type,
+                    label: getLayoutPreviewByType(type),
+                }))}
+                value={finalValue || null}
+                className={classNames([
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
+                buttonClassName={styles.button}
+                activeClassName={styles.active}
+                onChange={onButtonLayoutChange}
+                uncheckable
+            />
         </div>
     );
 };

@@ -9,6 +9,7 @@ import React, { useId } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import {
+    getStyleFromBox,
     getStyleFromHighlight,
     getStyleFromLink,
     getStyleFromMargin,
@@ -20,6 +21,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     body: PropTypes.string,
     textStyle: MicromagPropTypes.textStyle,
+    boxStyle: MicromagPropTypes.boxStyle,
     linksStyle: MicromagPropTypes.textStyle,
     margin: MicromagPropTypes.margin,
     lineClamp: PropTypes.number,
@@ -38,6 +40,7 @@ const propTypes = {
 const defaultProps = {
     body: null,
     textStyle: null,
+    boxStyle: null,
     linksStyle: null,
     margin: null,
     lineClamp: null,
@@ -51,6 +54,7 @@ const defaultProps = {
 const Text = ({
     body,
     textStyle,
+    boxStyle,
     linksStyle,
     margin,
     lineClamp,
@@ -75,6 +79,13 @@ const Text = ({
         finalStyle = {
             ...finalStyle,
             ...getStyleFromText(textStyle),
+        };
+    }
+
+    if (boxStyle !== null) {
+        finalStyle = {
+            ...finalStyle,
+            ...getStyleFromBox(boxStyle),
         };
     }
 

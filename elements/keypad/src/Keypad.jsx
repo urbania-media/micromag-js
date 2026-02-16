@@ -19,7 +19,7 @@ const propTypes = {
 
 const defaultProps = {
     align: null,
-    columns: 3,
+    columns: 1,
     spacing: 10,
     className: null,
     itemClassName: null,
@@ -29,7 +29,6 @@ const defaultProps = {
 
 function Keypad({ items, align, columns, spacing, className, itemClassName, innerClassName }) {
     const itemWidth = `${100 / columns}%`;
-
     return (
         <div
             className={classNames([

@@ -31,6 +31,7 @@ import styles from './quiz.module.scss';
 const propTypes = {
     id: PropTypes.string,
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
+    keypadLayout: PropTypes.shape({}),
     question: MicromagPropTypes.textElement,
     answers: MicromagPropTypes.quizAnswers,
     result: PropTypes.shape({
@@ -63,6 +64,7 @@ const propTypes = {
 const defaultProps = {
     id: null,
     layout: 'middle',
+    keypadLayout: null,
     question: null,
     answers: null,
     result: null,
@@ -92,6 +94,7 @@ const defaultProps = {
 const QuizScreen = ({
     id,
     layout,
+    keypadLayout,
     question,
     answers,
     result,
@@ -296,6 +299,7 @@ const QuizScreen = ({
                     <Question
                         question={question}
                         answers={answers}
+                        keypadLayout={keypadLayout}
                         result={result}
                         resultImage={resultImage}
                         answeredIndex={userAnswerIndex}
