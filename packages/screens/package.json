@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.820",
+    "version": "0.3.822",
     "private": false,
     "description": "",
     "keywords": [
@@ -90,9 +90,9 @@
         "@micromag/screen-gallery-feed": "^0.3.820",
         "@micromag/screen-game-sort": "^0.3.820",
         "@micromag/screen-image": "^0.3.820",
-        "@micromag/screen-keypad": "^0.3.820",
+        "@micromag/screen-keypad": "^0.3.822",
         "@micromag/screen-map": "^0.3.820",
-        "@micromag/screen-quiz": "^0.3.820",
+        "@micromag/screen-quiz": "^0.3.822",
         "@micromag/screen-quote": "^0.3.820",
         "@micromag/screen-ranking": "^0.3.820",
         "@micromag/screen-share": "^0.3.820",
