@@ -132,6 +132,7 @@ const RichButton = ({
                     [styles.layoutNoLabel]: finalLayout === 'no-label',
                     [styles.layoutLabelOver]: finalLayout === 'label-over',
                     [styles.layoutLabelLeft]: finalLayout === 'label-left',
+                    [styles.layoutLabelRight]: finalLayout === 'label-right',
                     [className]: className !== null,
                 },
             ])}

@@ -46,6 +46,10 @@
             flex-direction: row-reverse;
         }
 
+        &.layoutLabelRight {
+            flex-direction: row;
+        }
+
         &.layoutLabelOver {
             position: relative;
 
