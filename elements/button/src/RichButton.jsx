@@ -114,8 +114,6 @@ const RichButton = ({
             : '100%';
     const finalLayout = hasVisual ? layout : null;
 
-    // console.log('finalLayout', finalLayout);
-
     return (
         <Tag
             type={type}

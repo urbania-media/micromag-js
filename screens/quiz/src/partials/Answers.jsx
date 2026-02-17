@@ -352,6 +352,31 @@ const Answers = ({
         const inactiveButtonStyle = isInactive ? inactiveButtonsStyle : null;
         const inactiveButtonTextStyle = isInactive ? inactiveButtonsTextStyle : null;
 
+        const finalButtonStyle = {
+            ...buttonsStyle,
+            ...inactiveButtonStyle,
+            ...answerButtonStyle,
+        };
+
+        const finalTextStyle = {
+            ...Object.keys(buttonsTextStyle || {}).reduce((acc, key) => {
+                const value = buttonsTextStyle[key];
+                if (value !== null) {
+                    acc[key] = value;
+                }
+                return acc;
+            }, {}),
+            ...Object.keys(textStyle || {}).reduce((acc, key) => {
+                const value = textStyle[key];
+                if (value !== null) {
+                    acc[key] = value;
+                }
+                return acc;
+            }, {}),
+            ...inactiveButtonTextStyle,
+            ...answerButtonTextStyle,
+        };
+
         return (
             <animated.div
                 key={`answer-${answerI}`}
@@ -395,17 +420,8 @@ const Answers = ({
                                 }}
                                 disabled={!visible || isPreview || answered}
                                 focusable={focusable}
-                                buttonStyle={{
-                                    ...buttonsStyle,
-                                    ...inactiveButtonStyle,
-                                    ...answerButtonStyle,
-                                }}
-                                textStyle={{
-                                    ...buttonsTextStyle,
-                                    ...textStyle,
-                                    ...inactiveButtonTextStyle,
-                                    ...answerButtonTextStyle,
-                                }}
+                                buttonStyle={finalButtonStyle}
+                                textStyle={finalTextStyle}
                                 label={label}
                                 visual={visual}
                                 visualClassName={styles.optionVisual}
