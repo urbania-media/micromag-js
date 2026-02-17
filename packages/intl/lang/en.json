@@ -326,6 +326,9 @@
     "8A8cuq": {
         "defaultMessage": "Parameters"
     },
+    "8Dmlwh": {
+        "defaultMessage": "Answer button layout"
+    },
     "8NyYTH": {
         "defaultMessage": "Back"
     },
@@ -445,6 +448,9 @@
     },
     "CJmQeh": {
         "defaultMessage": "Image with text"
+    },
+    "CQzuFE": {
+        "defaultMessage": "Feedback styles"
     },
     "CWnXWp": {
         "defaultMessage": "No button yet"

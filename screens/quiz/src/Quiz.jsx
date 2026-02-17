@@ -39,6 +39,7 @@ const propTypes = {
         text: MicromagPropTypes.textElement,
     }),
     resultImage: MicromagPropTypes.visualElement,
+    buttonsLayout: MicromagPropTypes.buttonLayout,
     buttonsStyle: MicromagPropTypes.boxStyle,
     inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
@@ -69,6 +70,7 @@ const defaultProps = {
     answers: null,
     result: null,
     resultImage: null,
+    buttonsLayout: null,
     buttonsStyle: null,
     inactiveButtonsStyle: null,
     buttonsTextStyle: null,
@@ -99,6 +101,7 @@ const QuizScreen = ({
     answers,
     result,
     resultImage,
+    buttonsLayout,
     buttonsStyle,
     inactiveButtonsStyle,
     buttonsTextStyle,
@@ -303,6 +306,7 @@ const QuizScreen = ({
                         result={result}
                         resultImage={resultImage}
                         answeredIndex={userAnswerIndex}
+                        buttonsLayout={buttonsLayout}
                         buttonsStyle={buttonsStyle}
                         buttonsTextStyle={buttonsTextStyle}
                         inactiveButtonsStyle={inactiveButtonsStyle}

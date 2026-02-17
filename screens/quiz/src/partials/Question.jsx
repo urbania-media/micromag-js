@@ -31,6 +31,7 @@ const propTypes = {
     index: PropTypes.number,
     totalCount: PropTypes.number,
     answeredIndex: PropTypes.number,
+    buttonsLayout: MicromagPropTypes.buttonLayout,
     buttonsStyle: MicromagPropTypes.boxStyle,
     inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
@@ -68,6 +69,7 @@ const defaultProps = {
     index: null,
     totalCount: null,
     answeredIndex: null,
+    buttonsLayout: null,
     buttonsStyle: null,
     inactiveButtonsStyle: null,
     buttonsTextStyle: null,
@@ -105,6 +107,7 @@ const Question = ({
     index,
     totalCount,
     answeredIndex,
+    buttonsLayout,
     buttonsStyle,
     inactiveButtonsStyle,
     buttonsTextStyle,
@@ -232,6 +235,7 @@ const Question = ({
                     withoutGoodAnswer={withoutGoodAnswer}
                     withoutIcon={withoutTrueFalse}
                     showUserAnswer={withoutTrueFalse}
+                    buttonsLayout={buttonsLayout}
                     buttonsStyle={buttonsStyle}
                     inactiveButtonsStyle={inactiveButtonsStyle}
                     buttonsTextStyle={buttonsTextStyle}

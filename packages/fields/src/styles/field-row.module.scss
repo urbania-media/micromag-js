@@ -13,7 +13,6 @@
 }
 
 .colValue {
-
     margin-left: auto;
     white-space: nowrap;
 }
@@ -24,6 +23,11 @@
 
 .colMinWidth {
     min-width: 0;
+}
+
+.collapsed {
+    display: none;
+    visibility: hidden;
 }
 
 .settingsButton {

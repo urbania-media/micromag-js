@@ -665,6 +665,12 @@ msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Parameters"
 
+# Field label
+#: 8Dmlwh
+msgctxt "8Dmlwh"
+msgid "Answer button layout"
+msgstr "Answer button layout"
+
 # Button label
 #: 8NyYTH
 msgctxt "8NyYTH"
@@ -904,6 +910,12 @@ msgstr "{current} of {duration}"
 msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image with text"
+
+# Field label
+#: CQzuFE
+msgctxt "CQzuFE"
+msgid "Feedback styles"
+msgstr "Feedback styles"
 
 # Label when there is no item
 #: CWnXWp

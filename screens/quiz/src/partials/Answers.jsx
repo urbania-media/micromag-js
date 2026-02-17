@@ -25,6 +25,7 @@ const propTypes = {
     answeredIndex: PropTypes.number,
     answersCollapseDelay: PropTypes.number,
     buttonsStyle: MicromagPropTypes.boxStyle,
+    buttonsLayout: MicromagPropTypes.buttonLayout,
     inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
     inactiveButtonsTextStyle: MicromagPropTypes.textStyle,
@@ -49,6 +50,7 @@ const defaultProps = {
     answeredIndex: null,
     answersCollapseDelay: 1000,
     buttonsStyle: null,
+    buttonsLayout: null,
     inactiveButtonsStyle: null,
     buttonsTextStyle: null,
     inactiveButtonsTextStyle: null,
@@ -74,6 +76,7 @@ const Answers = ({
     answeredIndex,
     answersCollapseDelay,
     buttonsStyle,
+    buttonsLayout,
     inactiveButtonsStyle,
     buttonsTextStyle,
     inactiveButtonsTextStyle,
@@ -426,7 +429,11 @@ const Answers = ({
                                 visual={visual}
                                 visualClassName={styles.optionVisual}
                                 imageClassName={styles.optionImage}
-                                layout={buttonLayout || (hasVisual ? 'label-right' : null)}
+                                layout={
+                                    buttonsLayout ||
+                                    buttonLayout ||
+                                    (hasVisual ? 'label-right' : null)
+                                }
                             >
                                 {answered && !withoutIcon && rightAnswer === true ? (
                                     <span

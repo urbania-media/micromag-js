@@ -58,7 +58,7 @@ export default [
                 name: 'keypadLayout',
                 type: 'keypad-layout',
                 isList: true,
-                withoutLabel: true,
+                // isCollapsible: true,
                 defaultValue: {
                     columnAlign: 'middle',
                     columns: 1,
@@ -105,6 +105,14 @@ export default [
                     description: 'Field section label',
                 }),
                 fields: [
+                    {
+                        name: 'buttonsLayout',
+                        type: 'button-layout',
+                        label: defineMessage({
+                            defaultMessage: 'Answer button layout',
+                            description: 'Field label',
+                        }),
+                    },
                     {
                         name: 'buttonsTextStyle',
                         type: 'text-style-form',

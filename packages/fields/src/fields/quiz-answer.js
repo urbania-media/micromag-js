@@ -71,6 +71,10 @@ export default {
         {
             type: 'fields',
             isList: true,
+            label: defineMessage({
+                defaultMessage: 'Feedback styles',
+                description: 'Field label',
+            }),
             fields: [
                 {
                     name: 'textStyle',

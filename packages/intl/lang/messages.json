@@ -435,6 +435,10 @@
     "defaultMessage": "Parameters",
     "description": "field label"
   },
+  "8Dmlwh": {
+    "defaultMessage": "Answer button layout",
+    "description": "Field label"
+  },
   "8NyYTH": {
     "defaultMessage": "Back",
     "description": "Button label"
@@ -594,6 +598,10 @@
   "CJmQeh": {
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
+  },
+  "CQzuFE": {
+    "defaultMessage": "Feedback styles",
+    "description": "Field label"
   },
   "CWnXWp": {
     "defaultMessage": "No button yet",
