@@ -34,6 +34,15 @@ export default [
                         }),
                     },
                     {
+                        name: 'items',
+                        type: 'buttons',
+                        label: defineMessage({
+                            defaultMessage: 'Items',
+                            description: 'Field label',
+                        }),
+                        isSection: true,
+                    },
+                    {
                         name: 'keypadLayout',
                         type: 'keypad-layout',
                         isList: true,
@@ -48,15 +57,6 @@ export default [
                             defaultMessage: 'Keypad settings',
                             description: 'Field label',
                         }),
-                    },
-                    {
-                        name: 'items',
-                        type: 'buttons',
-                        label: defineMessage({
-                            defaultMessage: 'Items',
-                            description: 'Field label',
-                        }),
-                        isSection: true,
                     },
                     {
                         name: 'buttonStyles',
