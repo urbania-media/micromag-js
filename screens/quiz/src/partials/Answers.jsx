@@ -364,14 +364,14 @@ const Answers = ({
         const finalTextStyle = {
             ...Object.keys(buttonsTextStyle || {}).reduce((acc, key) => {
                 const value = buttonsTextStyle[key];
-                if (value !== null) {
+                if (value !== null && value !== '') {
                     acc[key] = value;
                 }
                 return acc;
             }, {}),
             ...Object.keys(textStyle || {}).reduce((acc, key) => {
                 const value = textStyle[key];
-                if (value !== null) {
+                if (value !== null && value !== '') {
                     acc[key] = value;
                 }
                 return acc;

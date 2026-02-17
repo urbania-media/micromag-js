@@ -117,7 +117,6 @@ const RichButton = ({
     return (
         <Tag
             type={type}
-            textStyle={textStyle}
             buttonStyle={buttonStyle}
             disabled={disabled}
             focusable={focusable}
@@ -177,7 +176,8 @@ const RichButton = ({
                 {hasBody && showLabel ? (
                     <Text
                         boxStyle={labelBoxStyle}
-                        {...label}
+                        textStyle={textStyle}
+                        body={body}
                         className={classNames([
                             styles.text,
                             {
