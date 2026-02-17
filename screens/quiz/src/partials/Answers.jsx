@@ -430,8 +430,8 @@ const Answers = ({
                                 visualClassName={styles.optionVisual}
                                 imageClassName={styles.optionImage}
                                 layout={
-                                    buttonsLayout ||
                                     buttonLayout ||
+                                    buttonsLayout ||
                                     (hasVisual ? 'label-right' : null)
                                 }
                             >
