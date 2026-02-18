@@ -132,6 +132,9 @@ const RichButton = ({
                     [styles.layoutLabelOver]: finalLayout === 'label-over',
                     [styles.layoutLabelLeft]: finalLayout === 'label-left',
                     [styles.layoutLabelRight]: finalLayout === 'label-right',
+                    [styles.textFullWidth]:
+                        hasBody &&
+                        (!hasVisual || (layout !== 'label-right' && layout !== 'label-left')),
                     [className]: className !== null,
                 },
             ])}
