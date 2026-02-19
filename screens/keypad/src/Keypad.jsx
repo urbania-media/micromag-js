@@ -140,7 +140,6 @@ const KeypadScreen = ({
     subtitle,
     layout,
     spacing,
-    keypadSettings,
     keypadLayout,
     buttonStyles,
     popupStyles,
@@ -190,22 +189,19 @@ const KeypadScreen = ({
     const isInteractivePreview = isEdit && screenState === null;
     const isNotInteractive = isEdit && screenState !== null;
 
-    const { layout: oldLayout = null } = keypadSettings || {};
     const {
         columnAlign = null,
         columns = null,
         spacing: columnSpacing = null,
         withSquareItems = false,
-    } = keypadLayout || oldLayout || {}; // Temp shim backwards compat
+    } = keypadLayout || {};
 
     const {
         layout: buttonLayout = null,
         textStyle: buttonTextStyle = null,
         labelBoxStyle: buttonLabelBoxStyle = null,
         boxStyle: buttonBoxStyle = null,
-        fillImage = false,
         visualWidth: buttonVisualWidth = null,
-        alignment: buttonAlignment = null,
     } = buttonStyles || {};
 
     const {
@@ -443,7 +439,7 @@ const KeypadScreen = ({
                     label: itemLabel = null,
                     visual = null,
                     boxStyle = null,
-                    alignment = null,
+                    // alignment = null,
                     heading = null,
                     content = null,
                     url = null,
@@ -455,7 +451,7 @@ const KeypadScreen = ({
                 const { body: headingBody = null } = heading || {};
                 const { body: contentBody = null } = content || {};
                 const finalLabel = isString(itemLabel) ? { body: itemLabel } : itemLabel || {};
-
+                const { textStyle: finalLabelTextStyle = null } = finalLabel || {};
                 const { body: finalBody = null } = finalLabel || {};
 
                 const key = finalBody || visualUrl || id;
@@ -477,7 +473,7 @@ const KeypadScreen = ({
                                     [styles.disableHover]: isPopupEmpty && url === null,
                                 },
                             ])}
-                            layout={fillImage ? 'no-label' : buttonLayout}
+                            layout={buttonLayout || null}
                             external={isExternalLink}
                             href={isExternalLink ? url : null}
                             focusable={current}
@@ -486,14 +482,10 @@ const KeypadScreen = ({
                                     ? (e) => onItemClick(e, item, index)
                                     : null
                             }
-                            style={{
-                                ...getStyleFromAlignment(
-                                    alignment || buttonAlignment,
-                                    true,
-                                    'flex-start',
-                                ),
-                            }}
-                            textStyle={buttonTextStyle}
+                            // style={{
+                            //     ...getStyleFromAlignment(alignment, true, 'flex-start'),
+                            // }}
+                            textStyle={{ ...buttonTextStyle, ...finalLabelTextStyle }}
                             buttonStyle={{ ...buttonBoxStyle, ...boxStyle }}
                             label={finalLabel}
                             labelBoxStyle={buttonLabelBoxStyle}
@@ -507,16 +499,7 @@ const KeypadScreen = ({
                     </div>
                 );
             }),
-        [
-            items,
-            screenState,
-            keypadSettings,
-            buttonAlignment,
-            buttonBoxStyle,
-            buttonTextStyle,
-            buttonLayout,
-            isNotInteractive,
-        ],
+        [items, screenState, buttonBoxStyle, buttonTextStyle, buttonLayout, isNotInteractive],
     );
 
     useEffect(() => {
