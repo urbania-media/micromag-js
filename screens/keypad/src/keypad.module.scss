@@ -132,20 +132,26 @@
     position: relative;
     height: 100%;
 
+    .button {
+        gap: 0;
+    }
+
     .withSquareItems & {
-        height: 0;
-        padding-bottom: 100%;
+        height: auto;
+        aspect-ratio: 1;
     }
 }
 
-.placeholderItem {
-    height: 0;
-    padding-bottom: 60%;
 
-    .withSquareItems & {
-        padding-bottom: 100%;
-    }
-}
+
+// .placeholderItem {
+//     height: 0;
+//     padding-bottom: 60%;
+
+//     .withSquareItems & {
+//         padding-bottom: 100%;
+//     }
+// }
 
 .button {
     display: flex;
