@@ -12,7 +12,7 @@ import { isMessage } from '@micromag/core/utils';
 
 import ScreensMenu from './ScreensMenu';
 
-import styles from '../../styles/menus/screen-types.module.scss';
+import styles from '../../styles/menus/screen-types.module.css';
 
 const propTypes = {
     screens: MicromagPropTypes.screenDefinitions,
@@ -21,14 +21,7 @@ const propTypes = {
     onClickItem: PropTypes.func,
 };
 
-const defaultProps = {
-    screens: null,
-    selectedTypes: null,
-    className: null,
-    onClickItem: null,
-};
-
-const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
+const ScreenTypes = ({ screens = null, selectedTypes = null, className = null, onClickItem = null }) => {
     const intl = useIntl();
     const screensManager = useScreensManager();
     const screenDefinitions = screens || screensManager.getDefinitions();
@@ -126,6 +119,5 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
 };
 
 ScreenTypes.propTypes = propTypes;
-ScreenTypes.defaultProps = defaultProps;
 
 export default ScreenTypes;

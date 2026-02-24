@@ -11,13 +11,8 @@ const propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {
-    value: null,
-};
-
-export const FieldsValueContextProvider = ({ value, children }) => (
+export const FieldsValueContextProvider = ({ value = null, children }) => (
     <FieldsValueContext.Provider value={value}>{children}</FieldsValueContext.Provider>
 );
 
 FieldsValueContextProvider.propTypes = propTypes;
-FieldsValueContextProvider.defaultProps = defaultProps;

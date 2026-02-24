@@ -42,7 +42,7 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import TextInput from '@micromag/element-text-input';
 
-import styles from './contribution.module.scss';
+import styles from './contribution.module.css';
 
 const propTypes = {
     id: PropTypes.string,
@@ -71,50 +71,27 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    id: null,
-    layout: 'middle',
-    title: null,
-    name: null,
-    message: null,
-    submit: null,
-    nameStyle: null,
-    messageStyle: null,
-    settings: null,
-    spacing: 20,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    preload: true,
-    transitions: null,
-    transitionStagger: 100,
-    resizeTransitionDuration: 750,
-    type: null,
-    className: null,
-};
-
 const ContributionScreen = ({
-    id,
-    layout,
-    title,
-    name,
-    message,
-    submit,
-    nameStyle,
-    messageStyle,
-    settings,
-    spacing,
-    background,
-    header,
-    footer,
-    current,
-    preload,
-    transitions,
-    transitionStagger,
-    resizeTransitionDuration,
-    type,
-    className,
+    id = null,
+    layout = 'middle',
+    title = null,
+    name = null,
+    message = null,
+    submit = null,
+    nameStyle = null,
+    messageStyle = null,
+    settings = null,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    transitions = null,
+    transitionStagger = 100,
+    resizeTransitionDuration = 750,
+    type = null,
+    className = null,
 }) => {
     const intl = useIntl();
     const screenId = id || 'screen-id';
@@ -630,6 +607,5 @@ const ContributionScreen = ({
 };
 
 ContributionScreen.propTypes = propTypes;
-ContributionScreen.defaultProps = defaultProps;
 
 export default ContributionScreen;

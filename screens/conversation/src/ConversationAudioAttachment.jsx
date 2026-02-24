@@ -7,7 +7,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, PauseIcon, PlayIcon } from '@micromag/core/components';
 import Audio from '@micromag/element-audio';
 
-import styles from './conversation.module.scss';
+import styles from './conversation.module.css';
 
 const propTypes = {
     audio: MicromagPropTypes.audioMedia,
@@ -17,20 +17,12 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    audio: null,
-    audioEventsChannelName: null,
-    messageId: null,
-    nextAudioMessageId: null,
-    className: null,
-};
-
 const ConversationAudioAttachment = ({
-    audio,
-    audioEventsChannelName,
-    messageId,
-    nextAudioMessageId,
-    className,
+    audio = null,
+    audioEventsChannelName = null,
+    messageId = null,
+    nextAudioMessageId = null,
+    className = null,
 }) => {
     const [paused, setPaused] = useState(true);
 
@@ -103,6 +95,5 @@ const ConversationAudioAttachment = ({
 };
 
 ConversationAudioAttachment.propTypes = propTypes;
-ConversationAudioAttachment.defaultProps = defaultProps;
 
 export default ConversationAudioAttachment;

@@ -13,7 +13,7 @@ import Text from '@micromag/element-text';
 
 import Avatar from './Avatar';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     author: PropTypes.shape({
@@ -35,32 +35,18 @@ const propTypes = {
     shouldLoad: PropTypes.bool,
 };
 
-const defaultProps = {
-    author: null,
-    withImage: true,
-    withoutLink: false,
-    withoutPrefix: false,
-    withoutBackground: false,
-    isSmall: false,
-    linkUnderlineColor: null,
-    className: null,
-    backgroundClassName: null,
-    collaboratorClassName: null,
-    shouldLoad: true,
-};
-
 const UrbaniaAuthor = ({
-    author,
-    withImage,
-    withoutLink,
-    withoutPrefix,
-    withoutBackground,
-    isSmall,
-    linkUnderlineColor,
-    className,
-    backgroundClassName,
-    collaboratorClassName,
-    shouldLoad,
+    author = null,
+    withImage = true,
+    withoutLink = false,
+    withoutPrefix = false,
+    withoutBackground = false,
+    isSmall = false,
+    linkUnderlineColor = null,
+    className = null,
+    backgroundClassName = null,
+    collaboratorClassName = null,
+    shouldLoad = true,
     ...otherProps
 }) => {
     const intl = useIntl();
@@ -152,6 +138,5 @@ const UrbaniaAuthor = ({
 };
 
 UrbaniaAuthor.propTypes = propTypes;
-UrbaniaAuthor.defaultProps = defaultProps;
 
 export default UrbaniaAuthor;

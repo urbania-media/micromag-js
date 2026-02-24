@@ -7,7 +7,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import getSelectOptions from '../utils/getSelectOptions';
 
-import styles from '../styles/select.module.scss';
+import styles from '../styles/select.module.css';
 
 const propTypes = {
     value: PropTypes.string,
@@ -17,15 +17,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    options: [],
-    disabled: false,
-    className: null,
-    onChange: null,
-};
-
-const SelectField = ({ value, options, disabled, className, onChange }) => {
+const SelectField = ({ value = null, options = [], disabled = false, className = null, onChange = null }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
         <select
@@ -59,6 +51,5 @@ const SelectField = ({ value, options, disabled, className, onChange }) => {
 };
 
 SelectField.propTypes = propTypes;
-SelectField.defaultProps = defaultProps;
 
 export default SelectField;

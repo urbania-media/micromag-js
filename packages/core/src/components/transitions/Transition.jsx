@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
-import styles from '../../styles/transitions/transition.module.scss';
+import styles from '../../styles/transitions/transition.module.css';
 
 const propTypes = {
     fullscreen: PropTypes.bool,
@@ -27,38 +27,21 @@ const propTypes = {
     onComplete: PropTypes.func,
 };
 
-const defaultProps = {
-    fullscreen: false,
-    from: null,
-    to: null,
-    playing: false,
-    direction: null,
-    delay: 0,
-    reversible: true,
-    duration: undefined,
-    easing: undefined,
-    config: null,
-    children: null,
-    className: null,
-    onStart: null,
-    onComplete: null,
-};
-
 function Transition({
-    fullscreen,
-    from,
-    to,
-    playing,
-    direction,
-    delay,
-    reversible,
-    duration,
-    easing,
-    config,
-    children,
-    className,
-    onStart,
-    onComplete,
+    fullscreen = false,
+    from = null,
+    to = null,
+    playing = false,
+    direction = null,
+    delay = 0,
+    reversible = true,
+    duration = undefined,
+    easing = undefined,
+    config = null,
+    children = null,
+    className = null,
+    onStart = null,
+    onComplete = null,
 }) {
     const [springProps, setSpringProps] = useSpring(() => ({}));
 
@@ -122,6 +105,5 @@ function Transition({
 }
 
 Transition.propTypes = propTypes;
-Transition.defaultProps = defaultProps;
 
 export default Transition;

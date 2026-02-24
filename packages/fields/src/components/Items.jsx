@@ -39,58 +39,33 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    name: null,
-    value: null,
-    getDefaultValue: null,
-    noItemLabel: (
-        <FormattedMessage
-            defaultMessage="No item..."
-            description="Label when there is no item in items field"
-        />
-    ),
-    addItemLabel: (
-        <FormattedMessage defaultMessage="Add an item" description="Button label in items field" />
-    ),
-    // eslint-disable-next-line react/prop-types
-    itemFieldLabel: ({ index }) => (
+const ItemsField = ({
+    name = null,
+    value = null,
+    getDefaultValue = null,
+    noItemLabel = (<FormattedMessage
+        defaultMessage="No item..."
+        description="Label when there is no item in items field"
+    />),
+    addItemLabel = (<FormattedMessage defaultMessage="Add an item" description="Button label in items field" />),
+    itemFieldLabel = ({ index }) => (
         <FormattedMessage
             defaultMessage="#{index}"
             description="Item label in items field"
             values={{ index }}
         />
     ),
-    itemComponent: null,
-    itemsField: null,
-    itemsProps: null,
-    className: null,
-    withoutSort: false,
-    withoutAddItem: false,
-    withoutDeleteItem: false,
-    isFieldForm: false,
-    gotoFieldForm: null,
-    closeFieldForm: null,
-    onChange: null,
-};
-
-const ItemsField = ({
-    name,
-    value,
-    getDefaultValue,
-    noItemLabel,
-    addItemLabel,
-    itemFieldLabel,
-    itemComponent,
-    itemsField,
-    itemsProps,
-    className,
-    withoutSort,
-    withoutAddItem,
-    withoutDeleteItem,
-    onChange,
-    isFieldForm,
-    gotoFieldForm,
-    closeFieldForm,
+    itemComponent = null,
+    itemsField = null,
+    itemsProps = null,
+    className = null,
+    withoutSort = false,
+    withoutAddItem = false,
+    withoutDeleteItem = false,
+    onChange = null,
+    isFieldForm = false,
+    gotoFieldForm = null,
+    closeFieldForm = null,
     ...props
 }) => {
     // const finalIsFieldForm =
@@ -307,6 +282,5 @@ const ItemsField = ({
 };
 
 ItemsField.propTypes = propTypes;
-ItemsField.defaultProps = defaultProps;
 
 export default ItemsField;

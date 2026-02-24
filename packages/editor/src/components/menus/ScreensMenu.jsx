@@ -12,7 +12,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import ScreenWithPreview from '../buttons/ScreenWithPreview';
 import SortableTree from '../sortable/SortableTree';
 
-import styles from '../../styles/menus/screens.module.scss';
+import styles from '../../styles/menus/screens.module.css';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
@@ -32,40 +32,22 @@ const propTypes = {
     onOrderChange: PropTypes.func,
 };
 
-const defaultProps = {
-    items: [],
-    withPreview: false,
-    withPlaceholder: false,
-    withName: false,
-    settings: null,
-    sortable: false,
-    isTree: false,
-    isVertical: false,
-    noWrap: false,
-    className: null,
-    itemClassName: null,
-    buttonClassName: null,
-    settingsClassName: null,
-    onClickItem: null,
-    onOrderChange: null,
-};
-
 const ScreensMenu = ({
-    items,
-    withPreview,
-    withPlaceholder,
-    withName,
-    settings,
-    isVertical,
-    noWrap,
-    className,
-    itemClassName,
-    buttonClassName,
-    settingsClassName,
-    sortable,
-    isTree,
-    onClickItem,
-    onOrderChange,
+    items = [],
+    withPreview = false,
+    withPlaceholder = false,
+    withName = false,
+    settings = null,
+    isVertical = false,
+    noWrap = false,
+    className = null,
+    itemClassName = null,
+    buttonClassName = null,
+    settingsClassName = null,
+    sortable = false,
+    isTree = false,
+    onClickItem = null,
+    onOrderChange = null,
 }) => {
     const itemsElements = !isTree
         ? items.map(
@@ -181,6 +163,5 @@ const ScreensMenu = ({
 };
 
 ScreensMenu.propTypes = propTypes;
-ScreensMenu.defaultProps = defaultProps;
 
 export default ScreensMenu;

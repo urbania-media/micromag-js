@@ -8,17 +8,13 @@ import { Button } from '@micromag/core/components';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
 
-import styles from '../../styles/buttons/close.module.scss';
+import styles from '../../styles/buttons/close.module.css';
 
 const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-};
-
-const CloseButton = ({ className, ...props }) => (
+const CloseButton = ({ className = null, ...props }) => (
     <Button
         className={classNames([
             styles.container,
@@ -34,6 +30,5 @@ const CloseButton = ({ className, ...props }) => (
 );
 
 CloseButton.propTypes = propTypes;
-CloseButton.defaultProps = defaultProps;
 
 export default CloseButton;

@@ -7,7 +7,7 @@ import { useScreenDefinition } from '@micromag/core/contexts';
 
 import Radios from './Radios';
 
-import styles from '../styles/layout.module.scss';
+import styles from '../styles/layout.module.css';
 
 const propTypes = {
     value: PropTypes.string,
@@ -16,14 +16,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    screenState: null,
-    className: null,
-    onChange: null,
-};
-
-const ScreenLayoutField = ({ value, screenState, className, onChange, ...props }) => {
+const ScreenLayoutField = ({ value = null, screenState = null, className = null, onChange = null, ...props }) => {
     const { id, layouts = [] } = useScreenDefinition();
 
     return (
@@ -58,6 +51,5 @@ const ScreenLayoutField = ({ value, screenState, className, onChange, ...props }
 };
 
 ScreenLayoutField.propTypes = propTypes;
-ScreenLayoutField.defaultProps = defaultProps;
 
 export default ScreenLayoutField;

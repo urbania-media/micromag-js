@@ -7,7 +7,7 @@ import { PropTypes as MicromagPropTypes } from '../../lib';
 
 import Label from './Label';
 
-import styles from '../../styles/partials/media.module.scss';
+import styles from '../../styles/partials/media.module.css';
 
 const propTypes = {
     thumbnail: PropTypes.node,
@@ -20,26 +20,15 @@ const propTypes = {
     titleClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    thumbnail: null,
-    thumbnailAlign: 'top',
-    children: null,
-    title: null,
-    className: null,
-    thumbnailClassName: null,
-    bodyClassName: null,
-    titleClassName: null,
-};
-
 const Media = ({
-    thumbnail,
-    thumbnailAlign,
-    children,
-    title,
-    className,
-    thumbnailClassName,
-    bodyClassName,
-    titleClassName,
+    thumbnail = null,
+    thumbnailAlign = 'top',
+    children = null,
+    title = null,
+    className = null,
+    thumbnailClassName = null,
+    bodyClassName = null,
+    titleClassName = null,
 }) => (
     <div
         className={classNames([
@@ -99,6 +88,5 @@ const Media = ({
 );
 
 Media.propTypes = propTypes;
-Media.defaultProps = defaultProps;
 
 export default Media;

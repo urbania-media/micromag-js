@@ -1,0 +1,24 @@
+.container {
+    .heading {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .title {
+        color: var(--mm-gray-500);
+        font-size: var(--mm-font-size-sm);
+        font-weight: var(--mm-font-weight-bold);
+        text-transform: uppercase;
+    }
+
+    .resetButton {
+        margin-left: 5px;
+        outline: none;
+        font-size: var(--mm-font-size-sm);
+    }
+
+    .activeTag {
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+}

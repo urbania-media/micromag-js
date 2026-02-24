@@ -1,0 +1,144 @@
+/* stylelint-disable max-nesting-depth */
+.container {
+    position: relative;
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .layout {
+        position: relative;
+    }
+
+    .emptyTitle,
+    .emptyAuthor,
+    .emptySubtitle,
+    .emptyText {
+        margin: 5px auto;
+        border: dashed 2px var(--mm-gray-800);
+        color: var(--mm-gray-800);
+        width: 100%;
+        margin: 10px auto;
+        padding: 12px 0 10px;
+    }
+
+    .emptySurtitle,
+    .emptyDate {
+        margin: 5px auto;
+        border: dashed 2px var(--mm-gray-800);
+        color: var(--mm-gray-800);
+        flex-shrink: 0;
+        width: 50%;
+        padding: 4px 0;
+    }
+
+    .main {
+        &.hasText {
+            margin-bottom: 30px;
+        }
+    }
+
+    .visualContainer {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+    }
+
+    .surtitle {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .subtitle {
+        width: 100%;
+        margin: 10px 0 0;
+        font-size: 12px;
+    }
+
+    .date {
+        width: 100%;
+        font-size: 12px;
+        text-align: right;
+    }
+
+    .title {
+        margin: 10px 0;
+    }
+
+    .author {
+        width: 100%;
+    }
+
+    .text {
+        pointer-events: none;
+        user-select: none;
+
+        h2,
+        h3,
+        p,
+        ol,
+        ul,
+        img,
+        blockquote {
+            margin-bottom: 1rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        h3 {
+            font-size: 1.5em;
+        }
+
+        ol,
+        ul {
+            list-style-position: inside;
+        }
+
+        blockquote {
+            padding-left: 0.5em;
+            border-left: 1px solid;
+        }
+    }
+
+    .topContent {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .footer {
+        transition: opacity 0.2s ease-out;
+
+        a {
+            padding: 0;
+        }
+
+        &.disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+    }
+}

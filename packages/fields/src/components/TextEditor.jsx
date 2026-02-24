@@ -12,7 +12,7 @@ import { getColorAsString, getStyleFromHighlight, getStyleFromLink } from '@micr
 
 import useCKEditor from '../hooks/useCKEditor';
 
-import styles from '../styles/text-editor.module.scss';
+import styles from '../styles/text-editor.module.css';
 
 const propTypes = {
     value: PropTypes.string,
@@ -29,39 +29,24 @@ const propTypes = {
     disabled: PropTypes.bool,
 };
 
-const defaultProps = {
-    value: null,
-    size: null,
-    className: null,
-    onChange: null,
-    inline: false,
-    withHighlightColors: false,
-    withFullEditor: false,
-    withoutLink: false,
-    textStyle: null,
-    editorConfig: {
+const TextEditorField = ({
+    value = null,
+    size = null,
+    className = null,
+    textStyle = null,
+    editorConfig = {
         toolbar: ['bold', 'italic', 'superscript', 'highlight', '|', 'link', 'blockquote'],
         link: {
             addTargetToExternalLinks: true,
         },
     },
-    onFocus: null,
-    disabled: false,
-};
-
-const TextEditorField = ({
-    value,
-    size,
-    className,
-    textStyle,
-    editorConfig,
-    inline,
-    withHighlightColors,
-    withFullEditor,
-    withoutLink,
-    onChange,
-    onFocus,
-    disabled,
+    inline = false,
+    withHighlightColors = false,
+    withFullEditor = false,
+    withoutLink = false,
+    onChange = null,
+    onFocus = null,
+    disabled = false,
 }) => {
     const { locale } = useIntl();
     const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
@@ -210,6 +195,5 @@ const TextEditorField = ({
 };
 
 TextEditorField.propTypes = propTypes;
-TextEditorField.defaultProps = defaultProps;
 
 export default TextEditorField;

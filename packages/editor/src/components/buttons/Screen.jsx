@@ -6,7 +6,7 @@ import React from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 
-import styles from '../../styles/buttons/screen.module.scss';
+import styles from '../../styles/buttons/screen.module.css';
 
 const propTypes = {
     active: PropTypes.bool,
@@ -23,30 +23,17 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    active: false,
-    id: null,
-    href: null,
-    label: null,
-    icon: null,
-    title: null,
-    onClick: null,
-    children: null,
-    refButton: null,
-    className: null,
-};
-
 const ScreenButton = ({
-    active,
-    id,
-    href,
-    className,
-    label,
-    icon,
-    children,
-    title,
-    onClick,
-    refButton,
+    active = false,
+    id = null,
+    href = null,
+    className = null,
+    label = null,
+    icon = null,
+    children = null,
+    title = null,
+    onClick = null,
+    refButton = null,
 }) => (
     <div
         className={classNames([
@@ -83,6 +70,5 @@ const ScreenButton = ({
 );
 
 ScreenButton.propTypes = propTypes;
-ScreenButton.defaultProps = defaultProps;
 
 export default React.forwardRef((props, ref) => <ScreenButton {...props} refButton={ref} />);

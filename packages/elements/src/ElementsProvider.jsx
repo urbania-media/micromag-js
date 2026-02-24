@@ -8,15 +8,13 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    children: null,
-};
-
-const ElementsProvider = (props) => (
-    <ComponentsProvider namespace={ELEMENTS_NAMESPACE} components={ElementComponents} {...props} />
-);
+const ElementsProvider = (
+    {
+        children: children = null,
+        ...props
+    },
+) => (<ComponentsProvider namespace={ELEMENTS_NAMESPACE} components={ElementComponents} {...props} />);
 
 ElementsProvider.propTypes = propTypes;
-ElementsProvider.defaultProps = defaultProps;
 
 export default ElementsProvider;

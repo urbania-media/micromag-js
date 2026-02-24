@@ -9,7 +9,7 @@ import Keypad from '@micromag/element-keypad';
 
 import Fields from './Fields';
 
-import styles from '../styles/keypad-layout.module.scss';
+import styles from '../styles/keypad-layout.module.css';
 
 const propTypes = {
     value: PropTypes.shape({
@@ -21,14 +21,7 @@ const propTypes = {
     closeForm: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    className: null,
-    onChange: null,
-    closeForm: null,
-};
-
-const KeypadLayout = ({ value, onChange, closeForm, ...props }) => {
+const KeypadLayout = ({ value = null, onChange = null, closeForm = null, ...props }) => {
     const { columnAlign = null, columns = null, spacing = null } = value || {};
     const finalSpacingPreview = Math.max(0, Math.min(4, spacing));
 
@@ -73,6 +66,5 @@ const KeypadLayout = ({ value, onChange, closeForm, ...props }) => {
 };
 
 KeypadLayout.propTypes = propTypes;
-KeypadLayout.defaultProps = defaultProps;
 
 export default KeypadLayout;

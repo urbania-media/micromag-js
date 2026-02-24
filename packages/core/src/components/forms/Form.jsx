@@ -16,7 +16,7 @@ import Button from '../buttons/Button';
 import Buttons from '../buttons/Buttons';
 import FieldForm from './Field';
 
-import styles from '../../styles/forms/form.module.scss';
+import styles from '../../styles/forms/form.module.css';
 
 const propTypes = {
     action: PropTypes.string.isRequired,
@@ -47,63 +47,33 @@ const propTypes = {
     cancelClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    method: 'POST',
-    fields: [],
-    initialValue: null,
-    postForm: null,
-    submitButtonLabel: (
-        <FormattedMessage defaultMessage="Submit" description="Submit form button" />
-    ),
-    submitButtonLoadingLabel: null,
-    submitButtonTheme: null,
-    cancelButtonTheme: null,
-    buttons: null,
-    children: null,
-    actionsAlign: 'left',
-    withoutActions: false,
-    withoutComplete: false,
-    withoutBackButton: false,
-    onComplete: null,
-    onResponse: null,
-    onMessage: null,
-    onCancel: null,
-    onCancelHref: null,
-    onOpenFieldForm: null,
-    onCloseFieldForm: null,
-    className: null,
-    fieldsClassName: null,
-    actionsClassName: null,
-    cancelClassName: null,
-};
-
 const Form = ({
     action,
-    method,
-    fields: initialFields,
-    initialValue,
-    postForm,
-    submitButtonLabel,
-    submitButtonLoadingLabel,
-    submitButtonTheme,
-    cancelButtonTheme,
-    buttons,
-    children,
-    actionsAlign,
-    withoutActions,
-    withoutComplete,
-    withoutBackButton,
-    onComplete,
-    onResponse,
-    onMessage,
-    onCancel,
-    onCancelHref,
-    onOpenFieldForm,
-    onCloseFieldForm,
-    className,
-    fieldsClassName,
-    actionsClassName,
-    cancelClassName,
+    method = 'POST',
+    fields: initialFields = [],
+    initialValue = null,
+    postForm = null,
+    submitButtonLabel = (<FormattedMessage defaultMessage="Submit" description="Submit form button" />),
+    submitButtonLoadingLabel = null,
+    submitButtonTheme = null,
+    cancelButtonTheme = null,
+    buttons = null,
+    children = null,
+    actionsAlign = 'left',
+    withoutActions = false,
+    withoutComplete = false,
+    withoutBackButton = false,
+    onComplete = null,
+    onResponse = null,
+    onMessage = null,
+    onCancel = null,
+    onCancelHref = null,
+    onOpenFieldForm = null,
+    onCloseFieldForm = null,
+    className = null,
+    fieldsClassName = null,
+    actionsClassName = null,
+    cancelClassName = null,
 }) => {
     const [complete, setComplete] = useState(false);
 
@@ -293,6 +263,5 @@ const Form = ({
 };
 
 Form.propTypes = propTypes;
-Form.defaultProps = defaultProps;
 
 export default Form;

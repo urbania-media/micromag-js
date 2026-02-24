@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '../../lib';
 import Screen from './Screen';
 import ScreenSizer from './ScreenSizer';
 
-import styles from '../../styles/screens/screen-placeholder.module.scss';
+import styles from '../../styles/screens/screen-placeholder.module.css';
 
 const propTypes = {
     screen: MicromagPropTypes.component.isRequired,
@@ -20,23 +20,14 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: undefined,
-    screenState: null,
-    screenWidth: 100,
-    screenHeight: 150,
-    withSize: false,
-    className: null,
-};
-
 const ScreenPlaceholder = ({
     screen,
-    layout,
-    screenWidth,
-    screenHeight,
-    screenState,
-    withSize,
-    className,
+    layout = undefined,
+    screenWidth = 100,
+    screenHeight = 150,
+    screenState = null,
+    withSize = false,
+    className = null,
     ...props
 }) => {
     const screenElement = (
@@ -64,6 +55,5 @@ const ScreenPlaceholder = ({
 };
 
 ScreenPlaceholder.propTypes = propTypes;
-ScreenPlaceholder.defaultProps = defaultProps;
 
 export default React.memo(ScreenPlaceholder);

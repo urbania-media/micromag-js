@@ -11,7 +11,7 @@ import FieldRow from './FieldRow';
 import Image from './Image';
 import Radios from './Radios';
 
-import styles from '../styles/media-thumbnail.module.scss';
+import styles from '../styles/media-thumbnail.module.css';
 
 const propTypes = {
     value: PropTypes.oneOf([PropTypes.string, MicromagPropTypes.imageMedia]),
@@ -20,14 +20,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    value: null,
-    isForm: false,
-    onChange: null,
-    className: null,
-};
-
-function MediaThumbnail({ value, onChange, className, isForm, ...props }) {
+function MediaThumbnail({ value = null, onChange = null, className = null, isForm = false, ...props }) {
     const { media = null } = useFieldsValue() || {};
     const options = useMemo(() => {
         if (media === null) {
@@ -90,6 +83,5 @@ function MediaThumbnail({ value, onChange, className, isForm, ...props }) {
 }
 
 MediaThumbnail.propTypes = propTypes;
-MediaThumbnail.defaultProps = defaultProps;
 
 export default MediaThumbnail;

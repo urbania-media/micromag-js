@@ -11,12 +11,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    single: false,
-    className: null,
-};
-
-const CloseMenuButton = ({ single, className, ...props }) => {
+const CloseMenuButton = ({ single = false, className = null, ...props }) => {
     const intl = useIntl();
     return (
         <IconButton
@@ -64,6 +59,5 @@ const CloseMenuButton = ({ single, className, ...props }) => {
 };
 
 CloseMenuButton.propTypes = propTypes;
-CloseMenuButton.defaultProps = defaultProps;
 
 export default CloseMenuButton;

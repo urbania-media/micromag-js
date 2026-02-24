@@ -9,7 +9,7 @@ import Label from '../partials/Label';
 // import { PropTypes as MicromagPropTypes } from '../../lib';
 import Link from '../partials/Link';
 
-import styles from '../../styles/menus/pagination.module.scss';
+import styles from '../../styles/menus/pagination.module.css';
 
 const messages = defineMessages({
     previous: {
@@ -37,34 +37,19 @@ const propTypes = {
     onClickPage: PropTypes.func,
 };
 
-const defaultProps = {
-    page: 1,
-    lastPage: 1,
-    maxPages: 10,
-    total: 1,
-    url: null,
-    query: null,
-    withPreviousNext: false,
-    className: null,
-    paginationClassName: null,
-    itemClassName: null,
-    linkClassName: null,
-    onClickPage: null,
-};
-
 const PaginationMenu = ({
-    page: parentPage,
-    lastPage: parentLastPage,
-    maxPages: parentMaxPages,
-    total: parentTotal,
-    url,
-    query,
-    withPreviousNext,
-    className,
-    paginationClassName,
-    itemClassName,
-    linkClassName,
-    onClickPage,
+    page: parentPage = 1,
+    lastPage: parentLastPage = 1,
+    maxPages: parentMaxPages = 10,
+    total: parentTotal = 1,
+    url = null,
+    query = null,
+    withPreviousNext = false,
+    className = null,
+    paginationClassName = null,
+    itemClassName = null,
+    linkClassName = null,
+    onClickPage = null,
 }) => {
     const getUrl = useCallback(
         (currentPage) =>
@@ -233,6 +218,5 @@ const PaginationMenu = ({
 };
 
 PaginationMenu.propTypes = propTypes;
-PaginationMenu.defaultProps = defaultProps;
 
 export default PaginationMenu;

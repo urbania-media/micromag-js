@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Fields from './Fields';
 
-import styles from '../styles/call-to-action.module.scss';
+import styles from '../styles/call-to-action.module.css';
 
 const propTypes = {
     value: MicromagPropTypes.callToAction,
@@ -16,13 +16,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const CallToAction = ({ value, className, onChange, ...props }) => {
+const CallToAction = ({ value = null, className = null, onChange = null, ...props }) => {
     const { active = false } = value || {};
     const intl = useIntl();
 
@@ -74,6 +68,5 @@ const CallToAction = ({ value, className, onChange, ...props }) => {
 };
 
 CallToAction.propTypes = propTypes;
-CallToAction.defaultProps = defaultProps;
 
 export default CallToAction;

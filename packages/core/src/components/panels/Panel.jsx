@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { getDisplayName } from '../../utils';
 import Portal from './Portal';
 
-import styles from '../../styles/panels/panel.module.scss';
+import styles from '../../styles/panels/panel.module.css';
 
 const propTypes = {
     id: PropTypes.string,
@@ -14,13 +14,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    id: null,
-    title: null,
-    children: null,
-};
-
-const Panel = ({ id, children, title }) => {
+const Panel = ({ id = null, children = null, title = null }) => {
     const finalId = useMemo(() => id || getDisplayName(children.type), [id, children.type]);
     const data = useMemo(
         () => ({
@@ -36,6 +30,5 @@ const Panel = ({ id, children, title }) => {
 };
 
 Panel.propTypes = propTypes;
-Panel.defaultProps = defaultProps;
 
 export default Panel;

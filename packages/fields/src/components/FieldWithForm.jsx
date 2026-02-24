@@ -16,7 +16,7 @@ import { isMessage } from '@micromag/core/utils';
 import Field from './Field';
 import Fields from './Fields';
 
-import styles from '../styles/field-with-form.module.scss';
+import styles from '../styles/field-with-form.module.css';
 
 function getItemLabel(item, labelPath, defaultValue) {
     return (isArray(labelPath) ? labelPath : [labelPath]).reduce((acc, path) => {
@@ -45,40 +45,22 @@ const propTypes = {
     closeForm: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    isForm: false,
-    canClear: false,
-    label: null,
-    thumbnail: null,
-    labelPath: 'label',
-    withTitleLabel: false,
-    thumbnailPath: 'thumbnail',
-    noValueLabel: null,
-    isHorizontal: false,
-    children: null,
-    field: null,
-    className: null,
-    onChange: null,
-    closeForm: null,
-};
-
 const FieldWithForm = ({
-    value,
-    isForm,
-    canClear,
-    noValueLabel,
-    label,
-    labelPath,
-    withTitleLabel,
-    thumbnail,
-    thumbnailPath,
-    isHorizontal,
-    className,
-    onChange,
-    closeForm,
-    children,
-    field,
+    value = null,
+    isForm = false,
+    canClear = false,
+    noValueLabel = null,
+    label = null,
+    labelPath = 'label',
+    withTitleLabel = false,
+    thumbnail = null,
+    thumbnailPath = 'thumbnail',
+    isHorizontal = false,
+    className = null,
+    onChange = null,
+    closeForm = null,
+    children = null,
+    field = null,
     ...props
 }) => {
     if (isForm) {
@@ -227,7 +209,6 @@ const FieldWithForm = ({
 };
 
 FieldWithForm.propTypes = propTypes;
-FieldWithForm.defaultProps = defaultProps;
 FieldWithForm.withForm = true;
 
 export default FieldWithForm;

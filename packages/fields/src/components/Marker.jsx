@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import Fields from './Fields';
 
-import styles from '../styles/marker.module.scss';
+import styles from '../styles/marker.module.css';
 
 const propTypes = {
     value: PropTypes.shape({
@@ -15,13 +15,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    value: null,
-    isForm: false,
-    className: null,
-};
-
-const MarkerField = ({ isForm, value, className, ...props }) => {
+const MarkerField = ({ isForm = false, value = null, className = null, ...props }) => {
     const { title = null } = value || {};
     return isForm ? (
         <div
@@ -55,6 +49,5 @@ const MarkerField = ({ isForm, value, className, ...props }) => {
 };
 
 MarkerField.propTypes = propTypes;
-MarkerField.defaultProps = defaultProps;
 
 export default MarkerField;

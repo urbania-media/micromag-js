@@ -9,7 +9,7 @@ import { useSetting } from '@micromag/core/contexts';
 import { getOptimalImageUrl, getStyleFromColor } from '@micromag/core/utils';
 import Video from '@micromag/element-video';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     width: PropTypes.number,
@@ -41,52 +41,28 @@ const propTypes = {
     onQualityLevelChange: PropTypes.func,
 };
 
-const defaultProps = {
-    width: null,
-    height: null,
-    resolution: 1,
-    fit: null,
-    horizontalAlign: 'center',
-    verticalAlign: 'center',
-    repeat: false,
-    color: null,
-    media: null,
-    mediaRef: null,
-    className: null,
-    playing: false,
-    muted: false,
-    children: null,
-    loadingMode: 'lazy',
-    shouldLoad: true,
-    onPlayError: null,
-    withoutVideo: false,
-    forceMuted: false,
-    qualityStartLevel: null,
-    onQualityLevelChange: null,
-};
-
 const Background = ({
-    width,
-    height,
-    resolution,
-    fit,
-    horizontalAlign,
-    verticalAlign,
-    repeat,
-    color,
-    media,
-    mediaRef,
-    className,
-    playing,
-    muted,
-    children,
-    loadingMode,
-    shouldLoad,
-    onPlayError,
-    withoutVideo,
-    forceMuted,
-    qualityStartLevel,
-    onQualityLevelChange,
+    width = null,
+    height = null,
+    resolution = 1,
+    fit = null,
+    horizontalAlign = 'center',
+    verticalAlign = 'center',
+    repeat = false,
+    color = null,
+    media = null,
+    mediaRef = null,
+    className = null,
+    playing = false,
+    muted = false,
+    children = null,
+    loadingMode = 'lazy',
+    shouldLoad = true,
+    onPlayError = null,
+    withoutVideo = false,
+    forceMuted = false,
+    qualityStartLevel = null,
+    onQualityLevelChange = null,
 }) => {
     const {
         type: mediaType = null,
@@ -193,6 +169,5 @@ const Background = ({
 };
 
 Background.propTypes = propTypes;
-Background.defaultProps = defaultProps;
 
 export default Background;

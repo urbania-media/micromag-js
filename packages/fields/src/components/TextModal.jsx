@@ -14,7 +14,7 @@ import { Button, ModalDialog as Dialog, Modal } from '@micromag/core/components'
 import EditorField from './TextEditor';
 import TextElement from './TextElement';
 
-import styles from '../styles/text-modal.module.scss';
+import styles from '../styles/text-modal.module.css';
 
 const propTypes = {
     title: PropTypes.string,
@@ -29,26 +29,15 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    title: null,
-    value: null,
-    editorConfig: null,
-    inline: false,
-    withHighlightColors: false,
-    onChange: null,
-    onRequestClose: null,
-    className: null,
-};
-
 const TextModal = ({
-    title,
-    value,
-    editorConfig,
-    inline,
-    withHighlightColors,
-    className,
-    onRequestClose,
-    onChange,
+    title = null,
+    value = null,
+    editorConfig = null,
+    inline = false,
+    withHighlightColors = false,
+    className = null,
+    onRequestClose = null,
+    onChange = null,
     ...props
 }) => {
     const [modalOpen, setModalOpen] = useState();
@@ -195,6 +184,5 @@ const TextModal = ({
 };
 
 TextModal.propTypes = propTypes;
-TextModal.defaultProps = defaultProps;
 
 export default TextModal;

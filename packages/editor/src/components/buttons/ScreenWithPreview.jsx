@@ -13,7 +13,7 @@ import { isMessage } from '@micromag/core/utils';
 
 import ScreenButton from './Screen';
 
-import styles from '../../styles/buttons/screen-with-preview.module.scss';
+import styles from '../../styles/buttons/screen-with-preview.module.css';
 
 const propTypes = {
     screen: MicromagPropTypes.screenComponent,
@@ -32,37 +32,21 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    screen: null,
-    screenState: null,
-    title: null,
-    href: null,
-    active: false,
-    withPlaceholder: false,
-    withIndexIndicator: false,
-    withName: false,
-    withDeleteButtonOnRepeatables: false,
-    onClick: null,
-    onClickItem: null,
-    onDeleteButtonClick: null,
-    className: null,
-};
-
 const ScreenWithPreview = ({
-    screen,
-    screenState,
+    screen = null,
+    screenState = null,
     index,
-    title,
-    href,
-    active,
-    className,
-    onClick,
-    onClickItem,
-    withName,
-    withPlaceholder,
-    withIndexIndicator,
-    withDeleteButtonOnRepeatables,
-    onDeleteButtonClick,
+    title = null,
+    href = null,
+    active = false,
+    className = null,
+    onClick = null,
+    onClickItem = null,
+    withName = false,
+    withPlaceholder = false,
+    withIndexIndicator = false,
+    withDeleteButtonOnRepeatables = false,
+    onDeleteButtonClick = null,
 }) => {
     const intl = useIntl();
     const { ref, visible } = useIsVisible({ threshold: 0.1 });
@@ -116,6 +100,5 @@ const ScreenWithPreview = ({
 };
 
 ScreenWithPreview.propTypes = propTypes;
-ScreenWithPreview.defaultProps = defaultProps;
 
 export default ScreenWithPreview;

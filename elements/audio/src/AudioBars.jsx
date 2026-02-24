@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver } from '@micromag/core/hooks';
 
-import styles from './styles/audio-bars.module.scss';
+import styles from './styles/audio-bars.module.css';
 
 const propTypes = {
     progress: PropTypes.number,
@@ -19,17 +19,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    progress: 0,
-    duration: 0,
-    playing: false,
-    seek: null,
-    play: null,
-    // onReady: null,
-    className: null,
-};
-
-function AudioBars({ progress, playing, duration, seek, play, className }) {
+function AudioBars({ progress = 0, playing = false, duration = 0, seek = null, play = null, className = null }) {
     const intl = useIntl();
     const { ref: elRef, width: elWidth = null, height: elHeight } = useDimensionObserver();
     const barWidth = 1;
@@ -160,6 +150,5 @@ function AudioBars({ progress, playing, duration, seek, play, className }) {
 }
 
 AudioBars.propTypes = propTypes;
-AudioBars.defaultProps = defaultProps;
 
 export default AudioBars;

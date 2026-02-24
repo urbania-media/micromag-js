@@ -13,7 +13,7 @@ import {
     getStyleFromText,
 } from '@micromag/core/utils';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     size: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
@@ -26,26 +26,15 @@ const propTypes = {
     headingRef: PropTypes.shape({}),
 };
 
-const defaultProps = {
-    size: 1,
-    body: null,
-    textStyle: null,
-    linksStyle: null,
-    margin: null,
-    withoutNonBreakingSpaces: false,
-    className: null,
-    headingRef: null,
-};
-
 const Heading = ({
-    size,
-    body,
-    textStyle,
-    linksStyle,
-    margin,
-    withoutNonBreakingSpaces,
-    className,
-    headingRef,
+    size = 1,
+    body = null,
+    textStyle = null,
+    linksStyle = null,
+    margin = null,
+    withoutNonBreakingSpaces = false,
+    className = null,
+    headingRef = null,
 }) => {
     const HeadingComponent = `h${size}`;
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
@@ -98,7 +87,6 @@ const Heading = ({
 };
 
 Heading.propTypes = propTypes;
-Heading.defaultProps = defaultProps;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
 export default React.forwardRef((props, ref) => <Heading headingRef={ref} {...props} />);

@@ -27,7 +27,7 @@ import Scroll from '@micromag/element-scroll';
 
 import ConversationMessage from './ConversationMessage';
 
-import styles from './conversation.module.scss';
+import styles from './conversation.module.css';
 
 const propTypes = {
     // id: PropTypes.string,
@@ -47,38 +47,21 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    // layout: 'normal',
-    title: null,
-    timing: 'sequence',
-    readingSpeed: 255,
-    spacing: 20,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    preload: true,
-    type: null,
-    conversation: null,
-    transitions: null,
-    className: null,
-};
-
 const ConversationScreen = ({
     // layout,
-    title,
-    timing: timingMode,
-    readingSpeed,
-    spacing,
-    background,
-    header,
-    footer,
-    current,
-    preload,
-    type,
-    conversation,
-    transitions,
-    className,
+    title = null,
+    timing: timingMode = 'sequence',
+    readingSpeed = 255,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    type = null,
+    conversation = null,
+    transitions = null,
+    className = null,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const {
@@ -407,6 +390,5 @@ const ConversationScreen = ({
 };
 
 ConversationScreen.propTypes = propTypes;
-ConversationScreen.defaultProps = defaultProps;
 
 export default ConversationScreen;

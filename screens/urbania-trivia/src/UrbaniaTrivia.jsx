@@ -37,7 +37,7 @@ import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 
-import styles from './urbania-trivia.module.scss';
+import styles from './urbania-trivia.module.css';
 
 import AnimeLinesGrey from './images/anime-lines-grey.svg';
 import AnimeLines from './images/anime-lines.svg';
@@ -76,32 +76,18 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'full',
-    title: null,
-    video: null,
-    gotoNextScreenOnEnd: false,
-    background: null,
-    current: true,
-    preload: true,
-    spacing: 20,
-    padding: 20,
-    mediaRef: null,
-    className: null,
-};
-
 const UrbaniaTrivia = ({
-    layout,
-    title,
-    video,
-    gotoNextScreenOnEnd,
-    background,
-    current,
-    preload,
-    spacing,
-    padding,
-    mediaRef: customMediaRef,
-    className,
+    layout = 'full',
+    title = null,
+    video = null,
+    gotoNextScreenOnEnd = false,
+    background = null,
+    current = true,
+    preload = true,
+    spacing = 20,
+    padding = 20,
+    mediaRef: customMediaRef = null,
+    className = null,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
 
@@ -501,6 +487,5 @@ const UrbaniaTrivia = ({
 };
 
 UrbaniaTrivia.propTypes = propTypes;
-UrbaniaTrivia.defaultProps = defaultProps;
 
 export default UrbaniaTrivia;

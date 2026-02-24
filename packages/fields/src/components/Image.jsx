@@ -11,25 +11,23 @@ const propTypes = {
     value: MicromagPropTypes.imageMedia,
 };
 
-const defaultProps = {
-    value: null,
-};
-
-const ImageField = (props) => (
-    <MediaField
-        noValueLabel={
-            <FormattedMessage
-                defaultMessage="Select an image..."
-                description="Label when no value is provided to Image field"
-            />
-        }
-        {...props}
-        type="image"
-    />
-);
+const ImageField = (
+    {
+        value: value = null,
+        ...props
+    },
+) => (<MediaField
+    noValueLabel={
+        <FormattedMessage
+            defaultMessage="Select an image..."
+            description="Label when no value is provided to Image field"
+        />
+    }
+    {...props}
+    type="image"
+/>);
 
 ImageField.propTypes = propTypes;
-ImageField.defaultProps = defaultProps;
 ImageField.withForm = true;
 
 export default ImageField;

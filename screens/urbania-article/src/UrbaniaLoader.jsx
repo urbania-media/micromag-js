@@ -30,23 +30,8 @@ const propTypes = {
     }),
 };
 
-const defaultProps = {
-    component: UrbaniaBaseArticle,
-    // theme: null,
-    title: null,
-    articleType: null,
-    overTitle: null,
-    sponsorLabel: null,
-    author: null,
-    image: null,
-    header: null,
-    footer: null,
-    url: null,
-    article: null,
-};
-
 const UrbaniaLoader = ({
-    component: Component,
+    component: Component = UrbaniaBaseArticle,
     // theme = null,
     title = null,
     articleType = null,
@@ -57,7 +42,7 @@ const UrbaniaLoader = ({
     header = null,
     footer = null,
     url = null,
-    article: initialArticle,
+    article: initialArticle = null,
     ...props
 }) => {
     const [article, setArticle] = useState(initialArticle);
@@ -188,6 +173,5 @@ const UrbaniaLoader = ({
 };
 
 UrbaniaLoader.propTypes = propTypes;
-UrbaniaLoader.defaultProps = defaultProps;
 
 export default UrbaniaLoader;

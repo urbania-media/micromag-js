@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
-import styles from '../../styles/sortable/sortable-tree-item-actions.module.scss';
+import styles from '../../styles/sortable/sortable-tree-item-actions.module.css';
 
 const propTypes = {
     childCount: PropTypes.number,
@@ -40,50 +40,28 @@ const propTypes = {
     containerRef: PropTypes.any,
 };
 
-const defaultProps = {
-    childCount: null,
-    clone: false,
-    collapsed: false,
-    disableInteraction: false,
-    disableSelection: false,
-    ghost: false,
-    handleProps: null,
-    indicator: false,
-    value: null,
-    onCollapse: null,
-    onRemove: null,
-    onClick: null,
-    wrapperRef: null,
-    style: null,
-    showId: false,
-    showCount: false,
-    showCollapsedCount: false,
-    children: null,
-    containerRef: null,
-};
-
 const SortableTreeItemActions = function ({
-    childCount,
-    clone,
+    childCount = null,
+    clone = false,
     depth,
-    disableSelection,
-    disableInteraction,
-    ghost,
-    handleProps,
+    disableSelection = false,
+    disableInteraction = false,
+    ghost = false,
+    handleProps = null,
     indentationWidth,
-    indicator,
-    collapsed,
-    onCollapse,
-    onRemove,
-    onClick,
-    style,
-    value,
-    wrapperRef,
-    showId,
-    showCount,
-    showCollapsedCount,
-    children,
-    containerRef,
+    indicator = false,
+    collapsed = false,
+    onCollapse = null,
+    onRemove = null,
+    onClick = null,
+    style = null,
+    value = null,
+    wrapperRef = null,
+    showId = false,
+    showCount = false,
+    showCollapsedCount = false,
+    children = null,
+    containerRef = null,
     ...props
 }) {
     return (
@@ -149,7 +127,6 @@ const SortableTreeItemActions = function ({
 };
 
 SortableTreeItemActions.propTypes = propTypes;
-SortableTreeItemActions.defaultProps = defaultProps;
 
 export default forwardRef((props, ref) => (
     <SortableTreeItemActions {...props} containerRef={ref} />

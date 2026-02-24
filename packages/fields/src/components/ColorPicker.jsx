@@ -19,14 +19,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    disableAlpha: false,
-    className: null,
-    onChange: null,
-};
-
-const ColorPickerField = ({ value, disableAlpha, className, onChange }) => {
+const ColorPickerField = ({ value = null, disableAlpha = false, className = null, onChange = null }) => {
     const getColors = useGetColors();
     const colors = useMemo(
         () => (getColors() || []).map((c) => ({ color: c.color, title: uuid() })),
@@ -83,6 +76,5 @@ const ColorPickerField = ({ value, disableAlpha, className, onChange }) => {
 };
 
 ColorPickerField.propTypes = propTypes;
-ColorPickerField.defaultProps = defaultProps;
 
 export default ColorPickerField;

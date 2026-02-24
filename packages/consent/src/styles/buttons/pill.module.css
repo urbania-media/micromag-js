@@ -1,0 +1,19 @@
+.container {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    padding: 8px 12px;
+    border: 1px solid #FFF;
+    line-height: 1.2;
+
+    &:hover, &:active {
+        background-color: var(--color-primary, var(--color-button-active, #0b57d0));
+        color: #FFF;
+    }
+}

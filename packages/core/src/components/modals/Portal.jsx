@@ -11,13 +11,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    id: null,
-    data: null,
-    children: null,
-};
-
-const ModalPortal = ({ id, data, children }) => {
+const ModalPortal = ({ id = null, data = null, children = null }) => {
     const { container, register = null, unregister = null } = useModals();
     return (
         <ElementPortal
@@ -33,6 +27,5 @@ const ModalPortal = ({ id, data, children }) => {
 };
 
 ModalPortal.propTypes = propTypes;
-ModalPortal.defaultProps = defaultProps;
 
 export default ModalPortal;

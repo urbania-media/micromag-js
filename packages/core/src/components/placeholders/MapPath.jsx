@@ -6,7 +6,7 @@ import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkedAlt
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/placeholders.module.scss';
+import styles from '../../styles/placeholders/placeholders.module.css';
 
 export const MapPath = (props) => (
     <PlaceholderBlock

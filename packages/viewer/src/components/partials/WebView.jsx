@@ -17,7 +17,7 @@ import WebView from '@micromag/element-webview';
 
 import useKeyboardShortcuts from '../../hooks/useKeyboardShortcuts';
 
-import styles from '../../styles/partials/web-view.module.scss';
+import styles from '../../styles/partials/web-view.module.css';
 
 const propTypes = {
     onChange: PropTypes.func,
@@ -26,14 +26,7 @@ const propTypes = {
     style: PropTypes.object,
 };
 
-const defaultProps = {
-    onChange: null,
-    trackingEnabled: false,
-    className: null,
-    style: null,
-};
-
-function WebViewContainer({ onChange, trackingEnabled, className, style }) {
+function WebViewContainer({ onChange = null, trackingEnabled = false, className = null, style = null }) {
     const {
         opened,
         close,
@@ -145,6 +138,5 @@ function WebViewContainer({ onChange, trackingEnabled, className, style }) {
 }
 
 WebViewContainer.propTypes = propTypes;
-WebViewContainer.defaultProps = defaultProps;
 
 export default WebViewContainer;

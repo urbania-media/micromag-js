@@ -6,12 +6,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    color: 'currentColor',
-    className: null,
-};
-
-const MenuIcon = ({ color, className }) => (
+const MenuIcon = ({ color = 'currentColor', className = null }) => (
     <svg
         width="28"
         height="32"
@@ -33,6 +28,5 @@ const MenuIcon = ({ color, className }) => (
 );
 
 MenuIcon.propTypes = propTypes;
-MenuIcon.defaultProps = defaultProps;
 
 export default MenuIcon;

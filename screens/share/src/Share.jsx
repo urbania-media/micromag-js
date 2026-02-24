@@ -24,7 +24,7 @@ import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import ShareOptions from '@micromag/element-share-options';
 
-import styles from './share.module.scss';
+import styles from './share.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
@@ -45,42 +45,23 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'top',
-    heading: null,
-    shareUrl: null,
-    options: null,
-    buttonsStyle: null,
-    buttonsTextStyle: null,
-    centered: false,
-    spacing: 20,
-    background: null,
-    header: null,
-    footer: null,
-    id: null,
-    index: null,
-    current: true,
-    active: true,
-    className: null,
-};
-
 const ShareScreen = ({
-    layout,
-    heading,
-    shareUrl,
-    options,
-    buttonsStyle,
-    buttonsTextStyle,
-    centered,
-    spacing,
-    background,
-    header,
-    footer,
-    id,
-    index,
-    current,
-    active,
-    className,
+    layout = 'top',
+    heading = null,
+    shareUrl = null,
+    options = null,
+    buttonsStyle = null,
+    buttonsTextStyle = null,
+    centered = false,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    id = null,
+    index = null,
+    current = true,
+    active = true,
+    className = null,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -277,6 +258,5 @@ const ShareScreen = ({
 };
 
 ShareScreen.propTypes = propTypes;
-ShareScreen.defaultProps = defaultProps;
 
 export default ShareScreen;

@@ -5,7 +5,7 @@ import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/placeholders.module.scss';
+import styles from '../../styles/placeholders/placeholders.module.css';
 
 export const Video = ({ width, height, className }) => (
     <PlaceholderBlock width={width} height={height} className={className}>

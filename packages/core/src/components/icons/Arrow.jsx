@@ -6,12 +6,7 @@ const propTypes = {
     color: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-    color: '#fff',
-};
-
-const ArrowIcon = ({ color, className }) => (
+const ArrowIcon = ({ color = '#fff', className = null }) => (
     <svg
         width="20"
         height="14"
@@ -30,6 +25,5 @@ const ArrowIcon = ({ color, className }) => (
 );
 
 ArrowIcon.propTypes = propTypes;
-ArrowIcon.defaultProps = defaultProps;
 
 export default ArrowIcon;

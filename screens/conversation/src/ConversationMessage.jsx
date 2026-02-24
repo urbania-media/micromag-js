@@ -11,7 +11,7 @@ import Visual from '@micromag/element-visual';
 
 import ConversationAudioAttachment from './ConversationAudioAttachment';
 
-import styles from './conversation.module.scss';
+import styles from './conversation.module.css';
 
 const propTypes = {
     message: MicromagPropTypes.conversationMessage,
@@ -34,44 +34,24 @@ const propTypes = {
     audioEventsChannelName: PropTypes.string,
 };
 
-const defaultProps = {
-    message: null,
-    messageId: null,
-    previousMessage: null,
-    nextMessage: null,
-    nextAudioMessageId: null,
-    nextMessageState: null,
-    currentSpeaker: null,
-    conversationTiming: null,
-    typingTiming: null,
-    onChange: null,
-    withAnimation: false,
-    active: false,
-    isPlaying: false,
-    messageStyle: null,
-    speakerStyle: null,
-    className: null,
-    audioEventsChannelName: null,
-};
-
 const ConversationMessage = ({
-    message,
-    messageId,
-    previousMessage,
-    nextMessage,
-    nextAudioMessageId,
-    nextMessageState,
-    currentSpeaker,
-    conversationTiming,
-    typingTiming,
-    onChange,
-    withAnimation,
-    active,
-    isPlaying,
-    messageStyle,
-    speakerStyle,
-    className,
-    audioEventsChannelName,
+    message = null,
+    messageId = null,
+    previousMessage = null,
+    nextMessage = null,
+    nextAudioMessageId = null,
+    nextMessageState = null,
+    currentSpeaker = null,
+    conversationTiming = null,
+    typingTiming = null,
+    onChange = null,
+    withAnimation = false,
+    active = false,
+    isPlaying = false,
+    messageStyle = null,
+    speakerStyle = null,
+    className = null,
+    audioEventsChannelName = null,
 }) => {
     const { message: messageBody, image = null, audio, putAudioBeforeText } = message || {};
     const {
@@ -231,6 +211,5 @@ const ConversationMessage = ({
 };
 
 ConversationMessage.propTypes = propTypes;
-ConversationMessage.defaultProps = defaultProps;
 
 export default ConversationMessage;

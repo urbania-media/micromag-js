@@ -16,7 +16,7 @@ import {
 
 import useSources from './useSources';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     media: MicromagPropTypes.videoMedia,
@@ -57,72 +57,38 @@ const propTypes = {
     withLoading: PropTypes.bool,
 };
 
-const defaultProps = {
-    media: null,
-    thumbnail: null,
-    width: null,
-    height: null,
-    mediaRef: null,
-    muted: false,
-    autoPlay: false,
-    paused: false,
-    loop: false,
-    playsInline: true,
-    preload: 'auto',
-    disablePictureInPicture: true,
-    shouldLoad: true,
-    withoutCors: false,
-    className: null,
-    innerClassName: null,
-    onReady: null,
-    onPlay: null,
-    onPause: null,
-    onEnded: null,
-    onSeeked: null,
-    onTimeUpdate: null,
-    onProgressStep: null,
-    onDurationChange: null,
-    onVolumeChange: null,
-    onSuspend: null,
-    onSuspended: null,
-    onPlayError: null,
-    focusable: true,
-    withPoster: false,
-    withLoading: false,
-};
-
 const Video = ({
-    media,
-    thumbnail,
-    width,
-    height,
-    mediaRef,
-    muted,
-    autoPlay,
-    paused,
-    loop,
-    playsInline,
-    preload,
-    shouldLoad,
-    withoutCors,
-    className,
-    innerClassName,
-    onReady,
-    onPlay: customOnPlay,
-    onPause,
-    onEnded,
-    onSeeked,
-    onTimeUpdate,
-    onProgressStep,
-    onDurationChange: customOnDurationChange,
-    onVolumeChange: customOnVolumeChange,
-    onSuspend: customOnSuspend,
-    onSuspended,
-    onPlayError,
-    focusable,
-    withPoster,
-    withLoading,
-    disablePictureInPicture,
+    media = null,
+    thumbnail = null,
+    width = null,
+    height = null,
+    mediaRef = null,
+    muted = false,
+    autoPlay = false,
+    paused = false,
+    loop = false,
+    playsInline = true,
+    preload = 'auto',
+    shouldLoad = true,
+    withoutCors = false,
+    className = null,
+    innerClassName = null,
+    onReady = null,
+    onPlay: customOnPlay = null,
+    onPause = null,
+    onEnded = null,
+    onSeeked = null,
+    onTimeUpdate = null,
+    onProgressStep = null,
+    onDurationChange: customOnDurationChange = null,
+    onVolumeChange: customOnVolumeChange = null,
+    onSuspend: customOnSuspend = null,
+    onSuspended = null,
+    onPlayError = null,
+    focusable = true,
+    withPoster = false,
+    withLoading = false,
+    disablePictureInPicture = true,
 }) => {
     const { url: mediaUrl = null, metadata = null } = media || {};
     const { description = null, has_audio: hasAudio = null } = metadata || {};
@@ -327,6 +293,5 @@ const Video = ({
 };
 
 Video.propTypes = propTypes;
-Video.defaultProps = defaultProps;
 
 export default React.forwardRef((props, ref) => <Video mediaRef={ref} {...props} />);

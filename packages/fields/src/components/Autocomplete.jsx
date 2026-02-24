@@ -6,7 +6,7 @@ import Fuse from 'fuse.js';
 
 import TextField from './Text';
 
-import styles from '../styles/autocomplete.module.scss';
+import styles from '../styles/autocomplete.module.css';
 
 const propTypes = {
     items: PropTypes.arrayOf(
@@ -33,31 +33,19 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    items: [],
-    value: null,
-    searchOptions: {
+const AutocompleteField = ({
+    items = [],
+    value = null,
+    searchOptions = {
         // Search in `label` and in `value` items in an object array
         keys: ['label', 'value'],
     },
-    maxResults: 10,
-    showEmpty: false,
-    placeholder: null,
-    className: null,
-    onChange: null,
-    children: null,
-};
-
-const AutocompleteField = ({
-    items,
-    value,
-    searchOptions,
-    maxResults,
-    showEmpty,
-    placeholder,
-    className,
-    onChange,
-    children,
+    maxResults = 10,
+    showEmpty = false,
+    placeholder = null,
+    className = null,
+    onChange = null,
+    children = null,
 }) => {
     const fuse = useRef(null);
     const [open, setOpen] = useState(false);
@@ -151,6 +139,5 @@ const AutocompleteField = ({
 };
 
 AutocompleteField.propTypes = propTypes;
-AutocompleteField.defaultProps = defaultProps;
 
 export default AutocompleteField;

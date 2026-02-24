@@ -19,7 +19,7 @@ import MenuDots from './menus/MenuDots';
 import MenuPreview from './menus/MenuPreview';
 import MenuShare from './menus/MenuShare';
 
-import styles from '../styles/viewer.module.scss';
+import styles from '../styles/viewer.module.css';
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
@@ -54,65 +54,35 @@ const propTypes = {
     }),
 };
 
-const defaultProps = {
-    menuItems: ['share', 'main'],
-    currentScreenIndex: 0,
-    toggleFullscreen: null,
-    fullscreenActive: false,
-    fullscreenEnabled: false,
-    menuDotsButtons: null,
-    closeable: false,
-    withShadow: false,
-    trackingEnabled: false,
-    shareBasePath: null,
-    shareOptions: null,
-    theme: null,
-    screenSize: null,
-    menuWidth: null,
-    previewHeader: null,
-    previewFooter: null,
-    afterShareMenuButton: null,
-    beforeScreensMenuButton: null,
-    withMicromagBranding: false,
-    withDotItemClick: false,
-    withoutScreensMenu: false,
-    withoutShareMenu: false,
-    onClickScreen: null,
-    onChange: null,
-    // onClickMenu: null,
-    onClickCloseViewer: null,
-    refDots: null,
-};
-
 const ViewerMenu = ({
     story,
-    menuItems,
-    currentScreenIndex,
-    toggleFullscreen,
-    fullscreenActive,
-    fullscreenEnabled,
-    menuDotsButtons,
-    closeable,
-    withShadow,
-    shareBasePath,
-    shareOptions,
-    trackingEnabled,
-    theme: viewerTheme,
-    screenSize,
-    menuWidth,
-    previewHeader,
-    previewFooter,
-    afterShareMenuButton,
-    beforeScreensMenuButton,
-    withMicromagBranding,
-    withDotItemClick,
-    withoutScreensMenu,
-    withoutShareMenu,
-    onClickScreen: customOnClickScreen,
-    onChange,
+    menuItems = ['share', 'main'],
+    currentScreenIndex = 0,
+    toggleFullscreen = null,
+    fullscreenActive = false,
+    fullscreenEnabled = false,
+    menuDotsButtons = null,
+    closeable = false,
+    withShadow = false,
+    shareBasePath = null,
+    shareOptions = null,
+    trackingEnabled = false,
+    theme: viewerTheme = null,
+    screenSize = null,
+    menuWidth = null,
+    previewHeader = null,
+    previewFooter = null,
+    afterShareMenuButton = null,
+    beforeScreensMenuButton = null,
+    withMicromagBranding = false,
+    withDotItemClick = false,
+    withoutScreensMenu = false,
+    withoutShareMenu = false,
+    onClickScreen: customOnClickScreen = null,
+    onChange = null,
     // onClickMenu: customOnClickMenu,
-    onClickCloseViewer,
-    refDots,
+    onClickCloseViewer = null,
+    refDots = null,
 }) => {
     const { components: screens = [], title = null, metadata = null } = story;
     const { description = null } = metadata || {};
@@ -506,6 +476,5 @@ const ViewerMenu = ({
 };
 
 ViewerMenu.propTypes = propTypes;
-ViewerMenu.defaultProps = defaultProps;
 
 export default React.memo(ViewerMenu);

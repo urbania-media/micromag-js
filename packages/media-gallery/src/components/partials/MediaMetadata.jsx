@@ -12,7 +12,7 @@ import { Button } from '@micromag/core/components';
 import { useFieldComponent } from '@micromag/core/contexts';
 import { useMediaUpdate, useMediaDelete, useMediaRequestDelete } from '@micromag/data';
 
-import styles from '../../styles/partials/media-metadata.module.scss';
+import styles from '../../styles/partials/media-metadata.module.css';
 
 const propTypes = {
     media: MicromagPropTypes.media,
@@ -24,24 +24,14 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    media: null,
-    tags: [],
-    onChange: null,
-    onClickClose: null,
-    onClickSave: null,
-    onClickDelete: null,
-    className: null,
-};
-
 function MediaMetadata({
-    media,
-    tags: allTags,
-    onChange,
-    onClickClose,
-    onClickSave,
-    onClickDelete,
-    className,
+    media = null,
+    tags: allTags = [],
+    onChange = null,
+    onClickClose = null,
+    onClickSave = null,
+    onClickDelete = null,
+    className = null,
 }) {
     const {
         id: mediaId,
@@ -474,6 +464,5 @@ function MediaMetadata({
 }
 
 MediaMetadata.propTypes = propTypes;
-MediaMetadata.defaultProps = defaultProps;
 
 export default MediaMetadata;

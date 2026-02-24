@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import Radios from './Radios';
 
-import styles from '../styles/border-style.module.scss';
+import styles from '../styles/border-style.module.css';
 
 const propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
@@ -14,18 +14,11 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    types: [
-        { name: '300x200', width: 300, height: 200 },
-        { name: '300x100', width: 300, height: 100 },
-        { name: '250x250', width: 250, height: 250 },
-    ],
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const AdFormatField = ({ types, value, className, onChange }) => (
+const AdFormatField = ({ types = [
+    { name: '300x200', width: 300, height: 200 },
+    { name: '300x100', width: 300, height: 100 },
+    { name: '250x250', width: 250, height: 250 },
+], value = null, className = null, onChange = null }) => (
     <Radios
         options={types.map((type) => ({
             value: type,
@@ -54,6 +47,5 @@ const AdFormatField = ({ types, value, className, onChange }) => (
 );
 
 AdFormatField.propTypes = propTypes;
-AdFormatField.defaultProps = defaultProps;
 
 export default AdFormatField;

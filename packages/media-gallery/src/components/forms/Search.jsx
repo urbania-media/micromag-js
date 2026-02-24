@@ -9,7 +9,7 @@ import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import styles from '../../styles/forms/search.module.scss';
+import styles from '../../styles/forms/search.module.css';
 
 const propTypes = {
     value: PropTypes.string,
@@ -21,17 +21,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    value: null,
-    loading: false,
-    onChange: null,
-    onFocus: null,
-    onBlur: null,
-    onClickIcon: null,
-    className: null,
-};
-
-const Search = ({ value, loading, onChange, onFocus, onBlur, onClickIcon, className }) => {
+const Search = ({ value = null, loading = false, onChange = null, onFocus = null, onBlur = null, onClickIcon = null, className = null }) => {
     const intl = useIntl();
     const onSearchChange = useCallback(
         (e) => {
@@ -109,6 +99,5 @@ const Search = ({ value, loading, onChange, onFocus, onBlur, onClickIcon, classN
 };
 
 Search.propTypes = propTypes;
-Search.defaultProps = defaultProps;
 
 export default Search;

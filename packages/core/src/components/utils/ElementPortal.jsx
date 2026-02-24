@@ -12,16 +12,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    id: null,
-    data: null,
-    container: null,
-    register: null,
-    unregister: null,
-    children: null,
-};
-
-const ElementPortal = ({ id, data, children, container, register, unregister }) => {
+const ElementPortal = ({ id = null, data = null, children = null, container = null, register = null, unregister = null }) => {
     const finalId = useMemo(() => id || `element-${new Date().getTime()}`, [id]);
     useEffect(() => {
         if (register !== null) {
@@ -37,6 +28,5 @@ const ElementPortal = ({ id, data, children, container, register, unregister }) 
 };
 
 ElementPortal.propTypes = propTypes;
-ElementPortal.defaultProps = defaultProps;
 
 export default ElementPortal;

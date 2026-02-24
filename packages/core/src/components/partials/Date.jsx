@@ -10,13 +10,7 @@ const propTypes = {
     timeSeparator: PropTypes.node,
 };
 
-const defaultProps = {
-    date: null,
-    withTime: false,
-    timeSeparator: ', ',
-};
-
-const Date = ({ date, withTime, timeSeparator }) => {
+const Date = ({ date = null, withTime = false, timeSeparator = ', ' }) => {
     const dateObject = useMemo(() => dayjs(date).toDate(), [date]);
     return (
         <>
@@ -28,6 +22,5 @@ const Date = ({ date, withTime, timeSeparator }) => {
 };
 
 Date.propTypes = propTypes;
-Date.defaultProps = defaultProps;
 
 export default Date;

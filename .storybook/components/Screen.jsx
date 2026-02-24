@@ -9,7 +9,7 @@ import * as MicromagPropTypes from '../../packages/core/src/lib/PropTypes';
 import { getDeviceScreens } from '../../packages/core/src/utils';
 import { ApiProvider } from '../../packages/data/src/contexts/ApiContext';
 
-import styles from './styles/screen.module.scss';
+import styles from './styles/screen.module.css';
 
 const propTypes = {
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -24,28 +24,16 @@ const propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {
-    width: null,
-    height: null,
-    definition: null,
-    screen: null,
-    renderContext: 'view',
-    className: null,
-    screenClassName: null,
-    withBorder: false,
-    withScaling: false,
-};
-
 function Screen({
-    width,
-    height,
-    screen,
-    definition,
-    renderContext,
-    className,
-    screenClassName,
-    withBorder,
-    withScaling,
+    width = null,
+    height = null,
+    screen = null,
+    definition = null,
+    renderContext = 'view',
+    className = null,
+    screenClassName = null,
+    withBorder = false,
+    withScaling = false,
     children,
 }) {
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
@@ -98,6 +86,5 @@ function Screen({
 }
 
 Screen.propTypes = propTypes;
-Screen.defaultProps = defaultProps;
 
 export default Screen;

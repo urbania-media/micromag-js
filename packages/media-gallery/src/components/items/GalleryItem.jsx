@@ -15,7 +15,7 @@ import { Button, Card } from '@micromag/core/components';
 
 import { middleEllipsis } from '../../lib/utils';
 
-import styles from '../../styles/items/gallery-item.module.scss';
+import styles from '../../styles/items/gallery-item.module.css';
 
 const propTypes = {
     item: MicromagPropTypes.media,
@@ -28,26 +28,15 @@ const propTypes = {
     onClickRemove: PropTypes.func,
 };
 
-const defaultProps = {
-    item: null,
-    width: 0,
-    selected: false,
-    withInfoButton: false,
-    className: null,
-    onClick: null,
-    onClickInfo: null,
-    onClickRemove: null,
-};
-
 const GalleryItem = ({
-    item,
-    width,
-    selected,
-    withInfoButton,
-    className,
-    onClick,
-    onClickInfo,
-    onClickRemove,
+    item = null,
+    width = 0,
+    selected = false,
+    withInfoButton = false,
+    className = null,
+    onClick = null,
+    onClickInfo = null,
+    onClickRemove = null,
 }) => {
     const { type, thumbnail_url: thumbnail = null, name, size } = item;
     let title = name;
@@ -131,6 +120,5 @@ const GalleryItem = ({
 };
 
 GalleryItem.propTypes = propTypes;
-GalleryItem.defaultProps = defaultProps;
 
 export default GalleryItem;

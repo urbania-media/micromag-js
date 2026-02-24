@@ -1,0 +1,109 @@
+/* stylelint-disable max-nesting-depth */
+/* stylelint-disable no-descending-specificity */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 0;
+}
+
+.button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    display: block;
+    z-index: 2;
+    transition: border-width 0.4s var(--mm-ease-in-bump);
+    border: 0 solid transparent;
+    border-radius: 0.45rem;
+
+    &:focus-visible {
+        outline: 0.15rem solid var(--micromag-focus-color, #fff);
+        box-shadow: 0 0 1px 1px var(--micromag-focus-color, #fff);
+    }
+
+    .isCurrent & {
+        border-width: 0.2rem;
+        border-color: var(--micromag-focus-color, #fff);
+
+        @media (hover: hover) {
+            &:hover {
+                border: 0.25rem solid var(--micromag-focus-color, #fff);
+            }
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            border: 0.1rem solid var(--micromag-focus-color, #fff);
+        }
+    }
+}
+
+.inner {
+    z-index: 1;
+    pointer-events: none;
+}
+
+.subScreenBadge {
+    position: absolute;
+    z-index: 2;
+    right: 0.25rem;
+    bottom: 0.25rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.subScreenCount {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translate(-0.1rem, -0.1rem);
+    color: var(--mm-gray-800);
+    letter-spacing: -0.05rem;
+    text-align: center;
+}
+
+.subScreenIcon {
+    position: relative;
+    z-index: 1;
+    width: 1.15rem;
+    height: auto;
+    fill: var(--mm-white);
+}
+
+.screen {
+    overflow: hidden;
+    border-radius: 0.45rem;
+    animation: intro 0.5s 50ms 1 forwards var(--mm-ease-in-out-sine);
+    opacity: 0;
+}
+
+@keyframes pulse {
+    from {
+        border-width: 0.1rem;
+    }
+
+    to {
+        border-width: 0.25rem;
+    }
+}
+
+@keyframes intro {
+    to {
+        opacity: 1;
+    }
+}

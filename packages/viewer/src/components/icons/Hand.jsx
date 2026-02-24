@@ -6,12 +6,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    color: 'currentColor',
-    className: null,
-};
-
-const HandIcon = ({ color, className }) => (
+const HandIcon = ({ color = 'currentColor', className = null }) => (
     <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 367.24 482.87">
         {/* <!-- Hand by Mikhail Bazilevsky from NounProject.com --> */}
         <path
@@ -24,6 +19,5 @@ const HandIcon = ({ color, className }) => (
 );
 
 HandIcon.propTypes = propTypes;
-HandIcon.defaultProps = defaultProps;
 
 export default HandIcon;

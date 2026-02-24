@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback } from 'react';
-import styles from '../../styles/partials/collapsable-panel.module.scss';
+import styles from '../../styles/partials/collapsable-panel.module.css';
 import Button from '../buttons/Button';
 
 const propTypes = {
@@ -18,24 +18,14 @@ const propTypes = {
     buttonClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    title: null,
-    children: null,
-    className: null,
-    topClassName: null,
-    contentClassName: null,
-    openedClassName: null,
-    buttonClassName: null,
-};
-
 const CollapsablePanel = ({
-    title,
-    children,
-    className,
-    topClassName,
-    contentClassName,
-    openedClassName,
-    buttonClassName,
+    title = null,
+    children = null,
+    className = null,
+    topClassName = null,
+    contentClassName = null,
+    openedClassName = null,
+    buttonClassName = null,
 }) => {
     const [opened, setOpened] = useState(false);
     const onClick = useCallback(() => setOpened(!opened), [opened, setOpened]);
@@ -94,6 +84,5 @@ const CollapsablePanel = ({
 };
 
 CollapsablePanel.propTypes = propTypes;
-CollapsablePanel.defaultProps = defaultProps;
 
 export default CollapsablePanel;

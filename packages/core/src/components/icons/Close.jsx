@@ -6,12 +6,7 @@ const propTypes = {
     color: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-    color: '#fff',
-};
-
-const CloseIcon = ({ color, className }) => (
+const CloseIcon = ({ color = '#fff', className = null }) => (
     <svg
         width="22"
         height="22"
@@ -26,6 +21,5 @@ const CloseIcon = ({ color, className }) => (
 );
 
 CloseIcon.propTypes = propTypes;
-CloseIcon.defaultProps = defaultProps;
 
 export default CloseIcon;

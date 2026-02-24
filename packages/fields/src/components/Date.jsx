@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 
-import styles from '../styles/date.module.scss';
+import styles from '../styles/date.module.css';
 
 const propTypes = {
     name: PropTypes.string,
@@ -13,16 +13,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    name: null,
-    value: null,
-    withTime: false,
-    placeholder: null,
-    className: null,
-    onChange: null,
-};
-
-const DateField = ({ name, value, placeholder, className, withTime, onChange }) => {
+const DateField = ({ name = null, value = null, placeholder = null, className = null, withTime = false, onChange = null }) => {
     const onInputChange = useCallback(
         (e) => {
             if (onChange !== null) {
@@ -49,6 +40,5 @@ const DateField = ({ name, value, placeholder, className, withTime, onChange }) 
 };
 
 DateField.propTypes = propTypes;
-DateField.defaultProps = defaultProps;
 
 export default DateField;

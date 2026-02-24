@@ -26,15 +26,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    intlManager: defaultManager,
-    locale: null,
-    locales: null,
-    extraMessages: null,
-    children: null,
-};
-
-export const IntlProvider = ({ intlManager, locale, locales, children, extraMessages }) => {
+export const IntlProvider = ({ intlManager = defaultManager, locale = null, locales = null, children = null, extraMessages = null }) => {
     const previousLocales = useLocales();
     const { locale: previousLocale = null, messages: previousMessages = null } =
         useContext(IntlContext) || {};
@@ -59,4 +51,3 @@ export const IntlProvider = ({ intlManager, locale, locales, children, extraMess
 };
 
 IntlProvider.propTypes = propTypes;
-IntlProvider.defaultProps = defaultProps;

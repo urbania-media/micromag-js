@@ -40,7 +40,7 @@ import Video from '@micromag/element-video';
 
 import useThree from './useThree';
 
-import styles from './video-360.module.scss';
+import styles from './video-360.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['full']),
@@ -56,32 +56,18 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'full',
-    video: null,
-    header: null,
-    footer: null,
-    background: null,
-    current: true,
-    preload: true,
-    type: null,
-    spacing: 20,
-    mediaRef: null,
-    className: null,
-};
-
 const Video360Screen = ({
-    layout, // eslint-disable-line
-    video,
-    header,
-    footer,
-    background,
-    current,
-    preload,
-    type,
-    spacing,
-    mediaRef: customMediaRef,
-    className,
+    layout = 'full', // eslint-disable-line
+    video = null,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    type = null,
+    spacing = 20,
+    mediaRef: customMediaRef = null,
+    className = null,
 }) => {
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -693,6 +679,5 @@ const Video360Screen = ({
 };
 
 Video360Screen.propTypes = propTypes;
-Video360Screen.defaultProps = defaultProps;
 
 export default Video360Screen;

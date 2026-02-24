@@ -27,8 +27,6 @@ const propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {};
-
 export const GoogleApiClientProvider = ({ children }) => {
     const { apiKey } = useGoogleKeys();
     const [client, setClient] = useState(null);
@@ -49,4 +47,3 @@ export const GoogleApiClientProvider = ({ children }) => {
 };
 
 GoogleApiClientProvider.propTypes = propTypes;
-GoogleApiClientProvider.defaultProps = defaultProps;

@@ -1,0 +1,45 @@
+.container {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 10px;
+    overflow: hidden;
+
+    .closeBtn {
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        transition: opacity 0.15s ease-out;
+        border: 0 !important;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .section {
+        border-bottom: 1px solid var(--mm-gray-500);
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    .title {
+        color: var(--mm-gray-500);
+        font-size: var(--mm-font-size-sm);
+        font-weight: var(--mm-font-weight-bold);
+        text-transform: uppercase;
+    }
+
+    .tags {
+        overflow-x: auto;
+    }
+}

@@ -6,12 +6,7 @@ const propTypes = {
     color: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-    color: '#fff',
-};
-
-const PauseIcon = ({ color, className }) => (
+const PauseIcon = ({ color = '#fff', className = null }) => (
     <svg
         className={className}
         width="14"
@@ -26,6 +21,5 @@ const PauseIcon = ({ color, className }) => (
 );
 
 PauseIcon.propTypes = propTypes;
-PauseIcon.defaultProps = defaultProps;
 
 export default PauseIcon;

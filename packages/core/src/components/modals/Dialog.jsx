@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '../../lib';
 import Buttons from '../buttons/Buttons';
 import Label from '../partials/Label';
 
-import styles from '../../styles/modals/dialog.module.scss';
+import styles from '../../styles/modals/dialog.module.css';
 
 const propTypes = {
     title: MicromagPropTypes.label,
@@ -22,28 +22,16 @@ const propTypes = {
     bodyClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    title: null,
-    header: null,
-    children: null,
-    footer: null,
-    size: null,
-    buttons: null,
-    onClose: null,
-    className: null,
-    bodyClassName: null,
-};
-
 const ModalDialog = ({
-    title,
-    header,
-    children,
-    buttons,
-    footer,
-    size,
-    onClose,
-    className,
-    bodyClassName,
+    title = null,
+    header = null,
+    children = null,
+    buttons = null,
+    footer = null,
+    size = null,
+    onClose = null,
+    className = null,
+    bodyClassName = null,
 }) => (
     <div
         className={classNames([
@@ -102,6 +90,5 @@ const ModalDialog = ({
 );
 
 ModalDialog.propTypes = propTypes;
-ModalDialog.defaultProps = defaultProps;
 
 export default ModalDialog;

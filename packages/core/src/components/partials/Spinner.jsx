@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from '../../styles/partials/spinner.module.scss';
+import styles from '../../styles/partials/spinner.module.css';
 
 const propTypes = {
     animated: PropTypes.bool,
@@ -12,14 +12,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    animated: true,
-    color: 'currentColor',
-    strokeWidth: 3,
-    className: null,
-};
-
-const Spinner = ({ animated, color, strokeWidth, className }) => (
+const Spinner = ({ animated = true, color = 'currentColor', strokeWidth = 3, className = null }) => (
     <svg
         className={classNames([
             styles.container,
@@ -46,6 +39,5 @@ const Spinner = ({ animated, color, strokeWidth, className }) => (
 );
 
 Spinner.propTypes = propTypes;
-Spinner.defaultProps = defaultProps;
 
 export default Spinner;

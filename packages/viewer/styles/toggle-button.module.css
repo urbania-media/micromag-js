@@ -1,0 +1,19 @@
+.container {
+    position: relative;
+    overflow: hidden;
+
+    &:focus-within {
+        /* box-shadow: -2px -2px 2px 2px var(--micromag-focus-color, #fff); */
+    }
+}
+
+.normal {
+    position: relative;
+}
+
+.toggled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+}

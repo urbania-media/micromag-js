@@ -72,6 +72,9 @@
         "./scss/upload.scss": "./scss/upload.scss",
         "./scss/vendor": "./scss/vendor.scss",
         "./scss/vendor.scss": "./scss/vendor.scss",
+        "./styles/theme": "./styles/theme.css",
+        "./styles/theme.css": "./styles/theme.css",
+        "./styles/shared.module.css": "./styles/shared.module.css",
         "./assets/css/styles": "./assets/css/styles.css",
         "./assets/css/styles.css": "./assets/css/styles.css",
         "./assets/css/vendor": "./assets/css/vendor.css",
@@ -89,20 +92,21 @@
         "es",
         "assets",
         "scss",
+        "styles",
         "components.js",
         "contexts.js",
         "hooks.js",
         "utils.js"
     ],
     "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss && rm -rf styles",
         "vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
         "prepublishOnly": "npm run build",
         "build": "../../scripts/prepare-package.sh --scss && npm run vendor"
     },
     "devDependencies": {
-        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+        "react": "^18.3.0 || ^19.0.0",
+        "react-dom": "^18.3.0 || ^19.0.0"
     },
     "peerDependencies": {
         "@panneau/displays": "^3.0.301",
@@ -123,8 +127,8 @@
         "@uppy/core": "^5.1.1",
         "@uppy/dashboard": "^5.0.4",
         "@uppy/react": "^5.1.1",
-        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+        "react": "^18.3.0 || ^19.0.0",
+        "react-dom": "^18.3.0 || ^19.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",

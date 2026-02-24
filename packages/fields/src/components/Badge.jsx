@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Fields from './Fields';
 
-import styles from '../styles/badge.module.scss';
+import styles from '../styles/badge.module.css';
 
 const propTypes = {
     value: MicromagPropTypes.badge,
@@ -16,13 +16,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const Badge = ({ value, className, onChange, ...props }) => {
+const Badge = ({ value = null, className = null, onChange = null, ...props }) => {
     const { active = false } = value || {};
     const intl = useIntl();
 
@@ -68,6 +62,5 @@ const Badge = ({ value, className, onChange, ...props }) => {
 };
 
 Badge.propTypes = propTypes;
-Badge.defaultProps = defaultProps;
 
 export default Badge;

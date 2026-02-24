@@ -29,7 +29,7 @@ import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 
-import styles from './title.module.scss';
+import styles from './title.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split', 'split-top', 'split-bottom']),
@@ -51,45 +51,23 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'top',
-    title: null,
-    subtitle: null,
-    description: null,
-    boxStyle: null,
-    withSubtitle: false,
-    withDescription: false,
-    withBox: false,
-    spacing: 20,
-    descriptionEmptyLabel: (
-        <FormattedMessage defaultMessage="Description" description="Description placeholder" />
-    ),
-    header: null,
-    footer: null,
-    background: null,
-    current: true,
-    active: true,
-    transitionStagger: 100,
-    className: null,
-};
-
 const TitleScreen = ({
-    layout,
-    title,
-    subtitle,
-    description,
-    boxStyle,
-    withSubtitle,
-    withDescription,
-    withBox, // eslint-disable-line
-    spacing,
-    descriptionEmptyLabel,
-    header,
-    footer,
-    background,
-    current,
-    active,
-    className,
+    layout = 'top',
+    title = null,
+    subtitle = null,
+    description = null,
+    boxStyle = null,
+    withSubtitle = false,
+    withDescription = false,
+    withBox = false, // eslint-disable-line
+    spacing = 20,
+    descriptionEmptyLabel = (<FormattedMessage defaultMessage="Description" description="Description placeholder" />),
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    active = true,
+    className = null,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -339,6 +317,5 @@ const TitleScreen = ({
 };
 
 TitleScreen.propTypes = propTypes;
-TitleScreen.defaultProps = defaultProps;
 
 export default TitleScreen;

@@ -5,7 +5,7 @@ import React, { useCallback } from 'react';
 
 import Radios from './Radios';
 
-import styles from '../styles/align-vertical.module.scss';
+import styles from '../styles/align-vertical.module.css';
 
 const icons = {
     top: (props) => <div {...props}>top</div>,
@@ -20,14 +20,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    defaultValue: null,
-    className: null,
-    onChange: null,
-};
-
-const AlignVertical = ({ value, defaultValue, className, onChange }) => {
+const AlignVertical = ({ value = null, defaultValue = null, className = null, onChange = null }) => {
     const finalValue = value === null && defaultValue !== null ? defaultValue : value;
     const onAlignChange = useCallback(
         (newVal) => {
@@ -74,6 +67,5 @@ const AlignVertical = ({ value, defaultValue, className, onChange }) => {
 };
 
 AlignVertical.propTypes = propTypes;
-AlignVertical.defaultProps = defaultProps;
 
 export default AlignVertical;

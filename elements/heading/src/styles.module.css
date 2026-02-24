@@ -1,0 +1,29 @@
+.container {
+    & em,
+    & i {
+    font-style: italic;
+    }
+
+    & strong,
+    & b {
+    font-weight: bold;
+    }
+
+    & p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    }
+
+    & mark {
+    padding: 0;
+    box-decoration-break: clone;
+    }
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}

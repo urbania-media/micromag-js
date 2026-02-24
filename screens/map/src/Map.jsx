@@ -31,7 +31,7 @@ import Map from '@micromag/element-map';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 
-import styles from './map.module.scss';
+import styles from './map.module.css';
 
 const defaultCenter = {
     lat: 45.5,
@@ -70,44 +70,25 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'normal',
-    draggable: true,
-    markers: [],
-    center: defaultCenter,
-    zoom: defaultZoom,
-    fitBounds: true,
-    title: null,
-    description: null,
-    button: null,
-    openedMarkerSpacerHeight: 0.75,
-    withMarkerImages: false,
-    background: null,
-    current: true,
-    active: true,
-    type: null,
-    className: null,
-};
-
 function MapScreen({
-    layout,
-    draggable,
-    markers,
-    title,
-    description,
-    button,
-    openedMarkerSpacerHeight,
-    withMarkerImages,
-    zoom,
-    center,
-    fitBounds,
-    background,
-    current,
-    active,
+    layout = 'normal',
+    draggable = true,
+    markers = [],
+    title = null,
+    description = null,
+    button = null,
+    openedMarkerSpacerHeight = 0.75,
+    withMarkerImages = false,
+    zoom = defaultZoom,
+    center = defaultCenter,
+    fitBounds = true,
+    background = null,
+    current = true,
+    active = true,
     // enableInteractions,
     // disableInteraction,
-    type,
-    className,
+    type = null,
+    className = null,
 }) {
     const { locale } = useIntl();
     const { apiKey = null } = useGoogleKeys();
@@ -539,6 +520,5 @@ function MapScreen({
 }
 
 MapScreen.propTypes = propTypes;
-MapScreen.defaultProps = defaultProps;
 
 export default MapScreen;

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 // import * as AppPropTypes from '../../lib/PropTypes';
 import Slider from './Slider';
 
-import styles from '../styles/border-width.module.scss';
+import styles from '../styles/border-width.module.css';
 
 const propTypes = {
     value: PropTypes.string,
@@ -15,14 +15,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    sizes: [1, 2, 4, 8, 10, 14, 20],
-    className: null,
-    onChange: null,
-};
-
-const BorderWidth = ({ value, sizes, className, onChange }) => (
+const BorderWidth = ({ value = null, sizes = [1, 2, 4, 8, 10, 14, 20], className = null, onChange = null }) => (
     <Slider
         value={value}
         min={sizes[0]}
@@ -40,6 +33,5 @@ const BorderWidth = ({ value, sizes, className, onChange }) => (
 );
 
 BorderWidth.propTypes = propTypes;
-BorderWidth.defaultProps = defaultProps;
 
 export default BorderWidth;

@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+
+    .icon {
+        margin-right: calc(var(--mm-spacer) / 4);
+    }
+
+    .slider {
+        flex-grow: 1;
+    }
+}

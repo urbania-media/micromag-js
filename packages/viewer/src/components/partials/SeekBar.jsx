@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 
 import { useMediaCurrentTime, useMediaDuration, useMediaProgress } from '@micromag/core/hooks';
 
-import styles from '../../styles/partials/seek-bar.module.scss';
+import styles from '../../styles/partials/seek-bar.module.css';
 
 const stopDragEventsPropagation = {
     onTouchMove: (e) => e.stopPropagation(),
@@ -57,34 +57,19 @@ const propTypes = {
     withSeekHead: PropTypes.bool,
 };
 
-const defaultProps = {
-    media: null,
-    playing: false,
-    backgroundColor: null,
-    progressColor: null,
-    onClick: null,
-    onSeek: null,
-    onSeekStart: null,
-    onSeekEnd: null,
-    collapsed: false,
-    focusable: true,
-    className: null,
-    withSeekHead: true,
-};
-
 const SeekBar = ({
-    media,
-    playing,
-    backgroundColor,
-    progressColor,
-    onClick,
-    onSeek,
-    onSeekStart,
-    onSeekEnd,
-    collapsed,
-    focusable,
-    className,
-    withSeekHead,
+    media = null,
+    playing = false,
+    backgroundColor = null,
+    progressColor = null,
+    onClick = null,
+    onSeek = null,
+    onSeekStart = null,
+    onSeekEnd = null,
+    collapsed = false,
+    focusable = true,
+    className = null,
+    withSeekHead = true,
 }) => {
     const intl = useIntl();
     const progress = useMediaProgress(media, {
@@ -233,6 +218,5 @@ const SeekBar = ({
 };
 
 SeekBar.propTypes = propTypes;
-SeekBar.defaultProps = defaultProps;
 
 export default SeekBar;

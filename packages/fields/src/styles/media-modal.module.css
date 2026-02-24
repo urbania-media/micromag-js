@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+}
+
+.dialog {
+    @media screen and (min-width: 768px) {
+        width: 1200px !important;
+        max-width: 90vw !important;
+    }
+}
+
+.thumbnail {
+    display: inline-block;
+    width: auto;
+    height: 1.3em;
+    margin: 0;
+}
+
+.dialogBody {
+    padding-top: 0 !important;
+
+    > div {
+        min-height: 75vh;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+}
+
+.previewButton {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    background-color: transparent;
+
+    &.shaded {
+        border-radius: 4px;
+        background-color: var(--mm-gray-700);
+    }
+
+    &.small {
+        width: 180px;
+    }
+}
+
+.clearButton {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    display: flex;
+
+    position: relative;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+    padding: 0 10px;
+    border-radius: 4px;
+    background-color: var(--mm-gray-700);
+
+    svg {
+        display: block;
+    }
+}
+
+.preview {
+    height: calc(1.4em + 1rem);
+    overflow: hidden;
+    border-bottom: 0.4em solid var(--mm-input-bg);
+    border-radius: var(--mm-input-border-radius);
+    pointer-events: none;
+}

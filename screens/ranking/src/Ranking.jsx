@@ -25,7 +25,7 @@ import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 
-import styles from './ranking.module.scss';
+import styles from './ranking.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['side', 'over']),
@@ -45,40 +45,22 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'side',
-    title: null,
-    items: [null],
-    itemTitleStyle: null,
-    itemDescriptionStyle: null,
-    numbersStyle: null,
-    ascending: false,
-    spacing: 20,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    preload: true,
-    type: null,
-    className: null,
-};
-
 const RankingScreen = ({
-    layout,
-    title,
-    items,
-    itemTitleStyle,
-    itemDescriptionStyle,
-    numbersStyle,
-    ascending,
-    spacing,
-    background,
-    header,
-    footer,
-    current,
-    preload,
-    type,
-    className,
+    layout = 'side',
+    title = null,
+    items = [null],
+    itemTitleStyle = null,
+    itemDescriptionStyle = null,
+    numbersStyle = null,
+    ascending = false,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    type = null,
+    className = null,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
@@ -333,6 +315,5 @@ const RankingScreen = ({
 };
 
 RankingScreen.propTypes = propTypes;
-RankingScreen.defaultProps = defaultProps;
 
 export default RankingScreen;

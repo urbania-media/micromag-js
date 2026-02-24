@@ -6,7 +6,7 @@ import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/video-360.module.scss';
+import styles from '../../styles/placeholders/video-360.module.css';
 
 export const Video360 = ({ width, height, className }) => (
     <PlaceholderBlock

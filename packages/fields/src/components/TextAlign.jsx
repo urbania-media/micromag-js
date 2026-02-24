@@ -13,21 +13,14 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    options: [
-        { value: 'left', label: <FontAwesomeIcon icon={faAlignLeft} /> },
-        { value: 'center', label: <FontAwesomeIcon icon={faAlignCenter} /> },
-        { value: 'right', label: <FontAwesomeIcon icon={faAlignRight} /> },
-    ],
-    value: null,
-    onChange: null,
-};
-
-const TextAlign = ({ value, options, onChange, ...props }) => (
+const TextAlign = ({ value = null, options = [
+    { value: 'left', label: <FontAwesomeIcon icon={faAlignLeft} /> },
+    { value: 'center', label: <FontAwesomeIcon icon={faAlignCenter} /> },
+    { value: 'right', label: <FontAwesomeIcon icon={faAlignRight} /> },
+], onChange = null, ...props }) => (
     <Radios value={value} options={options} onChange={onChange} uncheckable {...props} />
 );
 
 TextAlign.propTypes = propTypes;
-TextAlign.defaultProps = defaultProps;
 
 export default TextAlign;

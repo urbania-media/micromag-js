@@ -6,17 +6,13 @@ import { Button } from '@micromag/core/components';
 
 import PlusIcon from '../icons/Plus';
 
-import styles from '../../styles/buttons/plus.module.scss';
+import styles from '../../styles/buttons/plus.module.css';
 
 const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-};
-
-const PlusButton = ({ className, ...props }) => (
+const PlusButton = ({ className = null, ...props }) => (
     <Button
         className={classNames([
             styles.container,
@@ -32,6 +28,5 @@ const PlusButton = ({ className, ...props }) => (
 );
 
 PlusButton.propTypes = propTypes;
-PlusButton.defaultProps = defaultProps;
 
 export default PlusButton;

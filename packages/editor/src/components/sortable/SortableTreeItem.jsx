@@ -9,7 +9,7 @@ import { iOS } from '../../lib/utilities';
 
 import SortableTreeItemActions from './SortableTreeItemActions';
 
-import styles from '../../styles/sortable/sortable-tree-item.module.scss';
+import styles from '../../styles/sortable/sortable-tree-item.module.css';
 
 const propTypes = {
     id: PropTypes.string.isRequired,
@@ -35,33 +35,21 @@ const propTypes = {
     isLastChild: PropTypes.bool,
 };
 
-const defaultProps = {
-    component: null,
-    value: null,
-    style: null,
-    smallScale: 0.75,
-    collapsed: false,
-    onCollapse: null,
-    onClickItem: null,
-    childValue: null,
-    isLastChild: false,
-};
-
 const animateLayoutChanges = ({ isSorting, wasDragging }) => !(isSorting || wasDragging);
 
 const SortableTreeItem = ({
     id,
     index,
     depth,
-    component: Component,
-    value,
-    style: itemStyle,
-    smallScale,
-    collapsed,
-    onCollapse,
-    onClickItem,
-    childValue,
-    isLastChild,
+    component: Component = null,
+    value = null,
+    style: itemStyle = null,
+    smallScale = 0.75,
+    collapsed = false,
+    onCollapse = null,
+    onClickItem = null,
+    childValue = null,
+    isLastChild = false,
     ...props
 }) => {
     const {
@@ -151,6 +139,5 @@ const SortableTreeItem = ({
 };
 
 SortableTreeItem.propTypes = propTypes;
-SortableTreeItem.defaultProps = defaultProps;
 
 export default SortableTreeItem;

@@ -6,7 +6,7 @@ import React, { useCallback, useState } from 'react';
 
 import { ClearButton } from '@micromag/core/components';
 
-import styles from '../styles/number.module.scss';
+import styles from '../styles/number.module.css';
 
 const propTypes = {
     name: PropTypes.string,
@@ -24,36 +24,20 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    name: null,
-    value: null,
-    min: null,
-    max: null,
-    step: 1,
-    floatStep: 0.1,
-    float: false,
-    dataList: null,
-    autoComplete: false,
-    fullWidth: false,
-    placeholder: null,
-    className: null,
-    onChange: null,
-};
-
 const NumberField = ({
-    name,
-    value,
-    min,
-    max,
-    step,
-    floatStep,
-    float,
-    dataList,
-    autoComplete,
-    fullWidth,
-    placeholder,
-    className,
-    onChange,
+    name = null,
+    value = null,
+    min = null,
+    max = null,
+    step = 1,
+    floatStep = 0.1,
+    float = false,
+    dataList = null,
+    autoComplete = false,
+    fullWidth = false,
+    placeholder = null,
+    className = null,
+    onChange = null,
 }) => {
     const parseValue = useCallback((newValue) =>
         float ? parseFloat(newValue) : parseInt(newValue, 10),
@@ -154,6 +138,5 @@ const NumberField = ({
 };
 
 NumberField.propTypes = propTypes;
-NumberField.defaultProps = defaultProps;
 
 export default NumberField;

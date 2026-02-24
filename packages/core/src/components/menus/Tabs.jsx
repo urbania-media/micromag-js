@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import Buttons from '../buttons/Buttons';
 
-import styles from '../../styles/menus/tabs.module.scss';
+import styles from '../../styles/menus/tabs.module.css';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
@@ -18,24 +18,14 @@ const propTypes = {
     onClickItem: PropTypes.func,
 };
 
-const defaultProps = {
-    items: [],
-    size: null,
-    theme: 'secondary',
-    renderItemButton: null,
-    buttonClassName: null,
-    className: null,
-    onClickItem: null,
-};
-
 const TabsMenu = ({
-    items,
-    size,
-    theme,
-    renderItemButton,
-    buttonClassName,
-    className,
-    onClickItem,
+    items = [],
+    size = null,
+    theme = 'secondary',
+    renderItemButton = null,
+    buttonClassName = null,
+    className = null,
+    onClickItem = null,
 }) => (
     <div
         className={classNames([
@@ -63,6 +53,5 @@ const TabsMenu = ({
 );
 
 TabsMenu.propTypes = propTypes;
-TabsMenu.defaultProps = defaultProps;
 
 export default TabsMenu;

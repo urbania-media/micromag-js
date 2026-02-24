@@ -13,7 +13,7 @@ import defaultColumns from './columns';
 import defaultFields from './fields';
 import defaultFilters from './filters';
 
-import styles from '../styles/new-media-gallery.module.scss';
+import styles from '../styles/new-media-gallery.module.css';
 
 const propTypes = {
     value: PropTypes.shape({
@@ -33,36 +33,20 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    value: null,
-    types: null,
-    source: 'all',
-    filters: null,
-    fields: null,
-    columns: defaultColumns,
-    isPicker: false,
-    multiple: false,
-    medias: null,
-    onChange: null,
-    onMediaFormOpen: null,
-    onMediaFormClose: null,
-    className: null,
-};
-
 function MediaGallery({
-    value,
-    types,
-    source,
-    filters,
-    fields: providedFields,
-    columns,
-    isPicker,
-    multiple,
-    medias: initialMedias,
-    onChange,
-    onMediaFormOpen,
-    onMediaFormClose,
-    className,
+    value = null,
+    types = null,
+    source = 'all',
+    filters = null,
+    fields: providedFields = null,
+    columns = defaultColumns,
+    isPicker = false,
+    multiple = false,
+    medias: initialMedias = null,
+    onChange = null,
+    onMediaFormOpen = null,
+    onMediaFormClose = null,
+    className = null,
 }) {
     const api = useApi();
     const story = useStory();
@@ -214,6 +198,5 @@ function MediaGallery({
 }
 
 MediaGallery.propTypes = propTypes;
-MediaGallery.defaultProps = defaultProps;
 
 export default MediaGallery;

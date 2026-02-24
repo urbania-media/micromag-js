@@ -21,26 +21,15 @@ const propTypes = {
     emptyClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    children: null,
-    placeholder: null,
-    preview: null,
-    empty: null,
-    emptyLabel: null,
-    isEmpty: false,
-    placeholderProps: null,
-    emptyClassName: null,
-};
-
 const ScreenElement = ({
-    children,
-    placeholder,
-    empty,
-    emptyLabel,
-    preview,
-    isEmpty,
-    placeholderProps,
-    emptyClassName,
+    children = null,
+    placeholder = null,
+    empty = null,
+    emptyLabel = null,
+    preview = null,
+    isEmpty = false,
+    placeholderProps = null,
+    emptyClassName = null,
 }) => {
     const { isPlaceholder, isEdit, isPreview } = useScreenRenderContext();
     if (isPlaceholder) {
@@ -63,6 +52,5 @@ const ScreenElement = ({
 };
 
 ScreenElement.propTypes = propTypes;
-ScreenElement.defaultProps = defaultProps;
 
 export default ScreenElement;

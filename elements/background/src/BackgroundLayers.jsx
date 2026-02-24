@@ -10,7 +10,7 @@ import { getLayersFromBackground } from '@micromag/core/utils';
 
 import Background from './Background';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     width: PropTypes.number,
@@ -41,44 +41,24 @@ const propTypes = {
     onQualityLevelChange: PropTypes.func,
 };
 
-const defaultProps = {
-    width: null,
-    height: null,
-    resolution: 1,
-    background: [],
-    playing: false,
-    muted: false,
-    children: null,
-    className: null,
-    layerClassName: null,
-    backgroundClassName: null,
-    loadingMode: 'lazy',
-    mediaRef: null,
-    shouldLoad: true,
-    withoutVideo: false,
-    onPlayError: null,
-    qualityStartLevel: null,
-    onQualityLevelChange: null,
-};
-
 const BackgroundLayers = ({
-    width,
-    height,
-    resolution,
-    background,
-    playing,
-    muted,
-    children,
-    className,
-    layerClassName,
-    backgroundClassName,
-    loadingMode,
-    mediaRef,
-    shouldLoad,
-    withoutVideo,
-    onPlayError,
-    qualityStartLevel,
-    onQualityLevelChange,
+    width = null,
+    height = null,
+    resolution = 1,
+    background = [],
+    playing = false,
+    muted = false,
+    children = null,
+    className = null,
+    layerClassName = null,
+    backgroundClassName = null,
+    loadingMode = 'lazy',
+    mediaRef = null,
+    shouldLoad = true,
+    withoutVideo = false,
+    onPlayError = null,
+    qualityStartLevel = null,
+    onQualityLevelChange = null,
 }) => {
     const hasSize = width > 0 && height > 0;
 
@@ -162,6 +142,5 @@ const BackgroundLayers = ({
 };
 
 BackgroundLayers.propTypes = propTypes;
-BackgroundLayers.defaultProps = defaultProps;
 
 export default BackgroundLayers;

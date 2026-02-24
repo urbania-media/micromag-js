@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '../../lib';
 
 import Label from './Label';
 
-import styles from '../../styles/partials/link.module.scss';
+import styles from '../../styles/partials/link.module.css';
 
 const propTypes = {
     href: PropTypes.string,
@@ -20,17 +20,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    href: '',
-    external: false,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-    children: null,
-    withoutStyle: false,
-    className: null,
-};
-
-const Link = ({ href, external, children, target, rel, className, withoutStyle, ...props }) =>
+const Link = ({ href = '', external = false, children = null, target = '_blank', rel = 'noopener noreferrer', className = null, withoutStyle = false, ...props }) =>
     external ? (
         <a
             className={classNames([className, { [styles.withoutStyle]: withoutStyle }])}
@@ -52,6 +42,5 @@ const Link = ({ href, external, children, target, rel, className, withoutStyle, 
     );
 
 Link.propTypes = propTypes;
-Link.defaultProps = defaultProps;
 
 export default Link;

@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Fields from './Fields';
 
-import styles from '../styles/custom-answer.module.scss';
+import styles from '../styles/custom-answer.module.css';
 
 const propTypes = {
     value: MicromagPropTypes.customAnswer,
@@ -16,13 +16,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const CustomAnswer = ({ value, className, onChange, ...props }) => {
+const CustomAnswer = ({ value = null, className = null, onChange = null, ...props }) => {
     const { active = false } = value || {};
     const intl = useIntl();
 
@@ -68,6 +62,5 @@ const CustomAnswer = ({ value, className, onChange, ...props }) => {
 };
 
 CustomAnswer.propTypes = propTypes;
-CustomAnswer.defaultProps = defaultProps;
 
 export default CustomAnswer;

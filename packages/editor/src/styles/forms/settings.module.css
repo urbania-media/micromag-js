@@ -1,0 +1,9 @@
+.container {
+    position: relative;
+    padding: calc(var(--mm-spacer) / 2);
+
+    .inner {
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -10,7 +10,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useGoogleMapsClient } from '@micromag/core/contexts';
 import Map, { Pin } from '@micromag/element-map';
-import styles from '../styles/geo-position.module.scss';
+import styles from '../styles/geo-position.module.css';
 import NumberField from './Number';
 
 const propTypes = {
@@ -21,23 +21,15 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    defaultCenter: {
-        lat: 45.5,
-        lng: -73.56,
-    },
-    defaultZoom: 10,
-    className: null,
-    onChange: null,
-};
-
 const getFixedCoords = ({ lat, lng }, precision = 4) => ({
     lat: parseFloat(lat.toFixed(precision)),
     lng: parseFloat(lng.toFixed(precision)),
 });
 
-const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange }) => {
+const GeoPosition = ({ value = null, defaultCenter = {
+    lat: 45.5,
+    lng: -73.56,
+}, defaultZoom = 10, className = null, onChange = null }) => {
     const [address, setAddress] = useState('');
     const [mapReady, setMapReady] = useState(false);
     const [zoom, setZoom] = useState(defaultZoom);
@@ -235,6 +227,5 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
 };
 
 GeoPosition.propTypes = propTypes;
-GeoPosition.defaultProps = defaultProps;
 
 export default GeoPosition;

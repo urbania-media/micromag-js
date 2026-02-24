@@ -7,13 +7,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    color: 'currentColor',
-    strokeWidth: 3,
-    className: null,
-};
-
-const Arrow = ({ color, strokeWidth, className }) => (
+const Arrow = ({ color = 'currentColor', strokeWidth = 3, className = null }) => (
     <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -41,6 +35,5 @@ const Arrow = ({ color, strokeWidth, className }) => (
 );
 
 Arrow.propTypes = propTypes;
-Arrow.defaultProps = defaultProps;
 
 export default Arrow;

@@ -1,0 +1,13 @@
+/* stylelint-disable max-nesting-depth */
+.box {
+    display: inline-block;
+    position: relative;
+}
+
+.tip {
+    position: absolute;
+    bottom: 100%;
+    left: 20px;
+    width: 30px;
+    height: auto;
+}

@@ -6,7 +6,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Fields from './Fields';
 
-import styles from '../styles/slide.module.scss';
+import styles from '../styles/slide.module.css';
 
 const propTypes = {
     value: PropTypes.shape({
@@ -17,13 +17,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    value: null,
-    isForm: false,
-    className: null,
-};
-
-const SlideField = ({ value, isForm, className, ...props }) => {
+const SlideField = ({ value = null, isForm = false, className = null, ...props }) => {
     const { text = null } = value || {};
     return isForm ? (
         <div
@@ -66,6 +60,5 @@ const SlideField = ({ value, isForm, className, ...props }) => {
 };
 
 SlideField.propTypes = propTypes;
-SlideField.defaultProps = defaultProps;
 
 export default SlideField;

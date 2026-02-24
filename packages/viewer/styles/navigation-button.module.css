@@ -1,0 +1,16 @@
+.container {
+    padding: 4px 10px;
+}
+
+.arrow {
+    width: 1rem;
+    height: auto;
+
+    .next & {
+        transform: rotate(90deg);
+    }
+
+    .previous & {
+        transform: rotate(-90deg);
+    }
+}

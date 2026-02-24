@@ -13,7 +13,7 @@ import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 
-import styles from './results.module.scss';
+import styles from './results.module.css';
 
 const propTypes = {
     title: MicromagPropTypes.textElement,
@@ -29,32 +29,18 @@ const propTypes = {
     style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
 
-const defaultProps = {
-    title: null,
-    description: null,
-    resultsHeadingStyle: null,
-    resultsTextStyle: null,
-    layout: null,
-    transitions: null,
-    transitionPlaying: false,
-    transitionStagger: 100,
-    transitionDisabled: false,
-    className: null,
-    style: null,
-};
-
 const Results = ({
-    layout,
-    title,
-    description,
-    resultsHeadingStyle,
-    resultsTextStyle,
-    transitions,
-    transitionPlaying,
-    transitionStagger,
-    transitionDisabled,
-    className,
-    style,
+    layout = null,
+    title = null,
+    description = null,
+    resultsHeadingStyle = null,
+    resultsTextStyle = null,
+    transitions = null,
+    transitionPlaying = false,
+    transitionStagger = 100,
+    transitionDisabled = false,
+    className = null,
+    style = null,
 }) => {
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
@@ -134,6 +120,5 @@ const Results = ({
 };
 
 Results.propTypes = propTypes;
-Results.defaultProps = defaultProps;
 
 export default Results;

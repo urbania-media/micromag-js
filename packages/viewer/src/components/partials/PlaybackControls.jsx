@@ -18,7 +18,7 @@ import { getColorAsString } from '@micromag/core/utils';
 
 import SeekBar from './SeekBar';
 
-import styles from '../../styles/partials/playback-controls.module.scss';
+import styles from '../../styles/partials/playback-controls.module.css';
 
 const propTypes = {
     defaultColor: PropTypes.shape({
@@ -35,28 +35,19 @@ const propTypes = {
     collapsedClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    defaultColor: {
+function PlaybackControls({
+    defaultColor = {
         color: '#FFFFFF',
         alpha: 1,
     },
-    defaultProgressColor: {
+    defaultProgressColor = {
         color: '#666',
         alpha: 1,
     },
-    withLoading: true,
-    withoutShadow: false,
-    className: null,
-    collapsedClassName: null,
-};
-
-function PlaybackControls({
-    defaultColor,
-    defaultProgressColor,
-    withLoading,
-    withoutShadow,
-    className,
-    collapsedClassName,
+    withLoading = true,
+    withoutShadow = false,
+    className = null,
+    collapsedClassName = null,
 }) {
     const intl = useIntl();
     const {
@@ -301,6 +292,5 @@ function PlaybackControls({
 }
 
 PlaybackControls.propTypes = propTypes;
-PlaybackControls.defaultProps = defaultProps;
 
 export default PlaybackControls;

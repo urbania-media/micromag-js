@@ -6,12 +6,7 @@ const propTypes = {
     color: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-    color: '#fff',
-};
-
-const LinkIcon = ({ color, className }) => (
+const LinkIcon = ({ color = '#fff', className = null }) => (
     <svg
         width="16"
         height="16"
@@ -38,6 +33,5 @@ const LinkIcon = ({ color, className }) => (
 );
 
 LinkIcon.propTypes = propTypes;
-LinkIcon.defaultProps = defaultProps;
 
 export default LinkIcon;

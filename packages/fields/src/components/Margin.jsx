@@ -8,7 +8,7 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import Slider from './Slider';
 // import Number from './Number';
 
-import styles from '../styles/margin.module.scss';
+import styles from '../styles/margin.module.css';
 
 const propTypes = {
     value: PropTypes.number,
@@ -21,18 +21,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    unit: 'pt',
-    direction: 'top',
-    min: 0,
-    max: 20,
-    marksStep: 5,
-    className: null,
-    onChange: null,
-};
-
-const MarginField = ({ value, unit, direction, min, max, marksStep, className, onChange }) => (
+const MarginField = ({ value = null, unit = 'pt', direction = 'top', min = 0, max = 20, marksStep = 5, className = null, onChange = null }) => (
     <div
         className={classNames([
             styles.container,
@@ -65,7 +54,6 @@ const MarginField = ({ value, unit, direction, min, max, marksStep, className, o
 );
 
 MarginField.propTypes = propTypes;
-MarginField.defaultProps = defaultProps;
 MarginField.isHorizontal = true;
 
 export default MarginField;

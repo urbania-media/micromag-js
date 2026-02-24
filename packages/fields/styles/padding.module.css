@@ -1,0 +1,21 @@
+/* stylelint-disable max-nesting-depth, selector-max-compound-selectors, no-descending-specificity */
+
+.preview {
+    @include background-grid(4px, var(--mm-gray-300));
+    display: block;
+    border: solid 1px var(--mm-black);
+
+    .color {
+        display: block;
+        width: 1em;
+        height: 1em;
+    }
+}
+
+.spacing {
+    width: auto !important;
+
+    label {
+        color: #fff !important;
+    }
+}

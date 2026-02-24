@@ -1,0 +1,57 @@
+.container {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    display: flex;
+    align-items: center;
+    transform-origin: 0 50%;
+    border-radius: 0;
+
+    .label {
+        opacity: 0.75;
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            .icon {
+                transform: scale(1.1);
+                transition: transform 0.3s var(--mm-ease-in-yo), opacity 0.3s var(--mm-ease-in-yo);
+            }
+
+            .label {
+                transition: opacity 0.3s var(--mm-ease-in-yo);
+                opacity: 1;
+            }
+        }
+    }
+
+    &:focus-visible {
+        box-shadow: 0 0 0 2px var(--micromag-focus-color, #fff);
+    }
+
+    &:active {
+        .icon,
+        .label {
+            transform: scale(1);
+            transition: transform 0.3s var(--mm-ease-in-kickback);
+        }
+    }
+}
+
+.label {
+    user-select: none;
+}
+
+.icon {
+    svg {
+        display: block;
+        width: 1rem;
+        height: auto;
+    }
+}

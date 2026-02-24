@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { useIntl, defineMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import styles from '../styles/call-to-action.module.scss';
+import styles from '../styles/call-to-action.module.css';
 import Fields from './Fields';
 
 const propTypes = {
@@ -13,13 +13,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const ShareIncentive = ({ value, className, onChange, ...props }) => {
+const ShareIncentive = ({ value = null, className = null, onChange = null, ...props }) => {
     const { active = false } = value || {};
     const intl = useIntl();
 
@@ -68,6 +62,5 @@ const ShareIncentive = ({ value, className, onChange, ...props }) => {
 };
 
 ShareIncentive.propTypes = propTypes;
-ShareIncentive.defaultProps = defaultProps;
 
 export default ShareIncentive;

@@ -41,7 +41,7 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './timeline.module.scss';
+import styles from './timeline.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf([
@@ -72,55 +72,31 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'normal',
-    title: null,
-    items: [null],
-    itemTitleStyle: null,
-    itemDescriptionStyle: null,
-    withoutLine: false,
-    bulletColor: null,
-    lineColor: null,
-    bulletShape: 'circle',
-    bulletFilled: true,
-    illustrated: false,
-    spacing: 20,
-    header: null,
-    footer: null,
-    background: null,
-    alternatives: null,
-    current: true,
-    active: true,
-    preload: true,
-    type: null,
-    className: null,
-};
-
 const Timeline = ({
-    layout,
-    title,
-    items,
-    itemTitleStyle,
-    itemDescriptionStyle,
-    withoutLine,
-    bulletColor,
-    lineColor,
-    bulletShape,
-    bulletFilled,
-    illustrated,
+    layout = 'normal',
+    title = null,
+    items = [null],
+    itemTitleStyle = null,
+    itemDescriptionStyle = null,
+    withoutLine = false,
+    bulletColor = null,
+    lineColor = null,
+    bulletShape = 'circle',
+    bulletFilled = true,
+    illustrated = false,
     spacing: initialSpacing = null,
     itemBottomSpacing: initialItemBottomSpacing = null,
-    header,
-    footer,
-    background,
-    alternatives,
-    current,
-    active,
-    preload,
+    header = null,
+    footer = null,
+    background = null,
+    alternatives = null,
+    current = true,
+    active = true,
+    preload = true,
     // transitions,
     // transitionStagger,
-    type,
-    className,
+    type = null,
+    className = null,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, imageResolution, resolution } = useScreenSize();
@@ -710,6 +686,5 @@ const Timeline = ({
 };
 
 Timeline.propTypes = propTypes;
-Timeline.defaultProps = defaultProps;
 
 export default Timeline;

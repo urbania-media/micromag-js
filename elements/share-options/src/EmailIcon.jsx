@@ -7,12 +7,7 @@ const propTypes = {
     size: PropTypes.number,
 };
 
-const defaultProps = {
-    className: null,
-    size: 45,
-};
-
-const EmailIcon = ({ className, size }) => (
+const EmailIcon = ({ className = null, size = 45 }) => (
     <svg
         width={size}
         height={size}
@@ -45,6 +40,5 @@ const EmailIcon = ({ className, size }) => (
 );
 
 EmailIcon.propTypes = propTypes;
-EmailIcon.defaultProps = defaultProps;
 
 export default EmailIcon;

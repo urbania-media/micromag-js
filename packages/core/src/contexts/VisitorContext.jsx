@@ -30,11 +30,7 @@ const propTypes = {
     visitor: MicromagPropTypes.visitor,
 };
 
-const defaultProps = {
-    visitor: null,
-};
-
-export const VisitorProvider = ({ visitor: providedVisitor, children }) => {
+export const VisitorProvider = ({ visitor: providedVisitor = null, children }) => {
     const [visitor, setVisitor] = useState(providedVisitor);
 
     useEffect(() => {
@@ -55,4 +51,3 @@ export const VisitorProvider = ({ visitor: providedVisitor, children }) => {
 };
 
 VisitorProvider.propTypes = propTypes;
-VisitorProvider.defaultProps = defaultProps;

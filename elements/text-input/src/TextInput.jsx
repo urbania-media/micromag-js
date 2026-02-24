@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { usePlaceholderStyle } from '@micromag/core/hooks';
 import { getStyleFromBox, getStyleFromMargin, getStyleFromText } from '@micromag/core/utils';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     label: PropTypes.string,
@@ -30,44 +30,24 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    label: null,
-    labelOutside: false,
-    labelClassName: null,
-    textStyle: null,
-    placeholderTextStyle: null,
-    buttonStyle: null,
-    labelOutsideStyle: null,
-    margin: null,
-    multiline: false,
-    value: '',
-    onChange: null,
-    onFocus: null,
-    onBlur: null,
-    required: false,
-    disabled: false,
-    focusable: true,
-    className: null,
-};
-
 const TextInput = ({
-    label,
-    labelOutside,
-    labelClassName,
-    textStyle,
-    placeholderTextStyle,
-    buttonStyle,
-    labelOutsideStyle,
-    margin,
-    multiline,
-    value,
-    onChange,
-    onFocus,
-    onBlur,
-    required,
-    disabled,
-    focusable,
-    className,
+    label = null,
+    labelOutside = false,
+    labelClassName = null,
+    textStyle = null,
+    placeholderTextStyle = null,
+    buttonStyle = null,
+    labelOutsideStyle = null,
+    margin = null,
+    multiline = false,
+    value = '',
+    onChange = null,
+    onFocus = null,
+    onBlur = null,
+    required = false,
+    disabled = false,
+    focusable = true,
+    className = null,
 }) => {
     let containerStyle = {};
     let labelStyle = {};
@@ -165,6 +145,5 @@ const TextInput = ({
 };
 
 TextInput.propTypes = propTypes;
-TextInput.defaultProps = defaultProps;
 
 export default TextInput;

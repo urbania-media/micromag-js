@@ -1,0 +1,102 @@
+/* stylelint-disable max-nesting-depth */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .empty {
+        margin: 5px auto;
+        border: dashed 2px var(--mm-gray-800);
+        color: var(--mm-gray-800);
+        height: 100%;
+        margin: 0;
+    }
+
+    .inner,
+    .canvas,
+    .canvasButton,
+    .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .canvasButton {
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font-family: inherit;
+        cursor: pointer;
+        appearance: none;
+        touch-action: none;
+    }
+
+    .videoContainer {
+        position: absolute;
+    }
+
+    .video {
+        visibility: hidden;
+
+        video {
+            height: 100%;
+        }
+    }
+
+    .mediaControls {
+        padding: 10px 20px 20px;
+    }
+
+    .placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .header {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .footer {
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    &.showVideo {
+        .video {
+            visibility: visible;
+        }
+    }
+}

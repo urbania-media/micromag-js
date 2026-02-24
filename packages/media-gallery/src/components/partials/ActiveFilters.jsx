@@ -10,7 +10,7 @@ import { Button } from '@micromag/core/components';
 
 import CloseButton from '../buttons/Close';
 
-import styles from '../../styles/partials/active-filters.module.scss';
+import styles from '../../styles/partials/active-filters.module.css';
 
 const propTypes = {
     filters: PropTypes.shape({
@@ -25,15 +25,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    filters: null,
-    onChange: null,
-    onReset: null,
-    sections: [],
-    className: null,
-};
-
-function ActiveFilters({ filters, onChange, onReset, sections, className }) {
+function ActiveFilters({ filters = null, onChange = null, onReset = null, sections = [], className = null }) {
     const handleReset = useCallback(() => {
         if (onReset !== null) {
             onReset();
@@ -117,6 +109,5 @@ function ActiveFilters({ filters, onChange, onReset, sections, className }) {
 }
 
 ActiveFilters.propTypes = propTypes;
-ActiveFilters.defaultProps = defaultProps;
 
 export default ActiveFilters;

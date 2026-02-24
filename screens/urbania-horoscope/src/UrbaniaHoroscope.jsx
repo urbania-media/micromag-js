@@ -32,7 +32,7 @@ import signsList from './data/signs';
 import SignCard from './partials/SignCard';
 import SignModal from './partials/SignModal';
 
-import styles from './urbania-horoscope.module.scss';
+import styles from './urbania-horoscope.module.css';
 
 import Astrologie from './images/astrologie-text.svg';
 
@@ -88,38 +88,21 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    defaultSigns: signsList,
-    signs: null,
-    title: null,
-    description: null,
-    author: null,
-    button: null,
-    signSubtitle: null,
-    spacing: 20,
-    background: null,
-    popupBackground: null,
-    current: true,
-    preload: true,
-    type: 'horoscope',
-    className: null,
-};
-
 const UrbaniaHoroscope = ({
-    defaultSigns,
-    signs: signsValue,
-    title,
-    description,
-    author,
-    button,
-    signSubtitle,
-    spacing,
-    background,
-    popupBackground,
-    current,
-    preload,
-    type,
-    className,
+    defaultSigns = signsList,
+    signs: signsValue = null,
+    title = null,
+    description = null,
+    author = null,
+    button = null,
+    signSubtitle = null,
+    spacing = 20,
+    background = null,
+    popupBackground = null,
+    current = true,
+    preload = true,
+    type = 'horoscope',
+    className = null,
 }) => {
     const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -566,6 +549,5 @@ const UrbaniaHoroscope = ({
 };
 
 UrbaniaHoroscope.propTypes = propTypes;
-UrbaniaHoroscope.defaultProps = defaultProps;
 
 export default UrbaniaHoroscope;

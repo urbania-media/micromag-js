@@ -7,7 +7,7 @@ import { PropTypes as MicromagPropTypes } from '../../lib';
 
 import Screen from './Screen';
 
-import styles from '../../styles/screens/screens.module.scss';
+import styles from '../../styles/screens/screens.module.css';
 
 const propTypes = {
     screens: MicromagPropTypes.storyComponents.isRequired,
@@ -15,12 +15,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    screen: null,
-    className: null,
-};
-
-const Screens = ({ screens, screen: screenId, className }) => (
+const Screens = ({ screens, screen: screenId = null, className = null }) => (
     <div
         className={classNames([
             styles.container,
@@ -48,6 +43,5 @@ const Screens = ({ screens, screen: screenId, className }) => (
 );
 
 Screens.propTypes = propTypes;
-Screens.defaultProps = defaultProps;
 
 export default Screens;

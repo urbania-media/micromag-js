@@ -1,0 +1,153 @@
+/* stylelint-disable max-nesting-depth */
+.container {
+    position: relative;
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .empty {
+        margin: 5px auto;
+        border: dashed 2px var(--mm-gray-800);
+        color: var(--mm-gray-800);
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .emptyTitle {
+        width: 100%;
+    }
+
+    .item {
+        position: relative;
+    }
+
+    .element {
+        display: flex;
+
+        &.hidden {
+            .body {
+                display: none;
+                visibility: hidden;
+            }
+        }
+    }
+
+    .timeline {
+        display: flex;
+        box-sizing: content-box;
+        flex-direction: column;
+        flex-shrink: 0;
+        align-items: center;
+        width: 15px;
+        padding-right: 20px;
+    }
+
+    .line {
+        flex-grow: 1;
+        width: 1px;
+
+        &.hidden {
+            width: auto;
+        }
+    }
+
+    .bullet {
+        width: 15px;
+        height: 15px;
+        margin: 2px 0;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    .body {
+        flex-grow: 1;
+    }
+
+    .title,
+    .description,
+    .imageContainer {
+        padding: 8px 0;
+    }
+
+    .image,
+    .imageContainer,
+    .video {
+        position: relative;
+    }
+
+    .imageContainer {
+        overflow: hidden;
+    }
+
+    .callToAction {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transition: opacity 0.2s ease-out;
+
+        a {
+            padding: 0;
+        }
+
+        &.disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    &.isPlaceholder {
+        .scroll {
+            padding: 10px;
+        }
+
+        .timeline {
+            padding-right: 0;
+        }
+
+        .bullet {
+            width: 10px;
+            height: 10px;
+            border-color: rgba(255, 255, 255, 0.6);
+            background-color: rgba(255, 255, 255, 0.6);
+            mix-blend-mode: difference;
+        }
+
+        .title,
+        .description,
+        .imageContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 2px 0;
+        }
+
+        .line {
+            background-color: rgba(255, 255, 255, 0.6);
+            mix-blend-mode: difference;
+        }
+    }
+
+    &.circleBulletShape {
+        .bullet {
+            border-radius: 50%;
+        }
+    }
+
+    &.withoutLines {
+        .timeline {
+            visibility: hidden;
+        }
+    }
+}

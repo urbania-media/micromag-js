@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import styles from '../../styles/fields/checkbox.module.scss';
+import styles from '../../styles/fields/checkbox.module.css';
 
 const propTypes = {
     name: PropTypes.string,
@@ -17,17 +17,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    name: null,
-    value: null,
-    label: null,
-    disabled: false,
-    className: null,
-    onClick: null,
-    onChange: null,
-};
-
-function CheckboxField({ name, label, value, disabled, onClick, onChange, className }) {
+function CheckboxField({ name = null, label = null, value = null, disabled = false, onClick = null, onChange = null, className = null }) {
     const onInputChange = useCallback(
         (e) => {
             if (onChange !== null) {
@@ -66,6 +56,5 @@ function CheckboxField({ name, label, value, disabled, onClick, onChange, classN
 }
 
 CheckboxField.propTypes = propTypes;
-CheckboxField.defaultProps = defaultProps;
 
 export default CheckboxField;

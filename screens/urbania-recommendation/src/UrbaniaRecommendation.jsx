@@ -44,7 +44,7 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './urbania-recommendation.module.scss';
+import styles from './urbania-recommendation.module.css';
 
 const propTypes = {
     layout: PropTypes.string,
@@ -70,48 +70,26 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: null,
-    category: null,
-    visual: null,
-    title: null,
-    date: null,
-    location: null,
-    description: null,
-    sponsor: null,
-    spacing: 20,
-    header: null,
-    footer: null,
-    background: null,
-    cardBoxStyle: null,
-    lineColor: null,
-    withoutZoom: false,
-    current: true,
-    active: true,
-    preload: true,
-    className: null,
-};
-
 const UrbaniaRecommendation = ({
-    layout,
-    category,
-    visual,
-    title,
-    date,
-    location,
-    description,
-    sponsor,
-    spacing,
-    header,
-    footer,
-    background,
-    cardBoxStyle,
-    lineColor,
-    withoutZoom,
-    current,
-    active,
-    preload,
-    className,
+    layout = null,
+    category = null,
+    visual = null,
+    title = null,
+    date = null,
+    location = null,
+    description = null,
+    sponsor = null,
+    spacing = 20,
+    header = null,
+    footer = null,
+    background = null,
+    cardBoxStyle = null,
+    lineColor = null,
+    withoutZoom = false,
+    current = true,
+    active = true,
+    preload = true,
+    className = null,
 }) => {
     const intl = useIntl();
 
@@ -924,6 +902,5 @@ const UrbaniaRecommendation = ({
 };
 
 UrbaniaRecommendation.propTypes = propTypes;
-UrbaniaRecommendation.defaultProps = defaultProps;
 
 export default UrbaniaRecommendation;

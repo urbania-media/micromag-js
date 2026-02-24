@@ -10,14 +10,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    size: 100,
-    spacing: 8,
-    color: 'white',
-    className: null,
-};
-
-const MenuIcon = ({ size, spacing, color, className }) => {
+const MenuIcon = ({ size = 100, spacing = 8, color = 'white', className = null }) => {
     const squareSize = (size - 2 * spacing) / 3;
 
     return (
@@ -50,6 +43,5 @@ const MenuIcon = ({ size, spacing, color, className }) => {
 };
 
 MenuIcon.propTypes = propTypes;
-MenuIcon.defaultProps = defaultProps;
 
 export default MenuIcon;

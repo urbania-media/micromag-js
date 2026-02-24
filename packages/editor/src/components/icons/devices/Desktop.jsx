@@ -7,12 +7,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    color: 'currentColor',
-    className: null,
-};
-
-const DesktopIcon = ({ color, className }) => (
+const DesktopIcon = ({ color = 'currentColor', className = null }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -33,6 +28,5 @@ const DesktopIcon = ({ color, className }) => (
 );
 
 DesktopIcon.propTypes = propTypes;
-DesktopIcon.defaultProps = defaultProps;
 
 export default DesktopIcon;

@@ -15,14 +15,7 @@ const propTypes = {
     onScreenChange: PropTypes.func,
 };
 
-const defaultProps = {
-    story: null,
-    pathWithIndex: false,
-    children: null,
-    onScreenChange: null,
-};
-
-const ViewerRoutes = ({ story, pathWithIndex, children, onScreenChange, ...otherProps }) => {
+const ViewerRoutes = ({ story = null, pathWithIndex = false, children = null, onScreenChange = null, ...otherProps }) => {
     const routes = useRoutes();
     const url = useUrlGenerator();
     const [, navigate] = useLocation();
@@ -74,6 +67,5 @@ const ViewerRoutes = ({ story, pathWithIndex, children, onScreenChange, ...other
 };
 
 ViewerRoutes.propTypes = propTypes;
-ViewerRoutes.defaultProps = defaultProps;
 
 export default ViewerRoutes;

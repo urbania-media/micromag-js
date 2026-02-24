@@ -15,11 +15,7 @@ const propTypes = {
     apiKey: PropTypes.string, // .isRequired,
 };
 
-const defaultProps = {
-    apiKey: null,
-};
-
-export const GoogleKeysProvider = ({ children, apiKey }) => {
+export const GoogleKeysProvider = ({ children, apiKey = null }) => {
     const { apiKey: previousApiKey } = useGoogleKeys();
     const settingApiKey = useSetting('googleApiKey');
     const value = useMemo(
@@ -30,4 +26,3 @@ export const GoogleKeysProvider = ({ children, apiKey }) => {
 };
 
 GoogleKeysProvider.propTypes = propTypes;
-GoogleKeysProvider.defaultProps = defaultProps;

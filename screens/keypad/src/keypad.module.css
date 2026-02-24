@@ -1,0 +1,419 @@
+/* stylelint-disable max-nesting-depth */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none;
+
+    /* @note prevent specificity clashes */
+    p {
+        margin-top: inherit;
+        margin-bottom: inherit;
+        font-weight: inherit;
+    }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+    }
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.fixedHeader {
+    display: flex;
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    left: 0;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px;
+    opacity: 0;
+    pointer-events: none;
+
+    &.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.close {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    &:focus-visible {
+    outline: 3px solid var(--mm-purple);
+    outline-offset: 4px;
+    }
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    filter: invert(100%);
+    font-weight: bold;
+
+    &:focus-visible {
+        box-shadow: 0 0 2px 0 #fff;
+    }
+}
+
+.closeIcon {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+
+    border-radius: 50%;
+    color: #000;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.inner {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    transition: padding 0.2s ease-out;
+    text-align: center;
+}
+
+.title {
+    width: 100%;
+}
+
+.subtitle {
+    width: 100%;
+}
+
+.emptyTitle,
+.emptyText {
+    margin: 5px auto;
+    border: dashed 2px var(--mm-gray-800);
+    color: var(--mm-gray-800);
+    width: 100%;
+    margin: 10px auto;
+}
+
+.emptyTitle {
+    height: 100px;
+}
+
+.emptyText {
+    height: 50px;
+}
+
+.grid {
+    width: 85%;
+    /* @note: leaves a bigger left/right gutter for onClick navigation between screens */
+}
+
+.item {
+    position: relative;
+    height: 100%;
+
+    .button {
+        gap: 0;
+    }
+
+    .withSquareItems & {
+        height: auto;
+        aspect-ratio: 1;
+    }
+}
+
+
+
+/* .placeholderItem { */
+/* height: 0; */
+/* padding-bottom: 60%; */
+
+/* .withSquareItems & { */
+/* padding-bottom: 100%; */
+/* } */
+/* } */
+
+.button {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.3s var(--mm-ease-in-kickback);
+    font-weight: inherit;
+
+    &:hover,
+    &:focus-visible {
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &.isEmpty {
+        padding: 2px;
+        pointer-events: none;
+    }
+
+    &.isEmpty,
+    &.disableHover {
+        cursor: default;
+
+        &:hover,
+        &:active {
+            transform: none;
+        }
+    }
+
+    &.isLink {
+        text-decoration: none;
+
+        &:hover {
+            color: inherit;
+        }
+    }
+
+    .withSquareItems & {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .imagePlaceholder,
+    .buttonPlaceholder {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.buttonLabel {
+    width: 100%;
+    padding: 5px;
+}
+
+.empty {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.emptyButtonVisual {
+    margin-bottom: 5px;
+    padding: 10px 5px;
+}
+
+.emptyButtonLabel {
+    margin-bottom: 5px;
+    padding: 2px 5px;
+}
+
+/**
+ * POPUP
+ */
+
+.popupBackdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(0.25rem);
+    pointer-events: none;
+}
+
+.popup {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    position: fixed;
+    z-index: 6;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s var(--mm-ease-in-kickback);
+    touch-action: none;
+
+    &:active,
+    &:hover {
+        transform: scale(0.95);
+    }
+}
+
+.popupButton {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+
+    transition: transform 0.3s var(--mm-ease-in-kickback);
+
+    text-align: left;
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.popupScroll {
+    width: 100%;
+    height: 100%;
+}
+
+.popupInner {
+    display: flex;
+    position: relative;
+    z-index: 40;
+    flex-direction: column;
+    margin: 10% 7.5%;
+    overflow: hidden;
+    background-color: var(--mm-black);
+
+    &.withShadow {
+        box-shadow: 0 0 2px var(--mm-black);
+    }
+
+    /* @todo fighting specificity because of some weird reset */
+    /* I don't understand it; need to investigate deeper */
+    /* Probably cause it was all wrapped in a button — test */
+    .popupContent {
+        font-family: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-weight: inherit;
+        }
+    }
+}
+
+.placeholder {
+    mix-blend-mode: normal;
+}
+
+.popupHeading,
+.popupContent,
+.popupVisual {
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0.5em;
+}
+
+.popupHeading {
+    margin-bottom: 0.25em;
+    font-weight: inherit;
+}
+
+.contentSplit {
+    .emptyHeading,
+    .popupHeading {
+        order: 1;
+    }
+
+    .emptyVisual,
+    .popupVisual {
+        order: 2;
+    }
+
+    .emptyContent,
+    .popupContent {
+        order: 3;
+    }
+
+    .emptyCTA,
+    .popupCTA {
+        order: 4;
+    }
+}
+
+.contentBottom {
+    .emptyVisual,
+    .popupVisual {
+        order: 1;
+    }
+
+    .emptyHeading,
+    .popupHeading {
+        order: 2;
+    }
+
+    .emptyContent,
+    .popupContent {
+        order: 3;
+    }
+
+    .emptyCTA,
+    .popupCTA {
+        order: 4;
+    }
+}
+
+.popupCTA {
+    z-index: 2;
+    margin: 0 auto;
+}
+

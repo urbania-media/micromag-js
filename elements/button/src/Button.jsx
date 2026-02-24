@@ -9,7 +9,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button as CoreButton } from '@micromag/core/components';
 import { getStyleFromBox, getStyleFromText } from '@micromag/core/utils';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     textStyle: MicromagPropTypes.textStyle,
@@ -31,34 +31,19 @@ const propTypes = {
     style: PropTypes.object, // eslint-disable-line
 };
 
-const defaultProps = {
-    textStyle: null,
-    buttonStyle: null,
-    type: 'button',
-    disabled: false,
-    focusable: true,
-    inline: false,
-    onClick: null,
-    children: null,
-    className: null,
-    withoutExternalBorder: true,
-    refButton: null,
-    style: null,
-};
-
 const Button = ({
-    textStyle,
-    buttonStyle,
-    type,
-    disabled,
-    focusable,
-    inline,
-    onClick,
-    children,
-    className,
-    withoutExternalBorder,
-    refButton,
-    style,
+    textStyle = null,
+    buttonStyle = null,
+    type = 'button',
+    disabled = false,
+    focusable = true,
+    inline = false,
+    onClick = null,
+    children = null,
+    className = null,
+    withoutExternalBorder = true,
+    refButton = null,
+    style = null,
     ...buttonProps
 }) => {
     let finalStyles = style;
@@ -114,6 +99,5 @@ const Button = ({
 };
 
 Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
 
 export default Button;

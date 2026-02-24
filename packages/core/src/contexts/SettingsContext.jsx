@@ -18,11 +18,7 @@ const propTypes = {
     settings: PropTypes.object,
 };
 
-const defaultProps = {
-    settings: null,
-};
-
-export const SettingsProvider = ({ children, settings }) => {
+export const SettingsProvider = ({ children, settings = null }) => {
     const previousSettings = useSettings();
     const value = useMemo(
         () => ({
@@ -37,4 +33,3 @@ export const SettingsProvider = ({ children, settings }) => {
 };
 
 SettingsProvider.propTypes = propTypes;
-SettingsProvider.defaultProps = defaultProps;

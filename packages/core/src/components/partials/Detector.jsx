@@ -15,26 +15,15 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    throttleDelay: null,
-    threshold: undefined,
-    onEnter: null,
-    onLeave: null,
-    onChange: null,
-    disabled: false,
-    children: null,
-    className: null,
-};
-
 const Detector = ({
-    throttleDelay,
-    threshold,
-    onEnter,
-    onLeave,
-    onChange,
-    disabled,
-    children,
-    className,
+    throttleDelay = null,
+    threshold = undefined,
+    onEnter = null,
+    onLeave = null,
+    onChange = null,
+    disabled = false,
+    children = null,
+    className = null,
 }) => {
     const {
         ref,
@@ -90,6 +79,5 @@ const Detector = ({
 };
 
 Detector.propTypes = propTypes;
-Detector.defaultProps = defaultProps;
 
 export default Detector;

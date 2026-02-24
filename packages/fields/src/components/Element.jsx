@@ -15,24 +15,14 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    name: null,
-    fields: [],
-    value: null,
-    isList: false,
-    gotoFieldForm: null,
-    closeFieldForm: null,
-    onChange: null,
-};
-
 const ElementField = ({
-    name,
-    fields: formFields,
-    value,
-    gotoFieldForm,
-    closeFieldForm,
-    isList,
-    onChange,
+    name = null,
+    fields: formFields = [],
+    value = null,
+    gotoFieldForm = null,
+    closeFieldForm = null,
+    isList = false,
+    onChange = null,
 }) => {
     const fields = formFields || [];
     const settingsNames = useMemo(
@@ -86,6 +76,5 @@ const ElementField = ({
 };
 
 ElementField.propTypes = propTypes;
-ElementField.defaultProps = defaultProps;
 
 export default ElementField;

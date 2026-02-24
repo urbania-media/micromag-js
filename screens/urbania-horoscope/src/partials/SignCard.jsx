@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderTitle, ScreenElement } from '@micromag/core/components';
 
-import styles from './sign-card.module.scss';
+import styles from './sign-card.module.css';
 
 const propTypes = {
     className: PropTypes.string,
@@ -23,14 +23,7 @@ const propTypes = {
     onClick: PropTypes.func,
 };
 
-const defaultProps = {
-    className: null,
-    sign: null,
-    focusable: true,
-    onClick: null,
-};
-
-const SignCard = ({ className, sign, focusable, onClick }) => {
+const SignCard = ({ className = null, sign = null, focusable = true, onClick = null }) => {
     const { id = null, thumbnail = null, label = null, date = null } = sign || {};
 
     return (
@@ -65,6 +58,5 @@ const SignCard = ({ className, sign, focusable, onClick }) => {
 };
 
 SignCard.propTypes = propTypes;
-SignCard.defaultProps = defaultProps;
 
 export default SignCard;

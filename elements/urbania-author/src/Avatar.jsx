@@ -7,7 +7,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useSetting } from '@micromag/core/contexts';
 import { getOptimalImageUrl, pascalCase } from '@micromag/core/utils';
 
-import styles from './avatar.module.scss';
+import styles from './avatar.module.css';
 
 const propTypes = {
     image: MicromagPropTypes.imageElement,
@@ -20,18 +20,7 @@ const propTypes = {
     shouldLoad: PropTypes.bool,
 };
 
-const defaultProps = {
-    image: null,
-    width: 100,
-    height: 100,
-    resolution: 1,
-    isTag: false,
-    shape: 'circle',
-    className: null,
-    shouldLoad: true,
-};
-
-const Avatar = ({ image, width, height, resolution, shape, isTag, className, shouldLoad }) => {
+const Avatar = ({ image = null, width = 100, height = 100, resolution = 1, shape = 'circle', isTag = false, className = null, shouldLoad = true }) => {
     const supportsWebp = useSetting('supportsWebp', false);
     const imageResolution = useSetting('imageResolution', resolution);
     const imageAtSize = getOptimalImageUrl(image, width, height, { resolution: imageResolution, supportsWebp });
@@ -58,6 +47,5 @@ const Avatar = ({ image, width, height, resolution, shape, isTag, className, sho
 };
 
 Avatar.propTypes = propTypes;
-Avatar.defaultProps = defaultProps;
 
 export default Avatar;

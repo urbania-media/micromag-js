@@ -33,7 +33,7 @@ import Visual from '@micromag/element-visual';
 
 import layoutProps from './layouts';
 
-import styles from './gallery.module.scss';
+import styles from './gallery.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf([
@@ -73,36 +73,20 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'four-mosaic',
-    withCaptions: false,
-    imageCaptionStyle: null,
-    images: [],
-    spacing: 20,
-    captionMaxLines: 2,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    active: true,
-    preload: true,
-    className: null,
-};
-
 const GalleryScreen = ({
-    layout,
-    images,
-    withCaptions,
-    imageCaptionStyle,
-    background,
-    header,
-    footer,
-    current,
-    active,
-    preload,
-    spacing: initialSpacing,
-    captionMaxLines,
-    className,
+    layout = 'four-mosaic',
+    images = [],
+    withCaptions = false,
+    imageCaptionStyle = null,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    preload = true,
+    spacing: initialSpacing = 20,
+    captionMaxLines = 2,
+    className = null,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const {
@@ -325,6 +309,5 @@ const GalleryScreen = ({
 };
 
 GalleryScreen.propTypes = propTypes;
-GalleryScreen.defaultProps = defaultProps;
 
 export default GalleryScreen;

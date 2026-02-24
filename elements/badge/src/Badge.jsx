@@ -7,7 +7,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromBox } from '@micromag/core/utils';
 import Text from '@micromag/element-text';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     label: MicromagPropTypes.textElement,
@@ -16,14 +16,7 @@ const propTypes = {
     labelClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    label: null,
-    boxStyle: null,
-    className: null,
-    labelClassName: null,
-};
-
-function Badge({ label, boxStyle, className, labelClassName }) {
+function Badge({ label = null, boxStyle = null, className = null, labelClassName = null }) {
     const { textStyle = null } = label || {};
     const { lineHeight = null } = textStyle || {};
     let boxStyles = null;
@@ -58,6 +51,5 @@ function Badge({ label, boxStyle, className, labelClassName }) {
 }
 
 Badge.propTypes = propTypes;
-Badge.defaultProps = defaultProps;
 
 export default Badge;

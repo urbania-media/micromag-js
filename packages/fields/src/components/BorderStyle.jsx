@@ -5,7 +5,7 @@ import React from 'react';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Radios from './Radios';
 
-import styles from '../styles/border-style.module.scss';
+import styles from '../styles/border-style.module.css';
 
 const propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
@@ -14,14 +14,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    types: ['solid', 'dotted', 'dashed'],
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const BorderStyle = ({ types, value, className, onChange }) => {
+const BorderStyle = ({ types = ['solid', 'dotted', 'dashed'], value = null, className = null, onChange = null }) => {
     const onBorderStyleChange = (newVal) => {
         const v = newVal === value ? null : newVal;
         onChange(v);
@@ -67,6 +60,5 @@ const BorderStyle = ({ types, value, className, onChange }) => {
 };
 
 BorderStyle.propTypes = propTypes;
-BorderStyle.defaultProps = defaultProps;
 
 export default BorderStyle;

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 
-import styles from '../../styles/forms/tag-section.module.scss';
+import styles from '../../styles/forms/tag-section.module.css';
 
 const propTypes = {
     tags: PropTypes.arrayOf(
@@ -17,14 +17,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    tags: null,
-    parent: null,
-    onChange: null,
-    className: null,
-};
-
-const TagSection = ({ tags, parent, onChange, className }) => {
+const TagSection = ({ tags = null, parent = null, onChange = null, className = null }) => {
     const onItemChange = useCallback(
         (e) => {
             const val = e.target.dataset.value || null;
@@ -77,6 +70,5 @@ const TagSection = ({ tags, parent, onChange, className }) => {
 };
 
 TagSection.propTypes = propTypes;
-TagSection.defaultProps = defaultProps;
 
 export default TagSection;

@@ -17,15 +17,10 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    dropdownItems: [
-        { id: 'rename', label: 'Renommer', onClick: null },
-        { id: 'delete', label: 'Supprimer', onClick: null },
-    ],
-    className: null,
-};
-
-const DropdownButton = ({ dropdownItems, className }) => {
+const DropdownButton = ({ dropdownItems = [
+    { id: 'rename', label: 'Renommer', onClick: null },
+    { id: 'delete', label: 'Supprimer', onClick: null },
+], className = null }) => {
     const [opened, setOpened] = useState(false);
 
     const onOpen = useCallback(() => setOpened(!opened));
@@ -89,6 +84,5 @@ const DropdownButton = ({ dropdownItems, className }) => {
 };
 
 DropdownButton.propTypes = propTypes;
-DropdownButton.defaultProps = defaultProps;
 
 export default DropdownButton;

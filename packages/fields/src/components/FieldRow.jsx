@@ -15,7 +15,7 @@ import FieldErrors from './FieldErrors';
 import FieldHelp from './FieldHelp';
 import ToggleField from './Toggle';
 
-import styles from '../styles/field-row.module.scss';
+import styles from '../styles/field-row.module.css';
 
 const propTypes = {
     label: MicromagPropTypes.label,
@@ -44,58 +44,31 @@ const propTypes = {
     buttonClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    label: null,
-    errors: null,
-    help: null,
-    children: null,
-    value: null,
-    defaultValue: null,
-    isSection: false,
-    isHorizontal: false,
-    isListItem: false,
-    isCollapsible: false,
-    withoutLabel: false,
-    withoutCaret: false,
-    withSettings: false,
-    withToggle: false,
-    withForm: false,
-    withValue: false,
-    buttonTheme: null,
-    buttonOutline: false,
-    gotoSettings: null,
-    gotoForm: null,
-    onChange: null,
-    className: null,
-    labelClassName: null,
-    buttonClassName: null,
-};
-
 const FieldRow = ({
-    label,
-    errors,
-    help,
-    value,
-    defaultValue,
-    children,
-    isSection,
-    isHorizontal,
-    isListItem,
-    isCollapsible,
-    withoutLabel,
-    withoutCaret,
-    withSettings,
-    withToggle,
-    withForm,
-    withValue,
-    buttonTheme,
-    buttonOutline,
-    gotoForm,
-    gotoSettings,
-    onChange,
-    className,
-    labelClassName,
-    buttonClassName,
+    label = null,
+    errors = null,
+    help = null,
+    value = null,
+    defaultValue = null,
+    children = null,
+    isSection = false,
+    isHorizontal = false,
+    isListItem = false,
+    isCollapsible = false,
+    withoutLabel = false,
+    withoutCaret = false,
+    withSettings = false,
+    withToggle = false,
+    withForm = false,
+    withValue = false,
+    buttonTheme = null,
+    buttonOutline = false,
+    gotoForm = null,
+    gotoSettings = null,
+    onChange = null,
+    className = null,
+    labelClassName = null,
+    buttonClassName = null,
 }) => {
     const withLabel = !withoutLabel && label !== null;
     const isClickable = withForm;
@@ -309,6 +282,5 @@ const FieldRow = ({
 };
 
 FieldRow.propTypes = propTypes;
-FieldRow.defaultProps = defaultProps;
 
 export default FieldRow;

@@ -4,7 +4,7 @@ import React, { useCallback } from 'react';
 import FontStyle from './FontStyle';
 import TextAlign from './TextAlign';
 
-import styles from '../styles/font-style-with-align.module.scss';
+import styles from '../styles/font-style-with-align.module.css';
 
 const propTypes = {
     value: PropTypes.shape({}),
@@ -14,15 +14,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    fontStyleName: 'fontStyle',
-    alignName: 'align',
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const FontStyles = ({ value, fontStyleName, alignName, className, onChange }) => {
+const FontStyles = ({ value = null, fontStyleName = 'fontStyle', alignName = 'align', className = null, onChange = null }) => {
     const fontStyleValue = value !== null ? value[fontStyleName] || null : null;
     const alignValue = value !== null ? value[alignName] || null : null;
     const onFontStyleChange = useCallback(
@@ -66,6 +58,5 @@ const FontStyles = ({ value, fontStyleName, alignName, className, onChange }) =>
 };
 
 FontStyles.propTypes = propTypes;
-FontStyles.defaultProps = defaultProps;
 
 export default FontStyles;

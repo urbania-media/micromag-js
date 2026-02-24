@@ -34,7 +34,7 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './article.module.scss';
+import styles from './article.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
@@ -56,42 +56,23 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'normal',
-    image: null,
-    title: null,
-    surtitle: null,
-    date: null,
-    author: null,
-    subtitle: null,
-    text: null,
-    spacing: 20,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    preload: true,
-    type: null,
-    className: null,
-};
-
 const ArticleScreen = ({
     // layout,
-    image,
-    title,
-    surtitle,
-    date,
-    author,
-    subtitle,
-    text,
-    spacing,
-    background,
-    header,
-    footer,
-    current,
-    preload,
-    type,
-    className,
+    image = null,
+    title = null,
+    surtitle = null,
+    date = null,
+    author = null,
+    subtitle = null,
+    text = null,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    type = null,
+    className = null,
 }) => {
     const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -390,6 +371,5 @@ const ArticleScreen = ({
 };
 
 ArticleScreen.propTypes = propTypes;
-ArticleScreen.defaultProps = defaultProps;
 
 export default ArticleScreen;

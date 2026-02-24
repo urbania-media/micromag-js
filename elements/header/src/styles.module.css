@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s var(--mm-ease-in-out-sine);
+
+    &.fade {
+        opacity: 0.25;
+    }
+}

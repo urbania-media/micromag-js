@@ -8,8 +8,6 @@ const propTypes = {
     definition: MicromagPropTypes.screenDefinition.isRequired,
 };
 
-const defaultProps = {};
-
 const ScreenFields = ({ definition: { fields }, ...props }) => (
     <FieldsProvider>
         <Fields fields={fields} {...props} />
@@ -17,6 +15,5 @@ const ScreenFields = ({ definition: { fields }, ...props }) => (
 );
 
 ScreenFields.propTypes = propTypes;
-ScreenFields.defaultProps = defaultProps;
 
 export default ScreenFields;

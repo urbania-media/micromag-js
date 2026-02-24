@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import isNumber from 'lodash/isNumber';
 import classNames from 'classnames';
 
-import styles from '../../styles/partials/placeholder-text.module.scss';
+import styles from '../../styles/partials/placeholder-text.module.css';
 
 const propTypes = {
     lines: PropTypes.number,
@@ -16,17 +16,7 @@ const propTypes = {
     withInvertedColors: PropTypes.bool
 };
 
-const defaultProps = {
-    lines: 1,
-    lineMargin: 1,
-    width: '100%',
-    height: null,
-    fontSize: 16,
-    className: null,
-    withInvertedColors: true,
-};
-
-const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className,     withInvertedColors }) => {
+const PlaceholderText = ({ lines = 1, lineMargin = 1, width = '100%', height = null, fontSize = 16, className = null,     withInvertedColors = true }) => {
     const lineHeight =
         height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
 
@@ -59,6 +49,5 @@ const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className
 };
 
 PlaceholderText.propTypes = propTypes;
-PlaceholderText.defaultProps = defaultProps;
 
 export default PlaceholderText;

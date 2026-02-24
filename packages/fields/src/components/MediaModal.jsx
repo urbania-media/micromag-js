@@ -12,7 +12,7 @@ import MediaGallery from '@micromag/media-gallery';
 
 import FieldWithForm from './FieldWithForm';
 
-import styles from '../styles/media-modal.module.scss';
+import styles from '../styles/media-modal.module.css';
 
 const propTypes = {
     title: PropTypes.string,
@@ -29,39 +29,22 @@ const propTypes = {
     buttonsClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    title: null,
-    value: null,
-    type: null,
-    noValueLabel: (
-        <FormattedMessage
-            defaultMessage="Select a media..."
-            description="Label when no value is provided to Media field"
-        />
-    ),
-    isHorizontal: false,
-    onChange: null,
-    onRequestClose: null,
-    multiple: false,
-    thumbnail: null,
-    thumbnailPath: 'thumbnail_url',
-    className: null,
-    buttonsClassName: null,
-};
-
 const MediaModal = ({
-    title,
-    value,
-    type,
-    noValueLabel,
-    isHorizontal,
-    onChange,
-    onRequestClose,
-    multiple,
-    thumbnail,
-    thumbnailPath,
-    className,
-    buttonsClassName,
+    title = null,
+    value = null,
+    type = null,
+    noValueLabel = (<FormattedMessage
+        defaultMessage="Select a media..."
+        description="Label when no value is provided to Media field"
+    />),
+    isHorizontal = false,
+    onChange = null,
+    onRequestClose = null,
+    multiple = false,
+    thumbnail = null,
+    thumbnailPath = 'thumbnail_url',
+    className = null,
+    buttonsClassName = null,
     ...props
 }) => {
     const [modalOpen, setModalOpen] = useState();
@@ -301,7 +284,6 @@ const MediaModal = ({
 };
 
 MediaModal.propTypes = propTypes;
-MediaModal.defaultProps = defaultProps;
 MediaModal.withModal = true;
 
 export default MediaModal;

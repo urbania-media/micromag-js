@@ -1,0 +1,83 @@
+.container {
+    position: relative;
+
+    .input {
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            appearance: none;
+        }
+        appearance: textfield;
+
+        max-width: 80px;
+        margin-left: auto;
+        padding-right: 20px;
+    }
+
+    .arrow {
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 4px;
+        width: 20px;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .arrowIcon {
+        margin: auto;
+        font-size: 10px;
+    }
+
+    .clearButton {
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font-family: inherit;
+        cursor: pointer;
+        appearance: none;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        right: 8px;
+
+        transform: translateY(-50%);
+    }
+
+    .dataListItems {
+        position: absolute;
+        z-index: 2;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 2px 0;
+        list-style-type: none;
+        border-radius: 4px;
+        background-color: var(--mm-gray-700);
+    }
+
+    .dataListItem {
+        width: 100%;
+        padding: 0 2px;
+    }
+
+    .dataListItemButton {
+        width: 100%;
+        border: 0;
+        background-color: rgba(28, 28, 28, 0);
+        color: var(--mm-white);
+        text-align: left;
+
+        &:hover {
+            background-color: rgba(28, 28, 28, 0.1);
+        }
+    }
+
+    &.fullWidth {
+        .input {
+            max-width: none;
+        }
+    }
+}

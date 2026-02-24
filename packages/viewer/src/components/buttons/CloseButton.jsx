@@ -12,11 +12,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-};
-
-const CloseButton = ({ className, ...props }) => {
+const CloseButton = ({ className = null, ...props }) => {
     const intl = useIntl();
     return (
         <IconButton
@@ -36,6 +32,5 @@ const CloseButton = ({ className, ...props }) => {
 };
 
 CloseButton.propTypes = propTypes;
-CloseButton.defaultProps = defaultProps;
 
 export default CloseButton;

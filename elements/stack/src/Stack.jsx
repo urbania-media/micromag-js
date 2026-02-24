@@ -12,7 +12,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Spacer from './Spacer';
 import { StackProvider } from './StackContext';
 
-import styles from './styles/stack.module.scss';
+import styles from './styles/stack.module.css';
 
 const propTypes = {
     direction: MicromagPropTypes.stackDirection,
@@ -26,28 +26,16 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    direction: 'horizontal',
-    align: 'center',
-    spacing: null,
-    reverse: false,
-    size: null,
-    minSize: null,
-    maxSize: null,
-    className: null,
-    children: null,
-};
-
 function Stack({
-    direction,
-    align,
-    spacing,
-    reverse,
-    size,
-    minSize,
-    maxSize,
-    className,
-    children,
+    direction = 'horizontal',
+    align = 'center',
+    spacing = null,
+    reverse = false,
+    size = null,
+    minSize = null,
+    maxSize = null,
+    className = null,
+    children = null,
 }) {
     const flexDirection =
         (direction === 'vertical' ? 'column' : 'row') + (reverse ? '-reverse' : '');
@@ -94,6 +82,5 @@ function Stack({
 }
 
 Stack.propTypes = propTypes;
-Stack.defaultProps = defaultProps;
 
 export default Stack;

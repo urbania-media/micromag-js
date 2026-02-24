@@ -24,34 +24,19 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    inputRef: null,
-    type: 'text',
-    value: null,
-    errors: null,
-    required: false,
-    disabled: false,
-    placeholder: null,
-    prefix: null,
-    autofocus: false,
-    onChange: null,
-    onFocus: null,
-    className: null,
-};
-
 const TextField = ({
-    inputRef,
-    type,
-    value,
-    errors,
-    required,
-    disabled,
-    placeholder,
-    prefix,
-    autofocus,
-    onChange,
-    onFocus,
-    className,
+    inputRef = null,
+    type = 'text',
+    value = null,
+    errors = null,
+    required = false,
+    disabled = false,
+    placeholder = null,
+    prefix = null,
+    autofocus = false,
+    onChange = null,
+    onFocus = null,
+    className = null,
 }) => {
     const input = (
         <input
@@ -88,6 +73,5 @@ const TextField = ({
 };
 
 TextField.propTypes = propTypes;
-TextField.defaultProps = defaultProps;
 
 export default React.forwardRef((props, ref) => <TextField {...props} inputRef={ref} />);

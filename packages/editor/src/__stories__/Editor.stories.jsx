@@ -65,7 +65,7 @@ const hasWindow = typeof window !== 'undefined';
 
 const apiBaseUrl = hasWindow ? `${window.location.protocol}//${window.location.host}/api` : '/api';
 
-const EditorContainer = ({ defaultValue, isTheme = false, viewerTheme }) => {
+const EditorContainer = ({ defaultValue = null, isTheme = false, viewerTheme = null }) => {
     const [value, setValue] = useState(defaultValue);
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
@@ -160,11 +160,6 @@ EditorContainer.propTypes = {
     }),
     isTheme: PropTypes.bool,
     viewerTheme: MicromagPropTypes.viewerTheme,
-};
-EditorContainer.defaultProps = {
-    defaultValue: null,
-    isTheme: false,
-    viewerTheme: null,
 };
 
 export const TestHebdo = () => <EditorContainer defaultValue={hebdo} />;

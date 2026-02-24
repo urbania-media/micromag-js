@@ -30,7 +30,7 @@ import EmailIcon from './EmailIcon';
 import ShareLinkIcon from './ShareLinkIcon';
 import SmsIcon from './SmsIcon';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     className: PropTypes.string,
@@ -49,38 +49,21 @@ const propTypes = {
     focusable: PropTypes.bool,
 };
 
-const defaultProps = {
-    className: null,
-    itemClassName: null,
-    labelClassName: null,
-    buttonClassName: null,
-    title: null,
-    url: null,
-    options: null,
-    buttonsStyle: null,
-    buttonsTextStyle: null,
-    iconSize: 45,
-    theme: null,
-    onShare: null,
-    onClose: null,
-    focusable: true,
-};
-
 const ShareOptions = ({
-    className,
-    itemClassName,
-    labelClassName,
-    buttonClassName,
-    title,
-    url,
-    options,
-    buttonsStyle,
-    buttonsTextStyle,
-    iconSize,
-    theme,
-    onShare,
-    onClose,
-    focusable,
+    className = null,
+    itemClassName = null,
+    labelClassName = null,
+    buttonClassName = null,
+    title = null,
+    url = null,
+    options = null,
+    buttonsStyle = null,
+    buttonsTextStyle = null,
+    iconSize = 45,
+    theme = null,
+    onShare = null,
+    onClose = null,
+    focusable = true,
 }) => {
     const { menuTheme = null } = theme || {};
     const { colors = null } = menuTheme || {};
@@ -411,6 +394,5 @@ const ShareOptions = ({
 };
 
 ShareOptions.propTypes = propTypes;
-ShareOptions.defaultProps = defaultProps;
 
 export default ShareOptions;

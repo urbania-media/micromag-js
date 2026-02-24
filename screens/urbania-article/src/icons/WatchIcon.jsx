@@ -6,12 +6,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    color: '#222',
-    className: null,
-};
-
-const WatchIcon = ({ color, className }) => (
+const WatchIcon = ({ color = '#222', className = null }) => (
     <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -38,6 +33,5 @@ const WatchIcon = ({ color, className }) => (
 );
 
 WatchIcon.propTypes = propTypes;
-WatchIcon.defaultProps = defaultProps;
 
 export default WatchIcon;

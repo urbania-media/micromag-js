@@ -6,19 +6,14 @@ import React from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import CallToAction from '@micromag/element-call-to-action';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     callToAction: MicromagPropTypes.callToAction,
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    callToAction: null,
-    className: null,
-};
-
-function Footer({ callToAction, className }) {
+function Footer({ callToAction = null, className = null }) {
     if (callToAction === null) return null;
 
     return (
@@ -36,6 +31,5 @@ function Footer({ callToAction, className }) {
 }
 
 Footer.propTypes = propTypes;
-Footer.defaultProps = defaultProps;
 
 export default Footer;

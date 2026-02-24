@@ -22,18 +22,7 @@ const propTypes = {
     closeForm: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    fields: [],
-    isForm: false,
-    isHorizontal: false,
-    sections: null,
-    className: null,
-    onChange: null,
-    closeForm: null,
-};
-
-const TextStyleForm = ({ value, fields, sections, onChange, closeForm, ...props }) => {
+const TextStyleForm = ({ value = null, fields = [], sections = null, onChange = null, closeForm = null, ...props }) => {
     const textStyle = getStyleFromText(value);
     const { fontFamily = null } = textStyle || {};
     const fontLabel = fontFamily !== null ? fontFamily.replace(/['"]+/g, '') : null;
@@ -65,7 +54,6 @@ const TextStyleForm = ({ value, fields, sections, onChange, closeForm, ...props 
 };
 
 TextStyleForm.propTypes = propTypes;
-TextStyleForm.defaultProps = defaultProps;
 TextStyleForm.withForm = true;
 
 export default TextStyleForm;

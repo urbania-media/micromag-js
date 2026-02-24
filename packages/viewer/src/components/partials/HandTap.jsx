@@ -4,19 +4,14 @@ import React from 'react';
 
 import HandIcon from '../icons/Hand';
 
-import styles from '../../styles/partials/hand-tap.module.scss';
+import styles from '../../styles/partials/hand-tap.module.css';
 
 const propTypes = {
     withoutShadow: PropTypes.bool,
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    withoutShadow: false,
-    className: null,
-};
-
-const HandTap = ({ withoutShadow, className }) => (
+const HandTap = ({ withoutShadow = false, className = null }) => (
     <div
         className={classNames([
             styles.container,
@@ -31,6 +26,5 @@ const HandTap = ({ withoutShadow, className }) => (
 );
 
 HandTap.propTypes = propTypes;
-HandTap.defaultProps = defaultProps;
 
 export default HandTap;

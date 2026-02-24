@@ -24,19 +24,10 @@ const propTypes = {
     }),
 };
 
-const defaultProps = {
-    map: null,
-    events: null,
-    active: true,
-    title: null,
-    image: null,
-    iconSize: {
-        width: 50,
-        height: 50,
-    },
-};
-
-const Marker = ({ map, position, type, events, active, title, image, iconSize }) => {
+const Marker = ({ map = null, position, type, events = null, active = true, title = null, image = null, iconSize = {
+    width: 50,
+    height: 50,
+} }) => {
     useGoogleMapMarker(map, {
         position,
         type,
@@ -49,6 +40,5 @@ const Marker = ({ map, position, type, events, active, title, image, iconSize })
 };
 
 Marker.propTypes = propTypes;
-Marker.defaultProps = defaultProps;
 
 export default Marker;

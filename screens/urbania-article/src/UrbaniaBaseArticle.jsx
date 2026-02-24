@@ -41,7 +41,7 @@ import Visual from '@micromag/element-visual';
 import ArrowIcon from './icons/ArrowIcon';
 import WatchIcon from './icons/WatchIcon';
 
-import styles from './urbania-base-article.module.scss';
+import styles from './urbania-base-article.module.css';
 
 const propTypes = {
     hasArticle: PropTypes.bool,
@@ -64,46 +64,25 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    hasArticle: false,
-    type: null,
-    image: null,
-    title: null,
-    description: null,
-    overTitle: null,
-    author: null,
-    sponsors: null,
-    sponsorPrefix: null,
-    sponsorColor: null,
-    site: null,
-    header: null,
-    footer: null,
-    background: null,
-    current: true,
-    preload: true,
-    spacing: 20,
-    className: null,
-};
-
 const UrbaniaArticle = ({
-    hasArticle,
-    type,
-    image,
-    title,
-    description,
-    overTitle,
-    author,
-    sponsors,
-    sponsorPrefix,
-    sponsorColor,
-    site,
-    header,
-    footer,
-    background,
-    current,
-    preload,
-    spacing,
-    className,
+    hasArticle = false,
+    type = null,
+    image = null,
+    title = null,
+    description = null,
+    overTitle = null,
+    author = null,
+    sponsors = null,
+    sponsorPrefix = null,
+    sponsorColor = null,
+    site = null,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    spacing = 20,
+    className = null,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
@@ -415,6 +394,5 @@ const UrbaniaArticle = ({
 };
 
 UrbaniaArticle.propTypes = propTypes;
-UrbaniaArticle.defaultProps = defaultProps;
 
 export default UrbaniaArticle;

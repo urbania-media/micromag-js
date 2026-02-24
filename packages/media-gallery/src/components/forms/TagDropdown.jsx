@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 
-import styles from '../../styles/forms/tag-dropdown.module.scss';
+import styles from '../../styles/forms/tag-dropdown.module.css';
 
 const propTypes = {
     tags: PropTypes.arrayOf(
@@ -17,14 +17,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    tags: null,
-    parent: null,
-    onChange: null,
-    className: null,
-};
-
-const TagDropdown = ({ tags, parent, onChange, className }) => {
+const TagDropdown = ({ tags = null, parent = null, onChange = null, className = null }) => {
     const onItemChange = useCallback(
         (e) => {
             const val = e.target.dataset.value || null;
@@ -73,6 +66,5 @@ const TagDropdown = ({ tags, parent, onChange, className }) => {
 };
 
 TagDropdown.propTypes = propTypes;
-TagDropdown.defaultProps = defaultProps;
 
 export default TagDropdown;

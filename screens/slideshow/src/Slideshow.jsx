@@ -23,7 +23,7 @@ import Header from '@micromag/element-header';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './slideshow.module.scss';
+import styles from './slideshow.module.css';
 
 const propTypes = {
     slides: PropTypes.oneOfType([MicromagPropTypes.imageMedias, MicromagPropTypes.imageElements]),
@@ -41,36 +41,20 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    withCaptions: false,
-    slides: [],
-    spacing: 20,
-    captionMaxLines: 2,
-    transitionDelay: 1, // in seconds
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    active: true,
-    preload: true,
-    transitions: null,
-    className: null,
-};
-
 const SlideshowScreen = ({
-    slides,
-    withCaptions,
-    background,
-    header,
-    footer,
-    current,
-    active,
-    preload,
-    spacing,
-    transitionDelay,
-    captionMaxLines,
-    transitions,
-    className,
+    slides = [],
+    withCaptions = false,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    preload = true,
+    spacing = 20,
+    transitionDelay = 1,
+    captionMaxLines = 2,
+    transitions = null,
+    className = null,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
@@ -276,6 +260,5 @@ const SlideshowScreen = ({
 };
 
 SlideshowScreen.propTypes = propTypes;
-SlideshowScreen.defaultProps = defaultProps;
 
 export default SlideshowScreen;

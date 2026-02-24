@@ -19,24 +19,14 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    name: null,
-    value: null,
-    options: [],
-    withoutReset: false,
-    disabled: false,
-    className: null,
-    onChange: null,
-};
-
 const SelectAdvancedField = ({
-    name,
-    value,
-    options,
-    withoutReset,
-    disabled,
-    className,
-    onChange,
+    name = null,
+    value = null,
+    options = [],
+    withoutReset = false,
+    disabled = false,
+    className = null,
+    onChange = null,
     ...props
 }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
@@ -84,6 +74,5 @@ const SelectAdvancedField = ({
 };
 
 SelectAdvancedField.propTypes = propTypes;
-SelectAdvancedField.defaultProps = defaultProps;
 
 export default SelectAdvancedField;

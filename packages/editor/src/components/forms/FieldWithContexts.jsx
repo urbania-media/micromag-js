@@ -14,13 +14,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    name: null,
-    form: null,
-    children: null,
-};
-
-const FieldWithContexts = ({ name, form, ...props }) => {
+const FieldWithContexts = ({ name = null, form = null, ...props }) => {
     const definition = useScreenDefinition() || null;
     const { states = null } = definition;
     const screenFields = getScreenFieldsWithStates(definition);
@@ -67,6 +61,5 @@ const FieldWithContexts = ({ name, form, ...props }) => {
 };
 
 FieldWithContexts.propTypes = propTypes;
-FieldWithContexts.defaultProps = defaultProps;
 
 export default FieldWithContexts;

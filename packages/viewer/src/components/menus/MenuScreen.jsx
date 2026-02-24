@@ -11,7 +11,7 @@ import { useIsVisible } from '@micromag/core/hooks';
 
 import StackIcon from '../icons/Stack';
 
-import styles from '../../styles/menus/menu-screen.module.scss';
+import styles from '../../styles/menus/menu-screen.module.css';
 
 const propTypes = {
     className: PropTypes.string,
@@ -23,24 +23,14 @@ const propTypes = {
     focusable: PropTypes.bool,
 };
 
-const defaultProps = {
-    className: null,
-    item: MicromagPropTypes.menuItem,
-    index: 0,
-    onClick: null,
-    screenSize: null,
-    alwaysRender: false,
-    focusable: true,
-};
-
 const ViewerMenuScreen = ({
-    className,
-    item,
-    index,
-    onClick,
-    screenSize,
-    alwaysRender,
-    focusable,
+    className = null,
+    item = MicromagPropTypes.menuItem,
+    index = 0,
+    onClick = null,
+    screenSize = null,
+    alwaysRender = false,
+    focusable = true,
 }) => {
     const intl = useIntl();
     const { current = false, screen, count = 1 } = item || {};
@@ -116,6 +106,5 @@ const ViewerMenuScreen = ({
 };
 
 ViewerMenuScreen.propTypes = propTypes;
-ViewerMenuScreen.defaultProps = defaultProps;
 
 export default ViewerMenuScreen;

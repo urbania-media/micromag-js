@@ -1,0 +1,51 @@
+/* stylelint-disable max-nesting-depth */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .emptyQuote,
+    .emptyAuthor {
+        margin: 5px auto;
+        border: dashed 2px var(--mm-gray-800);
+        color: var(--mm-gray-800);
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .emptyQuote {
+        height: 200px;
+    }
+
+    .emptyAuthor {
+        height: 50px;
+    }
+
+    .quote {
+        font-size: 2em;
+
+        &.withMargin {
+            margin-bottom: 1em;
+        }
+    }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+    }
+}

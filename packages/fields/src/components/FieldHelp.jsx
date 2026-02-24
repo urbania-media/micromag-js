@@ -11,13 +11,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    children: null,
-    muted: true,
-    className: null,
-};
-
-const FieldErrors = ({ children, muted, className }) => (
+const FieldErrors = ({ children = null, muted = true, className = null }) => (
     <small
         id="passwordHelpBlock"
         className={classNames([
@@ -33,6 +27,5 @@ const FieldErrors = ({ children, muted, className }) => (
 );
 
 FieldErrors.propTypes = propTypes;
-FieldErrors.defaultProps = defaultProps;
 
 export default FieldErrors;

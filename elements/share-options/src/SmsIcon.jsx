@@ -7,12 +7,7 @@ const propTypes = {
     size: PropTypes.number,
 };
 
-const defaultProps = {
-    className: null,
-    size: 45,
-};
-
-const SmsIcon = ({ className, size }) => (
+const SmsIcon = ({ className = null, size = 45 }) => (
     <svg
         width={size}
         height={size}
@@ -29,6 +24,5 @@ const SmsIcon = ({ className, size }) => (
 );
 
 SmsIcon.propTypes = propTypes;
-SmsIcon.defaultProps = defaultProps;
 
 export default SmsIcon;

@@ -23,7 +23,7 @@ import Layout, { Spacer } from '@micromag/element-layout';
 import Quote from '@micromag/element-quote';
 import Text from '@micromag/element-text';
 
-import styles from './quote.module.scss';
+import styles from './quote.module.css';
 
 // NOTE: this might be better with a scroll
 
@@ -40,30 +40,17 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'top',
-    quote: null,
-    author: null,
-    spacing: 20,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    preload: true,
-    className: null,
-};
-
 const QuoteScreen = ({
-    layout,
-    quote,
-    author,
-    spacing,
-    background,
-    header,
-    footer,
-    current,
-    preload,
-    className,
+    layout = 'top',
+    quote = null,
+    author = null,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    className = null,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -225,6 +212,5 @@ const QuoteScreen = ({
 };
 
 QuoteScreen.propTypes = propTypes;
-QuoteScreen.defaultProps = defaultProps;
 
 export default QuoteScreen;

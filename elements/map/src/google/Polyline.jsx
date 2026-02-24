@@ -14,11 +14,7 @@ const propTypes = {
     events: PropTypes.object, // eslint-disable-line
 };
 
-const defaultProps = {
-    map: null,
-};
-
-const Polyline = ({ map, coords }) => {
+const Polyline = ({ map = null, coords }) => {
     useGoogleMapPolyline(map, {
         coords,
     });
@@ -26,6 +22,5 @@ const Polyline = ({ map, coords }) => {
 };
 
 Polyline.propTypes = propTypes;
-Polyline.defaultProps = defaultProps;
 
 export default Polyline;

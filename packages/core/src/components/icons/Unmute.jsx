@@ -6,12 +6,7 @@ const propTypes = {
     color: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-    color: '#fff',
-};
-
-const UnmuteIcon = ({ color, className }) => (
+const UnmuteIcon = ({ color = '#fff', className = null }) => (
     <svg
         width="26"
         height="26"
@@ -34,6 +29,5 @@ const UnmuteIcon = ({ color, className }) => (
 );
 
 UnmuteIcon.propTypes = propTypes;
-UnmuteIcon.defaultProps = defaultProps;
 
 export default UnmuteIcon;

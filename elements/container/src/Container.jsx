@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     containerRef: PropTypes.oneOfType([
@@ -21,14 +21,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    containerRef: null,
-    className: null,
-    style: null,
-    children: null,
-};
-
-function Container({ containerRef, width, height, style, className, children }) {
+function Container({ containerRef = null, width, height, style = null, className = null, children = null }) {
     const hasSize = width > 0 && height > 0;
     const containerStyle = hasSize
         ? {
@@ -55,6 +48,5 @@ function Container({ containerRef, width, height, style, className, children }) 
 }
 
 Container.propTypes = propTypes;
-Container.defaultProps = defaultProps;
 
 export default React.forwardRef((props, ref) => <Container containerRef={ref} {...props} />);

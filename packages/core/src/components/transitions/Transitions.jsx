@@ -18,17 +18,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    fullscreen: false,
-    playing: false,
-    delay: 0,
-    transitions: null,
-    onComplete: null,
-    disabled: false,
-    children: null,
-};
-
-function Transitions({ fullscreen, playing, delay, transitions, onComplete, disabled, children }) {
+function Transitions({ fullscreen = false, playing = false, delay = 0, transitions = null, onComplete = null, disabled = false, children = null }) {
     const { landscape = true } = useScreenSize();
 
     const finalPlaying = playing || landscape;
@@ -96,6 +86,5 @@ function Transitions({ fullscreen, playing, delay, transitions, onComplete, disa
 }
 
 Transitions.propTypes = propTypes;
-Transitions.defaultProps = defaultProps;
 
 export default Transitions;

@@ -4,19 +4,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from '../styles/field-errors.module.scss';
+import styles from '../styles/field-errors.module.css';
 
 const propTypes = {
     errors: MicromagPropTypes.errors,
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    errors: null,
-    className: null,
-};
-
-const FieldErrors = ({ errors, className }) =>
+const FieldErrors = ({ errors = null, className = null }) =>
     errors !== null && errors.length > 0 ? (
         <div
             className={classNames([
@@ -38,6 +33,5 @@ const FieldErrors = ({ errors, className }) =>
     ) : null;
 
 FieldErrors.propTypes = propTypes;
-FieldErrors.defaultProps = defaultProps;
 
 export default FieldErrors;

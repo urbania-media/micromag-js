@@ -1,0 +1,37 @@
+.container {
+    padding: 10px;
+    text-align: center;
+    mix-blend-mode: difference;
+
+    .icon {
+        width: 25px;
+        height: auto;
+        margin: auto;
+        margin-top: 3px;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .message {
+        width: 80%;
+        height: 23px;
+        margin: 3px 1px 0;
+        background-color: rgb(var(--mm-white), 0.6);
+    }
+
+    .placeholderMessage0 {
+        width: 65%;
+    }
+
+    .placeholderMessage1 {
+        margin-left: auto;
+    }
+
+    .placeholderMessage2 {
+        width: 65%;
+    }
+
+    .placeholderMessage3 {
+        width: 50%;
+        margin-left: auto;
+    }
+}

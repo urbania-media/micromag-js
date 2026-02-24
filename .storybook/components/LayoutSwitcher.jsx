@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import styles from './styles/layout-switcher.module.scss';
+import styles from './styles/layout-switcher.module.css';
 
 const propTypes = {
     layouts: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -8,11 +8,7 @@ const propTypes = {
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 };
 
-const defaultProps = {
-    defaultLayout: null,
-};
-
-const LayoutSwitcher = ({ layouts, children, defaultLayout }) => {
+const LayoutSwitcher = ({ layouts, children, defaultLayout = null }) => {
     const firstLayout = layouts !== null && layouts.length > 0 ? layouts[0] : null;
     const [layout, setLayout] = useState(defaultLayout || firstLayout);
     const onSelectChange = (e) => setLayout(e.currentTarget.value);
@@ -34,6 +30,5 @@ const LayoutSwitcher = ({ layouts, children, defaultLayout }) => {
 };
 
 LayoutSwitcher.propTypes = propTypes;
-LayoutSwitcher.defaultProps = defaultProps;
 
 export default LayoutSwitcher;

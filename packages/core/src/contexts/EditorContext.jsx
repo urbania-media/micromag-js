@@ -18,8 +18,6 @@ const propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {};
-
 export const EditorProvider = ({ children }) => {
     const story = useStory();
     const screensManager = useScreensManager();
@@ -41,4 +39,3 @@ export const EditorProvider = ({ children }) => {
 };
 
 EditorProvider.propTypes = propTypes;
-EditorProvider.defaultProps = defaultProps;

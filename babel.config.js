@@ -21,6 +21,7 @@ module.exports = (api) => {
                         useBuiltIns: true,
                     },
                 ],
+                require('@babel/preset-typescript'),
             ],
             plugins: [
                 [
@@ -42,13 +43,11 @@ module.exports = (api) => {
                 ],
                 require.resolve('@babel/plugin-transform-runtime'),
                 require.resolve('babel-plugin-dynamic-import-node'),
-                require.resolve('@babel/plugin-proposal-export-namespace-from'),
-                require.resolve('@babel/plugin-proposal-numeric-separator'),
                 [
                     require.resolve('babel-plugin-css-modules-transform'),
                     {
                         preprocessCss: path.join(__dirname, './scripts/process-scss.js'),
-                        extensions: ['.scss'],
+                        extensions: ['.scss', '.css'],
                         generateScopedName: path.resolve(
                             __dirname,
                             './scripts/lib/generateScopedName.js',
@@ -83,22 +82,17 @@ module.exports = (api) => {
                           },
                       },
                   ],
-                  // require.resolve('@babel/plugin-proposal-numeric-separator'),
+                  '@babel/preset-typescript',
               ].filter(Boolean)
-            : [],
+            : ['@babel/preset-typescript'],
         plugins: [
             require.resolve('babel-plugin-lodash'),
-            require.resolve('@babel/plugin-proposal-export-namespace-from'),
             [
                 require.resolve('babel-plugin-static-fs'),
                 {
                     target: 'browser', // defaults to node
                 },
             ],
-            require.resolve('@babel/plugin-proposal-numeric-separator'),
-            [require.resolve('@babel/plugin-proposal-private-property-in-object'), { loose: true }],
-            [require.resolve('@babel/plugin-proposal-class-properties'), { loose: true }],
-            [require.resolve('@babel/plugin-proposal-private-methods'), { loose: true }],
         ].filter(Boolean),
     };
 };

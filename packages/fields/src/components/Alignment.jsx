@@ -12,7 +12,7 @@ import { FormattedMessage } from 'react-intl';
 
 import Radios from './Radios';
 
-import styles from '../styles/alignment.module.scss';
+import styles from '../styles/alignment.module.css';
 
 const icons = {
     horizontal: {
@@ -64,17 +64,10 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    alignment: {
-        horizontal: 'middle',
-        vertical: 'middle',
-    },
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const Alignment = ({ alignment, value, className, onChange }) => {
+const Alignment = ({ alignment = {
+    horizontal: 'middle',
+    vertical: 'middle',
+}, value = null, className = null, onChange = null }) => {
     const onVerticalAlignChange = useCallback(
         (newVal) => {
             const { vertical = null, horizontal = null } = value || {};
@@ -157,6 +150,5 @@ const Alignment = ({ alignment, value, className, onChange }) => {
 };
 
 Alignment.propTypes = propTypes;
-Alignment.defaultProps = defaultProps;
 
 export default Alignment;

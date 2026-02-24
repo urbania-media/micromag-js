@@ -6,7 +6,7 @@ const slugify = require('slugify');
 
 
 const generateScopedName = (localName, filePath) => {
-    if (!filePath.match(/\.module\.scss$/)) {
+    if (!filePath.match(/\.module\.(scss|css)$/)) {
         return localName;
     }
     const packageJsonPath = pkgUp.sync({

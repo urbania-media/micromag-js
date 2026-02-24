@@ -14,24 +14,14 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    transitions: null,
-    stagger: 0,
-    playing: false,
-    disabled: false,
-    delay: 0,
-    fullscreen: false,
-    children: null,
-};
-
 const TransitionsStagger = ({
-    transitions,
-    stagger,
-    playing,
-    disabled,
-    delay,
-    fullscreen,
-    children,
+    transitions = null,
+    stagger = 0,
+    playing = false,
+    disabled = false,
+    delay = 0,
+    fullscreen = false,
+    children = null,
 }) => {
     let validIndex = 0;
     const elements = React.Children.map(children, (child) => {
@@ -63,6 +53,5 @@ const TransitionsStagger = ({
     return elements;
 };
 TransitionsStagger.propTypes = propTypes;
-TransitionsStagger.defaultProps = defaultProps;
 
 export default TransitionsStagger;

@@ -8,8 +8,6 @@ const propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {};
-
 const ScreensProvider = ({ children, ...props }) => (
     <BaseScreensProvider {...props} manager={manager}>
         {children}
@@ -17,6 +15,5 @@ const ScreensProvider = ({ children, ...props }) => (
 );
 
 ScreensProvider.propTypes = propTypes;
-ScreensProvider.defaultProps = defaultProps;
 
 export default ScreensProvider;

@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '../../lib';
 import Screen from './Screen';
 import ScreenSizer from './ScreenSizer';
 
-import styles from '../../styles/screens/preview.module.scss';
+import styles from '../../styles/screens/preview.module.css';
 
 const propTypes = {
     screen: MicromagPropTypes.component.isRequired,
@@ -22,28 +22,17 @@ const propTypes = {
     hidden: PropTypes.bool,
 };
 
-const defaultProps = {
-    screenState: null,
-    width: undefined,
-    height: undefined,
-    screenWidth: undefined,
-    screenHeight: undefined,
-    className: null,
-    withSize: false,
-    hidden: false,
-};
-
 const ScreenPreview = ({
     screen,
-    screenState,
-    width,
-    height,
-    screenWidth,
-    screenHeight,
-    className,
-    withSize,
+    screenState = null,
+    width = undefined,
+    height = undefined,
+    screenWidth = undefined,
+    screenHeight = undefined,
+    className = null,
+    withSize = false,
     fit,
-    hidden,
+    hidden = false,
     ...props
 }) => {
     const screenElement = (
@@ -83,6 +72,5 @@ const ScreenPreview = ({
 };
 
 ScreenPreview.propTypes = propTypes;
-ScreenPreview.defaultProps = defaultProps;
 
 export default React.memo(ScreenPreview);

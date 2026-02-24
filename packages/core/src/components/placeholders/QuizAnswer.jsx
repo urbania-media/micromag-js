@@ -8,7 +8,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 import PlaceholderText from '../partials/PlaceholderText';
 
-import styles from '../../styles/placeholders/quiz-answer.module.scss';
+import styles from '../../styles/placeholders/quiz-answer.module.css';
 
 export const Answer = ({ width = '75%', height = '0.3em', className, good = true }) => (
     <div

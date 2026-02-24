@@ -1,0 +1,43 @@
+.container {
+    position: relative;
+
+    .image {
+        display: block;
+        max-width: 100%;
+        min-height: 200px;
+        max-height: 40vh;
+        margin: 0 auto;
+    }
+
+    .video {
+        position: relative;
+        height: 260px;
+        min-height: 200px;
+        background-color: var(--mm-black);
+
+        .player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .audio {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: var(--mm-black);
+
+        .player {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    .placeholder {
+        height: 60px;
+        background-color: var(--mm-black);
+    }
+}

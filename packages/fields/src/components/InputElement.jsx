@@ -12,13 +12,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    multiline: false,
-    value: null,
-    onChange: null,
-};
-
-const TextElement = ({ value, onChange, multiline, ...props }) => {
+const TextElement = ({ value = null, onChange = null, multiline = false, ...props }) => {
     const labelValue = value !== null ? value.label || null : null;
     const onLabelChange = useCallback(
         (newLabel) => {
@@ -40,6 +34,5 @@ const TextElement = ({ value, onChange, multiline, ...props }) => {
 };
 
 TextElement.propTypes = propTypes;
-TextElement.defaultProps = defaultProps;
 
 export default TextElement;

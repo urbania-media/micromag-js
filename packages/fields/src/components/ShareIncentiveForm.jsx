@@ -7,7 +7,7 @@ import { useIntl, defineMessage, FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 // import { getStyleFromBox } from '@micromag/core/utils';
-// import styles from '../styles/box-style.module.scss';
+// import styles from '../styles/box-style.module.css';
 // import Fields from './Fields';
 import FieldWithForm from './FieldWithForm';
 
@@ -17,13 +17,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const ShareIncentiveForm = ({ value, className, onChange, ...props }) => {
+const ShareIncentiveForm = ({ value = null, className = null, onChange = null, ...props }) => {
     const intl = useIntl();
     const onUpdateValue = useCallback(
         (newValue) => {
@@ -69,6 +63,5 @@ const ShareIncentiveForm = ({ value, className, onChange, ...props }) => {
 };
 
 ShareIncentiveForm.propTypes = propTypes;
-ShareIncentiveForm.defaultProps = defaultProps;
 
 export default ShareIncentiveForm;

@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
 import { getStyleFromColor } from '@micromag/core/utils';
 
-import styles from '../../styles/buttons/button.module.scss';
+import styles from '../../styles/buttons/button.module.css';
 
 const propTypes = {
     type: PropTypes.string,
@@ -42,58 +42,31 @@ const propTypes = {
     ]),
 };
 
-const defaultProps = {
-    type: 'button',
-    theme: null,
-    size: null,
-    href: null,
-    external: false,
-    direct: false,
-    target: '_blank',
-    label: null,
-    children: null,
-    focusable: true,
-    active: false,
-    icon: null,
-    iconPosition: 'inline',
-    disabled: false,
-    loading: false,
-    disableOnLoading: true,
-    withoutTheme: false,
-    asLink: false,
-    ariaLabel: null,
-    className: null,
-    iconClassName: null,
-    labelClassName: null,
-    onClick: null,
-    refButton: null,
-};
-
 const Button = ({
-    type,
-    theme,
-    size,
-    href,
-    external,
-    direct,
-    target,
-    label,
-    children,
-    focusable,
-    active,
-    icon,
-    iconPosition,
-    disabled,
-    loading,
-    disableOnLoading,
-    withoutTheme,
-    asLink,
-    ariaLabel,
-    onClick,
-    className,
-    iconClassName,
-    labelClassName,
-    refButton,
+    type = 'button',
+    theme = null,
+    size = null,
+    href = null,
+    external = false,
+    direct = false,
+    target = '_blank',
+    label = null,
+    children = null,
+    focusable = true,
+    active = false,
+    icon = null,
+    iconPosition = 'inline',
+    disabled = false,
+    loading = false,
+    disableOnLoading = true,
+    withoutTheme = false,
+    asLink = false,
+    ariaLabel = null,
+    onClick = null,
+    className = null,
+    iconClassName = null,
+    labelClassName = null,
+    refButton = null,
     ...props
 }) => {
     const finalLabel = label || children;
@@ -251,6 +224,5 @@ const Button = ({
 };
 
 Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
 
 export default Button;

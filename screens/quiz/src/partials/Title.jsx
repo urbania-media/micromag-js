@@ -14,7 +14,7 @@ import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 
-import styles from './title.module.scss';
+import styles from './title.module.css';
 
 const propTypes = {
     title: MicromagPropTypes.textElement,
@@ -28,28 +28,16 @@ const propTypes = {
     onClickButton: PropTypes.func,
 };
 
-const defaultProps = {
-    title: null,
-    description: null,
-    layout: null,
-    button: null,
-    buttonDisabled: false,
-    focusable: false,
-    className: null,
-    style: null,
-    onClickButton: null,
-};
-
 const Title = ({
-    layout,
-    title,
-    description,
-    button,
-    buttonDisabled,
-    focusable,
-    className,
-    style,
-    onClickButton,
+    layout = null,
+    title = null,
+    description = null,
+    button = null,
+    buttonDisabled = false,
+    focusable = false,
+    className = null,
+    style = null,
+    onClickButton = null,
 }) => {
     // const { isPreview, isEdit } = useScreenRenderContext();
     const isSplitted = layout === 'split';
@@ -124,6 +112,5 @@ const Title = ({
 };
 
 Title.propTypes = propTypes;
-Title.defaultProps = defaultProps;
 
 export default Title;

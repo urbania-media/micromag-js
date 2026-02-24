@@ -6,7 +6,7 @@ import { PlaceholderImage, PlaceholderText, PlaceholderTitle } from '@micromag/c
 
 import Radios from './Radios';
 
-import styles from '../styles/card-layout.module.scss';
+import styles from '../styles/card-layout.module.css';
 
 const propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
@@ -15,14 +15,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    types: ['content-top', 'content-bottom', 'content-split'],
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const CardLayout = ({ types, value, className, onChange }) => {
+const CardLayout = ({ types = ['content-top', 'content-bottom', 'content-split'], value = null, className = null, onChange = null }) => {
     const onButtonLayoutChange = (newVal) => {
         const v = newVal === value ? null : newVal;
 
@@ -94,6 +87,5 @@ const CardLayout = ({ types, value, className, onChange }) => {
 };
 
 CardLayout.propTypes = propTypes;
-CardLayout.defaultProps = defaultProps;
 
 export default CardLayout;

@@ -16,7 +16,7 @@ import {
     getStyleFromText,
 } from '@micromag/core/utils';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     body: PropTypes.string,
@@ -37,32 +37,18 @@ const propTypes = {
     ]),
 };
 
-const defaultProps = {
-    body: null,
-    textStyle: null,
-    boxStyle: null,
-    linksStyle: null,
-    margin: null,
-    lineClamp: null,
-    showEmpty: false,
-    className: null,
-    emptyClassName: null,
-    inline: false,
-    refText: null,
-};
-
 const Text = ({
-    body,
-    textStyle,
-    boxStyle,
-    linksStyle,
-    margin,
-    lineClamp,
-    showEmpty,
-    className,
-    emptyClassName,
-    inline,
-    refText,
+    body = null,
+    textStyle = null,
+    boxStyle = null,
+    linksStyle = null,
+    margin = null,
+    lineClamp = null,
+    showEmpty = false,
+    className = null,
+    emptyClassName = null,
+    inline = false,
+    refText = null,
 }) => {
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = {};
@@ -142,6 +128,5 @@ const Text = ({
 };
 
 Text.propTypes = propTypes;
-Text.defaultProps = defaultProps;
 
 export default Text;

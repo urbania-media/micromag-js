@@ -5,7 +5,7 @@ import React, { useCallback } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from '../styles/date.module.scss';
+import styles from '../styles/date.module.css';
 
 const propTypes = {
     name: PropTypes.string,
@@ -15,15 +15,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    name: null,
-    value: null,
-    withTime: false,
-    placeholder: null,
-    onChange: null,
-};
-
-const DateElement = ({ name, value, withTime, onChange, placeholder }) => {
+const DateElement = ({ name = null, value = null, withTime = false, onChange = null, placeholder = null }) => {
     const bodyValue = value !== null ? value.body || null : null;
     const onBodyChange = useCallback(
         (e) => {
@@ -53,6 +45,5 @@ const DateElement = ({ name, value, withTime, onChange, placeholder }) => {
 };
 
 DateElement.propTypes = propTypes;
-DateElement.defaultProps = defaultProps;
 
 export default DateElement;

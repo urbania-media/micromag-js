@@ -21,7 +21,7 @@ import EditorForm from './Form';
 import EditorPreview from './Preview';
 import Screens from './Screens';
 
-import styles from '../styles/editor.module.scss';
+import styles from '../styles/editor.module.css';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -35,28 +35,16 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    value: null,
-    deviceScreens: getDeviceScreens(),
-    viewerTheme: null,
-    mobileView: 'preview',
-    fullscreen: false,
-    isTheme: false,
-    isCreateOpened: false,
-    onChange: null,
-    className: null,
-};
-
 const Editor = ({
-    value,
-    viewerTheme,
-    isTheme,
-    isCreateOpened,
-    deviceScreens,
-    mobileView: initialMobileView,
-    onChange,
-    fullscreen,
-    className,
+    value = null,
+    viewerTheme = null,
+    isTheme = false,
+    isCreateOpened = false,
+    deviceScreens = getDeviceScreens(),
+    mobileView: initialMobileView = 'preview',
+    onChange = null,
+    fullscreen = false,
+    className = null,
 }) => {
     const push = useRoutePush();
     const refScreensContainer = useRef(null);
@@ -250,6 +238,5 @@ const Editor = ({
 };
 
 Editor.propTypes = propTypes;
-Editor.defaultProps = defaultProps;
 
 export default Editor;

@@ -29,7 +29,7 @@ import {
 
 import SortableTreeItem from './SortableTreeItem';
 
-import styles from '../../styles/sortable/sortable-tree.module.scss';
+import styles from '../../styles/sortable/sortable-tree.module.css';
 
 const initialItems = [
     {
@@ -75,26 +75,15 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    collapsible: true,
-    items: initialItems,
-    indentationWidth: 30,
-    indicator: false,
-    removable: false,
-    component: null,
-    onClickItem: null,
-    onChange: null,
-};
-
 const SortableTree = ({
-    collapsible,
-    items: defaultItems,
-    indicator,
-    indentationWidth,
-    removable,
-    component,
-    onClickItem,
-    onChange,
+    collapsible = true,
+    items: defaultItems = initialItems,
+    indicator = false,
+    indentationWidth = 30,
+    removable = false,
+    component = null,
+    onClickItem = null,
+    onChange = null,
 }) => {
     const [items, setItems] = useState(() => buildTree(defaultItems));
     const [activeId, setActiveId] = useState(null);
@@ -453,6 +442,5 @@ const SortableTree = ({
 };
 
 SortableTree.propTypes = propTypes;
-SortableTree.defaultProps = defaultProps;
 
 export default SortableTree;

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // organize-imports-ignore
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import Viewer from '@micromag/viewer';
 import '@micromag/viewer/scss/styles.scss';
@@ -26,13 +26,19 @@ const renderStoryFnc =
         ? window.MICROMAG_RENDER_STORY_FNC
         : 'renderStory';
 
-const renderStory = (story, props = {}, root = defaultRootElement) => {
-    render(
+const roots = new WeakMap();
+
+const renderStory = (story, props = {}, rootElement = defaultRootElement) => {
+    let root = roots.get(rootElement);
+    if (!root) {
+        root = createRoot(rootElement);
+        roots.set(rootElement, root);
+    }
+    root.render(
         React.createElement(Viewer, {
             ...props,
             story,
         }),
-        root,
     );
 };
 

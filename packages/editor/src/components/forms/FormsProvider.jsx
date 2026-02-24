@@ -9,15 +9,13 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    children: null,
-};
-
-const FormsProvider = props => (
-    <ComponentsProvider namespace={FORMS_NAMESPACE} components={FormsComponents} {...props} />
-);
+const FormsProvider = (
+    {
+        children: children = null,
+        ...props
+    },
+) => (<ComponentsProvider namespace={FORMS_NAMESPACE} components={FormsComponents} {...props} />);
 
 FormsProvider.propTypes = propTypes;
-FormsProvider.defaultProps = defaultProps;
 
 export default FormsProvider;

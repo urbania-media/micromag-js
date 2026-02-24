@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from '../styles/static-field.module.scss';
+import styles from '../styles/static-field.module.css';
 
 const propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
@@ -10,13 +10,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    value: null,
-    name: null,
-    className: null,
-};
-
-const StaticField = ({ value, name, className }) => (
+const StaticField = ({ value = null, name = null, className = null }) => (
     <div
         className={classNames([
             styles.container,
@@ -31,6 +25,5 @@ const StaticField = ({ value, name, className }) => (
 );
 
 StaticField.propTypes = propTypes;
-StaticField.defaultProps = defaultProps;
 
 export default StaticField;

@@ -6,9 +6,6 @@ import TitleScreen from './Title';
 const propTypes = {
 };
 
-const defaultProps = {
-};
-
 const TitleWithBoxScreen = (props) => (
     <TitleScreen
         {...props}
@@ -19,6 +16,5 @@ const TitleWithBoxScreen = (props) => (
 );
 
 TitleWithBoxScreen.propTypes = propTypes;
-TitleWithBoxScreen.defaultProps = defaultProps;
 
 export default TitleWithBoxScreen;

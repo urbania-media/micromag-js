@@ -11,22 +11,15 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    options: [
-        { value: 'capitalize', label: <strong>Aa</strong> },
-        { value: 'uppercase', label: <strong>AA</strong> },
-        { value: 'lowercase', label: <strong>aa</strong> },
-    ],
-    value: null,
-    onChange: null,
-};
-
-const TextTransform = ({ value, options, onChange, ...props }) => (
+const TextTransform = ({ value = null, options = [
+    { value: 'capitalize', label: <strong>Aa</strong> },
+    { value: 'uppercase', label: <strong>AA</strong> },
+    { value: 'lowercase', label: <strong>aa</strong> },
+], onChange = null, ...props }) => (
     <Radios value={value} options={options} onChange={onChange} uncheckable {...props} />
 );
 
 TextTransform.propTypes = propTypes;
-TextTransform.defaultProps = defaultProps;
 TextTransform.isHorizontal = true;
 
 export default TextTransform;

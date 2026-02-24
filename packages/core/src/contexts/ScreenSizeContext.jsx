@@ -19,13 +19,9 @@ const propTypes = {
     size: MicromagPropTypes.screenSize,
 };
 
-const defaultProps = {
-    size: {},
-};
-
 // Note: this is done to avoid excessive renders on the screens that use the context
 
-export const ScreenSizeProvider = ({ size, children }) => {
+export const ScreenSizeProvider = ({ size = {}, children }) => {
     const {
         screen: nextScreen,
         width: nextWidth,
@@ -37,4 +33,3 @@ export const ScreenSizeProvider = ({ size, children }) => {
 };
 
 ScreenSizeProvider.propTypes = propTypes;
-ScreenSizeProvider.defaultProps = defaultProps;

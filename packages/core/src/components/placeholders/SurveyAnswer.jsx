@@ -7,7 +7,7 @@ import { faPercent } from '@fortawesome/free-solid-svg-icons/faPercent';
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 import PlaceholderText from '../partials/PlaceholderText';
 
-import styles from '../../styles/placeholders/survey-answer.module.scss';
+import styles from '../../styles/placeholders/survey-answer.module.css';
 
 export const Answer = ({ width = '75%', height = '0.3em', className }) => (
     <div className={classNames([

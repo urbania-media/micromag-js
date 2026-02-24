@@ -1,0 +1,28 @@
+.container {
+    padding: 10px;
+}
+
+.items {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+}
+
+.item {
+    text-align: center;
+
+    h4 {
+        font-size: 1rem;
+    }
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > * {
+        background: var(--mm-gray-600);
+    }
+}

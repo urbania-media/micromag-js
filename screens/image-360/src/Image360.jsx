@@ -26,7 +26,7 @@ import Image from '@micromag/element-image';
 
 import useThree from './useThree';
 
-import styles from './image-360.module.scss';
+import styles from './image-360.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['full']),
@@ -41,30 +41,17 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'full',
-    image: null,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    preload: true,
-    type: null,
-    spacing: 20,
-    className: null,
-};
-
 const Image360Screen = ({
-    layout, // eslint-disable-line
-    image,
-    background,
-    header,
-    footer,
-    current,
-    preload,
-    type,
-    spacing,
-    className,
+    layout = 'full', // eslint-disable-line
+    image = null,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    type = null,
+    spacing = 20,
+    className = null,
 }) => {
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -448,6 +435,5 @@ const Image360Screen = ({
 };
 
 Image360Screen.propTypes = propTypes;
-Image360Screen.defaultProps = defaultProps;
 
 export default Image360Screen;

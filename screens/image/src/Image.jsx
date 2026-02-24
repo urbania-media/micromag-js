@@ -27,7 +27,7 @@ import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './image.module.scss';
+import styles from './image.module.css';
 
 // NOTE: should this be a scrolling element ?
 
@@ -59,46 +59,25 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'normal',
-    image: null,
-    imageFit: null,
-    defaultImageFit: 'cover',
-    title: null,
-    text: null,
-    legend: null,
-    withTitle: false,
-    withText: false,
-    withLegend: false,
-    spacing: 20,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    active: true,
-    preload: true,
-    className: null,
-};
-
 const ImageScreen = ({
-    layout,
-    image,
-    imageFit,
-    defaultImageFit,
-    title,
-    text,
-    legend,
-    withTitle,
-    withText,
-    withLegend,
-    spacing,
-    background,
-    header,
-    footer,
-    current,
-    active,
-    preload,
-    className,
+    layout = 'normal',
+    image = null,
+    imageFit = null,
+    defaultImageFit = 'cover',
+    title = null,
+    text = null,
+    legend = null,
+    withTitle = false,
+    withText = false,
+    withLegend = false,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    preload = true,
+    className = null,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -390,6 +369,5 @@ const ImageScreen = ({
 };
 
 ImageScreen.propTypes = propTypes;
-ImageScreen.defaultProps = defaultProps;
 
 export default ImageScreen;

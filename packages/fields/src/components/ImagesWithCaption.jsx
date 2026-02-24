@@ -12,29 +12,27 @@ const propTypes = {
     value: MicromagPropTypes.imageMedias,
 };
 
-const defaultProps = {
-    value: null,
-};
-
-const ImagesWithCaptionField = (props) => (
-    <ItemsField
-        noItemLabel={
-            <FormattedMessage
-                defaultMessage="No image..."
-                description="Label when there is no item in images field"
-            />
-        }
-        addItemLabel={
-            <FormattedMessage
-                defaultMessage="Add an image"
-                description="Button label in images field"
-            />
-        }
-        {...props}
-    />
-);
+const ImagesWithCaptionField = (
+    {
+        value: value = null,
+        ...props
+    },
+) => (<ItemsField
+    noItemLabel={
+        <FormattedMessage
+            defaultMessage="No image..."
+            description="Label when there is no item in images field"
+        />
+    }
+    addItemLabel={
+        <FormattedMessage
+            defaultMessage="Add an image"
+            description="Button label in images field"
+        />
+    }
+    {...props}
+/>);
 
 ImagesWithCaptionField.propTypes = propTypes;
-ImagesWithCaptionField.defaultProps = defaultProps;
 
 export default ImagesWithCaptionField;

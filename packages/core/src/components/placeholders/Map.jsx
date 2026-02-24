@@ -7,7 +7,7 @@ import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/map.module.scss';
+import styles from '../../styles/placeholders/map.module.css';
 
 export const Map = (props) => (
     <PlaceholderBlock

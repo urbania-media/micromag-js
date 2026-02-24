@@ -1,0 +1,11 @@
+.container {
+    display: inline-block;
+    position: relative;
+
+    .button {
+        display: block;
+        width: 40px;
+        height: 30px;
+        padding: 5px;
+    }
+}

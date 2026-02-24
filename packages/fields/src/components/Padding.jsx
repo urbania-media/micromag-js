@@ -5,7 +5,7 @@ import React, { useCallback } from 'react';
 // import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Button } from '@micromag/core/components';
-import styles from '../styles/padding.module.scss';
+import styles from '../styles/padding.module.css';
 import FieldWithForm from './FieldWithForm';
 import Spacing from './Spacing';
 
@@ -26,16 +26,7 @@ const propTypes = {
     closeForm: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    isForm: false,
-    isHorizontal: false,
-    className: null,
-    onChange: null,
-    closeForm: null,
-};
-
-const PaddingField = ({ value, onChange, closeForm, ...props }) => {
+const PaddingField = ({ value = null, onChange = null, closeForm = null, ...props }) => {
     const intl = useIntl();
 
     const {
@@ -149,7 +140,6 @@ const PaddingField = ({ value, onChange, closeForm, ...props }) => {
 };
 
 PaddingField.propTypes = propTypes;
-PaddingField.defaultProps = defaultProps;
 PaddingField.withForm = true;
 
 export default PaddingField;

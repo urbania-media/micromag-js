@@ -6,14 +6,10 @@ import { FormattedMessage } from 'react-intl';
 
 import MicromagIcon from '../icons/Micromag';
 
-import styles from '../../styles/partials/micromag-branding.module.scss';
+import styles from '../../styles/partials/micromag-branding.module.css';
 
 const propTypes = {
     className: PropTypes.string,
-};
-
-const defaultProps = {
-    className: null,
 };
 
 const MicromagBranding = ({ className = null }) => (
@@ -38,6 +34,5 @@ const MicromagBranding = ({ className = null }) => (
 );
 
 MicromagBranding.propTypes = propTypes;
-MicromagBranding.defaultProps = defaultProps;
 
 export default MicromagBranding;

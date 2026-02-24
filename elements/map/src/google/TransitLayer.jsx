@@ -7,12 +7,7 @@ const propTypes = {
     enabled: PropTypes.bool,
 };
 
-const defaultProps = {
-    map: null,
-    enabled: false,
-};
-
-const TransitLayer = ({ map, enabled }) => {
+const TransitLayer = ({ map = null, enabled = false }) => {
     const client = useGoogleMapsClient();
     const transitLayerRef = useRef(null);
 
@@ -39,6 +34,5 @@ const TransitLayer = ({ map, enabled }) => {
 };
 
 TransitLayer.propTypes = propTypes;
-TransitLayer.defaultProps = defaultProps;
 
 export default TransitLayer;

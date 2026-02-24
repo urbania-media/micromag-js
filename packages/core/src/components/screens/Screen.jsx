@@ -8,7 +8,7 @@ import { getComponentFromName } from '../../utils';
 
 import { ScreenProvider, useScreenComponent } from '../../contexts';
 
-import styles from '../../styles/screens/screen.module.scss';
+import styles from '../../styles/screens/screen.module.css';
 
 const propTypes = {
     screen: MicromagPropTypes.storyComponent.isRequired,
@@ -24,31 +24,18 @@ const propTypes = {
     mediaRef: PropTypes.func,
 };
 
-const defaultProps = {
-    active: true,
-    renderContext: null,
-    screenState: null,
-    index: null,
-    current: false,
-    preload: true,
-    component: null,
-    components: null,
-    className: null,
-    mediaRef: null,
-};
-
 const Screen = ({
     screen,
-    renderContext,
-    screenState,
-    index,
-    active,
-    current,
-    preload,
-    components,
-    component,
-    className,
-    mediaRef,
+    renderContext = null,
+    screenState = null,
+    index = null,
+    active = true,
+    current = false,
+    preload = true,
+    components = null,
+    component = null,
+    className = null,
+    mediaRef = null,
 }) => {
     const { type = null } = screen || {};
     const CustomScreenComponent =
@@ -83,6 +70,5 @@ const Screen = ({
 };
 
 Screen.propTypes = propTypes;
-Screen.defaultProps = defaultProps;
 
 export default React.memo(Screen);

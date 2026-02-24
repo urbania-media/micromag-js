@@ -215,7 +215,7 @@ module.exports = {
                                         sideEffects: true,
                                     },
                                     // Adds support for CSS Modules, but using SASS
-                                    // using the extension .module.scss or .module.sass
+                                    // using the extension .module.css or .module.sass
                                     {
                                         test: /\.module\.scss$/,
                                         use: getStyleLoaders(

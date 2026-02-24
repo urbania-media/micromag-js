@@ -12,12 +12,7 @@ const propTypes = {
     iconClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-    iconClassName: null,
-};
-
-const MenuButton = ({ className, iconClassName, ...props }) => {
+const MenuButton = ({ className = null, iconClassName = null, ...props }) => {
     const intl = useIntl();
 
     return (
@@ -57,6 +52,5 @@ const MenuButton = ({ className, iconClassName, ...props }) => {
 };
 
 MenuButton.propTypes = propTypes;
-MenuButton.defaultProps = defaultProps;
 
 export default MenuButton;

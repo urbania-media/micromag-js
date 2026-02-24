@@ -1,0 +1,64 @@
+/* stylelint-disable max-nesting-depth */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .emptyTitle,
+    .emptySubtitle,
+    .emptyDescription {
+        margin: 5px auto;
+        border: dashed 2px var(--mm-gray-800);
+        color: var(--mm-gray-800);
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .emptyTitle {
+        height: 100px;
+    }
+
+    .emptySubtitle {
+        height: 50px;
+    }
+
+    .emptyDescription {
+        height: 50px;
+    }
+
+    .title,
+    .subtitle {
+        &.withMargin {
+            margin-bottom: 0.2em;
+        }
+    }
+
+    .box {
+        padding: 0.5em;
+    }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+
+        .box {
+            border: solid 2px rgba(255, 255, 255, 0.5);
+            mix-blend-mode: difference;
+        }
+    }
+}

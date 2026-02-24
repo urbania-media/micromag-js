@@ -5,19 +5,14 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from '../../styles/buttons/clear.module.scss';
+import styles from '../../styles/buttons/clear.module.css';
 
 const propTypes = {
     onClick: PropTypes.func,
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    onClick: null,
-    className: null,
-};
-
-const ClearButton = ({ onClick, className, ...props }) => (
+const ClearButton = ({ onClick = null, className = null, ...props }) => (
     <button
         className={classNames([
             styles.container,
@@ -33,6 +28,5 @@ const ClearButton = ({ onClick, className, ...props }) => (
 );
 
 ClearButton.propTypes = propTypes;
-ClearButton.defaultProps = defaultProps;
 
 export default ClearButton;

@@ -1,0 +1,25 @@
+.container {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px !important;
+    height: 18px !important;
+    padding: 0 10px !important;
+
+    border-radius: 4px;
+    background-color: var(--mm-gray-700) !important;
+
+    .icon {
+        display: block;
+    }
+}

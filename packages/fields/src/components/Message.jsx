@@ -21,29 +21,17 @@ const propTypes = {
     closeForm: PropTypes.func,
 };
 
-const defaultProps = {
-    type: null,
-    value: null,
-    fields: null,
-    noValueLabel: (
-        <FormattedMessage
-            defaultMessage="Edit content..."
-            description="Label when no value is provided to Field with form"
-        />
-    ),
-    withoutThumbnail: false,
-    onChange: null,
-    closeForm: null,
-};
-
 const MessageField = ({
-    type,
-    value,
-    fields,
-    noValueLabel,
-    withoutThumbnail,
-    onChange,
-    closeForm,
+    type = null,
+    value = null,
+    fields = null,
+    noValueLabel = (<FormattedMessage
+        defaultMessage="Edit content..."
+        description="Label when no value is provided to Field with form"
+    />),
+    withoutThumbnail = false,
+    onChange = null,
+    closeForm = null,
     ...props
 }) => {
     const context = useFieldContext();
@@ -67,7 +55,6 @@ const MessageField = ({
 };
 
 MessageField.propTypes = propTypes;
-MessageField.defaultProps = defaultProps;
 MessageField.withForm = true;
 
 export default MessageField;

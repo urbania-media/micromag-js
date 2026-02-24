@@ -4,7 +4,7 @@ import isArray from 'lodash/isArray';
 import PropTypes from 'prop-types';
 import Slider from 'rc-slider';
 import React, { useMemo, useCallback } from 'react';
-import styles from '../styles/slider.module.scss';
+import styles from '../styles/slider.module.css';
 // import * as AppPropTypes from '../../lib/PropTypes';
 import Text from './Text';
 
@@ -56,34 +56,20 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    min: 0,
-    max: 100,
-    marks: undefined,
-    marksStep: null,
-    marksCount: null,
-    marksStyle: {
+const SliderField = ({
+    value = null,
+    min = 0,
+    max = 100,
+    marks = undefined,
+    marksStep = null,
+    marksCount = null,
+    marksStyle = {
         fontSize: 8,
     },
-    unit: null,
-    withInput: false,
-    className: null,
-    onChange: null,
-};
-
-const SliderField = ({
-    value,
-    min,
-    max,
-    marks,
-    marksStep,
-    marksCount,
-    marksStyle,
-    unit,
-    withInput,
-    className,
-    onChange,
+    unit = null,
+    withInput = false,
+    className = null,
+    onChange = null,
 }) => {
     const customOnChange = useCallback(
         (val) => {
@@ -151,6 +137,5 @@ const SliderField = ({
 };
 
 SliderField.propTypes = propTypes;
-SliderField.defaultProps = defaultProps;
 
 export default SliderField;

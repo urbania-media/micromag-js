@@ -5,7 +5,7 @@ import React from 'react';
 
 import { getStyleFromAlignment } from '@micromag/core/utils';
 
-import styles from './keypad.module.scss';
+import styles from './keypad.module.css';
 
 const propTypes = {
     align: PropTypes.oneOf(['left', 'right', 'middle']),
@@ -17,17 +17,7 @@ const propTypes = {
     items: PropTypes.node,
 };
 
-const defaultProps = {
-    align: null,
-    columns: 1,
-    spacing: 10,
-    className: null,
-    itemClassName: null,
-    innerClassName: null,
-    items: null,
-};
-
-function Keypad({ items, align, columns, spacing, className, itemClassName, innerClassName }) {
+function Keypad({ items = null, align = null, columns = 1, spacing = 10, className = null, itemClassName = null, innerClassName = null }) {
     const itemWidth = `${100 / columns}%`;
     return (
         <div
@@ -77,6 +67,5 @@ function Keypad({ items, align, columns, spacing, className, itemClassName, inne
 }
 
 Keypad.propTypes = propTypes;
-Keypad.defaultProps = defaultProps;
 
 export default Keypad;

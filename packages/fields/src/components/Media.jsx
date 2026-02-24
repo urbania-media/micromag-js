@@ -9,12 +9,7 @@ const propTypes = {
     closeForm: PropTypes.func,
 };
 
-const defaultProps = {
-    onChange: null,
-    closeForm: null,
-};
-
-const MediaField = ({ closeForm, onChange, ...props }) => {
+const MediaField = ({ closeForm = null, onChange = null, ...props }) => {
     const closeOnChange = useCallback(
         (newValue) => {
             if (onChange !== null) {
@@ -32,7 +27,6 @@ const MediaField = ({ closeForm, onChange, ...props }) => {
 };
 
 MediaField.propTypes = propTypes;
-MediaField.defaultProps = defaultProps;
 MediaField.withForm = true;
 
 export default MediaField;

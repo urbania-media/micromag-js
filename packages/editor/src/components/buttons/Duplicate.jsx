@@ -10,11 +10,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-};
-
-const DuplicateButton = ({ className, ...props }) => (
+const DuplicateButton = ({ className = null, ...props }) => (
     <Button
         className={className}
         theme="secondary"
@@ -25,6 +21,5 @@ const DuplicateButton = ({ className, ...props }) => (
 );
 
 DuplicateButton.propTypes = propTypes;
-DuplicateButton.defaultProps = defaultProps;
 
 export default DuplicateButton;

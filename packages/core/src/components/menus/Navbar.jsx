@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback } from 'react';
-import styles from '../../styles/menus/navbar.module.scss';
+import styles from '../../styles/menus/navbar.module.css';
 import Button from '../buttons/Button';
 import Link from '../partials/Link';
 
@@ -23,38 +23,21 @@ const propTypes = {
     collapseClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    brand: null,
-    brandLink: null,
-    breadcrumbs: null,
-    theme: null,
-    size: 'md',
-    compact: false,
-    noWrap: false,
-    withoutCollapse: false,
-    withoutCollapseToggle: false,
-    children: null,
-    className: null,
-    brandClassName: null,
-    breadCrumbsClassName: null,
-    collapseClassName: null,
-};
-
 const Navbar = ({
-    brand,
-    brandLink,
-    breadcrumbs,
-    theme,
-    size,
-    compact,
-    noWrap,
-    withoutCollapse,
-    withoutCollapseToggle,
-    children,
-    className,
-    brandClassName,
-    breadCrumbsClassName,
-    collapseClassName,
+    brand = null,
+    brandLink = null,
+    breadcrumbs = null,
+    theme = null,
+    size = 'md',
+    compact = false,
+    noWrap = false,
+    withoutCollapse = false,
+    withoutCollapseToggle = false,
+    children = null,
+    className = null,
+    brandClassName = null,
+    breadCrumbsClassName = null,
+    collapseClassName = null,
 }) => {
     const [menuVisible, setMenuVisible] = useState(false);
     const onClickMenu = useCallback(
@@ -161,6 +144,5 @@ const Navbar = ({
 };
 
 Navbar.propTypes = propTypes;
-Navbar.defaultProps = defaultProps;
 
 export default Navbar;

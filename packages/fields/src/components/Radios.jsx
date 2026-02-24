@@ -8,7 +8,7 @@ import { Label } from '@micromag/core/components';
 
 import getSelectOptions from '../utils/getSelectOptions';
 
-import styles from '../styles/radios.module.scss';
+import styles from '../styles/radios.module.css';
 
 const propTypes = {
     name: PropTypes.string,
@@ -22,28 +22,16 @@ const propTypes = {
     uncheckable: PropTypes.bool,
 };
 
-const defaultProps = {
-    name: null,
-    value: null,
-    options: [],
-    withBackground: false,
-    className: null,
-    buttonClassName: null,
-    activeClassName: null,
-    onChange: null,
-    uncheckable: false,
-};
-
 const Radios = ({
-    name,
-    value,
-    options,
-    withBackground,
-    className,
-    buttonClassName,
-    activeClassName,
-    onChange,
-    uncheckable,
+    name = null,
+    value = null,
+    options = [],
+    withBackground = false,
+    className = null,
+    buttonClassName = null,
+    activeClassName = null,
+    onChange = null,
+    uncheckable = false,
 }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
 
@@ -99,6 +87,5 @@ const Radios = ({
 };
 
 Radios.propTypes = propTypes;
-Radios.defaultProps = defaultProps;
 
 export default Radios;

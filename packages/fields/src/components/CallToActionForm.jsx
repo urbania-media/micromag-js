@@ -10,7 +10,7 @@ import { getStyleFromBox } from '@micromag/core/utils';
 // import Fields from './Fields';
 import FieldWithForm from './FieldWithForm';
 
-import styles from '../styles/box-style.module.scss';
+import styles from '../styles/box-style.module.css';
 
 const propTypes = {
     value: MicromagPropTypes.activeForm,
@@ -18,13 +18,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const CallToActionForm = ({ value, className, onChange, ...props }) => {
+const CallToActionForm = ({ value = null, className = null, onChange = null, ...props }) => {
     // const { active = false } = value || {};
     const intl = useIntl();
 
@@ -92,6 +86,5 @@ const CallToActionForm = ({ value, className, onChange, ...props }) => {
 };
 
 CallToActionForm.propTypes = propTypes;
-CallToActionForm.defaultProps = defaultProps;
 
 export default CallToActionForm;

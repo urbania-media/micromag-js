@@ -1,0 +1,112 @@
+.inner {
+    position: relative;
+    flex-grow: 1;
+}
+
+.progressBarContainer {
+    position: relative;
+    height: 0.16rem;
+}
+
+.progressBar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background-color: var(--mm-white);
+}
+
+.progress,
+.track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.progress {
+    position: relative;
+    transform-origin: left center;
+    background-color: var(--mm-white);
+}
+
+.playHead {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s var(--mm-ease-in-bump);
+    border-radius: 50%;
+    background-color: var(--mm-white);
+}
+
+.withSeekHead {
+    @media (hover: hover) {
+        &:hover {
+            .playHead {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    }
+
+    &:focus-within {
+        .playHead {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+}
+
+.scrubbedTime {
+    position: absolute;
+    z-index: 2;
+    bottom: 100%;
+    left: 50%;
+    padding: 0.4rem 0.5rem 0.25rem;
+    transform: translate(-50%, 0);
+    transition: opacity 0.5s var(--mm-ease-in-bump), transform 0.5s var(--mm-ease-in-bump);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 4px;
+    opacity: 0;
+    background-color: var(--mm-white);
+    color: var(--mm-black);
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1;
+
+    .showTimestamp & {
+        transform: translate(-50%, -0.5rem);
+        opacity: 1;
+    }
+}
+
+.track {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    /* display: none; */
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 5rem;
+    transform: translateY(-50%);
+    background-color: transparent;
+    touch-action: none;
+
+    .withSeekHead & {
+        display: block;
+    }
+
+    &:focus-visible {
+        box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
+    }
+}

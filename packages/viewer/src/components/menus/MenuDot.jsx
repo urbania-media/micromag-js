@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
-import styles from '../../styles/menus/menu-dot.module.scss';
+import styles from '../../styles/menus/menu-dot.module.css';
 
 const propTypes = {
     current: PropTypes.bool,
@@ -20,26 +20,15 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    current: false,
-    active: false,
-    colors: null,
-    count: 1,
-    subIndex: 0,
-    vertical: false,
-    onClick: null,
-    className: null,
-};
-
 const ViewerMenuDot = ({
-    current,
-    active,
-    colors,
-    count,
-    subIndex,
-    vertical,
-    onClick,
-    className,
+    current = false,
+    active = false,
+    colors = null,
+    count = 1,
+    subIndex = 0,
+    vertical = false,
+    onClick = null,
+    className = null,
 }) => {
     const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(255, 255, 255, 0.25)' } =
         colors || {};
@@ -99,6 +88,5 @@ const ViewerMenuDot = ({
     );
 };
 ViewerMenuDot.propTypes = propTypes;
-ViewerMenuDot.defaultProps = defaultProps;
 
 export default ViewerMenuDot;

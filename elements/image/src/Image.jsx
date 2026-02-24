@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useSetting } from '@micromag/core/contexts';
 import { getOptimalImageUrl } from '@micromag/core/utils';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     media: MicromagPropTypes.imageMedia,
@@ -32,38 +32,21 @@ const propTypes = {
     ]),
 };
 
-const defaultProps = {
-    media: null,
-    alt: null,
-    width: null,
-    height: null,
-    resolution: 1,
-    objectFit: null,
-    containerStyle: {}, //
-    imageStyle: {},
-    className: null,
-    imageClassName: null,
-    onLoaded: null,
-    loadingMode: 'lazy',
-    shouldLoad: true,
-    containerRef: null,
-};
-
 const Image = ({
-    media,
-    alt,
-    width,
-    height,
-    resolution,
-    objectFit,
-    containerStyle,
-    imageStyle,
-    className,
-    imageClassName,
-    onLoaded,
-    loadingMode,
-    shouldLoad,
-    containerRef,
+    media = null,
+    alt = null,
+    width = null,
+    height = null,
+    resolution = 1,
+    objectFit = null,
+    containerStyle = {},
+    imageStyle = {},
+    className = null,
+    imageClassName = null,
+    onLoaded = null,
+    loadingMode = 'lazy',
+    shouldLoad = true,
+    containerRef = null,
 }) => {
     const { metadata = null } = media || {};
     const {
@@ -235,6 +218,5 @@ const Image = ({
 };
 
 Image.propTypes = propTypes;
-Image.defaultProps = defaultProps;
 
 export default forwardRef((props, ref) => <Image containerRef={ref} {...props} />);

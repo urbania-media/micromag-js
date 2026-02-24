@@ -5,7 +5,7 @@ import React from 'react';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/placeholders.module.scss';
+import styles from '../../styles/placeholders/placeholders.module.css';
 
 export const Image = ({ width, height, className, ...props }) => (
     <PlaceholderBlock {...props} width={width} height={height} className={className}>

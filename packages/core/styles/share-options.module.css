@@ -1,0 +1,27 @@
+.container {
+    .box {
+        display: block;
+        background-color: transparent;
+    }
+
+    .icon {
+        width: 10px;
+        height: auto;
+        color: var(--mm-black);
+    }
+}
+
+.item {
+    width: 100%;
+    display: flex;
+    padding: 3px;
+    background-color: var(--mm-gray-300);
+
+    + .item {
+        margin-top: 5px;
+    }
+}
+
+.button {
+    font-size: 1rem;
+}

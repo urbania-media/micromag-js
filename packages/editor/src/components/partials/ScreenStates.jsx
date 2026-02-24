@@ -16,7 +16,7 @@ import useScreenStates from '../../hooks/useScreenStates';
 
 import ScreenWithPreview from '../buttons/ScreenWithPreview';
 
-import styles from '../../styles/partials/screen-states.module.scss';
+import styles from '../../styles/partials/screen-states.module.css';
 
 const propTypes = {
     screen: MicromagPropTypes.screen.isRequired,
@@ -26,13 +26,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    screenState: null,
-    className: null,
-    onChange: null,
-};
-
-function ScreenStates({ screen, value, className, onChange }) {
+function ScreenStates({ screen, value, className = null, onChange = null }) {
     const url = useUrlGenerator();
     const push = useRoutePush();
     const { screen: screenParam = null, field = null } = useRouteParams();
@@ -210,6 +204,5 @@ function ScreenStates({ screen, value, className, onChange }) {
 }
 
 ScreenStates.propTypes = propTypes;
-ScreenStates.defaultProps = defaultProps;
 
 export default ScreenStates;

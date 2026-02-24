@@ -5,7 +5,7 @@ import React from 'react';
 
 import Radios from './Radios';
 
-import styles from '../styles/align-horizontal.module.scss';
+import styles from '../styles/align-horizontal.module.css';
 
 const propTypes = {
     value: PropTypes.oneOf(['left', 'middle', 'right']),
@@ -13,13 +13,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const AlignHorizontal = ({ value, className, onChange }) => (
+const AlignHorizontal = ({ value = null, className = null, onChange = null }) => (
     <div
         className={classNames([
             styles.container,
@@ -56,6 +50,5 @@ const AlignHorizontal = ({ value, className, onChange }) => (
 );
 
 AlignHorizontal.propTypes = propTypes;
-AlignHorizontal.defaultProps = defaultProps;
 
 export default AlignHorizontal;

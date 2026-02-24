@@ -1,0 +1,22 @@
+.container {
+    /* overflow: hidden; */
+
+    .panel {
+        /* composes: formTransitions from '../shared.module.css'; */
+    }
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: calc(var(--mm-spacer) * 2);
+
+    &.left {
+        justify-content: flex-start;
+    }
+
+    &.right {
+        justify-content: flex-end;
+    }
+}

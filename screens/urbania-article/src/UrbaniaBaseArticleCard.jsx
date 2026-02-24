@@ -31,7 +31,7 @@ import UrbaniaAuthor from '@micromag/element-urbania-author';
 
 import Arrow from './icons/ArrowIcon';
 
-import styles from './urbania-base-article-card.module.scss';
+import styles from './urbania-base-article-card.module.css';
 
 const propTypes = {
     hasArticle: PropTypes.bool,
@@ -49,36 +49,20 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    hasArticle: false,
-    url: null,
-    title: null,
-    author: null,
-    text: null,
-    image: null,
-    header: null,
-    background: null,
-    callToAction: null,
-    current: true,
-    preload: true,
-    spacing: 20,
-    className: null,
-};
-
 const UrbaniaArticleCard = ({
-    hasArticle,
-    url,
-    title,
-    author,
-    text,
-    image,
-    header,
-    background,
-    callToAction,
-    current,
-    preload,
-    spacing,
-    className,
+    hasArticle = false,
+    url = null,
+    title = null,
+    author = null,
+    text = null,
+    image = null,
+    header = null,
+    background = null,
+    callToAction = null,
+    current = true,
+    preload = true,
+    spacing = 20,
+    className = null,
 }) => {
     const intl = useIntl();
 
@@ -391,7 +375,6 @@ const UrbaniaArticleCard = ({
     );
 };
 
-UrbaniaArticleCard.defaultProps = defaultProps;
 UrbaniaArticleCard.propTypes = propTypes;
 
 export default UrbaniaArticleCard;

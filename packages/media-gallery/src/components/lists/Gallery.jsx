@@ -8,7 +8,7 @@ import { useDimensionObserver } from '@micromag/core/hooks';
 
 import GalleryItem from '../items/GalleryItem';
 
-import styles from '../../styles/lists/gallery.module.scss';
+import styles from '../../styles/lists/gallery.module.css';
 
 const propTypes = {
     items: MicromagPropTypes.medias,
@@ -22,28 +22,16 @@ const propTypes = {
     onClickRemoveItem: PropTypes.func,
 };
 
-const defaultProps = {
-    items: null,
-    selectedItem: null,
-    withInfoButton: false,
-    isSmall: false,
-    selectedFirst: false,
-    className: null,
-    onClickItem: null,
-    onClickItemInfo: null,
-    onClickRemoveItem: null,
-};
-
 function Gallery({
-    items,
-    selectedItem,
-    withInfoButton,
-    isSmall,
-    selectedFirst,
-    className,
-    onClickItem,
-    onClickItemInfo,
-    onClickRemoveItem,
+    items = null,
+    selectedItem = null,
+    withInfoButton = false,
+    isSmall = false,
+    selectedFirst = false,
+    className = null,
+    onClickItem = null,
+    onClickItemInfo = null,
+    onClickRemoveItem = null,
 }) {
     const { ref, width } = useDimensionObserver();
 
@@ -103,6 +91,5 @@ function Gallery({
 }
 
 Gallery.propTypes = propTypes;
-Gallery.defaultProps = defaultProps;
 
 export default Gallery;

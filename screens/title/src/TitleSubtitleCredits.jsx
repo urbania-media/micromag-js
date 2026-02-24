@@ -9,11 +9,7 @@ const propTypes = {
     credits: MicromagPropTypes.textElement,
 };
 
-const defaultProps = {
-    credits: null,
-};
-
-const TitleSubtitleCreditsScreen = ({ credits, ...props }) => (
+const TitleSubtitleCreditsScreen = ({ credits = null, ...props }) => (
     <TitleScreen
         {...props}
         description={credits}
@@ -26,6 +22,5 @@ const TitleSubtitleCreditsScreen = ({ credits, ...props }) => (
 );
 
 TitleSubtitleCreditsScreen.propTypes = propTypes;
-TitleSubtitleCreditsScreen.defaultProps = defaultProps;
 
 export default TitleSubtitleCreditsScreen;

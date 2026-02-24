@@ -14,8 +14,6 @@ const propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {};
-
 const FieldsProvider = ({ children }) => (
     <ComponentsProvider namespace={FIELDS_NAMESPACE} components={components}>
         <BaseFieldsProvider manager={manager}>{children}</BaseFieldsProvider>
@@ -23,6 +21,5 @@ const FieldsProvider = ({ children }) => (
 );
 
 FieldsProvider.propTypes = propTypes;
-FieldsProvider.defaultProps = defaultProps;
 
 export default FieldsProvider;

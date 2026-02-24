@@ -25,28 +25,16 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    href: null,
-    route: null,
-    routeParams: null,
-    external: false,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-    onClick: null,
-    children: null,
-    className: null,
-};
-
 const LinkPartial = ({
-    href,
-    route,
-    routeParams,
-    external,
-    children,
-    target,
-    rel,
-    onClick,
-    className,
+    href = null,
+    route = null,
+    routeParams = null,
+    external = false,
+    children = null,
+    target = '_blank',
+    rel = 'noopener noreferrer',
+    onClick = null,
+    className = null,
     ...props
 }) => {
     const link = href || null;
@@ -104,6 +92,5 @@ const LinkPartial = ({
 };
 
 LinkPartial.propTypes = propTypes;
-LinkPartial.defaultProps = defaultProps;
 
 export default LinkPartial;

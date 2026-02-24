@@ -12,13 +12,13 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // insecure
 
 // console.log(
 //     getPackagesPaths().map((packagePath) =>
-//         path.join(packagePath, './src/**/*.stories.@(jsx|mdx)'),
+//         path.join(packagePath, './src/**/*.stories.@(jsx|tsx|mdx)'),
 //     ),
 // );
 
 module.exports = {
     stories: getPackagesPaths().map((packagePath) =>
-        path.join(packagePath, './src/**/*.stories.@(jsx|mdx)'),
+        path.join(packagePath, './src/**/*.stories.@(jsx|tsx|mdx)'),
     ),
     addons: [
         {
@@ -27,9 +27,6 @@ module.exports = {
                 rule: {
                     test: /\.module\.s[ca]ss$/,
                 },
-                // styleLoaderOptions: {
-                //     injectType: 'styleTag',
-                // },
                 cssLoaderOptions: {
                     modules: {
                         auto: true,
@@ -37,32 +34,6 @@ module.exports = {
                         localIdentName: '[path][name]__[local]--[hash:base64:5]',
                     },
                 },
-                // sassLoaderOptions: {
-                //     sassOptions: (loaderContext) => {
-                //         // console.log('loaderContext', loaderContext);
-                //         // More information about available properties https://webpack.js.org/api/loaders/
-                //         const { resourcePath, rootContext } = loaderContext;
-                //         const relativePath = path.relative(rootContext, resourcePath);
-
-                //         console.log('path', relativePath);
-
-                //         if (relativePath === 'styles/foo.scss') {
-                //             return {
-                //                 includePaths: ['absolute/path/c', 'absolute/path/d'],
-                //             };
-                //         }
-
-                //         if (resourcePath.indexOf('node_modules') !== -1) {
-                //             console.log('resourcePath', resourcePath);
-                //         }
-
-                //         // console.log('hum');
-
-                //         return {
-                //             includePaths: ['node_modules'],
-                //         };
-                //     },
-                // },
             },
         },
         {
@@ -171,7 +142,7 @@ module.exports = {
                                 // ),
                                 ...getPackagesPaths().map((packagePath) => ({
                                     loader: require.resolve('babel-loader'),
-                                    test: /\.(js|jsx)$/,
+                                    test: /\.(js|jsx|ts|tsx)$/,
                                     include: path.join(packagePath, './src/'),
                                     exclude: /\/node_modules\//,
                                     options: {

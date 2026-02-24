@@ -10,11 +10,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-};
-
-const ShareButton = ({ className, ...props }) => {
+const ShareButton = ({ className = null, ...props }) => {
     const intl = useIntl();
 
     return (
@@ -57,6 +53,5 @@ const ShareButton = ({ className, ...props }) => {
 };
 
 ShareButton.propTypes = propTypes;
-ShareButton.defaultProps = defaultProps;
 
 export default ShareButton;

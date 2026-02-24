@@ -11,7 +11,7 @@ import React, { useMemo } from 'react';
 
 import getSelectOptions from '../utils/getSelectOptions';
 
-import styles from '../styles/position.module.scss';
+import styles from '../styles/position.module.css';
 
 const propTypes = {
     name: PropTypes.string,
@@ -21,16 +21,6 @@ const propTypes = {
     className: PropTypes.string,
     buttonClassName: PropTypes.string,
     onChange: PropTypes.func,
-};
-
-const defaultProps = {
-    name: null,
-    value: null,
-    axisOptions: ['top', 'center', 'bottom'],
-    crossOptions: ['left', 'center', 'right'],
-    className: null,
-    buttonClassName: null,
-    onChange: null,
 };
 
 const Icon = ({ label }) => {
@@ -61,13 +51,13 @@ const Icon = ({ label }) => {
 Icon.propTypes = { label: PropTypes.string.isRequired };
 
 const Position = ({
-    name,
-    value,
-    axisOptions: vertical,
-    crossOptions: horizontal,
-    className,
-    buttonClassName,
-    onChange,
+    name = null,
+    value = null,
+    axisOptions: vertical = ['top', 'center', 'bottom'],
+    crossOptions: horizontal = ['left', 'center', 'right'],
+    className = null,
+    buttonClassName = null,
+    onChange = null,
 }) => {
     const axisOptions = useMemo(() => getSelectOptions(vertical), [vertical]);
     const crossOptions = useMemo(() => getSelectOptions(horizontal), [horizontal]);
@@ -126,6 +116,5 @@ const Position = ({
 };
 
 Position.propTypes = propTypes;
-Position.defaultProps = defaultProps;
 
 export default Position;

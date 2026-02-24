@@ -145,25 +145,15 @@ const propTypes = {
     ]),
 };
 
-const defaultProps = {
-    transport: null,
-    locale: null,
-    sources: null,
-    transloadit: null,
-    companion: null,
-    tus: null,
-    xhr: null,
-};
-
 export const UppyProvider = ({
     children,
-    transport: providedTransport,
-    locale: providedLocale,
-    sources: providedSources,
-    transloadit: providedTransloadit,
-    companion: providedCompanion,
-    tus: providedTus,
-    xhr: providedXhr,
+    transport: providedTransport = null,
+    locale: providedLocale = null,
+    sources: providedSources = null,
+    transloadit: providedTransloadit = null,
+    companion: providedCompanion = null,
+    tus: providedTus = null,
+    xhr: providedXhr = null,
 }) => {
     const { locale: intlLocale } = useIntl();
 
@@ -301,4 +291,3 @@ export const UppyProvider = ({
 };
 
 UppyProvider.propTypes = propTypes;
-UppyProvider.defaultProps = defaultProps;

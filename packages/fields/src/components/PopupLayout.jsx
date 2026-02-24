@@ -6,7 +6,7 @@ import { PlaceholderImage, PlaceholderText } from '@micromag/core/components';
 
 import Radios from './Radios';
 
-import styles from '../styles/button-layout.module.scss';
+import styles from '../styles/button-layout.module.css';
 
 const propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
@@ -15,14 +15,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    types: ['label-bottom', 'label-top', 'no-label', 'label-over'],
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const ButtonLayout = ({ types, value, className, onChange }) => {
+const ButtonLayout = ({ types = ['label-bottom', 'label-top', 'no-label', 'label-over'], value = null, className = null, onChange = null }) => {
     const onButtonLayoutChange = (newVal) => {
         const v = newVal === value ? null : newVal;
         onChange(v);
@@ -107,6 +100,5 @@ const ButtonLayout = ({ types, value, className, onChange }) => {
 };
 
 ButtonLayout.propTypes = propTypes;
-ButtonLayout.defaultProps = defaultProps;
 
 export default ButtonLayout;

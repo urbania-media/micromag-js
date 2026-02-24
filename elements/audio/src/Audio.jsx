@@ -18,7 +18,7 @@ import {
 
 import AudioBars from './AudioBars';
 
-import styles from './styles/audio.module.scss';
+import styles from './styles/audio.module.css';
 
 const propTypes = {
     media: MicromagPropTypes.audioMedia,

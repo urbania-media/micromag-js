@@ -7,7 +7,7 @@ import { useGoogleMapsClient } from '@micromag/core/contexts';
 
 import { Map as GoogleMap, Marker } from './google';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     center: PropTypes.shape({
@@ -36,52 +36,28 @@ const propTypes = {
     focusable: PropTypes.bool,
 };
 
-const defaultProps = {
-    center: null,
-    zoom: null,
-    draggable: true,
-    markers: [],
-    onClickMap: null,
-    onClickMarker: null,
-    className: null,
-    onReady: null,
-    onCenterChanged: null,
-    onBoundsChanged: null,
-    onDrag: null,
-    onDragEnd: null,
-    withoutStyle: false,
-    fitBounds: false,
-    zoomControl: false,
-    mapTypeControl: false,
-    scaleControl: false,
-    streetViewControl: false,
-    rotateControl: false,
-    fullscreenControl: false,
-    focusable: true,
-};
-
 const Map = ({
-    center,
-    zoom,
-    draggable,
-    markers,
-    onClickMap,
-    onClickMarker,
-    className,
-    onReady,
-    onCenterChanged,
-    onBoundsChanged,
-    onDrag,
-    onDragEnd,
-    withoutStyle,
-    fitBounds,
-    zoomControl,
-    mapTypeControl,
-    scaleControl,
-    streetViewControl,
-    rotateControl,
-    fullscreenControl,
-    focusable,
+    center = null,
+    zoom = null,
+    draggable = true,
+    markers = [],
+    onClickMap = null,
+    onClickMarker = null,
+    className = null,
+    onReady = null,
+    onCenterChanged = null,
+    onBoundsChanged = null,
+    onDrag = null,
+    onDragEnd = null,
+    withoutStyle = false,
+    fitBounds = false,
+    zoomControl = false,
+    mapTypeControl = false,
+    scaleControl = false,
+    streetViewControl = false,
+    rotateControl = false,
+    fullscreenControl = false,
+    focusable = true,
 }) => {
     const client = useGoogleMapsClient();
 
@@ -195,6 +171,5 @@ const Map = ({
 };
 
 Map.propTypes = propTypes;
-Map.defaultProps = defaultProps;
 
 export default Map;

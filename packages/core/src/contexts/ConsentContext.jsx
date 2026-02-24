@@ -126,22 +126,16 @@ const propTypes = {
     expiration: PropTypes.number,
 };
 
-const defaultProps = {
-    consent: [
+export const ConsentProvider = ({
+    consent: providedConsent = [
         'functionality_storage',
         'analytics_storage',
         'ad_storage',
         'ad_personalization',
         'ad_user_data',
     ],
-    consented: null,
-    expiration: 182, // Default expiration in days
-};
-
-export const ConsentProvider = ({
-    consent: providedConsent,
-    consented: initialConsented,
-    expiration,
+    consented: initialConsented = null,
+    expiration = 182,
     children,
 }) => {
     // Has consented or not to cookies
@@ -241,4 +235,3 @@ export const ConsentProvider = ({
 };
 
 ConsentProvider.propTypes = propTypes;
-ConsentProvider.defaultProps = defaultProps;

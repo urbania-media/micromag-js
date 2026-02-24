@@ -12,12 +12,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    dots: false,
-    className: null,
-};
-
-const SettingsButton = ({ className, dots, ...props }) => (
+const SettingsButton = ({ className = null, dots = false, ...props }) => (
     <Button
         className={className}
         theme="secondary"
@@ -28,6 +23,5 @@ const SettingsButton = ({ className, dots, ...props }) => (
 );
 
 SettingsButton.propTypes = propTypes;
-SettingsButton.defaultProps = defaultProps;
 
 export default SettingsButton;

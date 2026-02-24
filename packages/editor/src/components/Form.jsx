@@ -21,7 +21,7 @@ import ScreenForm from './forms/Screen';
 import Breadcrumb from './menus/Breadcrumb';
 import DeleteScreenModal from './modals/DeleteScreen';
 
-import styles from '../styles/form.module.scss';
+import styles from '../styles/form.module.css';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -30,14 +30,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    isTheme: false,
-    className: null,
-    onChange: null,
-};
-
-const EditForm = ({ value, isTheme, className, onChange }) => {
+const EditForm = ({ value = null, isTheme = false, className = null, onChange = null }) => {
     // Match routes
     const [, setLocation] = useLocation();
     const routePush = useRoutePush();
@@ -328,6 +321,5 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
 };
 
 EditForm.propTypes = propTypes;
-EditForm.defaultProps = defaultProps;
 
 export default EditForm;

@@ -6,12 +6,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    color: 'currentColor',
-    className: null,
-};
-
-const MicromagIcon = ({ color, className = null }) => (
+const MicromagIcon = ({ color = 'currentColor', className = null }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 315.77 56.94" className={className}>
         <path
             fill={color}
@@ -55,6 +50,5 @@ const MicromagIcon = ({ color, className = null }) => (
 );
 
 MicromagIcon.propTypes = propTypes;
-MicromagIcon.defaultProps = defaultProps;
 
 export default MicromagIcon;

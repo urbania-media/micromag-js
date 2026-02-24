@@ -5,19 +5,14 @@ import React from 'react';
 
 import Button from './Button';
 
-import styles from '../../styles/buttons/icon-button.module.scss';
+import styles from '../../styles/buttons/icon-button.module.css';
 
 const propTypes = {
     iconClassName: PropTypes.string,
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    iconClassName: null,
-    className: null,
-};
-
-const IconButton = ({ iconClassName, className, ...props }) => (
+const IconButton = ({ iconClassName = null, className = null, ...props }) => (
     <Button
         className={classNames([
             styles.container,
@@ -37,6 +32,5 @@ const IconButton = ({ iconClassName, className, ...props }) => (
 );
 
 IconButton.propTypes = propTypes;
-IconButton.defaultProps = defaultProps;
 
 export default IconButton;

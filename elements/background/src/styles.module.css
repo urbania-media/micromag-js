@@ -1,0 +1,41 @@
+.container {
+    overflow: hidden;
+
+    &:focus,
+    &:focus-within {
+        video {
+            border: 3px solid #f3f;
+        }
+    }
+}
+
+.videoContainer,
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.layers,
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.background {
+    .right & {
+        right: 0;
+        left: auto;
+    }
+
+    .bottom & {
+        top: auto;
+        bottom: 0;
+    }
+}

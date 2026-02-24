@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from '../../styles/partials/slideshow.module.scss';
+import styles from '../../styles/partials/slideshow.module.css';
 
 const propTypes = {
     items: PropTypes.arrayOf(PropTypes.node),
@@ -15,17 +15,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    items: [],
-    auto: true,
-    delay: 5000,
-    width: null,
-    height: null,
-    className: null,
-    children: null,
-};
-
-const Slideshow = ({ items, auto, delay, width, height, className, children }) => {
+const Slideshow = ({ items = [], auto = true, delay = 5000, width = null, height = null, className = null, children = null }) => {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
@@ -79,6 +69,5 @@ const Slideshow = ({ items, auto, delay, width, height, className, children }) =
 };
 
 Slideshow.propTypes = propTypes;
-Slideshow.defaultProps = defaultProps;
 
 export default Slideshow;

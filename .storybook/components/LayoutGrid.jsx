@@ -2,7 +2,7 @@
 import isObject from 'lodash/isObject';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from './styles/layout-grid.module.scss';
+import styles from './styles/layout-grid.module.css';
 
 const propTypes = {
     layouts: PropTypes.arrayOf(
@@ -11,11 +11,7 @@ const propTypes = {
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 };
 
-const defaultProps = {
-    layouts: null,
-};
-
-const LayoutGrid = ({ layouts, children }) => (
+const LayoutGrid = ({ layouts = null, children }) => (
     <div className={styles.container}>
         <div className={styles.items}>
             {layouts !== null && layouts.length > 0 ? (
@@ -35,6 +31,5 @@ const LayoutGrid = ({ layouts, children }) => (
 );
 
 LayoutGrid.propTypes = propTypes;
-LayoutGrid.defaultProps = defaultProps;
 
 export default LayoutGrid;

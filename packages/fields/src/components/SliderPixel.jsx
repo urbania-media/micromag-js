@@ -9,14 +9,14 @@ const propTypes = {
     withInput: PropTypes.bool,
 };
 
-const defaultProps = {
-    unit: 'px',
-    withInput: true,
-};
-
-const SliderPixelField = props => <SliderField {...props} />;
+const SliderPixelField = (
+    {
+        unit: unit = 'px',
+        withInput: withInput = true,
+        ...props
+    },
+) => <SliderField {...props} />;
 
 SliderPixelField.propTypes = propTypes;
-SliderPixelField.defaultProps = defaultProps;
 
 export default SliderPixelField;

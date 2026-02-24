@@ -105,19 +105,15 @@ const propTypes = {
     currentQualityLevel: PropTypes.number,
 };
 
-const defaultProps = {
-    ...defaultValue,
-};
-
 export const PlaybackProvider = ({
-    muted: initialMuted,
-    playing: initialPlaying,
-    paused,
-    controls: initialControls,
-    controlsSuggestPlay: initialControlsSuggestPlay,
-    controlsVisible: initialControlsVisible,
-    controlsTheme: initialControlsTheme,
-    currentQualityLevel: initialCurrentQualityLevel,
+    muted: initialMuted = true,
+    playing: initialPlaying = false,
+    paused = false,
+    controls: initialControls = false,
+    controlsSuggestPlay: initialControlsSuggestPlay = false,
+    controlsVisible: initialControlsVisible = false,
+    controlsTheme: initialControlsTheme = defaultControlsThemeValue,
+    currentQualityLevel: initialCurrentQualityLevel = null,
     children,
 }) => {
     const [muted, setMuted] = useState(initialMuted);
@@ -266,4 +262,3 @@ export const PlaybackProvider = ({
 };
 
 PlaybackProvider.propTypes = propTypes;
-PlaybackProvider.defaultProps = defaultProps;

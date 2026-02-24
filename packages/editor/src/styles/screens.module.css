@@ -1,0 +1,10 @@
+.container {
+    .navbar {
+        z-index: 999;
+        background-color: var(--mm-black);
+
+        > div {
+            padding: 0;
+        }
+    }
+}

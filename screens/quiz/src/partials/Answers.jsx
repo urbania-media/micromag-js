@@ -17,7 +17,7 @@ import { getStyleFromColor, isImageFilled, isTextFilled } from '@micromag/core/u
 import { RichButton } from '@micromag/element-button';
 import Keypad from '@micromag/element-keypad';
 
-import styles from './answers.module.scss';
+import styles from './answers.module.css';
 
 const propTypes = {
     items: MicromagPropTypes.quizAnswers.isRequired,
@@ -45,55 +45,30 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    keypadLayout: null,
-    answeredIndex: null,
-    answersCollapseDelay: 1000,
-    buttonsStyle: null,
-    buttonsLayout: null,
-    inactiveButtonsStyle: null,
-    buttonsTextStyle: null,
-    inactiveButtonsTextStyle: null,
-    goodAnswerColor: null,
-    badAnswerColor: null,
-    showUserAnswer: false,
-    withoutGoodAnswer: false,
-    withoutIcon: false,
-    focusable: false,
-    animated: false,
-    collapsed: false,
-    onClick: null,
-    onCollapse: null,
-    onCollapsed: null,
-    onTransitionEnd: null,
-    withoutCollapse: false,
-    className: null,
-};
-
 const Answers = ({
     items,
-    keypadLayout,
-    answeredIndex,
-    answersCollapseDelay,
-    buttonsStyle,
-    buttonsLayout,
-    inactiveButtonsStyle,
-    buttonsTextStyle,
-    inactiveButtonsTextStyle,
-    goodAnswerColor,
-    badAnswerColor,
-    showUserAnswer,
-    withoutGoodAnswer,
-    withoutIcon,
-    focusable,
-    animated: collapseAnimated,
-    collapsed: initialCollapsed,
-    onClick,
-    onCollapse,
-    onCollapsed,
-    onTransitionEnd,
-    withoutCollapse,
-    className,
+    keypadLayout = null,
+    answeredIndex = null,
+    answersCollapseDelay = 1000,
+    buttonsStyle = null,
+    buttonsLayout = null,
+    inactiveButtonsStyle = null,
+    buttonsTextStyle = null,
+    inactiveButtonsTextStyle = null,
+    goodAnswerColor = null,
+    badAnswerColor = null,
+    showUserAnswer = false,
+    withoutGoodAnswer = false,
+    withoutIcon = false,
+    focusable = false,
+    animated: collapseAnimated = false,
+    collapsed: initialCollapsed = false,
+    onClick = null,
+    onCollapse = null,
+    onCollapsed = null,
+    onTransitionEnd = null,
+    withoutCollapse = false,
+    className = null,
 }) => {
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const answered = answeredIndex !== null;
@@ -496,6 +471,5 @@ const Answers = ({
 };
 
 Answers.propTypes = propTypes;
-Answers.defaultProps = defaultProps;
 
 export default Answers;

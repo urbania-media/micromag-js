@@ -9,7 +9,7 @@ import { Screen } from '@micromag/core/components';
 // @todo: remove if validated with team
 // import HandTap from './partials/HandTap';
 // import ArrowHint from './partials/ArrowHint';
-import styles from '../styles/screen.module.scss';
+import styles from '../styles/screen.module.css';
 
 const propTypes = {
     screen: MicromagPropTypes.screenComponent,
@@ -27,36 +27,20 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    screen: null,
-    renderContext: null,
-    screenState: null,
-    current: false,
-    active: true,
-    preload: true,
-    index: null,
-    mediaRef: null,
-    width: null,
-    height: null,
-    scale: null,
-    // withNavigationHint: false,
-    className: null,
-};
-
 function ViewerScreen({
-    screen,
-    renderContext,
-    index,
-    screenState,
-    active,
-    preload,
-    current,
-    mediaRef,
-    width,
-    height,
-    scale,
+    screen = null,
+    renderContext = null,
+    index = null,
+    screenState = null,
+    active = true,
+    preload = true,
+    current = false,
+    mediaRef = null,
+    width = null,
+    height = null,
+    scale = null,
     // withNavigationHint,
-    className,
+    className = null,
 }) {
     const [mounted, setMounted] = useState(active || current);
     useEffect(() => {
@@ -117,6 +101,5 @@ function ViewerScreen({
 }
 
 ViewerScreen.propTypes = propTypes;
-ViewerScreen.defaultProps = defaultProps;
 
 export default ViewerScreen;

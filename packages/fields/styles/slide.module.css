@@ -1,0 +1,11 @@
+.container {
+    composes: field-with-form from './placeholders.module.css';
+
+    .value {
+        font-family: var(--mm-font-family-monospace);
+    }
+}
+
+.panel {
+    padding: calc(var(--mm-spacer) / 2);
+}

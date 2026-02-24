@@ -12,17 +12,11 @@ const propTypes = {
     values: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
-const defaultProps = {
-    isHtml: false,
-    values: {},
-};
-
-const Label = ({ children, isHtml, values }) => {
+const Label = ({ children, isHtml = false, values = {} }) => {
     const Message = isHtml ? FormattedMessage : FormattedMessage;
     return isMessage(children) ? <Message values={values} {...children} /> : children;
 };
 
 Label.propTypes = propTypes;
-Label.defaultProps = defaultProps;
 
 export default Label;

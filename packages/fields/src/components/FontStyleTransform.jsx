@@ -11,13 +11,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    transformName: 'transform',
-    value: null,
-    onChange: null,
-};
-
-const FontStyleTransform = ({ value, transformName, onChange, ...props }) => {
+const FontStyleTransform = ({ value = null, transformName = 'transform', onChange = null, ...props }) => {
     const transformValue = value !== null ? value[transformName] || null : null;
     const onTransformChange = useCallback(
         (newTransformValue) => {
@@ -35,7 +29,6 @@ const FontStyleTransform = ({ value, transformName, onChange, ...props }) => {
 };
 
 FontStyleTransform.propTypes = propTypes;
-FontStyleTransform.defaultProps = defaultProps;
 FontStyleTransform.isHorizontal = true;
 
 export default FontStyleTransform;

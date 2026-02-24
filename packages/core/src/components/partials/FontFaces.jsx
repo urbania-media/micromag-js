@@ -42,25 +42,20 @@ const propTypes = {
     ),
 };
 
-const defaultProps = {
-    fonts: [],
-    formats: [
-        'eot',
-        'woff2',
-        'woff',
-        {
-            name: 'otf',
-            format: 'opentype',
-        },
-        {
-            name: 'ttf',
-            format: 'truetype',
-        },
-        'svg',
-    ],
-};
-
-const FontFaces = ({ fonts, formats }) => {
+const FontFaces = ({ fonts = [], formats = [
+    'eot',
+    'woff2',
+    'woff',
+    {
+        name: 'otf',
+        format: 'opentype',
+    },
+    {
+        name: 'ttf',
+        format: 'truetype',
+    },
+    'svg',
+] }) => {
     const fontFaces = (fonts || [])
         .filter((it) => isObject(it) && it.type === 'custom' && (it.media || null) !== null)
         .reduce((fontFontFaces, { name = null, media = null, variants = [] }) => {
@@ -152,6 +147,5 @@ const FontFaces = ({ fonts, formats }) => {
 };
 
 FontFaces.propTypes = propTypes;
-FontFaces.defaultProps = defaultProps;
 
 export default FontFaces;

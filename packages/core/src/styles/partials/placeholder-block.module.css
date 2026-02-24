@@ -1,0 +1,29 @@
+.container {
+    padding: 2px;
+
+    &.outline {
+        margin: 2px 0;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+    }
+
+    &.withInvertedColors {
+        mix-blend-mode: difference;
+    }
+}
+
+.box {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: currentColor;
+
+    .withInvertedColors & {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .outline & {
+        background-color: transparent;
+    }
+}

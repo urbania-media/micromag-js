@@ -1,0 +1,28 @@
+.container {
+    position: relative;
+    padding-top: 5px;
+
+    .label {
+        display: inline-block;
+        padding-right: 5px;
+        font-weight: normal;
+    }
+
+    .dropdownToggle {
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font-family: inherit;
+        cursor: pointer;
+        appearance: none;
+        font-weight: bold;
+    }
+
+    .dropdown {
+        right: 0;
+        left: auto;
+    }
+}

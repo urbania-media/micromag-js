@@ -1,0 +1,7 @@
+.container {
+    user-select: none;
+
+    :global {
+        @import '~rc-switch/assets/index';
+    }
+}

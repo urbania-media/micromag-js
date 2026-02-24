@@ -6,7 +6,7 @@ import React, { useId } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromMargin } from '@micromag/core/utils';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     url: PropTypes.string,
@@ -19,26 +19,15 @@ const propTypes = {
     focusable: PropTypes.bool,
 };
 
-const defaultProps = {
-    url: null,
-    target: null,
-    rel: null,
-    external: true,
-    margin: null,
-    className: null,
-    children: null,
-    focusable: true,
-};
-
 const Link = ({
-    url,
-    target: linkTarget,
-    rel: linkRel,
-    external,
-    margin,
-    className,
-    children,
-    focusable,
+    url = null,
+    target: linkTarget = null,
+    rel: linkRel = null,
+    external = true,
+    margin = null,
+    className = null,
+    children = null,
+    focusable = true,
 }) => {
     let finalStyle = null;
 
@@ -90,6 +79,5 @@ const Link = ({
 };
 
 Link.propTypes = propTypes;
-Link.defaultProps = defaultProps;
 
 export default Link;

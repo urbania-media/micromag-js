@@ -31,7 +31,7 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './gallery-feed.module.scss';
+import styles from './gallery-feed.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal', 'reverse']),
@@ -52,36 +52,20 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'normal',
-    images: null,
-    withCaptions: false,
-    imageCaptionStyle: null,
-    spacing: 20,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    active: true,
-    preload: true,
-    type: null,
-    className: null,
-};
-
 const GalleryFeedScreen = ({
-    layout,
-    images,
-    withCaptions,
-    imageCaptionStyle,
-    spacing: initialSpacing,
-    background,
-    header,
-    footer,
-    current,
-    active,
-    preload,
-    type,
-    className,
+    layout = 'normal',
+    images = null,
+    withCaptions = false,
+    imageCaptionStyle = null,
+    spacing: initialSpacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    preload = true,
+    type = null,
+    className = null,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
@@ -328,6 +312,5 @@ const GalleryFeedScreen = ({
 };
 
 GalleryFeedScreen.propTypes = propTypes;
-GalleryFeedScreen.defaultProps = defaultProps;
 
 export default GalleryFeedScreen;

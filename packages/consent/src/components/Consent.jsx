@@ -5,7 +5,7 @@ import React from 'react';
 import CloseButton from './buttons/Close';
 import CookiesForm from './forms/Cookies';
 
-import styles from '../styles/consent.module.scss';
+import styles from '../styles/consent.module.css';
 
 const propTypes = {
     urls: PropTypes.shape({
@@ -26,18 +26,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    urls: null,
-    labels: null,
-    onChange: null,
-    onSubmit: null,
-    onClose: null,
-    withClose: false,
-    className: null,
-    children: null,
-};
-
-function Consent({ urls, labels, onChange, onSubmit, onClose, withClose, className, children }) {
+function Consent({ urls = null, labels = null, onChange = null, onSubmit = null, onClose = null, withClose = false, className = null, children = null }) {
     return (
         <div
             className={classNames([
@@ -69,6 +58,5 @@ function Consent({ urls, labels, onChange, onSubmit, onClose, withClose, classNa
 }
 
 Consent.propTypes = propTypes;
-Consent.defaultProps = defaultProps;
 
 export default Consent;

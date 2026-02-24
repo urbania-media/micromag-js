@@ -6,7 +6,7 @@ import isString from 'lodash/isString';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
 
-import styles from '../styles/input-group.module.scss';
+import styles from '../styles/input-group.module.css';
 
 const propTypes = {
     prepend: PropTypes.node,
@@ -16,15 +16,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    prepend: null,
-    children: null,
-    append: null,
-    size: null,
-    className: null,
-};
-
-const InputGroup = ({ prepend, children, append, size, className }) => (
+const InputGroup = ({ prepend = null, children = null, append = null, size = null, className = null }) => (
     <div
         className={classNames([
             'input-group',
@@ -44,6 +36,5 @@ const InputGroup = ({ prepend, children, append, size, className }) => (
 );
 
 InputGroup.propTypes = propTypes;
-InputGroup.defaultProps = defaultProps;
 
 export default InputGroup;

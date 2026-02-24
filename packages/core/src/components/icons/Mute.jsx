@@ -6,12 +6,7 @@ const propTypes = {
     color: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-    color: '#fff',
-};
-
-const MuteIcon = ({ color, className }) => (
+const MuteIcon = ({ color = '#fff', className = null }) => (
     <svg
         width="26"
         height="26"
@@ -36,6 +31,5 @@ const MuteIcon = ({ color, className }) => (
 );
 
 MuteIcon.propTypes = propTypes;
-MuteIcon.defaultProps = defaultProps;
 
 export default MuteIcon;

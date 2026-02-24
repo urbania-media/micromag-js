@@ -8,14 +8,9 @@ const propTypes = {
     sizes: PropTypes.arrayOf(PropTypes.number),
 };
 
-const defaultProps = {
-    sizes: [12, 14, 16, 18, 20, 24, 28, 32, 48],
-};
-
-const FontSize = ({ sizes, ...props }) => <Number {...props} dataList={sizes} />;
+const FontSize = ({ sizes = [12, 14, 16, 18, 20, 24, 28, 32, 48], ...props }) => <Number {...props} dataList={sizes} />;
 
 FontSize.propTypes = propTypes;
-FontSize.defaultProps = defaultProps;
 FontSize.isHorizontal = true;
 
 export default FontSize;

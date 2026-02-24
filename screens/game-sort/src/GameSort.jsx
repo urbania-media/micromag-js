@@ -38,7 +38,7 @@ import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './game-sort.module.scss';
+import styles from './game-sort.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
@@ -65,52 +65,28 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'top',
-    heading: null,
-    items: null,
-    spacing: 20,
-    itemsLayout: 'label-bottom',
-    itemsBoxStyle: null,
-    itemsTextStyle: null,
-    itemsResultsTextStyle: null,
-    validBoxStyle: null,
-    invalidBoxStyle: null,
-    submitBoxStyle: null,
-    submitTextStyle: null,
-    submitButtonLabel: null,
-    results: null,
-    resultsBoxStyle: null,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    active: true,
-    className: null,
-};
-
 const GameSort = ({
-    layout,
-    heading,
-    items: initialItems,
-    spacing,
-    itemsLayout,
-    itemsBoxStyle,
-    itemsTextStyle,
-    itemsResultsTextStyle,
-    validBoxStyle,
-    invalidBoxStyle,
-    submitBoxStyle,
-    submitTextStyle,
-    submitButtonLabel,
-    results,
-    resultsBoxStyle,
-    background,
-    header,
-    footer,
-    current,
-    active,
-    className,
+    layout = 'top',
+    heading = null,
+    items: initialItems = null,
+    spacing = 20,
+    itemsLayout = 'label-bottom',
+    itemsBoxStyle = null,
+    itemsTextStyle = null,
+    itemsResultsTextStyle = null,
+    validBoxStyle = null,
+    invalidBoxStyle = null,
+    submitBoxStyle = null,
+    submitTextStyle = null,
+    submitButtonLabel = null,
+    results = null,
+    resultsBoxStyle = null,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    className = null,
 }) => {
     const intl = useIntl();
     const { width, height, resolution } = useScreenSize();
@@ -599,6 +575,5 @@ const GameSort = ({
 };
 
 GameSort.propTypes = propTypes;
-GameSort.defaultProps = defaultProps;
 
 export default GameSort;

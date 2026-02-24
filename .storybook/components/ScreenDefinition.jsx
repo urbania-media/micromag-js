@@ -13,11 +13,7 @@ const propTypes = {
     defaultScreen: MicromagPropTypes.screen,
 };
 
-const defaultProps = {
-    defaultScreen: null,
-};
-
-const ScreenDefinition = ({ definition, defaultScreen }) => {
+const ScreenDefinition = ({ definition, defaultScreen = null }) => {
     const definitions = isArray(definition) ? definition : [definition];
     // console.log(definition, definitions);
     const [data, setData] = useState({
@@ -76,6 +72,5 @@ const ScreenDefinition = ({ definition, defaultScreen }) => {
 };
 
 ScreenDefinition.propTypes = propTypes;
-ScreenDefinition.defaultProps = defaultProps;
 
 export default ScreenDefinition;

@@ -9,7 +9,7 @@ import { CloseIcon } from '@micromag/core/components';
 
 import MenuDot from './MenuDot';
 
-import styles from '../../styles/menus/menu-dots.module.scss';
+import styles from '../../styles/menus/menu-dots.module.css';
 
 const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
@@ -28,32 +28,18 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    direction: 'horizontal',
-    items: [],
-    onClickDot: null,
-    onClickScreensMenu: null,
-    colors: null,
-    buttons: null,
-    closeable: false,
-    withItemClick: false,
-    withoutScreensMenu: false,
-    onClose: null,
-    className: null,
-};
-
 const ViewerMenuDots = ({
-    direction,
-    items,
-    onClickDot,
-    onClickScreensMenu,
-    colors,
-    closeable,
-    buttons,
-    withItemClick,
-    withoutScreensMenu,
-    onClose,
-    className,
+    direction = 'horizontal',
+    items = [],
+    onClickDot = null,
+    onClickScreensMenu = null,
+    colors = null,
+    closeable = false,
+    buttons = null,
+    withItemClick = false,
+    withoutScreensMenu = false,
+    onClose = null,
+    className = null,
     ...props
 }) => {
     const { primary = 'rgba(255, 255, 255, 1)' } = colors || {};
@@ -127,6 +113,5 @@ const ViewerMenuDots = ({
     );
 };
 ViewerMenuDots.propTypes = propTypes;
-ViewerMenuDots.defaultProps = defaultProps;
 
 export default ViewerMenuDots;

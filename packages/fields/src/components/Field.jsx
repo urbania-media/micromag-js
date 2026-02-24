@@ -30,49 +30,27 @@ const propTypes = {
     fieldClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    name: null,
-    type: null,
-    component: null,
-    label: null,
-    help: null,
-    value: null,
-    errors: null,
-    fields: undefined,
-    isHorizontal: null,
-    isSection: false,
-    isListItem: false,
-    withForm: null,
-    withModal: null,
-    onChange: null,
-    gotoFieldForm: null,
-    closeFieldForm: null,
-    className: null,
-    labelClassName: null,
-    fieldClassName: null,
-};
-
 const Field = ({
-    name,
-    type,
-    component: providedComponent,
-    label,
-    help,
-    errors,
-    fields: providedFields,
-    isHorizontal,
-    isSection,
-    isListItem,
-    withForm: providedWithForm,
-    withModal: providedWithModal,
+    name = null,
+    type = null,
+    component: providedComponent = null,
+    label = null,
+    help = null,
+    errors = null,
+    fields: providedFields = undefined,
+    isHorizontal = null,
+    isSection = false,
+    isListItem = false,
+    withForm: providedWithForm = null,
+    withModal: providedWithModal = null,
     withToggle: providedWithToggle,
-    value,
-    onChange,
-    gotoFieldForm,
-    closeFieldForm,
-    className,
-    labelClassName,
-    fieldClassName,
+    value = null,
+    onChange = null,
+    gotoFieldForm = null,
+    closeFieldForm = null,
+    className = null,
+    labelClassName = null,
+    fieldClassName = null,
     ...props
 }) => {
     const fieldsManager = useFieldsManager();
@@ -179,6 +157,5 @@ const Field = ({
 };
 
 Field.propTypes = propTypes;
-Field.defaultProps = defaultProps;
 
 export default Field;

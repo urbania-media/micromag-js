@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getSecondsFromTime, getStyleFromBox } from '@micromag/core/utils';
 import TextElement from '@micromag/element-text';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     media: MicromagPropTypes.closedCaptionsMedia,
@@ -19,16 +19,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    media: null,
-    currentTime: 0,
-    timeOffset: null,
-    textStyle: null,
-    boxStyle: null,
-    className: null,
-};
-
-const ClosedCaptions = ({ currentTime, timeOffset, media, textStyle, boxStyle, className }) => {
+const ClosedCaptions = ({ currentTime = 0, timeOffset = null, media = null, textStyle = null, boxStyle = null, className = null }) => {
     const { url = null } = media || {};
     const [lines, setLines] = useState([]);
     const [lineIndex, setLineIndex] = useState(-1);
@@ -96,6 +87,5 @@ const ClosedCaptions = ({ currentTime, timeOffset, media, textStyle, boxStyle, c
 };
 
 ClosedCaptions.propTypes = propTypes;
-ClosedCaptions.defaultProps = defaultProps;
 
 export default ClosedCaptions;

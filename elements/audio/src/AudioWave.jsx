@@ -10,7 +10,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useDimensionObserver, useDevicePixelRatio } from '@micromag/core/hooks';
 import { getContrastingColor } from '@micromag/core/utils';
 
-import styles from './styles/audio-wave.module.scss';
+import styles from './styles/audio-wave.module.css';
 
 const propTypes = {
     currentTime: PropTypes.number,
@@ -28,36 +28,20 @@ const propTypes = {
     onReady: PropTypes.func,
 };
 
-const defaultProps = {
-    currentTime: null,
-    duration: null,
-    playing: false,
-    sampleWidth: 3,
-    sampleMargin: 1,
-    minSampleHeight: 2,
-    backgroundColor: 'white',
-    progressColor: null,
-    audioLevels: null,
-    className: null,
-    onSeek: null,
-    onResume: null,
-    onReady: null,
-};
-
 function AudioWave({
-    currentTime,
-    duration,
-    playing,
-    sampleWidth,
-    sampleMargin,
-    minSampleHeight,
-    backgroundColor,
-    progressColor,
-    audioLevels,
-    className,
-    onSeek,
-    onResume,
-    onReady,
+    currentTime = null,
+    duration = null,
+    playing = false,
+    sampleWidth = 3,
+    sampleMargin = 1,
+    minSampleHeight = 2,
+    backgroundColor = 'white',
+    progressColor = null,
+    audioLevels = null,
+    className = null,
+    onSeek = null,
+    onResume = null,
+    onReady = null,
 }) {
     const canvasBackgroundRef = useRef(null);
     const canvasProgressRef = useRef(null);
@@ -268,6 +252,5 @@ function AudioWave({
 }
 
 AudioWave.propTypes = propTypes;
-AudioWave.defaultProps = defaultProps;
 
 export default AudioWave;

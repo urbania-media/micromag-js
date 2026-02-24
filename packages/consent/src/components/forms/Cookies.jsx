@@ -11,7 +11,7 @@ import PillButton from '../buttons/Pill';
 import Checkbox from '../fields/Checkbox';
 import Link from '../partials/Link';
 
-import styles from '../../styles/forms/cookies.module.scss';
+import styles from '../../styles/forms/cookies.module.css';
 
 const propTypes = {
     urls: PropTypes.shape({
@@ -29,24 +29,14 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    urls: null,
-    labels: null,
-    onChange: null,
-    onSubmit: null,
-    onClose: null,
-    onClickLink: null,
-    className: null,
-};
-
 const Cookies = ({
-    onChange,
-    onSubmit,
-    onClose,
-    onClickLink,
-    urls,
-    labels,
-    className,
+    onChange = null,
+    onSubmit = null,
+    onClose = null,
+    onClickLink = null,
+    urls = null,
+    labels = null,
+    className = null,
     ...props
 }) => {
     const {
@@ -203,6 +193,5 @@ const Cookies = ({
 };
 
 Cookies.propTypes = propTypes;
-Cookies.defaultProps = defaultProps;
 
 export default Cookies;

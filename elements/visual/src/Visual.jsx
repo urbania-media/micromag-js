@@ -9,7 +9,7 @@ import { useIsVisible } from '@micromag/core/hooks';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     media: MicromagPropTypes.media,
@@ -40,50 +40,27 @@ const propTypes = {
     onQualityLevelChange: PropTypes.func,
 };
 
-const defaultProps = {
-    media: null,
-    mediaRef: null,
-    width: null,
-    height: null,
-    ratio: null,
-    resolution: 1,
-    objectFit: null,
-    playing: true,
-    muted: true,
-    loadingMode: null,
-    shouldLoad: true,
-    videoLoop: true,
-    withoutVideo: false,
-    videoInitialMuted: true,
-    onLoaded: null,
-    className: null,
-    imageClassName: null,
-    videoClassName: null,
-    qualityStartLevel: null,
-    onQualityLevelChange: null,
-};
-
 const Visual = ({
-    media,
-    mediaRef,
-    width,
-    height,
-    ratio,
-    resolution,
-    objectFit,
-    playing,
-    muted,
-    loadingMode,
-    shouldLoad,
-    videoLoop,
-    videoInitialMuted,
-    onLoaded: onParentLoaded,
-    className,
-    imageClassName,
-    videoClassName,
-    withoutVideo,
-    qualityStartLevel,
-    onQualityLevelChange,
+    media = null,
+    mediaRef = null,
+    width = null,
+    height = null,
+    ratio = null,
+    resolution = 1,
+    objectFit = null,
+    playing = true,
+    muted = true,
+    loadingMode = null,
+    shouldLoad = true,
+    videoLoop = true,
+    videoInitialMuted = true,
+    onLoaded: onParentLoaded = null,
+    className = null,
+    imageClassName = null,
+    videoClassName = null,
+    withoutVideo = false,
+    qualityStartLevel = null,
+    onQualityLevelChange = null,
     ...props
 }) => {
     const { type = null, thumbnail_url: thumbnailUrl = null, url = null } = media || {};
@@ -190,6 +167,5 @@ const Visual = ({
 };
 
 Visual.propTypes = propTypes;
-Visual.defaultProps = defaultProps;
 
 export default Visual;

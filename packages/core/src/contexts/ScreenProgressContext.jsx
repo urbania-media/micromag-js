@@ -23,12 +23,7 @@ const propTypes = {
     duration: PropTypes.number,
 };
 
-const defaultProps = {
-    currentTime: 0,
-    duration: 0,
-};
-
-export const ScreenProgressProvider = ({ currentTime, duration, children }) => {
+export const ScreenProgressProvider = ({ currentTime = 0, duration = 0, children }) => {
     const [progress, setProgress] = useState({ currentTime, duration });
 
     useEffect(() => {
@@ -54,4 +49,3 @@ export const ScreenProgressProvider = ({ currentTime, duration, children }) => {
 };
 
 ScreenProgressProvider.propTypes = propTypes;
-ScreenProgressProvider.defaultProps = defaultProps;

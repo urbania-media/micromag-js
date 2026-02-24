@@ -12,7 +12,7 @@ import Text from '@micromag/element-text';
 
 import Avatar from './Avatar';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     author: PropTypes.shape({
@@ -31,26 +31,15 @@ const propTypes = {
     shouldLoad: PropTypes.bool,
 };
 
-const defaultProps = {
-    author: null,
-    withImage: true,
-    withoutLink: false,
-    linkUnderlineColor: null,
-    className: null,
-    backgroundClassName: null,
-    collaboratorClassName: null,
-    shouldLoad: true,
-};
-
 const Author = ({
-    author,
-    withImage,
-    withoutLink,
-    linkUnderlineColor,
-    className,
-    backgroundClassName,
-    collaboratorClassName,
-    shouldLoad,
+    author = null,
+    withImage = true,
+    withoutLink = false,
+    linkUnderlineColor = null,
+    className = null,
+    backgroundClassName = null,
+    collaboratorClassName = null,
+    shouldLoad = true,
     ...otherProps
 }) => {
     const { name = null, image = null, url = null, collaborator = null } = author || {};
@@ -121,6 +110,5 @@ const Author = ({
 };
 
 Author.propTypes = propTypes;
-Author.defaultProps = defaultProps;
 
 export default Author;

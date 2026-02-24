@@ -26,7 +26,7 @@ import Scroll from '@micromag/element-scroll';
 
 import Question from './partials/Question';
 
-import styles from './quiz.module.scss';
+import styles from './quiz.module.css';
 
 const propTypes = {
     id: PropTypes.string,
@@ -62,66 +62,35 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    id: null,
-    layout: 'middle',
-    keypadLayout: null,
-    question: null,
-    answers: null,
-    result: null,
-    resultImage: null,
-    buttonsLayout: null,
-    buttonsStyle: null,
-    inactiveButtonsStyle: null,
-    buttonsTextStyle: null,
-    inactiveButtonsTextStyle: null,
-    feedbackTextStyle: null,
-    numbersTextStyle: null,
-    goodAnswerColor: null,
-    badAnswerColor: null,
-    withoutTrueFalse: false,
-    spacing: 20,
-    header: null,
-    footer: null,
-    background: null,
-    current: true,
-    preload: true,
-    ready: true,
-    transitions: null,
-    transitionStagger: 100,
-    type: null,
-    className: null,
-};
-
 const QuizScreen = ({
-    id,
-    layout,
-    keypadLayout,
-    question,
-    answers,
-    result,
-    resultImage,
-    buttonsLayout,
-    buttonsStyle,
-    inactiveButtonsStyle,
-    buttonsTextStyle,
-    inactiveButtonsTextStyle,
-    feedbackTextStyle,
-    numbersTextStyle,
-    goodAnswerColor,
-    badAnswerColor,
-    withoutTrueFalse,
-    spacing,
-    header,
-    footer,
-    background,
-    current,
-    preload,
-    ready,
-    transitions,
-    transitionStagger,
-    type,
-    className,
+    id = null,
+    layout = 'middle',
+    keypadLayout = null,
+    question = null,
+    answers = null,
+    result = null,
+    resultImage = null,
+    buttonsLayout = null,
+    buttonsStyle = null,
+    inactiveButtonsStyle = null,
+    buttonsTextStyle = null,
+    inactiveButtonsTextStyle = null,
+    feedbackTextStyle = null,
+    numbersTextStyle = null,
+    goodAnswerColor = null,
+    badAnswerColor = null,
+    withoutTrueFalse = false,
+    spacing = 20,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    ready = true,
+    transitions = null,
+    transitionStagger = 100,
+    type = null,
+    className = null,
 }) => {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -386,6 +355,5 @@ const QuizScreen = ({
 };
 
 QuizScreen.propTypes = propTypes;
-QuizScreen.defaultProps = defaultProps;
 
 export default QuizScreen;

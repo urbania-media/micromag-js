@@ -6,12 +6,7 @@ const propTypes = {
     color: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-    color: '#fff',
-};
-
-const FullscreenIcon = ({ color, className }) => (
+const FullscreenIcon = ({ color = '#fff', className = null }) => (
     <svg
         width="16"
         height="14"
@@ -28,6 +23,5 @@ const FullscreenIcon = ({ color, className }) => (
 );
 
 FullscreenIcon.propTypes = propTypes;
-FullscreenIcon.defaultProps = defaultProps;
 
 export default FullscreenIcon;

@@ -30,44 +30,24 @@ const propTypes = {
     dropdownAlign: MicromagPropTypes.dropdownAlign,
 };
 
-const defaultProps = {
-    items: [],
-    tagName: 'ul',
-    itemTagName: 'li',
-    children: null,
-    linkAsItem: false,
-    className: null,
-    itemClassName: null,
-    linkClassName: null,
-    hasSubMenuClassName: null,
-    subMenuClassName: null,
-    subMenuItemClassName: null,
-    subMenuLinkClassName: null,
-    hasDropdownClassName: null,
-    dropdownClassName: null,
-    dropdownItemClassName: null,
-    dropdownLinkClassName: null,
-    dropdownAlign: null,
-};
-
 const Menu = ({
-    items,
-    tagName,
-    itemTagName,
-    children,
-    linkAsItem,
-    className,
-    itemClassName,
-    linkClassName,
-    hasSubMenuClassName,
-    subMenuClassName,
-    subMenuItemClassName,
-    subMenuLinkClassName,
-    hasDropdownClassName,
-    dropdownClassName,
-    dropdownItemClassName,
-    dropdownLinkClassName,
-    dropdownAlign,
+    items = [],
+    tagName = 'ul',
+    itemTagName = 'li',
+    children = null,
+    linkAsItem = false,
+    className = null,
+    itemClassName = null,
+    linkClassName = null,
+    hasSubMenuClassName = null,
+    subMenuClassName = null,
+    subMenuItemClassName = null,
+    subMenuLinkClassName = null,
+    hasDropdownClassName = null,
+    dropdownClassName = null,
+    dropdownItemClassName = null,
+    dropdownLinkClassName = null,
+    dropdownAlign = null,
 }) => {
     const [dropdownsVisible, setDropdownsVisible] = useState(items.map(() => false));
     const ListComponent = linkAsItem ? 'div' : tagName;
@@ -221,6 +201,5 @@ const Menu = ({
 };
 
 Menu.propTypes = propTypes;
-Menu.defaultProps = defaultProps;
 
 export default Menu;

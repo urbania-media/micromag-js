@@ -5,7 +5,7 @@ import React from 'react';
 
 import { Button } from '@micromag/core/components';
 
-import styles from '../../styles/buttons/pill.module.scss';
+import styles from '../../styles/buttons/pill.module.css';
 
 const propTypes = {
     children: PropTypes.node,
@@ -18,26 +18,15 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    children: null,
-    color: null,
-    backgroundColor: null,
-    active: false,
-    invert: false,
-    disabled: false,
-    dark: false,
-    className: null,
-};
-
 function PillButton({
-    children,
-    color,
-    backgroundColor,
-    className,
-    active,
-    disabled,
-    invert,
-    dark,
+    children = null,
+    color = null,
+    backgroundColor = null,
+    className = null,
+    active = false,
+    disabled = false,
+    invert = false,
+    dark = false,
     ...props
 }) {
     return (
@@ -61,7 +50,6 @@ function PillButton({
     );
 }
 
-PillButton.defaultProps = defaultProps;
 PillButton.propTypes = propTypes;
 
 export default PillButton;

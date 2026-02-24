@@ -11,25 +11,23 @@ const propTypes = {
     value: MicromagPropTypes.closedCaptionsMedia,
 };
 
-const defaultProps = {
-    value: null,
-};
-
-const ClosedCaptionField = (props) => (
-    <MediaField
-        noValueLabel={
-            <FormattedMessage
-                defaultMessage="Select a closed captions file..."
-                description="Label when no value is provided to Closed captions field"
-            />
-        }
-        {...props}
-        type="subtitle"
-    />
-);
+const ClosedCaptionField = (
+    {
+        value: value = null,
+        ...props
+    },
+) => (<MediaField
+    noValueLabel={
+        <FormattedMessage
+            defaultMessage="Select a closed captions file..."
+            description="Label when no value is provided to Closed captions field"
+        />
+    }
+    {...props}
+    type="subtitle"
+/>);
 
 ClosedCaptionField.propTypes = propTypes;
-ClosedCaptionField.defaultProps = defaultProps;
 ClosedCaptionField.withForm = true;
 
 export default ClosedCaptionField;

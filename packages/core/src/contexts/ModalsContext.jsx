@@ -33,11 +33,7 @@ const propTypes = {
     container: PropTypes.object, // eslint-disable-line
 };
 
-const defaultProps = {
-    container: null,
-};
-
-export const ModalsProvider = ({ children, container: initialContainer }) => {
+export const ModalsProvider = ({ children, container: initialContainer = null }) => {
     const [container, setContainer] = useState(initialContainer);
     const [modals, setModals] = useState([]);
     const modalsRef = useRef(modals);
@@ -83,4 +79,3 @@ export const ModalsProvider = ({ children, container: initialContainer }) => {
 };
 
 ModalsProvider.propTypes = propTypes;
-ModalsProvider.defaultProps = defaultProps;

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from '../../styles/partials/placeholder-block.module.scss';
+import styles from '../../styles/partials/placeholder-block.module.css';
 
 const propTypes = {
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -14,24 +14,14 @@ const propTypes = {
     withInvertedColors: PropTypes.bool,
 };
 
-const defaultProps = {
-    width: '100%',
-    height: '3em',
-    outline: false,
-    className: null,
-    boxClassName: null,
-    children: null,
-    withInvertedColors: true,
-};
-
 const PlaceholderBlock = ({
-    width,
-    height,
-    outline,
-    className,
-    boxClassName,
-    withInvertedColors,
-    children,
+    width = '100%',
+    height = '3em',
+    outline = false,
+    className = null,
+    boxClassName = null,
+    withInvertedColors = true,
+    children = null,
 }) => (
     <div
         className={classNames([
@@ -61,6 +51,5 @@ const PlaceholderBlock = ({
 );
 
 PlaceholderBlock.propTypes = propTypes;
-PlaceholderBlock.defaultProps = defaultProps;
 
 export default PlaceholderBlock;

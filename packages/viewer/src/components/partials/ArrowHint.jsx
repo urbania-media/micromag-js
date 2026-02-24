@@ -4,19 +4,14 @@ import React from 'react';
 
 import { ArrowIcon } from '@micromag/core/components';
 
-import styles from '../../styles/partials/arrow-hint.module.scss';
+import styles from '../../styles/partials/arrow-hint.module.css';
 
 const propTypes = {
     withoutShadow: PropTypes.bool,
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    withoutShadow: false,
-    className: null,
-};
-
-const ArrowHint = ({ withoutShadow, className }) => (
+const ArrowHint = ({ withoutShadow = false, className = null }) => (
     <div
         className={classNames([
             styles.container,
@@ -30,6 +25,5 @@ const ArrowHint = ({ withoutShadow, className }) => (
 );
 
 ArrowHint.propTypes = propTypes;
-ArrowHint.defaultProps = defaultProps;
 
 export default ArrowHint;

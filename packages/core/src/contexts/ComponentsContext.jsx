@@ -105,13 +105,7 @@ const propTypes = {
     components: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])),
 };
 
-const defaultProps = {
-    namespace: null,
-    components: {},
-    manager: null,
-};
-
-export const ComponentsProvider = ({ components, manager, namespace, children }) => {
+export const ComponentsProvider = ({ components = {}, manager = null, namespace = null, children }) => {
     const previousManager = useComponentsManager() || null;
     const finalManager = useMemo(
         () =>
@@ -126,4 +120,3 @@ export const ComponentsProvider = ({ components, manager, namespace, children })
 };
 
 ComponentsProvider.propTypes = propTypes;
-ComponentsProvider.defaultProps = defaultProps;

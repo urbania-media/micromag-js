@@ -19,28 +19,17 @@ const propTypes = {
     fieldContext: PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
 
-const defaultProps = {
-    name: null,
-    form: null,
-    formComponents: {},
-    fields: [],
-    value: null,
-    className: null,
-    onChange: null,
-    fieldContext: null,
-};
-
 const FieldForm = ({
-    name,
-    value,
-    form,
-    formComponents,
-    fields,
-    className,
-    onChange,
+    name = null,
+    value = null,
+    form = null,
+    formComponents = {},
+    fields = [],
+    className = null,
+    onChange = null,
     gotoFieldForm,
     closeFieldForm,
-    fieldContext,
+    fieldContext = null,
 }) => {
 
     const fieldsManager = useFieldsManager();
@@ -112,6 +101,5 @@ const FieldForm = ({
 };
 
 FieldForm.propTypes = propTypes;
-FieldForm.defaultProps = defaultProps;
 
 export default FieldForm;

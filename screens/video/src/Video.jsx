@@ -32,7 +32,7 @@ import Header from '@micromag/element-header';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 
-import styles from './video.module.scss';
+import styles from './video.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle', 'full']),
@@ -49,34 +49,19 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'middle',
-    video: null,
-    gotoNextScreenOnEnd: false,
-    header: null,
-    footer: null,
-    background: null,
-    current: true,
-    active: true,
-    preload: true,
-    spacing: 20,
-    mediaRef: null,
-    className: null,
-};
-
 const VideoScreen = ({
-    layout,
-    video,
-    gotoNextScreenOnEnd,
-    header,
-    footer,
-    background,
-    current,
-    active,
-    preload,
-    spacing,
-    mediaRef: customMediaRef,
-    className,
+    layout = 'middle',
+    video = null,
+    gotoNextScreenOnEnd = false,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    active = true,
+    preload = true,
+    spacing = 20,
+    mediaRef: customMediaRef = null,
+    className = null,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
 
@@ -455,6 +440,5 @@ const VideoScreen = ({
 };
 
 VideoScreen.propTypes = propTypes;
-VideoScreen.defaultProps = defaultProps;
 
 export default VideoScreen;

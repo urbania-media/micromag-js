@@ -6,11 +6,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-};
-
-const StackIcon = ({ className }) => (
+const StackIcon = ({ className = null }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="11.5px"
@@ -24,6 +20,5 @@ const StackIcon = ({ className }) => (
 );
 
 StackIcon.propTypes = propTypes;
-StackIcon.defaultProps = defaultProps;
 
 export default StackIcon;

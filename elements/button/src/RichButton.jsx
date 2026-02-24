@@ -11,7 +11,7 @@ import Visual from '@micromag/element-visual';
 
 import Button from './Button';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     label: MicromagPropTypes.textElement,
@@ -43,54 +43,29 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    label: null,
-    visual: null,
-    visualWidth: null,
-    labelBoxStyle: null,
-    textStyle: null,
-    buttonStyle: null,
-    resolution: null,
-    shouldLoad: true,
-    layout: 'label-bottom',
-    type: 'button',
-    disabled: false,
-    focusable: true,
-    inline: false,
-    onClick: null,
-    className: null,
-    textClassName: null,
-    imageClassName: null,
-    videoClassName: null,
-    visualClassName: null,
-    withoutExternalBorder: true,
-    refButton: null,
-    children: null,
-};
-
 const RichButton = ({
-    label,
-    visual,
-    visualWidth,
-    labelBoxStyle,
-    textStyle,
-    buttonStyle,
-    resolution,
-    shouldLoad,
-    layout,
-    type,
-    disabled,
-    focusable,
-    inline,
-    onClick,
-    className,
-    textClassName,
-    visualClassName,
-    imageClassName,
-    videoClassName,
-    withoutExternalBorder,
-    refButton,
-    children,
+    label = null,
+    visual = null,
+    visualWidth = null,
+    labelBoxStyle = null,
+    textStyle = null,
+    buttonStyle = null,
+    resolution = null,
+    shouldLoad = true,
+    layout = 'label-bottom',
+    type = 'button',
+    disabled = false,
+    focusable = true,
+    inline = false,
+    onClick = null,
+    className = null,
+    textClassName = null,
+    visualClassName = null,
+    imageClassName = null,
+    videoClassName = null,
+    withoutExternalBorder = true,
+    refButton = null,
+    children = null,
     ...otherProps
 }) => {
     const Tag = useMemo(() => {
@@ -196,6 +171,5 @@ const RichButton = ({
 };
 
 RichButton.propTypes = propTypes;
-RichButton.defaultProps = defaultProps;
 
 export default RichButton;

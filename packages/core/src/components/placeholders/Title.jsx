@@ -4,7 +4,7 @@ import React from 'react';
 
 import PlaceholderText from '../partials/PlaceholderText';
 
-import styles from '../../styles/placeholders/placeholders.module.scss';
+import styles from '../../styles/placeholders/placeholders.module.css';
 
 export const Title = (props) => {
     const { height = 0.5, lines = 2, lineMargin = 2 } = props;

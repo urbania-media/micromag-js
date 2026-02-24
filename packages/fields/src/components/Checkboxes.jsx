@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import getSelectOptions from '../utils/getSelectOptions';
 
-import styles from '../styles/checkboxes.module.scss';
+import styles from '../styles/checkboxes.module.css';
 
 const propTypes = {
     name: PropTypes.string,
@@ -20,24 +20,14 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    name: null,
-    value: null,
-    singleChoice: false,
-    options: [],
-    className: null,
-    buttonClassName: null,
-    onChange: null,
-};
-
 const Checkboxes = ({
-    name,
-    value,
-    singleChoice,
-    options,
-    className,
-    buttonClassName,
-    onChange,
+    name = null,
+    value = null,
+    singleChoice = false,
+    options = [],
+    className = null,
+    buttonClassName = null,
+    onChange = null,
 }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
@@ -111,6 +101,5 @@ const Checkboxes = ({
 };
 
 Checkboxes.propTypes = propTypes;
-Checkboxes.defaultProps = defaultProps;
 
 export default Checkboxes;

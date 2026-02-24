@@ -16,13 +16,8 @@ const propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {
-    story: null,
-};
-
-export const StoryProvider = ({ story, children }) => (
+export const StoryProvider = ({ story = null, children }) => (
     <StoryContext.Provider value={story}>{children}</StoryContext.Provider>
 );
 
 StoryProvider.propTypes = propTypes;
-StoryProvider.defaultProps = defaultProps;

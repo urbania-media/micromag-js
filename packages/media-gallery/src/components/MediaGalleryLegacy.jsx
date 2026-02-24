@@ -15,7 +15,7 @@ import MediaMetadata from './partials/MediaMetadata';
 import Navbar from './partials/Navbar';
 
 // import list from '../_stories/list.json';
-import styles from '../styles/media-gallery.module.scss';
+import styles from '../styles/media-gallery.module.css';
 
 const videoTypes = ['video', 'image/gif'];
 
@@ -36,38 +36,21 @@ const propTypes = {
     onClearMedia: PropTypes.func,
 };
 
-const defaultProps = {
-    type: null,
-    source: 'all',
-    isPicker: false,
-    isSmall: false,
-    withoutTitle: false,
-    withoutSource: false,
-    withoutType: true,
-    medias: null,
-    selectedMedia: null,
-    className: null,
-    navbarClassName: null,
-    onChange: null,
-    onClickMedia: null,
-    onClearMedia: null,
-};
-
 function MediaGallery({
-    type,
-    source,
-    isPicker,
-    isSmall,
-    withoutTitle,
-    withoutSource,
-    withoutType,
-    medias: initialMedias,
-    selectedMedia,
-    className,
-    navbarClassName,
-    onChange,
-    onClickMedia,
-    onClearMedia,
+    type = null,
+    source = 'all',
+    isPicker = false,
+    isSmall = false,
+    withoutTitle = false,
+    withoutSource = false,
+    withoutType = true,
+    medias: initialMedias = null,
+    selectedMedia = null,
+    className = null,
+    navbarClassName = null,
+    onChange = null,
+    onClickMedia = null,
+    onClearMedia = null,
 }) {
     const intl = useIntl();
 
@@ -295,6 +278,5 @@ function MediaGallery({
 }
 
 MediaGallery.propTypes = propTypes;
-MediaGallery.defaultProps = defaultProps;
 
 export default MediaGallery;

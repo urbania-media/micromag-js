@@ -25,14 +25,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    schemes: ['https://', 'http://'],
-    className: null,
-    onChange: null,
-};
-
-const UrlField = ({ schemes, value, className, onChange }) => {
+const UrlField = ({ schemes = ['https://', 'http://'], value = null, className = null, onChange = null }) => {
     const empty = isEmpty(value);
 
     const [open, setOpen] = useState(false);
@@ -124,6 +117,5 @@ const UrlField = ({ schemes, value, className, onChange }) => {
 };
 
 UrlField.propTypes = propTypes;
-UrlField.defaultProps = defaultProps;
 
 export default UrlField;

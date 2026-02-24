@@ -6,7 +6,7 @@ import classNames from 'classnames';
 // import { PropTypes as MicromagPropTypes } from '../../lib';
 import Label from './Label';
 
-import styles from '../../styles/partials/empty.module.scss';
+import styles from '../../styles/partials/empty.module.css';
 
 const propTypes = {
     children: PropTypes.node,
@@ -15,14 +15,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    children: null,
-    withoutBorder: false,
-    light: false,
-    className: null,
-};
-
-const Empty = ({ children, withoutBorder, light, className }) => (
+const Empty = ({ children = null, withoutBorder = false, light = false, className = null }) => (
     <div
         className={classNames([
             styles.container,
@@ -40,6 +33,5 @@ const Empty = ({ children, withoutBorder, light, className }) => (
 );
 
 Empty.propTypes = propTypes;
-Empty.defaultProps = defaultProps;
 
 export default Empty;

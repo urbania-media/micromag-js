@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import Button from './Button';
 
-import styles from '../../styles/buttons/buttons.module.scss';
+import styles from '../../styles/buttons/buttons.module.css';
 
 const propTypes = {
     buttons: MicromagPropTypes.buttons,
@@ -18,24 +18,14 @@ const propTypes = {
     buttonClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    buttons: [],
-    size: null,
-    theme: undefined,
-    renderButton: null,
-    onClickButton: null,
-    className: null,
-    buttonClassName: null,
-};
-
 const Buttons = ({
-    buttons,
-    size,
-    theme,
-    renderButton,
-    onClickButton,
-    buttonClassName,
-    className,
+    buttons = [],
+    size = null,
+    theme = undefined,
+    renderButton = null,
+    onClickButton = null,
+    buttonClassName = null,
+    className = null,
 }) => (
     <div
         className={classNames([
@@ -86,6 +76,5 @@ const Buttons = ({
 );
 
 Buttons.propTypes = propTypes;
-Buttons.defaultProps = defaultProps;
 
 export default Buttons;

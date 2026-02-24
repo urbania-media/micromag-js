@@ -9,8 +9,6 @@ import MarkerField from './Marker';
 
 const propTypes = {};
 
-const defaultProps = {};
-
 const MarkersField = (props) => (
     <ItemsField
         noItemLabel={
@@ -31,6 +29,5 @@ const MarkersField = (props) => (
 );
 
 MarkersField.propTypes = propTypes;
-MarkersField.defaultProps = defaultProps;
 
 export default MarkersField;

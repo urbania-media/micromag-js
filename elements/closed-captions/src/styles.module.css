@@ -1,0 +1,12 @@
+.container {
+    position: relative;
+    text-align: center;
+
+    .captions {
+        display: inline-block;
+        padding: 5px;
+        background-color: var(--mm-black);
+        color: var(--mm-white);
+        word-break: break-word;
+    }
+}

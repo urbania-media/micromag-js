@@ -1,0 +1,26 @@
+.container {
+    display: block;
+    width: 100%;
+    user-select: none;
+
+    .slider {
+        position: relative;
+        top: -2px;
+        padding: 0 0.5rem;
+    }
+
+    .input {
+        width: 5em;
+        margin-left: calc(var(--mm-spacer) / 4);
+        font-size: 0.75rem;
+    }
+
+    .unit {
+        margin-left: calc(var(--mm-spacer) / 4);
+        font-size: 0.75rem;
+    }
+
+    :global {
+        @import '~rc-slider/assets/index';
+    }
+}

@@ -8,7 +8,7 @@ import { getGridLayoutName } from '@micromag/core/utils';
 
 import Radios from './Radios';
 
-import styles from '../styles/grid-layout.module.scss';
+import styles from '../styles/grid-layout.module.css';
 
 const propTypes = {
     grids: PropTypes.arrayOf(MicromagPropTypes.gridLayout),
@@ -22,14 +22,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    grids: [],
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const GridLayout = ({ grids, value, className, onChange }) => (
+const GridLayout = ({ grids = [], value = null, className = null, onChange = null }) => (
     <Radios
         options={grids.map(layout => ({
             value: layout,
@@ -52,6 +45,5 @@ const GridLayout = ({ grids, value, className, onChange }) => (
 );
 
 GridLayout.propTypes = propTypes;
-GridLayout.defaultProps = defaultProps;
 
 export default GridLayout;

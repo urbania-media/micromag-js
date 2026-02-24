@@ -8,7 +8,7 @@ import { ModalDialog as Dialog, Modal } from '@micromag/core/components';
 
 import ScreenTypesMenu from '../menus/ScreenTypes';
 
-import styles from '../../styles/modals/screen-types.module.scss';
+import styles from '../../styles/modals/screen-types.module.css';
 
 const propTypes = {
     selectedTypes: PropTypes.arrayOf(PropTypes.string),
@@ -17,14 +17,7 @@ const propTypes = {
     onClickScreenType: PropTypes.func,
 };
 
-const defaultProps = {
-    selectedTypes: null,
-    className: null,
-    onRequestClose: null,
-    onClickScreenType: null,
-};
-
-const ScreenTypesModal = ({ selectedTypes, className, onRequestClose, onClickScreenType }) => (
+const ScreenTypesModal = ({ selectedTypes = null, className = null, onRequestClose = null, onClickScreenType = null }) => (
     <Modal>
         <Dialog
             title={
@@ -51,6 +44,5 @@ const ScreenTypesModal = ({ selectedTypes, className, onRequestClose, onClickScr
 );
 
 ScreenTypesModal.propTypes = propTypes;
-ScreenTypesModal.defaultProps = defaultProps;
 
 export default ScreenTypesModal;

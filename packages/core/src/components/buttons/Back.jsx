@@ -10,11 +10,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-};
-
-const BackButton = ({ className, ...props }) => (
+const BackButton = ({ className = null, ...props }) => (
     <Button
         className={classNames([
             'px-2',
@@ -29,6 +25,5 @@ const BackButton = ({ className, ...props }) => (
 );
 
 BackButton.propTypes = propTypes;
-BackButton.defaultProps = defaultProps;
 
 export default BackButton;

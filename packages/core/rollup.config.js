@@ -17,7 +17,7 @@ const files = {
         //     }),
         // ],
         resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [new RegExp(path.join(__dirname, './src/lib'))],
         },
     },
@@ -38,7 +38,7 @@ const files = {
             }),
         ],
         resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [
                 new RegExp(path.join(__dirname, './src/components')),
                 new RegExp(path.join(__dirname, './src/styles')),
@@ -62,7 +62,7 @@ const files = {
             }),
         ],
         resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [
                 new RegExp(path.join(__dirname, './src/components/namespaces')),
                 new RegExp(path.join(__dirname, './src/contexts')),
@@ -88,7 +88,7 @@ const files = {
             }),
         ],
         resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [
                 path.join(__dirname, './src/lib/EventsManager'),
                 new RegExp(path.join(__dirname, './src/hooks')),
@@ -98,7 +98,7 @@ const files = {
 
     'utils.js': {
         resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [new RegExp(path.join(__dirname, './src/utils'))],
         },
     },

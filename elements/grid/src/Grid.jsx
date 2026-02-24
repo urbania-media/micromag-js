@@ -6,7 +6,7 @@ import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     layout: MicromagPropTypes.gridLayout,
@@ -20,28 +20,16 @@ const propTypes = {
     crossClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: null,
-    items: [],
-    width: null,
-    height: null,
-    spacing: 0,
-    vertical: false,
-    className: null,
-    axisClassName: null,
-    crossClassName: null,
-};
-
 function Grid({
-    items,
-    layout,
-    width,
-    height,
-    spacing,
-    vertical,
-    className,
-    axisClassName,
-    crossClassName,
+    items = [],
+    layout = null,
+    width = null,
+    height = null,
+    spacing = 0,
+    vertical = false,
+    className = null,
+    axisClassName = null,
+    crossClassName = null,
 }) {
     let itemIndex = 0;
     const finalLayout = isArray(layout)
@@ -133,6 +121,5 @@ function Grid({
 }
 
 Grid.propTypes = propTypes;
-Grid.defaultProps = defaultProps;
 
 export default Grid;

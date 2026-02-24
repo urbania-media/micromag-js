@@ -64,14 +64,7 @@ const propTypes = {
     screenState: PropTypes.string,
 };
 
-const defaultProps = {
-    data: null,
-    definition: null,
-    renderContext: null,
-    screenState: null,
-};
-
-export const ScreenProvider = ({ data, definition, renderContext, screenState, children }) => {
+export const ScreenProvider = ({ data = null, definition = null, renderContext = null, screenState = null, children }) => {
     const {
         data: previousData = null,
         definition: previousDefinition = null,
@@ -102,4 +95,3 @@ export const ScreenProvider = ({ data, definition, renderContext, screenState, c
 };
 
 ScreenProvider.propTypes = propTypes;
-ScreenProvider.defaultProps = defaultProps;

@@ -1,0 +1,31 @@
+/* stylelint-disable max-nesting-depth */
+/* stylelint-disable no-descending-specificity */
+
+.container {
+    .title,
+    .description {
+        margin-bottom: 10px;
+    }
+
+    .emptyTitle,
+    .emptyDescription {
+        margin: 5px auto;
+        border: dashed 2px var(--mm-gray-800);
+        color: var(--mm-gray-800);
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+
+    .emptyTitle {
+        height: 60px;
+    }
+
+    .emptyDescription {
+        height: 100px;
+    }
+
+    &.isPlaceholder {
+        padding: 10px;
+    }
+}

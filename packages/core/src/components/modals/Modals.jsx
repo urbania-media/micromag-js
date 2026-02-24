@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import { withModals } from '../../contexts';
 
-import styles from '../../styles/modals/modals.module.scss';
+import styles from '../../styles/modals/modals.module.css';
 
 const propTypes = {
     modals: MicromagPropTypes.modals.isRequired,
@@ -14,11 +14,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-};
-
-const ModalsContainer = ({ modals, setModalsContainer, className }) => {
+const ModalsContainer = ({ modals, setModalsContainer, className = null }) => {
     const containerRef = useRef(null);
     useEffect(() => {
         setModalsContainer(containerRef.current);
@@ -47,6 +43,5 @@ const ModalsContainer = ({ modals, setModalsContainer, className }) => {
 };
 
 ModalsContainer.propTypes = propTypes;
-ModalsContainer.defaultProps = defaultProps;
 
 export default withModals(ModalsContainer);

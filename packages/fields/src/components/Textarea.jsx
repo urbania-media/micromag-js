@@ -15,16 +15,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    id: null,
-    value: null,
-    errors: null,
-    required: false,
-    className: null,
-    onChange: null,
-};
-
-const TextareaField = ({ id, value, errors, required, className, onChange }) => (
+const TextareaField = ({ id = null, value = null, errors = null, required = false, className = null, onChange = null }) => (
     <textarea
         id={id}
         className={classNames([
@@ -43,6 +34,5 @@ const TextareaField = ({ id, value, errors, required, className, onChange }) => 
 );
 
 TextareaField.propTypes = propTypes;
-TextareaField.defaultProps = defaultProps;
 
 export default TextareaField;

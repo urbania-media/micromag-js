@@ -34,7 +34,7 @@ import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import FieldsProvider from '../../../fields/src/FieldsProvider';
 import Viewer from '../components/ViewerContainer';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
 import bayard from '../../../../.storybook/data/stories/bayard.json';

@@ -19,7 +19,7 @@ import { isMessage, getScreenExtraField, getScreenFieldsWithStates } from '@micr
 
 import getFieldByName from '../../utils/getFieldByName';
 
-import styles from '../../styles/menus/breadcrumb.module.scss';
+import styles from '../../styles/menus/breadcrumb.module.css';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -30,15 +30,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    story: null,
-    screenId: null,
-    field: null,
-    form: null,
-    className: null,
-};
-
-const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
+const Breadcrumb = ({ story = null, screenId = null, field = null, form = null, url, className = null }) => {
     const intl = useIntl();
     const { components: screens = [] } = story || {};
     const [,setLocation] = useLocation();
@@ -301,6 +293,5 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
 };
 
 Breadcrumb.propTypes = propTypes;
-Breadcrumb.defaultProps = defaultProps;
 
 export default Breadcrumb;

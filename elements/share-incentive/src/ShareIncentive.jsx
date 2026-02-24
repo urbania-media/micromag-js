@@ -7,7 +7,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getColorAsString, getStyleFromBox } from '@micromag/core/utils';
 import Text from '@micromag/element-text';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     className: PropTypes.string,
@@ -15,13 +15,7 @@ const propTypes = {
     boxStyle: MicromagPropTypes.boxStyle,
 };
 
-const defaultProps = {
-    className: null,
-    label: null,
-    boxStyle: null,
-};
-
-const ShareIncentive = ({ className, label, boxStyle }) => {
+const ShareIncentive = ({ className = null, label = null, boxStyle = null }) => {
     const { backgroundColor = null } = boxStyle || {};
     const bgColor = getColorAsString(backgroundColor);
 
@@ -55,6 +49,5 @@ const ShareIncentive = ({ className, label, boxStyle }) => {
 };
 
 ShareIncentive.propTypes = propTypes;
-ShareIncentive.defaultProps = defaultProps;
 
 export default ShareIncentive;

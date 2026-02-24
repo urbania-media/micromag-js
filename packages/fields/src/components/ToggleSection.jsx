@@ -5,7 +5,7 @@ import React, { useCallback } from 'react';
 
 import Fields from './Fields';
 
-import styles from '../styles/toggle-section.module.scss';
+import styles from '../styles/toggle-section.module.css';
 
 const propTypes = {
     // eslint-disable-next-line react/forbid-prop-types
@@ -15,14 +15,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    toggleField: null,
-    className: null,
-    onChange: null,
-};
-
-const ToggleSection = ({ value, toggleField, className, onChange, ...props }) => {
+const ToggleSection = ({ value = null, toggleField = null, className = null, onChange = null, ...props }) => {
     const { enabled = false } = value || {};
     const valueEnabled = toggleField !== null ? value?.[toggleField] || false : enabled;
 
@@ -53,6 +46,5 @@ const ToggleSection = ({ value, toggleField, className, onChange, ...props }) =>
 };
 
 ToggleSection.propTypes = propTypes;
-ToggleSection.defaultProps = defaultProps;
 
 export default ToggleSection;

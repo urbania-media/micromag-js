@@ -14,7 +14,7 @@ import TagDropdown from './TagDropdown';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import TagSection from './TagSection';
 
-import styles from '../../styles/forms/search-filters.module.scss';
+import styles from '../../styles/forms/search-filters.module.css';
 
 const propTypes = {
     filters: PropTypes.object, // eslint-disable-line
@@ -24,15 +24,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    filters: null,
-    sections: [],
-    onChange: null,
-    onClose: null,
-    className: null,
-};
-
-const SearchFilters = ({ filters, sections, onChange, onClose, className }) => {
+const SearchFilters = ({ filters = null, sections = [], onChange = null, onClose = null, className = null }) => {
     const intl = useIntl();
     const getActive = useCallback((items, sectionFilters) => {
         return items !== null
@@ -135,6 +127,5 @@ const SearchFilters = ({ filters, sections, onChange, onClose, className }) => {
 };
 
 SearchFilters.propTypes = propTypes;
-SearchFilters.defaultProps = defaultProps;
 
 export default SearchFilters;

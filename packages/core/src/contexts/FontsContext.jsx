@@ -76,12 +76,7 @@ const propTypes = {
     customFonts: MicromagPropTypes.fonts,
 };
 
-const defaultProps = {
-    systemFonts: ['Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana'],
-    customFonts: null,
-};
-
-export const FontsProvider = ({ systemFonts, customFonts, children }) => {
+export const FontsProvider = ({ systemFonts = ['Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana'], customFonts = null, children }) => {
     const {
         systemFonts: previousSystemFonts = null,
         googleFonts: previousGoogleFonts = null,
@@ -118,4 +113,3 @@ export const FontsProvider = ({ systemFonts, customFonts, children }) => {
 };
 
 FontsProvider.propTypes = propTypes;
-FontsProvider.defaultProps = defaultProps;

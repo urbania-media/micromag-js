@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { Button, ModalDialog as Dialog, Label, Modal } from '@micromag/core/components';
 
-import styles from '../../styles/modals/delete-screen.module.scss';
+import styles from '../../styles/modals/delete-screen.module.css';
 
 const propTypes = {
     className: PropTypes.string,
@@ -14,13 +14,7 @@ const propTypes = {
     onCancel: PropTypes.func,
 };
 
-const defaultProps = {
-    className: null,
-    onConfirm: null,
-    onCancel: null,
-};
-
-const DeleteScreenModal = ({ className, onConfirm, onCancel }) => (
+const DeleteScreenModal = ({ className = null, onConfirm = null, onCancel = null }) => (
     <Modal>
         <Dialog
             title={
@@ -70,6 +64,5 @@ const DeleteScreenModal = ({ className, onConfirm, onCancel }) => (
 );
 
 DeleteScreenModal.propTypes = propTypes;
-DeleteScreenModal.defaultProps = defaultProps;
 
 export default DeleteScreenModal;

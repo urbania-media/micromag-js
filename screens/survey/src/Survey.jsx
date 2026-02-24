@@ -39,7 +39,7 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import TextInput from '@micromag/element-text-input';
 
-import styles from './survey.module.scss';
+import styles from './survey.module.css';
 
 const propTypes = {
     id: PropTypes.string,
@@ -70,54 +70,29 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    id: null,
-    layout: 'middle',
-    question: null,
-    answers: null,
-    result: null,
-    buttonsStyle: null,
-    buttonsTextStyle: null,
-    resultsStyle: null,
-    spacing: 20,
-    header: null,
-    footer: null,
-    background: null,
-    customAnswer: false,
-    showCount: false,
-    withoutPercentage: false,
-    withoutBar: false,
-    current: true,
-    preload: true,
-    transitions: null,
-    resultTransitionDuration: 500,
-    type: null,
-    className: null,
-};
-
 const SurveyScreen = ({
-    id,
-    layout,
-    question,
-    answers,
-    result,
-    buttonsStyle,
-    buttonsTextStyle,
-    resultsStyle,
-    spacing,
-    header,
-    footer,
-    background,
-    customAnswer,
-    showCount,
-    withoutPercentage,
-    withoutBar,
-    current,
-    preload,
-    transitions,
-    resultTransitionDuration,
-    type,
-    className,
+    id = null,
+    layout = 'middle',
+    question = null,
+    answers = null,
+    result = null,
+    buttonsStyle = null,
+    buttonsTextStyle = null,
+    resultsStyle = null,
+    spacing = 20,
+    header = null,
+    footer = null,
+    background = null,
+    customAnswer = false,
+    showCount = false,
+    withoutPercentage = false,
+    withoutBar = false,
+    current = true,
+    preload = true,
+    transitions = null,
+    resultTransitionDuration = 500,
+    type = null,
+    className = null,
 }) => {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -780,6 +755,5 @@ const SurveyScreen = ({
 };
 
 SurveyScreen.propTypes = propTypes;
-SurveyScreen.defaultProps = defaultProps;
 
 export default SurveyScreen;

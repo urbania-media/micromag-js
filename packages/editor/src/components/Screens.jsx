@@ -20,7 +20,7 @@ import createScreen from '../utils/createScreen';
 import ScreensMenu from './menus/ScreensMenu';
 import ScreenTypesModal from './modals/ScreenTypes';
 
-import styles from '../styles/screens.module.scss';
+import styles from '../styles/screens.module.css';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -34,28 +34,16 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    value: null,
-    isTheme: false,
-    isVertical: false,
-    isCreateOpened: false,
-    isParsed: false,
-    isTree: false,
-    onClickScreen: null,
-    onChange: null,
-    className: null,
-};
-
 const EditorScreens = ({
-    value: unparsedValue,
-    isTheme,
-    isVertical,
-    isCreateOpened,
-    isParsed,
-    isTree,
-    onClickScreen,
-    onChange,
-    className,
+    value: unparsedValue = null,
+    isTheme = false,
+    isVertical = false,
+    isCreateOpened = false,
+    isParsed = false,
+    isTree = false,
+    onClickScreen = null,
+    onChange = null,
+    className = null,
 }) => {
     const valueWithTheme = useThemeValue(unparsedValue, isTheme);
     const value = isParsed ? unparsedValue : useParsedStory(valueWithTheme, { withMedias: false });
@@ -268,6 +256,5 @@ const EditorScreens = ({
 };
 
 EditorScreens.propTypes = propTypes;
-EditorScreens.defaultProps = defaultProps;
 
 export default EditorScreens;

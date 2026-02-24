@@ -7,12 +7,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    color: 'currentColor',
-    className: null,
-};
-
-const PlusIcon = ({ color, className }) => (
+const PlusIcon = ({ color = 'currentColor', className = null }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -36,6 +31,5 @@ const PlusIcon = ({ color, className }) => (
 );
 
 PlusIcon.propTypes = propTypes;
-PlusIcon.defaultProps = defaultProps;
 
 export default PlusIcon;

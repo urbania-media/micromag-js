@@ -1,0 +1,29 @@
+.container {
+    width: 100%;
+}
+
+.button {
+    flex: none !important;
+    color: #ccc;
+
+    &.active {
+        color: var(--mm-black);
+    }
+}
+
+.layout {
+    position: relative;
+    width: 80px;
+    height: 120px;
+}
+
+.type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.borders {
+    width: 1.5em;
+    height: 1.5em;
+}

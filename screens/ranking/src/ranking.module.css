@@ -1,0 +1,127 @@
+/* stylelint-disable max-nesting-depth */
+
+.container {
+    position: relative;
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .empty {
+        margin: 5px auto;
+        border: dashed 2px var(--mm-gray-800);
+        color: var(--mm-gray-800);
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .emptyTitle {
+        width: 100%;
+        height: 100px;
+        min-width: 100%;
+    }
+
+    .item {
+        position: relative;
+        padding: 10px 0;
+
+        &:first-child {
+            padding-top: 0;
+        }
+    }
+
+    .rankText {
+        font-size: 48px;
+    }
+
+    .itemTitle,
+    .description {
+        padding: 8px 0;
+    }
+
+    .callToAction {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transition: opacity 0.2s ease-out;
+
+        a {
+            padding: 0;
+        }
+
+        &.disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    &.sideLayout {
+        .elementsContainer {
+            display: table;
+            width: 100%;
+        }
+
+        .item {
+            display: table-row;
+            padding: 0;
+        }
+
+        .rank,
+        .label {
+            display: table-cell;
+            padding: 10px 0;
+            vertical-align: top;
+        }
+
+        .rank {
+            padding-right: 20px;
+        }
+    }
+
+    &.isPlaceholder {
+        .rank {
+            color: rgba(255, 255, 255, 0.6);
+            mix-blend-mode: difference;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .scroll {
+            padding: 5px;
+        }
+
+        .itemTitle,
+        .description {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .item {
+            padding: 1px 0;
+        }
+
+        &.sideLayout {
+            .rank {
+                width: 24px;
+                padding-top: 8px;
+                padding-right: 4px;
+            }
+
+            .label {
+                padding: 5px 0;
+            }
+        }
+    }
+}

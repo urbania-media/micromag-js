@@ -13,7 +13,7 @@ import Text from '@micromag/element-text';
 
 import ArrowIcon from './ArrowIcon';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     type: PropTypes.oneOf(['click', 'swipe-up', null]),
@@ -43,50 +43,27 @@ const propTypes = {
     onClick: PropTypes.func,
 };
 
-const defaultProps = {
-    type: null,
-    url: null,
-    label: null,
-    boxStyle: null,
-    inWebView: false,
-    elRef: null,
-    disabled: false,
-    animationDisabled: false,
-    icon: null,
-    arrow: null,
-    dragAmount: 50,
-    className: null,
-    buttonClassName: null,
-    buttonBorderClassName: null,
-    labelClassName: null,
-    arrowClassName: null,
-    focusable: true,
-    external: true,
-    openWebView: null,
-    onClick: null,
-};
-
 function CallToAction({
-    type,
-    url,
-    label,
-    boxStyle,
-    inWebView,
-    elRef,
-    disabled,
-    animationDisabled,
-    icon,
-    arrow,
-    dragAmount,
-    className,
-    buttonClassName,
-    buttonBorderClassName,
-    labelClassName,
-    arrowClassName,
-    focusable,
-    external,
-    openWebView,
-    onClick,
+    type = null,
+    url = null,
+    label = null,
+    boxStyle = null,
+    inWebView = false,
+    elRef = null,
+    disabled = false,
+    animationDisabled = false,
+    icon = null,
+    arrow = null,
+    dragAmount = 50,
+    className = null,
+    buttonClassName = null,
+    buttonBorderClassName = null,
+    labelClassName = null,
+    arrowClassName = null,
+    focusable = true,
+    external = true,
+    openWebView = null,
+    onClick = null,
 }) {
     const trackEvent = useTrackEvent();
 
@@ -256,6 +233,5 @@ function CallToAction({
 }
 
 CallToAction.propTypes = propTypes;
-CallToAction.defaultProps = defaultProps;
 
 export default React.forwardRef((props, ref) => <CallToAction elRef={ref} {...props} />);

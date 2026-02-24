@@ -12,7 +12,7 @@ import {
     getStyleFromText,
 } from '@micromag/core/utils';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     body: PropTypes.string,
@@ -24,17 +24,7 @@ const propTypes = {
     emptyClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    body: null,
-    textStyle: null,
-    linksStyle: null,
-    margin: null,
-    showEmpty: false,
-    className: null,
-    emptyClassName: null,
-};
-
-const Quote = ({ body, textStyle, linksStyle, margin, showEmpty, className, emptyClassName }) => {
+const Quote = ({ body = null, textStyle = null, linksStyle = null, margin = null, showEmpty = false, className = null, emptyClassName = null }) => {
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = {};
     let finalLinkStyle = linkStyle !== null ? getStyleFromLink(linkStyle) : null;
@@ -91,6 +81,5 @@ const Quote = ({ body, textStyle, linksStyle, margin, showEmpty, className, empt
 };
 
 Quote.propTypes = propTypes;
-Quote.defaultProps = defaultProps;
 
 export default Quote;

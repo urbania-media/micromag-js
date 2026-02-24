@@ -1,0 +1,10 @@
+.container {
+    .description {
+        margin-bottom: 10px;
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+    }
+}

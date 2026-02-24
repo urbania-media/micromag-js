@@ -80,7 +80,7 @@ export const createConfig = ({
             }),
             json(),
             resolve({
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+                extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
                 jail: path.join(process.cwd(), 'src'),
                 ...resolveOptions,
             }),
@@ -88,7 +88,7 @@ export const createConfig = ({
             ...afterResolvePlugins,
             commonjs(),
             babel({
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+                extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
                 exclude: 'node_modules/**',
                 // rootMode: 'upward',
                 babelHelpers: 'runtime',
@@ -114,6 +114,7 @@ export const createConfig = ({
                             useBuiltIns: true,
                         },
                     ],
+                    require('@babel/preset-typescript'),
                 ],
                 plugins: [
                     [
@@ -124,7 +125,6 @@ export const createConfig = ({
                             // useESModules: !isCjs,
                         },
                     ],
-                    require.resolve('@babel/plugin-proposal-export-namespace-from'),
                     [
                         require.resolve('babel-plugin-static-fs'),
                         {
@@ -144,6 +144,7 @@ export const createConfig = ({
             !withoutPostCss &&
                 postcss({
                     extensions: ['.css', '.scss'],
+                    plugins: [require('postcss-nested')],
                     modules: {
                         generateScopedName,
                     },

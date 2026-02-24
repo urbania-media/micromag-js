@@ -16,20 +16,13 @@ const propTypes = {
     placeholderProps: PropTypes.object,// eslint-disable-line
 };
 
-const defaultProps = {
-    props: {},
-    isPlaceholder: false,
-    className: null,
-    placeholderProps: null,
-};
-
 const ElementComponent = ({
     name,
     components,
-    props,
-    isPlaceholder,
-    className,
-    placeholderProps,
+    props = {},
+    isPlaceholder = false,
+    className = null,
+    placeholderProps = null,
 }) => {
     if (!name) {
         return 'Bad component name';
@@ -51,6 +44,5 @@ const ElementComponent = ({
 };
 
 ElementComponent.propTypes = propTypes;
-ElementComponent.defaultProps = defaultProps;
 
 export default ElementComponent;

@@ -13,15 +13,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    options: ['_blank', 'self'],
-    isForm: false,
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const TargetField = ({ options, value, isForm, className, onChange }) =>
+const TargetField = ({ options = ['_blank', 'self'], value = null, isForm = false, className = null, onChange = null }) =>
     isForm ? (
         <div>
             <Select options={options} value={value} className={className} onChange={onChange} />
@@ -31,7 +23,6 @@ const TargetField = ({ options, value, isForm, className, onChange }) =>
     );
 
 TargetField.propTypes = propTypes;
-TargetField.defaultProps = defaultProps;
 TargetField.withForm = true;
 
 export default TargetField;

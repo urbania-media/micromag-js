@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Tabs } from '@micromag/core/components';
-import styles from '../../styles/menus/devices.module.scss';
+import styles from '../../styles/menus/devices.module.css';
 import DeviceButton from '../buttons/Device';
 
 const propTypes = {
@@ -13,13 +13,7 @@ const propTypes = {
     onClickItem: PropTypes.func,
 };
 
-const defaultProps = {
-    items: [],
-    className: null,
-    onClickItem: null,
-};
-
-const DevicesMenu = ({ items, className, onClickItem }) => (
+const DevicesMenu = ({ items = [], className = null, onClickItem = null }) => (
     <Tabs
         items={items}
         theme="outline-secondary"
@@ -45,6 +39,5 @@ const DevicesMenu = ({ items, className, onClickItem }) => (
 );
 
 DevicesMenu.propTypes = propTypes;
-DevicesMenu.defaultProps = defaultProps;
 
 export default DevicesMenu;

@@ -6,11 +6,8 @@ import ElementField from './Element';
 
 const propTypes = {};
 
-const defaultProps = {};
-
 const ElementList = props => <ElementField isList {...props} />;
 
 ElementList.propTypes = propTypes;
-ElementList.defaultProps = defaultProps;
 
 export default ElementList;

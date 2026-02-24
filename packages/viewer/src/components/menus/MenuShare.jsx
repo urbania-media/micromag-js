@@ -11,7 +11,7 @@ import ShareOptions from '@micromag/element-share-options';
 
 import MicromagPreview from '../partials/MicromagPreview';
 
-import styles from '../../styles/menus/menu-share.module.scss';
+import styles from '../../styles/menus/menu-share.module.css';
 
 const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
@@ -28,34 +28,19 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    viewerTheme: null,
-    menuWidth: null,
-    title: null,
-    description: null,
-    items: [],
-    shareOptions: null,
-    focusable: true,
-    paddingTop: null,
-    currentScreenIndex: 0,
-    shareUrl: null,
-    onShare: null,
-    className: null,
-};
-
 const ViewerMenuShare = ({
-    viewerTheme,
-    menuWidth,
-    title,
-    description,
-    items,
-    shareOptions,
-    focusable,
-    paddingTop,
-    currentScreenIndex,
-    shareUrl,
-    onShare,
-    className,
+    viewerTheme = null,
+    menuWidth = null,
+    title = null,
+    description = null,
+    items = [],
+    shareOptions = null,
+    focusable = true,
+    paddingTop = null,
+    currentScreenIndex = 0,
+    shareUrl = null,
+    onShare = null,
+    className = null,
 }) => {
     // Viewer theme
     const { background = null } = viewerTheme || {};
@@ -157,6 +142,5 @@ const ViewerMenuShare = ({
 };
 
 ViewerMenuShare.propTypes = propTypes;
-ViewerMenuShare.defaultProps = defaultProps;
 
 export default ViewerMenuShare;

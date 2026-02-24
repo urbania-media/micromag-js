@@ -34,24 +34,13 @@ const propTypes = {
     closeForm: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    isForm: false,
-    isHorizontal: false,
-    canClear: true,
-    maxFontsVisible: 10,
-    className: null,
-    onChange: null,
-    closeForm: null,
-};
-
 const FontFamily = ({
-    value,
-    onChange,
-    closeForm,
-    maxFontsVisible,
-    isForm,
-    canClear,
+    value = null,
+    onChange = null,
+    closeForm = null,
+    maxFontsVisible = 10,
+    isForm = false,
+    canClear = true,
     ...props
 }) => {
     const intl = useIntl();
@@ -257,7 +246,6 @@ const FontFamily = ({
 };
 
 FontFamily.propTypes = propTypes;
-FontFamily.defaultProps = defaultProps;
 FontFamily.withForm = true;
 
 export default FontFamily;

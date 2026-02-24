@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import useGoogleMap from './useGoogleMap';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const stopDragEventsPropagation = {
     onTouchMove: e => e.stopPropagation(),
@@ -40,44 +40,24 @@ const propTypes = {
     focusable: PropTypes.bool,
 };
 
-const defaultProps = {
-    center: null,
-    zoom: null,
-    maxZoom: 16,
-    bounds: null,
-    events: null,
-    fitBounds: false,
-    draggable: true,
-    withoutStyle: false,
-    zoomControl: false,
-    mapTypeControl: false,
-    scaleControl: false,
-    streetViewControl: false,
-    rotateControl: false,
-    fullscreenControl: false,
-    className: null,
-    children: null,
-    focusable: true,
-};
-
 const Map = ({
-    center,
-    zoom,
-    maxZoom,
-    bounds,
-    draggable,
-    withoutStyle,
-    events,
-    fitBounds,
-    zoomControl,
-    mapTypeControl,
-    scaleControl,
-    streetViewControl,
-    rotateControl,
-    fullscreenControl,
-    className,
-    children,
-    focusable,
+    center = null,
+    zoom = null,
+    maxZoom = 16,
+    bounds = null,
+    draggable = true,
+    withoutStyle = false,
+    events = null,
+    fitBounds = false,
+    zoomControl = false,
+    mapTypeControl = false,
+    scaleControl = false,
+    streetViewControl = false,
+    rotateControl = false,
+    fullscreenControl = false,
+    className = null,
+    children = null,
+    focusable = true,
 }) => {
     const { map, ref: mapRef } = useGoogleMap({
         zoom,
@@ -114,6 +94,5 @@ const Map = ({
 };
 
 Map.propTypes = propTypes;
-Map.defaultProps = defaultProps;
 
 export default Map;

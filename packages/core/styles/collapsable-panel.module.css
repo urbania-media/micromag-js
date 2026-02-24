@@ -1,0 +1,31 @@
+.container {
+    .top {
+        border-bottom: solid 1px var(--mm-border-color);
+    }
+
+    .button {
+        display: flex;
+        width: 100%;
+        padding: calc(var(--mm-spacer) / 4) 0;
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .label {
+        flex-grow: 1;
+    }
+
+    .content {
+        max-height: 0;
+        padding-top: var(--mm-spacer);
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    &.isOpened {
+        .content {
+            max-height: 500px;
+        }
+    }
+}

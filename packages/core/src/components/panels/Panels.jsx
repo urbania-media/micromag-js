@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import { withPanels } from '../../contexts';
 
-import styles from '../../styles/panels/panels.module.scss';
+import styles from '../../styles/panels/panels.module.css';
 
 const propTypes = {
     panels: MicromagPropTypes.panels,
@@ -14,13 +14,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    panels: [],
-    setPanelsContainer: null,
-    className: null,
-};
-
-const PanelsContainer = ({ panels, setPanelsContainer, className }) => {
+const PanelsContainer = ({ panels = [], setPanelsContainer = null, className = null }) => {
     const containerRef = useRef(null);
     useEffect(() => {
         setPanelsContainer(containerRef.current);
@@ -48,6 +42,5 @@ const PanelsContainer = ({ panels, setPanelsContainer, className }) => {
 };
 
 PanelsContainer.propTypes = propTypes;
-PanelsContainer.defaultProps = defaultProps;
 
 export default withPanels(PanelsContainer);

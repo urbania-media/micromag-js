@@ -1,0 +1,5 @@
+.screen {
+    overflow: hidden;
+    background-color: transparent;
+    user-select: none;
+}

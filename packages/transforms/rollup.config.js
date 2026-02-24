@@ -17,7 +17,7 @@ const files = {
             }),
         ],
         resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [new RegExp(path.join(__dirname, './src'))],
         },
     },
@@ -34,14 +34,14 @@ const files = {
             }),
         ],
         resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [new RegExp(path.join(__dirname, './src/apple-news'))],
         },
     },
 
     'utils.js': {
         resolveOptions: {
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [new RegExp(path.join(__dirname, './src/utils'))],
         },
     },

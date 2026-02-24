@@ -1,0 +1,10 @@
+/* stylelint-disable selector-max-compound-selectors */
+.container {
+    .wave {
+        height: 150px;
+
+        &.withAutoHeight {
+            height: 100%;
+        }
+    }
+}

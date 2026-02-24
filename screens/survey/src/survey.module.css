@@ -1,0 +1,340 @@
+/* stylelint-disable max-nesting-depth */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .content {
+        z-index: 1;
+    }
+
+    .question {
+        margin-bottom: 20px;
+    }
+
+    .answers,
+    .items {
+        position: relative;
+    }
+
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transition: opacity 0.2s ease-out;
+
+        &.disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transition: opacity 0.2s ease-out;
+
+        a {
+            padding: 0;
+        }
+
+        &.disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    .item {
+        padding: 5px 0;
+
+        &:first-child {
+            .placeholderAnswer {
+                width: 80%;
+            }
+        }
+
+        &:last-child {
+            .placeholderAnswer {
+                width: 90%;
+            }
+        }
+    }
+
+    .itemContent {
+        display: flex;
+        align-items: center;
+    }
+
+    .resultBar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: rgba(255,255,255,0.2);
+    }
+
+    .resultLabel {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        right: 0;
+        width: 4em;
+        padding: 0 8px;
+        transform: translateY(-50%);
+        color: var(--mm-white);
+        text-align: right;
+    }
+
+    .resultText {
+        margin-top: 10px;
+    }
+
+    .itemInner {
+        width: 100%;
+    }
+
+    .button {
+        display: flex;
+        position: relative;
+        width: 100%;
+        padding: 10px;
+        overflow: hidden;
+        transition: opacity 500ms ease-out;
+
+        &:disabled {
+            opacity: 1;
+            pointer-events: none;
+        }
+    }
+
+    .itemLabel {
+        display: inline-block;
+        width: 100%;
+        transition: margin-left 300ms ease-out, transform 300ms ease-out;
+    }
+
+    .itemText {
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        transition: margin-left 300ms ease-out, transform 300ms ease-out;
+    }
+
+    .emptyQuestion,
+    .emptyAnswer {
+        margin: 5px auto;
+        border: dashed 2px var(--mm-gray-800);
+        color: var(--mm-gray-800);
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .emptyQuestion {
+        height: 75px;
+    }
+
+    .emptyAnswer {
+        height: 50px;
+    }
+
+    .userAnswer {
+        .button,
+        .result,
+        .resultLabel {
+            opacity: 1 !important;
+        }
+    }
+
+    .input {
+        position: relative;
+        margin: 5px 0;
+
+        &.disabled {
+            opacity: 0.5;
+
+            .textInput, .confirm {
+                background: transparent;
+            }
+        }
+
+        &.selected {
+            opacity: 1 !important;
+
+            .confirm, .submit {
+                opacity: 0;
+            }
+        }
+
+        &.focused, &.filled {
+            .confirm, .submit {
+                opacity: 1;
+            }
+        }
+
+        &.multiline {
+            .textInput {
+                min-height: 80px;
+            }
+
+            .confirm {
+                bottom: auto;
+            }
+        }
+    }
+
+    .textInput {
+        display: flex;
+        position: relative;
+        z-index: 0;
+        width: 100%;
+        margin: 0;
+        padding: 10px calc(10px + 2em);
+        overflow: hidden;
+        transition: margin-left 300ms ease-out, transform 300ms ease-out, opacity 500ms ease-out;
+        color: var(--mm-white);
+        line-height: inherit;
+        text-align: center;
+    }
+
+    .confirm {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding: 10px;
+        transition: opacity 0.15s ease-out;
+        opacity: 0;
+        background-color: transparent;
+
+        .icon {
+            width: 10px;
+            height: 10px;
+            margin: 0 auto;
+        }
+
+        &.disabled {
+            .icon {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    .submit {
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        margin-top: 10px;
+        padding: 10px;
+        transition: opacity 0.15s ease-out;
+        opacity: 0;
+    }
+
+    &.answered {
+        line-height: 1;
+
+        .resultContainer {
+            padding-right: 50px;
+            padding-left: 15px;
+        }
+
+        .resultContent {
+            width: 100%;
+            opacity: 1;
+        }
+
+        .button {
+            border-color: transparent;
+            background-color: transparent;
+        }
+
+        .button,
+        .result,
+        .resultLabel {
+            opacity: 0.6;
+        }
+
+        .itemLabel {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .textInput {
+            padding: 10px;
+            pointer-events: none;
+        }
+
+        &.withPercentage {
+            .itemText {
+                transform: translate(-2em, 0);
+            }
+
+            .textInput {
+                transform: translate(0, 0);
+            }
+        }
+
+        &.withPercentage, &.withBar {
+            .itemLabel, .textInput {
+                text-align: left;
+            }
+        }
+    }
+
+    &.withPercentage {
+        .itemLabel {
+            margin-right: 2em;
+            margin-left: 2em;
+        }
+    }
+
+    &.inputFocused {
+        .question, .answers {
+            opacity: 0.5;
+        }
+    }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+
+        .item {
+            padding: 1px 0;
+        }
+    }
+}
+
+.reset {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    transform-origin: center;
+    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+    border: 0;
+    background-color: transparent;
+
+    &:hover {
+        border: 0;
+        opacity: 0.8;
+
+        &:active {
+            transform: rotate(30deg);
+        }
+    }
+}

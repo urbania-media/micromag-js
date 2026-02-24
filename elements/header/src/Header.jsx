@@ -6,7 +6,7 @@ import React from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Badge from '@micromag/element-badge';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     badge: MicromagPropTypes.badge,
@@ -14,13 +14,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    badge: null,
-    fade: false,
-    className: null,
-};
-
-function Header({ badge, fade, className }) {
+function Header({ badge = null, fade = false, className = null }) {
     if (badge === null) return null;
 
     return (
@@ -39,6 +33,5 @@ function Header({ badge, fade, className }) {
 }
 
 Header.propTypes = propTypes;
-Header.defaultProps = defaultProps;
 
 export default Header;

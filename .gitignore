@@ -48,4 +48,5 @@ node_modules
 /*/*/assets
 /*/*/scss
 /output
+.claude/*
 .claude

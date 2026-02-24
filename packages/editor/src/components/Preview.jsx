@@ -16,7 +16,7 @@ import useThemeValue from '../hooks/useThemeValue';
 import DevicesMenu from './menus/Devices';
 import ScreenStates from './partials/ScreenStates';
 
-import styles from '../styles/preview.module.scss';
+import styles from '../styles/preview.module.css';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -30,9 +30,11 @@ const propTypes = {
     withoutDevicesSizes: PropTypes.bool,
 };
 
-const defaultProps = {
-    value: null,
-    devices: [
+const EditorPreview = ({
+    value = null,
+    viewerTheme = null,
+    isTheme = false,
+    devices = [
         {
             id: 'mobile',
             width: 320,
@@ -44,25 +46,11 @@ const defaultProps = {
             height: 900,
         },
     ],
-    device: 'mobile',
-    viewerTheme: null,
-    isTheme: false,
-    className: null,
-    onScreenChange: null,
-    onChange: null,
-    withoutDevicesSizes: true,
-};
-
-const EditorPreview = ({
-    value,
-    viewerTheme,
-    isTheme,
-    devices,
-    device: initialDevice,
-    className,
-    onScreenChange,
-    onChange,
-    withoutDevicesSizes,
+    device: initialDevice = 'mobile',
+    className = null,
+    onScreenChange = null,
+    onChange = null,
+    withoutDevicesSizes = true,
 }) => {
     const { screen: screenId = null, field: fieldParam = null } = useRouteParams();
     const { screen = null, screens = [] } = useScreenSize();
@@ -191,6 +179,5 @@ const EditorPreview = ({
 };
 
 EditorPreview.propTypes = propTypes;
-EditorPreview.defaultProps = defaultProps;
 
 export default EditorPreview;

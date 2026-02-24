@@ -45,26 +45,15 @@ const propTypes = {
     screenNamespaces: PropTypes.arrayOf(PropTypes.string),
 };
 
-const defaultProps = {
-    value: null,
-    routes: defaultRoutes,
-    memoryRouter: false,
-    basePath: null,
-    uppy: null,
-    googleApiKey: null,
-    googleMapsLibraries: ['places'],
-    screenNamespaces: null,
-};
-
 const EditorContainer = ({
-    value,
-    memoryRouter,
-    routes,
-    basePath,
-    uppy,
-    googleApiKey,
-    googleMapsLibraries,
-    screenNamespaces,
+    value = null,
+    memoryRouter = false,
+    routes = defaultRoutes,
+    basePath = null,
+    uppy = null,
+    googleApiKey = null,
+    googleMapsLibraries = ['places'],
+    screenNamespaces = null,
     ...props
 }) => {
     const { locale } = useIntl();
@@ -142,6 +131,5 @@ const EditorContainer = ({
 };
 
 EditorContainer.propTypes = propTypes;
-EditorContainer.defaultProps = defaultProps;
 
 export default EditorContainer;

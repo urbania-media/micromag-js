@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FieldContextProvider } from '@micromag/core/contexts';
 
-import styles from '../styles/conversation.module.scss';
+import styles from '../styles/conversation.module.css';
 import Fields from './Fields';
 
 const propTypes = {
@@ -18,14 +18,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    fields: null,
-    className: null,
-    onChange: null,
-};
-
-const Conversation = ({ value, fields, name, className, onChange, ...props }) => {
+const Conversation = ({ value = null, fields = null, name, className = null, onChange = null, ...props }) => {
     const { speakers = null } = value || {};
 
     const speakerOptions = (speakers || []).map(
@@ -52,6 +45,5 @@ const Conversation = ({ value, fields, name, className, onChange, ...props }) =>
 };
 
 Conversation.propTypes = propTypes;
-Conversation.defaultProps = defaultProps;
 
 export default Conversation;

@@ -21,14 +21,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    icon: null,
-    iconRotation: 0,
-    isHorizontal: false,
-    className: null,
-};
-
-const NumberWithIcon = ({ icon, iconRotation, isHorizontal, className, ...props }) => (
+const NumberWithIcon = ({ icon = null, iconRotation = 0, isHorizontal = false, className = null, ...props }) => (
     <div
         className={classNames([
             'd-flex',
@@ -47,7 +40,6 @@ const NumberWithIcon = ({ icon, iconRotation, isHorizontal, className, ...props 
 );
 
 NumberWithIcon.propTypes = propTypes;
-NumberWithIcon.defaultProps = defaultProps;
 NumberWithIcon.isHorizontal = true;
 
 export default NumberWithIcon;

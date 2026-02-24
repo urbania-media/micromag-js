@@ -1,0 +1,87 @@
+.item {
+    + .item {
+        margin-top: 0.5rem;
+    }
+}
+
+.button {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: 0 50%;
+    transition: transform 0.3s var(--mm-ease-out-ramp);
+    background-color: transparent;
+    color: var(--mm-white);
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+
+    @media (hover: hover) {
+        &:hover {
+            .icon,
+            .label {
+                transform: scale(1.05);
+                transition: transform 0.3s var(--mm-ease-in-yo);
+            }
+        }
+    }
+
+    &:active,
+    &:focus {
+        .icon,
+        .label {
+            transform: scale(1.05);
+            transition: transform 0.3s var(--mm-ease-in-kickback);
+        }
+    }
+
+    &:focus-visible {
+        box-shadow: 0 0 2px 2px var(--micromag-focus-color, #fff);
+    }
+}
+
+/* @note there is repetition from the styles used in Button & IconButton from the Viewer package */
+.icon {
+    display: block;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.icon,
+.spacer {
+    width: 45px;
+    height: 100%;
+}
+
+.icon,
+.label {
+    transition: transform 0.3s var(--mm-ease-out-ramp);
+}
+
+.label {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+    padding: 0.25rem;
+    transform-origin: center;
+    font-size: inherit;
+    line-height: 1;
+}
+
+.labelText {
+    flex-shrink: 0;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+}

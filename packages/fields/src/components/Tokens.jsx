@@ -7,7 +7,7 @@ import classNames from 'classnames';
 
 import { selectTheme } from '../utils/selectTheme';
 
-import styles from '../styles/tokens.module.scss';
+import styles from '../styles/tokens.module.css';
 
 const propTypes = {
     value: PropTypes.array, // eslint-disable-line
@@ -20,26 +20,15 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    value: null,
-    options: [],
-    loadOptions: null,
-    getOptionLabel: undefined,
-    getOptionValue: undefined,
-    getNewOptionData: undefined,
-    onChange: null,
-    className: null,
-};
-
 const Tokens = ({
-    value,
-    options,
-    loadOptions,
-    getOptionLabel,
-    getOptionValue,
-    getNewOptionData,
-    onChange,
-    className,
+    value = null,
+    options = [],
+    loadOptions = null,
+    getOptionLabel = undefined,
+    getOptionValue = undefined,
+    getNewOptionData = undefined,
+    onChange = null,
+    className = null,
 }) => {
     const filterOptions = useCallback(
         (inputValue) =>
@@ -89,6 +78,5 @@ const Tokens = ({
 };
 
 Tokens.propTypes = propTypes;
-Tokens.defaultProps = defaultProps;
 
 export default Tokens;

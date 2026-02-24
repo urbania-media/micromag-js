@@ -9,13 +9,7 @@ const propTypes = {
     style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
 
-const defaultProps = {
-    selector: null,
-    linkSelector: 'a',
-    style: null,
-};
-
-const LinkStyle = ({ selector, linkSelector, style }) =>
+const LinkStyle = ({ selector = null, linkSelector = 'a', style = null }) =>
     style !== null ? (
         <style
             type="text/css"
@@ -28,6 +22,5 @@ const LinkStyle = ({ selector, linkSelector, style }) =>
     ) : null;
 
 LinkStyle.propTypes = propTypes;
-LinkStyle.defaultProps = defaultProps;
 
 export default LinkStyle;

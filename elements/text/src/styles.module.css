@@ -1,0 +1,72 @@
+/* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
+
+.container {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.3;
+
+    & em,
+    & i {
+    font-style: italic;
+    }
+
+    & strong,
+    & b {
+    font-weight: bold;
+    }
+
+    & p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    }
+
+    & mark {
+    padding: 0;
+    box-decoration-break: clone;
+    }
+
+    & h2 {
+    font-size: 2em;
+    }
+
+    & h3 {
+    font-size: 1.75em;
+    }
+
+    & h4 {
+    font-size: 1.5em;
+    }
+
+    & blockquote {
+    padding: 0;
+    padding-left: 1em;
+    }
+
+    & img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    }
+    margin: 0;
+    padding: 0;
+
+    &.showEmpty {
+        display: inline-block;
+        width: 300px;
+        height: 80px;
+        border: dashed 2px var(--mm-gray-800);
+        color: var(--mm-gray-800);
+    }
+
+    &.withLineClamp {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    p {
+        font-weight: inherit;
+    }
+}

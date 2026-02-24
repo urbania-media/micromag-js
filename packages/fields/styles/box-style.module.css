@@ -1,0 +1,19 @@
+/* stylelint-disable max-nesting-depth, selector-max-compound-selectors, no-descending-specificity */
+
+.preview {
+    display: block;
+    position: relative;
+    width: 2em;
+    height: 1em;
+
+    .box {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 400%;
+        height: 400%;
+        transform: scale(0.25);
+        transform-origin: 0 0;
+    }
+}

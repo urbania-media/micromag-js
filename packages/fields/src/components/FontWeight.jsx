@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from '../styles/border-width.module.scss';
+import styles from '../styles/border-width.module.css';
 // import * as AppPropTypes from '../../lib/PropTypes';
 import Slider from './Slider';
 
@@ -13,14 +13,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    sizes: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-    className: null,
-    onChange: null,
-};
-
-const FontWeight = ({ value, sizes, className, onChange }) => (
+const FontWeight = ({ value = null, sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900], className = null, onChange = null }) => (
     <Slider
         value={value}
         min={sizes[0]}
@@ -38,6 +31,5 @@ const FontWeight = ({ value, sizes, className, onChange }) => (
 );
 
 FontWeight.propTypes = propTypes;
-FontWeight.defaultProps = defaultProps;
 
 export default FontWeight;

@@ -16,14 +16,7 @@ const propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {
-    screens: null,
-    namespaces: null,
-    filterNamespaces: false,
-    manager: null,
-};
-
-export const ScreensProvider = ({ screens, namespaces, filterNamespaces, manager, children }) => {
+export const ScreensProvider = ({ screens = null, namespaces = null, filterNamespaces = false, manager = null, children }) => {
     const previousManager = useScreensManager();
     const finalManager = useMemo(() => {
         let newManager = manager !== null ? manager : new ScreensManager(screens);
@@ -64,4 +57,3 @@ export const ScreensProvider = ({ screens, namespaces, filterNamespaces, manager
 };
 
 ScreensProvider.propTypes = propTypes;
-ScreensProvider.defaultProps = defaultProps;

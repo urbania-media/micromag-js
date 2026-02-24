@@ -106,23 +106,21 @@ const propTypes = {
     enableInteraction: PropTypes.func,
 };
 
-const defaultProps = { ...defaultValue };
-
 export const ViewerProvider = ({
     children,
     containerRef,
-    events,
-    menuVisible,
-    menuOverScreen,
+    events = new EventEmitter(),
+    menuVisible = false,
+    menuOverScreen = false,
     width,
     height,
-    topHeight,
-    bottomHeight,
-    bottomSidesWidth,
-    gotoNextScreen,
-    gotoPreviousScreen,
-    disableInteraction,
-    enableInteraction,
+    topHeight = 0,
+    bottomHeight = 0,
+    bottomSidesWidth = 0,
+    gotoNextScreen = () => {},
+    gotoPreviousScreen = () => {},
+    disableInteraction = () => {},
+    enableInteraction = () => {},
 }) => {
     const [webView, setWebView] = useState(null);
 
@@ -166,4 +164,3 @@ export const ViewerProvider = ({
 };
 
 ViewerProvider.propTypes = propTypes;
-ViewerProvider.defaultProps = defaultProps;

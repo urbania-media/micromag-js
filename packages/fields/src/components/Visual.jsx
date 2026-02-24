@@ -13,25 +13,23 @@ const propTypes = {
     value: MicromagPropTypes.videoMedia,
 };
 
-const defaultProps = {
-    value: null,
-};
-
-const VisualField = (props) => (
-    <MediaField
-        noValueLabel={
-            <FormattedMessage
-                defaultMessage="Select an image..."
-                description="Label when no value is provided to Visual field"
-            />
-        }
-        {...props}
-        type={visualTypes}
-    />
-);
+const VisualField = (
+    {
+        value: value = null,
+        ...props
+    },
+) => (<MediaField
+    noValueLabel={
+        <FormattedMessage
+            defaultMessage="Select an image..."
+            description="Label when no value is provided to Visual field"
+        />
+    }
+    {...props}
+    type={visualTypes}
+/>);
 
 VisualField.propTypes = propTypes;
-VisualField.defaultProps = defaultProps;
 VisualField.withForm = true;
 
 export default VisualField;

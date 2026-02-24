@@ -7,7 +7,7 @@ import { getDisplayName } from '../../utils';
 
 import Portal from './Portal';
 
-import styles from '../../styles/modals/modal.module.scss';
+import styles from '../../styles/modals/modal.module.css';
 
 const propTypes = {
     id: PropTypes.string,
@@ -16,14 +16,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    id: null,
-    title: null,
-    position: 'center',
-    children: null,
-};
-
-const Modal = ({ id, children, position, title }) => {
+const Modal = ({ id = null, children = null, position = 'center', title = null }) => {
     const finalId = useMemo(() => id || getDisplayName(children.type), [id, children.type]);
     const data = useMemo(
         () => ({
@@ -48,6 +41,5 @@ const Modal = ({ id, children, position, title }) => {
 };
 
 Modal.propTypes = propTypes;
-Modal.defaultProps = defaultProps;
 
 export default Modal;

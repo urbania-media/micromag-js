@@ -8,7 +8,7 @@ import { Button } from '@micromag/core/components';
 
 import * as DeviceIcons from '../icons/devices/index';
 
-import styles from '../../styles/buttons/device.module.scss';
+import styles from '../../styles/buttons/device.module.css';
 
 const propTypes = {
     device: PropTypes.string.isRequired,
@@ -16,12 +16,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    iconComponents: DeviceIcons,
-    className: null,
-};
-
-const DeviceButton = ({ device, className, iconComponents, ...props }) => {
+const DeviceButton = ({ device, className = null, iconComponents = DeviceIcons, ...props }) => {
     const DeviceIcon = getComponentFromName(device, iconComponents, DeviceIcons.Desktop);
     return (
         <Button
@@ -39,6 +34,5 @@ const DeviceButton = ({ device, className, iconComponents, ...props }) => {
 };
 
 DeviceButton.propTypes = propTypes;
-DeviceButton.defaultProps = defaultProps;
 
 export default DeviceButton;

@@ -12,7 +12,7 @@ import { createNullableOnChange } from '@micromag/core/utils';
 import Field from './Field';
 import FieldRow from './FieldRow';
 
-import styles from '../styles/fields.module.scss';
+import styles from '../styles/fields.module.css';
 
 const propTypes = {
     name: PropTypes.string,
@@ -37,50 +37,27 @@ const propTypes = {
     fieldProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
-const defaultProps = {
-    name: null,
-    fields: [],
-    excludedFields: null,
-    value: null,
-    errors: null,
-    withBorders: false,
-    gotoFieldForm: null,
-    closeFieldForm: null,
-    nullEmptyObject: false,
-    isHorizontal: null,
-    isList: false,
-    isFlushList: false,
-    canClear: false,
-    onChange: null,
-    className: null,
-    fieldClassName: null,
-    labelClassName: null,
-    components: null,
-    fieldsProps: null,
-    fieldProps: null,
-};
-
 const Fields = ({
-    name: namespace,
-    fields,
-    excludedFields,
-    value,
-    errors,
-    withBorders,
-    gotoFieldForm,
-    closeFieldForm,
-    nullEmptyObject,
-    isHorizontal: globalIsHorizontal,
-    isList,
-    isFlushList,
-    canClear,
-    onChange,
-    className,
-    fieldClassName,
-    labelClassName,
-    components,
-    fieldsProps,
-    fieldProps,
+    name: namespace = null,
+    fields = [],
+    excludedFields = null,
+    value = null,
+    errors = null,
+    withBorders = false,
+    gotoFieldForm = null,
+    closeFieldForm = null,
+    nullEmptyObject = false,
+    isHorizontal: globalIsHorizontal = null,
+    isList = false,
+    isFlushList = false,
+    canClear = false,
+    onChange = null,
+    className = null,
+    fieldClassName = null,
+    labelClassName = null,
+    components = null,
+    fieldsProps = null,
+    fieldProps = null,
 }) => {
     const nullableOnChange = useCallback(
         nullEmptyObject ? createNullableOnChange(onChange) : onChange,
@@ -283,6 +260,5 @@ const Fields = ({
 };
 
 Fields.propTypes = propTypes;
-Fields.defaultProps = defaultProps;
 
 export default Fields;

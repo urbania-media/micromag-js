@@ -13,7 +13,7 @@ import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 
-import styles from './sign-modal.module.scss';
+import styles from './sign-modal.module.css';
 
 const propTypes = {
     width: PropTypes.number,
@@ -34,28 +34,16 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    width: null,
-    height: null,
-    sign: null,
-    subtitle: null,
-    current: true,
-    transitionDisabled: false,
-    focusable: true,
-    onClick: null,
-    className: null,
-};
-
 const SignModal = ({
-    width,
-    height,
-    sign,
-    subtitle,
-    current,
-    transitionDisabled,
-    focusable,
-    onClick,
-    className,
+    width = null,
+    height = null,
+    sign = null,
+    subtitle = null,
+    current = true,
+    transitionDisabled = false,
+    focusable = true,
+    onClick = null,
+    className = null,
 }) => {
     // eslint-disable-next-line no-unused-vars
     const { label = null, image = null, date = null, word = null, description = null } = sign || {};
@@ -135,6 +123,5 @@ const SignModal = ({
 };
 
 SignModal.propTypes = propTypes;
-SignModal.defaultProps = defaultProps;
 
 export default SignModal;

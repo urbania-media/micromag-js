@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from '../../styles/forms/dropdown-section.module.scss';
+import styles from '../../styles/forms/dropdown-section.module.css';
 
 const propTypes = {
     value: PropTypes.string,
@@ -20,14 +20,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    value: null,
-    items: null,
-    onChange: null,
-    className: null,
-};
-
-function DropdownSection({ value, items, onChange, className }) {
+function DropdownSection({ value = null, items = null, onChange = null, className = null }) {
     const [open, setOpen] = useState(false);
     const currentItem = items.find((i) => i.value === value);
 
@@ -118,6 +111,5 @@ function DropdownSection({ value, items, onChange, className }) {
 }
 
 DropdownSection.propTypes = propTypes;
-DropdownSection.defaultProps = defaultProps;
 
 export default DropdownSection;

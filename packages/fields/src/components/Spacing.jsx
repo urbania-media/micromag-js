@@ -10,19 +10,12 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const Spacing = ({ value, className, onChange, ...props }) => (
+const Spacing = ({ value = null, className = null, onChange = null, ...props }) => (
     <InputGroup className={className} append="px">
         <Number value={value} min={0} max={20} onChange={onChange} {...props} />
     </InputGroup>
 );
 
 Spacing.propTypes = propTypes;
-Spacing.defaultProps = defaultProps;
 
 export default Spacing;

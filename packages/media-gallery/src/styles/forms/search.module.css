@@ -1,0 +1,18 @@
+.container {
+    position: relative;
+
+    .input {
+        background-color: var(--mm-gray-900);
+
+        &:focus, &.active {
+            outline: none !important;
+            background-color: var(--mm-gray-900) !important;
+            box-shadow: none !important;
+            color: var(--mm-white) !important;
+        }
+
+        ::placeholder {
+            background-color: var(--mm-gray-900) !important;
+        }
+    }
+}

@@ -23,26 +23,15 @@ const propTypes = {
     onClickOutside: PropTypes.func,
 };
 
-const defaultProps = {
-    items: [],
-    children: null,
-    visible: false,
-    align: null,
-    className: null,
-    itemClassName: null,
-    onClickItem: null,
-    onClickOutside: null,
-};
-
 const Dropdown = ({
-    items,
-    children,
-    visible,
-    align,
-    className,
-    itemClassName,
-    onClickItem,
-    onClickOutside,
+    items = [],
+    children = null,
+    visible = false,
+    align = null,
+    className = null,
+    itemClassName = null,
+    onClickItem = null,
+    onClickOutside = null,
 }) => {
     const refContainer = useRef(null);
     const [enabled, setEnabled] = useState(visible);
@@ -143,6 +132,5 @@ const Dropdown = ({
 };
 
 Dropdown.propTypes = propTypes;
-Dropdown.defaultProps = defaultProps;
 
 export default Dropdown;

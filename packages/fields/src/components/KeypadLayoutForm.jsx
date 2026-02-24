@@ -8,7 +8,7 @@ import Keypad from '@micromag/element-keypad';
 
 import FieldWithForm from './FieldWithForm';
 
-import styles from '../styles/keypad-layout-form.module.scss';
+import styles from '../styles/keypad-layout-form.module.css';
 
 function getPreviewItemsByColumns(columns) {
     switch (columns) {
@@ -37,16 +37,7 @@ const propTypes = {
     closeForm: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    isForm: false,
-    isHorizontal: false,
-    className: null,
-    onChange: null,
-    closeForm: null,
-};
-
-const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
+const KeypadLayoutForm = ({ value = null, onChange = null, closeForm = null, ...props }) => {
     const intl = useIntl();
     const { columnAlign = null, columns = null, spacing = null } = value || {};
     const finalSpacingPreview = Math.max(0, Math.min(4, spacing));
@@ -121,7 +112,6 @@ const KeypadLayoutForm = ({ value, onChange, closeForm, ...props }) => {
 };
 
 KeypadLayoutForm.propTypes = propTypes;
-KeypadLayoutForm.defaultProps = defaultProps;
 // KeypadLayoutForm.withForm = true;
 
 export default KeypadLayoutForm;

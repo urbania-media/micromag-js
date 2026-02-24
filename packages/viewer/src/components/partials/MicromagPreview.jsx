@@ -6,7 +6,7 @@ import React from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenPreview } from '@micromag/core/components';
 
-import styles from '../../styles/partials/micromag-preview.module.scss';
+import styles from '../../styles/partials/micromag-preview.module.css';
 
 const propTypes = {
     screen: MicromagPropTypes.screen,
@@ -16,15 +16,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    screen: null,
-    title: null,
-    url: null,
-    description: null,
-    className: null,
-};
-
-const MicromagPreview = ({ screen, title, url, description, className }) => (
+const MicromagPreview = ({ screen = null, title = null, url = null, description = null, className = null }) => (
     <div
         className={classNames([
             styles.container,
@@ -45,6 +37,5 @@ const MicromagPreview = ({ screen, title, url, description, className }) => (
 );
 
 MicromagPreview.propTypes = propTypes;
-MicromagPreview.defaultProps = defaultProps;
 
 export default MicromagPreview;

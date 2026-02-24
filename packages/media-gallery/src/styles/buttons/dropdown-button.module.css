@@ -1,0 +1,37 @@
+.container {
+    .icon {
+        display: block;
+    }
+
+    &.withoutStyle {
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font-family: inherit;
+        cursor: pointer;
+        appearance: none;
+    }
+
+    &.withIcon {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+
+        .label {
+            margin-left: 0.5em;
+        }
+
+        .right {
+            margin-left: 0.5em;
+        }
+    }
+
+    &.withIconColumns {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}

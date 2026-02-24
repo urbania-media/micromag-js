@@ -38,7 +38,7 @@ import Question from './partials/Question';
 import Results from './partials/Results';
 import Title from './partials/Title';
 
-import styles from './quiz.module.scss';
+import styles from './quiz.module.css';
 
 const propTypes = {
     id: PropTypes.string,
@@ -84,72 +84,38 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    id: null,
-    layout: 'middle',
-    introLayout: null,
-    title: null,
-    description: null,
-    questions: null,
-    results: null,
-    buttonsStyle: null,
-    inactiveButtonsStyle: null,
-    buttonsTextStyle: null,
-    inactiveButtonsTextStyle: null,
-    questionsHeadingStyle: null,
-    resultsHeadingStyle: null,
-    resultsTextStyle: null,
-    feedbackTextStyle: null,
-    numbersTextStyle: null,
-    goodAnswerColor: null,
-    badAnswerColor: null,
-    spacing: 20,
-    background: null,
-    introButton: null,
-    introBackground: null,
-    nextButton: null,
-    header: null,
-    footer: null,
-    current: true,
-    active: true,
-    transitions: null,
-    transitionStagger: 100,
-    type: null,
-    className: null,
-};
-
 const QuizMultipleScreen = ({
-    id,
-    layout,
-    introLayout,
-    title,
-    description,
-    questions,
-    results,
-    buttonsStyle,
-    inactiveButtonsStyle,
-    buttonsTextStyle,
-    inactiveButtonsTextStyle,
-    questionsHeadingStyle,
-    resultsHeadingStyle,
-    resultsTextStyle,
-    feedbackTextStyle,
-    numbersTextStyle,
-    goodAnswerColor,
-    badAnswerColor,
-    spacing,
-    background,
-    introBackground,
-    introButton,
-    nextButton,
-    header,
-    footer,
-    current,
-    active,
-    transitions,
-    transitionStagger,
-    type,
-    className,
+    id = null,
+    layout = 'middle',
+    introLayout = null,
+    title = null,
+    description = null,
+    questions = null,
+    results = null,
+    buttonsStyle = null,
+    inactiveButtonsStyle = null,
+    buttonsTextStyle = null,
+    inactiveButtonsTextStyle = null,
+    questionsHeadingStyle = null,
+    resultsHeadingStyle = null,
+    resultsTextStyle = null,
+    feedbackTextStyle = null,
+    numbersTextStyle = null,
+    goodAnswerColor = null,
+    badAnswerColor = null,
+    spacing = 20,
+    background = null,
+    introBackground = null,
+    introButton = null,
+    nextButton = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    transitions = null,
+    transitionStagger = 100,
+    type = null,
+    className = null,
 }) => {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -717,6 +683,5 @@ const QuizMultipleScreen = ({
 };
 
 QuizMultipleScreen.propTypes = propTypes;
-QuizMultipleScreen.defaultProps = defaultProps;
 
 export default QuizMultipleScreen;

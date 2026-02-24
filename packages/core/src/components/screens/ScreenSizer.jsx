@@ -9,7 +9,7 @@ import { useDevicePixelRatio, useDimensionObserver } from '../../hooks';
 // import { PropTypes as MicromagPropTypes } from '../../lib';
 import { ScreenSizeProvider } from '../../contexts';
 
-import styles from '../../styles/screens/screen-sizer.module.scss';
+import styles from '../../styles/screens/screen-sizer.module.css';
 
 const propTypes = {
     width: PropTypes.number,
@@ -21,16 +21,7 @@ const propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {
-    width: null,
-    height: null,
-    fit: null,
-    screenWidth: 320,
-    screenHeight: 480,
-    className: null,
-};
-
-const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className, children }) => {
+const ScreenSizer = ({ width = null, height = null, fit = null, screenWidth = 320, screenHeight = 480, className = null, children }) => {
     const hasSize = width !== null || height !== null;
     //
     const {
@@ -146,6 +137,5 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
 };
 
 ScreenSizer.propTypes = propTypes;
-ScreenSizer.defaultProps = defaultProps;
 
 export default ScreenSizer;

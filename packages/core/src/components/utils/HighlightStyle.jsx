@@ -9,13 +9,7 @@ const propTypes = {
     style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
 
-const defaultProps = {
-    selector: null,
-    highlightSelector: 'mark',
-    style: null,
-};
-
-const HighlightStyle = ({ selector, highlightSelector, style }) =>
+const HighlightStyle = ({ selector = null, highlightSelector = 'mark', style = null }) =>
     style !== null ? (
         <style
             type="text/css"
@@ -28,6 +22,5 @@ const HighlightStyle = ({ selector, highlightSelector, style }) =>
     ) : null;
 
 HighlightStyle.propTypes = propTypes;
-HighlightStyle.defaultProps = defaultProps;
 
 export default HighlightStyle;

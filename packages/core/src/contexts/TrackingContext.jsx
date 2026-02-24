@@ -16,13 +16,7 @@ const propTypes = {
     paused: PropTypes.bool,
 };
 
-const defaultProps = {
-    variables: null,
-    disabled: false,
-    paused: false,
-};
-
-export const TrackingProvider = ({ variables, disabled, paused, children }) => {
+export const TrackingProvider = ({ variables = null, disabled = false, paused = false, children }) => {
     const contextTracking = useTracking() || null;
     const refTracking = useRef(null);
     const tracking = useMemo(() => {
@@ -50,4 +44,3 @@ export const TrackingProvider = ({ variables, disabled, paused, children }) => {
 };
 
 TrackingProvider.propTypes = propTypes;
-TrackingProvider.defaultProps = defaultProps;

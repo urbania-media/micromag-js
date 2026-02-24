@@ -8,14 +8,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    stroke: 'currentColor',
-    border: 'rgba(255,255,255,0.67)',
-    fill: '#fff',
-    className: null,
-};
-
-const Close = ({ stroke, border, fill, className }) => (
+const Close = ({ stroke = 'currentColor', border = 'rgba(255,255,255,0.67)', fill = '#fff', className = null }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="42.9"
@@ -56,6 +49,5 @@ const Close = ({ stroke, border, fill, className }) => (
 );
 
 Close.propTypes = propTypes;
-Close.defaultProps = defaultProps;
 
 export default Close;

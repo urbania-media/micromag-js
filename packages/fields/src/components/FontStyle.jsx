@@ -18,17 +18,11 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    options: [
-        { value: 'bold', label: <FontAwesomeIcon icon={faBold} /> },
-        { value: 'italic', label: <FontAwesomeIcon icon={faItalic} /> },
-        { value: 'underline', label: <FontAwesomeIcon icon={faUnderline} /> },
-    ],
-    value: null,
-    onChange: null,
-};
-
-const FontStyles = ({ value, options, onChange, ...props }) => {
+const FontStyles = ({ value = null, options = [
+    { value: 'bold', label: <FontAwesomeIcon icon={faBold} /> },
+    { value: 'italic', label: <FontAwesomeIcon icon={faItalic} /> },
+    { value: 'underline', label: <FontAwesomeIcon icon={faUnderline} /> },
+], onChange = null, ...props }) => {
     const styleKeys = useMemo(() => options.map((it) => it.value), [options]);
     const onInputChange = useCallback(
         (newStyleValue) => {
@@ -70,6 +64,5 @@ const FontStyles = ({ value, options, onChange, ...props }) => {
 };
 
 FontStyles.propTypes = propTypes;
-FontStyles.defaultProps = defaultProps;
 
 export default FontStyles;

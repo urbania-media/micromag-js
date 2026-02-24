@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'wouter';
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import styles from '../../styles/menus/breadcrumb.module.scss';
+import styles from '../../styles/menus/breadcrumb.module.css';
 import Button from '../buttons/Button';
 import Label from '../partials/Label';
 
@@ -17,16 +17,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    items: [],
-    theme: null,
-    separator: null,
-    withoutBar: false,
-    noWrap: false,
-    className: null,
-};
-
-const Breadcrumb = ({ items, theme, separator, withoutBar, noWrap, className }) => (
+const Breadcrumb = ({ items = [], theme = null, separator = null, withoutBar = false, noWrap = false, className = null }) => (
     <nav className={className}>
         <ol
             className={classNames([
@@ -90,6 +81,5 @@ const Breadcrumb = ({ items, theme, separator, withoutBar, noWrap, className }) 
 );
 
 Breadcrumb.propTypes = propTypes;
-Breadcrumb.defaultProps = defaultProps;
 
 export default Breadcrumb;

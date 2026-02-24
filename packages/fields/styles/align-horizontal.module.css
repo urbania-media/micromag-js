@@ -1,0 +1,27 @@
+.icon {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 30px;
+
+    > div {
+        width: calc(30px / 3 - 2px);
+        height: calc(30px / 3 - 2px);
+        margin-right: 2px;
+        margin-bottom: 2px;
+        background-color: var(--mm-white);
+        mix-blend-mode: difference;
+    }
+
+    &.left {
+        justify-content: flex-start;
+    }
+
+    &.middle {
+        justify-content: center;
+    }
+
+    &.right {
+        justify-content: flex-end;
+    }
+}

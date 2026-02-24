@@ -42,7 +42,7 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 
-import styles from './keypad.module.scss';
+import styles from './keypad.module.css';
 
 const placeholders = [
     { id: '1' },
@@ -115,41 +115,22 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    items: null,
-    title: null,
-    subtitle: null,
-    layout: null,
-    spacing: 20,
-    keypadSettings: null,
-    keypadLayout: null,
-    buttonStyles: null,
-    popupStyles: null,
-    header: null,
-    footer: null,
-    background: null,
-    current: true,
-    preload: true,
-    withoutCloseButton: false,
-    className: null,
-};
-
 const KeypadScreen = ({
-    items,
-    title,
-    subtitle,
-    layout,
-    spacing,
-    keypadLayout,
-    buttonStyles,
-    popupStyles,
-    header,
-    footer,
-    background,
-    current,
-    preload,
-    withoutCloseButton,
-    className,
+    items = null,
+    title = null,
+    subtitle = null,
+    layout = null,
+    spacing = 20,
+    keypadLayout = null,
+    buttonStyles = null,
+    popupStyles = null,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    withoutCloseButton = false,
+    className = null,
 }) => {
     const containerRef = useRef(null);
     const popupInnerRef = useRef(null);
@@ -846,6 +827,5 @@ const KeypadScreen = ({
 };
 
 KeypadScreen.propTypes = propTypes;
-KeypadScreen.defaultProps = defaultProps;
 
 export default KeypadScreen;

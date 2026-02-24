@@ -10,11 +10,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-};
-
-const DeleteButton = ({ className, ...props }) => (
+const DeleteButton = ({ className = null, ...props }) => (
     <Button
         className={className}
         theme="danger"
@@ -25,6 +21,5 @@ const DeleteButton = ({ className, ...props }) => (
 );
 
 DeleteButton.propTypes = propTypes;
-DeleteButton.defaultProps = defaultProps;
 
 export default DeleteButton;

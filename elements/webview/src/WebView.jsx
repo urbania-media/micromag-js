@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 import { Close } from '@micromag/core/components';
 import Button from '@micromag/element-button';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     url: PropTypes.string,
@@ -19,17 +19,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    url: null,
-    width: null,
-    height: null,
-    closeable: false,
-    focusable: false,
-    onClose: null,
-    className: null,
-};
-
-function WebView({ url, width, height, closeable, focusable, onClose, className }) {
+function WebView({ url = null, width = null, height = null, closeable = false, focusable = false, onClose = null, className = null }) {
     const intl = useIntl();
     return (
         <div
@@ -77,6 +67,5 @@ function WebView({ url, width, height, closeable, focusable, onClose, className 
 }
 
 WebView.propTypes = propTypes;
-WebView.defaultProps = defaultProps;
 
 export default WebView;

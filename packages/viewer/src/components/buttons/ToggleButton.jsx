@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from '../../styles/buttons/toggle-button.module.scss';
+import styles from '../../styles/buttons/toggle-button.module.css';
 
 const propTypes = {
     className: PropTypes.string,
@@ -14,20 +14,12 @@ const propTypes = {
     toggledButtonClassName: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-    progressSpring: null,
-    button: null,
-    toggledButton: null,
-    toggledButtonClassName: null,
-};
-
 const ToggleButton = ({
-    className,
-    progressSpring,
-    button,
-    toggledButton,
-    toggledButtonClassName,
+    className = null,
+    progressSpring = null,
+    button = null,
+    toggledButton = null,
+    toggledButtonClassName = null,
 }) => {
     if (button === null) return null;
 
@@ -66,6 +58,5 @@ const ToggleButton = ({
 };
 
 ToggleButton.propTypes = propTypes;
-ToggleButton.defaultProps = defaultProps;
 
 export default ToggleButton;

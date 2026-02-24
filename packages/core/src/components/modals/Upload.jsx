@@ -20,15 +20,7 @@ const propTypes = {
     onRequestClose: PropTypes.func,
 };
 
-const defaultProps = {
-    type: null,
-    opened: false,
-    sources: ['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive'],
-    onUploaded: null,
-    onRequestClose: null,
-};
-
-const UploadModal = ({ type, opened, sources, onUploaded, onRequestClose }) => {
+const UploadModal = ({ type = null, opened = false, sources = ['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive'], onUploaded = null, onRequestClose = null }) => {
     const onUppyComplete = useCallback(
         (response) => {
             if (onUploaded !== null) {
@@ -73,6 +65,5 @@ const UploadModal = ({ type, opened, sources, onUploaded, onRequestClose }) => {
 };
 
 UploadModal.propTypes = propTypes;
-UploadModal.defaultProps = defaultProps;
 
 export default UploadModal;

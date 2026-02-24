@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Fields from './Fields';
 
-import styles from '../styles/alternative.module.scss';
+import styles from '../styles/alternative.module.css';
 
 const propTypes = {
     value: MicromagPropTypes.badge,
@@ -16,13 +16,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const Alternative = ({ value, className, onChange, fields, toggleLabel, ...props }) => {
+const Alternative = ({ value = null, className = null, onChange = null, fields, toggleLabel, ...props }) => {
     const finalFields = useMemo(
         () => [
             {
@@ -70,6 +64,5 @@ const Alternative = ({ value, className, onChange, fields, toggleLabel, ...props
 };
 
 Alternative.propTypes = propTypes;
-Alternative.defaultProps = defaultProps;
 
 export default Alternative;

@@ -53,48 +53,25 @@ const propTypes = {
     children: PropTypes.func,
 };
 
-const defaultProps = {
-    story: null,
-    paused: false,
-    muted: true,
-    screen: null,
-    screenComponents: null,
-    memoryRouter: false,
-    basePath: null,
-    routes: defaultRoutes,
-    withoutRouter: false,
-    googleApiKey: null,
-    visitor: null,
-    locale: 'en',
-    locales: ['fr', 'en'],
-    translations: null,
-    pathWithIndex: false,
-    trackingVariables: null,
-    trackingDisabled: false,
-    trackingPaused: false,
-    settings: null,
-    children: null,
-};
-
 const ViewerContainer = ({
-    story,
-    paused,
-    muted,
-    screenComponents,
-    memoryRouter,
-    basePath,
-    routes,
-    withoutRouter,
-    googleApiKey,
-    visitor,
-    locale,
-    locales,
-    translations,
-    pathWithIndex,
-    trackingVariables,
-    trackingDisabled,
-    trackingPaused,
-    settings,
+    story = null,
+    paused = false,
+    muted = true,
+    screenComponents = null,
+    memoryRouter = false,
+    basePath = null,
+    routes = defaultRoutes,
+    withoutRouter = false,
+    googleApiKey = null,
+    visitor = null,
+    locale = 'en',
+    locales = ['fr', 'en'],
+    translations = null,
+    pathWithIndex = false,
+    trackingVariables = null,
+    trackingDisabled = false,
+    trackingPaused = false,
+    settings = null,
     ...otherProps
 }) => {
     const finalTrackingVariables = useMemo(() => {
@@ -208,6 +185,5 @@ const ViewerContainer = ({
 };
 
 ViewerContainer.propTypes = propTypes;
-ViewerContainer.defaultProps = defaultProps;
 
 export default ViewerContainer;

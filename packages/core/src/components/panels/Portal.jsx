@@ -11,13 +11,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    id: null,
-    data: null,
-    children: null,
-};
-
-const PanelPortal = ({ id, data, children }) => {
+const PanelPortal = ({ id = null, data = null, children = null }) => {
     const { panels = null, container, register = null, unregister = null } = usePanels();
     if (panels === null) {
         return children;
@@ -36,6 +30,5 @@ const PanelPortal = ({ id, data, children }) => {
 };
 
 PanelPortal.propTypes = propTypes;
-PanelPortal.defaultProps = defaultProps;
 
 export default PanelPortal;

@@ -17,16 +17,7 @@ const propTypes = {
     disabled: PropTypes.bool,
 };
 
-const defaultProps = {
-    inline: false,
-    textOnly: false,
-    value: null,
-    onChange: null,
-    onFocus: null,
-    disabled: false,
-};
-
-const TextElement = ({ value, onChange, inline, textOnly, onFocus, disabled, ...props }) => {
+const TextElement = ({ value = null, onChange = null, inline = false, textOnly = false, onFocus = null, disabled = false, ...props }) => {
     const bodyValue = value !== null ? value.body || null : null;
     const textStyleValue = value !== null ? value.textStyle || null : null;
     const onBodyChange = useCallback(
@@ -76,6 +67,5 @@ const TextElement = ({ value, onChange, inline, textOnly, onFocus, disabled, ...
 };
 
 TextElement.propTypes = propTypes;
-TextElement.defaultProps = defaultProps;
 
 export default TextElement;

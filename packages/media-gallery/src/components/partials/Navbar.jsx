@@ -21,7 +21,7 @@ import SearchForm from '../forms/Search';
 import SearchFilters from '../forms/SearchFilters';
 import ActiveFilters from './ActiveFilters';
 
-import styles from '../../styles/partials/navbar.module.scss';
+import styles from '../../styles/partials/navbar.module.css';
 
 const propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
@@ -44,46 +44,25 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    types: null,
-    filters: null,
-    media: null,
-    selectedMedia: null,
-    storyId: null,
-    tags: [],
-    authors: [],
-    loading: false,
-    withoutSource: false,
-    withoutType: true,
-    onClickAdd: null,
-    onClickItem: null,
-    onClickItemInfo: null,
-    onClickClear: null,
-    onFocusSearch: null,
-    onFiltersChange: null,
-    onClickBack: null,
-    className: null,
-};
-
 function Navbar({
-    types,
-    filters,
-    media,
-    selectedMedia,
-    storyId,
-    tags,
-    authors,
-    loading,
-    withoutSource,
-    withoutType,
-    className,
-    onClickAdd,
-    onClickItem,
-    onClickItemInfo,
-    onClickClear,
-    onFocusSearch,
-    onFiltersChange,
-    onClickBack,
+    types = null,
+    filters = null,
+    media = null,
+    selectedMedia = null,
+    storyId = null,
+    tags = [],
+    authors = [],
+    loading = false,
+    withoutSource = false,
+    withoutType = true,
+    className = null,
+    onClickAdd = null,
+    onClickItem = null,
+    onClickItemInfo = null,
+    onClickClear = null,
+    onFocusSearch = null,
+    onFiltersChange = null,
+    onClickBack = null,
 }) {
     const intl = useIntl();
     const throttle = useRef(null);
@@ -397,6 +376,5 @@ function Navbar({
 }
 
 Navbar.propTypes = propTypes;
-Navbar.defaultProps = defaultProps;
 
 export default Navbar;

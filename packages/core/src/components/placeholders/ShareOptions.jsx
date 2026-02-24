@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/share-options.module.scss';
+import styles from '../../styles/placeholders/share-options.module.css';
 
 export const Title = (props) => (
     <PlaceholderBlock

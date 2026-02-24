@@ -23,7 +23,7 @@ import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 
-import styles from './text.module.scss';
+import styles from './text.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
@@ -39,32 +39,18 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'top',
-    text: null,
-    title: null,
-    withTitle: false,
-    spacing: 20,
-    header: null,
-    footer: null,
-    background: null,
-    current: true,
-    preload: true,
-    className: null,
-};
-
 const TextScreen = ({
-    layout,
-    text,
-    title,
-    withTitle,
-    spacing,
-    header,
-    footer,
-    background,
-    current,
-    preload,
-    className,
+    layout = 'top',
+    text = null,
+    title = null,
+    withTitle = false,
+    spacing = 20,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    className = null,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -230,6 +216,5 @@ const TextScreen = ({
 };
 
 TextScreen.propTypes = propTypes;
-TextScreen.defaultProps = defaultProps;
 
 export default TextScreen;

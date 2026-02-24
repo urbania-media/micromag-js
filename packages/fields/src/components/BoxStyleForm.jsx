@@ -8,7 +8,7 @@ import { getStyleFromBox } from '@micromag/core/utils';
 
 import FieldWithForm from './FieldWithForm';
 
-import styles from '../styles/box-style.module.scss';
+import styles from '../styles/box-style.module.css';
 
 const propTypes = {
     value: MicromagPropTypes.boxStyle,
@@ -21,18 +21,7 @@ const propTypes = {
     closeForm: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    fields: null,
-    isForm: false,
-    isHorizontal: false,
-    withAlignment: false,
-    className: null,
-    onChange: null,
-    closeForm: null,
-};
-
-const BoxStyleForm = ({ value, fields, onChange, closeForm, withAlignment, ...props }) => {
+const BoxStyleForm = ({ value = null, fields = null, onChange = null, closeForm = null, withAlignment = false, ...props }) => {
     const previewElement =
         value !== null ? (
             <span className={styles.preview}>
@@ -61,7 +50,6 @@ const BoxStyleForm = ({ value, fields, onChange, closeForm, withAlignment, ...pr
 };
 
 BoxStyleForm.propTypes = propTypes;
-BoxStyleForm.defaultProps = defaultProps;
 BoxStyleForm.withForm = true;
 
 export default BoxStyleForm;

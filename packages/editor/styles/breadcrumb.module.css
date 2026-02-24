@@ -1,0 +1,15 @@
+.container {
+    li {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &::before {
+            float: none;
+        }
+
+        &:last-child {
+            flex-shrink: 0;
+        }
+    }
+}

@@ -9,14 +9,14 @@ const propTypes = {
     withInput: PropTypes.bool,
 };
 
-const defaultProps = {
-    unit: 'pt',
-    withInput: true,
-};
-
-const SliderPointField = props => <SliderField {...props} />;
+const SliderPointField = (
+    {
+        unit: unit = 'pt',
+        withInput: withInput = true,
+        ...props
+    },
+) => <SliderField {...props} />;
 
 SliderPointField.propTypes = propTypes;
-SliderPointField.defaultProps = defaultProps;
 
 export default SliderPointField;

@@ -5,7 +5,7 @@ import Switch from 'rc-switch';
 import React from 'react';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
-import styles from '../styles/toggle.module.scss';
+import styles from '../styles/toggle.module.css';
 
 const propTypes = {
     value: PropTypes.bool,
@@ -14,14 +14,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    defaultValue: null,
-    className: null,
-    onChange: null,
-};
-
-const ToggleField = ({ value, defaultValue, className, onChange }) => {
+const ToggleField = ({ value = null, defaultValue = null, className = null, onChange = null }) => {
     const finalValue =
         value === null && (defaultValue === true || defaultValue === 'true') ? true : value;
     return (
@@ -39,7 +32,6 @@ const ToggleField = ({ value, defaultValue, className, onChange }) => {
 };
 
 ToggleField.propTypes = propTypes;
-ToggleField.defaultProps = defaultProps;
 ToggleField.isHorizontal = true;
 
 export default ToggleField;

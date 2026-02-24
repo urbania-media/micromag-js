@@ -6,12 +6,7 @@ const propTypes = {
     color: PropTypes.string,
 };
 
-const defaultProps = {
-    className: null,
-    color: '#fff',
-};
-
-const PlayIcon = ({ color, className }) => (
+const PlayIcon = ({ color = '#fff', className = null }) => (
     <svg
         width="40"
         height="45.1"
@@ -29,6 +24,5 @@ const PlayIcon = ({ color, className }) => (
 );
 
 PlayIcon.propTypes = propTypes;
-PlayIcon.defaultProps = defaultProps;
 
 export default PlayIcon;

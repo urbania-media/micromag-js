@@ -5,7 +5,7 @@ import { getShadowCoords } from '@micromag/core/utils';
 
 import Radios from './Radios';
 
-import styles from '../styles/shadow-angle.module.scss';
+import styles from '../styles/shadow-angle.module.css';
 
 const propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
@@ -14,14 +14,7 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    types: [45, 90, -45, -90],
-    value: null,
-    className: null,
-    onChange: null,
-};
-
-const ShadowAngle = ({ types, value, className, onChange }) => {
+const ShadowAngle = ({ types = [45, 90, -45, -90], value = null, className = null, onChange = null }) => {
     const onShadowAngleChange = newVal => {
         const v = newVal === value ? null : newVal;
 
@@ -73,6 +66,5 @@ const ShadowAngle = ({ types, value, className, onChange }) => {
 }
 
 ShadowAngle.propTypes = propTypes;
-ShadowAngle.defaultProps = defaultProps;
 
 export default ShadowAngle;

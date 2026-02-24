@@ -11,7 +11,7 @@ import Scroll from '@micromag/element-scroll';
 import MicromagBranding from '../partials/MicromagBranding';
 import MenuScreen from './MenuScreen';
 
-import styles from '../../styles/menus/menu-preview.module.scss';
+import styles from '../../styles/menus/menu-preview.module.css';
 
 const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
@@ -35,45 +35,24 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    viewerTheme: null,
-    header: null,
-    footer: null,
-    screenSize: null,
-    title: null,
-    menuWidth: null,
-    items: [],
-    focusable: true,
-    // shouldLoad: true,
-    onClickScreen: null,
-    maxThumbsWidth: 140,
-    paddingTop: null,
-    scrollDisabled: false,
-    withMicromagBranding: false,
-    // toggleFullscreen: null,
-    // fullscreenActive: false,
-    // fullscreenEnabled: false,
-    className: null,
-};
-
 const ViewerMenuPreview = ({
-    viewerTheme,
-    header,
-    footer,
-    screenSize,
-    title,
-    menuWidth,
-    items,
-    focusable,
-    onClickScreen,
-    maxThumbsWidth,
-    paddingTop,
-    scrollDisabled,
-    withMicromagBranding,
+    viewerTheme = null,
+    header = null,
+    footer = null,
+    screenSize = null,
+    title = null,
+    menuWidth = null,
+    items = [],
+    focusable = true,
+    onClickScreen = null,
+    maxThumbsWidth = 140,
+    paddingTop = null,
+    scrollDisabled = false,
+    withMicromagBranding = false,
     // toggleFullscreen,
     // fullscreenActive,
     // fullscreenEnabled,
-    className,
+    className = null,
 }) => {
     const { ref: containerRef, width: contentWidth = 0 } = useDimensionObserver();
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3); // @note cool, should be in recipes
@@ -199,6 +178,5 @@ const ViewerMenuPreview = ({
 };
 
 ViewerMenuPreview.propTypes = propTypes;
-ViewerMenuPreview.defaultProps = defaultProps;
 
 export default ViewerMenuPreview;

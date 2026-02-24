@@ -12,30 +12,28 @@ const propTypes = {
     value: MicromagPropTypes.imageMedias,
 };
 
-const defaultProps = {
-    value: null,
-};
-
-const FontsField = (props) => (
-    <ItemsField
-        noItemLabel={
-            <FormattedMessage
-                defaultMessage="No font..."
-                description="Label when there is no item"
-            />
-        }
-        addItemLabel={
-            <FormattedMessage
-                defaultMessage="Add an font file"
-                description="Button label"
-            />
-        }
-        itemComponent={FontField}
-        {...props}
-    />
-);
+const FontsField = (
+    {
+        value: value = null,
+        ...props
+    },
+) => (<ItemsField
+    noItemLabel={
+        <FormattedMessage
+            defaultMessage="No font..."
+            description="Label when there is no item"
+        />
+    }
+    addItemLabel={
+        <FormattedMessage
+            defaultMessage="Add an font file"
+            description="Button label"
+        />
+    }
+    itemComponent={FontField}
+    {...props}
+/>);
 
 FontsField.propTypes = propTypes;
-FontsField.defaultProps = defaultProps;
 
 export default FontsField;

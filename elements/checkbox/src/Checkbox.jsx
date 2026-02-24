@@ -5,7 +5,7 @@ import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     option: MicromagPropTypes.textElement,
@@ -16,16 +16,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    option: null,
-    value: null,
-    onChange: null,
-    focusable: true,
-    checkboxStyle: null,
-    className: null,
-};
-
-const Checkbox = ({ option, value, onChange, focusable, checkboxStyle, className }) => {
+const Checkbox = ({ option = null, value = null, onChange = null, focusable = true, checkboxStyle = null, className = null }) => {
     const { body = null } = option || {};
     return (
         <div
@@ -65,6 +56,5 @@ const Checkbox = ({ option, value, onChange, focusable, checkboxStyle, className
 };
 
 Checkbox.propTypes = propTypes;
-Checkbox.defaultProps = defaultProps;
 
 export default Checkbox;

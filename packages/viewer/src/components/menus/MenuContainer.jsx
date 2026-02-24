@@ -6,7 +6,7 @@ import React from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromColor, easings } from '@micromag/core/utils';
 
-import styles from '../../styles/menus/menu-container.module.scss';
+import styles from '../../styles/menus/menu-container.module.css';
 
 const propTypes = {
     className: PropTypes.string,
@@ -15,14 +15,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    className: null,
-    progressSpring: null,
-    theme: null,
-    children: null,
-};
-
-const ViewerMenuContainer = ({ className, progressSpring, theme: viewerTheme, children }) => {
+const ViewerMenuContainer = ({ className = null, progressSpring = null, theme: viewerTheme = null, children = null }) => {
     const { background = null } = viewerTheme || {};
     const { color: brandBackgroundColor = null } = background || {};
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
@@ -59,6 +52,5 @@ const ViewerMenuContainer = ({ className, progressSpring, theme: viewerTheme, ch
     );
 };
 ViewerMenuContainer.propTypes = propTypes;
-ViewerMenuContainer.defaultProps = defaultProps;
 
 export default ViewerMenuContainer;

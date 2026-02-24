@@ -6,7 +6,7 @@ import React, { useCallback } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useFieldsManager, useFieldComponent } from '@micromag/core/contexts';
 
-import styles from '../../styles/forms/settings.module.scss';
+import styles from '../../styles/forms/settings.module.css';
 
 const propTypes = {
     name: PropTypes.string,
@@ -18,22 +18,14 @@ const propTypes = {
     onChange: PropTypes.func,
 };
 
-const defaultProps = {
-    name: null,
-    field: null,
-    value: null,
-    className: null,
-    onChange: null,
-};
-
 const SettingsForm = ({
-    name,
-    field,
-    value,
-    className,
+    name = null,
+    field = null,
+    value = null,
+    className = null,
     gotoFieldForm,
     closeFieldForm,
-    onChange,
+    onChange = null,
 }) => {
     if (field === null) return false;
 
@@ -86,6 +78,5 @@ const SettingsForm = ({
 };
 
 SettingsForm.propTypes = propTypes;
-SettingsForm.defaultProps = defaultProps;
 
 export default SettingsForm;

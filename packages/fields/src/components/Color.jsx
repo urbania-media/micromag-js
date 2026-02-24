@@ -11,7 +11,7 @@ import { getStyleFromColor } from '@micromag/core/utils';
 import ColorPicker from './ColorPicker';
 import FieldWithForm from './FieldWithForm';
 
-import styles from '../styles/color.module.scss';
+import styles from '../styles/color.module.css';
 
 const propTypes = {
     value: PropTypes.shape({
@@ -27,18 +27,7 @@ const propTypes = {
     closeForm: PropTypes.func,
 };
 
-const defaultProps = {
-    value: null,
-    isForm: false,
-    isHorizontal: false,
-    canClear: true,
-    disableAlpha: false,
-    className: null,
-    onChange: null,
-    closeForm: null,
-};
-
-const ColorField = ({ value, onChange, closeForm, disableAlpha, canClear, ...props }) => {
+const ColorField = ({ value = null, onChange = null, closeForm = null, disableAlpha = false, canClear = true, ...props }) => {
     const { color = null } = value || {};
 
     const hexColor = useMemo(
@@ -108,7 +97,6 @@ const ColorField = ({ value, onChange, closeForm, disableAlpha, canClear, ...pro
 };
 
 ColorField.propTypes = propTypes;
-ColorField.defaultProps = defaultProps;
 ColorField.withForm = true;
 
 export default ColorField;

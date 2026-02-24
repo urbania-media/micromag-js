@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { StackProvider } from '@micromag/element-stack';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     width: PropTypes.number,
@@ -18,28 +18,16 @@ const propTypes = {
     style: PropTypes.object,// eslint-disable-line
 };
 
-const defaultProps = {
-    width: null,
-    height: null,
-    horizontalAlign: 'left',
-    verticalAlign: 'top',
-    distribution: null,
-    fullscreen: false,
-    className: null,
-    children: null,
-    style: null,
-};
-
 const Layout = ({
-    width,
-    height,
-    horizontalAlign,
-    verticalAlign,
-    distribution,
-    fullscreen,
-    className,
-    children,
-    style,
+    width = null,
+    height = null,
+    horizontalAlign = 'left',
+    verticalAlign = 'top',
+    distribution = null,
+    fullscreen = false,
+    className = null,
+    children = null,
+    style = null,
 }) => {
     let justifyContent = null;
     if (distribution !== null) {
@@ -84,6 +72,5 @@ const Layout = ({
 };
 
 Layout.propTypes = propTypes;
-Layout.defaultProps = defaultProps;
 
 export default Layout;

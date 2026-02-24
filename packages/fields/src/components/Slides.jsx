@@ -9,8 +9,6 @@ import SlideField from './Slide';
 
 const propTypes = {};
 
-const defaultProps = {};
-
 const SlidesField = (props) => (
     <ItemsField
         noItemLabel={
@@ -31,6 +29,5 @@ const SlidesField = (props) => (
 );
 
 SlidesField.propTypes = propTypes;
-SlidesField.defaultProps = defaultProps;
 
 export default SlidesField;

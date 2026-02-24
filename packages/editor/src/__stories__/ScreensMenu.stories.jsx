@@ -20,7 +20,7 @@ export default {
     },
 };
 
-const ScreensMenuContainer = ({ story }) => {
+const ScreensMenuContainer = ({ story = null }) => {
     const [value] = useState(story);
     return (
         <StoryProvider story={value}>
@@ -36,9 +36,6 @@ ScreensMenuContainer.propTypes = {
         title: PropTypes.string,
         components: MicromagPropTypes.screenComponents,
     }),
-};
-ScreensMenuContainer.defaultProps = {
-    story: null,
 };
 
 export const TestUrbania = () => (

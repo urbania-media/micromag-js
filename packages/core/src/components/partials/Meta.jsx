@@ -15,16 +15,7 @@ const propTypes = {
     children: PropTypes.node,
 };
 
-const defaultProps = {
-    title: null,
-    url: null,
-    metadata: null,
-    fullTitle: null,
-    suffix: 'Micromag',
-    children: null,
-};
-
-const Meta = ({ title, url, metadata, fullTitle, suffix, children }) => {
+const Meta = ({ title = null, url = null, metadata = null, fullTitle = null, suffix = 'Micromag', children = null }) => {
     const {
         canonical = null,
         description = null,
@@ -107,6 +98,5 @@ const Meta = ({ title, url, metadata, fullTitle, suffix, children }) => {
 };
 
 Meta.propTypes = propTypes;
-Meta.defaultProps = defaultProps;
 
 export default Meta;

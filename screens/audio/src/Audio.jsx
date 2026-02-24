@@ -24,7 +24,7 @@ import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
 import Layout, { Spacer } from '@micromag/element-layout';
 
-import styles from './audio.module.scss';
+import styles from './audio.module.css';
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle']),
@@ -40,32 +40,18 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    layout: 'middle',
-    audio: null,
-    spacing: 20,
-    background: null,
-    header: null,
-    footer: null,
-    current: true,
-    preload: true,
-    mediaRef: null,
-    showWave: true,
-    className: null,
-};
-
 const AudioScreen = ({
-    layout, // eslint-disable-line
-    audio,
-    spacing,
-    background,
-    header,
-    footer,
-    current,
-    preload,
-    mediaRef: customMediaRef,
-    showWave,
-    className,
+    layout = 'middle', // eslint-disable-line
+    audio = null,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    mediaRef: customMediaRef = null,
+    showWave = true,
+    className = null,
 }) => {
     const { width, height, resolution } = useScreenSize();
     const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } =
@@ -337,6 +323,5 @@ const AudioScreen = ({
 };
 
 AudioScreen.propTypes = propTypes;
-AudioScreen.defaultProps = defaultProps;
 
 export default AudioScreen;

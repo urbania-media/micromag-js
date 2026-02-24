@@ -4,7 +4,7 @@ import React from 'react';
 
 import { useStackDirection } from './StackContext';
 
-import styles from './styles/spacer.module.scss';
+import styles from './styles/spacer.module.css';
 
 const propTypes = {
     size: PropTypes.number,
@@ -13,14 +13,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    size: null,
-    minSize: null,
-    maxSize: null,
-    className: null,
-};
-
-function Spacer({ size, minSize, maxSize, className }) {
+function Spacer({ size = null, minSize = null, maxSize = null, className = null }) {
     const direction = useStackDirection();
     return (
         <div
@@ -44,7 +37,6 @@ function Spacer({ size, minSize, maxSize, className }) {
 }
 
 Spacer.propTypes = propTypes;
-Spacer.defaultProps = defaultProps;
 Spacer.withoutTransitionsWrapper = true;
 
 export default Spacer;

@@ -5,7 +5,7 @@ import React from 'react';
 
 import IconButton from './IconButton';
 
-import styles from '../../styles/buttons/navigation-button.module.scss';
+import styles from '../../styles/buttons/navigation-button.module.css';
 
 const propTypes = {
     direction: PropTypes.oneOf(['previous', 'next']),
@@ -13,13 +13,7 @@ const propTypes = {
     className: PropTypes.string,
 };
 
-const defaultProps = {
-    direction: 'next',
-    onClick: null,
-    className: null,
-};
-
-const NavigationButton = ({ direction, onClick, className, ...props }) => (
+const NavigationButton = ({ direction = 'next', onClick = null, className = null, ...props }) => (
     <IconButton
         className={classNames([
             styles.container,
@@ -50,6 +44,5 @@ const NavigationButton = ({ direction, onClick, className, ...props }) => (
 );
 
 NavigationButton.propTypes = propTypes;
-NavigationButton.defaultProps = defaultProps;
 
 export default NavigationButton;

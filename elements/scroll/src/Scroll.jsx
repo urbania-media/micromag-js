@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { useDimensionObserver } from '@micromag/core/hooks';
 
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const propTypes = {
     width: PropTypes.number,
@@ -28,44 +28,24 @@ const propTypes = {
     withArrow: PropTypes.bool,
 };
 
-const defaultProps = {
-    width: null,
-    height: null,
-    disabled: false,
-    verticalAlign: null,
-    className: null,
-    scrollableClassName: null,
-    scrolleeClassName: null,
-    children: null,
-    scrollPosition: null,
-    triggers: [0.1, 0.25, 0.5, 0.75, 0.9, 1.0],
-    onScrolledTrigger: null,
-    onScrolledBottom: null,
-    onScrolledNotBottom: null,
-    onScrollHeightChange: null,
-    scrollContainerRef: null,
-    withShadow: false,
-    withArrow: true,
-};
-
 function Scroll({
-    width,
-    height,
-    disabled,
-    verticalAlign,
-    className,
-    scrollableClassName,
-    scrolleeClassName,
-    children,
-    scrollPosition,
-    triggers,
-    onScrolledTrigger,
-    onScrolledBottom,
-    onScrolledNotBottom,
-    onScrollHeightChange,
-    scrollContainerRef,
-    withShadow,
-    withArrow: showArrow,
+    width = null,
+    height = null,
+    disabled = false,
+    verticalAlign = null,
+    className = null,
+    scrollableClassName = null,
+    scrolleeClassName = null,
+    children = null,
+    scrollPosition = null,
+    triggers = [0.1, 0.25, 0.5, 0.75, 0.9, 1.0],
+    onScrolledTrigger = null,
+    onScrolledBottom = null,
+    onScrolledNotBottom = null,
+    onScrollHeightChange = null,
+    scrollContainerRef = null,
+    withShadow = false,
+    withArrow: showArrow = true,
 }) {
     const finalStyle = {
         width,
@@ -215,7 +195,6 @@ function Scroll({
     );
 }
 
-Scroll.defaultProps = defaultProps;
 Scroll.propTypes = propTypes;
 
 export default React.forwardRef((props, ref) => <Scroll scrollContainerRef={ref} {...props} />);
