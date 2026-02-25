@@ -132,20 +132,26 @@
     position: relative;
     height: 100%;
 
+    .button {
+        gap: 0;
+    }
+
     .withSquareItems & {
-        height: 0;
-        padding-bottom: 100%;
+        height: auto;
+        aspect-ratio: 1;
     }
 }
 
-.placeholderItem {
-    height: 0;
-    padding-bottom: 60%;
 
-    .withSquareItems & {
-        padding-bottom: 100%;
-    }
-}
+
+// .placeholderItem {
+//     height: 0;
+//     padding-bottom: 60%;
+
+//     .withSquareItems & {
+//         padding-bottom: 100%;
+//     }
+// }
 
 .button {
     display: flex;
@@ -200,20 +206,6 @@
     .buttonPlaceholder {
         width: 100%;
         margin: 0;
-    }
-}
-
-.buttonVisualPlaceholder {
-    width: 100%;
-}
-
-.thumbnail {
-    max-height: 50px;
-    pointer-events: none;
-    user-select: none;
-
-    &.withImageSize {
-        max-height: 100%;
     }
 }
 
@@ -386,73 +378,3 @@
     margin: 0 auto;
 }
 
-/**
- * Button Layouts
- */
-.layoutLabelTop {
-    .emptyButtonLabel,
-    .buttonLabel {
-        order: 1;
-    }
-
-    .emptyButtonVisual,
-    .buttonVisual {
-        order: 2;
-    }
-}
-
-.layoutNoLabel,
-.layoutLabelOver {
-    .emptyButtonLabel,
-    .buttonLabel {
-        display: none;
-    }
-
-    .emptyButtonVisual,
-    .buttonVisual {
-        width: 100% !important;
-        height: 100%;
-    }
-
-    .thumbnail {
-        width: 100% !important;
-        max-height: none;
-
-        .withSquareItems & {
-            @extend %fullscreen;
-            object-fit: cover;
-        }
-    }
-}
-
-// @note extends the styles of layoutNoLabel
-.layoutLabelOver {
-    .emptyButtonVisual,
-    .buttonVisual {
-        z-index: 1;
-    }
-
-    .emptyButtonLabel,
-    .buttonLabel {
-        @extend %fullscreen;
-        display: block;
-        z-index: 2;
-        top: auto;
-        bottom: 0;
-        height: auto;
-        background-image: linear-gradient(to bottom, rgba($black, 0), rgba($black, 0.75));
-    }
-}
-
-.fillImage {
-    .emptyButtonVisual,
-    .buttonVisual {
-        width: 100% !important;
-    }
-
-    .thumbnail {
-        width: 100% !important;
-        object-fit: cover;
-        width: 100%;
-    }
-}

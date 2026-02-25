@@ -8,7 +8,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Close, PlaceholderButton, ScreenElement } from '@micromag/core/components';
+import { Close, ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -24,13 +24,13 @@ import {
     camelCase,
     getFooterProps,
     getStyleFromAlignment,
-    getStyleFromBox, // getStyleFromText,
+    getStyleFromBox,
     isFooterFilled,
     isHeaderFilled,
     isTextFilled,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import Button from '@micromag/element-button';
+import Button, { RichButton } from '@micromag/element-button';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -65,29 +65,6 @@ const placeholderPopupBoxStyles = {
     },
 };
 
-// const stopDragEventsPropagation = {
-//     onTouchMove: (e) => e.stopPropagation(),
-//     onTouchStart: (e) => e.stopPropagation(),
-//     onTouchEnd: (e) => e.stopPropagation(),
-//     onPointerMove: (e) => e.stopPropagation(),
-//     onPointerUp: (e) => e.stopPropagation(),
-//     onPointerDown: (e) => e.stopPropagation(),
-// };
-
-// const mouseBlocker = {
-//     ...stopDragEventsPropagation,
-//     onClick: (e) => e.stopPropagation(),
-//     style: {
-//         position: 'fixed',
-//         zIndex: '1000',
-//         top: 0,
-//         right: 0,
-//         bottom: 0,
-//         left: 0,
-//         cursor: 'default',
-//     },
-// };
-
 const propTypes = {
     items: PropTypes.arrayOf(
         PropTypes.shape({
@@ -110,12 +87,18 @@ const propTypes = {
             withSquareItems: PropTypes.bool,
         }),
     }),
+    keypadLayout: PropTypes.shape({
+        columnAlign: PropTypes.oneOf(['left', 'right', 'middle']),
+        columns: PropTypes.number,
+        spacing: PropTypes.number,
+        withSquareItems: PropTypes.bool,
+    }),
     buttonStyles: PropTypes.shape({
         layout: PropTypes.string,
         textStyle: MicromagPropTypes.textStyle,
         boxStyle: MicromagPropTypes.boxStyle,
         fillImage: PropTypes.bool,
-        alignment: MicromagPropTypes.alignment,
+        visualWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     }),
     popupStyles: PropTypes.shape({
         layout: PropTypes.oneOf(['content-top', 'content-split', 'content-bottom']),
@@ -139,6 +122,7 @@ const defaultProps = {
     layout: null,
     spacing: 20,
     keypadSettings: null,
+    keypadLayout: null,
     buttonStyles: null,
     popupStyles: null,
     header: null,
@@ -156,7 +140,7 @@ const KeypadScreen = ({
     subtitle,
     layout,
     spacing,
-    keypadSettings,
+    keypadLayout,
     buttonStyles,
     popupStyles,
     header,
@@ -205,23 +189,19 @@ const KeypadScreen = ({
     const isInteractivePreview = isEdit && screenState === null;
     const isNotInteractive = isEdit && screenState !== null;
 
-    const { layout: keypadLayout = null } = keypadSettings || {};
     const {
         columnAlign = null,
         columns = null,
         spacing: columnSpacing = null,
-        image: keypadImage = null,
         withSquareItems = false,
     } = keypadLayout || {};
-
-    const { width: imageWidth = null, height: imageHeight = null } = keypadImage || {};
 
     const {
         layout: buttonLayout = null,
         textStyle: buttonTextStyle = null,
+        labelBoxStyle: buttonLabelBoxStyle = null,
         boxStyle: buttonBoxStyle = null,
-        fillImage = false,
-        alignment: buttonAlignment = null,
+        visualWidth: buttonVisualWidth = null,
     } = buttonStyles || {};
 
     const {
@@ -459,7 +439,7 @@ const KeypadScreen = ({
                     label: itemLabel = null,
                     visual = null,
                     boxStyle = null,
-                    alignment = null,
+                    // alignment = null,
                     heading = null,
                     content = null,
                     url = null,
@@ -471,48 +451,29 @@ const KeypadScreen = ({
                 const { body: headingBody = null } = heading || {};
                 const { body: contentBody = null } = content || {};
                 const finalLabel = isString(itemLabel) ? { body: itemLabel } : itemLabel || {};
+                const { textStyle: finalLabelTextStyle = null } = finalLabel || {};
+                const { body: finalBody = null } = finalLabel || {};
 
-                const { body: label = null, textStyle: finalLabelTextStyle = null } =
-                    finalLabel || {};
-
-                const key = label || visualUrl || id;
-                const itemIsEmpty = label === null && visual === null;
+                const key = finalBody || visualUrl || id;
+                const itemIsEmpty = finalBody === null && visual === null;
                 const isExternalLink = url !== null && !inWebView;
                 const isPopupEmpty =
                     (heading === null || headingBody === null || headingBody === '') &&
                     (content === null || contentBody === null || contentBody === '') &&
                     popupLargeVisual === null;
 
-                const finalTextStyle = {
-                    ...buttonTextStyle,
-                    ...finalLabelTextStyle,
-                };
-
                 return (
                     <div key={key} className={styles.item}>
-                        <Button
+                        <RichButton
                             className={classNames([
                                 styles.button,
                                 {
-                                    [styles.layoutLabelBottom]: buttonLayout === 'label-bottom',
-                                    [styles.layoutLabelTop]: buttonLayout === 'label-top',
-                                    [styles.layoutNoLabel]: buttonLayout === 'no-label',
-                                    [styles.layoutLabelOver]: buttonLayout === 'label-over',
-                                    [styles.fillImage]: fillImage === true,
                                     [styles.isEmpty]: itemIsEmpty,
                                     [styles.isLink]: url !== null,
                                     [styles.disableHover]: isPopupEmpty && url === null,
                                 },
                             ])}
-                            style={{
-                                ...getStyleFromBox(buttonBoxStyle),
-                                ...getStyleFromBox(boxStyle),
-                                ...getStyleFromAlignment(
-                                    alignment || buttonAlignment,
-                                    true,
-                                    'flex-start',
-                                ),
-                            }}
+                            layout={buttonLayout || null}
                             external={isExternalLink}
                             href={isExternalLink ? url : null}
                             focusable={current}
@@ -521,74 +482,24 @@ const KeypadScreen = ({
                                     ? (e) => onItemClick(e, item, index)
                                     : null
                             }
-                        >
-                            <ScreenElement
-                                emptyLabel={
-                                    <FormattedMessage
-                                        defaultMessage="Visual"
-                                        description="Placeholder label"
-                                    />
-                                }
-                                emptyClassName={classNames([
-                                    styles.empty,
-                                    styles.buttonVisual,
-                                    styles.emptyButtonVisual,
-                                ])}
-                                isEmpty={visual === null}
-                            >
-                                {visual !== null ? (
-                                    <Visual
-                                        className={styles.buttonVisual}
-                                        imageClassName={classNames([
-                                            styles.thumbnail,
-                                            {
-                                                [styles.withImageSize]:
-                                                    imageWidth !== null || imageHeight !== null,
-                                            },
-                                        ])}
-                                        media={visual}
-                                        resolution={resolution}
-                                        width={imageWidth || 'auto'}
-                                        height={
-                                            imageHeight || (imageWidth !== null ? 'auto' : null)
-                                        }
-                                    />
-                                ) : null}
-                            </ScreenElement>
-
-                            <ScreenElement
-                                placeholder={<PlaceholderButton />}
-                                emptyLabel={
-                                    <FormattedMessage
-                                        defaultMessage="Label"
-                                        description="Placeholder label"
-                                    />
-                                }
-                                emptyClassName={classNames([styles.empty, styles.emptyButtonLabel])}
-                                isEmpty={label === null}
-                            >
-                                {label !== null || !isInteractivePreview ? (
-                                    <Text
-                                        className={styles.buttonLabel}
-                                        {...finalLabel}
-                                        textStyle={finalTextStyle}
-                                    />
-                                ) : null}
-                            </ScreenElement>
-                        </Button>
+                            // style={{
+                            //     ...getStyleFromAlignment(alignment, true, 'flex-start'),
+                            // }}
+                            textStyle={{ ...buttonTextStyle, ...finalLabelTextStyle }}
+                            buttonStyle={{ ...buttonBoxStyle, ...boxStyle }}
+                            label={finalLabel}
+                            labelBoxStyle={buttonLabelBoxStyle}
+                            visual={visual}
+                            visualWidth={
+                                buttonVisualWidth !== null ? `${buttonVisualWidth}%` : null
+                            }
+                            resolution={resolution}
+                            textClassName={styles.buttonLabel}
+                        />
                     </div>
                 );
             }),
-        [
-            items,
-            screenState,
-            keypadSettings,
-            buttonAlignment,
-            buttonBoxStyle,
-            buttonTextStyle,
-            buttonLayout,
-            isNotInteractive,
-        ],
+        [items, screenState, buttonBoxStyle, buttonTextStyle, buttonLayout, isNotInteractive],
     );
 
     useEffect(() => {
@@ -746,25 +657,6 @@ const KeypadScreen = ({
                             spacing={isPlaceholder ? 2 : columnSpacing}
                             items={gridItems}
                         />
-
-                        {!isPlaceholder && hasFooter ? (
-                            <div
-                                ref={footerRef}
-                                className={styles.footer}
-                                style={{
-                                    transform:
-                                        current && !isPreview
-                                            ? `translate(0, -${viewerBottomHeight}px)`
-                                            : null,
-                                    paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
-                                    paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
-                                    paddingBottom: spacing / 2,
-                                    paddingTop: spacing,
-                                }}
-                            >
-                                <Footer {...footerProps} />
-                            </div>
-                        ) : null}
                     </Layout>
                     {popup !== null ? (
                         <>
@@ -930,6 +822,24 @@ const KeypadScreen = ({
                         </>
                     ) : null}
                 </Scroll>
+                {!isPlaceholder && hasFooter ? (
+                    <div
+                        ref={footerRef}
+                        className={styles.footer}
+                        style={{
+                            transform:
+                                current && !isPreview
+                                    ? `translate(0, -${viewerBottomHeight}px)`
+                                    : null,
+                            paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingBottom: spacing / 2,
+                            paddingTop: spacing,
+                        }}
+                    >
+                        <Footer {...footerProps} />
+                    </div>
+                ) : null}
             </Container>
         </div>
     );

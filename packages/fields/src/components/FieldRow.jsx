@@ -6,7 +6,7 @@ import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Label } from '@micromag/core/components';
@@ -27,6 +27,7 @@ const propTypes = {
     isSection: PropTypes.bool,
     isHorizontal: PropTypes.bool,
     isListItem: PropTypes.bool,
+    isCollapsible: PropTypes.bool,
     withoutLabel: PropTypes.bool,
     withoutCaret: PropTypes.bool,
     withSettings: PropTypes.bool,
@@ -53,6 +54,7 @@ const defaultProps = {
     isSection: false,
     isHorizontal: false,
     isListItem: false,
+    isCollapsible: false,
     withoutLabel: false,
     withoutCaret: false,
     withSettings: false,
@@ -79,6 +81,7 @@ const FieldRow = ({
     isSection,
     isHorizontal,
     isListItem,
+    isCollapsible,
     withoutLabel,
     withoutCaret,
     withSettings,
@@ -96,6 +99,12 @@ const FieldRow = ({
 }) => {
     const withLabel = !withoutLabel && label !== null;
     const isClickable = withForm;
+    const [isCollapsed, setIsCollapsed] = useState(isCollapsible);
+    const toggleCollapsed = useCallback(() => {
+        if (isCollapsible) {
+            setIsCollapsed(!isCollapsed);
+        }
+    }, [isCollapsible, isCollapsed, setIsCollapsed]);
 
     const onClickRow = useCallback(() => {
         if (typeof withForm === 'string') {
@@ -145,6 +154,13 @@ const FieldRow = ({
                 })}
             >
                 <Label>{label}</Label>
+                {isCollapsible ? (
+                    <Button withoutStyle className="ms-1" onClick={toggleCollapsed}>
+                        <span className="ms-1">
+                            <FontAwesomeIcon icon={faAngleRight} />
+                        </span>
+                    </Button>
+                ) : null}
             </label>
         ) : null;
 
@@ -165,6 +181,7 @@ const FieldRow = ({
                         styles.colValue,
                         'align-self-center',
                         {
+                            [styles.collapsed]: isCollapsible && isCollapsed,
                             [styles.colMinWidth]: isListItem,
                             [styles.colButtonWidth]: isClickable && buttonTheme !== null,
                         },
@@ -269,7 +286,14 @@ const FieldRow = ({
                     onClick={onClickRow}
                 >
                     <span className="row align-items-center">
-                        <span className={classNames(['col', 'text-truncate', styles.colValue])}>
+                        <span
+                            className={classNames([
+                                'col',
+                                'text-truncate',
+                                styles.colValue,
+                                { [styles.collapsed]: isCollapsible && isCollapsed },
+                            ])}
+                        >
                             {children}
                         </span>
                         {arrowElement}

@@ -20,6 +20,14 @@ export default {
             }),
         },
         {
+            name: 'visual',
+            type: 'visual',
+            label: defineMessage({
+                defaultMessage: 'Image',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'good',
             type: 'true-false',
             label: defineMessage({
@@ -50,6 +58,22 @@ export default {
         //         description: 'Field label',
         //     }),
         // },
+        {
+            name: 'buttonLayout',
+            type: 'button-layout',
+            label: defineMessage({
+                defaultMessage: 'Layout',
+                description: 'Field label',
+            }),
+            types: [
+                'label-bottom',
+                'label-top',
+                'no-label',
+                'label-over',
+                'label-left',
+                'label-right',
+            ],
+        },
         {
             type: 'fields',
             isList: true,

@@ -5,7 +5,8 @@
 }
 
 .button {
-    flex: none !important;
+    width: 100%;
+    padding: 0.66em;
     color: #ccc;
 
     .placeholderText {
@@ -18,6 +19,10 @@
         left: 25%;
         width: 50%;
         color: $gray-600;
+    }
+
+    .placeholderTextRight {
+        width: 0.625em;
     }
 
     &:hover,

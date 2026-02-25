@@ -180,12 +180,12 @@ const Image = ({
             finalHeight = realHeight > 0 ? mediaHeight : null;
         }
 
-        finalImageStyle = {
+        finalContainerStyle = {
             width: finalWidth,
             height: finalHeight,
         };
 
-        finalContainerStyle = finalImageStyle;
+        finalImageStyle = { width: '100%', height: validHeight ? '100%' : 'auto' };
     }
 
     finalContainerStyle = {
@@ -203,8 +203,6 @@ const Image = ({
         resolution: imageResolution,
         supportsWebp,
     });
-
-    // console.log('image finalWidth, finalHeight, resolution', finalImageStyle, resolution, finalUrl);
 
     return (
         <div

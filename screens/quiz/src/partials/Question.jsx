@@ -22,6 +22,7 @@ import styles from './question.module.scss';
 const propTypes = {
     question: MicromagPropTypes.textElement,
     answers: MicromagPropTypes.quizAnswers,
+    keypadLayout: PropTypes.shape({}),
     result: PropTypes.shape({
         image: MicromagPropTypes.imageElement,
         text: MicromagPropTypes.textElement,
@@ -30,6 +31,7 @@ const propTypes = {
     index: PropTypes.number,
     totalCount: PropTypes.number,
     answeredIndex: PropTypes.number,
+    buttonsLayout: MicromagPropTypes.buttonLayout,
     buttonsStyle: MicromagPropTypes.boxStyle,
     inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
@@ -61,11 +63,13 @@ const propTypes = {
 const defaultProps = {
     question: null,
     answers: null,
+    keypadLayout: null,
     result: null,
     resultImage: null,
     index: null,
     totalCount: null,
     answeredIndex: null,
+    buttonsLayout: null,
     buttonsStyle: null,
     inactiveButtonsStyle: null,
     buttonsTextStyle: null,
@@ -97,11 +101,13 @@ const defaultProps = {
 const Question = ({
     question,
     answers,
+    keypadLayout,
     result,
     resultImage,
     index,
     totalCount,
     answeredIndex,
+    buttonsLayout,
     buttonsStyle,
     inactiveButtonsStyle,
     buttonsTextStyle,
@@ -222,12 +228,14 @@ const Question = ({
                 <Answers
                     key="answers"
                     items={answers || []}
+                    keypadLayout={keypadLayout}
                     answeredIndex={answeredIndex}
                     goodAnswerColor={goodAnswerColor}
                     badAnswerColor={badAnswerColor}
                     withoutGoodAnswer={withoutGoodAnswer}
                     withoutIcon={withoutTrueFalse}
                     showUserAnswer={withoutTrueFalse}
+                    buttonsLayout={buttonsLayout}
                     buttonsStyle={buttonsStyle}
                     inactiveButtonsStyle={inactiveButtonsStyle}
                     buttonsTextStyle={buttonsTextStyle}

@@ -347,10 +347,6 @@
     "defaultMessage": "Timing",
     "description": "Timing field label"
   },
-  "6LFjCH": {
-    "defaultMessage": "Fill with image",
-    "description": "Field label"
-  },
   "6MxaVf": {
     "defaultMessage": "Style",
     "description": "Field label"
@@ -438,6 +434,10 @@
   "8A8cuq": {
     "defaultMessage": "Parameters",
     "description": "field label"
+  },
+  "8Dmlwh": {
+    "defaultMessage": "Answer button layout",
+    "description": "Field label"
   },
   "8NyYTH": {
     "defaultMessage": "Back",
@@ -543,6 +543,10 @@
     "defaultMessage": "Edit call to action...",
     "description": "No value label"
   },
+  "Arl5Ze": {
+    "defaultMessage": "Button styles",
+    "description": "Field label"
+  },
   "AwDQvD": {
     "defaultMessage": "Image",
     "description": "Media type"
@@ -594,6 +598,10 @@
   "CJmQeh": {
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
+  },
+  "CQzuFE": {
+    "defaultMessage": "Feedback styles",
+    "description": "Field label"
   },
   "CWnXWp": {
     "defaultMessage": "No button yet",
@@ -801,6 +809,10 @@
   },
   "JDPMlG": {
     "defaultMessage": "Background color",
+    "description": "Field label"
+  },
+  "JGvpwT": {
+    "defaultMessage": "Visual width",
     "description": "Field label"
   },
   "JLYWNN": {
@@ -1027,6 +1039,10 @@
     "defaultMessage": "Audios",
     "description": "Media label"
   },
+  "PYokTY": {
+    "defaultMessage": "Label box style",
+    "description": "Field label"
+  },
   "PyxZY2": {
     "defaultMessage": "Cancel",
     "description": "Button label"
@@ -1042,10 +1058,6 @@
   "QSmRdP": {
     "defaultMessage": "Add an image",
     "description": "Button label"
-  },
-  "Qanvis": {
-    "defaultMessage": "Visual",
-    "description": "Placeholder label"
   },
   "Qe03Xz": {
     "defaultMessage": "Sign Subtitle",
@@ -1190,10 +1202,6 @@
     "defaultMessage": "Center",
     "description": "Field label"
   },
-  "WOStf5": {
-    "defaultMessage": "Image",
-    "description": "Fields section label"
-  },
   "WX83V9": {
     "defaultMessage": "File name",
     "description": "Field name"
@@ -1334,10 +1342,6 @@
     "defaultMessage": "Text",
     "description": "Field label"
   },
-  "Zbu5Uk": {
-    "defaultMessage": "Label",
-    "description": "Placeholder label"
-  },
   "ZeosMy": {
     "defaultMessage": "Mar 21 - Apr 19",
     "description": "Horoscope date"
@@ -1349,10 +1353,6 @@
   "Zpl5bJ": {
     "defaultMessage": "Spacing",
     "description": "Spacing field label"
-  },
-  "Zw4vWC": {
-    "defaultMessage": "Height",
-    "description": "Field label"
   },
   "ZxgNge": {
     "defaultMessage": "Add an item",
@@ -1861,10 +1861,6 @@
   },
   "mXeSkg": {
     "defaultMessage": "Link",
-    "description": "Field label"
-  },
-  "mY0bHb": {
-    "defaultMessage": "Width",
     "description": "Field label"
   },
   "menus.pagination.next": {

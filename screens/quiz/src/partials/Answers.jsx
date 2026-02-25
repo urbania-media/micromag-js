@@ -4,26 +4,28 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { animated, easings, useTransition } from '@react-spring/web';
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
-import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
-import Button from '@micromag/element-button';
-import Text from '@micromag/element-text';
+import { getStyleFromColor, isImageFilled, isTextFilled } from '@micromag/core/utils';
+import { RichButton } from '@micromag/element-button';
+import Keypad from '@micromag/element-keypad';
 
 import styles from './answers.module.scss';
 
 const propTypes = {
     items: MicromagPropTypes.quizAnswers.isRequired,
+    keypadLayout: PropTypes.shape({}),
     answeredIndex: PropTypes.number,
     answersCollapseDelay: PropTypes.number,
     buttonsStyle: MicromagPropTypes.boxStyle,
+    buttonsLayout: MicromagPropTypes.buttonLayout,
     inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
     inactiveButtonsTextStyle: MicromagPropTypes.textStyle,
@@ -44,9 +46,11 @@ const propTypes = {
 };
 
 const defaultProps = {
+    keypadLayout: null,
     answeredIndex: null,
     answersCollapseDelay: 1000,
     buttonsStyle: null,
+    buttonsLayout: null,
     inactiveButtonsStyle: null,
     buttonsTextStyle: null,
     inactiveButtonsTextStyle: null,
@@ -68,9 +72,11 @@ const defaultProps = {
 
 const Answers = ({
     items,
+    keypadLayout,
     answeredIndex,
     answersCollapseDelay,
     buttonsStyle,
+    buttonsLayout,
     inactiveButtonsStyle,
     buttonsTextStyle,
     inactiveButtonsTextStyle,
@@ -184,23 +190,23 @@ const Answers = ({
         };
     }, [answersCollapsed, onTransitionEnd, setAnswersFinalCollapse]);
 
-    const [transitioned, setTransitioned] = useState(false);
-    const onAnswerTransitionEnd = useCallback(() => {
-        setTransitioned(true);
-        if (shouldCollapse && answersCollapsed && !answersDidCollapse) {
-            setAnswersDidCollapse(true);
-            if (onCollapsed !== null) {
-                onCollapsed();
-            }
-        }
-    }, [
-        shouldCollapse,
-        answersCollapsed,
-        answersDidCollapse,
-        setAnswersCollapsed,
-        onCollapsed,
-        onTransitionEnd,
-    ]);
+    // const [transitioned, setTransitioned] = useState(false);
+    // const onAnswerTransitionEnd = useCallback(() => {
+    //     setTransitioned(true);
+    //     if (shouldCollapse && answersCollapsed && !answersDidCollapse) {
+    //         setAnswersDidCollapse(true);
+    //         if (onCollapsed !== null) {
+    //             onCollapsed();
+    //         }
+    //     }
+    // }, [
+    //     shouldCollapse,
+    //     answersCollapsed,
+    //     answersDidCollapse,
+    //     setAnswersCollapsed,
+    //     onCollapsed,
+    //     onTransitionEnd,
+    // ]);
 
     const itemsRefs = useRef([]);
     const listOfItems = isPlaceholder || (isEdit && items.length === 0) ? [...new Array(2)] : items;
@@ -242,9 +248,62 @@ const Answers = ({
         return { ...answer, hidden, userAnswer, index: answerI, maxHeight: height, key };
     });
 
-    const transitions = useTransition(filteredListOfItems, {
-        key: ({ key }) => key,
-        update: ({ hidden = false, maxHeight = 0 }) => ({
+    // const transitions = useTransition(filteredListOfItems, {
+    //     key: ({ key }) => key,
+    //     update: ({ hidden = false, maxHeight = 0 }) => ({
+    //         opacity: hidden && showAnimation && !withoutGoodAnswer ? 0 : 1,
+    //         // Animate this, not height
+    //         maxHeight:
+    //             // eslint-disable-next-line no-nested-ternary
+    //             hidden &&
+    //             showAnimation &&
+    //             !withoutGoodAnswer &&
+    //             collapseAnimated &&
+    //             answersFinalCollapse
+    //                 ? 0
+    //                 : maxHeight > 0
+    //                   ? maxHeight
+    //                   : null,
+    //         height:
+    //             hidden &&
+    //             showAnimation &&
+    //             !withoutGoodAnswer &&
+    //             !collapseAnimated &&
+    //             answersFinalCollapse
+    //                 ? 0
+    //                 : 'auto',
+    //     }),
+    //     // config: { tension: 300, friction: 35 },
+    //     config: { duration: 300, easing: easings.easeOutSine },
+    // });
+
+    // useEffect(() => {
+    //     if (transitioned && onTransitionEnd !== null) {
+    //         onTransitionEnd();
+    //     }
+    // }, [transitioned, onTransitionEnd]);
+
+    const hasGoodOrBadAnswerInList = useMemo(() => {
+        if (filteredListOfItems !== null) {
+            return filteredListOfItems.reduce(
+                (hasGoodOrBad, answer) =>
+                    hasGoodOrBad ||
+                    (answer.good === true && !withoutGoodAnswer) ||
+                    (answer.good === false && !withoutIcon),
+                false,
+            );
+        }
+        return false;
+    }, [filteredListOfItems, withoutGoodAnswer, withoutIcon]);
+
+    const hasOpacity = useMemo(() => {
+        const { backgroundColor = null } = inactiveButtonsStyle || {};
+        return backgroundColor === null;
+    }, [inactiveButtonsStyle]);
+
+    const itemsWithStyle = filteredListOfItems.map((answer) => {
+        const { hidden, maxHeight } = answer || {};
+        const style = {
             opacity: hidden && showAnimation && !withoutGoodAnswer ? 0 : 1,
             // Animate this, not height
             maxHeight:
@@ -266,21 +325,149 @@ const Answers = ({
                 answersFinalCollapse
                     ? 0
                     : 'auto',
-        }),
-        // config: { tension: 300, friction: 35 },
-        config: { duration: 300, easing: easings.easeOutSine },
+        };
+        return { ...answer, style };
     });
 
-    useEffect(() => {
-        if (transitioned && onTransitionEnd !== null) {
-            onTransitionEnd();
-        }
-    }, [transitioned, onTransitionEnd]);
+    // const keypadItems = transitions((style, answer, t, answerI) => {
+    const keypadItems = (itemsWithStyle || []).map((answer, answerI) => {
+        const userAnswer = answerI === answeredIndex;
 
-    const hasOpacity = useMemo(() => {
-        const { backgroundColor = null } = inactiveButtonsStyle || {};
-        return backgroundColor === null;
-    }, [inactiveButtonsStyle]);
+        const {
+            good: rightAnswer = null,
+            label = null,
+            visual = null,
+            buttonLayout = null,
+            buttonStyle: answerButtonStyle = null,
+            textStyle: answerButtonTextStyle = null,
+            style = null,
+        } = answer || {};
+
+        const { textStyle = null } = label || {};
+        const hasText = isTextFilled(label);
+        const hasVisual = isImageFilled(visual);
+        const hasAnswer = hasText || hasVisual;
+
+        const isUserAnswer = withoutGoodAnswer && userAnswer;
+        const isOtherAnswer = withoutGoodAnswer && !userAnswer;
+
+        const isInactive = isOtherAnswer && answeredIndex !== null;
+        const inactiveButtonStyle = isInactive ? inactiveButtonsStyle : null;
+        const inactiveButtonTextStyle = isInactive ? inactiveButtonsTextStyle : null;
+
+        const finalButtonStyle = {
+            ...buttonsStyle,
+            ...inactiveButtonStyle,
+            ...answerButtonStyle,
+        };
+
+        const finalTextStyle = {
+            ...Object.keys(buttonsTextStyle || {}).reduce((acc, key) => {
+                const value = buttonsTextStyle[key];
+                if (value !== null && value !== '') {
+                    acc[key] = value;
+                }
+                return acc;
+            }, {}),
+            ...Object.keys(textStyle || {}).reduce((acc, key) => {
+                const value = textStyle[key];
+                if (value !== null && value !== '') {
+                    acc[key] = value;
+                }
+                return acc;
+            }, {}),
+            ...inactiveButtonTextStyle,
+            ...answerButtonTextStyle,
+        };
+
+        return (
+            <animated.div
+                key={`answer-${answerI}`}
+                className={classNames([
+                    styles.item,
+                    {
+                        [styles.rightAnswer]: !withoutGoodAnswer && rightAnswer === true,
+                        [styles.userAnswer]: isUserAnswer,
+                        [styles.otherAnswer]: isOtherAnswer,
+                        [styles.withoutOpacity]: !hasOpacity,
+                    },
+                ])}
+                // onTransitionEnd={onAnswerTransitionEnd}
+                style={{ ...style }}
+            >
+                <div
+                    className={styles.itemContent}
+                    ref={(el) => {
+                        itemsRefs.current[answerI] = el;
+                    }}
+                >
+                    <ScreenElement
+                        placeholder="quizAnswer"
+                        placeholderProps={{ good: answerI === 0 }}
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Answer"
+                                description="Answer placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyAnswer}
+                        isEmpty={!hasAnswer}
+                    >
+                        {hasAnswer ? (
+                            <RichButton
+                                className={styles.button}
+                                onPointerUp={(e) => {
+                                    if (e.pointerType !== 'mouse' || e.button === 0) {
+                                        onClick(answer, answerI);
+                                    }
+                                }}
+                                disabled={!visible || isPreview || answered}
+                                focusable={focusable}
+                                buttonStyle={finalButtonStyle}
+                                textStyle={finalTextStyle}
+                                label={label}
+                                visual={visual}
+                                visualClassName={styles.optionVisual}
+                                imageClassName={styles.optionImage}
+                                layout={
+                                    buttonLayout ||
+                                    buttonsLayout ||
+                                    (hasVisual ? 'label-right' : null)
+                                }
+                            >
+                                {answered && !withoutIcon && rightAnswer === true ? (
+                                    <span
+                                        className={styles.resultIcon}
+                                        style={getStyleFromColor(
+                                            goodAnswerColor,
+                                            'backgroundColor',
+                                        )}
+                                    >
+                                        <FontAwesomeIcon className={styles.faIcon} icon={faCheck} />
+                                    </span>
+                                ) : null}
+                                {!withoutIcon && answered && rightAnswer === false ? (
+                                    <span
+                                        className={styles.resultIcon}
+                                        style={getStyleFromColor(badAnswerColor, 'backgroundColor')}
+                                    >
+                                        <FontAwesomeIcon className={styles.faIcon} icon={faTimes} />
+                                    </span>
+                                ) : null}
+                            </RichButton>
+                        ) : null}
+                    </ScreenElement>
+                </div>
+            </animated.div>
+        );
+    });
+
+    const {
+        columnAlign: align = null,
+        columns = 1,
+        spacing = null,
+        withSquareItems = false,
+    } = keypadLayout || {};
 
     return (
         <div
@@ -288,140 +475,21 @@ const Answers = ({
                 styles.container,
                 {
                     [styles.answered]: answered,
-                    [styles.withIcon]: !withoutIcon,
+                    [styles.withIcon]: !withoutIcon && hasGoodOrBadAnswerInList,
+                    [styles.withSquareItems]: withSquareItems === true,
                     [styles.isPlaceholder]: isPlaceholder,
                     [className]: className !== null,
                 },
             ])}
         >
             {filteredListOfItems !== null || isPlaceholder ? (
-                <div className={styles.items}>
-                    {transitions((style, answer, t, answerI) => {
-                        const userAnswer = answerI === answeredIndex;
-                        const {
-                            good: rightAnswer = null,
-                            label = null,
-                            buttonStyle: answerButtonStyle = null,
-                            textStyle: answerButtonTextStyle = null,
-                        } = answer || {};
-                        const { textStyle = null } = label || {};
-                        const hasAnswer = isTextFilled(label);
-                        const isUserAnswer = withoutGoodAnswer && userAnswer;
-                        const isOtherAnswer = withoutGoodAnswer && !userAnswer;
-
-                        const isInactive = isOtherAnswer && answeredIndex !== null;
-                        const inactiveButtonStyle = isInactive ? inactiveButtonsStyle : null;
-                        const inactiveButtonTextStyle = isInactive
-                            ? inactiveButtonsTextStyle
-                            : null;
-
-                        return (
-                            <animated.div
-                                key={`answer-${answerI}`}
-                                className={classNames([
-                                    styles.item,
-                                    {
-                                        [styles.rightAnswer]:
-                                            !withoutGoodAnswer && rightAnswer === true,
-                                        [styles.userAnswer]: isUserAnswer,
-                                        [styles.otherAnswer]: isOtherAnswer,
-                                        [styles.withoutOpacity]: !hasOpacity,
-                                    },
-                                ])}
-                                onTransitionEnd={onAnswerTransitionEnd}
-                                style={{ ...style }}
-                            >
-                                <div
-                                    className={styles.itemContent}
-                                    ref={(el) => {
-                                        itemsRefs.current[answerI] = el;
-                                    }}
-                                >
-                                    <ScreenElement
-                                        placeholder="quizAnswer"
-                                        placeholderProps={{ good: answerI === 0 }}
-                                        emptyLabel={
-                                            <FormattedMessage
-                                                defaultMessage="Answer"
-                                                description="Answer placeholder"
-                                            />
-                                        }
-                                        emptyClassName={styles.emptyAnswer}
-                                        isEmpty={!hasAnswer}
-                                    >
-                                        {hasAnswer ? (
-                                            <Button
-                                                className={styles.button}
-                                                onPointerUp={(e) => {
-                                                    if (
-                                                        e.pointerType !== 'mouse' ||
-                                                        e.button === 0
-                                                    ) {
-                                                        onClick(answer, answerI);
-                                                    }
-                                                }}
-                                                disabled={!visible || isPreview || answered}
-                                                focusable={focusable}
-                                                buttonStyle={{
-                                                    ...buttonsStyle,
-                                                    ...inactiveButtonStyle,
-                                                    ...answerButtonStyle,
-                                                }}
-                                                textStyle={{
-                                                    ...buttonsTextStyle,
-                                                    ...inactiveButtonTextStyle,
-                                                    ...answerButtonTextStyle,
-                                                }}
-                                            >
-                                                {answered &&
-                                                !withoutIcon &&
-                                                rightAnswer === true ? (
-                                                    <span
-                                                        className={styles.resultIcon}
-                                                        style={getStyleFromColor(
-                                                            goodAnswerColor,
-                                                            'backgroundColor',
-                                                        )}
-                                                    >
-                                                        <FontAwesomeIcon
-                                                            className={styles.faIcon}
-                                                            icon={faCheck}
-                                                        />
-                                                    </span>
-                                                ) : null}
-                                                {!withoutIcon &&
-                                                answered &&
-                                                rightAnswer === false ? (
-                                                    <span
-                                                        className={styles.resultIcon}
-                                                        style={getStyleFromColor(
-                                                            badAnswerColor,
-                                                            'backgroundColor',
-                                                        )}
-                                                    >
-                                                        <FontAwesomeIcon
-                                                            className={styles.faIcon}
-                                                            icon={faTimes}
-                                                        />
-                                                    </span>
-                                                ) : null}
-                                                <Text
-                                                    {...label}
-                                                    className={styles.optionLabel}
-                                                    textStyle={{
-                                                        ...buttonsTextStyle,
-                                                        ...textStyle,
-                                                        ...answerButtonTextStyle,
-                                                    }}
-                                                />
-                                            </Button>
-                                        ) : null}
-                                    </ScreenElement>
-                                </div>
-                            </animated.div>
-                        );
-                    })}
-                </div>
+                <Keypad
+                    className={styles.items}
+                    items={keypadItems}
+                    align={align}
+                    columns={columns}
+                    spacing={spacing}
+                />
             ) : null}
         </div>
     );

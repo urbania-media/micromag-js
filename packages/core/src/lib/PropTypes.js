@@ -801,3 +801,12 @@ export const closedCaptions = PropTypes.shape({
     textStyle,
     boxStyle,
 });
+
+export const buttonLayout = PropTypes.oneOf([
+    'label-bottom',
+    'label-top',
+    'no-label',
+    'label-over',
+    'label-left',
+    'label-right',
+]);

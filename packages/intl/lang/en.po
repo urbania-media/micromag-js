@@ -534,12 +534,6 @@ msgid "Timing"
 msgstr "Timing"
 
 # Field label
-#: 6LFjCH
-msgctxt "6LFjCH"
-msgid "Fill with image"
-msgstr "Fill with image"
-
-# Field label
 #: 6MxaVf
 msgctxt "6MxaVf"
 msgid "Style"
@@ -670,6 +664,12 @@ msgstr "Quote"
 msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Parameters"
+
+# Field label
+#: 8Dmlwh
+msgctxt "8Dmlwh"
+msgid "Answer button layout"
+msgstr "Answer button layout"
 
 # Button label
 #: 8NyYTH
@@ -827,6 +827,12 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Edit call to action..."
 
+# Field label
+#: Arl5Ze
+msgctxt "Arl5Ze"
+msgid "Button styles"
+msgstr "Button styles"
+
 # Media type
 #: AwDQvD
 msgctxt "AwDQvD"
@@ -904,6 +910,12 @@ msgstr "{current} of {duration}"
 msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image with text"
+
+# Field label
+#: CQzuFE
+msgctxt "CQzuFE"
+msgid "Feedback styles"
+msgstr "Feedback styles"
 
 # Label when there is no item
 #: CWnXWp
@@ -1216,6 +1228,12 @@ msgstr "Speakers"
 msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Background color"
+
+# Field label
+#: JGvpwT
+msgctxt "JGvpwT"
+msgid "Visual width"
+msgstr "Visual width"
 
 # Field label
 #: JLYWNN
@@ -1553,6 +1571,12 @@ msgctxt "PNMMo/"
 msgid "Audios"
 msgstr "Audios"
 
+# Field label
+#: PYokTY
+msgctxt "PYokTY"
+msgid "Label box style"
+msgstr "Label box style"
+
 # Button label
 #: PyxZY2
 msgctxt "PyxZY2"
@@ -1576,12 +1600,6 @@ msgstr "Videos"
 msgctxt "QSmRdP"
 msgid "Add an image"
 msgstr "Add an image"
-
-# Placeholder label
-#: Qanvis
-msgctxt "Qanvis"
-msgid "Visual"
-msgstr "Visual"
 
 # Heading field label
 #: Qe03Xz
@@ -1798,12 +1816,6 @@ msgctxt "W5qWPj"
 msgid "Center"
 msgstr "Center"
 
-# Fields section label
-#: WOStf5
-msgctxt "WOStf5"
-msgid "Image"
-msgstr "Image"
-
 # Field name
 #: WX83V9
 msgctxt "WX83V9"
@@ -2014,12 +2026,6 @@ msgctxt "ZMS1Wv"
 msgid "Text"
 msgstr "Text"
 
-# Placeholder label
-#: Zbu5Uk
-msgctxt "Zbu5Uk"
-msgid "Label"
-msgstr "Label"
-
 # Horoscope date
 #: ZeosMy
 msgctxt "ZeosMy"
@@ -2037,12 +2043,6 @@ msgstr "Questions"
 msgctxt "Zpl5bJ"
 msgid "Spacing"
 msgstr "Spacing"
-
-# Field label
-#: Zw4vWC
-msgctxt "Zw4vWC"
-msgid "Height"
-msgstr "Height"
 
 # Button label in items field
 #: ZxgNge
@@ -2818,12 +2818,6 @@ msgstr "Pause"
 msgctxt "mXeSkg"
 msgid "Link"
 msgstr "Link"
-
-# Field label
-#: mY0bHb
-msgctxt "mY0bHb"
-msgid "Width"
-msgstr "Width"
 
 #: menus.pagination.next
 msgctxt "menus.pagination.next"

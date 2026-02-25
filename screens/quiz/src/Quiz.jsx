@@ -31,6 +31,7 @@ import styles from './quiz.module.scss';
 const propTypes = {
     id: PropTypes.string,
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
+    keypadLayout: PropTypes.shape({}),
     question: MicromagPropTypes.textElement,
     answers: MicromagPropTypes.quizAnswers,
     result: PropTypes.shape({
@@ -38,6 +39,7 @@ const propTypes = {
         text: MicromagPropTypes.textElement,
     }),
     resultImage: MicromagPropTypes.visualElement,
+    buttonsLayout: MicromagPropTypes.buttonLayout,
     buttonsStyle: MicromagPropTypes.boxStyle,
     inactiveButtonsStyle: MicromagPropTypes.boxStyle,
     buttonsTextStyle: MicromagPropTypes.textStyle,
@@ -63,10 +65,12 @@ const propTypes = {
 const defaultProps = {
     id: null,
     layout: 'middle',
+    keypadLayout: null,
     question: null,
     answers: null,
     result: null,
     resultImage: null,
+    buttonsLayout: null,
     buttonsStyle: null,
     inactiveButtonsStyle: null,
     buttonsTextStyle: null,
@@ -92,10 +96,12 @@ const defaultProps = {
 const QuizScreen = ({
     id,
     layout,
+    keypadLayout,
     question,
     answers,
     result,
     resultImage,
+    buttonsLayout,
     buttonsStyle,
     inactiveButtonsStyle,
     buttonsTextStyle,
@@ -296,9 +302,11 @@ const QuizScreen = ({
                     <Question
                         question={question}
                         answers={answers}
+                        keypadLayout={keypadLayout}
                         result={result}
                         resultImage={resultImage}
                         answeredIndex={userAnswerIndex}
+                        buttonsLayout={buttonsLayout}
                         buttonsStyle={buttonsStyle}
                         buttonsTextStyle={buttonsTextStyle}
                         inactiveButtonsStyle={inactiveButtonsStyle}

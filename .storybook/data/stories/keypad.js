@@ -21,10 +21,10 @@ export default {
         content: {
             body: paragraph(),
         },
-        visual: imageMedia({ rand: true, width: Math.floor(Math.random() * 300) }),
+        visual: imageMedia({ rand: true, width: 500, height: 500 }),
         boxStyle: {
             backgroundColor: { color: '#00ff77', alpha: 1 },
-            borderRadius: 30,
+            borderRadius: 4,
         },
         // popupBoxStyle: {
         //     backgroundColor: { color: '#ff00ff', alpha: 1 },

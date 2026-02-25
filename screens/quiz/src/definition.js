@@ -21,15 +21,15 @@ export default [
         component: QuizScreen,
         layouts: ['top', 'middle', 'bottom', 'split'],
         fields: [
-            {
-                name: 'layout',
-                type: 'screen-layout',
-                defaultValue: 'top',
-                label: defineMessage({
-                    defaultMessage: 'Layout',
-                    description: 'Layout field label',
-                }),
-            },
+            // {
+            //     name: 'layout',
+            //     type: 'screen-layout',
+            //     defaultValue: 'top',
+            //     label: defineMessage({
+            //         defaultMessage: 'Layout',
+            //         description: 'Layout field label',
+            //     }),
+            // },
             {
                 name: 'question',
                 type: 'heading-element',
@@ -51,6 +51,22 @@ export default [
                 },
                 label: defineMessage({
                     defaultMessage: 'Answers',
+                    description: 'Field label',
+                }),
+            },
+            {
+                name: 'keypadLayout',
+                type: 'keypad-layout',
+                isList: true,
+                // isCollapsible: true,
+                defaultValue: {
+                    columnAlign: 'middle',
+                    columns: 1,
+                    spacing: 10,
+                    withSquareItems: false,
+                },
+                label: defineMessage({
+                    defaultMessage: 'Keypad settings',
                     description: 'Field label',
                 }),
             },
@@ -89,6 +105,14 @@ export default [
                     description: 'Field section label',
                 }),
                 fields: [
+                    {
+                        name: 'buttonsLayout',
+                        type: 'button-layout',
+                        label: defineMessage({
+                            defaultMessage: 'Answer button layout',
+                            description: 'Field label',
+                        }),
+                    },
                     {
                         name: 'buttonsTextStyle',
                         type: 'text-style-form',
@@ -296,6 +320,22 @@ export default [
                         },
                         label: defineMessage({
                             defaultMessage: 'Answers',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'keypadLayout',
+                        type: 'keypad-layout',
+                        isList: true,
+                        withoutLabel: true,
+                        defaultValue: {
+                            columnAlign: 'middle',
+                            columns: 1,
+                            spacing: 10,
+                            withSquareItems: false,
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Keypad settings',
                             description: 'Field label',
                         }),
                     },

@@ -534,12 +534,6 @@ msgid "Timing"
 msgstr "Mode"
 
 # Field label
-#: 6LFjCH
-msgctxt "6LFjCH"
-msgid "Fill with image"
-msgstr "Remplir avec l'image"
-
-# Field label
 #: 6MxaVf
 msgctxt "6MxaVf"
 msgid "Style"
@@ -670,6 +664,12 @@ msgstr "Citation"
 msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Paramètres"
+
+# Field label
+#: 8Dmlwh
+msgctxt "8Dmlwh"
+msgid "Answer button layout"
+msgstr "Disposition des boutons"
 
 # Button label
 #: 8NyYTH
@@ -827,6 +827,12 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Modifier l'action"
 
+# Field label
+#: Arl5Ze
+msgctxt "Arl5Ze"
+msgid "Button styles"
+msgstr "Styles du bouton"
+
 # Media type
 #: AwDQvD
 msgctxt "AwDQvD"
@@ -904,6 +910,12 @@ msgstr "{current} de {duration}"
 msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image avec texte"
+
+# Field label
+#: CQzuFE
+msgctxt "CQzuFE"
+msgid "Feedback styles"
+msgstr "Styles de rétroaction"
 
 # Label when there is no item
 #: CWnXWp
@@ -1065,7 +1077,7 @@ msgstr "Pop-ups"
 #: FjuRaw
 msgctxt "FjuRaw"
 msgid "Keypad settings"
-msgstr "Paramètres du clavier"
+msgstr "Paramètres des boutons"
 
 # Your name placeholder
 #: G/ITGY
@@ -1216,6 +1228,12 @@ msgstr "Interlocuteurs"
 msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
+
+# Field label
+#: JGvpwT
+msgctxt "JGvpwT"
+msgid "Visual width"
+msgstr "Largeur du visuel"
 
 # Field label
 #: JLYWNN
@@ -1553,6 +1571,12 @@ msgctxt "PNMMo/"
 msgid "Audios"
 msgstr "Audios"
 
+# Field label
+#: PYokTY
+msgctxt "PYokTY"
+msgid "Label box style"
+msgstr "Style de boîte du libellé"
+
 # Button label
 #: PyxZY2
 msgctxt "PyxZY2"
@@ -1576,12 +1600,6 @@ msgstr "Vidéos"
 msgctxt "QSmRdP"
 msgid "Add an image"
 msgstr "Ajouter une image"
-
-# Placeholder label
-#: Qanvis
-msgctxt "Qanvis"
-msgid "Visual"
-msgstr "Visuel"
 
 # Heading field label
 #: Qe03Xz
@@ -1798,12 +1816,6 @@ msgctxt "W5qWPj"
 msgid "Center"
 msgstr "Centrer"
 
-# Fields section label
-#: WOStf5
-msgctxt "WOStf5"
-msgid "Image"
-msgstr "Image"
-
 # Field name
 #: WX83V9
 msgctxt "WX83V9"
@@ -2014,12 +2026,6 @@ msgctxt "ZMS1Wv"
 msgid "Text"
 msgstr "Texte"
 
-# Placeholder label
-#: Zbu5Uk
-msgctxt "Zbu5Uk"
-msgid "Label"
-msgstr "Libellé"
-
 # Horoscope date
 #: ZeosMy
 msgctxt "ZeosMy"
@@ -2037,12 +2043,6 @@ msgstr "Questions"
 msgctxt "Zpl5bJ"
 msgid "Spacing"
 msgstr "Espacement"
-
-# Field label
-#: Zw4vWC
-msgctxt "Zw4vWC"
-msgid "Height"
-msgstr "Hauteur"
 
 # Button label in items field
 #: ZxgNge
@@ -2819,12 +2819,6 @@ msgstr "Pause"
 msgctxt "mXeSkg"
 msgid "Link"
 msgstr "Lien"
-
-# Field label
-#: mY0bHb
-msgctxt "mY0bHb"
-msgid "Width"
-msgstr "Largeur"
 
 #: menus.pagination.next
 msgctxt "menus.pagination.next"
