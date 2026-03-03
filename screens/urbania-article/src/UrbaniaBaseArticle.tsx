@@ -3,7 +3,16 @@ import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { AuthorElement, BackgroundElement, Color, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, TextElement, VisualElement } from '@micromag/core';
+import type {
+    AuthorElement,
+    BackgroundElement,
+    Color,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    TextElement,
+    VisualElement,
+} from '@micromag/core';
 import {
     Empty,
     PlaceholderImage,
@@ -63,28 +72,26 @@ interface UrbaniaArticleProps {
     className?: string;
 }
 
-function UrbaniaArticle(
-    {
-        hasArticle = false,
-        type = null,
-        image = null,
-        title = null,
-        description = null,
-        overTitle = null,
-        author = null,
-        sponsors = null,
-        sponsorPrefix = null,
-        sponsorColor = null,
-        site = null,
-        header = null,
-        footer = null,
-        background = null,
-        current = true,
-        preload = true,
-        spacing = 20,
-        className = null,
-    },
-) {
+function UrbaniaArticle({
+    hasArticle = false,
+    type = null,
+    image = null,
+    title = null,
+    description = null,
+    overTitle = null,
+    author = null,
+    sponsors = null,
+    sponsorPrefix = null,
+    sponsorColor = null,
+    site = null,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    spacing = 20,
+    className = null,
+}) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -158,8 +165,12 @@ function UrbaniaArticle(
     const finalPlaying = playing && current;
 
     const isVideoBackground = imageType !== 'video' && hasVideoBackground;
-    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, isVideoBackground);
-    const backgroundPlaying = current && !openedWebView && (isView || isEdit) && (isCurrentMedia || !isView);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(
+        current,
+        isVideoBackground,
+    );
+    const backgroundPlaying =
+        current && !openedWebView && (isView || isEdit) && (isCurrentMedia || !isView);
 
     const items = [
         <ScreenElement

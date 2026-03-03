@@ -13,6 +13,7 @@ import { Button, Media } from '@micromag/core/components';
 import { useMediasRecentSearches } from '@micromag/data';
 
 import { useSearchFilters } from '../../hooks/useSearchFilters';
+
 import DropdownSection from '../forms/DropdownSection';
 import SearchForm from '../forms/Search';
 import SearchFilters from '../forms/SearchFilters';

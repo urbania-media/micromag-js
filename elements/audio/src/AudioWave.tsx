@@ -3,10 +3,10 @@ import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useRef, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import type { Color } from '@micromag/core';
-import { useDimensionObserver, useDevicePixelRatio } from '@micromag/core/hooks';
+import { useDevicePixelRatio, useDimensionObserver } from '@micromag/core/hooks';
 import { getContrastingColor } from '@micromag/core/utils';
 
 import styles from './styles/audio-wave.module.css';

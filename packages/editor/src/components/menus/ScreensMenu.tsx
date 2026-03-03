@@ -7,6 +7,7 @@ import React, { useMemo } from 'react';
 import { ReactSortable } from 'react-sortablejs';
 
 import type { MenuItem } from '@micromag/core';
+
 import ScreenWithPreview from '../buttons/ScreenWithPreview';
 import SortableTree from '../sortable/SortableTree';
 
@@ -30,25 +31,23 @@ interface ScreensMenuProps {
     onOrderChange?: (...args: unknown[]) => void;
 }
 
-function ScreensMenu(
-    {
-        items = [],
-        withPreview = false,
-        withPlaceholder = false,
-        withName = false,
-        settings = null,
-        isVertical = false,
-        noWrap = false,
-        className = null,
-        itemClassName = null,
-        buttonClassName = null,
-        settingsClassName = null,
-        sortable = false,
-        isTree = false,
-        onClickItem = null,
-        onOrderChange = null,
-    },
-) {
+function ScreensMenu({
+    items = [],
+    withPreview = false,
+    withPlaceholder = false,
+    withName = false,
+    settings = null,
+    isVertical = false,
+    noWrap = false,
+    className = null,
+    itemClassName = null,
+    buttonClassName = null,
+    settingsClassName = null,
+    sortable = false,
+    isTree = false,
+    onClickItem = null,
+    onOrderChange = null,
+}) {
     const itemsElements = !isTree
         ? items.map(
               (

@@ -4,7 +4,12 @@ import classNames from 'classnames';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, VideoElement } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    VideoElement,
+} from '@micromag/core';
 import { PlaceholderVideo360, ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -20,15 +25,11 @@ import {
     useActivityDetector,
     useAnimationFrame,
     useDebounce,
+    useDevicePixelRatio,
     useTrackScreenEvent,
     useTrackScreenMedia,
-    useDevicePixelRatio,
 } from '@micromag/core/hooks';
-import {
-    getFooterProps,
-    isFooterFilled,
-    isHeaderFilled,
-} from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
@@ -55,21 +56,19 @@ interface Video360ScreenProps {
     className?: string;
 }
 
-function Video360Screen(
-    {
-        layout = 'full', // eslint-disable-line
-        video = null,
-        header = null,
-        footer = null,
-        background = null,
-        current = true,
-        preload = true,
-        type = null,
-        spacing = 20,
-        mediaRef: customMediaRef = null,
-        className = null,
-    },
-) {
+function Video360Screen({
+    layout = 'full', // eslint-disable-line
+    video = null,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    type = null,
+    spacing = 20,
+    mediaRef: customMediaRef = null,
+    className = null,
+}) {
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
     const trackScreenMedia = useTrackScreenMedia('video_360');

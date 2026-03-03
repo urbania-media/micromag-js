@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import Slider from './Slider';
 
 import styles from '../styles/border-width.module.css';
@@ -12,9 +13,12 @@ interface BorderRadiusProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function BorderRadius(
-    { value = null, sizes = [0, 2, 6, 10, 20, 30], className = null, onChange = null },
-) {
+function BorderRadius({
+    value = null,
+    sizes = [0, 2, 6, 10, 20, 30],
+    className = null,
+    onChange = null,
+}) {
     return (
         <Slider
             value={value}

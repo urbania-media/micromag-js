@@ -2,7 +2,6 @@
 import classNames from 'classnames';
 import React from 'react';
 
-
 import Buttons from '../buttons/Buttons';
 import Label from '../partials/Label';
 
@@ -20,19 +19,17 @@ interface ModalDialogProps {
     bodyClassName?: string;
 }
 
-function ModalDialog(
-    {
-        title = null,
-        header = null,
-        children = null,
-        buttons = null,
-        footer = null,
-        size = null,
-        onClose = null,
-        className = null,
-        bodyClassName = null,
-    },
-) {
+function ModalDialog({
+    title = null,
+    header = null,
+    children = null,
+    buttons = null,
+    footer = null,
+    size = null,
+    onClose = null,
+    className = null,
+    bodyClassName = null,
+}) {
     return (
         <div
             className={classNames([

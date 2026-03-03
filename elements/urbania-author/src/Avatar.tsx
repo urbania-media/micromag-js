@@ -19,12 +19,22 @@ interface AvatarProps {
     shouldLoad?: boolean;
 }
 
-function Avatar(
-    { image = null, width = 100, height = 100, resolution = 1, shape = 'circle', isTag = false, className = null, shouldLoad = true },
-) {
+function Avatar({
+    image = null,
+    width = 100,
+    height = 100,
+    resolution = 1,
+    shape = 'circle',
+    isTag = false,
+    className = null,
+    shouldLoad = true,
+}) {
     const supportsWebp = useSetting('supportsWebp', false);
     const imageResolution = useSetting('imageResolution', resolution);
-    const imageAtSize = getOptimalImageUrl(image, width, height, { resolution: imageResolution, supportsWebp });
+    const imageAtSize = getOptimalImageUrl(image, width, height, {
+        resolution: imageResolution,
+        supportsWebp,
+    });
     const finalShape = shape !== null ? pascalCase(shape) : null;
     return (
         <span

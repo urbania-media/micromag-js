@@ -4,6 +4,7 @@ import React, { useCallback, useMemo } from 'react';
 import { defineMessage, useIntl } from 'react-intl';
 
 import type { Badge } from '@micromag/core';
+
 import Fields from './Fields';
 
 import styles from '../styles/alternative.module.css';
@@ -14,9 +15,14 @@ interface AlternativeProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function Alternative(
-    { value = null, className = null, onChange = null, fields, toggleLabel, ...props },
-) {
+function Alternative({
+    value = null,
+    className = null,
+    onChange = null,
+    fields,
+    toggleLabel,
+    ...props
+}) {
     const finalFields = useMemo(
         () => [
             {
@@ -34,7 +40,7 @@ function Alternative(
         value,
         fields,
         finalFields,
-    })
+    });
 
     const onUpdateValue = useCallback(
         (newValue) => {

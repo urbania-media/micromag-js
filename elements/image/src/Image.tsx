@@ -26,24 +26,22 @@ interface ImageProps {
     containerRef?: (...args: unknown[]) => void | { current?: unknown };
 }
 
-function Image(
-    {
-        media = null,
-        alt = null,
-        width = null,
-        height = null,
-        resolution = 1,
-        objectFit = null,
-        containerStyle = {},
-        imageStyle = {},
-        className = null,
-        imageClassName = null,
-        onLoaded = null,
-        loadingMode = 'lazy',
-        shouldLoad = true,
-        containerRef = null,
-    },
-) {
+function Image({
+    media = null,
+    alt = null,
+    width = null,
+    height = null,
+    resolution = 1,
+    objectFit = null,
+    containerStyle = {},
+    imageStyle = {},
+    className = null,
+    imageClassName = null,
+    onLoaded = null,
+    loadingMode = 'lazy',
+    shouldLoad = true,
+    containerRef = null,
+}) {
     const { metadata = null } = media || {};
     const {
         width: mediaWidth = 0,

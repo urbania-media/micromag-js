@@ -2,9 +2,11 @@
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
 import Slider from 'rc-slider';
-import React, { useMemo, useCallback } from 'react';
-import styles from '../styles/slider.module.css';
+import React, { useCallback, useMemo } from 'react';
+
 import Text from './Text';
+
+import styles from '../styles/slider.module.css';
 
 // const roundEven = value => 2 * Math.round(value / 2);
 
@@ -54,23 +56,21 @@ interface SliderFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function SliderField(
-    {
-        value = null,
-        min = 0,
-        max = 100,
-        marks = undefined,
-        marksStep = null,
-        marksCount = null,
-        marksStyle = {
-            fontSize: 8,
-        },
-        unit = null,
-        withInput = false,
-        className = null,
-        onChange = null,
+function SliderField({
+    value = null,
+    min = 0,
+    max = 100,
+    marks = undefined,
+    marksStep = null,
+    marksCount = null,
+    marksStyle = {
+        fontSize: 8,
     },
-) {
+    unit = null,
+    withInput = false,
+    className = null,
+    onChange = null,
+}) {
     const customOnChange = useCallback(
         (val) => {
             if (onChange !== null) {

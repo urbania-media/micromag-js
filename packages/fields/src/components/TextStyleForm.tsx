@@ -18,17 +18,15 @@ interface TextStyleFormProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-function TextStyleForm(
-    {
-        value = null,
-        fields = [],
-        sections = null,
-        onChange = null,
-        closeForm = null,
-        isForm = false,
-        ...props
-    }: TextStyleFormProps,
-) {
+function TextStyleForm({
+    value = null,
+    fields = [],
+    sections = null,
+    onChange = null,
+    closeForm = null,
+    isForm = false,
+    ...props
+}: TextStyleFormProps) {
     const textStyle = getStyleFromText(value);
     const { fontFamily = null } = textStyle || {};
     const fontLabel = fontFamily !== null ? fontFamily.replace(/['"]+/g, '') : null;

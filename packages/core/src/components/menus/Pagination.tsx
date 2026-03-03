@@ -35,22 +35,20 @@ interface PaginationMenuProps {
     onClickPage?: (...args: unknown[]) => void;
 }
 
-function PaginationMenu(
-    {
-        page: parentPage = 1,
-        lastPage: parentLastPage = 1,
-        maxPages: parentMaxPages = 10,
-        total: parentTotal = 1,
-        url = null,
-        query = null,
-        withPreviousNext = false,
-        className = null,
-        paginationClassName = null,
-        itemClassName = null,
-        linkClassName = null,
-        onClickPage = null,
-    },
-) {
+function PaginationMenu({
+    page: parentPage = 1,
+    lastPage: parentLastPage = 1,
+    maxPages: parentMaxPages = 10,
+    total: parentTotal = 1,
+    url = null,
+    query = null,
+    withPreviousNext = false,
+    className = null,
+    paginationClassName = null,
+    itemClassName = null,
+    linkClassName = null,
+    onClickPage = null,
+}) {
     const getUrl = useCallback(
         (currentPage) =>
             url !== null

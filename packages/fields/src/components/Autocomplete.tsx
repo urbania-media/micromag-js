@@ -1,14 +1,23 @@
-import React, { useRef, useEffect, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import Fuse from 'fuse.js';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+
 import TextField from './Text';
 
 import styles from '../styles/autocomplete.module.css';
 
 interface AutocompleteFieldProps {
-    items?: ({ label?: string; value?: number | string })[];
+    items?: { label?: string; value?: number | string }[];
     value?: string;
-    searchOptions?: { isCaseSensitive?: boolean; includeScore?: boolean; includeMatches?: boolean; minMatchCharLength?: number; shouldSort?: boolean; threshold?: number; distance?: number };
+    searchOptions?: {
+        isCaseSensitive?: boolean;
+        includeScore?: boolean;
+        includeMatches?: boolean;
+        minMatchCharLength?: number;
+        shouldSort?: boolean;
+        threshold?: number;
+        distance?: number;
+    };
     maxResults?: number;
     showEmpty?: boolean;
     placeholder?: string;
@@ -17,22 +26,20 @@ interface AutocompleteFieldProps {
     children?: React.ReactNode;
 }
 
-function AutocompleteField(
-    {
-        items = [],
-        value = null,
-        searchOptions = {
-            // Search in `label` and in `value` items in an object array
-            keys: ['label', 'value'],
-        },
-        maxResults = 10,
-        showEmpty = false,
-        placeholder = null,
-        className = null,
-        onChange = null,
-        children = null,
+function AutocompleteField({
+    items = [],
+    value = null,
+    searchOptions = {
+        // Search in `label` and in `value` items in an object array
+        keys: ['label', 'value'],
     },
-) {
+    maxResults = 10,
+    showEmpty = false,
+    placeholder = null,
+    className = null,
+    onChange = null,
+    children = null,
+}) {
     const fuse = useRef(null);
     const [open, setOpen] = useState(false);
 

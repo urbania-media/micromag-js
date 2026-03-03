@@ -1,8 +1,10 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import get from 'lodash/get';
 import React, { useCallback } from 'react';
-import { useFieldsManager, useFieldComponent, FieldContextProvider } from '../../contexts';
-import { getComponentFromName, setFieldValue, getFieldFromPath } from '../../utils';
+
+import { getComponentFromName, getFieldFromPath, setFieldValue } from '../../utils';
+
+import { FieldContextProvider, useFieldComponent, useFieldsManager } from '../../contexts';
 
 interface FieldFormProps {
     name?: string;
@@ -17,25 +19,25 @@ interface FieldFormProps {
     fieldContext?: unknown;
 }
 
-function FieldForm(
-    {
-        name = null,
-        value = null,
-        form = null,
-        formComponents = {},
-        fields = [],
-        className = null,
-        onChange = null,
-        gotoFieldForm,
-        closeFieldForm,
-        fieldContext = null,
-    },
-) {
-
+function FieldForm({
+    name = null,
+    value = null,
+    form = null,
+    formComponents = {},
+    fields = [],
+    className = null,
+    onChange = null,
+    gotoFieldForm,
+    closeFieldForm,
+    fieldContext = null,
+}) {
     const fieldsManager = useFieldsManager();
 
     const field = getFieldFromPath(name.split('.'), fields, fieldsManager);
-    const parentField = name.match(/\.[0-9]+$/) !== null ? getFieldFromPath(name.split('.').slice(0, -1), fields, fieldsManager) : null;
+    const parentField =
+        name.match(/\.[0-9]+$/) !== null
+            ? getFieldFromPath(name.split('.').slice(0, -1), fields, fieldsManager)
+            : null;
 
     const { type = null, ...fieldProps } = field || {};
 

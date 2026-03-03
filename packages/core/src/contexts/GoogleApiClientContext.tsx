@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { loadGoogleApi } from '@folklore/services';
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+
 import { useGoogleKeys } from './GoogleKeysContext';
 
 export const GoogleApiClientContext = React.createContext(null);
@@ -47,4 +48,3 @@ export function GoogleApiClientProvider({ children }) {
         <GoogleApiClientContext.Provider value={client}>{children}</GoogleApiClientContext.Provider>
     );
 }
-

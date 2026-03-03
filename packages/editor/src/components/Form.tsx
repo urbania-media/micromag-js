@@ -1,18 +1,18 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useLocation } from 'wouter';
 
 import type { Story, Theme } from '@micromag/core';
-import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
-import { useRoutePush, ScreenProvider, useScreensManager } from '@micromag/core/contexts';
-import { slug, getScreenFieldsWithStates } from '@micromag/core/utils';
+import { DropdownMenu, Empty, Navbar } from '@micromag/core/components';
+import { ScreenProvider, useRoutePush, useScreensManager } from '@micromag/core/contexts';
+import { getScreenFieldsWithStates, slug } from '@micromag/core/utils';
 
 import useFormTransition from '../hooks/useFormTransition';
 import useRouteParams from '../hooks/useRouteParams';
-import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
+import { deleteScreen, duplicateScreen, updateScreen } from '../utils';
 
 import SettingsButton from './buttons/Settings';
 import FieldWithContexts from './forms/FieldWithContexts';

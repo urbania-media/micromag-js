@@ -3,18 +3,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { ClosedCaptionsMedia } from '@micromag/core';
+
 import MediaField from './Media';
 
 interface ClosedCaptionFieldProps {
     value?: ClosedCaptionsMedia;
 }
 
-function ClosedCaptionField(
-    {
-        value: value = null,
-        ...props
-    },
-) {
+function ClosedCaptionField({ value: value = null, ...props }) {
     return (
         <MediaField
             noValueLabel={

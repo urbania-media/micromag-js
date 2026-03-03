@@ -16,18 +16,16 @@ interface ViewerMenuDotProps {
     className?: string;
 }
 
-function ViewerMenuDot(
-    {
-        current = false,
-        active = false,
-        colors = null,
-        count = 1,
-        subIndex = 0,
-        vertical = false,
-        onClick = null,
-        className = null,
-    },
-) {
+function ViewerMenuDot({
+    current = false,
+    active = false,
+    colors = null,
+    count = 1,
+    subIndex = 0,
+    vertical = false,
+    onClick = null,
+    className = null,
+}) {
     const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(255, 255, 255, 0.25)' } =
         colors || {};
 

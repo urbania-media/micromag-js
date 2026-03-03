@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import React, { useMemo } from 'react';
-// import classNames from 'classnames';
 
+// import classNames from 'classnames';
 import { getDisplayName } from '../../utils';
+
 import Portal from './Portal';
 
 import styles from '../../styles/panels/panel.module.css';

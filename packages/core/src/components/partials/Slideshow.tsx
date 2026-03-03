@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
+import React, { useEffect, useState } from 'react';
 
 import styles from '../../styles/partials/slideshow.module.css';
 
@@ -14,9 +14,15 @@ interface SlideshowProps {
     children?: React.ReactNode;
 }
 
-function Slideshow(
-    { items = [], auto = true, delay = 5000, width = null, height = null, className = null, children = null },
-) {
+function Slideshow({
+    items = [],
+    auto = true,
+    delay = 5000,
+    width = null,
+    height = null,
+    className = null,
+    children = null,
+}) {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {

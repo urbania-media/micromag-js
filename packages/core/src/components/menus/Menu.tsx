@@ -2,7 +2,6 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
 
-
 // import Label from '../partials/Label';
 import Button from '../buttons/Button';
 import Link from '../partials/Link';
@@ -28,27 +27,25 @@ interface MenuProps {
     dropdownAlign?: DropdownAlign;
 }
 
-function Menu(
-    {
-        items = [],
-        tagName = 'ul',
-        itemTagName = 'li',
-        children = null,
-        linkAsItem = false,
-        className = null,
-        itemClassName = null,
-        linkClassName = null,
-        hasSubMenuClassName = null,
-        subMenuClassName = null,
-        subMenuItemClassName = null,
-        subMenuLinkClassName = null,
-        hasDropdownClassName = null,
-        dropdownClassName = null,
-        dropdownItemClassName = null,
-        dropdownLinkClassName = null,
-        dropdownAlign = null,
-    },
-) {
+function Menu({
+    items = [],
+    tagName = 'ul',
+    itemTagName = 'li',
+    children = null,
+    linkAsItem = false,
+    className = null,
+    itemClassName = null,
+    linkClassName = null,
+    hasSubMenuClassName = null,
+    subMenuClassName = null,
+    subMenuItemClassName = null,
+    subMenuLinkClassName = null,
+    hasDropdownClassName = null,
+    dropdownClassName = null,
+    dropdownItemClassName = null,
+    dropdownLinkClassName = null,
+    dropdownAlign = null,
+}) {
     const [dropdownsVisible, setDropdownsVisible] = useState(items.map(() => false));
     const ListComponent = linkAsItem ? 'div' : tagName;
     return (

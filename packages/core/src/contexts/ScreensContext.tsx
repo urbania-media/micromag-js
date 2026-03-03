@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+
 import { ScreensManager } from '../lib';
+
 import { ComponentsProvider, SCREENS_NAMESPACE } from './ComponentsContext';
 
 export const ScreensContext = React.createContext(new ScreensManager());
@@ -15,9 +17,13 @@ interface ScreensProviderProps {
     children: React.ReactNode;
 }
 
-export function ScreensProvider(
-    { screens = null, namespaces = null, filterNamespaces = false, manager = null, children },
-) {
+export function ScreensProvider({
+    screens = null,
+    namespaces = null,
+    filterNamespaces = false,
+    manager = null,
+    children,
+}) {
     const previousManager = useScreensManager();
     const finalManager = useMemo(() => {
         let newManager = manager !== null ? manager : new ScreensManager(screens);
@@ -56,4 +62,3 @@ export function ScreensProvider(
         </ScreensContext.Provider>
     );
 }
-

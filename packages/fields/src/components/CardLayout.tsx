@@ -14,9 +14,12 @@ interface CardLayoutProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function CardLayout(
-    { types = ['content-top', 'content-bottom', 'content-split'], value = null, className = null, onChange = null },
-) {
+function CardLayout({
+    types = ['content-top', 'content-bottom', 'content-split'],
+    value = null,
+    className = null,
+    onChange = null,
+}) {
     const onButtonLayoutChange = (newVal) => {
         const v = newVal === value ? null : newVal;
 
@@ -50,9 +53,7 @@ function CardLayout(
                     </div>
                 );
             default:
-                return (
-                    <div />
-                );
+                return <div />;
         }
     }, []);
 

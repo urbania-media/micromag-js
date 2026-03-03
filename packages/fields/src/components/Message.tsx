@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import type { FormField, Label, Media, MediaType } from '@micromag/core';
-import { getFileName } from '@micromag/core/utils';
 import { useFieldContext } from '@micromag/core/contexts';
+import { getFileName } from '@micromag/core/utils';
 
 import FieldWithForm from './FieldWithForm';
 
@@ -17,21 +18,21 @@ interface MessageFieldProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-function MessageField(
-    {
-        type = null,
-        value = null,
-        fields = null,
-        noValueLabel = (<FormattedMessage
+function MessageField({
+    type = null,
+    value = null,
+    fields = null,
+    noValueLabel = (
+        <FormattedMessage
             defaultMessage="Edit content..."
             description="Label when no value is provided to Field with form"
-        />),
-        withoutThumbnail = false,
-        onChange = null,
-        closeForm = null,
-        ...props
-    },
-) {
+        />
+    ),
+    withoutThumbnail = false,
+    onChange = null,
+    closeForm = null,
+    ...props
+}) {
     const context = useFieldContext();
     const { options } = context || {};
 

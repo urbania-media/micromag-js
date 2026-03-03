@@ -4,6 +4,7 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 // import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+
 import { Button } from '@micromag/core/components';
 
 interface SettingsButtonProps {

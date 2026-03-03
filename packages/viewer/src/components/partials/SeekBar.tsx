@@ -53,22 +53,20 @@ interface SeekBarProps {
     withSeekHead?: boolean;
 }
 
-function SeekBar(
-    {
-        media = null,
-        playing = false,
-        backgroundColor = null,
-        progressColor = null,
-        onClick = null,
-        onSeek = null,
-        onSeekStart = null,
-        onSeekEnd = null,
-        collapsed = false,
-        focusable = true,
-        className = null,
-        withSeekHead = true,
-    },
-) {
+function SeekBar({
+    media = null,
+    playing = false,
+    backgroundColor = null,
+    progressColor = null,
+    onClick = null,
+    onSeek = null,
+    onSeekStart = null,
+    onSeekEnd = null,
+    collapsed = false,
+    focusable = true,
+    className = null,
+    withSeekHead = true,
+}) {
     const intl = useIntl();
     const progress = useMediaProgress(media, {
         disabled: !playing,

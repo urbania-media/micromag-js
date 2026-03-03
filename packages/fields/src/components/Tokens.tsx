@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading, react/prop-types */
+import classNames from 'classnames';
 import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import AsyncCreatableSelect from 'react-select/async-creatable';
-import classNames from 'classnames';
 
 import { selectTheme } from '../utils/selectTheme';
 
@@ -19,18 +19,16 @@ interface TokensProps {
     className?: string;
 }
 
-function Tokens(
-    {
-        value = null,
-        options = [],
-        loadOptions = null,
-        getOptionLabel = undefined,
-        getOptionValue = undefined,
-        getNewOptionData = undefined,
-        onChange = null,
-        className = null,
-    },
-) {
+function Tokens({
+    value = null,
+    options = [],
+    loadOptions = null,
+    getOptionLabel = undefined,
+    getOptionValue = undefined,
+    getNewOptionData = undefined,
+    onChange = null,
+    className = null,
+}) {
     const filterOptions = useCallback(
         (inputValue) =>
             new Promise((resolve) => {
@@ -68,10 +66,12 @@ function Tokens(
                 }}
                 onChange={onTokenChange}
                 value={value}
-                placeholder={<FormattedMessage
-                    defaultMessage="Add tags..."
-                    description="Dropdown select label"
-                /> }
+                placeholder={
+                    <FormattedMessage
+                        defaultMessage="Add tags..."
+                        description="Dropdown select label"
+                    />
+                }
                 theme={selectTheme}
             />
         </div>

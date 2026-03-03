@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 
 import Button from './Button';
 
@@ -16,17 +16,15 @@ interface ButtonsProps {
     buttonClassName?: string;
 }
 
-function Buttons(
-    {
-        buttons = [],
-        size = null,
-        theme = undefined,
-        renderButton = null,
-        onClickButton = null,
-        buttonClassName = null,
-        className = null,
-    },
-) {
+function Buttons({
+    buttons = [],
+    size = null,
+    theme = undefined,
+    renderButton = null,
+    onClickButton = null,
+    buttonClassName = null,
+    className = null,
+}) {
     return (
         <div
             className={classNames([
@@ -57,7 +55,7 @@ function Buttons(
                             [customClassName]: customClassName !== null,
                         },
                     ]),
-                    onClick: e => {
+                    onClick: (e) => {
                         if (onClick !== null) {
                             onClick(e, button, index);
                         }

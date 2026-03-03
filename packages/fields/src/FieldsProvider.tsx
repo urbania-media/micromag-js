@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import {
-    FIELDS_NAMESPACE,
-    ComponentsProvider,
     FieldsProvider as BaseFieldsProvider,
+    ComponentsProvider,
+    FIELDS_NAMESPACE,
 } from '@micromag/core/contexts';
 
 import * as components from './components/index';

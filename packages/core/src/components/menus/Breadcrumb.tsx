@@ -2,9 +2,11 @@
 import classNames from 'classnames';
 import React from 'react';
 import { Link } from 'wouter';
-import styles from '../../styles/menus/breadcrumb.module.css';
+
 import Button from '../buttons/Button';
 import Label from '../partials/Label';
+
+import styles from '../../styles/menus/breadcrumb.module.css';
 
 interface BreadcrumbProps {
     items?: MenuItem[];
@@ -15,9 +17,14 @@ interface BreadcrumbProps {
     className?: string;
 }
 
-function Breadcrumb(
-    { items = [], theme = null, separator = null, withoutBar = false, noWrap = false, className = null },
-) {
+function Breadcrumb({
+    items = [],
+    theme = null,
+    separator = null,
+    withoutBar = false,
+    noWrap = false,
+    className = null,
+}) {
     return (
         <nav className={className}>
             <ol

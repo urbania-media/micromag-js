@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import isString from 'lodash/isString';
-import React, { useContext, useState, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 
 import type { Visitor } from '../lib';
+
 export const VisitorContext = React.createContext({
     visitor: null,
     setVisitor: () => {},
@@ -47,4 +48,3 @@ export function VisitorProvider({ visitor: providedVisitor = null, children }) {
 
     return <VisitorContext.Provider value={value}>{children}</VisitorContext.Provider>;
 }
-

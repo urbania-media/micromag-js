@@ -2,7 +2,7 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { useForm } from '../../hooks';
@@ -45,36 +45,36 @@ interface FormProps {
     cancelClassName?: string;
 }
 
-function Form(
-    {
-        action,
-        method = 'POST',
-        fields: initialFields = [],
-        initialValue = null,
-        postForm = null,
-        submitButtonLabel = (<FormattedMessage defaultMessage="Submit" description="Submit form button" />),
-        submitButtonLoadingLabel = null,
-        submitButtonTheme = null,
-        cancelButtonTheme = null,
-        buttons = null,
-        children = null,
-        actionsAlign = 'left',
-        withoutActions = false,
-        withoutComplete = false,
-        withoutBackButton = false,
-        onComplete = null,
-        onResponse = null,
-        onMessage = null,
-        onCancel = null,
-        onCancelHref = null,
-        onOpenFieldForm = null,
-        onCloseFieldForm = null,
-        className = null,
-        fieldsClassName = null,
-        actionsClassName = null,
-        cancelClassName = null,
-    },
-) {
+function Form({
+    action,
+    method = 'POST',
+    fields: initialFields = [],
+    initialValue = null,
+    postForm = null,
+    submitButtonLabel = (
+        <FormattedMessage defaultMessage="Submit" description="Submit form button" />
+    ),
+    submitButtonLoadingLabel = null,
+    submitButtonTheme = null,
+    cancelButtonTheme = null,
+    buttons = null,
+    children = null,
+    actionsAlign = 'left',
+    withoutActions = false,
+    withoutComplete = false,
+    withoutBackButton = false,
+    onComplete = null,
+    onResponse = null,
+    onMessage = null,
+    onCancel = null,
+    onCancelHref = null,
+    onOpenFieldForm = null,
+    onCloseFieldForm = null,
+    className = null,
+    fieldsClassName = null,
+    actionsClassName = null,
+    cancelClassName = null,
+}) {
     const [complete, setComplete] = useState(false);
 
     useEffect(() => {

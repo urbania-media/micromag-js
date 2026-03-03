@@ -4,6 +4,7 @@ import { faAlignLeft } from '@fortawesome/free-solid-svg-icons/faAlignLeft';
 import { faAlignRight } from '@fortawesome/free-solid-svg-icons/faAlignRight';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+
 import Radios from './Radios';
 
 interface TextAlignProps {
@@ -12,14 +13,17 @@ interface TextAlignProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function TextAlign(
-    { value = null, options = [
+function TextAlign({
+    value = null,
+    options = [
         { value: 'left', label: <FontAwesomeIcon icon={faAlignLeft} /> },
         { value: 'center', label: <FontAwesomeIcon icon={faAlignCenter} /> },
         { value: 'right', label: <FontAwesomeIcon icon={faAlignRight} /> },
-    ], onChange = null, ...props },
-) {
-    return (<Radios value={value} options={options} onChange={onChange} uncheckable {...props} />);
+    ],
+    onChange = null,
+    ...props
+}) {
+    return <Radios value={value} options={options} onChange={onChange} uncheckable {...props} />;
 }
 
 export default TextAlign;

@@ -28,29 +28,27 @@ interface MediaModalProps {
     buttonsClassName?: string;
 }
 
-function MediaModal(
-    {
-        title = null,
-        value = null,
-        type = null,
-        noValueLabel = (
-            <FormattedMessage
-                defaultMessage="Select a media..."
-                description="Label when no value is provided to Media field"
-            />
-        ),
-        isHorizontal = false,
-        isForm = false,
-        onChange = null,
-        onRequestClose = null,
-        multiple = false,
-        thumbnail = null,
-        thumbnailPath = 'thumbnail_url',
-        className = null,
-        buttonsClassName = null,
-        ...props
-    },
-) {
+function MediaModal({
+    title = null,
+    value = null,
+    type = null,
+    noValueLabel = (
+        <FormattedMessage
+            defaultMessage="Select a media..."
+            description="Label when no value is provided to Media field"
+        />
+    ),
+    isHorizontal = false,
+    isForm = false,
+    onChange = null,
+    onRequestClose = null,
+    multiple = false,
+    thumbnail = null,
+    thumbnailPath = 'thumbnail_url',
+    className = null,
+    buttonsClassName = null,
+    ...props
+}) {
     const [modalOpen, setModalOpen] = useState();
 
     const [mediaFormOpen, setMediaFormOpen] = useState(false);

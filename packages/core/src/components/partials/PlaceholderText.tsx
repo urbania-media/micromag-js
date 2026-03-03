@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
-import isNumber from 'lodash/isNumber';
 import classNames from 'classnames';
+import isNumber from 'lodash/isNumber';
+import React from 'react';
 
 import styles from '../../styles/partials/placeholder-text.module.css';
 
@@ -15,9 +15,15 @@ interface PlaceholderTextProps {
     withInvertedColors?: boolean;
 }
 
-function PlaceholderText(
-    { lines = 1, lineMargin = 1, width = '100%', height = null, fontSize = 16, className = null,     withInvertedColors = true },
-) {
+function PlaceholderText({
+    lines = 1,
+    lineMargin = 1,
+    width = '100%',
+    height = null,
+    fontSize = 16,
+    className = null,
+    withInvertedColors = true,
+}) {
     const lineHeight =
         height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
 
@@ -29,7 +35,7 @@ function PlaceholderText(
                 styles.container,
                 {
                     [className]: className,
-                    [styles.withInvertedColors]: withInvertedColors
+                    [styles.withInvertedColors]: withInvertedColors,
                 },
             ])}
         >

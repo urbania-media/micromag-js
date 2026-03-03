@@ -3,7 +3,16 @@ import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import type { BackgroundElement, BoxStyle, Color, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, TextElement, VisualElement } from '@micromag/core';
+import type {
+    BackgroundElement,
+    BoxStyle,
+    Color,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    TextElement,
+    VisualElement,
+} from '@micromag/core';
 import {
     Close,
     FullscreenIcon,
@@ -67,29 +76,27 @@ interface UrbaniaRecommendationProps {
     className?: string;
 }
 
-function UrbaniaRecommendation(
-    {
-        layout = null,
-        category = null,
-        visual = null,
-        title = null,
-        date = null,
-        location = null,
-        description = null,
-        sponsor = null,
-        spacing = 20,
-        header = null,
-        footer = null,
-        background = null,
-        cardBoxStyle = null,
-        lineColor = null,
-        withoutZoom = false,
-        current = true,
-        active = true,
-        preload = true,
-        className = null,
-    },
-) {
+function UrbaniaRecommendation({
+    layout = null,
+    category = null,
+    visual = null,
+    title = null,
+    date = null,
+    location = null,
+    description = null,
+    sponsor = null,
+    spacing = 20,
+    header = null,
+    footer = null,
+    background = null,
+    cardBoxStyle = null,
+    lineColor = null,
+    withoutZoom = false,
+    current = true,
+    active = true,
+    preload = true,
+    className = null,
+}) {
     const intl = useIntl();
 
     const trackScreenEvent = useTrackScreenEvent();

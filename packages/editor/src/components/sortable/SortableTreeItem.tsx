@@ -18,7 +18,14 @@ interface SortableTreeItemProps {
     depth: number;
     component?: (...args: unknown[]) => void;
     value?: Record<string, unknown>;
-    style?: { width: number; height: number; scaledWidth: number; scaledHeight: number; transform: string; scale: number };
+    style?: {
+        width: number;
+        height: number;
+        scaledWidth: number;
+        scaledHeight: number;
+        transform: string;
+        scale: number;
+    };
     smallScale?: number;
     collapsed?: boolean;
     onCollapse?: (...args: unknown[]) => void;
@@ -27,23 +34,21 @@ interface SortableTreeItemProps {
     isLastChild?: boolean;
 }
 
-function SortableTreeItem(
-    {
-        id,
-        index,
-        depth,
-        component: Component = null,
-        value = null,
-        style: itemStyle = null,
-        smallScale = 0.75,
-        collapsed = false,
-        onCollapse = null,
-        onClickItem = null,
-        childValue = null,
-        isLastChild = false,
-        ...props
-    },
-) {
+function SortableTreeItem({
+    id,
+    index,
+    depth,
+    component: Component = null,
+    value = null,
+    style: itemStyle = null,
+    smallScale = 0.75,
+    collapsed = false,
+    onCollapse = null,
+    onClickItem = null,
+    childValue = null,
+    isLastChild = false,
+    ...props
+}) {
     const {
         attributes,
         isDragging,

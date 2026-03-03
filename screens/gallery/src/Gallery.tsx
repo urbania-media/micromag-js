@@ -4,7 +4,14 @@ import isPlainObject from 'lodash/isPlainObject';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, ImageElement, ImageMedia, TextStyle } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    ImageElement,
+    ImageMedia,
+    TextStyle,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -35,7 +42,23 @@ import layoutProps from './layouts';
 import styles from './gallery.module.css';
 
 interface GalleryScreenProps {
-    layout?: 'two-vertical-equal' | 'two-vertical-top' | 'two-vertical-bottom' | 'three-vertical' | 'one-two' | 'two-one' | 'two-by-two' | 'four-vertical' | 'one-two-one' | 'four-mosaic' | 'two-one-two' | 'one-two-two' | 'two-two-one' | 'two-by-three' | 'one-one-two-two' | 'two-two-one-one';
+    layout?:
+        | 'two-vertical-equal'
+        | 'two-vertical-top'
+        | 'two-vertical-bottom'
+        | 'three-vertical'
+        | 'one-two'
+        | 'two-one'
+        | 'two-by-two'
+        | 'four-vertical'
+        | 'one-two-one'
+        | 'four-mosaic'
+        | 'two-one-two'
+        | 'one-two-two'
+        | 'two-two-one'
+        | 'two-by-three'
+        | 'one-one-two-two'
+        | 'two-two-one-one';
     images?: ImageMedia[] | ImageElement[];
     withCaptions?: boolean;
     imageCaptionStyle?: TextStyle;
@@ -50,23 +73,21 @@ interface GalleryScreenProps {
     className?: string;
 }
 
-function GalleryScreen(
-    {
-        layout = 'four-mosaic',
-        images = [],
-        withCaptions = false,
-        imageCaptionStyle = null,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        active = true,
-        preload = true,
-        spacing: initialSpacing = 20,
-        captionMaxLines = 2,
-        className = null,
-    },
-) {
+function GalleryScreen({
+    layout = 'four-mosaic',
+    images = [],
+    withCaptions = false,
+    imageCaptionStyle = null,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    preload = true,
+    spacing: initialSpacing = 20,
+    captionMaxLines = 2,
+    className = null,
+}) {
     const { width, height, resolution } = useScreenSize();
     const {
         topHeight: viewerTopHeight,

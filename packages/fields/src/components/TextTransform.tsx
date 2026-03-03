@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import React from 'react';
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faAlignLeft, faAlignCenter, faAlignRight } from '@fortawesome/free-solid-svg-icons';
 import Radios from './Radios';
@@ -10,14 +11,17 @@ interface TextTransformProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function TextTransform(
-    { value = null, options = [
+function TextTransform({
+    value = null,
+    options = [
         { value: 'capitalize', label: <strong>Aa</strong> },
         { value: 'uppercase', label: <strong>AA</strong> },
         { value: 'lowercase', label: <strong>aa</strong> },
-    ], onChange = null, ...props },
-) {
-    return (<Radios value={value} options={options} onChange={onChange} uncheckable {...props} />);
+    ],
+    onChange = null,
+    ...props
+}) {
+    return <Radios value={value} options={options} onChange={onChange} uncheckable {...props} />;
 }
 
 TextTransform.isHorizontal = true;

@@ -3,7 +3,14 @@ import classNames from 'classnames';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, TextElement, TextStyle } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    TextElement,
+    TextStyle,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -44,25 +51,23 @@ interface RankingScreenProps {
     className?: string;
 }
 
-function RankingScreen(
-    {
-        layout = 'side',
-        title = null,
-        items = [null],
-        itemTitleStyle = null,
-        itemDescriptionStyle = null,
-        numbersStyle = null,
-        ascending = false,
-        spacing = 20,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        preload = true,
-        type = null,
-        className = null,
-    },
-) {
+function RankingScreen({
+    layout = 'side',
+    title = null,
+    items = [null],
+    itemTitleStyle = null,
+    itemDescriptionStyle = null,
+    numbersStyle = null,
+    ascending = false,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    type = null,
+    className = null,
+}) {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
     const {

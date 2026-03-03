@@ -14,9 +14,12 @@ interface ButtonLayoutProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ButtonLayout(
-    { types = ['label-bottom', 'label-top', 'no-label', 'label-over'], value = null, className = null, onChange = null },
-) {
+function ButtonLayout({
+    types = ['label-bottom', 'label-top', 'no-label', 'label-over'],
+    value = null,
+    className = null,
+    onChange = null,
+}) {
     const onButtonLayoutChange = (newVal) => {
         const v = newVal === value ? null : newVal;
         onChange(v);
@@ -26,31 +29,27 @@ function ButtonLayout(
         switch (type) {
             case 'label-bottom':
                 return (
-                    <div
-                    >
+                    <div>
                         <PlaceholderImage width="1.25em" height="1em" />
                         <PlaceholderText lines={1} lineMargin={1} />
                     </div>
                 );
             case 'label-top':
                 return (
-                    <div
-                    >
+                    <div>
                         <PlaceholderText lines={1} lineMargin={1} />
                         <PlaceholderImage width="1.25em" height="1em" />
                     </div>
                 );
             case 'no-label':
                 return (
-                    <div
-                    >
+                    <div>
                         <PlaceholderImage width="1.5em" height="1.5em" />
                     </div>
                 );
             case 'label-over':
                 return (
-                    <div
-                    >
+                    <div>
                         <PlaceholderImage width="1.5em" height="1.5em" />
                         <PlaceholderText className={styles.placeholderTextOver} lines={1} />
                     </div>

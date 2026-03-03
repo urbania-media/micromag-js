@@ -27,18 +27,16 @@ interface GalleryItemProps {
     onClickRemove?: (...args: unknown[]) => void;
 }
 
-function GalleryItem(
-    {
-        item = null,
-        width = 0,
-        selected = false,
-        withInfoButton = false,
-        className = null,
-        onClick = null,
-        onClickInfo = null,
-        onClickRemove = null,
-    },
-) {
+function GalleryItem({
+    item = null,
+    width = 0,
+    selected = false,
+    withInfoButton = false,
+    className = null,
+    onClick = null,
+    onClickInfo = null,
+    onClickRemove = null,
+}) {
     const { type, thumbnail_url: thumbnail = null, name, size } = item;
     let title = name;
     if (width < 768) {
@@ -101,7 +99,9 @@ function GalleryItem(
                     ) : null}
                     <div className={classNames(['text-truncate', styles.label])}>
                         <small>{title}</small>
-                        {size !== null ? <small className="text-body-secondary ms-1">{size}</small> : null}
+                        {size !== null ? (
+                            <small className="text-body-secondary ms-1">{size}</small>
+                        ) : null}
                     </div>
                 </>
             }

@@ -1,19 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import type { AudioMedia } from '@micromag/core';
+
 import MediaField from './Media';
 
 interface AudioFieldProps {
     value?: AudioMedia;
 }
 
-function AudioField(
-    {
-        value: value = null,
-        ...props
-    },
-) {
+function AudioField({ value: value = null, ...props }) {
     return (
         <MediaField
             noValueLabel={

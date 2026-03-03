@@ -1,17 +1,17 @@
 import {
-    closestCenter,
-    defaultDropAnimation,
     DndContext,
     DragOverlay,
     KeyboardSensor,
     MeasuringStrategy,
     PointerSensor,
+    closestCenter,
+    defaultDropAnimation,
     useSensor,
     useSensors,
 } from '@dnd-kit/core';
-import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { SortableContext, arrayMove, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import classNames from 'classnames';
-import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { sortableTreeKeyboardCoordinates } from '../../lib/keyboardCoordinates';
@@ -19,11 +19,11 @@ import {
     buildTree,
     flattenTree,
     getChildCount,
+    getMaxDepth,
     getProjection,
     removeChildrenOf,
     removeItem,
     setProperty,
-    getMaxDepth,
 } from '../../lib/utilities';
 
 import SortableTreeItem from './SortableTreeItem';
@@ -73,18 +73,16 @@ interface SortableTreeProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function SortableTree(
-    {
-        collapsible = true,
-        items: defaultItems = initialItems,
-        indicator = false,
-        indentationWidth = 30,
-        removable = false,
-        component = null,
-        onClickItem = null,
-        onChange = null,
-    },
-) {
+function SortableTree({
+    collapsible = true,
+    items: defaultItems = initialItems,
+    indicator = false,
+    indentationWidth = 30,
+    removable = false,
+    component = null,
+    onClickItem = null,
+    onChange = null,
+}) {
     const [items, setItems] = useState(() => buildTree(defaultItems));
     const [activeId, setActiveId] = useState(null);
     const [overId, setOverId] = useState(null);

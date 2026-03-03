@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 
 import Card from '../partials/Card';
 import Spinner from '../partials/Spinner';
@@ -14,9 +14,13 @@ interface FormPanelProps {
     className?: string;
 }
 
-function FormPanel(
-    { description = null, loading = false, children = null, className = null, ...props },
-) {
+function FormPanel({
+    description = null,
+    loading = false,
+    children = null,
+    className = null,
+    ...props
+}) {
     return (
         <Card
             className={classNames([

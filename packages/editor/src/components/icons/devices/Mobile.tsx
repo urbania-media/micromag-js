@@ -1,5 +1,6 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import React from 'react';
+
 interface MobileIconProps {
     color?: string;
     className?: string;

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import dayjs from 'dayjs';
 import React, { useMemo } from 'react';
 import { FormattedDate, FormattedTime } from 'react-intl';
-import dayjs from 'dayjs';
 
 interface DateProps {
     date?: string;

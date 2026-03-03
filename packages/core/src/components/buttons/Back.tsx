@@ -1,8 +1,9 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons/faAngleLeft';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React from 'react';
+
 import Button from './Button';
 
 interface BackButtonProps {

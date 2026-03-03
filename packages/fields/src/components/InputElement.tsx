@@ -1,6 +1,8 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
+
 import type { InputElement as InputElementType } from '@micromag/core';
+
 import TextField from './Text';
 import TextareaField from './Textarea';
 

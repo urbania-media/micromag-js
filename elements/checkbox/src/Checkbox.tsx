@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import React from 'react';
 
 import type { TextElement } from '@micromag/core';
+
 import styles from './styles.module.css';
 
 interface CheckboxProps {
@@ -14,9 +15,14 @@ interface CheckboxProps {
     className?: string;
 }
 
-function Checkbox(
-    { option = null, value = null, onChange = null, focusable = true, checkboxStyle = null, className = null },
-) {
+function Checkbox({
+    option = null,
+    value = null,
+    onChange = null,
+    focusable = true,
+    checkboxStyle = null,
+    className = null,
+}) {
     const { body = null } = option || {};
     return (
         <div

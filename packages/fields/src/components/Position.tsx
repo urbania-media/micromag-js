@@ -47,17 +47,15 @@ function Icon({ label }) {
     return null;
 }
 
-function Position(
-    {
-        name = null,
-        value = null,
-        axisOptions: vertical = ['top', 'center', 'bottom'],
-        crossOptions: horizontal = ['left', 'center', 'right'],
-        className = null,
-        buttonClassName = null,
-        onChange = null,
-    },
-) {
+function Position({
+    name = null,
+    value = null,
+    axisOptions: vertical = ['top', 'center', 'bottom'],
+    crossOptions: horizontal = ['left', 'center', 'right'],
+    className = null,
+    buttonClassName = null,
+    onChange = null,
+}) {
     const axisOptions = useMemo(() => getSelectOptions(vertical), [vertical]);
     const crossOptions = useMemo(() => getSelectOptions(horizontal), [horizontal]);
     const { axisAlign = null, crossAlign = null } = value || {};

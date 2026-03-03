@@ -1,7 +1,9 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import type { ObjectFitSize } from '@micromag/core';
+
 import Radios from './Radios';
 
 import styles from '../styles/fit.module.css';
@@ -13,12 +15,15 @@ interface ObjectFitSizeProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ObjectFitSize(
-    { values = ['cover', 'contain', null], value = null, className = null, onChange = null },
-) {
+function ObjectFitSize({
+    values = ['cover', 'contain', null],
+    value = null,
+    className = null,
+    onChange = null,
+}) {
     return (
         <Radios
-            options={values.map(val => ({
+            options={values.map((val) => ({
                 value: val,
                 label: (
                     <div className={classNames([styles.frame, styles[val || 'none']])}>

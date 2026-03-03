@@ -11,6 +11,5 @@ interface FieldContextProviderProps {
 }
 
 export function FieldContextProvider({ context = null, children }) {
-    return (<FieldContext.Provider value={context}>{children}</FieldContext.Provider>);
+    return <FieldContext.Provider value={context}>{children}</FieldContext.Provider>;
 }
-

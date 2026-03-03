@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { pascalCase } from '../../utils';
-import PlaceholderBlock from './PlaceholderBlock';
 
+import { pascalCase } from '../../utils';
+
+import PlaceholderBlock from './PlaceholderBlock';
 
 interface ElementComponentProps {
     name: string;
@@ -13,16 +14,14 @@ interface ElementComponentProps {
     placeholderProps?: Record<string, unknown>;
 }
 
-function ElementComponent(
-    {
-        name,
-        components,
-        props = {},
-        isPlaceholder = false,
-        className = null,
-        placeholderProps = null,
-    },
-) {
+function ElementComponent({
+    name,
+    components,
+    props = {},
+    isPlaceholder = false,
+    className = null,
+    placeholderProps = null,
+}) {
     if (!name) {
         return 'Bad component name';
     }

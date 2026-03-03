@@ -15,7 +15,12 @@ interface ColorPickerFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ColorPickerField({ value = null, disableAlpha = false, className = null, onChange = null }) {
+function ColorPickerField({
+    value = null,
+    disableAlpha = false,
+    className = null,
+    onChange = null,
+}) {
     const getColors = useGetColors();
     const colors = useMemo(
         () => (getColors() || []).map((c) => ({ color: c.color, title: uuid() })),

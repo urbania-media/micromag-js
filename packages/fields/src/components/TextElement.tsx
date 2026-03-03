@@ -2,6 +2,7 @@
 import React, { useCallback } from 'react';
 
 import type { TextElement as TextElementType } from '@micromag/core';
+
 import TextField from './Text';
 import EditorField from './TextEditor';
 import TextareaField from './Textarea';
@@ -15,9 +16,15 @@ interface TextElementProps {
     disabled?: boolean;
 }
 
-function TextElement(
-    { value = null, onChange = null, inline = false, textOnly = false, onFocus = null, disabled = false, ...props },
-) {
+function TextElement({
+    value = null,
+    onChange = null,
+    inline = false,
+    textOnly = false,
+    onFocus = null,
+    disabled = false,
+    ...props
+}) {
     const bodyValue = value !== null ? value.body || null : null;
     const textStyleValue = value !== null ? value.textStyle || null : null;
     const onBodyChange = useCallback(

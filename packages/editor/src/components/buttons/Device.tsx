@@ -1,8 +1,9 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
-import { getComponentFromName } from '@micromag/core/utils';
+import React from 'react';
+
 import { Button } from '@micromag/core/components';
+import { getComponentFromName } from '@micromag/core/utils';
 
 import * as DeviceIcons from '../icons/devices/index';
 

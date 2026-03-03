@@ -23,9 +23,15 @@ interface QuoteProps {
     emptyClassName?: string;
 }
 
-function Quote(
-    { body = null, textStyle = null, linksStyle = null, margin = null, showEmpty = false, className = null, emptyClassName = null },
-) {
+function Quote({
+    body = null,
+    textStyle = null,
+    linksStyle = null,
+    margin = null,
+    showEmpty = false,
+    className = null,
+    emptyClassName = null,
+}) {
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = {};
     let finalLinkStyle = linkStyle !== null ? getStyleFromLink(linkStyle) : null;

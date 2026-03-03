@@ -3,9 +3,9 @@ import classNames from 'classnames';
 import React from 'react';
 
 import { FieldForm } from '@micromag/core/components';
-import { useScreenDefinition, useFormsComponents } from '@micromag/core/contexts';
-import { Fields } from '@micromag/fields';
+import { useFormsComponents, useScreenDefinition } from '@micromag/core/contexts';
 import { getScreenFieldsWithStates } from '@micromag/core/utils';
+import { Fields } from '@micromag/fields';
 
 interface FieldWithContextsProps {
     name?: string;

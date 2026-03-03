@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import type { Label as LabelType } from '@micromag/core';
 import { Label } from '@micromag/core/components';
 

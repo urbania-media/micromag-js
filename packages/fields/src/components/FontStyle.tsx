@@ -4,6 +4,7 @@ import { faItalic } from '@fortawesome/free-solid-svg-icons/faItalic';
 import { faUnderline } from '@fortawesome/free-solid-svg-icons/faUnderline';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useCallback, useMemo } from 'react';
+
 import Checkboxes from './Checkboxes';
 
 interface FontStylesProps {
@@ -12,13 +13,16 @@ interface FontStylesProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function FontStyles(
-    { value = null, options = [
+function FontStyles({
+    value = null,
+    options = [
         { value: 'bold', label: <FontAwesomeIcon icon={faBold} /> },
         { value: 'italic', label: <FontAwesomeIcon icon={faItalic} /> },
         { value: 'underline', label: <FontAwesomeIcon icon={faUnderline} /> },
-    ], onChange = null, ...props },
-) {
+    ],
+    onChange = null,
+    ...props
+}) {
     const styleKeys = useMemo(() => options.map((it) => it.value), [options]);
     const onInputChange = useCallback(
         (newStyleValue) => {

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React from 'react';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import classNames from 'classnames';
 import parseSRT from 'parse-srt';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import type { BoxStyle, ClosedCaptionsMedia, TextStyle } from '@micromag/core';
 import { getSecondsFromTime, getStyleFromBox } from '@micromag/core/utils';
@@ -18,9 +18,14 @@ interface ClosedCaptionsProps {
     className?: string;
 }
 
-function ClosedCaptions(
-    { currentTime = 0, timeOffset = null, media = null, textStyle = null, boxStyle = null, className = null },
-) {
+function ClosedCaptions({
+    currentTime = 0,
+    timeOffset = null,
+    media = null,
+    textStyle = null,
+    boxStyle = null,
+    className = null,
+}) {
     const { url = null } = media || {};
     const [lines, setLines] = useState([]);
     const [lineIndex, setLineIndex] = useState(-1);

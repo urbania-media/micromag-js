@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { loadGoogleMaps } from '@folklore/services';
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+
 import { useGoogleKeys } from './GoogleKeysContext';
 
 export const GoogleMapsClientContext = React.createContext(null);
@@ -50,4 +51,3 @@ export function GoogleMapsClientProvider({ children, locale = 'fr', libraries = 
         </GoogleMapsClientContext.Provider>
     );
 }
-

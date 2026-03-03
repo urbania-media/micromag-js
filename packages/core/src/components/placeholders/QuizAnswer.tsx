@@ -1,9 +1,9 @@
 /* eslint-disable react/destructuring-assignment, react/prop-types */
-import React from 'react';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React from 'react';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 import PlaceholderText from '../partials/PlaceholderText';

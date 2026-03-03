@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useRef, useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo, useRef, useState } from 'react';
+
 import { getDisplayName } from '../utils';
 
 export const ModalsContext = React.createContext({
@@ -79,4 +80,3 @@ export function ModalsProvider({ children, container: initialContainer = null })
     );
     return <ModalsContext.Provider value={value}>{children}</ModalsContext.Provider>;
 }
-

@@ -2,6 +2,7 @@
 import isArray from 'lodash/isArray';
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { ScreenProvider } from '../../packages/core/src/contexts/ScreenContext';
 import { ScreensProvider } from '../../packages/core/src/contexts/ScreensContext';
 import Screen from './Screen';

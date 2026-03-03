@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useMemo } from 'react';
+
 import type { ScreenSize } from '../lib';
+
 export const ScreenSizeContext = React.createContext({
     screen: null,
     screens: [],
@@ -29,4 +31,3 @@ export function ScreenSizeProvider({ size = {}, children }) {
     const currentSize = useMemo(() => size, [nextScreen, nextWidth, nextHeight, nextResolution]);
     return <ScreenSizeContext.Provider value={currentSize}>{children}</ScreenSizeContext.Provider>;
 }
-

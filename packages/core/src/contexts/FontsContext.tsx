@@ -2,9 +2,10 @@
 import { getJSON } from '@folklore/fetch';
 import isObject from 'lodash/isObject';
 import uniqBy from 'lodash/uniqBy';
-import React, { useContext, useMemo, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 
 import type { Font } from '../lib';
+
 import { useGoogleKeys } from './GoogleKeysContext';
 
 export const FontsContext = React.createContext({
@@ -74,9 +75,11 @@ interface FontsProviderProps {
     customFonts?: Font[];
 }
 
-export function FontsProvider(
-    { systemFonts = ['Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana'], customFonts = null, children },
-) {
+export function FontsProvider({
+    systemFonts = ['Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana'],
+    customFonts = null,
+    children,
+}) {
     const {
         systemFonts: previousSystemFonts = null,
         googleFonts: previousGoogleFonts = null,
@@ -111,4 +114,3 @@ export function FontsProvider(
 
     return <FontsContext.Provider value={fonts}>{children}</FontsContext.Provider>;
 }
-

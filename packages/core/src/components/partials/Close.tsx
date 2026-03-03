@@ -7,9 +7,12 @@ interface CloseProps {
     className?: string;
 }
 
-function Close(
-    { stroke = 'currentColor', border = 'rgba(0,0,0,0.67)', fill = '#fff', className = null },
-) {
+function Close({
+    stroke = 'currentColor',
+    border = 'rgba(0,0,0,0.67)',
+    fill = '#fff',
+    className = null,
+}) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +28,7 @@ function Close(
                         d="M374,47.5c11.9,0,21.5,9.6,21.5,21.5s-9.6,21.5-21.5,21.5s-21.5-9.6-21.5-21.5c0,0,0,0,0,0
                         C352.5,57.1,362.1,47.5,374,47.5z"
                     />
-                ): null}
+                ) : null}
                 <path
                     fill={fill}
                     d="M374,50c10.5,0,19,8.5,19,19s-8.5,19-19,19s-19-8.5-19-19S363.5,50,374,50z"

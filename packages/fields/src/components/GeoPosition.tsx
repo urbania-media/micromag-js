@@ -4,13 +4,16 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+
 import type { GeoPosition as GeoPositionType } from '@micromag/core';
 import { useGoogleMapsClient } from '@micromag/core/contexts';
 import Map, { Pin } from '@micromag/element-map';
-import styles from '../styles/geo-position.module.css';
+
 import NumberField from './Number';
+
+import styles from '../styles/geo-position.module.css';
 
 const getFixedCoords = ({ lat, lng }, precision = 4) => ({
     lat: parseFloat(lat.toFixed(precision)),
@@ -25,12 +28,16 @@ interface GeoPositionProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function GeoPosition(
-    { value = null, defaultCenter = {
+function GeoPosition({
+    value = null,
+    defaultCenter = {
         lat: 45.5,
         lng: -73.56,
-    }, defaultZoom = 10, className = null, onChange = null },
-) {
+    },
+    defaultZoom = 10,
+    className = null,
+    onChange = null,
+}) {
     const [address, setAddress] = useState('');
     const [mapReady, setMapReady] = useState(false);
     const [zoom, setZoom] = useState(defaultZoom);

@@ -50,15 +50,22 @@ const imageMedia2 = {
 
 // Basic examples
 export function Default() {
-    return (<RichButton body="Click me" media={imageMedia} visualWidth={60} visualHeight={60} />);
+    return <RichButton body="Click me" media={imageMedia} visualWidth={60} visualHeight={60} />;
 }
 
 export function TextOnly() {
-    return (<RichButton body="Text only button" textStyle={textStyle} buttonStyle={buttonStyle} />);
+    return <RichButton body="Text only button" textStyle={textStyle} buttonStyle={buttonStyle} />;
 }
 
 export function ImageOnly() {
-    return (<RichButton media={imageMedia} visualWidth={80} visualHeight={80} buttonStyle={buttonStyle} />);
+    return (
+        <RichButton
+            media={imageMedia}
+            visualWidth={80}
+            visualHeight={80}
+            buttonStyle={buttonStyle}
+        />
+    );
 }
 
 // Layout variations

@@ -13,17 +13,15 @@ interface PlaceholderBlockProps {
     withInvertedColors?: boolean;
 }
 
-function PlaceholderBlock(
-    {
-        width = '100%',
-        height = '3em',
-        outline = false,
-        className = null,
-        boxClassName = null,
-        withInvertedColors = true,
-        children = null,
-    },
-) {
+function PlaceholderBlock({
+    width = '100%',
+    height = '3em',
+    outline = false,
+    className = null,
+    boxClassName = null,
+    withInvertedColors = true,
+    children = null,
+}) {
     return (
         <div
             className={classNames([

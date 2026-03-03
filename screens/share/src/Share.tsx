@@ -3,7 +3,14 @@ import classNames from 'classnames';
 import React, { useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, BoxStyle, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, TextStyle } from '@micromag/core';
+import type {
+    BackgroundElement,
+    BoxStyle,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    TextStyle,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -44,26 +51,24 @@ interface ShareScreenProps {
     className?: string;
 }
 
-function ShareScreen(
-    {
-        layout = 'top',
-        heading = null,
-        shareUrl = null,
-        options = null,
-        buttonsStyle = null,
-        buttonsTextStyle = null,
-        centered = false,
-        spacing = 20,
-        background = null,
-        header = null,
-        footer = null,
-        id = null,
-        index = null,
-        current = true,
-        active = true,
-        className = null,
-    },
-) {
+function ShareScreen({
+    layout = 'top',
+    heading = null,
+    shareUrl = null,
+    options = null,
+    buttonsStyle = null,
+    buttonsTextStyle = null,
+    centered = false,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    id = null,
+    index = null,
+    current = true,
+    active = true,
+    className = null,
+}) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {

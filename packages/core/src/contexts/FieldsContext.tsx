@@ -2,7 +2,9 @@
 import isString from 'lodash/isString';
 import uniqBy from 'lodash/uniqBy';
 import React, { useContext, useMemo } from 'react';
+
 import { FieldsManager } from '../lib';
+
 import { ComponentsProvider, FIELDS_NAMESPACE } from './ComponentsContext';
 
 export const FieldsContext = React.createContext(null);
@@ -56,4 +58,3 @@ export function FieldsProvider({ fields = null, manager = null, children }) {
         </FieldsContext.Provider>
     );
 }
-

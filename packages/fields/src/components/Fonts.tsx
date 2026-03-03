@@ -2,20 +2,17 @@
 import React from 'react';
 // // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import type { ImageMedia } from '@micromag/core';
-import ItemsField from './Items';
+
 import FontField from './Font';
+import ItemsField from './Items';
 
 interface FontsFieldProps {
     value?: ImageMedia[];
 }
 
-function FontsField(
-    {
-        value: value = null,
-        ...props
-    },
-) {
+function FontsField({ value: value = null, ...props }) {
     return (
         <ItemsField
             noItemLabel={
@@ -25,10 +22,7 @@ function FontsField(
                 />
             }
             addItemLabel={
-                <FormattedMessage
-                    defaultMessage="Add an font file"
-                    description="Button label"
-                />
+                <FormattedMessage defaultMessage="Add an font file" description="Button label" />
             }
             itemComponent={FontField}
             {...props}

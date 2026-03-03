@@ -23,9 +23,8 @@ import { ScreensProvider } from '@micromag/screens';
 import Viewer from './Viewer';
 import ViewerRoutes from './ViewerRoutes';
 
-import '../styles/styles.global.css';
-
 import defaultRoutes from '../data/routes.json';
+import '../styles/styles.global.css';
 
 const emptyComponents = {};
 const defaultLocales = ['fr', 'en'];
@@ -53,29 +52,27 @@ interface ViewerContainerProps {
     children?: (...args: unknown[]) => void;
 }
 
-function ViewerContainer(
-    {
-        story = null,
-        paused = false,
-        muted = true,
-        screenComponents = null,
-        memoryRouter = false,
-        basePath = null,
-        routes = defaultRoutes,
-        withoutRouter = false,
-        googleApiKey = null,
-        visitor = null,
-        locale = 'en',
-        locales = defaultLocales,
-        translations = null,
-        pathWithIndex = false,
-        trackingVariables = null,
-        trackingDisabled = false,
-        trackingPaused = false,
-        settings = null,
-        ...otherProps
-    },
-) {
+function ViewerContainer({
+    story = null,
+    paused = false,
+    muted = true,
+    screenComponents = null,
+    memoryRouter = false,
+    basePath = null,
+    routes = defaultRoutes,
+    withoutRouter = false,
+    googleApiKey = null,
+    visitor = null,
+    locale = 'en',
+    locales = defaultLocales,
+    translations = null,
+    pathWithIndex = false,
+    trackingVariables = null,
+    trackingDisabled = false,
+    trackingPaused = false,
+    settings = null,
+    ...otherProps
+}) {
     const finalTrackingVariables = useMemo(() => {
         if (story === null && trackingVariables === null) {
             return null;

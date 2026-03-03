@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 
 import Label from './Label';
 
@@ -13,9 +13,7 @@ interface EmptyProps {
     className?: string;
 }
 
-function Empty(
-    { children = null, withoutBorder = false, light = false, className = null },
-) {
+function Empty({ children = null, withoutBorder = false, light = false, className = null }) {
     return (
         <div
             className={classNames([

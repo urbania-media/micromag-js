@@ -9,7 +9,15 @@ import shuffle from 'lodash/shuffle';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import type { BackgroundElement, BoxStyle, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, TextElement, TextStyle } from '@micromag/core';
+import type {
+    BackgroundElement,
+    BoxStyle,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    TextElement,
+    TextStyle,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -63,31 +71,29 @@ interface GameSortProps {
     className?: string;
 }
 
-function GameSort(
-    {
-        layout = 'top',
-        heading = null,
-        items: initialItems = null,
-        spacing = 20,
-        itemsLayout = 'label-bottom',
-        itemsBoxStyle = null,
-        itemsTextStyle = null,
-        itemsResultsTextStyle = null,
-        validBoxStyle = null,
-        invalidBoxStyle = null,
-        submitBoxStyle = null,
-        submitTextStyle = null,
-        submitButtonLabel = null,
-        results = null,
-        resultsBoxStyle = null,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        active = true,
-        className = null,
-    },
-) {
+function GameSort({
+    layout = 'top',
+    heading = null,
+    items: initialItems = null,
+    spacing = 20,
+    itemsLayout = 'label-bottom',
+    itemsBoxStyle = null,
+    itemsTextStyle = null,
+    itemsResultsTextStyle = null,
+    validBoxStyle = null,
+    invalidBoxStyle = null,
+    submitBoxStyle = null,
+    submitTextStyle = null,
+    submitButtonLabel = null,
+    results = null,
+    resultsBoxStyle = null,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    className = null,
+}) {
     const intl = useIntl();
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();

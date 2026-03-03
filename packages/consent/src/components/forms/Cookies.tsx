@@ -22,18 +22,16 @@ interface CookiesProps {
     className?: string;
 }
 
-function Cookies(
-    {
-        onChange = null,
-        onSubmit = null,
-        onClose = null,
-        onClickLink = null,
-        urls = null,
-        labels = null,
-        className = null,
-        ...props
-    },
-) {
+function Cookies({
+    onChange = null,
+    onSubmit = null,
+    onClose = null,
+    onClickLink = null,
+    urls = null,
+    labels = null,
+    className = null,
+    ...props
+}) {
     const {
         consent: choices,
         onClickChoice,

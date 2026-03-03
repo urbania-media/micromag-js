@@ -28,27 +28,25 @@ interface TextEditorFieldProps {
     disabled?: boolean;
 }
 
-function TextEditorField(
-    {
-        value = null,
-        size = null,
-        className = null,
-        textStyle = null,
-        editorConfig = {
-            toolbar: ['bold', 'italic', 'superscript', 'highlight', '|', 'link', 'blockquote'],
-            link: {
-                addTargetToExternalLinks: true,
-            },
+function TextEditorField({
+    value = null,
+    size = null,
+    className = null,
+    textStyle = null,
+    editorConfig = {
+        toolbar: ['bold', 'italic', 'superscript', 'highlight', '|', 'link', 'blockquote'],
+        link: {
+            addTargetToExternalLinks: true,
         },
-        inline = false,
-        withHighlightColors = false,
-        withFullEditor = false,
-        withoutLink = false,
-        onChange = null,
-        onFocus = null,
-        disabled = false,
     },
-) {
+    inline = false,
+    withHighlightColors = false,
+    withFullEditor = false,
+    withoutLink = false,
+    onChange = null,
+    onFocus = null,
+    disabled = false,
+}) {
     const { locale } = useIntl();
     const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
     const {

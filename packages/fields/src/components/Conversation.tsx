@@ -1,13 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/jsx-props-no-spreading */
 
-import React from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
+import React from 'react';
+
 import type { Conversation as ConversationType, FormField } from '@micromag/core';
 import { FieldContextProvider } from '@micromag/core/contexts';
 
-import styles from '../styles/conversation.module.css';
 import Fields from './Fields';
+
+import styles from '../styles/conversation.module.css';
 
 interface ConversationProps {
     value?: ConversationType;
@@ -17,9 +19,14 @@ interface ConversationProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function Conversation(
-    { value = null, fields = null, name, className = null, onChange = null, ...props },
-) {
+function Conversation({
+    value = null,
+    fields = null,
+    name,
+    className = null,
+    onChange = null,
+    ...props
+}) {
     const { speakers = null } = value || {};
 
     const speakerOptions = (speakers || []).map(

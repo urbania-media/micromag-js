@@ -1,8 +1,9 @@
 import type { ImageMedia } from '@micromag/core';
+
 import useGoogleMapMarker from './useGoogleMapMarker';
 
-import Pin from './pin.png';
 import PinInactive from './pin-inactive.png';
+import Pin from './pin.png';
 
 interface MarkerProps {
     map?: Record<string, unknown>;
@@ -15,12 +16,19 @@ interface MarkerProps {
     iconSize?: { width?: number; height?: number };
 }
 
-function Marker(
-    { map = null, position, type, events = null, active = true, title = null, image = null, iconSize = {
+function Marker({
+    map = null,
+    position,
+    type,
+    events = null,
+    active = true,
+    title = null,
+    image = null,
+    iconSize = {
         width: 50,
         height: 50,
-    } },
-) {
+    },
+}) {
     useGoogleMapMarker(map, {
         position,
         type,

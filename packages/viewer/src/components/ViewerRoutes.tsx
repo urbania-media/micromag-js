@@ -4,6 +4,7 @@ import React, { useCallback } from 'react';
 import { Route, Switch, useLocation } from 'wouter';
 
 import type { Story } from '@micromag/core';
+
 import Viewer from './Viewer';
 
 interface ViewerRoutesProps {
@@ -13,9 +14,13 @@ interface ViewerRoutesProps {
     onScreenChange?: (...args: unknown[]) => void;
 }
 
-function ViewerRoutes(
-    { story = null, pathWithIndex = false, children = null, onScreenChange = null, ...otherProps },
-) {
+function ViewerRoutes({
+    story = null,
+    pathWithIndex = false,
+    children = null,
+    onScreenChange = null,
+    ...otherProps
+}) {
     const routes = useRoutes();
     const url = useUrlGenerator();
     const [, navigate] = useLocation();

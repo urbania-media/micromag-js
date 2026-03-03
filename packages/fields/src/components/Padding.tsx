@@ -20,15 +20,13 @@ interface PaddingFieldProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-function PaddingField(
-    {
-        value = null,
-        isForm = false,
-        onChange = null,
-        closeForm = null,
-        ...props
-    }: PaddingFieldProps,
-) {
+function PaddingField({
+    value = null,
+    isForm = false,
+    onChange = null,
+    closeForm = null,
+    ...props
+}: PaddingFieldProps) {
     const intl = useIntl();
 
     const {

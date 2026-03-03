@@ -4,6 +4,7 @@ import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 
 import type { Errors } from '@micromag/core';
+
 interface TextareaFieldProps {
     id?: string;
     value?: string | number;
@@ -13,9 +14,14 @@ interface TextareaFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function TextareaField(
-    { id = null, value = null, errors = null, required = false, className = null, onChange = null },
-) {
+function TextareaField({
+    id = null,
+    value = null,
+    errors = null,
+    required = false,
+    className = null,
+    onChange = null,
+}) {
     return (
         <textarea
             id={id}

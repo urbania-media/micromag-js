@@ -1,5 +1,7 @@
 import React, { useCallback, useContext, useMemo } from 'react';
+
 import { ColorsParser } from '../lib';
+
 import { useFieldsManager } from './FieldsContext';
 import { useScreensManager } from './ScreensContext';
 import { useStory } from './StoryContext';
@@ -36,4 +38,3 @@ export function EditorProvider({ children }) {
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     return <EditorContext.Provider value={{ getColors }}>{children}</EditorContext.Provider>;
 }
-

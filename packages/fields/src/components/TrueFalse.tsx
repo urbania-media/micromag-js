@@ -14,8 +14,9 @@ interface TrueFalseProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function TrueFalse(
-    { value = null, options = [
+function TrueFalse({
+    value = null,
+    options = [
         {
             value: true,
             label: (
@@ -43,8 +44,10 @@ function TrueFalse(
                 </>
             ),
         },
-    ], onChange = null, ...props },
-) {
+    ],
+    onChange = null,
+    ...props
+}) {
     const onInputChange = useCallback(
         (newValue) => {
             if (onChange !== null) {

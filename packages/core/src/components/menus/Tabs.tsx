@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 
 import Buttons from '../buttons/Buttons';
 
@@ -16,17 +16,15 @@ interface TabsMenuProps {
     onClickItem?: (...args: unknown[]) => void;
 }
 
-function TabsMenu(
-    {
-        items = [],
-        size = null,
-        theme = 'secondary',
-        renderItemButton = null,
-        buttonClassName = null,
-        className = null,
-        onClickItem = null,
-    },
-) {
+function TabsMenu({
+    items = [],
+    size = null,
+    theme = 'secondary',
+    renderItemButton = null,
+    buttonClassName = null,
+    className = null,
+    onClickItem = null,
+}) {
     return (
         <div
             className={classNames([

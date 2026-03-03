@@ -3,9 +3,11 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons/faAngleUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React, { useState, useCallback } from 'react';
-import styles from '../../styles/partials/collapsable-panel.module.css';
+import React, { useCallback, useState } from 'react';
+
 import Button from '../buttons/Button';
+
+import styles from '../../styles/partials/collapsable-panel.module.css';
 
 interface CollapsablePanelProps {
     title?: React.ReactNode;
@@ -17,17 +19,15 @@ interface CollapsablePanelProps {
     buttonClassName?: string;
 }
 
-function CollapsablePanel(
-    {
-        title = null,
-        children = null,
-        className = null,
-        topClassName = null,
-        contentClassName = null,
-        openedClassName = null,
-        buttonClassName = null,
-    },
-) {
+function CollapsablePanel({
+    title = null,
+    children = null,
+    className = null,
+    topClassName = null,
+    contentClassName = null,
+    openedClassName = null,
+    buttonClassName = null,
+}) {
     const [opened, setOpened] = useState(false);
     const onClick = useCallback(() => setOpened(!opened), [opened, setOpened]);
     return (

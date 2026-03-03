@@ -8,14 +8,7 @@ interface TitleWithBoxScreenProps {
 }
 
 function TitleWithBoxScreen(props) {
-    return (
-        <TitleScreen
-            {...props}
-            withSubtitle
-            withDescription
-            withBox
-        />
-    );
+    return <TitleScreen {...props} withSubtitle withDescription withBox />;
 }
 
 export default TitleWithBoxScreen;

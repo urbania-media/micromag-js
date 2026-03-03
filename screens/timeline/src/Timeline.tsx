@@ -4,7 +4,16 @@ import { isNumber } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { Alternatives, BackgroundElement, Color, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, TextElement, TextStyle } from '@micromag/core';
+import type {
+    Alternatives,
+    BackgroundElement,
+    Color,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    TextElement,
+    TextStyle,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -43,7 +52,11 @@ import Visual from '@micromag/element-visual';
 import styles from './timeline.module.css';
 
 interface TimelineProps {
-    layout?: 'normal' | 'title-description-image' | 'title-image-description' | 'image-title-description';
+    layout?:
+        | 'normal'
+        | 'title-description-image'
+        | 'title-image-description'
+        | 'image-title-description';
     title?: HeadingElement;
     items?: TextElement[];
     itemTitleStyle?: TextStyle;
@@ -66,34 +79,32 @@ interface TimelineProps {
     className?: string;
 }
 
-function Timeline(
-    {
-        layout = 'normal',
-        title = null,
-        items = [null],
-        itemTitleStyle = null,
-        itemDescriptionStyle = null,
-        withoutLine = false,
-        bulletColor = null,
-        lineColor = null,
-        bulletShape = 'circle',
-        bulletFilled = true,
-        illustrated = false,
-        spacing: initialSpacing = null,
-        itemBottomSpacing: initialItemBottomSpacing = null,
-        header = null,
-        footer = null,
-        background = null,
-        alternatives = null,
-        current = true,
-        active = true,
-        preload = true,
-        // transitions,
-        // transitionStagger,
-        type = null,
-        className = null,
-    },
-) {
+function Timeline({
+    layout = 'normal',
+    title = null,
+    items = [null],
+    itemTitleStyle = null,
+    itemDescriptionStyle = null,
+    withoutLine = false,
+    bulletColor = null,
+    lineColor = null,
+    bulletShape = 'circle',
+    bulletFilled = true,
+    illustrated = false,
+    spacing: initialSpacing = null,
+    itemBottomSpacing: initialItemBottomSpacing = null,
+    header = null,
+    footer = null,
+    background = null,
+    alternatives = null,
+    current = true,
+    active = true,
+    preload = true,
+    // transitions,
+    // transitionStagger,
+    type = null,
+    className = null,
+}) {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, imageResolution, resolution } = useScreenSize();
     const {

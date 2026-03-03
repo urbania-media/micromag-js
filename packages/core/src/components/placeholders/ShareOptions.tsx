@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading, react/destructuring-assignment, react/prop-types */
-import React from 'react';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React from 'react';
+
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/share-options.module.css';
@@ -17,7 +18,7 @@ export function Title(props) {
                 styles.container,
                 {
                     [props.className]: props.className !== null,
-                }
+                },
             ])}
             boxClassName={styles.box}
         >

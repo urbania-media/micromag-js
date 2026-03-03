@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 import { Link as ReactLink } from 'wouter';
-
 
 import Label from './Label';
 
@@ -18,9 +17,16 @@ interface LinkProps {
     className?: string;
 }
 
-function Link(
-    { href = '', external = false, children = null, target = '_blank', rel = 'noopener noreferrer', className = null, withoutStyle = false, ...props },
-) {
+function Link({
+    href = '',
+    external = false,
+    children = null,
+    target = '_blank',
+    rel = 'noopener noreferrer',
+    className = null,
+    withoutStyle = false,
+    ...props
+}) {
     return external ? (
         <a
             className={classNames([className, { [styles.withoutStyle]: withoutStyle }])}

@@ -1,6 +1,8 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import React from 'react';
+
 import ElementPortal from '../utils/ElementPortal';
+
 import { useModals } from '../../contexts';
 
 interface ModalPortalProps {

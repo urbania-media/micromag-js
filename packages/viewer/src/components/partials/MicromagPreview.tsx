@@ -15,9 +15,13 @@ interface MicromagPreviewProps {
     className?: string;
 }
 
-function MicromagPreview(
-    { screen = null, title = null, url = null, description = null, className = null },
-) {
+function MicromagPreview({
+    screen = null,
+    title = null,
+    url = null,
+    description = null,
+    className = null,
+}) {
     return (
         <div
             className={classNames([

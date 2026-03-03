@@ -16,7 +16,7 @@ export function Normal() {
 }
 
 export function NormalWithWaveform() {
-    return (<Audio media={audioMedia({ withWaveform: true })} withWave />);
+    return <Audio media={audioMedia({ withWaveform: true })} withWave />;
 }
 
 export function Autoplay() {

@@ -5,7 +5,14 @@ import classNames from 'classnames';
 import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, ImageMedia, TextElement } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    ImageMedia,
+    TextElement,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -51,28 +58,26 @@ interface ImageScreenProps {
     className?: string;
 }
 
-function ImageScreen(
-    {
-        layout = 'normal',
-        image = null,
-        imageFit = null,
-        defaultImageFit = 'cover',
-        title = null,
-        text = null,
-        legend = null,
-        withTitle = false,
-        withText = false,
-        withLegend = false,
-        spacing = 20,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        active = true,
-        preload = true,
-        className = null,
-    },
-) {
+function ImageScreen({
+    layout = 'normal',
+    image = null,
+    imageFit = null,
+    defaultImageFit = 'cover',
+    title = null,
+    text = null,
+    legend = null,
+    withTitle = false,
+    withText = false,
+    withLegend = false,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    preload = true,
+    className = null,
+}) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {

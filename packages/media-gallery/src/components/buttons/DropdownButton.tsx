@@ -1,8 +1,9 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback, useState } from 'react';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons/faCog';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React, { useCallback, useState } from 'react';
+
 import { Button, Label } from '@micromag/core/components';
 
 interface DropdownButtonProps {
@@ -10,12 +11,13 @@ interface DropdownButtonProps {
     className?: string;
 }
 
-function DropdownButton(
-    { dropdownItems = [
+function DropdownButton({
+    dropdownItems = [
         { id: 'rename', label: 'Renommer', onClick: null },
         { id: 'delete', label: 'Supprimer', onClick: null },
-    ], className = null },
-) {
+    ],
+    className = null,
+}) {
     const [opened, setOpened] = useState(false);
 
     const onOpen = useCallback(() => setOpened(!opened));
@@ -60,7 +62,7 @@ function DropdownButton(
                         const itemProps = {
                             className: 'dropdown-item',
                             key: `dropdown-${index}`,
-                            onClick: e => {
+                            onClick: (e) => {
                                 if (itemOnClick !== null) {
                                     itemOnClick(e, it, index);
                                 }

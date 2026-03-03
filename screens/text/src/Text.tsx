@@ -3,7 +3,13 @@ import classNames from 'classnames';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, TextElement } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    TextElement,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -38,21 +44,19 @@ interface TextScreenProps {
     className?: string;
 }
 
-function TextScreen(
-    {
-        layout = 'top',
-        text = null,
-        title = null,
-        withTitle = false,
-        spacing = 20,
-        header = null,
-        footer = null,
-        background = null,
-        current = true,
-        preload = true,
-        className = null,
-    },
-) {
+function TextScreen({
+    layout = 'top',
+    text = null,
+    title = null,
+    withTitle = false,
+    spacing = 20,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    className = null,
+}) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {

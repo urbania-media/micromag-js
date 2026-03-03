@@ -17,7 +17,14 @@ import styles from './sign-modal.module.css';
 interface SignModalProps {
     width?: number;
     height?: number;
-    sign?: { id?: string; label?: TextElement; date?: Message; image?: string; word?: HeadingElement; description?: TextElement };
+    sign?: {
+        id?: string;
+        label?: TextElement;
+        date?: Message;
+        image?: string;
+        word?: HeadingElement;
+        description?: TextElement;
+    };
     subtitle?: HeadingElement;
     current?: boolean;
     transitionDisabled?: boolean;
@@ -26,19 +33,17 @@ interface SignModalProps {
     className?: string;
 }
 
-function SignModal(
-    {
-        width = null,
-        height = null,
-        sign = null,
-        subtitle = null,
-        current = true,
-        transitionDisabled = false,
-        focusable = true,
-        onClick = null,
-        className = null,
-    },
-) {
+function SignModal({
+    width = null,
+    height = null,
+    sign = null,
+    subtitle = null,
+    current = true,
+    transitionDisabled = false,
+    focusable = true,
+    onClick = null,
+    className = null,
+}) {
     // eslint-disable-next-line no-unused-vars
     const { label = null, image = null, date = null, word = null, description = null } = sign || {};
     // const { body: wordBody = null } = word || {};

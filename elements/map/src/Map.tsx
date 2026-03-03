@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useGoogleMapsClient } from '@micromag/core/contexts';
 
@@ -32,31 +32,29 @@ interface MapProps {
     focusable?: boolean;
 }
 
-function Map(
-    {
-        center = null,
-        zoom = null,
-        draggable = true,
-        markers = [],
-        onClickMap = null,
-        onClickMarker = null,
-        className = null,
-        onReady = null,
-        onCenterChanged = null,
-        onBoundsChanged = null,
-        onDrag = null,
-        onDragEnd = null,
-        withoutStyle = false,
-        fitBounds = false,
-        zoomControl = false,
-        mapTypeControl = false,
-        scaleControl = false,
-        streetViewControl = false,
-        rotateControl = false,
-        fullscreenControl = false,
-        focusable = true,
-    },
-) {
+function Map({
+    center = null,
+    zoom = null,
+    draggable = true,
+    markers = [],
+    onClickMap = null,
+    onClickMarker = null,
+    className = null,
+    onReady = null,
+    onCenterChanged = null,
+    onBoundsChanged = null,
+    onDrag = null,
+    onDragEnd = null,
+    withoutStyle = false,
+    fitBounds = false,
+    zoomControl = false,
+    mapTypeControl = false,
+    scaleControl = false,
+    streetViewControl = false,
+    rotateControl = false,
+    fullscreenControl = false,
+    focusable = true,
+}) {
     const client = useGoogleMapsClient();
 
     const onClick = useCallback(

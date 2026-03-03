@@ -25,8 +25,5 @@ export function SettingsProvider({ children, settings = null }) {
         }),
         [settings, previousSettings],
     );
-    return (
-        <SettingsContext.Provider value={value}>{children}</SettingsContext.Provider>
-    );
+    return <SettingsContext.Provider value={value}>{children}</SettingsContext.Provider>;
 }
-

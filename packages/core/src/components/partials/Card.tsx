@@ -3,6 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading, react/no-array-index-key */
 import classNames from 'classnames';
 import React from 'react';
+
 import Label from './Label';
 import Link from './Link';
 
@@ -33,34 +34,32 @@ interface CardProps {
     onClickFooter?: (...args: unknown[]) => void;
 }
 
-function Card(
-    {
-        href = null,
-        header = null,
-        image = null,
-        imageAlt = null,
-        imageOverlay = false,
-        beforeBody = null,
-        title = null,
-        subtitle = null,
-        children = null,
-        afterBody = null,
-        links = null,
-        linksInSameBody = false,
-        footer = null,
-        theme = null,
-        className = null,
-        imageClassName = null,
-        headerClassName = null,
-        titleClassName = null,
-        subtitleClassName = null,
-        bodyClassName = null,
-        footerClassName = null,
-        onClick = null,
-        onClickBody = null,
-        onClickFooter = null,
-    },
-) {
+function Card({
+    href = null,
+    header = null,
+    image = null,
+    imageAlt = null,
+    imageOverlay = false,
+    beforeBody = null,
+    title = null,
+    subtitle = null,
+    children = null,
+    afterBody = null,
+    links = null,
+    linksInSameBody = false,
+    footer = null,
+    theme = null,
+    className = null,
+    imageClassName = null,
+    headerClassName = null,
+    titleClassName = null,
+    subtitleClassName = null,
+    bodyClassName = null,
+    footerClassName = null,
+    onClick = null,
+    onClickBody = null,
+    onClickFooter = null,
+}) {
     const linksElements = (links || []).map(
         ({ label, className: linkClassName = null, ...linkProps }, index) => (
             <Link

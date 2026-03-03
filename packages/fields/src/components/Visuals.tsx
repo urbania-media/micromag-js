@@ -2,7 +2,9 @@
 import React from 'react';
 // // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import type { ImageMedia } from '@micromag/core';
+
 import ItemsField from './Items';
 import VisualField from './Visual';
 
@@ -10,12 +12,7 @@ interface VisualsFieldProps {
     value?: ImageMedia[];
 }
 
-function VisualsField(
-    {
-        value: value = null,
-        ...props
-    },
-) {
+function VisualsField({ value: value = null, ...props }) {
     return (
         <ItemsField
             noItemLabel={

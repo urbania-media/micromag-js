@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import React from 'react';
 
 import type { ViewerTheme } from '@micromag/core';
-import { getStyleFromColor, easings } from '@micromag/core/utils';
+import { easings, getStyleFromColor } from '@micromag/core/utils';
 
 import styles from '../../styles/menus/menu-container.module.css';
 
@@ -14,9 +14,12 @@ interface ViewerMenuContainerProps {
     children?: React.ReactNode;
 }
 
-function ViewerMenuContainer(
-    { className = null, progressSpring = null, theme: viewerTheme = null, children = null },
-) {
+function ViewerMenuContainer({
+    className = null,
+    progressSpring = null,
+    theme: viewerTheme = null,
+    children = null,
+}) {
     const { background = null } = viewerTheme || {};
     const { color: brandBackgroundColor = null } = background || {};
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');

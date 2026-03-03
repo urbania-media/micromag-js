@@ -34,19 +34,17 @@ interface EditorProps {
     className?: string;
 }
 
-function Editor(
-    {
-        value = null,
-        viewerTheme = null,
-        isTheme = false,
-        isCreateOpened = false,
-        deviceScreens = getDeviceScreens(),
-        mobileView: initialMobileView = 'preview',
-        onChange = null,
-        fullscreen = false,
-        className = null,
-    },
-) {
+function Editor({
+    value = null,
+    viewerTheme = null,
+    isTheme = false,
+    isCreateOpened = false,
+    deviceScreens = getDeviceScreens(),
+    mobileView: initialMobileView = 'preview',
+    onChange = null,
+    fullscreen = false,
+    className = null,
+}) {
     const push = useRoutePush();
     const refScreensContainer = useRef(null);
     const { screen: screenId } = useRouteParams({ screenOnly: true });

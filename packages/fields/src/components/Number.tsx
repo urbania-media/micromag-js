@@ -23,23 +23,21 @@ interface NumberFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function NumberField(
-    {
-        name = null,
-        value = null,
-        min = null,
-        max = null,
-        step = 1,
-        floatStep = 0.1,
-        float = false,
-        dataList = null,
-        autoComplete = false,
-        fullWidth = false,
-        placeholder = null,
-        className = null,
-        onChange = null,
-    },
-) {
+function NumberField({
+    name = null,
+    value = null,
+    min = null,
+    max = null,
+    step = 1,
+    floatStep = 0.1,
+    float = false,
+    dataList = null,
+    autoComplete = false,
+    fullWidth = false,
+    placeholder = null,
+    className = null,
+    onChange = null,
+}) {
     const parseValue = useCallback((newValue) =>
         float ? parseFloat(newValue) : parseInt(newValue, 10),
     );

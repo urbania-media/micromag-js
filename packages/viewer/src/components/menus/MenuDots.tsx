@@ -24,22 +24,20 @@ interface ViewerMenuDotsProps {
     className?: string;
 }
 
-function ViewerMenuDots(
-    {
-        direction = 'horizontal',
-        items = [],
-        onClickDot = null,
-        onClickScreensMenu = null,
-        colors = null,
-        closeable = false,
-        buttons = null,
-        withItemClick = false,
-        withoutScreensMenu = false,
-        onClose = null,
-        className = null,
-        ...props
-    },
-) {
+function ViewerMenuDots({
+    direction = 'horizontal',
+    items = [],
+    onClickDot = null,
+    onClickScreensMenu = null,
+    colors = null,
+    closeable = false,
+    buttons = null,
+    withItemClick = false,
+    withoutScreensMenu = false,
+    onClose = null,
+    className = null,
+    ...props
+}) {
     const { primary = 'rgba(255, 255, 255, 1)' } = colors || {};
     const intl = useIntl();
     const currentIndex = items.findIndex(({ current = false }) => current);

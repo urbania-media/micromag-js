@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import React from 'react';
+
 import Select from './Select';
 
 interface TargetFieldProps {
@@ -10,9 +11,13 @@ interface TargetFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function TargetField(
-    { options = ['_blank', 'self'], value = null, isForm = false, className = null, onChange = null },
-) {
+function TargetField({
+    options = ['_blank', 'self'],
+    value = null,
+    isForm = false,
+    className = null,
+    onChange = null,
+}) {
     return isForm ? (
         <div>
             <Select options={options} value={value} className={className} onChange={onChange} />

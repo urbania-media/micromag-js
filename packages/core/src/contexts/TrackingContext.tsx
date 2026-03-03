@@ -41,4 +41,3 @@ export function TrackingProvider({ variables = null, disabled = false, paused = 
 
     return <TrackingContainer tracking={tracking}>{children}</TrackingContainer>;
 }
-

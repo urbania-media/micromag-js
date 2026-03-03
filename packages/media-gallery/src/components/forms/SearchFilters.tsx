@@ -22,9 +22,13 @@ interface SearchFiltersProps {
     className?: string;
 }
 
-function SearchFilters(
-    { filters = null, sections = [], onChange = null, onClose = null, className = null },
-) {
+function SearchFilters({
+    filters = null,
+    sections = [],
+    onChange = null,
+    onClose = null,
+    className = null,
+}) {
     const intl = useIntl();
     const getActive = useCallback((items, sectionFilters) => {
         return items !== null

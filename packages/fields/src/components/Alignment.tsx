@@ -51,18 +51,24 @@ const icons = {
 };
 
 interface AlignmentProps {
-    alignment?: { horizontal?: 'left' | 'right' | 'middle'; vertical?: 'top' | 'bottom' | 'middle' };
+    alignment?: {
+        horizontal?: 'left' | 'right' | 'middle';
+        vertical?: 'top' | 'bottom' | 'middle';
+    };
     value?: { horizontal?: 'left' | 'right' | 'middle'; vertical?: 'top' | 'bottom' | 'middle' };
     className?: string;
     onChange?: (...args: unknown[]) => void;
 }
 
-function Alignment(
-    { alignment = {
+function Alignment({
+    alignment = {
         horizontal: 'middle',
         vertical: 'middle',
-    }, value = null, className = null, onChange = null },
-) {
+    },
+    value = null,
+    className = null,
+    onChange = null,
+}) {
     const onVerticalAlignChange = useCallback(
         (newVal) => {
             const { vertical = null, horizontal = null } = value || {};

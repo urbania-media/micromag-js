@@ -3,7 +3,14 @@ import classNames from 'classnames';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, ImageElementWithCaption, ImageMedia, TextStyle } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    ImageElementWithCaption,
+    ImageMedia,
+    TextStyle,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -48,23 +55,21 @@ interface GalleryFeedScreenProps {
     className?: string;
 }
 
-function GalleryFeedScreen(
-    {
-        layout = 'normal',
-        images = null,
-        withCaptions = false,
-        imageCaptionStyle = null,
-        spacing: initialSpacing = 20,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        active = true,
-        preload = true,
-        type = null,
-        className = null,
-    },
-) {
+function GalleryFeedScreen({
+    layout = 'normal',
+    images = null,
+    withCaptions = false,
+    imageCaptionStyle = null,
+    spacing: initialSpacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    preload = true,
+    type = null,
+    className = null,
+}) {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
     const {

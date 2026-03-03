@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useRef, useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo, useRef, useState } from 'react';
+
 import { getDisplayName } from '../utils';
 
 export const PanelsContext = React.createContext({
@@ -72,4 +73,3 @@ export function PanelsProvider({ children, container: initialContainer = null })
     );
     return <PanelsContext.Provider value={value}>{children}</PanelsContext.Provider>;
 }
-

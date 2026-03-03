@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading, react/destructuring-assignment, react/prop-types */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 
 import PlaceholderText from '../partials/PlaceholderText';
 

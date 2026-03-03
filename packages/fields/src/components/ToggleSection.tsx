@@ -13,9 +13,13 @@ interface ToggleSectionProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ToggleSection(
-    { value = null, toggleField = null, className = null, onChange = null, ...props },
-) {
+function ToggleSection({
+    value = null,
+    toggleField = null,
+    className = null,
+    onChange = null,
+    ...props
+}) {
     const { enabled = false } = value || {};
     const valueEnabled = toggleField !== null ? value?.[toggleField] || false : enabled;
 

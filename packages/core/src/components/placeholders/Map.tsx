@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading, react/destructuring-assignment, react/prop-types */
-import React from 'react';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkerAlt';
 import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkerAlt';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React from 'react';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
@@ -19,13 +19,25 @@ export function Map(props) {
                 styles.container,
                 {
                     [props.className]: props.className !== null,
-                }
+                },
             ])}
         >
-            <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
-            <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
-            <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
-            <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
+            <FontAwesomeIcon
+                icon={props.withImages ? faImage : faMapMarkerAlt}
+                className={styles.icon}
+            />
+            <FontAwesomeIcon
+                icon={props.withImages ? faImage : faMapMarkerAlt}
+                className={styles.icon}
+            />
+            <FontAwesomeIcon
+                icon={props.withImages ? faImage : faMapMarkerAlt}
+                className={styles.icon}
+            />
+            <FontAwesomeIcon
+                icon={props.withImages ? faImage : faMapMarkerAlt}
+                className={styles.icon}
+            />
         </PlaceholderBlock>
     );
 }

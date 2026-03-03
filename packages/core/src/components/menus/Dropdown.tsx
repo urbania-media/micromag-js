@@ -2,7 +2,7 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useRef, useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useDocumentEvent } from '../../hooks';
 
@@ -21,18 +21,16 @@ interface DropdownProps {
     onClickOutside?: (...args: unknown[]) => void;
 }
 
-function Dropdown(
-    {
-        items = [],
-        children = null,
-        visible = false,
-        align = null,
-        className = null,
-        itemClassName = null,
-        onClickItem = null,
-        onClickOutside = null,
-    },
-) {
+function Dropdown({
+    items = [],
+    children = null,
+    visible = false,
+    align = null,
+    className = null,
+    itemClassName = null,
+    onClickItem = null,
+    onClickOutside = null,
+}) {
     const refContainer = useRef(null);
     const [enabled, setEnabled] = useState(visible);
 

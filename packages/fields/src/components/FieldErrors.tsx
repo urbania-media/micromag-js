@@ -1,7 +1,9 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import type { Errors } from '@micromag/core';
+
 import styles from '../styles/field-errors.module.css';
 
 interface FieldErrorsProps {
@@ -19,7 +21,7 @@ function FieldErrors({ errors = null, className = null }) {
                 },
             ])}
         >
-            {errors.map(error => (
+            {errors.map((error) => (
                 <div
                     key={`error-${error}`}
                     className={classNames(['invalid-feedback', styles.error])}

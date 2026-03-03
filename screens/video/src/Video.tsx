@@ -4,7 +4,12 @@ import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, VideoElement } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    VideoElement,
+} from '@micromag/core';
 import { Empty, PlaceholderVideo, ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -48,22 +53,20 @@ interface VideoScreenProps {
     className?: string;
 }
 
-function VideoScreen(
-    {
-        layout = 'middle',
-        video = null,
-        gotoNextScreenOnEnd = false,
-        header = null,
-        footer = null,
-        background = null,
-        current = true,
-        active = true,
-        preload = true,
-        spacing = 20,
-        mediaRef: customMediaRef = null,
-        className = null,
-    },
-) {
+function VideoScreen({
+    layout = 'middle',
+    video = null,
+    gotoNextScreenOnEnd = false,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    active = true,
+    preload = true,
+    spacing = 20,
+    mediaRef: customMediaRef = null,
+    className = null,
+}) {
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height, resolution } = useScreenSize();

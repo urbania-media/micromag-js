@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
-import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React from 'react';
 
 import Number from './Number';
 
@@ -12,9 +12,13 @@ interface NumberWithIconProps {
     className?: string;
 }
 
-function NumberWithIcon(
-    { icon = null, iconRotation = 0, isHorizontal = false, className = null, ...props },
-) {
+function NumberWithIcon({
+    icon = null,
+    iconRotation = 0,
+    isHorizontal = false,
+    className = null,
+    ...props
+}) {
     return (
         <div
             className={classNames([
@@ -26,7 +30,10 @@ function NumberWithIcon(
                 },
             ])}
         >
-            <span className="me-2" style={ iconRotation !== 0 ? { transform: `rotate(${iconRotation}deg)` } : null }>
+            <span
+                className="me-2"
+                style={iconRotation !== 0 ? { transform: `rotate(${iconRotation}deg)` } : null}
+            >
                 <FontAwesomeIcon icon={icon} />
             </span>
             <Number {...props} />

@@ -3,18 +3,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { ImageMedia } from '@micromag/core';
+
 import MediaField from './Media';
 
 interface ImageFieldProps {
     value?: ImageMedia;
 }
 
-function ImageField(
-    {
-        value: value = null,
-        ...props
-    },
-) {
+function ImageField({ value: value = null, ...props }) {
     return (
         <MediaField
             noValueLabel={

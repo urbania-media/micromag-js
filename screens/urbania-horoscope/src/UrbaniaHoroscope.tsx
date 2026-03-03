@@ -5,7 +5,13 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 // import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import type { AuthorElement, BackgroundElement, Button, HeadingElement, TextElement } from '@micromag/core';
+import type {
+    AuthorElement,
+    BackgroundElement,
+    Button,
+    HeadingElement,
+    TextElement,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -31,9 +37,8 @@ import signsList from './data/signs';
 import SignCard from './partials/SignCard';
 import SignModal from './partials/SignModal';
 
-import styles from './urbania-horoscope.module.css';
-
 import Astrologie from './images/astrologie-text.svg';
+import styles from './urbania-horoscope.module.css';
 
 const stopDragEventsPropagation = {
     onTouchMove: (e) => e.stopPropagation(),
@@ -60,7 +65,12 @@ const mouseBlocker = {
 
 interface UrbaniaHoroscopeProps {
     defaultSigns?: { id?: string; label?: TextElement }[];
-    signs?: { id?: string; label?: TextElement; word?: HeadingElement; description?: TextElement }[];
+    signs?: {
+        id?: string;
+        label?: TextElement;
+        word?: HeadingElement;
+        description?: TextElement;
+    }[];
     title?: HeadingElement;
     description?: TextElement;
     author?: AuthorElement;
@@ -75,24 +85,22 @@ interface UrbaniaHoroscopeProps {
     className?: string;
 }
 
-function UrbaniaHoroscope(
-    {
-        defaultSigns = signsList,
-        signs: signsValue = null,
-        title = null,
-        description = null,
-        author = null,
-        button = null,
-        signSubtitle = null,
-        spacing = 20,
-        background = null,
-        popupBackground = null,
-        current = true,
-        preload = true,
-        type = 'horoscope',
-        className = null,
-    },
-) {
+function UrbaniaHoroscope({
+    defaultSigns = signsList,
+    signs: signsValue = null,
+    title = null,
+    description = null,
+    author = null,
+    button = null,
+    signSubtitle = null,
+    spacing = 20,
+    background = null,
+    popupBackground = null,
+    current = true,
+    preload = true,
+    type = 'horoscope',
+    className = null,
+}) {
     const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
     const { enableInteraction, disableInteraction } = useViewerInteraction();

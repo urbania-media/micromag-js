@@ -2,7 +2,11 @@
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 
-import type { ConversationMessage as ConversationMessageType, Speaker, TextStyle } from '@micromag/core';
+import type {
+    ConversationMessage as ConversationMessageType,
+    Speaker,
+    TextStyle,
+} from '@micromag/core';
 import { getStyleFromColor } from '@micromag/core/utils';
 // import { Label } from '@micromag/core/components';
 import Text from '@micromag/element-text';
@@ -32,27 +36,25 @@ interface ConversationMessageProps {
     audioEventsChannelName?: string;
 }
 
-function ConversationMessage(
-    {
-        message = null,
-        messageId = null,
-        previousMessage = null,
-        nextMessage = null,
-        nextAudioMessageId = null,
-        nextMessageState = null,
-        currentSpeaker = null,
-        conversationTiming = null,
-        typingTiming = null,
-        onChange = null,
-        withAnimation = false,
-        active = false,
-        isPlaying = false,
-        messageStyle = null,
-        speakerStyle = null,
-        className = null,
-        audioEventsChannelName = null,
-    },
-) {
+function ConversationMessage({
+    message = null,
+    messageId = null,
+    previousMessage = null,
+    nextMessage = null,
+    nextAudioMessageId = null,
+    nextMessageState = null,
+    currentSpeaker = null,
+    conversationTiming = null,
+    typingTiming = null,
+    onChange = null,
+    withAnimation = false,
+    active = false,
+    isPlaying = false,
+    messageStyle = null,
+    speakerStyle = null,
+    className = null,
+    audioEventsChannelName = null,
+}) {
     const { message: messageBody, image = null, audio, putAudioBeforeText } = message || {};
     const {
         avatar = null,

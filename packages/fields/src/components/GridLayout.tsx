@@ -1,9 +1,10 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
-import Grid from '@micromag/element-grid';
+import React from 'react';
+
 import type { GridLayout as GridLayoutType } from '@micromag/core';
 import { getGridLayoutName } from '@micromag/core/utils';
+import Grid from '@micromag/element-grid';
 
 import Radios from './Radios';
 
@@ -19,13 +20,15 @@ interface GridLayoutProps {
 function GridLayout({ grids = [], value = null, className = null, onChange = null }) {
     return (
         <Radios
-            options={grids.map(layout => ({
+            options={grids.map((layout) => ({
                 value: layout,
-                label: <Grid layout={layout} className={styles.grid} columnClassName={styles.column} />,
+                label: (
+                    <Grid layout={layout} className={styles.grid} columnClassName={styles.column} />
+                ),
             }))}
             value={
                 value !== null
-                    ? grids.find(it => getGridLayoutName(it) === getGridLayoutName(value)) || null
+                    ? grids.find((it) => getGridLayoutName(it) === getGridLayoutName(value)) || null
                     : null
             }
             className={classNames([

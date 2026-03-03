@@ -33,15 +33,13 @@ interface KeypadLayoutFormProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-function KeypadLayoutForm(
-    {
-        value = null,
-        isForm = null,
-        onChange = null,
-        closeForm = null,
-        ...props
-    },
-) {
+function KeypadLayoutForm({
+    value = null,
+    isForm = null,
+    onChange = null,
+    closeForm = null,
+    ...props
+}) {
     const intl = useIntl();
     const { columnAlign = null, columns = null, spacing = null } = value || {};
     const finalSpacingPreview = Math.max(0, Math.min(4, spacing));

@@ -2,11 +2,13 @@
 import classNames from 'classnames';
 import React from /* useCallback */
 'react';
+
 // import { useIntl, FormattedMessage } from 'react-intl';
 import type { Component } from '@micromag/core';
 import { useScreenDefinition } from '@micromag/core/contexts';
 // import { Button, CollapsablePanel } from '@micromag/core/components';
 import { Fields } from '@micromag/fields';
+
 import styles from '../../styles/forms/screen.module.css';
 
 interface ScreenFormProps {
@@ -17,16 +19,14 @@ interface ScreenFormProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ScreenForm(
-    {
-        value = null,
-        className = null,
-        gotoFieldForm,
-        closeFieldForm,
-        onChange = null,
-        // onClickDelete,
-    },
-) {
+function ScreenForm({
+    value = null,
+    className = null,
+    gotoFieldForm,
+    closeFieldForm,
+    onChange = null,
+    // onClickDelete,
+}) {
     const { fields = [] } = useScreenDefinition();
     // const intl = useIntl();
     // const finalOnClickDelete = useCallback(() => {

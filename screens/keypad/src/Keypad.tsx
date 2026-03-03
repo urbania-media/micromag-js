@@ -6,7 +6,16 @@ import isString from 'lodash/isString';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, BoxStyle, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, TextElement, TextStyle, VisualElement } from '@micromag/core';
+import type {
+    BackgroundElement,
+    BoxStyle,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    TextElement,
+    TextStyle,
+    VisualElement,
+} from '@micromag/core';
 import { Close, ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -65,15 +74,44 @@ const placeholderPopupBoxStyles = {
 };
 
 interface KeypadScreenProps {
-    items?: { id?: string; heading?: HeadingElement; description?: TextElement; visual?: VisualElement; boxStyle?: BoxStyle }[];
+    items?: {
+        id?: string;
+        heading?: HeadingElement;
+        description?: TextElement;
+        visual?: VisualElement;
+        boxStyle?: BoxStyle;
+    }[];
     title?: HeadingElement;
     subtitle?: TextElement;
     layout?: 'top' | 'middle' | 'bottom';
     spacing?: number;
-    keypadSettings?: { layout?: { columnAlign?: 'left' | 'right' | 'middle'; columns?: number; spacing?: number; withSquareItems?: boolean } };
-    keypadLayout?: { columnAlign?: 'left' | 'right' | 'middle'; columns?: number; spacing?: number; withSquareItems?: boolean };
-    buttonStyles?: { layout?: string; textStyle?: TextStyle; boxStyle?: BoxStyle; fillImage?: boolean; visualWidth?: number | string };
-    popupStyles?: { layout?: 'content-top' | 'content-split' | 'content-bottom'; headingTextStyle?: TextStyle; contentTextStyle?: TextStyle; boxStyle?: BoxStyle };
+    keypadSettings?: {
+        layout?: {
+            columnAlign?: 'left' | 'right' | 'middle';
+            columns?: number;
+            spacing?: number;
+            withSquareItems?: boolean;
+        };
+    };
+    keypadLayout?: {
+        columnAlign?: 'left' | 'right' | 'middle';
+        columns?: number;
+        spacing?: number;
+        withSquareItems?: boolean;
+    };
+    buttonStyles?: {
+        layout?: string;
+        textStyle?: TextStyle;
+        boxStyle?: BoxStyle;
+        fillImage?: boolean;
+        visualWidth?: number | string;
+    };
+    popupStyles?: {
+        layout?: 'content-top' | 'content-split' | 'content-bottom';
+        headingTextStyle?: TextStyle;
+        contentTextStyle?: TextStyle;
+        boxStyle?: BoxStyle;
+    };
     header?: HeaderConfig;
     footer?: FooterConfig;
     background?: BackgroundElement;
@@ -83,25 +121,23 @@ interface KeypadScreenProps {
     className?: string;
 }
 
-function KeypadScreen(
-    {
-        items = null,
-        title = null,
-        subtitle = null,
-        layout = null,
-        spacing = 20,
-        keypadLayout = null,
-        buttonStyles = null,
-        popupStyles = null,
-        header = null,
-        footer = null,
-        background = null,
-        current = true,
-        preload = true,
-        withoutCloseButton = false,
-        className = null,
-    },
-) {
+function KeypadScreen({
+    items = null,
+    title = null,
+    subtitle = null,
+    layout = null,
+    spacing = 20,
+    keypadLayout = null,
+    buttonStyles = null,
+    popupStyles = null,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    withoutCloseButton = false,
+    className = null,
+}) {
     const containerRef = useRef(null);
     const popupInnerRef = useRef(null);
 

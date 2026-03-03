@@ -5,7 +5,17 @@ import classNames from 'classnames';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BoxStyle, ButtonLayout, Color, ImageElement, QuizAnswer, TextElement, TextStyle, Transitions as TransitionsConfig, VisualElement } from '@micromag/core';
+import type {
+    BoxStyle,
+    ButtonLayout,
+    Color,
+    ImageElement,
+    QuizAnswer,
+    TextElement,
+    TextStyle,
+    Transitions as TransitionsConfig,
+    VisualElement,
+} from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
@@ -56,45 +66,43 @@ interface QuestionProps {
     style?: Record<string, string | number>;
 }
 
-function Question(
-    {
-        question = null,
-        answers = null,
-        keypadLayout = null,
-        result = null,
-        resultImage = null,
-        index = null,
-        totalCount = null,
-        answeredIndex = null,
-        buttonsLayout = null,
-        buttonsStyle = null,
-        inactiveButtonsStyle = null,
-        buttonsTextStyle = null,
-        inactiveButtonsTextStyle = null,
-        questionsHeadingStyle = null,
-        feedbackTextStyle = null,
-        numbersTextStyle = null,
-        goodAnswerColor = null,
-        badAnswerColor = null,
-        focusable = false,
-        animated = false,
-        showInstantAnswer = false,
-        withResult = false,
-        withoutGoodAnswer = false,
-        withoutTrueFalse = false,
-        withoutIndex = false,
-        layout = null,
-        transitions = null,
-        transitionPlaying = false,
-        transitionStagger = 100,
-        transitionDisabled = false,
-        onAnswerClick = null,
-        onAnswerTransitionEnd = null,
-        withoutCollapse = false,
-        className = null,
-        style = null,
-    },
-) {
+function Question({
+    question = null,
+    answers = null,
+    keypadLayout = null,
+    result = null,
+    resultImage = null,
+    index = null,
+    totalCount = null,
+    answeredIndex = null,
+    buttonsLayout = null,
+    buttonsStyle = null,
+    inactiveButtonsStyle = null,
+    buttonsTextStyle = null,
+    inactiveButtonsTextStyle = null,
+    questionsHeadingStyle = null,
+    feedbackTextStyle = null,
+    numbersTextStyle = null,
+    goodAnswerColor = null,
+    badAnswerColor = null,
+    focusable = false,
+    animated = false,
+    showInstantAnswer = false,
+    withResult = false,
+    withoutGoodAnswer = false,
+    withoutTrueFalse = false,
+    withoutIndex = false,
+    layout = null,
+    transitions = null,
+    transitionPlaying = false,
+    transitionStagger = 100,
+    transitionDisabled = false,
+    onAnswerClick = null,
+    onAnswerTransitionEnd = null,
+    withoutCollapse = false,
+    className = null,
+    style = null,
+}) {
     const { isPlaceholder } = useScreenRenderContext();
 
     const isSplitted = layout === 'split';

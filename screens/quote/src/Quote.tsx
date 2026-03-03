@@ -3,7 +3,12 @@ import classNames from 'classnames';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, TextElement } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    TextElement,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -39,20 +44,18 @@ interface QuoteScreenProps {
     className?: string;
 }
 
-function QuoteScreen(
-    {
-        layout = 'top',
-        quote = null,
-        author = null,
-        spacing = 20,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        preload = true,
-        className = null,
-    },
-) {
+function QuoteScreen({
+    layout = 'top',
+    quote = null,
+    author = null,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    className = null,
+}) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {

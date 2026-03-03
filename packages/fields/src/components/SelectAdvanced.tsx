@@ -1,10 +1,12 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isEqual from 'lodash/isEqual';
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import Select from 'react-select';
+
 import type { SelectOption } from '@micromag/core';
+
 import getSelectOptions from '../utils/getSelectOptions';
 import { selectTheme } from '../utils/selectTheme';
 
@@ -18,18 +20,16 @@ interface SelectAdvancedFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function SelectAdvancedField(
-    {
-        name = null,
-        value = null,
-        options = [],
-        withoutReset = false,
-        disabled = false,
-        className = null,
-        onChange = null,
-        ...props
-    },
-) {
+function SelectAdvancedField({
+    name = null,
+    value = null,
+    options = [],
+    withoutReset = false,
+    disabled = false,
+    className = null,
+    onChange = null,
+    ...props
+}) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     const intl = useIntl();
     const translatedOptions = useMemo(() =>

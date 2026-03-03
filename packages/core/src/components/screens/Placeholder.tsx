@@ -2,7 +2,6 @@
 import classNames from 'classnames';
 import React from 'react';
 
-
 import Screen from './Screen';
 import ScreenSizer from './ScreenSizer';
 
@@ -18,18 +17,16 @@ interface ScreenPlaceholderProps {
     className?: string;
 }
 
-function ScreenPlaceholder(
-    {
-        screen,
-        layout = undefined,
-        screenWidth = 100,
-        screenHeight = 150,
-        screenState = null,
-        withSize = false,
-        className = null,
-        ...props
-    },
-) {
+function ScreenPlaceholder({
+    screen,
+    layout = undefined,
+    screenWidth = 100,
+    screenHeight = 150,
+    screenState = null,
+    withSize = false,
+    className = null,
+    ...props
+}) {
     const screenElement = (
         <Screen
             screen={screen}

@@ -36,10 +36,9 @@ import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 
-import styles from './urbania-trivia.module.css';
-
 import AnimeLinesGrey from './images/anime-lines-grey.svg';
 import AnimeLines from './images/anime-lines.svg';
+import styles from './urbania-trivia.module.css';
 
 const defaultBackground = {
     image: {
@@ -75,21 +74,19 @@ interface UrbaniaTriviaProps {
     className?: string;
 }
 
-function UrbaniaTrivia(
-    {
-        layout = 'full',
-        title = null,
-        video = null,
-        gotoNextScreenOnEnd = false,
-        background = null,
-        current = true,
-        preload = true,
-        spacing = 20,
-        padding = 20,
-        mediaRef: customMediaRef = null,
-        className = null,
-    },
-) {
+function UrbaniaTrivia({
+    layout = 'full',
+    title = null,
+    video = null,
+    gotoNextScreenOnEnd = false,
+    background = null,
+    current = true,
+    preload = true,
+    spacing = 20,
+    padding = 20,
+    mediaRef: customMediaRef = null,
+    className = null,
+}) {
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height, resolution } = useScreenSize();
@@ -409,7 +406,9 @@ function UrbaniaTrivia(
                                         <Video
                                             {...finalVideo}
                                             mediaRef={mediaRef}
-                                            paused={!current || !playing || (!isCurrentMedia && isView)}
+                                            paused={
+                                                !current || !playing || (!isCurrentMedia && isView)
+                                            }
                                             muted={muted}
                                             width={resizedVideoWidth}
                                             height={resizedVideoHeight}

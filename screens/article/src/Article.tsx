@@ -4,7 +4,13 @@ import dayjs from 'dayjs';
 import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, ImageMedia, Text } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    ImageMedia,
+    Text,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -54,26 +60,24 @@ interface ArticleScreenProps {
     className?: string;
 }
 
-function ArticleScreen(
-    {
-        // layout,
-        image = null,
-        title = null,
-        surtitle = null,
-        date = null,
-        author = null,
-        subtitle = null,
-        text = null,
-        spacing = 20,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        preload = true,
-        type = null,
-        className = null,
-    },
-) {
+function ArticleScreen({
+    // layout,
+    image = null,
+    title = null,
+    surtitle = null,
+    date = null,
+    author = null,
+    subtitle = null,
+    text = null,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    type = null,
+    className = null,
+}) {
     const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();

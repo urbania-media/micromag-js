@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import React, { useCallback } from 'react';
 
 import type { Component, FormField } from '@micromag/core';
-import { useFieldsManager, useFieldComponent } from '@micromag/core/contexts';
+import { useFieldComponent, useFieldsManager } from '@micromag/core/contexts';
 
 import styles from '../../styles/forms/settings.module.css';
 
@@ -17,17 +17,15 @@ interface SettingsFormProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function SettingsForm(
-    {
-        name = null,
-        field = null,
-        value = null,
-        className = null,
-        gotoFieldForm,
-        closeFieldForm,
-        onChange = null,
-    },
-) {
+function SettingsForm({
+    name = null,
+    field = null,
+    value = null,
+    className = null,
+    gotoFieldForm,
+    closeFieldForm,
+    onChange = null,
+}) {
     if (field === null) return false;
 
     const { type = null, fieldsProps = null } = field || {};

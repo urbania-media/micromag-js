@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import React, { useMemo, useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import InputGroup from './InputGroup';
 import TextField from './Text';
@@ -24,9 +24,12 @@ interface UrlFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function UrlField(
-    { schemes = ['https://', 'http://'], value = null, className = null, onChange = null },
-) {
+function UrlField({
+    schemes = ['https://', 'http://'],
+    value = null,
+    className = null,
+    onChange = null,
+}) {
     const empty = isEmpty(value);
 
     const [open, setOpen] = useState(false);

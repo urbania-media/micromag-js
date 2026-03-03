@@ -26,19 +26,17 @@ interface TextModalProps {
     className?: string;
 }
 
-function TextModal(
-    {
-        title = null,
-        value = null,
-        editorConfig = null,
-        inline = false,
-        withHighlightColors = false,
-        className = null,
-        onRequestClose = null,
-        onChange = null,
-        ...props
-    },
-) {
+function TextModal({
+    title = null,
+    value = null,
+    editorConfig = null,
+    inline = false,
+    withHighlightColors = false,
+    className = null,
+    onRequestClose = null,
+    onChange = null,
+    ...props
+}) {
     const [modalOpen, setModalOpen] = useState();
 
     const { locale } = useIntl();

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useRef, useEffect } from 'react';
 import classNames from 'classnames';
+import React, { useEffect, useRef } from 'react';
 
 import { withModals } from '../../contexts';
 

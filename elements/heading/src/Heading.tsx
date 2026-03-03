@@ -25,18 +25,16 @@ interface HeadingProps {
     headingRef?: Record<string, unknown>;
 }
 
-function Heading(
-    {
-        size = 1,
-        body = null,
-        textStyle = null,
-        linksStyle = null,
-        margin = null,
-        withoutNonBreakingSpaces = false,
-        className = null,
-        headingRef = null,
-    },
-) {
+function Heading({
+    size = 1,
+    body = null,
+    textStyle = null,
+    linksStyle = null,
+    margin = null,
+    withoutNonBreakingSpaces = false,
+    className = null,
+    headingRef = null,
+}) {
     const HeadingComponent = `h${size}`;
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = null;

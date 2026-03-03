@@ -4,18 +4,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { ImageMedia } from '@micromag/core';
+
 import ItemsField from './Items';
 
 interface VisualsWithCaptionFieldProps {
     value?: ImageMedia[];
 }
 
-function VisualsWithCaptionField(
-    {
-        value: value = null,
-        ...props
-    },
-) {
+function VisualsWithCaptionField({ value: value = null, ...props }) {
     return (
         <ItemsField
             noItemLabel={

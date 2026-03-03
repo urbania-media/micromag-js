@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faAlignLeft, faAlignCenter, faAlignRight } from '@fortawesome/free-solid-svg-icons';
 import TextTransform from './TextTransform';
@@ -10,7 +11,12 @@ interface FontStyleTransformProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function FontStyleTransform({ value = null, transformName = 'transform', onChange = null, ...props }) {
+function FontStyleTransform({
+    value = null,
+    transformName = 'transform',
+    onChange = null,
+    ...props
+}) {
     const transformValue = value !== null ? value[transformName] || null : null;
     const onTransformChange = useCallback(
         (newTransformValue) => {

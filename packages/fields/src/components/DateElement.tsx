@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import React, { useCallback } from 'react';
 
 import type { TextElement } from '@micromag/core';
+
 import styles from '../styles/date.module.css';
 
 interface DateElementProps {
@@ -13,9 +14,13 @@ interface DateElementProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function DateElement(
-    { name = null, value = null, withTime = false, onChange = null, placeholder = null },
-) {
+function DateElement({
+    name = null,
+    value = null,
+    withTime = false,
+    onChange = null,
+    placeholder = null,
+}) {
     const bodyValue = value !== null ? value.body || null : null;
     const onBodyChange = useCallback(
         (e) => {

@@ -3,7 +3,14 @@ import classNames from 'classnames';
 import React, { useCallback, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, ImageElement, ImageMedia, Transitions as TransitionsConfig } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    ImageElement,
+    ImageMedia,
+    Transitions as TransitionsConfig,
+} from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -40,23 +47,21 @@ interface SlideshowScreenProps {
     className?: string;
 }
 
-function SlideshowScreen(
-    {
-        slides = [],
-        withCaptions = false,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        active = true,
-        preload = true,
-        spacing = 20,
-        transitionDelay = 1,
-        captionMaxLines = 2,
-        transitions = null,
-        className = null,
-    },
-) {
+function SlideshowScreen({
+    slides = [],
+    withCaptions = false,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    active = true,
+    preload = true,
+    spacing = 20,
+    transitionDelay = 1,
+    captionMaxLines = 2,
+    transitions = null,
+    className = null,
+}) {
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();

@@ -43,34 +43,32 @@ interface FieldRowProps {
     buttonClassName?: string;
 }
 
-function FieldRow(
-    {
-        label = null,
-        errors = null,
-        help = null,
-        value = null,
-        defaultValue = null,
-        children = null,
-        isSection = false,
-        isHorizontal = false,
-        isListItem = false,
-        isCollapsible = false,
-        withoutLabel = false,
-        withoutCaret = false,
-        withSettings = false,
-        withToggle = false,
-        withForm = false,
-        withValue = false,
-        buttonTheme = null,
-        buttonOutline = false,
-        gotoForm = null,
-        gotoSettings = null,
-        onChange = null,
-        className = null,
-        labelClassName = null,
-        buttonClassName = null,
-    },
-) {
+function FieldRow({
+    label = null,
+    errors = null,
+    help = null,
+    value = null,
+    defaultValue = null,
+    children = null,
+    isSection = false,
+    isHorizontal = false,
+    isListItem = false,
+    isCollapsible = false,
+    withoutLabel = false,
+    withoutCaret = false,
+    withSettings = false,
+    withToggle = false,
+    withForm = false,
+    withValue = false,
+    buttonTheme = null,
+    buttonOutline = false,
+    gotoForm = null,
+    gotoSettings = null,
+    onChange = null,
+    className = null,
+    labelClassName = null,
+    buttonClassName = null,
+}) {
     const withLabel = !withoutLabel && label !== null;
     const isClickable = withForm;
     const [isCollapsed, setIsCollapsed] = useState(isCollapsible);

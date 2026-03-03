@@ -2,7 +2,6 @@
 import classNames from 'classnames';
 import React from 'react';
 
-
 import Label from './Label';
 
 import styles from '../../styles/partials/media.module.css';
@@ -18,18 +17,16 @@ interface MediaProps {
     titleClassName?: string;
 }
 
-function Media(
-    {
-        thumbnail = null,
-        thumbnailAlign = 'top',
-        children = null,
-        title = null,
-        className = null,
-        thumbnailClassName = null,
-        bodyClassName = null,
-        titleClassName = null,
-    },
-) {
+function Media({
+    thumbnail = null,
+    thumbnailAlign = 'top',
+    children = null,
+    title = null,
+    className = null,
+    thumbnailClassName = null,
+    bodyClassName = null,
+    titleClassName = null,
+}) {
     return (
         <div
             className={classNames([

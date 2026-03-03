@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 export const ScreenProgressContext = React.createContext({
     currentTime: 0,
@@ -46,4 +46,3 @@ export function ScreenProgressProvider({ currentTime = 0, duration = 0, children
         <ScreenProgressContext.Provider value={value}>{children}</ScreenProgressContext.Provider>
     );
 }
-

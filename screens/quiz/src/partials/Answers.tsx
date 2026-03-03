@@ -44,33 +44,31 @@ interface AnswersProps {
     className?: string;
 }
 
-function Answers(
-    {
-        items,
-        keypadLayout = null,
-        answeredIndex = null,
-        answersCollapseDelay = 1000,
-        buttonsStyle = null,
-        buttonsLayout = null,
-        inactiveButtonsStyle = null,
-        buttonsTextStyle = null,
-        inactiveButtonsTextStyle = null,
-        goodAnswerColor = null,
-        badAnswerColor = null,
-        showUserAnswer = false,
-        withoutGoodAnswer = false,
-        withoutIcon = false,
-        focusable = false,
-        animated: collapseAnimated = false,
-        collapsed: initialCollapsed = false,
-        onClick = null,
-        onCollapse = null,
-        onCollapsed = null,
-        onTransitionEnd = null,
-        withoutCollapse = false,
-        className = null,
-    },
-) {
+function Answers({
+    items,
+    keypadLayout = null,
+    answeredIndex = null,
+    answersCollapseDelay = 1000,
+    buttonsStyle = null,
+    buttonsLayout = null,
+    inactiveButtonsStyle = null,
+    buttonsTextStyle = null,
+    inactiveButtonsTextStyle = null,
+    goodAnswerColor = null,
+    badAnswerColor = null,
+    showUserAnswer = false,
+    withoutGoodAnswer = false,
+    withoutIcon = false,
+    focusable = false,
+    animated: collapseAnimated = false,
+    collapsed: initialCollapsed = false,
+    onClick = null,
+    onCollapse = null,
+    onCollapsed = null,
+    onTransitionEnd = null,
+    withoutCollapse = false,
+    className = null,
+}) {
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const answered = answeredIndex !== null;
     const { good: hasAnsweredRight = false } = answeredIndex !== null ? items[answeredIndex] : {};

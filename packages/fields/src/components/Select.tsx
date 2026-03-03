@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import React, { useMemo } from 'react';
 
 import type { SelectOption } from '@micromag/core';
+
 import getSelectOptions from '../utils/getSelectOptions';
 
 import styles from '../styles/select.module.css';
@@ -15,9 +16,13 @@ interface SelectFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function SelectField(
-    { value = null, options = [], disabled = false, className = null, onChange = null },
-) {
+function SelectField({
+    value = null,
+    options = [],
+    disabled = false,
+    className = null,
+    onChange = null,
+}) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
         <select

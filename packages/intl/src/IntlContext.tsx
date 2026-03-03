@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import { IntlProvider as BaseIntlProvider, IntlContext } from 'react-intl';
 
 import IntlManager from './IntlManager';
@@ -13,9 +13,9 @@ export const useLocales = () => useContext(LocalesContext);
 export const useOtherLocales = () => {
     const locales = useLocales();
     const { locale } = useContext(IntlContext);
-    const otherLocales = useMemo(() => locales.filter(it => it !== locale), [locales, locale]);
+    const otherLocales = useMemo(() => locales.filter((it) => it !== locale), [locales, locale]);
     return otherLocales;
-}
+};
 
 interface IntlProviderProps {
     intlManager?: IntlManager;
@@ -25,9 +25,13 @@ interface IntlProviderProps {
     children?: React.ReactNode;
 }
 
-export function IntlProvider(
-    { intlManager = defaultManager, locale = null, locales = null, children = null, extraMessages = null },
-) {
+export function IntlProvider({
+    intlManager = defaultManager,
+    locale = null,
+    locales = null,
+    children = null,
+    extraMessages = null,
+}) {
     const previousLocales = useLocales();
     const { locale: previousLocale = null, messages: previousMessages = null } =
         useContext(IntlContext) || {};
@@ -53,8 +57,9 @@ export function IntlProvider(
 
     return (
         <BaseIntlProvider locale={locale} messages={messages} onError={onError}>
-            <LocalesContext.Provider value={locales || previousLocales}>{children}</LocalesContext.Provider>
+            <LocalesContext.Provider value={locales || previousLocales}>
+                {children}
+            </LocalesContext.Provider>
         </BaseIntlProvider>
     );
 }
-

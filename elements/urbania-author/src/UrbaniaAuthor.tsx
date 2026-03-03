@@ -15,7 +15,13 @@ import Avatar from './Avatar';
 import styles from './styles.module.css';
 
 interface UrbaniaAuthorProps {
-    author?: { slug?: string; name?: TextElement; image?: ImageElement; url?: string; collaborator?: TextElement };
+    author?: {
+        slug?: string;
+        name?: TextElement;
+        image?: ImageElement;
+        url?: string;
+        collaborator?: TextElement;
+    };
     withImage?: boolean;
     withoutLink?: boolean;
     withoutPrefix?: boolean;
@@ -28,22 +34,20 @@ interface UrbaniaAuthorProps {
     shouldLoad?: boolean;
 }
 
-function UrbaniaAuthor(
-    {
-        author = null,
-        withImage = true,
-        withoutLink = false,
-        withoutPrefix = false,
-        withoutBackground = false,
-        isSmall = false,
-        linkUnderlineColor = null,
-        className = null,
-        backgroundClassName = null,
-        collaboratorClassName = null,
-        shouldLoad = true,
-        ...otherProps
-    },
-) {
+function UrbaniaAuthor({
+    author = null,
+    withImage = true,
+    withoutLink = false,
+    withoutPrefix = false,
+    withoutBackground = false,
+    isSmall = false,
+    linkUnderlineColor = null,
+    className = null,
+    backgroundClassName = null,
+    collaboratorClassName = null,
+    shouldLoad = true,
+    ...otherProps
+}) {
     const intl = useIntl();
     const { name = null, image = null, url = null, collaborator = null } = author || {};
     const withAvatar = withImage && image !== null;

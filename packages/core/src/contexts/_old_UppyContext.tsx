@@ -125,18 +125,16 @@ interface UppyProviderProps {
     xhr?: string | { endpoint: string };
 }
 
-export function UppyProvider(
-    {
-        children,
-        transport: providedTransport = null,
-        locale: providedLocale = null,
-        sources: providedSources = null,
-        transloadit: providedTransloadit = null,
-        companion: providedCompanion = null,
-        tus: providedTus = null,
-        xhr: providedXhr = null,
-    },
-) {
+export function UppyProvider({
+    children,
+    transport: providedTransport = null,
+    locale: providedLocale = null,
+    sources: providedSources = null,
+    transloadit: providedTransloadit = null,
+    companion: providedCompanion = null,
+    tus: providedTus = null,
+    xhr: providedXhr = null,
+}) {
     const { locale: intlLocale } = useIntl();
 
     const {
@@ -271,4 +269,3 @@ export function UppyProvider(
 
     return <UppyContext.Provider value={value}>{children}</UppyContext.Provider>;
 }
-

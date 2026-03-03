@@ -36,35 +36,33 @@ interface ButtonProps {
     refButton?: (...args: unknown[]) => void | { current?: unknown };
 }
 
-function Button(
-    {
-        type = 'button',
-        theme = null,
-        size = null,
-        href = null,
-        external = false,
-        direct = false,
-        target = '_blank',
-        label = null,
-        children = null,
-        focusable = true,
-        active = false,
-        icon = null,
-        iconPosition = 'inline',
-        disabled = false,
-        loading = false,
-        disableOnLoading = true,
-        withoutTheme = false,
-        asLink = false,
-        ariaLabel = null,
-        onClick = null,
-        className = null,
-        iconClassName = null,
-        labelClassName = null,
-        refButton = null,
-        ...props
-    },
-) {
+function Button({
+    type = 'button',
+    theme = null,
+    size = null,
+    href = null,
+    external = false,
+    direct = false,
+    target = '_blank',
+    label = null,
+    children = null,
+    focusable = true,
+    active = false,
+    icon = null,
+    iconPosition = 'inline',
+    disabled = false,
+    loading = false,
+    disableOnLoading = true,
+    withoutTheme = false,
+    asLink = false,
+    ariaLabel = null,
+    onClick = null,
+    className = null,
+    iconClassName = null,
+    labelClassName = null,
+    refButton = null,
+    ...props
+}) {
     const finalLabel = label || children;
     const text = finalLabel !== null ? <Label>{finalLabel}</Label> : null;
     const hasChildren = label !== null && children !== null;

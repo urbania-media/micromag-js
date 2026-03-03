@@ -19,9 +19,15 @@ interface SearchProps {
     className?: string;
 }
 
-function Search(
-    { value = null, loading = false, onChange = null, onFocus = null, onBlur = null, onClickIcon = null, className = null },
-) {
+function Search({
+    value = null,
+    loading = false,
+    onChange = null,
+    onFocus = null,
+    onBlur = null,
+    onClickIcon = null,
+    className = null,
+}) {
     const intl = useIntl();
     const onSearchChange = useCallback(
         (e) => {

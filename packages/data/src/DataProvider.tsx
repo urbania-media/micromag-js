@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { ApiProvider } from './contexts/ApiContext';
+
 import Api from './lib/Api';
+
+import { ApiProvider } from './contexts/ApiContext';
 
 interface DataProviderProps {
     api?: Api;

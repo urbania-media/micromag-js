@@ -40,19 +40,17 @@ interface EditorContainerProps {
     screenNamespaces?: string[];
 }
 
-function EditorContainer(
-    {
-        value = null,
-        memoryRouter = false,
-        routes = defaultRoutes,
-        basePath = null,
-        uppy = null,
-        googleApiKey = null,
-        googleMapsLibraries = ['places'],
-        screenNamespaces = null,
-        ...props
-    },
-) {
+function EditorContainer({
+    value = null,
+    memoryRouter = false,
+    routes = defaultRoutes,
+    basePath = null,
+    uppy = null,
+    googleApiKey = null,
+    googleMapsLibraries = ['places'],
+    screenNamespaces = null,
+    ...props
+}) {
     const { locale } = useIntl();
 
     const { hook: memoryLocationHook, searchHook: memorySearchHook } = useMemoryRouter();

@@ -4,7 +4,14 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { FormattedMessage } from 'react-intl';
 import { v1 as uuid } from 'uuid';
 
-import type { BackgroundElement, Conversation as ConversationType, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, Transitions as TransitionsConfig } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Conversation as ConversationType,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    Transitions as TransitionsConfig,
+} from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -44,24 +51,22 @@ interface ConversationScreenProps {
     className?: string;
 }
 
-function ConversationScreen(
-    {
-        // layout,
-        title = null,
-        timing: timingMode = 'sequence',
-        readingSpeed = 255,
-        spacing = 20,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        preload = true,
-        type = null,
-        conversation = null,
-        transitions = null,
-        className = null,
-    },
-) {
+function ConversationScreen({
+    // layout,
+    title = null,
+    timing: timingMode = 'sequence',
+    readingSpeed = 255,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    type = null,
+    conversation = null,
+    transitions = null,
+    className = null,
+}) {
     const { width, height, resolution } = useScreenSize();
     const {
         topHeight: viewerTopHeight,

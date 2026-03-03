@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { PlaceholderText, PlaceholderImage } from '@micromag/core/components';
+import { PlaceholderImage, PlaceholderText } from '@micromag/core/components';
 import Keypad from '@micromag/element-keypad';
 
 import Fields from './Fields';

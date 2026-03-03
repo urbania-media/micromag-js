@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 

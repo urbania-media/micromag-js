@@ -20,9 +20,12 @@ interface ScreenTypesProps {
     onClickItem?: (...args: unknown[]) => void;
 }
 
-function ScreenTypes(
-    { screens = null, selectedTypes = null, className = null, onClickItem = null },
-) {
+function ScreenTypes({
+    screens = null,
+    selectedTypes = null,
+    className = null,
+    onClickItem = null,
+}) {
     const intl = useIntl();
     const screensManager = useScreensManager();
     const screenDefinitions = screens || screensManager.getDefinitions();

@@ -9,7 +9,17 @@ import DOMPurify from 'dompurify';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import type { BackgroundElement, ButtonElement, Footer as FooterConfig, Header as HeaderConfig, HeadingElement, InputElement, TextElement, TextStyle, Transitions as TransitionsConfig } from '@micromag/core';
+import type {
+    BackgroundElement,
+    ButtonElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    HeadingElement,
+    InputElement,
+    TextElement,
+    TextStyle,
+    Transitions as TransitionsConfig,
+} from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -52,7 +62,11 @@ interface ContributionScreenProps {
     submit?: TextElement;
     nameStyle?: TextStyle;
     messageStyle?: TextStyle;
-    settings?: { canViewAnswers?: boolean; answerButton?: ButtonElement; contributionButton?: ButtonElement };
+    settings?: {
+        canViewAnswers?: boolean;
+        answerButton?: ButtonElement;
+        contributionButton?: ButtonElement;
+    };
     spacing?: number;
     background?: BackgroundElement;
     header?: HeaderConfig;
@@ -66,30 +80,28 @@ interface ContributionScreenProps {
     className?: string;
 }
 
-function ContributionScreen(
-    {
-        id = null,
-        layout = 'middle',
-        title = null,
-        name = null,
-        message = null,
-        submit = null,
-        nameStyle = null,
-        messageStyle = null,
-        settings = null,
-        spacing = 20,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        preload = true,
-        transitions = null,
-        transitionStagger = 100,
-        resizeTransitionDuration = 750,
-        type = null,
-        className = null,
-    },
-) {
+function ContributionScreen({
+    id = null,
+    layout = 'middle',
+    title = null,
+    name = null,
+    message = null,
+    submit = null,
+    nameStyle = null,
+    messageStyle = null,
+    settings = null,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    transitions = null,
+    transitionStagger = 100,
+    resizeTransitionDuration = 750,
+    type = null,
+    className = null,
+}) {
     const intl = useIntl();
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);

@@ -1,6 +1,8 @@
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import { StackProvider } from '@micromag/element-stack';
+
 import styles from './styles.module.css';
 
 interface LayoutProps {
@@ -15,19 +17,17 @@ interface LayoutProps {
     style?: Record<string, unknown>;
 }
 
-function Layout(
-    {
-        width = null,
-        height = null,
-        horizontalAlign = 'left',
-        verticalAlign = 'top',
-        distribution = null,
-        fullscreen = false,
-        className = null,
-        children = null,
-        style = null,
-    },
-) {
+function Layout({
+    width = null,
+    height = null,
+    horizontalAlign = 'left',
+    verticalAlign = 'top',
+    distribution = null,
+    fullscreen = false,
+    className = null,
+    children = null,
+    style = null,
+}) {
     let justifyContent = null;
     if (distribution !== null) {
         justifyContent = `space-${distribution}`;

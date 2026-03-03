@@ -5,7 +5,6 @@ import React, { Suspense, useCallback, useEffect, useMemo } from 'react';
 
 import { useUppy } from '@panneau/uppy';
 
-
 const DashboardModal = React.lazy(() =>
     import('@uppy/react').then(({ DashboardModal: Component }) => ({ default: Component })),
 );
@@ -18,9 +17,13 @@ interface UploadModalProps {
     onRequestClose?: (...args: unknown[]) => void;
 }
 
-function UploadModal(
-    { type = null, opened = false, sources = ['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive'], onUploaded = null, onRequestClose = null },
-) {
+function UploadModal({
+    type = null,
+    opened = false,
+    sources = ['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive'],
+    onUploaded = null,
+    onRequestClose = null,
+}) {
     const onUppyComplete = useCallback(
         (response) => {
             if (onUploaded !== null) {

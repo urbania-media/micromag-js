@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key */
+import isArray from 'lodash/isArray';
+import isString from 'lodash/isString';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import isString from 'lodash/isString';
-import isArray from 'lodash/isArray';
+
 interface MetaProps {
     title?: string;
     url?: string;
@@ -12,9 +13,14 @@ interface MetaProps {
     children?: React.ReactNode;
 }
 
-function Meta(
-    { title = null, url = null, metadata = null, fullTitle = null, suffix = 'Micromag', children = null },
-) {
+function Meta({
+    title = null,
+    url = null,
+    metadata = null,
+    fullTitle = null,
+    suffix = 'Micromag',
+    children = null,
+}) {
     const {
         canonical = null,
         description = null,

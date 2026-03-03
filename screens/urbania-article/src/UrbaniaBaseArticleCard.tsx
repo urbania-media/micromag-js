@@ -7,7 +7,14 @@ import queryString from 'query-string';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import type { AuthorElement, BackgroundElement, Header as HeaderConfig, HeadingElement, TextElement, VisualElement } from '@micromag/core';
+import type {
+    AuthorElement,
+    BackgroundElement,
+    Header as HeaderConfig,
+    HeadingElement,
+    TextElement,
+    VisualElement,
+} from '@micromag/core';
 import { Empty, PlaceholderText, ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -48,23 +55,21 @@ interface UrbaniaArticleCardProps {
     className?: string;
 }
 
-function UrbaniaArticleCard(
-    {
-        hasArticle = false,
-        url = null,
-        title = null,
-        author = null,
-        text = null,
-        image = null,
-        header = null,
-        background = null,
-        callToAction = null,
-        current = true,
-        preload = true,
-        spacing = 20,
-        className = null,
-    },
-) {
+function UrbaniaArticleCard({
+    hasArticle = false,
+    url = null,
+    title = null,
+    author = null,
+    text = null,
+    image = null,
+    header = null,
+    background = null,
+    callToAction = null,
+    current = true,
+    preload = true,
+    spacing = 20,
+    className = null,
+}) {
     const intl = useIntl();
 
     const finalBackground =
@@ -123,7 +128,10 @@ function UrbaniaArticleCard(
 
     const mediaShouldLoad = current || preload;
 
-    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current && !webviewOpened, true);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(
+        current && !webviewOpened,
+        true,
+    );
     const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
 
     // card animations

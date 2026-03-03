@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
+
 import type { Story, Theme } from '../lib';
+
 export const StoryContext = React.createContext(null);
 
 export const useStoryContext = () => useContext(StoryContext);
@@ -15,6 +17,5 @@ interface StoryProviderProps {
 }
 
 export function StoryProvider({ story = null, children }) {
-    return (<StoryContext.Provider value={story}>{children}</StoryContext.Provider>);
+    return <StoryContext.Provider value={story}>{children}</StoryContext.Provider>;
 }
-

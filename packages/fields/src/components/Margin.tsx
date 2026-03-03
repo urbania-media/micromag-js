@@ -1,12 +1,12 @@
-import React from 'react';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React from 'react';
 
 import Slider from './Slider';
-// import Number from './Number';
 
+// import Number from './Number';
 import styles from '../styles/margin.module.css';
 
 interface MarginFieldProps {
@@ -20,9 +20,16 @@ interface MarginFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function MarginField(
-    { value = null, unit = 'pt', direction = 'top', min = 0, max = 20, marksStep = 5, className = null, onChange = null },
-) {
+function MarginField({
+    value = null,
+    unit = 'pt',
+    direction = 'top',
+    min = 0,
+    max = 20,
+    marksStep = 5,
+    className = null,
+    onChange = null,
+}) {
     return (
         <div
             className={classNames([
@@ -47,7 +54,7 @@ function MarginField(
                 }}
                 withInput
                 unit={unit}
-                onChange={newValue =>
+                onChange={(newValue) =>
                     onChange !== null ? onChange(newValue !== 0 ? newValue : null) : null
                 }
                 className={styles.slider}

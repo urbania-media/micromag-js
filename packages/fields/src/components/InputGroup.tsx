@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading, jsx-a11y/label-has-associated-control */
-import React from 'react';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
+import React from 'react';
 
 import styles from '../styles/input-group.module.css';
 
@@ -13,9 +13,13 @@ interface InputGroupProps {
     className?: string;
 }
 
-function InputGroup(
-    { prepend = null, children = null, append = null, size = null, className = null },
-) {
+function InputGroup({
+    prepend = null,
+    children = null,
+    append = null,
+    size = null,
+    className = null,
+}) {
     return (
         <div
             className={classNames([

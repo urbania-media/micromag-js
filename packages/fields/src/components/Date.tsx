@@ -12,9 +12,14 @@ interface DateFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function DateField(
-    { name = null, value = null, placeholder = null, className = null, withTime = false, onChange = null },
-) {
+function DateField({
+    name = null,
+    value = null,
+    placeholder = null,
+    className = null,
+    withTime = false,
+    onChange = null,
+}) {
     const onInputChange = useCallback(
         (e) => {
             if (onChange !== null) {

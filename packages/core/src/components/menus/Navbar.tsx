@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useState, useCallback } from 'react';
-import styles from '../../styles/menus/navbar.module.css';
+import React, { useCallback, useState } from 'react';
+
 import Button from '../buttons/Button';
 import Link from '../partials/Link';
+
+import styles from '../../styles/menus/navbar.module.css';
 
 interface NavbarProps {
     brand?: React.ReactNode;
@@ -22,24 +24,22 @@ interface NavbarProps {
     collapseClassName?: string;
 }
 
-function Navbar(
-    {
-        brand = null,
-        brandLink = null,
-        breadcrumbs = null,
-        theme = null,
-        size = 'md',
-        compact = false,
-        noWrap = false,
-        withoutCollapse = false,
-        withoutCollapseToggle = false,
-        children = null,
-        className = null,
-        brandClassName = null,
-        breadCrumbsClassName = null,
-        collapseClassName = null,
-    },
-) {
+function Navbar({
+    brand = null,
+    brandLink = null,
+    breadcrumbs = null,
+    theme = null,
+    size = 'md',
+    compact = false,
+    noWrap = false,
+    withoutCollapse = false,
+    withoutCollapseToggle = false,
+    children = null,
+    className = null,
+    brandClassName = null,
+    breadCrumbsClassName = null,
+    collapseClassName = null,
+}) {
     const [menuVisible, setMenuVisible] = useState(false);
     const onClickMenu = useCallback(
         () => setMenuVisible(!menuVisible),

@@ -11,9 +11,7 @@ interface SpinnerProps {
     className?: string;
 }
 
-function Spinner(
-    { animated = true, color = 'currentColor', strokeWidth = 3, className = null },
-) {
+function Spinner({ animated = true, color = 'currentColor', strokeWidth = 3, className = null }) {
     return (
         <svg
             className={classNames([

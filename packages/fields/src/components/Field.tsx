@@ -29,31 +29,29 @@ interface FieldProps {
     fieldClassName?: string;
 }
 
-function Field(
-    {
-        name = null,
-        type = null,
-        component: providedComponent = null,
-        label = null,
-        help = null,
-        errors = null,
-        fields: providedFields = undefined,
-        isHorizontal = null,
-        isSection = false,
-        isListItem = false,
-        withForm: providedWithForm = null,
-        withModal: providedWithModal = null,
-        withToggle: providedWithToggle,
-        value = null,
-        onChange = null,
-        gotoFieldForm = null,
-        closeFieldForm = null,
-        className = null,
-        labelClassName = null,
-        fieldClassName = null,
-        ...props
-    },
-) {
+function Field({
+    name = null,
+    type = null,
+    component: providedComponent = null,
+    label = null,
+    help = null,
+    errors = null,
+    fields: providedFields = undefined,
+    isHorizontal = null,
+    isSection = false,
+    isListItem = false,
+    withForm: providedWithForm = null,
+    withModal: providedWithModal = null,
+    withToggle: providedWithToggle,
+    value = null,
+    onChange = null,
+    gotoFieldForm = null,
+    closeFieldForm = null,
+    className = null,
+    labelClassName = null,
+    fieldClassName = null,
+    ...props
+}) {
     const fieldsManager = useFieldsManager();
     const FieldsComponent = fieldsManager.getComponent('fields');
     const {

@@ -19,18 +19,16 @@ interface ScreenElementProps {
     emptyClassName?: string;
 }
 
-function ScreenElement(
-    {
-        children = null,
-        placeholder = null,
-        empty = null,
-        emptyLabel = null,
-        preview = null,
-        isEmpty = false,
-        placeholderProps = null,
-        emptyClassName = null,
-    },
-) {
+function ScreenElement({
+    children = null,
+    placeholder = null,
+    empty = null,
+    emptyLabel = null,
+    preview = null,
+    isEmpty = false,
+    placeholderProps = null,
+    emptyClassName = null,
+}) {
     const { isPlaceholder, isEdit, isPreview } = useScreenRenderContext();
     if (isPlaceholder) {
         const PlaceholderComponent = isString(placeholder)

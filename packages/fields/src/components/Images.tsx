@@ -2,20 +2,17 @@
 import React from 'react';
 // // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import type { ImageMedia } from '@micromag/core';
-import ItemsField from './Items';
+
 import ImageField from './Image';
+import ItemsField from './Items';
 
 interface ImagesFieldProps {
     value?: ImageMedia[];
 }
 
-function ImagesField(
-    {
-        value: value = null,
-        ...props
-    },
-) {
+function ImagesField({ value: value = null, ...props }) {
     return (
         <ItemsField
             noItemLabel={

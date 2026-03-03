@@ -3,18 +3,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { VideoMedia } from '@micromag/core';
+
 import MediaField from './Media';
 
 interface VideoFieldProps {
     value?: VideoMedia;
 }
 
-function VideoField(
-    {
-        value: value = null,
-        ...props
-    },
-) {
+function VideoField({ value: value = null, ...props }) {
     return (
         <MediaField
             noValueLabel={

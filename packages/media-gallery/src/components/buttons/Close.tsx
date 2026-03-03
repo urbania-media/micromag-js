@@ -1,8 +1,9 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React from 'react';
+
 import { Button } from '@micromag/core/components';
 
 import styles from '../../styles/buttons/close.module.css';

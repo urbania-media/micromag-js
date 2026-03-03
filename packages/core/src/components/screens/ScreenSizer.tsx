@@ -19,9 +19,15 @@ interface ScreenSizerProps {
     children: React.ReactNode;
 }
 
-function ScreenSizer(
-    { width = null, height = null, fit = null, screenWidth = 320, screenHeight = 480, className = null, children },
-) {
+function ScreenSizer({
+    width = null,
+    height = null,
+    fit = null,
+    screenWidth = 320,
+    screenHeight = 480,
+    className = null,
+    children,
+}) {
     const hasSize = width !== null || height !== null;
     //
     const {

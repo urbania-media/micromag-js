@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Transitions from './Transitions';
 
 interface TransitionsStaggerProps {
@@ -11,17 +12,15 @@ interface TransitionsStaggerProps {
     children?: React.ReactNode;
 }
 
-function TransitionsStagger(
-    {
-        transitions = null,
-        stagger = 0,
-        playing = false,
-        disabled = false,
-        delay = 0,
-        fullscreen = false,
-        children = null,
-    },
-) {
+function TransitionsStagger({
+    transitions = null,
+    stagger = 0,
+    playing = false,
+    disabled = false,
+    delay = 0,
+    fullscreen = false,
+    children = null,
+}) {
     let validIndex = 0;
     const elements = React.Children.map(children, (child) => {
         if (!child) {

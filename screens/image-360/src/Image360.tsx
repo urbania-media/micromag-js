@@ -4,7 +4,12 @@ import classNames from 'classnames';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, Footer as FooterConfig, Header as HeaderConfig, ImageMedia } from '@micromag/core';
+import type {
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    ImageMedia,
+} from '@micromag/core';
 import { PlaceholderVideo360, ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -40,20 +45,18 @@ interface Image360ScreenProps {
     className?: string;
 }
 
-function Image360Screen(
-    {
-        layout = 'full', // eslint-disable-line
-        image = null,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        preload = true,
-        type = null,
-        spacing = 20,
-        className = null,
-    },
-) {
+function Image360Screen({
+    layout = 'full', // eslint-disable-line
+    image = null,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    type = null,
+    spacing = 20,
+    className = null,
+}) {
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
 

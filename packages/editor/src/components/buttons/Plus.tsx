@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import { Button } from '@micromag/core/components';
 
 import PlusIcon from '../icons/Plus';

@@ -16,9 +16,12 @@ interface ScreenTypesModalProps {
     onClickScreenType?: (...args: unknown[]) => void;
 }
 
-function ScreenTypesModal(
-    { selectedTypes = null, className = null, onRequestClose = null, onClickScreenType = null },
-) {
+function ScreenTypesModal({
+    selectedTypes = null,
+    className = null,
+    onRequestClose = null,
+    onClickScreenType = null,
+}) {
     return (
         <Modal>
             <Dialog

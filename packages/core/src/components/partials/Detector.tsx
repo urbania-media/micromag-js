@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
-import React, { useEffect, useMemo, useRef } from 'react';
 import throttle from 'lodash/throttle';
+import React, { useEffect, useMemo, useRef } from 'react';
+
 import { useIntersectionObserver } from '../../hooks';
 
 interface DetectorProps {
@@ -14,18 +15,16 @@ interface DetectorProps {
     className?: string;
 }
 
-function Detector(
-    {
-        throttleDelay = null,
-        threshold = undefined,
-        onEnter = null,
-        onLeave = null,
-        onChange = null,
-        disabled = false,
-        children = null,
-        className = null,
-    },
-) {
+function Detector({
+    throttleDelay = null,
+    threshold = undefined,
+    onEnter = null,
+    onLeave = null,
+    onChange = null,
+    disabled = false,
+    children = null,
+    className = null,
+}) {
     const {
         ref,
         entry: { isIntersecting },

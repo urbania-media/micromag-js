@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import { ScreenPlaceholder } from '@micromag/core/components';
 import { useScreenDefinition } from '@micromag/core/contexts';
 
@@ -15,9 +16,13 @@ interface ScreenLayoutFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ScreenLayoutField(
-    { value = null, screenState = null, className = null, onChange = null, ...props },
-) {
+function ScreenLayoutField({
+    value = null,
+    screenState = null,
+    className = null,
+    onChange = null,
+    ...props
+}) {
     const { id, layouts = [] } = useScreenDefinition();
 
     return (

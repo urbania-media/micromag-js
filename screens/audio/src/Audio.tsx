@@ -3,7 +3,12 @@ import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { AudioElement, BackgroundElement, Footer as FooterConfig, Header as HeaderConfig } from '@micromag/core';
+import type {
+    AudioElement,
+    BackgroundElement,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+} from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -39,21 +44,19 @@ interface AudioScreenProps {
     className?: string;
 }
 
-function AudioScreen(
-    {
-        layout = 'middle', // eslint-disable-line
-        audio = null,
-        spacing = 20,
-        background = null,
-        header = null,
-        footer = null,
-        current = true,
-        preload = true,
-        mediaRef: customMediaRef = null,
-        showWave = true,
-        className = null,
-    },
-) {
+function AudioScreen({
+    layout = 'middle', // eslint-disable-line
+    audio = null,
+    spacing = 20,
+    background = null,
+    header = null,
+    footer = null,
+    current = true,
+    preload = true,
+    mediaRef: customMediaRef = null,
+    showWave = true,
+    className = null,
+}) {
     const { width, height, resolution } = useScreenSize();
     const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } =
         useScreenRenderContext();

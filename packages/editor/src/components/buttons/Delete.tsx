@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 // import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
+import React from 'react';
+
 import { Button } from '@micromag/core/components';
 
 interface DeleteButtonProps {

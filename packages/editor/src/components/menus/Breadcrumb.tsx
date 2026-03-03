@@ -2,19 +2,19 @@
 
 /* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'wouter';
 
 import type { Story } from '@micromag/core';
-import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
+import { BackButton, Breadcrumb as BaseBreadcrumb } from '@micromag/core/components';
 import {
-    useScreensManager,
-    useFieldsManager,
-    useUrlGenerator,
     useFieldsComponentsManager,
+    useFieldsManager,
+    useScreensManager,
+    useUrlGenerator,
 } from '@micromag/core/contexts';
-import { isMessage, getScreenExtraField, getScreenFieldsWithStates } from '@micromag/core/utils';
+import { getScreenExtraField, getScreenFieldsWithStates, isMessage } from '@micromag/core/utils';
 
 import getFieldByName from '../../utils/getFieldByName';
 
@@ -29,12 +29,17 @@ interface BreadcrumbProps {
     className?: string;
 }
 
-function Breadcrumb(
-    { story = null, screenId = null, field = null, form = null, url, className = null },
-) {
+function Breadcrumb({
+    story = null,
+    screenId = null,
+    field = null,
+    form = null,
+    url,
+    className = null,
+}) {
     const intl = useIntl();
     const { components: screens = [] } = story || {};
-    const [,setLocation] = useLocation();
+    const [, setLocation] = useLocation();
     const screensManager = useScreensManager();
     const fieldsManager = useFieldsManager();
     const fieldsComponentManager = useFieldsComponentsManager();

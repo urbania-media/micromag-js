@@ -4,6 +4,7 @@ import React, { useCallback } from 'react';
 import { defineMessage, useIntl } from 'react-intl';
 
 import type { CustomAnswer as CustomAnswerType } from '@micromag/core';
+
 import Fields from './Fields';
 
 import styles from '../styles/custom-answer.module.css';

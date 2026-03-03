@@ -4,6 +4,7 @@ import isArray from 'lodash/isArray';
 import React, { useMemo } from 'react';
 
 import type { SelectOption } from '@micromag/core';
+
 import getSelectOptions from '../utils/getSelectOptions';
 
 import styles from '../styles/checkboxes.module.css';
@@ -18,17 +19,15 @@ interface CheckboxesProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function Checkboxes(
-    {
-        name = null,
-        value = null,
-        singleChoice = false,
-        options = [],
-        className = null,
-        buttonClassName = null,
-        onChange = null,
-    },
-) {
+function Checkboxes({
+    name = null,
+    value = null,
+    singleChoice = false,
+    options = [],
+    className = null,
+    buttonClassName = null,
+    onChange = null,
+}) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
         <div

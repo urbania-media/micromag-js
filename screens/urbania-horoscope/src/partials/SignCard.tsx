@@ -10,7 +10,14 @@ import styles from './sign-card.module.css';
 
 interface SignCardProps {
     className?: string;
-    sign?: { id?: string; label?: TextElement; date?: Message; thumbnail?: string; word?: HeadingElement; description?: TextElement };
+    sign?: {
+        id?: string;
+        label?: TextElement;
+        date?: Message;
+        thumbnail?: string;
+        word?: HeadingElement;
+        description?: TextElement;
+    };
     focusable?: boolean;
     onClick?: (...args: unknown[]) => void;
 }

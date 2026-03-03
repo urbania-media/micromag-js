@@ -1,5 +1,6 @@
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import { getShadowCoords } from '@micromag/core/utils';
 
 import Radios from './Radios';
@@ -13,14 +14,17 @@ interface ShadowAngleProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ShadowAngle(
-    { types = [45, 90, -45, -90], value = null, className = null, onChange = null },
-) {
-    const onShadowAngleChange = newVal => {
+function ShadowAngle({
+    types = [45, 90, -45, -90],
+    value = null,
+    className = null,
+    onChange = null,
+}) {
+    const onShadowAngleChange = (newVal) => {
         const v = newVal === value ? null : newVal;
 
         onChange(v);
-    }
+    };
 
     return (
         <div

@@ -13,15 +13,13 @@ interface ToggleButtonProps {
     toggledButtonClassName?: string;
 }
 
-function ToggleButton(
-    {
-        className = null,
-        progressSpring = null,
-        button = null,
-        toggledButton = null,
-        toggledButtonClassName = null,
-    },
-) {
+function ToggleButton({
+    className = null,
+    progressSpring = null,
+    button = null,
+    toggledButton = null,
+    toggledButtonClassName = null,
+}) {
     if (button === null) return null;
 
     return (

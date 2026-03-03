@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
-import { useIntl, defineMessage } from 'react-intl';
+import { defineMessage, useIntl } from 'react-intl';
 
 import type { CallToAction as CallToActionType } from '@micromag/core';
+
 import Fields from './Fields';
 
 import styles from '../styles/call-to-action.module.css';

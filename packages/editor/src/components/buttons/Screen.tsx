@@ -20,20 +20,18 @@ interface ScreenButtonProps {
     className?: string;
 }
 
-function ScreenButton(
-    {
-        active = false,
-        id = null,
-        href = null,
-        className = null,
-        label = null,
-        icon = null,
-        children = null,
-        title = null,
-        onClick = null,
-        refButton = null,
-    },
-) {
+function ScreenButton({
+    active = false,
+    id = null,
+    href = null,
+    className = null,
+    label = null,
+    icon = null,
+    children = null,
+    title = null,
+    onClick = null,
+    refButton = null,
+}) {
     return (
         <div
             className={classNames([

@@ -1,5 +1,6 @@
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import Radios from './Radios';
 
 import styles from '../styles/border-style.module.css';
@@ -11,13 +12,16 @@ interface AdFormatFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function AdFormatField(
-    { types = [
+function AdFormatField({
+    types = [
         { name: '300x200', width: 300, height: 200 },
         { name: '300x100', width: 300, height: 100 },
         { name: '250x250', width: 250, height: 250 },
-    ], value = null, className = null, onChange = null },
-) {
+    ],
+    value = null,
+    className = null,
+    onChange = null,
+}) {
     return (
         <Radios
             options={types.map((type) => ({

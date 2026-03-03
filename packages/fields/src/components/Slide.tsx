@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import type { ImageMedia } from '@micromag/core';
+
 import Fields from './Fields';
 
 import styles from '../styles/slide.module.css';

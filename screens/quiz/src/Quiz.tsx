@@ -4,7 +4,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useState } from 'react';
 
-import type { BackgroundElement, BoxStyle, ButtonLayout, Color, Footer as FooterConfig, Header as HeaderConfig, ImageElement, QuizAnswer, TextElement, TextStyle, Transitions, VisualElement } from '@micromag/core';
+import type {
+    BackgroundElement,
+    BoxStyle,
+    ButtonLayout,
+    Color,
+    Footer as FooterConfig,
+    Header as HeaderConfig,
+    ImageElement,
+    QuizAnswer,
+    TextElement,
+    TextStyle,
+    Transitions,
+    VisualElement,
+} from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import {
     usePlaybackContext,
@@ -58,38 +71,36 @@ interface QuizScreenProps {
     className?: string;
 }
 
-function QuizScreen(
-    {
-        id = null,
-        layout = 'middle',
-        keypadLayout = null,
-        question = null,
-        answers = null,
-        result = null,
-        resultImage = null,
-        buttonsLayout = null,
-        buttonsStyle = null,
-        inactiveButtonsStyle = null,
-        buttonsTextStyle = null,
-        inactiveButtonsTextStyle = null,
-        feedbackTextStyle = null,
-        numbersTextStyle = null,
-        goodAnswerColor = null,
-        badAnswerColor = null,
-        withoutTrueFalse = false,
-        spacing = 20,
-        header = null,
-        footer = null,
-        background = null,
-        current = true,
-        preload = true,
-        ready = true,
-        transitions = null,
-        transitionStagger = 100,
-        type = null,
-        className = null,
-    },
-) {
+function QuizScreen({
+    id = null,
+    layout = 'middle',
+    keypadLayout = null,
+    question = null,
+    answers = null,
+    result = null,
+    resultImage = null,
+    buttonsLayout = null,
+    buttonsStyle = null,
+    inactiveButtonsStyle = null,
+    buttonsTextStyle = null,
+    inactiveButtonsTextStyle = null,
+    feedbackTextStyle = null,
+    numbersTextStyle = null,
+    goodAnswerColor = null,
+    badAnswerColor = null,
+    withoutTrueFalse = false,
+    spacing = 20,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    ready = true,
+    transitions = null,
+    transitionStagger = 100,
+    type = null,
+    className = null,
+}) {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();

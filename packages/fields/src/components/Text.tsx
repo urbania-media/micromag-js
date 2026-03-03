@@ -6,6 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 
 import type { Errors } from '@micromag/core';
+
 interface TextFieldProps {
     inputRef?: (...args: unknown[]) => void | { current?: Record<string, unknown> };
     type?: 'text' | 'email' | 'number' | 'password';
@@ -21,22 +22,20 @@ interface TextFieldProps {
     className?: string;
 }
 
-function TextField(
-    {
-        inputRef = null,
-        type = 'text',
-        value = null,
-        errors = null,
-        required = false,
-        disabled = false,
-        placeholder = null,
-        prefix = null,
-        autofocus = false,
-        onChange = null,
-        onFocus = null,
-        className = null,
-    },
-) {
+function TextField({
+    inputRef = null,
+    type = 'text',
+    value = null,
+    errors = null,
+    required = false,
+    disabled = false,
+    placeholder = null,
+    prefix = null,
+    autofocus = false,
+    onChange = null,
+    onFocus = null,
+    className = null,
+}) {
     const input = (
         <input
             ref={inputRef}

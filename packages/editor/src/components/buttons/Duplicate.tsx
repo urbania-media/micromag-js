@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import { faClone } from '@fortawesome/free-solid-svg-icons/faClone';
 // import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClone } from '@fortawesome/free-solid-svg-icons/faClone';
+import React from 'react';
+
 import { Button } from '@micromag/core/components';
 
 interface DuplicateButtonProps {

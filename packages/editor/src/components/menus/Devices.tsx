@@ -1,10 +1,13 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
+
 import type { MenuItem } from '@micromag/core';
 import { Tabs } from '@micromag/core/components';
-import styles from '../../styles/menus/devices.module.css';
+
 import DeviceButton from '../buttons/Device';
+
+import styles from '../../styles/menus/devices.module.css';
 
 interface DevicesMenuProps {
     items?: MenuItem[];

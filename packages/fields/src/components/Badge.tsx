@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
-import { useIntl, defineMessage } from 'react-intl';
+import { defineMessage, useIntl } from 'react-intl';
 
 import type { Badge as BadgeType } from '@micromag/core';
+
 import Fields from './Fields';
 
 import styles from '../styles/badge.module.css';

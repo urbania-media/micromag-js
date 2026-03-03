@@ -1,6 +1,7 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import type { FormField } from '@micromag/core';
+
 import Fields from './Fields';
 
 interface ElementFieldProps {
@@ -13,17 +14,15 @@ interface ElementFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ElementField(
-    {
-        name = null,
-        fields: formFields = [],
-        value = null,
-        gotoFieldForm = null,
-        closeFieldForm = null,
-        isList = false,
-        onChange = null,
-    },
-) {
+function ElementField({
+    name = null,
+    fields: formFields = [],
+    value = null,
+    gotoFieldForm = null,
+    closeFieldForm = null,
+    isList = false,
+    onChange = null,
+}) {
     const fields = formFields || [];
     const settingsNames = useMemo(
         () => (fields ? fields.filter(({ setting = false }) => setting).map((it) => it.name) : []),

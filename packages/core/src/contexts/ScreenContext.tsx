@@ -1,8 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useMemo } from 'react';
 import { useIntl } from 'react-intl';
+
 import type { RenderContext, ScreenComponent, ScreenDefinition } from '../lib';
 import { getScreenExtraField } from '../utils';
+
 import { useScreensManager } from './ScreensContext';
 
 export const ScreenContext = React.createContext({
@@ -63,9 +65,13 @@ interface ScreenProviderProps {
     screenState?: string;
 }
 
-export function ScreenProvider(
-    { data = null, definition = null, renderContext = null, screenState = null, children },
-) {
+export function ScreenProvider({
+    data = null,
+    definition = null,
+    renderContext = null,
+    screenState = null,
+    children,
+}) {
     const {
         data: previousData = null,
         definition: previousDefinition = null,
@@ -94,4 +100,3 @@ export function ScreenProvider(
     );
     return <ScreenContext.Provider value={value}>{children}</ScreenContext.Provider>;
 }
-

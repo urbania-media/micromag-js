@@ -2,7 +2,6 @@
 import classNames from 'classnames';
 import React from 'react';
 
-
 import Screen from './Screen';
 import ScreenSizer from './ScreenSizer';
 
@@ -20,21 +19,19 @@ interface ScreenPreviewProps {
     hidden?: boolean;
 }
 
-function ScreenPreview(
-    {
-        screen,
-        screenState = null,
-        width = undefined,
-        height = undefined,
-        screenWidth = undefined,
-        screenHeight = undefined,
-        className = null,
-        withSize = false,
-        fit,
-        hidden = false,
-        ...props
-    },
-) {
+function ScreenPreview({
+    screen,
+    screenState = null,
+    width = undefined,
+    height = undefined,
+    screenWidth = undefined,
+    screenHeight = undefined,
+    className = null,
+    withSize = false,
+    fit,
+    hidden = false,
+    ...props
+}) {
     const screenElement = (
         <Screen
             screen={screen}

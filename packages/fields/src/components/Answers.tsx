@@ -2,20 +2,17 @@
 import React from 'react';
 // // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import type { Answer } from '@micromag/core';
-import ItemsField from './Items';
+
 import AnswerField from './Answer';
+import ItemsField from './Items';
 
 interface AnswersFieldProps {
     value?: Answer[];
 }
 
-function AnswersField(
-    {
-        value: value = null,
-        ...props
-    },
-) {
+function AnswersField({ value: value = null, ...props }) {
     return (
         <ItemsField
             noItemLabel={

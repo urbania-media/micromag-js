@@ -3,8 +3,10 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import styles from '../../styles/placeholders/placeholders.module.css';
+
 import PlaceholderBlock from '../partials/PlaceholderBlock';
+
+import styles from '../../styles/placeholders/placeholders.module.css';
 
 export function VideoLoop({ width, height, className }) {
     return (

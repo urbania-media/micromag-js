@@ -14,7 +14,13 @@ import Avatar from './Avatar';
 import styles from './styles.module.css';
 
 interface AuthorProps {
-    author?: { slug?: string; name?: TextElement; image?: ImageElement; url?: string; collaborator?: TextElement };
+    author?: {
+        slug?: string;
+        name?: TextElement;
+        image?: ImageElement;
+        url?: string;
+        collaborator?: TextElement;
+    };
     withImage?: boolean;
     withoutLink?: boolean;
     linkUnderlineColor?: string;
@@ -24,19 +30,17 @@ interface AuthorProps {
     shouldLoad?: boolean;
 }
 
-function Author(
-    {
-        author = null,
-        withImage = true,
-        withoutLink = false,
-        linkUnderlineColor = null,
-        className = null,
-        backgroundClassName = null,
-        collaboratorClassName = null,
-        shouldLoad = true,
-        ...otherProps
-    },
-) {
+function Author({
+    author = null,
+    withImage = true,
+    withoutLink = false,
+    linkUnderlineColor = null,
+    className = null,
+    backgroundClassName = null,
+    collaboratorClassName = null,
+    shouldLoad = true,
+    ...otherProps
+}) {
     const { name = null, image = null, url = null, collaborator = null } = author || {};
     const withAvatar = withImage && image !== null;
 

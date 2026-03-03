@@ -31,21 +31,19 @@ interface TextProps {
     refText?: (...args: unknown[]) => void | { current?: unknown };
 }
 
-function Text(
-    {
-        body = null,
-        textStyle = null,
-        boxStyle = null,
-        linksStyle = null,
-        margin = null,
-        lineClamp = null,
-        showEmpty = false,
-        className = null,
-        emptyClassName = null,
-        inline = false,
-        refText = null,
-    },
-) {
+function Text({
+    body = null,
+    textStyle = null,
+    boxStyle = null,
+    linksStyle = null,
+    margin = null,
+    lineClamp = null,
+    showEmpty = false,
+    className = null,
+    emptyClassName = null,
+    inline = false,
+    refText = null,
+}) {
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = {};
     let finalLinkStyle = linkStyle !== null ? getStyleFromLink(linkStyle) : null;

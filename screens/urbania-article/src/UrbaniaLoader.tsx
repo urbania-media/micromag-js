@@ -22,23 +22,21 @@ interface UrbaniaLoaderProps {
     article?: { type?: string };
 }
 
-function UrbaniaLoader(
-    {
-        component: Component = UrbaniaBaseArticle,
-        // theme = null,
-        title = null,
-        articleType = null,
-        overTitle = null,
-        sponsorLabel = null,
-        author = null,
-        image = null,
-        header = null,
-        footer = null,
-        url = null,
-        article: initialArticle = null,
-        ...props
-    },
-) {
+function UrbaniaLoader({
+    component: Component = UrbaniaBaseArticle,
+    // theme = null,
+    title = null,
+    articleType = null,
+    overTitle = null,
+    sponsorLabel = null,
+    author = null,
+    image = null,
+    header = null,
+    footer = null,
+    url = null,
+    article: initialArticle = null,
+    ...props
+}) {
     const [article, setArticle] = useState(initialArticle);
 
     const finalUrl =

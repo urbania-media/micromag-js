@@ -33,17 +33,15 @@ interface FontFamilyProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-function FontFamily(
-    {
-        value = null,
-        onChange = null,
-        closeForm = null,
-        maxFontsVisible = 10,
-        isForm = false,
-        canClear = true,
-        ...props
-    },
-) {
+function FontFamily({
+    value = null,
+    onChange = null,
+    closeForm = null,
+    maxFontsVisible = 10,
+    isForm = false,
+    canClear = true,
+    ...props
+}) {
     const intl = useIntl();
     const { systemFonts, googleFonts, customFonts } = useFonts();
     const valueName = value !== null && isObject(value) ? value.name || null : value;

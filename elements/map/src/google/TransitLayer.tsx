@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import { useGoogleMapsClient } from '@micromag/core/contexts';
 
 interface TransitLayerProps {
@@ -26,7 +27,7 @@ function TransitLayer({ map = null, enabled = false }) {
 
         return () => {
             transitLayerRef.current.setMap(null);
-        }
+        };
     }, [client, map, enabled]);
 
     return null;
