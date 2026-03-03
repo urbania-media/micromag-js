@@ -51,4 +51,4 @@ function ScreenPlaceholder({
     );
 }
 
-export default React.memo(ScreenPlaceholder);
+export default ScreenPlaceholder;

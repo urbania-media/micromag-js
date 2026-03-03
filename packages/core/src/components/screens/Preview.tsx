@@ -9,12 +9,12 @@ import styles from '../../styles/screens/preview.module.css';
 
 interface ScreenPreviewProps {
     screen: Component;
-    screenState?: string;
+    screenState?: string | null;
     width?: number;
     height?: number;
     screenWidth?: number;
     screenHeight?: number;
-    className?: string;
+    className?: string | null;
     withSize?: boolean;
     hidden?: boolean;
 }
@@ -68,4 +68,4 @@ function ScreenPreview({
     return screenWithSize;
 }
 
-export default React.memo(ScreenPreview);
+export default ScreenPreview;

@@ -47,7 +47,6 @@ interface AudioScreenProps {
 function AudioScreen({
     // eslint-disable-line
     layout = 'middle',
-
     audio = null,
     spacing = 20,
     background = null,

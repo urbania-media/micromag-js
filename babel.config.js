@@ -25,6 +25,11 @@ module.exports = (api) => {
             ],
             plugins: [
                 [
+                    'babel-plugin-react-compiler',
+                    {
+                        target: '19',
+                    },
+                ],
                     require.resolve('babel-plugin-module-resolver'),
                     {
                         alias: {

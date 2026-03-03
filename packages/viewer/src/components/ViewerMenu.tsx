@@ -473,4 +473,4 @@ function ViewerMenu({
     );
 }
 
-export default React.memo(ViewerMenu);
+export default ViewerMenu;

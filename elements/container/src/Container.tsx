@@ -10,8 +10,8 @@ interface ContainerProps {
     containerRef?: (...args: unknown[]) => void | { current?: unknown };
     width: number;
     height: number;
-    style?: Record<string, unknown>;
-    className?: string;
+    style?: Record<string, unknown> | null;
+    className?: string | null;
     children?: React.ReactNode;
 }
 

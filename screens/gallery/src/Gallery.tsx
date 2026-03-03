@@ -61,16 +61,16 @@ interface GalleryScreenProps {
         | 'two-two-one-one';
     images?: ImageMedia[] | ImageElement[];
     withCaptions?: boolean;
-    imageCaptionStyle?: TextStyle;
+    imageCaptionStyle?: TextStyle | null;
     spacing?: number;
     captionMaxLines?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     active?: boolean;
     preload?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function GalleryScreen({
