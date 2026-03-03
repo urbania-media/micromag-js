@@ -6,7 +6,7 @@ Micromag is a React-based monorepo for building interactive story/magazine viewe
 
 **Repository:** https://github.com/urbania-media/micromag-js
 **Current version:** 0.3.831 (managed by Lerna)
-**Node version:** v22 (see `.nvmrc`)
+**Node version:** v24 (see `.nvmrc`)
 **Package manager:** npm (with npm workspaces)
 
 ## Tech Stack
@@ -71,7 +71,7 @@ npm run intl              # Run i18n tasks
 npx nx reset              # Clear Nx cache (run when changing build config)
 ```
 
-Individual packages build with `../../scripts/prepare-package.sh` which runs Rollup, copies CSS, and outputs to `es/` (ES modules) and sometimes `lib/` (CJS).
+Individual packages build with `../../scripts/prepare-package.sh` which runs Rollup, copies CSS, and outputs to `es/` (ES modules) and sometimes `lib/` (CJS). Use `--types` flag to also generate TypeScript declaration files (`.d.ts`).
 
 ## Code Style & Linting
 
@@ -225,6 +225,7 @@ The central library providing:
 - Versioning via Lerna (`lerna publish` from master/develop)
 - Allowed publish branches: `master`, `develop`, `feature/es-module`
 - Each package exports ES modules (`es/`) via the `module` field
+- TypeScript declarations (`es/*.d.ts`) via the `types` field and conditional `types` in `exports`
 - Output directories: `es/`, `lib/`, `assets/`
 
 ## Adding a New Screen
@@ -287,8 +288,38 @@ No automated test suite is configured. Verification is done via:
 - **NX caches aggressively** — run `npx nx reset` when changing build config, Babel plugins, or PostCSS config.
 - If builds fail with NX native module errors, run `npm install` again then `npx nx reset`.
 - The `prepare-package.sh` script handles the full build pipeline per package. Don't modify build outputs (`es/`, `lib/`, `assets/`) directly.
-- **Stale compiled CSS**: `packages/*/styles/` and `packages/*/assets/css/styles.css` are build outputs copied from `src/styles/`. After changing source CSS, you must rebuild that specific package or the stale compiled version will be used by dependents.
+- **Stale compiled CSS**: `packages/*/styles/` and `packages/*/assets/css/styles.css` are build outputs copied from `es/styles.css`. After changing source CSS, you must rebuild that specific package or the stale compiled version will be used by dependents.
 - **PostCSS build:** `scripts/build-css.js` is the PostCSS-only CSS builder. It uses `postcss-import` with a custom resolver that supports package.json `exports` field (which `postcss-import` doesn't natively support).
+
+### TypeScript Declaration Build (`--types`)
+
+The `prepare-package.sh --types` flag generates `.d.ts` declaration files:
+
+1. **`tsc`** runs with `--declaration --emitDeclarationOnly --noCheck` on entrypoints derived from `es/*.js` output files, emitting individual `.d.ts` files into `types/`.
+2. **`rollup-plugin-dts`** bundles those into single per-entry `.d.ts` files in `es/` (configured in `rollup.config.dts.js`).
+3. **`rollup-plugin-ignore-import`** strips CSS and image imports during `.d.ts` bundling (extensions: `.css`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`, `.webp`, `.mp4`).
+4. The `types/` directory is cleaned up after bundling.
+
+**Packages that should NOT use `--types`:** `cli`, `recorder` (CLI tools that output to `bin/`, not libraries). `viewer-build` also doesn't need types.
+
+**Common types build errors:**
+- **"Config file must export an options object"** — usually means `es/*.js` glob found no files (package outputs elsewhere, e.g. `bin/`). Remove `--types` from that package.
+- **"Identifier X has already been declared"** — type import name collides with a component function name in the same file. Fix: alias the type import with `as XType`.
+- **"Could not resolve ./path/to/asset"** — a non-JS import (image, CSS) isn't being ignored. Ensure the extension is listed in `rollup.config.dts.js`'s `ignoreImport` and `external`.
+
+**Package.json types exports pattern:**
+```json
+{
+    "types": "es/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./es/index.d.ts",
+            "import": "./es/index.js"
+        }
+    }
+}
+```
+The `"types"` condition must come **before** `"import"` in exports (resolution order matters). For packages with sub-path exports (e.g., `@micromag/core`), each sub-path also gets a `"types"` condition pointing to the matching `.d.ts` file.
 
 ### Code Conventions
 
@@ -387,3 +418,4 @@ All planned phases are done:
 - `inline-composes.js` — replaces nested `composes:` with inline properties
 - `fix-local-sass-vars.js` — inlines remaining local Sass variable definitions
 - `propTypes-to-ts.js` — converts PropTypes declarations to TypeScript interfaces, renames .jsx → .tsx
+- `arrow-to-function.js` — converts arrow function components to function declarations
