@@ -43,7 +43,7 @@
         "css:styles": "../../scripts/build-css.js ./src/styles/styles.css ./assets/css/styles.css",
         "css": "npm run css:vendor && npm run css:styles",
         "prepublishOnly": "npm run build",
-        "build": "../../scripts/prepare-package.sh && npm run css"
+        "build": "../../scripts/prepare-package.sh --types && npm run css"
     },
     "devDependencies": {
         "react": "^18.3.0 || ^19.0.0",

@@ -2,15 +2,15 @@
 import classNames from 'classnames';
 import React from 'react';
 
-import type { ObjectFitSize } from '@micromag/core';
+import type { ObjectFitSize as ObjectFitSizeType } from '@micromag/core';
 
 import Radios from './Radios';
 
 import styles from '../styles/fit.module.css';
 
 interface ObjectFitSizeProps {
-    values?: ObjectFitSize[];
-    value?: ObjectFitSize;
+    values?: ObjectFitSizeType[];
+    value?: ObjectFitSizeType;
     className?: string;
     onChange?: (...args: unknown[]) => void;
 }

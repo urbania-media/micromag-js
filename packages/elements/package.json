@@ -1,111 +1,114 @@
 {
-  "name": "@micromag/elements",
-  "version": "0.3.829",
-  "private": false,
-  "description": "",
-  "keywords": [
-    "javascript"
-  ],
-  "homepage": "https://github.com/urbania-media/micromag-js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/urbania-media/micromag-js.git"
-  },
-  "author": {
-    "name": "Folklore",
-    "email": "info@folklore.email"
-  },
-  "contributors": [
-    {
-      "name": "David Mongeau-Petitpas",
-      "email": "dmp@folklore.email"
+    "name": "@micromag/elements",
+    "version": "0.3.829",
+    "private": false,
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
-    {
-      "name": "Nicolas Roy-Bourdages",
-      "email": "nrb@folklore.email"
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
     },
-    {
-      "name": "Julien Carignan",
-      "email": "jc@folklore.email"
-    }
-  ],
-  "license": "ISC",
-  "type": "module",
-  "module": "es/index.js",
-  "exports": {
-    ".": {
-      "import": "./es/index.js"
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        },
+        {
+            "name": "Julien Carignan",
+            "email": "jc@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "type": "module",
+    "module": "es/index.js",
+    "exports": {
+        ".": {
+            "types": "./es/index.d.ts",
+            "import": "./es/index.js"
+        },
+        "./all": {
+            "types": "./es/all.d.ts",
+            "require": "./lib/all.js",
+            "import": "./es/all.js"
+        },
+        "./assets/css/styles": "./assets/css/styles.css",
+        "./assets/css/styles.css": "./assets/css/styles.css"
     },
-    "./all": {
-      "require": "./lib/all.js",
-      "import": "./es/all.js"
+    "browser": {
+        ".": "./es/index.js",
+        "./all": "./es/all.js"
     },
-    "./assets/css/styles": "./assets/css/styles.css",
-    "./assets/css/styles.css": "./assets/css/styles.css"
-  },
-  "browser": {
-    ".": "./es/index.js",
-    "./all": "./es/all.js"
-  },
-  "files": [
-    "lib",
-    "es",
-    "assets",
-    "all.js"
-  ],
-  "scripts": {
-    "clean": "rm -rf es && rm -rf lib && rm -rf assets",
-    "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/element-*' ./src/styles.css.ejs ./assets/css/aggregate.css",
-    "css": "../../scripts/build-css.js ./assets/css/aggregate.css ./assets/css/styles.css",
-    "prepublishOnly": "npm run build",
-    "build": "../../scripts/prepare-package.sh && npm run aggregate-css && npm run css"
-  },
-  "devDependencies": {
-    "react": "^18.3.0 || ^19.0.0",
-    "react-dom": "^18.3.0 || ^19.0.0"
-  },
-  "peerDependencies": {
-    "react": "^18.3.0 || ^19.0.0",
-    "react-dom": "^18.3.0 || ^19.0.0"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@micromag/core": "^0.3.824",
-    "@micromag/element-audio": "^0.3.824",
-    "@micromag/element-author": "^0.3.829",
-    "@micromag/element-background": "^0.3.824",
-    "@micromag/element-badge": "^0.3.824",
-    "@micromag/element-button": "^0.3.829",
-    "@micromag/element-call-to-action": "^0.3.829",
-    "@micromag/element-checkbox": "^0.3.824",
-    "@micromag/element-closed-captions": "^0.3.824",
-    "@micromag/element-container": "^0.3.824",
-    "@micromag/element-footer": "^0.3.829",
-    "@micromag/element-grid": "^0.3.824",
-    "@micromag/element-header": "^0.3.824",
-    "@micromag/element-heading": "^0.3.824",
-    "@micromag/element-image": "^0.3.824",
-    "@micromag/element-keypad": "^0.3.824",
-    "@micromag/element-layout": "^0.3.824",
-    "@micromag/element-link": "^0.3.824",
-    "@micromag/element-map": "^0.3.824",
-    "@micromag/element-quote": "^0.3.824",
-    "@micromag/element-scroll": "^0.3.824",
-    "@micromag/element-share-incentive": "^0.3.824",
-    "@micromag/element-share-options": "^0.3.824",
-    "@micromag/element-stack": "^0.3.824",
-    "@micromag/element-text": "^0.3.824",
-    "@micromag/element-text-input": "^0.3.824",
-    "@micromag/element-urbania-author": "^0.3.829",
-    "@micromag/element-video": "^0.3.824",
-    "@micromag/element-visual": "^0.3.824",
-    "@micromag/element-webview": "^0.3.829",
-    "classnames": "^2.2.6",
-    "lodash": "^4.17.21"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "gitHead": "90cc69d20d28f4e900eb19a1b2b41b32d424e646"
+    "files": [
+        "lib",
+        "es",
+        "assets",
+        "all.js"
+    ],
+    "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
+        "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/element-*' ./src/styles.css.ejs ./assets/css/aggregate.css",
+        "css": "../../scripts/build-css.js ./assets/css/aggregate.css ./assets/css/styles.css",
+        "prepublishOnly": "npm run build",
+        "build": "../../scripts/prepare-package.sh --types && npm run aggregate-css && npm run css"
+    },
+    "devDependencies": {
+        "react": "^18.3.0 || ^19.0.0",
+        "react-dom": "^18.3.0 || ^19.0.0"
+    },
+    "peerDependencies": {
+        "react": "^18.3.0 || ^19.0.0",
+        "react-dom": "^18.3.0 || ^19.0.0"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.13.10",
+        "@micromag/core": "^0.3.824",
+        "@micromag/element-audio": "^0.3.824",
+        "@micromag/element-author": "^0.3.829",
+        "@micromag/element-background": "^0.3.824",
+        "@micromag/element-badge": "^0.3.824",
+        "@micromag/element-button": "^0.3.829",
+        "@micromag/element-call-to-action": "^0.3.829",
+        "@micromag/element-checkbox": "^0.3.824",
+        "@micromag/element-closed-captions": "^0.3.824",
+        "@micromag/element-container": "^0.3.824",
+        "@micromag/element-footer": "^0.3.829",
+        "@micromag/element-grid": "^0.3.824",
+        "@micromag/element-header": "^0.3.824",
+        "@micromag/element-heading": "^0.3.824",
+        "@micromag/element-image": "^0.3.824",
+        "@micromag/element-keypad": "^0.3.824",
+        "@micromag/element-layout": "^0.3.824",
+        "@micromag/element-link": "^0.3.824",
+        "@micromag/element-map": "^0.3.824",
+        "@micromag/element-quote": "^0.3.824",
+        "@micromag/element-scroll": "^0.3.824",
+        "@micromag/element-share-incentive": "^0.3.824",
+        "@micromag/element-share-options": "^0.3.824",
+        "@micromag/element-stack": "^0.3.824",
+        "@micromag/element-text": "^0.3.824",
+        "@micromag/element-text-input": "^0.3.824",
+        "@micromag/element-urbania-author": "^0.3.829",
+        "@micromag/element-video": "^0.3.824",
+        "@micromag/element-visual": "^0.3.824",
+        "@micromag/element-webview": "^0.3.829",
+        "classnames": "^2.2.6",
+        "lodash": "^4.17.21"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
+    "gitHead": "90cc69d20d28f4e900eb19a1b2b41b32d424e646",
+    "types": "es/index.d.ts"
 }

@@ -1,72 +1,74 @@
 {
-  "name": "@micromag/element-quote",
-  "version": "0.3.824",
-  "private": false,
-  "description": "",
-  "keywords": [
-    "javascript"
-  ],
-  "homepage": "https://github.com/urbania-media/micromag-js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/urbania-media/micromag-js.git"
-  },
-  "author": {
-    "name": "Folklore",
-    "email": "info@folklore.email"
-  },
-  "contributors": [
-    {
-      "name": "David Mongeau-Petitpas",
-      "email": "dmp@folklore.email"
+    "name": "@micromag/element-quote",
+    "version": "0.3.824",
+    "private": false,
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
-    {
-      "name": "Nicolas Roy-Bourdages",
-      "email": "nrb@folklore.email"
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
     },
-    {
-      "name": "Julien Carignan",
-      "email": "jc@folklore.email"
-    }
-  ],
-  "license": "ISC",
-  "type": "module",
-  "module": "es/index.js",
-  "exports": {
-    ".": {
-      "import": "./es/index.js"
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        },
+        {
+            "name": "Julien Carignan",
+            "email": "jc@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "type": "module",
+    "module": "es/index.js",
+    "exports": {
+        ".": {
+            "types": "./es/index.d.ts",
+            "import": "./es/index.js"
+        },
+        "./assets/css/styles": "./assets/css/styles.css",
+        "./assets/css/styles.css": "./assets/css/styles.css"
     },
-    "./assets/css/styles": "./assets/css/styles.css",
-    "./assets/css/styles.css": "./assets/css/styles.css"
-  },
-  "files": [
-    "lib",
-    "es",
-    "assets"
-  ],
-  "scripts": {
-    "clean": "rm -rf es && rm -rf lib && rm -rf assets",
-    "prepublishOnly": "npm run build",
-    "build": "../../scripts/prepare-package.sh"
-  },
-  "devDependencies": {
-    "react": "^18.3.0 || ^19.0.0",
-    "react-dom": "^18.3.0 || ^19.0.0"
-  },
-  "peerDependencies": {
-    "react": "^18.3.0 || ^19.0.0",
-    "react-dom": "^18.3.0 || ^19.0.0"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@micromag/core": "^0.3.824",
-    "classnames": "^2.2.6",
-    "react-intl": "^6.6.4",
-    "uuid": "^9.0.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
+    "files": [
+        "lib",
+        "es",
+        "assets"
+    ],
+    "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
+        "prepublishOnly": "npm run build",
+        "build": "../../scripts/prepare-package.sh --types"
+    },
+    "devDependencies": {
+        "react": "^18.3.0 || ^19.0.0",
+        "react-dom": "^18.3.0 || ^19.0.0"
+    },
+    "peerDependencies": {
+        "react": "^18.3.0 || ^19.0.0",
+        "react-dom": "^18.3.0 || ^19.0.0"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.13.10",
+        "@micromag/core": "^0.3.824",
+        "classnames": "^2.2.6",
+        "react-intl": "^6.6.4",
+        "uuid": "^9.0.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
+    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76",
+    "types": "es/index.d.ts"
 }

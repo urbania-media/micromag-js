@@ -11,8 +11,10 @@ export default {
     },
     plugins: [resolve({
         preferBuiltins: true,
+        extensions: ['.ts', '.js', '.json'],
         resolveOnly: [
-            /get-port/
+            /get-port/,
+            /^\./,
         ],
     })],
 };

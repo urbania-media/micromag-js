@@ -7,8 +7,6 @@ import TextAlign from './TextAlign';
 
 import styles from '../styles/font-style-with-align.module.css';
 
-import classNames from 'classnames';
-
 interface FontStylesProps {
     value?: Record<string, unknown>;
     fontStyleName?: string;

@@ -1,91 +1,95 @@
 {
-  "name": "@micromag/intl",
-  "version": "0.3.824",
-  "private": false,
-  "description": "",
-  "keywords": [
-    "javascript"
-  ],
-  "homepage": "https://github.com/urbania-media/micromag-js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/urbania-media/micromag-js.git"
-  },
-  "author": {
-    "name": "Folklore",
-    "email": "info@folklore.email"
-  },
-  "contributors": [
-    {
-      "name": "David Mongeau-Petitpas",
-      "email": "dmp@folklore.email"
+    "name": "@micromag/intl",
+    "version": "0.3.824",
+    "private": false,
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
-    {
-      "name": "Nicolas Roy-Bourdages",
-      "email": "nrb@folklore.email"
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
     },
-    {
-      "name": "Julien Carignan",
-      "email": "jc@folklore.email"
-    }
-  ],
-  "license": "ISC",
-  "type": "module",
-  "module": "es/index.js",
-  "exports": {
-    ".": {
-      "import": "./es/index.js"
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        },
+        {
+            "name": "Julien Carignan",
+            "email": "jc@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "type": "module",
+    "module": "es/index.js",
+    "exports": {
+        ".": {
+            "types": "./es/index.d.ts",
+            "import": "./es/index.js"
+        },
+        "./locale": "./locale",
+        "./locale/fr.json": "./locale/fr.json",
+        "./locale/en.json": "./locale/en.json",
+        "./locale/fr": {
+            "types": "./locale/fr.d.ts",
+            "import": "./locale/fr.js"
+        },
+        "./locale/en": {
+            "types": "./locale/en.d.ts",
+            "import": "./locale/en.js"
+        }
     },
-    "./locale": "./locale",
-    "./locale/fr.json": "./locale/fr.json",
-    "./locale/en.json": "./locale/en.json",
-    "./locale/fr": {
-      "import": "./locale/fr.js"
+    "files": [
+        "locale",
+        "lib",
+        "es",
+        "scripts",
+        "assets"
+    ],
+    "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
+        "intl": "../../scripts/build-intl.js '../../!(node_modules)/!(intl)/src/**/*.+(js|jsx)' --ast",
+        "prepublishOnly": "npm run build",
+        "build": "rm -rf ./locale && npm run intl && ../../scripts/prepare-package.sh --types"
     },
-    "./locale/en": {
-      "import": "./locale/en.js"
-    }
-  },
-  "files": [
-    "locale",
-    "lib",
-    "es",
-    "scripts",
-    "assets"
-  ],
-  "scripts": {
-    "clean": "rm -rf es && rm -rf lib && rm -rf assets",
-    "intl": "../../scripts/build-intl.js '../../!(node_modules)/!(intl)/src/**/*.+(js|jsx)' --ast",
-    "prepublishOnly": "npm run build",
-    "build": "rm -rf ./locale && npm run intl && ../../scripts/prepare-package.sh"
-  },
-  "devDependencies": {
-    "react": "^18.3.0 || ^19.0.0",
-    "react-dom": "^18.3.0 || ^19.0.0"
-  },
-  "peerDependencies": {
-    "react": "^18.3.0 || ^19.0.0",
-    "react-dom": "^18.3.0 || ^19.0.0"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@formatjs/cli": "^6.2.7",
-    "@micromag/core": "^0.3.824",
-    "commander": "^12.0.0",
-    "fs-extra": "^11.2.0",
-    "gettext-parser": "^7.0.1",
-    "glob": "^10.3.12",
-    "lodash": "^4.17.21",
-    "react-intl": "^6.6.4"
-  },
-  "lang": "locale",
-  "supportedLocales": [
-    "en",
-    "fr"
-  ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
+    "devDependencies": {
+        "react": "^18.3.0 || ^19.0.0",
+        "react-dom": "^18.3.0 || ^19.0.0"
+    },
+    "peerDependencies": {
+        "react": "^18.3.0 || ^19.0.0",
+        "react-dom": "^18.3.0 || ^19.0.0"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.13.10",
+        "@formatjs/cli": "^6.2.7",
+        "@micromag/core": "^0.3.824",
+        "commander": "^12.0.0",
+        "fs-extra": "^11.2.0",
+        "gettext-parser": "^7.0.1",
+        "glob": "^10.3.12",
+        "lodash": "^4.17.21",
+        "react-intl": "^6.6.4"
+    },
+    "lang": "locale",
+    "supportedLocales": [
+        "en",
+        "fr"
+    ],
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
+    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76",
+    "types": "es/index.d.ts"
 }

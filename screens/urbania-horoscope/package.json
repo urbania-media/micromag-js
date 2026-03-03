@@ -1,93 +1,95 @@
 {
-  "name": "@micromag/screen-urbania-horoscope",
-  "version": "0.3.829",
-  "private": false,
-  "description": "",
-  "keywords": [
-    "javascript"
-  ],
-  "homepage": "https://github.com/urbania-media/micromag-js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/urbania-media/micromag-js.git"
-  },
-  "author": {
-    "name": "Folklore",
-    "email": "info@folklore.email"
-  },
-  "contributors": [
-    {
-      "name": "David Mongeau-Petitpas",
-      "email": "dmp@folklore.email"
+    "name": "@micromag/screen-urbania-horoscope",
+    "version": "0.3.829",
+    "private": false,
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
-    {
-      "name": "Nicolas Roy-Bourdages",
-      "email": "nrb@folklore.email"
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
     },
-    {
-      "name": "Joseph Blais",
-      "email": "joseph@folklore.email"
-    }
-  ],
-  "license": "ISC",
-  "type": "module",
-  "module": "es/index.js",
-  "style": "assets/css/styles.css",
-  "exports": {
-    ".": {
-      "import": "./es/index.js"
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        },
+        {
+            "name": "Joseph Blais",
+            "email": "joseph@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "type": "module",
+    "module": "es/index.js",
+    "style": "assets/css/styles.css",
+    "exports": {
+        ".": {
+            "types": "./es/index.d.ts",
+            "import": "./es/index.js"
+        },
+        "./assets/css/styles": "./assets/css/styles.css",
+        "./assets/css/styles.css": "./assets/css/styles.css",
+        "./assets/images/*": "./assets/css/*"
     },
-    "./assets/css/styles": "./assets/css/styles.css",
-    "./assets/css/styles.css": "./assets/css/styles.css",
-    "./assets/images/*": "./assets/css/*"
-  },
-  "files": [
-    "lib",
-    "es",
-    "assets"
-  ],
-  "scripts": {
-    "clean": "rm -rf es && rm -rf lib && rm -rf assets",
-    "prepublishOnly": "npm run build",
-    "build": "../../scripts/prepare-package.sh",
-    "rollup": "../../node_modules/.bin/rollup --config ../../rollup.config.js"
-  },
-  "devDependencies": {
-    "react": "^18.3.0 || ^19.0.0",
-    "react-dom": "^18.3.0 || ^19.0.0"
-  },
-  "peerDependencies": {
-    "react": "^18.3.0 || ^19.0.0",
-    "react-dom": "^18.3.0 || ^19.0.0"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@micromag/core": "^0.3.824",
-    "@micromag/element-background": "^0.3.824",
-    "@micromag/element-button": "^0.3.829",
-    "@micromag/element-call-to-action": "^0.3.829",
-    "@micromag/element-container": "^0.3.824",
-    "@micromag/element-grid": "^0.3.824",
-    "@micromag/element-heading": "^0.3.824",
-    "@micromag/element-keypad": "^0.3.824",
-    "@micromag/element-layout": "^0.3.824",
-    "@micromag/element-scroll": "^0.3.824",
-    "@micromag/element-text": "^0.3.824",
-    "@micromag/element-urbania-author": "^0.3.829",
-    "@micromag/transforms": "^0.3.824",
-    "@react-spring/core": "^9.6.1",
-    "@react-spring/web": "^9.6.1",
-    "@use-gesture/react": "^10.3.0",
-    "classnames": "^2.2.6",
-    "lodash": "^4.17.21",
-    "react-focus-lock": "^2.11.2",
-    "react-intl": "^6.6.4",
-    "react-transition-group": "^4.4.2",
-    "uuid": "^9.0.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "gitHead": "90cc69d20d28f4e900eb19a1b2b41b32d424e646"
+    "files": [
+        "lib",
+        "es",
+        "assets"
+    ],
+    "scripts": {
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
+        "prepublishOnly": "npm run build",
+        "build": "../../scripts/prepare-package.sh --types",
+        "rollup": "../../node_modules/.bin/rollup --config ../../rollup.config.js"
+    },
+    "devDependencies": {
+        "react": "^18.3.0 || ^19.0.0",
+        "react-dom": "^18.3.0 || ^19.0.0"
+    },
+    "peerDependencies": {
+        "react": "^18.3.0 || ^19.0.0",
+        "react-dom": "^18.3.0 || ^19.0.0"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.13.10",
+        "@micromag/core": "^0.3.824",
+        "@micromag/element-background": "^0.3.824",
+        "@micromag/element-button": "^0.3.829",
+        "@micromag/element-call-to-action": "^0.3.829",
+        "@micromag/element-container": "^0.3.824",
+        "@micromag/element-grid": "^0.3.824",
+        "@micromag/element-heading": "^0.3.824",
+        "@micromag/element-keypad": "^0.3.824",
+        "@micromag/element-layout": "^0.3.824",
+        "@micromag/element-scroll": "^0.3.824",
+        "@micromag/element-text": "^0.3.824",
+        "@micromag/element-urbania-author": "^0.3.829",
+        "@micromag/transforms": "^0.3.824",
+        "@react-spring/core": "^9.6.1",
+        "@react-spring/web": "^9.6.1",
+        "@use-gesture/react": "^10.3.0",
+        "classnames": "^2.2.6",
+        "lodash": "^4.17.21",
+        "react-focus-lock": "^2.11.2",
+        "react-intl": "^6.6.4",
+        "react-transition-group": "^4.4.2",
+        "uuid": "^9.0.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
+    "gitHead": "90cc69d20d28f4e900eb19a1b2b41b32d424e646",
+    "types": "es/index.d.ts"
 }
