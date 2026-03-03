@@ -9,7 +9,7 @@ import styles from '../../styles/modals/modals.module.css';
 interface ModalsContainerProps {
     modals: Modal[];
     setModalsContainer: (...args: unknown[]) => void;
-    className?: string;
+    className?: string | null;
 }
 
 function ModalsContainer({ modals, setModalsContainer, className = null }: ModalsContainerProps) {

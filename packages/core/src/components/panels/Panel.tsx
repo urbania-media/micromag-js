@@ -9,9 +9,9 @@ import Portal from './Portal';
 import styles from '../../styles/panels/panel.module.css';
 
 interface PanelProps {
-    id?: string;
-    title?: string;
-    children?: React.ReactNode;
+    id?: string | null;
+    title?: string | null;
+    children?: React.ReactNode | null;
 }
 
 function Panel({ id = null, children = null, title = null }: PanelProps) {

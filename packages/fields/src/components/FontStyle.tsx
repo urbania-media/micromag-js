@@ -8,9 +8,9 @@ import React, { useCallback, useMemo } from 'react';
 import Checkboxes from './Checkboxes';
 
 interface FontStylesProps {
-    value?: Record<string, unknown>;
+    value?: Record<string, unknown> | null;
     options?: { value?: string; label?: React.ReactNode }[];
-    onChange?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function FontStyles({

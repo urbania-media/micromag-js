@@ -9,10 +9,10 @@ import { v4 as uuid } from 'uuid';
 import { useGetColors } from '@micromag/core/contexts';
 
 interface ColorPickerFieldProps {
-    value?: { color?: string; alpha?: number };
+    value?: { color?: string; alpha?: number } | null;
     disableAlpha?: boolean;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ColorPickerField({

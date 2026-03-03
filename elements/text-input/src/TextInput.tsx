@@ -10,23 +10,23 @@ import { getStyleFromBox, getStyleFromMargin, getStyleFromText } from '@micromag
 import styles from './styles.module.css';
 
 interface TextInputProps {
-    label?: string;
+    label?: string | null;
     labelOutside?: boolean;
-    labelClassName?: string;
-    textStyle?: TextStyle;
-    placeholderTextStyle?: TextStyle;
-    buttonStyle?: BoxStyle;
-    labelOutsideStyle?: TextStyle;
-    margin?: Margin;
+    labelClassName?: string | null;
+    textStyle?: TextStyle | null;
+    placeholderTextStyle?: TextStyle | null;
+    buttonStyle?: BoxStyle | null;
+    labelOutsideStyle?: TextStyle | null;
+    margin?: Margin | null;
     multiline?: boolean;
     value?: string;
-    onChange?: (...args: unknown[]) => void;
-    onFocus?: (...args: unknown[]) => void;
-    onBlur?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    onFocus?: ((...args: unknown[]) => void) | null;
+    onBlur?: ((...args: unknown[]) => void) | null;
     required?: boolean;
     disabled?: boolean;
     focusable?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function TextInput({

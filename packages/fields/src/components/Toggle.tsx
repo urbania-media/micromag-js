@@ -6,10 +6,10 @@ import React from 'react';
 import styles from '../styles/toggle.module.css';
 
 interface ToggleFieldProps {
-    value?: boolean;
-    defaultValue?: boolean;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: boolean | null;
+    defaultValue?: boolean | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ToggleField({

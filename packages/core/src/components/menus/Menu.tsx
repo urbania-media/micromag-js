@@ -11,20 +11,20 @@ interface MenuProps {
     items?: MenuItem[];
     tagName?: string;
     itemTagName?: string;
-    children?: React.ReactNode;
+    children?: React.ReactNode | null;
     linkAsItem?: boolean;
-    className?: string;
-    itemClassName?: string;
-    linkClassName?: string;
-    hasSubMenuClassName?: string;
-    subMenuClassName?: string;
-    subMenuItemClassName?: string;
-    subMenuLinkClassName?: string;
-    hasDropdownClassName?: string;
-    dropdownClassName?: string;
-    dropdownItemClassName?: string;
-    dropdownLinkClassName?: string;
-    dropdownAlign?: DropdownAlign;
+    className?: string | null;
+    itemClassName?: string | null;
+    linkClassName?: string | null;
+    hasSubMenuClassName?: string | null;
+    subMenuClassName?: string | null;
+    subMenuItemClassName?: string | null;
+    subMenuLinkClassName?: string | null;
+    hasDropdownClassName?: string | null;
+    dropdownClassName?: string | null;
+    dropdownItemClassName?: string | null;
+    dropdownLinkClassName?: string | null;
+    dropdownAlign?: DropdownAlign | null;
 }
 
 function Menu({

@@ -7,9 +7,9 @@ import Radios from './Radios';
 import styles from '../styles/align-horizontal.module.css';
 
 interface AlignHorizontalProps {
-    value?: 'left' | 'middle' | 'right';
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: 'left' | 'middle' | 'right' | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function AlignHorizontal({

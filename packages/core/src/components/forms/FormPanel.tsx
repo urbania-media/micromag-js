@@ -8,10 +8,10 @@ import Spinner from '../partials/Spinner';
 import styles from '../../styles/forms/form-panel.module.css';
 
 interface FormPanelProps {
-    description?: React.ReactNode;
+    description?: React.ReactNode | null;
     loading?: boolean;
-    children?: React.ReactNode;
-    className?: string;
+    children?: React.ReactNode | null;
+    className?: string | null;
 }
 
 function FormPanel({

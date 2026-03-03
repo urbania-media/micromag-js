@@ -6,10 +6,10 @@ import React from 'react';
 import Number from './Number';
 
 interface NumberWithIconProps {
-    icon?: React.ReactNode | unknown;
+    icon?: React.ReactNode | unknown | null;
     iconRotation?: number;
     isHorizontal?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function NumberWithIcon({

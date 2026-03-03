@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface CloseIconProps {
-    className?: string;
+    className?: string | null;
     color?: string;
 }
 

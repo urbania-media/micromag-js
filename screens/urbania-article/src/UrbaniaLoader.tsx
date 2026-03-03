@@ -10,16 +10,16 @@ import UrbaniaBaseArticle from './UrbaniaBaseArticle';
 
 interface UrbaniaLoaderProps {
     component?: unknown;
-    title?: HeadingElement;
-    articleType?: string;
-    overTitle?: { body?: string };
-    sponsorLabel?: { body?: string };
-    author?: AuthorElement;
-    image?: Image;
-    header?: Header;
-    footer?: Footer;
-    url?: string;
-    article?: { type?: string };
+    title?: HeadingElement | null;
+    articleType?: string | null;
+    overTitle?: { body?: string } | null;
+    sponsorLabel?: { body?: string } | null;
+    author?: AuthorElement | null;
+    image?: Image | null;
+    header?: Header | null;
+    footer?: Footer | null;
+    url?: string | null;
+    article?: { type?: string } | null;
 }
 
 function UrbaniaLoader({

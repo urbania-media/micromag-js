@@ -24,30 +24,30 @@ interface ViewerMenuProps {
     story: Story;
     menuItems?: (string | React.ReactNode)[];
     currentScreenIndex?: number;
-    toggleFullscreen?: (...args: unknown[]) => void;
+    toggleFullscreen?: ((...args: unknown[]) => void) | null;
     fullscreenActive?: boolean;
     fullscreenEnabled?: boolean;
-    menuDotsButtons?: React.ReactNode;
+    menuDotsButtons?: React.ReactNode | null;
     closeable?: boolean;
     withShadow?: boolean;
     trackingEnabled?: boolean;
-    shareBasePath?: string;
-    shareOptions?: string[];
-    theme?: ViewerTheme;
-    screenSize?: ScreenSize;
-    menuWidth?: number;
-    previewHeader?: React.ReactNode;
-    previewFooter?: React.ReactNode;
-    afterShareMenuButton?: React.ReactNode;
-    beforeScreensMenuButton?: React.ReactNode;
+    shareBasePath?: string | null;
+    shareOptions?: string[] | null;
+    theme?: ViewerTheme | null;
+    screenSize?: ScreenSize | null;
+    menuWidth?: number | null;
+    previewHeader?: React.ReactNode | null;
+    previewFooter?: React.ReactNode | null;
+    afterShareMenuButton?: React.ReactNode | null;
+    beforeScreensMenuButton?: React.ReactNode | null;
     withMicromagBranding?: boolean;
     withDotItemClick?: boolean;
     withoutScreensMenu?: boolean;
     withoutShareMenu?: boolean;
-    onClickScreen?: (...args: unknown[]) => void;
-    onClickCloseViewer?: (...args: unknown[]) => void;
-    onChange?: (...args: unknown[]) => void;
-    refDots?: { current?: unknown };
+    onClickScreen?: ((...args: unknown[]) => void) | null;
+    onClickCloseViewer?: ((...args: unknown[]) => void) | null;
+    onChange?: ((...args: unknown[]) => void) | null;
+    refDots?: { current?: unknown } | null;
 }
 
 function ViewerMenu({

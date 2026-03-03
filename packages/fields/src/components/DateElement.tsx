@@ -7,11 +7,11 @@ import type { TextElement } from '@micromag/core';
 import styles from '../styles/date.module.css';
 
 interface DateElementProps {
-    name?: string;
-    value?: TextElement;
+    name?: string | null;
+    value?: TextElement | null;
     withTime?: boolean;
-    placeholder?: string;
-    onChange?: (...args: unknown[]) => void;
+    placeholder?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function DateElement({

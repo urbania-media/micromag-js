@@ -43,17 +43,17 @@ const generateSteps = (steps, style) =>
     );
 
 interface SliderFieldProps {
-    value?: string;
+    value?: string | null;
     min?: number;
     max?: number;
     marks?: Record<string, Record<string, unknown>>;
-    marksStep?: number;
-    marksCount?: number;
+    marksStep?: number | null;
+    marksCount?: number | null;
     marksStyle?: Record<string, unknown>;
-    unit?: string;
+    unit?: string | null;
     withInput?: boolean;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function SliderField({

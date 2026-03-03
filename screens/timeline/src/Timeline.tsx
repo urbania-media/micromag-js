@@ -57,26 +57,26 @@ interface TimelineProps {
         | 'title-description-image'
         | 'title-image-description'
         | 'image-title-description';
-    title?: HeadingElement;
+    title?: HeadingElement | null;
     items?: TextElement[];
-    itemTitleStyle?: TextStyle;
-    itemDescriptionStyle?: TextStyle;
+    itemTitleStyle?: TextStyle | null;
+    itemDescriptionStyle?: TextStyle | null;
     withoutLine?: boolean;
-    bulletColor?: Color;
-    lineColor?: Color;
+    bulletColor?: Color | null;
+    lineColor?: Color | null;
     bulletShape?: 'circle' | 'square';
     bulletFilled?: boolean;
     illustrated?: boolean;
-    spacing?: number;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
-    background?: BackgroundElement;
-    alternatives?: Alternatives;
+    spacing?: number | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
+    background?: BackgroundElement | null;
+    alternatives?: Alternatives | null;
     current?: boolean;
     active?: boolean;
     preload?: boolean;
-    type?: string;
-    className?: string;
+    type?: string | null;
+    className?: string | null;
 }
 
 function Timeline({

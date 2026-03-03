@@ -10,9 +10,9 @@ import styles from '../styles/fit.module.css';
 
 interface ObjectFitSizeProps {
     values?: ObjectFitSizeType[];
-    value?: ObjectFitSizeType;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: ObjectFitSizeType | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ObjectFitSize({

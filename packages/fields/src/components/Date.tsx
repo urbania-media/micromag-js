@@ -4,12 +4,12 @@ import React, { useCallback } from 'react';
 import styles from '../styles/date.module.css';
 
 interface DateFieldProps {
-    name?: string;
-    value?: number;
+    name?: string | null;
+    value?: number | null;
     withTime?: boolean;
-    placeholder?: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    placeholder?: string | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function DateField({

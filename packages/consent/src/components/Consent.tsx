@@ -7,14 +7,14 @@ import CookiesForm from './forms/Cookies';
 import styles from '../styles/consent.module.css';
 
 interface ConsentProps {
-    urls?: { privacy?: string; terms?: string };
-    labels?: { title?: string; description?: string; privacy?: string; terms?: string };
-    onChange?: (...args: unknown[]) => void;
-    onSubmit?: (...args: unknown[]) => void;
-    onClose?: (...args: unknown[]) => void;
+    urls?: { privacy?: string; terms?: string } | null;
+    labels?: { title?: string; description?: string; privacy?: string; terms?: string } | null;
+    onChange?: ((...args: unknown[]) => void) | null;
+    onSubmit?: ((...args: unknown[]) => void) | null;
+    onClose?: ((...args: unknown[]) => void) | null;
     withClose?: boolean;
-    className?: string;
-    children?: React.ReactNode;
+    className?: string | null;
+    children?: React.ReactNode | null;
 }
 
 function Consent({

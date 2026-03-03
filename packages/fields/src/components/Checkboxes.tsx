@@ -10,13 +10,13 @@ import getSelectOptions from '../utils/getSelectOptions';
 import styles from '../styles/checkboxes.module.css';
 
 interface CheckboxesProps {
-    name?: string;
-    value?: string[];
+    name?: string | null;
+    value?: string[] | null;
     singleChoice?: boolean;
     options?: SelectOption[];
-    className?: string;
-    buttonClassName?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    buttonClassName?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Checkboxes({

@@ -74,16 +74,18 @@ const placeholderPopupBoxStyles = {
 };
 
 interface KeypadScreenProps {
-    items?: {
-        id?: string;
-        heading?: HeadingElement;
-        description?: TextElement;
-        visual?: VisualElement;
-        boxStyle?: BoxStyle;
-    }[];
-    title?: HeadingElement;
-    subtitle?: TextElement;
-    layout?: 'top' | 'middle' | 'bottom';
+    items?:
+        | {
+              id?: string;
+              heading?: HeadingElement;
+              description?: TextElement;
+              visual?: VisualElement;
+              boxStyle?: BoxStyle;
+          }[]
+        | null;
+    title?: HeadingElement | null;
+    subtitle?: TextElement | null;
+    layout?: 'top' | 'middle' | 'bottom' | null;
     spacing?: number;
     keypadSettings?: {
         layout?: {
@@ -98,27 +100,27 @@ interface KeypadScreenProps {
         columns?: number;
         spacing?: number;
         withSquareItems?: boolean;
-    };
+    } | null;
     buttonStyles?: {
         layout?: string;
         textStyle?: TextStyle;
         boxStyle?: BoxStyle;
         fillImage?: boolean;
         visualWidth?: number | string;
-    };
+    } | null;
     popupStyles?: {
         layout?: 'content-top' | 'content-split' | 'content-bottom';
         headingTextStyle?: TextStyle;
         contentTextStyle?: TextStyle;
         boxStyle?: BoxStyle;
-    };
-    header?: HeaderConfig;
-    footer?: FooterConfig;
-    background?: BackgroundElement;
+    } | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
+    background?: BackgroundElement | null;
     current?: boolean;
     preload?: boolean;
     withoutCloseButton?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function KeypadScreen({

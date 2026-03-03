@@ -8,12 +8,12 @@ import styles from '../../styles/menus/tabs.module.css';
 
 interface TabsMenuProps {
     items?: MenuItem[];
-    size?: ButtonSize;
+    size?: ButtonSize | null;
     theme?: ButtonTheme;
-    renderItemButton?: (...args: unknown[]) => void;
-    buttonClassName?: string;
-    className?: string;
-    onClickItem?: (...args: unknown[]) => void;
+    renderItemButton?: ((...args: unknown[]) => void) | null;
+    buttonClassName?: string | null;
+    className?: string | null;
+    onClickItem?: ((...args: unknown[]) => void) | null;
 }
 
 function TabsMenu({

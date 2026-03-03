@@ -37,14 +37,14 @@ interface SlideshowScreenProps {
     spacing?: number;
     captionMaxLines?: number;
     transitionDelay?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     active?: boolean;
     preload?: boolean;
-    transitions?: TransitionsConfig;
-    className?: string;
+    transitions?: TransitionsConfig | null;
+    className?: string | null;
 }
 
 function SlideshowScreen({

@@ -9,14 +9,14 @@ import Empty from '../partials/Empty';
 import * as Placeholders from '../placeholders/index';
 
 interface ScreenElementProps {
-    children?: React.ReactNode;
-    placeholder?: string | React.ReactNode;
-    preview?: React.ReactNode;
-    empty?: React.ReactNode;
-    emptyLabel?: Label;
+    children?: React.ReactNode | null;
+    placeholder?: string | React.ReactNode | null;
+    preview?: React.ReactNode | null;
+    empty?: React.ReactNode | null;
+    emptyLabel?: Label | null;
     isEmpty?: boolean;
-    placeholderProps?: Record<string, unknown>;
-    emptyClassName?: string;
+    placeholderProps?: Record<string, unknown> | null;
+    emptyClassName?: string | null;
 }
 
 function ScreenElement({

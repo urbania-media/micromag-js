@@ -43,21 +43,21 @@ import styles from './article.module.css';
 
 interface ArticleScreenProps {
     layout?: 'normal';
-    image?: ImageMedia;
-    title?: Text;
-    surtitle?: Text;
-    date?: string;
-    author?: Record<string, unknown>;
-    text?: Text;
-    subtitle?: Text;
+    image?: ImageMedia | null;
+    title?: Text | null;
+    surtitle?: Text | null;
+    date?: string | null;
+    author?: Record<string, unknown> | null;
+    text?: Text | null;
+    subtitle?: Text | null;
     spacing?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
-    type?: string;
-    className?: string;
+    type?: string | null;
+    className?: string | null;
 }
 
 function ArticleScreen({

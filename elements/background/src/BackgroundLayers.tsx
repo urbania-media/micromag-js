@@ -12,23 +12,23 @@ import Background from './Background';
 import styles from './styles.module.css';
 
 interface BackgroundLayersProps {
-    width?: number;
-    height?: number;
+    width?: number | null;
+    height?: number | null;
     resolution?: number;
     background?: BackgroundElement | BackgroundElement[];
     playing?: boolean;
     muted?: boolean;
-    children?: React.ReactNode;
-    className?: string;
-    layerClassName?: string;
-    backgroundClassName?: string;
+    children?: React.ReactNode | null;
+    className?: string | null;
+    layerClassName?: string | null;
+    backgroundClassName?: string | null;
     loadingMode?: string;
-    mediaRef?: (...args: unknown[]) => void | { current?: unknown };
+    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
     shouldLoad?: boolean;
     withoutVideo?: boolean;
-    onPlayError?: boolean;
-    qualityStartLevel?: number;
-    onQualityLevelChange?: (...args: unknown[]) => void;
+    onPlayError?: boolean | null;
+    qualityStartLevel?: number | null;
+    onQualityLevelChange?: ((...args: unknown[]) => void) | null;
 }
 
 function BackgroundLayers({

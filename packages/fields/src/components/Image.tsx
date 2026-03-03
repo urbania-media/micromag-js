@@ -7,7 +7,7 @@ import type { ImageMedia } from '@micromag/core';
 import MediaField from './Media';
 
 interface ImageFieldProps {
-    value?: ImageMedia;
+    value?: ImageMedia | null;
 }
 
 function ImageField({ value: value = null, ...props }: ImageFieldProps) {

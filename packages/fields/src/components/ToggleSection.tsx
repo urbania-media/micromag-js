@@ -7,10 +7,10 @@ import Fields from './Fields';
 import styles from '../styles/toggle-section.module.css';
 
 interface ToggleSectionProps {
-    value?: Record<string, unknown>;
-    toggleField?: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: Record<string, unknown> | null;
+    toggleField?: string | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ToggleSection({

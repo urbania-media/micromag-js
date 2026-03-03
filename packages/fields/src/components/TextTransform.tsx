@@ -6,9 +6,9 @@ import React from 'react';
 import Radios from './Radios';
 
 interface TextTransformProps {
-    value?: Record<string, unknown>;
+    value?: Record<string, unknown> | null;
     options?: Record<string, unknown>[];
-    onChange?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function TextTransform({

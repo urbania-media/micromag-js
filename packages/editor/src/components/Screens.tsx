@@ -22,15 +22,15 @@ import ScreenTypesModal from './modals/ScreenTypes';
 import styles from '../styles/screens.module.css';
 
 interface EditorScreensProps {
-    value?: Story | Theme;
+    value?: Story | Theme | null;
     isTheme?: boolean;
     isVertical?: boolean;
     isCreateOpened?: boolean;
     isParsed?: boolean;
     isTree?: boolean;
-    onClickScreen?: (...args: unknown[]) => void;
-    onChange?: (...args: unknown[]) => void;
-    className?: string;
+    onClickScreen?: ((...args: unknown[]) => void) | null;
+    onChange?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function EditorScreens({

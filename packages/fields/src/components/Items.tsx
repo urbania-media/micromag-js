@@ -20,23 +20,23 @@ import { Button, Empty, Label } from '@micromag/core/components';
 import Field from './Field';
 
 interface ItemsFieldProps {
-    name?: string;
-    value?: Record<string, unknown>[];
-    getDefaultValue?: (...args: unknown[]) => void;
+    name?: string | null;
+    value?: Record<string, unknown>[] | null;
+    getDefaultValue?: ((...args: unknown[]) => void) | null;
     noItemLabel?: LabelType;
     addItemLabel?: LabelType;
     itemFieldLabel?: (...args: unknown[]) => void | Label;
-    itemComponent?: unknown;
-    itemsField?: FormField;
-    itemsProps?: Record<string, unknown>;
-    className?: string;
+    itemComponent?: unknown | null;
+    itemsField?: FormField | null;
+    itemsProps?: Record<string, unknown> | null;
+    className?: string | null;
     withoutSort?: boolean;
     withoutAddItem?: boolean;
     withoutDeleteItem?: boolean;
     isFieldForm?: boolean;
-    gotoFieldForm?: (...args: unknown[]) => void;
-    closeFieldForm?: (...args: unknown[]) => void;
-    onChange?: (...args: unknown[]) => void;
+    gotoFieldForm?: ((...args: unknown[]) => void) | null;
+    closeFieldForm?: ((...args: unknown[]) => void) | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ItemsField({

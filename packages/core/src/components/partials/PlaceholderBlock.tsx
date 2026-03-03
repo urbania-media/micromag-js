@@ -7,9 +7,9 @@ interface PlaceholderBlockProps {
     width?: number | string;
     height?: number | string;
     outline?: boolean;
-    className?: string;
-    boxClassName?: string;
-    children?: React.ReactNode;
+    className?: string | null;
+    boxClassName?: string | null;
+    children?: React.ReactNode | null;
     withInvertedColors?: boolean;
 }
 

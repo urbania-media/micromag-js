@@ -8,30 +8,30 @@ import Label from './Label';
 import Link from './Link';
 
 interface CardProps {
-    href?: string;
-    header?: React.ReactNode;
-    image?: React.ReactNode;
-    imageAlt?: string;
+    href?: string | null;
+    header?: React.ReactNode | null;
+    image?: React.ReactNode | null;
+    imageAlt?: string | null;
     imageOverlay?: boolean;
-    beforeBody?: React.ReactNode;
-    title?: Label;
-    subtitle?: Label;
-    children?: React.ReactNode;
-    afterBody?: React.ReactNode;
-    links?: { label?: Label; href?: string }[];
+    beforeBody?: React.ReactNode | null;
+    title?: Label | null;
+    subtitle?: Label | null;
+    children?: React.ReactNode | null;
+    afterBody?: React.ReactNode | null;
+    links?: { label?: Label; href?: string }[] | null;
     linksInSameBody?: boolean;
-    footer?: React.ReactNode;
+    footer?: React.ReactNode | null;
     theme?: null | 'dark' | 'primary' | 'light';
-    className?: string;
-    imageClassName?: string;
-    headerClassName?: string;
-    titleClassName?: string;
-    subtitleClassName?: string;
-    bodyClassName?: string;
-    footerClassName?: string;
-    onClick?: (...args: unknown[]) => void;
-    onClickBody?: (...args: unknown[]) => void;
-    onClickFooter?: (...args: unknown[]) => void;
+    className?: string | null;
+    imageClassName?: string | null;
+    headerClassName?: string | null;
+    titleClassName?: string | null;
+    subtitleClassName?: string | null;
+    bodyClassName?: string | null;
+    footerClassName?: string | null;
+    onClick?: ((...args: unknown[]) => void) | null;
+    onClickBody?: ((...args: unknown[]) => void) | null;
+    onClickFooter?: ((...args: unknown[]) => void) | null;
 }
 
 function Card({

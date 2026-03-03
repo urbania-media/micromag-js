@@ -44,16 +44,16 @@ import styles from './video-360.module.css';
 
 interface Video360ScreenProps {
     layout?: 'full';
-    video?: VideoElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
-    background?: BackgroundElement;
+    video?: VideoElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
+    background?: BackgroundElement | null;
     current?: boolean;
     preload?: boolean;
-    type?: string;
+    type?: string | null;
     spacing?: number;
-    mediaRef?: (...args: unknown[]) => void;
-    className?: string;
+    mediaRef?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function Video360Screen({

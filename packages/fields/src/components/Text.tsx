@@ -8,18 +8,18 @@ import React from 'react';
 import type { Errors } from '@micromag/core';
 
 interface TextFieldProps {
-    inputRef?: (...args: unknown[]) => void | { current?: Record<string, unknown> };
+    inputRef?: ((...args: unknown[]) => void | { current?: Record<string, unknown> }) | null;
     type?: 'text' | 'email' | 'number' | 'password';
-    value?: string | number;
-    errors?: Errors;
+    value?: string | number | null;
+    errors?: Errors | null;
     required?: boolean;
     disabled?: boolean;
-    placeholder?: string;
-    prefix?: string;
+    placeholder?: string | null;
+    prefix?: string | null;
     autofocus?: boolean;
-    onFocus?: (...args: unknown[]) => void;
-    onChange?: (...args: unknown[]) => void;
-    className?: string;
+    onFocus?: ((...args: unknown[]) => void) | null;
+    onChange?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function TextField({

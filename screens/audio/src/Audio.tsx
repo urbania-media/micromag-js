@@ -32,16 +32,16 @@ import styles from './audio.module.css';
 
 interface AudioScreenProps {
     layout?: 'middle';
-    audio?: AudioElement;
+    audio?: AudioElement | null;
     spacing?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
-    mediaRef?: (...args: unknown[]) => void;
+    mediaRef?: ((...args: unknown[]) => void) | null;
     showWave?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function AudioScreen({

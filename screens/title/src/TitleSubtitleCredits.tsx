@@ -7,7 +7,7 @@ import type { TextElement } from '@micromag/core';
 import TitleScreen from './Title';
 
 interface TitleSubtitleCreditsScreenProps {
-    credits?: TextElement;
+    credits?: TextElement | null;
 }
 
 function TitleSubtitleCreditsScreen({ credits = null, ...props }: TitleSubtitleCreditsScreenProps) {

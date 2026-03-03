@@ -18,10 +18,10 @@ const withScheme = (url, prefix, schemesPattern) =>
     url !== null && !url.match(schemesPattern) ? `${prefix}${url}` : url;
 
 interface UrlFieldProps {
-    value?: string;
+    value?: string | null;
     schemes?: string[];
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function UrlField({

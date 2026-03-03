@@ -8,8 +8,8 @@ import styles from '../../styles/panels/panels.module.css';
 
 interface PanelsContainerProps {
     panels?: Panel[];
-    setPanelsContainer?: (...args: unknown[]) => void;
-    className?: string;
+    setPanelsContainer?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function PanelsContainer({

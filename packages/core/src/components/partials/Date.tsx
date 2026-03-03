@@ -4,7 +4,7 @@ import React, { useMemo } from 'react';
 import { FormattedDate, FormattedTime } from 'react-intl';
 
 interface DateProps {
-    date?: string;
+    date?: string | null;
     withTime?: boolean;
     timeSeparator?: React.ReactNode;
 }

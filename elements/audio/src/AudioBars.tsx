@@ -11,9 +11,9 @@ interface AudioBarsProps {
     progress?: number;
     duration?: number;
     playing?: boolean;
-    seek?: (...args: unknown[]) => void;
-    play?: (...args: unknown[]) => void;
-    className?: string;
+    seek?: ((...args: unknown[]) => void) | null;
+    play?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function AudioBars({

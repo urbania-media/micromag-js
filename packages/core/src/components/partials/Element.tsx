@@ -10,8 +10,8 @@ interface ElementComponentProps {
     components: Record<string, unknown>;
     props?: Record<string, unknown>;
     isPlaceholder?: boolean;
-    className?: string;
-    placeholderProps?: Record<string, unknown>;
+    className?: string | null;
+    placeholderProps?: Record<string, unknown> | null;
 }
 
 function ElementComponent({

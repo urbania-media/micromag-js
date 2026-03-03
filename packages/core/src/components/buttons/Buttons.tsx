@@ -8,12 +8,12 @@ import styles from '../../styles/buttons/buttons.module.css';
 
 interface ButtonsProps {
     buttons?: Button[];
-    size?: ButtonSize;
+    size?: ButtonSize | null;
     theme?: ButtonTheme;
-    renderButton?: (...args: unknown[]) => void;
-    onClickButton?: (...args: unknown[]) => void;
-    className?: string;
-    buttonClassName?: string;
+    renderButton?: ((...args: unknown[]) => void) | null;
+    onClickButton?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
+    buttonClassName?: string | null;
 }
 
 function Buttons({

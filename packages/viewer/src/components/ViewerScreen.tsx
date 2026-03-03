@@ -11,18 +11,18 @@ import { Screen } from '@micromag/core/components';
 import styles from '../styles/screen.module.css';
 
 interface ViewerScreenProps {
-    screen?: ScreenComponent;
-    renderContext?: RenderContext;
-    screenState?: string;
+    screen?: ScreenComponent | null;
+    renderContext?: RenderContext | null;
+    screenState?: string | null;
     current?: boolean;
     active?: boolean;
     preload?: boolean;
-    mediaRef?: (...args: unknown[]) => void;
-    width?: number;
-    index?: number;
-    height?: number;
-    scale?: number;
-    className?: string;
+    mediaRef?: ((...args: unknown[]) => void) | null;
+    width?: number | null;
+    index?: number | null;
+    height?: number | null;
+    scale?: number | null;
+    className?: string | null;
 }
 
 function ViewerScreen({

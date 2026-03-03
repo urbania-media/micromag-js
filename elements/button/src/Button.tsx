@@ -11,18 +11,18 @@ import { getStyleFromBox, getStyleFromText } from '@micromag/core/utils';
 import styles from './styles.module.css';
 
 interface ButtonProps {
-    textStyle?: TextStyle;
-    buttonStyle?: BoxStyle;
+    textStyle?: TextStyle | null;
+    buttonStyle?: BoxStyle | null;
     type?: 'button' | 'submit';
     disabled?: boolean;
     focusable?: boolean;
     inline?: boolean;
-    onClick?: (...args: unknown[]) => void;
-    children?: React.ReactNode;
-    className?: string;
+    onClick?: ((...args: unknown[]) => void) | null;
+    children?: React.ReactNode | null;
+    className?: string | null;
     withoutExternalBorder?: boolean;
-    refButton?: (...args: unknown[]) => void | { current?: unknown };
-    style?: Record<string, unknown>;
+    refButton?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    style?: Record<string, unknown> | null;
 }
 
 function Button({

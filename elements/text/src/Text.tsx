@@ -18,17 +18,17 @@ import {
 import styles from './styles.module.css';
 
 interface TextProps {
-    body?: string;
-    textStyle?: TextStyle;
-    boxStyle?: BoxStyle;
-    linksStyle?: TextStyle;
-    margin?: Margin;
-    lineClamp?: number;
+    body?: string | null;
+    textStyle?: TextStyle | null;
+    boxStyle?: BoxStyle | null;
+    linksStyle?: TextStyle | null;
+    margin?: Margin | null;
+    lineClamp?: number | null;
     showEmpty?: boolean;
-    className?: string;
-    emptyClassName?: string;
+    className?: string | null;
+    emptyClassName?: string | null;
     inline?: boolean;
-    refText?: (...args: unknown[]) => void | { current?: unknown };
+    refText?: ((...args: unknown[]) => void | { current?: unknown }) | null;
 }
 
 function Text({

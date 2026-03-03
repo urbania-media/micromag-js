@@ -10,11 +10,11 @@ import styles from '../../styles/menus/breadcrumb.module.css';
 
 interface BreadcrumbProps {
     items?: MenuItem[];
-    theme?: BootstrapTheme;
+    theme?: BootstrapTheme | null;
     separator?: null | 'arrow';
     withoutBar?: boolean;
     noWrap?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function Breadcrumb({

@@ -19,20 +19,20 @@ import styles from '../styles/media-gallery.module.css';
 const videoTypes = ['video', 'image/gif'];
 
 interface MediaGalleryProps {
-    type?: string | unknown[];
+    type?: string | unknown[] | null;
     source?: string;
     isPicker?: boolean;
     isSmall?: boolean;
     withoutTitle?: boolean;
     withoutSource?: boolean;
     withoutType?: boolean;
-    medias?: Media[];
-    selectedMedia?: Media;
-    className?: string;
-    navbarClassName?: string;
-    onChange?: (...args: unknown[]) => void;
-    onClickMedia?: (...args: unknown[]) => void;
-    onClearMedia?: (...args: unknown[]) => void;
+    medias?: Media[] | null;
+    selectedMedia?: Media | null;
+    className?: string | null;
+    navbarClassName?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
+    onClickMedia?: ((...args: unknown[]) => void) | null;
+    onClearMedia?: ((...args: unknown[]) => void) | null;
 }
 
 function MediaGallery({

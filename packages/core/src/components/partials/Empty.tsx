@@ -7,10 +7,10 @@ import Label from './Label';
 import styles from '../../styles/partials/empty.module.css';
 
 interface EmptyProps {
-    children?: React.ReactNode;
+    children?: React.ReactNode | null;
     withoutBorder?: boolean;
     light?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function Empty({

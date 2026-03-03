@@ -35,20 +35,20 @@ import styles from './ranking.module.css';
 
 interface RankingScreenProps {
     layout?: 'side' | 'over';
-    title?: HeadingElement;
+    title?: HeadingElement | null;
     items?: TextElement[];
-    itemTitleStyle?: TextStyle;
-    itemDescriptionStyle?: TextStyle;
-    numbersStyle?: TextStyle;
+    itemTitleStyle?: TextStyle | null;
+    itemDescriptionStyle?: TextStyle | null;
+    numbersStyle?: TextStyle | null;
     ascending?: boolean;
     spacing?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
-    type?: string;
-    className?: string;
+    type?: string | null;
+    className?: string | null;
 }
 
 function RankingScreen({

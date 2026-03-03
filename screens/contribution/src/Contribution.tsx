@@ -54,30 +54,30 @@ import TextInput from '@micromag/element-text-input';
 import styles from './contribution.module.css';
 
 interface ContributionScreenProps {
-    id?: string;
+    id?: string | null;
     layout?: 'top' | 'middle' | 'bottom';
-    title?: HeadingElement;
-    name?: InputElement;
-    message?: InputElement;
-    submit?: TextElement;
-    nameStyle?: TextStyle;
-    messageStyle?: TextStyle;
+    title?: HeadingElement | null;
+    name?: InputElement | null;
+    message?: InputElement | null;
+    submit?: TextElement | null;
+    nameStyle?: TextStyle | null;
+    messageStyle?: TextStyle | null;
     settings?: {
         canViewAnswers?: boolean;
         answerButton?: ButtonElement;
         contributionButton?: ButtonElement;
-    };
+    } | null;
     spacing?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
-    transitions?: TransitionsConfig;
+    transitions?: TransitionsConfig | null;
     transitionStagger?: number;
     resizeTransitionDuration?: number;
-    type?: string;
-    className?: string;
+    type?: string | null;
+    className?: string | null;
 }
 
 function ContributionScreen({

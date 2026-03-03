@@ -7,19 +7,19 @@ import styles from '../../styles/transitions/transition.module.css';
 
 interface TransitionProps {
     fullscreen?: boolean;
-    from?: Record<string, unknown>;
-    to?: Record<string, unknown>;
+    from?: Record<string, unknown> | null;
+    to?: Record<string, unknown> | null;
     playing?: boolean;
-    direction?: 'in' | 'out';
+    direction?: 'in' | 'out' | null;
     delay?: number;
     reversible?: boolean;
     duration?: number;
     easing?: (...args: unknown[]) => void;
-    config?: { mass?: number; friction?: number; tension?: number };
-    children?: React.ReactNode;
-    className?: string;
-    onStart?: (...args: unknown[]) => void;
-    onComplete?: (...args: unknown[]) => void;
+    config?: { mass?: number; friction?: number; tension?: number } | null;
+    children?: React.ReactNode | null;
+    className?: string | null;
+    onStart?: ((...args: unknown[]) => void) | null;
+    onComplete?: ((...args: unknown[]) => void) | null;
 }
 
 function Transition({

@@ -8,25 +8,25 @@ import { useFieldComponent, useFieldContext, useFieldsManager } from '@micromag/
 import FieldRow from './FieldRow';
 
 interface FieldProps {
-    name?: string;
-    type?: string;
-    component?: React.ReactNode | ((...args: unknown[]) => void);
-    label?: Label;
-    help?: Label;
-    errors?: Errors;
-    value?: unknown;
+    name?: string | null;
+    type?: string | null;
+    component?: React.ReactNode | ((...args: unknown[]) => void) | null;
+    label?: Label | null;
+    help?: Label | null;
+    errors?: Errors | null;
+    value?: unknown | null;
     fields?: FormField[];
-    isHorizontal?: boolean;
+    isHorizontal?: boolean | null;
     isSection?: boolean;
     isListItem?: boolean;
-    withForm?: boolean | string;
-    withModal?: boolean | string;
-    onChange?: (...args: unknown[]) => void;
-    gotoFieldForm?: (...args: unknown[]) => void;
-    closeFieldForm?: (...args: unknown[]) => void;
-    className?: string;
-    labelClassName?: string;
-    fieldClassName?: string;
+    withForm?: boolean | string | null;
+    withModal?: boolean | string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
+    gotoFieldForm?: ((...args: unknown[]) => void) | null;
+    closeFieldForm?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
+    labelClassName?: string | null;
+    fieldClassName?: string | null;
 }
 
 function Field({

@@ -7,8 +7,8 @@ import type { Errors } from '@micromag/core';
 import styles from '../styles/field-errors.module.css';
 
 interface FieldErrorsProps {
-    errors?: Errors;
-    className?: string;
+    errors?: Errors | null;
+    className?: string | null;
 }
 
 function FieldErrors({ errors = null, className = null }: FieldErrorsProps) {

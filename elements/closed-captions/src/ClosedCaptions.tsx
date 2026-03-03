@@ -10,12 +10,12 @@ import TextElement from '@micromag/element-text';
 import styles from './styles.module.css';
 
 interface ClosedCaptionsProps {
-    media?: ClosedCaptionsMedia;
+    media?: ClosedCaptionsMedia | null;
     currentTime?: number;
-    timeOffset?: string;
-    textStyle?: TextStyle;
-    boxStyle?: BoxStyle;
-    className?: string;
+    timeOffset?: string | null;
+    textStyle?: TextStyle | null;
+    boxStyle?: BoxStyle | null;
+    className?: string | null;
 }
 
 function ClosedCaptions({

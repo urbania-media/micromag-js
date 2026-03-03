@@ -51,28 +51,28 @@ import TextInput from '@micromag/element-text-input';
 import styles from './survey.module.css';
 
 interface SurveyScreenProps {
-    id?: string;
+    id?: string | null;
     layout?: 'top' | 'middle' | 'bottom' | 'split';
-    question?: TextElement;
-    answers?: Answer[];
-    result?: Result;
-    buttonsStyle?: BoxStyle;
-    buttonsTextStyle?: TextStyle;
-    resultsStyle?: { barColor?: Color; textColor?: Color; percentageTextStyle?: TextStyle };
+    question?: TextElement | null;
+    answers?: Answer[] | null;
+    result?: Result | null;
+    buttonsStyle?: BoxStyle | null;
+    buttonsTextStyle?: TextStyle | null;
+    resultsStyle?: { barColor?: Color; textColor?: Color; percentageTextStyle?: TextStyle } | null;
     spacing?: number;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
-    background?: BackgroundElement;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
+    background?: BackgroundElement | null;
     customAnswer?: boolean;
     showCount?: boolean;
     withoutPercentage?: boolean;
     withoutBar?: boolean;
     current?: boolean;
     preload?: boolean;
-    transitions?: TransitionsConfig;
+    transitions?: TransitionsConfig | null;
     resultTransitionDuration?: number;
-    type?: string;
-    className?: string;
+    type?: string | null;
+    className?: string | null;
 }
 
 function SurveyScreen({

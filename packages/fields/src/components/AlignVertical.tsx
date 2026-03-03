@@ -13,10 +13,10 @@ const icons = {
 };
 
 interface AlignVerticalProps {
-    value?: 'top' | 'bottom' | 'middle';
-    defaultValue?: 'top' | 'bottom' | 'middle';
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: 'top' | 'bottom' | 'middle' | null;
+    defaultValue?: 'top' | 'bottom' | 'middle' | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function AlignVertical({

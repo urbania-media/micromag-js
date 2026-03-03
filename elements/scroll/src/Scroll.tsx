@@ -8,21 +8,21 @@ import { useDimensionObserver } from '@micromag/core/hooks';
 import styles from './styles.module.css';
 
 interface ScrollProps {
-    width?: number;
-    height?: number;
+    width?: number | null;
+    height?: number | null;
     disabled?: boolean;
-    verticalAlign?: 'top' | 'middle' | 'bottom';
-    className?: string;
-    scrollableClassName?: string;
-    scrolleeClassName?: string;
-    children?: React.ReactNode;
-    scrollPosition?: number | string;
+    verticalAlign?: 'top' | 'middle' | 'bottom' | null;
+    className?: string | null;
+    scrollableClassName?: string | null;
+    scrolleeClassName?: string | null;
+    children?: React.ReactNode | null;
+    scrollPosition?: number | string | null;
     triggers?: number[];
-    onScrolledTrigger?: (...args: unknown[]) => void;
-    onScrolledBottom?: (...args: unknown[]) => void;
-    onScrolledNotBottom?: (...args: unknown[]) => void;
-    onScrollHeightChange?: (...args: unknown[]) => void;
-    scrollContainerRef?: unknown;
+    onScrolledTrigger?: ((...args: unknown[]) => void) | null;
+    onScrolledBottom?: ((...args: unknown[]) => void) | null;
+    onScrolledNotBottom?: ((...args: unknown[]) => void) | null;
+    onScrollHeightChange?: ((...args: unknown[]) => void) | null;
+    scrollContainerRef?: unknown | null;
     withShadow?: boolean;
     withArrow?: boolean;
 }

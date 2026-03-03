@@ -9,9 +9,9 @@ interface PlaceholderTextProps {
     lines?: number;
     lineMargin?: number | string;
     width?: number | string;
-    height?: number | string;
+    height?: number | string | null;
     fontSize?: number;
-    className?: string;
+    className?: string | null;
     withInvertedColors?: boolean;
 }
 

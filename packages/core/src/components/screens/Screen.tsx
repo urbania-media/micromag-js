@@ -10,16 +10,16 @@ import styles from '../../styles/screens/screen.module.css';
 
 interface ScreenProps {
     screen: StoryComponent;
-    renderContext?: RenderContext;
-    screenState?: string;
-    index?: number;
+    renderContext?: RenderContext | null;
+    screenState?: string | null;
+    index?: number | null;
     active?: boolean;
     preload?: boolean;
     current?: boolean;
-    component?: React.ReactNode;
-    components?: Record<string, Component>;
-    className?: string;
-    mediaRef?: (...args: unknown[]) => void;
+    component?: React.ReactNode | null;
+    components?: Record<string, Component> | null;
+    className?: string | null;
+    mediaRef?: ((...args: unknown[]) => void) | null;
 }
 
 function Screen({

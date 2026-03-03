@@ -13,10 +13,10 @@ import Radios from './Radios';
 import styles from '../styles/media-thumbnail.module.css';
 
 interface MediaThumbnailProps {
-    value?: unknown;
+    value?: unknown | null;
     isForm?: boolean;
-    onChange?: (...args: unknown[]) => void;
-    className?: string;
+    onChange?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function MediaThumbnail({

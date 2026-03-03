@@ -3,9 +3,9 @@ import React from 'react';
 import { convertStyleToString } from '../../utils';
 
 interface LinkStyleProps {
-    selector?: string;
+    selector?: string | null;
     linkSelector?: string;
-    style?: Record<string, string | number>;
+    style?: Record<string, string | number> | null;
 }
 
 function LinkStyle({ selector = null, linkSelector = 'a', style = null }: LinkStyleProps) {

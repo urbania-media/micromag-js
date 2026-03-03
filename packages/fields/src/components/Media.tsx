@@ -4,8 +4,8 @@ import React, { useCallback } from 'react';
 import MediaModal from './MediaModal';
 
 interface MediaFieldProps {
-    onChange?: (...args: unknown[]) => void;
-    closeForm?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    closeForm?: ((...args: unknown[]) => void) | null;
 }
 
 function MediaField({ closeForm = null, onChange = null, ...props }: MediaFieldProps) {

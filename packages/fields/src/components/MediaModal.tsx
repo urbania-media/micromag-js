@@ -14,18 +14,18 @@ import FieldWithForm from './FieldWithForm';
 import styles from '../styles/media-modal.module.css';
 
 interface MediaModalProps {
-    title?: string;
-    value?: Media;
-    type?: string;
+    title?: string | null;
+    value?: Media | null;
+    type?: string | null;
     noValueLabel?: Label;
     isHorizontal?: boolean;
-    onChange?: (...args: unknown[]) => void;
-    onRequestClose?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    onRequestClose?: ((...args: unknown[]) => void) | null;
     multiple?: boolean;
-    thumbnail?: React.ReactNode;
+    thumbnail?: React.ReactNode | null;
     thumbnailPath?: string;
-    className?: string;
-    buttonsClassName?: string;
+    className?: string | null;
+    buttonsClassName?: string | null;
 }
 
 function MediaModal({

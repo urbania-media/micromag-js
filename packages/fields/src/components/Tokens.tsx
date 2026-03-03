@@ -9,14 +9,14 @@ import { selectTheme } from '../utils/selectTheme';
 import styles from '../styles/tokens.module.css';
 
 interface TokensProps {
-    value?: unknown[];
-    onChange?: (...args: unknown[]) => void;
+    value?: unknown[] | null;
+    onChange?: ((...args: unknown[]) => void) | null;
     options?: (Record<string, unknown> | string)[];
-    loadOptions?: (...args: unknown[]) => void;
+    loadOptions?: ((...args: unknown[]) => void) | null;
     getOptionLabel?: (...args: unknown[]) => void;
     getOptionValue?: (...args: unknown[]) => void;
     getNewOptionData?: (...args: unknown[]) => void;
-    className?: string;
+    className?: string | null;
 }
 
 function Tokens({

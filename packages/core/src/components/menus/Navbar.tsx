@@ -8,20 +8,20 @@ import Link from '../partials/Link';
 import styles from '../../styles/menus/navbar.module.css';
 
 interface NavbarProps {
-    brand?: React.ReactNode;
-    brandLink?: string;
-    breadcrumbs?: React.ReactNode;
+    brand?: React.ReactNode | null;
+    brandLink?: string | null;
+    breadcrumbs?: React.ReactNode | null;
     theme?: 'light' | 'dark' | 'primary' | null;
     size?: 'sm' | 'md' | 'lg';
     compact?: boolean;
     noWrap?: boolean;
     withoutCollapse?: boolean;
     withoutCollapseToggle?: boolean;
-    children?: React.ReactNode;
-    className?: string;
-    brandClassName?: string;
-    breadCrumbsClassName?: string;
-    collapseClassName?: string;
+    children?: React.ReactNode | null;
+    className?: string | null;
+    brandClassName?: string | null;
+    breadCrumbsClassName?: string | null;
+    collapseClassName?: string | null;
 }
 
 function Navbar({

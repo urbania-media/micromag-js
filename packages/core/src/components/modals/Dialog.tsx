@@ -8,15 +8,15 @@ import Label from '../partials/Label';
 import styles from '../../styles/modals/dialog.module.css';
 
 interface ModalDialogProps {
-    title?: Label;
-    header?: React.ReactNode;
-    children?: React.ReactNode;
-    footer?: React.ReactNode;
-    size?: string;
-    buttons?: Button[];
-    onClose?: (...args: unknown[]) => void;
-    className?: string;
-    bodyClassName?: string;
+    title?: Label | null;
+    header?: React.ReactNode | null;
+    children?: React.ReactNode | null;
+    footer?: React.ReactNode | null;
+    size?: string | null;
+    buttons?: Button[] | null;
+    onClose?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
+    bodyClassName?: string | null;
 }
 
 function ModalDialog({

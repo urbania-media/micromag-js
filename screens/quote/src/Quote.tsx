@@ -33,15 +33,15 @@ import styles from './quote.module.css';
 
 interface QuoteScreenProps {
     layout?: 'top' | 'middle' | 'bottom' | 'split';
-    quote?: TextElement;
-    author?: TextElement;
+    quote?: TextElement | null;
+    author?: TextElement | null;
     spacing?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function QuoteScreen({

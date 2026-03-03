@@ -32,19 +32,19 @@ import SmsIcon from './SmsIcon';
 import styles from './styles.module.css';
 
 interface ShareOptionsProps {
-    className?: string;
-    itemClassName?: string;
-    labelClassName?: string;
-    buttonClassName?: string;
-    title?: string;
-    url?: string;
-    options?: string[];
-    buttonsStyle?: BoxStyle;
-    buttonsTextStyle?: TextStyle;
+    className?: string | null;
+    itemClassName?: string | null;
+    labelClassName?: string | null;
+    buttonClassName?: string | null;
+    title?: string | null;
+    url?: string | null;
+    options?: string[] | null;
+    buttonsStyle?: BoxStyle | null;
+    buttonsTextStyle?: TextStyle | null;
     iconSize?: number;
-    theme?: ViewerTheme;
-    onShare?: (...args: unknown[]) => void;
-    onClose?: (...args: unknown[]) => void;
+    theme?: ViewerTheme | null;
+    onShare?: ((...args: unknown[]) => void) | null;
+    onClose?: ((...args: unknown[]) => void) | null;
     focusable?: boolean;
 }
 

@@ -16,13 +16,13 @@ import styles from './styles/stack.module.css';
 interface StackProps {
     direction?: StackDirection;
     align?: StackAlign;
-    spacing?: StackSpacing;
+    spacing?: StackSpacing | null;
     reverse?: boolean;
-    size?: number;
-    minSize?: number;
-    maxSize?: number;
-    className?: string;
-    children?: React.ReactNode;
+    size?: number | null;
+    minSize?: number | null;
+    maxSize?: number | null;
+    className?: string | null;
+    children?: React.ReactNode | null;
 }
 
 function Stack({

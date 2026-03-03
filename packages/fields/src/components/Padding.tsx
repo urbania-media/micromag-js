@@ -12,12 +12,12 @@ import Spacing from './Spacing';
 import styles from '../styles/padding.module.css';
 
 interface PaddingFieldProps {
-    value?: string | { top?: string; left?: string; bottom?: string; right?: string };
+    value?: string | { top?: string; left?: string; bottom?: string; right?: string } | null;
     isForm?: boolean;
     isHorizontal?: boolean;
     className?: string;
-    onChange?: (...args: unknown[]) => void;
-    closeForm?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    closeForm?: ((...args: unknown[]) => void) | null;
 }
 
 function PaddingField({

@@ -7,12 +7,12 @@ import type { TextElement } from '@micromag/core';
 import styles from './styles.module.css';
 
 interface CheckboxProps {
-    option?: TextElement;
-    value?: boolean;
-    onChange?: (...args: unknown[]) => void;
+    option?: TextElement | null;
+    value?: boolean | null;
+    onChange?: ((...args: unknown[]) => void) | null;
     focusable?: boolean;
-    checkboxStyle?: Record<string, unknown>;
-    className?: string;
+    checkboxStyle?: Record<string, unknown> | null;
+    className?: string | null;
 }
 
 function Checkbox({

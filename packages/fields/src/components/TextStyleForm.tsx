@@ -8,14 +8,14 @@ import { getFontFamilyFromFont, getStyleFromText } from '@micromag/core/utils';
 import FieldWithForm from './FieldWithForm';
 
 interface TextStyleFormProps {
-    value?: { color?: string; alpha?: number };
+    value?: { color?: string; alpha?: number } | null;
     fields?: { id?: string }[];
     isForm?: boolean;
     isHorizontal?: boolean;
-    sections?: string[];
+    sections?: string[] | null;
     className?: string;
-    onChange?: (...args: unknown[]) => void;
-    closeForm?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    closeForm?: ((...args: unknown[]) => void) | null;
 }
 
 function TextStyleForm({

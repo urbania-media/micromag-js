@@ -9,10 +9,10 @@ import styles from '../styles/button-layout.module.css';
 
 interface ButtonLayoutProps {
     types?: string[];
-    value?: string;
-    defaultValue?: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: string | null;
+    defaultValue?: string | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ButtonLayout({

@@ -9,17 +9,17 @@ import styles from '../../styles/buttons/button.module.css';
 
 interface ButtonProps {
     type?: string;
-    theme?: ButtonTheme;
-    size?: ButtonSize;
-    href?: string;
+    theme?: ButtonTheme | null;
+    size?: ButtonSize | null;
+    href?: string | null;
     external?: boolean;
     direct?: boolean;
     target?: string;
-    label?: Label;
-    children?: Label;
+    label?: Label | null;
+    children?: Label | null;
     focusable?: boolean;
     active?: boolean;
-    icon?: React.ReactNode;
+    icon?: React.ReactNode | null;
     iconPosition?: 'left' | 'right' | 'inline';
     disabled?: boolean;
     loading?: boolean;
@@ -32,11 +32,11 @@ interface ButtonProps {
     withoutTheme?: boolean;
     outline?: boolean;
     asLink?: boolean;
-    className?: string;
-    iconClassName?: string;
-    labelClassName?: string;
-    onClick?: (...args: unknown[]) => void;
-    refButton?: (...args: unknown[]) => void | { current?: unknown };
+    className?: string | null;
+    iconClassName?: string | null;
+    labelClassName?: string | null;
+    onClick?: ((...args: unknown[]) => void) | null;
+    refButton?: ((...args: unknown[]) => void | { current?: unknown }) | null;
 }
 
 function Button({

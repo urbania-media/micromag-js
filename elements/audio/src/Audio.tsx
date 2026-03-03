@@ -20,8 +20,8 @@ import AudioBars from './AudioBars';
 import styles from './styles/audio.module.css';
 
 interface AudioProps {
-    media?: AudioMedia;
-    mediaRef?: (...args: unknown[]) => void | { current?: unknown };
+    media?: AudioMedia | null;
+    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
     muted?: boolean;
     autoPlay?: boolean;
     paused?: boolean;
@@ -33,17 +33,17 @@ interface AudioProps {
     autoWaveHeight?: boolean;
     updateInterval?: number;
     withoutSeek?: boolean;
-    className?: string;
-    onReady?: (...args: unknown[]) => void;
-    onPlay?: (...args: unknown[]) => void;
-    onPause?: (...args: unknown[]) => void;
-    onEnded?: (...args: unknown[]) => void;
-    onSeeked?: (...args: unknown[]) => void;
-    onTimeUpdate?: (...args: unknown[]) => void;
-    onProgressStep?: (...args: unknown[]) => void;
-    onDurationChange?: (...args: unknown[]) => void;
-    onVolumeChange?: (...args: unknown[]) => void;
-    onPlayError?: (...args: unknown[]) => void;
+    className?: string | null;
+    onReady?: ((...args: unknown[]) => void) | null;
+    onPlay?: ((...args: unknown[]) => void) | null;
+    onPause?: ((...args: unknown[]) => void) | null;
+    onEnded?: ((...args: unknown[]) => void) | null;
+    onSeeked?: ((...args: unknown[]) => void) | null;
+    onTimeUpdate?: ((...args: unknown[]) => void) | null;
+    onProgressStep?: ((...args: unknown[]) => void) | null;
+    onDurationChange?: ((...args: unknown[]) => void) | null;
+    onVolumeChange?: ((...args: unknown[]) => void) | null;
+    onPlayError?: ((...args: unknown[]) => void) | null;
 }
 
 function Audio({

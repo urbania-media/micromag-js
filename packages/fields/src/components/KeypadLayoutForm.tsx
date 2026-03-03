@@ -25,12 +25,12 @@ function getPreviewItemsByColumns(columns) {
 }
 
 interface KeypadLayoutFormProps {
-    value?: { color?: string; alpha?: number };
-    isForm?: boolean;
+    value?: { color?: string; alpha?: number } | null;
+    isForm?: boolean | null;
     isHorizontal?: boolean;
     className?: string;
-    onChange?: (...args: unknown[]) => void;
-    closeForm?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    closeForm?: ((...args: unknown[]) => void) | null;
 }
 
 function KeypadLayoutForm({

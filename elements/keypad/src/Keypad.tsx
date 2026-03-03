@@ -7,13 +7,13 @@ import { getStyleFromAlignment } from '@micromag/core/utils';
 import styles from './keypad.module.css';
 
 interface KeypadProps {
-    align?: 'left' | 'right' | 'middle';
+    align?: 'left' | 'right' | 'middle' | null;
     columns?: number;
     spacing?: number;
-    className?: string;
-    itemClassName?: string;
-    innerClassName?: string;
-    items?: React.ReactNode;
+    className?: string | null;
+    itemClassName?: string | null;
+    innerClassName?: string | null;
+    items?: React.ReactNode | null;
 }
 
 function Keypad({

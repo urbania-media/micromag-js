@@ -10,7 +10,7 @@ import MediaField from './Media';
 const visualTypes = ['video', 'image'];
 
 interface VisualFieldProps {
-    value?: VideoMedia;
+    value?: VideoMedia | null;
 }
 
 function VisualField({ value: value = null, ...props }: VisualFieldProps) {

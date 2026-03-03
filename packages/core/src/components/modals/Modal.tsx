@@ -9,10 +9,10 @@ import Portal from './Portal';
 import styles from '../../styles/modals/modal.module.css';
 
 interface ModalProps {
-    id?: string;
-    title?: string;
+    id?: string | null;
+    title?: string | null;
     position?: 'center' | 'top';
-    children?: React.ReactNode;
+    children?: React.ReactNode | null;
 }
 
 function Modal({ id = null, children = null, position = 'center', title = null }: ModalProps) {

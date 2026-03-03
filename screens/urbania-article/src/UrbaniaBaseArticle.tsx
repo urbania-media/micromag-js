@@ -53,23 +53,23 @@ import styles from './urbania-base-article.module.css';
 
 interface UrbaniaArticleProps {
     hasArticle?: boolean;
-    type?: 'article' | 'video';
-    image?: VisualElement;
-    title?: HeadingElement;
-    description?: TextElement;
-    overTitle?: HeadingElement;
-    author?: AuthorElement;
-    sponsors?: Record<string, unknown>[];
-    sponsorPrefix?: React.ReactNode | ((...args: unknown[]) => void);
-    sponsorColor?: Color;
-    site?: string;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
-    background?: BackgroundElement;
+    type?: 'article' | 'video' | null;
+    image?: VisualElement | null;
+    title?: HeadingElement | null;
+    description?: TextElement | null;
+    overTitle?: HeadingElement | null;
+    author?: AuthorElement | null;
+    sponsors?: Record<string, unknown>[] | null;
+    sponsorPrefix?: React.ReactNode | ((...args: unknown[]) => void) | null;
+    sponsorColor?: Color | null;
+    site?: string | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
+    background?: BackgroundElement | null;
     current?: boolean;
     preload?: boolean;
     spacing?: number;
-    className?: string;
+    className?: string | null;
 }
 
 function UrbaniaArticle({

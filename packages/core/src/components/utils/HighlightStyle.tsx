@@ -3,9 +3,9 @@ import React from 'react';
 import { convertStyleToString } from '../../utils';
 
 interface HighlightStyleProps {
-    selector?: string;
+    selector?: string | null;
     highlightSelector?: string;
-    style?: Record<string, string | number>;
+    style?: Record<string, string | number> | null;
 }
 
 function HighlightStyle({

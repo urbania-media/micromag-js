@@ -20,11 +20,11 @@ import useSources from './useSources';
 import styles from './styles.module.css';
 
 interface VideoProps {
-    media?: VideoMedia;
-    thumbnail?: unknown;
-    width?: number;
-    height?: number;
-    mediaRef?: (...args: unknown[]) => void | { current?: unknown };
+    media?: VideoMedia | null;
+    thumbnail?: unknown | null;
+    width?: number | null;
+    height?: number | null;
+    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
     muted?: boolean;
     autoPlay?: boolean;
     paused?: boolean;
@@ -35,25 +35,25 @@ interface VideoProps {
     disableHls?: boolean;
     shouldLoad?: boolean;
     withoutCors?: boolean;
-    className?: string;
-    innerClassName?: string;
-    onReady?: (...args: unknown[]) => void;
-    onPlay?: (...args: unknown[]) => void;
-    onPause?: (...args: unknown[]) => void;
-    onEnded?: (...args: unknown[]) => void;
-    onSeeked?: (...args: unknown[]) => void;
-    onTimeUpdate?: (...args: unknown[]) => void;
-    onProgressStep?: (...args: unknown[]) => void;
-    onDurationChange?: (...args: unknown[]) => void;
-    onVolumeChange?: (...args: unknown[]) => void;
-    onSuspend?: (...args: unknown[]) => void;
-    onSuspended?: (...args: unknown[]) => void;
-    onPlayError?: (...args: unknown[]) => void;
-    onQualityLevelChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    innerClassName?: string | null;
+    onReady?: ((...args: unknown[]) => void) | null;
+    onPlay?: ((...args: unknown[]) => void) | null;
+    onPause?: ((...args: unknown[]) => void) | null;
+    onEnded?: ((...args: unknown[]) => void) | null;
+    onSeeked?: ((...args: unknown[]) => void) | null;
+    onTimeUpdate?: ((...args: unknown[]) => void) | null;
+    onProgressStep?: ((...args: unknown[]) => void) | null;
+    onDurationChange?: ((...args: unknown[]) => void) | null;
+    onVolumeChange?: ((...args: unknown[]) => void) | null;
+    onSuspend?: ((...args: unknown[]) => void) | null;
+    onSuspended?: ((...args: unknown[]) => void) | null;
+    onPlayError?: ((...args: unknown[]) => void) | null;
+    onQualityLevelChange?: ((...args: unknown[]) => void) | null;
     focusable?: boolean;
     withPoster?: boolean;
     withLoading?: boolean;
-    qualityStartLevel?: number;
+    qualityStartLevel?: number | null;
 }
 
 function Video({

@@ -23,15 +23,15 @@ import Screens from './Screens';
 import styles from '../styles/editor.module.css';
 
 interface EditorProps {
-    value?: Story | Theme;
+    value?: Story | Theme | null;
     deviceScreens?: DeviceScreen[];
-    viewerTheme?: ViewerTheme;
+    viewerTheme?: ViewerTheme | null;
     mobileView?: 'screens' | 'preview' | 'form';
     fullscreen?: boolean;
     isTheme?: boolean;
     isCreateOpened?: boolean;
-    onChange?: (...args: unknown[]) => void;
-    className?: string;
+    onChange?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function Editor({

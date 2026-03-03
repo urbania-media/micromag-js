@@ -10,20 +10,20 @@ import { getOptimalImageUrl } from '@micromag/core/utils';
 import styles from './styles.module.css';
 
 interface ImageProps {
-    media?: ImageMedia;
-    alt?: string;
-    width?: number | string;
-    height?: number | string;
+    media?: ImageMedia | null;
+    alt?: string | null;
+    width?: number | string | null;
+    height?: number | string | null;
     resolution?: number;
-    objectFit?: ObjectFit;
+    objectFit?: ObjectFit | null;
     containerStyle?: ContainerStyle;
     imageStyle?: ContainerStyle;
-    className?: string;
-    imageClassName?: string;
-    onLoaded?: (...args: unknown[]) => void;
+    className?: string | null;
+    imageClassName?: string | null;
+    onLoaded?: ((...args: unknown[]) => void) | null;
     loadingMode?: string;
     shouldLoad?: boolean;
-    containerRef?: (...args: unknown[]) => void | { current?: unknown };
+    containerRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
 }
 
 function Image({

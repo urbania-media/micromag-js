@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 
 interface ShareLinkIconProps {
-    className?: string;
+    className?: string | null;
     size?: number;
 }
 

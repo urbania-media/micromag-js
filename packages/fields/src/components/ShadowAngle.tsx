@@ -9,9 +9,9 @@ import styles from '../styles/shadow-angle.module.css';
 
 interface ShadowAngleProps {
     types?: string[];
-    value?: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: string | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ShadowAngle({

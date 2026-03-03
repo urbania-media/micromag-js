@@ -17,12 +17,12 @@ import ToggleField from './Toggle';
 import styles from '../styles/field-row.module.css';
 
 interface FieldRowProps {
-    label?: LabelType;
-    errors?: Errors;
-    help?: LabelType;
-    value?: unknown;
-    defaultValue?: unknown;
-    children?: React.ReactNode;
+    label?: LabelType | null;
+    errors?: Errors | null;
+    help?: LabelType | null;
+    value?: unknown | null;
+    defaultValue?: unknown | null;
+    children?: React.ReactNode | null;
     isSection?: boolean;
     isHorizontal?: boolean;
     isListItem?: boolean;
@@ -33,14 +33,14 @@ interface FieldRowProps {
     withToggle?: boolean;
     withForm?: boolean | string;
     withValue?: boolean;
-    buttonTheme?: ButtonTheme;
+    buttonTheme?: ButtonTheme | null;
     buttonOutline?: boolean;
-    gotoSettings?: (...args: unknown[]) => void;
-    gotoForm?: (...args: unknown[]) => void;
-    onChange?: (...args: unknown[]) => void;
-    className?: string;
-    labelClassName?: string;
-    buttonClassName?: string;
+    gotoSettings?: ((...args: unknown[]) => void) | null;
+    gotoForm?: ((...args: unknown[]) => void) | null;
+    onChange?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
+    labelClassName?: string | null;
+    buttonClassName?: string | null;
 }
 
 function FieldRow({

@@ -8,11 +8,11 @@ import EditorField from './TextEditor';
 import TextareaField from './Textarea';
 
 interface TextElementProps {
-    value?: TextElementType;
+    value?: TextElementType | null;
     inline?: boolean;
     textOnly?: boolean;
-    onChange?: (...args: unknown[]) => void;
-    onFocus?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    onFocus?: ((...args: unknown[]) => void) | null;
     disabled?: boolean;
 }
 

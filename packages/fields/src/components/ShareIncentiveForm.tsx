@@ -11,9 +11,9 @@ import type { ActiveForm } from '@micromag/core';
 import FieldWithForm from './FieldWithForm';
 
 interface ShareIncentiveFormProps {
-    value?: ActiveForm;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: ActiveForm | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ShareIncentiveForm({

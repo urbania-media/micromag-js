@@ -13,28 +13,28 @@ import Button from './Button';
 import styles from './styles.module.css';
 
 interface RichButtonProps {
-    label?: TextElement;
-    visual?: Media;
-    visualWidth?: number | string;
-    labelBoxStyle?: BoxStyle;
-    textStyle?: TextStyle;
-    buttonStyle?: BoxStyle;
-    resolution?: number;
+    label?: TextElement | null;
+    visual?: Media | null;
+    visualWidth?: number | string | null;
+    labelBoxStyle?: BoxStyle | null;
+    textStyle?: TextStyle | null;
+    buttonStyle?: BoxStyle | null;
+    resolution?: number | null;
     shouldLoad?: boolean;
     layout?: 'label-bottom' | 'label-top' | 'no-label' | 'label-over' | 'label-right';
     type?: 'button' | 'submit';
     disabled?: boolean;
     focusable?: boolean;
     inline?: boolean;
-    onClick?: (...args: unknown[]) => void;
-    className?: string;
-    textClassName?: string;
-    imageClassName?: string;
-    videoClassName?: string;
-    visualClassName?: string;
+    onClick?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
+    textClassName?: string | null;
+    imageClassName?: string | null;
+    videoClassName?: string | null;
+    visualClassName?: string | null;
     withoutExternalBorder?: boolean;
-    refButton?: (...args: unknown[]) => void | { current?: unknown };
-    children?: React.ReactNode;
+    refButton?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    children?: React.ReactNode | null;
 }
 
 function RichButton({

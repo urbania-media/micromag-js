@@ -9,7 +9,7 @@ import AnswerField from './Answer';
 import ItemsField from './Items';
 
 interface AnswersFieldProps {
-    value?: Answer[];
+    value?: Answer[] | null;
 }
 
 function AnswersField({ value: value = null, ...props }: AnswersFieldProps) {

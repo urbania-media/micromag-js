@@ -10,9 +10,9 @@ import Fields from './Fields';
 import styles from '../styles/alternative.module.css';
 
 interface AlternativeProps {
-    value?: Badge;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: Badge | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Alternative({

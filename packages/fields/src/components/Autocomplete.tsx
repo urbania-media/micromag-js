@@ -8,7 +8,7 @@ import styles from '../styles/autocomplete.module.css';
 
 interface AutocompleteFieldProps {
     items?: { label?: string; value?: number | string }[];
-    value?: string;
+    value?: string | null;
     searchOptions?: {
         isCaseSensitive?: boolean;
         includeScore?: boolean;
@@ -20,10 +20,10 @@ interface AutocompleteFieldProps {
     };
     maxResults?: number;
     showEmpty?: boolean;
-    placeholder?: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
-    children?: React.ReactNode;
+    placeholder?: string | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
+    children?: React.ReactNode | null;
 }
 
 function AutocompleteField({

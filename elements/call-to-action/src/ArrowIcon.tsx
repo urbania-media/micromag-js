@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ArrowProps {
     color?: string;
-    className?: string;
+    className?: string | null;
 }
 
 function Arrow({ color = 'currentColor', className = null }: ArrowProps) {

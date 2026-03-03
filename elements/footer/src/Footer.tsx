@@ -8,8 +8,8 @@ import CallToAction from '@micromag/element-call-to-action';
 import styles from './styles.module.css';
 
 interface FooterProps {
-    callToAction?: CallToAction;
-    className?: string;
+    callToAction?: CallToAction | null;
+    className?: string | null;
 }
 
 function Footer({ callToAction = null, className = null }: FooterProps) {

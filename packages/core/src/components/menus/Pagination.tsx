@@ -25,14 +25,14 @@ interface PaginationMenuProps {
     lastPage?: number;
     maxPages?: number;
     total?: number;
-    url?: string;
-    query?: Record<string, unknown>;
+    url?: string | null;
+    query?: Record<string, unknown> | null;
     withPreviousNext?: boolean;
-    className?: string;
-    paginationClassName?: string;
-    itemClassName?: string;
-    linkClassName?: string;
-    onClickPage?: (...args: unknown[]) => void;
+    className?: string | null;
+    paginationClassName?: string | null;
+    itemClassName?: string | null;
+    linkClassName?: string | null;
+    onClickPage?: ((...args: unknown[]) => void) | null;
 }
 
 function PaginationMenu({

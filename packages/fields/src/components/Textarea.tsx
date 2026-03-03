@@ -6,12 +6,12 @@ import React from 'react';
 import type { Errors } from '@micromag/core';
 
 interface TextareaFieldProps {
-    id?: string;
-    value?: string | number;
-    errors?: Errors;
+    id?: string | null;
+    value?: string | number | null;
+    errors?: Errors | null;
     required?: boolean;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function TextareaField({

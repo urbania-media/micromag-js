@@ -20,13 +20,13 @@ interface AuthorProps {
         image?: ImageElement;
         url?: string;
         collaborator?: TextElement;
-    };
+    } | null;
     withImage?: boolean;
     withoutLink?: boolean;
-    linkUnderlineColor?: string;
-    className?: string;
-    backgroundClassName?: string;
-    collaboratorClassName?: string;
+    linkUnderlineColor?: string | null;
+    className?: string | null;
+    backgroundClassName?: string | null;
+    collaboratorClassName?: string | null;
     shouldLoad?: boolean;
 }
 

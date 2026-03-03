@@ -23,14 +23,14 @@ const fontEquals = (fontA, fontB) =>
     (isObject(fontA) && isObject(fontB) && fontA.type === fontB.type && fontA.name === fontB.name);
 
 interface FontFamilyProps {
-    value?: Font;
+    value?: Font | null;
     isForm?: boolean;
     isHorizontal?: boolean;
     canClear?: boolean;
     maxFontsVisible?: number;
     className?: string;
-    onChange?: (...args: unknown[]) => void;
-    closeForm?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    closeForm?: ((...args: unknown[]) => void) | null;
 }
 
 function FontFamily({

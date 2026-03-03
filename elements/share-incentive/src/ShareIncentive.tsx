@@ -9,9 +9,9 @@ import Text from '@micromag/element-text';
 import styles from './styles.module.css';
 
 interface ShareIncentiveProps {
-    className?: string;
-    label?: TextElement;
-    boxStyle?: BoxStyle;
+    className?: string | null;
+    label?: TextElement | null;
+    boxStyle?: BoxStyle | null;
 }
 
 function ShareIncentive({ className = null, label = null, boxStyle = null }: ShareIncentiveProps) {

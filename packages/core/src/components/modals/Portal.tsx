@@ -6,9 +6,9 @@ import ElementPortal from '../utils/ElementPortal';
 import { useModals } from '../../contexts';
 
 interface ModalPortalProps {
-    id?: string;
-    data?: Record<string, unknown>;
-    children?: React.ReactNode;
+    id?: string | null;
+    data?: Record<string, unknown> | null;
+    children?: React.ReactNode | null;
 }
 
 function ModalPortal({ id = null, data = null, children = null }: ModalPortalProps) {

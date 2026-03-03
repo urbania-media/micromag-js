@@ -18,14 +18,14 @@ import ScreenStates from './partials/ScreenStates';
 import styles from '../styles/preview.module.css';
 
 interface EditorPreviewProps {
-    value?: Story | Theme;
+    value?: Story | Theme | null;
     devices?: Device[];
     device?: string;
-    viewerTheme?: ViewerTheme;
+    viewerTheme?: ViewerTheme | null;
     isTheme?: boolean;
-    className?: string;
-    onScreenChange?: (...args: unknown[]) => void;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onScreenChange?: ((...args: unknown[]) => void) | null;
+    onChange?: ((...args: unknown[]) => void) | null;
     withoutDevicesSizes?: boolean;
 }
 

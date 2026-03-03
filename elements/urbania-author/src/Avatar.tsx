@@ -9,13 +9,13 @@ import { getOptimalImageUrl, pascalCase } from '@micromag/core/utils';
 import styles from './avatar.module.css';
 
 interface AvatarProps {
-    image?: ImageElement;
+    image?: ImageElement | null;
     width?: number;
     height?: number;
     resolution?: number;
     isTag?: boolean;
     shape?: null | 'tag' | 'circle';
-    className?: string;
+    className?: string | null;
     shouldLoad?: boolean;
 }
 

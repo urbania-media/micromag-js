@@ -5,13 +5,13 @@ import type { FormField } from '@micromag/core';
 import Fields from './Fields';
 
 interface ElementFieldProps {
-    name?: string;
+    name?: string | null;
     fields?: FormField[];
-    value?: Record<string, unknown>;
+    value?: Record<string, unknown> | null;
     isList?: boolean;
-    gotoFieldForm?: (...args: unknown[]) => void;
-    closeFieldForm?: (...args: unknown[]) => void;
-    onChange?: (...args: unknown[]) => void;
+    gotoFieldForm?: ((...args: unknown[]) => void) | null;
+    closeFieldForm?: ((...args: unknown[]) => void) | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ElementField({

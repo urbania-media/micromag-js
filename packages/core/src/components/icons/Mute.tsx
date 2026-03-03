@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface MuteIconProps {
-    className?: string;
+    className?: string | null;
     color?: string;
 }
 

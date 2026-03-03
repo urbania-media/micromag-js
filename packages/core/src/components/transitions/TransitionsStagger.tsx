@@ -3,13 +3,13 @@ import React from 'react';
 import Transitions from './Transitions';
 
 interface TransitionsStaggerProps {
-    transitions?: Transitions;
+    transitions?: Transitions | null;
     stagger?: number;
     playing?: boolean;
     disabled?: boolean;
     delay?: number;
     fullscreen?: boolean;
-    children?: React.ReactNode;
+    children?: React.ReactNode | null;
 }
 
 function TransitionsStagger({

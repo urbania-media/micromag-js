@@ -8,13 +8,13 @@ import { getStyleFromMargin } from '@micromag/core/utils';
 import styles from './styles.module.css';
 
 interface LinkProps {
-    url?: string;
-    target?: string;
-    rel?: string;
+    url?: string | null;
+    target?: string | null;
+    rel?: string | null;
     external?: boolean;
-    margin?: Margin;
-    className?: string;
-    children?: React.ReactNode;
+    margin?: Margin | null;
+    className?: string | null;
+    children?: React.ReactNode | null;
     focusable?: boolean;
 }
 

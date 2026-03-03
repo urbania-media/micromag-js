@@ -12,11 +12,11 @@ import Fields from './Fields';
 import styles from '../styles/conversation.module.css';
 
 interface ConversationProps {
-    value?: ConversationType;
-    fields?: FormField[];
+    value?: ConversationType | null;
+    fields?: FormField[] | null;
     name: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Conversation({

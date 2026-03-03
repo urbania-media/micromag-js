@@ -23,10 +23,10 @@ import DeleteScreenModal from './modals/DeleteScreen';
 import styles from '../styles/form.module.css';
 
 interface EditFormProps {
-    value?: Story | Theme;
+    value?: Story | Theme | null;
     isTheme?: boolean;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function EditForm({

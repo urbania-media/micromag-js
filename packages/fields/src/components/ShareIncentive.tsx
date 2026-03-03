@@ -10,9 +10,9 @@ import Fields from './Fields';
 import styles from '../styles/call-to-action.module.css';
 
 interface ShareIncentiveProps {
-    value?: CallToAction;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: CallToAction | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ShareIncentive({

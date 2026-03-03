@@ -12,19 +12,19 @@ import { getContrastingColor } from '@micromag/core/utils';
 import styles from './styles/audio-wave.module.css';
 
 interface AudioWaveProps {
-    currentTime?: number;
-    duration?: number;
+    currentTime?: number | null;
+    duration?: number | null;
     playing?: boolean;
     sampleWidth?: number;
     sampleMargin?: number;
     minSampleHeight?: number;
     backgroundColor?: Color;
-    progressColor?: Color;
-    audioLevels?: number[];
-    className?: string;
-    onSeek?: (...args: unknown[]) => void;
-    onResume?: (...args: unknown[]) => void;
-    onReady?: (...args: unknown[]) => void;
+    progressColor?: Color | null;
+    audioLevels?: number[] | null;
+    className?: string | null;
+    onSeek?: ((...args: unknown[]) => void) | null;
+    onResume?: ((...args: unknown[]) => void) | null;
+    onReady?: ((...args: unknown[]) => void) | null;
 }
 
 function AudioWave({

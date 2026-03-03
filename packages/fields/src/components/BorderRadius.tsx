@@ -7,10 +7,10 @@ import Slider from './Slider';
 import styles from '../styles/border-width.module.css';
 
 interface BorderRadiusProps {
-    value?: string;
+    value?: string | null;
     sizes?: number[];
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function BorderRadius({

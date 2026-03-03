@@ -6,10 +6,10 @@ import { useStackDirection } from './StackContext';
 import styles from './styles/spacer.module.css';
 
 interface SpacerProps {
-    size?: number;
-    minSize?: number;
-    maxSize?: number;
-    className?: string;
+    size?: number | null;
+    minSize?: number | null;
+    maxSize?: number | null;
+    className?: string | null;
 }
 
 function Spacer({ size = null, minSize = null, maxSize = null, className = null }: SpacerProps) {

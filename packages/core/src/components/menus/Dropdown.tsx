@@ -12,13 +12,13 @@ import Link from '../partials/Link';
 
 interface DropdownProps {
     items?: MenuItem[];
-    children?: React.ReactNode;
+    children?: React.ReactNode | null;
     visible?: boolean;
-    align?: DropdownAlign;
-    className?: string;
-    itemClassName?: string;
-    onClickItem?: (...args: unknown[]) => void;
-    onClickOutside?: (...args: unknown[]) => void;
+    align?: DropdownAlign | null;
+    className?: string | null;
+    itemClassName?: string | null;
+    onClickItem?: ((...args: unknown[]) => void) | null;
+    onClickOutside?: ((...args: unknown[]) => void) | null;
 }
 
 function Dropdown({

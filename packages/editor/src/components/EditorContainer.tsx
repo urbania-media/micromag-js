@@ -30,14 +30,14 @@ import defaultRoutes from '../data/routes.json';
 const pathToRegexpParser = createPathToRegexpParser();
 
 interface EditorContainerProps {
-    value?: Story | Theme;
+    value?: Story | Theme | null;
     routes?: unknown;
     memoryRouter?: boolean;
-    basePath?: string;
-    uppy?: { transport?: string };
-    googleApiKey?: string;
+    basePath?: string | null;
+    uppy?: { transport?: string } | null;
+    googleApiKey?: string | null;
     googleMapsLibraries?: string[];
-    screenNamespaces?: string[];
+    screenNamespaces?: string[] | null;
 }
 
 function EditorContainer({

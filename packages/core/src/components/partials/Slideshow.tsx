@@ -8,10 +8,10 @@ interface SlideshowProps {
     items?: React.ReactNode[];
     auto?: boolean;
     delay?: number;
-    width?: string | number;
-    height?: string | number;
-    className?: string;
-    children?: React.ReactNode;
+    width?: string | number | null;
+    height?: string | number | null;
+    className?: string | null;
+    children?: React.ReactNode | null;
 }
 
 function Slideshow({

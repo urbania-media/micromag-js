@@ -7,7 +7,7 @@ import type { AudioMedia } from '@micromag/core';
 import MediaField from './Media';
 
 interface AudioFieldProps {
-    value?: AudioMedia;
+    value?: AudioMedia | null;
 }
 
 function AudioField({ value: value = null, ...props }: AudioFieldProps) {

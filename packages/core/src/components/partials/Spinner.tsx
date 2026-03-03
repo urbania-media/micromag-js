@@ -8,7 +8,7 @@ interface SpinnerProps {
     animated?: boolean;
     color?: string;
     strokeWidth?: number;
-    className?: string;
+    className?: string | null;
 }
 
 function Spinner({

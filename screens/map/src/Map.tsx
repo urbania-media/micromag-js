@@ -56,19 +56,19 @@ interface MapScreenProps {
     layout?: 'normal';
     draggable?: boolean;
     markers?: Marker[] | MarkerWithImage[];
-    title?: TextElement;
-    description?: TextElement;
-    button?: TextElement;
+    title?: TextElement | null;
+    description?: TextElement | null;
+    button?: TextElement | null;
     openedMarkerSpacerHeight?: number;
     withMarkerImages?: boolean;
     center?: GeoPosition;
     zoom?: number;
     fitBounds?: boolean;
-    background?: BackgroundElement;
+    background?: BackgroundElement | null;
     current?: boolean;
     active?: boolean;
-    type?: string;
-    className?: string;
+    type?: string | null;
+    className?: string | null;
 }
 
 function MapScreen({

@@ -9,13 +9,13 @@ import { getFileName } from '@micromag/core/utils';
 import FieldWithForm from './FieldWithForm';
 
 interface MessageFieldProps {
-    type?: MediaType | MediaType[];
-    value?: Media;
-    fields?: FormField[];
+    type?: MediaType | MediaType[] | null;
+    value?: Media | null;
+    fields?: FormField[] | null;
     noValueLabel?: Label;
     withoutThumbnail?: boolean;
-    onChange?: (...args: unknown[]) => void;
-    closeForm?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    closeForm?: ((...args: unknown[]) => void) | null;
 }
 
 function MessageField({

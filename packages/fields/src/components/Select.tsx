@@ -9,11 +9,11 @@ import getSelectOptions from '../utils/getSelectOptions';
 import styles from '../styles/select.module.css';
 
 interface SelectFieldProps {
-    value?: string;
+    value?: string | null;
     options?: SelectOption[];
     disabled?: boolean;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function SelectField({

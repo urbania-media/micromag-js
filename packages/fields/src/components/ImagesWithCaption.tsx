@@ -10,7 +10,7 @@ import ItemsField from './Items';
 // import ImageField from './Image';
 
 interface ImagesWithCaptionFieldProps {
-    value?: ImageMedia[];
+    value?: ImageMedia[] | null;
 }
 
 function ImagesWithCaptionField({ value: value = null, ...props }: ImagesWithCaptionFieldProps) {

@@ -41,18 +41,18 @@ import styles from './urbania-base-article-card.module.css';
 
 interface UrbaniaArticleCardProps {
     hasArticle?: boolean;
-    url?: string;
-    title?: HeadingElement;
-    author?: AuthorElement;
-    text?: TextElement;
-    image?: VisualElement;
-    header?: HeaderConfig;
-    background?: BackgroundElement;
-    callToAction?: TextElement;
+    url?: string | null;
+    title?: HeadingElement | null;
+    author?: AuthorElement | null;
+    text?: TextElement | null;
+    image?: VisualElement | null;
+    header?: HeaderConfig | null;
+    background?: BackgroundElement | null;
+    callToAction?: TextElement | null;
     current?: boolean;
     preload?: boolean;
     spacing?: number;
-    className?: string;
+    className?: string | null;
 }
 
 function UrbaniaArticleCard({

@@ -27,21 +27,21 @@ function getItemLabel(item, labelPath, defaultValue) {
 }
 
 interface FieldWithFormProps {
-    value?: unknown;
+    value?: unknown | null;
     isForm?: boolean;
     canClear?: boolean;
-    label?: React.ReactNode | Message;
-    thumbnail?: React.ReactNode;
+    label?: React.ReactNode | Message | null;
+    thumbnail?: React.ReactNode | null;
     labelPath?: string;
     withTitleLabel?: boolean;
     thumbnailPath?: string;
-    noValueLabel?: LabelType;
+    noValueLabel?: LabelType | null;
     isHorizontal?: boolean;
-    children?: React.ReactNode;
-    field?: FormField;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
-    closeForm?: (...args: unknown[]) => void;
+    children?: React.ReactNode | null;
+    field?: FormField | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
+    closeForm?: ((...args: unknown[]) => void) | null;
 }
 
 function FieldWithForm({

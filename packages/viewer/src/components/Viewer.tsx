@@ -53,16 +53,16 @@ const DEFAULT_TRANSITION_TYPE_PORTRAIT = 'stack';
 const SHARE_INCENTIVE_TIMEOUT = 6000;
 
 interface ViewerProps {
-    story?: Story;
-    basePath?: string;
-    theme?: ViewerTheme;
-    width?: number;
-    height?: number;
-    screen?: string;
-    screenState?: string;
+    story?: Story | null;
+    basePath?: string | null;
+    theme?: ViewerTheme | null;
+    width?: number | null;
+    height?: number | null;
+    screen?: string | null;
+    screenState?: string | null;
     deviceScreens?: DeviceScreen[];
     renderContext?: RenderContext;
-    onScreenChange?: (...args: unknown[]) => void;
+    onScreenChange?: ((...args: unknown[]) => void) | null;
     tapNextScreenWidthPercent?: number;
     tapMaximumDuration?: number;
     longPressPauseDelay?: number;
@@ -72,19 +72,19 @@ interface ViewerProps {
     neighborScreenScale?: number;
     neighborPreloadDelay?: number;
     neighborPreloadBackward?: number;
-    neighborPreloadScreens?: number;
-    topSafezoneHeight?: number;
-    bottomSafezoneHeight?: number;
-    menuDotsButtons?: React.ReactNode;
+    neighborPreloadScreens?: number | null;
+    topSafezoneHeight?: number | null;
+    bottomSafezoneHeight?: number | null;
+    menuDotsButtons?: React.ReactNode | null;
     menuIsScreenWidth?: boolean;
-    menuHeader?: React.ReactNode;
-    menuFooter?: React.ReactNode;
+    menuHeader?: React.ReactNode | null;
+    menuFooter?: React.ReactNode | null;
     menuItems?: (string | React.ReactNode)[];
-    shareBasePath?: string;
-    shareOptions?: string[];
-    afterShareMenuButton?: React.ReactNode;
-    beforeScreensMenuButton?: React.ReactNode;
-    backToFirstScreenTimeout?: number;
+    shareBasePath?: string | null;
+    shareOptions?: string[] | null;
+    afterShareMenuButton?: React.ReactNode | null;
+    beforeScreensMenuButton?: React.ReactNode | null;
+    backToFirstScreenTimeout?: number | null;
     closeable?: boolean;
     readyWithoutSize?: boolean;
     withMetadata?: boolean;
@@ -102,19 +102,19 @@ interface ViewerProps {
     withNavigationHint?: boolean | string;
     withoutPlaybackControls?: boolean;
     withoutAutoUnmute?: boolean;
-    onClose?: (...args: unknown[]) => void;
-    onInteraction?: (...args: unknown[]) => void;
-    onEnd?: (...args: unknown[]) => void;
-    onViewModeChange?: (...args: unknown[]) => void;
-    onMenuChange?: (...args: unknown[]) => void;
-    currentScreenMedia?: Ref;
-    screensMedias?: Ref;
+    onClose?: ((...args: unknown[]) => void) | null;
+    onInteraction?: ((...args: unknown[]) => void) | null;
+    onEnd?: ((...args: unknown[]) => void) | null;
+    onViewModeChange?: ((...args: unknown[]) => void) | null;
+    onMenuChange?: ((...args: unknown[]) => void) | null;
+    currentScreenMedia?: Ref | null;
+    screensMedias?: Ref | null;
     screenSizeOptions?: {
         withoutMaxSize?: boolean;
         desktopHeightRatio?: number;
         screenRatio?: number;
-    };
-    className?: string;
+    } | null;
+    className?: string | null;
 }
 
 function Viewer({

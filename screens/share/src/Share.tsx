@@ -34,21 +34,21 @@ import styles from './share.module.css';
 
 interface ShareScreenProps {
     layout?: 'top' | 'middle' | 'bottom';
-    heading?: HeadingElement;
-    shareUrl?: string;
-    options?: Record<string, boolean>;
-    buttonsStyle?: BoxStyle;
-    buttonsTextStyle?: TextStyle;
+    heading?: HeadingElement | null;
+    shareUrl?: string | null;
+    options?: Record<string, boolean> | null;
+    buttonsStyle?: BoxStyle | null;
+    buttonsTextStyle?: TextStyle | null;
     centered?: boolean;
     spacing?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
-    id?: string;
-    index?: number;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
+    id?: string | null;
+    index?: number | null;
     current?: boolean;
     active?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function ShareScreen({

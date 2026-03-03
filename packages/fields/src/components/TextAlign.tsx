@@ -8,9 +8,9 @@ import React from 'react';
 import Radios from './Radios';
 
 interface TextAlignProps {
-    value?: string;
+    value?: string | null;
     options?: Record<string, unknown>[];
-    onChange?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function TextAlign({

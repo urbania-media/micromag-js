@@ -14,17 +14,17 @@ import useCKEditor from '../hooks/useCKEditor';
 import styles from '../styles/text-editor.module.css';
 
 interface TextEditorFieldProps {
-    value?: string;
-    size?: FormControlSize;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: string | null;
+    size?: FormControlSize | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
     inline?: boolean;
     withHighlightColors?: boolean;
     withFullEditor?: boolean;
     withoutLink?: boolean;
-    textStyle?: Record<string, unknown>;
+    textStyle?: Record<string, unknown> | null;
     editorConfig?: Record<string, unknown>;
-    onFocus?: (...args: unknown[]) => void;
+    onFocus?: ((...args: unknown[]) => void) | null;
     disabled?: boolean;
 }
 

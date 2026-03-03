@@ -49,26 +49,26 @@ import styles from './game-sort.module.css';
 
 interface GameSortProps {
     layout?: 'top' | 'middle' | 'bottom';
-    heading?: HeadingElement;
-    items?: unknown[];
+    heading?: HeadingElement | null;
+    items?: unknown[] | null;
     spacing?: number;
     itemsLayout?: 'label-bottom' | 'label-top' | 'no-label' | 'label-over';
-    itemsBoxStyle?: BoxStyle;
-    itemsTextStyle?: TextStyle;
-    itemsResultsTextStyle?: TextStyle;
-    validBoxStyle?: BoxStyle;
-    invalidBoxStyle?: BoxStyle;
-    submitBoxStyle?: BoxStyle;
-    submitTextStyle?: TextStyle;
-    submitButtonLabel?: string;
-    results?: TextElement;
-    resultsBoxStyle?: BoxStyle;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    itemsBoxStyle?: BoxStyle | null;
+    itemsTextStyle?: TextStyle | null;
+    itemsResultsTextStyle?: TextStyle | null;
+    validBoxStyle?: BoxStyle | null;
+    invalidBoxStyle?: BoxStyle | null;
+    submitBoxStyle?: BoxStyle | null;
+    submitTextStyle?: TextStyle | null;
+    submitButtonLabel?: string | null;
+    results?: TextElement | null;
+    resultsBoxStyle?: BoxStyle | null;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     active?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function GameSort({

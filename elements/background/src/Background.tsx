@@ -11,27 +11,27 @@ import Video from '@micromag/element-video';
 import styles from './styles.module.css';
 
 interface BackgroundProps {
-    width?: number;
-    height?: number;
+    width?: number | null;
+    height?: number | null;
     resolution?: number;
-    fit?: 'contain' | 'cover';
+    fit?: 'contain' | 'cover' | null;
     horizontalAlign?: string;
     verticalAlign?: string;
     repeat?: boolean;
-    color?: Color;
-    media?: ImageMedia | VideoMedia;
-    mediaRef?: (...args: unknown[]) => void | { current?: unknown };
-    className?: string;
+    color?: Color | null;
+    media?: ImageMedia | VideoMedia | null;
+    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    className?: string | null;
     playing?: boolean;
     muted?: boolean;
-    children?: React.ReactNode;
+    children?: React.ReactNode | null;
     loadingMode?: string;
     shouldLoad?: boolean;
-    onPlayError?: (...args: unknown[]) => void;
+    onPlayError?: ((...args: unknown[]) => void) | null;
     withoutVideo?: boolean;
     forceMuted?: boolean;
-    qualityStartLevel?: number;
-    onQualityLevelChange?: (...args: unknown[]) => void;
+    qualityStartLevel?: number | null;
+    onQualityLevelChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Background({

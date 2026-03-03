@@ -39,23 +39,23 @@ import styles from './image.module.css';
 
 interface ImageScreenProps {
     layout?: 'normal' | 'fullscreen' | 'reverse' | 'card' | 'card-reverse' | 'title-top';
-    image?: ImageMedia;
-    imageFit?: 'contain' | 'cover';
+    image?: ImageMedia | null;
+    imageFit?: 'contain' | 'cover' | null;
     defaultImageFit?: string;
-    title?: HeadingElement;
-    text?: TextElement;
-    legend?: TextElement;
+    title?: HeadingElement | null;
+    text?: TextElement | null;
+    legend?: TextElement | null;
     withTitle?: boolean;
     withText?: boolean;
     withLegend?: boolean;
     spacing?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     active?: boolean;
     preload?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function ImageScreen({

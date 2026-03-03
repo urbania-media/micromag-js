@@ -4,9 +4,9 @@ import React from 'react';
 import styles from '../styles/static-field.module.css';
 
 interface StaticFieldProps {
-    value?: string | number | unknown[];
-    name?: string;
-    className?: string;
+    value?: string | number | unknown[] | null;
+    name?: string | null;
+    className?: string | null;
 }
 
 function StaticField({ value = null, name = null, className = null }: StaticFieldProps) {

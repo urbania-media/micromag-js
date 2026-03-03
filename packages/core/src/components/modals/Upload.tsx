@@ -10,11 +10,11 @@ const DashboardModal = React.lazy(() =>
 );
 
 interface UploadModalProps {
-    type?: MediaType | unknown[];
+    type?: MediaType | unknown[] | null;
     opened?: boolean;
     sources?: string[];
-    onUploaded?: (...args: unknown[]) => void;
-    onRequestClose?: (...args: unknown[]) => void;
+    onUploaded?: ((...args: unknown[]) => void) | null;
+    onRequestClose?: ((...args: unknown[]) => void) | null;
 }
 
 function UploadModal({

@@ -6,15 +6,15 @@ import { StackProvider } from '@micromag/element-stack';
 import styles from './styles.module.css';
 
 interface LayoutProps {
-    width?: number;
-    height?: number;
+    width?: number | null;
+    height?: number | null;
     horizontalAlign?: 'left' | 'center' | 'right';
     verticalAlign?: 'top' | 'middle' | 'bottom';
     distribution?: 'between' | 'around' | null;
     fullscreen?: boolean;
-    className?: string;
-    children?: React.ReactNode;
-    style?: Record<string, unknown>;
+    className?: string | null;
+    children?: React.ReactNode | null;
+    style?: Record<string, unknown> | null;
 }
 
 function Layout({

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 
 interface SmsIconProps {
-    className?: string;
+    className?: string | null;
     size?: number;
 }
 

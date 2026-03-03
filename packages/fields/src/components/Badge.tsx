@@ -10,9 +10,9 @@ import Fields from './Fields';
 import styles from '../styles/badge.module.css';
 
 interface BadgeProps {
-    value?: BadgeType;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: BadgeType | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Badge({ value = null, className = null, onChange = null, ...props }: BadgeProps) {

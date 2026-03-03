@@ -11,26 +11,26 @@ import Video from '@micromag/element-video';
 import styles from './styles.module.css';
 
 interface VisualProps {
-    media?: Media;
-    mediaRef?: (...args: unknown[]) => void | { current?: unknown };
-    width?: number | string;
-    height?: number | string;
-    ratio?: number;
+    media?: Media | null;
+    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    width?: number | string | null;
+    height?: number | string | null;
+    ratio?: number | null;
     resolution?: number;
-    objectFit?: ObjectFit;
+    objectFit?: ObjectFit | null;
     playing?: boolean;
     muted?: boolean;
     shouldLoad?: boolean;
-    loadingMode?: string;
+    loadingMode?: string | null;
     videoLoop?: boolean;
     withoutVideo?: boolean;
     videoInitialMuted?: boolean;
-    onLoaded?: (...args: unknown[]) => void;
-    className?: string;
-    imageClassName?: string;
-    videoClassName?: string;
-    qualityStartLevel?: number;
-    onQualityLevelChange?: (...args: unknown[]) => void;
+    onLoaded?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
+    imageClassName?: string | null;
+    videoClassName?: string | null;
+    qualityStartLevel?: number | null;
+    onQualityLevelChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Visual({

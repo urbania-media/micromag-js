@@ -7,16 +7,16 @@ import { getComponentFromName, getFieldFromPath, setFieldValue } from '../../uti
 import { FieldContextProvider, useFieldComponent, useFieldsManager } from '../../contexts';
 
 interface FieldFormProps {
-    name?: string;
-    value?: Component;
-    form?: string;
+    name?: string | null;
+    value?: Component | null;
+    form?: string | null;
     formComponents?: Record<string, Component>;
     fields?: Field[];
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
     gotoFieldForm: (...args: unknown[]) => void;
     closeFieldForm: (...args: unknown[]) => void;
-    fieldContext?: unknown;
+    fieldContext?: unknown | null;
 }
 
 function FieldForm({

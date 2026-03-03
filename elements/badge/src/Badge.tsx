@@ -9,10 +9,10 @@ import Text from '@micromag/element-text';
 import styles from './styles.module.css';
 
 interface BadgeProps {
-    label?: TextElement;
-    boxStyle?: BoxStyle;
-    className?: string;
-    labelClassName?: string;
+    label?: TextElement | null;
+    boxStyle?: BoxStyle | null;
+    className?: string | null;
+    labelClassName?: string | null;
 }
 
 function Badge({

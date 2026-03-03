@@ -8,10 +8,10 @@ import type { Story } from '@micromag/core';
 import Viewer from './Viewer';
 
 interface ViewerRoutesProps {
-    story?: Story;
+    story?: Story | null;
     pathWithIndex?: boolean;
-    children?: (...args: unknown[]) => void;
-    onScreenChange?: (...args: unknown[]) => void;
+    children?: ((...args: unknown[]) => void) | null;
+    onScreenChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ViewerRoutes({

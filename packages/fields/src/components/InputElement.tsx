@@ -7,9 +7,9 @@ import TextField from './Text';
 import TextareaField from './Textarea';
 
 interface TextElementProps {
-    value?: InputElementType;
+    value?: InputElementType | null;
     multiline?: boolean;
-    onChange?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function TextElement({

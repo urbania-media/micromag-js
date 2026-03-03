@@ -40,17 +40,17 @@ import styles from './video.module.css';
 
 interface VideoScreenProps {
     layout?: 'middle' | 'full';
-    video?: VideoElement;
+    video?: VideoElement | null;
     gotoNextScreenOnEnd?: boolean;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
-    background?: BackgroundElement;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
+    background?: BackgroundElement | null;
     current?: boolean;
     active?: boolean;
     preload?: boolean;
     spacing?: number;
-    mediaRef?: (...args: unknown[]) => void;
-    className?: string;
+    mediaRef?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function VideoScreen({

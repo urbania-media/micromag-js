@@ -16,25 +16,25 @@ import styles from './styles.module.css';
 
 interface CallToActionProps {
     type?: 'click' | 'swipe-up' | null;
-    url?: string;
-    label?: TextElement;
-    boxStyle?: BoxStyle;
+    url?: string | null;
+    label?: TextElement | null;
+    boxStyle?: BoxStyle | null;
     inWebView?: boolean;
-    elRef?: (...args: unknown[]) => void | { current?: unknown };
+    elRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
     disabled?: boolean;
     animationDisabled?: boolean;
-    icon?: React.ReactNode;
-    arrow?: React.ReactNode;
+    icon?: React.ReactNode | null;
+    arrow?: React.ReactNode | null;
     dragAmount?: number;
-    className?: string;
-    buttonClassName?: string;
-    buttonBorderClassName?: string;
-    labelClassName?: string;
-    arrowClassName?: string;
+    className?: string | null;
+    buttonClassName?: string | null;
+    buttonBorderClassName?: string | null;
+    labelClassName?: string | null;
+    arrowClassName?: string | null;
     focusable?: boolean;
     external?: boolean;
-    openWebView?: (...args: unknown[]) => void;
-    onClick?: (...args: unknown[]) => void;
+    openWebView?: ((...args: unknown[]) => void) | null;
+    onClick?: ((...args: unknown[]) => void) | null;
 }
 
 function CallToAction({

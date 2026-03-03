@@ -6,9 +6,9 @@ import ElementPortal from '../utils/ElementPortal';
 import { usePanels } from '../../contexts';
 
 interface PanelPortalProps {
-    id?: string;
-    data?: Record<string, unknown>;
-    children?: React.ReactNode;
+    id?: string | null;
+    data?: Record<string, unknown> | null;
+    children?: React.ReactNode | null;
 }
 
 function PanelPortal({ id = null, data = null, children = null }: PanelPortalProps) {

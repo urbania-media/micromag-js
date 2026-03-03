@@ -6,9 +6,9 @@ import type { Label as LabelType } from '@micromag/core';
 import { Label } from '@micromag/core/components';
 
 interface FieldErrorsProps {
-    children?: LabelType;
+    children?: LabelType | null;
     muted?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function FieldErrors({ children = null, muted = true, className = null }: FieldErrorsProps) {

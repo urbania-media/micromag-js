@@ -8,11 +8,11 @@ import TextAlign from './TextAlign';
 import styles from '../styles/font-style-with-align.module.css';
 
 interface FontStylesProps {
-    value?: Record<string, unknown>;
+    value?: Record<string, unknown> | null;
     fontStyleName?: string;
     alignName?: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function FontStyles({

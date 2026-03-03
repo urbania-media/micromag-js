@@ -5,9 +5,9 @@ import InputGroup from './InputGroup';
 import Number from './Number';
 
 interface SpacingProps {
-    value?: number;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: number | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Spacing({ value = null, className = null, onChange = null, ...props }: SpacingProps) {

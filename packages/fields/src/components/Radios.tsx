@@ -10,14 +10,14 @@ import getSelectOptions from '../utils/getSelectOptions';
 import styles from '../styles/radios.module.css';
 
 interface RadiosProps {
-    name?: string;
-    value?: string;
+    name?: string | null;
+    value?: string | null;
     options?: SelectOption[];
     withBackground?: boolean;
-    className?: string;
-    buttonClassName?: string;
-    activeClassName?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    buttonClassName?: string | null;
+    activeClassName?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
     uncheckable?: boolean;
 }
 

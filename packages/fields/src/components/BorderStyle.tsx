@@ -7,9 +7,9 @@ import styles from '../styles/border-style.module.css';
 
 interface BorderStyleProps {
     types?: string[];
-    value?: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: string | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function BorderStyle({

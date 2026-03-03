@@ -8,7 +8,7 @@ import type { ImageMedia } from '@micromag/core';
 import ItemsField from './Items';
 
 interface VisualsWithCaptionFieldProps {
-    value?: ImageMedia[];
+    value?: ImageMedia[] | null;
 }
 
 function VisualsWithCaptionField({ value: value = null, ...props }: VisualsWithCaptionFieldProps) {

@@ -32,16 +32,16 @@ import styles from './text.module.css';
 
 interface TextScreenProps {
     layout?: 'top' | 'middle' | 'bottom' | 'split';
-    text?: TextElement;
-    title?: HeadingElement;
+    text?: TextElement | null;
+    title?: HeadingElement | null;
     withTitle?: boolean;
     spacing?: number;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
-    background?: BackgroundElement;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
+    background?: BackgroundElement | null;
     current?: boolean;
     preload?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function TextScreen({

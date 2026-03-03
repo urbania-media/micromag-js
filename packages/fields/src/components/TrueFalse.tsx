@@ -9,9 +9,9 @@ import { FormattedMessage } from 'react-intl';
 import Radios from './Radios';
 
 interface TrueFalseProps {
-    value?: Record<string, unknown>;
+    value?: Record<string, unknown> | null;
     options?: { value?: string; label?: React.ReactNode }[];
-    onChange?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function TrueFalse({

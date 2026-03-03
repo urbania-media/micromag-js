@@ -9,7 +9,7 @@ import FontField from './Font';
 import ItemsField from './Items';
 
 interface FontsFieldProps {
-    value?: ImageMedia[];
+    value?: ImageMedia[] | null;
 }
 
 function FontsField({ value: value = null, ...props }: FontsFieldProps) {

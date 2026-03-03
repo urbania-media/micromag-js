@@ -14,26 +14,26 @@ import FieldRow from './FieldRow';
 import styles from '../styles/fields.module.css';
 
 interface FieldsProps {
-    name?: string;
+    name?: string | null;
     fields?: FormField[];
-    excludedFields?: string[];
-    value?: Record<string, unknown>;
-    errors?: FormErrors;
+    excludedFields?: string[] | null;
+    value?: Record<string, unknown> | null;
+    errors?: FormErrors | null;
     withBorders?: boolean;
-    gotoFieldForm?: (...args: unknown[]) => void;
-    closeFieldForm?: (...args: unknown[]) => void;
+    gotoFieldForm?: ((...args: unknown[]) => void) | null;
+    closeFieldForm?: ((...args: unknown[]) => void) | null;
     nullEmptyObject?: boolean;
-    isHorizontal?: boolean;
+    isHorizontal?: boolean | null;
     isList?: boolean;
     isFlushList?: boolean;
     canClear?: boolean;
-    onChange?: (...args: unknown[]) => void;
-    className?: string;
-    fieldClassName?: string;
-    labelClassName?: string;
-    components?: Record<string, Component>;
-    fieldsProps?: Record<string, unknown>;
-    fieldProps?: Record<string, unknown>;
+    onChange?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
+    fieldClassName?: string | null;
+    labelClassName?: string | null;
+    components?: Record<string, Component> | null;
+    fieldsProps?: Record<string, unknown> | null;
+    fieldProps?: Record<string, unknown> | null;
 }
 
 function Fields({

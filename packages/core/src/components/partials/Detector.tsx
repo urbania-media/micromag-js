@@ -5,14 +5,14 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import { useIntersectionObserver } from '../../hooks';
 
 interface DetectorProps {
-    throttleDelay?: number;
+    throttleDelay?: number | null;
     threshold?: number[];
-    onEnter?: (...args: unknown[]) => void;
-    onLeave?: (...args: unknown[]) => void;
-    onChange?: (...args: unknown[]) => void;
+    onEnter?: ((...args: unknown[]) => void) | null;
+    onLeave?: ((...args: unknown[]) => void) | null;
+    onChange?: ((...args: unknown[]) => void) | null;
     disabled?: boolean;
-    children?: React.ReactNode;
-    className?: string;
+    children?: React.ReactNode | null;
+    className?: string | null;
 }
 
 function Detector({

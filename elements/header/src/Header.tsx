@@ -8,9 +8,9 @@ import Badge from '@micromag/element-badge';
 import styles from './styles.module.css';
 
 interface HeaderProps {
-    badge?: Badge;
+    badge?: Badge | null;
     fade?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function Header({ badge = null, fade = false, className = null }: HeaderProps) {

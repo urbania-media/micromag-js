@@ -21,11 +21,11 @@ const getFixedCoords = ({ lat, lng }, precision = 4) => ({
 });
 
 interface GeoPositionProps {
-    value?: GeoPositionType;
+    value?: GeoPositionType | null;
     defaultCenter?: GeoPositionType;
     defaultZoom?: number;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function GeoPosition({

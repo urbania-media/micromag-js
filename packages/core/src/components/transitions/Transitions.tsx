@@ -10,10 +10,10 @@ interface TransitionsProps {
     fullscreen?: boolean;
     playing?: boolean;
     delay?: number;
-    transitions?: Transitions;
-    onComplete?: (...args: unknown[]) => void;
+    transitions?: Transitions | null;
+    onComplete?: ((...args: unknown[]) => void) | null;
     disabled?: boolean;
-    children?: React.ReactNode;
+    children?: React.ReactNode | null;
 }
 
 function Transitions({

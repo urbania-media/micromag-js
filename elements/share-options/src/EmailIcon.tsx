@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 
 interface EmailIconProps {
-    className?: string;
+    className?: string | null;
     size?: number;
 }
 

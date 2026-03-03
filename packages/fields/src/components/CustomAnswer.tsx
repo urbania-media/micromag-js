@@ -10,9 +10,9 @@ import Fields from './Fields';
 import styles from '../styles/custom-answer.module.css';
 
 interface CustomAnswerProps {
-    value?: CustomAnswerType;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: CustomAnswerType | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function CustomAnswer({

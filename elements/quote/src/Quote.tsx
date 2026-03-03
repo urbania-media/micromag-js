@@ -14,13 +14,13 @@ import {
 import styles from './styles.module.css';
 
 interface QuoteProps {
-    body?: string;
-    textStyle?: TextStyle;
-    linksStyle?: TextStyle;
-    margin?: Margin;
+    body?: string | null;
+    textStyle?: TextStyle | null;
+    linksStyle?: TextStyle | null;
+    margin?: Margin | null;
     showEmpty?: boolean;
-    className?: string;
-    emptyClassName?: string;
+    className?: string | null;
+    emptyClassName?: string | null;
 }
 
 function Quote({

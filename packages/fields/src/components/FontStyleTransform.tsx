@@ -6,9 +6,9 @@ import React, { useCallback } from 'react';
 import TextTransform from './TextTransform';
 
 interface FontStyleTransformProps {
-    value?: Record<string, unknown>;
+    value?: Record<string, unknown> | null;
     transformName?: string;
-    onChange?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function FontStyleTransform({

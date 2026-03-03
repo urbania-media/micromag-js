@@ -34,15 +34,15 @@ import styles from './image-360.module.css';
 
 interface Image360ScreenProps {
     layout?: 'full';
-    image?: ImageMedia;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    image?: ImageMedia | null;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
-    type?: string;
+    type?: string | null;
     spacing?: number;
-    className?: string;
+    className?: string | null;
 }
 
 function Image360Screen({

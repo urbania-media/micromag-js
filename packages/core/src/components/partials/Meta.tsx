@@ -5,12 +5,12 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 interface MetaProps {
-    title?: string;
-    url?: string;
-    metadata?: unknown;
-    fullTitle?: string;
+    title?: string | null;
+    url?: string | null;
+    metadata?: unknown | null;
+    fullTitle?: string | null;
     suffix?: string;
-    children?: React.ReactNode;
+    children?: React.ReactNode | null;
 }
 
 function Meta({

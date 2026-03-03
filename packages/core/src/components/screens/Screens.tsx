@@ -8,8 +8,8 @@ import styles from '../../styles/screens/screens.module.css';
 
 interface ScreensProps {
     screens: StoryComponent[];
-    screen?: string;
-    className?: string;
+    screen?: string | null;
+    className?: string | null;
 }
 
 function Screens({ screens, screen: screenId = null, className = null }: ScreensProps) {

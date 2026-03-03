@@ -13,14 +13,14 @@ import FieldWithForm from './FieldWithForm';
 import styles from '../styles/color.module.css';
 
 interface ColorFieldProps {
-    value?: { color?: string; alpha?: number };
+    value?: { color?: string; alpha?: number } | null;
     isForm?: boolean;
     isHorizontal?: boolean;
     canClear?: boolean;
     disableAlpha?: boolean;
     className?: string;
-    onChange?: (...args: unknown[]) => void;
-    closeForm?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    closeForm?: ((...args: unknown[]) => void) | null;
 }
 
 function ColorField({

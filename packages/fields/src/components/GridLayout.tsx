@@ -12,9 +12,9 @@ import styles from '../styles/grid-layout.module.css';
 
 interface GridLayoutProps {
     grids?: GridLayoutType[];
-    value?: { rows?: number; columns?: number[] }[];
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: { rows?: number; columns?: number[] }[] | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function GridLayout({

@@ -10,14 +10,14 @@ import Slider from './Slider';
 import styles from '../styles/margin.module.css';
 
 interface MarginFieldProps {
-    value?: number;
+    value?: number | null;
     unit?: string;
     direction?: 'top' | 'bottom';
     min?: number;
     max?: number;
     marksStep?: number;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function MarginField({

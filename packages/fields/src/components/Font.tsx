@@ -7,7 +7,7 @@ import type { FontMedia } from '@micromag/core';
 import MediaField from './Media';
 
 interface FontFieldProps {
-    value?: FontMedia;
+    value?: FontMedia | null;
 }
 
 function FontField({ value: value = null, ...props }: FontFieldProps) {

@@ -20,29 +20,29 @@ interface FormProps {
     action: string;
     method?: string;
     fields?: FormField[];
-    initialValue?: Record<string, unknown>;
-    postForm?: (...args: unknown[]) => void;
+    initialValue?: Record<string, unknown> | null;
+    postForm?: ((...args: unknown[]) => void) | null;
     submitButtonLabel?: Label;
-    submitButtonLoadingLabel?: Label;
-    submitButtonTheme?: string;
-    cancelButtonTheme?: string;
-    buttons?: Button[];
-    children?: React.ReactNode;
+    submitButtonLoadingLabel?: Label | null;
+    submitButtonTheme?: string | null;
+    cancelButtonTheme?: string | null;
+    buttons?: Button[] | null;
+    children?: React.ReactNode | null;
     actionsAlign?: 'left' | 'right';
     withoutActions?: boolean;
     withoutComplete?: boolean;
     withoutBackButton?: boolean;
-    onComplete?: (...args: unknown[]) => void;
-    onResponse?: (...args: unknown[]) => void;
-    onMessage?: (...args: unknown[]) => void;
-    onCancel?: (...args: unknown[]) => void;
-    onCancelHref?: string;
-    onOpenFieldForm?: (...args: unknown[]) => void;
-    onCloseFieldForm?: (...args: unknown[]) => void;
-    className?: string;
-    fieldsClassName?: string;
-    actionsClassName?: string;
-    cancelClassName?: string;
+    onComplete?: ((...args: unknown[]) => void) | null;
+    onResponse?: ((...args: unknown[]) => void) | null;
+    onMessage?: ((...args: unknown[]) => void) | null;
+    onCancel?: ((...args: unknown[]) => void) | null;
+    onCancelHref?: string | null;
+    onOpenFieldForm?: ((...args: unknown[]) => void) | null;
+    onCloseFieldForm?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
+    fieldsClassName?: string | null;
+    actionsClassName?: string | null;
+    cancelClassName?: string | null;
 }
 
 function Form({

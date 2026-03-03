@@ -16,14 +16,14 @@ import TextElement from './TextElement';
 import styles from '../styles/text-modal.module.css';
 
 interface TextModalProps {
-    title?: string;
-    value?: { body?: string };
-    editorConfig?: Record<string, unknown>;
+    title?: string | null;
+    value?: { body?: string } | null;
+    editorConfig?: Record<string, unknown> | null;
     inline?: boolean;
     withHighlightColors?: boolean;
-    onChange?: (...args: unknown[]) => void;
-    onRequestClose?: (...args: unknown[]) => void;
-    className?: string;
+    onChange?: ((...args: unknown[]) => void) | null;
+    onRequestClose?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function TextModal({

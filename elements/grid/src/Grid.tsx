@@ -8,15 +8,15 @@ import type { GridLayout } from '@micromag/core';
 import styles from './styles.module.css';
 
 interface GridProps {
-    layout?: GridLayout;
+    layout?: GridLayout | null;
     items?: React.ReactNode[];
-    width?: number;
-    height?: number;
+    width?: number | null;
+    height?: number | null;
     spacing?: number;
     vertical?: boolean;
-    className?: string;
-    axisClassName?: string;
-    crossClassName?: string;
+    className?: string | null;
+    axisClassName?: string | null;
+    crossClassName?: string | null;
 }
 
 function Grid({

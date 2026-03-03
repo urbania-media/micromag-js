@@ -10,9 +10,9 @@ import Fields from './Fields';
 import styles from '../styles/call-to-action.module.css';
 
 interface CallToActionProps {
-    value?: CallToActionType;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: CallToActionType | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function CallToAction({

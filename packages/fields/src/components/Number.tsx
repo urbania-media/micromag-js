@@ -8,19 +8,19 @@ import { ClearButton } from '@micromag/core/components';
 import styles from '../styles/number.module.css';
 
 interface NumberFieldProps {
-    name?: string;
-    value?: number;
-    min?: number;
-    max?: number;
+    name?: string | null;
+    value?: number | null;
+    min?: number | null;
+    max?: number | null;
     step?: number;
     floatStep?: number;
     float?: boolean;
-    dataList?: number[];
+    dataList?: number[] | null;
     autoComplete?: boolean;
     fullWidth?: boolean;
-    placeholder?: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    placeholder?: string | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function NumberField({

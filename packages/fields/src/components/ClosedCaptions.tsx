@@ -7,7 +7,7 @@ import type { ClosedCaptionsMedia } from '@micromag/core';
 import MediaField from './Media';
 
 interface ClosedCaptionFieldProps {
-    value?: ClosedCaptionsMedia;
+    value?: ClosedCaptionsMedia | null;
 }
 
 function ClosedCaptionField({ value: value = null, ...props }: ClosedCaptionFieldProps) {

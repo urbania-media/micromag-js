@@ -7,8 +7,8 @@ import React from 'react';
 import styles from '../../styles/buttons/clear.module.css';
 
 interface ClearButtonProps {
-    onClick?: (...args: unknown[]) => void;
-    className?: string;
+    onClick?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function ClearButton({ onClick = null, className = null, ...props }: ClearButtonProps) {

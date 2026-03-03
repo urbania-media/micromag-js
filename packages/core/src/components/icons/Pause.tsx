@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface PauseIconProps {
-    className?: string;
+    className?: string | null;
     color?: string;
 }
 

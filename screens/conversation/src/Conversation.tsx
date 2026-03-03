@@ -36,19 +36,19 @@ import ConversationMessage from './ConversationMessage';
 import styles from './conversation.module.css';
 
 interface ConversationScreenProps {
-    title?: HeadingElement;
+    title?: HeadingElement | null;
     timing?: 'instant' | 'sequence';
     readingSpeed?: number;
     spacing?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
-    type?: string;
-    conversation?: ConversationType;
-    transitions?: TransitionsConfig;
-    className?: string;
+    type?: string | null;
+    conversation?: ConversationType | null;
+    transitions?: TransitionsConfig | null;
+    className?: string | null;
 }
 
 function ConversationScreen({

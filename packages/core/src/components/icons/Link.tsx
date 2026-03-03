@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface LinkIconProps {
-    className?: string;
+    className?: string | null;
     color?: string;
 }
 

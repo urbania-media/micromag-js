@@ -55,9 +55,12 @@ interface AlignmentProps {
         horizontal?: 'left' | 'right' | 'middle';
         vertical?: 'top' | 'bottom' | 'middle';
     };
-    value?: { horizontal?: 'left' | 'right' | 'middle'; vertical?: 'top' | 'bottom' | 'middle' };
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: {
+        horizontal?: 'left' | 'right' | 'middle';
+        vertical?: 'top' | 'bottom' | 'middle';
+    } | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Alignment({

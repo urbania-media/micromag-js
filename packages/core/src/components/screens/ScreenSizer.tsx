@@ -10,12 +10,12 @@ import { ScreenSizeProvider } from '../../contexts';
 import styles from '../../styles/screens/screen-sizer.module.css';
 
 interface ScreenSizerProps {
-    width?: number;
-    height?: number;
+    width?: number | null;
+    height?: number | null;
     fit?: null | 'cover' | 'contain';
     screenWidth?: number;
     screenHeight?: number;
-    className?: string;
+    className?: string | null;
     children: React.ReactNode;
 }
 

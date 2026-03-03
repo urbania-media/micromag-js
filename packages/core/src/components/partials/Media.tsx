@@ -7,14 +7,14 @@ import Label from './Label';
 import styles from '../../styles/partials/media.module.css';
 
 interface MediaProps {
-    thumbnail?: React.ReactNode;
+    thumbnail?: React.ReactNode | null;
     thumbnailAlign?: 'top' | 'center' | 'bottom';
-    children?: React.ReactNode;
-    title?: Label;
-    className?: string;
-    thumbnailClassName?: string;
-    bodyClassName?: string;
-    titleClassName?: string;
+    children?: React.ReactNode | null;
+    title?: Label | null;
+    className?: string | null;
+    thumbnailClassName?: string | null;
+    bodyClassName?: string | null;
+    titleClassName?: string | null;
 }
 
 function Media({

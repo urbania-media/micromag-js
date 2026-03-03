@@ -17,23 +17,23 @@ import ConversationAudioAttachment from './ConversationAudioAttachment';
 import styles from './conversation.module.css';
 
 interface ConversationMessageProps {
-    message?: ConversationMessageType;
-    messageId?: string;
-    previousMessage?: ConversationMessageType;
-    nextMessage?: ConversationMessageType;
-    nextAudioMessageId?: string;
-    nextMessageState?: boolean;
-    currentSpeaker?: Speaker;
-    conversationTiming?: number;
-    typingTiming?: number;
-    onChange?: (...args: unknown[]) => void;
+    message?: ConversationMessageType | null;
+    messageId?: string | null;
+    previousMessage?: ConversationMessageType | null;
+    nextMessage?: ConversationMessageType | null;
+    nextAudioMessageId?: string | null;
+    nextMessageState?: boolean | null;
+    currentSpeaker?: Speaker | null;
+    conversationTiming?: number | null;
+    typingTiming?: number | null;
+    onChange?: ((...args: unknown[]) => void) | null;
     withAnimation?: boolean;
     active?: boolean;
     isPlaying?: boolean;
-    speakerStyle?: TextStyle;
-    messageStyle?: TextStyle;
-    className?: string;
-    audioEventsChannelName?: string;
+    speakerStyle?: TextStyle | null;
+    messageStyle?: TextStyle | null;
+    className?: string | null;
+    audioEventsChannelName?: string | null;
 }
 
 function ConversationMessage({

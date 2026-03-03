@@ -12,9 +12,9 @@ import FieldWithForm from './FieldWithForm';
 import styles from '../styles/box-style.module.css';
 
 interface CallToActionFormProps {
-    value?: ActiveForm;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: ActiveForm | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function CallToActionForm({

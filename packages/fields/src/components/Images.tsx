@@ -9,7 +9,7 @@ import ImageField from './Image';
 import ItemsField from './Items';
 
 interface ImagesFieldProps {
-    value?: ImageMedia[];
+    value?: ImageMedia[] | null;
 }
 
 function ImagesField({ value: value = null, ...props }: ImagesFieldProps) {

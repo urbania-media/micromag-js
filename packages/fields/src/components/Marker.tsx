@@ -7,9 +7,9 @@ import Fields from './Fields';
 import styles from '../styles/marker.module.css';
 
 interface MarkerFieldProps {
-    value?: { text?: string };
+    value?: { text?: string } | null;
     isForm?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function MarkerField({

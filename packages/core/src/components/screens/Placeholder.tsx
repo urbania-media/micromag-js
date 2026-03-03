@@ -12,9 +12,9 @@ interface ScreenPlaceholderProps {
     layout?: string;
     screenWidth?: number;
     screenHeight?: number;
-    screenState?: string;
+    screenState?: string | null;
     withSize?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function ScreenPlaceholder({

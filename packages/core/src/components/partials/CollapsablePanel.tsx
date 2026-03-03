@@ -10,13 +10,13 @@ import Button from '../buttons/Button';
 import styles from '../../styles/partials/collapsable-panel.module.css';
 
 interface CollapsablePanelProps {
-    title?: React.ReactNode;
-    children?: React.ReactNode;
-    className?: string;
-    topClassName?: string;
-    contentClassName?: string;
-    openedClassName?: string;
-    buttonClassName?: string;
+    title?: React.ReactNode | null;
+    children?: React.ReactNode | null;
+    className?: string | null;
+    topClassName?: string | null;
+    contentClassName?: string | null;
+    openedClassName?: string | null;
+    buttonClassName?: string | null;
 }
 
 function CollapsablePanel({

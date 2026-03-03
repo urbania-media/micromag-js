@@ -16,13 +16,13 @@ import styles from './styles.module.css';
 
 interface HeadingProps {
     size?: 1 | 2 | 3 | 4 | 5 | 6;
-    body?: string;
-    textStyle?: TextStyle;
-    linksStyle?: TextStyle;
-    margin?: Margin;
+    body?: string | null;
+    textStyle?: TextStyle | null;
+    linksStyle?: TextStyle | null;
+    margin?: Margin | null;
     withoutNonBreakingSpaces?: boolean;
-    className?: string;
-    headingRef?: Record<string, unknown>;
+    className?: string | null;
+    headingRef?: Record<string, unknown> | null;
 }
 
 function Heading({

@@ -10,10 +10,10 @@ import Radios from './Radios';
 import styles from '../styles/layout.module.css';
 
 interface ScreenLayoutFieldProps {
-    value?: string;
-    screenState?: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: string | null;
+    screenState?: string | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ScreenLayoutField({

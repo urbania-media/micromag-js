@@ -6,9 +6,9 @@ import Select from './Select';
 interface TargetFieldProps {
     options?: string[];
     isForm?: boolean;
-    value?: string;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    value?: string | null;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function TargetField({

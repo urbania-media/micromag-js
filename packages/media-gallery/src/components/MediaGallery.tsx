@@ -15,19 +15,19 @@ import defaultFilters from './filters';
 import styles from '../styles/new-media-gallery.module.css';
 
 interface MediaGalleryProps {
-    value?: { id?: string | number };
-    types?: string | unknown[];
+    value?: { id?: string | number } | null;
+    types?: string | unknown[] | null;
     source?: string;
-    filters?: { id?: string }[];
-    fields?: { id?: string }[];
+    filters?: { id?: string }[] | null;
+    fields?: { id?: string }[] | null;
     columns?: { id?: string }[];
     isPicker?: boolean;
     multiple?: boolean;
-    medias?: Media[];
-    onChange?: (...args: unknown[]) => void;
-    onMediaFormOpen?: (...args: unknown[]) => void;
-    onMediaFormClose?: (...args: unknown[]) => void;
-    className?: string;
+    medias?: Media[] | null;
+    onChange?: ((...args: unknown[]) => void) | null;
+    onMediaFormOpen?: ((...args: unknown[]) => void) | null;
+    onMediaFormClose?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function MediaGallery({

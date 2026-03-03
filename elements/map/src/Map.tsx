@@ -9,18 +9,18 @@ import { Map as GoogleMap, Marker } from './google';
 import styles from './styles.module.css';
 
 interface MapProps {
-    center?: { lat?: number; lng?: number };
-    zoom?: number;
+    center?: { lat?: number; lng?: number } | null;
+    zoom?: number | null;
     draggable?: boolean;
     markers?: Record<string, unknown>[];
-    onClickMap?: (...args: unknown[]) => void;
-    onClickMarker?: (...args: unknown[]) => void;
-    className?: string;
-    onReady?: (...args: unknown[]) => void;
-    onCenterChanged?: (...args: unknown[]) => void;
-    onBoundsChanged?: (...args: unknown[]) => void;
-    onDrag?: (...args: unknown[]) => void;
-    onDragEnd?: (...args: unknown[]) => void;
+    onClickMap?: ((...args: unknown[]) => void) | null;
+    onClickMarker?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
+    onReady?: ((...args: unknown[]) => void) | null;
+    onCenterChanged?: ((...args: unknown[]) => void) | null;
+    onBoundsChanged?: ((...args: unknown[]) => void) | null;
+    onDrag?: ((...args: unknown[]) => void) | null;
+    onDragEnd?: ((...args: unknown[]) => void) | null;
     withoutStyle?: boolean;
     fitBounds?: boolean;
     zoomControl?: boolean;

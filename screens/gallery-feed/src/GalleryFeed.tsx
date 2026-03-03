@@ -41,18 +41,18 @@ import styles from './gallery-feed.module.css';
 
 interface GalleryFeedScreenProps {
     layout?: 'normal' | 'reverse';
-    images?: ImageElementWithCaption[] | ImageMedia[];
+    images?: ImageElementWithCaption[] | ImageMedia[] | null;
     withCaptions?: boolean;
-    imageCaptionStyle?: TextStyle;
+    imageCaptionStyle?: TextStyle | null;
     spacing?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     active?: boolean;
     preload?: boolean;
-    type?: string;
-    className?: string;
+    type?: string | null;
+    className?: string | null;
 }
 
 function GalleryFeedScreen({

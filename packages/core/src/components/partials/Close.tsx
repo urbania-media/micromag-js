@@ -4,7 +4,7 @@ interface CloseProps {
     stroke?: string;
     border?: string;
     fill?: string;
-    className?: string;
+    className?: string | null;
 }
 
 function Close({

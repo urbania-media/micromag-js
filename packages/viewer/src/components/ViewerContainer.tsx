@@ -30,25 +30,25 @@ const emptyComponents = {};
 const defaultLocales = ['fr', 'en'];
 
 interface ViewerContainerProps {
-    story?: Story;
+    story?: Story | null;
     paused?: boolean;
     muted?: boolean;
     screen?: string;
-    screenComponents?: Record<string, unknown>;
+    screenComponents?: Record<string, unknown> | null;
     memoryRouter?: boolean;
-    basePath?: string;
+    basePath?: string | null;
     routes?: unknown;
     withoutRouter?: boolean;
-    googleApiKey?: string;
-    visitor?: Visitor;
+    googleApiKey?: string | null;
+    visitor?: Visitor | null;
     locale?: string;
     locales?: string[];
-    translations?: Record<string, string>;
+    translations?: Record<string, string> | null;
     pathWithIndex?: boolean;
-    trackingVariables?: TrackingVariables;
+    trackingVariables?: TrackingVariables | null;
     trackingDisabled?: boolean;
     trackingPaused?: boolean;
-    settings?: Record<string, unknown>;
+    settings?: Record<string, unknown> | null;
     children?: (...args: unknown[]) => void;
 }
 

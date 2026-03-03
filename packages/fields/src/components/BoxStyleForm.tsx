@@ -10,14 +10,14 @@ import FieldWithForm from './FieldWithForm';
 import styles from '../styles/box-style.module.css';
 
 interface BoxStyleFormProps {
-    value?: BoxStyle;
-    fields?: FormField[];
-    isForm?: boolean;
+    value?: BoxStyle | null;
+    fields?: FormField[] | null;
+    isForm?: boolean | null;
     isHorizontal?: boolean;
     withAlignment?: boolean;
     className?: string;
-    onChange?: (...args: unknown[]) => void;
-    closeForm?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    closeForm?: ((...args: unknown[]) => void) | null;
 }
 
 function BoxStyleForm({

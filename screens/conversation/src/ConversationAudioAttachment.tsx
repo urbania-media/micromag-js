@@ -9,11 +9,11 @@ import Audio from '@micromag/element-audio';
 import styles from './conversation.module.css';
 
 interface ConversationAudioAttachmentProps {
-    audio?: AudioMedia;
-    audioEventsChannelName?: string;
-    messageId?: string;
-    nextAudioMessageId?: string;
-    className?: string;
+    audio?: AudioMedia | null;
+    audioEventsChannelName?: string | null;
+    messageId?: string | null;
+    nextAudioMessageId?: string | null;
+    className?: string | null;
 }
 
 function ConversationAudioAttachment({

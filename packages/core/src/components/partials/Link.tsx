@@ -11,10 +11,10 @@ interface LinkProps {
     href?: string;
     external?: boolean;
     target?: string;
-    children?: Label;
+    children?: Label | null;
     rel?: string;
     withoutStyle?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function Link({

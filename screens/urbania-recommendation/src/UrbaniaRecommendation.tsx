@@ -55,25 +55,25 @@ import Visual from '@micromag/element-visual';
 import styles from './urbania-recommendation.module.css';
 
 interface UrbaniaRecommendationProps {
-    layout?: string;
-    category?: HeadingElement;
-    visual?: { image?: VisualElement };
-    title?: HeadingElement;
-    date?: TextElement;
-    location?: TextElement;
-    description?: TextElement;
-    sponsor?: TextElement;
+    layout?: string | null;
+    category?: HeadingElement | null;
+    visual?: { image?: VisualElement } | null;
+    title?: HeadingElement | null;
+    date?: TextElement | null;
+    location?: TextElement | null;
+    description?: TextElement | null;
+    sponsor?: TextElement | null;
     spacing?: number;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
-    background?: BackgroundElement;
-    cardBoxStyle?: BoxStyle;
-    lineColor?: Color;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
+    background?: BackgroundElement | null;
+    cardBoxStyle?: BoxStyle | null;
+    lineColor?: Color | null;
     withoutZoom?: boolean;
     current?: boolean;
     active?: boolean;
     preload?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function UrbaniaRecommendation({

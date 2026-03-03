@@ -62,16 +62,16 @@ const placeholderBackground = {
 
 interface UrbaniaTriviaProps {
     layout?: 'middle' | 'full';
-    title?: HeadingElement;
-    video?: VideoElement;
+    title?: HeadingElement | null;
+    video?: VideoElement | null;
     gotoNextScreenOnEnd?: boolean;
-    background?: BackgroundElement;
+    background?: BackgroundElement | null;
     current?: boolean;
     preload?: boolean;
     spacing?: number;
     padding?: number;
-    mediaRef?: (...args: unknown[]) => void;
-    className?: string;
+    mediaRef?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function UrbaniaTrivia({

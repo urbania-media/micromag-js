@@ -9,13 +9,13 @@ import Button from '@micromag/element-button';
 import styles from './styles.module.css';
 
 interface WebViewProps {
-    url?: string;
-    width?: number | string;
-    height?: number | string;
+    url?: string | null;
+    width?: number | string | null;
+    height?: number | string | null;
     closeable?: boolean;
     focusable?: boolean;
-    onClose?: (...args: unknown[]) => void;
-    className?: string;
+    onClose?: ((...args: unknown[]) => void) | null;
+    className?: string | null;
 }
 
 function WebView({

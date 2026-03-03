@@ -9,7 +9,7 @@ import ItemsField from './Items';
 import VisualField from './Visual';
 
 interface VisualsFieldProps {
-    value?: ImageMedia[];
+    value?: ImageMedia[] | null;
 }
 
 function VisualsField({ value: value = null, ...props }: VisualsFieldProps) {

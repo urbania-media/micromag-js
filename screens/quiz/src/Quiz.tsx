@@ -41,34 +41,34 @@ import Question from './partials/Question';
 import styles from './quiz.module.css';
 
 interface QuizScreenProps {
-    id?: string;
+    id?: string | null;
     layout?: 'top' | 'middle' | 'bottom' | 'split';
-    keypadLayout?: Record<string, unknown>;
-    question?: TextElement;
-    answers?: QuizAnswer[];
-    result?: { image?: ImageElement; text?: TextElement };
-    resultImage?: VisualElement;
-    buttonsLayout?: ButtonLayout;
-    buttonsStyle?: BoxStyle;
-    inactiveButtonsStyle?: BoxStyle;
-    buttonsTextStyle?: TextStyle;
-    inactiveButtonsTextStyle?: TextStyle;
-    feedbackTextStyle?: TextStyle;
-    numbersTextStyle?: TextStyle;
-    goodAnswerColor?: Color;
-    badAnswerColor?: Color;
+    keypadLayout?: Record<string, unknown> | null;
+    question?: TextElement | null;
+    answers?: QuizAnswer[] | null;
+    result?: { image?: ImageElement; text?: TextElement } | null;
+    resultImage?: VisualElement | null;
+    buttonsLayout?: ButtonLayout | null;
+    buttonsStyle?: BoxStyle | null;
+    inactiveButtonsStyle?: BoxStyle | null;
+    buttonsTextStyle?: TextStyle | null;
+    inactiveButtonsTextStyle?: TextStyle | null;
+    feedbackTextStyle?: TextStyle | null;
+    numbersTextStyle?: TextStyle | null;
+    goodAnswerColor?: Color | null;
+    badAnswerColor?: Color | null;
     withoutTrueFalse?: boolean;
     spacing?: number;
-    background?: BackgroundElement;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
+    background?: BackgroundElement | null;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
     ready?: boolean;
-    transitions?: Transitions;
+    transitions?: Transitions | null;
     transitionStagger?: number;
-    type?: string;
-    className?: string;
+    type?: string | null;
+    className?: string | null;
 }
 
 function QuizScreen({

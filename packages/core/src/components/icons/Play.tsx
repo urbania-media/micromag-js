@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface PlayIconProps {
-    className?: string;
+    className?: string | null;
     color?: string;
 }
 

@@ -9,9 +9,9 @@ import Fields from './Fields';
 import styles from '../styles/slide.module.css';
 
 interface AnswerFieldProps {
-    value?: { text?: string; image?: ImageMedia };
+    value?: { text?: string; image?: ImageMedia } | null;
     isForm?: boolean;
-    className?: string;
+    className?: string | null;
 }
 
 function AnswerField({

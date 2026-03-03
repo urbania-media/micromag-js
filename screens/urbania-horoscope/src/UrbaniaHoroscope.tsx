@@ -65,24 +65,26 @@ const mouseBlocker = {
 
 interface UrbaniaHoroscopeProps {
     defaultSigns?: { id?: string; label?: TextElement }[];
-    signs?: {
-        id?: string;
-        label?: TextElement;
-        word?: HeadingElement;
-        description?: TextElement;
-    }[];
-    title?: HeadingElement;
-    description?: TextElement;
-    author?: AuthorElement;
-    button?: Button;
-    signSubtitle?: HeadingElement;
+    signs?:
+        | {
+              id?: string;
+              label?: TextElement;
+              word?: HeadingElement;
+              description?: TextElement;
+          }[]
+        | null;
+    title?: HeadingElement | null;
+    description?: TextElement | null;
+    author?: AuthorElement | null;
+    button?: Button | null;
+    signSubtitle?: HeadingElement | null;
     spacing?: number;
-    background?: BackgroundElement;
-    popupBackground?: BackgroundElement;
+    background?: BackgroundElement | null;
+    popupBackground?: BackgroundElement | null;
     current?: boolean;
     preload?: boolean;
     type?: string;
-    className?: string;
+    className?: string | null;
 }
 
 function UrbaniaHoroscope({

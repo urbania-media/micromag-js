@@ -11,10 +11,10 @@ import Fields from './Fields';
 import styles from '../styles/keypad-layout.module.css';
 
 interface KeypadLayoutProps {
-    value?: { color?: string; alpha?: number };
+    value?: { color?: string; alpha?: number } | null;
     className?: string;
-    onChange?: (...args: unknown[]) => void;
-    closeForm?: (...args: unknown[]) => void;
+    onChange?: ((...args: unknown[]) => void) | null;
+    closeForm?: ((...args: unknown[]) => void) | null;
 }
 
 function KeypadLayout({

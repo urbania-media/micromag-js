@@ -40,22 +40,22 @@ import styles from './title.module.css';
 
 interface TitleScreenProps {
     layout?: 'top' | 'middle' | 'bottom' | 'split' | 'split-top' | 'split-bottom';
-    title?: HeadingElement;
-    subtitle?: HeadingElement;
-    description?: TextElement;
-    boxStyle?: BoxStyle;
+    title?: HeadingElement | null;
+    subtitle?: HeadingElement | null;
+    description?: TextElement | null;
+    boxStyle?: BoxStyle | null;
     withSubtitle?: boolean;
     withDescription?: boolean;
     withBox?: boolean;
     spacing?: number;
     descriptionEmptyLabel?: Label;
-    header?: HeaderConfig;
-    footer?: FooterConfig;
-    background?: BackgroundElement;
+    header?: HeaderConfig | null;
+    footer?: FooterConfig | null;
+    background?: BackgroundElement | null;
     current?: boolean;
     active?: boolean;
     transitionStagger?: number;
-    className?: string;
+    className?: string | null;
 }
 
 function TitleScreen({

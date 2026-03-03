@@ -7,7 +7,7 @@ import type { VideoMedia } from '@micromag/core';
 import MediaField from './Media';
 
 interface VideoFieldProps {
-    value?: VideoMedia;
+    value?: VideoMedia | null;
 }
 
 function VideoField({ value: value = null, ...props }: VideoFieldProps) {

@@ -7,12 +7,12 @@ import React from 'react';
 import styles from './styles.module.css';
 
 interface ContainerProps {
-    containerRef?: (...args: unknown[]) => void | { current?: unknown };
+    containerRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
     width: number;
     height: number;
     style?: Record<string, unknown> | null;
     className?: string | null;
-    children?: React.ReactNode;
+    children?: React.ReactNode | null;
 }
 
 function Container({

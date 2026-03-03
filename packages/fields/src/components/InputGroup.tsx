@@ -6,11 +6,11 @@ import React from 'react';
 import styles from '../styles/input-group.module.css';
 
 interface InputGroupProps {
-    prepend?: React.ReactNode;
-    children?: React.ReactNode;
-    append?: React.ReactNode;
+    prepend?: React.ReactNode | null;
+    children?: React.ReactNode | null;
+    append?: React.ReactNode | null;
     size?: null | 'sm' | 'lg';
-    className?: string;
+    className?: string | null;
 }
 
 function InputGroup({

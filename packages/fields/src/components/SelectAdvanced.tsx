@@ -11,13 +11,13 @@ import getSelectOptions from '../utils/getSelectOptions';
 import { selectTheme } from '../utils/selectTheme';
 
 interface SelectAdvancedFieldProps {
-    name?: string;
-    value?: string;
+    name?: string | null;
+    value?: string | null;
     options?: SelectOption[];
     withoutReset?: boolean;
     disabled?: boolean;
-    className?: string;
-    onChange?: (...args: unknown[]) => void;
+    className?: string | null;
+    onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function SelectAdvancedField({
