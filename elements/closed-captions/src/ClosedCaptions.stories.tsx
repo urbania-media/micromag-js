@@ -1,19 +1,20 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React, { useEffect, useState } from 'react';
 
-// import { closedCaptionsMedia } from '../../../.storybook/data';
+// import { closedCaptionsMedia } from '#.storybook/data';
 import ClosedCaptions from './ClosedCaptions';
 
-export default {
+const meta = preview.meta({
     component: ClosedCaptions,
     title: 'Elements/ClosedCaptions',
-};
+});
 
 const props = { media: null };
 
-export const normal = () => <ClosedCaptions {...props} currentTime={2} />;
+export const normal = meta.story(() => <ClosedCaptions {...props} currentTime={2} />);
 
-export const overTime = () => {
+export const overTime = meta.story(() => {
     const [currentTime, setCurrentTime] = useState(0);
 
     useEffect(() => {
@@ -37,4 +38,4 @@ export const overTime = () => {
             <ClosedCaptions {...props} currentTime={currentTime} />
         </>
     );
-};
+});

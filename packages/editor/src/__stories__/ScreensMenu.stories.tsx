@@ -1,21 +1,23 @@
+// import { defaultTheme } from '#.storybook/data/themes/micromag-default';
+import withGoogleMaps from '#.storybook/decorators/withGoogleMaps';
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
 
-// import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
-import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import { StoryProvider } from '../../../core/src/contexts';
 import ScreensProvider from '../../../screens/src/ScreensProvider';
 import ScreensMenu from '../components/menus/ScreensMenu';
 
-import AllScreensStory from '../../../../.storybook/data/stories/all-screens.json';
+import AllScreensStory from '#.storybook/data/stories/all-screens.json';
 
-export default {
+const meta = preview.meta({
     component: ScreensMenu,
     title: 'Editor/ScreensMenu',
     decorators: [withGoogleMaps],
+
     parameters: {
         intl: true,
     },
-};
+});
 
 const ScreensMenuContainer = ({ story = null }) => {
     const [value] = useState(story);
@@ -28,8 +30,8 @@ const ScreensMenuContainer = ({ story = null }) => {
     );
 };
 
-export const TestUrbania = () => (
+export const TestUrbania = meta.story(() => (
     <div style={{ backgroundColor: '#FFF' }}>
         <ScreensMenuContainer story={AllScreensStory} />
     </div>
-);
+));

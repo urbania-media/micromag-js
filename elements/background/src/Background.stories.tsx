@@ -1,15 +1,16 @@
+import { gifVideoMedia, imageMedia, videoMedia } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import { gifVideoMedia, imageMedia, videoMedia } from '../../../.storybook/data';
 import Background from './Background';
 import BackgroundLayers from './BackgroundLayers';
 
-export default {
+const meta = preview.meta({
     component: Background,
     title: 'Elements/Background',
-};
+});
 
-export const layers = () => (
+export const layers = meta.story(() => (
     <div>
         <h4>Multiple layers</h4>
         <div style={{ position: 'relative', width: 200, height: 350 }}>
@@ -48,13 +49,13 @@ export const layers = () => (
             />
         </div>
     </div>
-);
+));
 
-export const color = () => (
+export const color = meta.story(() => (
     <Background width={200} height={350} color={{ color: '#ff0000', alpha: 0.5 }} />
-);
+));
 
-export const image = () => (
+export const image = meta.story(() => (
     <Background
         width={200}
         height={350}
@@ -62,8 +63,8 @@ export const image = () => (
         fit="cover"
         color={{ color: 'black' }}
     />
-);
+));
 
-export const video = () => (
+export const video = meta.story(() => (
     <Background width={200} height={350} color={{ color: 'black' }} media={videoMedia()} playing />
-);
+));

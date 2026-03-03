@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { header } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import { header } from '../../../.storybook/data';
 import Header from './Header';
 
-export default {
+const meta = preview.meta({
     component: Header,
     title: 'Elements/Header',
-};
+});
 
 const badgeProps = {
     active: true,
@@ -29,6 +30,6 @@ function HeaderContainer(props = null) {
     );
 }
 
-export const normal = () => <Header {...badgeProps} />;
+export const normal = meta.story(() => <Header {...badgeProps} />);
 
-export const contained = () => <HeaderContainer {...badgeProps} />;
+export const contained = meta.story(() => <HeaderContainer {...badgeProps} />);

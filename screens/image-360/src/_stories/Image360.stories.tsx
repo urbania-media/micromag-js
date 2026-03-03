@@ -1,13 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundColor, headerFooter, image360Media, transitions } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    image360Media,
-    backgroundColor,
-    transitions,
-    headerFooter,
-} from '../../../../.storybook/data';
 import Image360Screen from '../Image360';
 import definition from '../definition';
 
@@ -17,29 +13,30 @@ const props = () => ({
     transitions: transitions(),
 });
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Image 360',
     component: Image360Screen,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
-export const Placeholder = (storyProps) => <Image360Screen {...storyProps} />;
+export const Placeholder = meta.story((args) => <Image360Screen {...args} />);
 
-export const Preview = (storyProps) => <Image360Screen {...storyProps} {...props()} />;
+export const Preview = meta.story((args) => <Image360Screen {...args} {...props()} />);
 
-export const Static = (storyProps) => <Image360Screen {...storyProps} {...props()} />;
+export const Static = meta.story((args) => <Image360Screen {...args} {...props()} />);
 
-export const Capture = (storyProps) => <Image360Screen {...storyProps} {...props()} />;
+export const Capture = meta.story((args) => <Image360Screen {...args} {...props()} />);
 
-export const Edit = (storyProps) => <Image360Screen {...storyProps} />;
+export const Edit = meta.story((args) => <Image360Screen {...args} />);
 
-export const Normal = (storyProps) => <Image360Screen {...storyProps} {...props()} />;
+export const Normal = meta.story((args) => <Image360Screen {...args} {...props()} />);
 
-export const WithHeaderFooter = (storyProps) => (
-    <Image360Screen {...storyProps} {...props()} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <Image360Screen {...args} {...props()} {...headerFooter()} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

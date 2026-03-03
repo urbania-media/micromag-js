@@ -1,11 +1,12 @@
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
 
 import Checkbox from './Checkbox';
 
-export default {
+const meta = preview.meta({
     component: Checkbox,
     title: 'Elements/Checkbox (TODO)',
-};
+});
 
 const option = { body: 'Empty checkbox' };
 
@@ -19,6 +20,6 @@ function ContainerWithoutValue() {
     return <Checkbox option={option} value={value} onChange={setValue} />;
 }
 
-export const checked = () => <ContainerWithValue option={option} value={option} />;
+export const checked = meta.story(() => <ContainerWithValue option={option} value={option} />);
 
-export const unchecked = () => <ContainerWithoutValue option={option} />;
+export const unchecked = meta.story(() => <ContainerWithoutValue option={option} />);

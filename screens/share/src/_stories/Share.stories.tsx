@@ -1,14 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundColor, color, headerFooter, title, transitions } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    title,
-    backgroundColor,
-    transitions,
-    headerFooter,
-    color,
-} from '../../../../.storybook/data';
 import ShareScreen from '../Share';
 import definition from '../definition';
 
@@ -31,14 +26,15 @@ const props = {
     },
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Share',
     component: ShareScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
 const styles = {
     buttonsStyle: {
@@ -50,25 +46,25 @@ const styles = {
     },
 };
 
-export const Placeholder = (storyProps) => <ShareScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <ShareScreen {...args} />);
 
-export const Preview = (storyProps) => <ShareScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <ShareScreen {...args} {...props} />);
 
-export const Static = (storyProps) => <ShareScreen {...storyProps} {...props} />;
+export const Static = meta.story((args) => <ShareScreen {...args} {...props} />);
 
-export const Capture = (storyProps) => <ShareScreen {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <ShareScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <ShareScreen {...storyProps} />;
+export const Edit = meta.story((args) => <ShareScreen {...args} />);
 
-export const Normal = (storyProps) => <ShareScreen {...storyProps} {...props} {...styles} />;
+export const Normal = meta.story((args) => <ShareScreen {...args} {...props} {...styles} />);
 
-export const WithHeading = (storyProps) => (
-    <ShareScreen {...storyProps} {...props} {...styles} heading={{ body: 'Headings are great' }} />
-);
+export const WithHeading = meta.story((args) => (
+    <ShareScreen {...args} {...props} {...styles} heading={{ body: 'Headings are great' }} />
+));
 
-export const WithOnlyFacebook = (storyProps) => (
+export const WithOnlyFacebook = meta.story((args) => (
     <ShareScreen
-        {...storyProps}
+        {...args}
         {...props}
         options={{
             email: false,
@@ -77,11 +73,11 @@ export const WithOnlyFacebook = (storyProps) => (
             linkedin: false,
         }}
     />
-);
+));
 
-export const WithCentered = (storyProps) => (
+export const WithCentered = meta.story((args) => (
     <ShareScreen
-        {...storyProps}
+        {...args}
         {...props}
         options={{
             email: false,
@@ -91,11 +87,11 @@ export const WithCentered = (storyProps) => (
         }}
         centered
     />
-);
+));
 
-export const WithAllPlatforms = (storyProps) => (
+export const WithAllPlatforms = meta.story((args) => (
     <ShareScreen
-        {...storyProps}
+        {...args}
         {...props}
         options={{
             email: true,
@@ -106,10 +102,10 @@ export const WithAllPlatforms = (storyProps) => (
             whatsapp: true,
         }}
     />
-);
+));
 
-export const WithHeaderFooter = (storyProps) => (
-    <ShareScreen {...storyProps} {...headerFooter()} {...props} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <ShareScreen {...args} {...headerFooter()} {...props} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

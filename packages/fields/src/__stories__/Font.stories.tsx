@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
 
 import { UppyProvider } from '@panneau/uppy';
@@ -6,13 +7,14 @@ import { UppyProvider } from '@panneau/uppy';
 import FieldsProvider from '../FieldsProvider';
 import FontsField from '../components/Fonts';
 
-export default {
+const meta = preview.meta({
     title: 'Fields/Font',
     component: FontsField,
+
     parameters: {
         intl: true,
     },
-};
+});
 
 const uppyProps = {
     // transport: 'transloadit',
@@ -39,4 +41,4 @@ const FieldContainer = (props) => {
     );
 };
 
-export const normal = () => <FieldContainer />;
+export const normal = meta.story(() => <FieldContainer />);

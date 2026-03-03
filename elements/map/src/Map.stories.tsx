@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import withGoogleMapsApi from '#.storybook/decorators/withGoogleMaps';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import withGoogleMapsApi from '../../../.storybook/decorators/withGoogleMaps';
 import MapComponent from './Map';
 
 const props = {
@@ -13,12 +14,12 @@ const props = {
     draggable: true,
 };
 
-export default {
+const meta = preview.meta({
     component: MapComponent,
     title: 'Elements/Map',
     decorators: [withGoogleMapsApi],
-};
+});
 
-export function Default() {
+export const Default = meta.story(() => {
     return <MapComponent {...props} />;
-}
+});

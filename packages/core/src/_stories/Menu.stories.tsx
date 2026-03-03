@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Menu from '../components/menus/Menu';
@@ -23,13 +24,14 @@ const props = {
     ],
 };
 
-export default {
+const meta = preview.meta({
     component: Menu,
     title: 'Core/Menu',
+
     parameters: {
         intl: true,
         router: true,
     },
-};
+});
 
-export const Default = () => <Menu {...props} />;
+export const Default = meta.story(() => <Menu {...props} />);

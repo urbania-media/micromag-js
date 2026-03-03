@@ -1,15 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
 import {
     backgroundColor,
-    headerFooter,
-    header,
     footer,
+    header,
+    headerFooter,
     images,
     transitions,
-} from '../../../../.storybook/data';
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
+import React from 'react';
+
 import GalleryScreen from '../Gallery';
 import definition from '../definition';
 
@@ -19,49 +20,52 @@ const props = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Gallery',
     component: GalleryScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === GalleryScreen),
     },
-};
+});
 
-export function Placeholder(storyProps) {
-    return <GalleryScreen {...storyProps} />;
-}
+export const Placeholder = meta.story((args) => {
+    return <GalleryScreen {...args} />;
+});
 
-export function Preview(storyProps) {
-    return <GalleryScreen {...storyProps} {...props} />;
-}
-export function Static(storyProps) {
-    return <GalleryScreen {...storyProps} {...props} />;
-}
-export function Capture(storyProps) {
-    return <GalleryScreen {...storyProps} {...props} />;
-}
+export const Preview = meta.story((args) => {
+    return <GalleryScreen {...args} {...props} />;
+});
 
-export function Edit(storyProps) {
-    return <GalleryScreen {...storyProps} />;
-}
+export const Static = meta.story((args) => {
+    return <GalleryScreen {...args} {...props} />;
+});
 
-export function Normal(storyProps) {
-    return <GalleryScreen {...storyProps} {...props} />;
-}
+export const Capture = meta.story((args) => {
+    return <GalleryScreen {...args} {...props} />;
+});
 
-export function WithHeaderFooter(storyProps) {
-    return <GalleryScreen {...storyProps} {...headerFooter()} {...props} />;
-}
+export const Edit = meta.story((args) => {
+    return <GalleryScreen {...args} />;
+});
 
-export function WithHeader(storyProps) {
-    return <GalleryScreen {...storyProps} header={header()} {...props} />;
-}
+export const Normal = meta.story((args) => {
+    return <GalleryScreen {...args} {...props} />;
+});
 
-export function WithFooter(storyProps) {
-    return <GalleryScreen {...storyProps} footer={footer()} {...props} />;
-}
+export const WithHeaderFooter = meta.story((args) => {
+    return <GalleryScreen {...args} {...headerFooter()} {...props} />;
+});
 
-export function Definition(storyProps) {
-    return <ScreenDefinition {...storyProps} />;
-}
+export const WithHeader = meta.story((args) => {
+    return <GalleryScreen {...args} header={header()} {...props} />;
+});
+
+export const WithFooter = meta.story((args) => {
+    return <GalleryScreen {...args} footer={footer()} {...props} />;
+});
+
+export const Definition = meta.story((args) => {
+    return <ScreenDefinition {...args} />;
+});

@@ -1,23 +1,24 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { gifVideoMedia, videoMedia } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import { gifVideoMedia, videoMedia } from '../../../.storybook/data';
 import Video from './Video';
 
-export default {
+const meta = preview.meta({
     component: Video,
     title: 'Elements/Video',
-};
+});
 
-export function Normal() {
+export const Normal = meta.story(() => {
     return <Video media={videoMedia()} autoPlay loop />;
-}
+});
 
-export function Paused() {
+export const Paused = meta.story(() => {
     return <Video media={videoMedia()} loop shouldLoad paused />;
-}
+});
 
-export function Gif() {
+export const Gif = meta.story(() => {
     return (
         <div>
             <h4>Gif without converted videos</h4>
@@ -33,7 +34,7 @@ export function Gif() {
             <Video media={gifVideoMedia()} width={500} height={281} autoPlay loop />
         </div>
     );
-}
+});
 
 const newMedia = videoMedia();
 const tearsOfSteel = {
@@ -53,6 +54,7 @@ const tearsOfSteel = {
         },
     },
 };
-export function Hls() {
+
+export const Hls = meta.story(() => {
     return <Video media={tearsOfSteel} autoPlay loop muted />;
-}
+});

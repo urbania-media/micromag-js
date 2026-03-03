@@ -1,15 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import {
+    backgroundColor,
+    headerFooter,
+    imageMedia,
+    text,
+    transitions,
+    videoMedia,
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    imageMedia,
-    videoMedia,
-    text,
-    backgroundColor,
-    transitions,
-    headerFooter,
-} from '../../../../.storybook/data';
 import ImageLegendScreen from '../ImageLegend';
 import definition from '../definition';
 
@@ -21,30 +22,31 @@ const props = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/ImageLegend',
     component: ImageLegendScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === ImageLegendScreen),
     },
-};
+});
 
-export const Placeholder = (storyProps) => <ImageLegendScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <ImageLegendScreen {...args} />);
 
-export const Preview = (storyProps) => <ImageLegendScreen {...storyProps} {...props} />;
-export const Static = (storyProps) => <ImageLegendScreen {...storyProps} {...props} />;
-export const Capture = (storyProps) => <ImageLegendScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <ImageLegendScreen {...args} {...props} />);
+export const Static = meta.story((args) => <ImageLegendScreen {...args} {...props} />);
+export const Capture = meta.story((args) => <ImageLegendScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <ImageLegendScreen {...storyProps} />;
+export const Edit = meta.story((args) => <ImageLegendScreen {...args} />);
 
-export const Normal = (storyProps) => <ImageLegendScreen {...storyProps} {...props} />;
-export const WithVideo = (storyProps) => (
-    <ImageLegendScreen {...storyProps} {...props} image={videoMedia()} />
-);
+export const Normal = meta.story((args) => <ImageLegendScreen {...args} {...props} />);
+export const WithVideo = meta.story((args) => (
+    <ImageLegendScreen {...args} {...props} image={videoMedia()} />
+));
 
-export const WithHeaderFooter = (storyProps) => (
-    <ImageLegendScreen {...storyProps} {...props} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <ImageLegendScreen {...args} {...props} {...headerFooter()} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

@@ -1,14 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
 import {
     backgroundColor,
     color, // headerFooter,
     sortItems,
     title,
     transitions,
-} from '../../../../.storybook/data';
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
+import React from 'react';
+
 import GameSortScreen from '../GameSort';
 import definition from '../definition';
 
@@ -32,14 +33,15 @@ const props = {
     },
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/GameSort',
     component: GameSortScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
 const styles = {
     buttonsStyle: {
@@ -51,16 +53,16 @@ const styles = {
     },
 };
 
-export const Placeholder = (storyProps) => <GameSortScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <GameSortScreen {...args} />);
 
-export const Preview = (storyProps) => <GameSortScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <GameSortScreen {...args} {...props} />);
 
-export const Static = (storyProps) => <GameSortScreen {...storyProps} {...props} />;
+export const Static = meta.story((args) => <GameSortScreen {...args} {...props} />);
 
-export const Capture = (storyProps) => <GameSortScreen {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <GameSortScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <GameSortScreen {...storyProps} />;
+export const Edit = meta.story((args) => <GameSortScreen {...args} />);
 
-export const Normal = (storyProps) => <GameSortScreen {...storyProps} {...props} {...styles} />;
+export const Normal = meta.story((args) => <GameSortScreen {...args} {...props} {...styles} />);
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

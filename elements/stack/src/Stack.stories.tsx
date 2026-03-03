@@ -1,12 +1,13 @@
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Spacer from './Spacer';
 import Stack from './Stack';
 
-export default {
+const meta = preview.meta({
     component: Stack,
     title: 'Elements/Stack',
-};
+});
 
 const cellStyle = {
     textAlign: 'center',
@@ -21,7 +22,7 @@ const cells = [1, 2, 3, 4, 5].map((number) => (
     </div>
 ));
 
-export const withoutSpacing = () => (
+export const withoutSpacing = meta.story(() => (
     <div>
         <h4>Vertical</h4>
         <Stack direction="vertical">{cells}</Stack>
@@ -31,9 +32,9 @@ export const withoutSpacing = () => (
         <h4>Horizontal</h4>
         <Stack direction="horizontal">{cells}</Stack>
     </div>
-);
+));
 
-export const withSpacing = () => (
+export const withSpacing = meta.story(() => (
     <div>
         <h4>Vertical</h4>
         <Stack direction="vertical" spacing={10}>
@@ -47,9 +48,9 @@ export const withSpacing = () => (
             {cells}
         </Stack>
     </div>
-);
+));
 
-export const withSpacingAround = () => (
+export const withSpacingAround = meta.story(() => (
     <div>
         <h4>Vertical</h4>
         <Stack direction="vertical" spacing="around">
@@ -63,9 +64,9 @@ export const withSpacingAround = () => (
             {cells}
         </Stack>
     </div>
-);
+));
 
-export const withSpacer = () => (
+export const withSpacer = meta.story(() => (
     <div>
         <h4>Horizontal</h4>
         <Stack direction="horizontal">
@@ -78,4 +79,4 @@ export const withSpacer = () => (
             <div style={cellStyle}>4</div>
         </Stack>
     </div>
-);
+));

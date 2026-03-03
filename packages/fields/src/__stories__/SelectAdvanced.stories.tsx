@@ -1,17 +1,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
 
 import Select from '../components/Select';
 import SelectAdvanced from '../components/SelectAdvanced';
 import Tokens from '../components/Tokens';
 
-export default {
+const meta = preview.meta({
     component: SelectAdvanced,
     title: 'Fields/Select',
+
     parameters: {
         intl: true,
     },
-};
+});
 
 const props = {
     name: 'heading1',
@@ -39,26 +41,26 @@ const TokensFieldContainer = (otherProps) => {
     return <Tokens value={value} {...props} onChange={setValue} {...otherProps} />;
 };
 
-export const normal = () => (
+export const normal = meta.story(() => (
     <div className="container mt-4">
         <SelectFieldContainer />
     </div>
-);
+));
 
-export const reactSelect = () => (
+export const reactSelect = meta.story(() => (
     <div className="container mt-4">
         <SelectAdvancedFieldContainer />
     </div>
-);
+));
 
-export const tokens = () => (
+export const tokens = meta.story(() => (
     <div className="container mt-4">
         <TokensFieldContainer />
     </div>
-);
+));
 
-export const normalDisabled = () => (
+export const normalDisabled = meta.story(() => (
     <div className="container mt-4">
         <SelectFieldContainer disabled value={1} />
     </div>
-);
+));

@@ -1,34 +1,36 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import triviaData from '#.storybook/data/stories/urbania-trivia';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import triviaData from '../../../../.storybook/data/stories/urbania-trivia';
 import UrbaniaTrivia from '../UrbaniaTrivia';
 import definition from '../definition';
 
 import '../../../../.storybook/fonts/fonts.css';
 
-export default {
+const meta = preview.meta({
     title: 'Urbania Screens/Trivia',
     component: UrbaniaTrivia,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
-export const Cool = () => <p>Hello</p>;
+export const Cool = meta.story(() => <p>Hello</p>);
 
-export const Placeholder = (storyProps) => <UrbaniaTrivia {...storyProps} />;
+export const Placeholder = meta.story((args) => <UrbaniaTrivia {...args} />);
 
-export const Preview = (storyProps) => <UrbaniaTrivia {...storyProps} {...triviaData} />;
+export const Preview = meta.story((args) => <UrbaniaTrivia {...args} {...triviaData} />);
 
-export const Static = (storyProps) => <UrbaniaTrivia {...storyProps} {...triviaData} />;
+export const Static = meta.story((args) => <UrbaniaTrivia {...args} {...triviaData} />);
 
-export const Capture = (storyProps) => <UrbaniaTrivia {...storyProps} {...triviaData} />;
+export const Capture = meta.story((args) => <UrbaniaTrivia {...args} {...triviaData} />);
 
-export const Edit = (storyProps) => <UrbaniaTrivia {...storyProps} />;
+export const Edit = meta.story((args) => <UrbaniaTrivia {...args} />);
 
-export const Normal = (storyProps) => <UrbaniaTrivia {...storyProps} {...triviaData} />;
+export const Normal = meta.story((args) => <UrbaniaTrivia {...args} {...triviaData} />);
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

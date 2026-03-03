@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundVideo, headerFooter, imageMedia, videoMedia } from '#.storybook/data';
+import urbaniaReco from '#.storybook/data/stories/urbania-reco';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundVideo, headerFooter, imageMedia, videoMedia } from '../../../../.storybook/data';
-import urbaniaReco from '../../../../.storybook/data/stories/urbania-reco';
 import UrbaniaRecommendation from '../UrbaniaRecommendation';
 import definition from '../definition';
 
@@ -13,68 +14,69 @@ const props = {
 
 const video = { image: videoMedia() };
 
-export default {
+const meta = preview.meta({
     title: 'Urbania Screens/UrbaniaRecommendation',
     component: UrbaniaRecommendation,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === UrbaniaRecommendation),
     },
-};
+});
 
-export const Placeholder = (storyProps) => <UrbaniaRecommendation {...storyProps} />;
+export const Placeholder = meta.story((args) => <UrbaniaRecommendation {...args} />);
 
-export const Preview = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <UrbaniaRecommendation {...args} {...props} />);
 
-export const Static = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
+export const Static = meta.story((args) => <UrbaniaRecommendation {...args} {...props} />);
 
-export const Capture = (storyProps) => <UrbaniaRecommendation {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <UrbaniaRecommendation {...args} {...props} />);
 
-export const Edit = (storyProps) => <UrbaniaRecommendation {...storyProps} />;
+export const Edit = meta.story((args) => <UrbaniaRecommendation {...args} />);
 
-export const Normal = (storyProps) => (
+export const Normal = meta.story((args) => (
     <UrbaniaRecommendation
-        {...storyProps}
+        {...args}
         {...props}
         // layout="bottom"
         visual={{ image: imageMedia({ width: 1309, height: 1223 }) }}
     />
-);
+));
 
-export const NoCategory = (storyProps) => (
+export const NoCategory = meta.story((args) => (
     <UrbaniaRecommendation
-        {...storyProps}
+        {...args}
         {...props}
         // layout="bottom"
         visual={{ image: imageMedia({ width: 1309, height: 1223 }) }}
         category={null}
     />
-);
+));
 
-export const VisualBottom = (storyProps) => (
+export const VisualBottom = meta.story((args) => (
     <UrbaniaRecommendation
-        {...storyProps}
+        {...args}
         {...props}
         layout="top"
         sponsor
         visual={{ image: imageMedia({ width: 1009, height: 623 }) }}
     />
-);
+));
 
-export const WithVideoVisual = (storyProps) => (
-    <UrbaniaRecommendation {...storyProps} {...props} visual={video} />
-);
+export const WithVideoVisual = meta.story((args) => (
+    <UrbaniaRecommendation {...args} {...props} visual={video} />
+));
 
-export const WithoutVisual = (storyProps) => (
-    <UrbaniaRecommendation {...storyProps} {...props} visual={null} layout="top" />
-);
+export const WithoutVisual = meta.story((args) => (
+    <UrbaniaRecommendation {...args} {...props} visual={null} layout="top" />
+));
 
-export const WithVideoBackground = (storyProps) => (
-    <UrbaniaRecommendation {...storyProps} {...props} background={backgroundVideo()} />
-);
+export const WithVideoBackground = meta.story((args) => (
+    <UrbaniaRecommendation {...args} {...props} background={backgroundVideo()} />
+));
 
-export const WithHeaderFooter = (storyProps) => (
-    <UrbaniaRecommendation {...storyProps} {...props} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <UrbaniaRecommendation {...args} {...props} {...headerFooter()} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

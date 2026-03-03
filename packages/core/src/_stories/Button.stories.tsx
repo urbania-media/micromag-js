@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Button from '../components/buttons/Button';
@@ -13,27 +14,28 @@ const action = {
     theme: 'light',
 };
 
-export default {
+const meta = preview.meta({
     component: Button,
     title: 'Core/Button',
+
     parameters: {
         intl: true,
         router: true,
     },
-};
+});
 
-export const Link = () => <Button {...link}>Cool click</Button>;
+export const Link = meta.story(() => <Button {...link}>Cool click</Button>);
 
-export const DisabledLink = () => (
+export const DisabledLink = meta.story(() => (
     <Button {...link} disabled>
         Cool click
     </Button>
-);
+));
 
-export const Action = () => <Button {...action}>Cool click</Button>;
+export const Action = meta.story(() => <Button {...action}>Cool click</Button>);
 
-export const DisabledAction = () => (
+export const DisabledAction = meta.story(() => (
     <Button {...action} disabled>
         Cool click
     </Button>
-);
+));

@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Button from './Button';
 
-export default {
+const meta = preview.meta({
     component: Button,
     title: 'Elements/Button',
-};
+});
 
 const style = {
     textStyle: {
@@ -22,10 +23,10 @@ const style = {
     },
 };
 
-export function Default() {
+export const Default = meta.story(() => {
     return <Button>Button</Button>;
-}
+});
 
-export function WithStyle() {
+export const WithStyle = meta.story(() => {
     return <Button {...style}>Button</Button>;
-}
+});

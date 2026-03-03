@@ -1,14 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
 import {
     audioMedia,
     backgroundColor,
     closedCaptionsMedia,
-    transitions,
     headerFooter,
-} from '../../../../.storybook/data';
+    transitions,
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
+import React from 'react';
+
 import AudioScreen from '../Audio';
 import definition from '../definition';
 
@@ -20,43 +21,44 @@ const props = (audioProps = {}) => ({
     transitions: transitions(),
 });
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Audio',
     component: AudioScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
-export const Placeholder = (storyProps) => <AudioScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <AudioScreen {...args} />);
 
-export const Preview = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
+export const Preview = meta.story((args) => <AudioScreen {...args} {...props()} />);
 
-export const Static = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
+export const Static = meta.story((args) => <AudioScreen {...args} {...props()} />);
 
-export const Capture = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
+export const Capture = meta.story((args) => <AudioScreen {...args} {...props()} />);
 
-export const Edit = (storyProps) => <AudioScreen {...storyProps} />;
+export const Edit = meta.story((args) => <AudioScreen {...args} />);
 
-export const Normal = (storyProps) => (
-    <AudioScreen {...storyProps} {...props({ withWave: true })} />
-);
+export const Normal = meta.story((args) => (
+    <AudioScreen {...args} {...props({ withWave: true })} />
+));
 
-export const WithClosedCaptions = (storyProps) => (
+export const WithClosedCaptions = meta.story((args) => (
     <AudioScreen
-        {...storyProps}
+        {...args}
         {...{ ...props({ closedCaptions: closedCaptionsMedia(), withWave: true }) }}
     />
-);
+));
 
-export const WithHeaderFooter = (storyProps) => (
+export const WithHeaderFooter = meta.story((args) => (
     <AudioScreen
-        {...storyProps}
+        {...args}
         {...headerFooter()}
         {...{ ...props({ closedCaptions: closedCaptionsMedia(), withWave: true }) }}
         showWave
     />
-);
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

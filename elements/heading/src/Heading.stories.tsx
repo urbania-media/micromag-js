@@ -1,13 +1,14 @@
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Heading from './Heading';
 
-export default {
+const meta = preview.meta({
     component: Heading,
     title: 'Elements/Heading',
-};
+});
 
-export const normal = () => (
+export const normal = meta.story(() => (
     <>
         <Heading body="Heading 1" size={1} />
         <br />
@@ -22,4 +23,4 @@ export const normal = () => (
         <Heading body="Heading 6" size={6} />
         <br />
     </>
-);
+));

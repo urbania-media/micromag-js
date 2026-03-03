@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundColor, headerFooter, title, transitions } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, headerFooter, title, transitions } from '../../../../.storybook/data';
 import ContributionScreen from '../Contribution';
 import definition from '../definition';
 
@@ -17,29 +18,30 @@ const props = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Contribution',
     component: ContributionScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
-export const Placeholder = (storyProps) => <ContributionScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <ContributionScreen {...args} />);
 
-export const Preview = (storyProps) => <ContributionScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <ContributionScreen {...args} {...props} />);
 
-export const Static = (storyProps) => <ContributionScreen {...storyProps} {...props} />;
+export const Static = meta.story((args) => <ContributionScreen {...args} {...props} />);
 
-export const Capture = (storyProps) => <ContributionScreen {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <ContributionScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <ContributionScreen {...storyProps} />;
+export const Edit = meta.story((args) => <ContributionScreen {...args} />);
 
-export const Normal = (storyProps) => <ContributionScreen {...storyProps} {...props} />;
+export const Normal = meta.story((args) => <ContributionScreen {...args} {...props} />);
 
-export const WithHeaderFooter = (storyProps) => (
-    <ContributionScreen {...storyProps} {...headerFooter()} {...props} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <ContributionScreen {...args} {...headerFooter()} {...props} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

@@ -1,16 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
 import {
+    backgroundColor,
+    headerFooter,
+    imageMedia,
     text,
     title,
-    imageMedia,
-    videoMedia,
-    backgroundColor,
     transitions,
-    headerFooter,
-} from '../../../../.storybook/data';
+    videoMedia,
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
+import React from 'react';
+
 import TimelineIllustratedScreen from '../TimelineIllustrated';
 import definition from '../definition';
 
@@ -37,39 +38,40 @@ const normalProps = {
     bulletFilled: false,
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/TimelineIllustrated',
     component: TimelineIllustratedScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === TimelineIllustratedScreen),
     },
-};
+});
 
-export const Placeholder = (storyProps) => <TimelineIllustratedScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <TimelineIllustratedScreen {...args} />);
 
-export const Preview = (storyProps) => (
-    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
-);
-export const Static = (storyProps) => (
-    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
-);
-export const Capture = (storyProps) => (
-    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
-);
+export const Preview = meta.story((args) => (
+    <TimelineIllustratedScreen {...args} {...props} {...normalProps} />
+));
+export const Static = meta.story((args) => (
+    <TimelineIllustratedScreen {...args} {...props} {...normalProps} />
+));
+export const Capture = meta.story((args) => (
+    <TimelineIllustratedScreen {...args} {...props} {...normalProps} />
+));
 
-export const Edit = (storyProps) => <TimelineIllustratedScreen {...storyProps} />;
+export const Edit = meta.story((args) => <TimelineIllustratedScreen {...args} />);
 
-export const Normal = (storyProps) => (
-    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
-);
+export const Normal = meta.story((args) => (
+    <TimelineIllustratedScreen {...args} {...props} {...normalProps} />
+));
 
-export const WithoutLine = (storyProps) => (
-    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} withoutLine />
-);
+export const WithoutLine = meta.story((args) => (
+    <TimelineIllustratedScreen {...args} {...props} {...normalProps} withoutLine />
+));
 
-export const WithHeaderFooter = (storyProps) => (
-    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <TimelineIllustratedScreen {...args} {...props} {...normalProps} {...headerFooter()} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

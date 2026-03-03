@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React, { useCallback, useState } from 'react';
 
 import FieldsProvider from '@panneau/fields';
@@ -12,14 +13,15 @@ const props = {
     test: [],
 };
 
-export default {
+const meta = preview.meta({
     component: Consent,
     title: 'Viewer/Consent',
     decorators: [],
+
     parameters: {
         intl: true,
     },
-};
+});
 
 // eslint-disable-next-line react/prop-types
 const ConsentContainer = ({ value: defaultValue = null, consent = null, ...containerProps }) => {
@@ -65,11 +67,11 @@ const ConsentContainer = ({ value: defaultValue = null, consent = null, ...conta
     );
 };
 
-export function Normal() {
+export const Normal = meta.story(() => {
     return <ConsentContainer {...props} consent={['ad_storage', 'ad_personalization']} />;
-}
+});
 
-export function withClose() {
+export const withClose = meta.story(() => {
     return (
         <ConsentContainer
             {...props}
@@ -78,4 +80,4 @@ export function withClose() {
             consent={['ad_storage', 'ad_personalization']}
         />
     );
-}
+});

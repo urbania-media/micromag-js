@@ -1,16 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { imageMedia } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import { imageMedia } from '../../../.storybook/data';
 import Author from './Author';
 
-export default {
+const meta = preview.meta({
     component: Author,
     title: 'Elements/Author',
+
     parameters: {
         intl: true,
     },
-};
+});
 
 const elementProps = {
     author: {
@@ -20,15 +22,15 @@ const elementProps = {
     },
 };
 
-export function Normal() {
+export const Normal = meta.story(() => {
     return <Author {...elementProps} />;
-}
+});
 
-export function Small() {
+export const Small = meta.story(() => {
     return <Author {...elementProps} isSmall />;
-}
+});
 
-export function WithoutAvatar() {
+export const WithoutAvatar = meta.story(() => {
     return (
         <Author
             {...elementProps}
@@ -39,9 +41,9 @@ export function WithoutAvatar() {
             }}
         />
     );
-}
+});
 
-export function WithoutLink() {
+export const WithoutLink = meta.story(() => {
     return (
         <Author
             {...elementProps}
@@ -52,9 +54,9 @@ export function WithoutLink() {
             }}
         />
     );
-}
+});
 
-export function WithoutLinkAndAvatar() {
+export const WithoutLinkAndAvatar = meta.story(() => {
     return (
         <Author
             {...elementProps}
@@ -65,9 +67,9 @@ export function WithoutLinkAndAvatar() {
             }}
         />
     );
-}
+});
 
-export function WithCollaborator() {
+export const WithCollaborator = meta.story(() => {
     return (
         <Author
             {...elementProps}
@@ -81,4 +83,4 @@ export function WithCollaborator() {
             }}
         />
     );
-}
+});

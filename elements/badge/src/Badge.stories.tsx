@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Badge from './Badge';
 
-export default {
+const meta = preview.meta({
     component: Badge,
     title: 'Elements/Badge',
-};
+});
 
 const badgeProps = {
     active: true,
@@ -34,6 +35,6 @@ function BadgeContainer(props = null) {
     );
 }
 
-export const normal = () => <Badge {...badgeProps} />;
+export const normal = meta.story(() => <Badge {...badgeProps} />);
 
-export const contained = () => <BadgeContainer {...badgeProps} />;
+export const contained = meta.story(() => <BadgeContainer {...badgeProps} />);

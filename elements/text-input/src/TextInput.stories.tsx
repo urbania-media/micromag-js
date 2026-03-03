@@ -1,13 +1,14 @@
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
 
 import TextInput from './TextInput';
 
-export default {
+const meta = preview.meta({
     component: TextInput,
     title: 'Elements/TextInput',
-};
+});
 
-export const normal = () => {
+export const normal = meta.story(() => {
     const [value, setValue] = useState();
     return (
         <TextInput
@@ -16,9 +17,9 @@ export const normal = () => {
             onChange={(e) => setValue(e.target.value)}
         />
     );
-};
+});
 
-export const multiline = () => {
+export const multiline = meta.story(() => {
     const [value, setValue] = useState();
     return (
         <TextInput
@@ -28,9 +29,9 @@ export const multiline = () => {
             onChange={(e) => setValue(e.target.value)}
         />
     );
-};
+});
 
-export const placeholder = () => {
+export const placeholder = meta.story(() => {
     const [value, setValue] = useState();
     return (
         <TextInput
@@ -41,4 +42,4 @@ export const placeholder = () => {
             placeholderTextStyle={{ color: '#ff00ff', textAlign: 'center' }}
         />
     );
-};
+});

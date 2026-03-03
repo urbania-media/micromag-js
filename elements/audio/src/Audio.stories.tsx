@@ -1,24 +1,26 @@
+import { audioMedia } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import { audioMedia } from '../../../.storybook/data';
 import Audio from './Audio';
 
-export default {
+const meta = preview.meta({
     component: Audio,
     title: 'Elements/Audio',
+
     parameters: {
         intl: true,
     },
-};
+});
 
-export function Normal() {
+export const Normal = meta.story(() => {
     return <Audio media={audioMedia()} />;
-}
+});
 
-export function NormalWithWaveform() {
+export const NormalWithWaveform = meta.story(() => {
     return <Audio media={audioMedia({ withWaveform: true })} withWave />;
-}
+});
 
-export function Autoplay() {
+export const Autoplay = meta.story(() => {
     return <Audio media={audioMedia()} autoPlay loop />;
-}
+});

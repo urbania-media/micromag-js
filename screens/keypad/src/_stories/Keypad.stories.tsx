@@ -1,14 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundColor, footer, header, headerFooter, imageMedia } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    backgroundColor,
-    footer,
-    header,
-    headerFooter,
-    imageMedia,
-} from '../../../../.storybook/data';
 import Keypad from '../Keypad';
 import definition from '../definition';
 
@@ -55,33 +50,34 @@ const props = {
     ],
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Keypad',
     component: Keypad,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === Keypad),
     },
-};
+});
 
-export const Placeholder = (storyProps) => <Keypad {...storyProps} />;
+export const Placeholder = meta.story((args) => <Keypad {...args} />);
 
-export const Preview = (storyProps) => <Keypad {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <Keypad {...args} {...props} />);
 
-export const Static = (storyProps) => <Keypad {...storyProps} {...props} />;
+export const Static = meta.story((args) => <Keypad {...args} {...props} />);
 
-export const Capture = (storyProps) => <Keypad {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <Keypad {...args} {...props} />);
 
-export const Edit = (storyProps) => <Keypad {...storyProps} />;
+export const Edit = meta.story((args) => <Keypad {...args} />);
 
-export const Normal = (storyProps) => <Keypad {...storyProps} {...props} />;
+export const Normal = meta.story((args) => <Keypad {...args} {...props} />);
 
-export const WithHeaderFooter = (storyProps) => (
-    <Keypad {...storyProps} {...props} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <Keypad {...args} {...props} {...headerFooter()} />
+));
 
-export const WithHeader = (storyProps) => <Keypad {...storyProps} {...props} header={header()} />;
+export const WithHeader = meta.story((args) => <Keypad {...args} {...props} header={header()} />);
 
-export const WithFooter = (storyProps) => <Keypad {...storyProps} {...props} footer={footer()} />;
+export const WithFooter = meta.story((args) => <Keypad {...args} {...props} footer={footer()} />);
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

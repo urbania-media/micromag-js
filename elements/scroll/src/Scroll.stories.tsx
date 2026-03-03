@@ -1,13 +1,14 @@
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Scroll from './Scroll';
 
-export default {
+const meta = preview.meta({
     component: Scroll,
     title: 'Elements/Scroll',
-};
+});
 
-export const normal = () => (
+export const normal = meta.story(() => (
     <Scroll width={320} height={480}>
         <div
             style={{
@@ -17,4 +18,4 @@ export const normal = () => (
             }}
         />
     </Scroll>
-);
+));

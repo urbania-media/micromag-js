@@ -1,13 +1,14 @@
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Container from './Container';
 
-export default {
+const meta = preview.meta({
     component: Container,
     title: 'Elements/Container',
-};
+});
 
-export const normal = () => (
+export const normal = meta.story(() => (
     <Container width={380} height={380}>
         <div
             style={{
@@ -20,4 +21,4 @@ export const normal = () => (
             }}
         />
     </Container>
-);
+));

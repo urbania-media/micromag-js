@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { footer } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import { footer } from '../../../.storybook/data';
 import Footer from './Footer';
 
-export default {
+const meta = preview.meta({
     component: Footer,
     title: 'Elements/Footer',
-};
+});
 
 const badgeProps = {
     active: true,
@@ -29,6 +30,6 @@ function FooterContainer(props = null) {
     );
 }
 
-export const normal = () => <Footer {...badgeProps} />;
+export const normal = meta.story(() => <Footer {...badgeProps} />);
 
-export const contained = () => <FooterContainer {...badgeProps} />;
+export const contained = meta.story(() => <FooterContainer {...badgeProps} />);

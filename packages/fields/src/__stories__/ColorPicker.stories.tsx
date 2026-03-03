@@ -1,12 +1,15 @@
-import { EditorProvider } from '@micromag/core/contexts';
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
+
+import { EditorProvider } from '@micromag/core/contexts';
+
 // import fieldsManager from '@micromag/fields';
 import ColorPicker from '../components/ColorPicker';
 
-export default {
+const meta = preview.meta({
     component: ColorPicker,
     title: 'Fields/ColorPicker',
-};
+});
 
 function FieldContainer() {
     const [value, setValue] = useState(null);
@@ -17,8 +20,8 @@ function FieldContainer() {
     );
 }
 
-export const normal = () => (
+export const normal = meta.story(() => (
     <div className="container mt-4">
         <FieldContainer />
     </div>
-);
+));

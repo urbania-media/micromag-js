@@ -1,7 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading, no-console */
-import React, { useCallback, useEffect, useState } from 'react';
-import { v1 as uuid } from 'uuid';
-
 import {
     audioMedia,
     conversation,
@@ -11,43 +8,46 @@ import {
     webfont2Files,
     webfont3Files,
     webfontFiles,
-} from '../../../../.storybook/data';
-import allScreensStory from '../../../../.storybook/data/stories/allScreens';
-import article from '../../../../.storybook/data/stories/article-generic';
-import faceAFace from '../../../../.storybook/data/stories/faceAFace';
-import keypad from '../../../../.storybook/data/stories/keypad';
-import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
-import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
-import multipleVideosStory from '../../../../.storybook/data/stories/multipleVideosStory';
-import quiz from '../../../../.storybook/data/stories/quiz';
-import quizMultiple from '../../../../.storybook/data/stories/quiz-multiple';
-import quizMultipleSimple from '../../../../.storybook/data/stories/quiz-multiple-simple';
-import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
-import survey from '../../../../.storybook/data/stories/survey';
-import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
-import timeline from '../../../../.storybook/data/stories/timeline';
-import UrbaniaComponents from '../../../../.storybook/data/stories/urbania-components';
-import videoAudio from '../../../../.storybook/data/stories/videoAudio';
-import treeTheme from '../../../../.storybook/data/themes/tree';
-import viewerTheme from '../../../../.storybook/data/viewerTheme';
-import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
+} from '#.storybook/data';
+import allScreensStory from '#.storybook/data/stories/allScreens';
+import article from '#.storybook/data/stories/article-generic';
+import faceAFace from '#.storybook/data/stories/faceAFace';
+import keypad from '#.storybook/data/stories/keypad';
+import multipleArticles from '#.storybook/data/stories/multipleArticles';
+import multipleKeypads from '#.storybook/data/stories/multipleKeypads';
+import multipleVideosStory from '#.storybook/data/stories/multipleVideosStory';
+import quiz from '#.storybook/data/stories/quiz';
+import quizMultiple from '#.storybook/data/stories/quiz-multiple';
+import quizMultipleSimple from '#.storybook/data/stories/quiz-multiple-simple';
+import shareScreensStory from '#.storybook/data/stories/shareScreens';
+import survey from '#.storybook/data/stories/survey';
+import textQuoteBadges from '#.storybook/data/stories/text-quote-badges';
+import timeline from '#.storybook/data/stories/timeline';
+import UrbaniaComponents from '#.storybook/data/stories/urbania-components';
+import videoAudio from '#.storybook/data/stories/videoAudio';
+import treeTheme from '#.storybook/data/themes/tree';
+import viewerTheme from '#.storybook/data/viewerTheme';
+import withGoogleMaps from '#.storybook/decorators/withGoogleMaps';
+import preview from '#.storybook/preview';
+import React, { useCallback, useEffect, useState } from 'react';
+import { v1 as uuid } from 'uuid';
+
 import FieldsProvider from '../../../fields/src/FieldsProvider';
 import Viewer from '../components/ViewerContainer';
 
+import basic from '#.storybook/data/stories/basic.json';
+import bayard from '#.storybook/data/stories/bayard.json';
+import cannabis from '#.storybook/data/stories/cannabis-quebec-france.json';
+import cointreau from '#.storybook/data/stories/cointreau.json';
+import planetsStory from '#.storybook/data/stories/les-planetes.json';
+import lol from '#.storybook/data/stories/lol.json';
+import micromagExample2 from '#.storybook/data/stories/micromagExample2.json';
+import micromagExample from '#.storybook/data/stories/micromagExample.json';
+import micromagExampleEarly2024 from '#.storybook/data/stories/micromagExampleEarly2024.json';
+import tnm from '#.storybook/data/stories/tnm.json';
+import testTheme from '#.storybook/data/themes/new-theme.json';
+import micromagAudio from '#.storybook/examples/micromag-audio.json';
 import styles from './styles.module.css';
-
-import basic from '../../../../.storybook/data/stories/basic.json';
-import bayard from '../../../../.storybook/data/stories/bayard.json';
-import cannabis from '../../../../.storybook/data/stories/cannabis-quebec-france.json';
-import cointreau from '../../../../.storybook/data/stories/cointreau.json';
-import planetsStory from '../../../../.storybook/data/stories/les-planetes.json';
-import lol from '../../../../.storybook/data/stories/lol.json';
-import micromagExample2 from '../../../../.storybook/data/stories/micromagExample2.json';
-import micromagExample from '../../../../.storybook/data/stories/micromagExample.json';
-import micromagExampleEarly2024 from '../../../../.storybook/data/stories/micromagExampleEarly2024.json';
-import tnm from '../../../../.storybook/data/stories/tnm.json';
-import testTheme from '../../../../.storybook/data/themes/new-theme.json';
-import micromagAudio from '../../../../.storybook/examples/micromag-audio.json';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -84,8 +84,9 @@ const twoScreensProps = {
     },
 };
 
-export default {
+const meta = preview.meta({
     component: Viewer,
+
     decorators: [
         withGoogleMaps,
         (Story) => (
@@ -108,13 +109,15 @@ export default {
             </FieldsProvider>
         ),
     ],
+
     title: 'Viewer/Viewer',
+
     parameters: {
         intl: true,
     },
-};
+});
 
-export const Basic = () => (
+export const Basic = meta.story(() => (
     <Viewer
         story={basic}
         withNavigationHint
@@ -127,9 +130,9 @@ export const Basic = () => (
         onMenuChange={(state) => console.log(state)}
         withMicromagBranding
     />
-);
+));
 
-export const BackgroundColor = () => (
+export const BackgroundColor = meta.story(() => (
     <div style={{ width: '100%', height: '100%', backgroundColor: hexColor() }}>
         <Viewer
             story={allScreensStory}
@@ -146,9 +149,9 @@ export const BackgroundColor = () => (
             className={styles.transparentViewer}
         />
     </div>
-);
+));
 
-export const Urbania = () => (
+export const Urbania = meta.story(() => (
     <Viewer
         story={{ ...basic, background: null, components: UrbaniaComponents }}
         withNavigationHint
@@ -161,23 +164,25 @@ export const Urbania = () => (
         withMicromagBranding
         // onMenuChange={(state) => console.log(state)}
     />
-);
+));
 
-export const Article = () => <Viewer story={article} memoryRouter />;
+export const Article = meta.story(() => <Viewer story={article} memoryRouter />);
 
-export const Bayard = () => <Viewer story={bayard} memoryRouter backToFirstScreenTimeout={5000} />;
+export const Bayard = meta.story(() => (
+    <Viewer story={bayard} memoryRouter backToFirstScreenTimeout={5000} />
+));
 
-export const Cannabis = () => <Viewer story={cannabis} memoryRouter />;
+export const Cannabis = meta.story(() => <Viewer story={cannabis} memoryRouter />);
 
-export const TNM = () => <Viewer story={tnm} memoryRouter muted={false} />;
+export const TNM = meta.story(() => <Viewer story={tnm} memoryRouter muted={false} />);
 
-export const Single = () => <Viewer story={lol} memoryRouter />;
+export const Single = meta.story(() => <Viewer story={lol} memoryRouter />);
 
-export const Cointreau = () => <Viewer story={cointreau} memoryRouter />;
+export const Cointreau = meta.story(() => <Viewer story={cointreau} memoryRouter />);
 
-export const Closeable = () => <Viewer story={lol} closeable memoryRouter />;
+export const Closeable = meta.story(() => <Viewer story={lol} closeable memoryRouter />);
 
-export const WithButtons = () => (
+export const WithButtons = meta.story(() => (
     <Viewer
         story={cointreau}
         memoryRouter
@@ -187,16 +192,16 @@ export const WithButtons = () => (
             </button>
         }
     />
-);
+));
 
-export const TextQuoteBadges = () => (
+export const TextQuoteBadges = meta.story(() => (
     <Viewer story={textQuoteBadges} withNavigationHint memoryRouter />
-);
-export const TextQuoteBadgesThemed = () => (
+));
+export const TextQuoteBadgesThemed = meta.story(() => (
     <Viewer story={{ ...textQuoteBadges, theme: testTheme }} withNavigationHint memoryRouter />
-);
+));
 
-export const Keypad = () => (
+export const Keypad = meta.story(() => (
     <Viewer
         story={{
             id: 'KEYPAD',
@@ -230,13 +235,13 @@ export const Keypad = () => (
         }}
         memoryRouter
     />
-);
+));
 
-export const Surveys = () => <Viewer story={survey} memoryRouter />;
+export const Surveys = meta.story(() => <Viewer story={survey} memoryRouter />);
 
-export const QuizAndSurvey = () => <Viewer story={quiz} memoryRouter />;
+export const QuizAndSurvey = meta.story(() => <Viewer story={quiz} memoryRouter />);
 
-export const QuizMultiple = () => (
+export const QuizMultiple = meta.story(() => (
     <Viewer
         screenId="ABC"
         story={{
@@ -247,9 +252,9 @@ export const QuizMultiple = () => (
         }}
         memoryRouter
     />
-);
+));
 
-export const QuizMultipleResults = () => (
+export const QuizMultipleResults = meta.story(() => (
     <Viewer
         screenId="123"
         story={{
@@ -260,9 +265,9 @@ export const QuizMultipleResults = () => (
         }}
         memoryRouter
     />
-);
+));
 
-export const Timeline = () => (
+export const Timeline = meta.story(() => (
     <Viewer
         screenId="123"
         story={{
@@ -281,20 +286,20 @@ export const Timeline = () => (
                         },
                     },
                 },
-                ...videoAudio.components
+                ...videoAudio.components,
             ],
         }}
         memoryRouter
     />
-);
+));
 
-export const Empty = () => <Viewer basePath="/story-path" memoryRouter />;
+export const Empty = meta.story(() => <Viewer basePath="/story-path" memoryRouter />);
 
-export const TwoScreens = () => <Viewer {...twoScreensProps} memoryRouter />;
+export const TwoScreens = meta.story(() => <Viewer {...twoScreensProps} memoryRouter />);
 
-export const Tree = () => <Viewer story={treeTheme} withNavigationHint memoryRouter />;
+export const Tree = meta.story(() => <Viewer story={treeTheme} withNavigationHint memoryRouter />);
 
-export const Custom = () => (
+export const Custom = meta.story(() => (
     <Viewer
         story={{ components: [{ id: '1324', type: 'custom' }] }}
         screenComponents={{
@@ -311,44 +316,48 @@ export const Custom = () => (
         }}
         memoryRouter
     />
-);
+));
 
-export const MicromagExample = () => (
+export const MicromagExample = meta.story(() => (
     <Viewer {...micromagExample} memoryRouter shareOptions={['linkedin', 'email']} />
-);
-export const MicromagExample2 = () => <Viewer {...micromagExample2} memoryRouter />;
+));
+export const MicromagExample2 = meta.story(() => <Viewer {...micromagExample2} memoryRouter />);
 
-export const MicromagExampleEarly2024 = () => <Viewer {...micromagExampleEarly2024} memoryRouter />;
+export const MicromagExampleEarly2024 = meta.story(() => (
+    <Viewer {...micromagExampleEarly2024} memoryRouter />
+));
 
-export const LesPlanetes = () => <Viewer {...planetsStory} memoryRouter />;
+export const LesPlanetes = meta.story(() => <Viewer {...planetsStory} memoryRouter />);
 
-export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint memoryRouter />;
+export const FaceAFace = meta.story(() => (
+    <Viewer {...faceAFaceProps} withNavigationHint memoryRouter />
+));
 
-export const AllScreens = () => (
+export const AllScreens = meta.story(() => (
     <Viewer {...props} withNeighborScreens memoryRouter withMicromagBranding />
-);
+));
 
-export const AllScreensWithoutHeader = () => (
+export const AllScreensWithoutHeader = meta.story(() => (
     <Viewer {...propsWithoutHeader} withNeighborScreens memoryRouter />
-);
+));
 
-export const AllScreensWithoutFooter = () => (
+export const AllScreensWithoutFooter = meta.story(() => (
     <Viewer {...propsWithoutFooter} withNeighborScreens memoryRouter />
-);
+));
 
 const shareScreenProps = {
     screenId: shareScreensStory.components[0].id,
     story: shareScreensStory,
 };
-export const VideoAudio = () => (
+export const VideoAudio = meta.story(() => (
     <Viewer story={videoAudio} memoryRouter shareBasePath="https://micromag.ca" />
-);
+));
 
-export const AudioOnly = () => <Viewer story={micromagAudio} memoryRouter />;
+export const AudioOnly = meta.story(() => <Viewer story={micromagAudio} memoryRouter />);
 
-export const ShareScreens = () => <Viewer {...shareScreenProps} memoryRouter />;
+export const ShareScreens = meta.story(() => <Viewer {...shareScreenProps} memoryRouter />);
 
-export const MultipleAudios = () => (
+export const MultipleAudios = meta.story(() => (
     <Viewer
         screenId="1"
         story={{
@@ -378,17 +387,17 @@ export const MultipleAudios = () => (
         }}
         memoryRouter
     />
-);
+));
 
-export const MultipleVideos = () => (
+export const MultipleVideos = meta.story(() => (
     <Viewer screenId="1" story={multipleVideosStory} withNavigationHint memoryRouter />
-);
+));
 
-export const MultipleVideosForcePaused = () => (
+export const MultipleVideosForcePaused = meta.story(() => (
     <Viewer screenId="1" story={multipleVideosStory} withNavigationHint paused memoryRouter />
-);
+));
 
-export const MultipleVideos360 = () => (
+export const MultipleVideos360 = meta.story(() => (
     <Viewer
         screenId="1"
         story={{
@@ -418,14 +427,16 @@ export const MultipleVideos360 = () => (
         }}
         memoryRouter
     />
-);
-export const MultipleArticles = () => (
+));
+export const MultipleArticles = meta.story(() => (
     <Viewer screenId="42" story={multipleArticles} memoryRouter />
-);
+));
 
-export const MultipleKeypads = () => <Viewer screenId="777" story={multipleKeypads} memoryRouter />;
+export const MultipleKeypads = meta.story(() => (
+    <Viewer screenId="777" story={multipleKeypads} memoryRouter />
+));
 
-export const Conversation = () => (
+export const Conversation = meta.story(() => (
     <Viewer
         screenId="727"
         story={{
@@ -441,9 +452,9 @@ export const Conversation = () => (
         }}
         memoryRouter
     />
-);
+));
 
-export const GameSort = () => (
+export const GameSort = meta.story(() => (
     <Viewer
         story={{
             title: 'Game sort',
@@ -506,9 +517,9 @@ export const GameSort = () => (
         }}
         memoryRouter
     />
-);
+));
 
-export const WithCustomFonts = () => (
+export const WithCustomFonts = meta.story(() => (
     <Viewer
         story={{
             components: [
@@ -602,18 +613,20 @@ export const WithCustomFonts = () => (
         screenId="1"
         memoryRouter
     />
-);
-export const WithTheme = () => <Viewer {...twoScreensProps} theme={viewerTheme} memoryRouter />;
+));
+export const WithTheme = meta.story(() => (
+    <Viewer {...twoScreensProps} theme={viewerTheme} memoryRouter />
+));
 
-export const WithMenuTheme = () => (
+export const WithMenuTheme = meta.story(() => (
     <Viewer
         {...twoScreensProps}
         theme={{ ...viewerTheme, menuTheme: { colors: { primary: '#F00', secondary: '#00F' } } }}
         memoryRouter
     />
-);
+));
 
-export const WithMenuThemeAndMenuItems = () => (
+export const WithMenuThemeAndMenuItems = meta.story(() => (
     <Viewer
         {...faceAFaceProps}
         theme={{
@@ -632,9 +645,9 @@ export const WithMenuThemeAndMenuItems = () => (
         beforeScreensMenuButton={<div>Custom item before screens button blablabla</div>}
         afterShareMenuButton={<div>Custom item after share button lalalalala</div>}
     />
-);
+));
 
-export const WithMenuItems = () => (
+export const WithMenuItems = meta.story(() => (
     <Viewer
         {...faceAFaceProps}
         theme={{
@@ -657,9 +670,9 @@ export const WithMenuItems = () => (
         // menuHeader={<div style={{ padding: '10px' }}>Custom header content</div>}
         // menuFooter={<div style={{ padding: '10px' }}>Custom footer content</div>}
     />
-);
+));
 
-export const WithScroll = () => (
+export const WithScroll = meta.story(() => (
     <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'scroll' }}>
         <div style={{ position: 'relative', width: '100%', height: 2000 }}>
             <div style={{ position: 'relative', width: '100%', height: 560 }}>
@@ -677,11 +690,11 @@ export const WithScroll = () => (
             </div>
         </div>
     </div>
-);
-export const WithNeighborScreens = () => (
+));
+export const WithNeighborScreens = meta.story(() => (
     <Viewer {...faceAFaceProps} withNeighborScreens memoryRouter />
-);
-export const WithCustomNeighborScreens = () => (
+));
+export const WithCustomNeighborScreens = meta.story(() => (
     <Viewer
         {...faceAFaceProps}
         neighborScreensActive={3}
@@ -693,20 +706,22 @@ export const WithCustomNeighborScreens = () => (
         withoutMenuShadow
         memoryRouter
     />
-);
+));
 
-export const WithoutGestures = () => <Viewer story={faceAFace} withoutGestures memoryRouter />;
-export const WithoutNavigationArrows = () => (
+export const WithoutGestures = meta.story(() => (
+    <Viewer story={faceAFace} withoutGestures memoryRouter />
+));
+export const WithoutNavigationArrows = meta.story(() => (
     <Viewer story={faceAFace} withoutNavigationArrow memoryRouter />
-);
-export const WithoutTransitions = () => (
+));
+export const WithoutTransitions = meta.story(() => (
     <Viewer story={faceAFace} withoutTransitions memoryRouter />
-);
-export const WithoutPlaybackControls = () => (
+));
+export const WithoutPlaybackControls = meta.story(() => (
     <Viewer story={videoAudio} withoutPlaybackControls memoryRouter />
-);
-export const WithoutMenu = () => <Viewer story={videoAudio} withoutMenu memoryRouter />;
-export const WithoutUserInterface = () => (
+));
+export const WithoutMenu = meta.story(() => <Viewer story={videoAudio} withoutMenu memoryRouter />);
+export const WithoutUserInterface = meta.story(() => (
     <Viewer
         story={videoAudio}
         neighborScreensMounted={null}
@@ -715,8 +730,8 @@ export const WithoutUserInterface = () => (
         withoutPlaybackControls
         withoutNavigationArrow
     />
-);
-export const WithViewerEvents = () => {
+));
+export const WithViewerEvents = meta.story(() => {
     const [fullscreen, setFullscreen] = useState(false);
     const [viewMode, setViewMode] = useState(null);
     const { landscape = false } = viewMode || {};
@@ -744,9 +759,9 @@ export const WithViewerEvents = () => {
             onViewModeChange={setViewMode}
         />
     );
-};
+});
 
-export const LoadExternal = () => {
+export const LoadExternal = meta.story(() => {
     const storySlug = 'une-soiree-avec-pier-luc-funk-mm93';
     const [story, setStory] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -776,4 +791,4 @@ export const LoadExternal = () => {
     }
 
     return <Viewer story={story} withNavigationHint memoryRouter />;
-};
+});

@@ -1,3 +1,30 @@
+import { callToAction, conversation, hlsVideoMedia, sortItems, videoMedia } from '#.storybook/data';
+import galleries from '#.storybook/data/galleries';
+import allScreensStory from '#.storybook/data/stories/allScreens';
+import article from '#.storybook/data/stories/article-generic';
+import contribution from '#.storybook/data/stories/contribution';
+import faceAFaceStory from '#.storybook/data/stories/faceAFace';
+import keypad from '#.storybook/data/stories/keypad';
+import multipleArticles from '#.storybook/data/stories/multipleArticles';
+import multipleItems from '#.storybook/data/stories/multipleItems';
+import multipleKeypads from '#.storybook/data/stories/multipleKeypads';
+import quiz from '#.storybook/data/stories/quiz';
+import quizMultiple from '#.storybook/data/stories/quiz-multiple';
+import quizMultipleSimple from '#.storybook/data/stories/quiz-multiple-simple';
+import shareScreensStory from '#.storybook/data/stories/shareScreens';
+import survey from '#.storybook/data/stories/survey';
+import textQuoteBadges from '#.storybook/data/stories/text-quote-badges';
+import timeline from '#.storybook/data/stories/timeline';
+import UrbaniaScreenComponents from '#.storybook/data/stories/urbania-components';
+import videoAudio from '#.storybook/data/stories/videoAudio';
+import { defaultTheme } from '#.storybook/data/themes/micromag-default';
+import simpleTreeTheme from '#.storybook/data/themes/simpletree';
+import treeTheme from '#.storybook/data/themes/tree';
+import { theme as backgroundTheme } from '#.storybook/data/themes/with-background';
+import withGoogleMaps from '#.storybook/decorators/withGoogleMaps';
+// import withIntlProvider from '#.storybook/decorators/withIntlProvider';
+import withUppy from '#.storybook/decorators/withUppy';
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
 import { v1 as uuid } from 'uuid';
 
@@ -7,56 +34,22 @@ import DisplaysProvider from '@panneau/displays';
 import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
 
-import {
-    callToAction,
-    conversation,
-    hlsVideoMedia,
-    sortItems,
-    videoMedia,
-} from '../../../../.storybook/data';
-import allScreensStory from '../../../../.storybook/data/stories/allScreens';
-import article from '../../../../.storybook/data/stories/article-generic';
-import contribution from '../../../../.storybook/data/stories/contribution';
-import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
-import keypad from '../../../../.storybook/data/stories/keypad';
-import multipleArticles from '../../../../.storybook/data/stories/multipleArticles';
-import multipleItems from '../../../../.storybook/data/stories/multipleItems';
-import multipleKeypads from '../../../../.storybook/data/stories/multipleKeypads';
-import quiz from '../../../../.storybook/data/stories/quiz';
-import quizMultiple from '../../../../.storybook/data/stories/quiz-multiple';
-import quizMultipleSimple from '../../../../.storybook/data/stories/quiz-multiple-simple';
-import shareScreensStory from '../../../../.storybook/data/stories/shareScreens';
-import survey from '../../../../.storybook/data/stories/survey';
-import textQuoteBadges from '../../../../.storybook/data/stories/text-quote-badges';
-import timeline from '../../../../.storybook/data/stories/timeline';
-import UrbaniaScreenComponents from '../../../../.storybook/data/stories/urbania-components';
-import videoAudio from '../../../../.storybook/data/stories/videoAudio';
-import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
-import simpleTreeTheme from '../../../../.storybook/data/themes/simpletree';
-import treeTheme from '../../../../.storybook/data/themes/tree';
-import { theme as backgroundTheme } from '../../../../.storybook/data/themes/with-background';
-import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
-// import withIntlProvider from '../../../../.storybook/decorators/withIntlProvider';
-import withUppy from '../../../../.storybook/decorators/withUppy';
 import signs from '../../../../screens/urbania-horoscope/src/data/signs';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import Editor from '../components/EditorContainer';
 
-import galleries from '../../../../.storybook/data/galleries';
-import cointreau from '../../../../.storybook/data/stories/cointreau.json';
-import hebdo from '../../../../.storybook/data/stories/hebdo.json';
+import cointreau from '#.storybook/data/stories/cointreau.json';
+import hebdo from '#.storybook/data/stories/hebdo.json';
 
-// import manager from '../../../intl/src/manager';
-// import createDefaultStory from '../utils/createDefaultStory';
-
-export default {
+const meta = preview.meta({
     component: Editor,
     title: 'Editor/Editor',
     decorators: [withGoogleMaps, withUppy],
+
     parameters: {
         intl: true,
     },
-};
+});
 
 const hasWindow = typeof window !== 'undefined';
 
@@ -150,42 +143,41 @@ const viewerTheme = {
     },
 };
 
+export const TestHebdo = meta.story(() => <EditorContainer defaultValue={hebdo} />);
 
-export const TestHebdo = () => <EditorContainer defaultValue={hebdo} />;
-
-export const TestUrbania = () => (
+export const TestUrbania = meta.story(() => (
     <EditorContainer
         defaultValue={{ title: 'Test', theme: defaultTheme, components: UrbaniaScreenComponents }}
     />
-);
+));
 
-export const TestCointreau = () => <EditorContainer defaultValue={cointreau} />;
+export const TestCointreau = meta.story(() => <EditorContainer defaultValue={cointreau} />);
 
-export const TestArticle = () => <EditorContainer defaultValue={article} />;
+export const TestArticle = meta.story(() => <EditorContainer defaultValue={article} />);
 
-export const TestQuoteBadges = () => <EditorContainer defaultValue={textQuoteBadges} />;
+export const TestQuoteBadges = meta.story(() => <EditorContainer defaultValue={textQuoteBadges} />);
 
-export const TestContribution = () => (
+export const TestContribution = meta.story(() => (
     <EditorContainer
         defaultValue={{ title: 'Test Contrib', theme: defaultTheme, components: [contribution] }}
     />
-);
+));
 
-export const TestKeypad = () => (
+export const TestKeypad = meta.story(() => (
     <EditorContainer
         defaultValue={{ title: 'Test KEYPAD', theme: defaultTheme, components: [keypad] }}
     />
-);
+));
 
-export const TestTimeline = () => (
+export const TestTimeline = meta.story(() => (
     <EditorContainer
         defaultValue={{ title: 'Test Timeline', theme: defaultTheme, components: [timeline] }}
     />
-);
+));
 
-export const TestQuizzes = () => <EditorContainer defaultValue={quiz} />;
+export const TestQuizzes = meta.story(() => <EditorContainer defaultValue={quiz} />);
 
-export const TestArticleUrbania = () => (
+export const TestArticleUrbania = meta.story(() => (
     <EditorContainer
         defaultValue={{
             title: 'Test',
@@ -224,9 +216,9 @@ export const TestArticleUrbania = () => (
             ],
         }}
     />
-);
+));
 
-export const TestHoroscope = () => (
+export const TestHoroscope = meta.story(() => (
     <EditorContainer
         defaultValue={{
             title: 'Test',
@@ -240,9 +232,9 @@ export const TestHoroscope = () => (
             ],
         }}
     />
-);
+));
 
-export const TestReco = () => (
+export const TestReco = meta.story(() => (
     <EditorContainer
         defaultValue={{
             title: 'Test',
@@ -255,77 +247,81 @@ export const TestReco = () => (
             ],
         }}
     />
-);
+));
 
-export const Empty = () => <EditorContainer defaultValue={{ title: 'Empty' }} />;
+export const Empty = meta.story(() => <EditorContainer defaultValue={{ title: 'Empty' }} />);
 
-export const VideoAudio = () => <EditorContainer defaultValue={videoAudio} />;
+export const VideoAudio = meta.story(() => <EditorContainer defaultValue={videoAudio} />);
 
-export const Galleries = () => <EditorContainer defaultValue={{ components: galleries }} />;
+export const Galleries = meta.story(() => (
+    <EditorContainer defaultValue={{ components: galleries }} />
+));
 
-export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
+export const IsTree = meta.story(() => <EditorContainer defaultValue={treeTheme} />);
 
-export const IsSimpleTree = () => (
+export const IsSimpleTree = meta.story(() => (
     <EditorContainer
         defaultValue={simpleTreeTheme}
         // onChange={(newValue) => console.log(newValue)}
     />
-);
+));
 
-export const Map = () => (
+export const Map = meta.story(() => (
     <EditorContainer defaultValue={{ components: [{ id: 'map', type: 'map' }] }} />
-);
+));
 
-export const Survey = () => (
+export const Survey = meta.story(() => (
     <EditorContainer defaultValue={{ components: [{ id: 'survey', type: 'survey' }] }} />
-);
+));
 
-export const Surveys = () => <EditorContainer defaultValue={survey} />;
+export const Surveys = meta.story(() => <EditorContainer defaultValue={survey} />);
 
-export const Quiz = () => (
+export const Quiz = meta.story(() => (
     <EditorContainer defaultValue={{ components: [{ id: 'quiz', type: 'quiz' }] }} />
-);
+));
 
-export const QuizMultiple = () => (
+export const QuizMultiple = meta.story(() => (
     <EditorContainer
         defaultValue={{
             components: [{ id: 'quiz-multiple', type: 'quiz-multiple', ...quizMultiple }],
         }}
     />
-);
+));
 
-export const QuizMultipleSimple = () => (
+export const QuizMultipleSimple = meta.story(() => (
     <EditorContainer
         defaultValue={{
             components: [{ id: 'quiz-multiple', type: 'quiz-multiple', ...quizMultipleSimple }],
         }}
     />
-);
+));
 
-export const VideoCustom = () => (
+export const VideoCustom = meta.story(() => (
     <EditorContainer
         defaultValue={{ components: [{ id: 'video', type: 'video', video: videoMedia() }] }}
     />
-);
+));
 
-export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
-export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;
-export const ShareScreens = () => <EditorContainer defaultValue={shareScreensStory} />;
-export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
-export const MultipleArticles = () => <EditorContainer defaultValue={multipleArticles} />;
-export const MultipleKeypads = () => <EditorContainer defaultValue={multipleKeypads} />;
-export const MultipleItems = () => <EditorContainer defaultValue={multipleItems} />;
+export const IsTheme = meta.story(() => <EditorContainer defaultValue={defaultTheme} isTheme />);
+export const AllScreens = meta.story(() => <EditorContainer defaultValue={allScreensStory} />);
+export const ShareScreens = meta.story(() => <EditorContainer defaultValue={shareScreensStory} />);
+export const FaceAFace = meta.story(() => <EditorContainer defaultValue={faceAFaceStory} />);
+export const MultipleArticles = meta.story(() => (
+    <EditorContainer defaultValue={multipleArticles} />
+));
+export const MultipleKeypads = meta.story(() => <EditorContainer defaultValue={multipleKeypads} />);
+export const MultipleItems = meta.story(() => <EditorContainer defaultValue={multipleItems} />);
 
-export const WithTheme = () => (
+export const WithTheme = meta.story(() => (
     <EditorContainer
         defaultValue={{
             title: 'With theme',
             theme: defaultTheme,
         }}
     />
-);
+));
 
-export const WithThemeCTABadge = () => (
+export const WithThemeCTABadge = meta.story(() => (
     <EditorContainer
         defaultValue={{
             ...textQuoteBadges,
@@ -334,9 +330,9 @@ export const WithThemeCTABadge = () => (
             components: [textQuoteBadges.components[0]],
         }}
     />
-);
+));
 
-export const WithThemeItems = () => (
+export const WithThemeItems = meta.story(() => (
     <EditorContainer
         defaultValue={{
             ...textQuoteBadges,
@@ -347,20 +343,22 @@ export const WithThemeItems = () => (
             ),
         }}
     />
-);
+));
 
-export const IsBackgroundTheme = () => <EditorContainer isTheme defaultValue={backgroundTheme} />;
+export const IsBackgroundTheme = meta.story(() => (
+    <EditorContainer isTheme defaultValue={backgroundTheme} />
+));
 
-export const WithBackgroundTheme = () => (
+export const WithBackgroundTheme = meta.story(() => (
     <EditorContainer
         defaultValue={{
             title: 'With background theme',
             theme: backgroundTheme,
         }}
     />
-);
+));
 
-export const WithThemeAllScreens = () => (
+export const WithThemeAllScreens = meta.story(() => (
     <EditorContainer
         defaultValue={{
             title: 'With theme (all screens)',
@@ -370,9 +368,9 @@ export const WithThemeAllScreens = () => (
             })),
         }}
     />
-);
+));
 
-export const WithViewerTheme = () => (
+export const WithViewerTheme = meta.story(() => (
     <EditorContainer
         viewerTheme={viewerTheme}
         defaultValue={{
@@ -383,9 +381,9 @@ export const WithViewerTheme = () => (
             })),
         }}
     />
-);
+));
 
-export const WithSomeScreens = () => (
+export const WithSomeScreens = meta.story(() => (
     <EditorContainer
         viewerTheme={viewerTheme}
         defaultValue={{
@@ -397,27 +395,27 @@ export const WithSomeScreens = () => (
             ],
         }}
     />
-);
+));
 
-export const Conversation = () => (
+export const Conversation = meta.story(() => (
     <EditorContainer
         defaultValue={{
             title: 'With conversation',
             components: [{ id: '1', type: 'conversation', conversation: conversation(13, 4) }],
         }}
     />
-);
+));
 
-export const GameSort = () => (
+export const GameSort = meta.story(() => (
     <EditorContainer
         defaultValue={{
             title: 'With game sort',
             components: [{ id: '1', type: 'game-sort', items: sortItems(5) }],
         }}
     />
-);
+));
 
-export const QualityLevelInPlaybackContext = () => (
+export const QualityLevelInPlaybackContext = meta.story(() => (
     <EditorContainer
         defaultValue={{
             title: 'Quality level in PlaybackContext',
@@ -449,9 +447,9 @@ export const QualityLevelInPlaybackContext = () => (
             ],
         }}
     />
-);
+));
 
-export const BugfixWithTheme = () => (
+export const BugfixWithTheme = meta.story(() => (
     <EditorContainer
         defaultValue={{
             theme: {
@@ -859,4 +857,4 @@ export const BugfixWithTheme = () => (
             ],
         }}
     />
-);
+));

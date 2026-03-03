@@ -1,11 +1,12 @@
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
 
 import Autocomplete from '../components/Autocomplete';
 
-export default {
+const meta = preview.meta({
     component: Autocomplete,
     title: 'Fields/Autocomplete',
-};
+});
 
 const items = [
     { label: 'Gato', value: 'cat' },
@@ -22,8 +23,8 @@ const FieldContainer = () => {
     );
 };
 
-export const normal = () => (
+export const normal = meta.story(() => (
     <div className="container mt-4">
         <FieldContainer />
     </div>
-);
+));

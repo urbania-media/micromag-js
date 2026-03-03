@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Grid from './Grid';
 
-export default {
+const meta = preview.meta({
     component: Grid,
     title: 'Elements/Grid',
-};
+});
 
 const cellStyle = {
     display: 'flex',
@@ -56,6 +57,6 @@ const verticalProps = {
     ],
 };
 
-export const horizontal = () => <Grid {...horizontalProps} spacing={10} />;
-export const vertical = () => <Grid {...verticalProps} spacing={10} />;
-export const withoutSpacing = () => <Grid {...horizontalProps} />;
+export const horizontal = meta.story(() => <Grid {...horizontalProps} spacing={10} />);
+export const vertical = meta.story(() => <Grid {...verticalProps} spacing={10} />);
+export const withoutSpacing = meta.story(() => <Grid {...horizontalProps} />);

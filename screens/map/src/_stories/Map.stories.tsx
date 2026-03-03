@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundColor, markers, text, title, transitions } from '#.storybook/data';
+import withGoogleMaps from '#.storybook/decorators/withGoogleMaps';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import { title, text, markers, backgroundColor, transitions } from '../../../../.storybook/data';
-import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import MapScreen from '../Map';
 import definition from '../definition';
 
@@ -17,24 +18,25 @@ const props = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Map',
     decorators: [withGoogleMaps],
     component: MapScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === MapScreen),
     },
-};
+});
 
-export const Placeholder = (storyProps) => <MapScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <MapScreen {...args} />);
 
-export const Preview = (storyProps) => <MapScreen {...storyProps} {...props} />;
-export const Static = (storyProps) => <MapScreen {...storyProps} {...props} />;
-export const Capture = (storyProps) => <MapScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <MapScreen {...args} {...props} />);
+export const Static = meta.story((args) => <MapScreen {...args} {...props} />);
+export const Capture = meta.story((args) => <MapScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <MapScreen {...storyProps} />;
+export const Edit = meta.story((args) => <MapScreen {...args} />);
 
-export const Normal = (storyProps) => <MapScreen {...storyProps} {...props} />;
+export const Normal = meta.story((args) => <MapScreen {...args} {...props} />);
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

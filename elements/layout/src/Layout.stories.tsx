@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import LayoutGrid from '#.storybook/components/LayoutGrid';
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Layout from './Layout';
-import LayoutGrid from '../../../.storybook/components/LayoutGrid';
 
-export default {
+const meta = preview.meta({
     component: Layout,
     title: 'Elements/Layout',
-};
+});
 
 const layouts = [
     {
@@ -29,7 +30,7 @@ const layouts = [
     },
 ];
 
-export const normal = () => (
+export const normal = meta.story(() => (
     <LayoutGrid layouts={layouts}>
         {(layout) => (
             <div
@@ -45,4 +46,4 @@ export const normal = () => (
             </div>
         )}
     </LayoutGrid>
-);
+));

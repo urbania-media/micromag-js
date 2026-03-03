@@ -1,9 +1,11 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
+
 /* eslint-disable no-param-reassign */
+import { defineMain } from '@storybook/react-webpack5/node';
+import { createRequire } from 'module';
 import { dirname, join } from 'path';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
@@ -20,14 +22,14 @@ function getAbsolutePath(value) {
     return dirname(require.resolve(join(value, 'package.json')));
 }
 
-export default {
+export default defineMain({
     stories: getPackagesPaths().map((packagePath) =>
         path.join(packagePath, './src/**/*.@(mdx|stories.@(tsx))'),
     ),
 
     addons: [
         getAbsolutePath('@storybook/addon-webpack5-compiler-babel'),
-        getAbsolutePath("@storybook/addon-docs")
+        getAbsolutePath('@storybook/addon-docs'),
     ],
 
     webpackFinal: async (config) => {
@@ -40,125 +42,128 @@ export default {
             return true;
         });
 
-        return ({
-        ...config,
-        resolve: {
-            ...config.resolve,
-            alias: {
-                ...config.resolve.alias,
-                ...getPackagesAliases(),
-                '@micromag/ckeditor/build': path.join(__dirname, '../packages/ckeditor/src/build'),
+        return {
+            ...config,
+            resolve: {
+                ...config.resolve,
+                alias: {
+                    ...config.resolve.alias,
+                    ...getPackagesAliases(),
+                    '@micromag/ckeditor/build': path.join(
+                        __dirname,
+                        '../packages/ckeditor/src/build',
+                    ),
+                    '#.storybook': __dirname,
+                },
             },
-        },
-        module: {
-            ...config.module,
-            rules: [
-                {
-                    test: /\.m?js$/,
-                    resolve: {
-                        fullySpecified: false,
+            module: {
+                ...config.module,
+                rules: [
+                    {
+                        test: /\.m?js$/,
+                        resolve: {
+                            fullySpecified: false,
+                        },
                     },
-                },
-                // CSS modules (*.module.css)
-                {
-                    test: /\.module\.css$/,
-                    use: [
-                        'style-loader',
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                modules: {
-                                    auto: true,
-                                    namedExport: false,
-                                    localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                    // CSS modules (*.module.css)
+                    {
+                        test: /\.module\.css$/,
+                        use: [
+                            'style-loader',
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    modules: {
+                                        auto: true,
+                                        namedExport: false,
+                                        localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                                    },
                                 },
                             },
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                postcssOptions: {
-                                    plugins: [require('postcss-nested')],
+                            {
+                                loader: 'postcss-loader',
+                                options: {
+                                    postcssOptions: {
+                                        plugins: [require('postcss-nested')],
+                                    },
                                 },
                             },
-                        },
-                    ],
-                },
-                // Regular CSS (non-module) — exclude .module.css so it doesn't conflict
-                {
-                    test: /\.css$/,
-                    exclude: [/\.module\.css$/, /ckeditor5-[^/\\]+[/\\]theme[/\\]/],
-                    use: ['style-loader', 'css-loader'],
-                },
-                {
-                    oneOf: [
-                        {
-                            test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
-                            use: ['raw-loader'],
-                        },
-                        {
-                            test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
-                            use: [
-                                {
-                                    loader: 'style-loader',
-                                    options: {
-                                        injectType: 'singletonStyleTag',
-                                        attributes: {
-                                            'data-cke': true,
+                        ],
+                    },
+                    // Regular CSS (non-module) — exclude .module.css so it doesn't conflict
+                    {
+                        test: /\.css$/,
+                        exclude: [/\.module\.css$/, /ckeditor5-[^/\\]+[/\\]theme[/\\]/],
+                        use: ['style-loader', 'css-loader'],
+                    },
+                    {
+                        oneOf: [
+                            {
+                                test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                                use: ['raw-loader'],
+                            },
+                            {
+                                test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+                                use: [
+                                    {
+                                        loader: 'style-loader',
+                                        options: {
+                                            injectType: 'singletonStyleTag',
+                                            attributes: {
+                                                'data-cke': true,
+                                            },
                                         },
                                     },
-                                },
-                                'css-loader',
-                                {
-                                    loader: 'postcss-loader',
-                                    options: {
-                                        postcssOptions: styles.getPostCssConfig({
-                                            themeImporter: {
-                                                themePath: require.resolve(
-                                                    '@ckeditor/ckeditor5-theme-lark',
-                                                ),
-                                            },
-                                            minify: true,
-                                        }),
-                                    },
-                                },
-                            ],
-                        },
-                        {
-                            rules: [
-                                ...filteredRules,
-                                ...getPackagesPaths().map((packagePath) => ({
-                                    loader: require.resolve('babel-loader'),
-                                    test: /\.(js|jsx|ts|tsx)$/,
-                                    include: path.join(packagePath, './src/'),
-                                    exclude: /\/node_modules\//,
-                                    options: {
-                                        babelrc: false,
-                                        configFile: path.join(__dirname, '../babel.config.js'),
-                                        plugins: [
-                                            [
-                                                require.resolve('babel-plugin-react-intl'),
-                                                {
-                                                    ast: true,
-                                                    extractFromFormatMessageCall: true,
-                                                    idInterpolationPattern:
-                                                        '[sha512:contenthash:base64:6]',
+                                    'css-loader',
+                                    {
+                                        loader: 'postcss-loader',
+                                        options: {
+                                            postcssOptions: styles.getPostCssConfig({
+                                                themeImporter: {
+                                                    themePath:
+                                                        require.resolve('@ckeditor/ckeditor5-theme-lark'),
                                                 },
-                                            ],
-                                        ],
+                                                minify: true,
+                                            }),
+                                        },
                                     },
-                                })),
-                                {
-                                    test: /\.(srt)$/,
-                                    loader: require.resolve('file-loader'),
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
-        },
-    });
+                                ],
+                            },
+                            {
+                                rules: [
+                                    ...filteredRules,
+                                    ...getPackagesPaths().map((packagePath) => ({
+                                        loader: require.resolve('babel-loader'),
+                                        test: /\.(js|jsx|ts|tsx)$/,
+                                        include: path.join(packagePath, './src/'),
+                                        exclude: /\/node_modules\//,
+                                        options: {
+                                            babelrc: false,
+                                            configFile: path.join(__dirname, '../babel.config.js'),
+                                            plugins: [
+                                                [
+                                                    require.resolve('babel-plugin-react-intl'),
+                                                    {
+                                                        ast: true,
+                                                        extractFromFormatMessageCall: true,
+                                                        idInterpolationPattern:
+                                                            '[sha512:contenthash:base64:6]',
+                                                    },
+                                                ],
+                                            ],
+                                        },
+                                    })),
+                                    {
+                                        test: /\.(srt)$/,
+                                        loader: require.resolve('file-loader'),
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                ],
+            },
+        };
     },
 
     framework: {
@@ -173,4 +178,4 @@ export default {
     typescript: {
         reactDocgen: 'react-docgen-typescript',
     },
-};
+});

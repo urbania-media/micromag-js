@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundColor, headerFooter, images, transitions } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { images, backgroundColor, transitions, headerFooter } from '../../../../.storybook/data';
 import GalleryFeedScreen from '../GalleryFeed';
 import definition from '../definition';
 
@@ -12,29 +13,30 @@ const props = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/GalleryFeed',
     component: GalleryFeedScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === GalleryFeedScreen),
     },
-};
+});
 
-export const Placeholder = (storyProps) => <GalleryFeedScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <GalleryFeedScreen {...args} />);
 
-export const Preview = (storyProps) => <GalleryFeedScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <GalleryFeedScreen {...args} {...props} />);
 
-export const Static = (storyProps) => <GalleryFeedScreen {...storyProps} {...props} />;
+export const Static = meta.story((args) => <GalleryFeedScreen {...args} {...props} />);
 
-export const Capture = (storyProps) => <GalleryFeedScreen {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <GalleryFeedScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <GalleryFeedScreen {...storyProps} />;
+export const Edit = meta.story((args) => <GalleryFeedScreen {...args} />);
 
-export const Normal = (storyProps) => <GalleryFeedScreen {...storyProps} {...props} />;
+export const Normal = meta.story((args) => <GalleryFeedScreen {...args} {...props} />);
 
-export const WithHeaderFooter = (storyProps) => (
-    <GalleryFeedScreen {...storyProps} {...headerFooter()} {...props} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <GalleryFeedScreen {...args} {...headerFooter()} {...props} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

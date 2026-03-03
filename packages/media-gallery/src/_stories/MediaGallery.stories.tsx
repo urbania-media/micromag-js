@@ -1,4 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import sound from '#.storybook/data/files/test.mp3';
+import video from '#.storybook/data/files/test.mp4';
+import withUppy from '#.storybook/decorators/withUppy';
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
 
 import ActionsProvider from '@panneau/actions';
@@ -9,9 +13,6 @@ import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
 import ModalsProvider from '@panneau/modals';
 
-import sound from '../../../../.storybook/data/files/test.mp3';
-import video from '../../../../.storybook/data/files/test.mp4';
-import withUppy from '../../../../.storybook/decorators/withUppy';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import MediaGallery from '../components/MediaGallery';
 
@@ -70,15 +71,16 @@ const props = {
     ],
 };
 
-export default {
+const meta = preview.meta({
     component: MediaGallery,
     title: 'Editor/MediaGallery',
     decorators: [withUppy],
+
     parameters: {
         screenSize: true,
         intl: true,
     },
-};
+});
 
 // eslint-disable-next-line react/prop-types
 const GalleryContainer = ({ value: defaultValue = null, ...containerProps }) => {
@@ -108,19 +110,19 @@ const GalleryContainer = ({ value: defaultValue = null, ...containerProps }) => 
     );
 };
 
-export function Normal() {
+export const Normal = meta.story(() => {
     return <GalleryContainer />;
-}
+});
 
-export function WithTypesRequest() {
+export const WithTypesRequest = meta.story(() => {
     return <GalleryContainer types={['image', 'video']} />;
-}
+});
 
-export function WithTestMedia() {
+export const WithTestMedia = meta.story(() => {
     return <GalleryContainer {...props} type="image" />;
-}
+});
 
-export function WithSelectedMedia() {
+export const WithSelectedMedia = meta.story(() => {
     return (
         <GalleryContainer
             {...props}
@@ -137,16 +139,16 @@ export function WithSelectedMedia() {
             }}
         />
     );
-}
+});
 
-export function WithList() {
+export const WithList = meta.story(() => {
     return <GalleryContainer medias={list} />;
-}
+});
 
-export function WithFontType() {
+export const WithFontType = meta.story(() => {
     return <GalleryContainer types="font" />;
-}
+});
 
-export function WithVideoType() {
+export const WithVideoType = meta.story(() => {
     return <GalleryContainer types="video" />;
-}
+});

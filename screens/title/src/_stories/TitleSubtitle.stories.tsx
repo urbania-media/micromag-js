@@ -1,16 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import {
+    backgroundColor,
+    footer,
+    header,
+    headerFooter,
+    subtitle,
+    title,
+    transitions,
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    title,
-    subtitle,
-    backgroundColor,
-    transitions,
-    headerFooter,
-    header,
-    footer,
-} from '../../../../.storybook/data';
 import TitleSubtitleScreen from '../TitleSubtitle';
 import definition from '../definition';
 
@@ -21,38 +22,39 @@ const screen = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/TitleSubtitle',
     component: TitleSubtitleScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === TitleSubtitleScreen),
         defaultScreen: screen,
     },
-};
+});
 
-export const Placeholder = (storyProps) => <TitleSubtitleScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <TitleSubtitleScreen {...args} />);
 
-export const Preview = (storyProps) => <TitleSubtitleScreen {...storyProps} {...screen} />;
+export const Preview = meta.story((args) => <TitleSubtitleScreen {...args} {...screen} />);
 
-export const Static = (storyProps) => <TitleSubtitleScreen {...storyProps} {...screen} />;
+export const Static = meta.story((args) => <TitleSubtitleScreen {...args} {...screen} />);
 
-export const Capture = (storyProps) => <TitleSubtitleScreen {...storyProps} {...screen} />;
+export const Capture = meta.story((args) => <TitleSubtitleScreen {...args} {...screen} />);
 
-export const Edit = (storyProps) => <TitleSubtitleScreen {...storyProps} />;
+export const Edit = meta.story((args) => <TitleSubtitleScreen {...args} />);
 
-export const Normal = (storyProps) => <TitleSubtitleScreen {...storyProps} {...screen} />;
+export const Normal = meta.story((args) => <TitleSubtitleScreen {...args} {...screen} />);
 
-export const WithHeaderFooter = (storyProps) => (
-    <TitleSubtitleScreen {...storyProps} {...screen} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <TitleSubtitleScreen {...args} {...screen} {...headerFooter()} />
+));
 
-export const WithHeader = (storyProps) => (
-    <TitleSubtitleScreen {...storyProps} {...screen} header={header()} />
-);
+export const WithHeader = meta.story((args) => (
+    <TitleSubtitleScreen {...args} {...screen} header={header()} />
+));
 
-export const WithFooter = (storyProps) => (
-    <TitleSubtitleScreen {...storyProps} {...screen} footer={footer()} />
-);
+export const WithFooter = meta.story((args) => (
+    <TitleSubtitleScreen {...args} {...screen} footer={footer()} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

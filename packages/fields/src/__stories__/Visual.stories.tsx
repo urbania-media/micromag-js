@@ -1,14 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
+
 import VisualField from '../components/Visual';
 
-export default {
+const meta = preview.meta({
     title: 'Fields/Visual',
     component: VisualField,
+
     parameters: {
         intl: true,
     },
-};
+});
 
 const FieldContainer = (props) => {
     const [value, setValue] = useState(null);
@@ -19,4 +22,4 @@ const FieldContainer = (props) => {
     );
 };
 
-export const normal = () => <FieldContainer />;
+export const normal = meta.story(() => <FieldContainer />);

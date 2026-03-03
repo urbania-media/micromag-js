@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import Keypad from './Keypad';
 
-export default {
+const meta = preview.meta({
     component: Keypad,
     title: 'Elements/Keypad',
-};
+});
 
 const phoneKeyColumns = 3;
 const phoneKeySpacing = 5;
@@ -30,16 +31,11 @@ const items = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0].map((number) => (
     </button>
 ));
 
-export const telephone = () => (
+export const telephone = meta.story(() => (
     <div style={{ width: phoneKeypadWidth }}>
-        <Keypad
-            columns={phoneKeyColumns}
-            spacing={phoneKeySpacing}
-            align="middle"
-            items={items}
-        />
+        <Keypad columns={phoneKeyColumns} spacing={phoneKeySpacing} align="middle" items={items} />
     </div>
-);
+));
 
 const emojisColumns = 2;
 const emojisSpacing = 15;
@@ -64,7 +60,7 @@ const emojisItems = ['🔴', '🟠', '🟡', '🟢', '🔵', '🟣'].map((number
     </button>
 ));
 
-export const emojis = () => (
+export const emojis = meta.story(() => (
     <div style={{ width: emojisKeypadWidth }}>
         <Keypad
             columns={emojisColumns}
@@ -73,4 +69,4 @@ export const emojis = () => (
             items={emojisItems}
         />
     </div>
-);
+));

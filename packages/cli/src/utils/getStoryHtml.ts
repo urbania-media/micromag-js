@@ -27,16 +27,12 @@ const getStoryHtml = async (story, settings = {}) => {
     const page = hasPage ? pages[0] : await browser.newPage();
     await page.goto(`http://127.0.0.1:${serverPort}`);
 
-    await page.evaluate(
-        (storyToRender, storyProps) => renderStory(storyToRender, storyProps),
-        story,
-        {
-            renderContext: 'static',
-            withoutRouter: true,
-            withoutMenu: true,
-            googleApiKey,
-        },
-    );
+    await page.evaluate((storyToRender, args) => renderStory(storyToRender, args), story, {
+        renderContext: 'static',
+        withoutRouter: true,
+        withoutMenu: true,
+        googleApiKey,
+    });
     const pageContent = await page.content();
     await browser.close();
     server.close();

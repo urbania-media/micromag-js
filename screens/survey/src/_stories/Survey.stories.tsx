@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundColor, headerFooter, transitions } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, headerFooter, transitions } from '../../../../.storybook/data';
 import SurveyScreen from '../Survey';
 import definition from '../definition';
 
@@ -41,54 +42,55 @@ const resultsProps = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Survey',
     component: SurveyScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
         withVisitor: true,
     },
-};
+});
 
-export const Placeholder = (storyProps) => <SurveyScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <SurveyScreen {...args} />);
 
-export const Preview = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <SurveyScreen {...args} {...props} />);
 
-export const Static = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+export const Static = meta.story((args) => <SurveyScreen {...args} {...props} />);
 
-export const Capture = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <SurveyScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <SurveyScreen {...storyProps} />;
+export const Edit = meta.story((args) => <SurveyScreen {...args} />);
 
-export const Normal = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+export const Normal = meta.story((args) => <SurveyScreen {...args} {...props} />);
 
-export const WithResults = (storyProps) => <SurveyScreen {...storyProps} {...resultsProps} />;
+export const WithResults = meta.story((args) => <SurveyScreen {...args} {...resultsProps} />);
 
-export const ShowInput = (storyProps) => <SurveyScreen {...storyProps} {...props} showInput />;
+export const ShowInput = meta.story((args) => <SurveyScreen {...args} {...props} showInput />);
 
-export const ShowCount = (storyProps) => <SurveyScreen {...storyProps} {...props} showCount />;
+export const ShowCount = meta.story((args) => <SurveyScreen {...args} {...props} showCount />);
 
-export const WithoutPercentage = (storyProps) => (
-    <SurveyScreen {...storyProps} {...props} withoutPercentage />
-);
+export const WithoutPercentage = meta.story((args) => (
+    <SurveyScreen {...args} {...props} withoutPercentage />
+));
 
-export const WithoutBar = (storyProps) => <SurveyScreen {...storyProps} {...props} withoutBar />;
+export const WithoutBar = meta.story((args) => <SurveyScreen {...args} {...props} withoutBar />);
 
-export const WithoutAll = (storyProps) => (
-    <SurveyScreen {...storyProps} {...props} withoutPercentage withoutBar />
-);
+export const WithoutAll = meta.story((args) => (
+    <SurveyScreen {...args} {...props} withoutPercentage withoutBar />
+));
 
-export const WithoutResults = (storyProps) => (
-    <SurveyScreen {...storyProps} {...props} withoutPercentage withoutBar />
-);
+export const WithoutResults = meta.story((args) => (
+    <SurveyScreen {...args} {...props} withoutPercentage withoutBar />
+));
 
-export const WithHeaderFooter = (storyProps) => (
-    <SurveyScreen {...storyProps} {...props} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <SurveyScreen {...args} {...props} {...headerFooter()} />
+));
 
-export const WithShortLayout = (storyProps) => (
-    <SurveyScreen {...storyProps} {...props} {...headerFooter()} answers={[]} />
-);
+export const WithShortLayout = meta.story((args) => (
+    <SurveyScreen {...args} {...props} {...headerFooter()} answers={[]} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

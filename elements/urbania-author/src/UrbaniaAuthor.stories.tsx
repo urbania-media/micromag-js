@@ -1,16 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { imageMedia } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import { imageMedia } from '../../../.storybook/data';
 import UrbaniaAuthor from './UrbaniaAuthor';
 
-export default {
+const meta = preview.meta({
     component: UrbaniaAuthor,
     title: 'Elements/Urbania Author',
+
     parameters: {
         intl: true,
     },
-};
+});
 
 const elementProps = {
     // visible: true,
@@ -21,15 +23,15 @@ const elementProps = {
     },
 };
 
-export function Normal() {
+export const Normal = meta.story(() => {
     return <UrbaniaAuthor {...elementProps} />;
-}
+});
 
-export function Small() {
+export const Small = meta.story(() => {
     return <UrbaniaAuthor {...elementProps} isSmall />;
-}
+});
 
-export function WithoutAvatar() {
+export const WithoutAvatar = meta.story(() => {
     return (
         <UrbaniaAuthor
             {...elementProps}
@@ -40,9 +42,9 @@ export function WithoutAvatar() {
             }}
         />
     );
-}
+});
 
-export function WithoutLink() {
+export const WithoutLink = meta.story(() => {
     return (
         <UrbaniaAuthor
             {...elementProps}
@@ -53,9 +55,9 @@ export function WithoutLink() {
             }}
         />
     );
-}
+});
 
-export function WithoutLinkAndAvatar() {
+export const WithoutLinkAndAvatar = meta.story(() => {
     return (
         <UrbaniaAuthor
             {...elementProps}
@@ -66,9 +68,9 @@ export function WithoutLinkAndAvatar() {
             }}
         />
     );
-}
+});
 
-export function WithCollaborator() {
+export const WithCollaborator = meta.story(() => {
     return (
         <UrbaniaAuthor
             {...elementProps}
@@ -82,4 +84,4 @@ export function WithCollaborator() {
             }}
         />
     );
-}
+});

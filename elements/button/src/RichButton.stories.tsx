@@ -1,15 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React from 'react';
 
 import RichButton from './RichButton';
 
-import aquarius from '../../../.storybook/data/files/signs/aquarius.png';
-import aries from '../../../.storybook/data/files/signs/aries.png';
+import aquarius from '#.storybook/data/files/signs/aquarius.png';
+import aries from '#.storybook/data/files/signs/aries.png';
 
-export default {
+const meta = preview.meta({
     component: RichButton,
     title: 'Elements/RichButton',
-};
+});
 
 const textStyle = {
     color: { color: '#ffffff' },
@@ -48,16 +49,15 @@ const imageMedia2 = {
     },
 };
 
-// Basic examples
-export function Default() {
+export const Default = meta.story(() => {
     return <RichButton body="Click me" media={imageMedia} visualWidth={60} visualHeight={60} />;
-}
+});
 
-export function TextOnly() {
+export const TextOnly = meta.story(() => {
     return <RichButton body="Text only button" textStyle={textStyle} buttonStyle={buttonStyle} />;
-}
+});
 
-export function ImageOnly() {
+export const ImageOnly = meta.story(() => {
     return (
         <RichButton
             media={imageMedia}
@@ -66,10 +66,9 @@ export function ImageOnly() {
             buttonStyle={buttonStyle}
         />
     );
-}
+});
 
-// Layout variations
-export function LayoutLabelBottom() {
+export const LayoutLabelBottom = meta.story(() => {
     return (
         <RichButton
             body="Aries Sign"
@@ -81,9 +80,9 @@ export function LayoutLabelBottom() {
             buttonStyle={buttonStyle}
         />
     );
-}
+});
 
-export function LayoutLabelTop() {
+export const LayoutLabelTop = meta.story(() => {
     return (
         <RichButton
             body="Aquarius Sign"
@@ -95,9 +94,9 @@ export function LayoutLabelTop() {
             buttonStyle={buttonStyle}
         />
     );
-}
+});
 
-export function LayoutNoLabel() {
+export const LayoutNoLabel = meta.story(() => {
     return (
         <RichButton
             body="This text won't show"
@@ -108,9 +107,9 @@ export function LayoutNoLabel() {
             buttonStyle={buttonStyle}
         />
     );
-}
+});
 
-export function LayoutLabelOver() {
+export const LayoutLabelOver = meta.story(() => {
     return (
         <RichButton
             body="Label Overlay"
@@ -128,10 +127,9 @@ export function LayoutLabelOver() {
             }}
         />
     );
-}
+});
 
-// Styled examples
-export function WithCustomStyles() {
+export const WithCustomStyles = meta.story(() => {
     return (
         <RichButton
             body="Custom Styled Button"
@@ -157,9 +155,9 @@ export function WithCustomStyles() {
             }}
         />
     );
-}
+});
 
-export function MultipleButtons() {
+export const MultipleButtons = meta.story(() => {
     return (
         <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
             <RichButton
@@ -191,9 +189,9 @@ export function MultipleButtons() {
             />
         </div>
     );
-}
+});
 
-export function Interactive() {
+export const Interactive = meta.story(() => {
     const handleClick = () => {
         // Button click handler
     };
@@ -210,4 +208,4 @@ export function Interactive() {
             onClick={handleClick}
         />
     );
-}
+});

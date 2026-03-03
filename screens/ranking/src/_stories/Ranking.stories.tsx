@@ -1,14 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundColor, headerFooter, text, title, transitions } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    text,
-    title,
-    backgroundColor,
-    transitions,
-    headerFooter,
-} from '../../../../.storybook/data';
 import RankingScreen from '../Ranking';
 import definition from '../definition';
 
@@ -24,33 +19,34 @@ const props = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Ranking',
     component: RankingScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
-export const Placeholder = (storyProps) => <RankingScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <RankingScreen {...args} />);
 
-export const Preview = (storyProps) => <RankingScreen {...storyProps} {...props} />;
-export const Static = (storyProps) => <RankingScreen {...storyProps} {...props} />;
-export const Capture = (storyProps) => <RankingScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <RankingScreen {...args} {...props} />);
+export const Static = meta.story((args) => <RankingScreen {...args} {...props} />);
+export const Capture = meta.story((args) => <RankingScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <RankingScreen {...storyProps} />;
+export const Edit = meta.story((args) => <RankingScreen {...args} />);
 
-export const Normal = (storyProps) => <RankingScreen {...storyProps} {...props} />;
+export const Normal = meta.story((args) => <RankingScreen {...args} {...props} />);
 
-export const WithHeaderFooter = (storyProps) => (
-    <RankingScreen {...storyProps} {...props} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <RankingScreen {...args} {...props} {...headerFooter()} />
+));
 
-export const WithTitle = (storyProps) => (
-    <RankingScreen {...storyProps} {...props} title={{ body: title() }} />
-);
+export const WithTitle = meta.story((args) => (
+    <RankingScreen {...args} {...props} title={{ body: title() }} />
+));
 
-export const Ascending = (storyProps) => <RankingScreen {...storyProps} {...props} ascending />;
+export const Ascending = meta.story((args) => <RankingScreen {...args} {...props} ascending />);
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

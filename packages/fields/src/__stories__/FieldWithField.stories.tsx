@@ -1,14 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
+
 import FieldWithForm from '../components/FieldWithForm';
 
-export default {
+const meta = preview.meta({
     component: FieldWithForm,
     title: 'Fields/FieldWithForm',
+
     parameters: {
         intl: true,
     },
-};
+});
 
 const props = {
     name: 'heading1',
@@ -26,8 +29,8 @@ const FieldContainer = () => {
     return <FieldWithForm value={value} {...props} onChange={setValue} />;
 };
 
-export const normal = () => (
+export const normal = meta.story(() => (
     <div className="container mt-4">
         <FieldContainer />
     </div>
-);
+));

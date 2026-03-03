@@ -1,14 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundColor, headerFooter, text, title, transitions } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    text,
-    title,
-    backgroundColor,
-    transitions,
-    headerFooter,
-} from '../../../../.storybook/data';
 import TimelineScreen from '../Timeline';
 import definition from '../definition';
 
@@ -28,39 +23,40 @@ const normalProps = {
     bulletFilled: false,
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Timeline',
     component: TimelineScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === TimelineScreen),
     },
-};
+});
 
-export const Placeholder = (storyProps) => <TimelineScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <TimelineScreen {...args} />);
 
-export const Preview = (storyProps) => (
-    <TimelineScreen {...storyProps} {...props} {...normalProps} />
-);
-export const Static = (storyProps) => (
-    <TimelineScreen {...storyProps} {...props} {...normalProps} />
-);
-export const Capture = (storyProps) => (
-    <TimelineScreen {...storyProps} {...props} {...normalProps} />
-);
+export const Preview = meta.story((args) => (
+    <TimelineScreen {...args} {...props} {...normalProps} />
+));
+export const Static = meta.story((args) => (
+    <TimelineScreen {...args} {...props} {...normalProps} />
+));
+export const Capture = meta.story((args) => (
+    <TimelineScreen {...args} {...props} {...normalProps} />
+));
 
-export const Edit = (storyProps) => <TimelineScreen {...storyProps} />;
+export const Edit = meta.story((args) => <TimelineScreen {...args} />);
 
-export const Normal = (storyProps) => (
-    <TimelineScreen {...storyProps} {...props} {...normalProps} />
-);
+export const Normal = meta.story((args) => (
+    <TimelineScreen {...args} {...props} {...normalProps} />
+));
 
-export const WithoutLine = (storyProps) => (
-    <TimelineScreen {...storyProps} {...props} {...normalProps} withoutLine />
-);
+export const WithoutLine = meta.story((args) => (
+    <TimelineScreen {...args} {...props} {...normalProps} withoutLine />
+));
 
-export const WithHeaderFooter = (storyProps) => (
-    <TimelineScreen {...storyProps} {...props} {...normalProps} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <TimelineScreen {...args} {...props} {...normalProps} {...headerFooter()} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

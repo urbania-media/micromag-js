@@ -1,7 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
 import {
     author,
     backgroundColor,
@@ -11,7 +9,10 @@ import {
     title,
     transitions,
     videoMedia,
-} from '../../../../.storybook/data';
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
+import React from 'react';
+
 import ArticleScreen from '../Article';
 import definition from '../definition';
 
@@ -28,41 +29,42 @@ const props = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Article',
     component: ArticleScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === ArticleScreen),
     },
-};
+});
 
-export const Placeholder = (storyProps) => <ArticleScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <ArticleScreen {...args} />);
 
-export const Preview = (storyProps) => <ArticleScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <ArticleScreen {...args} {...props} />);
 
-export const Static = (storyProps) => <ArticleScreen {...storyProps} {...props} />;
+export const Static = meta.story((args) => <ArticleScreen {...args} {...props} />);
 
-export const Capture = (storyProps) => <ArticleScreen {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <ArticleScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <ArticleScreen {...storyProps} />;
+export const Edit = meta.story((args) => <ArticleScreen {...args} />);
 
-export const Normal = (storyProps) => <ArticleScreen {...storyProps} {...props} />;
+export const Normal = meta.story((args) => <ArticleScreen {...args} {...props} />);
 
-export const WithImage = (storyProps) => (
-    <ArticleScreen {...storyProps} {...props} text={{ body: bodyWithImages }} />
-);
+export const WithImage = meta.story((args) => (
+    <ArticleScreen {...args} {...props} text={{ body: bodyWithImages }} />
+));
 
-export const WithoutAuthor = (storyProps) => (
-    <ArticleScreen {...storyProps} {...props} author={null} />
-);
+export const WithoutAuthor = meta.story((args) => (
+    <ArticleScreen {...args} {...props} author={null} />
+));
 
-export const Video = (storyProps) => (
-    <ArticleScreen {...storyProps} {...props} image={videoMedia()} />
-);
+export const Video = meta.story((args) => (
+    <ArticleScreen {...args} {...props} image={videoMedia()} />
+));
 
-export const WithHeaderFooter = (storyProps) => (
-    <ArticleScreen {...storyProps} {...headerFooter()} {...props} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <ArticleScreen {...args} {...headerFooter()} {...props} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

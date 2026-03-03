@@ -1,15 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { imageMedia } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import { imageMedia } from '../../../.storybook/data';
 import Image from './Image';
 
-export default {
+const meta = preview.meta({
     component: Image,
     title: 'Elements/Image',
-};
+});
 
-export const normal = () => (
+export const normal = meta.story(() => (
     <>
         <div style={{ marginBottom: 20 }}>
             <div>Width set to 100px</div>
@@ -24,9 +25,9 @@ export const normal = () => (
             <Image media={imageMedia({ width: 200, height: 400 })} />
         </div>
     </>
-);
+));
 
-export const fit = () => (
+export const fit = meta.story(() => (
     <>
         <div style={{ marginBottom: 20 }}>
             <div>Fit contain</div>
@@ -51,4 +52,4 @@ export const fit = () => (
             <Image media={imageMedia({ width: 200, height: 400 })} width={200} height={200} />
         </div>
     </>
-);
+));

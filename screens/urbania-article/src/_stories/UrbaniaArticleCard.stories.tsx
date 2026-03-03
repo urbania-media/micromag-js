@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundVideo, headerFooter } from '#.storybook/data';
+import testArticle from '#.storybook/data/stories/urbania-article-card';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundVideo, headerFooter } from '../../../../.storybook/data';
-import testArticle from '../../../../.storybook/data/stories/urbania-article-card';
 import Article from '../UrbaniaCardLoader';
 import definition from '../definition-card';
 
@@ -22,46 +23,47 @@ const props = () => ({
     },
 });
 
-export default {
+const meta = preview.meta({
     title: 'Urbania Screens/ArticleCard',
     theme: null,
     component: Article,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
-export const Placeholder = (storyProps) => <Article {...storyProps} />;
+export const Placeholder = meta.story((args) => <Article {...args} />);
 
-export const Preview = (storyProps) => <Article {...storyProps} {...props()} />;
+export const Preview = meta.story((args) => <Article {...args} {...props()} />);
 
-export const Static = (storyProps) => <Article {...storyProps} {...props()} />;
+export const Static = meta.story((args) => <Article {...args} {...props()} />);
 
-export const Capture = (storyProps) => <Article {...storyProps} {...props()} />;
+export const Capture = meta.story((args) => <Article {...args} {...props()} />);
 
-export const Edit = (storyProps) => <Article {...storyProps} />;
+export const Edit = meta.story((args) => <Article {...args} />);
 
-export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
+export const Normal = meta.story((args) => <Article {...args} {...props()} />);
 
-export const WithVideoBackground = (storyProps) => (
+export const WithVideoBackground = meta.story((args) => (
     <Article
-        {...storyProps}
+        {...args}
         {...props()}
         theme="card"
         text={{ body: 'Quelque chose de trop drole' }}
         background={backgroundVideo()}
         {...headerFooter()}
     />
-);
+));
 
-export const WithHeader = (storyProps) => (
-    <Article {...storyProps} {...props()} article={testVideoArticle} {...headerFooter()} />
-);
+export const WithHeader = meta.story((args) => (
+    <Article {...args} {...props()} article={testVideoArticle} {...headerFooter()} />
+));
 
-export const URL = (storyProps) => (
+export const URL = meta.story((args) => (
     <Article
-        {...storyProps}
+        {...args}
         {...props()}
         article={null}
         url="https://urbania.ca/article/recit-dune-date-parfaite-par-grand-froid"
@@ -71,15 +73,15 @@ export const URL = (storyProps) => (
         }}
         cardCallToAction={{ body: 'Consulter l’article' }}
     />
-);
+));
 
 // https://urbania.ca/article/recit-dune-date-parfaite-par-grand-froid
 
-export const ThemeUrl = (storyProps) => (
+export const ThemeUrl = meta.story((args) => (
     <Article
-        {...storyProps}
+        {...args}
         url="https://urbania.ca/article/expose-plonger-dans-lorthophonie-scolaire-avec-mathilde-dupas"
     />
-);
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

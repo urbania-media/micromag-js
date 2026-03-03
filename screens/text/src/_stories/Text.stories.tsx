@@ -1,16 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import {
+    backgroundColor,
+    badge,
+    callToAction,
+    footer,
+    header,
+    text,
+    transitions,
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import {
-    text,
-    backgroundColor,
-    transitions,
-    callToAction,
-    badge,
-    header,
-    footer,
-} from '../../../../.storybook/data';
 import TextScreen from '../Text';
 import definition from '../definition';
 
@@ -20,42 +21,43 @@ const props = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Text',
     component: TextScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === TextScreen),
     },
-};
+});
 
-export const Placeholder = (storyProps) => <TextScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <TextScreen {...args} />);
 
-export const Preview = (storyProps) => <TextScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <TextScreen {...args} {...props} />);
 
-export const Static = (storyProps) => <TextScreen {...storyProps} {...props} />;
+export const Static = meta.story((args) => <TextScreen {...args} {...props} />);
 
-export const Capture = (storyProps) => <TextScreen {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <TextScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <TextScreen {...storyProps} />;
+export const Edit = meta.story((args) => <TextScreen {...args} />);
 
-export const Normal = (storyProps) => <TextScreen {...storyProps} {...props} />;
+export const Normal = meta.story((args) => <TextScreen {...args} {...props} />);
 
-export const WithHeaderFooter = (storyProps) => (
+export const WithHeaderFooter = meta.story((args) => (
     <TextScreen
-        {...storyProps}
+        {...args}
         {...props}
         footer={{ callToAction: { ...callToAction(), inWebView: false, withArrow: false } }}
         header={{ badge: { ...badge(), label: { body: 'My badge 10210' } } }}
     />
-);
+));
 
-export const WithHeader = (storyProps) => (
-    <TextScreen {...storyProps} {...props} header={header()} />
-);
+export const WithHeader = meta.story((args) => (
+    <TextScreen {...args} {...props} header={header()} />
+));
 
-export const WithFooter = (storyProps) => (
-    <TextScreen {...storyProps} {...props} footer={footer()} />
-);
+export const WithFooter = meta.story((args) => (
+    <TextScreen {...args} {...props} footer={footer()} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

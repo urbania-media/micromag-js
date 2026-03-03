@@ -52,7 +52,7 @@ micromag-js/
 │   │   ├── generateScopedName.js  # CSS Modules scoped name generator
 │   │   └── getPackagesAliases.js  # resolveSourceFile() helper for .ts/.js
 │   └── codemods/       # Migration codemods (historical)
-├── .storybook/         # Storybook v10 configuration (ESM)
+├── .storybook/         # Storybook v10 configuration (ESM, CSF Factories)
 └── babel.config.js     # Root Babel config
 ```
 
@@ -269,7 +269,9 @@ No automated test suite is configured. Verification is done via:
 ## Storybook Configuration
 
 - **Version:** 10.2.12 (upgraded from v7 through v8 → v9 → v10)
-- **Config:** `.storybook/main.js` (ESM with `createRequire` bridge for CJS modules)
+- **Story format:** CSF Factories (CSF Next) — all 89 story files use `preview.meta()` / `meta.story()` pattern
+- **Config:** `.storybook/main.js` (ESM with `defineMain()` wrapper, `createRequire` bridge for CJS modules)
+- **Preview:** `.storybook/preview.ts` (uses `definePreview()` from `@storybook/react-webpack5`)
 - **Framework:** `@storybook/react-webpack5`
 - **Compiler:** `@storybook/addon-webpack5-compiler-babel`
 - **CSS Modules:** Custom webpack rule with `namedExport: false` (codebase uses `import styles from` default imports)
@@ -277,8 +279,33 @@ No automated test suite is configured. Verification is done via:
 - **No SCSS rules** — only CSS rules (module.css + regular .css)
 - **Default CSS rules filtered out** via `filteredRules` in `webpackFinal` to prevent double-processing
 - **Custom addon:** `.storybook/addons/layouts/` — uses `storybook/manager-api` + `storybook/preview-api`
-- **Preview imports:** `vendor.css`, `theme.css`, and fonts loaded in `.storybook/preview.js`
+- **Preview imports:** `vendor.css`, `theme.css`, and fonts loaded in `.storybook/preview.ts`
 - **Stories glob:** `./src/**/*.@(mdx|stories.@(tsx))`
+- **Subpath imports:** `#.storybook/*` mapped in root `package.json` `"imports"` field, with webpack alias `'#.storybook': __dirname` in `main.js`
+
+### CSF Factories Story Pattern
+
+All stories use the CSF Factories (CSF Next) format:
+
+```tsx
+import preview from '#.storybook/preview';
+import MyComponent from '../MyComponent';
+
+const meta = preview.meta({
+    title: 'Category/MyComponent',
+    component: MyComponent,
+    parameters: { /* ... */ },
+});
+
+export const Default = meta.story((args) => <MyComponent {...args} />);
+export const WithProps = meta.story((args) => <MyComponent {...args} someProp="value" />);
+```
+
+Key points:
+- Import preview from `#.storybook/preview` (subpath import, not relative path)
+- `preview.meta()` replaces `export default { ... }` meta objects
+- `meta.story((args) => ...)` replaces `export const X = (args) => ...` or `export const X = { render: ... }`
+- Use `args` (not `storyProps`) as the render function parameter name
 
 ## Notes for AI Agents
 
@@ -409,7 +436,7 @@ All planned phases are done:
 - **Phase 3:** 223 .module.scss → .module.css, theme.css, shared.module.css
 - **Phase 4:** Deprecated Babel plugins removed, `prop-types` fully removed (runtime validators deleted, dependency removed from all 68+ package.json files)
 - **Phase 5:** Sass/SCSS fully removed — pre-compiled Bootstrap CSS + CSS custom property overrides replace Sass compilation
-- **Storybook:** Upgraded v7 → v10.2.12
+- **Storybook:** Upgraded v7 → v10.2.12, migrated all 89 story files to CSF Factories (CSF Next) format
 - **Bug fixes:** PlaybackControls infinite loop, FormsProvider children dropping, 10 commented-out import regressions, TextEditor useId(), missing CSS variables, Bootstrap patches completeness
 
 ### Available Codemods (in `scripts/codemods/` — historical, already applied)

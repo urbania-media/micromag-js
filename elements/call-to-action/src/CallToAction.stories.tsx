@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
 
 import WebView from '../../webview/src/WebView';
 import CallToAction from './CallToAction';
 
-export default {
+const meta = preview.meta({
     component: CallToAction,
     title: 'Elements/CallToAction',
-};
+});
 
 const callToActionProps = {
     active: true,
@@ -44,27 +45,31 @@ function CTAContainer(props = null) {
     );
 }
 
-export const normal = () => (
+export const normal = meta.story(() => (
     <>
         <div style={{ height: 300 }} />
         <CallToAction {...callToActionProps} />
     </>
-);
+));
 
-export const animationDisabled = () => (
+export const animationDisabled = meta.story(() => (
     <>
         <div style={{ height: 300 }} />
         <CallToAction {...callToActionProps} animationDisabled />
     </>
-);
+));
 
-export const noSwipe = () => (
+export const noSwipe = meta.story(() => (
     <>
         <div style={{ height: 300 }} />
         <CallToAction {...callToActionProps} type="button" />
     </>
-);
+));
 
-export const buttonWebView = () => <CTAContainer {...callToActionProps} type="button" inWebView />;
+export const buttonWebView = meta.story(() => (
+    <CTAContainer {...callToActionProps} type="button" inWebView />
+));
 
-export const swipeWebView = () => <CTAContainer {...callToActionProps} type="swipe-up" inWebView />;
+export const swipeWebView = meta.story(() => (
+    <CTAContainer {...callToActionProps} type="swipe-up" inWebView />
+));

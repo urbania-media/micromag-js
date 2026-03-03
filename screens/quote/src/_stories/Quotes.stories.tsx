@@ -1,16 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
 import {
-    quote,
     author,
     backgroundColor,
-    transitions,
-    headerFooter,
-    header,
     footer,
-} from '../../../../.storybook/data';
+    header,
+    headerFooter,
+    quote,
+    transitions,
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
+import React from 'react';
+
 import QuoteScreen from '../Quote';
 import definition from '../definition';
 
@@ -21,37 +22,38 @@ const props = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Quote',
     component: QuoteScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
-export const Placeholder = (storyProps) => <QuoteScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <QuoteScreen {...args} />);
 
-export const Preview = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <QuoteScreen {...args} {...props} />);
 
-export const Static = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
+export const Static = meta.story((args) => <QuoteScreen {...args} {...props} />);
 
-export const Capture = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <QuoteScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <QuoteScreen {...storyProps} />;
+export const Edit = meta.story((args) => <QuoteScreen {...args} />);
 
-export const Normal = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
+export const Normal = meta.story((args) => <QuoteScreen {...args} {...props} />);
 
-export const WithHeaderFooter = (storyProps) => (
-    <QuoteScreen {...storyProps} {...props} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <QuoteScreen {...args} {...props} {...headerFooter()} />
+));
 
-export const WithHeader = (storyProps) => (
-    <QuoteScreen {...storyProps} {...props} header={header()} />
-);
+export const WithHeader = meta.story((args) => (
+    <QuoteScreen {...args} {...props} header={header()} />
+));
 
-export const WithFooter = (storyProps) => (
-    <QuoteScreen {...storyProps} {...props} footer={footer()} />
-);
+export const WithFooter = meta.story((args) => (
+    <QuoteScreen {...args} {...props} footer={footer()} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

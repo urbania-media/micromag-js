@@ -1,12 +1,13 @@
 /* eslint-disable no-await-in-loop */
+
 /* globals renderStory: true */
-import path from 'path';
-import puppeteer from 'puppeteer';
 import fsExtra from 'fs-extra';
 import nodeFetch from 'node-fetch';
+import path from 'path';
+import puppeteer from 'puppeteer';
 
-import startServer from './startServer';
 import getOutputPath from './getOutputPath';
+import startServer from './startServer';
 
 const DEBUG = false;
 const READY_WAIT_TIMEOUT = 20000; // ms
@@ -69,7 +70,7 @@ const captureStory = async (story, location, settings = {}) => {
             }
 
             await page.evaluate(
-                (storyToRender, storyProps) => renderStory(storyToRender, storyProps),
+                (storyToRender, args) => renderStory(storyToRender, args),
                 singleScreenStory,
                 {
                     screen: id,

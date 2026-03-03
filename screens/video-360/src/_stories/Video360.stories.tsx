@@ -1,14 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
 import {
-    video360Media,
     backgroundColor,
     closedCaptionsMedia,
-    transitions,
     headerFooter,
-} from '../../../../.storybook/data';
+    transitions,
+    video360Media,
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
+import React from 'react';
+
 import Video360Screen from '../Video360';
 import definition from '../definition';
 
@@ -20,48 +21,49 @@ const props = (videoProps = {}) => ({
     transitions: transitions(),
 });
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Video 360',
     component: Video360Screen,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
-export const Placeholder = (storyProps) => <Video360Screen {...storyProps} />;
+export const Placeholder = meta.story((args) => <Video360Screen {...args} />);
 
-export const Preview = (storyProps) => <Video360Screen {...storyProps} {...props()} />;
+export const Preview = meta.story((args) => <Video360Screen {...args} {...props()} />);
 
-export const Static = (storyProps) => <Video360Screen {...storyProps} {...props()} />;
+export const Static = meta.story((args) => <Video360Screen {...args} {...props()} />);
 
-export const Capture = (storyProps) => <Video360Screen {...storyProps} {...props()} />;
+export const Capture = meta.story((args) => <Video360Screen {...args} {...props()} />);
 
-export const Edit = (storyProps) => <Video360Screen {...storyProps} />;
+export const Edit = meta.story((args) => <Video360Screen {...args} />);
 
-export const Normal = (storyProps) => <Video360Screen {...storyProps} {...props()} />;
+export const Normal = meta.story((args) => <Video360Screen {...args} {...props()} />);
 
-export const WithSeekbar = (storyProps) => (
-    <Video360Screen {...storyProps} {...{ ...props({ withSeekBar: true }) }} />
-);
+export const WithSeekbar = meta.story((args) => (
+    <Video360Screen {...args} {...{ ...props({ withSeekBar: true }) }} />
+));
 
-export const WithClosedCaptions = (storyProps) => (
-    <Video360Screen {...storyProps} {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }} />
-);
+export const WithClosedCaptions = meta.story((args) => (
+    <Video360Screen {...args} {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }} />
+));
 
-export const WithSeekbarAndClosedCaptions = (storyProps) => (
+export const WithSeekbarAndClosedCaptions = meta.story((args) => (
     <Video360Screen
-        {...storyProps}
+        {...args}
         {...{ ...props({ closedCaptions: closedCaptionsMedia(), withSeekBar: true }) }}
     />
-);
+));
 
-export const WithHeaderFooter = (storyProps) => (
+export const WithHeaderFooter = meta.story((args) => (
     <Video360Screen
-        {...storyProps}
+        {...args}
         {...{ ...props({ closedCaptions: closedCaptionsMedia(), withSeekBar: true }) }}
         {...headerFooter()}
     />
-);
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
 import {
-    backgroundColor, // imageMedia,
+    backgroundColor,
+    headerFooter, // imageMedia,
     text, // transitions,
     videoMedia,
-    headerFooter,
-} from '../../../../.storybook/data';
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
+import React from 'react';
+
 import SlideshowScreen from '../Slideshow';
 import definition from '../definition';
 
@@ -43,51 +44,52 @@ const props = {
 
 const videos = [...Array(3).keys()].map(() => ({ media: videoMedia(), caption: text() }));
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Slideshow',
     component: SlideshowScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === SlideshowScreen),
     },
-};
+});
 
-export function Placeholder(storyProps) {
-    return <SlideshowScreen {...storyProps} />;
-}
+export const Placeholder = meta.story((args) => {
+    return <SlideshowScreen {...args} />;
+});
 
-export function Preview(storyProps) {
-    return <SlideshowScreen {...storyProps} {...props} />;
-}
+export const Preview = meta.story((args) => {
+    return <SlideshowScreen {...args} {...props} />;
+});
 
-export function Static(storyProps) {
-    return <SlideshowScreen {...storyProps} {...props} />;
-}
+export const Static = meta.story((args) => {
+    return <SlideshowScreen {...args} {...props} />;
+});
 
-export function Capture(storyProps) {
-    return <SlideshowScreen {...storyProps} {...props} />;
-}
+export const Capture = meta.story((args) => {
+    return <SlideshowScreen {...args} {...props} />;
+});
 
-export function Edit(storyProps) {
-    return <SlideshowScreen {...storyProps} />;
-}
+export const Edit = meta.story((args) => {
+    return <SlideshowScreen {...args} />;
+});
 
-export function Normal(storyProps) {
-    return <SlideshowScreen {...storyProps} {...props} />;
-}
+export const Normal = meta.story((args) => {
+    return <SlideshowScreen {...args} {...props} />;
+});
 
-export function withCaptions(storyProps) {
-    return <SlideshowScreen {...storyProps} {...props} withCaptions />;
-}
+export const withCaptions = meta.story((args) => {
+    return <SlideshowScreen {...args} {...props} withCaptions />;
+});
 
-export function WithVideos(storyProps) {
-    return <SlideshowScreen {...storyProps} {...props} slides={videos} />;
-}
+export const WithVideos = meta.story((args) => {
+    return <SlideshowScreen {...args} {...props} slides={videos} />;
+});
 
-export function WithHeaderFooter(storyProps) {
-    return <SlideshowScreen {...storyProps} {...props} {...headerFooter()} />;
-}
+export const WithHeaderFooter = meta.story((args) => {
+    return <SlideshowScreen {...args} {...props} {...headerFooter()} />;
+});
 
-export function Definition(storyProps) {
-    return <ScreenDefinition {...storyProps} />;
-}
+export const Definition = meta.story((args) => {
+    return <ScreenDefinition {...args} />;
+});

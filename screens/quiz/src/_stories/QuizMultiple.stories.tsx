@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
+import { backgroundColor, headerFooter, subtitle, transitions } from '#.storybook/data';
+import preview from '#.storybook/preview';
 import React from 'react';
 
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, headerFooter, subtitle, transitions } from '../../../../.storybook/data';
 import QuizMultipleScreen from '../QuizMultiple';
 import definition from '../definition';
 
@@ -169,35 +170,36 @@ const withTrueFalse = {
     transitions: transitions(),
 };
 
-export default {
+const meta = preview.meta({
     title: 'Screens/QuizMultiple',
     component: QuizMultipleScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition[0],
     },
-};
+});
 
-export const Placeholder = (storyProps) => <QuizMultipleScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <QuizMultipleScreen {...args} />);
 
-export const Preview = (storyProps) => <QuizMultipleScreen {...storyProps} {...props} />;
+export const Preview = meta.story((args) => <QuizMultipleScreen {...args} {...props} />);
 
-export const Static = (storyProps) => <QuizMultipleScreen {...storyProps} {...props} />;
+export const Static = meta.story((args) => <QuizMultipleScreen {...args} {...props} />);
 
-export const Capture = (storyProps) => <QuizMultipleScreen {...storyProps} {...props} />;
+export const Capture = meta.story((args) => <QuizMultipleScreen {...args} {...props} />);
 
-export const Edit = (storyProps) => <QuizMultipleScreen {...storyProps} />;
+export const Edit = meta.story((args) => <QuizMultipleScreen {...args} />);
 
-export const Normal = (storyProps) => <QuizMultipleScreen {...storyProps} {...props} />;
+export const Normal = meta.story((args) => <QuizMultipleScreen {...args} {...props} />);
 
-export const Simple = (storyProps) => <QuizMultipleScreen {...storyProps} {...simpleProps} />;
+export const Simple = meta.story((args) => <QuizMultipleScreen {...args} {...simpleProps} />);
 
-export const WithTrueFalse = (storyProps) => (
-    <QuizMultipleScreen {...storyProps} {...withTrueFalse} />
-);
+export const WithTrueFalse = meta.story((args) => (
+    <QuizMultipleScreen {...args} {...withTrueFalse} />
+));
 
-export const WithHeaderFooter = (storyProps) => (
-    <QuizMultipleScreen {...storyProps} {...props} {...headerFooter()} />
-);
+export const WithHeaderFooter = meta.story((args) => (
+    <QuizMultipleScreen {...args} {...props} {...headerFooter()} />
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);

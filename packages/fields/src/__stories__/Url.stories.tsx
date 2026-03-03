@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React, { useState } from 'react';
+
 import UrlField from '../components/Url';
 
-export default {
+const meta = preview.meta({
     component: Text,
     title: 'Fields/Url',
-};
+});
 
 const FieldContainer = (props) => {
     const { value: initialValue = null, ...otherProps } = props || {};
@@ -18,6 +20,6 @@ const FieldContainer = (props) => {
     );
 };
 
-export const normal = () => <FieldContainer />;
+export const normal = meta.story(() => <FieldContainer />);
 
-export const withUrl = () => <FieldContainer value="http://urbania.ca/woohoo" />;
+export const withUrl = meta.story(() => <FieldContainer value="http://urbania.ca/woohoo" />);

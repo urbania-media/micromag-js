@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import preview from '#.storybook/preview';
 import React from 'react';
+
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import FieldsProvider from '../../../fields/src/FieldsProvider';
 import Form from '../components/forms/Form';
@@ -78,29 +80,30 @@ const withSlideProps = {
     action: '#',
 };
 
-export default {
+const meta = preview.meta({
     component: Form,
     title: 'Core/Form',
+
     parameters: {
         intl: true,
     },
-};
+});
 
-export function Default() {
+export const Default = meta.story(() => {
     return (
         <FieldsProvider>
             <Form {...props} onCancel={() => {}} />
         </FieldsProvider>
     );
-}
+});
 
-export const withRequired = () => (
+export const withRequired = meta.story(() => (
     <FieldsProvider>
         <Form {...withRequiredProps} />
     </FieldsProvider>
-);
+));
 
-export const withSlide = () => (
+export const withSlide = meta.story(() => (
     <ApiProvider baseUrl={apiBaseUrl}>
         <FieldsProvider>
             <FormPanel>
@@ -108,4 +111,4 @@ export const withSlide = () => (
             </FormPanel>
         </FieldsProvider>
     </ApiProvider>
-);
+));

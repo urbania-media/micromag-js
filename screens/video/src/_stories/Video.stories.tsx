@@ -1,14 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
-import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import ScreenDefinition from '#.storybook/components/ScreenDefinition';
 import {
-    videoMedia,
     backgroundColor,
     closedCaptionsMedia,
-    transitions,
     headerFooter,
-} from '../../../../.storybook/data';
+    transitions,
+    videoMedia,
+} from '#.storybook/data';
+import preview from '#.storybook/preview';
+import React from 'react';
+
 import VideoScreen from '../Video';
 import definition from '../definition';
 
@@ -20,47 +21,33 @@ const props = (videoProps = {}) => ({
     transitions: transitions(),
 });
 
-export default {
+const meta = preview.meta({
     title: 'Screens/Video',
     component: VideoScreen,
+
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
-};
+});
 
-export const Placeholder = (storyProps) => <VideoScreen {...storyProps} />;
+export const Placeholder = meta.story((args) => <VideoScreen {...args} />);
 
-export const Preview = (storyProps) => <VideoScreen {...storyProps} {...props()} />;
-export const Static = (storyProps) => <VideoScreen {...storyProps} {...props()} />;
-export const Capture = (storyProps) => <VideoScreen {...storyProps} {...props()} />;
+export const Preview = meta.story((args) => <VideoScreen {...args} {...props()} />);
+export const Static = meta.story((args) => <VideoScreen {...args} {...props()} />);
+export const Capture = meta.story((args) => <VideoScreen {...args} {...props()} />);
 
-export const Edit = (storyProps) => <VideoScreen {...storyProps} />;
+export const Edit = meta.story((args) => <VideoScreen {...args} />);
 
-export const Normal = (storyProps) => <VideoScreen {...storyProps} {...props()} />;
+export const Normal = meta.story((args) => <VideoScreen {...args} {...props()} />);
 
-export const WithSeekbar = (storyProps) => (
-    <VideoScreen {...storyProps} {...{ ...props({ withSeekBar: true }) }} />
-);
+export const WithSeekbar = meta.story((args) => (
+    <VideoScreen {...args} {...{ ...props({ withSeekBar: true }) }} />
+));
 
-export const WithClosedCaptions = (storyProps) => (
-    <VideoScreen {...storyProps} {...{ ...props({
-        closedCaptions: closedCaptionsMedia(),
-        withSeekBar: true,
-        withControls: true
-    }) }} />
-);
-
-export const WithSeekbarAndClosedCaptions = (storyProps) => (
+export const WithClosedCaptions = meta.story((args) => (
     <VideoScreen
-        {...storyProps}
-        {...{ ...props({ closedCaptions: closedCaptionsMedia(), withSeekBar: true }) }}
-    />
-);
-
-export const WithAllControls = (storyProps) => (
-    <VideoScreen
-        {...storyProps}
+        {...args}
         {...{
             ...props({
                 closedCaptions: closedCaptionsMedia(),
@@ -69,11 +56,31 @@ export const WithAllControls = (storyProps) => (
             }),
         }}
     />
-);
+));
 
-export const WithBadContrast = (storyProps) => (
+export const WithSeekbarAndClosedCaptions = meta.story((args) => (
     <VideoScreen
-        {...storyProps}
+        {...args}
+        {...{ ...props({ closedCaptions: closedCaptionsMedia(), withSeekBar: true }) }}
+    />
+));
+
+export const WithAllControls = meta.story((args) => (
+    <VideoScreen
+        {...args}
+        {...{
+            ...props({
+                closedCaptions: closedCaptionsMedia(),
+                withSeekBar: true,
+                withControls: true,
+            }),
+        }}
+    />
+));
+
+export const WithBadContrast = meta.story((args) => (
+    <VideoScreen
+        {...args}
         {...{
             ...props({
                 closedCaptions: closedCaptionsMedia(),
@@ -83,14 +90,14 @@ export const WithBadContrast = (storyProps) => (
             background: { color: '#FFF', alpha: 1 },
         }}
     />
-);
+));
 
-export const WithHeaderFooter = (storyProps) => (
+export const WithHeaderFooter = meta.story((args) => (
     <VideoScreen
-        {...storyProps}
+        {...args}
         {...{ ...props({ closedCaptions: closedCaptionsMedia(), withSeekBar: true }) }}
         {...headerFooter()}
     />
-);
+));
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export const Definition = meta.story((args) => <ScreenDefinition {...args} />);
