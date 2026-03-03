@@ -26,17 +26,19 @@ interface SignModalProps {
     className?: string;
 }
 
-const SignModal = ({
-    width = null,
-    height = null,
-    sign = null,
-    subtitle = null,
-    current = true,
-    transitionDisabled = false,
-    focusable = true,
-    onClick = null,
-    className = null,
-}) => {
+function SignModal(
+    {
+        width = null,
+        height = null,
+        sign = null,
+        subtitle = null,
+        current = true,
+        transitionDisabled = false,
+        focusable = true,
+        onClick = null,
+        className = null,
+    },
+) {
     // eslint-disable-next-line no-unused-vars
     const { label = null, image = null, date = null, word = null, description = null } = sign || {};
     // const { body: wordBody = null } = word || {};
@@ -112,6 +114,6 @@ const SignModal = ({
             </button>
         </Container>
     );
-};
+}
 
 export default SignModal;

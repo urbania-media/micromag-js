@@ -48,20 +48,22 @@ interface VideoScreenProps {
     className?: string;
 }
 
-const VideoScreen = ({
-    layout = 'middle',
-    video = null,
-    gotoNextScreenOnEnd = false,
-    header = null,
-    footer = null,
-    background = null,
-    current = true,
-    active = true,
-    preload = true,
-    spacing = 20,
-    mediaRef: customMediaRef = null,
-    className = null,
-}) => {
+function VideoScreen(
+    {
+        layout = 'middle',
+        video = null,
+        gotoNextScreenOnEnd = false,
+        header = null,
+        footer = null,
+        background = null,
+        current = true,
+        active = true,
+        preload = true,
+        spacing = 20,
+        mediaRef: customMediaRef = null,
+        className = null,
+    },
+) {
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height, resolution } = useScreenSize();
@@ -436,6 +438,6 @@ const VideoScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default VideoScreen;

@@ -11,11 +11,14 @@ export const withGoogleMapsClient = (WrappedComponent) => {
     const getDisplayName = ({ displayName = null, name = null }) =>
         displayName || name || 'Component';
 
-    const WithGoogleMapsClientComponent = (props) => (
-        <GoogleMapsClientContext.Consumer>
-            {(client) => <WrappedComponent googleApiClient={client} {...props} />}
-        </GoogleMapsClientContext.Consumer>
-    );
+    function WithGoogleMapsClientComponent(props) {
+        return (
+            <GoogleMapsClientContext.Consumer>
+                {(client) => <WrappedComponent googleApiClient={client} {...props} />}
+            </GoogleMapsClientContext.Consumer>
+        );
+    }
+
     WithGoogleMapsClientComponent.displayName = `WithGoogleMapsClient(${getDisplayName(
         WrappedComponent,
     )})`;
@@ -28,7 +31,7 @@ interface GoogleMapsClientProviderProps {
     libraries?: string[];
 }
 
-export const GoogleMapsClientProvider = ({ children, locale = 'fr', libraries = null }) => {
+export function GoogleMapsClientProvider({ children, locale = 'fr', libraries = null }) {
     const { apiKey } = useGoogleKeys();
     const exisitingClient = useGoogleMapsClient();
     const [client, setClient] = useState(exisitingClient);
@@ -46,5 +49,5 @@ export const GoogleMapsClientProvider = ({ children, locale = 'fr', libraries = 
             {children}
         </GoogleMapsClientContext.Provider>
     );
-};
+}
 

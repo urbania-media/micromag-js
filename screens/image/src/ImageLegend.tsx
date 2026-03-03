@@ -3,6 +3,8 @@ import React from 'react';
 
 import ImageScreen from './Image';
 
-const ImageLegendScreen = ({ ...props }) => <ImageScreen {...props} withLegend />;
+function ImageLegendScreen({ ...props }) {
+  return <ImageScreen {...props} withLegend />;
+}
 
 export default ImageLegendScreen;

@@ -3,6 +3,8 @@ import React from 'react';
 
 import ImageScreen from './Image';
 
-const ImageTitleTextScreen = ({ ...props }) => <ImageScreen {...props} withTitle withText />;
+function ImageTitleTextScreen({ ...props }) {
+  return <ImageScreen {...props} withTitle withText />;
+}
 
 export default ImageTitleTextScreen;

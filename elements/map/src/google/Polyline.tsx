@@ -7,11 +7,11 @@ interface PolylineProps {
     events?: Record<string, unknown>;
 }
 
-const Polyline = ({ map = null, coords }) => {
+function Polyline({ map = null, coords }) {
     useGoogleMapPolyline(map, {
         coords,
     });
     return null;
-};
+}
 
 export default Polyline;

@@ -13,7 +13,9 @@ interface ViewerRoutesProps {
     onScreenChange?: (...args: unknown[]) => void;
 }
 
-const ViewerRoutes = ({ story = null, pathWithIndex = false, children = null, onScreenChange = null, ...otherProps }) => {
+function ViewerRoutes(
+    { story = null, pathWithIndex = false, children = null, onScreenChange = null, ...otherProps },
+) {
     const routes = useRoutes();
     const url = useUrlGenerator();
     const [, navigate] = useLocation();
@@ -62,6 +64,6 @@ const ViewerRoutes = ({ story = null, pathWithIndex = false, children = null, on
             </Route>
         </Switch>
     );
-};
+}
 
 export default ViewerRoutes;

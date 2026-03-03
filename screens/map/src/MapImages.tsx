@@ -3,6 +3,8 @@ import React from 'react';
 
 import MapScreen from './Map';
 
-const MapImagesScreen = ({ ...props }) => <MapScreen {...props} withMarkerImages />;
+function MapImagesScreen({ ...props }) {
+  return <MapScreen {...props} withMarkerImages />;
+}
 
 export default MapImagesScreen;

@@ -34,29 +34,31 @@ interface BackgroundProps {
     onQualityLevelChange?: (...args: unknown[]) => void;
 }
 
-const Background = ({
-    width = null,
-    height = null,
-    resolution = 1,
-    fit = null,
-    horizontalAlign = 'center',
-    verticalAlign = 'center',
-    repeat = false,
-    color = null,
-    media = null,
-    mediaRef = null,
-    className = null,
-    playing = false,
-    muted = false,
-    children = null,
-    loadingMode = 'lazy',
-    shouldLoad = true,
-    onPlayError = null,
-    withoutVideo = false,
-    forceMuted = false,
-    qualityStartLevel = null,
-    onQualityLevelChange = null,
-}) => {
+function Background(
+    {
+        width = null,
+        height = null,
+        resolution = 1,
+        fit = null,
+        horizontalAlign = 'center',
+        verticalAlign = 'center',
+        repeat = false,
+        color = null,
+        media = null,
+        mediaRef = null,
+        className = null,
+        playing = false,
+        muted = false,
+        children = null,
+        loadingMode = 'lazy',
+        shouldLoad = true,
+        onPlayError = null,
+        withoutVideo = false,
+        forceMuted = false,
+        qualityStartLevel = null,
+        onQualityLevelChange = null,
+    },
+) {
     const {
         type: mediaType = null,
         metadata: mediaMetadata = null,
@@ -159,6 +161,6 @@ const Background = ({
             <div className={styles.content}>{children}</div>
         </div>
     );
-};
+}
 
 export default Background;

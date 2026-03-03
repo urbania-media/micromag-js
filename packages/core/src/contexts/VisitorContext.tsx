@@ -28,7 +28,7 @@ interface VisitorProviderProps {
     visitor?: Visitor;
 }
 
-export const VisitorProvider = ({ visitor: providedVisitor = null, children }) => {
+export function VisitorProvider({ visitor: providedVisitor = null, children }) {
     const [visitor, setVisitor] = useState(providedVisitor);
 
     useEffect(() => {
@@ -46,5 +46,5 @@ export const VisitorProvider = ({ visitor: providedVisitor = null, children }) =
     );
 
     return <VisitorContext.Provider value={value}>{children}</VisitorContext.Provider>;
-};
+}
 

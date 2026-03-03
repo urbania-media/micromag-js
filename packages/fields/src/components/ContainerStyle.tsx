@@ -7,6 +7,8 @@ interface ContainerStyleFieldProps {
     [key: string]: unknown;
 }
 
-const ContainerStyleField = props => <Fields isList {...props} />;
+function ContainerStyleField(props) {
+    return <Fields isList {...props} />;
+}
 
 export default ContainerStyleField;

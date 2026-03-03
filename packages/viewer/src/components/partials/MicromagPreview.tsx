@@ -15,24 +15,28 @@ interface MicromagPreviewProps {
     className?: string;
 }
 
-const MicromagPreview = ({ screen = null, title = null, url = null, description = null, className = null }) => (
-    <div
-        className={classNames([
-            styles.container,
-            {
-                [className]: className,
-            },
-        ])}
-    >
-        <div className={styles.cover}>
-            <ScreenPreview screen={screen} width={100} height={150} withSize />
+function MicromagPreview(
+    { screen = null, title = null, url = null, description = null, className = null },
+) {
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className,
+                },
+            ])}
+        >
+            <div className={styles.cover}>
+                <ScreenPreview screen={screen} width={100} height={150} withSize />
+            </div>
+            <div className={styles.info}>
+                <h3 className={styles.title}>{title}</h3>
+                {url ? <div className={styles.url}>{url}</div> : null}
+                <p>{description}</p>
+            </div>
         </div>
-        <div className={styles.info}>
-            <h3 className={styles.title}>{title}</h3>
-            {url ? <div className={styles.url}>{url}</div> : null}
-            <p>{description}</p>
-        </div>
-    </div>
-);
+    );
+}
 
 export default MicromagPreview;

@@ -14,7 +14,7 @@ interface DeviceButtonProps {
     className?: string;
 }
 
-const DeviceButton = ({ device, className = null, iconComponents = DeviceIcons, ...props }) => {
+function DeviceButton({ device, className = null, iconComponents = DeviceIcons, ...props }) {
     const DeviceIcon = getComponentFromName(device, iconComponents, DeviceIcons.Desktop);
     return (
         <Button
@@ -29,6 +29,6 @@ const DeviceButton = ({ device, className = null, iconComponents = DeviceIcons, 
             <DeviceIcon className={styles.icon} />
         </Button>
     );
-};
+}
 
 export default DeviceButton;

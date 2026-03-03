@@ -7,29 +7,31 @@ import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/share-options.module.css';
 
-export const Title = (props) => (
-    <PlaceholderBlock
-        {...props}
-        width="100%"
-        height="100%"
-        className={classNames([
-            styles.container,
-            {
-                [props.className]: props.className !== null,
-            }
-        ])}
-        boxClassName={styles.box}
-    >
-        <div className={styles.item}>
-            <FontAwesomeIcon icon={faCircle} className={styles.icon} />
-        </div>
-        <div className={styles.item}>
-            <FontAwesomeIcon icon={faCircle} className={styles.icon} />
-        </div>
-        <div className={styles.item}>
-            <FontAwesomeIcon icon={faCircle} className={styles.icon} />
-        </div>
-    </PlaceholderBlock>
-);
+export function Title(props) {
+    return (
+        <PlaceholderBlock
+            {...props}
+            width="100%"
+            height="100%"
+            className={classNames([
+                styles.container,
+                {
+                    [props.className]: props.className !== null,
+                }
+            ])}
+            boxClassName={styles.box}
+        >
+            <div className={styles.item}>
+                <FontAwesomeIcon icon={faCircle} className={styles.icon} />
+            </div>
+            <div className={styles.item}>
+                <FontAwesomeIcon icon={faCircle} className={styles.icon} />
+            </div>
+            <div className={styles.item}>
+                <FontAwesomeIcon icon={faCircle} className={styles.icon} />
+            </div>
+        </PlaceholderBlock>
+    );
+}
 
 export default Title;

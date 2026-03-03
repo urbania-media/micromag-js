@@ -15,17 +15,19 @@ interface LayoutProps {
     style?: Record<string, unknown>;
 }
 
-const Layout = ({
-    width = null,
-    height = null,
-    horizontalAlign = 'left',
-    verticalAlign = 'top',
-    distribution = null,
-    fullscreen = false,
-    className = null,
-    children = null,
-    style = null,
-}) => {
+function Layout(
+    {
+        width = null,
+        height = null,
+        horizontalAlign = 'left',
+        verticalAlign = 'top',
+        distribution = null,
+        fullscreen = false,
+        className = null,
+        children = null,
+        style = null,
+    },
+) {
     let justifyContent = null;
     if (distribution !== null) {
         justifyContent = `space-${distribution}`;
@@ -66,6 +68,6 @@ const Layout = ({
             </div>
         </StackProvider>
     );
-};
+}
 
 export default Layout;

@@ -11,7 +11,7 @@ interface MenuButtonProps {
     iconClassName?: string;
 }
 
-const MenuButton = ({ className = null, iconClassName = null, ...props }) => {
+function MenuButton({ className = null, iconClassName = null, ...props }) {
     const intl = useIntl();
 
     return (
@@ -48,6 +48,6 @@ const MenuButton = ({ className = null, iconClassName = null, ...props }) => {
             {...props}
         />
     );
-};
+}
 
 export default MenuButton;

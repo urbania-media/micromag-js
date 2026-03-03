@@ -66,32 +66,34 @@ interface TimelineProps {
     className?: string;
 }
 
-const Timeline = ({
-    layout = 'normal',
-    title = null,
-    items = [null],
-    itemTitleStyle = null,
-    itemDescriptionStyle = null,
-    withoutLine = false,
-    bulletColor = null,
-    lineColor = null,
-    bulletShape = 'circle',
-    bulletFilled = true,
-    illustrated = false,
-    spacing: initialSpacing = null,
-    itemBottomSpacing: initialItemBottomSpacing = null,
-    header = null,
-    footer = null,
-    background = null,
-    alternatives = null,
-    current = true,
-    active = true,
-    preload = true,
-    // transitions,
-    // transitionStagger,
-    type = null,
-    className = null,
-}) => {
+function Timeline(
+    {
+        layout = 'normal',
+        title = null,
+        items = [null],
+        itemTitleStyle = null,
+        itemDescriptionStyle = null,
+        withoutLine = false,
+        bulletColor = null,
+        lineColor = null,
+        bulletShape = 'circle',
+        bulletFilled = true,
+        illustrated = false,
+        spacing: initialSpacing = null,
+        itemBottomSpacing: initialItemBottomSpacing = null,
+        header = null,
+        footer = null,
+        background = null,
+        alternatives = null,
+        current = true,
+        active = true,
+        preload = true,
+        // transitions,
+        // transitionStagger,
+        type = null,
+        className = null,
+    },
+) {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, imageResolution, resolution } = useScreenSize();
     const {
@@ -677,6 +679,6 @@ const Timeline = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default Timeline;

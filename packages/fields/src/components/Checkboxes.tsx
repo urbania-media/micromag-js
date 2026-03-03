@@ -18,15 +18,17 @@ interface CheckboxesProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const Checkboxes = ({
-    name = null,
-    value = null,
-    singleChoice = false,
-    options = [],
-    className = null,
-    buttonClassName = null,
-    onChange = null,
-}) => {
+function Checkboxes(
+    {
+        name = null,
+        value = null,
+        singleChoice = false,
+        options = [],
+        className = null,
+        buttonClassName = null,
+        onChange = null,
+    },
+) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
         <div
@@ -96,6 +98,6 @@ const Checkboxes = ({
             })}
         </div>
     );
-};
+}
 
 export default Checkboxes;

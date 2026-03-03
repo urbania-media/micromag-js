@@ -5,13 +5,15 @@ import { faCommentDots } from '@fortawesome/free-solid-svg-icons/faCommentDots';
 
 import styles from '../../styles/placeholders/conversation.module.css';
 
-export const Conversation = () => (
-    <div className={styles.container}>
-        {[...Array(4)].map((e, idx) => (
-            <div key={`message-${idx + 1}`} className={classNames([styles.message, styles[`placeholderMessage${idx}`]])} />
-        ))}
-        <FontAwesomeIcon icon={faCommentDots} className={styles.icon} />
-    </div>
-);
+export function Conversation() {
+    return (
+        <div className={styles.container}>
+            {[...Array(4)].map((e, idx) => (
+                <div key={`message-${idx + 1}`} className={classNames([styles.message, styles[`placeholderMessage${idx}`]])} />
+            ))}
+            <FontAwesomeIcon icon={faCommentDots} className={styles.icon} />
+        </div>
+    );
+}
 
 export default Conversation;

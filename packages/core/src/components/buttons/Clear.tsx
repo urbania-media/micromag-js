@@ -11,19 +11,21 @@ interface ClearButtonProps {
     className?: string;
 }
 
-const ClearButton = ({ onClick = null, className = null, ...props }) => (
-    <button
-        className={classNames([
-            styles.container,
-            {
-                [className]: className,
-            },
-        ])}
-        onClick={onClick}
-        {...props}
-    >
-        <FontAwesomeIcon className={styles.icon} icon={faClose} size="md" />
-    </button>
-);
+function ClearButton({ onClick = null, className = null, ...props }) {
+    return (
+        <button
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className,
+                },
+            ])}
+            onClick={onClick}
+            {...props}
+        >
+            <FontAwesomeIcon className={styles.icon} icon={faClose} size="md" />
+        </button>
+    );
+}
 
 export default ClearButton;

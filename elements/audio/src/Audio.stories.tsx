@@ -11,10 +11,14 @@ export default {
     },
 };
 
-export const Normal = () => <Audio media={audioMedia()} />;
+export function Normal() {
+    return <Audio media={audioMedia()} />;
+}
 
-export const NormalWithWaveform = () => (
-    <Audio media={audioMedia({ withWaveform: true })} withWave />
-);
+export function NormalWithWaveform() {
+    return (<Audio media={audioMedia({ withWaveform: true })} withWave />);
+}
 
-export const Autoplay = () => <Audio media={audioMedia()} autoPlay loop />;
+export function Autoplay() {
+    return <Audio media={audioMedia()} autoPlay loop />;
+}

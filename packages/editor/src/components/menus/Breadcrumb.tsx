@@ -29,7 +29,9 @@ interface BreadcrumbProps {
     className?: string;
 }
 
-const Breadcrumb = ({ story = null, screenId = null, field = null, form = null, url, className = null }) => {
+function Breadcrumb(
+    { story = null, screenId = null, field = null, form = null, url, className = null },
+) {
     const intl = useIntl();
     const { components: screens = [] } = story || {};
     const [,setLocation] = useLocation();
@@ -289,6 +291,6 @@ const Breadcrumb = ({ story = null, screenId = null, field = null, form = null, 
             />
         </>
     );
-};
+}
 
 export default Breadcrumb;

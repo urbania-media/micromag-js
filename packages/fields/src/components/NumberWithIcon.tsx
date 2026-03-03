@@ -12,23 +12,27 @@ interface NumberWithIconProps {
     className?: string;
 }
 
-const NumberWithIcon = ({ icon = null, iconRotation = 0, isHorizontal = false, className = null, ...props }) => (
-    <div
-        className={classNames([
-            'd-flex',
-            'align-items-center',
-            {
-                'justify-content-end': isHorizontal,
-                [className]: className !== null,
-            },
-        ])}
-    >
-        <span className="me-2" style={ iconRotation !== 0 ? { transform: `rotate(${iconRotation}deg)` } : null }>
-            <FontAwesomeIcon icon={icon} />
-        </span>
-        <Number {...props} />
-    </div>
-);
+function NumberWithIcon(
+    { icon = null, iconRotation = 0, isHorizontal = false, className = null, ...props },
+) {
+    return (
+        <div
+            className={classNames([
+                'd-flex',
+                'align-items-center',
+                {
+                    'justify-content-end': isHorizontal,
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            <span className="me-2" style={ iconRotation !== 0 ? { transform: `rotate(${iconRotation}deg)` } : null }>
+                <FontAwesomeIcon icon={icon} />
+            </span>
+            <Number {...props} />
+        </div>
+    );
+}
 
 NumberWithIcon.isHorizontal = true;
 

@@ -31,25 +31,27 @@ interface BackgroundLayersProps {
     onQualityLevelChange?: (...args: unknown[]) => void;
 }
 
-const BackgroundLayers = ({
-    width = null,
-    height = null,
-    resolution = 1,
-    background = [],
-    playing = false,
-    muted = false,
-    children = null,
-    className = null,
-    layerClassName = null,
-    backgroundClassName = null,
-    loadingMode = 'lazy',
-    mediaRef = null,
-    shouldLoad = true,
-    withoutVideo = false,
-    onPlayError = null,
-    qualityStartLevel = null,
-    onQualityLevelChange = null,
-}) => {
+function BackgroundLayers(
+    {
+        width = null,
+        height = null,
+        resolution = 1,
+        background = [],
+        playing = false,
+        muted = false,
+        children = null,
+        className = null,
+        layerClassName = null,
+        backgroundClassName = null,
+        loadingMode = 'lazy',
+        mediaRef = null,
+        shouldLoad = true,
+        withoutVideo = false,
+        onPlayError = null,
+        qualityStartLevel = null,
+        onQualityLevelChange = null,
+    },
+) {
     const hasSize = width > 0 && height > 0;
 
     const layers = useMemo(() => getLayersFromBackground(background), [background]);
@@ -129,6 +131,6 @@ const BackgroundLayers = ({
             <div className={styles.content}>{children}</div>
         </div>
     );
-};
+}
 
 export default BackgroundLayers;

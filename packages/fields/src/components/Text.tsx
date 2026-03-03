@@ -21,20 +21,22 @@ interface TextFieldProps {
     className?: string;
 }
 
-const TextField = ({
-    inputRef = null,
-    type = 'text',
-    value = null,
-    errors = null,
-    required = false,
-    disabled = false,
-    placeholder = null,
-    prefix = null,
-    autofocus = false,
-    onChange = null,
-    onFocus = null,
-    className = null,
-}) => {
+function TextField(
+    {
+        inputRef = null,
+        type = 'text',
+        value = null,
+        errors = null,
+        required = false,
+        disabled = false,
+        placeholder = null,
+        prefix = null,
+        autofocus = false,
+        onChange = null,
+        onFocus = null,
+        className = null,
+    },
+) {
     const input = (
         <input
             ref={inputRef}
@@ -67,6 +69,6 @@ const TextField = ({
     ) : (
         input
     );
-};
+}
 
 export default React.forwardRef((props, ref) => <TextField {...props} inputRef={ref} />);

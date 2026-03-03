@@ -23,7 +23,9 @@ interface ColorFieldProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-const ColorField = ({ value = null, onChange = null, closeForm = null, disableAlpha = false, canClear = true, ...props }) => {
+function ColorField(
+    { value = null, onChange = null, closeForm = null, disableAlpha = false, canClear = true, ...props },
+) {
     const { color = null } = value || {};
 
     const hexColor = useMemo(
@@ -90,7 +92,7 @@ const ColorField = ({ value = null, onChange = null, closeForm = null, disableAl
             </div>
         </FieldWithForm>
     );
-};
+}
 
 ColorField.withForm = true;
 

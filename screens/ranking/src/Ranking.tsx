@@ -44,23 +44,25 @@ interface RankingScreenProps {
     className?: string;
 }
 
-const RankingScreen = ({
-    layout = 'side',
-    title = null,
-    items = [null],
-    itemTitleStyle = null,
-    itemDescriptionStyle = null,
-    numbersStyle = null,
-    ascending = false,
-    spacing = 20,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    preload = true,
-    type = null,
-    className = null,
-}) => {
+function RankingScreen(
+    {
+        layout = 'side',
+        title = null,
+        items = [null],
+        itemTitleStyle = null,
+        itemDescriptionStyle = null,
+        numbersStyle = null,
+        ascending = false,
+        spacing = 20,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        preload = true,
+        type = null,
+        className = null,
+    },
+) {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
     const {
@@ -311,6 +313,6 @@ const RankingScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default RankingScreen;

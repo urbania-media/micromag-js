@@ -25,7 +25,9 @@ interface IntlProviderProps {
     children?: React.ReactNode;
 }
 
-export const IntlProvider = ({ intlManager = defaultManager, locale = null, locales = null, children = null, extraMessages = null }) => {
+export function IntlProvider(
+    { intlManager = defaultManager, locale = null, locales = null, children = null, extraMessages = null },
+) {
     const previousLocales = useLocales();
     const { locale: previousLocale = null, messages: previousMessages = null } =
         useContext(IntlContext) || {};
@@ -54,5 +56,5 @@ export const IntlProvider = ({ intlManager = defaultManager, locale = null, loca
             <LocalesContext.Provider value={locales || previousLocales}>{children}</LocalesContext.Provider>
         </BaseIntlProvider>
     );
-};
+}
 

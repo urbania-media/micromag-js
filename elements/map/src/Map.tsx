@@ -32,29 +32,31 @@ interface MapProps {
     focusable?: boolean;
 }
 
-const Map = ({
-    center = null,
-    zoom = null,
-    draggable = true,
-    markers = [],
-    onClickMap = null,
-    onClickMarker = null,
-    className = null,
-    onReady = null,
-    onCenterChanged = null,
-    onBoundsChanged = null,
-    onDrag = null,
-    onDragEnd = null,
-    withoutStyle = false,
-    fitBounds = false,
-    zoomControl = false,
-    mapTypeControl = false,
-    scaleControl = false,
-    streetViewControl = false,
-    rotateControl = false,
-    fullscreenControl = false,
-    focusable = true,
-}) => {
+function Map(
+    {
+        center = null,
+        zoom = null,
+        draggable = true,
+        markers = [],
+        onClickMap = null,
+        onClickMarker = null,
+        className = null,
+        onReady = null,
+        onCenterChanged = null,
+        onBoundsChanged = null,
+        onDrag = null,
+        onDragEnd = null,
+        withoutStyle = false,
+        fitBounds = false,
+        zoomControl = false,
+        mapTypeControl = false,
+        scaleControl = false,
+        streetViewControl = false,
+        rotateControl = false,
+        fullscreenControl = false,
+        focusable = true,
+    },
+) {
     const client = useGoogleMapsClient();
 
     const onClick = useCallback(
@@ -164,6 +166,6 @@ const Map = ({
             </GoogleMap>
         </div>
     );
-};
+}
 
 export default Map;

@@ -17,7 +17,7 @@ interface EditorProviderProps {
     children: React.ReactNode;
 }
 
-export const EditorProvider = ({ children }) => {
+export function EditorProvider({ children }) {
     const story = useStory();
     const screensManager = useScreensManager();
     const fieldsManager = useFieldsManager();
@@ -35,5 +35,5 @@ export const EditorProvider = ({ children }) => {
 
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     return <EditorContext.Provider value={{ getColors }}>{children}</EditorContext.Provider>;
-};
+}
 

@@ -39,19 +39,21 @@ interface AudioScreenProps {
     className?: string;
 }
 
-const AudioScreen = ({
-    layout = 'middle', // eslint-disable-line
-    audio = null,
-    spacing = 20,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    preload = true,
-    mediaRef: customMediaRef = null,
-    showWave = true,
-    className = null,
-}) => {
+function AudioScreen(
+    {
+        layout = 'middle', // eslint-disable-line
+        audio = null,
+        spacing = 20,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        preload = true,
+        mediaRef: customMediaRef = null,
+        showWave = true,
+        className = null,
+    },
+) {
     const { width, height, resolution } = useScreenSize();
     const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -319,6 +321,6 @@ const AudioScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default AudioScreen;

@@ -39,18 +39,20 @@ interface QuoteScreenProps {
     className?: string;
 }
 
-const QuoteScreen = ({
-    layout = 'top',
-    quote = null,
-    author = null,
-    spacing = 20,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    preload = true,
-    className = null,
-}) => {
+function QuoteScreen(
+    {
+        layout = 'top',
+        quote = null,
+        author = null,
+        spacing = 20,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        preload = true,
+        className = null,
+    },
+) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {
@@ -208,6 +210,6 @@ const QuoteScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default QuoteScreen;

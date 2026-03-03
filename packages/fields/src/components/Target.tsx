@@ -10,14 +10,17 @@ interface TargetFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const TargetField = ({ options = ['_blank', 'self'], value = null, isForm = false, className = null, onChange = null }) =>
-    isForm ? (
+function TargetField(
+    { options = ['_blank', 'self'], value = null, isForm = false, className = null, onChange = null },
+) {
+    return isForm ? (
         <div>
             <Select options={options} value={value} className={className} onChange={onChange} />
         </div>
     ) : (
         <div>{value}</div>
     );
+}
 
 TargetField.withForm = true;
 

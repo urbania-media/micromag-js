@@ -10,26 +10,30 @@ interface VisualsFieldProps {
     value?: ImageMedia[];
 }
 
-const VisualsField = (
+function VisualsField(
     {
         value: value = null,
         ...props
     },
-) => (<ItemsField
-    noItemLabel={
-        <FormattedMessage
-            defaultMessage="No image..."
-            description="Label when there is no item in images field"
+) {
+    return (
+        <ItemsField
+            noItemLabel={
+                <FormattedMessage
+                    defaultMessage="No image..."
+                    description="Label when there is no item in images field"
+                />
+            }
+            addItemLabel={
+                <FormattedMessage
+                    defaultMessage="Add an image"
+                    description="Button label in images field"
+                />
+            }
+            itemComponent={VisualField}
+            {...props}
         />
-    }
-    addItemLabel={
-        <FormattedMessage
-            defaultMessage="Add an image"
-            description="Button label in images field"
-        />
-    }
-    itemComponent={VisualField}
-    {...props}
-/>);
+    );
+}
 
 export default VisualsField;

@@ -9,7 +9,7 @@ interface MenuIconProps {
     className?: string;
 }
 
-const MenuIcon = ({ size = 100, spacing = 8, color = 'white', className = null }) => {
+function MenuIcon({ size = 100, spacing = 8, color = 'white', className = null }) {
     const squareSize = (size - 2 * spacing) / 3;
 
     return (
@@ -39,6 +39,6 @@ const MenuIcon = ({ size = 100, spacing = 8, color = 'white', className = null }
             })}
         </svg>
     );
-};
+}
 
 export default MenuIcon;

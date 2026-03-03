@@ -9,20 +9,23 @@ export const ModalsContext = React.createContext({
 export const useModals = () => useContext(ModalsContext) || {};
 
 export const withModals = (WrappedComponent) => {
-    const WithModalsComponent = (props) => (
-        <ModalsContext.Consumer>
-            {({ modals, container, setContainer, register, unregister }) => (
-                <WrappedComponent
-                    modalsContainer={container}
-                    setModalsContainer={setContainer}
-                    modals={modals}
-                    registerModal={register}
-                    unregisterModal={unregister}
-                    {...props}
-                />
-            )}
-        </ModalsContext.Consumer>
-    );
+    function WithModalsComponent(props) {
+        return (
+            <ModalsContext.Consumer>
+                {({ modals, container, setContainer, register, unregister }) => (
+                    <WrappedComponent
+                        modalsContainer={container}
+                        setModalsContainer={setContainer}
+                        modals={modals}
+                        registerModal={register}
+                        unregisterModal={unregister}
+                        {...props}
+                    />
+                )}
+            </ModalsContext.Consumer>
+        );
+    }
+
     WithModalsComponent.displayName = `WithModals(${getDisplayName(WrappedComponent)})`;
     return WithModalsComponent;
 };
@@ -32,7 +35,7 @@ interface ModalsProviderProps {
     container?: Record<string, unknown>;
 }
 
-export const ModalsProvider = ({ children, container: initialContainer = null }) => {
+export function ModalsProvider({ children, container: initialContainer = null }) {
     const [container, setContainer] = useState(initialContainer);
     const [modals, setModals] = useState([]);
     const modalsRef = useRef(modals);
@@ -75,5 +78,5 @@ export const ModalsProvider = ({ children, container: initialContainer = null })
         [modals, container, setContainer, register, unregister],
     );
     return <ModalsContext.Provider value={value}>{children}</ModalsContext.Provider>;
-};
+}
 

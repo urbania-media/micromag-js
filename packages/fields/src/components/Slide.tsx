@@ -12,7 +12,7 @@ interface SlideFieldProps {
     className?: string;
 }
 
-const SlideField = ({ value = null, isForm = false, className = null, ...props }) => {
+function SlideField({ value = null, isForm = false, className = null, ...props }) {
     const { text = null } = value || {};
     return isForm ? (
         <div
@@ -52,6 +52,6 @@ const SlideField = ({ value = null, isForm = false, className = null, ...props }
             )}
         </div>
     );
-};
+}
 
 export default SlideField;

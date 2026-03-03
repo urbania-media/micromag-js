@@ -9,8 +9,8 @@ interface FieldErrorsProps {
     className?: string;
 }
 
-const FieldErrors = ({ errors = null, className = null }) =>
-    errors !== null && errors.length > 0 ? (
+function FieldErrors({ errors = null, className = null }) {
+    return errors !== null && errors.length > 0 ? (
         <div
             className={classNames([
                 styles.container,
@@ -29,5 +29,6 @@ const FieldErrors = ({ errors = null, className = null }) =>
             ))}
         </div>
     ) : null;
+}
 
 export default FieldErrors;

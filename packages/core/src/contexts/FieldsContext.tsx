@@ -20,7 +20,7 @@ interface FieldsProviderProps {
     children: React.ReactNode;
 }
 
-export const FieldsProvider = ({ fields = null, manager = null, children }) => {
+export function FieldsProvider({ fields = null, manager = null, children }) {
     const previousManager = useFieldsManager() || null;
 
     const finalManager = useMemo(() => {
@@ -55,5 +55,5 @@ export const FieldsProvider = ({ fields = null, manager = null, children }) => {
             </ComponentsProvider>
         </FieldsContext.Provider>
     );
-};
+}
 

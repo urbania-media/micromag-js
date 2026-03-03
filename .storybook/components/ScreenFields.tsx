@@ -8,10 +8,12 @@ interface ScreenFieldsProps {
     [key: string]: unknown;
 }
 
-const ScreenFields = ({ definition: { fields }, ...props }: ScreenFieldsProps) => (
-    <FieldsProvider>
-        <Fields fields={fields} {...props} />
-    </FieldsProvider>
-);
+function ScreenFields({ definition: { fields }, ...props }: ScreenFieldsProps) {
+    return (
+        <FieldsProvider>
+            <Fields fields={fields} {...props} />
+        </FieldsProvider>
+    );
+}
 
 export default ScreenFields;

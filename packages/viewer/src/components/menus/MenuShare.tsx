@@ -27,20 +27,22 @@ interface ViewerMenuShareProps {
     className?: string;
 }
 
-const ViewerMenuShare = ({
-    viewerTheme = null,
-    menuWidth = null,
-    title = null,
-    description = null,
-    items = [],
-    shareOptions = null,
-    focusable = true,
-    paddingTop = null,
-    currentScreenIndex = 0,
-    shareUrl = null,
-    onShare = null,
-    className = null,
-}) => {
+function ViewerMenuShare(
+    {
+        viewerTheme = null,
+        menuWidth = null,
+        title = null,
+        description = null,
+        items = [],
+        shareOptions = null,
+        focusable = true,
+        paddingTop = null,
+        currentScreenIndex = 0,
+        shareUrl = null,
+        onShare = null,
+        className = null,
+    },
+) {
     // Viewer theme
     const { background = null } = viewerTheme || {};
     const { image = null } = background || {};
@@ -138,6 +140,6 @@ const ViewerMenuShare = ({
             </div>
         </div>
     );
-};
+}
 
 export default ViewerMenuShare;

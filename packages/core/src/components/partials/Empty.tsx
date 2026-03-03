@@ -13,21 +13,25 @@ interface EmptyProps {
     className?: string;
 }
 
-const Empty = ({ children = null, withoutBorder = false, light = false, className = null }) => (
-    <div
-        className={classNames([
-            styles.container,
-            {
-                [styles.withoutBorder]: withoutBorder,
-                [styles.light]: light,
-                [className]: className,
-            },
-        ])}
-    >
-        <div className={styles.middle}>
-            <Label>{children}</Label>
+function Empty(
+    { children = null, withoutBorder = false, light = false, className = null },
+) {
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.withoutBorder]: withoutBorder,
+                    [styles.light]: light,
+                    [className]: className,
+                },
+            ])}
+        >
+            <div className={styles.middle}>
+                <Label>{children}</Label>
+            </div>
         </div>
-    </div>
-);
+    );
+}
 
 export default Empty;

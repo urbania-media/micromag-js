@@ -9,14 +9,16 @@ interface DeleteButtonProps {
     className?: string;
 }
 
-const DeleteButton = ({ className = null, ...props }) => (
-    <Button
-        className={className}
-        theme="danger"
-        size="sm"
-        icon={<FontAwesomeIcon icon={faTrash} />}
-        {...props}
-    />
-);
+function DeleteButton({ className = null, ...props }) {
+    return (
+        <Button
+            className={className}
+            theme="danger"
+            size="sm"
+            icon={<FontAwesomeIcon icon={faTrash} />}
+            {...props}
+        />
+    );
+}
 
 export default DeleteButton;

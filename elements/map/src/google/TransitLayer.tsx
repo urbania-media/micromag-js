@@ -6,7 +6,7 @@ interface TransitLayerProps {
     enabled?: boolean;
 }
 
-const TransitLayer = ({ map = null, enabled = false }) => {
+function TransitLayer({ map = null, enabled = false }) {
     const client = useGoogleMapsClient();
     const transitLayerRef = useRef(null);
 
@@ -30,6 +30,6 @@ const TransitLayer = ({ map = null, enabled = false }) => {
     }, [client, map, enabled]);
 
     return null;
-};
+}
 
 export default TransitLayer;

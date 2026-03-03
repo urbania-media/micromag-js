@@ -7,12 +7,14 @@ interface SliderPointFieldProps {
     withInput?: boolean;
 }
 
-const SliderPointField = (
+function SliderPointField(
     {
         unit: unit = 'pt',
         withInput: withInput = true,
         ...props
     },
-) => <SliderField {...props} />;
+) {
+    return <SliderField {...props} />;
+}
 
 export default SliderPointField;

@@ -10,13 +10,15 @@ interface TextTransformProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const TextTransform = ({ value = null, options = [
-    { value: 'capitalize', label: <strong>Aa</strong> },
-    { value: 'uppercase', label: <strong>AA</strong> },
-    { value: 'lowercase', label: <strong>aa</strong> },
-], onChange = null, ...props }) => (
-    <Radios value={value} options={options} onChange={onChange} uncheckable {...props} />
-);
+function TextTransform(
+    { value = null, options = [
+        { value: 'capitalize', label: <strong>Aa</strong> },
+        { value: 'uppercase', label: <strong>AA</strong> },
+        { value: 'lowercase', label: <strong>aa</strong> },
+    ], onChange = null, ...props },
+) {
+    return (<Radios value={value} options={options} onChange={onChange} uncheckable {...props} />);
+}
 
 TextTransform.isHorizontal = true;
 

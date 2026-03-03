@@ -16,38 +16,42 @@ interface TabsMenuProps {
     onClickItem?: (...args: unknown[]) => void;
 }
 
-const TabsMenu = ({
-    items = [],
-    size = null,
-    theme = 'secondary',
-    renderItemButton = null,
-    buttonClassName = null,
-    className = null,
-    onClickItem = null,
-}) => (
-    <div
-        className={classNames([
-            styles.container,
-            {
-                [className]: className,
-            },
-        ])}
-    >
-        <Buttons
-            buttons={items}
-            size={size}
-            theme={theme}
-            renderButton={renderItemButton}
-            onClickButton={onClickItem}
-            className={styles.buttons}
-            buttonClassName={classNames([
-                styles.button,
+function TabsMenu(
+    {
+        items = [],
+        size = null,
+        theme = 'secondary',
+        renderItemButton = null,
+        buttonClassName = null,
+        className = null,
+        onClickItem = null,
+    },
+) {
+    return (
+        <div
+            className={classNames([
+                styles.container,
                 {
-                    [buttonClassName]: buttonClassName !== null,
+                    [className]: className,
                 },
             ])}
-        />
-    </div>
-);
+        >
+            <Buttons
+                buttons={items}
+                size={size}
+                theme={theme}
+                renderButton={renderItemButton}
+                onClickButton={onClickItem}
+                className={styles.buttons}
+                buttonClassName={classNames([
+                    styles.button,
+                    {
+                        [buttonClassName]: buttonClassName !== null,
+                    },
+                ])}
+            />
+        </div>
+    );
+}
 
 export default TabsMenu;

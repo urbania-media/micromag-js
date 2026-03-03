@@ -14,16 +14,18 @@ interface DetectorProps {
     className?: string;
 }
 
-const Detector = ({
-    throttleDelay = null,
-    threshold = undefined,
-    onEnter = null,
-    onLeave = null,
-    onChange = null,
-    disabled = false,
-    children = null,
-    className = null,
-}) => {
+function Detector(
+    {
+        throttleDelay = null,
+        threshold = undefined,
+        onEnter = null,
+        onLeave = null,
+        onChange = null,
+        disabled = false,
+        children = null,
+        className = null,
+    },
+) {
     const {
         ref,
         entry: { isIntersecting },
@@ -75,6 +77,6 @@ const Detector = ({
             {children}
         </div>
     );
-};
+}
 
 export default Detector;

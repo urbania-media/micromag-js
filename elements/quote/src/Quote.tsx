@@ -23,7 +23,9 @@ interface QuoteProps {
     emptyClassName?: string;
 }
 
-const Quote = ({ body = null, textStyle = null, linksStyle = null, margin = null, showEmpty = false, className = null, emptyClassName = null }) => {
+function Quote(
+    { body = null, textStyle = null, linksStyle = null, margin = null, showEmpty = false, className = null, emptyClassName = null },
+) {
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = {};
     let finalLinkStyle = linkStyle !== null ? getStyleFromLink(linkStyle) : null;
@@ -77,6 +79,6 @@ const Quote = ({ body = null, textStyle = null, linksStyle = null, margin = null
             />
         </>
     );
-};
+}
 
 export default Quote;

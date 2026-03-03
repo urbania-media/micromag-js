@@ -14,7 +14,9 @@ interface CheckboxProps {
     className?: string;
 }
 
-const Checkbox = ({ option = null, value = null, onChange = null, focusable = true, checkboxStyle = null, className = null }) => {
+function Checkbox(
+    { option = null, value = null, onChange = null, focusable = true, checkboxStyle = null, className = null },
+) {
     const { body = null } = option || {};
     return (
         <div
@@ -51,6 +53,6 @@ const Checkbox = ({ option = null, value = null, onChange = null, focusable = tr
             </label>
         </div>
     );
-};
+}
 
 export default Checkbox;

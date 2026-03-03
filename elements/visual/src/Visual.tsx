@@ -33,29 +33,31 @@ interface VisualProps {
     onQualityLevelChange?: (...args: unknown[]) => void;
 }
 
-const Visual = ({
-    media = null,
-    mediaRef = null,
-    width = null,
-    height = null,
-    ratio = null,
-    resolution = 1,
-    objectFit = null,
-    playing = true,
-    muted = true,
-    loadingMode = null,
-    shouldLoad = true,
-    videoLoop = true,
-    videoInitialMuted = true,
-    onLoaded: onParentLoaded = null,
-    className = null,
-    imageClassName = null,
-    videoClassName = null,
-    withoutVideo = false,
-    qualityStartLevel = null,
-    onQualityLevelChange = null,
-    ...props
-}) => {
+function Visual(
+    {
+        media = null,
+        mediaRef = null,
+        width = null,
+        height = null,
+        ratio = null,
+        resolution = 1,
+        objectFit = null,
+        playing = true,
+        muted = true,
+        loadingMode = null,
+        shouldLoad = true,
+        videoLoop = true,
+        videoInitialMuted = true,
+        onLoaded: onParentLoaded = null,
+        className = null,
+        imageClassName = null,
+        videoClassName = null,
+        withoutVideo = false,
+        qualityStartLevel = null,
+        onQualityLevelChange = null,
+        ...props
+    },
+) {
     const { type = null, thumbnail_url: thumbnailUrl = null, url = null } = media || {};
     const isVideo = type === 'video';
     const elProps = useMemo(() => ({ ...props, media }), [props, media]);
@@ -157,6 +159,6 @@ const Visual = ({
             ) : null}
         </>
     ) : null;
-};
+}
 
 export default Visual;

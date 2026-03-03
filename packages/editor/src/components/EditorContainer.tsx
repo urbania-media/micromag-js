@@ -40,17 +40,19 @@ interface EditorContainerProps {
     screenNamespaces?: string[];
 }
 
-const EditorContainer = ({
-    value = null,
-    memoryRouter = false,
-    routes = defaultRoutes,
-    basePath = null,
-    uppy = null,
-    googleApiKey = null,
-    googleMapsLibraries = ['places'],
-    screenNamespaces = null,
-    ...props
-}) => {
+function EditorContainer(
+    {
+        value = null,
+        memoryRouter = false,
+        routes = defaultRoutes,
+        basePath = null,
+        uppy = null,
+        googleApiKey = null,
+        googleMapsLibraries = ['places'],
+        screenNamespaces = null,
+        ...props
+    },
+) {
     const { locale } = useIntl();
 
     const { hook: memoryLocationHook, searchHook: memorySearchHook } = useMemoryRouter();
@@ -123,6 +125,6 @@ const EditorContainer = ({
             </UppyProvider>
         </Router>
     );
-};
+}
 
 export default EditorContainer;

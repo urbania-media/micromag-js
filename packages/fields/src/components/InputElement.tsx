@@ -10,7 +10,7 @@ interface TextElementProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const TextElement = ({ value = null, onChange = null, multiline = false, ...props }) => {
+function TextElement({ value = null, onChange = null, multiline = false, ...props }) {
     const labelValue = value !== null ? value.label || null : null;
     const onLabelChange = useCallback(
         (newLabel) => {
@@ -29,6 +29,6 @@ const TextElement = ({ value = null, onChange = null, multiline = false, ...prop
     ) : (
         <TextField {...props} value={labelValue} onChange={onLabelChange} />
     );
-};
+}
 
 export default TextElement;

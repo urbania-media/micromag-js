@@ -13,15 +13,17 @@ interface ElementFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const ElementField = ({
-    name = null,
-    fields: formFields = [],
-    value = null,
-    gotoFieldForm = null,
-    closeFieldForm = null,
-    isList = false,
-    onChange = null,
-}) => {
+function ElementField(
+    {
+        name = null,
+        fields: formFields = [],
+        value = null,
+        gotoFieldForm = null,
+        closeFieldForm = null,
+        isList = false,
+        onChange = null,
+    },
+) {
     const fields = formFields || [];
     const settingsNames = useMemo(
         () => (fields ? fields.filter(({ setting = false }) => setting).map((it) => it.name) : []),
@@ -71,6 +73,6 @@ const ElementField = ({
             isList={isList}
         />
     );
-};
+}
 
 export default ElementField;

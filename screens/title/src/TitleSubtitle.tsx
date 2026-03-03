@@ -3,6 +3,8 @@ import React from 'react';
 
 import TitleScreen from './Title';
 
-const TitleSubtitleScreen = ({ ...props }) => <TitleScreen {...props} withSubtitle />;
+function TitleSubtitleScreen({ ...props }) {
+  return <TitleScreen {...props} withSubtitle />;
+}
 
 export default TitleSubtitleScreen;

@@ -27,17 +27,19 @@ interface TitleProps {
     onClickButton?: (...args: unknown[]) => void;
 }
 
-const Title = ({
-    layout = null,
-    title = null,
-    description = null,
-    button = null,
-    buttonDisabled = false,
-    focusable = false,
-    className = null,
-    style = null,
-    onClickButton = null,
-}) => {
+function Title(
+    {
+        layout = null,
+        title = null,
+        description = null,
+        button = null,
+        buttonDisabled = false,
+        focusable = false,
+        className = null,
+        style = null,
+        onClickButton = null,
+    },
+) {
     // const { isPreview, isEdit } = useScreenRenderContext();
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
@@ -108,6 +110,6 @@ const Title = ({
             ]}
         </Layout>
     );
-};
+}
 
 export default Title;

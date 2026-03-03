@@ -10,7 +10,7 @@ interface FontStyleTransformProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const FontStyleTransform = ({ value = null, transformName = 'transform', onChange = null, ...props }) => {
+function FontStyleTransform({ value = null, transformName = 'transform', onChange = null, ...props }) {
     const transformValue = value !== null ? value[transformName] || null : null;
     const onTransformChange = useCallback(
         (newTransformValue) => {
@@ -25,7 +25,7 @@ const FontStyleTransform = ({ value = null, transformName = 'transform', onChang
         [value, transformName, onChange],
     );
     return <TextTransform value={transformValue} onChange={onTransformChange} {...props} />;
-};
+}
 
 FontStyleTransform.isHorizontal = true;
 

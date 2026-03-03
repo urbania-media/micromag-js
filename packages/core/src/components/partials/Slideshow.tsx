@@ -14,7 +14,9 @@ interface SlideshowProps {
     children?: React.ReactNode;
 }
 
-const Slideshow = ({ items = [], auto = true, delay = 5000, width = null, height = null, className = null, children = null }) => {
+function Slideshow(
+    { items = [], auto = true, delay = 5000, width = null, height = null, className = null, children = null },
+) {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
@@ -65,6 +67,6 @@ const Slideshow = ({ items = [], auto = true, delay = 5000, width = null, height
             {children}
         </div>
     );
-};
+}
 
 export default Slideshow;

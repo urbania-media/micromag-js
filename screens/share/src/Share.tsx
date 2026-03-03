@@ -44,24 +44,26 @@ interface ShareScreenProps {
     className?: string;
 }
 
-const ShareScreen = ({
-    layout = 'top',
-    heading = null,
-    shareUrl = null,
-    options = null,
-    buttonsStyle = null,
-    buttonsTextStyle = null,
-    centered = false,
-    spacing = 20,
-    background = null,
-    header = null,
-    footer = null,
-    id = null,
-    index = null,
-    current = true,
-    active = true,
-    className = null,
-}) => {
+function ShareScreen(
+    {
+        layout = 'top',
+        heading = null,
+        shareUrl = null,
+        options = null,
+        buttonsStyle = null,
+        buttonsTextStyle = null,
+        centered = false,
+        spacing = 20,
+        background = null,
+        header = null,
+        footer = null,
+        id = null,
+        index = null,
+        current = true,
+        active = true,
+        className = null,
+    },
+) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {
@@ -254,6 +256,6 @@ const ShareScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default ShareScreen;

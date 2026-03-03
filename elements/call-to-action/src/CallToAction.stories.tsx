@@ -15,7 +15,7 @@ const callToActionProps = {
     label: { body: 'Learn more' },
 };
 
-const CTAContainer = (props = null) => {
+function CTAContainer(props = null) {
     const [webView, setWebView] = useState(null);
     const { width = 320, height = 480, ...otherProps } = props || {};
     return (
@@ -42,7 +42,7 @@ const CTAContainer = (props = null) => {
             ) : null}
         </div>
     );
-};
+}
 
 export const normal = () => (
     <>

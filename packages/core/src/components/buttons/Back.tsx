@@ -9,18 +9,20 @@ interface BackButtonProps {
     className?: string;
 }
 
-const BackButton = ({ className = null, ...props }) => (
-    <Button
-        className={classNames([
-            'px-2',
-            {
-                [className]: className,
-            },
-        ])}
-        size="sm"
-        icon={<FontAwesomeIcon icon={faAngleLeft} size="lg" />}
-        {...props}
-    />
-);
+function BackButton({ className = null, ...props }) {
+    return (
+        <Button
+            className={classNames([
+                'px-2',
+                {
+                    [className]: className,
+                },
+            ])}
+            size="sm"
+            icon={<FontAwesomeIcon icon={faAngleLeft} size="lg" />}
+            {...props}
+        />
+    );
+}
 
 export default BackButton;

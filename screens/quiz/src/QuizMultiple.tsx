@@ -73,39 +73,41 @@ interface QuizMultipleScreenProps {
     className?: string;
 }
 
-const QuizMultipleScreen = ({
-    id = null,
-    layout = 'middle',
-    introLayout = null,
-    title = null,
-    description = null,
-    questions = null,
-    results = null,
-    buttonsStyle = null,
-    inactiveButtonsStyle = null,
-    buttonsTextStyle = null,
-    inactiveButtonsTextStyle = null,
-    questionsHeadingStyle = null,
-    resultsHeadingStyle = null,
-    resultsTextStyle = null,
-    feedbackTextStyle = null,
-    numbersTextStyle = null,
-    goodAnswerColor = null,
-    badAnswerColor = null,
-    spacing = 20,
-    background = null,
-    introBackground = null,
-    introButton = null,
-    nextButton = null,
-    header = null,
-    footer = null,
-    current = true,
-    active = true,
-    transitions = null,
-    transitionStagger = 100,
-    type = null,
-    className = null,
-}) => {
+function QuizMultipleScreen(
+    {
+        id = null,
+        layout = 'middle',
+        introLayout = null,
+        title = null,
+        description = null,
+        questions = null,
+        results = null,
+        buttonsStyle = null,
+        inactiveButtonsStyle = null,
+        buttonsTextStyle = null,
+        inactiveButtonsTextStyle = null,
+        questionsHeadingStyle = null,
+        resultsHeadingStyle = null,
+        resultsTextStyle = null,
+        feedbackTextStyle = null,
+        numbersTextStyle = null,
+        goodAnswerColor = null,
+        badAnswerColor = null,
+        spacing = 20,
+        background = null,
+        introBackground = null,
+        introButton = null,
+        nextButton = null,
+        header = null,
+        footer = null,
+        current = true,
+        active = true,
+        transitions = null,
+        transitionStagger = 100,
+        type = null,
+        className = null,
+    },
+) {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
@@ -669,6 +671,6 @@ const QuizMultipleScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default QuizMultipleScreen;

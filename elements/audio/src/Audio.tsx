@@ -46,32 +46,34 @@ interface AudioProps {
     onPlayError?: (...args: unknown[]) => void;
 }
 
-const Audio = ({
-    media = null,
-    mediaRef = null,
-    muted = false,
-    autoPlay = false,
-    paused = false,
-    loop = false,
-    preload = 'auto',
-    shouldLoad = true,
-    waveFake = false,
-    withWave = false,
-    autoWaveHeight = false,
-    updateInterval = 1000,
-    className = null,
-    withoutSeek = false,
-    onReady = null,
-    onPlay = null,
-    onPause = null,
-    onEnded = null,
-    onSeeked = null,
-    onTimeUpdate = null,
-    onProgressStep = null,
-    onDurationChange: customOnDurationChange = null,
-    onVolumeChange: customOnVolumeChange = null,
-    onPlayError = null,
-}) => {
+function Audio(
+    {
+        media = null,
+        mediaRef = null,
+        muted = false,
+        autoPlay = false,
+        paused = false,
+        loop = false,
+        preload = 'auto',
+        shouldLoad = true,
+        waveFake = false,
+        withWave = false,
+        autoWaveHeight = false,
+        updateInterval = 1000,
+        className = null,
+        withoutSeek = false,
+        onReady = null,
+        onPlay = null,
+        onPause = null,
+        onEnded = null,
+        onSeeked = null,
+        onTimeUpdate = null,
+        onProgressStep = null,
+        onDurationChange: customOnDurationChange = null,
+        onVolumeChange: customOnVolumeChange = null,
+        onPlayError = null,
+    },
+) {
     const { url = null, files = null } = media || {};
     const srcUrl = useMemo(() => {
         if (files) {
@@ -231,6 +233,6 @@ const Audio = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default React.forwardRef((props, ref) => <Audio mediaRef={ref} {...props} />);

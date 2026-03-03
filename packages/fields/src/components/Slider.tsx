@@ -54,21 +54,23 @@ interface SliderFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const SliderField = ({
-    value = null,
-    min = 0,
-    max = 100,
-    marks = undefined,
-    marksStep = null,
-    marksCount = null,
-    marksStyle = {
-        fontSize: 8,
+function SliderField(
+    {
+        value = null,
+        min = 0,
+        max = 100,
+        marks = undefined,
+        marksStep = null,
+        marksCount = null,
+        marksStyle = {
+            fontSize: 8,
+        },
+        unit = null,
+        withInput = false,
+        className = null,
+        onChange = null,
     },
-    unit = null,
-    withInput = false,
-    className = null,
-    onChange = null,
-}) => {
+) {
     const customOnChange = useCallback(
         (val) => {
             if (onChange !== null) {
@@ -132,6 +134,6 @@ const SliderField = ({
             )}
         </div>
     );
-};
+}
 
 export default SliderField;

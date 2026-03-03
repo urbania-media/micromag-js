@@ -48,21 +48,23 @@ interface UrbaniaArticleCardProps {
     className?: string;
 }
 
-const UrbaniaArticleCard = ({
-    hasArticle = false,
-    url = null,
-    title = null,
-    author = null,
-    text = null,
-    image = null,
-    header = null,
-    background = null,
-    callToAction = null,
-    current = true,
-    preload = true,
-    spacing = 20,
-    className = null,
-}) => {
+function UrbaniaArticleCard(
+    {
+        hasArticle = false,
+        url = null,
+        title = null,
+        author = null,
+        text = null,
+        image = null,
+        header = null,
+        background = null,
+        callToAction = null,
+        current = true,
+        preload = true,
+        spacing = 20,
+        className = null,
+    },
+) {
     const intl = useIntl();
 
     const finalBackground =
@@ -372,6 +374,6 @@ const UrbaniaArticleCard = ({
             </Container>
         </div>
     );
-};
+}
 
 export default UrbaniaArticleCard;

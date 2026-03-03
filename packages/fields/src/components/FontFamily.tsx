@@ -33,15 +33,17 @@ interface FontFamilyProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-const FontFamily = ({
-    value = null,
-    onChange = null,
-    closeForm = null,
-    maxFontsVisible = 10,
-    isForm = false,
-    canClear = true,
-    ...props
-}) => {
+function FontFamily(
+    {
+        value = null,
+        onChange = null,
+        closeForm = null,
+        maxFontsVisible = 10,
+        isForm = false,
+        canClear = true,
+        ...props
+    },
+) {
     const intl = useIntl();
     const { systemFonts, googleFonts, customFonts } = useFonts();
     const valueName = value !== null && isObject(value) ? value.name || null : value;
@@ -242,7 +244,7 @@ const FontFamily = ({
             ) : null}
         </FieldWithForm>
     );
-};
+}
 
 FontFamily.withForm = true;
 

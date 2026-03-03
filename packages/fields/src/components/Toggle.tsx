@@ -12,7 +12,7 @@ interface ToggleFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const ToggleField = ({ value = null, defaultValue = null, className = null, onChange = null }) => {
+function ToggleField({ value = null, defaultValue = null, className = null, onChange = null }) {
     const finalValue =
         value === null && (defaultValue === true || defaultValue === 'true') ? true : value;
     return (
@@ -27,7 +27,7 @@ const ToggleField = ({ value = null, defaultValue = null, className = null, onCh
             <Switch checked={finalValue !== null ? finalValue : false} onChange={onChange} />
         </div>
     );
-};
+}
 
 ToggleField.isHorizontal = true;
 

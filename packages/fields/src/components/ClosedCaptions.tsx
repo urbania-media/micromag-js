@@ -9,21 +9,25 @@ interface ClosedCaptionFieldProps {
     value?: ClosedCaptionsMedia;
 }
 
-const ClosedCaptionField = (
+function ClosedCaptionField(
     {
         value: value = null,
         ...props
     },
-) => (<MediaField
-    noValueLabel={
-        <FormattedMessage
-            defaultMessage="Select a closed captions file..."
-            description="Label when no value is provided to Closed captions field"
+) {
+    return (
+        <MediaField
+            noValueLabel={
+                <FormattedMessage
+                    defaultMessage="Select a closed captions file..."
+                    description="Label when no value is provided to Closed captions field"
+                />
+            }
+            {...props}
+            type="subtitle"
         />
-    }
-    {...props}
-    type="subtitle"
-/>);
+    );
+}
 
 ClosedCaptionField.withForm = true;
 

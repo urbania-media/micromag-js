@@ -99,22 +99,24 @@ interface ViewerProviderProps {
     enableInteraction?: (...args: unknown[]) => void;
 }
 
-export const ViewerProvider = ({
-    children,
-    containerRef,
-    events = new EventEmitter(),
-    menuVisible = false,
-    menuOverScreen = false,
-    width,
-    height,
-    topHeight = 0,
-    bottomHeight = 0,
-    bottomSidesWidth = 0,
-    gotoNextScreen = () => {},
-    gotoPreviousScreen = () => {},
-    disableInteraction = () => {},
-    enableInteraction = () => {},
-}) => {
+export function ViewerProvider(
+    {
+        children,
+        containerRef,
+        events = new EventEmitter(),
+        menuVisible = false,
+        menuOverScreen = false,
+        width,
+        height,
+        topHeight = 0,
+        bottomHeight = 0,
+        bottomSidesWidth = 0,
+        gotoNextScreen = () => {},
+        gotoPreviousScreen = () => {},
+        disableInteraction = () => {},
+        enableInteraction = () => {},
+    },
+) {
     const [webView, setWebView] = useState(null);
 
     const value = useMemo(
@@ -154,5 +156,5 @@ export const ViewerProvider = ({
         ],
     );
     return <ViewerContext.Provider value={value}>{children}</ViewerContext.Provider>;
-};
+}
 

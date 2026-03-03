@@ -22,6 +22,10 @@ const style = {
     },
 };
 
-export const Default = () => <Button>Button</Button>;
+export function Default() {
+    return <Button>Button</Button>;
+}
 
-export const WithStyle = () => <Button {...style}>Button</Button>;
+export function WithStyle() {
+    return <Button {...style}>Button</Button>;
+}

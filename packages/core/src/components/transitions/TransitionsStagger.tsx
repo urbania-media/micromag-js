@@ -11,15 +11,17 @@ interface TransitionsStaggerProps {
     children?: React.ReactNode;
 }
 
-const TransitionsStagger = ({
-    transitions = null,
-    stagger = 0,
-    playing = false,
-    disabled = false,
-    delay = 0,
-    fullscreen = false,
-    children = null,
-}) => {
+function TransitionsStagger(
+    {
+        transitions = null,
+        stagger = 0,
+        playing = false,
+        disabled = false,
+        delay = 0,
+        fullscreen = false,
+        children = null,
+    },
+) {
     let validIndex = 0;
     const elements = React.Children.map(children, (child) => {
         if (!child) {
@@ -48,5 +50,6 @@ const TransitionsStagger = ({
     });
 
     return elements;
-};
+}
+
 export default TransitionsStagger;

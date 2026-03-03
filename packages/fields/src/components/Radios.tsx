@@ -21,17 +21,19 @@ interface RadiosProps {
     uncheckable?: boolean;
 }
 
-const Radios = ({
-    name = null,
-    value = null,
-    options = [],
-    withBackground = false,
-    className = null,
-    buttonClassName = null,
-    activeClassName = null,
-    onChange = null,
-    uncheckable = false,
-}) => {
+function Radios(
+    {
+        name = null,
+        value = null,
+        options = [],
+        withBackground = false,
+        className = null,
+        buttonClassName = null,
+        activeClassName = null,
+        onChange = null,
+        uncheckable = false,
+    },
+) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
 
     return (
@@ -83,6 +85,6 @@ const Radios = ({
             ))}
         </div>
     );
-};
+}
 
 export default Radios;

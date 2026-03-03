@@ -8,16 +8,18 @@ import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/video-360.module.css';
 
-export const Video360 = ({ width, height, className }) => (
-    <PlaceholderBlock
-        width={width}
-        height={height}
-        className={classNames([styles.container, { [className]: className !== null }])}
-        boxClassName={styles.box}
-    >
-        <FontAwesomeIcon icon={faVideo} className={styles.icon} />
-        <div className={styles.label}>360</div>
-    </PlaceholderBlock>
-);
+export function Video360({ width, height, className }) {
+    return (
+        <PlaceholderBlock
+            width={width}
+            height={height}
+            className={classNames([styles.container, { [className]: className !== null }])}
+            boxClassName={styles.box}
+        >
+            <FontAwesomeIcon icon={faVideo} className={styles.icon} />
+            <div className={styles.label}>360</div>
+        </PlaceholderBlock>
+    );
+}
 
 export default Video360;

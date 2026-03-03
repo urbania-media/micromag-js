@@ -32,25 +32,27 @@ interface ConversationMessageProps {
     audioEventsChannelName?: string;
 }
 
-const ConversationMessage = ({
-    message = null,
-    messageId = null,
-    previousMessage = null,
-    nextMessage = null,
-    nextAudioMessageId = null,
-    nextMessageState = null,
-    currentSpeaker = null,
-    conversationTiming = null,
-    typingTiming = null,
-    onChange = null,
-    withAnimation = false,
-    active = false,
-    isPlaying = false,
-    messageStyle = null,
-    speakerStyle = null,
-    className = null,
-    audioEventsChannelName = null,
-}) => {
+function ConversationMessage(
+    {
+        message = null,
+        messageId = null,
+        previousMessage = null,
+        nextMessage = null,
+        nextAudioMessageId = null,
+        nextMessageState = null,
+        currentSpeaker = null,
+        conversationTiming = null,
+        typingTiming = null,
+        onChange = null,
+        withAnimation = false,
+        active = false,
+        isPlaying = false,
+        messageStyle = null,
+        speakerStyle = null,
+        className = null,
+        audioEventsChannelName = null,
+    },
+) {
     const { message: messageBody, image = null, audio, putAudioBeforeText } = message || {};
     const {
         avatar = null,
@@ -206,6 +208,6 @@ const ConversationMessage = ({
             )}
         </div>
     ) : null;
-};
+}
 
 export default ConversationMessage;

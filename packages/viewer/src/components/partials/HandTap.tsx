@@ -10,18 +10,20 @@ interface HandTapProps {
     className?: string;
 }
 
-const HandTap = ({ withoutShadow = false, className = null }) => (
-    <div
-        className={classNames([
-            styles.container,
-            { [styles.withoutShadow]: withoutShadow, [className]: className !== null },
-        ])}
-    >
-        <div className={styles.inner}>
-            <div className={styles.circle} />
-            <HandIcon className={styles.hand} />
+function HandTap({ withoutShadow = false, className = null }) {
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                { [styles.withoutShadow]: withoutShadow, [className]: className !== null },
+            ])}
+        >
+            <div className={styles.inner}>
+                <div className={styles.circle} />
+                <HandIcon className={styles.hand} />
+            </div>
         </div>
-    </div>
-);
+    );
+}
 
 export default HandTap;

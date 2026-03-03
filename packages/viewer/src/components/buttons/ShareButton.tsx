@@ -9,7 +9,7 @@ interface ShareButtonProps {
     className?: string;
 }
 
-const ShareButton = ({ className = null, ...props }) => {
+function ShareButton({ className = null, ...props }) {
     const intl = useIntl();
 
     return (
@@ -49,6 +49,6 @@ const ShareButton = ({ className = null, ...props }) => {
             {...props}
         />
     );
-};
+}
 
 export default ShareButton;

@@ -17,7 +17,9 @@ interface ConversationProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const Conversation = ({ value = null, fields = null, name, className = null, onChange = null, ...props }) => {
+function Conversation(
+    { value = null, fields = null, name, className = null, onChange = null, ...props },
+) {
     const { speakers = null } = value || {};
 
     const speakerOptions = (speakers || []).map(
@@ -41,6 +43,6 @@ const Conversation = ({ value = null, fields = null, name, className = null, onC
             </FieldContextProvider>
         </div>
     );
-};
+}
 
 export default Conversation;

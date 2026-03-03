@@ -10,9 +10,9 @@ interface LabelProps {
     values?: Record<string, unknown>;
 }
 
-const Label = ({ children, isHtml = false, values = {} }) => {
+function Label({ children, isHtml = false, values = {} }) {
     const Message = isHtml ? FormattedMessage : FormattedMessage;
     return isMessage(children) ? <Message values={values} {...children} /> : children;
-};
+}
 
 export default Label;

@@ -12,7 +12,9 @@ interface BorderStyleProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const BorderStyle = ({ types = ['solid', 'dotted', 'dashed'], value = null, className = null, onChange = null }) => {
+function BorderStyle(
+    { types = ['solid', 'dotted', 'dashed'], value = null, className = null, onChange = null },
+) {
     const onBorderStyleChange = (newVal) => {
         const v = newVal === value ? null : newVal;
         onChange(v);
@@ -55,6 +57,6 @@ const BorderStyle = ({ types = ['solid', 'dotted', 'dashed'], value = null, clas
             </div>
         </div>
     );
-};
+}
 
 export default BorderStyle;

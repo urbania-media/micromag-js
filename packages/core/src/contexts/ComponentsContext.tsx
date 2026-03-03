@@ -106,7 +106,9 @@ interface ComponentsProviderProps {
     components?: Record<string, Record<string, unknown> | ((...args: unknown[]) => void)>;
 }
 
-export const ComponentsProvider = ({ components = emptyComponents, manager = null, namespace = null, children }) => {
+export function ComponentsProvider(
+    { components = emptyComponents, manager = null, namespace = null, children },
+) {
     const previousManager = useComponentsManager() || null;
     const finalManager = useMemo(
         () =>
@@ -118,5 +120,5 @@ export const ComponentsProvider = ({ components = emptyComponents, manager = nul
         [previousManager, manager, components, namespace],
     );
     return <ComponentsContext.Provider value={finalManager}>{children}</ComponentsContext.Provider>;
-};
+}
 

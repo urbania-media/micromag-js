@@ -66,28 +66,30 @@ interface ContributionScreenProps {
     className?: string;
 }
 
-const ContributionScreen = ({
-    id = null,
-    layout = 'middle',
-    title = null,
-    name = null,
-    message = null,
-    submit = null,
-    nameStyle = null,
-    messageStyle = null,
-    settings = null,
-    spacing = 20,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    preload = true,
-    transitions = null,
-    transitionStagger = 100,
-    resizeTransitionDuration = 750,
-    type = null,
-    className = null,
-}) => {
+function ContributionScreen(
+    {
+        id = null,
+        layout = 'middle',
+        title = null,
+        name = null,
+        message = null,
+        submit = null,
+        nameStyle = null,
+        messageStyle = null,
+        settings = null,
+        spacing = 20,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        preload = true,
+        transitions = null,
+        transitionStagger = 100,
+        resizeTransitionDuration = 750,
+        type = null,
+        className = null,
+    },
+) {
     const intl = useIntl();
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -599,6 +601,6 @@ const ContributionScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default ContributionScreen;

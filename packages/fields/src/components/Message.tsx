@@ -17,19 +17,21 @@ interface MessageFieldProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-const MessageField = ({
-    type = null,
-    value = null,
-    fields = null,
-    noValueLabel = (<FormattedMessage
-        defaultMessage="Edit content..."
-        description="Label when no value is provided to Field with form"
-    />),
-    withoutThumbnail = false,
-    onChange = null,
-    closeForm = null,
-    ...props
-}) => {
+function MessageField(
+    {
+        type = null,
+        value = null,
+        fields = null,
+        noValueLabel = (<FormattedMessage
+            defaultMessage="Edit content..."
+            description="Label when no value is provided to Field with form"
+        />),
+        withoutThumbnail = false,
+        onChange = null,
+        closeForm = null,
+        ...props
+    },
+) {
     const context = useFieldContext();
     const { options } = context || {};
 
@@ -48,7 +50,7 @@ const MessageField = ({
             {...props}
         />
     );
-};
+}
 
 MessageField.withForm = true;
 

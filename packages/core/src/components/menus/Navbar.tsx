@@ -22,22 +22,24 @@ interface NavbarProps {
     collapseClassName?: string;
 }
 
-const Navbar = ({
-    brand = null,
-    brandLink = null,
-    breadcrumbs = null,
-    theme = null,
-    size = 'md',
-    compact = false,
-    noWrap = false,
-    withoutCollapse = false,
-    withoutCollapseToggle = false,
-    children = null,
-    className = null,
-    brandClassName = null,
-    breadCrumbsClassName = null,
-    collapseClassName = null,
-}) => {
+function Navbar(
+    {
+        brand = null,
+        brandLink = null,
+        breadcrumbs = null,
+        theme = null,
+        size = 'md',
+        compact = false,
+        noWrap = false,
+        withoutCollapse = false,
+        withoutCollapseToggle = false,
+        children = null,
+        className = null,
+        brandClassName = null,
+        breadCrumbsClassName = null,
+        collapseClassName = null,
+    },
+) {
     const [menuVisible, setMenuVisible] = useState(false);
     const onClickMenu = useCallback(
         () => setMenuVisible(!menuVisible),
@@ -140,6 +142,6 @@ const Navbar = ({
             </div>
         </nav>
     );
-};
+}
 
 export default Navbar;

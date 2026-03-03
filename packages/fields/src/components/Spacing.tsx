@@ -9,10 +9,12 @@ interface SpacingProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const Spacing = ({ value = null, className = null, onChange = null, ...props }) => (
-    <InputGroup className={className} append="px">
-        <Number value={value} min={0} max={20} onChange={onChange} {...props} />
-    </InputGroup>
-);
+function Spacing({ value = null, className = null, onChange = null, ...props }) {
+    return (
+        <InputGroup className={className} append="px">
+            <Number value={value} min={0} max={20} onChange={onChange} {...props} />
+        </InputGroup>
+    );
+}
 
 export default Spacing;

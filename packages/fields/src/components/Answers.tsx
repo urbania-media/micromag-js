@@ -10,26 +10,30 @@ interface AnswersFieldProps {
     value?: Answer[];
 }
 
-const AnswersField = (
+function AnswersField(
     {
         value: value = null,
         ...props
     },
-) => (<ItemsField
-    noItemLabel={
-        <FormattedMessage
-            defaultMessage="No answer..."
-            description="Label when there is no item in answers field"
+) {
+    return (
+        <ItemsField
+            noItemLabel={
+                <FormattedMessage
+                    defaultMessage="No answer..."
+                    description="Label when there is no item in answers field"
+                />
+            }
+            addItemLabel={
+                <FormattedMessage
+                    defaultMessage="Add an answer"
+                    description="Button label in answers field"
+                />
+            }
+            itemComponent={AnswerField}
+            {...props}
         />
-    }
-    addItemLabel={
-        <FormattedMessage
-            defaultMessage="Add an answer"
-            description="Button label in answers field"
-        />
-    }
-    itemComponent={AnswerField}
-    {...props}
-/>);
+    );
+}
 
 export default AnswersField;

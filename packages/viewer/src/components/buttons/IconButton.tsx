@@ -11,23 +11,25 @@ interface IconButtonProps {
     className?: string;
 }
 
-const IconButton = ({ iconClassName = null, className = null, ...props }) => (
-    <Button
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        labelClassName={styles.label}
-        iconClassName={classNames([
-            styles.icon,
-            {
-                [iconClassName]: iconClassName !== null,
-            },
-        ])}
-        {...props}
-    />
-);
+function IconButton({ iconClassName = null, className = null, ...props }) {
+    return (
+        <Button
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            labelClassName={styles.label}
+            iconClassName={classNames([
+                styles.icon,
+                {
+                    [iconClassName]: iconClassName !== null,
+                },
+            ])}
+            {...props}
+        />
+    );
+}
 
 export default IconButton;

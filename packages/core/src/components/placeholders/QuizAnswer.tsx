@@ -10,23 +10,25 @@ import PlaceholderText from '../partials/PlaceholderText';
 
 import styles from '../../styles/placeholders/quiz-answer.module.css';
 
-export const Answer = ({ width = '75%', height = '0.3em', className, good = true }) => (
-    <div
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.good]: good,
-            },
-        ])}
-    >
-        <div className={styles.answer}>
-            <FontAwesomeIcon className={styles.answerIcon} icon={good ? faCheck : faTimes} />
+export function Answer({ width = '75%', height = '0.3em', className, good = true }) {
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.good]: good,
+                },
+            ])}
+        >
+            <div className={styles.answer}>
+                <FontAwesomeIcon className={styles.answerIcon} icon={good ? faCheck : faTimes} />
+            </div>
+            <PlaceholderBlock outline width={width} height={height} className={styles.block}>
+                <PlaceholderText line={1} height="0.2em" />
+            </PlaceholderBlock>
         </div>
-        <PlaceholderBlock outline width={width} height={height} className={styles.block}>
-            <PlaceholderText line={1} height="0.2em" />
-        </PlaceholderBlock>
-    </div>
-);
+    );
+}
 
 export default Answer;

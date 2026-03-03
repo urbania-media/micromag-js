@@ -17,15 +17,17 @@ interface SettingsFormProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const SettingsForm = ({
-    name = null,
-    field = null,
-    value = null,
-    className = null,
-    gotoFieldForm,
-    closeFieldForm,
-    onChange = null,
-}) => {
+function SettingsForm(
+    {
+        name = null,
+        field = null,
+        value = null,
+        className = null,
+        gotoFieldForm,
+        closeFieldForm,
+        onChange = null,
+    },
+) {
     if (field === null) return false;
 
     const { type = null, fieldsProps = null } = field || {};
@@ -74,6 +76,6 @@ const SettingsForm = ({
             </div>
         </div>
     );
-};
+}
 
 export default SettingsForm;

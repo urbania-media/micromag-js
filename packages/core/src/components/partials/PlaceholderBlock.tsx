@@ -13,40 +13,44 @@ interface PlaceholderBlockProps {
     withInvertedColors?: boolean;
 }
 
-const PlaceholderBlock = ({
-    width = '100%',
-    height = '3em',
-    outline = false,
-    className = null,
-    boxClassName = null,
-    withInvertedColors = true,
-    children = null,
-}) => (
-    <div
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.outline]: outline,
-                [styles.withInvertedColors]: withInvertedColors,
-            },
-        ])}
-    >
+function PlaceholderBlock(
+    {
+        width = '100%',
+        height = '3em',
+        outline = false,
+        className = null,
+        boxClassName = null,
+        withInvertedColors = true,
+        children = null,
+    },
+) {
+    return (
         <div
             className={classNames([
-                styles.box,
+                styles.container,
                 {
-                    [boxClassName]: boxClassName !== null,
+                    [className]: className !== null,
+                    [styles.outline]: outline,
+                    [styles.withInvertedColors]: withInvertedColors,
                 },
             ])}
-            style={{
-                width,
-                height,
-            }}
         >
-            {children}
+            <div
+                className={classNames([
+                    styles.box,
+                    {
+                        [boxClassName]: boxClassName !== null,
+                    },
+                ])}
+                style={{
+                    width,
+                    height,
+                }}
+            >
+                {children}
+            </div>
         </div>
-    </div>
-);
+    );
+}
 
 export default PlaceholderBlock;

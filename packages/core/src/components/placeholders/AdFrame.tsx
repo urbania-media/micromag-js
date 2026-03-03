@@ -7,10 +7,12 @@ import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/placeholders.module.css';
 
-export const AdFrame = ({ width, height, className }) => (
-    <PlaceholderBlock width={width} height={height} className={className}>
-        <FontAwesomeIcon icon={faAd} className={styles.icon} />
-    </PlaceholderBlock>
-);
+export function AdFrame({ width, height, className }) {
+    return (
+        <PlaceholderBlock width={width} height={height} className={className}>
+            <FontAwesomeIcon icon={faAd} className={styles.icon} />
+        </PlaceholderBlock>
+    );
+}
 
 export default AdFrame;

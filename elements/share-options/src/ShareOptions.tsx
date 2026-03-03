@@ -48,22 +48,24 @@ interface ShareOptionsProps {
     focusable?: boolean;
 }
 
-const ShareOptions = ({
-    className = null,
-    itemClassName = null,
-    labelClassName = null,
-    buttonClassName = null,
-    title = null,
-    url = null,
-    options = null,
-    buttonsStyle = null,
-    buttonsTextStyle = null,
-    iconSize = 45,
-    theme = null,
-    onShare = null,
-    onClose = null,
-    focusable = true,
-}) => {
+function ShareOptions(
+    {
+        className = null,
+        itemClassName = null,
+        labelClassName = null,
+        buttonClassName = null,
+        title = null,
+        url = null,
+        options = null,
+        buttonsStyle = null,
+        buttonsTextStyle = null,
+        iconSize = 45,
+        theme = null,
+        onShare = null,
+        onClose = null,
+        focusable = true,
+    },
+) {
     const { menuTheme = null } = theme || {};
     const { colors = null } = menuTheme || {};
     const { primary: brandPrimaryColor = null } = colors || {};
@@ -390,6 +392,6 @@ const ShareOptions = ({
             </div>
         </div>
     );
-};
+}
 
 export default ShareOptions;

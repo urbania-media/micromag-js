@@ -30,23 +30,25 @@ interface ScreensMenuProps {
     onOrderChange?: (...args: unknown[]) => void;
 }
 
-const ScreensMenu = ({
-    items = [],
-    withPreview = false,
-    withPlaceholder = false,
-    withName = false,
-    settings = null,
-    isVertical = false,
-    noWrap = false,
-    className = null,
-    itemClassName = null,
-    buttonClassName = null,
-    settingsClassName = null,
-    sortable = false,
-    isTree = false,
-    onClickItem = null,
-    onOrderChange = null,
-}) => {
+function ScreensMenu(
+    {
+        items = [],
+        withPreview = false,
+        withPlaceholder = false,
+        withName = false,
+        settings = null,
+        isVertical = false,
+        noWrap = false,
+        className = null,
+        itemClassName = null,
+        buttonClassName = null,
+        settingsClassName = null,
+        sortable = false,
+        isTree = false,
+        onClickItem = null,
+        onOrderChange = null,
+    },
+) {
     const itemsElements = !isTree
         ? items.map(
               (
@@ -158,6 +160,6 @@ const ScreensMenu = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default ScreensMenu;

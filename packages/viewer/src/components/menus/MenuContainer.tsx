@@ -14,7 +14,9 @@ interface ViewerMenuContainerProps {
     children?: React.ReactNode;
 }
 
-const ViewerMenuContainer = ({ className = null, progressSpring = null, theme: viewerTheme = null, children = null }) => {
+function ViewerMenuContainer(
+    { className = null, progressSpring = null, theme: viewerTheme = null, children = null },
+) {
     const { background = null } = viewerTheme || {};
     const { color: brandBackgroundColor = null } = background || {};
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
@@ -49,5 +51,6 @@ const ViewerMenuContainer = ({ className = null, progressSpring = null, theme: v
             />
         </div>
     );
-};
+}
+
 export default ViewerMenuContainer;

@@ -14,7 +14,9 @@ interface ButtonLayoutProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const ButtonLayout = ({ types = ['label-bottom', 'label-top', 'no-label', 'label-over'], value = null, className = null, onChange = null }) => {
+function ButtonLayout(
+    { types = ['label-bottom', 'label-top', 'no-label', 'label-over'], value = null, className = null, onChange = null },
+) {
     const onButtonLayoutChange = (newVal) => {
         const v = newVal === value ? null : newVal;
         onChange(v);
@@ -96,6 +98,6 @@ const ButtonLayout = ({ types = ['label-bottom', 'label-top', 'no-label', 'label
             </div>
         </div>
     );
-};
+}
 
 export default ButtonLayout;

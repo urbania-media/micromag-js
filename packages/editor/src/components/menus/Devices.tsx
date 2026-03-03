@@ -12,29 +12,31 @@ interface DevicesMenuProps {
     onClickItem?: (...args: unknown[]) => void;
 }
 
-const DevicesMenu = ({ items = [], className = null, onClickItem = null }) => (
-    <Tabs
-        items={items}
-        theme="outline-secondary"
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        renderItemButton={(item, index, props) => {
-            const { id, ...itemProps } = item;
-            return (
-                <DeviceButton
-                    device={id}
-                    {...props}
-                    {...itemProps}
-                    className={styles.button}
-                    onClick={(e) => (onClickItem !== null ? onClickItem(e, item, index) : null)}
-                />
-            );
-        }}
-    />
-);
+function DevicesMenu({ items = [], className = null, onClickItem = null }) {
+    return (
+        <Tabs
+            items={items}
+            theme="outline-secondary"
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            renderItemButton={(item, index, props) => {
+                const { id, ...itemProps } = item;
+                return (
+                    <DeviceButton
+                        device={id}
+                        {...props}
+                        {...itemProps}
+                        className={styles.button}
+                        onClick={(e) => (onClickItem !== null ? onClickItem(e, item, index) : null)}
+                    />
+                );
+            }}
+        />
+    );
+}
 
 export default DevicesMenu;

@@ -12,21 +12,25 @@ interface BorderWidthProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const BorderWidth = ({ value = null, sizes = [1, 2, 4, 8, 10, 14, 20], className = null, onChange = null }) => (
-    <Slider
-        value={value}
-        min={sizes[0]}
-        max={sizes[sizes.length - 1]}
-        marks={sizes}
-        withInput
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        onChange={onChange}
-    />
-);
+function BorderWidth(
+    { value = null, sizes = [1, 2, 4, 8, 10, 14, 20], className = null, onChange = null },
+) {
+    return (
+        <Slider
+            value={value}
+            min={sizes[0]}
+            max={sizes[sizes.length - 1]}
+            marks={sizes}
+            withInput
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            onChange={onChange}
+        />
+    );
+}
 
 export default BorderWidth;

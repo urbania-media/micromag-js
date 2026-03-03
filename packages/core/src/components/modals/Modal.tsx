@@ -15,7 +15,7 @@ interface ModalProps {
     children?: React.ReactNode;
 }
 
-const Modal = ({ id = null, children = null, position = 'center', title = null }) => {
+function Modal({ id = null, children = null, position = 'center', title = null }) {
     const finalId = useMemo(() => id || getDisplayName(children.type), [id, children.type]);
     const data = useMemo(
         () => ({
@@ -37,6 +37,6 @@ const Modal = ({ id = null, children = null, position = 'center', title = null }
             </div>
         </Portal>
     );
-};
+}
 
 export default Modal;

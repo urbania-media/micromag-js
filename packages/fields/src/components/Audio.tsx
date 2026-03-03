@@ -8,21 +8,25 @@ interface AudioFieldProps {
     value?: AudioMedia;
 }
 
-const AudioField = (
+function AudioField(
     {
         value: value = null,
         ...props
     },
-) => (<MediaField
-    noValueLabel={
-        <FormattedMessage
-            defaultMessage="Select an audio file..."
-            description="Label when no value is provided to Audio field"
+) {
+    return (
+        <MediaField
+            noValueLabel={
+                <FormattedMessage
+                    defaultMessage="Select an audio file..."
+                    description="Label when no value is provided to Audio field"
+                />
+            }
+            {...props}
+            type="audio"
         />
-    }
-    {...props}
-    type="audio"
-/>);
+    );
+}
 
 AudioField.withForm = true;
 

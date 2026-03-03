@@ -13,7 +13,9 @@ interface FontStylesProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const FontStyles = ({ value = null, fontStyleName = 'fontStyle', alignName = 'align', className = null, onChange = null }) => {
+function FontStyles(
+    { value = null, fontStyleName = 'fontStyle', alignName = 'align', className = null, onChange = null },
+) {
     const fontStyleValue = value !== null ? value[fontStyleName] || null : null;
     const alignValue = value !== null ? value[alignName] || null : null;
     const onFontStyleChange = useCallback(
@@ -54,6 +56,6 @@ const FontStyles = ({ value = null, fontStyleName = 'fontStyle', alignName = 'al
             <TextAlign className={styles.item} buttonClassName={styles.button} value={alignValue} onChange={onAlignChange} />
         </div>
     );
-};
+}
 
 export default FontStyles;

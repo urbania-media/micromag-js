@@ -9,14 +9,16 @@ interface DuplicateButtonProps {
     className?: string;
 }
 
-const DuplicateButton = ({ className = null, ...props }) => (
-    <Button
-        className={className}
-        theme="secondary"
-        size="sm"
-        icon={<FontAwesomeIcon icon={faClone} />}
-        {...props}
-    />
-);
+function DuplicateButton({ className = null, ...props }) {
+    return (
+        <Button
+            className={className}
+            theme="secondary"
+            size="sm"
+            icon={<FontAwesomeIcon icon={faClone} />}
+            {...props}
+        />
+    );
+}
 
 export default DuplicateButton;

@@ -10,10 +10,12 @@ interface DropdownButtonProps {
     className?: string;
 }
 
-const DropdownButton = ({ dropdownItems = [
-    { id: 'rename', label: 'Renommer', onClick: null },
-    { id: 'delete', label: 'Supprimer', onClick: null },
-], className = null }) => {
+function DropdownButton(
+    { dropdownItems = [
+        { id: 'rename', label: 'Renommer', onClick: null },
+        { id: 'delete', label: 'Supprimer', onClick: null },
+    ], className = null },
+) {
     const [opened, setOpened] = useState(false);
 
     const onOpen = useCallback(() => setOpened(!opened));
@@ -74,6 +76,6 @@ const DropdownButton = ({ dropdownItems = [
             </div>
         </div>
     );
-};
+}
 
 export default DropdownButton;

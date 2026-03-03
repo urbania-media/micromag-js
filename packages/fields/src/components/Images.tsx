@@ -10,26 +10,30 @@ interface ImagesFieldProps {
     value?: ImageMedia[];
 }
 
-const ImagesField = (
+function ImagesField(
     {
         value: value = null,
         ...props
     },
-) => (<ItemsField
-    noItemLabel={
-        <FormattedMessage
-            defaultMessage="No image..."
-            description="Label when there is no item in images field"
+) {
+    return (
+        <ItemsField
+            noItemLabel={
+                <FormattedMessage
+                    defaultMessage="No image..."
+                    description="Label when there is no item in images field"
+                />
+            }
+            addItemLabel={
+                <FormattedMessage
+                    defaultMessage="Add an image"
+                    description="Button label in images field"
+                />
+            }
+            itemComponent={ImageField}
+            {...props}
         />
-    }
-    addItemLabel={
-        <FormattedMessage
-            defaultMessage="Add an image"
-            description="Button label in images field"
-        />
-    }
-    itemComponent={ImageField}
-    {...props}
-/>);
+    );
+}
 
 export default ImagesField;

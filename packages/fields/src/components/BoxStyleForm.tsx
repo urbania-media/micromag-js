@@ -20,15 +20,17 @@ interface BoxStyleFormProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-const BoxStyleForm = ({
-    value = null,
-    fields = null,
-    onChange = null,
-    closeForm = null,
-    withAlignment = false,
-    isForm = null,
-    ...props
-}: BoxStyleFormProps) => {
+function BoxStyleForm(
+    {
+        value = null,
+        fields = null,
+        onChange = null,
+        closeForm = null,
+        withAlignment = false,
+        isForm = null,
+        ...props
+    }: BoxStyleFormProps,
+) {
     const previewElement =
         value !== null ? (
             <span className={styles.preview}>
@@ -55,7 +57,7 @@ const BoxStyleForm = ({
             {...props}
         />
     );
-};
+}
 
 BoxStyleForm.withForm = true;
 

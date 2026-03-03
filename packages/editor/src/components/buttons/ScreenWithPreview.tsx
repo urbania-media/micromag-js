@@ -31,22 +31,24 @@ interface ScreenWithPreviewProps {
     className?: string;
 }
 
-const ScreenWithPreview = ({
-    screen = null,
-    screenState = null,
-    index,
-    title = null,
-    href = null,
-    active = false,
-    className = null,
-    onClick = null,
-    onClickItem = null,
-    withName = false,
-    withPlaceholder = false,
-    withIndexIndicator = false,
-    withDeleteButtonOnRepeatables = false,
-    onDeleteButtonClick = null,
-}) => {
+function ScreenWithPreview(
+    {
+        screen = null,
+        screenState = null,
+        index,
+        title = null,
+        href = null,
+        active = false,
+        className = null,
+        onClick = null,
+        onClickItem = null,
+        withName = false,
+        withPlaceholder = false,
+        withIndexIndicator = false,
+        withDeleteButtonOnRepeatables = false,
+        onDeleteButtonClick = null,
+    },
+) {
     const intl = useIntl();
     const { ref, visible } = useIsVisible({ threshold: 0.1 });
 
@@ -96,6 +98,6 @@ const ScreenWithPreview = ({
             </ScreenButton>
         </div>
     );
-};
+}
 
 export default ScreenWithPreview;

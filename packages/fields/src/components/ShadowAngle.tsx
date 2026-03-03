@@ -13,7 +13,9 @@ interface ShadowAngleProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const ShadowAngle = ({ types = [45, 90, -45, -90], value = null, className = null, onChange = null }) => {
+function ShadowAngle(
+    { types = [45, 90, -45, -90], value = null, className = null, onChange = null },
+) {
     const onShadowAngleChange = newVal => {
         const v = newVal === value ? null : newVal;
 

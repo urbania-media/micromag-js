@@ -14,7 +14,7 @@ interface CallToActionProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const CallToAction = ({ value = null, className = null, onChange = null, ...props }) => {
+function CallToAction({ value = null, className = null, onChange = null, ...props }) {
     const { active = false } = value || {};
     const intl = useIntl();
 
@@ -63,6 +63,6 @@ const CallToAction = ({ value = null, className = null, onChange = null, ...prop
             onChange={onUpdateValue}
         />
     );
-};
+}
 
 export default CallToAction;

@@ -40,21 +40,23 @@ interface SlideshowScreenProps {
     className?: string;
 }
 
-const SlideshowScreen = ({
-    slides = [],
-    withCaptions = false,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    active = true,
-    preload = true,
-    spacing = 20,
-    transitionDelay = 1,
-    captionMaxLines = 2,
-    transitions = null,
-    className = null,
-}) => {
+function SlideshowScreen(
+    {
+        slides = [],
+        withCaptions = false,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        active = true,
+        preload = true,
+        spacing = 20,
+        transitionDelay = 1,
+        captionMaxLines = 2,
+        transitions = null,
+        className = null,
+    },
+) {
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();
@@ -256,6 +258,6 @@ const SlideshowScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default SlideshowScreen;

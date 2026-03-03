@@ -6,11 +6,13 @@ import React from 'react';
 import styles from '../../styles/placeholders/placeholders.module.css';
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-export const VideoLoop = ({ width, height, className }) => (
-    <PlaceholderBlock width={width} height={height} className={className}>
-        <FontAwesomeIcon icon={faPlay} className={styles.icon} />
-        <FontAwesomeIcon icon={faRedo} className={styles.icon} />
-    </PlaceholderBlock>
-);
+export function VideoLoop({ width, height, className }) {
+    return (
+        <PlaceholderBlock width={width} height={height} className={className}>
+            <FontAwesomeIcon icon={faPlay} className={styles.icon} />
+            <FontAwesomeIcon icon={faRedo} className={styles.icon} />
+        </PlaceholderBlock>
+    );
+}
 
 export default VideoLoop;

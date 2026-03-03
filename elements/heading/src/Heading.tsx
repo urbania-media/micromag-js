@@ -25,16 +25,18 @@ interface HeadingProps {
     headingRef?: Record<string, unknown>;
 }
 
-const Heading = ({
-    size = 1,
-    body = null,
-    textStyle = null,
-    linksStyle = null,
-    margin = null,
-    withoutNonBreakingSpaces = false,
-    className = null,
-    headingRef = null,
-}) => {
+function Heading(
+    {
+        size = 1,
+        body = null,
+        textStyle = null,
+        linksStyle = null,
+        margin = null,
+        withoutNonBreakingSpaces = false,
+        className = null,
+        headingRef = null,
+    },
+) {
     const HeadingComponent = `h${size}`;
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = null;
@@ -83,7 +85,7 @@ const Heading = ({
             />
         </>
     );
-};
+}
 
 // eslint-disable-next-line react/jsx-props-no-spreading
 export default React.forwardRef((props, ref) => <Heading headingRef={ref} {...props} />);

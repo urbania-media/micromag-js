@@ -3,6 +3,8 @@ import React from 'react';
 
 import GalleryFeedScreen from './GalleryFeed';
 
-const GalleryFeedCaptionsScreen = ({ ...props }) => <GalleryFeedScreen {...props} withCaptions />;
+function GalleryFeedCaptionsScreen({ ...props }) {
+  return <GalleryFeedScreen {...props} withCaptions />;
+}
 
 export default GalleryFeedCaptionsScreen;

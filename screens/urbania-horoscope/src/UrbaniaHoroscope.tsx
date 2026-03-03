@@ -75,22 +75,24 @@ interface UrbaniaHoroscopeProps {
     className?: string;
 }
 
-const UrbaniaHoroscope = ({
-    defaultSigns = signsList,
-    signs: signsValue = null,
-    title = null,
-    description = null,
-    author = null,
-    button = null,
-    signSubtitle = null,
-    spacing = 20,
-    background = null,
-    popupBackground = null,
-    current = true,
-    preload = true,
-    type = 'horoscope',
-    className = null,
-}) => {
+function UrbaniaHoroscope(
+    {
+        defaultSigns = signsList,
+        signs: signsValue = null,
+        title = null,
+        description = null,
+        author = null,
+        button = null,
+        signSubtitle = null,
+        spacing = 20,
+        background = null,
+        popupBackground = null,
+        current = true,
+        preload = true,
+        type = 'horoscope',
+        className = null,
+    },
+) {
     const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
     const { enableInteraction, disableInteraction } = useViewerInteraction();
@@ -533,6 +535,6 @@ const UrbaniaHoroscope = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default UrbaniaHoroscope;

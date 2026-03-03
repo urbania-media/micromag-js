@@ -7,6 +7,8 @@ interface QuestionFieldProps {
     [key: string]: unknown;
 }
 
-const QuestionField = props => <Fields isList {...props} />;
+function QuestionField(props) {
+    return <Fields isList {...props} />;
+}
 
 export default QuestionField;

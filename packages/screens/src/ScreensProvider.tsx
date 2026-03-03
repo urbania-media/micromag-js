@@ -7,10 +7,12 @@ interface ScreensProviderProps {
     children: React.ReactNode;
 }
 
-const ScreensProvider = ({ children, ...props }) => (
-    <BaseScreensProvider {...props} manager={manager}>
-        {children}
-    </BaseScreensProvider>
-);
+function ScreensProvider({ children, ...props }) {
+    return (
+        <BaseScreensProvider {...props} manager={manager}>
+            {children}
+        </BaseScreensProvider>
+    );
+}
 
 export default ScreensProvider;

@@ -8,8 +8,8 @@ interface HighlightStyleProps {
     style?: Record<string, string | number>;
 }
 
-const HighlightStyle = ({ selector = null, highlightSelector = 'mark', style = null }) =>
-    style !== null ? (
+function HighlightStyle({ selector = null, highlightSelector = 'mark', style = null }) {
+    return style !== null ? (
         <style
             type="text/css"
             dangerouslySetInnerHTML={{
@@ -19,5 +19,6 @@ const HighlightStyle = ({ selector = null, highlightSelector = 'mark', style = n
             }}
         />
     ) : null;
+}
 
 export default HighlightStyle;

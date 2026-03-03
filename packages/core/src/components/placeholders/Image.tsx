@@ -7,10 +7,12 @@ import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/placeholders.module.css';
 
-export const Image = ({ width, height, className, ...props }) => (
-    <PlaceholderBlock {...props} width={width} height={height} className={className}>
-        <FontAwesomeIcon icon={faImage} className={styles.icon} />
-    </PlaceholderBlock>
-);
+export function Image({ width, height, className, ...props }) {
+    return (
+        <PlaceholderBlock {...props} width={width} height={height} className={className}>
+            <FontAwesomeIcon icon={faImage} className={styles.icon} />
+        </PlaceholderBlock>
+    );
+}
 
 export default Image;

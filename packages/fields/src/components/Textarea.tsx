@@ -13,22 +13,26 @@ interface TextareaFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const TextareaField = ({ id = null, value = null, errors = null, required = false, className = null, onChange = null }) => (
-    <textarea
-        id={id}
-        className={classNames([
-            'form-control',
-            {
-                'is-invalid': errors !== null && errors.length > 0,
-                [className]: className !== null,
-            },
-        ])}
-        value={value || ''}
-        onChange={({ currentTarget: { value: newValue = '' } }) =>
-            onChange !== null ? onChange(!isEmpty(newValue) ? newValue : null) : null
-        }
-        required={required}
-    />
-);
+function TextareaField(
+    { id = null, value = null, errors = null, required = false, className = null, onChange = null },
+) {
+    return (
+        <textarea
+            id={id}
+            className={classNames([
+                'form-control',
+                {
+                    'is-invalid': errors !== null && errors.length > 0,
+                    [className]: className !== null,
+                },
+            ])}
+            value={value || ''}
+            onChange={({ currentTarget: { value: newValue = '' } }) =>
+                onChange !== null ? onChange(!isEmpty(newValue) ? newValue : null) : null
+            }
+            required={required}
+        />
+    );
+}
 
 export default TextareaField;

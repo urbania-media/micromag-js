@@ -35,25 +35,27 @@ interface MapProps {
     focusable?: boolean;
 }
 
-const Map = ({
-    center = null,
-    zoom = null,
-    maxZoom = 16,
-    bounds = null,
-    draggable = true,
-    withoutStyle = false,
-    events = null,
-    fitBounds = false,
-    zoomControl = false,
-    mapTypeControl = false,
-    scaleControl = false,
-    streetViewControl = false,
-    rotateControl = false,
-    fullscreenControl = false,
-    className = null,
-    children = null,
-    focusable = true,
-}) => {
+function Map(
+    {
+        center = null,
+        zoom = null,
+        maxZoom = 16,
+        bounds = null,
+        draggable = true,
+        withoutStyle = false,
+        events = null,
+        fitBounds = false,
+        zoomControl = false,
+        mapTypeControl = false,
+        scaleControl = false,
+        streetViewControl = false,
+        rotateControl = false,
+        fullscreenControl = false,
+        className = null,
+        children = null,
+        focusable = true,
+    },
+) {
     const { map, ref: mapRef } = useGoogleMap({
         zoom,
         maxZoom,
@@ -86,6 +88,6 @@ const Map = ({
             {React.Children.map(children, (child) => React.cloneElement(child, { map }))}
         </div>
     );
-};
+}
 
 export default Map;

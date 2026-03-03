@@ -13,7 +13,7 @@ const badgeProps = {
     label: { body: 'My badge 2032' },
 };
 
-const BadgeContainer = (props = null) => {
+function BadgeContainer(props = null) {
     const { width = 320, height = 480, ...otherProps } = props || {};
     return (
         <div
@@ -32,7 +32,7 @@ const BadgeContainer = (props = null) => {
             <Badge {...otherProps} />
         </div>
     );
-};
+}
 
 export const normal = () => <Badge {...badgeProps} />;
 

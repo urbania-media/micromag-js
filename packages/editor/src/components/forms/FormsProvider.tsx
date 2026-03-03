@@ -8,13 +8,17 @@ interface FormsProviderProps {
     children?: React.ReactNode;
 }
 
-const FormsProvider = ({
-    children = null,
-    ...props
-}: FormsProviderProps) => (
-    <ComponentsProvider namespace={FORMS_NAMESPACE} components={FormsComponents} {...props}>
-        {children}
-    </ComponentsProvider>
-);
+function FormsProvider(
+    {
+        children = null,
+        ...props
+    }: FormsProviderProps,
+) {
+    return (
+        <ComponentsProvider namespace={FORMS_NAMESPACE} components={FormsComponents} {...props}>
+            {children}
+        </ComponentsProvider>
+    );
+}
 
 export default FormsProvider;

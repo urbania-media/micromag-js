@@ -9,23 +9,25 @@ import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/map.module.css';
 
-export const Map = (props) => (
-    <PlaceholderBlock
-        {...props}
-        width="100%"
-        height="100%"
-        className={classNames([
-            styles.container,
-            {
-                [props.className]: props.className !== null,
-            }
-        ])}
-    >
-        <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
-        <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
-        <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
-        <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
-    </PlaceholderBlock>
-);
+export function Map(props) {
+    return (
+        <PlaceholderBlock
+            {...props}
+            width="100%"
+            height="100%"
+            className={classNames([
+                styles.container,
+                {
+                    [props.className]: props.className !== null,
+                }
+            ])}
+        >
+            <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
+            <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
+            <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
+            <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
+        </PlaceholderBlock>
+    );
+}
 
 export default Map;

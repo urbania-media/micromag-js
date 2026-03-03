@@ -14,7 +14,7 @@ interface AnswerFieldProps {
     className?: string;
 }
 
-const AnswerField = ({ value = null, isForm = false, className = null, ...props }) => {
+function AnswerField({ value = null, isForm = false, className = null, ...props }) {
     const { text = null } = value || {};
     return isForm ? (
         <div
@@ -53,6 +53,6 @@ const AnswerField = ({ value = null, isForm = false, className = null, ...props 
             )}
         </div>
     );
-};
+}
 
 export default AnswerField;

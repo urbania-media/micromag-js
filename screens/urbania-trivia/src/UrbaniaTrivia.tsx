@@ -75,19 +75,21 @@ interface UrbaniaTriviaProps {
     className?: string;
 }
 
-const UrbaniaTrivia = ({
-    layout = 'full',
-    title = null,
-    video = null,
-    gotoNextScreenOnEnd = false,
-    background = null,
-    current = true,
-    preload = true,
-    spacing = 20,
-    padding = 20,
-    mediaRef: customMediaRef = null,
-    className = null,
-}) => {
+function UrbaniaTrivia(
+    {
+        layout = 'full',
+        title = null,
+        video = null,
+        gotoNextScreenOnEnd = false,
+        background = null,
+        current = true,
+        preload = true,
+        spacing = 20,
+        padding = 20,
+        mediaRef: customMediaRef = null,
+        className = null,
+    },
+) {
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height, resolution } = useScreenSize();
@@ -483,6 +485,6 @@ const UrbaniaTrivia = ({
             )}
         </div>
     );
-};
+}
 
 export default UrbaniaTrivia;

@@ -17,13 +17,15 @@ interface CallToActionFormProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const CallToActionForm = ({
-    value = null,
-    isForm = false,
-    className = null,
-    onChange = null,
-    ...props
-}: CallToActionFormProps) => {
+function CallToActionForm(
+    {
+        value = null,
+        isForm = false,
+        className = null,
+        onChange = null,
+        ...props
+    }: CallToActionFormProps,
+) {
     // const { active = false } = value || {};
     const intl = useIntl();
 
@@ -88,6 +90,6 @@ const CallToActionForm = ({
             {...props}
         />
     );
-};
+}
 
 export default CallToActionForm;

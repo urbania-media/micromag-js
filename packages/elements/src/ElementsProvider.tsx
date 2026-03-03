@@ -7,11 +7,13 @@ interface ElementsProviderProps {
     children?: React.ReactNode;
 }
 
-const ElementsProvider = (
+function ElementsProvider(
     {
         children: children = null,
         ...props
     },
-) => (<ComponentsProvider namespace={ELEMENTS_NAMESPACE} components={ElementComponents} {...props} />);
+) {
+    return (<ComponentsProvider namespace={ELEMENTS_NAMESPACE} components={ElementComponents} {...props} />);
+}
 
 export default ElementsProvider;

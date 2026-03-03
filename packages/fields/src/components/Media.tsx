@@ -8,7 +8,7 @@ interface MediaFieldProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-const MediaField = ({ closeForm = null, onChange = null, ...props }) => {
+function MediaField({ closeForm = null, onChange = null, ...props }) {
     const closeOnChange = useCallback(
         (newValue) => {
             if (onChange !== null) {
@@ -23,7 +23,7 @@ const MediaField = ({ closeForm = null, onChange = null, ...props }) => {
     );
 
     return <MediaModal onChange={closeOnChange} {...props} />;
-};
+}
 
 MediaField.withForm = true;
 

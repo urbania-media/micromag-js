@@ -9,20 +9,23 @@ export const PanelsContext = React.createContext({
 export const usePanels = () => useContext(PanelsContext) || {};
 
 export const withPanels = (WrappedComponent) => {
-    const WithPanelsComponent = (props) => (
-        <PanelsContext.Consumer>
-            {({ panels, setContainer, container, register, unregister }) => (
-                <WrappedComponent
-                    panelsContainer={container}
-                    setPanelsContainer={setContainer}
-                    panels={panels}
-                    registerPanel={register}
-                    unregisterPanel={unregister}
-                    {...props}
-                />
-            )}
-        </PanelsContext.Consumer>
-    );
+    function WithPanelsComponent(props) {
+        return (
+            <PanelsContext.Consumer>
+                {({ panels, setContainer, container, register, unregister }) => (
+                    <WrappedComponent
+                        panelsContainer={container}
+                        setPanelsContainer={setContainer}
+                        panels={panels}
+                        registerPanel={register}
+                        unregisterPanel={unregister}
+                        {...props}
+                    />
+                )}
+            </PanelsContext.Consumer>
+        );
+    }
+
     WithPanelsComponent.displayName = `WithPanels(${getDisplayName(WrappedComponent)})`;
     return WithPanelsComponent;
 };
@@ -32,7 +35,7 @@ interface PanelsProviderProps {
     container?: Record<string, unknown>;
 }
 
-export const PanelsProvider = ({ children, container: initialContainer = null }) => {
+export function PanelsProvider({ children, container: initialContainer = null }) {
     const [container, setContainer] = useState(initialContainer);
     const [panels, setPanels] = useState([]);
     const panelsRef = useRef(panels);
@@ -68,5 +71,5 @@ export const PanelsProvider = ({ children, container: initialContainer = null })
         [panels, setContainer, container, register, unregister],
     );
     return <PanelsContext.Provider value={value}>{children}</PanelsContext.Provider>;
-};
+}
 

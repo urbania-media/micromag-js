@@ -20,71 +20,75 @@ interface ModalDialogProps {
     bodyClassName?: string;
 }
 
-const ModalDialog = ({
-    title = null,
-    header = null,
-    children = null,
-    buttons = null,
-    footer = null,
-    size = null,
-    onClose = null,
-    className = null,
-    bodyClassName = null,
-}) => (
-    <div
-        className={classNames([
-            styles.container,
-            'modal-dialog',
-            {
-                [`modal-${size}`]: size !== null,
-                [className]: className,
-            },
-        ])}
-        role="dialog"
-    >
-        <div className="modal-content">
-            {header || (
+function ModalDialog(
+    {
+        title = null,
+        header = null,
+        children = null,
+        buttons = null,
+        footer = null,
+        size = null,
+        onClose = null,
+        className = null,
+        bodyClassName = null,
+    },
+) {
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                'modal-dialog',
+                {
+                    [`modal-${size}`]: size !== null,
+                    [className]: className,
+                },
+            ])}
+            role="dialog"
+        >
+            <div className="modal-content">
+                {header || (
+                    <div
+                        className={classNames([
+                            'modal-header',
+                            'p-2',
+                            'd-flex',
+                            'justify-content-between',
+                            styles.header,
+                        ])}
+                    >
+                        <h5 className="modal-title">
+                            <Label>{title}</Label>
+                        </h5>
+                        <button
+                            type="button"
+                            className="btn btn-close p-2"
+                            aria-label="Close"
+                            onClick={onClose}
+                        />
+                    </div>
+                )}
                 <div
                     className={classNames([
-                        'modal-header',
+                        'modal-body',
                         'p-2',
-                        'd-flex',
-                        'justify-content-between',
-                        styles.header,
+                        {
+                            [bodyClassName]: bodyClassName !== null,
+                        },
                     ])}
                 >
-                    <h5 className="modal-title">
-                        <Label>{title}</Label>
-                    </h5>
-                    <button
-                        type="button"
-                        className="btn btn-close p-2"
-                        aria-label="Close"
-                        onClick={onClose}
-                    />
+                    {children}
                 </div>
-            )}
-            <div
-                className={classNames([
-                    'modal-body',
-                    'p-2',
-                    {
-                        [bodyClassName]: bodyClassName !== null,
-                    },
-                ])}
-            >
-                {children}
+                {footer !== null || buttons !== null ? (
+                    <div className={classNames(['modal-footer', 'p-2', styles.footer])}>
+                        {footer}
+                        {buttons !== null ? (
+                            <Buttons buttons={buttons} className={styles.buttons} />
+                        ) : null}
+                    </div>
+                ) : null}
             </div>
-            {footer !== null || buttons !== null ? (
-                <div className={classNames(['modal-footer', 'p-2', styles.footer])}>
-                    {footer}
-                    {buttons !== null ? (
-                        <Buttons buttons={buttons} className={styles.buttons} />
-                    ) : null}
-                </div>
-            ) : null}
         </div>
-    </div>
-);
+    );
+}
 
 export default ModalDialog;

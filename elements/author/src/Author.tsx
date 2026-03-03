@@ -24,17 +24,19 @@ interface AuthorProps {
     shouldLoad?: boolean;
 }
 
-const Author = ({
-    author = null,
-    withImage = true,
-    withoutLink = false,
-    linkUnderlineColor = null,
-    className = null,
-    backgroundClassName = null,
-    collaboratorClassName = null,
-    shouldLoad = true,
-    ...otherProps
-}) => {
+function Author(
+    {
+        author = null,
+        withImage = true,
+        withoutLink = false,
+        linkUnderlineColor = null,
+        className = null,
+        backgroundClassName = null,
+        collaboratorClassName = null,
+        shouldLoad = true,
+        ...otherProps
+    },
+) {
     const { name = null, image = null, url = null, collaborator = null } = author || {};
     const withAvatar = withImage && image !== null;
 
@@ -100,6 +102,6 @@ const Author = ({
             </div>
         </div>
     );
-};
+}
 
 export default Author;

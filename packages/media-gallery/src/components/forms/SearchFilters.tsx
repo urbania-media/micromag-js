@@ -22,7 +22,9 @@ interface SearchFiltersProps {
     className?: string;
 }
 
-const SearchFilters = ({ filters = null, sections = [], onChange = null, onClose = null, className = null }) => {
+function SearchFilters(
+    { filters = null, sections = [], onChange = null, onClose = null, className = null },
+) {
     const intl = useIntl();
     const getActive = useCallback((items, sectionFilters) => {
         return items !== null
@@ -122,6 +124,6 @@ const SearchFilters = ({ filters = null, sections = [], onChange = null, onClose
             ) : null}
         </div>
     );
-};
+}
 
 export default SearchFilters;

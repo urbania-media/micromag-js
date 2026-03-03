@@ -54,24 +54,26 @@ interface ArticleScreenProps {
     className?: string;
 }
 
-const ArticleScreen = ({
-    // layout,
-    image = null,
-    title = null,
-    surtitle = null,
-    date = null,
-    author = null,
-    subtitle = null,
-    text = null,
-    spacing = 20,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    preload = true,
-    type = null,
-    className = null,
-}) => {
+function ArticleScreen(
+    {
+        // layout,
+        image = null,
+        title = null,
+        surtitle = null,
+        date = null,
+        author = null,
+        subtitle = null,
+        text = null,
+        spacing = 20,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        preload = true,
+        type = null,
+        className = null,
+    },
+) {
     const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
@@ -366,6 +368,6 @@ const ArticleScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default ArticleScreen;

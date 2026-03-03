@@ -48,21 +48,23 @@ interface GalleryFeedScreenProps {
     className?: string;
 }
 
-const GalleryFeedScreen = ({
-    layout = 'normal',
-    images = null,
-    withCaptions = false,
-    imageCaptionStyle = null,
-    spacing: initialSpacing = 20,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    active = true,
-    preload = true,
-    type = null,
-    className = null,
-}) => {
+function GalleryFeedScreen(
+    {
+        layout = 'normal',
+        images = null,
+        withCaptions = false,
+        imageCaptionStyle = null,
+        spacing: initialSpacing = 20,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        active = true,
+        preload = true,
+        type = null,
+        className = null,
+    },
+) {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
     const {
@@ -305,6 +307,6 @@ const GalleryFeedScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default GalleryFeedScreen;

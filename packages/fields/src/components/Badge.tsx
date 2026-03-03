@@ -14,7 +14,7 @@ interface BadgeProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const Badge = ({ value = null, className = null, onChange = null, ...props }) => {
+function Badge({ value = null, className = null, onChange = null, ...props }) {
     const { active = false } = value || {};
     const intl = useIntl();
 
@@ -57,6 +57,6 @@ const Badge = ({ value = null, className = null, onChange = null, ...props }) =>
             onChange={onUpdateValue}
         />
     );
-};
+}
 
 export default Badge;

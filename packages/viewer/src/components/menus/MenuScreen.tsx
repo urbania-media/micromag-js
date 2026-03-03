@@ -22,15 +22,17 @@ interface ViewerMenuScreenProps {
     focusable?: boolean;
 }
 
-const ViewerMenuScreen = ({
-    className = null,
-    item = null,
-    index = 0,
-    onClick = null,
-    screenSize = null,
-    alwaysRender = false,
-    focusable = true,
-}) => {
+function ViewerMenuScreen(
+    {
+        className = null,
+        item = null,
+        index = 0,
+        onClick = null,
+        screenSize = null,
+        alwaysRender = false,
+        focusable = true,
+    },
+) {
     const intl = useIntl();
     const { current = false, screen, count = 1 } = item || {};
     const { width: screenWidth, height: screenHeight } = screenSize || {};
@@ -102,6 +104,6 @@ const ViewerMenuScreen = ({
             </div>
         </div>
     );
-};
+}
 
 export default ViewerMenuScreen;

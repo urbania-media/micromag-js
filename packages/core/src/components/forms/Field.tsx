@@ -17,18 +17,20 @@ interface FieldFormProps {
     fieldContext?: unknown;
 }
 
-const FieldForm = ({
-    name = null,
-    value = null,
-    form = null,
-    formComponents = {},
-    fields = [],
-    className = null,
-    onChange = null,
-    gotoFieldForm,
-    closeFieldForm,
-    fieldContext = null,
-}) => {
+function FieldForm(
+    {
+        name = null,
+        value = null,
+        form = null,
+        formComponents = {},
+        fields = [],
+        className = null,
+        onChange = null,
+        gotoFieldForm,
+        closeFieldForm,
+        fieldContext = null,
+    },
+) {
 
     const fieldsManager = useFieldsManager();
 
@@ -96,6 +98,6 @@ const FieldForm = ({
             />
         </FieldContextProvider>
     ) : null;
-};
+}
 
 export default FieldForm;

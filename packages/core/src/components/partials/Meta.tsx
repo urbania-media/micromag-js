@@ -12,7 +12,9 @@ interface MetaProps {
     children?: React.ReactNode;
 }
 
-const Meta = ({ title = null, url = null, metadata = null, fullTitle = null, suffix = 'Micromag', children = null }) => {
+function Meta(
+    { title = null, url = null, metadata = null, fullTitle = null, suffix = 'Micromag', children = null },
+) {
     const {
         canonical = null,
         description = null,
@@ -92,6 +94,6 @@ const Meta = ({ title = null, url = null, metadata = null, fullTitle = null, suf
             {children}
         </Helmet>
     );
-};
+}
 
 export default Meta;

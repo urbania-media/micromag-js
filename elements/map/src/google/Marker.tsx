@@ -15,10 +15,12 @@ interface MarkerProps {
     iconSize?: { width?: number; height?: number };
 }
 
-const Marker = ({ map = null, position, type, events = null, active = true, title = null, image = null, iconSize = {
-    width: 50,
-    height: 50,
-} }) => {
+function Marker(
+    { map = null, position, type, events = null, active = true, title = null, image = null, iconSize = {
+        width: 50,
+        height: 50,
+    } },
+) {
     useGoogleMapMarker(map, {
         position,
         type,
@@ -28,6 +30,6 @@ const Marker = ({ map = null, position, type, events = null, active = true, titl
         iconSize,
     });
     return null;
-};
+}
 
 export default Marker;

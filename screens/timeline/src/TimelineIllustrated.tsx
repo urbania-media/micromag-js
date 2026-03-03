@@ -3,6 +3,8 @@ import React from 'react';
 
 import TimelineScreen from './Timeline';
 
-const TimelineIllustratedScreen = ({ ...props }) => <TimelineScreen {...props} illustrated />;
+function TimelineIllustratedScreen({ ...props }) {
+  return <TimelineScreen {...props} illustrated />;
+}
 
 export default TimelineIllustratedScreen;

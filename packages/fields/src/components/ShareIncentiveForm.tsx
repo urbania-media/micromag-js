@@ -16,13 +16,15 @@ interface ShareIncentiveFormProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const ShareIncentiveForm = ({
-    value = null,
-    isForm = false,
-    className = null,
-    onChange = null,
-    ...props
-}: ShareIncentiveFormProps) => {
+function ShareIncentiveForm(
+    {
+        value = null,
+        isForm = false,
+        className = null,
+        onChange = null,
+        ...props
+    }: ShareIncentiveFormProps,
+) {
     const intl = useIntl();
     const onUpdateValue = useCallback(
         (newValue) => {
@@ -65,6 +67,6 @@ const ShareIncentiveForm = ({
             {...props}
         />
     );
-};
+}
 
 export default ShareIncentiveForm;

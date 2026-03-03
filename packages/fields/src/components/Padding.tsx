@@ -20,13 +20,15 @@ interface PaddingFieldProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-const PaddingField = ({
-    value = null,
-    isForm = false,
-    onChange = null,
-    closeForm = null,
-    ...props
-}: PaddingFieldProps) => {
+function PaddingField(
+    {
+        value = null,
+        isForm = false,
+        onChange = null,
+        closeForm = null,
+        ...props
+    }: PaddingFieldProps,
+) {
     const intl = useIntl();
 
     const {
@@ -138,7 +140,7 @@ const PaddingField = ({
             </div>
         </FieldWithForm>
     );
-};
+}
 
 PaddingField.withForm = true;
 

@@ -7,6 +7,8 @@ interface ImageStyleFieldProps {
     [key: string]: unknown;
 }
 
-const ImageStyleField = props => <Fields isList {...props} />;
+function ImageStyleField(props) {
+    return <Fields isList {...props} />;
+}
 
 export default ImageStyleField;

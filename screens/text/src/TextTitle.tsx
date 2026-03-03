@@ -3,6 +3,8 @@ import React from 'react';
 
 import TextScreen from './Text';
 
-const TextTitleScreen = ({ ...props }) => <TextScreen {...props} withTitle />;
+function TextTitleScreen({ ...props }) {
+  return <TextScreen {...props} withTitle />;
+}
 
 export default TextTitleScreen;

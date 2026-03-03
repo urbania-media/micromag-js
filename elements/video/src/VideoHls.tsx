@@ -56,42 +56,44 @@ interface VideoProps {
     qualityStartLevel?: number;
 }
 
-const Video = ({
-    media = null,
-    thumbnail = null,
-    width = null,
-    height = null,
-    mediaRef = null,
-    muted = false,
-    autoPlay = false,
-    paused = false,
-    loop = false,
-    playsInline = true,
-    preload = 'auto',
-    shouldLoad = true,
-    withoutCors = false,
-    className = null,
-    innerClassName = null,
-    onReady = null,
-    onPlay: customOnPlay = null,
-    onPause = null,
-    onEnded = null,
-    onSeeked = null,
-    onTimeUpdate = null,
-    onProgressStep = null,
-    onDurationChange: customOnDurationChange = null,
-    onVolumeChange: customOnVolumeChange = null,
-    onSuspend: customOnSuspend = null,
-    onSuspended = null,
-    onPlayError = null,
-    onQualityLevelChange = null,
-    focusable = true,
-    withPoster = false,
-    withLoading = false,
-    disablePictureInPicture = true,
-    disableHls = true,
-    qualityStartLevel = null,
-}) => {
+function Video(
+    {
+        media = null,
+        thumbnail = null,
+        width = null,
+        height = null,
+        mediaRef = null,
+        muted = false,
+        autoPlay = false,
+        paused = false,
+        loop = false,
+        playsInline = true,
+        preload = 'auto',
+        shouldLoad = true,
+        withoutCors = false,
+        className = null,
+        innerClassName = null,
+        onReady = null,
+        onPlay: customOnPlay = null,
+        onPause = null,
+        onEnded = null,
+        onSeeked = null,
+        onTimeUpdate = null,
+        onProgressStep = null,
+        onDurationChange: customOnDurationChange = null,
+        onVolumeChange: customOnVolumeChange = null,
+        onSuspend: customOnSuspend = null,
+        onSuspended = null,
+        onPlayError = null,
+        onQualityLevelChange = null,
+        focusable = true,
+        withPoster = false,
+        withLoading = false,
+        disablePictureInPicture = true,
+        disableHls = true,
+        qualityStartLevel = null,
+    },
+) {
     const { url: mediaUrl = null, metadata = null } = media || {};
     const {
         description = null,
@@ -428,6 +430,6 @@ const Video = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default React.forwardRef((props, ref) => <Video mediaRef={ref} {...props} />);

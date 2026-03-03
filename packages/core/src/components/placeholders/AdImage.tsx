@@ -7,10 +7,12 @@ import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/placeholders.module.css';
 
-export const AdImage = ({ width, height, className }) => (
-    <PlaceholderBlock width={width} height={height} className={className}>
-        <FontAwesomeIcon icon={faImage} className={styles.icon} />
-    </PlaceholderBlock>
-);
+export function AdImage({ width, height, className }) {
+    return (
+        <PlaceholderBlock width={width} height={height} className={className}>
+            <FontAwesomeIcon icon={faImage} className={styles.icon} />
+        </PlaceholderBlock>
+    );
+}
 
 export default AdImage;

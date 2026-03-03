@@ -25,21 +25,23 @@ interface ButtonProps {
     style?: Record<string, unknown>;
 }
 
-const Button = ({
-    textStyle = null,
-    buttonStyle = null,
-    type = 'button',
-    disabled = false,
-    focusable = true,
-    inline = false,
-    onClick = null,
-    children = null,
-    className = null,
-    withoutExternalBorder = true,
-    refButton = null,
-    style = null,
-    ...buttonProps
-}) => {
+function Button(
+    {
+        textStyle = null,
+        buttonStyle = null,
+        type = 'button',
+        disabled = false,
+        focusable = true,
+        inline = false,
+        onClick = null,
+        children = null,
+        className = null,
+        withoutExternalBorder = true,
+        refButton = null,
+        style = null,
+        ...buttonProps
+    },
+) {
     let finalStyles = style;
 
     // eslint-disable-next-line no-unused-vars
@@ -90,6 +92,6 @@ const Button = ({
             {children}
         </CoreButton>
     );
-};
+}
 
 export default Button;

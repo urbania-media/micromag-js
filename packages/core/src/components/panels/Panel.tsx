@@ -13,7 +13,7 @@ interface PanelProps {
     children?: React.ReactNode;
 }
 
-const Panel = ({ id = null, children = null, title = null }) => {
+function Panel({ id = null, children = null, title = null }) {
     const finalId = useMemo(() => id || getDisplayName(children.type), [id, children.type]);
     const data = useMemo(
         () => ({
@@ -26,6 +26,6 @@ const Panel = ({ id = null, children = null, title = null }) => {
             <div className={styles.container}>{children}</div>
         </Portal>
     );
-};
+}
 
 export default Panel;

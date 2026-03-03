@@ -11,19 +11,21 @@ interface CloseButtonProps {
     className?: string;
 }
 
-const CloseButton = ({ className = null, ...props }) => (
-    <Button
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        withoutStyle
-        icon={<FontAwesomeIcon icon={faTimes} className={styles.icon} />}
-        iconPosition="right"
-        {...props}
-    />
-);
+function CloseButton({ className = null, ...props }) {
+    return (
+        <Button
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            withoutStyle
+            icon={<FontAwesomeIcon icon={faTimes} className={styles.icon} />}
+            iconPosition="right"
+            {...props}
+        />
+    );
+}
 
 export default CloseButton;

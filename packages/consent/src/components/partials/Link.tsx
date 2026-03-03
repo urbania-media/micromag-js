@@ -24,18 +24,20 @@ interface LinkPartialProps {
     className?: string;
 }
 
-const LinkPartial = ({
-    href = null,
-    route = null,
-    routeParams = null,
-    external = false,
-    children = null,
-    target = '_blank',
-    rel = 'noopener noreferrer',
-    onClick = null,
-    className = null,
-    ...props
-}) => {
+function LinkPartial(
+    {
+        href = null,
+        route = null,
+        routeParams = null,
+        external = false,
+        children = null,
+        target = '_blank',
+        rel = 'noopener noreferrer',
+        onClick = null,
+        className = null,
+        ...props
+    },
+) {
     const link = href || null;
     if (link === null) {
         return <span className={className}>{children}</span>;
@@ -88,6 +90,6 @@ const LinkPartial = ({
             {children}
         </a>
     );
-};
+}
 
 export default LinkPartial;

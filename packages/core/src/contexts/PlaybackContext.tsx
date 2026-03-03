@@ -97,17 +97,19 @@ interface PlaybackProviderProps {
     currentQualityLevel?: number;
 }
 
-export const PlaybackProvider = ({
-    muted: initialMuted = true,
-    playing: initialPlaying = false,
-    paused = false,
-    controls: initialControls = false,
-    controlsSuggestPlay: initialControlsSuggestPlay = false,
-    controlsVisible: initialControlsVisible = false,
-    controlsTheme: initialControlsTheme = defaultControlsThemeValue,
-    currentQualityLevel: initialCurrentQualityLevel = null,
-    children,
-}) => {
+export function PlaybackProvider(
+    {
+        muted: initialMuted = true,
+        playing: initialPlaying = false,
+        paused = false,
+        controls: initialControls = false,
+        controlsSuggestPlay: initialControlsSuggestPlay = false,
+        controlsVisible: initialControlsVisible = false,
+        controlsTheme: initialControlsTheme = defaultControlsThemeValue,
+        currentQualityLevel: initialCurrentQualityLevel = null,
+        children,
+    },
+) {
     const [muted, setMuted] = useState(initialMuted);
     const [playing, setPlaying] = useState(initialPlaying);
     const [media, setMedia] = useState(null);
@@ -251,4 +253,4 @@ export const PlaybackProvider = ({
     );
 
     return <PlaybackContext.Provider value={value}>{children}</PlaybackContext.Provider>;
-};
+}

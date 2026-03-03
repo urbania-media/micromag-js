@@ -32,20 +32,22 @@ interface FontFacesProps {
     formats?: (string | { name?: string; format?: string })[];
 }
 
-const FontFaces = ({ fonts = [], formats = [
-    'eot',
-    'woff2',
-    'woff',
-    {
-        name: 'otf',
-        format: 'opentype',
-    },
-    {
-        name: 'ttf',
-        format: 'truetype',
-    },
-    'svg',
-] }) => {
+function FontFaces(
+    { fonts = [], formats = [
+        'eot',
+        'woff2',
+        'woff',
+        {
+            name: 'otf',
+            format: 'opentype',
+        },
+        {
+            name: 'ttf',
+            format: 'truetype',
+        },
+        'svg',
+    ] },
+) {
     const fontFaces = (fonts || [])
         .filter((it) => isObject(it) && it.type === 'custom' && (it.media || null) !== null)
         .reduce((fontFontFaces, { name = null, media = null, variants = [] }) => {
@@ -134,6 +136,6 @@ const FontFaces = ({ fonts = [], formats = [
             }}
         />
     ) : null;
-};
+}
 
 export default FontFaces;

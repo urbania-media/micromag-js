@@ -12,12 +12,14 @@ interface TextAlignProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const TextAlign = ({ value = null, options = [
-    { value: 'left', label: <FontAwesomeIcon icon={faAlignLeft} /> },
-    { value: 'center', label: <FontAwesomeIcon icon={faAlignCenter} /> },
-    { value: 'right', label: <FontAwesomeIcon icon={faAlignRight} /> },
-], onChange = null, ...props }) => (
-    <Radios value={value} options={options} onChange={onChange} uncheckable {...props} />
-);
+function TextAlign(
+    { value = null, options = [
+        { value: 'left', label: <FontAwesomeIcon icon={faAlignLeft} /> },
+        { value: 'center', label: <FontAwesomeIcon icon={faAlignCenter} /> },
+        { value: 'right', label: <FontAwesomeIcon icon={faAlignRight} /> },
+    ], onChange = null, ...props },
+) {
+    return (<Radios value={value} options={options} onChange={onChange} uncheckable {...props} />);
+}
 
 export default TextAlign;

@@ -15,7 +15,9 @@ interface PlaceholderTextProps {
     withInvertedColors?: boolean;
 }
 
-const PlaceholderText = ({ lines = 1, lineMargin = 1, width = '100%', height = null, fontSize = 16, className = null,     withInvertedColors = true }) => {
+function PlaceholderText(
+    { lines = 1, lineMargin = 1, width = '100%', height = null, fontSize = 16, className = null,     withInvertedColors = true },
+) {
     const lineHeight =
         height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
 
@@ -45,6 +47,6 @@ const PlaceholderText = ({ lines = 1, lineMargin = 1, width = '100%', height = n
             ))}
         </div>
     );
-};
+}
 
 export default PlaceholderText;

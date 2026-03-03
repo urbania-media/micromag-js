@@ -14,7 +14,7 @@ interface CustomAnswerProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const CustomAnswer = ({ value = null, className = null, onChange = null, ...props }) => {
+function CustomAnswer({ value = null, className = null, onChange = null, ...props }) {
     const { active = false } = value || {};
     const intl = useIntl();
 
@@ -57,6 +57,6 @@ const CustomAnswer = ({ value = null, className = null, onChange = null, ...prop
             onChange={onUpdateValue}
         />
     );
-};
+}
 
 export default CustomAnswer;

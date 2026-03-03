@@ -22,16 +22,18 @@ interface CookiesProps {
     className?: string;
 }
 
-const Cookies = ({
-    onChange = null,
-    onSubmit = null,
-    onClose = null,
-    onClickLink = null,
-    urls = null,
-    labels = null,
-    className = null,
-    ...props
-}) => {
+function Cookies(
+    {
+        onChange = null,
+        onSubmit = null,
+        onClose = null,
+        onClickLink = null,
+        urls = null,
+        labels = null,
+        className = null,
+        ...props
+    },
+) {
     const {
         consent: choices,
         onClickChoice,
@@ -183,6 +185,6 @@ const Cookies = ({
             </div>
         </div>
     );
-};
+}
 
 export default Cookies;

@@ -12,7 +12,7 @@ interface ModalsContainerProps {
     className?: string;
 }
 
-const ModalsContainer = ({ modals, setModalsContainer, className = null }) => {
+function ModalsContainer({ modals, setModalsContainer, className = null }) {
     const containerRef = useRef(null);
     useEffect(() => {
         setModalsContainer(containerRef.current);
@@ -38,6 +38,6 @@ const ModalsContainer = ({ modals, setModalsContainer, className = null }) => {
             />
         </div>
     );
-};
+}
 
 export default withModals(ModalsContainer);

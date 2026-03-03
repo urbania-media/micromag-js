@@ -7,6 +7,8 @@ interface MapFieldProps {
     [key: string]: unknown;
 }
 
-const MapField = props => <Fields {...props} />;
+function MapField(props) {
+    return <Fields {...props} />;
+}
 
 export default MapField;

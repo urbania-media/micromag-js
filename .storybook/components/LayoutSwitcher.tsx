@@ -7,7 +7,7 @@ interface LayoutSwitcherProps {
     children: React.ReactNode | ((...args: unknown[]) => React.ReactNode);
 }
 
-const LayoutSwitcher = ({ layouts, children, defaultLayout = null }: LayoutSwitcherProps) => {
+function LayoutSwitcher({ layouts, children, defaultLayout = null }: LayoutSwitcherProps) {
     const firstLayout = layouts !== null && layouts.length > 0 ? layouts[0] : null;
     const [layout, setLayout] = useState(defaultLayout || firstLayout);
     const onSelectChange = (e) => setLayout(e.currentTarget.value);
@@ -26,6 +26,6 @@ const LayoutSwitcher = ({ layouts, children, defaultLayout = null }: LayoutSwitc
             <div className={styles.screen}>{children(layout)}</div>
         </div>
     );
-};
+}
 
 export default LayoutSwitcher;

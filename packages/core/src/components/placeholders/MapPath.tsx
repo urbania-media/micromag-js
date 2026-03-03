@@ -8,15 +8,17 @@ import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/placeholders.module.css';
 
-export const MapPath = (props) => (
-    <PlaceholderBlock
-        {...props}
-        width="100%"
-        height="70%"
-        className={classNames([props.className, styles.mapPath])}
-    >
-        <FontAwesomeIcon icon={faMapMarkedAlt} size="lg" className={styles.icon} />
-    </PlaceholderBlock>
-);
+export function MapPath(props) {
+    return (
+        <PlaceholderBlock
+            {...props}
+            width="100%"
+            height="70%"
+            className={classNames([props.className, styles.mapPath])}
+        >
+            <FontAwesomeIcon icon={faMapMarkedAlt} size="lg" className={styles.icon} />
+        </PlaceholderBlock>
+    );
+}
 
 export default MapPath;

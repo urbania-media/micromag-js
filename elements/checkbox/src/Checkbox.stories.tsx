@@ -9,15 +9,15 @@ export default {
 
 const option = { body: 'Empty checkbox' };
 
-const ContainerWithValue = () => {
+function ContainerWithValue() {
     const [value, setValue] = useState(true);
     return <Checkbox option={option} value={value} onChange={setValue} />;
-};
+}
 
-const ContainerWithoutValue = () => {
+function ContainerWithoutValue() {
     const [value, setValue] = useState(false);
     return <Checkbox option={option} value={value} onChange={setValue} />;
-};
+}
 
 export const checked = () => <ContainerWithValue option={option} value={option} />;
 

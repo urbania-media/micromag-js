@@ -28,19 +28,21 @@ interface ResultsProps {
     style?: Record<string, string | number>;
 }
 
-const Results = ({
-    layout = null,
-    title = null,
-    description = null,
-    resultsHeadingStyle = null,
-    resultsTextStyle = null,
-    transitions = null,
-    transitionPlaying = false,
-    transitionStagger = 100,
-    transitionDisabled = false,
-    className = null,
-    style = null,
-}) => {
+function Results(
+    {
+        layout = null,
+        title = null,
+        description = null,
+        resultsHeadingStyle = null,
+        resultsTextStyle = null,
+        transitions = null,
+        transitionPlaying = false,
+        transitionStagger = 100,
+        transitionDisabled = false,
+        className = null,
+        style = null,
+    },
+) {
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
@@ -116,6 +118,6 @@ const Results = ({
             ]}
         </Layout>
     );
-};
+}
 
 export default Results;

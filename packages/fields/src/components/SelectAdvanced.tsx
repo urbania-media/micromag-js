@@ -18,16 +18,18 @@ interface SelectAdvancedFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const SelectAdvancedField = ({
-    name = null,
-    value = null,
-    options = [],
-    withoutReset = false,
-    disabled = false,
-    className = null,
-    onChange = null,
-    ...props
-}) => {
+function SelectAdvancedField(
+    {
+        name = null,
+        value = null,
+        options = [],
+        withoutReset = false,
+        disabled = false,
+        className = null,
+        onChange = null,
+        ...props
+    },
+) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     const intl = useIntl();
     const translatedOptions = useMemo(() =>
@@ -70,6 +72,6 @@ const SelectAdvancedField = ({
             theme={selectTheme}
         />
     );
-};
+}
 
 export default SelectAdvancedField;

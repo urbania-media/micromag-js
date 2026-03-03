@@ -12,7 +12,7 @@ interface MarkerFieldProps {
     className?: string;
 }
 
-const MarkerField = ({ isForm = false, value = null, className = null, ...props }) => {
+function MarkerField({ isForm = false, value = null, className = null, ...props }) {
     const { title = null } = value || {};
     return isForm ? (
         <div
@@ -43,6 +43,6 @@ const MarkerField = ({ isForm = false, value = null, className = null, ...props 
             )}
         </div>
     );
-};
+}
 
 export default MarkerField;

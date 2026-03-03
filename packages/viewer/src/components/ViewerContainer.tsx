@@ -53,27 +53,29 @@ interface ViewerContainerProps {
     children?: (...args: unknown[]) => void;
 }
 
-const ViewerContainer = ({
-    story = null,
-    paused = false,
-    muted = true,
-    screenComponents = null,
-    memoryRouter = false,
-    basePath = null,
-    routes = defaultRoutes,
-    withoutRouter = false,
-    googleApiKey = null,
-    visitor = null,
-    locale = 'en',
-    locales = defaultLocales,
-    translations = null,
-    pathWithIndex = false,
-    trackingVariables = null,
-    trackingDisabled = false,
-    trackingPaused = false,
-    settings = null,
-    ...otherProps
-}) => {
+function ViewerContainer(
+    {
+        story = null,
+        paused = false,
+        muted = true,
+        screenComponents = null,
+        memoryRouter = false,
+        basePath = null,
+        routes = defaultRoutes,
+        withoutRouter = false,
+        googleApiKey = null,
+        visitor = null,
+        locale = 'en',
+        locales = defaultLocales,
+        translations = null,
+        pathWithIndex = false,
+        trackingVariables = null,
+        trackingDisabled = false,
+        trackingPaused = false,
+        settings = null,
+        ...otherProps
+    },
+) {
     const finalTrackingVariables = useMemo(() => {
         if (story === null && trackingVariables === null) {
             return null;
@@ -182,6 +184,6 @@ const ViewerContainer = ({
             <RoutesProvider routes={routes}>{content}</RoutesProvider>
         </Router>
     );
-};
+}
 
 export default ViewerContainer;

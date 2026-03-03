@@ -10,26 +10,30 @@ interface FontsFieldProps {
     value?: ImageMedia[];
 }
 
-const FontsField = (
+function FontsField(
     {
         value: value = null,
         ...props
     },
-) => (<ItemsField
-    noItemLabel={
-        <FormattedMessage
-            defaultMessage="No font..."
-            description="Label when there is no item"
+) {
+    return (
+        <ItemsField
+            noItemLabel={
+                <FormattedMessage
+                    defaultMessage="No font..."
+                    description="Label when there is no item"
+                />
+            }
+            addItemLabel={
+                <FormattedMessage
+                    defaultMessage="Add an font file"
+                    description="Button label"
+                />
+            }
+            itemComponent={FontField}
+            {...props}
         />
-    }
-    addItemLabel={
-        <FormattedMessage
-            defaultMessage="Add an font file"
-            description="Button label"
-        />
-    }
-    itemComponent={FontField}
-    {...props}
-/>);
+    );
+}
 
 export default FontsField;

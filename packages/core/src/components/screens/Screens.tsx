@@ -13,31 +13,33 @@ interface ScreensProps {
     className?: string;
 }
 
-const Screens = ({ screens, screen: screenId = null, className = null }) => (
-    <div
-        className={classNames([
-            styles.container,
-            {
-                [className]: className,
-            },
-        ])}
-    >
-        {screens.map((screen) => {
-            const { id } = screen;
-            return (
-                <Screen
-                    key={`screen-${id}`}
-                    screen={screen}
-                    className={classNames([
-                        styles.screen,
-                        {
-                            [styles.visible]: screenId === id,
-                        },
-                    ])}
-                />
-            );
-        })}
-    </div>
-);
+function Screens({ screens, screen: screenId = null, className = null }) {
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className,
+                },
+            ])}
+        >
+            {screens.map((screen) => {
+                const { id } = screen;
+                return (
+                    <Screen
+                        key={`screen-${id}`}
+                        screen={screen}
+                        className={classNames([
+                            styles.screen,
+                            {
+                                [styles.visible]: screenId === id,
+                            },
+                        ])}
+                    />
+                );
+            })}
+        </div>
+    );
+}
 
 export default Screens;

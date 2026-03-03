@@ -18,16 +18,18 @@ interface LinkProps {
     focusable?: boolean;
 }
 
-const Link = ({
-    url = null,
-    target: linkTarget = null,
-    rel: linkRel = null,
-    external = true,
-    margin = null,
-    className = null,
-    children = null,
-    focusable = true,
-}) => {
+function Link(
+    {
+        url = null,
+        target: linkTarget = null,
+        rel: linkRel = null,
+        external = true,
+        margin = null,
+        className = null,
+        children = null,
+        focusable = true,
+    },
+) {
     let finalStyle = null;
 
     if (margin !== null) {
@@ -75,6 +77,6 @@ const Link = ({
             {children}
         </div>
     );
-};
+}
 
 export default Link;

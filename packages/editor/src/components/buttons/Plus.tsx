@@ -11,19 +11,21 @@ interface PlusButtonProps {
     className?: string;
 }
 
-const PlusButton = ({ className = null, ...props }) => (
-    <Button
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        withoutStyle
-        {...props}
-    >
-        <PlusIcon className={styles.icon} />
-    </Button>
-);
+function PlusButton({ className = null, ...props }) {
+    return (
+        <Button
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            withoutStyle
+            {...props}
+        >
+            <PlusIcon className={styles.icon} />
+        </Button>
+    );
+}
 
 export default PlusButton;

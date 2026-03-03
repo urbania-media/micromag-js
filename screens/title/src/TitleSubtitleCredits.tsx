@@ -8,16 +8,18 @@ interface TitleSubtitleCreditsScreenProps {
     credits?: TextElement;
 }
 
-const TitleSubtitleCreditsScreen = ({ credits = null, ...props }) => (
-    <TitleScreen
-        {...props}
-        description={credits}
-        withSubtitle
-        withDescription
-        descriptionEmptyLabel={
-            <FormattedMessage defaultMessage="Credits" description="Credits placeholder" />
-        }
-    />
-);
+function TitleSubtitleCreditsScreen({ credits = null, ...props }) {
+    return (
+        <TitleScreen
+            {...props}
+            description={credits}
+            withSubtitle
+            withDescription
+            descriptionEmptyLabel={
+                <FormattedMessage defaultMessage="Credits" description="Credits placeholder" />
+            }
+        />
+    );
+}
 
 export default TitleSubtitleCreditsScreen;

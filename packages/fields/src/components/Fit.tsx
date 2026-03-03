@@ -13,30 +13,34 @@ interface ObjectFitSizeProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const ObjectFitSize = ({ values = ['cover', 'contain', null], value = null, className = null, onChange = null }) => (
-    <Radios
-        options={values.map(val => ({
-            value: val,
-            label: (
-                <div className={classNames([styles.frame, styles[val || 'none']])}>
-                    <div className={styles.shape}>
-                        <div className={styles.inner}>
-                            <div className={styles.media} />
+function ObjectFitSize(
+    { values = ['cover', 'contain', null], value = null, className = null, onChange = null },
+) {
+    return (
+        <Radios
+            options={values.map(val => ({
+                value: val,
+                label: (
+                    <div className={classNames([styles.frame, styles[val || 'none']])}>
+                        <div className={styles.shape}>
+                            <div className={styles.inner}>
+                                <div className={styles.media} />
+                            </div>
                         </div>
                     </div>
-                </div>
-            ),
-        }))}
-        value={value}
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        buttonClassName={styles.button}
-        onChange={onChange}
-    />
-);
+                ),
+            }))}
+            value={value}
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            buttonClassName={styles.button}
+            onChange={onChange}
+        />
+    );
+}
 
 export default ObjectFitSize;

@@ -114,12 +114,14 @@ interface MyComponentProps {
     className?: string;
 }
 
-const MyComponent = ({ label = null, disabled = false, className = null }: MyComponentProps) => {
+function MyComponent({ label = null, disabled = false, className = null }: MyComponentProps) {
     // ...
-};
+}
 
 export default MyComponent;
 ```
+
+**Prefer `function` declarations** over `const` arrow functions for React components. This applies to all component files — screens, elements, and package components. Exceptions: components wrapped in `React.memo()` or `React.forwardRef()` may remain as arrow functions.
 
 Components use TypeScript interfaces for props. Default values are inline in destructured parameters. `prop-types` has been fully removed from the project.
 

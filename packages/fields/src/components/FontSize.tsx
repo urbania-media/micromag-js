@@ -7,7 +7,9 @@ interface FontSizeProps {
     sizes?: number[];
 }
 
-const FontSize = ({ sizes = [12, 14, 16, 18, 20, 24, 28, 32, 48], ...props }) => <Number {...props} dataList={sizes} />;
+function FontSize({ sizes = [12, 14, 16, 18, 20, 24, 28, 32, 48], ...props }) {
+    return <Number {...props} dataList={sizes} />;
+}
 
 FontSize.isHorizontal = true;
 

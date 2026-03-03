@@ -24,7 +24,9 @@ interface UrlFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const UrlField = ({ schemes = ['https://', 'http://'], value = null, className = null, onChange = null }) => {
+function UrlField(
+    { schemes = ['https://', 'http://'], value = null, className = null, onChange = null },
+) {
     const empty = isEmpty(value);
 
     const [open, setOpen] = useState(false);
@@ -113,6 +115,6 @@ const UrlField = ({ schemes = ['https://', 'http://'], value = null, className =
             <TextField value={valueWithoutScheme} onChange={onFieldChange} />
         </InputGroup>
     );
-};
+}
 
 export default UrlField;

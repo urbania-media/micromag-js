@@ -15,7 +15,9 @@ interface ScreenLayoutFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const ScreenLayoutField = ({ value = null, screenState = null, className = null, onChange = null, ...props }) => {
+function ScreenLayoutField(
+    { value = null, screenState = null, className = null, onChange = null, ...props },
+) {
     const { id, layouts = [] } = useScreenDefinition();
 
     return (
@@ -47,6 +49,6 @@ const ScreenLayoutField = ({ value = null, screenState = null, className = null,
             onChange={onChange}
         />
     );
-};
+}
 
 export default ScreenLayoutField;

@@ -125,18 +125,20 @@ interface ConsentProviderProps {
     expiration?: number;
 }
 
-export const ConsentProvider = ({
-    consent: providedConsent = [
-        'functionality_storage',
-        'analytics_storage',
-        'ad_storage',
-        'ad_personalization',
-        'ad_user_data',
-    ],
-    consented: initialConsented = null,
-    expiration = 182,
-    children,
-}) => {
+export function ConsentProvider(
+    {
+        consent: providedConsent = [
+            'functionality_storage',
+            'analytics_storage',
+            'ad_storage',
+            'ad_personalization',
+            'ad_user_data',
+        ],
+        consented: initialConsented = null,
+        expiration = 182,
+        children,
+    },
+) {
     // Has consented or not to cookies
     const initialCookieConsented = JSCookie.get('has_consented') === 'true';
     const baseConsented = initialConsented || initialCookieConsented;
@@ -231,5 +233,5 @@ export const ConsentProvider = ({
     );
 
     return <ConsentContext.Provider value={value}>{children}</ConsentContext.Provider>;
-};
+}
 

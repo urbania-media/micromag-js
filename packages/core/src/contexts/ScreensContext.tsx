@@ -15,7 +15,9 @@ interface ScreensProviderProps {
     children: React.ReactNode;
 }
 
-export const ScreensProvider = ({ screens = null, namespaces = null, filterNamespaces = false, manager = null, children }) => {
+export function ScreensProvider(
+    { screens = null, namespaces = null, filterNamespaces = false, manager = null, children },
+) {
     const previousManager = useScreensManager();
     const finalManager = useMemo(() => {
         let newManager = manager !== null ? manager : new ScreensManager(screens);
@@ -53,5 +55,5 @@ export const ScreensProvider = ({ screens = null, namespaces = null, filterNames
             </ComponentsProvider>
         </ScreensContext.Provider>
     );
-};
+}
 

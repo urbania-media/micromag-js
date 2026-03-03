@@ -56,43 +56,45 @@ interface QuestionProps {
     style?: Record<string, string | number>;
 }
 
-const Question = ({
-    question = null,
-    answers = null,
-    keypadLayout = null,
-    result = null,
-    resultImage = null,
-    index = null,
-    totalCount = null,
-    answeredIndex = null,
-    buttonsLayout = null,
-    buttonsStyle = null,
-    inactiveButtonsStyle = null,
-    buttonsTextStyle = null,
-    inactiveButtonsTextStyle = null,
-    questionsHeadingStyle = null,
-    feedbackTextStyle = null,
-    numbersTextStyle = null,
-    goodAnswerColor = null,
-    badAnswerColor = null,
-    focusable = false,
-    animated = false,
-    showInstantAnswer = false,
-    withResult = false,
-    withoutGoodAnswer = false,
-    withoutTrueFalse = false,
-    withoutIndex = false,
-    layout = null,
-    transitions = null,
-    transitionPlaying = false,
-    transitionStagger = 100,
-    transitionDisabled = false,
-    onAnswerClick = null,
-    onAnswerTransitionEnd = null,
-    withoutCollapse = false,
-    className = null,
-    style = null,
-}) => {
+function Question(
+    {
+        question = null,
+        answers = null,
+        keypadLayout = null,
+        result = null,
+        resultImage = null,
+        index = null,
+        totalCount = null,
+        answeredIndex = null,
+        buttonsLayout = null,
+        buttonsStyle = null,
+        inactiveButtonsStyle = null,
+        buttonsTextStyle = null,
+        inactiveButtonsTextStyle = null,
+        questionsHeadingStyle = null,
+        feedbackTextStyle = null,
+        numbersTextStyle = null,
+        goodAnswerColor = null,
+        badAnswerColor = null,
+        focusable = false,
+        animated = false,
+        showInstantAnswer = false,
+        withResult = false,
+        withoutGoodAnswer = false,
+        withoutTrueFalse = false,
+        withoutIndex = false,
+        layout = null,
+        transitions = null,
+        transitionPlaying = false,
+        transitionStagger = 100,
+        transitionDisabled = false,
+        onAnswerClick = null,
+        onAnswerTransitionEnd = null,
+        withoutCollapse = false,
+        className = null,
+        style = null,
+    },
+) {
     const { isPlaceholder } = useScreenRenderContext();
 
     const isSplitted = layout === 'split';
@@ -257,6 +259,6 @@ const Question = ({
             ]}
         </Layout>
     );
-};
+}
 
 export default Question;

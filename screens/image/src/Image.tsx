@@ -51,26 +51,28 @@ interface ImageScreenProps {
     className?: string;
 }
 
-const ImageScreen = ({
-    layout = 'normal',
-    image = null,
-    imageFit = null,
-    defaultImageFit = 'cover',
-    title = null,
-    text = null,
-    legend = null,
-    withTitle = false,
-    withText = false,
-    withLegend = false,
-    spacing = 20,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    active = true,
-    preload = true,
-    className = null,
-}) => {
+function ImageScreen(
+    {
+        layout = 'normal',
+        image = null,
+        imageFit = null,
+        defaultImageFit = 'cover',
+        title = null,
+        text = null,
+        legend = null,
+        withTitle = false,
+        withText = false,
+        withLegend = false,
+        spacing = 20,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        active = true,
+        preload = true,
+        className = null,
+    },
+) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {
@@ -358,6 +360,6 @@ const ImageScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default ImageScreen;

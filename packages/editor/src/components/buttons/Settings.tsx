@@ -11,14 +11,16 @@ interface SettingsButtonProps {
     className?: string;
 }
 
-const SettingsButton = ({ className = null, dots = false, ...props }) => (
-    <Button
-        className={className}
-        theme="secondary"
-        size="sm"
-        icon={<FontAwesomeIcon icon={dots ? faEllipsisV : faCogs} />}
-        {...props}
-    />
-);
+function SettingsButton({ className = null, dots = false, ...props }) {
+    return (
+        <Button
+            className={className}
+            theme="secondary"
+            size="sm"
+            icon={<FontAwesomeIcon icon={dots ? faEllipsisV : faCogs} />}
+            {...props}
+        />
+    );
+}
 
 export default SettingsButton;

@@ -15,7 +15,7 @@ interface SignCardProps {
     onClick?: (...args: unknown[]) => void;
 }
 
-const SignCard = ({ className = null, sign = null, focusable = true, onClick = null }) => {
+function SignCard({ className = null, sign = null, focusable = true, onClick = null }) {
     const { id = null, thumbnail = null, label = null, date = null } = sign || {};
 
     return (
@@ -47,6 +47,6 @@ const SignCard = ({ className = null, sign = null, focusable = true, onClick = n
             </button>
         </ScreenElement>
     );
-};
+}
 
 export default SignCard;

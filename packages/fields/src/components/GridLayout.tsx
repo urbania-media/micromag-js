@@ -16,26 +16,28 @@ interface GridLayoutProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const GridLayout = ({ grids = [], value = null, className = null, onChange = null }) => (
-    <Radios
-        options={grids.map(layout => ({
-            value: layout,
-            label: <Grid layout={layout} className={styles.grid} columnClassName={styles.column} />,
-        }))}
-        value={
-            value !== null
-                ? grids.find(it => getGridLayoutName(it) === getGridLayoutName(value)) || null
-                : null
-        }
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        buttonClassName={styles.button}
-        onChange={onChange}
-    />
-);
+function GridLayout({ grids = [], value = null, className = null, onChange = null }) {
+    return (
+        <Radios
+            options={grids.map(layout => ({
+                value: layout,
+                label: <Grid layout={layout} className={styles.grid} columnClassName={styles.column} />,
+            }))}
+            value={
+                value !== null
+                    ? grids.find(it => getGridLayoutName(it) === getGridLayoutName(value)) || null
+                    : null
+            }
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            buttonClassName={styles.button}
+            onChange={onChange}
+        />
+    );
+}
 
 export default GridLayout;

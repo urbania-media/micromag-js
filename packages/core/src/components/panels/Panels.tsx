@@ -12,7 +12,7 @@ interface PanelsContainerProps {
     className?: string;
 }
 
-const PanelsContainer = ({ panels = [], setPanelsContainer = null, className = null }) => {
+function PanelsContainer({ panels = [], setPanelsContainer = null, className = null }) {
     const containerRef = useRef(null);
     useEffect(() => {
         setPanelsContainer(containerRef.current);
@@ -37,6 +37,6 @@ const PanelsContainer = ({ panels = [], setPanelsContainer = null, className = n
             />
         </div>
     );
-};
+}
 
 export default withPanels(PanelsContainer);

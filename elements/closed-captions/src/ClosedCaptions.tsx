@@ -18,7 +18,9 @@ interface ClosedCaptionsProps {
     className?: string;
 }
 
-const ClosedCaptions = ({ currentTime = 0, timeOffset = null, media = null, textStyle = null, boxStyle = null, className = null }) => {
+function ClosedCaptions(
+    { currentTime = 0, timeOffset = null, media = null, textStyle = null, boxStyle = null, className = null },
+) {
     const { url = null } = media || {};
     const [lines, setLines] = useState([]);
     const [lineIndex, setLineIndex] = useState(-1);
@@ -83,6 +85,6 @@ const ClosedCaptions = ({ currentTime = 0, timeOffset = null, media = null, text
             ) : null}
         </div>
     );
-};
+}
 
 export default ClosedCaptions;

@@ -3,6 +3,8 @@ import React from 'react';
 
 import ImageScreen from './Image';
 
-const ImageTextScreen = ({ ...props }) => <ImageScreen {...props} withText />;
+function ImageTextScreen({ ...props }) {
+  return <ImageScreen {...props} withText />;
+}
 
 export default ImageTextScreen;

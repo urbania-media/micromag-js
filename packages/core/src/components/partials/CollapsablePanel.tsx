@@ -17,15 +17,17 @@ interface CollapsablePanelProps {
     buttonClassName?: string;
 }
 
-const CollapsablePanel = ({
-    title = null,
-    children = null,
-    className = null,
-    topClassName = null,
-    contentClassName = null,
-    openedClassName = null,
-    buttonClassName = null,
-}) => {
+function CollapsablePanel(
+    {
+        title = null,
+        children = null,
+        className = null,
+        topClassName = null,
+        contentClassName = null,
+        openedClassName = null,
+        buttonClassName = null,
+    },
+) {
     const [opened, setOpened] = useState(false);
     const onClick = useCallback(() => setOpened(!opened), [opened, setOpened]);
     return (
@@ -80,6 +82,6 @@ const CollapsablePanel = ({
             </div>
         </div>
     );
-};
+}
 
 export default CollapsablePanel;

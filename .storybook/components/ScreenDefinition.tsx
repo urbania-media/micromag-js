@@ -12,7 +12,7 @@ interface ScreenDefinitionProps {
     defaultScreen?: Record<string, unknown>;
 }
 
-const ScreenDefinition = ({ definition, defaultScreen = null }: ScreenDefinitionProps) => {
+function ScreenDefinition({ definition, defaultScreen = null }: ScreenDefinitionProps) {
     const definitions = isArray(definition) ? definition : [definition];
     // console.log(definition, definitions);
     const [data, setData] = useState({
@@ -68,6 +68,6 @@ const ScreenDefinition = ({ definition, defaultScreen = null }: ScreenDefinition
             </div>
         </ScreensProvider>
     );
-};
+}
 
 export default ScreenDefinition;

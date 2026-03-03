@@ -13,7 +13,9 @@ interface DateElementProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const DateElement = ({ name = null, value = null, withTime = false, onChange = null, placeholder = null }) => {
+function DateElement(
+    { name = null, value = null, withTime = false, onChange = null, placeholder = null },
+) {
     const bodyValue = value !== null ? value.body || null : null;
     const onBodyChange = useCallback(
         (e) => {
@@ -40,6 +42,6 @@ const DateElement = ({ name = null, value = null, withTime = false, onChange = n
             placeholder={placeholder}
         />
     );
-};
+}
 
 export default DateElement;

@@ -19,7 +19,7 @@ interface ScreenSizeProviderProps {
     size?: ScreenSize;
 }
 
-export const ScreenSizeProvider = ({ size = {}, children }) => {
+export function ScreenSizeProvider({ size = {}, children }) {
     const {
         screen: nextScreen,
         width: nextWidth,
@@ -28,5 +28,5 @@ export const ScreenSizeProvider = ({ size = {}, children }) => {
     } = size;
     const currentSize = useMemo(() => size, [nextScreen, nextWidth, nextHeight, nextResolution]);
     return <ScreenSizeContext.Provider value={currentSize}>{children}</ScreenSizeContext.Provider>;
-};
+}
 

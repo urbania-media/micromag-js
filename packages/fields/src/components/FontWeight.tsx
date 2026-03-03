@@ -11,21 +11,25 @@ interface FontWeightProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const FontWeight = ({ value = null, sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900], className = null, onChange = null }) => (
-    <Slider
-        value={value}
-        min={sizes[0]}
-        max={sizes[sizes.length - 1]}
-        marks={sizes}
-        marksStep={100}
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        onChange={onChange}
-    />
-);
+function FontWeight(
+    { value = null, sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900], className = null, onChange = null },
+) {
+    return (
+        <Slider
+            value={value}
+            min={sizes[0]}
+            max={sizes[sizes.length - 1]}
+            marks={sizes}
+            marksStep={100}
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            onChange={onChange}
+        />
+    );
+}
 
 export default FontWeight;

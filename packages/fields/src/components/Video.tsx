@@ -9,21 +9,25 @@ interface VideoFieldProps {
     value?: VideoMedia;
 }
 
-const VideoField = (
+function VideoField(
     {
         value: value = null,
         ...props
     },
-) => (<MediaField
-    noValueLabel={
-        <FormattedMessage
-            defaultMessage="Select a video..."
-            description="Label when no value is provided to Video field"
+) {
+    return (
+        <MediaField
+            noValueLabel={
+                <FormattedMessage
+                    defaultMessage="Select a video..."
+                    description="Label when no value is provided to Video field"
+                />
+            }
+            {...props}
+            type="video"
         />
-    }
-    {...props}
-    type="video"
-/>);
+    );
+}
 
 VideoField.withForm = true;
 

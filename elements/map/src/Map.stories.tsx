@@ -19,4 +19,6 @@ export default {
     decorators: [withGoogleMapsApi],
 };
 
-export const Default = () => <MapComponent {...props} />;
+export function Default() {
+    return <MapComponent {...props} />;
+}

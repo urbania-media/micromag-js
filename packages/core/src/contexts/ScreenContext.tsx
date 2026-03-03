@@ -63,7 +63,9 @@ interface ScreenProviderProps {
     screenState?: string;
 }
 
-export const ScreenProvider = ({ data = null, definition = null, renderContext = null, screenState = null, children }) => {
+export function ScreenProvider(
+    { data = null, definition = null, renderContext = null, screenState = null, children },
+) {
     const {
         data: previousData = null,
         definition: previousDefinition = null,
@@ -91,5 +93,5 @@ export const ScreenProvider = ({ data = null, definition = null, renderContext =
         [finalData, finalDefinition, finalRenderContext, finalScreenState],
     );
     return <ScreenContext.Provider value={value}>{children}</ScreenContext.Provider>;
-};
+}
 

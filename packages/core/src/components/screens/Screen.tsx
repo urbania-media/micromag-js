@@ -22,19 +22,21 @@ interface ScreenProps {
     mediaRef?: (...args: unknown[]) => void;
 }
 
-const Screen = ({
-    screen,
-    renderContext = null,
-    screenState = null,
-    index = null,
-    active = true,
-    current = false,
-    preload = true,
-    components = null,
-    component = null,
-    className = null,
-    mediaRef = null,
-}) => {
+function Screen(
+    {
+        screen,
+        renderContext = null,
+        screenState = null,
+        index = null,
+        active = true,
+        current = false,
+        preload = true,
+        components = null,
+        component = null,
+        className = null,
+        mediaRef = null,
+    },
+) {
     const { type = null } = screen || {};
     const CustomScreenComponent =
         components !== null ? getComponentFromName(type, components) || null : null;
@@ -65,6 +67,6 @@ const Screen = ({
             )}
         </ScreenProvider>
     );
-};
+}
 
 export default React.memo(Screen);

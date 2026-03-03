@@ -83,23 +83,25 @@ interface KeypadScreenProps {
     className?: string;
 }
 
-const KeypadScreen = ({
-    items = null,
-    title = null,
-    subtitle = null,
-    layout = null,
-    spacing = 20,
-    keypadLayout = null,
-    buttonStyles = null,
-    popupStyles = null,
-    header = null,
-    footer = null,
-    background = null,
-    current = true,
-    preload = true,
-    withoutCloseButton = false,
-    className = null,
-}) => {
+function KeypadScreen(
+    {
+        items = null,
+        title = null,
+        subtitle = null,
+        layout = null,
+        spacing = 20,
+        keypadLayout = null,
+        buttonStyles = null,
+        popupStyles = null,
+        header = null,
+        footer = null,
+        background = null,
+        current = true,
+        preload = true,
+        withoutCloseButton = false,
+        className = null,
+    },
+) {
     const containerRef = useRef(null);
     const popupInnerRef = useRef(null);
 
@@ -792,6 +794,6 @@ const KeypadScreen = ({
             </Container>
         </div>
     );
-};
+}
 
 export default KeypadScreen;

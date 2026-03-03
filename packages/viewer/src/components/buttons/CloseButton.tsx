@@ -11,7 +11,7 @@ interface CloseButtonProps {
     className?: string;
 }
 
-const CloseButton = ({ className = null, ...props }) => {
+function CloseButton({ className = null, ...props }) {
     const intl = useIntl();
     return (
         <IconButton
@@ -28,6 +28,6 @@ const CloseButton = ({ className = null, ...props }) => {
             {...props}
         />
     );
-};
+}
 
 export default CloseButton;

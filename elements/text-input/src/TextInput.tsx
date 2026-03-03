@@ -29,25 +29,27 @@ interface TextInputProps {
     className?: string;
 }
 
-const TextInput = ({
-    label = null,
-    labelOutside = false,
-    labelClassName = null,
-    textStyle = null,
-    placeholderTextStyle = null,
-    buttonStyle = null,
-    labelOutsideStyle = null,
-    margin = null,
-    multiline = false,
-    value = '',
-    onChange = null,
-    onFocus = null,
-    onBlur = null,
-    required = false,
-    disabled = false,
-    focusable = true,
-    className = null,
-}) => {
+function TextInput(
+    {
+        label = null,
+        labelOutside = false,
+        labelClassName = null,
+        textStyle = null,
+        placeholderTextStyle = null,
+        buttonStyle = null,
+        labelOutsideStyle = null,
+        margin = null,
+        multiline = false,
+        value = '',
+        onChange = null,
+        onFocus = null,
+        onBlur = null,
+        required = false,
+        disabled = false,
+        focusable = true,
+        className = null,
+    },
+) {
     let containerStyle = {};
     let labelStyle = {};
     let elementStyle = {};
@@ -141,6 +143,6 @@ const TextInput = ({
             {placeholderStyleElement}
         </label>
     );
-};
+}
 
 export default TextInput;

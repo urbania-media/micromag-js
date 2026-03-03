@@ -14,7 +14,7 @@ const badgeProps = {
     label: { body: 'My badge 2032' },
 };
 
-const HeaderContainer = (props = null) => {
+function HeaderContainer(props = null) {
     const { width = 320, height = 480, ...otherProps } = props || {};
     return (
         <div
@@ -27,7 +27,7 @@ const HeaderContainer = (props = null) => {
             <Header {...header()} {...otherProps} />
         </div>
     );
-};
+}
 
 export const normal = () => <Header {...badgeProps} />;
 

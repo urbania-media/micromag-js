@@ -55,19 +55,21 @@ interface Video360ScreenProps {
     className?: string;
 }
 
-const Video360Screen = ({
-    layout = 'full', // eslint-disable-line
-    video = null,
-    header = null,
-    footer = null,
-    background = null,
-    current = true,
-    preload = true,
-    type = null,
-    spacing = 20,
-    mediaRef: customMediaRef = null,
-    className = null,
-}) => {
+function Video360Screen(
+    {
+        layout = 'full', // eslint-disable-line
+        video = null,
+        header = null,
+        footer = null,
+        background = null,
+        current = true,
+        preload = true,
+        type = null,
+        spacing = 20,
+        mediaRef: customMediaRef = null,
+        className = null,
+    },
+) {
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
     const trackScreenMedia = useTrackScreenMedia('video_360');
@@ -675,6 +677,6 @@ const Video360Screen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default Video360Screen;

@@ -27,21 +27,23 @@ interface SortableTreeItemProps {
     isLastChild?: boolean;
 }
 
-const SortableTreeItem = ({
-    id,
-    index,
-    depth,
-    component: Component = null,
-    value = null,
-    style: itemStyle = null,
-    smallScale = 0.75,
-    collapsed = false,
-    onCollapse = null,
-    onClickItem = null,
-    childValue = null,
-    isLastChild = false,
-    ...props
-}) => {
+function SortableTreeItem(
+    {
+        id,
+        index,
+        depth,
+        component: Component = null,
+        value = null,
+        style: itemStyle = null,
+        smallScale = 0.75,
+        collapsed = false,
+        onCollapse = null,
+        onClickItem = null,
+        childValue = null,
+        isLastChild = false,
+        ...props
+    },
+) {
     const {
         attributes,
         isDragging,
@@ -126,6 +128,6 @@ const SortableTreeItem = ({
             </SortableTreeItemActions>
         </div>
     );
-};
+}
 
 export default SortableTreeItem;

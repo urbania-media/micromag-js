@@ -15,67 +15,71 @@ interface BreadcrumbProps {
     className?: string;
 }
 
-const Breadcrumb = ({ items = [], theme = null, separator = null, withoutBar = false, noWrap = false, className = null }) => (
-    <nav className={className}>
-        <ol
-            className={classNames([
-                styles.container,
-                'breadcrumb',
-                'mb-0',
-                {
-                    'p-0': withoutBar,
-                    'bg-transparent': withoutBar,
-                    'rounded-0': withoutBar,
-                    'flex-nowrap': noWrap,
-                },
-            ])}
-        >
-            {items.map(({ url, label, active = false, onClick = null }, index) => (
-                <li
-                    className={classNames([
-                        'breadcrumb-item',
-                        {
-                            active,
-                            [styles.arrow]: separator === 'arrow',
-                            [`text-${theme}`]: active && theme !== null,
-                        },
-                    ])}
-                    key={`item-${index}`}
-                >
-                    {active ? <Label>{label}</Label> : null}
-                    {!active && url ? (
-                        <Link
-                            href={url}
-                            onClick={onClick}
-                            className={classNames([
-                                'font-weight-bold',
-                                'text-decoration-none',
-                                {
-                                    [`text-${theme}`]: theme !== null,
-                                },
-                            ])}
-                        >
-                            <Label>{label}</Label>
-                        </Link>
-                    ) : null}
-                    {!active && onClick ? (
-                        <Button
-                            onClick={onClick}
-                            className={classNames([
-                                'font-weight-bold',
-                                'text-decoration-none',
-                                {
-                                    [`text-${theme}`]: theme !== null,
-                                },
-                            ])}
-                        >
-                            <Label>{label}</Label>
-                        </Button>
-                    ) : null}
-                </li>
-            ))}
-        </ol>
-    </nav>
-);
+function Breadcrumb(
+    { items = [], theme = null, separator = null, withoutBar = false, noWrap = false, className = null },
+) {
+    return (
+        <nav className={className}>
+            <ol
+                className={classNames([
+                    styles.container,
+                    'breadcrumb',
+                    'mb-0',
+                    {
+                        'p-0': withoutBar,
+                        'bg-transparent': withoutBar,
+                        'rounded-0': withoutBar,
+                        'flex-nowrap': noWrap,
+                    },
+                ])}
+            >
+                {items.map(({ url, label, active = false, onClick = null }, index) => (
+                    <li
+                        className={classNames([
+                            'breadcrumb-item',
+                            {
+                                active,
+                                [styles.arrow]: separator === 'arrow',
+                                [`text-${theme}`]: active && theme !== null,
+                            },
+                        ])}
+                        key={`item-${index}`}
+                    >
+                        {active ? <Label>{label}</Label> : null}
+                        {!active && url ? (
+                            <Link
+                                href={url}
+                                onClick={onClick}
+                                className={classNames([
+                                    'font-weight-bold',
+                                    'text-decoration-none',
+                                    {
+                                        [`text-${theme}`]: theme !== null,
+                                    },
+                                ])}
+                            >
+                                <Label>{label}</Label>
+                            </Link>
+                        ) : null}
+                        {!active && onClick ? (
+                            <Button
+                                onClick={onClick}
+                                className={classNames([
+                                    'font-weight-bold',
+                                    'text-decoration-none',
+                                    {
+                                        [`text-${theme}`]: theme !== null,
+                                    },
+                                ])}
+                            >
+                                <Label>{label}</Label>
+                            </Button>
+                        ) : null}
+                    </li>
+                ))}
+            </ol>
+        </nav>
+    );
+}
 
 export default Breadcrumb;

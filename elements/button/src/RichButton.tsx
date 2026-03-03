@@ -37,31 +37,33 @@ interface RichButtonProps {
     children?: React.ReactNode;
 }
 
-const RichButton = ({
-    label = null,
-    visual = null,
-    visualWidth = null,
-    labelBoxStyle = null,
-    textStyle = null,
-    buttonStyle = null,
-    resolution = null,
-    shouldLoad = true,
-    layout = 'label-bottom',
-    type = 'button',
-    disabled = false,
-    focusable = true,
-    inline = false,
-    onClick = null,
-    className = null,
-    textClassName = null,
-    visualClassName = null,
-    imageClassName = null,
-    videoClassName = null,
-    withoutExternalBorder = true,
-    refButton = null,
-    children = null,
-    ...otherProps
-}) => {
+function RichButton(
+    {
+        label = null,
+        visual = null,
+        visualWidth = null,
+        labelBoxStyle = null,
+        textStyle = null,
+        buttonStyle = null,
+        resolution = null,
+        shouldLoad = true,
+        layout = 'label-bottom',
+        type = 'button',
+        disabled = false,
+        focusable = true,
+        inline = false,
+        onClick = null,
+        className = null,
+        textClassName = null,
+        visualClassName = null,
+        imageClassName = null,
+        videoClassName = null,
+        withoutExternalBorder = true,
+        refButton = null,
+        children = null,
+        ...otherProps
+    },
+) {
     const Tag = useMemo(() => {
         switch (type) {
             case 'submit':
@@ -162,6 +164,6 @@ const RichButton = ({
             </ScreenElement>
         </Tag>
     );
-};
+}
 
 export default RichButton;

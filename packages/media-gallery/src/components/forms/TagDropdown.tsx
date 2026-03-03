@@ -10,7 +10,7 @@ interface TagDropdownProps {
     className?: string;
 }
 
-const TagDropdown = ({ tags = null, parent = null, onChange = null, className = null }) => {
+function TagDropdown({ tags = null, parent = null, onChange = null, className = null }) {
     const onItemChange = useCallback(
         (e) => {
             const val = e.target.dataset.value || null;
@@ -56,6 +56,6 @@ const TagDropdown = ({ tags = null, parent = null, onChange = null, className = 
             </select>
         </div>
     );
-};
+}
 
 export default TagDropdown;

@@ -10,19 +10,21 @@ interface FieldErrorsProps {
     className?: string;
 }
 
-const FieldErrors = ({ children = null, muted = true, className = null }) => (
-    <small
-        id="passwordHelpBlock"
-        className={classNames([
-            'form-text',
-            {
-                'text-body-secondary': muted,
-                [className]: className !== null,
-            },
-        ])}
-    >
-        <Label>{children}</Label>
-    </small>
-);
+function FieldErrors({ children = null, muted = true, className = null }) {
+    return (
+        <small
+            id="passwordHelpBlock"
+            className={classNames([
+                'form-text',
+                {
+                    'text-body-secondary': muted,
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            <Label>{children}</Label>
+        </small>
+    );
+}
 
 export default FieldErrors;

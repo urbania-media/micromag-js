@@ -29,7 +29,7 @@ interface EditFormProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const EditForm = ({ value = null, isTheme = false, className = null, onChange = null }) => {
+function EditForm({ value = null, isTheme = false, className = null, onChange = null }) {
     // Match routes
     const [, setLocation] = useLocation();
     const routePush = useRoutePush();
@@ -317,6 +317,6 @@ const EditForm = ({ value = null, isTheme = false, className = null, onChange = 
             ) : null}
         </div>
     );
-};
+}
 
 export default EditForm;

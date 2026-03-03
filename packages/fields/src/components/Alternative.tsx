@@ -14,7 +14,9 @@ interface AlternativeProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const Alternative = ({ value = null, className = null, onChange = null, fields, toggleLabel, ...props }) => {
+function Alternative(
+    { value = null, className = null, onChange = null, fields, toggleLabel, ...props },
+) {
     const finalFields = useMemo(
         () => [
             {
@@ -59,6 +61,6 @@ const Alternative = ({ value = null, className = null, onChange = null, fields, 
             onChange={onUpdateValue}
         />
     );
-};
+}
 
 export default Alternative;

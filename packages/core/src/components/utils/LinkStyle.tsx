@@ -8,8 +8,8 @@ interface LinkStyleProps {
     style?: Record<string, string | number>;
 }
 
-const LinkStyle = ({ selector = null, linkSelector = 'a', style = null }) =>
-    style !== null ? (
+function LinkStyle({ selector = null, linkSelector = 'a', style = null }) {
+    return style !== null ? (
         <style
             type="text/css"
             dangerouslySetInnerHTML={{
@@ -19,5 +19,6 @@ const LinkStyle = ({ selector = null, linkSelector = 'a', style = null }) =>
             }}
         />
     ) : null;
+}
 
 export default LinkStyle;

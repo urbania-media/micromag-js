@@ -13,14 +13,16 @@ interface ElementComponentProps {
     placeholderProps?: Record<string, unknown>;
 }
 
-const ElementComponent = ({
-    name,
-    components,
-    props = {},
-    isPlaceholder = false,
-    className = null,
-    placeholderProps = null,
-}) => {
+function ElementComponent(
+    {
+        name,
+        components,
+        props = {},
+        isPlaceholder = false,
+        className = null,
+        placeholderProps = null,
+    },
+) {
     if (!name) {
         return 'Bad component name';
     }
@@ -38,6 +40,6 @@ const ElementComponent = ({
     }
 
     return <RealComponent {...props} className={className} />;
-};
+}
 
 export default ElementComponent;

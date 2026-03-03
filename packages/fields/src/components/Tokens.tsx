@@ -19,16 +19,18 @@ interface TokensProps {
     className?: string;
 }
 
-const Tokens = ({
-    value = null,
-    options = [],
-    loadOptions = null,
-    getOptionLabel = undefined,
-    getOptionValue = undefined,
-    getNewOptionData = undefined,
-    onChange = null,
-    className = null,
-}) => {
+function Tokens(
+    {
+        value = null,
+        options = [],
+        loadOptions = null,
+        getOptionLabel = undefined,
+        getOptionValue = undefined,
+        getNewOptionData = undefined,
+        onChange = null,
+        className = null,
+    },
+) {
     const filterOptions = useCallback(
         (inputValue) =>
             new Promise((resolve) => {
@@ -74,6 +76,6 @@ const Tokens = ({
             />
         </div>
     );
-};
+}
 
 export default Tokens;

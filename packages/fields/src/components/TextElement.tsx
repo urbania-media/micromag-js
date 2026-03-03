@@ -15,7 +15,9 @@ interface TextElementProps {
     disabled?: boolean;
 }
 
-const TextElement = ({ value = null, onChange = null, inline = false, textOnly = false, onFocus = null, disabled = false, ...props }) => {
+function TextElement(
+    { value = null, onChange = null, inline = false, textOnly = false, onFocus = null, disabled = false, ...props },
+) {
     const bodyValue = value !== null ? value.body || null : null;
     const textStyleValue = value !== null ? value.textStyle || null : null;
     const onBodyChange = useCallback(
@@ -62,6 +64,6 @@ const TextElement = ({ value = null, onChange = null, inline = false, textOnly =
             disabled={disabled}
         />
     );
-};
+}
 
 export default TextElement;

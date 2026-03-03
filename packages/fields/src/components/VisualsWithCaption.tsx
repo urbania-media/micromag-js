@@ -10,25 +10,29 @@ interface VisualsWithCaptionFieldProps {
     value?: ImageMedia[];
 }
 
-const VisualsWithCaptionField = (
+function VisualsWithCaptionField(
     {
         value: value = null,
         ...props
     },
-) => (<ItemsField
-    noItemLabel={
-        <FormattedMessage
-            defaultMessage="No image..."
-            description="Label when there is no item in images with caption field"
+) {
+    return (
+        <ItemsField
+            noItemLabel={
+                <FormattedMessage
+                    defaultMessage="No image..."
+                    description="Label when there is no item in images with caption field"
+                />
+            }
+            addItemLabel={
+                <FormattedMessage
+                    defaultMessage="Add an image"
+                    description="Button label in images with caption field"
+                />
+            }
+            {...props}
         />
-    }
-    addItemLabel={
-        <FormattedMessage
-            defaultMessage="Add an image"
-            description="Button label in images with caption field"
-        />
-    }
-    {...props}
-/>);
+    );
+}
 
 export default VisualsWithCaptionField;

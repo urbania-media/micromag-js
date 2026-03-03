@@ -10,7 +10,9 @@ interface ElementPortalProps {
     children?: React.ReactNode;
 }
 
-const ElementPortal = ({ id = null, data = null, children = null, container = null, register = null, unregister = null }) => {
+function ElementPortal(
+    { id = null, data = null, children = null, container = null, register = null, unregister = null },
+) {
     const finalId = useMemo(() => id || `element-${new Date().getTime()}`, [id]);
     useEffect(() => {
         if (register !== null) {
@@ -23,6 +25,6 @@ const ElementPortal = ({ id = null, data = null, children = null, container = nu
         };
     }, [finalId, data]);
     return container !== null ? createPortal(children, container) : null;
-};
+}
 
 export default ElementPortal;

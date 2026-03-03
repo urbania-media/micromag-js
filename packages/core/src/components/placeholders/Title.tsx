@@ -6,7 +6,7 @@ import PlaceholderText from '../partials/PlaceholderText';
 
 import styles from '../../styles/placeholders/placeholders.module.css';
 
-export const Title = (props) => {
+export function Title(props) {
     const { height = 0.5, lines = 2, lineMargin = 2 } = props;
 
     return (
@@ -18,6 +18,6 @@ export const Title = (props) => {
             lineMargin={lineMargin}
         />
     );
-};
+}
 
 export default Title;

@@ -18,8 +18,10 @@ interface LinkProps {
     className?: string;
 }
 
-const Link = ({ href = '', external = false, children = null, target = '_blank', rel = 'noopener noreferrer', className = null, withoutStyle = false, ...props }) =>
-    external ? (
+function Link(
+    { href = '', external = false, children = null, target = '_blank', rel = 'noopener noreferrer', className = null, withoutStyle = false, ...props },
+) {
+    return external ? (
         <a
             className={classNames([className, { [styles.withoutStyle]: withoutStyle }])}
             href={href}
@@ -38,5 +40,6 @@ const Link = ({ href = '', external = false, children = null, target = '_blank',
             <Label>{children}</Label>
         </ReactLink>
     );
+}
 
 export default Link;

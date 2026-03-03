@@ -65,30 +65,32 @@ interface SurveyScreenProps {
     className?: string;
 }
 
-const SurveyScreen = ({
-    id = null,
-    layout = 'middle',
-    question = null,
-    answers = null,
-    result = null,
-    buttonsStyle = null,
-    buttonsTextStyle = null,
-    resultsStyle = null,
-    spacing = 20,
-    header = null,
-    footer = null,
-    background = null,
-    customAnswer = false,
-    showCount = false,
-    withoutPercentage = false,
-    withoutBar = false,
-    current = true,
-    preload = true,
-    transitions = null,
-    resultTransitionDuration = 500,
-    type = null,
-    className = null,
-}) => {
+function SurveyScreen(
+    {
+        id = null,
+        layout = 'middle',
+        question = null,
+        answers = null,
+        result = null,
+        buttonsStyle = null,
+        buttonsTextStyle = null,
+        resultsStyle = null,
+        spacing = 20,
+        header = null,
+        footer = null,
+        background = null,
+        customAnswer = false,
+        showCount = false,
+        withoutPercentage = false,
+        withoutBar = false,
+        current = true,
+        preload = true,
+        transitions = null,
+        resultTransitionDuration = 500,
+        type = null,
+        className = null,
+    },
+) {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
@@ -747,6 +749,6 @@ const SurveyScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default SurveyScreen;

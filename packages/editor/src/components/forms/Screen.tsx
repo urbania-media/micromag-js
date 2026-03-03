@@ -17,14 +17,16 @@ interface ScreenFormProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const ScreenForm = ({
-    value = null,
-    className = null,
-    gotoFieldForm,
-    closeFieldForm,
-    onChange = null,
-    // onClickDelete,
-}) => {
+function ScreenForm(
+    {
+        value = null,
+        className = null,
+        gotoFieldForm,
+        closeFieldForm,
+        onChange = null,
+        // onClickDelete,
+    },
+) {
     const { fields = [] } = useScreenDefinition();
     // const intl = useIntl();
     // const finalOnClickDelete = useCallback(() => {
@@ -84,6 +86,6 @@ const ScreenForm = ({
             </div>
         </div>
     );
-};
+}
 
 export default ScreenForm;

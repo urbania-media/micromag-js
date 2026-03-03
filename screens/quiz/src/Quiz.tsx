@@ -58,36 +58,38 @@ interface QuizScreenProps {
     className?: string;
 }
 
-const QuizScreen = ({
-    id = null,
-    layout = 'middle',
-    keypadLayout = null,
-    question = null,
-    answers = null,
-    result = null,
-    resultImage = null,
-    buttonsLayout = null,
-    buttonsStyle = null,
-    inactiveButtonsStyle = null,
-    buttonsTextStyle = null,
-    inactiveButtonsTextStyle = null,
-    feedbackTextStyle = null,
-    numbersTextStyle = null,
-    goodAnswerColor = null,
-    badAnswerColor = null,
-    withoutTrueFalse = false,
-    spacing = 20,
-    header = null,
-    footer = null,
-    background = null,
-    current = true,
-    preload = true,
-    ready = true,
-    transitions = null,
-    transitionStagger = 100,
-    type = null,
-    className = null,
-}) => {
+function QuizScreen(
+    {
+        id = null,
+        layout = 'middle',
+        keypadLayout = null,
+        question = null,
+        answers = null,
+        result = null,
+        resultImage = null,
+        buttonsLayout = null,
+        buttonsStyle = null,
+        inactiveButtonsStyle = null,
+        buttonsTextStyle = null,
+        inactiveButtonsTextStyle = null,
+        feedbackTextStyle = null,
+        numbersTextStyle = null,
+        goodAnswerColor = null,
+        badAnswerColor = null,
+        withoutTrueFalse = false,
+        spacing = 20,
+        header = null,
+        footer = null,
+        background = null,
+        current = true,
+        preload = true,
+        ready = true,
+        transitions = null,
+        transitionStagger = 100,
+        type = null,
+        className = null,
+    },
+) {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
@@ -348,6 +350,6 @@ const QuizScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default QuizScreen;

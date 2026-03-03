@@ -16,6 +16,10 @@ const webViewProps = {
     visible: true,
 };
 
-export const Normal = () => <WebView {...webViewProps} width={320} height={480} />;
+export function Normal() {
+    return <WebView {...webViewProps} width={320} height={480} />;
+}
 
-export const Closeable = () => <WebView {...webViewProps} width={320} height={480} closeable />;
+export function Closeable() {
+    return <WebView {...webViewProps} width={320} height={480} closeable />;
+}

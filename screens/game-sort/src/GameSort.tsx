@@ -63,29 +63,31 @@ interface GameSortProps {
     className?: string;
 }
 
-const GameSort = ({
-    layout = 'top',
-    heading = null,
-    items: initialItems = null,
-    spacing = 20,
-    itemsLayout = 'label-bottom',
-    itemsBoxStyle = null,
-    itemsTextStyle = null,
-    itemsResultsTextStyle = null,
-    validBoxStyle = null,
-    invalidBoxStyle = null,
-    submitBoxStyle = null,
-    submitTextStyle = null,
-    submitButtonLabel = null,
-    results = null,
-    resultsBoxStyle = null,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    active = true,
-    className = null,
-}) => {
+function GameSort(
+    {
+        layout = 'top',
+        heading = null,
+        items: initialItems = null,
+        spacing = 20,
+        itemsLayout = 'label-bottom',
+        itemsBoxStyle = null,
+        itemsTextStyle = null,
+        itemsResultsTextStyle = null,
+        validBoxStyle = null,
+        invalidBoxStyle = null,
+        submitBoxStyle = null,
+        submitTextStyle = null,
+        submitButtonLabel = null,
+        results = null,
+        resultsBoxStyle = null,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        active = true,
+        className = null,
+    },
+) {
     const intl = useIntl();
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -570,6 +572,6 @@ const GameSort = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default GameSort;

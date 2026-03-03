@@ -9,10 +9,12 @@ interface DataProviderProps {
     children?: React.ReactNode;
 }
 
-const DataProvider = ({ api = null, apiBaseUrl = undefined, children = null }) => (
-    <ApiProvider api={api} baseUrl={apiBaseUrl}>
-        {children}
-    </ApiProvider>
-);
+function DataProvider({ api = null, apiBaseUrl = undefined, children = null }) {
+    return (
+        <ApiProvider api={api} baseUrl={apiBaseUrl}>
+            {children}
+        </ApiProvider>
+    );
+}
 
 export default DataProvider;

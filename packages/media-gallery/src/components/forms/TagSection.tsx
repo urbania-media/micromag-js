@@ -10,7 +10,7 @@ interface TagSectionProps {
     className?: string;
 }
 
-const TagSection = ({ tags = null, parent = null, onChange = null, className = null }) => {
+function TagSection({ tags = null, parent = null, onChange = null, className = null }) {
     const onItemChange = useCallback(
         (e) => {
             const val = e.target.dataset.value || null;
@@ -60,6 +60,6 @@ const TagSection = ({ tags = null, parent = null, onChange = null, className = n
                 : null}
         </div>
     );
-};
+}
 
 export default TagSection;

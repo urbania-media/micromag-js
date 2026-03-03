@@ -33,17 +33,19 @@ interface EditorScreensProps {
     className?: string;
 }
 
-const EditorScreens = ({
-    value: unparsedValue = null,
-    isTheme = false,
-    isVertical = false,
-    isCreateOpened = false,
-    isParsed = false,
-    isTree = false,
-    onClickScreen = null,
-    onChange = null,
-    className = null,
-}) => {
+function EditorScreens(
+    {
+        value: unparsedValue = null,
+        isTheme = false,
+        isVertical = false,
+        isCreateOpened = false,
+        isParsed = false,
+        isTree = false,
+        onClickScreen = null,
+        onChange = null,
+        className = null,
+    },
+) {
     const valueWithTheme = useThemeValue(unparsedValue, isTheme);
     const value = isParsed ? unparsedValue : useParsedStory(valueWithTheme, { withMedias: false });
     const { components: screens = [] } = value || {};
@@ -252,6 +254,6 @@ const EditorScreens = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default EditorScreens;

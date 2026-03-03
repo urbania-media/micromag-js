@@ -73,16 +73,18 @@ interface SortableTreeProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const SortableTree = ({
-    collapsible = true,
-    items: defaultItems = initialItems,
-    indicator = false,
-    indentationWidth = 30,
-    removable = false,
-    component = null,
-    onClickItem = null,
-    onChange = null,
-}) => {
+function SortableTree(
+    {
+        collapsible = true,
+        items: defaultItems = initialItems,
+        indicator = false,
+        indentationWidth = 30,
+        removable = false,
+        component = null,
+        onClickItem = null,
+        onChange = null,
+    },
+) {
     const [items, setItems] = useState(() => buildTree(defaultItems));
     const [activeId, setActiveId] = useState(null);
     const [overId, setOverId] = useState(null);
@@ -437,6 +439,6 @@ const SortableTree = ({
             </SortableContext>
         </DndContext>
     );
-};
+}
 
 export default SortableTree;

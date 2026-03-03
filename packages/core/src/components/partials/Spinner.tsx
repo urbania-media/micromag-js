@@ -11,30 +11,34 @@ interface SpinnerProps {
     className?: string;
 }
 
-const Spinner = ({ animated = true, color = 'currentColor', strokeWidth = 3, className = null }) => (
-    <svg
-        className={classNames([
-            styles.container,
-            {
-                [styles.animated]: animated,
-                [className]: className !== null,
-            },
-        ])}
-        width="40"
-        height="40"
-        viewBox="0 0 40 40"
-        xmlns="http://www.w3.org/2000/svg"
-    >
-        <circle
-            className={styles.path}
-            cx="20"
-            cy="20"
-            r="12"
-            fill="none"
-            stroke={color}
-            strokeWidth={strokeWidth}
-        />
-    </svg>
-);
+function Spinner(
+    { animated = true, color = 'currentColor', strokeWidth = 3, className = null },
+) {
+    return (
+        <svg
+            className={classNames([
+                styles.container,
+                {
+                    [styles.animated]: animated,
+                    [className]: className !== null,
+                },
+            ])}
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <circle
+                className={styles.path}
+                cx="20"
+                cy="20"
+                r="12"
+                fill="none"
+                stroke={color}
+                strokeWidth={strokeWidth}
+            />
+        </svg>
+    );
+}
 
 export default Spinner;

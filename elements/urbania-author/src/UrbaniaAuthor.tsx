@@ -28,20 +28,22 @@ interface UrbaniaAuthorProps {
     shouldLoad?: boolean;
 }
 
-const UrbaniaAuthor = ({
-    author = null,
-    withImage = true,
-    withoutLink = false,
-    withoutPrefix = false,
-    withoutBackground = false,
-    isSmall = false,
-    linkUnderlineColor = null,
-    className = null,
-    backgroundClassName = null,
-    collaboratorClassName = null,
-    shouldLoad = true,
-    ...otherProps
-}) => {
+function UrbaniaAuthor(
+    {
+        author = null,
+        withImage = true,
+        withoutLink = false,
+        withoutPrefix = false,
+        withoutBackground = false,
+        isSmall = false,
+        linkUnderlineColor = null,
+        className = null,
+        backgroundClassName = null,
+        collaboratorClassName = null,
+        shouldLoad = true,
+        ...otherProps
+    },
+) {
     const intl = useIntl();
     const { name = null, image = null, url = null, collaborator = null } = author || {};
     const withAvatar = withImage && image !== null;
@@ -128,6 +130,6 @@ const UrbaniaAuthor = ({
             </div>
         </div>
     );
-};
+}
 
 export default UrbaniaAuthor;

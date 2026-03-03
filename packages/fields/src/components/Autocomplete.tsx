@@ -17,20 +17,22 @@ interface AutocompleteFieldProps {
     children?: React.ReactNode;
 }
 
-const AutocompleteField = ({
-    items = [],
-    value = null,
-    searchOptions = {
-        // Search in `label` and in `value` items in an object array
-        keys: ['label', 'value'],
+function AutocompleteField(
+    {
+        items = [],
+        value = null,
+        searchOptions = {
+            // Search in `label` and in `value` items in an object array
+            keys: ['label', 'value'],
+        },
+        maxResults = 10,
+        showEmpty = false,
+        placeholder = null,
+        className = null,
+        onChange = null,
+        children = null,
     },
-    maxResults = 10,
-    showEmpty = false,
-    placeholder = null,
-    className = null,
-    onChange = null,
-    children = null,
-}) => {
+) {
     const fuse = useRef(null);
     const [open, setOpen] = useState(false);
 
@@ -120,6 +122,6 @@ const AutocompleteField = ({
             {open ? listItems : null}
         </div>
     );
-};
+}
 
 export default AutocompleteField;

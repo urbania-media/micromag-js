@@ -57,10 +57,12 @@ interface AlignmentProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const Alignment = ({ alignment = {
-    horizontal: 'middle',
-    vertical: 'middle',
-}, value = null, className = null, onChange = null }) => {
+function Alignment(
+    { alignment = {
+        horizontal: 'middle',
+        vertical: 'middle',
+    }, value = null, className = null, onChange = null },
+) {
     const onVerticalAlignChange = useCallback(
         (newVal) => {
             const { vertical = null, horizontal = null } = value || {};
@@ -140,6 +142,6 @@ const Alignment = ({ alignment = {
             ))}
         </div>
     );
-};
+}
 
 export default Alignment;

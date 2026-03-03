@@ -6,13 +6,15 @@ import PlaceholderText from '../partials/PlaceholderText';
 
 import styles from '../../styles/placeholders/placeholders.module.css';
 
-export const Subtitle = (props) => (
-    <PlaceholderText
-        {...props}
-        className={classNames([props.className, styles.subtitle])}
-        height={0.3}
-        lines={1}
-    />
-);
+export function Subtitle(props) {
+    return (
+        <PlaceholderText
+            {...props}
+            className={classNames([props.className, styles.subtitle])}
+            height={0.3}
+            lines={1}
+        />
+    );
+}
 
 export default Subtitle;

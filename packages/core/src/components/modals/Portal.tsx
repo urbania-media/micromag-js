@@ -9,7 +9,7 @@ interface ModalPortalProps {
     children?: React.ReactNode;
 }
 
-const ModalPortal = ({ id = null, data = null, children = null }) => {
+function ModalPortal({ id = null, data = null, children = null }) {
     const { container, register = null, unregister = null } = useModals();
     return (
         <ElementPortal
@@ -22,6 +22,6 @@ const ModalPortal = ({ id = null, data = null, children = null }) => {
             {children}
         </ElementPortal>
     );
-};
+}
 
 export default ModalPortal;

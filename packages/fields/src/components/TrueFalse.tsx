@@ -14,35 +14,37 @@ interface TrueFalseProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const TrueFalse = ({ value = null, options = [
-    {
-        value: true,
-        label: (
-            <>
-                <FontAwesomeIcon className="me-1" icon={faCheck} />
-                <FormattedMessage defaultMessage="True" description="Field label" />
-            </>
-        ),
-    },
-    {
-        value: false,
-        label: (
-            <>
-                <FontAwesomeIcon className="me-1" icon={faTimes} />
-                <FormattedMessage defaultMessage="False" description="Field label" />
-            </>
-        ),
-    },
-    {
-        value: null,
-        label: (
-            <>
-                <FontAwesomeIcon className="me-1" icon={faCircle} />
-                <FormattedMessage defaultMessage="None" description="Field label" />
-            </>
-        ),
-    },
-], onChange = null, ...props }) => {
+function TrueFalse(
+    { value = null, options = [
+        {
+            value: true,
+            label: (
+                <>
+                    <FontAwesomeIcon className="me-1" icon={faCheck} />
+                    <FormattedMessage defaultMessage="True" description="Field label" />
+                </>
+            ),
+        },
+        {
+            value: false,
+            label: (
+                <>
+                    <FontAwesomeIcon className="me-1" icon={faTimes} />
+                    <FormattedMessage defaultMessage="False" description="Field label" />
+                </>
+            ),
+        },
+        {
+            value: null,
+            label: (
+                <>
+                    <FontAwesomeIcon className="me-1" icon={faCircle} />
+                    <FormattedMessage defaultMessage="None" description="Field label" />
+                </>
+            ),
+        },
+    ], onChange = null, ...props },
+) {
     const onInputChange = useCallback(
         (newValue) => {
             if (onChange !== null) {
@@ -52,6 +54,6 @@ const TrueFalse = ({ value = null, options = [
         [value, onChange],
     );
     return <Radios value={value} options={options} onChange={onInputChange} asRadios {...props} />;
-};
+}
 
 export default TrueFalse;

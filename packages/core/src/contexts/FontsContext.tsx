@@ -74,7 +74,9 @@ interface FontsProviderProps {
     customFonts?: Font[];
 }
 
-export const FontsProvider = ({ systemFonts = ['Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana'], customFonts = null, children }) => {
+export function FontsProvider(
+    { systemFonts = ['Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana'], customFonts = null, children },
+) {
     const {
         systemFonts: previousSystemFonts = null,
         googleFonts: previousGoogleFonts = null,
@@ -108,5 +110,5 @@ export const FontsProvider = ({ systemFonts = ['Arial', 'Courier New', 'Georgia'
     );
 
     return <FontsContext.Provider value={fonts}>{children}</FontsContext.Provider>;
-};
+}
 

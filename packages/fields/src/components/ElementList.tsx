@@ -6,6 +6,8 @@ interface ElementListProps {
     [key: string]: unknown;
 }
 
-const ElementList = props => <ElementField isList {...props} />;
+function ElementList(props) {
+    return <ElementField isList {...props} />;
+}
 
 export default ElementList;

@@ -67,27 +67,29 @@ interface UrbaniaRecommendationProps {
     className?: string;
 }
 
-const UrbaniaRecommendation = ({
-    layout = null,
-    category = null,
-    visual = null,
-    title = null,
-    date = null,
-    location = null,
-    description = null,
-    sponsor = null,
-    spacing = 20,
-    header = null,
-    footer = null,
-    background = null,
-    cardBoxStyle = null,
-    lineColor = null,
-    withoutZoom = false,
-    current = true,
-    active = true,
-    preload = true,
-    className = null,
-}) => {
+function UrbaniaRecommendation(
+    {
+        layout = null,
+        category = null,
+        visual = null,
+        title = null,
+        date = null,
+        location = null,
+        description = null,
+        sponsor = null,
+        spacing = 20,
+        header = null,
+        footer = null,
+        background = null,
+        cardBoxStyle = null,
+        lineColor = null,
+        withoutZoom = false,
+        current = true,
+        active = true,
+        preload = true,
+        className = null,
+    },
+) {
     const intl = useIntl();
 
     const trackScreenEvent = useTrackScreenEvent();
@@ -896,6 +898,6 @@ const UrbaniaRecommendation = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default UrbaniaRecommendation;

@@ -9,21 +9,25 @@ interface ImageFieldProps {
     value?: ImageMedia;
 }
 
-const ImageField = (
+function ImageField(
     {
         value: value = null,
         ...props
     },
-) => (<MediaField
-    noValueLabel={
-        <FormattedMessage
-            defaultMessage="Select an image..."
-            description="Label when no value is provided to Image field"
+) {
+    return (
+        <MediaField
+            noValueLabel={
+                <FormattedMessage
+                    defaultMessage="Select an image..."
+                    description="Label when no value is provided to Image field"
+                />
+            }
+            {...props}
+            type="image"
         />
-    }
-    {...props}
-    type="image"
-/>);
+    );
+}
 
 ImageField.withForm = true;
 

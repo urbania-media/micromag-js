@@ -50,36 +50,38 @@ interface ViewerMenuProps {
     refDots?: { current?: unknown };
 }
 
-const ViewerMenu = ({
-    story,
-    menuItems = ['share', 'main'],
-    currentScreenIndex = 0,
-    toggleFullscreen = null,
-    fullscreenActive = false,
-    fullscreenEnabled = false,
-    menuDotsButtons = null,
-    closeable = false,
-    withShadow = false,
-    shareBasePath = null,
-    shareOptions = null,
-    trackingEnabled = false,
-    theme: viewerTheme = null,
-    screenSize = null,
-    menuWidth = null,
-    previewHeader = null,
-    previewFooter = null,
-    afterShareMenuButton = null,
-    beforeScreensMenuButton = null,
-    withMicromagBranding = false,
-    withDotItemClick = false,
-    withoutScreensMenu = false,
-    withoutShareMenu = false,
-    onClickScreen: customOnClickScreen = null,
-    onChange = null,
-    // onClickMenu: customOnClickMenu,
-    onClickCloseViewer = null,
-    refDots = null,
-}) => {
+function ViewerMenu(
+    {
+        story,
+        menuItems = ['share', 'main'],
+        currentScreenIndex = 0,
+        toggleFullscreen = null,
+        fullscreenActive = false,
+        fullscreenEnabled = false,
+        menuDotsButtons = null,
+        closeable = false,
+        withShadow = false,
+        shareBasePath = null,
+        shareOptions = null,
+        trackingEnabled = false,
+        theme: viewerTheme = null,
+        screenSize = null,
+        menuWidth = null,
+        previewHeader = null,
+        previewFooter = null,
+        afterShareMenuButton = null,
+        beforeScreensMenuButton = null,
+        withMicromagBranding = false,
+        withDotItemClick = false,
+        withoutScreensMenu = false,
+        withoutShareMenu = false,
+        onClickScreen: customOnClickScreen = null,
+        onChange = null,
+        // onClickMenu: customOnClickMenu,
+        onClickCloseViewer = null,
+        refDots = null,
+    },
+) {
     const { components: screens = [], title = null, metadata = null } = story;
     const { description = null } = metadata || {};
     const currentScreen = screens !== null ? screens[currentScreenIndex] || null : null;
@@ -469,6 +471,6 @@ const ViewerMenu = ({
             </MenuContainer>
         </>
     );
-};
+}
 
 export default React.memo(ViewerMenu);

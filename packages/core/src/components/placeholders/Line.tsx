@@ -6,13 +6,15 @@ import PlaceholderText from '../partials/PlaceholderText';
 
 import styles from '../../styles/placeholders/placeholders.module.css';
 
-export const Line = (props) => (
-    <PlaceholderText
-        {...props}
-        className={classNames([props.className, styles.shortText])}
-        height={0.2}
-        lines={1}
-    />
-);
+export function Line(props) {
+    return (
+        <PlaceholderText
+            {...props}
+            className={classNames([props.className, styles.shortText])}
+            height={0.2}
+            lines={1}
+        />
+    );
+}
 
 export default Line;

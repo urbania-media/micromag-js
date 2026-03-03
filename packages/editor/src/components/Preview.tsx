@@ -29,28 +29,30 @@ interface EditorPreviewProps {
     withoutDevicesSizes?: boolean;
 }
 
-const EditorPreview = ({
-    value = null,
-    viewerTheme = null,
-    isTheme = false,
-    devices = [
-        {
-            id: 'mobile',
-            width: 320,
-            height: 480,
-        },
-        {
-            id: 'desktop',
-            width: 1200,
-            height: 900,
-        },
-    ],
-    device: initialDevice = 'mobile',
-    className = null,
-    onScreenChange = null,
-    onChange = null,
-    withoutDevicesSizes = true,
-}) => {
+function EditorPreview(
+    {
+        value = null,
+        viewerTheme = null,
+        isTheme = false,
+        devices = [
+            {
+                id: 'mobile',
+                width: 320,
+                height: 480,
+            },
+            {
+                id: 'desktop',
+                width: 1200,
+                height: 900,
+            },
+        ],
+        device: initialDevice = 'mobile',
+        className = null,
+        onScreenChange = null,
+        onChange = null,
+        withoutDevicesSizes = true,
+    },
+) {
     const { screen: screenId = null, field: fieldParam = null } = useRouteParams();
     const { screen = null, screens = [] } = useScreenSize();
     const valueWithTheme = useThemeValue(value, isTheme);
@@ -175,6 +177,6 @@ const EditorPreview = ({
             </div>
         </div>
     );
-};
+}
 
 export default EditorPreview;

@@ -6,7 +6,7 @@ import PlaceholderText from '../partials/PlaceholderText';
 
 import styles from '../../styles/placeholders/placeholders.module.css';
 
-const TextPlaceholder = (props) => {
+function TextPlaceholder(props) {
     const { className = null, height = 0.2, lines = 4, lineMargin = 2 } = props;
 
     return (

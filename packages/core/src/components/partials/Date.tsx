@@ -9,7 +9,7 @@ interface DateProps {
     timeSeparator?: React.ReactNode;
 }
 
-const Date = ({ date = null, withTime = false, timeSeparator = ', ' }) => {
+function Date({ date = null, withTime = false, timeSeparator = ', ' }) {
     const dateObject = useMemo(() => dayjs(date).toDate(), [date]);
     return (
         <>
@@ -18,6 +18,6 @@ const Date = ({ date = null, withTime = false, timeSeparator = ', ' }) => {
             {withTime ? <FormattedTime value={dateObject} /> : null}
         </>
     );
-};
+}
 
 export default Date;

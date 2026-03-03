@@ -14,7 +14,7 @@ const badgeProps = {
     label: { body: 'My badge 2032' },
 };
 
-const FooterContainer = (props = null) => {
+function FooterContainer(props = null) {
     const { width = 320, height = 480, ...otherProps } = props || {};
     return (
         <div
@@ -27,7 +27,7 @@ const FooterContainer = (props = null) => {
             <Footer {...footer()} {...otherProps} />
         </div>
     );
-};
+}
 
 export const normal = () => <Footer {...badgeProps} />;
 

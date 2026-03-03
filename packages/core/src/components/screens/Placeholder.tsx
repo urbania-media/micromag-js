@@ -18,16 +18,18 @@ interface ScreenPlaceholderProps {
     className?: string;
 }
 
-const ScreenPlaceholder = ({
-    screen,
-    layout = undefined,
-    screenWidth = 100,
-    screenHeight = 150,
-    screenState = null,
-    withSize = false,
-    className = null,
-    ...props
-}) => {
+function ScreenPlaceholder(
+    {
+        screen,
+        layout = undefined,
+        screenWidth = 100,
+        screenHeight = 150,
+        screenState = null,
+        withSize = false,
+        className = null,
+        ...props
+    },
+) {
     const screenElement = (
         <Screen
             screen={screen}
@@ -50,6 +52,6 @@ const ScreenPlaceholder = ({
     ) : (
         screenElement
     );
-};
+}
 
 export default React.memo(ScreenPlaceholder);

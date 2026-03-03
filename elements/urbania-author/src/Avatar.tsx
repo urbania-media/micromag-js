@@ -19,7 +19,9 @@ interface AvatarProps {
     shouldLoad?: boolean;
 }
 
-const Avatar = ({ image = null, width = 100, height = 100, resolution = 1, shape = 'circle', isTag = false, className = null, shouldLoad = true }) => {
+function Avatar(
+    { image = null, width = 100, height = 100, resolution = 1, shape = 'circle', isTag = false, className = null, shouldLoad = true },
+) {
     const supportsWebp = useSetting('supportsWebp', false);
     const imageResolution = useSetting('imageResolution', resolution);
     const imageAtSize = getOptimalImageUrl(image, width, height, { resolution: imageResolution, supportsWebp });
@@ -43,6 +45,6 @@ const Avatar = ({ image = null, width = 100, height = 100, resolution = 1, shape
             />
         </span>
     );
-};
+}
 
 export default Avatar;

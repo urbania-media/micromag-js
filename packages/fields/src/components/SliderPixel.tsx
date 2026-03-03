@@ -7,12 +7,14 @@ interface SliderPixelFieldProps {
     withInput?: boolean;
 }
 
-const SliderPixelField = (
+function SliderPixelField(
     {
         unit: unit = 'px',
         withInput: withInput = true,
         ...props
     },
-) => <SliderField {...props} />;
+) {
+    return <SliderField {...props} />;
+}
 
 export default SliderPixelField;

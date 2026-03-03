@@ -12,11 +12,13 @@ interface FontStylesProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const FontStyles = ({ value = null, options = [
-    { value: 'bold', label: <FontAwesomeIcon icon={faBold} /> },
-    { value: 'italic', label: <FontAwesomeIcon icon={faItalic} /> },
-    { value: 'underline', label: <FontAwesomeIcon icon={faUnderline} /> },
-], onChange = null, ...props }) => {
+function FontStyles(
+    { value = null, options = [
+        { value: 'bold', label: <FontAwesomeIcon icon={faBold} /> },
+        { value: 'italic', label: <FontAwesomeIcon icon={faItalic} /> },
+        { value: 'underline', label: <FontAwesomeIcon icon={faUnderline} /> },
+    ], onChange = null, ...props },
+) {
     const styleKeys = useMemo(() => options.map((it) => it.value), [options]);
     const onInputChange = useCallback(
         (newStyleValue) => {
@@ -55,6 +57,6 @@ const FontStyles = ({ value = null, options = [
             {...props}
         />
     );
-};
+}
 
 export default FontStyles;

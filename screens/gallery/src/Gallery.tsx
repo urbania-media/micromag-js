@@ -50,21 +50,23 @@ interface GalleryScreenProps {
     className?: string;
 }
 
-const GalleryScreen = ({
-    layout = 'four-mosaic',
-    images = [],
-    withCaptions = false,
-    imageCaptionStyle = null,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    active = true,
-    preload = true,
-    spacing: initialSpacing = 20,
-    captionMaxLines = 2,
-    className = null,
-}) => {
+function GalleryScreen(
+    {
+        layout = 'four-mosaic',
+        images = [],
+        withCaptions = false,
+        imageCaptionStyle = null,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        active = true,
+        preload = true,
+        spacing: initialSpacing = 20,
+        captionMaxLines = 2,
+        className = null,
+    },
+) {
     const { width, height, resolution } = useScreenSize();
     const {
         topHeight: viewerTopHeight,
@@ -283,6 +285,6 @@ const GalleryScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default GalleryScreen;

@@ -13,10 +13,12 @@ interface FieldsProviderProps {
     children: React.ReactNode;
 }
 
-const FieldsProvider = ({ children }) => (
-    <ComponentsProvider namespace={FIELDS_NAMESPACE} components={components}>
-        <BaseFieldsProvider manager={manager}>{children}</BaseFieldsProvider>
-    </ComponentsProvider>
-);
+function FieldsProvider({ children }) {
+    return (
+        <ComponentsProvider namespace={FIELDS_NAMESPACE} components={components}>
+            <BaseFieldsProvider manager={manager}>{children}</BaseFieldsProvider>
+        </ComponentsProvider>
+    );
+}
 
 export default FieldsProvider;

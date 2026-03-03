@@ -29,25 +29,27 @@ interface ViewerMenuPreviewProps {
     className?: string;
 }
 
-const ViewerMenuPreview = ({
-    viewerTheme = null,
-    header = null,
-    footer = null,
-    screenSize = null,
-    title = null,
-    menuWidth = null,
-    items = [],
-    focusable = true,
-    onClickScreen = null,
-    maxThumbsWidth = 140,
-    paddingTop = null,
-    scrollDisabled = false,
-    withMicromagBranding = false,
-    // toggleFullscreen,
-    // fullscreenActive,
-    // fullscreenEnabled,
-    className = null,
-}) => {
+function ViewerMenuPreview(
+    {
+        viewerTheme = null,
+        header = null,
+        footer = null,
+        screenSize = null,
+        title = null,
+        menuWidth = null,
+        items = [],
+        focusable = true,
+        onClickScreen = null,
+        maxThumbsWidth = 140,
+        paddingTop = null,
+        scrollDisabled = false,
+        withMicromagBranding = false,
+        // toggleFullscreen,
+        // fullscreenActive,
+        // fullscreenEnabled,
+        className = null,
+    },
+) {
     const { ref: containerRef, width: contentWidth = 0 } = useDimensionObserver();
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3); // @note cool, should be in recipes
 
@@ -169,6 +171,6 @@ const ViewerMenuPreview = ({
             </div>
         </div>
     );
-};
+}
 
 export default ViewerMenuPreview;

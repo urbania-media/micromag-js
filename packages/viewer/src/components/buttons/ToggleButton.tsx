@@ -13,13 +13,15 @@ interface ToggleButtonProps {
     toggledButtonClassName?: string;
 }
 
-const ToggleButton = ({
-    className = null,
-    progressSpring = null,
-    button = null,
-    toggledButton = null,
-    toggledButtonClassName = null,
-}) => {
+function ToggleButton(
+    {
+        className = null,
+        progressSpring = null,
+        button = null,
+        toggledButton = null,
+        toggledButtonClassName = null,
+    },
+) {
     if (button === null) return null;
 
     return (
@@ -54,6 +56,6 @@ const ToggleButton = ({
             </animated.div>
         </div>
     );
-};
+}
 
 export default ToggleButton;

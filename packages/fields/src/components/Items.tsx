@@ -38,35 +38,37 @@ interface ItemsFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const ItemsField = ({
-    name = null,
-    value = null,
-    getDefaultValue = null,
-    noItemLabel = (<FormattedMessage
-        defaultMessage="No item..."
-        description="Label when there is no item in items field"
-    />),
-    addItemLabel = (<FormattedMessage defaultMessage="Add an item" description="Button label in items field" />),
-    itemFieldLabel = ({ index }) => (
-        <FormattedMessage
-            defaultMessage="#{index}"
-            description="Item label in items field"
-            values={{ index }}
-        />
-    ),
-    itemComponent = null,
-    itemsField = null,
-    itemsProps = null,
-    className = null,
-    withoutSort = false,
-    withoutAddItem = false,
-    withoutDeleteItem = false,
-    onChange = null,
-    isFieldForm = false,
-    gotoFieldForm = null,
-    closeFieldForm = null,
-    ...props
-}) => {
+function ItemsField(
+    {
+        name = null,
+        value = null,
+        getDefaultValue = null,
+        noItemLabel = (<FormattedMessage
+            defaultMessage="No item..."
+            description="Label when there is no item in items field"
+        />),
+        addItemLabel = (<FormattedMessage defaultMessage="Add an item" description="Button label in items field" />),
+        itemFieldLabel = ({ index }) => (
+            <FormattedMessage
+                defaultMessage="#{index}"
+                description="Item label in items field"
+                values={{ index }}
+            />
+        ),
+        itemComponent = null,
+        itemsField = null,
+        itemsProps = null,
+        className = null,
+        withoutSort = false,
+        withoutAddItem = false,
+        withoutDeleteItem = false,
+        onChange = null,
+        isFieldForm = false,
+        gotoFieldForm = null,
+        closeFieldForm = null,
+        ...props
+    },
+) {
     // const finalIsFieldForm =
     //     isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
     const [editing, setEditing] = useState(false);
@@ -278,6 +280,6 @@ const ItemsField = ({
             </div>
         </div>
     );
-};
+}
 
 export default ItemsField;

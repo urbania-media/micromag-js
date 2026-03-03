@@ -50,24 +50,26 @@ interface TitleScreenProps {
     className?: string;
 }
 
-const TitleScreen = ({
-    layout = 'top',
-    title = null,
-    subtitle = null,
-    description = null,
-    boxStyle = null,
-    withSubtitle = false,
-    withDescription = false,
-    withBox = false, // eslint-disable-line
-    spacing = 20,
-    descriptionEmptyLabel = (<FormattedMessage defaultMessage="Description" description="Description placeholder" />),
-    header = null,
-    footer = null,
-    background = null,
-    current = true,
-    active = true,
-    className = null,
-}) => {
+function TitleScreen(
+    {
+        layout = 'top',
+        title = null,
+        subtitle = null,
+        description = null,
+        boxStyle = null,
+        withSubtitle = false,
+        withDescription = false,
+        withBox = false, // eslint-disable-line
+        spacing = 20,
+        descriptionEmptyLabel = (<FormattedMessage defaultMessage="Description" description="Description placeholder" />),
+        header = null,
+        footer = null,
+        background = null,
+        current = true,
+        active = true,
+        className = null,
+    },
+) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {
@@ -313,6 +315,6 @@ const TitleScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default TitleScreen;

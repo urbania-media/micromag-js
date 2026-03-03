@@ -36,28 +36,30 @@ interface FieldsProps {
     fieldProps?: Record<string, unknown>;
 }
 
-const Fields = ({
-    name: namespace = null,
-    fields = [],
-    excludedFields = null,
-    value = null,
-    errors = null,
-    withBorders = false,
-    gotoFieldForm = null,
-    closeFieldForm = null,
-    nullEmptyObject = false,
-    isHorizontal: globalIsHorizontal = null,
-    isList = false,
-    isFlushList = false,
-    canClear = false,
-    onChange = null,
-    className = null,
-    fieldClassName = null,
-    labelClassName = null,
-    components = null,
-    fieldsProps = null,
-    fieldProps = null,
-}) => {
+function Fields(
+    {
+        name: namespace = null,
+        fields = [],
+        excludedFields = null,
+        value = null,
+        errors = null,
+        withBorders = false,
+        gotoFieldForm = null,
+        closeFieldForm = null,
+        nullEmptyObject = false,
+        isHorizontal: globalIsHorizontal = null,
+        isList = false,
+        isFlushList = false,
+        canClear = false,
+        onChange = null,
+        className = null,
+        fieldClassName = null,
+        labelClassName = null,
+        components = null,
+        fieldsProps = null,
+        fieldProps = null,
+    },
+) {
     const nullableOnChange = useCallback(
         nullEmptyObject ? createNullableOnChange(onChange) : onChange,
         [nullEmptyObject, onChange],
@@ -256,6 +258,6 @@ const Fields = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default Fields;

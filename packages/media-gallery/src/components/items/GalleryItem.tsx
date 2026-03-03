@@ -27,16 +27,18 @@ interface GalleryItemProps {
     onClickRemove?: (...args: unknown[]) => void;
 }
 
-const GalleryItem = ({
-    item = null,
-    width = 0,
-    selected = false,
-    withInfoButton = false,
-    className = null,
-    onClick = null,
-    onClickInfo = null,
-    onClickRemove = null,
-}) => {
+function GalleryItem(
+    {
+        item = null,
+        width = 0,
+        selected = false,
+        withInfoButton = false,
+        className = null,
+        onClick = null,
+        onClickInfo = null,
+        onClickRemove = null,
+    },
+) {
     const { type, thumbnail_url: thumbnail = null, name, size } = item;
     let title = name;
     if (width < 768) {
@@ -116,6 +118,6 @@ const GalleryItem = ({
             onClickFooter={onClick}
         />
     );
-};
+}
 
 export default GalleryItem;

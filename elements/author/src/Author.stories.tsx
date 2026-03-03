@@ -20,53 +20,65 @@ const elementProps = {
     },
 };
 
-export const Normal = () => <Author {...elementProps} />;
+export function Normal() {
+    return <Author {...elementProps} />;
+}
 
-export const Small = () => <Author {...elementProps} isSmall />;
+export function Small() {
+    return <Author {...elementProps} isSmall />;
+}
 
-export const WithoutAvatar = () => (
-    <Author
-        {...elementProps}
-        author={{
-            name: { body: '<p>Paul le fermier</p>' },
-            image: null,
-            url: 'https://urbania.ca/auteurs/hugomeunier',
-        }}
-    />
-);
+export function WithoutAvatar() {
+    return (
+        <Author
+            {...elementProps}
+            author={{
+                name: { body: '<p>Paul le fermier</p>' },
+                image: null,
+                url: 'https://urbania.ca/auteurs/hugomeunier',
+            }}
+        />
+    );
+}
 
-export const WithoutLink = () => (
-    <Author
-        {...elementProps}
-        author={{
-            name: { body: '<p>Paul le fermier</p>' },
-            image: imageMedia(),
-            url: null,
-        }}
-    />
-);
+export function WithoutLink() {
+    return (
+        <Author
+            {...elementProps}
+            author={{
+                name: { body: '<p>Paul le fermier</p>' },
+                image: imageMedia(),
+                url: null,
+            }}
+        />
+    );
+}
 
-export const WithoutLinkAndAvatar = () => (
-    <Author
-        {...elementProps}
-        author={{
-            name: { body: '<p>Paul le fermier</p>' },
-            image: null,
-            url: null,
-        }}
-    />
-);
+export function WithoutLinkAndAvatar() {
+    return (
+        <Author
+            {...elementProps}
+            author={{
+                name: { body: '<p>Paul le fermier</p>' },
+                image: null,
+                url: null,
+            }}
+        />
+    );
+}
 
-export const WithCollaborator = () => (
-    <Author
-        {...elementProps}
-        author={{
-            name: { body: '<p>Jean le fermier</p>' },
-            image: imageMedia(),
-            url: 'https://urbania.ca/auteurs/hugomeunier',
-            collaborator: {
-                body: "<p>Illustrations: Paul l'illustrateur</p>",
-            },
-        }}
-    />
-);
+export function WithCollaborator() {
+    return (
+        <Author
+            {...elementProps}
+            author={{
+                name: { body: '<p>Jean le fermier</p>' },
+                image: imageMedia(),
+                url: 'https://urbania.ca/auteurs/hugomeunier',
+                collaborator: {
+                    body: "<p>Illustrations: Paul l'illustrateur</p>",
+                },
+            }}
+        />
+    );
+}

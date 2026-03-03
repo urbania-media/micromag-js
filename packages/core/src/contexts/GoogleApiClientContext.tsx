@@ -11,11 +11,14 @@ export const withGoogleApiClient = (WrappedComponent) => {
     const getDisplayName = ({ displayName = null, name = null }) =>
         displayName || name || 'Component';
 
-    const WithGoogleApiClientComponent = (props) => (
-        <GoogleApiClientContext.Consumer>
-            {(client) => <WrappedComponent googleApiClient={client} {...props} />}
-        </GoogleApiClientContext.Consumer>
-    );
+    function WithGoogleApiClientComponent(props) {
+        return (
+            <GoogleApiClientContext.Consumer>
+                {(client) => <WrappedComponent googleApiClient={client} {...props} />}
+            </GoogleApiClientContext.Consumer>
+        );
+    }
+
     WithGoogleApiClientComponent.displayName = `WithGoogleApiClient(${getDisplayName(
         WrappedComponent,
     )})`;
@@ -26,7 +29,7 @@ interface GoogleApiClientProviderProps {
     children: React.ReactNode;
 }
 
-export const GoogleApiClientProvider = ({ children }) => {
+export function GoogleApiClientProvider({ children }) {
     const { apiKey } = useGoogleKeys();
     const [client, setClient] = useState(null);
     useEffect(() => {
@@ -43,5 +46,5 @@ export const GoogleApiClientProvider = ({ children }) => {
     return (
         <GoogleApiClientContext.Provider value={client}>{children}</GoogleApiClientContext.Provider>
     );
-};
+}
 

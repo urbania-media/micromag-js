@@ -44,22 +44,24 @@ interface ConversationScreenProps {
     className?: string;
 }
 
-const ConversationScreen = ({
-    // layout,
-    title = null,
-    timing: timingMode = 'sequence',
-    readingSpeed = 255,
-    spacing = 20,
-    background = null,
-    header = null,
-    footer = null,
-    current = true,
-    preload = true,
-    type = null,
-    conversation = null,
-    transitions = null,
-    className = null,
-}) => {
+function ConversationScreen(
+    {
+        // layout,
+        title = null,
+        timing: timingMode = 'sequence',
+        readingSpeed = 255,
+        spacing = 20,
+        background = null,
+        header = null,
+        footer = null,
+        current = true,
+        preload = true,
+        type = null,
+        conversation = null,
+        transitions = null,
+        className = null,
+    },
+) {
     const { width, height, resolution } = useScreenSize();
     const {
         topHeight: viewerTopHeight,
@@ -384,6 +386,6 @@ const ConversationScreen = ({
             ) : null}
         </div>
     );
-};
+}
 
 export default ConversationScreen;

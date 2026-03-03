@@ -12,21 +12,25 @@ interface BorderRadiusProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const BorderRadius = ({ value = null, sizes = [0, 2, 6, 10, 20, 30], className = null, onChange = null }) => (
-    <Slider
-        value={value}
-        min={sizes[0]}
-        max={sizes[sizes.length - 1]}
-        marks={sizes}
-        withInput
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        onChange={onChange}
-    />
-);
+function BorderRadius(
+    { value = null, sizes = [0, 2, 6, 10, 20, 30], className = null, onChange = null },
+) {
+    return (
+        <Slider
+            value={value}
+            min={sizes[0]}
+            max={sizes[sizes.length - 1]}
+            marks={sizes}
+            withInput
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            onChange={onChange}
+        />
+    );
+}
 
 export default BorderRadius;

@@ -10,17 +10,19 @@ interface ArrowHintProps {
     className?: string;
 }
 
-const ArrowHint = ({ withoutShadow = false, className = null }) => (
-    <div
-        className={classNames([
-            styles.container,
-            { [styles.withoutShadow]: withoutShadow, [className]: className !== null },
-        ])}
-    >
-        <div className={styles.inner}>
-            <ArrowIcon className={styles.arrow} />
+function ArrowHint({ withoutShadow = false, className = null }) {
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                { [styles.withoutShadow]: withoutShadow, [className]: className !== null },
+            ])}
+        >
+            <div className={styles.inner}>
+                <ArrowIcon className={styles.arrow} />
+            </div>
         </div>
-    </div>
-);
+    );
+}
 
 export default ArrowHint;

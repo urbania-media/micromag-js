@@ -21,16 +21,18 @@ interface DropdownProps {
     onClickOutside?: (...args: unknown[]) => void;
 }
 
-const Dropdown = ({
-    items = [],
-    children = null,
-    visible = false,
-    align = null,
-    className = null,
-    itemClassName = null,
-    onClickItem = null,
-    onClickOutside = null,
-}) => {
+function Dropdown(
+    {
+        items = [],
+        children = null,
+        visible = false,
+        align = null,
+        className = null,
+        itemClassName = null,
+        onClickItem = null,
+        onClickOutside = null,
+    },
+) {
     const refContainer = useRef(null);
     const [enabled, setEnabled] = useState(visible);
 
@@ -127,6 +129,6 @@ const Dropdown = ({
                   })}
         </div>
     );
-};
+}
 
 export default Dropdown;

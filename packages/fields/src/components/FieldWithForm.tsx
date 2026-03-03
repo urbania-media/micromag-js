@@ -44,24 +44,26 @@ interface FieldWithFormProps {
     closeForm?: (...args: unknown[]) => void;
 }
 
-const FieldWithForm = ({
-    value = null,
-    isForm = false,
-    canClear = false,
-    noValueLabel = null,
-    label = null,
-    labelPath = 'label',
-    withTitleLabel = false,
-    thumbnail = null,
-    thumbnailPath = 'thumbnail',
-    isHorizontal = false,
-    className = null,
-    onChange = null,
-    closeForm = null,
-    children = null,
-    field = null,
-    ...props
-}) => {
+function FieldWithForm(
+    {
+        value = null,
+        isForm = false,
+        canClear = false,
+        noValueLabel = null,
+        label = null,
+        labelPath = 'label',
+        withTitleLabel = false,
+        thumbnail = null,
+        thumbnailPath = 'thumbnail',
+        isHorizontal = false,
+        className = null,
+        onChange = null,
+        closeForm = null,
+        children = null,
+        field = null,
+        ...props
+    },
+) {
     if (isForm) {
         if (children !== null) {
             return children;
@@ -205,7 +207,7 @@ const FieldWithForm = ({
             )}
         </span>
     );
-};
+}
 
 FieldWithForm.withForm = true;
 

@@ -15,7 +15,9 @@ interface SelectFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const SelectField = ({ value = null, options = [], disabled = false, className = null, onChange = null }) => {
+function SelectField(
+    { value = null, options = [], disabled = false, className = null, onChange = null },
+) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
         <select
@@ -46,6 +48,6 @@ const SelectField = ({ value = null, options = [], disabled = false, className =
             ))}
         </select>
     );
-};
+}
 
 export default SelectField;

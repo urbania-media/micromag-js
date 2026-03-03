@@ -13,18 +13,20 @@ interface VisualFieldProps {
     value?: VideoMedia;
 }
 
-const VisualField = ({ value: value = null, ...props }) => (
-    <MediaField
-        noValueLabel={
-            <FormattedMessage
-                defaultMessage="Select an image..."
-                description="Label when no value is provided to Visual field"
-            />
-        }
-        {...props}
-        type={visualTypes}
-    />
-);
+function VisualField({ value: value = null, ...props }) {
+    return (
+        <MediaField
+            noValueLabel={
+                <FormattedMessage
+                    defaultMessage="Select an image..."
+                    description="Label when no value is provided to Visual field"
+                />
+            }
+            {...props}
+            type={visualTypes}
+        />
+    );
+}
 
 VisualField.withForm = true;
 

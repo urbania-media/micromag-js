@@ -25,10 +25,12 @@ interface GeoPositionProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-const GeoPosition = ({ value = null, defaultCenter = {
-    lat: 45.5,
-    lng: -73.56,
-}, defaultZoom = 10, className = null, onChange = null }) => {
+function GeoPosition(
+    { value = null, defaultCenter = {
+        lat: 45.5,
+        lng: -73.56,
+    }, defaultZoom = 10, className = null, onChange = null },
+) {
     const [address, setAddress] = useState('');
     const [mapReady, setMapReady] = useState(false);
     const [zoom, setZoom] = useState(defaultZoom);
@@ -223,6 +225,6 @@ const GeoPosition = ({ value = null, defaultCenter = {
             </div>
         </div>
     );
-};
+}
 
 export default GeoPosition;

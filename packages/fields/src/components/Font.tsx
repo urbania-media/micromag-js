@@ -8,21 +8,25 @@ interface FontFieldProps {
     value?: FontMedia;
 }
 
-const FontField = (
+function FontField(
     {
         value: value = null,
         ...props
     },
-) => (<MediaField
-    noValueLabel={
-        <FormattedMessage
-            defaultMessage="Select a font file..."
-            description="Label when no value"
+) {
+    return (
+        <MediaField
+            noValueLabel={
+                <FormattedMessage
+                    defaultMessage="Select a font file..."
+                    description="Label when no value"
+                />
+            }
+            {...props}
+            type="font"
         />
-    }
-    {...props}
-    type="font"
-/>);
+    );
+}
 
 FontField.withForm = true;
 

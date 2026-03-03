@@ -16,13 +16,15 @@ interface ConversationAudioAttachmentProps {
     className?: string;
 }
 
-const ConversationAudioAttachment = ({
-    audio = null,
-    audioEventsChannelName = null,
-    messageId = null,
-    nextAudioMessageId = null,
-    className = null,
-}) => {
+function ConversationAudioAttachment(
+    {
+        audio = null,
+        audioEventsChannelName = null,
+        messageId = null,
+        nextAudioMessageId = null,
+        className = null,
+    },
+) {
     const [paused, setPaused] = useState(true);
 
     const audioEventsChannel = useMemo(
@@ -91,6 +93,6 @@ const ConversationAudioAttachment = ({
             <Button onClick={togglePaused} className={styles.button} />
         </div>
     );
-};
+}
 
 export default ConversationAudioAttachment;

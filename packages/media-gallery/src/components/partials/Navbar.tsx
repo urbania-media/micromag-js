@@ -8,7 +8,7 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 // useOrganisationTeam
-import type { Media, Tag } from '@micromag/core';
+import type { Media as MediaType, Tag } from '@micromag/core';
 import { Button, Media } from '@micromag/core/components';
 import { useMediasRecentSearches } from '@micromag/data';
 
@@ -23,8 +23,8 @@ import styles from '../../styles/partials/navbar.module.css';
 interface NavbarProps {
     types?: string[];
     filters?: unknown;
-    media?: Media;
-    selectedMedia?: Media;
+    media?: MediaType;
+    selectedMedia?: MediaType;
     storyId?: string | number;
     tags?: Tag[];
     authors?: { name?: string }[];

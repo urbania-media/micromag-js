@@ -16,7 +16,7 @@ interface SettingsProviderProps {
     settings?: Record<string, unknown>;
 }
 
-export const SettingsProvider = ({ children, settings = null }) => {
+export function SettingsProvider({ children, settings = null }) {
     const previousSettings = useSettings();
     const value = useMemo(
         () => ({
@@ -28,5 +28,5 @@ export const SettingsProvider = ({ children, settings = null }) => {
     return (
         <SettingsContext.Provider value={value}>{children}</SettingsContext.Provider>
     );
-};
+}
 

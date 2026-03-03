@@ -14,19 +14,23 @@ interface FormPanelProps {
     className?: string;
 }
 
-const FormPanel = ({ description = null, loading = false, children = null, className = null, ...props }) => (
-    <Card
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        {...props}
-    >
-        {description}
-        {loading ? <Spinner /> : children}
-    </Card>
-);
+function FormPanel(
+    { description = null, loading = false, children = null, className = null, ...props },
+) {
+    return (
+        <Card
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            {...props}
+        >
+            {description}
+            {loading ? <Spinner /> : children}
+        </Card>
+    );
+}
 
 export default FormPanel;

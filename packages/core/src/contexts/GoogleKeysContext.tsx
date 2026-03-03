@@ -14,7 +14,7 @@ interface GoogleKeysProviderProps {
     apiKey?: string;
 }
 
-export const GoogleKeysProvider = ({ children, apiKey = null }) => {
+export function GoogleKeysProvider({ children, apiKey = null }) {
     const { apiKey: previousApiKey } = useGoogleKeys();
     const settingApiKey = useSetting('googleApiKey');
     const value = useMemo(
@@ -22,5 +22,5 @@ export const GoogleKeysProvider = ({ children, apiKey = null }) => {
         [apiKey, previousApiKey, settingApiKey],
     );
     return <GoogleKeysContext.Provider value={value}>{children}</GoogleKeysContext.Provider>;
-};
+}
 

@@ -16,30 +16,34 @@ interface ScreenTypesModalProps {
     onClickScreenType?: (...args: unknown[]) => void;
 }
 
-const ScreenTypesModal = ({ selectedTypes = null, className = null, onRequestClose = null, onClickScreenType = null }) => (
-    <Modal>
-        <Dialog
-            title={
-                <FormattedMessage
-                    defaultMessage="Add a screen"
-                    description="Title of the screen types selection dialog"
+function ScreenTypesModal(
+    { selectedTypes = null, className = null, onRequestClose = null, onClickScreenType = null },
+) {
+    return (
+        <Modal>
+            <Dialog
+                title={
+                    <FormattedMessage
+                        defaultMessage="Add a screen"
+                        description="Title of the screen types selection dialog"
+                    />
+                }
+                className={classNames([
+                    styles.container,
+                    {
+                        [className]: className,
+                    },
+                ])}
+                onClose={onRequestClose}
+            >
+                <ScreenTypesMenu
+                    selectedTypes={selectedTypes}
+                    className={styles.menu}
+                    onClickItem={onClickScreenType}
                 />
-            }
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className,
-                },
-            ])}
-            onClose={onRequestClose}
-        >
-            <ScreenTypesMenu
-                selectedTypes={selectedTypes}
-                className={styles.menu}
-                onClickItem={onClickScreenType}
-            />
-        </Dialog>
-    </Modal>
-);
+            </Dialog>
+        </Modal>
+    );
+}
 
 export default ScreenTypesModal;

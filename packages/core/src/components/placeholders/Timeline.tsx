@@ -6,8 +6,8 @@ import PlaceholderText from '../partials/PlaceholderText';
 
 import styles from '../../styles/placeholders/placeholders.module.css';
 
-export const Timeline = (props) => (
-    <PlaceholderText {...props} className={classNames([props.className, styles.timeline])} />
-);
+export function Timeline(props) {
+    return (<PlaceholderText {...props} className={classNames([props.className, styles.timeline])} />);
+}
 
 export default Timeline;
