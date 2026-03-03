@@ -8,7 +8,7 @@ const localesFiles = locales.reduce(
     (configs, locale) => [
         ...configs,
         createConfig({
-            input: 'src/lang.js',
+            input: 'src/lang.ts',
             output: `locale/${locale}.js`,
             prependPlugins: [
                 replace({

@@ -3,7 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import { createConfig } from '../../rollup.config';
 
 export default {
-    input: 'src/cli.js',
+    input: 'src/cli.ts',
     output: {
         file: 'bin/recorder.js',
         format: 'cjs',

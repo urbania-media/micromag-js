@@ -1,0 +1,180 @@
+/* eslint-disable react/no-array-index-key */
+import { getSizeWithinBounds } from '@folklore/size';
+import classNames from 'classnames';
+import React, { useCallback, useMemo, useState } from 'react';
+
+import type { Device, Story, Theme, ViewerTheme } from '@micromag/core';
+import { PlaybackProvider, useScreenSize } from '@micromag/core/contexts';
+import { useDimensionObserver, useParsedStory } from '@micromag/core/hooks';
+import { Viewer } from '@micromag/viewer';
+
+import useRouteParams from '../hooks/useRouteParams';
+import useScreenStates from '../hooks/useScreenStates';
+import useThemeValue from '../hooks/useThemeValue';
+
+import DevicesMenu from './menus/Devices';
+import ScreenStates from './partials/ScreenStates';
+
+import styles from '../styles/preview.module.css';
+
+interface EditorPreviewProps {
+    value?: Story | Theme;
+    devices?: Device[];
+    device?: string;
+    viewerTheme?: ViewerTheme;
+    isTheme?: boolean;
+    className?: string;
+    onScreenChange?: (...args: unknown[]) => void;
+    onChange?: (...args: unknown[]) => void;
+    withoutDevicesSizes?: boolean;
+}
+
+const EditorPreview = ({
+    value = null,
+    viewerTheme = null,
+    isTheme = false,
+    devices = [
+        {
+            id: 'mobile',
+            width: 320,
+            height: 480,
+        },
+        {
+            id: 'desktop',
+            width: 1200,
+            height: 900,
+        },
+    ],
+    device: initialDevice = 'mobile',
+    className = null,
+    onScreenChange = null,
+    onChange = null,
+    withoutDevicesSizes = true,
+}) => {
+    const { screen: screenId = null, field: fieldParam = null } = useRouteParams();
+    const { screen = null, screens = [] } = useScreenSize();
+    const valueWithTheme = useThemeValue(value, isTheme);
+    // const valueParsed = valueWithTheme;
+    const valueParsed = useParsedStory(valueWithTheme, { withTheme: isTheme, withMedias: false });
+
+    // Get device
+    const [deviceId, setDeviceId] = useState(initialDevice || devices[0].id);
+    const onClickDeviceItem = useCallback((e, it) => setDeviceId(it.id), [setDeviceId]);
+    const device = useMemo(() => devices.find((it) => it.id === deviceId), [devices, deviceId]);
+
+    // Calculate preview style
+    const {
+        ref: bottomRef,
+        width: bottomWidth = 0,
+        height: bottomHeight = 0,
+    } = useDimensionObserver();
+
+    const previewStyle = useMemo(() => {
+        if (withoutDevicesSizes && initialDevice === null) {
+            return {};
+        }
+
+        const { width: deviceWidth, height: deviceHeight } = device;
+        const maxWidth = screen === 'mobile' ? bottomWidth : deviceWidth;
+        const maxHeight = screen === 'mobile' ? bottomHeight : deviceHeight;
+        const { scale: previewScale } = getSizeWithinBounds(
+            maxWidth,
+            maxHeight,
+            bottomWidth,
+            bottomHeight,
+        );
+        return {
+            width: maxWidth * previewScale,
+            height: maxHeight * previewScale,
+            // transform: `scale(${previewScale}, ${previewScale})`,
+        };
+    }, [device, bottomWidth, bottomHeight, screen, withoutDevicesSizes, initialDevice]);
+
+    const currentScreen = useMemo(() => {
+        const { components = [] } = valueParsed || {};
+        return (
+            (screenId !== null ? components.find(({ id }) => id === screenId) : components[0]) ||
+            null
+        );
+    }, [valueParsed, screenId]);
+    const currentScreenStates = useScreenStates(currentScreen);
+    const [screenStateParam = null] =
+        fieldParam !== null && currentScreenStates !== null ? fieldParam.split('/') : [];
+    const currentScreenState =
+        screenStateParam !== null
+            ? currentScreenStates.find(({ id }) => id === screenStateParam) || null
+            : null;
+    const { id: screenStateId = null, repeatable = false } = currentScreenState || {};
+    const currentScreenStateId =
+        currentScreenState !== null && repeatable
+            ? `${screenStateId}.${
+                  fieldParam.split('/').find((it) => it.match(/^[0-9]+$/) !== null) || 0
+              }`
+            : screenStateId;
+
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                screens.map((screenName) => styles[`screen-${screenName}`]),
+                {
+                    [className]: className,
+                    [styles.withoutDevicesSizes]: withoutDevicesSizes,
+                },
+            ])}
+        >
+            <div className={styles.inner}>
+                {currentScreenStates !== null && currentScreen !== null ? (
+                    <div className={classNames([styles.top, 'px-1'])}>
+                        <ScreenStates
+                            screen={currentScreen}
+                            screenState={currentScreenStateId}
+                            value={value}
+                            onChange={onChange}
+                        />
+                    </div>
+                ) : null}
+                <div className={styles.bottom}>
+                    <div className={styles.inner} ref={bottomRef}>
+                        <div className={styles.preview} style={previewStyle}>
+                            <div className={styles.viewerContainer}>
+                                <PlaybackProvider>
+                                    <Viewer
+                                        story={valueParsed}
+                                        storyIsParsed
+                                        screen={screenId}
+                                        screenState={currentScreenStateId}
+                                        className={styles.story}
+                                        theme={viewerTheme}
+                                        interactions={null}
+                                        renderContext="edit"
+                                        onScreenChange={onScreenChange}
+                                        withNavigationHint={false}
+                                        withoutNavigationArrow
+                                        withoutTransitions
+                                        withoutGestures
+                                        withoutMenu
+                                    />
+                                </PlaybackProvider>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {!withoutDevicesSizes ? (
+                    <div className={styles.deviceMenu}>
+                        <DevicesMenu
+                            items={devices.map((it) => ({
+                                ...it,
+                                active: it.id === deviceId,
+                            }))}
+                            onClickItem={onClickDeviceItem}
+                            className={styles.devices}
+                        />
+                    </div>
+                ) : null}
+            </div>
+        </div>
+    );
+};
+
+export default EditorPreview;

@@ -3,12 +3,17 @@ const fs = require('fs');
 const { sync: globSync } = require('glob');
 const getPackagesPaths = require('./getPackagesPaths');
 
+const resolveSourceFile = (packagePath, baseName) => {
+    const tsPath = path.join(packagePath, `./src/${baseName}.ts`);
+    const jsPath = path.join(packagePath, `./src/${baseName}.js`);
+    if (fs.existsSync(tsPath)) return tsPath;
+    return jsPath;
+};
+
 const getPackagesAliases = ({ withoutEndSign = false } = {}) =>
     getPackagesPaths().reduce((aliases, packagePath) => {
         const { name: packageName } = require(path.join(packagePath, './package.json'));
         const subFiles = globSync(path.join(packagePath, './*.js'));
-        const hasStylesFile = fs.existsSync(path.join(packagePath, './src/styles.scss'));
-        const hasStylesTemplate = fs.existsSync(path.join(packagePath, './src/styles.scss.ejs'));
         return {
             ...aliases,
             ...subFiles
@@ -17,23 +22,15 @@ const getPackagesAliases = ({ withoutEndSign = false } = {}) =>
                     const fileName = path.basename(filePath, '.js');
                     return {
                         ...subAliases,
-                        [`${packageName}/${fileName}${!withoutEndSign ? '$' : ''}`]: path.join(
+                        [`${packageName}/${fileName}${!withoutEndSign ? '$' : ''}`]: resolveSourceFile(
                             packagePath,
-                            `./src/${fileName}.js`,
+                            fileName,
                         ),
                     };
                 }, {}),
-            ...(!hasStylesTemplate
-                ? {
-                      [`${packageName}/scss`]: path.join(
-                          packagePath,
-                          hasStylesFile ? './src' : './src/styles',
-                      ),
-                  }
-                : null),
-            [`${packageName}${!withoutEndSign ? '$' : ''}`]: path.join(
+            [`${packageName}${!withoutEndSign ? '$' : ''}`]: resolveSourceFile(
                 packagePath,
-                './src/index.js',
+                'index',
             ),
         };
     }, {});

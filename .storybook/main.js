@@ -1,6 +1,14 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
 /* eslint-disable no-param-reassign */
-const path = require('path');
-const webpack = require('webpack'); // eslint-disable-line no-unused-vars
+import { dirname, join } from 'path';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
@@ -8,81 +16,38 @@ require('dotenv').config();
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // insecure
 
-// console.log(getPackagesPaths());
+function getAbsolutePath(value) {
+    return dirname(require.resolve(join(value, 'package.json')));
+}
 
-// console.log(
-//     getPackagesPaths().map((packagePath) =>
-//         path.join(packagePath, './src/**/*.stories.@(jsx|tsx|mdx)'),
-//     ),
-// );
-
-module.exports = {
+export default {
     stories: getPackagesPaths().map((packagePath) =>
-        path.join(packagePath, './src/**/*.stories.@(jsx|tsx|mdx)'),
+        path.join(packagePath, './src/**/*.@(mdx|stories.@(tsx))'),
     ),
+
     addons: [
-        {
-            name: '@storybook/preset-scss',
-            options: {
-                rule: {
-                    test: /\.module\.s[ca]ss$/,
-                },
-                cssLoaderOptions: {
-                    modules: {
-                        auto: true,
-                        namedExport: false,
-                        localIdentName: '[path][name]__[local]--[hash:base64:5]',
-                    },
-                },
-            },
-        },
-        {
-            name: '@storybook/preset-scss',
-            options: {
-                rule: {
-                    exclude: /\.module\.s[ca]ss$/,
-                },
-            },
-        },
-        '@storybook/addon-viewport',
-        // '@storybook/addon-docs',
-        '@storybook/addon-actions',
-        // {
-        //     name: '@storybook/addon-postcss',
-        //     options: {
-        //         postcssLoaderOptions: {
-        //             implementation: require('postcss'),
-        //         },
-        //     },
-        // },
-        // '@storybook/addon-mdx-gfm',
+        getAbsolutePath('@storybook/addon-webpack5-compiler-babel'),
+        getAbsolutePath("@storybook/addon-docs")
     ],
-    // features: {
-    //     babelModeV7: true,
-    // },
-    webpackFinal: async (config) => ({
+
+    webpackFinal: async (config) => {
+        // Filter out Storybook's default CSS rules so our custom ones take over
+        const filteredRules = (config.module.rules || []).filter((rule) => {
+            if (!rule || !rule.test) return true;
+            const testStr = rule.test.toString();
+            // Remove default CSS rules — we define our own
+            if (testStr === '/\\.css$/' || testStr === '/\\.module\\.css$/') return false;
+            return true;
+        });
+
+        return ({
         ...config,
         resolve: {
             ...config.resolve,
             alias: {
                 ...config.resolve.alias,
-                // '@folklore/routes': require.resolve('@folklore/routes'),
-                // wouter: require.resolve('wouter'),
-                // 'react-intl': require.resolve('react-intl'),
-                // 'query-string': require.resolve('query-string'),
-                // '@ckeditor/ckeditor5-editor-classic': require.resolve(
-                //     '@ckeditor/ckeditor5-editor-classic',
-                // ),
-                // '@ckeditor/ckeditor5-editor-inline': require.resolve(
-                //     '@ckeditor/ckeditor5-editor-inline',
-                // ),
-                // '@ckeditor/ckeditor5-react': require.resolve('@ckeditor/ckeditor5-react'),
-                // '@uppy/core/dist/style.css': require.resolve('@uppy/core/dist/style.css'),
-                // '@uppy/core': require.resolve('@uppy/core'),
-                // '@uppy/react': require.resolve('@uppy/react'),
                 ...getPackagesAliases(),
                 '@micromag/ckeditor/build': path.join(__dirname, '../packages/ckeditor/src/build'),
-                // '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/es/index'),
             },
         },
         module: {
@@ -93,6 +58,37 @@ module.exports = {
                     resolve: {
                         fullySpecified: false,
                     },
+                },
+                // CSS modules (*.module.css)
+                {
+                    test: /\.module\.css$/,
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: {
+                                    auto: true,
+                                    namedExport: false,
+                                    localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                                },
+                            },
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                postcssOptions: {
+                                    plugins: [require('postcss-nested')],
+                                },
+                            },
+                        },
+                    ],
+                },
+                // Regular CSS (non-module) — exclude .module.css so it doesn't conflict
+                {
+                    test: /\.css$/,
+                    exclude: [/\.module\.css$/, /ckeditor5-[^/\\]+[/\\]theme[/\\]/],
+                    use: ['style-loader', 'css-loader'],
                 },
                 {
                     oneOf: [
@@ -130,16 +126,7 @@ module.exports = {
                         },
                         {
                             rules: [
-                                ...config.module.rules,
-
-                                // ...config.module.rules.map((rule, index) =>
-                                //     index === 0
-                                //         ? {
-                                //               ...rule,
-                                //               exclude: [rule.exclude, /@ckeditor/],
-                                //           }
-                                //         : rule,
-                                // ),
+                                ...filteredRules,
                                 ...getPackagesPaths().map((packagePath) => ({
                                     loader: require.resolve('babel-loader'),
                                     test: /\.(js|jsx|ts|tsx)$/,
@@ -148,14 +135,6 @@ module.exports = {
                                     options: {
                                         babelrc: false,
                                         configFile: path.join(__dirname, '../babel.config.js'),
-                                        // presets: [
-                                        //     [
-                                        //         require.resolve('@babel/preset-env'),
-                                        //         {
-                                        //             loose: true,
-                                        //         },
-                                        //     ],
-                                        // ],
                                         plugins: [
                                             [
                                                 require.resolve('babel-plugin-react-intl'),
@@ -169,15 +148,6 @@ module.exports = {
                                         ],
                                     },
                                 })),
-                                // {
-                                //     loader: require.resolve('babel-loader'),
-                                //     test: /\.(js|jsx)$/,
-                                //     include: /\/query-string\//,
-                                //     options: {
-                                //         babelrc: false,
-                                //         plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
-                                //     },
-                                // },
                                 {
                                     test: /\.(srt)$/,
                                     loader: require.resolve('file-loader'),
@@ -188,13 +158,19 @@ module.exports = {
                 },
             ],
         },
-    }),
+    });
+    },
+
     framework: {
-        name: '@storybook/react-webpack5',
+        name: getAbsolutePath('@storybook/react-webpack5'),
         options: {},
     },
+
     docs: {
-        autodocs: false,
-        defaultName: 'Docs', // set to change the name of generated docs entries
+        defaultName: 'Docs',
+    },
+
+    typescript: {
+        reactDocgen: 'react-docgen-typescript',
     },
 };

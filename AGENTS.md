@@ -96,28 +96,27 @@ Individual packages build with `../../scripts/prepare-package.sh` which runs Rol
 
 ## Code Conventions
 
-### Component Pattern (Legacy — being modernized)
-```jsx
-import PropTypes from 'prop-types';
+### Component Pattern
+```tsx
+import type { TextElement } from '@micromag/core';
 
-const propTypes = {
-    label: PropTypes.string,
-    disabled: PropTypes.bool,
-};
+interface MyComponentProps {
+    label?: TextElement;
+    disabled?: boolean;
+    className?: string;
+}
 
-const MyComponent = ({ label = null, disabled = false }) => {
+const MyComponent = ({ label = null, disabled = false, className = null }: MyComponentProps) => {
     // ...
 };
-
-MyComponent.propTypes = propTypes;
 
 export default MyComponent;
 ```
 
-**Note:** `defaultProps` have been removed — defaults are now inline in destructuring parameters. PropTypes are still present but planned for replacement with TypeScript interfaces.
+**Note:** Components use TypeScript interfaces for props (converted from PropTypes). Default values are inline in destructured parameters. Some files still have `prop-types` as a dependency but it is no longer imported in component files.
 
 ### File Naming
-- Components: `PascalCase.jsx` (planned: `.tsx`)
+- Components: `PascalCase.tsx` (converted from `.jsx`)
 - Hooks: `camelCase.js` (e.g. `useScreenSize.js`)
 - Styles: `kebab-case.module.css` (migrated from `.module.scss`)
 - Stories: `ComponentName.stories.jsx` (in `_stories/` directories)
@@ -253,11 +252,18 @@ No automated test suite is configured. Verification is done via:
 - `@extend %placeholder` → use `composes: className from 'path'` for top-level classes, or inline the properties for nested selectors.
 - When converting Sass variables (`$var`), pre-compute arithmetic values if they were used in simple constant expressions (e.g., `$scale: 4` → inline `400%`, `0.25` directly).
 
+### TypeScript Conversion Gotchas
+- Type imports (`import type { X }`) can collide with component imports of the same name (e.g., `Header` type vs `Header` component). Fix: alias with `as HeaderConfig`.
+- Component files named the same as types (e.g., `ConversationMessage.tsx` importing `ConversationMessage` type) cause Rollup "not exported" errors. Fix: alias with `as ConversationMessageType`.
+- Arrow function types need parentheses in unions: `string | ((...args: unknown[]) => void)`.
+- Files inside `packages/core/` must use relative `'../lib'` for type imports, not `'@micromag/core'` (circular dependency).
+
 ### Modernization Status (branch: `feature/refactor-claude`)
-- **Done**: defaultProps removal (~430 files), peer deps updated to React 18.3+/19+, TS infrastructure + core types.ts, 223 SCSS→CSS migration, deprecated Babel plugins removed, ReactDOM.render→createRoot
-- **Next**: PropTypes-to-TypeScript interfaces codemod (Phase 2C), incremental .jsx→.tsx conversion (Phase 2D), then remove `prop-types` package (Phase 4B)
+- **Done**: defaultProps removal (~430 files), peer deps updated to React 18.3+/19+, TS infrastructure + core types.ts, 223 SCSS→CSS migration, deprecated Babel plugins removed, ReactDOM.render→createRoot, **358 components converted from PropTypes to TypeScript interfaces (.jsx→.tsx)**
+- **Next**: Remove `prop-types` dependency (Phase 4B), Storybook v8 upgrade (optional)
 
 ### Available Codemods (in `scripts/codemods/`)
 - `scss-to-css-modules.js` — converts .module.scss → .module.css (SCSS→PostCSS syntax)
 - `inline-composes.js` — replaces nested `composes:` with inline properties
 - `fix-local-sass-vars.js` — inlines remaining local Sass variable definitions
+- `propTypes-to-ts.js` — converts PropTypes declarations to TypeScript interfaces, renames .jsx→.tsx

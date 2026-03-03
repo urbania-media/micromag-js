@@ -3,12 +3,7 @@ declare module '*.module.css' {
     export default classes;
 }
 
-declare module '*.module.css' {
-    const classes: Record<string, string>;
-    export default classes;
-}
-
-declare module '*.global.scss' {
+declare module '*.global.css' {
     const content: string;
     export default content;
 }

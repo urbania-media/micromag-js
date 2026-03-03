@@ -1,0 +1,353 @@
+/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
+import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React, { useCallback, useEffect, useState } from 'react';
+
+import type { BackgroundElement, BoxStyle, ButtonLayout, Color, Footer as FooterConfig, Header as HeaderConfig, ImageElement, QuizAnswer, TextElement, TextStyle, Transitions, VisualElement } from '@micromag/core';
+import { Button } from '@micromag/core/components';
+import {
+    usePlaybackContext,
+    usePlaybackMediaRef,
+    useScreenRenderContext,
+    useScreenSize,
+    useViewerContext,
+    useViewerWebView,
+} from '@micromag/core/contexts';
+import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
+import { useQuizCreate } from '@micromag/data';
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
+import Footer from '@micromag/element-footer';
+import Header from '@micromag/element-header';
+import Scroll from '@micromag/element-scroll';
+
+import Question from './partials/Question';
+
+import styles from './quiz.module.css';
+
+interface QuizScreenProps {
+    id?: string;
+    layout?: 'top' | 'middle' | 'bottom' | 'split';
+    keypadLayout?: Record<string, unknown>;
+    question?: TextElement;
+    answers?: QuizAnswer[];
+    result?: { image?: ImageElement; text?: TextElement };
+    resultImage?: VisualElement;
+    buttonsLayout?: ButtonLayout;
+    buttonsStyle?: BoxStyle;
+    inactiveButtonsStyle?: BoxStyle;
+    buttonsTextStyle?: TextStyle;
+    inactiveButtonsTextStyle?: TextStyle;
+    feedbackTextStyle?: TextStyle;
+    numbersTextStyle?: TextStyle;
+    goodAnswerColor?: Color;
+    badAnswerColor?: Color;
+    withoutTrueFalse?: boolean;
+    spacing?: number;
+    background?: BackgroundElement;
+    header?: HeaderConfig;
+    footer?: FooterConfig;
+    current?: boolean;
+    preload?: boolean;
+    ready?: boolean;
+    transitions?: Transitions;
+    transitionStagger?: number;
+    type?: string;
+    className?: string;
+}
+
+const QuizScreen = ({
+    id = null,
+    layout = 'middle',
+    keypadLayout = null,
+    question = null,
+    answers = null,
+    result = null,
+    resultImage = null,
+    buttonsLayout = null,
+    buttonsStyle = null,
+    inactiveButtonsStyle = null,
+    buttonsTextStyle = null,
+    inactiveButtonsTextStyle = null,
+    feedbackTextStyle = null,
+    numbersTextStyle = null,
+    goodAnswerColor = null,
+    badAnswerColor = null,
+    withoutTrueFalse = false,
+    spacing = 20,
+    header = null,
+    footer = null,
+    background = null,
+    current = true,
+    preload = true,
+    ready = true,
+    transitions = null,
+    transitionStagger = 100,
+    type = null,
+    className = null,
+}) => {
+    const screenId = id || 'screen-id';
+    const trackScreenEvent = useTrackScreenEvent(type);
+    const { width, height, resolution } = useScreenSize();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
+    const clickDisabled = !ready;
+
+    const {
+        topHeight: viewerTopHeight,
+        bottomHeight: viewerBottomHeight,
+        bottomSidesWidth: viewerBottomSidesWidth,
+    } = useViewerContext();
+    const { open: openWebView } = useViewerWebView();
+    const { muted } = usePlaybackContext();
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
+
+    const transitionPlaying = current && ready;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
+    const mediaShouldLoad = current || preload;
+
+    const hasHeader = isHeaderFilled(header);
+    const hasFooter = isFooterFilled(footer);
+    const footerProps = getFooterProps(footer, { isView, current, openWebView, isPreview });
+
+    const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
+    const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
+
+    const showInstantAnswer = isStatic || isCapture;
+    const goodAnswerIndex =
+        answers !== null ? answers.findIndex((answer) => answer !== null && answer.good) : null;
+    const withoutGoodAnswer = goodAnswerIndex === null || goodAnswerIndex === -1;
+
+    const [userAnswerIndex, setUserAnswerIndex] = useState(
+        showInstantAnswer ? goodAnswerIndex : null,
+    );
+
+    const { create: submitQuiz } = useQuizCreate({
+        screenId,
+    });
+
+    const onAnswerClick = useCallback(
+        (answer, answerI) => {
+            if (userAnswerIndex !== null) {
+                return;
+            }
+            setUserAnswerIndex(answerI);
+            trackScreenEvent('click_answer', `${userAnswerIndex + 1}: ${answer.label.body}`, {
+                linkType: 'quiz_answer',
+                answer,
+                answerIndex: answerI,
+                isGood: answer.good || false,
+            });
+        },
+        [userAnswerIndex, setUserAnswerIndex, trackScreenEvent, answers],
+    );
+
+    useEffect(() => {
+        if (!current && isEdit && userAnswerIndex !== null) {
+            setUserAnswerIndex(null);
+        }
+    }, [isEdit, current, userAnswerIndex, setUserAnswerIndex]);
+
+    useEffect(() => {
+        if (!isView) {
+            return;
+        }
+        if (userAnswerIndex !== null) {
+            const { good: isGood = false, label = {} } =
+                userAnswerIndex !== null && answers ? answers[userAnswerIndex] : {};
+            const { body = '' } = label || {};
+            submitQuiz({ choice: body || userAnswerIndex, value: isGood ? 1 : 0 });
+        }
+    }, [isView, userAnswerIndex, answers, submitQuiz]);
+
+    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
+    const [scrolledBottom, setScrolledBottom] = useState(false);
+
+    const onScrolledBottom = useCallback(
+        ({ initial }) => {
+            if (initial) {
+                trackScreenEvent('scroll', 'Screen');
+            }
+            setScrolledBottom(true);
+        },
+        [trackScreenEvent],
+    );
+
+    const onScrolledNotBottom = useCallback(() => {
+        setScrolledBottom(false);
+    }, [setScrolledBottom]);
+
+    const onScrolledTrigger = useCallback(
+        (trigger = null) => {
+            if (trigger !== null) {
+                const scrollPercent = Math.round(trigger * 100);
+                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+            }
+        },
+        [trackScreenEvent],
+    );
+
+    const [hasScroll, setHasScroll] = useState(false);
+
+    const onScrollHeightChange = useCallback(
+        ({ canScroll = false }) => {
+            setHasScroll(canScroll);
+        },
+        [setHasScroll],
+    );
+
+    const onQuizReset = useCallback(() => {
+        setUserAnswerIndex(null);
+    }, [setUserAnswerIndex]);
+
+    const numberOfAnswers = (answers || []).length;
+
+    useEffect(() => {
+        onQuizReset();
+    }, [numberOfAnswers, onQuizReset]);
+
+    const isSplitted = layout === 'split';
+    const verticalAlign = isSplitted ? null : layout;
+    const showReset = isEdit && userAnswerIndex !== null;
+
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.disabled]: clickDisabled,
+                    [className]: className !== null,
+                },
+            ])}
+            data-screen-ready
+        >
+            <Container width={width} height={height} className={styles.content}>
+                {showReset ? (
+                    <Button
+                        className={styles.reset}
+                        icon={<FontAwesomeIcon icon={faRedo} size="md" />}
+                        onClick={onQuizReset}
+                    />
+                ) : null}
+                <Scroll
+                    verticalAlign={verticalAlign}
+                    // disabled={scrollingDisabled || userAnswerIndex !== null}
+                    disabled={scrollingDisabled}
+                    onScrolledTrigger={onScrolledTrigger}
+                    onScrolledBottom={onScrolledBottom}
+                    onScrolledNotBottom={onScrolledNotBottom}
+                    onScrollHeightChange={onScrollHeightChange}
+                    withShadow
+                >
+                    {!isPlaceholder && hasHeader ? (
+                        <div
+                            className={classNames([
+                                styles.header,
+                                {
+                                    [styles.disabled]:
+                                        userAnswerIndex !== null ||
+                                        (scrolledBottom && !scrollingDisabled && hasScroll),
+                                },
+                            ])}
+                            ref={headerRef}
+                            style={{
+                                paddingTop: spacing / 2,
+                                paddingLeft: spacing,
+                                paddingRight: spacing,
+                                paddingBottom: spacing,
+                                transform: !isPreview ? `translate(0, ${viewerTopHeight}px)` : null,
+                            }}
+                        >
+                            <Header {...header} />
+                        </div>
+                    ) : null}
+                    <Question
+                        question={question}
+                        answers={answers}
+                        keypadLayout={keypadLayout}
+                        result={result}
+                        resultImage={resultImage}
+                        answeredIndex={userAnswerIndex}
+                        buttonsLayout={buttonsLayout}
+                        buttonsStyle={buttonsStyle}
+                        buttonsTextStyle={buttonsTextStyle}
+                        inactiveButtonsStyle={inactiveButtonsStyle}
+                        inactiveButtonsTextStyle={inactiveButtonsTextStyle}
+                        feedbackTextStyle={feedbackTextStyle}
+                        numbersTextStyle={numbersTextStyle}
+                        goodAnswerColor={goodAnswerColor}
+                        badAnswerColor={badAnswerColor}
+                        withoutTrueFalse={withoutTrueFalse}
+                        withoutGoodAnswer={withoutGoodAnswer}
+                        focusable={current && isView}
+                        animated={isView}
+                        showInstantAnswer={showInstantAnswer}
+                        withResult
+                        layout={layout}
+                        transitions={transitions}
+                        transitionPlaying={transitionPlaying}
+                        transitionStagger={transitionStagger}
+                        transitionDisabled={transitionDisabled}
+                        onAnswerClick={onAnswerClick}
+                        className={styles.question}
+                        style={
+                            !isPlaceholder
+                                ? {
+                                      padding: spacing,
+                                      paddingTop:
+                                          (!isPreview ? viewerTopHeight : 0) +
+                                          (headerHeight || spacing),
+                                      paddingBottom:
+                                          (current && !isPreview ? viewerBottomHeight : 0) +
+                                          (footerHeight || spacing),
+                                  }
+                                : null
+                        }
+                    />
+                </Scroll>
+                {!isPlaceholder && hasFooter ? (
+                    <div
+                        ref={footerRef}
+                        className={classNames([
+                            styles.footer,
+                            {
+                                [styles.disabled]: !scrolledBottom && hasScroll,
+                            },
+                        ])}
+                        style={{
+                            transform:
+                                current && !isPreview
+                                    ? `translate(0, -${viewerBottomHeight}px)`
+                                    : null,
+                            paddingLeft: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingRight: Math.max(spacing / 2, viewerBottomSidesWidth),
+                            paddingTop: spacing / 2,
+                            paddingBottom: spacing / 2,
+                        }}
+                    >
+                        <Footer {...footerProps} />
+                    </div>
+                ) : null}
+            </Container>
+            {!isPlaceholder ? (
+                <Background
+                    background={background}
+                    width={width}
+                    height={height}
+                    resolution={resolution}
+                    playing={backgroundPlaying}
+                    muted={muted}
+                    shouldLoad={mediaShouldLoad}
+                    mediaRef={mediaRef}
+                    withoutVideo={isPreview}
+                    className={styles.background}
+                />
+            ) : null}
+        </div>
+    );
+};
+
+export default QuizScreen;

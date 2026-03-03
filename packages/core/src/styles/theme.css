@@ -30,16 +30,28 @@
     --mm-font-family-sans-serif: 'Libre Franklin', -apple-system, BlinkMacSystemFont, 'Segoe UI',
         Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
         'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --mm-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+        'Courier New', monospace;
     --mm-font-weight-normal: 400;
     --mm-font-weight-bold: 600;
+    --mm-font-size-sm: 0.875rem;
 
     /* Input/Form variables */
     --mm-input-bg: hsla(0, 0%, 100%, 0.07);
     --mm-input-color: var(--mm-white);
     --mm-input-border-width: 0;
     --mm-input-border-color: transparent;
+    --mm-input-border-radius: 0.375rem;
+    --mm-input-border-radius-sm: 0.25rem;
+    --mm-input-border-radius-lg: 0.5rem;
     --mm-input-line-height: 1.4;
+    --mm-input-font-size: 1rem;
+    --mm-input-font-size-sm: 0.875rem;
+    --mm-input-font-size-lg: 1.25rem;
     --mm-input-btn-padding-y: 0.5rem;
+    --mm-input-btn-padding-y-sm: 0.25rem;
+    --mm-input-btn-padding-y-lg: 0.5rem;
+    --mm-input-btn-padding-x: 0.75rem;
     --mm-input-btn-padding-x-sm: 0.75rem;
     --mm-input-btn-padding-x-lg: 1.3rem;
     --mm-input-btn-focus-color: rgba(161, 61, 255, 0.4);

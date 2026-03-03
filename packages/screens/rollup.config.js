@@ -5,8 +5,8 @@ import path from 'path';
 import { createConfig } from '../../rollup.config';
 
 const files = {
-    'index.js': {},
-    'all.js': {},
+    'index.ts': {},
+    'all.ts': {},
 };
 
 export default Object.keys(files).reduce(

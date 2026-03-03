@@ -1,0 +1,88 @@
+/* eslint-disable react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import React from 'react';
+
+
+import Label from './Label';
+
+import styles from '../../styles/partials/media.module.css';
+
+interface MediaProps {
+    thumbnail?: React.ReactNode;
+    thumbnailAlign?: 'top' | 'center' | 'bottom';
+    children?: React.ReactNode;
+    title?: Label;
+    className?: string;
+    thumbnailClassName?: string;
+    bodyClassName?: string;
+    titleClassName?: string;
+}
+
+const Media = ({
+    thumbnail = null,
+    thumbnailAlign = 'top',
+    children = null,
+    title = null,
+    className = null,
+    thumbnailClassName = null,
+    bodyClassName = null,
+    titleClassName = null,
+}) => (
+    <div
+        className={classNames([
+            'card',
+            styles.container,
+            {
+                [className]: className !== null,
+            },
+        ])}
+    >
+        {typeof thumbnail === 'string' ? (
+            <img
+                src={thumbnail}
+                alt={title}
+                className={classNames([
+                    'me-3',
+                    styles.thumbnail,
+                    {
+                        'align-self-start': thumbnailAlign === 'top',
+                        'align-self-center': thumbnailAlign === 'center',
+                        'align-self-end': thumbnailAlign === 'bottom',
+                        [thumbnailClassName]: thumbnailClassName !== null,
+                    },
+                ])}
+            />
+        ) : (
+            thumbnail
+        )}
+        {title !== null || children !== null ? (
+            <div
+                className={classNames([
+                    'card-body',
+                    styles.body,
+                    {
+                        [bodyClassName]: bodyClassName !== null,
+                    },
+                ])}
+            >
+                {title !== null ? (
+                    <h5
+                        className={classNames([
+                            'mt-0',
+                            'text-truncate',
+                            styles.title,
+                            {
+                                [titleClassName]: titleClassName !== null,
+                            },
+                        ])}
+                    >
+                        <Label>{title}</Label>
+                    </h5>
+                ) : null}
+                {children}
+            </div>
+        ) : null}
+    </div>
+);
+
+export default Media;

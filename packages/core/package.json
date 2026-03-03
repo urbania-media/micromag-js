@@ -1,176 +1,159 @@
 {
-    "name": "@micromag/core",
-    "version": "0.3.824",
-    "private": false,
-    "description": "",
-    "keywords": [
-        "javascript"
-    ],
-    "homepage": "https://github.com/urbania-media/micromag-js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/urbania-media/micromag-js.git"
+  "name": "@micromag/core",
+  "version": "0.3.824",
+  "private": false,
+  "description": "",
+  "keywords": [
+    "javascript"
+  ],
+  "homepage": "https://github.com/urbania-media/micromag-js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urbania-media/micromag-js.git"
+  },
+  "author": {
+    "name": "Folklore",
+    "email": "info@folklore.email"
+  },
+  "contributors": [
+    {
+      "name": "David Mongeau-Petitpas",
+      "email": "dmp@folklore.email"
     },
-    "author": {
-        "name": "Folklore",
-        "email": "info@folklore.email"
+    {
+      "name": "Nicolas Roy-Bourdages",
+      "email": "nrb@folklore.email"
     },
-    "contributors": [
-        {
-            "name": "David Mongeau-Petitpas",
-            "email": "dmp@folklore.email"
-        },
-        {
-            "name": "Nicolas Roy-Bourdages",
-            "email": "nrb@folklore.email"
-        },
-        {
-            "name": "Julien Carignan",
-            "email": "jc@folklore.email"
-        }
-    ],
-    "license": "ISC",
-    "main": "lib/index.js",
-    "module": "es/index.js",
-    "style": "assets/css/styles.css",
-    "sideEffects": [
-        "**/*.css",
-        "**/*.scss"
-    ],
-    "exports": {
-        ".": {
-            "import": "./es/index.js",
-            "require": "./lib/index.js"
-        },
-        "./components": {
-            "require": "./lib/components.js",
-            "import": "./es/components.js"
-        },
-        "./contexts": {
-            "require": "./lib/contexts.js",
-            "import": "./es/contexts.js"
-        },
-        "./hooks": {
-            "require": "./lib/hooks.js",
-            "import": "./es/hooks.js"
-        },
-        "./utils": {
-            "require": "./lib/utils.js",
-            "import": "./es/utils.js"
-        },
-        "./scss/mixins": "./scss/_mixins.scss",
-        "./scss/mixins.scss": "./scss/_mixins.scss",
-        "./scss/placeholders": "./scss/_placeholders.scss",
-        "./scss/placeholders.scss": "./scss/_placeholders.scss",
-        "./scss/theme": "./scss/_theme.scss",
-        "./scss/theme.scss": "./scss/_theme.scss",
-        "./scss/variables": "./scss/_variables.scss",
-        "./scss/variables.scss": "./scss/_variables.scss",
-        "./scss/styles": "./scss/styles.scss",
-        "./scss/styles.scss": "./scss/styles.scss",
-        "./scss/upload": "./scss/upload.scss",
-        "./scss/upload.scss": "./scss/upload.scss",
-        "./scss/vendor": "./scss/vendor.scss",
-        "./scss/vendor.scss": "./scss/vendor.scss",
-        "./styles/theme": "./styles/theme.css",
-        "./styles/theme.css": "./styles/theme.css",
-        "./styles/shared.module.css": "./styles/shared.module.css",
-        "./assets/css/styles": "./assets/css/styles.css",
-        "./assets/css/styles.css": "./assets/css/styles.css",
-        "./assets/css/vendor": "./assets/css/vendor.css",
-        "./assets/css/vendor.css": "./assets/css/vendor.css"
+    {
+      "name": "Julien Carignan",
+      "email": "jc@folklore.email"
+    }
+  ],
+  "license": "ISC",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "style": "assets/css/styles.css",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "import": "./es/index.js",
+      "require": "./lib/index.js"
     },
-    "browser": {
-        ".": "./es/index.js",
-        "./components": "./es/components.js",
-        "./contexts": "./es/contexts.js",
-        "./hooks": "./es/hooks.js",
-        "./utils": "./es/utils.js"
+    "./components": {
+      "require": "./lib/components.js",
+      "import": "./es/components.js"
     },
-    "files": [
-        "lib",
-        "es",
-        "assets",
-        "scss",
-        "styles",
-        "components.js",
-        "contexts.js",
-        "hooks.js",
-        "utils.js"
-    ],
-    "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss && rm -rf styles",
-        "vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
-        "prepublishOnly": "npm run build",
-        "build": "../../scripts/prepare-package.sh --scss && npm run vendor"
+    "./contexts": {
+      "require": "./lib/contexts.js",
+      "import": "./es/contexts.js"
     },
-    "devDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+    "./hooks": {
+      "require": "./lib/hooks.js",
+      "import": "./es/hooks.js"
     },
-    "peerDependencies": {
-        "@panneau/displays": "^3.0.301",
-        "@panneau/element-button": "^3.0.300",
-        "@panneau/element-buttons": "^3.0.300",
-        "@panneau/element-dropdown": "^3.0.300",
-        "@panneau/element-form-group": "^3.0.300",
-        "@panneau/element-grid": "^3.0.300",
-        "@panneau/element-icon": "^3.0.300",
-        "@panneau/element-link": "^3.0.300",
-        "@panneau/element-media-card": "^3.0.300",
-        "@panneau/element-media-player": "^3.0.300",
-        "@panneau/element-modal": "^3.0.300",
-        "@panneau/fields": "^3.0.306",
-        "@panneau/filters": "^3.0.301",
-        "@panneau/medias": "^3.0.300",
-        "@panneau/uppy": "^3.0.162",
-        "@uppy/core": "^5.1.1",
-        "@uppy/dashboard": "^5.0.4",
-        "@uppy/react": "^5.1.1",
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+    "./utils": {
+      "require": "./lib/utils.js",
+      "import": "./es/utils.js"
     },
-    "dependencies": {
-        "@babel/runtime": "^7.13.10",
-        "@folklore/fetch": "^0.1.17",
-        "@folklore/forms": "~0.0.23",
-        "@folklore/hooks": "^0.0.83",
-        "@folklore/routes": "^0.2.36",
-        "@folklore/services": "^0.1.24",
-        "@folklore/size": "^0.1.20",
-        "@folklore/tracking": "^0.0.34",
-        "@fortawesome/fontawesome-svg-core": "^6.5.2",
-        "@fortawesome/free-solid-svg-icons": "^6.5.2",
-        "@fortawesome/react-fontawesome": "^0.2.0",
-        "@react-spring/core": "^9.6.1",
-        "@react-spring/web": "^9.6.1",
-        "@use-gesture/react": "^10.3.1",
-        "bootstrap": "^5.3.7",
-        "change-case": "^5.4.4",
-        "classnames": "^2.2.6",
-        "css-mediaquery": "^0.1.2",
-        "dayjs": "^1.11.10",
-        "debug": "^4.3.4",
-        "flat": "^6.0.1",
-        "hoist-non-react-statics": "^3.3.2",
-        "js-cookie": "^3.0.5",
-        "lodash": "^4.17.21",
-        "prop-types": "^15.7.2",
-        "query-string": "^9.0.0",
-        "raf": "^3.4.1",
-        "react-helmet": "^6.1.0",
-        "react-intl": "^6.6.4",
-        "screenfull": "^5.2.0",
-        "slugify": "^1.6.5",
-        "tinycolor2": "^1.4.2",
-        "uuid": "^9.0.0",
-        "webfontloader": "^1.6.28",
-        "wolfy87-eventemitter": "^5.2.9",
-        "wouter": "^3.0.0"
-    },
-    "publishConfig": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org/"
-    },
-    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
+    "./styles/theme": "./styles/theme.css",
+    "./styles/theme.css": "./styles/theme.css",
+    "./styles/shared.module.css": "./styles/shared.module.css",
+    "./assets/css/styles": "./assets/css/styles.css",
+    "./assets/css/styles.css": "./assets/css/styles.css",
+    "./assets/css/vendor": "./assets/css/vendor.css",
+    "./assets/css/vendor.css": "./assets/css/vendor.css"
+  },
+  "browser": {
+    ".": "./es/index.js",
+    "./components": "./es/components.js",
+    "./contexts": "./es/contexts.js",
+    "./hooks": "./es/hooks.js",
+    "./utils": "./es/utils.js"
+  },
+  "files": [
+    "lib",
+    "es",
+    "assets",
+    "styles",
+    "components.js",
+    "contexts.js",
+    "hooks.js",
+    "utils.js"
+  ],
+  "scripts": {
+    "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles",
+    "vendor": "../../scripts/build-css.js ./src/styles/vendor.css ./assets/css/vendor.css",
+    "prepublishOnly": "npm run build",
+    "build": "../../scripts/prepare-package.sh && npm run vendor"
+  },
+  "devDependencies": {
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0"
+  },
+  "peerDependencies": {
+    "@panneau/displays": "^3.0.301",
+    "@panneau/element-button": "^3.0.300",
+    "@panneau/element-buttons": "^3.0.300",
+    "@panneau/element-dropdown": "^3.0.300",
+    "@panneau/element-form-group": "^3.0.300",
+    "@panneau/element-grid": "^3.0.300",
+    "@panneau/element-icon": "^3.0.300",
+    "@panneau/element-link": "^3.0.300",
+    "@panneau/element-media-card": "^3.0.300",
+    "@panneau/element-media-player": "^3.0.300",
+    "@panneau/element-modal": "^3.0.300",
+    "@panneau/fields": "^3.0.306",
+    "@panneau/filters": "^3.0.301",
+    "@panneau/medias": "^3.0.300",
+    "@panneau/uppy": "^3.0.162",
+    "@uppy/core": "^5.1.1",
+    "@uppy/dashboard": "^5.0.4",
+    "@uppy/react": "^5.1.1",
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.13.10",
+    "@folklore/fetch": "^0.1.17",
+    "@folklore/forms": "~0.0.23",
+    "@folklore/hooks": "^0.0.83",
+    "@folklore/routes": "^0.2.36",
+    "@folklore/services": "^0.1.24",
+    "@folklore/size": "^0.1.20",
+    "@folklore/tracking": "^0.0.34",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@react-spring/core": "^9.6.1",
+    "@react-spring/web": "^9.6.1",
+    "@use-gesture/react": "^10.3.1",
+    "bootstrap": "^5.3.7",
+    "change-case": "^5.4.4",
+    "classnames": "^2.2.6",
+    "css-mediaquery": "^0.1.2",
+    "dayjs": "^1.11.10",
+    "debug": "^4.3.4",
+    "flat": "^6.0.1",
+    "hoist-non-react-statics": "^3.3.2",
+    "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
+    "query-string": "^9.0.0",
+    "raf": "^3.4.1",
+    "react-helmet": "^6.1.0",
+    "react-intl": "^6.6.4",
+    "screenfull": "^5.2.0",
+    "slugify": "^1.6.5",
+    "tinycolor2": "^1.4.2",
+    "uuid": "^9.0.0",
+    "webfontloader": "^1.6.28",
+    "wolfy87-eventemitter": "^5.2.9",
+    "wouter": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
 }

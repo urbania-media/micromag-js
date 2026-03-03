@@ -8,7 +8,7 @@ export default [
     //     format: 'cjs',
     // }),
     createConfig({
-        input: 'src/bin/export.js',
+        input: 'src/bin/export.ts',
         output: 'bin/export.js',
         banner: '#!/usr/bin/env node',
         format: 'node',

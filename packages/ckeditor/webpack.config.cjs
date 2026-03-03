@@ -8,7 +8,7 @@ const { styles } = devUtils;
 
 module.exports = {
     entry: {
-        build: './src/build.js',
+        build: './src/build.ts',
     },
 
     output: {
@@ -19,6 +19,7 @@ module.exports = {
     },
 
     resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
         modules: [
             path.join(process.cwd(), 'node_modules'),
             path.join(process.cwd(), '../../node_modules'),
@@ -37,6 +38,19 @@ module.exports = {
 
     module: {
         rules: [
+            {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            ['@babel/preset-env', { modules: false, useBuiltIns: false }],
+                            '@babel/preset-typescript',
+                        ],
+                    },
+                },
+            },
             {
                 test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
                 use: ['raw-loader'],

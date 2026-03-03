@@ -16,7 +16,7 @@ import generateScopedName from './scripts/lib/generateScopedName';
 import imageAssets from './scripts/rollup-image-assets';
 
 export const createConfig = ({
-    file = 'index.js',
+    file = 'index.ts',
     outputConfig = null,
     input = null,
     output = null,
@@ -32,13 +32,14 @@ export const createConfig = ({
 } = {}) => {
     const isNode = format === 'node';
     const isCjs = format === 'cjs' || format === 'node';
+    const outputFile = file.replace(/\.tsx?$/, '.js');
     const outputCjs = {
-        file: outputCjsFile || output || `lib/${file}`,
+        file: outputCjsFile || output || `lib/${outputFile}`,
         format: 'cjs',
         banner,
     };
     const outputEs = {
-        file: output || `es/${file}`,
+        file: output || `es/${outputFile}`,
         banner,
     };
     let finalOutputConfig = outputConfig;
@@ -143,7 +144,7 @@ export const createConfig = ({
             }),
             !withoutPostCss &&
                 postcss({
-                    extensions: ['.css', '.scss'],
+                    extensions: ['.css'],
                     plugins: [require('postcss-nested')],
                     modules: {
                         generateScopedName,

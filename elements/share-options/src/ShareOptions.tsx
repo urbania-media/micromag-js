@@ -1,0 +1,395 @@
+/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import isArray from 'lodash/isArray';
+import React, { useCallback, useMemo, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import {
+    EmailShareButton,
+    FacebookIcon, // EmailIcon,
+    FacebookShareButton,
+    LinkedinIcon,
+    LinkedinShareButton,
+    TwitterIcon,
+    TwitterShareButton,
+    WhatsappIcon, // FacebookMessengerShareButton,
+    // FacebookMessengerIcon,
+    WhatsappShareButton,
+} from 'react-share';
+
+import type { BoxStyle, TextStyle, ViewerTheme } from '@micromag/core';
+import { Button } from '@micromag/core/components';
+import {
+    copyToClipboard,
+    getStyleFromBox,
+    getStyleFromColor,
+    getStyleFromText,
+} from '@micromag/core/utils';
+
+import EmailIcon from './EmailIcon';
+import ShareLinkIcon from './ShareLinkIcon';
+import SmsIcon from './SmsIcon';
+
+import styles from './styles.module.css';
+
+interface ShareOptionsProps {
+    className?: string;
+    itemClassName?: string;
+    labelClassName?: string;
+    buttonClassName?: string;
+    title?: string;
+    url?: string;
+    options?: string[];
+    buttonsStyle?: BoxStyle;
+    buttonsTextStyle?: TextStyle;
+    iconSize?: number;
+    theme?: ViewerTheme;
+    onShare?: (...args: unknown[]) => void;
+    onClose?: (...args: unknown[]) => void;
+    focusable?: boolean;
+}
+
+const ShareOptions = ({
+    className = null,
+    itemClassName = null,
+    labelClassName = null,
+    buttonClassName = null,
+    title = null,
+    url = null,
+    options = null,
+    buttonsStyle = null,
+    buttonsTextStyle = null,
+    iconSize = 45,
+    theme = null,
+    onShare = null,
+    onClose = null,
+    focusable = true,
+}) => {
+    const { menuTheme = null } = theme || {};
+    const { colors = null } = menuTheme || {};
+    const { primary: brandPrimaryColor = null } = colors || {};
+    const colorStyles = getStyleFromColor(brandPrimaryColor, 'color');
+
+    let finalStyles = colorStyles;
+
+    if (buttonsTextStyle !== null) {
+        finalStyles = {
+            ...finalStyles,
+            ...getStyleFromText(buttonsTextStyle),
+        };
+    }
+
+    if (buttonsStyle !== null) {
+        finalStyles = {
+            ...finalStyles,
+            ...getStyleFromBox(buttonsStyle),
+        };
+    }
+
+    const [linkCopied, setLinkCopied] = useState(false);
+
+    const onClickCopy = useCallback(() => {
+        copyToClipboard(url).then(() => {
+            setLinkCopied(true);
+            setTimeout(() => {
+                setLinkCopied(false);
+            }, 2000);
+        });
+    }, [url, setLinkCopied]);
+
+    const onShareButtonClick = useCallback(
+        (type) => {
+            if (onShare !== null) {
+                onShare(type);
+            }
+        },
+        [onShare],
+    );
+
+    const shareButtonProps = useMemo(
+        () => ({
+            className: classNames([styles.button, { [buttonClassName]: buttonClassName !== null }]),
+            url,
+            onShareWindowClose: () => {
+                if (onClose !== null) {
+                    onClose();
+                }
+            },
+        }),
+        [url, onClose],
+    );
+
+    const shareIconProps = useMemo(
+        () => ({
+            className: styles.icon,
+            size: iconSize,
+            bgStyle: {
+                fill: 'none',
+            },
+            iconFillColor: 'currentColor',
+        }),
+        [iconSize],
+    );
+
+    const shareOptions = [
+        {
+            id: 'facebook',
+            button: (
+                <FacebookShareButton
+                    {...shareButtonProps}
+                    quote={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('Facebook');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
+                >
+                    <FacebookIcon {...shareIconProps} />
+                    <div
+                        className={classNames([
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
+                        ])}
+                    >
+                        Facebook
+                    </div>
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
+                </FacebookShareButton>
+            ),
+        },
+        {
+            id: 'twitter',
+            button: (
+                <TwitterShareButton
+                    {...shareButtonProps}
+                    title={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('Twitter');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
+                >
+                    <TwitterIcon {...shareIconProps} />
+                    <div
+                        className={classNames([
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
+                        ])}
+                    >
+                        X (Twitter)
+                    </div>
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
+                </TwitterShareButton>
+            ),
+        },
+        {
+            id: 'linkedin',
+            button: (
+                <LinkedinShareButton
+                    {...shareButtonProps}
+                    title={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('LinkedIn');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
+                >
+                    <LinkedinIcon {...shareIconProps} />
+                    <div
+                        className={classNames([
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
+                        ])}
+                    >
+                        LinkedIn
+                    </div>
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
+                </LinkedinShareButton>
+            ),
+        },
+        {
+            id: 'whatsapp',
+            button: (
+                <WhatsappShareButton
+                    {...shareButtonProps}
+                    title={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('Whatsapp');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
+                >
+                    <WhatsappIcon {...shareIconProps} />
+                    <div
+                        className={classNames([
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
+                        ])}
+                    >
+                        Whatsapp
+                    </div>
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
+                </WhatsappShareButton>
+            ),
+        },
+        // {
+        //     id: 'facebookMessenger',
+        //     button: (
+        //         <FacebookMessengerShareButton
+        //             {...shareButtonProps}
+        //             title={title}
+        //             appId="741129940350872"
+        //             beforeOnClick={() => {
+        //                 onShareButtonClick('Whatsapp');
+        //                 return Promise.resolve();
+        //             }}
+        //             tabIndex={focusable ? null : '-1'}
+        //             style={finalStyles}
+        //         >
+        //             <FacebookMessengerIcon {...shareIconProps} />
+        //             <div
+        //                 className={classNames([
+        //                     styles.label,
+        //                     { [labelClassName]: labelClassName !== null },
+        //                 ])}
+        //             >
+        //                 Facebook Messenger
+        //             </div>
+        //         </FacebookMessengerShareButton>
+        //     ),
+        // },
+        {
+            id: 'email',
+            button: (
+                <EmailShareButton
+                    {...shareButtonProps}
+                    subject={title}
+                    beforeOnClick={() => {
+                        onShareButtonClick('Email');
+                        return Promise.resolve();
+                    }}
+                    tabIndex={focusable ? null : '-1'}
+                    style={finalStyles}
+                >
+                    <EmailIcon {...shareIconProps} />
+                    <div
+                        className={classNames([
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
+                        ])}
+                    >
+                        <FormattedMessage defaultMessage="Email" description="Share option label" />
+                    </div>
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
+                </EmailShareButton>
+            ),
+        },
+        {
+            id: 'sms',
+            button: (
+                <Button
+                    className={classNames([
+                        styles.button,
+                        { [buttonClassName]: buttonClassName !== null },
+                    ])}
+                    href={`sms:?&body=${url}`}
+                    focusable={focusable}
+                    style={finalStyles}
+                    external
+                    withoutBootstrapStyles
+                >
+                    <SmsIcon {...shareIconProps} />
+                    <div
+                        className={classNames([
+                            styles.label,
+                            { [labelClassName]: labelClassName !== null },
+                        ])}
+                    >
+                        <span className={styles.labelText}>
+                            <FormattedMessage
+                                defaultMessage="SMS"
+                                description="Share button label"
+                            />
+                        </span>
+                    </div>
+                    <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
+                </Button>
+            ),
+        },
+    ];
+
+    const hasShareLink = options !== null ? options.includes('copylink') : true; // default is true
+    const selectedOptions =
+        options !== null && isArray(options)
+            ? shareOptions.filter((opt) => options.includes(opt.id))
+            : shareOptions;
+
+    return (
+        <div className={classNames([styles.container, { [className]: className !== null }])}>
+            <div className={styles.options}>
+                {hasShareLink ? (
+                    <div
+                        className={classNames([
+                            styles.item,
+                            {
+                                [itemClassName]: itemClassName !== null,
+                                [styles.isLinkCopied]: linkCopied,
+                            },
+                        ])}
+                    >
+                        <Button
+                            className={classNames([
+                                styles.button,
+                                { [buttonClassName]: buttonClassName !== null },
+                            ])}
+                            onClick={onClickCopy}
+                            focusable={focusable}
+                            style={finalStyles}
+                            withoutBootstrapStyles
+                        >
+                            <ShareLinkIcon {...shareIconProps} />
+                            <div
+                                className={classNames([
+                                    styles.label,
+                                    { [labelClassName]: labelClassName !== null },
+                                ])}
+                            >
+                                <span className={styles.labelText}>
+                                    {!linkCopied ? (
+                                        <FormattedMessage
+                                            defaultMessage="Copy link"
+                                            description="Share button label"
+                                        />
+                                    ) : null}
+                                    {linkCopied ? (
+                                        <FormattedMessage
+                                            defaultMessage="Link copied!"
+                                            description="Message displayed once text was copied successfully."
+                                        />
+                                    ) : null}
+                                </span>
+                            </div>
+                            <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
+                        </Button>
+                    </div>
+                ) : null}
+                {selectedOptions.map(({ id, button }) => (
+                    <div
+                        key={id}
+                        className={classNames([
+                            styles.item,
+                            { [itemClassName]: itemClassName !== null },
+                        ])}
+                    >
+                        {button}
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default ShareOptions;

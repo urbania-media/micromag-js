@@ -5,7 +5,7 @@ import path from 'path';
 import { createConfig } from '../../rollup.config';
 
 const files = {
-    'index.js': {
+    'index.ts': {
         // prependPlugins: [
         //     alias({
         //         entries: [
@@ -22,7 +22,7 @@ const files = {
         },
     },
 
-    'components.js': {
+    'components.ts': {
         prependPlugins: [
             alias({
                 entries: [
@@ -46,7 +46,7 @@ const files = {
         },
     },
 
-    'contexts.js': {
+    'contexts.ts': {
         prependPlugins: [
             alias({
                 entries: [
@@ -72,7 +72,7 @@ const files = {
         },
     },
 
-    'hooks.js': {
+    'hooks.ts': {
         prependPlugins: [
             alias({
                 entries: [
@@ -96,7 +96,7 @@ const files = {
         },
     },
 
-    'utils.js': {
+    'utils.ts': {
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [new RegExp(path.join(__dirname, './src/utils'))],

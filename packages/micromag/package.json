@@ -35,16 +35,15 @@
     "files": [
         "lib",
         "es",
-        "assets",
-        "scss"
+        "assets"
     ],
     "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
-        "css:vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
-        "css:styles": "../../scripts/build-sass.js ./src/styles/styles.scss ./assets/css/styles.css",
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
+        "css:vendor": "../../scripts/build-css.js ./src/styles/vendor.css ./assets/css/vendor.css",
+        "css:styles": "../../scripts/build-css.js ./src/styles/styles.css ./assets/css/styles.css",
         "css": "npm run css:vendor && npm run css:styles",
         "prepublishOnly": "npm run build",
-        "build": "../../scripts/prepare-package.sh --scss && npm run css"
+        "build": "../../scripts/prepare-package.sh && npm run css"
     },
     "devDependencies": {
         "react": "^18.3.0 || ^19.0.0",

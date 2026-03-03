@@ -1,0 +1,50 @@
+/* eslint-disable react/no-array-index-key */
+import React from 'react';
+import isNumber from 'lodash/isNumber';
+import classNames from 'classnames';
+
+import styles from '../../styles/partials/placeholder-text.module.css';
+
+interface PlaceholderTextProps {
+    lines?: number;
+    lineMargin?: number | string;
+    width?: number | string;
+    height?: number | string;
+    fontSize?: number;
+    className?: string;
+    withInvertedColors?: boolean;
+}
+
+const PlaceholderText = ({ lines = 1, lineMargin = 1, width = '100%', height = null, fontSize = 16, className = null,     withInvertedColors = true }) => {
+    const lineHeight =
+        height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
+
+    const oddWidth = isNumber(width) ? width * 0.9 : '80%';
+
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className,
+                    [styles.withInvertedColors]: withInvertedColors
+                },
+            ])}
+        >
+            {[...Array(lines)].map((e, index) => (
+                <div
+                    key={`line-${index}`}
+                    className={styles.line}
+                    style={{
+                        width: index % 2 === 0 ? width : oddWidth,
+                        height: lineHeight,
+                        marginTop: lineMargin,
+                        marginBottom: lineMargin,
+                    }}
+                />
+            ))}
+        </div>
+    );
+};
+
+export default PlaceholderText;

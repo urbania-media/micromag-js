@@ -1,3 +1,5 @@
+import { spyOn } from 'storybook/test';
+
 import withGoogleKeys from './decorators/withGoogleKeys';
 import withIntlProvider from './decorators/withIntlProvider';
 import withRouter from './decorators/withRouter';
@@ -5,8 +7,9 @@ import withScreenDefinition from './decorators/withScreenDefinition';
 import withScreenSize from './decorators/withScreenSize';
 import withVisitor from './decorators/withVisitor';
 
-import '../packages/core/src/styles/vendor.scss';
-import './fonts/fonts.scss';
+import '../packages/core/src/styles/vendor.css';
+import '../packages/core/src/styles/theme.css';
+import './fonts/fonts.css';
 
 if (typeof window !== 'undefined') {
     window.dataLayer = window.dataLayer || [];
@@ -14,7 +17,7 @@ if (typeof window !== 'undefined') {
 
 export const parameters = {
     viewport: {
-        viewports: {
+        options: {
             mobileSmall: {
                 name: 'Very small (iPhone5)',
                 styles: {
@@ -83,3 +86,15 @@ export const decorators = [
     withVisitor,
     withRouter,
 ];
+
+export const beforeEach = function beforeEach() {
+    spyOn(console, 'log').mockName('console.log');
+    spyOn(console, 'warn').mockName('console.warn');
+    spyOn(console, 'error').mockName('console.error');
+    spyOn(console, 'info').mockName('console.info');
+    spyOn(console, 'debug').mockName('console.debug');
+    spyOn(console, 'trace').mockName('console.trace');
+    spyOn(console, 'count').mockName('console.count');
+    spyOn(console, 'dir').mockName('console.dir');
+    spyOn(console, 'assert').mockName('console.assert');
+};

@@ -1,109 +1,103 @@
 {
-    "name": "@micromag/fields",
-    "version": "0.3.824",
-    "private": false,
-    "description": "",
-    "keywords": [
-        "javascript"
-    ],
-    "homepage": "https://github.com/urbania-media/micromag-js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/urbania-media/micromag-js.git"
+  "name": "@micromag/fields",
+  "version": "0.3.824",
+  "private": false,
+  "description": "",
+  "keywords": [
+    "javascript"
+  ],
+  "homepage": "https://github.com/urbania-media/micromag-js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urbania-media/micromag-js.git"
+  },
+  "author": {
+    "name": "Folklore",
+    "email": "info@folklore.email"
+  },
+  "contributors": [
+    {
+      "name": "David Mongeau-Petitpas",
+      "email": "dmp@folklore.email"
     },
-    "author": {
-        "name": "Folklore",
-        "email": "info@folklore.email"
+    {
+      "name": "Nicolas Roy-Bourdages",
+      "email": "nrb@folklore.email"
     },
-    "contributors": [
-        {
-            "name": "David Mongeau-Petitpas",
-            "email": "dmp@folklore.email"
-        },
-        {
-            "name": "Nicolas Roy-Bourdages",
-            "email": "nrb@folklore.email"
-        },
-        {
-            "name": "Julien Carignan",
-            "email": "jc@folklore.email"
-        }
-    ],
-    "license": "ISC",
-    "type": "module",
-    "module": "es/index.js",
-    "style": "assets/css/styles.css",
-    "exports": {
-        ".": {
-            "import": "./es/index.js"
-        },
-        "./all": {
-            "require": "./lib/all.js",
-            "import": "./es/all.js"
-        },
-        "./scss/placeholders": "./scss/_placeholders.scss",
-        "./scss/placeholders.scss": "./scss/_placeholders.scss",
-        "./scss/styles": "./scss/styles.scss",
-        "./scss/styles.scss": "./scss/styles.scss",
-        "./assets/css/styles": "./assets/css/styles.css",
-        "./assets/css/styles.css": "./assets/css/styles.css"
+    {
+      "name": "Julien Carignan",
+      "email": "jc@folklore.email"
+    }
+  ],
+  "license": "ISC",
+  "type": "module",
+  "module": "es/index.js",
+  "style": "assets/css/styles.css",
+  "exports": {
+    ".": {
+      "import": "./es/index.js"
     },
-    "browser": {
-        ".": "./es/index.js",
-        "./all": "./es/all.js"
+    "./all": {
+      "require": "./lib/all.js",
+      "import": "./es/all.js"
     },
-    "files": [
-        "lib",
-        "es",
-        "assets",
-        "scss",
-        "all.js"
-    ],
-    "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss",
-        "prepublishOnly": "npm run build",
-        "build": "../../scripts/prepare-package.sh --scss"
-    },
-    "devDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
-    },
-    "peerDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
-    },
-    "dependencies": {
-        "@babel/runtime": "^7.13.10",
-        "@ckeditor/ckeditor5-react": "^6.2.0",
-        "@folklore/fetch": "^0.1.17",
-        "@fortawesome/fontawesome-svg-core": "^6.5.2",
-        "@fortawesome/free-solid-svg-icons": "^6.5.2",
-        "@fortawesome/react-fontawesome": "^0.2.0",
-        "@micromag/ckeditor": "^0.3.811",
-        "@micromag/core": "^0.3.824",
-        "@micromag/data": "^0.3.824",
-        "@micromag/element-grid": "^0.3.824",
-        "@micromag/element-keypad": "^0.3.824",
-        "@micromag/element-map": "^0.3.824",
-        "@micromag/media-gallery": "^0.3.824",
-        "@panneau/uppy": "^3.0.162",
-        "classnames": "^2.2.6",
-        "draft-js": "^0.11.7",
-        "fuse.js": "^7.0.0",
-        "lodash": "^4.17.21",
-        "prop-types": "^15.7.2",
-        "rc-slider": "^10.5.0",
-        "rc-switch": "^4.1.0",
-        "react-color": "^2.19.3",
-        "react-intl": "^6.6.4",
-        "react-select": "^5.8.0",
-        "react-sortablejs": "^6.0.0",
-        "tinycolor2": "^1.4.2",
-        "uuid": "^9.0.0"
-    },
-    "publishConfig": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org/"
-    },
-    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
+    "./assets/css/styles": "./assets/css/styles.css",
+    "./assets/css/styles.css": "./assets/css/styles.css"
+  },
+  "browser": {
+    ".": "./es/index.js",
+    "./all": "./es/all.js"
+  },
+  "files": [
+    "lib",
+    "es",
+    "assets",
+    "all.js"
+  ],
+  "scripts": {
+    "clean": "rm -rf es && rm -rf lib && rm -rf assets",
+    "prepublishOnly": "npm run build",
+    "build": "../../scripts/prepare-package.sh"
+  },
+  "devDependencies": {
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.13.10",
+    "@ckeditor/ckeditor5-react": "^6.2.0",
+    "@folklore/fetch": "^0.1.17",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@micromag/ckeditor": "^0.3.811",
+    "@micromag/core": "^0.3.824",
+    "@micromag/data": "^0.3.824",
+    "@micromag/element-grid": "^0.3.824",
+    "@micromag/element-keypad": "^0.3.824",
+    "@micromag/element-map": "^0.3.824",
+    "@micromag/media-gallery": "^0.3.824",
+    "@panneau/uppy": "^3.0.162",
+    "classnames": "^2.2.6",
+    "draft-js": "^0.11.7",
+    "fuse.js": "^7.0.0",
+    "lodash": "^4.17.21",
+    "rc-slider": "^10.5.0",
+    "rc-switch": "^4.1.0",
+    "react-color": "^2.19.3",
+    "react-intl": "^6.6.4",
+    "react-select": "^5.8.0",
+    "react-sortablejs": "^6.0.0",
+    "tinycolor2": "^1.4.2",
+    "uuid": "^9.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76"
 }

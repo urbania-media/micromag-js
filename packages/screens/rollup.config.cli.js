@@ -14,6 +14,7 @@ export default {
     },
     plugins: [
         resolve({
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [
                 /@micromag/,
                 /@folklore/,
@@ -23,6 +24,16 @@ export default {
                 'decode-uri-component',
                 'split-on-first',
                 'filter-obj',
+            ],
+        }),
+        babel({
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx'],
+            include: ['../../packages/**', '../../elements/**', '../../screens/**', '../../scripts/**'],
+            babelHelpers: 'bundled',
+            presets: [
+                [require('@babel/preset-env'), { modules: false, useBuiltIns: false }],
+                [require('@babel/preset-react'), { useBuiltIns: true }],
+                require('@babel/preset-typescript'),
             ],
         }),
         url({

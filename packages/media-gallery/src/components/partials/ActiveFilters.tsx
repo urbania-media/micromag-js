@@ -1,0 +1,105 @@
+/* eslint-disable react/no-array-index-key, jsx-a11y/label-has-associated-control, react/jsx-indent */
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import React, { useCallback } from 'react';
+import { FormattedMessage } from 'react-intl';
+
+import { Button } from '@micromag/core/components';
+
+import CloseButton from '../buttons/Close';
+
+import styles from '../../styles/partials/active-filters.module.css';
+
+interface ActiveFiltersProps {
+    filters?: { types?: string[]; tags?: string[]; users?: string[]; usage?: ('used' | 'unused')[] };
+    onChange?: (...args: unknown[]) => void;
+    onReset?: (...args: unknown[]) => void;
+    sections?: Record<string, unknown>[];
+    className?: string;
+}
+
+function ActiveFilters({ filters = null, onChange = null, onReset = null, sections = [], className = null }) {
+    const handleReset = useCallback(() => {
+        if (onReset !== null) {
+            onReset();
+        }
+    }, [onReset]);
+
+    const removeFilter = useCallback(
+        (key, activeValue) => {
+            const newFilterValue = filters[key].filter((it) => it !== activeValue);
+            const newValue = newFilterValue.length > 0 ? newFilterValue : null;
+            if (onChange !== null) {
+                onChange(key, newValue);
+            }
+        },
+        [onChange, filters],
+    );
+
+    const hasValue = Object.keys(filters).reduce(
+        (oneHasValue, key) => oneHasValue || filters[key] !== null,
+        false,
+    );
+
+    return (
+        <div
+            className={classNames([
+                'w-100',
+                styles.container,
+                {
+                    [className]: className,
+                },
+            ])}
+        >
+            {hasValue ? (
+                <div className={styles.heading}>
+                    <div className={styles.title}>
+                        <FormattedMessage
+                            defaultMessage="Active filters"
+                            description="Active filters title"
+                        />
+                    </div>
+                    <CloseButton className={styles.resetButton} onClick={handleReset}>
+                        <u>
+                            <FormattedMessage
+                                defaultMessage="Remove all"
+                                description="Remove all button label"
+                            />
+                        </u>
+                    </CloseButton>
+                </div>
+            ) : null}
+            {filters !== null
+                ? Object.keys(filters).map((key) => {
+                      const section = sections.find((s) => s.value === key);
+                      return section && filters[key] !== null
+                          ? filters[key].map((activeValue) => {
+                                const current = section.items.find((s) => s.value === activeValue);
+                                const { label = '' } = current || {};
+                                return (
+                                    <Button
+                                        className={styles.activeTag}
+                                        key={`filter-button-${activeValue}`}
+                                        type="submit"
+                                        size="sm"
+                                        label={
+                                            <span>
+                                                {section.label} : {label}
+                                            </span>
+                                        }
+                                        theme="secondary"
+                                        icon={<FontAwesomeIcon icon={faTimes} />}
+                                        iconPosition="right"
+                                        onClick={() => removeFilter(key, activeValue)}
+                                    />
+                                );
+                            })
+                          : null;
+                  })
+                : null}
+        </div>
+    );
+}
+
+export default ActiveFilters;

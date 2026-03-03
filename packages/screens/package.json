@@ -1,119 +1,115 @@
 {
-    "name": "@micromag/screens",
-    "version": "0.3.831",
-    "private": false,
-    "description": "",
-    "keywords": [
-        "javascript"
-    ],
-    "homepage": "https://github.com/urbania-media/micromag-js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/urbania-media/micromag-js.git"
+  "name": "@micromag/screens",
+  "version": "0.3.831",
+  "private": false,
+  "description": "",
+  "keywords": [
+    "javascript"
+  ],
+  "homepage": "https://github.com/urbania-media/micromag-js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urbania-media/micromag-js.git"
+  },
+  "author": {
+    "name": "Folklore",
+    "email": "info@folklore.email"
+  },
+  "contributors": [
+    {
+      "name": "David Mongeau-Petitpas",
+      "email": "dmp@folklore.email"
     },
-    "author": {
-        "name": "Folklore",
-        "email": "info@folklore.email"
+    {
+      "name": "Nicolas Roy-Bourdages",
+      "email": "nrb@folklore.email"
     },
-    "contributors": [
-        {
-            "name": "David Mongeau-Petitpas",
-            "email": "dmp@folklore.email"
-        },
-        {
-            "name": "Nicolas Roy-Bourdages",
-            "email": "nrb@folklore.email"
-        },
-        {
-            "name": "Julien Carignan",
-            "email": "jc@folklore.email"
-        }
-    ],
-    "license": "ISC",
-    "type": "module",
-    "module": "es/index.js",
-    "style": "assets/css/styles.css",
-    "exports": {
-        ".": {
-            "import": "./es/index.js"
-        },
-        "./all": {
-            "require": "./lib/all.js",
-            "import": "./es/all.js"
-        },
-        "./fields": "./fields.js",
-        "./fields.json": "./fields.json",
-        "./scss/styles": "./scss/styles.scss",
-        "./scss/styles.scss": "./scss/styles.scss",
-        "./assets/css/styles": "./assets/css/styles.css",
-        "./assets/css/styles.css": "./assets/css/styles.css"
+    {
+      "name": "Julien Carignan",
+      "email": "jc@folklore.email"
+    }
+  ],
+  "license": "ISC",
+  "type": "module",
+  "module": "es/index.js",
+  "style": "assets/css/styles.css",
+  "exports": {
+    ".": {
+      "import": "./es/index.js"
     },
-    "browser": {
-        ".": "./es/index.js",
-        "./all": "./es/all.js"
+    "./all": {
+      "require": "./lib/all.js",
+      "import": "./es/all.js"
     },
-    "files": [
-        "lib",
-        "es",
-        "assets",
-        "scss",
-        "fields.js",
-        "fields.json",
-        "all.js"
-    ],
-    "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf scss && rm -rf fields.js && rm -rf fields.json",
-        "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  --ignore='[]' --env-name=node --no-babelrc",
-        "build:fields": "NODE_ENV=development rollup --config ./rollup.config.cli.js --bundleConfigAsCjs && node ./build-screen-fields.cjs ./ && rm -f ./build-screen-fields.cjs",
-        "scss": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.scss.ejs ./scss/styles.scss",
-        "css": "../../scripts/build-sass.js ./scss/styles.scss ./assets/css/styles.css",
-        "prepublishOnly": "npm run build",
-        "build": "npm run build:fields && ../../scripts/prepare-package.sh && npm run scss && npm run css",
-        "all-styles": "npm run scss && npm run css"
-    },
-    "devDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
-    },
-    "peerDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
-    },
-    "dependencies": {
-        "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.824",
-        "@micromag/screen-article": "^0.3.829",
-        "@micromag/screen-audio": "^0.3.829",
-        "@micromag/screen-contribution": "^0.3.829",
-        "@micromag/screen-conversation": "^0.3.829",
-        "@micromag/screen-gallery": "^0.3.829",
-        "@micromag/screen-gallery-feed": "^0.3.829",
-        "@micromag/screen-game-sort": "^0.3.829",
-        "@micromag/screen-image": "^0.3.829",
-        "@micromag/screen-keypad": "^0.3.831",
-        "@micromag/screen-map": "^0.3.829",
-        "@micromag/screen-quiz": "^0.3.829",
-        "@micromag/screen-quote": "^0.3.829",
-        "@micromag/screen-ranking": "^0.3.829",
-        "@micromag/screen-share": "^0.3.829",
-        "@micromag/screen-slideshow": "^0.3.829",
-        "@micromag/screen-survey": "^0.3.829",
-        "@micromag/screen-text": "^0.3.829",
-        "@micromag/screen-timeline": "^0.3.829",
-        "@micromag/screen-title": "^0.3.829",
-        "@micromag/screen-urbania-article": "^0.3.829",
-        "@micromag/screen-urbania-horoscope": "^0.3.829",
-        "@micromag/screen-urbania-recommendation": "^0.3.829",
-        "@micromag/screen-urbania-trivia": "^0.3.829",
-        "@micromag/screen-video": "^0.3.829",
-        "@micromag/screen-video-360": "^0.3.829",
-        "classnames": "^2.2.6",
-        "lodash": "^4.17.21",
-        "prop-types": "^15.7.2"
-    },
-    "publishConfig": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org/"
-    },
-    "gitHead": "90cc69d20d28f4e900eb19a1b2b41b32d424e646"
+    "./fields": "./fields.js",
+    "./fields.json": "./fields.json",
+    "./assets/css/styles": "./assets/css/styles.css",
+    "./assets/css/styles.css": "./assets/css/styles.css"
+  },
+  "browser": {
+    ".": "./es/index.js",
+    "./all": "./es/all.js"
+  },
+  "files": [
+    "lib",
+    "es",
+    "assets",
+    "fields.js",
+    "fields.json",
+    "all.js"
+  ],
+  "scripts": {
+    "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf fields.js && rm -rf fields.json",
+    "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  --ignore='[]' --env-name=node --no-babelrc",
+    "build:fields": "NODE_ENV=development rollup --config ./rollup.config.cli.js --bundleConfigAsCjs && node ./build-screen-fields.cjs ./ && rm -f ./build-screen-fields.cjs",
+    "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.css.ejs ./assets/css/aggregate.css",
+    "css": "../../scripts/build-css.js ./assets/css/aggregate.css ./assets/css/styles.css",
+    "prepublishOnly": "npm run build",
+    "build": "npm run build:fields && ../../scripts/prepare-package.sh && npm run aggregate-css && npm run css",
+    "all-styles": "npm run aggregate-css && npm run css"
+  },
+  "devDependencies": {
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.13.10",
+    "@micromag/core": "^0.3.824",
+    "@micromag/screen-article": "^0.3.829",
+    "@micromag/screen-audio": "^0.3.829",
+    "@micromag/screen-contribution": "^0.3.829",
+    "@micromag/screen-conversation": "^0.3.829",
+    "@micromag/screen-gallery": "^0.3.829",
+    "@micromag/screen-gallery-feed": "^0.3.829",
+    "@micromag/screen-game-sort": "^0.3.829",
+    "@micromag/screen-image": "^0.3.829",
+    "@micromag/screen-keypad": "^0.3.831",
+    "@micromag/screen-map": "^0.3.829",
+    "@micromag/screen-quiz": "^0.3.829",
+    "@micromag/screen-quote": "^0.3.829",
+    "@micromag/screen-ranking": "^0.3.829",
+    "@micromag/screen-share": "^0.3.829",
+    "@micromag/screen-slideshow": "^0.3.829",
+    "@micromag/screen-survey": "^0.3.829",
+    "@micromag/screen-text": "^0.3.829",
+    "@micromag/screen-timeline": "^0.3.829",
+    "@micromag/screen-title": "^0.3.829",
+    "@micromag/screen-urbania-article": "^0.3.829",
+    "@micromag/screen-urbania-horoscope": "^0.3.829",
+    "@micromag/screen-urbania-recommendation": "^0.3.829",
+    "@micromag/screen-urbania-trivia": "^0.3.829",
+    "@micromag/screen-video": "^0.3.829",
+    "@micromag/screen-video-360": "^0.3.829",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.21"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "gitHead": "90cc69d20d28f4e900eb19a1b2b41b32d424e646"
 }
