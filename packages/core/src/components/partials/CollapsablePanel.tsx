@@ -27,7 +27,7 @@ function CollapsablePanel({
     contentClassName = null,
     openedClassName = null,
     buttonClassName = null,
-}) {
+}: CollapsablePanelProps) {
     const [opened, setOpened] = useState(false);
     const onClick = useCallback(() => setOpened(!opened), [opened, setOpened]);
     return (

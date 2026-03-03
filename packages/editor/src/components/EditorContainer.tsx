@@ -50,7 +50,7 @@ function EditorContainer({
     googleMapsLibraries = ['places'],
     screenNamespaces = null,
     ...props
-}) {
+}: EditorContainerProps) {
     const { locale } = useIntl();
 
     const { hook: memoryLocationHook, searchHook: memorySearchHook } = useMemoryRouter();

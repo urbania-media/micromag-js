@@ -20,7 +20,7 @@ function Meta({
     fullTitle = null,
     suffix = 'Micromag',
     children = null,
-}) {
+}: MetaProps) {
     const {
         canonical = null,
         description = null,

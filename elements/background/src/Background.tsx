@@ -56,7 +56,7 @@ function Background({
     forceMuted = false,
     qualityStartLevel = null,
     onQualityLevelChange = null,
-}) {
+}: BackgroundProps) {
     const {
         type: mediaType = null,
         metadata: mediaMetadata = null,

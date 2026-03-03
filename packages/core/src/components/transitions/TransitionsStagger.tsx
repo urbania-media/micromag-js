@@ -20,7 +20,7 @@ function TransitionsStagger({
     delay = 0,
     fullscreen = false,
     children = null,
-}) {
+}: TransitionsStaggerProps) {
     let validIndex = 0;
     const elements = React.Children.map(children, (child) => {
         if (!child) {

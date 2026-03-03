@@ -72,7 +72,7 @@ function ViewerContainer({
     trackingPaused = false,
     settings = null,
     ...otherProps
-}) {
+}: ViewerContainerProps) {
     const finalTrackingVariables = useMemo(() => {
         if (story === null && trackingVariables === null) {
             return null;

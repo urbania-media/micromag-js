@@ -22,7 +22,7 @@ function Alternative({
     fields,
     toggleLabel,
     ...props
-}) {
+}: AlternativeProps) {
     const finalFields = useMemo(
         () => [
             {

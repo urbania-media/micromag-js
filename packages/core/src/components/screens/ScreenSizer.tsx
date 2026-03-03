@@ -27,7 +27,7 @@ function ScreenSizer({
     screenHeight = 480,
     className = null,
     children,
-}) {
+}: ScreenSizerProps) {
     const hasSize = width !== null || height !== null;
     //
     const {

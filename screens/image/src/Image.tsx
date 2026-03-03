@@ -77,7 +77,7 @@ function ImageScreen({
     active = true,
     preload = true,
     className = null,
-}) {
+}: ImageScreenProps) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {

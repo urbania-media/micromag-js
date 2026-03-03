@@ -9,7 +9,7 @@ interface DateProps {
     timeSeparator?: React.ReactNode;
 }
 
-function Date({ date = null, withTime = false, timeSeparator = ', ' }) {
+function Date({ date = null, withTime = false, timeSeparator = ', ' }: DateProps) {
     const dateObject = useMemo(() => dayjs(date).toDate(), [date]);
     return (
         <>

@@ -22,7 +22,7 @@ function ElementField({
     closeFieldForm = null,
     isList = false,
     onChange = null,
-}) {
+}: ElementFieldProps) {
     const fields = formFields || [];
     const settingsNames = useMemo(
         () => (fields ? fields.filter(({ setting = false }) => setting).map((it) => it.name) : []),

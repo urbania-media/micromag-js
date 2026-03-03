@@ -16,7 +16,7 @@ function FontStyleTransform({
     transformName = 'transform',
     onChange = null,
     ...props
-}) {
+}: FontStyleTransformProps) {
     const transformValue = value !== null ? value[transformName] || null : null;
     const onTransformChange = useCallback(
         (newTransformValue) => {

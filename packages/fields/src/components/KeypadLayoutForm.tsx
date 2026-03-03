@@ -39,7 +39,7 @@ function KeypadLayoutForm({
     onChange = null,
     closeForm = null,
     ...props
-}) {
+}: KeypadLayoutFormProps) {
     const intl = useIntl();
     const { columnAlign = null, columns = null, spacing = null } = value || {};
     const finalSpacingPreview = Math.max(0, Math.min(4, spacing));

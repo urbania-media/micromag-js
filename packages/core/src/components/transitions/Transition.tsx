@@ -37,7 +37,7 @@ function Transition({
     className = null,
     onStart = null,
     onComplete = null,
-}) {
+}: TransitionProps) {
     const [springProps, setSpringProps] = useSpring(() => ({}));
 
     useEffect(() => {

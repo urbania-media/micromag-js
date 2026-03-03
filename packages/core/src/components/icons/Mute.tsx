@@ -5,7 +5,7 @@ interface MuteIconProps {
     color?: string;
 }
 
-function MuteIcon({ color = '#fff', className = null }) {
+function MuteIcon({ color = '#fff', className = null }: MuteIconProps) {
     return (
         <svg
             width="26"

@@ -59,7 +59,7 @@ function Card({
     onClick = null,
     onClickBody = null,
     onClickFooter = null,
-}) {
+}: CardProps) {
     const linksElements = (links || []).map(
         ({ label, className: linkClassName = null, ...linkProps }, index) => (
             <Link

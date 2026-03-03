@@ -13,7 +13,7 @@ interface HeaderProps {
     className?: string;
 }
 
-function Header({ badge = null, fade = false, className = null }) {
+function Header({ badge = null, fade = false, className = null }: HeaderProps) {
     if (badge === null) return null;
 
     return (

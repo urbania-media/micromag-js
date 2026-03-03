@@ -28,7 +28,7 @@ function ScreenElement({
     isEmpty = false,
     placeholderProps = null,
     emptyClassName = null,
-}) {
+}: ScreenElementProps) {
     const { isPlaceholder, isEdit, isPreview } = useScreenRenderContext();
     if (isPlaceholder) {
         const PlaceholderComponent = isString(placeholder)

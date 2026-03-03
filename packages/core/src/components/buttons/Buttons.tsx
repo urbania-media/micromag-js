@@ -24,7 +24,7 @@ function Buttons({
     onClickButton = null,
     buttonClassName = null,
     className = null,
-}) {
+}: ButtonsProps) {
     return (
         <div
             className={classNames([

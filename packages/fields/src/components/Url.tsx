@@ -29,7 +29,7 @@ function UrlField({
     value = null,
     className = null,
     onChange = null,
-}) {
+}: UrlFieldProps) {
     const empty = isEmpty(value);
 
     const [open, setOpen] = useState(false);

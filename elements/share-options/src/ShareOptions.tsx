@@ -63,7 +63,7 @@ function ShareOptions({
     onShare = null,
     onClose = null,
     focusable = true,
-}) {
+}: ShareOptionsProps) {
     const { menuTheme = null } = theme || {};
     const { colors = null } = menuTheme || {};
     const { primary: brandPrimaryColor = null } = colors || {};

@@ -11,7 +11,7 @@ interface PanelPortalProps {
     children?: React.ReactNode;
 }
 
-function PanelPortal({ id = null, data = null, children = null }) {
+function PanelPortal({ id = null, data = null, children = null }: PanelPortalProps) {
     const { panels = null, container, register = null, unregister = null } = usePanels();
     if (panels === null) {
         return children;

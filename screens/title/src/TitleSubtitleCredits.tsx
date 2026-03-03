@@ -10,7 +10,7 @@ interface TitleSubtitleCreditsScreenProps {
     credits?: TextElement;
 }
 
-function TitleSubtitleCreditsScreen({ credits = null, ...props }) {
+function TitleSubtitleCreditsScreen({ credits = null, ...props }: TitleSubtitleCreditsScreenProps) {
     return (
         <TitleScreen
             {...props}

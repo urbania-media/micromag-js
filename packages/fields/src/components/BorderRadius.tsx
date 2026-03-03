@@ -18,7 +18,7 @@ function BorderRadius({
     sizes = [0, 2, 6, 10, 20, 30],
     className = null,
     onChange = null,
-}) {
+}: BorderRadiusProps) {
     return (
         <Slider
             value={value}

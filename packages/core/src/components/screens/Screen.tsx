@@ -34,7 +34,7 @@ function Screen({
     component = null,
     className = null,
     mediaRef = null,
-}) {
+}: ScreenProps) {
     const { type = null } = screen || {};
     const CustomScreenComponent =
         components !== null ? getComponentFromName(type, components) || null : null;

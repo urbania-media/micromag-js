@@ -41,7 +41,7 @@ function Image({
     loadingMode = 'lazy',
     shouldLoad = true,
     containerRef = null,
-}) {
+}: ImageProps) {
     const { metadata = null } = media || {};
     const {
         width: mediaWidth = 0,

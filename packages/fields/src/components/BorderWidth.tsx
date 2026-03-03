@@ -18,7 +18,7 @@ function BorderWidth({
     sizes = [1, 2, 4, 8, 10, 14, 20],
     className = null,
     onChange = null,
-}) {
+}: BorderWidthProps) {
     return (
         <Slider
             value={value}

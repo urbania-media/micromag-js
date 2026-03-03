@@ -22,7 +22,7 @@ function SelectField({
     disabled = false,
     className = null,
     onChange = null,
-}) {
+}: SelectFieldProps) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
         <select

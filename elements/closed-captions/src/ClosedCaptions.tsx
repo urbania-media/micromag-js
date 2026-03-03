@@ -25,7 +25,7 @@ function ClosedCaptions({
     textStyle = null,
     boxStyle = null,
     className = null,
-}) {
+}: ClosedCaptionsProps) {
     const { url = null } = media || {};
     const [lines, setLines] = useState([]);
     const [lineIndex, setLineIndex] = useState(-1);

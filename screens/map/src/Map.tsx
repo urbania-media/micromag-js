@@ -3,7 +3,13 @@ import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import type { BackgroundElement, GeoPosition, Marker, MarkerWithImage, TextElement } from '@micromag/core';
+import type {
+    BackgroundElement,
+    GeoPosition,
+    Marker,
+    MarkerWithImage,
+    TextElement,
+} from '@micromag/core';
 import { Button, PlaceholderMap, ScreenElement } from '@micromag/core/components';
 import {
     useGoogleKeys,
@@ -80,11 +86,13 @@ function MapScreen({
     background = null,
     current = true,
     active = true,
+
     // enableInteractions,
     // disableInteraction,
     type = null,
+
     className = null,
-}) {
+}: MapScreenProps) {
     const { locale } = useIntl();
     const { apiKey = null } = useGoogleKeys();
 

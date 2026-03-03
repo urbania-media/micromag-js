@@ -19,7 +19,12 @@ interface AlignVerticalProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function AlignVertical({ value = null, defaultValue = null, className = null, onChange = null }) {
+function AlignVertical({
+    value = null,
+    defaultValue = null,
+    className = null,
+    onChange = null,
+}: AlignVerticalProps) {
     const finalValue = value === null && defaultValue !== null ? defaultValue : value;
     const onAlignChange = useCallback(
         (newVal) => {

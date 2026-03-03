@@ -30,7 +30,7 @@ function Dropdown({
     itemClassName = null,
     onClickItem = null,
     onClickOutside = null,
-}) {
+}: DropdownProps) {
     const refContainer = useRef(null);
     const [enabled, setEnabled] = useState(visible);
 

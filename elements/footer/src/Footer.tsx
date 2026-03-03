@@ -12,7 +12,7 @@ interface FooterProps {
     className?: string;
 }
 
-function Footer({ callToAction = null, className = null }) {
+function Footer({ callToAction = null, className = null }: FooterProps) {
     if (callToAction === null) return null;
 
     return (

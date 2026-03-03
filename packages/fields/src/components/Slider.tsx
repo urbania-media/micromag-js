@@ -63,14 +63,16 @@ function SliderField({
     marks = undefined,
     marksStep = null,
     marksCount = null,
+
     marksStyle = {
         fontSize: 8,
     },
+
     unit = null,
     withInput = false,
     className = null,
     onChange = null,
-}) {
+}: SliderFieldProps) {
     const customOnChange = useCallback(
         (val) => {
             if (onChange !== null) {

@@ -54,6 +54,7 @@ interface ConversationScreenProps {
 function ConversationScreen({
     // layout,
     title = null,
+
     timing: timingMode = 'sequence',
     readingSpeed = 255,
     spacing = 20,
@@ -66,7 +67,7 @@ function ConversationScreen({
     conversation = null,
     transitions = null,
     className = null,
-}) {
+}: ConversationScreenProps) {
     const { width, height, resolution } = useScreenSize();
     const {
         topHeight: viewerTopHeight,

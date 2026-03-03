@@ -47,7 +47,7 @@ function TextInput({
     disabled = false,
     focusable = true,
     className = null,
-}) {
+}: TextInputProps) {
     let containerStyle = {};
     let labelStyle = {};
     let elementStyle = {};

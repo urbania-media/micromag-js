@@ -6,7 +6,7 @@ interface SmsIconProps {
     size?: number;
 }
 
-function SmsIcon({ className = null, size = 45 }) {
+function SmsIcon({ className = null, size = 45 }: SmsIconProps) {
     return (
         <svg
             width={size}

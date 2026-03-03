@@ -12,7 +12,7 @@ interface ScreensProps {
     className?: string;
 }
 
-function Screens({ screens, screen: screenId = null, className = null }) {
+function Screens({ screens, screen: screenId = null, className = null }: ScreensProps) {
     return (
         <div
             className={classNames([

@@ -5,7 +5,7 @@ interface FullscreenIconProps {
     color?: string;
 }
 
-function FullscreenIcon({ color = '#fff', className = null }) {
+function FullscreenIcon({ color = '#fff', className = null }: FullscreenIconProps) {
     return (
         <svg
             width="16"

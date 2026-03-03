@@ -24,7 +24,7 @@ function Breadcrumb({
     withoutBar = false,
     noWrap = false,
     className = null,
-}) {
+}: BreadcrumbProps) {
     return (
         <nav className={className}>
             <ol

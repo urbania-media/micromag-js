@@ -2,6 +2,7 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "baseUrl": ".",
+        "typeRoots": ["./node_modules/@types", "./*/*/types"],
         "paths": {
             "@micromag/core": ["packages/core/src"],
             "@micromag/core/*": ["packages/core/src/*"],
@@ -18,11 +19,14 @@
             "@micromag/ckeditor": ["packages/ckeditor/src"],
             "@micromag/recorder": ["packages/recorder/src"],
             "@micromag/element-*": ["elements/*/src"],
-            "@micromag/screen-*": ["screens/*/src"]
+            "@micromag/screen-*": ["screens/*/src"],
+            "#.storybook/*": [".storybook/*"]
         }
     },
     "include": [
         "types/**/*.d.ts",
+        ".storybook/**/*.ts",
+        ".storybook/**/*.tsx",
         "packages/*/src/**/*",
         "elements/*/src/**/*",
         "screens/*/src/**/*"

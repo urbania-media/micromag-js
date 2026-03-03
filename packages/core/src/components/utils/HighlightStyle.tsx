@@ -8,7 +8,11 @@ interface HighlightStyleProps {
     style?: Record<string, string | number>;
 }
 
-function HighlightStyle({ selector = null, highlightSelector = 'mark', style = null }) {
+function HighlightStyle({
+    selector = null,
+    highlightSelector = 'mark',
+    style = null,
+}: HighlightStyleProps) {
     return style !== null ? (
         <style
             type="text/css"

@@ -15,7 +15,12 @@ interface CallToActionProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function CallToAction({ value = null, className = null, onChange = null, ...props }) {
+function CallToAction({
+    value = null,
+    className = null,
+    onChange = null,
+    ...props
+}: CallToActionProps) {
     const { active = false } = value || {};
     const intl = useIntl();
 

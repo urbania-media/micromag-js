@@ -26,7 +26,7 @@ function Link({
     className = null,
     withoutStyle = false,
     ...props
-}) {
+}: LinkProps) {
     return external ? (
         <a
             className={classNames([className, { [styles.withoutStyle]: withoutStyle }])}

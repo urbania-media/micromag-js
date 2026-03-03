@@ -27,7 +27,7 @@ function Link({
     className = null,
     children = null,
     focusable = true,
-}) {
+}: LinkProps) {
     let finalStyle = null;
 
     if (margin !== null) {

@@ -45,7 +45,7 @@ function Scroll({
     scrollContainerRef = null,
     withShadow = false,
     withArrow: showArrow = true,
-}) {
+}: ScrollProps) {
     const finalStyle = {
         width,
         height,

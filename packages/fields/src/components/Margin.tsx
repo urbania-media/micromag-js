@@ -29,7 +29,7 @@ function MarginField({
     marksStep = 5,
     className = null,
     onChange = null,
-}) {
+}: MarginFieldProps) {
     return (
         <div
             className={classNames([

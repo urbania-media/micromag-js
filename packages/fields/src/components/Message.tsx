@@ -22,17 +22,19 @@ function MessageField({
     type = null,
     value = null,
     fields = null,
+
     noValueLabel = (
         <FormattedMessage
             defaultMessage="Edit content..."
             description="Label when no value is provided to Field with form"
         />
     ),
+
     withoutThumbnail = false,
     onChange = null,
     closeForm = null,
     ...props
-}) {
+}: MessageFieldProps) {
     const context = useFieldContext();
     const { options } = context || {};
 

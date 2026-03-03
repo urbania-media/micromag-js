@@ -18,7 +18,7 @@ function FontWeight({
     sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900],
     className = null,
     onChange = null,
-}) {
+}: FontWeightProps) {
     return (
         <Slider
             value={value}

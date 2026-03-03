@@ -18,10 +18,11 @@ function AdFormatField({
         { name: '300x100', width: 300, height: 100 },
         { name: '250x250', width: 250, height: 250 },
     ],
+
     value = null,
     className = null,
     onChange = null,
-}) {
+}: AdFormatFieldProps) {
     return (
         <Radios
             options={types.map((type) => ({

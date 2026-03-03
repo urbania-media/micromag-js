@@ -100,7 +100,7 @@ function QuizScreen({
     transitionStagger = 100,
     type = null,
     className = null,
-}) {
+}: QuizScreenProps) {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();

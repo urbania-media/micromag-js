@@ -12,7 +12,7 @@ interface ImagesFieldProps {
     value?: ImageMedia[];
 }
 
-function ImagesField({ value: value = null, ...props }) {
+function ImagesField({ value: value = null, ...props }: ImagesFieldProps) {
     return (
         <ItemsField
             noItemLabel={

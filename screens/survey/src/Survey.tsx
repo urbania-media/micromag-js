@@ -98,7 +98,7 @@ function SurveyScreen({
     resultTransitionDuration = 500,
     type = null,
     className = null,
-}) {
+}: SurveyScreenProps) {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();

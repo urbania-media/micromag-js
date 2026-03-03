@@ -13,14 +13,16 @@ interface TextTransformProps {
 
 function TextTransform({
     value = null,
+
     options = [
         { value: 'capitalize', label: <strong>Aa</strong> },
         { value: 'uppercase', label: <strong>AA</strong> },
         { value: 'lowercase', label: <strong>aa</strong> },
     ],
+
     onChange = null,
     ...props
-}) {
+}: TextTransformProps) {
     return <Radios value={value} options={options} onChange={onChange} uncheckable {...props} />;
 }
 

@@ -18,7 +18,7 @@ export const useStackDirection = () => {
 
 // Note: this is done to avoid excessive renders on the screens that use the context
 
-export function StackProvider({ direction = 'vertical', children }) {
+export function StackProvider({ direction = 'vertical', children }: StackProviderProps) {
     const value = useMemo(() => ({ direction }), [direction]);
     return <StackContext.Provider value={value}>{children}</StackContext.Provider>;
 }

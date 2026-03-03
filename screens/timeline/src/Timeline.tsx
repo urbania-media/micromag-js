@@ -100,11 +100,13 @@ function Timeline({
     current = true,
     active = true,
     preload = true,
+
     // transitions,
     // transitionStagger,
     type = null,
+
     className = null,
-}) {
+}: TimelineProps) {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, imageResolution, resolution } = useScreenSize();
     const {

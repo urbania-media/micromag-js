@@ -14,7 +14,7 @@ interface SlideFieldProps {
     className?: string;
 }
 
-function SlideField({ value = null, isForm = false, className = null, ...props }) {
+function SlideField({ value = null, isForm = false, className = null, ...props }: SlideFieldProps) {
     const { text = null } = value || {};
     return isForm ? (
         <div

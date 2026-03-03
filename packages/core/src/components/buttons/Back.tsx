@@ -10,7 +10,7 @@ interface BackButtonProps {
     className?: string;
 }
 
-function BackButton({ className = null, ...props }) {
+function BackButton({ className = null, ...props }: BackButtonProps) {
     return (
         <Button
             className={classNames([

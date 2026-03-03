@@ -15,7 +15,14 @@ interface ContainerProps {
     children?: React.ReactNode;
 }
 
-function Container({ containerRef = null, width, height, style = null, className = null, children = null }) {
+function Container({
+    containerRef = null,
+    width,
+    height,
+    style = null,
+    className = null,
+    children = null,
+}: ContainerProps) {
     const hasSize = width > 0 && height > 0;
     const containerStyle = hasSize
         ? {

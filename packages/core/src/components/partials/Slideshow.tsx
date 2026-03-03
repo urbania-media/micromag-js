@@ -22,7 +22,7 @@ function Slideshow({
     height = null,
     className = null,
     children = null,
-}) {
+}: SlideshowProps) {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {

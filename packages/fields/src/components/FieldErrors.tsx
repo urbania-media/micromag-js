@@ -11,7 +11,7 @@ interface FieldErrorsProps {
     className?: string;
 }
 
-function FieldErrors({ errors = null, className = null }) {
+function FieldErrors({ errors = null, className = null }: FieldErrorsProps) {
     return errors !== null && errors.length > 0 ? (
         <div
             className={classNames([

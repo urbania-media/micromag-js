@@ -12,7 +12,7 @@ function Close({
     border = 'rgba(0,0,0,0.67)',
     fill = '#fff',
     className = null,
-}) {
+}: CloseProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -11,7 +11,7 @@ interface ClearButtonProps {
     className?: string;
 }
 
-function ClearButton({ onClick = null, className = null, ...props }) {
+function ClearButton({ onClick = null, className = null, ...props }: ClearButtonProps) {
     return (
         <button
             className={classNames([

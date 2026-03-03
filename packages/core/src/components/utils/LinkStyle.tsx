@@ -8,7 +8,7 @@ interface LinkStyleProps {
     style?: Record<string, string | number>;
 }
 
-function LinkStyle({ selector = null, linkSelector = 'a', style = null }) {
+function LinkStyle({ selector = null, linkSelector = 'a', style = null }: LinkStyleProps) {
     return style !== null ? (
         <style
             type="text/css"

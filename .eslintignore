@@ -1,7 +1,0 @@
-node_modules
-*/*/lib/**
-*/*/es/**
-packages/*/*.js
-screens/*/*.js
-elements/*/*.js
-!.storybook

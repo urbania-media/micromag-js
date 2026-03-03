@@ -5,7 +5,7 @@ interface PlayIconProps {
     color?: string;
 }
 
-function PlayIcon({ color = '#fff', className = null }) {
+function PlayIcon({ color = '#fff', className = null }: PlayIconProps) {
     return (
         <svg
             width="40"

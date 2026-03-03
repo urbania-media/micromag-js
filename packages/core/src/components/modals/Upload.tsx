@@ -23,7 +23,7 @@ function UploadModal({
     sources = ['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive'],
     onUploaded = null,
     onRequestClose = null,
-}) {
+}: UploadModalProps) {
     const onUppyComplete = useCallback(
         (response) => {
             if (onUploaded !== null) {

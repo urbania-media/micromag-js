@@ -30,7 +30,7 @@ function FieldForm({
     gotoFieldForm,
     closeFieldForm,
     fieldContext = null,
-}) {
+}: FieldFormProps) {
     const fieldsManager = useFieldsManager();
 
     const field = getFieldFromPath(name.split('.'), fields, fieldsManager);

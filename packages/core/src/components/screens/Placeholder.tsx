@@ -26,7 +26,7 @@ function ScreenPlaceholder({
     withSize = false,
     className = null,
     ...props
-}) {
+}: ScreenPlaceholderProps) {
     const screenElement = (
         <Screen
             screen={screen}

@@ -21,7 +21,7 @@ function ElementComponent({
     isPlaceholder = false,
     className = null,
     placeholderProps = null,
-}) {
+}: ElementComponentProps) {
     if (!name) {
         return 'Bad component name';
     }

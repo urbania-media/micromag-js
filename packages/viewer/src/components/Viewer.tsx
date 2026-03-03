@@ -158,7 +158,10 @@ function Viewer({
     withoutScreensMenu = false,
     withoutShareMenu = false,
     withoutMenuShadow = false,
-    withoutFullscreen = false, // eslint-disable-line no-unused-vars
+
+    // eslint-disable-line no-unused-vars
+    withoutFullscreen = false,
+
     withoutNavigationArrow = false,
     withoutTransitions = false,
     withNeighborScreens = false,
@@ -176,7 +179,7 @@ function Viewer({
     screensMedias = null,
     screenSizeOptions = null,
     className = null,
-}) {
+}: ViewerProps) {
     const intl = useIntl();
     /**
      * Screen Data + Processing

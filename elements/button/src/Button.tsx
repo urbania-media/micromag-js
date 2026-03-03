@@ -39,7 +39,7 @@ function Button({
     refButton = null,
     style = null,
     ...buttonProps
-}) {
+}: ButtonProps) {
     let finalStyles = style;
 
     // eslint-disable-next-line no-unused-vars

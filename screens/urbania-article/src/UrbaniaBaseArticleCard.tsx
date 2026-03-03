@@ -69,7 +69,7 @@ function UrbaniaArticleCard({
     preload = true,
     spacing = 20,
     className = null,
-}) {
+}: UrbaniaArticleCardProps) {
     const intl = useIntl();
 
     const finalBackground =

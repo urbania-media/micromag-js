@@ -21,7 +21,7 @@ function TextareaField({
     required = false,
     className = null,
     onChange = null,
-}) {
+}: TextareaFieldProps) {
     return (
         <textarea
             id={id}

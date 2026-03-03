@@ -30,14 +30,16 @@ interface GeoPositionProps {
 
 function GeoPosition({
     value = null,
+
     defaultCenter = {
         lat: 45.5,
         lng: -73.56,
     },
+
     defaultZoom = 10,
     className = null,
     onChange = null,
-}) {
+}: GeoPositionProps) {
     const [address, setAddress] = useState('');
     const [mapReady, setMapReady] = useState(false);
     const [zoom, setZoom] = useState(defaultZoom);

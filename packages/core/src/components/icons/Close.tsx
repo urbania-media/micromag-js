@@ -5,7 +5,7 @@ interface CloseIconProps {
     color?: string;
 }
 
-function CloseIcon({ color = '#fff', className = null }) {
+function CloseIcon({ color = '#fff', className = null }: CloseIconProps) {
     return (
         <svg
             width="22"

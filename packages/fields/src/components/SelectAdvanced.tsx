@@ -29,7 +29,7 @@ function SelectAdvancedField({
     className = null,
     onChange = null,
     ...props
-}) {
+}: SelectAdvancedFieldProps) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     const intl = useIntl();
     const translatedOptions = useMemo(() =>

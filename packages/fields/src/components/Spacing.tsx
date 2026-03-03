@@ -10,7 +10,7 @@ interface SpacingProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function Spacing({ value = null, className = null, onChange = null, ...props }) {
+function Spacing({ value = null, className = null, onChange = null, ...props }: SpacingProps) {
     return (
         <InputGroup className={className} append="px">
             <Number value={value} min={0} max={20} onChange={onChange} {...props} />

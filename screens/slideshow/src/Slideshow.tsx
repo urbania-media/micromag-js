@@ -61,7 +61,7 @@ function SlideshowScreen({
     captionMaxLines = 2,
     transitions = null,
     className = null,
-}) {
+}: SlideshowScreenProps) {
     const { width, height, resolution } = useScreenSize();
     const { topHeight: viewerTopHeight, bottomHeight: viewerBottomHeight } = useViewerContext();
     const { enableInteraction, disableInteraction } = useViewerInteraction();

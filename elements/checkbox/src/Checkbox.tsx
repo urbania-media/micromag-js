@@ -22,7 +22,7 @@ function Checkbox({
     focusable = true,
     checkboxStyle = null,
     className = null,
-}) {
+}: CheckboxProps) {
     const { body = null } = option || {};
     return (
         <div

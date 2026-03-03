@@ -51,9 +51,11 @@ function Form({
     fields: initialFields = [],
     initialValue = null,
     postForm = null,
+
     submitButtonLabel = (
         <FormattedMessage defaultMessage="Submit" description="Submit form button" />
     ),
+
     submitButtonLoadingLabel = null,
     submitButtonTheme = null,
     cancelButtonTheme = null,
@@ -74,7 +76,7 @@ function Form({
     fieldsClassName = null,
     actionsClassName = null,
     cancelClassName = null,
-}) {
+}: FormProps) {
     const [complete, setComplete] = useState(false);
 
     useEffect(() => {

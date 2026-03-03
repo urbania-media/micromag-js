@@ -16,7 +16,15 @@ interface TransitionsProps {
     children?: React.ReactNode;
 }
 
-function Transitions({ fullscreen = false, playing = false, delay = 0, transitions = null, onComplete = null, disabled = false, children = null }) {
+function Transitions({
+    fullscreen = false,
+    playing = false,
+    delay = 0,
+    transitions = null,
+    onComplete = null,
+    disabled = false,
+    children = null,
+}: TransitionsProps) {
     const { landscape = true } = useScreenSize();
 
     const finalPlaying = playing || landscape;

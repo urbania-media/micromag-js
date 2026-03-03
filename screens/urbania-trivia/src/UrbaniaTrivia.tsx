@@ -86,7 +86,7 @@ function UrbaniaTrivia({
     padding = 20,
     mediaRef: customMediaRef = null,
     className = null,
-}) {
+}: UrbaniaTriviaProps) {
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height, resolution } = useScreenSize();

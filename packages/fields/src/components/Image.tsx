@@ -10,7 +10,7 @@ interface ImageFieldProps {
     value?: ImageMedia;
 }
 
-function ImageField({ value: value = null, ...props }) {
+function ImageField({ value: value = null, ...props }: ImageFieldProps) {
     return (
         <MediaField
             noValueLabel={

@@ -68,7 +68,7 @@ function FieldRow({
     className = null,
     labelClassName = null,
     buttonClassName = null,
-}) {
+}: FieldRowProps) {
     const withLabel = !withoutLabel && label !== null;
     const isClickable = withForm;
     const [isCollapsed, setIsCollapsed] = useState(isCollapsible);

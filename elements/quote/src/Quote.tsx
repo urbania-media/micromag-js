@@ -31,7 +31,7 @@ function Quote({
     showEmpty = false,
     className = null,
     emptyClassName = null,
-}) {
+}: QuoteProps) {
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = {};
     let finalLinkStyle = linkStyle !== null ? getStyleFromLink(linkStyle) : null;

@@ -18,7 +18,7 @@ function NumberWithIcon({
     isHorizontal = false,
     className = null,
     ...props
-}) {
+}: NumberWithIconProps) {
     return (
         <div
             className={classNames([

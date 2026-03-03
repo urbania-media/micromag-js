@@ -12,7 +12,12 @@ interface ToggleFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ToggleField({ value = null, defaultValue = null, className = null, onChange = null }) {
+function ToggleField({
+    value = null,
+    defaultValue = null,
+    className = null,
+    onChange = null,
+}: ToggleFieldProps) {
     const finalValue =
         value === null && (defaultValue === true || defaultValue === 'true') ? true : value;
     return (

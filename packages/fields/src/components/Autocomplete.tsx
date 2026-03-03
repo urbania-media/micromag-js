@@ -29,17 +29,19 @@ interface AutocompleteFieldProps {
 function AutocompleteField({
     items = [],
     value = null,
+
     searchOptions = {
         // Search in `label` and in `value` items in an object array
         keys: ['label', 'value'],
     },
+
     maxResults = 10,
     showEmpty = false,
     placeholder = null,
     className = null,
     onChange = null,
     children = null,
-}) {
+}: AutocompleteFieldProps) {
     const fuse = useRef(null);
     const [open, setOpen] = useState(false);
 

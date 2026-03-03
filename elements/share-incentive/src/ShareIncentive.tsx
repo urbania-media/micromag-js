@@ -14,7 +14,7 @@ interface ShareIncentiveProps {
     boxStyle?: BoxStyle;
 }
 
-function ShareIncentive({ className = null, label = null, boxStyle = null }) {
+function ShareIncentive({ className = null, label = null, boxStyle = null }: ShareIncentiveProps) {
     const { backgroundColor = null } = boxStyle || {};
     const bgColor = getColorAsString(backgroundColor);
 

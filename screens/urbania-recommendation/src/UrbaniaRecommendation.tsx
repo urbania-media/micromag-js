@@ -96,7 +96,7 @@ function UrbaniaRecommendation({
     active = true,
     preload = true,
     className = null,
-}) {
+}: UrbaniaRecommendationProps) {
     const intl = useIntl();
 
     const trackScreenEvent = useTrackScreenEvent();

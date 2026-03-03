@@ -63,6 +63,7 @@ interface ArticleScreenProps {
 function ArticleScreen({
     // layout,
     image = null,
+
     title = null,
     surtitle = null,
     date = null,
@@ -77,7 +78,7 @@ function ArticleScreen({
     preload = true,
     type = null,
     className = null,
-}) {
+}: ArticleScreenProps) {
     const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();

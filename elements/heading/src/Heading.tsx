@@ -34,7 +34,7 @@ function Heading({
     withoutNonBreakingSpaces = false,
     className = null,
     headingRef = null,
-}) {
+}: HeadingProps) {
     const HeadingComponent = `h${size}`;
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = null;

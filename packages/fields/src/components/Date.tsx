@@ -19,7 +19,7 @@ function DateField({
     className = null,
     withTime = false,
     onChange = null,
-}) {
+}: DateFieldProps) {
     const onInputChange = useCallback(
         (e) => {
             if (onChange !== null) {

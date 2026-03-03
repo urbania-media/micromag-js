@@ -93,7 +93,7 @@ function GameSort({
     current = true,
     active = true,
     className = null,
-}) {
+}: GameSortProps) {
     const intl = useIntl();
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();

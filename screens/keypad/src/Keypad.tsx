@@ -137,7 +137,7 @@ function KeypadScreen({
     preload = true,
     withoutCloseButton = false,
     className = null,
-}) {
+}: KeypadScreenProps) {
     const containerRef = useRef(null);
     const popupInnerRef = useRef(null);
 

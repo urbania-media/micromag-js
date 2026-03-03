@@ -12,7 +12,7 @@ interface VisualsFieldProps {
     value?: ImageMedia[];
 }
 
-function VisualsField({ value: value = null, ...props }) {
+function VisualsField({ value: value = null, ...props }: VisualsFieldProps) {
     return (
         <ItemsField
             noItemLabel={

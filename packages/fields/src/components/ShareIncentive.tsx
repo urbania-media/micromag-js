@@ -15,7 +15,12 @@ interface ShareIncentiveProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ShareIncentive({ value = null, className = null, onChange = null, ...props }) {
+function ShareIncentive({
+    value = null,
+    className = null,
+    onChange = null,
+    ...props
+}: ShareIncentiveProps) {
     const { active = false } = value || {};
     const intl = useIntl();
 

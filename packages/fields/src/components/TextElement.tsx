@@ -24,7 +24,7 @@ function TextElement({
     onFocus = null,
     disabled = false,
     ...props
-}) {
+}: TextElementProps) {
     const bodyValue = value !== null ? value.body || null : null;
     const textStyleValue = value !== null ? value.textStyle || null : null;
     const onBodyChange = useCallback(

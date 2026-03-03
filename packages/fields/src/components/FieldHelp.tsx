@@ -11,7 +11,7 @@ interface FieldErrorsProps {
     className?: string;
 }
 
-function FieldErrors({ children = null, muted = true, className = null }) {
+function FieldErrors({ children = null, muted = true, className = null }: FieldErrorsProps) {
     return (
         <small
             id="passwordHelpBlock"

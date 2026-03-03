@@ -3,6 +3,11 @@ declare module '*.module.css' {
     export default classes;
 }
 
+declare module '*.css' {
+    const content: string;
+    export default content;
+}
+
 declare module '*.global.css' {
     const content: string;
     export default content;

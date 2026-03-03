@@ -19,7 +19,7 @@ function CardLayout({
     value = null,
     className = null,
     onChange = null,
-}) {
+}: CardLayoutProps) {
     const onButtonLayoutChange = (newVal) => {
         const v = newVal === value ? null : newVal;
 

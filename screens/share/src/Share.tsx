@@ -68,7 +68,7 @@ function ShareScreen({
     current = true,
     active = true,
     className = null,
-}) {
+}: ShareScreenProps) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {

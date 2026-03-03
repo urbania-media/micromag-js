@@ -17,7 +17,7 @@ function TargetField({
     isForm = false,
     className = null,
     onChange = null,
-}) {
+}: TargetFieldProps) {
     return isForm ? (
         <div>
             <Select options={options} value={value} className={className} onChange={onChange} />

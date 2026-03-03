@@ -22,7 +22,7 @@ interface IconProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function Icon({ label }) {
+function Icon({ label }: IconProps) {
     switch (label) {
         case 'top-left':
             return <FontAwesomeIcon icon={faArrowUp} className={styles.rotateLeft} />;

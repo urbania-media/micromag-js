@@ -12,7 +12,11 @@ interface PanelsContainerProps {
     className?: string;
 }
 
-function PanelsContainer({ panels = [], setPanelsContainer = null, className = null }) {
+function PanelsContainer({
+    panels = [],
+    setPanelsContainer = null,
+    className = null,
+}: PanelsContainerProps) {
     const containerRef = useRef(null);
     useEffect(() => {
         setPanelsContainer(containerRef.current);

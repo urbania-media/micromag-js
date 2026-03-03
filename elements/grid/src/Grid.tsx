@@ -4,6 +4,7 @@ import isArray from 'lodash/isArray';
 import React from 'react';
 
 import type { GridLayout } from '@micromag/core';
+
 import styles from './styles.module.css';
 
 interface GridProps {
@@ -28,7 +29,7 @@ function Grid({
     className = null,
     axisClassName = null,
     crossClassName = null,
-}) {
+}: GridProps) {
     let itemIndex = 0;
     const finalLayout = isArray(layout)
         ? layout

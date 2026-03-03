@@ -21,7 +21,7 @@ function FontStyles({
     alignName = 'align',
     className = null,
     onChange = null,
-}) {
+}: FontStylesProps) {
     const fontStyleValue = value !== null ? value[fontStyleName] || null : null;
     const alignValue = value !== null ? value[alignName] || null : null;
     const onFontStyleChange = useCallback(

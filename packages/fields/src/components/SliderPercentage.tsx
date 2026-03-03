@@ -8,7 +8,11 @@ interface SliderPixelFieldProps {
     withInput?: boolean;
 }
 
-function SliderPixelField({ unit: unit = '%', withInput: withInput = true, ...props }) {
+function SliderPixelField({
+    unit: unit = '%',
+    withInput: withInput = true,
+    ...props
+}: SliderPixelFieldProps) {
     return <SliderField {...props} />;
 }
 

@@ -23,7 +23,7 @@ function AudioBars({
     seek = null,
     play = null,
     className = null,
-}) {
+}: AudioBarsProps) {
     const intl = useIntl();
     const { ref: elRef, width: elWidth = null, height: elHeight } = useDimensionObserver();
     const barWidth = 1;

@@ -13,7 +13,7 @@ interface ImagesWithCaptionFieldProps {
     value?: ImageMedia[];
 }
 
-function ImagesWithCaptionField({ value: value = null, ...props }) {
+function ImagesWithCaptionField({ value: value = null, ...props }: ImagesWithCaptionFieldProps) {
     return (
         <ItemsField
             noItemLabel={

@@ -20,7 +20,7 @@ function ColorPickerField({
     disableAlpha = false,
     className = null,
     onChange = null,
-}) {
+}: ColorPickerFieldProps) {
     const getColors = useGetColors();
     const colors = useMemo(
         () => (getColors() || []).map((c) => ({ color: c.color, title: uuid() })),

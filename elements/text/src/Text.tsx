@@ -43,7 +43,7 @@ function Text({
     emptyClassName = null,
     inline = false,
     refText = null,
-}) {
+}: TextProps) {
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = {};
     let finalLinkStyle = linkStyle !== null ? getStyleFromLink(linkStyle) : null;

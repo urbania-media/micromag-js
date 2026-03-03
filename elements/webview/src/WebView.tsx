@@ -18,7 +18,15 @@ interface WebViewProps {
     className?: string;
 }
 
-function WebView({ url = null, width = null, height = null, closeable = false, focusable = false, onClose = null, className = null }) {
+function WebView({
+    url = null,
+    width = null,
+    height = null,
+    closeable = false,
+    focusable = false,
+    onClose = null,
+    className = null,
+}: WebViewProps) {
     const intl = useIntl();
     return (
         <div

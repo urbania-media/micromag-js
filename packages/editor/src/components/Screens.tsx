@@ -43,7 +43,7 @@ function EditorScreens({
     onClickScreen = null,
     onChange = null,
     className = null,
-}) {
+}: EditorScreensProps) {
     const valueWithTheme = useThemeValue(unparsedValue, isTheme);
     const value = isParsed ? unparsedValue : useParsedStory(valueWithTheme, { withMedias: false });
     const { components: screens = [] } = value || {};

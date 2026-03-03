@@ -12,7 +12,12 @@ interface TextElementProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function TextElement({ value = null, onChange = null, multiline = false, ...props }) {
+function TextElement({
+    value = null,
+    onChange = null,
+    multiline = false,
+    ...props
+}: TextElementProps) {
     const labelValue = value !== null ? value.label || null : null;
     const onLabelChange = useCallback(
         (newLabel) => {

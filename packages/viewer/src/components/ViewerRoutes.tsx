@@ -20,7 +20,7 @@ function ViewerRoutes({
     children = null,
     onScreenChange = null,
     ...otherProps
-}) {
+}: ViewerRoutesProps) {
     const routes = useRoutes();
     const url = useUrlGenerator();
     const [, navigate] = useLocation();

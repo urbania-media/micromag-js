@@ -10,7 +10,7 @@ interface AudioFieldProps {
     value?: AudioMedia;
 }
 
-function AudioField({ value: value = null, ...props }) {
+function AudioField({ value: value = null, ...props }: AudioFieldProps) {
     return (
         <MediaField
             noValueLabel={

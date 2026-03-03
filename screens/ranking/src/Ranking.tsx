@@ -67,7 +67,7 @@ function RankingScreen({
     preload = true,
     type = null,
     className = null,
-}) {
+}: RankingScreenProps) {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
     const {

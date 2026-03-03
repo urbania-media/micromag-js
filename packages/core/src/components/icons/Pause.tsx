@@ -5,7 +5,7 @@ interface PauseIconProps {
     color?: string;
 }
 
-function PauseIcon({ color = '#fff', className = null }) {
+function PauseIcon({ color = '#fff', className = null }: PauseIconProps) {
     return (
         <svg
             className={className}

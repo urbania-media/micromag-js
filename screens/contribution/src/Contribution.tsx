@@ -101,7 +101,7 @@ function ContributionScreen({
     resizeTransitionDuration = 750,
     type = null,
     className = null,
-}) {
+}: ContributionScreenProps) {
     const intl = useIntl();
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);

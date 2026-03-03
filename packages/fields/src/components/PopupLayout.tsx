@@ -19,7 +19,7 @@ function ButtonLayout({
     value = null,
     className = null,
     onChange = null,
-}) {
+}: ButtonLayoutProps) {
     const onButtonLayoutChange = (newVal) => {
         const v = newVal === value ? null : newVal;
         onChange(v);

@@ -44,7 +44,7 @@ function MediaGallery({
     onMediaFormOpen = null,
     onMediaFormClose = null,
     className = null,
-}) {
+}: MediaGalleryProps) {
     const api = useApi();
     const story = useStory();
     const { id: storyId = null } = story || {};

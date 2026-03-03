@@ -20,7 +20,7 @@ function FormPanel({
     children = null,
     className = null,
     ...props
-}) {
+}: FormPanelProps) {
     return (
         <Card
             className={classNames([

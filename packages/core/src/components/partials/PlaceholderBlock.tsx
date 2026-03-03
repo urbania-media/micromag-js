@@ -21,7 +21,7 @@ function PlaceholderBlock({
     boxClassName = null,
     withInvertedColors = true,
     children = null,
-}) {
+}: PlaceholderBlockProps) {
     return (
         <div
             className={classNames([

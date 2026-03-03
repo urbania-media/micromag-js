@@ -17,7 +17,7 @@ function BorderStyle({
     value = null,
     className = null,
     onChange = null,
-}) {
+}: BorderStyleProps) {
     const onBorderStyleChange = (newVal) => {
         const v = newVal === value ? null : newVal;
         onChange(v);

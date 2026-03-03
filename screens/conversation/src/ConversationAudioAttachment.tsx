@@ -22,7 +22,7 @@ function ConversationAudioAttachment({
     messageId = null,
     nextAudioMessageId = null,
     className = null,
-}) {
+}: ConversationAudioAttachmentProps) {
     const [paused, setPaused] = useState(true);
 
     const audioEventsChannel = useMemo(

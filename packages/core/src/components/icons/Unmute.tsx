@@ -5,7 +5,7 @@ interface UnmuteIconProps {
     color?: string;
 }
 
-function UnmuteIcon({ color = '#fff', className = null }) {
+function UnmuteIcon({ color = '#fff', className = null }: UnmuteIconProps) {
     return (
         <svg
             width="26"

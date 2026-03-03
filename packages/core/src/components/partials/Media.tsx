@@ -26,7 +26,7 @@ function Media({
     thumbnailClassName = null,
     bodyClassName = null,
     titleClassName = null,
-}) {
+}: MediaProps) {
     return (
         <div
             className={classNames([

@@ -6,7 +6,7 @@ interface ShareLinkIconProps {
     size?: number;
 }
 
-function ShareLinkIcon({ className = null, size = 45 }) {
+function ShareLinkIcon({ className = null, size = 45 }: ShareLinkIconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

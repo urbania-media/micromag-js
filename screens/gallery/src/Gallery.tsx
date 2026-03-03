@@ -87,7 +87,7 @@ function GalleryScreen({
     spacing: initialSpacing = 20,
     captionMaxLines = 2,
     className = null,
-}) {
+}: GalleryScreenProps) {
     const { width, height, resolution } = useScreenSize();
     const {
         topHeight: viewerTopHeight,

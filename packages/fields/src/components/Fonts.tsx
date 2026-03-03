@@ -12,7 +12,7 @@ interface FontsFieldProps {
     value?: ImageMedia[];
 }
 
-function FontsField({ value: value = null, ...props }) {
+function FontsField({ value: value = null, ...props }: FontsFieldProps) {
     return (
         <ItemsField
             noItemLabel={

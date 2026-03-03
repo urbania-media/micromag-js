@@ -12,7 +12,11 @@ interface AlignHorizontalProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function AlignHorizontal({ value = null, className = null, onChange = null }) {
+function AlignHorizontal({
+    value = null,
+    className = null,
+    onChange = null,
+}: AlignHorizontalProps) {
     return (
         <div
             className={classNames([

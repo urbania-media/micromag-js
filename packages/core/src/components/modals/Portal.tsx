@@ -11,7 +11,7 @@ interface ModalPortalProps {
     children?: React.ReactNode;
 }
 
-function ModalPortal({ id = null, data = null, children = null }) {
+function ModalPortal({ id = null, data = null, children = null }: ModalPortalProps) {
     const { container, register = null, unregister = null } = useModals();
     return (
         <ElementPortal

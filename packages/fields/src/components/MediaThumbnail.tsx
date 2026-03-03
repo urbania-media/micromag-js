@@ -19,7 +19,13 @@ interface MediaThumbnailProps {
     className?: string;
 }
 
-function MediaThumbnail({ value = null, onChange = null, className = null, isForm = false, ...props }) {
+function MediaThumbnail({
+    value = null,
+    onChange = null,
+    className = null,
+    isForm = false,
+    ...props
+}: MediaThumbnailProps) {
     const { media = null } = useFieldsValue() || {};
     const options = useMemo(() => {
         if (media === null) {

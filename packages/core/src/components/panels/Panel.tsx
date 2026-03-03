@@ -14,7 +14,7 @@ interface PanelProps {
     children?: React.ReactNode;
 }
 
-function Panel({ id = null, children = null, title = null }) {
+function Panel({ id = null, children = null, title = null }: PanelProps) {
     const finalId = useMemo(() => id || getDisplayName(children.type), [id, children.type]);
     const data = useMemo(
         () => ({

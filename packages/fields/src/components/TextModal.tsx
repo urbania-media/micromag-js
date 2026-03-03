@@ -36,7 +36,7 @@ function TextModal({
     onRequestClose = null,
     onChange = null,
     ...props
-}) {
+}: TextModalProps) {
     const [modalOpen, setModalOpen] = useState();
 
     const { locale } = useIntl();

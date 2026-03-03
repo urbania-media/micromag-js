@@ -50,7 +50,7 @@ function MediaGallery({
     onChange = null,
     onClickMedia = null,
     onClearMedia = null,
-}) {
+}: MediaGalleryProps) {
     const intl = useIntl();
 
     // Base state for filters

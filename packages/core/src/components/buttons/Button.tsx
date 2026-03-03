@@ -70,7 +70,7 @@ function Button({
     labelClassName = null,
     refButton = null,
     ...props
-}) {
+}: ButtonProps) {
     const finalLabel = label || children;
     const text = finalLabel !== null ? <Label>{finalLabel}</Label> : null;
     const hasChildren = label !== null && children !== null;

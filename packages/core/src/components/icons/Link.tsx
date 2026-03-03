@@ -5,7 +5,7 @@ interface LinkIconProps {
     color?: string;
 }
 
-function LinkIcon({ color = '#fff', className = null }) {
+function LinkIcon({ color = '#fff', className = null }: LinkIconProps) {
     return (
         <svg
             width="16"

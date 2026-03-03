@@ -58,7 +58,7 @@ function CallToAction({
     external = true,
     openWebView = null,
     onClick = null,
-}) {
+}: CallToActionProps) {
     const trackEvent = useTrackEvent();
 
     const swipeUpEnabled = type === null || type === 'swipe-up';

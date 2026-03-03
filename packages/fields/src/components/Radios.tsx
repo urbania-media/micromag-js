@@ -31,7 +31,7 @@ function Radios({
     activeClassName = null,
     onChange = null,
     uncheckable = false,
-}) {
+}: RadiosProps) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
 
     return (

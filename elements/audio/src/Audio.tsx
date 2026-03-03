@@ -71,7 +71,7 @@ function Audio({
     onDurationChange: customOnDurationChange = null,
     onVolumeChange: customOnVolumeChange = null,
     onPlayError = null,
-}) {
+}: AudioProps) {
     const { url = null, files = null } = media || {};
     const srcUrl = useMemo(() => {
         if (files) {

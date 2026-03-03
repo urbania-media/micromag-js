@@ -27,7 +27,7 @@ function Layout({
     className = null,
     children = null,
     style = null,
-}) {
+}: LayoutProps) {
     let justifyContent = null;
     if (distribution !== null) {
         justifyContent = `space-${distribution}`;

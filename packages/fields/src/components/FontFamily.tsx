@@ -41,7 +41,7 @@ function FontFamily({
     isForm = false,
     canClear = true,
     ...props
-}) {
+}: FontFamilyProps) {
     const intl = useIntl();
     const { systemFonts, googleFonts, customFonts } = useFonts();
     const valueName = value !== null && isObject(value) ? value.name || null : value;

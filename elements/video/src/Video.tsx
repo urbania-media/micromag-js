@@ -83,7 +83,7 @@ function Video({
     withPoster = false,
     withLoading = false,
     disablePictureInPicture = true,
-}) {
+}: VideoProps) {
     const { url: mediaUrl = null, metadata = null } = media || {};
     const { description = null, has_audio: hasAudio = null } = metadata || {};
     const finalThumbnail = useMediaThumbnail(media, thumbnail);

@@ -15,14 +15,16 @@ interface TextAlignProps {
 
 function TextAlign({
     value = null,
+
     options = [
         { value: 'left', label: <FontAwesomeIcon icon={faAlignLeft} /> },
         { value: 'center', label: <FontAwesomeIcon icon={faAlignCenter} /> },
         { value: 'right', label: <FontAwesomeIcon icon={faAlignRight} /> },
     ],
+
     onChange = null,
     ...props
-}) {
+}: TextAlignProps) {
     return <Radios value={value} options={options} onChange={onChange} uncheckable {...props} />;
 }
 

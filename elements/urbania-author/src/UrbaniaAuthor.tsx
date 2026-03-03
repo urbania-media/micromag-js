@@ -47,7 +47,7 @@ function UrbaniaAuthor({
     collaboratorClassName = null,
     shouldLoad = true,
     ...otherProps
-}) {
+}: UrbaniaAuthorProps) {
     const intl = useIntl();
     const { name = null, image = null, url = null, collaborator = null } = author || {};
     const withAvatar = withImage && image !== null;

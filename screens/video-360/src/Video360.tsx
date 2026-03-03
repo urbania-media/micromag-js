@@ -57,7 +57,9 @@ interface Video360ScreenProps {
 }
 
 function Video360Screen({
-    layout = 'full', // eslint-disable-line
+    // eslint-disable-line
+    layout = 'full',
+
     video = null,
     header = null,
     footer = null,
@@ -68,7 +70,7 @@ function Video360Screen({
     spacing = 20,
     mediaRef: customMediaRef = null,
     className = null,
-}) {
+}: Video360ScreenProps) {
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
     const trackScreenMedia = useTrackScreenMedia('video_360');

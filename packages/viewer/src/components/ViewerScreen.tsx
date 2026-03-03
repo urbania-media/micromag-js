@@ -37,9 +37,10 @@ function ViewerScreen({
     width = null,
     height = null,
     scale = null,
+
     // withNavigationHint,
     className = null,
-}) {
+}: ViewerScreenProps) {
     const [mounted, setMounted] = useState(active || current);
     useEffect(() => {
         let timeout = null;

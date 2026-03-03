@@ -37,7 +37,7 @@ function NumberField({
     placeholder = null,
     className = null,
     onChange = null,
-}) {
+}: NumberFieldProps) {
     const parseValue = useCallback((newValue) =>
         float ? parseFloat(newValue) : parseInt(newValue, 10),
     );

@@ -19,7 +19,7 @@ function ToggleSection({
     className = null,
     onChange = null,
     ...props
-}) {
+}: ToggleSectionProps) {
     const { enabled = false } = value || {};
     const valueEnabled = toggleField !== null ? value?.[toggleField] || false : enabled;
 

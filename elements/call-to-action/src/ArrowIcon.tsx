@@ -5,7 +5,7 @@ interface ArrowProps {
     className?: string;
 }
 
-function Arrow({ color = 'currentColor', className = null }) {
+function Arrow({ color = 'currentColor', className = null }: ArrowProps) {
     return (
         <svg
             version="1.1"

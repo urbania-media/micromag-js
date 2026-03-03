@@ -69,7 +69,7 @@ function GalleryFeedScreen({
     preload = true,
     type = null,
     className = null,
-}) {
+}: GalleryFeedScreenProps) {
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, resolution } = useScreenSize();
     const {

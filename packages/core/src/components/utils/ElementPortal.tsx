@@ -18,7 +18,7 @@ function ElementPortal({
     container = null,
     register = null,
     unregister = null,
-}) {
+}: ElementPortalProps) {
     const finalId = useMemo(() => id || `element-${new Date().getTime()}`, [id]);
     useEffect(() => {
         if (register !== null) {

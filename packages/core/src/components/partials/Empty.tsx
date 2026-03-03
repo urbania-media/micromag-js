@@ -13,7 +13,12 @@ interface EmptyProps {
     className?: string;
 }
 
-function Empty({ children = null, withoutBorder = false, light = false, className = null }) {
+function Empty({
+    children = null,
+    withoutBorder = false,
+    light = false,
+    className = null,
+}: EmptyProps) {
     return (
         <div
             className={classNames([

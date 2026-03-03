@@ -10,7 +10,7 @@ interface ClosedCaptionFieldProps {
     value?: ClosedCaptionsMedia;
 }
 
-function ClosedCaptionField({ value: value = null, ...props }) {
+function ClosedCaptionField({ value: value = null, ...props }: ClosedCaptionFieldProps) {
     return (
         <MediaField
             noValueLabel={

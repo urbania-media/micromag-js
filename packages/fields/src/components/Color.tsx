@@ -30,7 +30,7 @@ function ColorField({
     disableAlpha = false,
     canClear = true,
     ...props
-}) {
+}: ColorFieldProps) {
     const { color = null } = value || {};
 
     const hexColor = useMemo(

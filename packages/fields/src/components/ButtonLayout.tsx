@@ -21,7 +21,7 @@ function ButtonLayout({
     defaultValue = null,
     className = null,
     onChange = null,
-}) {
+}: ButtonLayoutProps) {
     const finalValue = value === null && defaultValue !== null ? defaultValue : value;
 
     const onButtonLayoutChange = useCallback(

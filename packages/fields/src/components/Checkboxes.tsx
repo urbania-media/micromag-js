@@ -27,7 +27,7 @@ function Checkboxes({
     className = null,
     buttonClassName = null,
     onChange = null,
-}) {
+}: CheckboxesProps) {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
         <div

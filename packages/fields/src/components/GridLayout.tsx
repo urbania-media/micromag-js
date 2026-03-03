@@ -17,7 +17,12 @@ interface GridLayoutProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function GridLayout({ grids = [], value = null, className = null, onChange = null }) {
+function GridLayout({
+    grids = [],
+    value = null,
+    className = null,
+    onChange = null,
+}: GridLayoutProps) {
     return (
         <Radios
             options={grids.map((layout) => ({

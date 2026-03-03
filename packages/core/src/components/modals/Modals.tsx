@@ -12,7 +12,7 @@ interface ModalsContainerProps {
     className?: string;
 }
 
-function ModalsContainer({ modals, setModalsContainer, className = null }) {
+function ModalsContainer({ modals, setModalsContainer, className = null }: ModalsContainerProps) {
     const containerRef = useRef(null);
     useEffect(() => {
         setModalsContainer(containerRef.current);

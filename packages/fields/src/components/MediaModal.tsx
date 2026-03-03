@@ -32,12 +32,14 @@ function MediaModal({
     title = null,
     value = null,
     type = null,
+
     noValueLabel = (
         <FormattedMessage
             defaultMessage="Select a media..."
             description="Label when no value is provided to Media field"
         />
     ),
+
     isHorizontal = false,
     isForm = false,
     onChange = null,
@@ -48,7 +50,7 @@ function MediaModal({
     className = null,
     buttonsClassName = null,
     ...props
-}) {
+}: MediaModalProps) {
     const [modalOpen, setModalOpen] = useState();
 
     const [mediaFormOpen, setMediaFormOpen] = useState(false);

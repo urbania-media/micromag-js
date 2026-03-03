@@ -15,7 +15,12 @@ interface BadgeProps {
     labelClassName?: string;
 }
 
-function Badge({ label = null, boxStyle = null, className = null, labelClassName = null }) {
+function Badge({
+    label = null,
+    boxStyle = null,
+    className = null,
+    labelClassName = null,
+}: BadgeProps) {
     const { textStyle = null } = label || {};
     const { lineHeight = null } = textStyle || {};
     let boxStyles = null;

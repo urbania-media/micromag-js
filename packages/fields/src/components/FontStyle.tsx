@@ -15,14 +15,16 @@ interface FontStylesProps {
 
 function FontStyles({
     value = null,
+
     options = [
         { value: 'bold', label: <FontAwesomeIcon icon={faBold} /> },
         { value: 'italic', label: <FontAwesomeIcon icon={faItalic} /> },
         { value: 'underline', label: <FontAwesomeIcon icon={faUnderline} /> },
     ],
+
     onChange = null,
     ...props
-}) {
+}: FontStylesProps) {
     const styleKeys = useMemo(() => options.map((it) => it.value), [options]);
     const onInputChange = useCallback(
         (newStyleValue) => {

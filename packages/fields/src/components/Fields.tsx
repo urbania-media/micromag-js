@@ -57,7 +57,7 @@ function Fields({
     components = null,
     fieldsProps = null,
     fieldProps = null,
-}) {
+}: FieldsProps) {
     const nullableOnChange = useCallback(
         nullEmptyObject ? createNullableOnChange(onChange) : onChange,
         [nullEmptyObject, onChange],

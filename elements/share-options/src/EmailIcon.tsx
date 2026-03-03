@@ -6,7 +6,7 @@ interface EmailIconProps {
     size?: number;
 }
 
-function EmailIcon({ className = null, size = 45 }) {
+function EmailIcon({ className = null, size = 45 }: EmailIconProps) {
     return (
         <svg
             width={size}

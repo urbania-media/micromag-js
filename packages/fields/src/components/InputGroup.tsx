@@ -19,7 +19,7 @@ function InputGroup({
     append = null,
     size = null,
     className = null,
-}) {
+}: InputGroupProps) {
     return (
         <div
             className={classNames([

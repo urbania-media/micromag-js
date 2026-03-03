@@ -76,10 +76,12 @@ function ViewerMenu({
     withoutShareMenu = false,
     onClickScreen: customOnClickScreen = null,
     onChange = null,
+
     // onClickMenu: customOnClickMenu,
     onClickCloseViewer = null,
+
     refDots = null,
-}) {
+}: ViewerMenuProps) {
     const { components: screens = [], title = null, metadata = null } = story;
     const { description = null } = metadata || {};
     const currentScreen = screens !== null ? screens[currentScreenIndex] || null : null;

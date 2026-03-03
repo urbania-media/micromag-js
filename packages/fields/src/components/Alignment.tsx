@@ -65,10 +65,11 @@ function Alignment({
         horizontal: 'middle',
         vertical: 'middle',
     },
+
     value = null,
     className = null,
     onChange = null,
-}) {
+}: AlignmentProps) {
     const onVerticalAlignChange = useCallback(
         (newVal) => {
             const { vertical = null, horizontal = null } = value || {};

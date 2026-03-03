@@ -15,7 +15,7 @@ interface ModalProps {
     children?: React.ReactNode;
 }
 
-function Modal({ id = null, children = null, position = 'center', title = null }) {
+function Modal({ id = null, children = null, position = 'center', title = null }: ModalProps) {
     const finalId = useMemo(() => id || getDisplayName(children.type), [id, children.type]);
     const data = useMemo(
         () => ({

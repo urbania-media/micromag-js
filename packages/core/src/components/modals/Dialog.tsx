@@ -29,7 +29,7 @@ function ModalDialog({
     onClose = null,
     className = null,
     bodyClassName = null,
-}) {
+}: ModalDialogProps) {
     return (
         <div
             className={classNames([

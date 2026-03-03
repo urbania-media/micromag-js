@@ -33,6 +33,7 @@ interface FontFacesProps {
 
 function FontFaces({
     fonts = [],
+
     formats = [
         'eot',
         'woff2',
@@ -47,7 +48,7 @@ function FontFaces({
         },
         'svg',
     ],
-}) {
+}: FontFacesProps) {
     const fontFaces = (fonts || [])
         .filter((it) => isObject(it) && it.type === 'custom' && (it.media || null) !== null)
         .reduce((fontFontFaces, { name = null, media = null, variants = [] }) => {

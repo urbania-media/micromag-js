@@ -24,7 +24,7 @@ function Detector({
     disabled = false,
     children = null,
     className = null,
-}) {
+}: DetectorProps) {
     const {
         ref,
         entry: { isIntersecting },

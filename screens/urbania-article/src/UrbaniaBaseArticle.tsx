@@ -91,7 +91,7 @@ function UrbaniaArticle({
     preload = true,
     spacing = 20,
     className = null,
-}) {
+}: UrbaniaArticleProps) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();

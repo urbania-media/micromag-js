@@ -100,7 +100,7 @@ function UrbaniaHoroscope({
     preload = true,
     type = 'horoscope',
     className = null,
-}) {
+}: UrbaniaHoroscopeProps) {
     const intl = useIntl();
     const trackScreenEvent = useTrackScreenEvent(type);
     const { enableInteraction, disableInteraction } = useViewerInteraction();

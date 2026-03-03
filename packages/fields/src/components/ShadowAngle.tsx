@@ -19,7 +19,7 @@ function ShadowAngle({
     value = null,
     className = null,
     onChange = null,
-}) {
+}: ShadowAngleProps) {
     const onShadowAngleChange = (newVal) => {
         const v = newVal === value ? null : newVal;
 

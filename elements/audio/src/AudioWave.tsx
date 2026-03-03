@@ -41,7 +41,7 @@ function AudioWave({
     onSeek = null,
     onResume = null,
     onReady = null,
-}) {
+}: AudioWaveProps) {
     const canvasBackgroundRef = useRef(null);
     const canvasProgressRef = useRef(null);
 

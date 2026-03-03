@@ -7,6 +7,7 @@ import isString from 'lodash/isString';
 import React from 'react';
 
 import type { StackAlign, StackDirection, StackSpacing } from '@micromag/core';
+
 import Spacer from './Spacer';
 import { StackProvider } from './StackContext';
 
@@ -34,7 +35,7 @@ function Stack({
     maxSize = null,
     className = null,
     children = null,
-}) {
+}: StackProps) {
     const flexDirection =
         (direction === 'vertical' ? 'column' : 'row') + (reverse ? '-reverse' : '');
     const alignItems = align === 'center' ? align : `flex-${align}`;

@@ -14,7 +14,12 @@ interface AnswerFieldProps {
     className?: string;
 }
 
-function AnswerField({ value = null, isForm = false, className = null, ...props }) {
+function AnswerField({
+    value = null,
+    isForm = false,
+    className = null,
+    ...props
+}: AnswerFieldProps) {
     const { text = null } = value || {};
     return isForm ? (
         <div

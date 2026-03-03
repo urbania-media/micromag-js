@@ -49,7 +49,7 @@ function BackgroundLayers({
     onPlayError = null,
     qualityStartLevel = null,
     onQualityLevelChange = null,
-}) {
+}: BackgroundLayersProps) {
     const hasSize = width > 0 && height > 0;
 
     const layers = useMemo(() => getLayersFromBackground(background), [background]);

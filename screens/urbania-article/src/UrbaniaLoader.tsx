@@ -24,8 +24,10 @@ interface UrbaniaLoaderProps {
 
 function UrbaniaLoader({
     component: Component = UrbaniaBaseArticle,
+
     // theme = null,
     title = null,
+
     articleType = null,
     overTitle = null,
     sponsorLabel = null,
@@ -36,7 +38,7 @@ function UrbaniaLoader({
     url = null,
     article: initialArticle = null,
     ...props
-}) {
+}: UrbaniaLoaderProps) {
     const [article, setArticle] = useState(initialArticle);
 
     const finalUrl =

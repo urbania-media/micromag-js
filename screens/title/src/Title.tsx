@@ -66,18 +66,23 @@ function TitleScreen({
     boxStyle = null,
     withSubtitle = false,
     withDescription = false,
-    withBox = false, // eslint-disable-line
+
+    // eslint-disable-line
+    withBox = false,
+
     spacing = 20,
+
     descriptionEmptyLabel = (
         <FormattedMessage defaultMessage="Description" description="Description placeholder" />
     ),
+
     header = null,
     footer = null,
     background = null,
     current = true,
     active = true,
     className = null,
-}) {
+}: TitleScreenProps) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {

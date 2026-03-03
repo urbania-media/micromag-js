@@ -9,7 +9,7 @@ interface StaticFieldProps {
     className?: string;
 }
 
-function StaticField({ value = null, name = null, className = null }) {
+function StaticField({ value = null, name = null, className = null }: StaticFieldProps) {
     return (
         <div
             className={classNames([

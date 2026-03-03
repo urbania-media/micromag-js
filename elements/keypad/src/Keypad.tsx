@@ -16,7 +16,15 @@ interface KeypadProps {
     items?: React.ReactNode;
 }
 
-function Keypad({ items = null, align = null, columns = 1, spacing = 10, className = null, itemClassName = null, innerClassName = null }) {
+function Keypad({
+    items = null,
+    align = null,
+    columns = 1,
+    spacing = 10,
+    className = null,
+    itemClassName = null,
+    innerClassName = null,
+}: KeypadProps) {
     const itemWidth = `${100 / columns}%`;
     return (
         <div

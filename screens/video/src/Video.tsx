@@ -66,7 +66,7 @@ function VideoScreen({
     spacing = 20,
     mediaRef: customMediaRef = null,
     className = null,
-}) {
+}: VideoScreenProps) {
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height, resolution } = useScreenSize();

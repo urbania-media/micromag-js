@@ -22,7 +22,7 @@ function ScreenLayoutField({
     className = null,
     onChange = null,
     ...props
-}) {
+}: ScreenLayoutFieldProps) {
     const { id, layouts = [] } = useScreenDefinition();
 
     return (

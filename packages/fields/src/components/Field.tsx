@@ -51,7 +51,7 @@ function Field({
     labelClassName = null,
     fieldClassName = null,
     ...props
-}) {
+}: FieldProps) {
     const fieldsManager = useFieldsManager();
     const FieldsComponent = fieldsManager.getComponent('fields');
     const {

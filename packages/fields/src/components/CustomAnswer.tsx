@@ -15,7 +15,12 @@ interface CustomAnswerProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function CustomAnswer({ value = null, className = null, onChange = null, ...props }) {
+function CustomAnswer({
+    value = null,
+    className = null,
+    onChange = null,
+    ...props
+}: CustomAnswerProps) {
     const { active = false } = value || {};
     const intl = useIntl();
 

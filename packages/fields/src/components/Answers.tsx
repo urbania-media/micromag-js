@@ -12,7 +12,7 @@ interface AnswersFieldProps {
     value?: Answer[];
 }
 
-function AnswersField({ value: value = null, ...props }) {
+function AnswersField({ value: value = null, ...props }: AnswersFieldProps) {
     return (
         <ItemsField
             noItemLabel={

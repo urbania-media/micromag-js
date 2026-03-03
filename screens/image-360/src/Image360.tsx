@@ -46,7 +46,9 @@ interface Image360ScreenProps {
 }
 
 function Image360Screen({
-    layout = 'full', // eslint-disable-line
+    // eslint-disable-line
+    layout = 'full',
+
     image = null,
     background = null,
     header = null,
@@ -56,7 +58,7 @@ function Image360Screen({
     type = null,
     spacing = 20,
     className = null,
-}) {
+}: Image360ScreenProps) {
     const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
 

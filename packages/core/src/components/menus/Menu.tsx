@@ -45,7 +45,7 @@ function Menu({
     dropdownItemClassName = null,
     dropdownLinkClassName = null,
     dropdownAlign = null,
-}) {
+}: MenuProps) {
     const [dropdownsVisible, setDropdownsVisible] = useState(items.map(() => false));
     const ListComponent = linkAsItem ? 'div' : tagName;
     return (

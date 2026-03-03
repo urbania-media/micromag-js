@@ -45,7 +45,9 @@ interface AudioScreenProps {
 }
 
 function AudioScreen({
-    layout = 'middle', // eslint-disable-line
+    // eslint-disable-line
+    layout = 'middle',
+
     audio = null,
     spacing = 20,
     background = null,
@@ -56,7 +58,7 @@ function AudioScreen({
     mediaRef: customMediaRef = null,
     showWave = true,
     className = null,
-}) {
+}: AudioScreenProps) {
     const { width, height, resolution } = useScreenSize();
     const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } =
         useScreenRenderContext();

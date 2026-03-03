@@ -24,7 +24,7 @@ function TabsMenu({
     buttonClassName = null,
     className = null,
     onClickItem = null,
-}) {
+}: TabsMenuProps) {
     return (
         <div
             className={classNames([

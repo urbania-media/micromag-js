@@ -26,7 +26,7 @@ function Conversation({
     className = null,
     onChange = null,
     ...props
-}) {
+}: ConversationProps) {
     const { speakers = null } = value || {};
 
     const speakerOptions = (speakers || []).map(

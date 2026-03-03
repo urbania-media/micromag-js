@@ -17,7 +17,16 @@ interface ConsentProps {
     children?: React.ReactNode;
 }
 
-function Consent({ urls = null, labels = null, onChange = null, onSubmit = null, onClose = null, withClose = false, className = null, children = null }) {
+function Consent({
+    urls = null,
+    labels = null,
+    onChange = null,
+    onSubmit = null,
+    onClose = null,
+    withClose = false,
+    className = null,
+    children = null,
+}: ConsentProps) {
     return (
         <div
             className={classNames([

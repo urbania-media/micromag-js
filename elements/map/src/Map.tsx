@@ -54,7 +54,7 @@ function Map({
     rotateControl = false,
     fullscreenControl = false,
     focusable = true,
-}) {
+}: MapProps) {
     const client = useGoogleMapsClient();
 
     const onClick = useCallback(

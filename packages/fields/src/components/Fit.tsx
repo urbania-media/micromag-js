@@ -20,7 +20,7 @@ function ObjectFitSize({
     value = null,
     className = null,
     onChange = null,
-}) {
+}: ObjectFitSizeProps) {
     return (
         <Radios
             options={values.map((val) => ({

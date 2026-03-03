@@ -55,7 +55,7 @@ function QuoteScreen({
     current = true,
     preload = true,
     className = null,
-}) {
+}: QuoteScreenProps) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {

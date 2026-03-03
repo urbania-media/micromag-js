@@ -11,7 +11,7 @@ interface VisualsWithCaptionFieldProps {
     value?: ImageMedia[];
 }
 
-function VisualsWithCaptionField({ value: value = null, ...props }) {
+function VisualsWithCaptionField({ value: value = null, ...props }: VisualsWithCaptionFieldProps) {
     return (
         <ItemsField
             noItemLabel={

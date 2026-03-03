@@ -13,7 +13,7 @@ interface VisualFieldProps {
     value?: VideoMedia;
 }
 
-function VisualField({ value: value = null, ...props }) {
+function VisualField({ value: value = null, ...props }: VisualFieldProps) {
     return (
         <MediaField
             noValueLabel={

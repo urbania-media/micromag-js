@@ -40,7 +40,7 @@ function Author({
     collaboratorClassName = null,
     shouldLoad = true,
     ...otherProps
-}) {
+}: AuthorProps) {
     const { name = null, image = null, url = null, collaborator = null } = author || {};
     const withAvatar = withImage && image !== null;
 

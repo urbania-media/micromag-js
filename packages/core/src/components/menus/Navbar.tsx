@@ -39,7 +39,7 @@ function Navbar({
     brandClassName = null,
     breadCrumbsClassName = null,
     collapseClassName = null,
-}) {
+}: NavbarProps) {
     const [menuVisible, setMenuVisible] = useState(false);
     const onClickMenu = useCallback(
         () => setMenuVisible(!menuVisible),

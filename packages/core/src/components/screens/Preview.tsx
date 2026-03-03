@@ -31,7 +31,7 @@ function ScreenPreview({
     fit,
     hidden = false,
     ...props
-}) {
+}: ScreenPreviewProps) {
     const screenElement = (
         <Screen
             screen={screen}

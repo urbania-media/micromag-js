@@ -15,7 +15,7 @@ interface BadgeProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function Badge({ value = null, className = null, onChange = null, ...props }) {
+function Badge({ value = null, className = null, onChange = null, ...props }: BadgeProps) {
     const { active = false } = value || {};
     const intl = useIntl();
 

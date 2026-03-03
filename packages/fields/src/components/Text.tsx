@@ -35,7 +35,7 @@ function TextField({
     onChange = null,
     onFocus = null,
     className = null,
-}) {
+}: TextFieldProps) {
     const input = (
         <input
             ref={inputRef}

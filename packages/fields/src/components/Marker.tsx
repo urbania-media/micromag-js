@@ -12,7 +12,12 @@ interface MarkerFieldProps {
     className?: string;
 }
 
-function MarkerField({ isForm = false, value = null, className = null, ...props }) {
+function MarkerField({
+    isForm = false,
+    value = null,
+    className = null,
+    ...props
+}: MarkerFieldProps) {
     const { title = null } = value || {};
     return isForm ? (
         <div

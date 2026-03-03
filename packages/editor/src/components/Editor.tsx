@@ -44,7 +44,7 @@ function Editor({
     onChange = null,
     fullscreen = false,
     className = null,
-}) {
+}: EditorProps) {
     const push = useRoutePush();
     const refScreensContainer = useRef(null);
     const { screen: screenId } = useRouteParams({ screenOnly: true });

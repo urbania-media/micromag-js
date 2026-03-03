@@ -16,6 +16,7 @@ interface TrueFalseProps {
 
 function TrueFalse({
     value = null,
+
     options = [
         {
             value: true,
@@ -45,9 +46,10 @@ function TrueFalse({
             ),
         },
     ],
+
     onChange = null,
     ...props
-}) {
+}: TrueFalseProps) {
     const onInputChange = useCallback(
         (newValue) => {
             if (onChange !== null) {

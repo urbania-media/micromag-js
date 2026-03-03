@@ -28,7 +28,7 @@ function Tokens({
     getNewOptionData = undefined,
     onChange = null,
     className = null,
-}) {
+}: TokensProps) {
     const filterOptions = useCallback(
         (inputValue) =>
             new Promise((resolve) => {

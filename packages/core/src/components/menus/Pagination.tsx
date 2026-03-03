@@ -48,7 +48,7 @@ function PaginationMenu({
     itemClassName = null,
     linkClassName = null,
     onClickPage = null,
-}) {
+}: PaginationMenuProps) {
     const getUrl = useCallback(
         (currentPage) =>
             url !== null

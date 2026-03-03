@@ -55,7 +55,7 @@ function Visual({
     qualityStartLevel = null,
     onQualityLevelChange = null,
     ...props
-}) {
+}: VisualProps) {
     const { type = null, thumbnail_url: thumbnailUrl = null, url = null } = media || {};
     const isVideo = type === 'video';
     const elProps = useMemo(() => ({ ...props, media }), [props, media]);

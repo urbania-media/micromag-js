@@ -28,7 +28,7 @@ function Avatar({
     isTag = false,
     className = null,
     shouldLoad = true,
-}) {
+}: AvatarProps) {
     const supportsWebp = useSetting('supportsWebp', false);
     const imageResolution = useSetting('imageResolution', resolution);
     const imageAtSize = getOptimalImageUrl(image, width, height, {

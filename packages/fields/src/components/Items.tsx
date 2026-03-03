@@ -43,15 +43,18 @@ function ItemsField({
     name = null,
     value = null,
     getDefaultValue = null,
+
     noItemLabel = (
         <FormattedMessage
             defaultMessage="No item..."
             description="Label when there is no item in items field"
         />
     ),
+
     addItemLabel = (
         <FormattedMessage defaultMessage="Add an item" description="Button label in items field" />
     ),
+
     itemFieldLabel = ({ index }) => (
         <FormattedMessage
             defaultMessage="#{index}"
@@ -59,6 +62,7 @@ function ItemsField({
             values={{ index }}
         />
     ),
+
     itemComponent = null,
     itemsField = null,
     itemsProps = null,
@@ -71,7 +75,7 @@ function ItemsField({
     gotoFieldForm = null,
     closeFieldForm = null,
     ...props
-}) {
+}: ItemsFieldProps) {
     // const finalIsFieldForm =
     //     isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
     const [editing, setEditing] = useState(false);

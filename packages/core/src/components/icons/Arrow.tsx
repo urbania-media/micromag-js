@@ -5,7 +5,7 @@ interface ArrowIconProps {
     color?: string;
 }
 
-function ArrowIcon({ color = '#fff', className = null }) {
+function ArrowIcon({ color = '#fff', className = null }: ArrowIconProps) {
     return (
         <svg
             width="20"

@@ -56,7 +56,7 @@ function TextScreen({
     current = true,
     preload = true,
     className = null,
-}) {
+}: TextScreenProps) {
     const { width, height, resolution } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const {

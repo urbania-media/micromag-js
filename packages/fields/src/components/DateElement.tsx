@@ -20,7 +20,7 @@ function DateElement({
     withTime = false,
     onChange = null,
     placeholder = null,
-}) {
+}: DateElementProps) {
     const bodyValue = value !== null ? value.body || null : null;
     const onBodyChange = useCallback(
         (e) => {

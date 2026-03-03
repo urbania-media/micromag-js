@@ -61,7 +61,7 @@ function RichButton({
     refButton = null,
     children = null,
     ...otherProps
-}) {
+}: RichButtonProps) {
     const Tag = useMemo(() => {
         switch (type) {
             case 'submit':

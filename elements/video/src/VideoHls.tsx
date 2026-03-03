@@ -91,7 +91,7 @@ function Video({
     disablePictureInPicture = true,
     disableHls = true,
     qualityStartLevel = null,
-}) {
+}: VideoProps) {
     const { url: mediaUrl = null, metadata = null } = media || {};
     const { description = null, has_audio: hasAudio = null } = metadata || {};
     const { sources, isImage, files } = useSources(media);

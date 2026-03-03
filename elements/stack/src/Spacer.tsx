@@ -12,7 +12,7 @@ interface SpacerProps {
     className?: string;
 }
 
-function Spacer({ size = null, minSize = null, maxSize = null, className = null }) {
+function Spacer({ size = null, minSize = null, maxSize = null, className = null }: SpacerProps) {
     const direction = useStackDirection();
     return (
         <div

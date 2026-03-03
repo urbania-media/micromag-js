@@ -61,7 +61,7 @@ function FieldWithForm({
     children = null,
     field = null,
     ...props
-}) {
+}: FieldWithFormProps) {
     if (isForm) {
         if (children !== null) {
             return children;

@@ -23,7 +23,7 @@ function PlaceholderText({
     fontSize = 16,
     className = null,
     withInvertedColors = true,
-}) {
+}: PlaceholderTextProps) {
     const lineHeight =
         height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
 
