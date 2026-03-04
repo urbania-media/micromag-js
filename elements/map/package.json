@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-map",
-    "version": "0.3.824",
+    "version": "0.4.0",
     "private": false,
     "description": "",
     "keywords": [
@@ -60,9 +60,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.824",
+        "@micromag/core": "^0.4.0",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.21",
+        "lodash": "^4.17.23",
         "react-intl": "^8.1.3",
         "uuid": "^9.0.0"
     },
