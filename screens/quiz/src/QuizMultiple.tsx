@@ -1,10 +1,10 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { animated, easings, useTransition } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import type {
     BackgroundElement,
@@ -410,12 +410,211 @@ function QuizMultipleScreen({
     const showPoints = isEdit;
     const showReset = isEdit && currentAnsweredIndex !== null;
 
+    // Content transition items (captured for leaving animations)
+    const contentItems = [];
+    if (isIntro) {
+        contentItems.push({
+            key: 'intro',
+            element: (
+                <Title
+                    title={title}
+                    description={description}
+                    layout={introLayout || layout}
+                    button={introButton}
+                    buttonDisabled={(questions || []).length < 1 || isEdit || isPreview}
+                    focusable={current && isView}
+                    transitions={transitions}
+                    transitionPlaying={transitionPlaying}
+                    transitionStagger={transitionStagger}
+                    transitionDisabled={transitionDisabled}
+                    className={styles.intro}
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  paddingLeft: spacing,
+                                  paddingRight: spacing,
+                                  paddingTop: (!isPreview ? viewerTopHeight : 0) + spacing,
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) +
+                                      (callToActionHeight || spacing),
+                              }
+                            : null
+                    }
+                    onClickButton={onClickIntroButton}
+                />
+            ),
+        });
+    }
+    if (isQuestion) {
+        contentItems.push({
+            key: `question-${questionIndex}`,
+            element: (
+                <Question
+                    index={questionIndex}
+                    totalCount={(questions || []).length}
+                    question={text}
+                    answers={answers}
+                    keypadLayout={keypadLayout}
+                    answeredIndex={currentAnsweredIndex}
+                    buttonsStyle={buttonsStyle}
+                    inactiveButtonsStyle={inactiveButtonsStyle}
+                    buttonsTextStyle={buttonsTextStyle}
+                    inactiveButtonsTextStyle={inactiveButtonsTextStyle}
+                    questionsHeadingStyle={questionsHeadingStyle}
+                    feedbackTextStyle={feedbackTextStyle}
+                    numbersTextStyle={numbersTextStyle}
+                    goodAnswerColor={goodAnswerColor}
+                    badAnswerColor={badAnswerColor}
+                    focusable={current && isView}
+                    showInstantAnswer={showInstantAnswer}
+                    layout={questionLayout || layout}
+                    result={questionResult}
+                    resultImage={questionResultImage}
+                    withResult={hasResult}
+                    withoutGoodAnswer={withoutGoodAnswer}
+                    withoutTrueFalse={!hasTrueFalse}
+                    withoutCollapse={hasTrueFalse}
+                    transitions={transitions}
+                    transitionPlaying={transitionPlaying}
+                    transitionStagger={transitionStagger}
+                    transitionDisabled={transitionDisabled}
+                    onAnswerClick={onAnswerClick}
+                    onAnswerTransitionEnd={hasResult ? null : onNextSlide}
+                    className={styles.question}
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop:
+                                      (current && !isPreview ? viewerTopHeight : 0) +
+                                      (headerHeight || spacing),
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) +
+                                      (callToActionHeight || spacing),
+                              }
+                            : null
+                    }
+                />
+            ),
+        });
+    }
+    if (hasResult && currentAnsweredIndex !== null) {
+        contentItems.push({
+            key: 'next',
+            element: (
+                <div
+                    className={styles.next}
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop:
+                                      (current && !isPreview ? viewerTopHeight : 0) +
+                                      (headerHeight || spacing),
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) +
+                                      (callToActionHeight || spacing),
+                              }
+                            : null
+                    }
+                >
+                    <Button
+                        disabled={currentAnsweredIndex === null}
+                        focusable
+                        buttonStyle={nextButton !== null ? nextButton.buttonStyle : null}
+                        className={styles.nextButton}
+                        onClick={onNextSlide}
+                    >
+                        {hasButtonText ? (
+                            <Text {...nextButton} className={styles.label} />
+                        ) : (
+                            <span className={styles.label}>
+                                <FormattedMessage
+                                    defaultMessage="Next"
+                                    description="Screen button label"
+                                />
+                            </span>
+                        )}
+                    </Button>
+                </div>
+            ),
+        });
+    }
+    if (isResults) {
+        contentItems.push({
+            key: 'results',
+            element: (
+                <Results
+                    {...currentResult}
+                    resultsHeadingStyle={resultsHeadingStyle}
+                    resultsTextStyle={resultsTextStyle}
+                    layout={resultLayout || layout}
+                    transitions={transitions}
+                    transitionPlaying={transitionPlaying}
+                    transitionStagger={transitionStagger}
+                    transitionDisabled={transitionDisabled}
+                    className={styles.results}
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop:
+                                      (current && !isPreview ? viewerTopHeight : 0) +
+                                      (headerHeight || spacing),
+                                  paddingBottom:
+                                      (current && !isPreview ? viewerBottomHeight : 0) +
+                                      (callToActionHeight || spacing),
+                              }
+                            : null
+                    }
+                />
+            ),
+        });
+    }
+
+    const contentTransitions = useTransition(contentItems, {
+        keys: (item) => item.key,
+        from: (item) =>
+            item.key === 'next'
+                ? { transform: 'translateX(0%)' }
+                : {
+                      transform: direction === 'left' ? 'translateX(-100%)' : 'translateX(100%)',
+                  },
+        enter: { transform: 'translateX(0%)' },
+        leave: (item) =>
+            item.key === 'next'
+                ? { transform: 'translateX(0%)' }
+                : {
+                      transform: direction === 'left' ? 'translateX(100%)' : 'translateX(-100%)',
+                  },
+        config: (item) =>
+            item.key === 'next'
+                ? { duration: 0 }
+                : { duration: 1000, easing: easings.easeInOutSine },
+    });
+
+    // Background transition
+    const bgItem = useMemo(
+        () => ({
+            key: backgroundKey,
+            background: finalBackground,
+        }),
+        [backgroundKey, finalBackground],
+    );
+
+    const bgTransitions = useTransition(bgItem, {
+        keys: (item) => item.key,
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+        config: { duration: 1000, easing: easings.easeInOutSine },
+    });
+
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles[direction]]: direction !== null,
                     [className]: className !== null,
                 },
             ])}
@@ -465,178 +664,37 @@ function QuizMultipleScreen({
                     onScrollHeightChange={onScrollHeightChange}
                     withShadow
                 >
-                    <TransitionGroup>
-                        {[
-                            isIntro ? (
-                                <CSSTransition key="intro" classNames={styles} timeout={1000}>
-                                    <Title
-                                        title={title}
-                                        description={description}
-                                        layout={introLayout || layout}
-                                        button={introButton}
-                                        buttonDisabled={
-                                            (questions || []).length < 1 || isEdit || isPreview
-                                        }
-                                        focusable={current && isView}
-                                        transitions={transitions}
-                                        transitionPlaying={transitionPlaying}
-                                        transitionStagger={transitionStagger}
-                                        transitionDisabled={transitionDisabled}
-                                        className={styles.intro}
-                                        style={
-                                            !isPlaceholder
-                                                ? {
-                                                      paddingLeft: spacing,
-                                                      paddingRight: spacing,
-                                                      paddingTop:
-                                                          (!isPreview ? viewerTopHeight : 0) +
-                                                          spacing,
-                                                      paddingBottom:
-                                                          (current && !isPreview
-                                                              ? viewerBottomHeight
-                                                              : 0) +
-                                                          (callToActionHeight || spacing),
-                                                  }
-                                                : null
-                                        }
-                                        onClickButton={onClickIntroButton}
-                                    />
-                                </CSSTransition>
-                            ) : null,
-                            isQuestion ? (
-                                <CSSTransition
-                                    key={`question-${questionIndex}`}
-                                    classNames={styles}
-                                    timeout={1000}
+                    <div style={{ position: 'absolute', inset: '0' }}>
+                        {contentTransitions((springStyle, item) => {
+                            const isActive = contentItems.some((ci) => ci.key === item.key);
+                            return (
+                                <animated.div
+                                    style={{
+                                        ...springStyle,
+                                        ...(!isActive
+                                            ? {
+                                                  position: 'absolute' as const,
+                                                  top: 0,
+                                                  left: 0,
+                                                  width: '100%',
+                                                  minHeight: '100%',
+                                                  zIndex: 0,
+                                              }
+                                            : {
+                                                  position: 'relative' as const,
+                                                  zIndex: 1,
+                                                  top: 0,
+                                                  left: 0,
+                                                  width: '100%',
+                                                  minHeight: '100%',
+                                              }),
+                                    }}
                                 >
-                                    <Question
-                                        index={questionIndex}
-                                        totalCount={(questions || []).length}
-                                        question={text}
-                                        answers={answers}
-                                        keypadLayout={keypadLayout}
-                                        answeredIndex={currentAnsweredIndex}
-                                        buttonsStyle={buttonsStyle}
-                                        inactiveButtonsStyle={inactiveButtonsStyle}
-                                        buttonsTextStyle={buttonsTextStyle}
-                                        inactiveButtonsTextStyle={inactiveButtonsTextStyle}
-                                        questionsHeadingStyle={questionsHeadingStyle}
-                                        feedbackTextStyle={feedbackTextStyle}
-                                        numbersTextStyle={numbersTextStyle}
-                                        goodAnswerColor={goodAnswerColor}
-                                        badAnswerColor={badAnswerColor}
-                                        focusable={current && isView}
-                                        showInstantAnswer={showInstantAnswer}
-                                        layout={questionLayout || layout}
-                                        result={questionResult}
-                                        resultImage={questionResultImage}
-                                        withResult={hasResult}
-                                        withoutGoodAnswer={withoutGoodAnswer}
-                                        withoutTrueFalse={!hasTrueFalse}
-                                        withoutCollapse={hasTrueFalse}
-                                        transitions={transitions}
-                                        transitionPlaying={transitionPlaying}
-                                        transitionStagger={transitionStagger}
-                                        transitionDisabled={transitionDisabled}
-                                        onAnswerClick={onAnswerClick}
-                                        onAnswerTransitionEnd={hasResult ? null : onNextSlide}
-                                        className={styles.question}
-                                        style={
-                                            !isPlaceholder
-                                                ? {
-                                                      padding: spacing,
-                                                      paddingTop:
-                                                          (current && !isPreview
-                                                              ? viewerTopHeight
-                                                              : 0) + (headerHeight || spacing),
-                                                      paddingBottom:
-                                                          (current && !isPreview
-                                                              ? viewerBottomHeight
-                                                              : 0) +
-                                                          (callToActionHeight || spacing),
-                                                  }
-                                                : null
-                                        }
-                                    />
-                                </CSSTransition>
-                            ) : null,
-                            hasResult && currentAnsweredIndex !== null ? (
-                                <CSSTransition key="next" classNames={styles} timeout={0}>
-                                    <div
-                                        className={styles.next}
-                                        style={
-                                            !isPlaceholder
-                                                ? {
-                                                      padding: spacing,
-                                                      paddingTop:
-                                                          (current && !isPreview
-                                                              ? viewerTopHeight
-                                                              : 0) + (headerHeight || spacing),
-                                                      paddingBottom:
-                                                          (current && !isPreview
-                                                              ? viewerBottomHeight
-                                                              : 0) +
-                                                          (callToActionHeight || spacing),
-                                                  }
-                                                : null
-                                        }
-                                    >
-                                        <Button
-                                            disabled={currentAnsweredIndex === null}
-                                            focusable
-                                            buttonStyle={
-                                                nextButton !== null ? nextButton.buttonStyle : null
-                                            }
-                                            className={styles.nextButton}
-                                            onClick={onNextSlide}
-                                        >
-                                            {hasButtonText ? (
-                                                <Text {...nextButton} className={styles.label} />
-                                            ) : (
-                                                <span className={styles.label}>
-                                                    <FormattedMessage
-                                                        defaultMessage="Next"
-                                                        description="Screen button label"
-                                                    />
-                                                </span>
-                                            )}
-                                        </Button>
-                                    </div>
-                                </CSSTransition>
-                            ) : null,
-                            isResults ? (
-                                <CSSTransition key="results" classNames={styles} timeout={2000}>
-                                    <Results
-                                        {...currentResult}
-                                        resultsHeadingStyle={resultsHeadingStyle}
-                                        resultsTextStyle={resultsTextStyle}
-                                        layout={resultLayout || layout}
-                                        transitions={transitions}
-                                        transitionPlaying={transitionPlaying}
-                                        transitionStagger={transitionStagger}
-                                        transitionDisabled={transitionDisabled}
-                                        className={styles.results}
-                                        style={
-                                            !isPlaceholder
-                                                ? {
-                                                      padding: spacing,
-                                                      paddingTop:
-                                                          (current && !isPreview
-                                                              ? viewerTopHeight
-                                                              : 0) + (headerHeight || spacing),
-                                                      paddingBottom:
-                                                          (current && !isPreview
-                                                              ? viewerBottomHeight
-                                                              : 0) +
-                                                          (callToActionHeight || spacing),
-                                                  }
-                                                : null
-                                        }
-                                    />
-                                </CSSTransition>
-                            ) : null,
-                        ]}
-                    </TransitionGroup>
+                                    {item.element}
+                                </animated.div>
+                            );
+                        })}
+                    </div>
                 </Scroll>
                 {!isPlaceholder && hasFooter ? (
                     <div
@@ -659,24 +717,34 @@ function QuizMultipleScreen({
                     </div>
                 ) : null}
             </Container>
-            {!isPlaceholder ? (
-                <TransitionGroup>
-                    <CSSTransition key={backgroundKey} classNames={styles} timeout={1000}>
-                        <Background
-                            background={finalBackground}
-                            width={width}
-                            height={height}
-                            resolution={resolution}
-                            playing={backgroundPlaying}
-                            muted={muted}
-                            shouldLoad={backgroundShouldLoad}
-                            mediaRef={mediaRef}
-                            className={styles.background}
-                            withoutVideo={isPreview}
-                        />
-                    </CSSTransition>
-                </TransitionGroup>
-            ) : null}
+            {!isPlaceholder
+                ? bgTransitions((springStyle, item) => (
+                      <animated.div
+                          style={{
+                              ...springStyle,
+                              position: 'absolute' as const,
+                              top: 0,
+                              left: 0,
+                              width: '100%',
+                              height: '100%',
+                              zIndex: item.key === bgItem.key ? 1 : 0,
+                          }}
+                      >
+                          <Background
+                              background={item.background}
+                              width={width}
+                              height={height}
+                              resolution={resolution}
+                              playing={backgroundPlaying}
+                              muted={muted}
+                              shouldLoad={backgroundShouldLoad}
+                              mediaRef={mediaRef}
+                              className={styles.background}
+                              withoutVideo={isPreview}
+                          />
+                      </animated.div>
+                  ))
+                : null}
         </div>
     );
 }

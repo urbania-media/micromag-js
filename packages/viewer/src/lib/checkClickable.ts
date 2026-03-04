@@ -15,8 +15,13 @@ function checkClickable(el, options = {}, parentDistance = 1) {
     //     return true;
     // }
 
+    // console.log('tags', tags, options);
+
     if (
-        tags.map((it) => it.toLowerCase()).indexOf(tagName.toLowerCase()) !== -1 ||
+        tags
+            .filter((t) => t !== null)
+            .map((it) => it.toLowerCase())
+            .indexOf(tagName.toLowerCase()) !== -1 ||
         (classList !== null && classList.contains('clickable'))
     ) {
         return true;

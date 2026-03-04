@@ -56,11 +56,11 @@
         "build": "../../scripts/prepare-package.sh --types"
     },
     "devDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
+        "react": "^19.2.0",
         "react-dom": "^18.3.0 || ^19.0.0"
     },
     "peerDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
+        "react": "^19.2.0",
         "react-dom": "^18.3.0 || ^19.0.0"
     },
     "dependencies": {
@@ -76,11 +76,11 @@
         "@micromag/element-text": "^0.3.824",
         "@micromag/element-visual": "^0.3.824",
         "@micromag/transforms": "^0.3.824",
-        "@react-spring/web": "^9.6.1",
+        "@react-spring/web": "^10.0.3",
         "@use-gesture/react": "^10.3.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
-        "react-intl": "^6.6.4",
+        "react-intl": "^8.1.3",
         "uuid": "^9.0.0"
     },
     "publishConfig": {

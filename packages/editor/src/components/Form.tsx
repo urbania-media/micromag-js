@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
+import { animated, easings, useTransition } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useLocation } from 'wouter';
 
 import type { Story, Theme } from '@micromag/core';
@@ -56,17 +56,78 @@ function EditForm({
         return definition != null ? getScreenFieldsWithStates(definition) : [];
     }, [screensManager, screen]);
 
-    // Get transition value
-    const { classNames: transitionClassNames, timeout: transitionTimeout } = useFormTransition(
-        url,
-        screenIndex,
-        styles,
-    );
+    // Get transition direction
+    const { direction } = useFormTransition(url, screenIndex, styles);
 
     const [screenSettingsOpened, setScreenSettingsOpened] = useState(false);
     const [deleteScreenModalOpened, setDeleteScreenModalOpened] = useState(false);
     const [fieldForms, setFieldForms] = useState({});
     const [fieldContext, setFieldContext] = useState(null);
+
+    // Compute panel transition
+    const transitionItem = useMemo(
+        () =>
+            screen !== null
+                ? {
+                      key:
+                          fieldParams !== null
+                              ? `field-${fieldParams}-${formParams}`
+                              : `screen-${screen.id}`,
+                      isField: fieldParams !== null,
+                      screen,
+                      fieldParams,
+                      formParams,
+                  }
+                : null,
+        [screen, fieldParams, formParams],
+    );
+
+    const fromTransform = useMemo(() => {
+        switch (direction) {
+            case 'right':
+                return 'translateX(100%)';
+            case 'left':
+                return 'translateX(-100%)';
+            case 'top':
+                return 'translateY(-100%)';
+            case 'bottom':
+                return 'translateY(100%)';
+            default:
+                return 'translateX(0%)';
+        }
+    }, [direction]);
+
+    const leaveTransform = useMemo(() => {
+        switch (direction) {
+            case 'right':
+                return 'translateX(-100%)';
+            case 'left':
+                return 'translateX(100%)';
+            case 'top':
+                return 'translateY(100%)';
+            case 'bottom':
+                return 'translateY(-100%)';
+            default:
+                return 'translateX(0%)';
+        }
+    }, [direction]);
+
+    const isHorizontal = direction === 'left' || direction === 'right';
+    const springConfig = useMemo(
+        () =>
+            direction !== null
+                ? { duration: isHorizontal ? 200 : 500, easing: easings.easeOutSine }
+                : { duration: 0 },
+        [direction, isHorizontal],
+    );
+
+    const panelTransitions = useTransition(transitionItem, {
+        keys: (item) => item?.key ?? 'none',
+        from: { transform: fromTransform, opacity: direction !== null ? 0.5 : 1 },
+        enter: { transform: 'translateX(0%)', opacity: 1 },
+        leave: { transform: leaveTransform, opacity: direction !== null ? 0.5 : 0 },
+        config: springConfig,
+    });
 
     // Callbacks
     const gotoFieldForm = useCallback(
@@ -254,57 +315,53 @@ function EditForm({
             ) : null}
             <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
                 {screen !== null ? (
-                    <TransitionGroup
-                        className="w-100 flex-grow-1"
-                        childFactory={(child) =>
-                            React.cloneElement(child, {
-                                classNames: transitionClassNames,
-                            })
-                        }
-                    >
-                        {fieldParams !== null ? (
-                            <CSSTransition
-                                timeout={transitionTimeout}
-                                key={`field-${fieldParams}-${formParams}`}
-                            >
-                                <div className={classNames(['w-100', styles.panel])}>
-                                    <ScreenProvider data={screen}>
-                                        <FieldWithContexts
-                                            name={fieldParams.replace(/\//g, '.')}
-                                            value={screen}
-                                            form={formParams}
-                                            className={styles.form}
-                                            gotoFieldForm={gotoFieldForm}
-                                            closeFieldForm={closeFieldForm}
-                                            fieldContext={fieldContext}
-                                            onChange={onScreenFormChange}
-                                        />
-                                    </ScreenProvider>
-                                </div>
-                            </CSSTransition>
-                        ) : (
-                            <CSSTransition
-                                classNames={transitionClassNames}
-                                timeout={transitionTimeout}
-                                key={`screen-${screen.id}`}
-                            >
-                                <div
+                    <div className="w-100 flex-grow-1" style={{ position: 'relative' }}>
+                        {panelTransitions((springStyle, item) =>
+                            item !== null ? (
+                                <animated.div
                                     className={classNames(['w-100', styles.panel])}
-                                    key={`screen-${screen.id}`}
+                                    style={{
+                                        ...springStyle,
+                                        ...(item.key !== transitionItem?.key
+                                            ? {
+                                                  position: 'absolute' as const,
+                                                  top: 0,
+                                                  left: 0,
+                                                  width: '100%',
+                                                  zIndex: 0,
+                                              }
+                                            : {
+                                                  position: 'relative' as const,
+                                                  zIndex: 1,
+                                              }),
+                                    }}
                                 >
-                                    <ScreenProvider data={screen}>
-                                        <ScreenForm
-                                            value={screen}
-                                            className={styles.form}
-                                            onChange={onScreenFormChange}
-                                            gotoFieldForm={gotoFieldForm}
-                                            closeFieldForm={closeFieldForm}
-                                        />
+                                    <ScreenProvider data={item.screen}>
+                                        {item.isField ? (
+                                            <FieldWithContexts
+                                                name={item.fieldParams.replace(/\//g, '.')}
+                                                value={item.screen}
+                                                form={item.formParams}
+                                                className={styles.form}
+                                                gotoFieldForm={gotoFieldForm}
+                                                closeFieldForm={closeFieldForm}
+                                                fieldContext={fieldContext}
+                                                onChange={onScreenFormChange}
+                                            />
+                                        ) : (
+                                            <ScreenForm
+                                                value={item.screen}
+                                                className={styles.form}
+                                                onChange={onScreenFormChange}
+                                                gotoFieldForm={gotoFieldForm}
+                                                closeFieldForm={closeFieldForm}
+                                            />
+                                        )}
                                     </ScreenProvider>
-                                </div>
-                            </CSSTransition>
+                                </animated.div>
+                            ) : null,
                         )}
-                    </TransitionGroup>
+                    </div>
                 ) : (
                     <Empty className="w-100 m-2">
                         <FormattedMessage

@@ -14,10 +14,28 @@
 @import '@uppy/core/css/style.min.css';
 @import '@uppy/dashboard/css/style.min.css';
 
-/* Panneau packages */
-@import '@panneau/fields/assets/css/styles.css';
-@import '@panneau/displays/assets/css/styles.css';
-@import '@panneau/filters/assets/css/styles.css';
+/* Panneau fields */
+@import '@panneau/field-autocomplete/assets/css/styles.css';
+@import '@panneau/field-checkboxes/assets/css/styles.css';
+@import '@panneau/field-color/assets/css/styles.css';
+@import '@panneau/field-date/assets/css/styles.css';
+@import '@panneau/field-html/assets/css/styles.css';
+@import '@panneau/field-import/assets/css/styles.css';
+@import '@panneau/field-input-group/assets/css/styles.css';
+@import '@panneau/field-number/assets/css/styles.css';
+@import '@panneau/field-text/assets/css/styles.css';
+@import '@panneau/field-toggle/assets/css/styles.css';
+@import '@panneau/field-toggles/assets/css/styles.css';
+@import '@panneau/field-upload/assets/css/styles.css';
+
+/* Panneau displays */
+@import '@panneau/display-avatar/assets/css/styles.css';
+@import '@panneau/display-image/assets/css/styles.css';
+
+/* Panneau filters */
+@import '@panneau/filter-filters/assets/css/styles.css';
+@import '@panneau/filter-label/assets/css/styles.css';
+@import '@panneau/filter-toggle/assets/css/styles.css';
 
 /* Panneau elements */
 @import '@panneau/element-button/assets/css/styles.css';

@@ -6,13 +6,13 @@
         left: 0;
         width: 21px;
         height: 21px;
-        animation-name: pulse;
-        animation-duration: 1.2s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
         border: 1px solid #fff;
         border-radius: 50%;
+        animation-duration: 1.2s;
         animation-fill-mode: both;
+        animation-iteration-count: infinite;
+        animation-name: pulse;
+        animation-timing-function: linear;
     }
 
     .hand {
@@ -20,12 +20,12 @@
         z-index: 2;
         width: 30px;
         height: auto;
-        animation-name: panY;
-        animation-duration: 0.6s;
-        animation-timing-function: ease;
-        animation-iteration-count: infinite;
         animation-direction: alternate;
+        animation-duration: 0.6s;
         animation-fill-mode: both;
+        animation-iteration-count: infinite;
+        animation-name: panY;
+        animation-timing-function: ease;
     }
 
     &.withoutShadow {
@@ -34,46 +34,46 @@
         }
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (width >= 1024px) {
         display: none;
     }
 }
 
 .inner {
     &::after {
-        content: '';
         position: absolute;
         z-index: 1;
         top: 50%;
         left: 50%;
         width: 600%;
         height: 500%;
-        transform: translate(-50%, -50%);
-        animation-name: shadowFade;
-        animation-duration: 0.6s;
-        animation-timing-function: ease;
         animation-delay: 0.05s;
-        animation-iteration-count: infinite;
         animation-direction: alternate;
-        background-image: radial-gradient(rgba(28, 28, 28, 0.5), rgba(28, 28, 28, 0) 60%);
+        animation-duration: 0.6s;
         animation-fill-mode: both;
+        animation-iteration-count: infinite;
+        animation-name: shadowFade;
+        animation-timing-function: ease;
+        background-image: radial-gradient(rgb(28 28 28 / 0.5), rgb(28 28 28 / 0) 60%);
+        content: '';
+        transform: translate(-50%, -50%);
     }
 }
 
 @keyframes pulse {
     0% {
-        transform: scale(0.5);
         opacity: 0;
+        transform: scale(0.5);
     }
 
     50% {
-        transform: scale(1.5);
         opacity: 0.5;
+        transform: scale(1.5);
     }
 
     100% {
-        transform: scale(2);
         opacity: 0;
+        transform: scale(2);
     }
 }
 

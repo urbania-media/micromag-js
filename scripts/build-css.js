@@ -28,7 +28,22 @@ postcss([
             // postcss-import's built-in resolver doesn't respect package.json "exports".
             // Fall back to require.resolve which does.
             try {
-                return require.resolve(id, { paths: [basedir] });
+                const resolved = require.resolve(id, { paths: [basedir] });
+
+                // If a CSS @import resolved to a .js file (e.g. bare @panneau/* package
+                // names in aggregator CSS), try the package's CSS asset path instead.
+                if (resolved.endsWith('.js')) {
+                    try {
+                        return require.resolve(`${id}/assets/css/styles.css`, {
+                            paths: [basedir],
+                        });
+                    } catch {
+                        // No CSS asset — skip this import
+                        return id;
+                    }
+                }
+
+                return resolved;
             } catch {
                 return id;
             }

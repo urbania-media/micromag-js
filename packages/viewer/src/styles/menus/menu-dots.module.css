@@ -1,16 +1,16 @@
 /* stylelint-disable max-nesting-depth */
 
 .container {
-    display: flex;
     position: relative;
+    display: flex;
+    width: 100%;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    width: 100%;
 
     .dot {
-        margin: 0 2px;
         padding: 5px 0 15px;
+        margin: 0 2px;
 
         &:first-child {
             margin-left: 2px;
@@ -28,23 +28,24 @@
     }
 
     .closeButton {
-        display: inline-block;
         position: relative;
-        padding: 0;
-        border: 0;
-        background: transparent;
-        color: inherit;
-        font-family: inherit;
-        cursor: pointer;
-        appearance: none;
-        &:focus-visible {
-        outline: 3px solid var(--mm-purple);
-        outline-offset: 4px;
-        }
+        display: inline-block;
         display: flex;
         align-items: center;
+        padding: 0;
         padding-right: 2px;
         padding-left: 8px;
+        border: 0;
+        appearance: none;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-family: inherit;
+
+        &:focus-visible {
+            outline: 3px solid var(--mm-purple);
+            outline-offset: 4px;
+        }
     }
 
     .buttons {
@@ -59,9 +60,9 @@
         background: transparent;
 
         .items {
-            flex-direction: column;
             width: auto;
             height: 100%;
+            flex-direction: column;
         }
     }
 }

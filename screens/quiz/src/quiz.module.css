@@ -105,43 +105,6 @@
 .results,
 .intro {
     overflow: hidden;
-
-    &.enter {
-        transform: translateX(100%);
-
-        .left & {
-            transform: translateX(-100%);
-        }
-    }
-
-    &.enterActive,
-    .left &.enterActive {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        min-height: 100%;
-        transform: translateX(0);
-        transition: transform 1s ease;
-    }
-
-    &.exit {
-        transform: translateX(0);
-    }
-
-    &.exitActive {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        min-height: 100%;
-        transform: translateX(-100%);
-        transition: transform 1s ease;
-
-        .left & {
-            transform: translateX(100%);
-        }
-    }
 }
 
 .nextButton {
@@ -165,24 +128,3 @@
     }
 }
 
-.background {
-    &.enter {
-        opacity: 0;
-    }
-
-    &.enterActive {
-        z-index: 1;
-        transition: opacity 1s ease;
-        opacity: 1;
-    }
-
-    &.exit {
-        opacity: 1;
-    }
-
-    &.exitActive {
-        z-index: 0;
-        transition: opacity 1s ease;
-        opacity: 0;
-    }
-}
