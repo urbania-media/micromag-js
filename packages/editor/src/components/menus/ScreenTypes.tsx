@@ -16,6 +16,7 @@ import styles from '../../styles/menus/screen-types.module.css';
 interface ScreenTypesProps {
     screens?: ScreenDefinition[];
     selectedTypes?: string[];
+    legacyTypes?: string[];
     className?: string;
     onClickItem?: (...args: unknown[]) => void;
 }
@@ -23,13 +24,19 @@ interface ScreenTypesProps {
 function ScreenTypes({
     screens = null,
     selectedTypes = null,
+    legacyTypes = ['video-360', 'urbania-trivia', 'urbania-article'],
     className = null,
     onClickItem = null,
 }) {
     const intl = useIntl();
     const screensManager = useScreensManager();
     const screenDefinitions = screens || screensManager.getDefinitions();
-    const finalDefinitions = (screenDefinitions || []).filter((s) => s !== null);
+    const finalDefinitions = (screenDefinitions || [])
+        .filter((s) => s !== null)
+        .filter((s) => {
+            const { id = null } = s || {};
+            return legacyTypes === null || legacyTypes.indexOf(id) === -1;
+        });
     const groups = useMemo(() => {
         const groupItems = finalDefinitions.reduce((allGroups, definition) => {
             const { id, title, group = {} } = definition;

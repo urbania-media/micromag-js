@@ -11,13 +11,13 @@ Micromag is a React-based monorepo for building interactive story/magazine viewe
 
 ## Tech Stack
 
-- **UI:** React 18.3+ / 19+ (peer deps `^18.3.0 || ^19.0.0`), React Intl for i18n
+- **UI:** React 19.2+ (peer deps `^19.2.0`), React Intl for i18n
 - **Language:** TypeScript (interfaces for all component props; `unknown` used liberally — not strict mode)
 - **Bundler:** Rollup 4 (packages), Webpack 5 (Storybook, viewer-build)
 - **Transpiler:** Babel 7 with `@babel/preset-env` + `@babel/preset-react` + `@babel/preset-typescript`
 - **Styling:** CSS Modules with PostCSS (`postcss-nested` for nesting). **Zero SCSS/Sass files remain.**
 - **Bootstrap:** Pre-compiled Bootstrap 5.3 CSS loaded via `vendor.css`, with theme customization through two overlay files: `bootstrap-overrides.css` (`:root` CSS custom properties) and `bootstrap-patches.css` (component-level selector overrides)
-- **Animations:** React Spring 9, @use-gesture/react 10
+- **Animations:** React Spring 10, @use-gesture/react 10
 - **Rich text:** CKEditor 5
 - **Routing:** Wouter 3
 - **Monorepo tooling:** Lerna 8 + Nx 18
@@ -77,7 +77,6 @@ Individual packages build with `../../scripts/prepare-package.sh` which runs Rol
 
 ### ESLint
 
-- Extends: `airbnb`, `prettier`
 - Parser: `@babel/eslint-parser`
 - 4-space JSX indentation
 - No `console.log` (allow `warn`/`error`)
@@ -100,7 +99,7 @@ Individual packages build with `../../scripts/prepare-package.sh` which runs Rol
 
 ### Stylelint
 
-- Config: `sass-guidelines` + SMACSS property sort order
+- Config: `stylelint-config-standard` + idiomatic property sort order
 
 ### EditorConfig
 
@@ -289,12 +288,15 @@ All stories use the CSF Factories (CSF Next) format:
 
 ```tsx
 import preview from '#.storybook/preview';
+
 import MyComponent from '../MyComponent';
 
 const meta = preview.meta({
     title: 'Category/MyComponent',
     component: MyComponent,
-    parameters: { /* ... */ },
+    parameters: {
+        /* ... */
+    },
 });
 
 export const Default = meta.story((args) => <MyComponent {...args} />);
@@ -302,6 +304,7 @@ export const WithProps = meta.story((args) => <MyComponent {...args} someProp="v
 ```
 
 Key points:
+
 - Import preview from `#.storybook/preview` (subpath import, not relative path)
 - `preview.meta()` replaces `export default { ... }` meta objects
 - `meta.story((args) => ...)` replaces `export const X = (args) => ...` or `export const X = { render: ... }`
@@ -330,11 +333,13 @@ The `prepare-package.sh --types` flag generates `.d.ts` declaration files:
 **Packages that should NOT use `--types`:** `cli`, `recorder` (CLI tools that output to `bin/`, not libraries). `viewer-build` also doesn't need types.
 
 **Common types build errors:**
+
 - **"Config file must export an options object"** — usually means `es/*.js` glob found no files (package outputs elsewhere, e.g. `bin/`). Remove `--types` from that package.
 - **"Identifier X has already been declared"** — type import name collides with a component function name in the same file. Fix: alias the type import with `as XType`.
 - **"Could not resolve ./path/to/asset"** — a non-JS import (image, CSS) isn't being ignored. Ensure the extension is listed in `rollup.config.dts.js`'s `ignoreImport` and `external`.
 
 **Package.json types exports pattern:**
+
 ```json
 {
     "types": "es/index.d.ts",
@@ -346,6 +351,7 @@ The `prepare-package.sh --types` flag generates `.d.ts` declaration files:
     }
 }
 ```
+
 The `"types"` condition must come **before** `"import"` in exports (resolution order matters). For packages with sub-path exports (e.g., `@micromag/core`), each sub-path also gets a `"types"` condition pointing to the matching `.d.ts` file.
 
 ### Code Conventions
@@ -426,18 +432,6 @@ When Bootstrap's pre-compiled CSS doesn't match the project theme, add overrides
 - Component files named the same as types (e.g., `ConversationMessage.tsx` importing `ConversationMessage` type) cause Rollup "not exported" errors. Fix: alias with `as ConversationMessageType`.
 - Arrow function types need parentheses in unions: `string | ((...args: unknown[]) => void)`.
 - Files inside `packages/core/` must use relative `'../lib'` for type imports, not `'@micromag/core'` (circular dependency).
-
-### Modernization Status: COMPLETE ✅ (branch: `feature/refactor-claude`)
-
-All planned phases are done:
-
-- **Phase 1:** defaultProps removed (~430 files), peer deps ^18.3.0 || ^19.0.0
-- **Phase 2:** TypeScript — core types.ts (80+ interfaces), 358 .jsx → .tsx via codemod, all remaining .jsx → .tsx (41+89+15), all .js → .ts (504+ files)
-- **Phase 3:** 223 .module.scss → .module.css, theme.css, shared.module.css
-- **Phase 4:** Deprecated Babel plugins removed, `prop-types` fully removed (runtime validators deleted, dependency removed from all 68+ package.json files)
-- **Phase 5:** Sass/SCSS fully removed — pre-compiled Bootstrap CSS + CSS custom property overrides replace Sass compilation
-- **Storybook:** Upgraded v7 → v10.2.12, migrated all 89 story files to CSF Factories (CSF Next) format
-- **Bug fixes:** PlaybackControls infinite loop, FormsProvider children dropping, 10 commented-out import regressions, TextEditor useId(), missing CSS variables, Bootstrap patches completeness
 
 ### Available Codemods (in `scripts/codemods/` — historical, already applied)
 
