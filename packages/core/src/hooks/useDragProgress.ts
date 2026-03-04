@@ -1,4 +1,4 @@
-import { useSpring } from '@react-spring/core';
+import { useSpring, useSpringRef } from '@react-spring/core';
 import { useGesture } from '@use-gesture/react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
@@ -24,18 +24,18 @@ function useDragProgress({
     }
     const [dragging, setDragging] = useState(false);
     const [direction, setDirection] = useState(0);
-    const spring = useCallback(
-        () => ({
-            progress: wantedProgress,
-            immediate: dragging || disabled,
-            onResolve: () => {
-                setDirection(0);
-            },
-            ...springParams,
-        }),
-        [wantedProgress, disabled],
-    );
-    const [{ progress }, api] = useSpring(spring);
+
+    // In react-spring v10, useSpring(fn) without deps stores the initial update and
+    // re-applies it via ctrl.start() in a layout effect on EVERY render, resetting the
+    // spring to its initial value. To prevent this, we pass a dummy SpringRef as `ref`
+    // in the props — when ctrl.ref is set, the layout effect queues updates instead of
+    // starting them, so our imperative api.start() calls are not overridden.
+    const imperativeRef = useSpringRef();
+    const [{ progress }, api] = useSpring(() => ({
+        ref: imperativeRef,
+        from: { progress: wantedProgress },
+        ...springParams,
+    }));
     const onDrag = useCallback(
         (gestureState) => {
             const { active, tap } = gestureState;
@@ -71,6 +71,7 @@ function useDragProgress({
                           setDirection(0);
                       }
                     : () => {},
+                ...springParams,
             });
             if (onProgress !== null) {
                 onProgress(newProgress, gestureState);
@@ -96,13 +97,14 @@ function useDragProgress({
             refProgress.current = wantedProgress;
             api.start({
                 progress: wantedProgress,
-                immediate: false,
+                immediate: disabled,
                 onResolve: () => {
                     setDirection(0);
                 },
+                ...springParams,
             });
         }
-    }, [wantedProgress]);
+    }, [wantedProgress, disabled]);
 
     const transitioning = useMemo(
         () => wantedProgress !== progress.get() || progress.isAnimating || dragging,
