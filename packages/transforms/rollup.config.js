@@ -1,8 +1,12 @@
-import path from 'path';
+import path, { dirname } from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
+import { fileURLToPath } from 'url';
 
-import { createConfig } from '../../rollup.config';
+import { createConfig } from '../../rollup.config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const files = {
     'index.ts': {

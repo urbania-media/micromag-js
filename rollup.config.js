@@ -7,13 +7,16 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import url from '@rollup/plugin-url';
+import { createRequire } from 'module';
 import path from 'path';
 // import copy from 'rollup-plugin-copy';
 import postcss from 'rollup-plugin-postcss';
 
-import generateScopedName from './scripts/lib/generateScopedName';
+import generateScopedName from './scripts/lib/generateScopedName.js';
 
-import imageAssets from './scripts/rollup-image-assets';
+import imageAssets from './scripts/rollup-image-assets.js';
+
+const require = createRequire(import.meta.url);
 
 export const createConfig = ({
     file = 'index.ts',

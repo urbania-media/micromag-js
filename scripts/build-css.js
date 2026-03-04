@@ -2,7 +2,6 @@
 
 const path = require('path');
 const fs = require('fs');
-const mkdirp = require('mkdirp');
 const { program } = require('commander');
 const postcss = require('postcss');
 const atImport = require('postcss-import');
@@ -56,7 +55,7 @@ postcss([
         to: outFile,
     })
     .then((result) => {
-        mkdirp.sync(path.dirname(outFile));
+        fs.mkdirSync(path.dirname(outFile), { recursive: true });
         fs.writeFileSync(outFile, result.css);
         console.log(`Generated ${outFile}`);
     });

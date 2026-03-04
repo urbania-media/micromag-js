@@ -22,6 +22,17 @@ function getAbsolutePath(value) {
     return dirname(require.resolve(join(value, 'package.json')));
 }
 
+const stripSourceMapCommentPlugin = {
+    postcssPlugin: 'strip-source-map-comment',
+    Once(root) {
+        root.walkComments((comment) => {
+            if (/^#\s*sourceMappingURL=.*\.map\s*$/i.test(comment.text.trim())) {
+                comment.remove();
+            }
+        });
+    },
+};
+
 export default defineMain({
     stories: getPackagesPaths().map((packagePath) =>
         path.join(packagePath, './src/**/*.@(mdx|stories.@(tsx))'),
@@ -94,7 +105,23 @@ export default defineMain({
                     {
                         test: /\.css$/,
                         exclude: [/\.module\.css$/, /ckeditor5-[^/\\]+[/\\]theme[/\\]/],
-                        use: ['style-loader', 'css-loader'],
+                        use: [
+                            'style-loader',
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    importLoaders: 1,
+                                },
+                            },
+                            {
+                                loader: 'postcss-loader',
+                                options: {
+                                    postcssOptions: {
+                                        plugins: [stripSourceMapCommentPlugin],
+                                    },
+                                },
+                            },
+                        ],
                     },
                     {
                         oneOf: [

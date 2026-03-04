@@ -1,8 +1,11 @@
 import path from 'path';
 import { sync as syncGlob } from 'glob';
+import { createRequire } from 'module';
 import replace from '@rollup/plugin-replace';
-import { default as configs, createConfig } from '../../rollup.config';
-import { supportedLocales as locales } from './package.json';
+import { default as configs, createConfig } from '../../rollup.config.js';
+
+const require = createRequire(import.meta.url);
+const { supportedLocales: locales } = require('./package.json');
 
 const localesFiles = locales.reduce(
     (configs, locale) => [

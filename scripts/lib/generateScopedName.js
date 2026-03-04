@@ -1,17 +1,27 @@
-const pkgUp = require('pkg-up');
 const path = require('path');
 const fs = require('fs');
 const slugify = require('slugify');
 
-
+const findNearestPackageJson = (startDir) => {
+    let currentDir = startDir;
+    while (currentDir && currentDir !== path.dirname(currentDir)) {
+        const candidate = path.join(currentDir, 'package.json');
+        if (fs.existsSync(candidate)) {
+            return candidate;
+        }
+        currentDir = path.dirname(currentDir);
+    }
+    return null;
+};
 
 const generateScopedName = (localName, filePath) => {
     if (!filePath.match(/\.module\.css$/)) {
         return localName;
     }
-    const packageJsonPath = pkgUp.sync({
-        cwd: path.dirname(filePath),
-    });
+    const packageJsonPath = findNearestPackageJson(path.dirname(filePath));
+    if (!packageJsonPath) {
+        return localName;
+    }
     const packagePath = path.dirname(packageJsonPath);
     const { name: packageName } = require(packageJsonPath);
     const stylesPath = path.join(packagePath, 'src/styles');

@@ -1,6 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve';
 
-import { createConfig } from '../../rollup.config';
+import { createConfig } from '../../rollup.config.js';
 
 export default {
     input: 'src/cli.ts',

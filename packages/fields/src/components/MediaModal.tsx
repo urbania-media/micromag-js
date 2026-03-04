@@ -32,19 +32,18 @@ function MediaModal({
     title = null,
     value = null,
     type = null,
-
     noValueLabel = (
         <FormattedMessage
             defaultMessage="Select a media..."
             description="Label when no value is provided to Media field"
         />
     ),
-
     isHorizontal = false,
     isForm = false,
     onChange = null,
     onRequestClose = null,
     multiple = false,
+    autoClose = true,
     thumbnail = null,
     thumbnailPath = 'thumbnail_url',
     className = null,
@@ -81,14 +80,11 @@ function MediaModal({
         if (title) {
             return title;
         }
-
         switch (type) {
             case 'video':
                 return <FormattedMessage defaultMessage="Select Video" description="Modal title" />;
-
             case 'image':
                 return <FormattedMessage defaultMessage="Select Image" description="Modal title" />;
-
             case 'audio':
                 return (
                     <FormattedMessage
@@ -96,17 +92,14 @@ function MediaModal({
                         description="Modal title"
                     />
                 );
-
             case 'font':
                 return (
                     <FormattedMessage defaultMessage="Select Font File" description="Modal title" />
                 );
-
             case 'document':
                 return (
                     <FormattedMessage defaultMessage="Select Document" description="Modal title" />
                 );
-
             case 'subtitle':
                 return (
                     <FormattedMessage
@@ -114,7 +107,6 @@ function MediaModal({
                         description="Modal title"
                     />
                 );
-
             default:
                 return <FormattedMessage defaultMessage="Choose media" description="Modal title" />;
         }
@@ -146,13 +138,19 @@ function MediaModal({
             onChange(media);
         }
         onClose();
-    }, [media, onClose]);
+    }, [media, onChange, onClose]);
 
     const onChangeMedia = useCallback(
         (newMedia = null) => {
             setMedia(newMedia);
+            if (newMedia !== null && !multiple && autoClose) {
+                if (onChange !== null) {
+                    onChange(newMedia);
+                }
+                onClose();
+            }
         },
-        [value, onChange, onClose],
+        [value, setMedia, multiple, autoClose, onChange, onClose],
     );
 
     const onClearMedia = useCallback(() => {
@@ -160,7 +158,7 @@ function MediaModal({
             onChange(null);
             setMedia(null);
         }
-    }, [value, onChange, onClose, setMedia]);
+    }, [value, onChange, setMedia]);
 
     return (
         <>
@@ -253,19 +251,21 @@ function MediaModal({
                                           theme: 'secondary',
                                           onClick: onClose,
                                       },
-                                      {
-                                          id: 'confirm',
-                                          name: 'confirm',
-                                          label: (
-                                              <FormattedMessage
-                                                  defaultMessage="Confirm selection"
-                                                  description="Button label"
-                                              />
-                                          ),
-                                          theme: 'primary',
-                                          onClick: onConfirmSelection,
-                                      },
-                                  ]
+                                      multiple || !autoClose
+                                          ? {
+                                                id: 'confirm',
+                                                name: 'confirm',
+                                                label: (
+                                                    <FormattedMessage
+                                                        defaultMessage="Confirm selection"
+                                                        description="Button label"
+                                                    />
+                                                ),
+                                                theme: 'primary',
+                                                onClick: onConfirmSelection,
+                                            }
+                                          : null,
+                                  ].filter((b) => b !== null)
                                 : null
                         }
                     >
