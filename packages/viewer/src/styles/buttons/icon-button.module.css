@@ -1,17 +1,17 @@
 .container {
-    display: inline-block;
     position: relative;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: inherit;
-    font-family: inherit;
-    cursor: pointer;
-    appearance: none;
+    display: inline-block;
     display: flex;
     align-items: center;
-    transform-origin: 0 50%;
+    padding: 0;
+    border: 0;
     border-radius: 0;
+    appearance: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    transform-origin: 0 50%;
 
     .label {
         opacity: 0.75;
@@ -25,8 +25,8 @@
             }
 
             .label {
-                transition: opacity 0.3s var(--mm-ease-in-yo);
                 opacity: 1;
+                transition: opacity 0.3s var(--mm-ease-in-yo);
             }
         }
     }

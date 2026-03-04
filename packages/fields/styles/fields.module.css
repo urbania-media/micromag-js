@@ -35,8 +35,8 @@
         }
 
         .field {
-            margin-bottom: 0;
             border-top: solid 1px var(--mm-border-color);
+            margin-bottom: 0;
 
             &:last-child {
                 margin-bottom: 0;

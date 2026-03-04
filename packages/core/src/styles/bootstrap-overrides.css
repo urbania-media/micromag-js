@@ -54,8 +54,8 @@
     --bs-body-line-height: 1.4;
 
     /* Typography */
-    --bs-font-sans-serif: 'Libre Franklin', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-        'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    --bs-font-sans-serif: 'Libre Franklin', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto,
+        'Helvetica Neue', arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 
     /* Links */
@@ -69,21 +69,21 @@
     --bs-emphasis-color-rgb: 255, 255, 255;
 
     /* Secondary/tertiary colors for dark theme */
-    --bs-secondary-color: rgba(245, 245, 245, 0.75);
+    --bs-secondary-color: rgb(245 245 245 / 0.75);
     --bs-secondary-color-rgb: 245, 245, 245;
     --bs-secondary-bg: #343434;
     --bs-secondary-bg-rgb: 52, 52, 52;
-    --bs-tertiary-color: rgba(245, 245, 245, 0.5);
+    --bs-tertiary-color: rgb(245 245 245 / 0.5);
     --bs-tertiary-color-rgb: 245, 245, 245;
     --bs-tertiary-bg: #2b2b2b;
     --bs-tertiary-bg-rgb: 43, 43, 43;
 
     /* Border */
-    --bs-border-color: rgba(255, 255, 255, 0.13);
-    --bs-border-color-translucent: rgba(255, 255, 255, 0.13);
+    --bs-border-color: rgb(255 255 255 / 0.13);
+    --bs-border-color-translucent: rgb(255 255 255 / 0.13);
 
     /* Focus ring - purple primary */
-    --bs-focus-ring-color: rgba(161, 61, 255, 0.25);
+    --bs-focus-ring-color: rgb(161 61 255 / 0.25);
 
     /* Text-emphasis variations */
     --bs-primary-text-emphasis: #c98aff;

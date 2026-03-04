@@ -5,8 +5,8 @@
 }
 
 .inner {
-    transition: opacity 0.3s var(--mm-ease-in-out-soft-sine);
     background-color: var(--mm-gray-800);
+    transition: opacity 0.3s var(--mm-ease-in-out-soft-sine);
 }
 
 .navigationHint {

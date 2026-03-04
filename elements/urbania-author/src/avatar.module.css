@@ -1,7 +1,7 @@
 .container {
-    display: inline-block;
     position: relative;
     z-index: 1;
+    display: inline-block;
     width: 100%;
 
     &.shapeCircle {
@@ -19,9 +19,9 @@
         height: 0;
         padding-bottom: 100%;
         background-color: #fff;
-        background-repeat: no-repeat;
         background-position: center center;
+        background-repeat: no-repeat;
         background-size: cover;
-        box-shadow: 0 0 4px rgba(0,0,0,0.2);
+        box-shadow: 0 0 4px rgb(0 0 0 / 0.2);
     }
 }

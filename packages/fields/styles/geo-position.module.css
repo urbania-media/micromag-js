@@ -10,10 +10,10 @@
 
     .map {
         position: relative;
-        height: 200px;
-        margin-bottom: 5px;
         overflow: hidden;
-        border-radius: 4px;        
+        height: 200px;
+        border-radius: 4px;
+        margin-bottom: 5px;        
     }
 
     .pin {

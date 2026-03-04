@@ -3,19 +3,17 @@
     overflow: hidden;
 
     .img {
-        display: block;
         position: relative;
+        display: block;
         pointer-events: none;
         user-select: none;
     }
 
     .showEmpty {
-        margin: 5px auto;
-        border: dashed 2px var(--mm-gray-800);
-        color: var(--mm-gray-800);
         width: 300px;
         height: 200px;
         border: dashed 2px var(--mm-gray-800);
+        margin: 5px auto;
         color: var(--mm-gray-800);
     }
 }

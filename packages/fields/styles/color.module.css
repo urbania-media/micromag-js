@@ -2,6 +2,7 @@
 
 .preview {
     @include background-grid(4px, var(--mm-gray-300));
+
     display: block;
     border: solid 1px var(--mm-black);
 
@@ -25,12 +26,12 @@
                 > div {
                     &:first-child > div {
                         margin: 0 1px;
-                        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
+                        box-shadow: 0 0 0 1px rgb(255 255 255 / 0.25);
                     }
 
                     &:last-child {
                         margin-right: 1px;
-                        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
+                        box-shadow: 0 0 0 1px rgb(255 255 255 / 0.25);
                     }
                 }
             }

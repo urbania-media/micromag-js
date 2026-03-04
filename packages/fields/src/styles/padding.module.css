@@ -2,6 +2,7 @@
 
 .preview {
     @include background-grid(4px, var(--mm-gray-300));
+
     display: block;
     border: solid 1px var(--mm-black);
 

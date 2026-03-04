@@ -2,15 +2,15 @@
     position: relative;
 
     .items {
-        display: flex;
         position: relative;
-        align-items: stretch;
+        display: flex;
         height: 100%;
+        align-items: stretch;
     }
 
     .cross {
-        display: flex;
         position: relative;
+        display: flex;
     }
 
     .axis {

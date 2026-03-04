@@ -1,22 +1,22 @@
 /* stylelint-disable max-nesting-depth */
 @keyframes appear {
     from {
-        transform: scale(0);
         opacity: 1;
+        transform: scale(0);
     }
 
     to {
-        transform: scale(1);
         opacity: 1;
+        transform: scale(1);
     }
 }
 
 .container {
     position: relative;
     z-index: 100;
-    transition: opacity 0.3s ease;
     opacity: 1;
     text-align: center;
+    transition: opacity 0.3s ease;
 
     .arrow {
         display: block;
@@ -26,12 +26,12 @@
 
     .button {
         display: block;
-        margin: 0 auto;
         padding: 5px 10px;
-        background-color: rgba(0, 0, 0, 0);
-        user-select: none;
+        margin: 0 auto;
+        background-color: rgb(0 0 0 / 0);
         touch-action: none;
         -webkit-user-drag: none;
+        user-select: none;
 
         &.withoutLinkStyle {
             text-decoration: none;
@@ -71,10 +71,10 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        transform: scale(0);
         animation: appear 0.5s ease both;
-        opacity: 0;
         background-color: #fff;
+        opacity: 0;
+        transform: scale(0);
     }
 
     &.animationDisabled {

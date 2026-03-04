@@ -5,25 +5,25 @@
 }
 
 .button {
-    display: inline-block;
     position: relative;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: inherit;
-    font-family: inherit;
-    cursor: pointer;
-    appearance: none;
+    display: inline-block;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transform-origin: 0 50%;
-    transition: transform 0.3s var(--mm-ease-out-ramp);
+    padding: 0;
+    border: 0;
+    appearance: none;
+    background: transparent;
     background-color: transparent;
+    color: inherit;
     color: var(--mm-white);
+    cursor: pointer;
+    font-family: inherit;
     font-size: 1rem;
     font-weight: 400;
     text-decoration: none;
+    transform-origin: 0 50%;
+    transition: transform 0.3s var(--mm-ease-out-ramp);
 
     @media (hover: hover) {
         &:hover {
@@ -51,8 +51,8 @@
 
 /* @note there is repetition from the styles used in Button & IconButton from the Viewer package */
 .icon {
-    display: block;
     position: relative;
+    display: block;
     flex-shrink: 0;
 }
 
@@ -72,12 +72,12 @@
     flex-grow: 1;
     align-items: center;
     justify-content: center;
+    padding: 0.25rem;
     margin-right: 0.25em;
     margin-left: 0.25em;
-    padding: 0.25rem;
-    transform-origin: center;
     font-size: inherit;
     line-height: 1;
+    transform-origin: center;
 }
 
 .labelText {

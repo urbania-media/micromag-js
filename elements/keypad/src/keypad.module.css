@@ -1,7 +1,7 @@
 .inner {
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .slot {

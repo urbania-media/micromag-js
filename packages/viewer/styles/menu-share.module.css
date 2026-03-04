@@ -1,6 +1,6 @@
 .container {
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
     touch-action: none;
 
@@ -13,9 +13,9 @@
 
 .content {
     position: relative;
-    flex-grow: 1;
     height: 100%;
     max-height: 100%;
+    flex-grow: 1;
 }
 
 .scroll {
@@ -27,23 +27,23 @@
 }
 
 .inner {
-    display: flex;
     position: relative;
-    flex-direction: column;
+    display: flex;
     max-width: 500px;
-    margin: 0 auto;
+    flex-direction: column;
     padding: 10px;
+    margin: 0 auto;
 }
 
 .organisation {
-    flex-shrink: 0;
     width: 30px;
     height: 30px;
-    margin-right: 10px;
+    flex-shrink: 0;
     border-radius: 50%;
+    margin-right: 10px;
     background-color: #fff;
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: contain;
 }
 
@@ -55,10 +55,10 @@
 
 .header {
     max-width: 600px;
-    margin: 0.5rem 0;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.15);
+    margin: 0.5rem 0;
+    background-color: rgb(0 0 0 / 0.15);
 }
 
 .mode {
@@ -75,12 +75,12 @@
     input {
         width: 1rem;
         height: 1rem;
-        margin-right: 0.5rem;
-        transition: transform 0.3s var(--mm-ease-out-ramp);
-        animation: bump 0.5s 1 var(--mm-ease-in-out-sine) alternate-reverse forwards;
         border: 2px solid var(--mm-white);
         border-radius: 4px;
+        margin-right: 0.5rem;
+        animation: bump 0.5s 1 var(--mm-ease-in-out-sine) alternate-reverse forwards;
         appearance: none;
+        transition: transform 0.3s var(--mm-ease-out-ramp);
 
         &:active {
             transform: scale(1.3);

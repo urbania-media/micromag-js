@@ -1,12 +1,12 @@
 .container {
+    display: grid;
+    border: 1px solid var(--mm-gray-500);
+    grid-template-columns: 1fr 1fr 1fr;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
     display: none;
     }
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    border: 1px solid var(--mm-gray-500);
 
     .button {
         border: 0;

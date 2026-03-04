@@ -27,8 +27,8 @@
     height: 40px;
 
     .path {
+        color: currentcolor;
         stroke-linecap: round;
-        color: currentColor;
     }
 
     &.animated {

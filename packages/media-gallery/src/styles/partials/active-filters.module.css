@@ -13,8 +13,8 @@
 
     .resetButton {
         margin-left: 5px;
-        outline: none;
         font-size: var(--mm-font-size-sm);
+        outline: none;
     }
 
     .activeTag {

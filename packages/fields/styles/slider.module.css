@@ -26,40 +26,40 @@
             position: relative;
             width: 100%;
             height: 14px;
+            box-sizing: border-box;
             padding: 5px 0;
             border-radius: 6px;
+            -webkit-tap-highlight-color: rgb(0 0 0 / 0);
             touch-action: none;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
 
         .rc-slider * {
             box-sizing: border-box;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-highlight-color: rgb(0 0 0 / 0);
         }
 
         .rc-slider-rail {
             position: absolute;
             width: 100%;
             height: 4px;
-            background-color: #e9e9e9;
             border-radius: 6px;
+            background-color: #e9e9e9;
         }
 
         .rc-slider-track,
         .rc-slider-tracks {
             position: absolute;
             height: 4px;
-            background-color: #abe2fb;
             border-radius: 6px;
+            background-color: #abe2fb;
         }
 
         .rc-slider-track-draggable {
             z-index: 1;
             box-sizing: content-box;
+            border-top: 5px solid rgb(0 0 0 / 0);
+            border-bottom: 5px solid rgb(0 0 0 / 0);
             background-clip: content-box;
-            border-top: 5px solid rgba(0, 0, 0, 0);
-            border-bottom: 5px solid rgba(0, 0, 0, 0);
             transform: translateY(-5px);
         }
 
@@ -68,12 +68,12 @@
             z-index: 1;
             width: 14px;
             height: 14px;
-            margin-top: -5px;
-            background-color: #fff;
             border: solid 2px #96dbfa;
             border-radius: 50%;
+            margin-top: -5px;
+            background-color: #fff;
             cursor: pointer;
-            cursor: -webkit-grab;
+            cursor: grab;
             cursor: grab;
             opacity: 0.8;
             touch-action: pan-x;
@@ -85,8 +85,8 @@
         }
 
         .rc-slider-handle:focus {
-            outline: none;
             box-shadow: none;
+            outline: none;
         }
 
         .rc-slider-handle:focus-visible {
@@ -106,7 +106,6 @@
         .rc-slider-handle:active {
             border-color: #57c5f7;
             box-shadow: 0 0 5px #57c5f7;
-            cursor: -webkit-grabbing;
             cursor: grabbing;
         }
 
@@ -122,9 +121,9 @@
             position: absolute;
             display: inline-block;
             color: #999;
+            cursor: pointer;
             text-align: center;
             vertical-align: middle;
-            cursor: pointer;
         }
 
         .rc-slider-mark-text-active {
@@ -143,11 +142,11 @@
             bottom: -2px;
             width: 8px;
             height: 8px;
-            vertical-align: middle;
-            background-color: #fff;
             border: 2px solid #e9e9e9;
             border-radius: 50%;
+            background-color: #fff;
             cursor: pointer;
+            vertical-align: middle;
         }
 
         .rc-slider-dot-active {
@@ -168,8 +167,8 @@
 
         .rc-slider-disabled .rc-slider-handle,
         .rc-slider-disabled .rc-slider-dot {
-            background-color: #fff;
             border-color: #ccc;
+            background-color: #fff;
             box-shadow: none;
             cursor: not-allowed;
         }
@@ -198,9 +197,9 @@
 
         .rc-slider-vertical .rc-slider-track-draggable {
             border-top: 0;
+            border-right: 5px solid rgb(0 0 0 / 0);
             border-bottom: 0;
-            border-right: 5px solid rgba(0, 0, 0, 0);
-            border-left: 5px solid rgba(0, 0, 0, 0);
+            border-left: 5px solid rgb(0 0 0 / 0);
             transform: translateX(-5px);
         }
 
@@ -255,8 +254,8 @@
 
         .rc-slider-tooltip-zoom-down-enter,
         .rc-slider-tooltip-zoom-down-appear {
-            transform: scale(0, 0);
             animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+            transform: scale(0, 0);
         }
 
         .rc-slider-tooltip-zoom-down-leave {
@@ -265,9 +264,9 @@
 
         @keyframes rcSliderTooltipZoomDownIn {
             0% {
+                opacity: 0;
                 transform: scale(0, 0);
                 transform-origin: 50% 100%;
-                opacity: 0;
             }
 
             100% {
@@ -283,9 +282,9 @@
             }
 
             100% {
+                opacity: 0;
                 transform: scale(0, 0);
                 transform-origin: 50% 100%;
-                opacity: 0;
             }
         }
 
@@ -293,14 +292,14 @@
             position: absolute;
             top: -9999px;
             left: -9999px;
-            visibility: visible;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-highlight-color: rgb(0 0 0 / 0);
+            visibility: visible;
         }
 
         .rc-slider-tooltip * {
             box-sizing: border-box;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-highlight-color: rgb(0 0 0 / 0);
         }
 
         .rc-slider-tooltip-hidden {
@@ -308,37 +307,37 @@
         }
 
         .rc-slider-tooltip-placement-top {
-            padding: 4px 0 8px 0;
+            padding: 4px 0 8px;
         }
 
         .rc-slider-tooltip-inner {
             min-width: 24px;
             height: 24px;
             padding: 6px 2px;
+            border-radius: 6px;
+            background-color: #6c6c6c;
+            box-shadow: 0 0 4px #d9d9d9;
             color: #fff;
             font-size: 12px;
             line-height: 1;
             text-align: center;
             text-decoration: none;
-            background-color: #6c6c6c;
-            border-radius: 6px;
-            box-shadow: 0 0 4px #d9d9d9;
         }
 
         .rc-slider-tooltip-arrow {
             position: absolute;
             width: 0;
             height: 0;
-            border-color: transparent;
             border-style: solid;
+            border-color: transparent;
         }
 
         .rc-slider-tooltip-placement-top .rc-slider-tooltip-arrow {
             bottom: 4px;
             left: 50%;
-            margin-left: -4px;
             border-width: 4px 4px 0;
             border-top-color: #6c6c6c;
+            margin-left: -4px;
         }
     }
 }

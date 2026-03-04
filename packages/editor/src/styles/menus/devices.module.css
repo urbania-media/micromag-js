@@ -1,6 +1,6 @@
 .container {
-    display: inline-block;
     position: relative;
+    display: inline-block;
 
     .button {
         display: block;

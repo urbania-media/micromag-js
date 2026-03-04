@@ -30,38 +30,38 @@
         }
     }
 
-    @media screen and (min-width: 768px) {
+    @media screen and (width >= 768px) {
         width: 50vw !important;
     }
 }
 
 .dialogBody {
     > div {
-        height: 50vh;
         overflow: hidden;
+        height: 50vh;
         overflow-y: scroll;
     }
 }
 
 .previewButton {
-    display: inline-block;
     position: relative;
+    display: inline-block;
+    width: 100%;
     padding: 0;
     border: 0;
-    background: transparent;
-    color: inherit;
-    font-family: inherit;
-    cursor: pointer;
     appearance: none;
-    width: 100%;
+    background: transparent;
     background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .preview {
-    height: calc(1.4em + 1rem);
     overflow: hidden;
-    border-bottom: 0.4em solid var(--mm-input-bg);
+    height: calc(1.4em + 1rem);
     border-radius: var(--mm-input-border-radius);
+    border-bottom: 0.4em solid var(--mm-input-bg);
     pointer-events: none;
 }
 
@@ -76,8 +76,8 @@
 
                     &.ck-focused {
                         border: 0;
-                        outline: none;
                         box-shadow: none;
+                        outline: none;
                     }
                 }
             }

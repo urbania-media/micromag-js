@@ -5,7 +5,7 @@
 }
 
 .dialog {
-    @media screen and (min-width: 768px) {
+    @media screen and (width >= 768px) {
         width: 1200px !important;
         max-width: 90vw !important;
     }
@@ -22,23 +22,23 @@
     padding-top: 0 !important;
 
     > div {
-        min-height: 75vh;
         overflow: hidden;
+        min-height: 75vh;
         overflow-y: scroll;
     }
 }
 
 .previewButton {
-    display: inline-block;
     position: relative;
+    display: inline-block;
     padding: 0;
     border: 0;
-    background: transparent;
-    color: inherit;
-    font-family: inherit;
-    cursor: pointer;
     appearance: none;
+    background: transparent;
     background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
 
     &.shaded {
         border-radius: 4px;
@@ -51,28 +51,25 @@
 }
 
 .clearButton {
-    display: inline-block;
-    position: relative;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: inherit;
-    font-family: inherit;
-    cursor: pointer;
-    appearance: none;
-    display: flex;
-
     position: relative;
     z-index: 1;
-    align-items: center;
-    justify-content: center;
-
+    display: inline-block;
+    display: flex;
     width: 18px;
     height: 18px;
-    margin-left: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
     padding: 0 10px;
+    border: 0;
     border-radius: 4px;
+    margin-left: 10px;
+    appearance: none;
+    background: transparent;
     background-color: var(--mm-gray-700);
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
 
     svg {
         display: block;
@@ -80,9 +77,9 @@
 }
 
 .preview {
-    height: calc(1.4em + 1rem);
     overflow: hidden;
-    border-bottom: 0.4em solid var(--mm-input-bg);
+    height: calc(1.4em + 1rem);
     border-radius: var(--mm-input-border-radius);
+    border-bottom: 0.4em solid var(--mm-input-bg);
     pointer-events: none;
 }

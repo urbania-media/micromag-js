@@ -3,8 +3,8 @@
 
     > .inner {
         display: flex;
-        flex-direction: column;
         height: 100%;
+        flex-direction: column;
     }
 
     .top {
@@ -15,22 +15,22 @@
 
     .bottom {
         display: flex;
-        flex-direction: column;
-        flex-grow: 1;
+        overflow: hidden;
         width: 100%;
         max-width: 100%;
+        flex-direction: column;
+        flex-grow: 1;
         padding: 0;
-        overflow: hidden;
 
         > .inner {
             display: flex;
+            overflow: hidden;
+            width: 100%;
             flex-direction: column;
             flex-grow: 1;
             align-items: center;
             justify-content: center;
-            width: 100%;
             margin: 0 auto;
-            overflow: hidden;
         }
     }
 
@@ -46,6 +46,7 @@
         height: 100%;
     }
 
+    /* stylelint-disable-next-line block-no-empty */
     .deviceMenu {
     }
 
@@ -72,10 +73,11 @@
     }
 }
 
-@media screen and (min-width: 540px) {
+@media screen and (width >= 540px) {
     .container {
         .top {
             display: block;
+
             /* justify-content: center; */
             width: 100%;
             overflow-x: auto;

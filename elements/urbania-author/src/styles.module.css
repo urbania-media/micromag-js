@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     color: #222;
-    font-family: 'Agrandir';
+    font-family: Agrandir, sans-serif;
     vertical-align: center;
 
     .image {
@@ -30,7 +30,7 @@
     .prefix,
     .collaborator {
         background-color: #efefef; /* var(--mm-gray-200); */
-        font-family: 'Agrandir';
+        font-family: Agrandir, sans-serif;
         font-size: 10px;
         letter-spacing: 0.04em;
         line-height: 1;
@@ -38,10 +38,10 @@
     }
 
     .name {
-        margin-left: -7px;
         padding: 6px 8px 3px 13px;
-        border-top-right-radius: 40px;
+        margin-left: -7px;
         border-bottom-right-radius: 40px;
+        border-top-right-radius: 40px;
         font-weight: 700;
         line-height: 1;
         text-transform: uppercase;
@@ -76,10 +76,10 @@
     }
 
     .prefix {
-        margin-right: -5px;
         padding: 6px 12px 3px 8px;
-        border-top-left-radius: 40px;
+        margin-right: -5px;
         border-bottom-left-radius: 40px;
+        border-top-left-radius: 40px;
     }
 
     &.isSmall {
@@ -98,13 +98,13 @@
 
     &.withoutImage {
         .name {
-            margin-left: 0;
             padding-left: 0;
+            margin-left: 0;
         }
 
         .prefix {
-            margin-right: 0;
             padding-right: 0.4em;
+            margin-right: 0;
         }
     }
 

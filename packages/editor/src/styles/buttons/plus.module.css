@@ -1,14 +1,13 @@
 .container {
-    display: inline-block;
     position: relative;
+    display: inline-block;
     padding: 0;
     border: 0;
+    appearance: none;
     background: transparent;
     color: inherit;
-    font-family: inherit;
     cursor: pointer;
-    appearance: none;
-    display: inline-block;
+    font-family: inherit;
 
     .icon {
         width: 100%;

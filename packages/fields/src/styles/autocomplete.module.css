@@ -1,15 +1,12 @@
 .container {
-    .input {
-    }
-
     .list {
         position: absolute;
         z-index: 1;
         width: 300px;
         max-height: 150px;
         margin-top: 5px;
-        overflow-y: scroll;
         background-color: var(--mm-light);
+        overflow-y: scroll;
     }
 
     .item {

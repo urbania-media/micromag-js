@@ -1,14 +1,14 @@
 .container {
     padding: 10px;
-    text-align: center;
     mix-blend-mode: difference;
+    text-align: center;
 
     .icon {
         width: 25px;
         height: auto;
         margin: auto;
         margin-top: 3px;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgb(255 255 255 / 0.6);
     }
 
     .message {

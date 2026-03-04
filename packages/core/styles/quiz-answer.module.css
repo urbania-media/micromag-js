@@ -9,9 +9,9 @@
 
     .answer {
         width: 12px;
-        margin-right: 6px;
         padding: 0 1px;
-        color: rgba(255, 255, 255, 0.6);
+        margin-right: 6px;
+        color: rgb(255 255 255 / 0.6);
     }
 
     .answerIcon {

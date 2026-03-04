@@ -2,8 +2,8 @@
     padding: 2px;
 
     &.outline {
+        border: 2px solid rgb(255 255 255 / 0.6);
         margin: 2px 0;
-        border: 2px solid rgba(255, 255, 255, 0.6);
     }
 
     &.withInvertedColors {
@@ -12,15 +12,15 @@
 }
 
 .box {
-    display: flex;
     position: relative;
+    display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    background-color: currentColor;
+    background-color: currentcolor;
 
     .withInvertedColors & {
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgb(255 255 255 / 0.6);
     }
 
     .outline & {

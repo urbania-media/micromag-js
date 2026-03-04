@@ -1,5 +1,5 @@
 .container {
     .browser {
-        --bs-input-color: hsla(0, 0%, 100%, 0.07) !important;
+        --bs-input-color: hsl(0deg 0% 100% / 0.07) !important;
     }
 }

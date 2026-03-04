@@ -9,12 +9,10 @@
 
     .emptyTitle,
     .emptyDescription {
-        margin: 5px auto;
-        border: dashed 2px var(--mm-gray-800);
-        color: var(--mm-gray-800);
         width: 100%;
-        margin: 0 auto;
-        margin-bottom: 10px;
+        border: dashed 2px var(--mm-gray-800);
+        margin: 0 auto 10px;
+        color: var(--mm-gray-800);
     }
 
     .emptyTitle {

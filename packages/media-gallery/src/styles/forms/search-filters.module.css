@@ -3,21 +3,21 @@
     z-index: 1;
     right: 0;
     left: 0;
+    overflow: hidden;
     width: 100%;
     padding: 0 10px;
-    overflow: hidden;
 
     .closeBtn {
-        display: flex;
         position: absolute;
         top: 0;
         right: 10px;
-        align-items: center;
-        justify-content: center;
+        display: flex;
         width: 24px;
         height: 24px;
-        transition: opacity 0.15s ease-out;
+        align-items: center;
+        justify-content: center;
         border: 0 !important;
+        transition: opacity 0.15s ease-out;
 
         &:hover {
             opacity: 0.8;

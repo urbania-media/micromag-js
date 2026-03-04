@@ -1,9 +1,9 @@
 .container {
     position: relative;
     overflow: hidden;
-    transition: border 0.15s ease-out;
     border: 1px solid var(--mm-gray-800);
     cursor: pointer;
+    transition: border 0.15s ease-out;
 
     &:hover {
         border: 1px solid var(--mm-gray-600);
@@ -28,8 +28,8 @@
         height: 0;
         padding-bottom: 100%;
         background-color: var(--mm-black);
-        background-repeat: no-repeat;
         background-position: center;
+        background-repeat: no-repeat;
         background-size: contain;
     }
 
@@ -45,10 +45,10 @@
         align-items: center;
         border: 0;
         border-top: 1px solid var(--mm-gray-800);
+        appearance: none;
         background: transparent;
         color: inherit;
         text-align: inherit;
-        appearance: none;
 
         .label {
             flex-grow: 1;
@@ -64,9 +64,9 @@
         position: absolute;
         top: 0;
         padding: calc(var(--mm-spacer) / 2);
-        transition: opacity 0.15s ease-out;
         color: var(--mm-white);
         filter: drop-shadow(0 0 0.75rem var(--mm-black));
+        transition: opacity 0.15s ease-out;
 
         .icon {
             width: 1rem;

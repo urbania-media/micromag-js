@@ -27,17 +27,17 @@
     --mm-gray-900: #2b2b2b;
 
     /* Typography */
-    --mm-font-family-sans-serif: 'Libre Franklin', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-        Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    --mm-font-family-sans-serif: 'Libre Franklin', -apple-system, blinkmacsystemfont, 'Segoe UI',
+        roboto, 'Helvetica Neue', arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
         'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --mm-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    --mm-font-family-monospace: sfmono-regular, menlo, monaco, consolas, 'Liberation Mono',
         'Courier New', monospace;
     --mm-font-weight-normal: 400;
     --mm-font-weight-bold: 600;
     --mm-font-size-sm: 0.875rem;
 
     /* Input/Form variables */
-    --mm-input-bg: hsla(0, 0%, 100%, 0.07);
+    --mm-input-bg: hsl(0deg 0% 100% / 0.07);
     --mm-input-color: var(--mm-white);
     --mm-input-border-width: 0;
     --mm-input-border-color: transparent;
@@ -54,7 +54,7 @@
     --mm-input-btn-padding-x: 0.75rem;
     --mm-input-btn-padding-x-sm: 0.75rem;
     --mm-input-btn-padding-x-lg: 1.3rem;
-    --mm-input-btn-focus-color: rgba(161, 61, 255, 0.4);
+    --mm-input-btn-focus-color: rgb(161 61 255 / 0.4);
 
     /* Body */
     --mm-body-bg: var(--mm-black);
@@ -79,6 +79,6 @@
     --mm-ease-in-bump: cubic-bezier(0.4, 1.69, 0, 1);
 
     /* Pre-computed rgba values used in component styles */
-    --mm-white-60: rgba(255, 255, 255, 0.6);
-    --mm-black-50: rgba(28, 28, 28, 0.5);
+    --mm-white-60: rgb(255 255 255 / 0.6);
+    --mm-black-50: rgb(28 28 28 / 0.5);
 }

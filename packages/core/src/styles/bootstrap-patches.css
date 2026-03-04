@@ -9,15 +9,15 @@
 /* ===== Forms ===== */
 
 .form-control {
-    background-color: hsla(0, 0%, 100%, 0.07);
     border-width: 0;
+    background-color: hsl(0deg 0% 100% / 0.07);
     color: #fff;
 }
 
 .form-control:focus {
-    background-color: hsla(0, 0%, 100%, 0.07);
     border-color: #c98aff;
-    box-shadow: 0 0 0 0.25rem rgba(161, 61, 255, 0.25);
+    background-color: hsl(0deg 0% 100% / 0.07);
+    box-shadow: 0 0 0 0.25rem rgb(161 61 255 / 0.25);
     color: #fff;
 }
 
@@ -26,50 +26,46 @@
 }
 
 .form-control:disabled {
-    background-color: rgba(255, 255, 255, 0.04);
+    background-color: rgb(255 255 255 / 0.04);
 }
 
 .form-select {
-    background-color: hsla(0, 0%, 100%, 0.07);
     border-width: 0;
+    background-color: hsl(0deg 0% 100% / 0.07);
     color: #fff;
 }
 
 .form-select:focus {
     border-color: #c98aff;
-    box-shadow: 0 0 0 0.25rem rgba(161, 61, 255, 0.25);
+    box-shadow: 0 0 0 0.25rem rgb(161 61 255 / 0.25);
 }
 
 .form-check-input:checked {
-    background-color: #a13dff;
     border-color: #a13dff;
+    background-color: #a13dff;
 }
 
 .form-check-input:focus {
     border-color: #c98aff;
-    box-shadow: 0 0 0 0.25rem rgba(161, 61, 255, 0.25);
+    box-shadow: 0 0 0 0.25rem rgb(161 61 255 / 0.25);
 }
 
 .input-group-text {
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: rgb(255 255 255 / 0.12);
 }
 
 /* Custom controls (legacy compat) */
 .form-check-input {
-    background-color: #e9e9e9;
     border-width: 1px;
     border-color: #e9e9e9;
-}
-
-/* Input padding */
-.btn {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    background-color: #e9e9e9;
 }
 
 /* ===== Buttons ===== */
 
 .btn {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     font-weight: 600;
 }
 
@@ -87,7 +83,7 @@
     --bs-btn-active-color: #fff;
     --bs-btn-active-bg: #511f80;
     --bs-btn-active-border-color: #4b1d77;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-active-shadow: inset 0 3px 5px rgb(0 0 0 / 0.125);
     --bs-btn-disabled-bg: #a13dff;
     --bs-btn-disabled-border-color: #a13dff;
 }
@@ -169,10 +165,10 @@
     --bs-btn-color: #1c1c1c;
     --bs-btn-hover-color: #1c1c1c;
     --bs-btn-hover-bg: #d9d9d9;
-    --bs-btn-hover-border-color: #cccccc;
+    --bs-btn-hover-border-color: #ccc;
     --bs-btn-focus-shadow-rgb: 255, 255, 255;
     --bs-btn-active-color: #1c1c1c;
-    --bs-btn-active-bg: #cccccc;
+    --bs-btn-active-bg: #ccc;
     --bs-btn-active-border-color: #bfbfbf;
     --bs-btn-disabled-bg: #fff;
     --bs-btn-disabled-border-color: #fff;
@@ -312,41 +308,41 @@
 /* ===== Cards ===== */
 
 .card {
-    --bs-card-bg: rgba(255, 255, 255, 0.07);
+    --bs-card-bg: rgb(255 255 255 / 0.07);
     --bs-card-border-width: 0;
-    --bs-card-border-color: rgba(255, 255, 255, 0.13);
-    --bs-card-cap-bg: rgba(255, 255, 255, 0.07);
+    --bs-card-border-color: rgb(255 255 255 / 0.13);
+    --bs-card-cap-bg: rgb(255 255 255 / 0.07);
 }
 
 /* ===== Modal ===== */
 
 .modal {
     --bs-modal-bg: #2b2b2b;
-    --bs-modal-header-border-color: rgba(255, 255, 255, 0.12);
+    --bs-modal-header-border-color: rgb(255 255 255 / 0.12);
 }
 
 /* ===== Pagination ===== */
 
 .pagination {
-    --bs-pagination-bg: rgba(255, 255, 255, 0.07);
+    --bs-pagination-bg: rgb(255 255 255 / 0.07);
     --bs-pagination-border-width: 0;
     --bs-pagination-color: #a13dff;
-    --bs-pagination-hover-bg: rgba(255, 255, 255, 0.12);
+    --bs-pagination-hover-bg: rgb(255 255 255 / 0.12);
     --bs-pagination-hover-color: #a13dff;
     --bs-pagination-active-bg: #a13dff;
     --bs-pagination-active-border-color: #a13dff;
-    --bs-pagination-disabled-bg: rgba(255, 255, 255, 0.04);
-    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(161, 61, 255, 0.25);
+    --bs-pagination-disabled-bg: rgb(255 255 255 / 0.04);
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgb(161 61 255 / 0.25);
 }
 
 /* ===== List group ===== */
 
 .list-group {
     --bs-list-group-bg: transparent;
-    --bs-list-group-border-color: rgba(255, 255, 255, 0.13);
+    --bs-list-group-border-color: rgb(255 255 255 / 0.13);
     --bs-list-group-color: #f5f5f5;
     --bs-list-group-action-color: #f5f5f5;
-    --bs-list-group-action-hover-bg: rgba(245, 245, 245, 0.2);
+    --bs-list-group-action-hover-bg: rgb(245 245 245 / 0.2);
     --bs-list-group-active-bg: #a13dff;
     --bs-list-group-active-border-color: #a13dff;
 }
@@ -355,8 +351,8 @@
 
 .dropdown-menu {
     --bs-dropdown-bg: #343434;
-    --bs-dropdown-divider-bg: rgba(255, 255, 255, 0.13);
-    --bs-dropdown-border-color: rgba(255, 255, 255, 0.13);
+    --bs-dropdown-divider-bg: rgb(255 255 255 / 0.13);
+    --bs-dropdown-border-color: rgb(255 255 255 / 0.13);
     --bs-dropdown-link-color: #f5f5f5;
     --bs-dropdown-link-hover-bg: #a13dff;
     --bs-dropdown-link-hover-color: #f5f5f5;
@@ -373,8 +369,8 @@
 /* ===== Badge ===== */
 
 .badge {
-    font-weight: 400;
     padding: 0.4em 0.8em;
+    font-weight: 400;
 }
 
 /* ===== Navbar ===== */
@@ -400,11 +396,11 @@ h6 {
 }
 
 .text-muted {
-    color: rgba(255, 255, 255, 0.4) !important;
+    color: rgb(255 255 255 / 0.4) !important;
 }
 
 hr {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgb(255 255 255 / 0.1);
 }
 
 /* ===== Nav tabs/pills active state ===== */
@@ -436,6 +432,7 @@ hr {
 .container-small {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
+
     width: 100%;
     padding-right: calc(var(--bs-gutter-x) * 0.5);
     padding-left: calc(var(--bs-gutter-x) * 0.5);
@@ -443,25 +440,25 @@ hr {
     margin-left: auto;
 }
 
-@media (min-width: 576px) {
+@media (width >= 576px) {
     .container-small {
         max-width: 540px;
     }
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .container-small {
         max-width: 540px;
     }
 }
 
-@media (min-width: 992px) {
+@media (width >= 992px) {
     .container-small {
         max-width: 540px;
     }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .container-small {
         max-width: 540px;
     }
@@ -481,6 +478,6 @@ hr {
 
 .active > .page-link,
 .page-link.active {
-    background-color: #a13dff;
     border-color: #a13dff;
+    background-color: #a13dff;
 }

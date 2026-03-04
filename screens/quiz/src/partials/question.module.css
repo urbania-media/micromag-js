@@ -19,19 +19,18 @@
 
     .result {
         position: absolute;
-        transition: opacity 0.5s ease;
-        transition-delay: 0.3s;
         opacity: 0;
         pointer-events: none;
+        transition: opacity 0.5s ease;
+        transition-delay: 0.3s;
     }
 
     .emptyQuestion,
     .emptyResult {
-        margin: 5px auto;
-        border: dashed 2px var(--mm-gray-800);
-        color: var(--mm-gray-800);
         width: 100%;
+        border: dashed 2px var(--mm-gray-800);
         margin: 0 auto;
+        color: var(--mm-gray-800);
     }
 
     .emptyQuestion {
@@ -67,9 +66,9 @@
         padding: 10px;
 
         .index {
-            color: rgba(255, 255, 255, 0.6);
-            mix-blend-mode: difference;
+            color: rgb(255 255 255 / 0.6);
             font-size: 8px;
+            mix-blend-mode: difference;
         }
     }
 }

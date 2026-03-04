@@ -1,7 +1,7 @@
 .items,
 .item {
-    margin: 0;
     padding: 0;
+    margin: 0;
     list-style: none;
 }
 
@@ -10,20 +10,19 @@
 
     .items {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin: -5px;
+        flex-flow: row wrap;
         padding: 0;
+        margin: -5px;
     }
 
     .item {
-        display: block;
         position: relative;
         z-index: 2;
+        display: block;
         width: 33.3%;
         padding: 5px;
 
-        @media screen and (min-width: 540px) {
+        @media screen and (width >= 540px) {
             width: 20%;
         }
     }
@@ -68,8 +67,7 @@
 
     &.isVertical {
         .items {
-            flex-direction: column;
-            flex-wrap: nowrap;
+            flex-flow: column nowrap;
         }
 
         .item {
@@ -79,9 +77,10 @@
 
     &.withPlaceholder {
         .item {
+            padding: 0;
+
             /* width: auto; */
             margin: 5px;
-            padding: 0;
         }
 
         .button {
