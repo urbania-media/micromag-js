@@ -1,6 +1,6 @@
 {
     "name": "@micromag/transforms",
-    "version": "0.4.7",
+    "version": "0.4.8",
     "private": false,
     "description": "",
     "keywords": [
@@ -75,7 +75,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.7",
+        "@micromag/core": "^0.4.8",
         "lodash": "^4.17.23",
         "object-hash": "^3.0.0",
         "uuid": "^9.0.0"
