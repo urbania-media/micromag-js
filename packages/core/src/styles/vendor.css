@@ -6,6 +6,9 @@
 /* Bootstrap (pre-compiled) */
 @import 'bootstrap/dist/css/bootstrap.css';
 
+/* Micromag theme (--mm-* custom properties) */
+@import './theme.css';
+
 /* Theme overrides */
 @import './bootstrap-overrides.css';
 @import './bootstrap-patches.css';
