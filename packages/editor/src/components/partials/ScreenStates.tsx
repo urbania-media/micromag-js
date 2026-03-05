@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 
 import type { ScreenComponent, Story } from '@micromag/core';
 import { Button } from '@micromag/core/components';
-import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
+import { useRoutePush, useUrlGenerator } from '@micromag/core/contexts';
 
 import useRouteParams from '../../hooks/useRouteParams';
 import useScreenStates from '../../hooks/useScreenStates';
@@ -25,7 +25,7 @@ interface ScreenStatesProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function ScreenStates({ screen, value, className = null, onChange = null }) {
+function ScreenStates({ screen, value, className = null, onChange = null }: ScreenStatesProps) {
     const url = useUrlGenerator();
     const push = useRoutePush();
     const { screen: screenParam = null, field = null } = useRouteParams();
@@ -47,7 +47,12 @@ function ScreenStates({ screen, value, className = null, onChange = null }) {
             ])}
         >
             <div className="d-flex align-items-end m-n1">
-                <div className="p-1 align-self-stretch d-flex flex-column">
+                <div
+                    className={classNames([
+                        'p-1 align-self-stretch d-flex flex-column',
+                        styles.settings,
+                    ])}
+                >
                     <h6 className={classNames(['fw-normal', 'invisible', styles.title])}>
                         Settings
                     </h6>
@@ -116,7 +121,9 @@ function ScreenStates({ screen, value, className = null, onChange = null }) {
                                 ...currentComponentsValue.slice(0, currentScreenIndex),
                                 {
                                     ...currentScreenValue,
-                                    [fieldName || id]: (currentScreenValue[fieldName || id] || []).filter((_, index) => index !== indexToDelete)
+                                    [fieldName || id]: (
+                                        currentScreenValue[fieldName || id] || []
+                                    ).filter((_, index) => index !== indexToDelete),
                                 },
                                 ...currentComponentsValue.slice(currentScreenIndex + 1),
                             ],
@@ -125,12 +132,18 @@ function ScreenStates({ screen, value, className = null, onChange = null }) {
                             onChange(newValue);
                         }
                         push('screen', {
-                            screen: screen.id
-                        })
-                    }
+                            screen: screen.id,
+                        });
+                    };
                     return (
                         <div className="p-1 align-self-stretch d-flex flex-column">
-                            <h6 className={classNames(['fw-normal', 'text-body-secondary', styles.title])}>
+                            <h6
+                                className={classNames([
+                                    'fw-normal',
+                                    'text-body-secondary',
+                                    styles.title,
+                                ])}
+                            >
                                 <FormattedMessage {...label} />
                             </h6>
                             {repeatable ? (

@@ -148,9 +148,9 @@
     },
     "dependencies": {
         "@micromag/consent": "^0.3.703",
-        "@panneau/actions": "^4.0.21",
-        "@panneau/medias": "^4.0.22",
-        "@panneau/modals": "^4.0.21",
+        "@panneau/actions": "^4.0.23",
+        "@panneau/medias": "^4.0.23",
+        "@panneau/modals": "^4.0.23",
         "path-to-regexp": "^6.3.0"
     }
 }

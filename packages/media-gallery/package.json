@@ -53,7 +53,7 @@
     "devDependencies": {
         "@panneau/data": "^4.0.21",
         "@panneau/displays": "^4.0.21",
-        "@panneau/fields": "^4.0.21",
+        "@panneau/fields": "^4.0.23",
         "@panneau/filters": "^4.0.21",
         "@panneau/uppy": "^4.0.21",
         "react": "^19.2.0",
@@ -71,7 +71,7 @@
         "@fortawesome/react-fontawesome": "^3.2.0",
         "@micromag/core": "^0.4.8",
         "@micromag/data": "^0.4.8",
-        "@panneau/medias": "^4.0.22",
+        "@panneau/medias": "^4.0.23",
         "bootstrap": "^5.3.8",
         "classnames": "^2.2.6",
         "lodash": "^4.17.23",

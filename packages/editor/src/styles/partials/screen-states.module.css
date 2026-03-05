@@ -27,3 +27,7 @@
     font-size: 0.75em;
     text-align: left;
 }
+
+.settings {
+    max-height: 100px;
+}
