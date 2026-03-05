@@ -142,12 +142,13 @@ function MediaModal({
 
     const onChangeMedia = useCallback(
         (newMedia = null) => {
-            setMedia(newMedia);
             if (newMedia !== null && !multiple && autoClose) {
                 if (onChange !== null) {
                     onChange(newMedia);
                 }
                 onClose();
+            } else {
+                setMedia(newMedia);
             }
         },
         [value, setMedia, multiple, autoClose, onChange, onClose],

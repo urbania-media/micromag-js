@@ -68,6 +68,6 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "b9caad5fdc85e69559b25495339673172e75ac76",
+    "gitHead": "6a7c594dfaa579608d7d8aa771e78ff871edf304",
     "types": "es/index.d.ts"
 }
