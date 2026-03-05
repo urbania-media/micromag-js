@@ -9,14 +9,19 @@ const files = {
     'all.ts': {},
 };
 
+const isFieldsImport = (id) => id === '../fields' || id === '../fields.js';
+
 export default Object.keys(files).reduce(
     (configs, file) => [
         ...configs,
-        createConfig({
-            file,
-            format: 'both',
-            ...files[file],
-        }),
+        {
+            ...createConfig({
+                file,
+                format: 'both',
+                ...files[file],
+            }),
+            external: isFieldsImport,
+        },
         // createConfig({
         //     file,
         //     format: 'cjs',

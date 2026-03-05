@@ -111,7 +111,7 @@
         "@panneau/element-modal": "^4.0.21",
         "@panneau/fields": "^4.0.21",
         "@panneau/filters": "^4.0.21",
-        "@panneau/medias": "^4.0.21",
+        "@panneau/medias": "^4.0.22",
         "@panneau/uppy": "^4.0.21",
         "@uppy/core": "^5.1.1",
         "@uppy/dashboard": "^5.0.4",

@@ -15,7 +15,7 @@ program.parse(process.argv);
 const fields = getScreenFields();
 const { fonts: fontsMap, medias: mediasMap } = fields;
 
-const fieldsJs = `module.exports = {
+const fieldsJs = `export default {
     fonts: {\n${Object.keys(fontsMap)
         .map(
             (key) =>

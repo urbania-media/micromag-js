@@ -98,7 +98,7 @@ build_types() {
         echo "  - $entry"
     done
 
-    ../../node_modules/.bin/tsc "${unique_ts_entries[@]}" --declaration --emitDeclarationOnly --allowJs --jsx "react-jsx" --declarationDir "types" --listEmittedFiles --noCheck
+    ../../node_modules/.bin/tsc "${unique_ts_entries[@]}" --declaration --emitDeclarationOnly --jsx "react-jsx" --declarationDir "types" --listEmittedFiles --noCheck
 
     echo "Bundling types with rollup..."
     if [ -f ./rollup.config.dts.js ]; then
