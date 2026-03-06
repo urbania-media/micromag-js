@@ -71,7 +71,7 @@
         "@fortawesome/react-fontawesome": "^3.2.0",
         "@micromag/core": "^0.4.11",
         "@micromag/data": "^0.4.11",
-        "@panneau/medias": "^4.0.23",
+        "@panneau/medias": "^4.0.24",
         "bootstrap": "^5.3.8",
         "classnames": "^2.2.6",
         "lodash": "^4.17.23",
