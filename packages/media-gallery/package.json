@@ -1,6 +1,6 @@
 {
     "name": "@micromag/media-gallery",
-    "version": "0.4.12",
+    "version": "0.4.11",
     "private": false,
     "description": "",
     "keywords": [
@@ -53,14 +53,14 @@
     "devDependencies": {
         "@panneau/data": "^4.0.21",
         "@panneau/displays": "^4.0.21",
-        "@panneau/fields": "^4.0.23",
+        "@panneau/fields": "^4.0.24",
         "@panneau/filters": "^4.0.21",
         "@panneau/uppy": "^4.0.21",
-        "react": "^18.3.0 || ^19.0.0",
+        "react": "^18.3.0 || ^19.0.0",
         "react-dom": "^18.3.0 || ^19.0.0"
     },
     "peerDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
+        "react": "^18.3.0 || ^19.0.0",
         "react-dom": "^18.3.0 || ^19.0.0"
     },
     "dependencies": {
@@ -69,8 +69,8 @@
         "@fortawesome/fontawesome-svg-core": "^7.2.0",
         "@fortawesome/free-solid-svg-icons": "^7.2.0",
         "@fortawesome/react-fontawesome": "^3.2.0",
-        "@micromag/core": "^0.4.12",
-        "@micromag/data": "^0.4.12",
+        "@micromag/core": "^0.4.11",
+        "@micromag/data": "^0.4.11",
         "@panneau/medias": "^4.0.24",
         "bootstrap": "^5.3.8",
         "classnames": "^2.2.6",

@@ -94,7 +94,7 @@
         "build": "../../scripts/prepare-package.sh --types && npm run vendor"
     },
     "devDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
+        "react": "^18.3.0 || ^19.0.0",
         "react-dom": "^18.3.0 || ^19.0.0"
     },
     "peerDependencies": {
@@ -117,7 +117,7 @@
         "@uppy/core": "^5.1.1",
         "@uppy/dashboard": "^5.0.4",
         "@uppy/react": "^5.1.1",
-        "react": "^18.3.0 || ^19.0.0",
+        "react": "^18.3.0 || ^19.0.0",
         "react-dom": "^18.3.0 || ^19.0.0"
     },
     "dependencies": {
