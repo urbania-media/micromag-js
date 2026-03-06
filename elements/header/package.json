@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-header",
-    "version": "0.4.12",
+    "version": "0.4.14",
     "private": false,
     "description": "",
     "keywords": [
@@ -56,8 +56,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.12",
-        "@micromag/element-badge": "^0.4.12",
+        "@micromag/core": "^0.4.14",
+        "@micromag/element-badge": "^0.4.14",
         "classnames": "^2.2.6",
         "lodash": "^4.17.23",
         "react-intl": "^8.1.3",
