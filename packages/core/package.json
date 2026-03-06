@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.4.11",
+    "version": "0.4.12",
     "private": false,
     "description": "",
     "keywords": [
@@ -111,9 +111,9 @@
         "@panneau/element-modal": "^4.0.21",
         "@panneau/fields": "^4.0.24",
         "@panneau/filters": "^4.0.21",
+        "@panneau/intl": "^4.0.24",
         "@panneau/medias": "^4.0.24",
         "@panneau/uppy": "^4.0.21",
-        "@panneau/intl": "^4.0.24",
         "@uppy/core": "^5.1.1",
         "@uppy/dashboard": "^5.0.4",
         "@uppy/react": "^5.1.1",
