@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control, react/no-array-index-key, react/no-danger, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
+import React, { useId } from 'react';
 import { Helmet } from 'react-helmet';
 
 import type { BoxStyle, Margin, TextStyle } from '@micromag/core';
@@ -52,6 +52,8 @@ function TextInput({
     let labelStyle = {};
     let elementStyle = {};
     let placeholderStyle = {};
+
+    const id = useId();
 
     if (margin !== null) {
         containerStyle = {
@@ -123,7 +125,9 @@ function TextInput({
     const placeholderStyles = usePlaceholderStyle(styles.element, placeholderStyle);
     const placeholderStyleElement = (
         <Helmet>
-            <style>{placeholderStyles}</style>
+            <style href={`inputstyle-${id}`} precedence="medium">
+                {placeholderStyles}
+            </style>
         </Helmet>
     );
 

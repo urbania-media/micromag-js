@@ -92,6 +92,7 @@ function Meta({
                     type="application/ld+json"
                     id={`${it[`@type`]}-${it.identifier}`}
                     key={`microformat-${it[`@type`]}-${it.identifier}`}
+                    async
                 >
                     {JSON.stringify(it)}
                 </script>

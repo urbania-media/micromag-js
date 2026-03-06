@@ -2,8 +2,8 @@
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-// import FocusLock from 'react-focus-lock';
 import { Helmet } from 'react-helmet';
+// import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 
@@ -632,10 +632,11 @@ function Viewer({
         [landscape],
     );
 
-    // hmm?
     const overscrollStyle = (
         <style
             type="text/css"
+            href="data-viewer-overscroll"
+            precedence="medium"
             dangerouslySetInnerHTML={{ __html: `body { overscroll-behavior: contain; }` }}
         />
     );
