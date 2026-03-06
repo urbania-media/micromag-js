@@ -100,6 +100,8 @@ function Visual({
         };
     }
 
+    const natural = objectFit === null;
+
     const onLoaded = useCallback((e) => {
         if (onParentLoaded !== null) {
             onParentLoaded(e);
@@ -125,14 +127,19 @@ function Visual({
             ) : null}
             {type === 'video' && shouldLoad && !withoutVideo ? (
                 <div
-                    className={classNames([styles.container, { [className]: className !== null }])}
+                    className={classNames([
+                        styles.container,
+                        { [styles.natural]: natural, [className]: className !== null },
+                    ])}
                     style={{ width, height, aspectRatio: ratio !== null ? `${ratio}` : null }}
                     ref={refVisible}
                 >
                     <div
                         className={classNames([
                             styles.videoContainer,
-                            { [videoClassName]: videoClassName !== null },
+                            {
+                                [videoClassName]: videoClassName !== null,
+                            },
                         ])}
                         style={videoContainerStyle}
                     >

@@ -155,8 +155,6 @@
     }
 }
 
-
-
 /* .placeholderItem { */
 
 /* height: 0; */
@@ -351,6 +349,14 @@
     }
 }
 
+.popupVisualImage,
+.popupVisualVideo {
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
 .placeholder {
     mix-blend-mode: normal;
 }
@@ -417,4 +423,3 @@
     z-index: 2;
     margin: 0 auto;
 }
-

@@ -1,7 +1,7 @@
 import { v1 as uuid } from 'uuid';
 
 import { signs } from '../../../screens/urbania-horoscope';
-import { callToAction, imageMedia, paragraph } from '../../data';
+import { callToAction, imageMedia, paragraph, videoMedia } from '../../data';
 
 export default {
     id: uuid(),
@@ -21,7 +21,11 @@ export default {
         content: {
             body: paragraph(),
         },
-        visual: imageMedia({ rand: true, width: 500, height: 500 }),
+        visual: Math.random() > 0.5 ? imageMedia({ rand: true, width: 500, height: 500 }) : null,
+        largeVisual:
+            Math.random() > 0.5
+                ? imageMedia({ rand: true, width: 500, height: 500 })
+                : videoMedia({ rand: true, width: 500, height: 500 }),
         boxStyle: {
             backgroundColor: { color: '#00ff77', alpha: 1 },
             borderRadius: 4,

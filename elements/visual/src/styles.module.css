@@ -15,4 +15,10 @@
         position: absolute;
         inset: 0;
     }
+
+    &.natural {
+        .videoContainer {
+            position: static;
+        }
+    }
 }

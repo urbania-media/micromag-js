@@ -765,6 +765,8 @@ function KeypadScreen({
                                             {largeVisual !== null ? (
                                                 <Visual
                                                     className={styles.popupVisual}
+                                                    imageClassName={styles.popupVisualImage}
+                                                    videoClassName={styles.popupVisualVideo}
                                                     media={largeVisual}
                                                     resolution={resolution}
                                                     width="100%"
