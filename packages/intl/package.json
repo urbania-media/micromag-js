@@ -58,7 +58,7 @@
     ],
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets",
-        "intl": "../../scripts/build-intl.js '../../!(node_modules)/!(intl)/src/**/*.+(js|jsx)' --ast",
+        "intl": "../../scripts/build-intl.js '../../!(node_modules)/!(intl)/src/**/*.+(js|jsx|tsx)' --ast",
         "prepublishOnly": "npm run build",
         "build": "rm -rf ./locale && npm run intl && ../../scripts/prepare-package.sh --types"
     },

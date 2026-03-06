@@ -1,2 +1,1104 @@
 {
+  "+Ok+7S": {
+    "defaultMessage": "Answer",
+    "description": "Answer placeholder"
+  },
+  "+Ptk0B": {
+    "defaultMessage": "Your privacy settings",
+    "description": "Cookies title"
+  },
+  "+TPjd4": {
+    "defaultMessage": "Presented by",
+    "description": "Sponsor label"
+  },
+  "+vzDdb": {
+    "defaultMessage": "Word of the Week",
+    "description": "Horoscope Subtitle"
+  },
+  "/0hgRs": {
+    "defaultMessage": "Edit text",
+    "description": "Modal title"
+  },
+  "/2i9do": {
+    "defaultMessage": "Choose media",
+    "description": "Modal title"
+  },
+  "/62oe4": {
+    "defaultMessage": "My files",
+    "description": "Media gallery source"
+  },
+  "/KQ87r": {
+    "defaultMessage": "Delete media",
+    "description": "Delete in Media Gallery"
+  },
+  "/MsgWe": {
+    "defaultMessage": "Date",
+    "description": "Date placeholder"
+  },
+  "/OM5UY": {
+    "defaultMessage": "Tags",
+    "description": "Media label"
+  },
+  "/T/UDH": {
+    "defaultMessage": "Remove all",
+    "description": "Remove all button label"
+  },
+  "/YQ+xP": {
+    "defaultMessage": "Image 360",
+    "description": "Image 360 placeholder"
+  },
+  "/ca7BX": {
+    "defaultMessage": "Types",
+    "description": "Media label"
+  },
+  "/hupzO": {
+    "defaultMessage": "Credits",
+    "description": "Credits placeholder"
+  },
+  "002oWQ": {
+    "defaultMessage": "Duration",
+    "description": "Field name"
+  },
+  "03U69o": {
+    "defaultMessage": "Buttons",
+    "description": "Title placeholder"
+  },
+  "0GT0SI": {
+    "defaultMessage": "Cancel",
+    "description": "Cancel button label"
+  },
+  "0hMiRN": {
+    "defaultMessage": "Select Audio File",
+    "description": "Modal title"
+  },
+  "15GBmG": {
+    "defaultMessage": "All",
+    "description": "Dropdown default all items label"
+  },
+  "17zT4Q": {
+    "defaultMessage": "Popup",
+    "description": "Popup label"
+  },
+  "1dqmFw": {
+    "defaultMessage": "Document",
+    "description": "Media type"
+  },
+  "2/F1Q7": {
+    "defaultMessage": "#{index}",
+    "description": "Item label in items field"
+  },
+  "2FD6tj": {
+    "defaultMessage": "This media is used by the following documents:",
+    "description": "Delete error message in Media Gallery"
+  },
+  "2J05S0": {
+    "defaultMessage": "Images",
+    "description": "Media label"
+  },
+  "2LbLWQ": {
+    "defaultMessage": "None",
+    "description": "Field label"
+  },
+  "2ZOPe+": {
+    "defaultMessage": "Title",
+    "description": "Title placeholder"
+  },
+  "2c1WFV": {
+    "defaultMessage": "Title",
+    "description": "Category placeholder"
+  },
+  "2prwZ7": {
+    "defaultMessage": "Progress slider",
+    "description": "Button label"
+  },
+  "3Ap0C1": {
+    "defaultMessage": "Upload a media",
+    "description": "Upload button label in Media Gallery"
+  },
+  "3E57H7": {
+    "defaultMessage": "No marker...",
+    "description": "Label when there is no item in markers field"
+  },
+  "3I2Xl7": {
+    "defaultMessage": "WebM",
+    "description": "Field label"
+  },
+  "3RT69u": {
+    "defaultMessage": "Informations",
+    "description": "Field title"
+  },
+  "3ext9Q": {
+    "defaultMessage": "Video",
+    "description": "Video placeholder"
+  },
+  "3wiL2y": {
+    "defaultMessage": "No image...",
+    "description": "Label when there is no item in images with caption field"
+  },
+  "4POR3B": {
+    "defaultMessage": "View screen",
+    "description": "Button to view a screen"
+  },
+  "4RV6+9": {
+    "defaultMessage": "H264",
+    "description": "Field label"
+  },
+  "4YiKNK": {
+    "defaultMessage": "Select a color...",
+    "description": "No value label"
+  },
+  "4b5gym": {
+    "defaultMessage": "Screen title",
+    "description": "Field default label"
+  },
+  "4fHMVj": {
+    "defaultMessage": "Tags",
+    "description": "Tags in Media Gallery"
+  },
+  "507VAi": {
+    "defaultMessage": "Description",
+    "description": "Description placeholder"
+  },
+  "5uH4x7": {
+    "defaultMessage": "Submit",
+    "description": "Submit placeholder"
+  },
+  "6W4St0": {
+    "defaultMessage": "Upload an audio file",
+    "description": "Upload button label in Media Gallery"
+  },
+  "6jX5Tb": {
+    "defaultMessage": "Authors",
+    "description": "Authors placeholder"
+  },
+  "6tIigB": {
+    "defaultMessage": "Caption",
+    "description": "Caption placeholder"
+  },
+  "790Q9C": {
+    "defaultMessage": "Select Subtitles File",
+    "description": "Modal title"
+  },
+  "7oXkoj": {
+    "defaultMessage": "Authors",
+    "description": "Filter label"
+  },
+  "7tw6U2": {
+    "defaultMessage": "Share",
+    "description": "Button label"
+  },
+  "7uyslu": {
+    "defaultMessage": "Description",
+    "description": "Label in Media Gallery"
+  },
+  "8NyYTH": {
+    "defaultMessage": "Back",
+    "description": "Button label"
+  },
+  "8TbpT7": {
+    "defaultMessage": "Remove",
+    "description": "Button label in Media Gallery"
+  },
+  "8sWUOV": {
+    "defaultMessage": "Add an font file",
+    "description": "Button label"
+  },
+  "8yRYcm": {
+    "defaultMessage": "Edit my settings",
+    "description": "Button label"
+  },
+  "9/t5wK": {
+    "defaultMessage": "Type",
+    "description": "Filter label"
+  },
+  "9ZdD+Q": {
+    "defaultMessage": "Library for",
+    "description": "Library source menu"
+  },
+  "9mXl24": {
+    "defaultMessage": "Tags",
+    "description": "Filter label"
+  },
+  "9n9+yP": {
+    "defaultMessage": "Add an image",
+    "description": "Button label in images with caption field"
+  },
+  "A/Vr8P": {
+    "defaultMessage": "False",
+    "description": "Field label"
+  },
+  "AHvHaY": {
+    "defaultMessage": "Parameters",
+    "description": "Screen label in the breadcrumb"
+  },
+  "AIr8rM": {
+    "defaultMessage": "Screen {current} of {length}",
+    "description": "Aria announcement"
+  },
+  "AQ8Aig": {
+    "defaultMessage": "Used",
+    "description": "Media label"
+  },
+  "AV6gfh": {
+    "defaultMessage": "Edit call to action...",
+    "description": "No value label"
+  },
+  "AwDQvD": {
+    "defaultMessage": "Image",
+    "description": "Media type"
+  },
+  "AzN1aW": {
+    "defaultMessage": "Back",
+    "description": "Button placeholder"
+  },
+  "B1MeY+": {
+    "defaultMessage": "Select an image...",
+    "description": "Label when no value is provided to Image field"
+  },
+  "B5Qrmw": {
+    "defaultMessage": "Select Font File",
+    "description": "Modal title"
+  },
+  "BAfC6s": {
+    "defaultMessage": "Upload a closed captions file",
+    "description": "Upload button label in Media Gallery"
+  },
+  "BSTWf8": {
+    "defaultMessage": "Title",
+    "description": "Placeholder label"
+  },
+  "BpZoQZ": {
+    "defaultMessage": "Success",
+    "description": "Success form message"
+  },
+  "C1VUEY": {
+    "defaultMessage": "{current} of {duration}",
+    "description": "Seek bar value"
+  },
+  "CnVj9r": {
+    "defaultMessage": "Skip to controls",
+    "description": "Button label"
+  },
+  "CrzYgw": {
+    "defaultMessage": "Quote",
+    "description": "Quote placeholder"
+  },
+  "D21uVQ": {
+    "defaultMessage": "Copy link",
+    "description": "Share button label"
+  },
+  "D29KoV": {
+    "defaultMessage": "left aligned",
+    "description": "Alignment label"
+  },
+  "D7LIZQ": {
+    "defaultMessage": "Start",
+    "description": "Screen button label"
+  },
+  "DWEzCv": {
+    "defaultMessage": "Select a video...",
+    "description": "Label when no value is provided to Video field"
+  },
+  "DYjRd/": {
+    "defaultMessage": "Sorry, this media could not be saved.",
+    "description": "Save error message in Media Gallery"
+  },
+  "EDFyUp": {
+    "defaultMessage": "Alternative text (accessibility)",
+    "description": "Media Gallery"
+  },
+  "EQdIAR": {
+    "defaultMessage": "Description",
+    "description": "Text placeholder"
+  },
+  "EoVdMy": {
+    "defaultMessage": "Edit content...",
+    "description": "Label when no value is provided to Field with form"
+  },
+  "F/gl4b": {
+    "defaultMessage": "Menu",
+    "description": "Button label"
+  },
+  "FKOWH0": {
+    "defaultMessage": "right aligned",
+    "description": "Alignment label"
+  },
+  "FOmgqv": {
+    "defaultMessage": "Question",
+    "description": "Placeholder label"
+  },
+  "G/ITGY": {
+    "defaultMessage": "Your name",
+    "description": "Your name placeholder"
+  },
+  "G1Gyjn": {
+    "defaultMessage": "Seek",
+    "description": "Button label"
+  },
+  "GPqjnH": {
+    "defaultMessage": "Left",
+    "description": "Direction"
+  },
+  "HpkW4J": {
+    "defaultMessage": "Skip",
+    "description": "Button label"
+  },
+  "HseFdk": {
+    "defaultMessage": "Edit",
+    "description": "Button to edit a screen"
+  },
+  "HxW2pw": {
+    "defaultMessage": "Accept all",
+    "description": "Button label"
+  },
+  "I5+AHN": {
+    "defaultMessage": "Category",
+    "description": "Category placeholder"
+  },
+  "IBjY5r": {
+    "defaultMessage": "Duplicate screen",
+    "description": "Duplicate screen item"
+  },
+  "IE7U/Q": {
+    "defaultMessage": "Heading",
+    "description": "Placeholder label"
+  },
+  "IOVper": {
+    "defaultMessage": "Tags",
+    "description": "Field name"
+  },
+  "IbZVf0": {
+    "defaultMessage": "Submit",
+    "description": "Button label"
+  },
+  "IoMJgw": {
+    "defaultMessage": "Toggle article",
+    "description": "Button label"
+  },
+  "JAguka": {
+    "defaultMessage": "Your message",
+    "description": "Your message placeholder"
+  },
+  "JRZoe6": {
+    "defaultMessage": "Content",
+    "description": "Placeholder label"
+  },
+  "JoWKee": {
+    "defaultMessage": "Create your first screen",
+    "description": "Button to create your first screen"
+  },
+  "JuxiUN": {
+    "defaultMessage": "Format",
+    "description": "Field label"
+  },
+  "JzSBzL": {
+    "defaultMessage": "Visual",
+    "description": "Text placeholder"
+  },
+  "KB7N5E": {
+    "defaultMessage": "Search a place on Google Maps",
+    "description": "Search a place on Google Maps placeholder"
+  },
+  "KCDOHI": {
+    "defaultMessage": "No font...",
+    "description": "Label when there is no item"
+  },
+  "KK5teQ": {
+    "defaultMessage": "Upload a visual file",
+    "description": "Upload button label in Media Gallery"
+  },
+  "KdAKt7": {
+    "defaultMessage": "Upload an image file",
+    "description": "Upload button label in Media Gallery"
+  },
+  "LiMAIC": {
+    "defaultMessage": "This Micromag was",
+    "description": "Micromag branding"
+  },
+  "LkVfwW": {
+    "defaultMessage": "Screen {index}",
+    "description": "Button label"
+  },
+  "Lrwi2G": {
+    "defaultMessage": "Email",
+    "description": "Share option label"
+  },
+  "MYZwSA": {
+    "defaultMessage": "Audio",
+    "description": "Audio placeholder"
+  },
+  "N7Kj8z": {
+    "defaultMessage": "Button",
+    "description": "Placeholder label"
+  },
+  "NmCfTO": {
+    "defaultMessage": "Conversation",
+    "description": "Conversation placeholder"
+  },
+  "OdcEna": {
+    "defaultMessage": "No slide...",
+    "description": "Label when there is no item in slides field"
+  },
+  "OkNUmk": {
+    "defaultMessage": "Type",
+    "description": "Type Label in Media Gallery"
+  },
+  "OzYWZz": {
+    "defaultMessage": "Created at",
+    "description": "Field name"
+  },
+  "P6ZtIq": {
+    "defaultMessage": "Select Document",
+    "description": "Modal title"
+  },
+  "P9A8cx": {
+    "defaultMessage": "middle aligned",
+    "description": "Alignment label"
+  },
+  "PFNMAQ": {
+    "defaultMessage": "Bottom",
+    "description": "Direction"
+  },
+  "PKCv5M": {
+    "defaultMessage": "No item...",
+    "description": "Label when there is no item in items field"
+  },
+  "PN+75e": {
+    "defaultMessage": "Created at",
+    "description": "Field label"
+  },
+  "PNMMo/": {
+    "defaultMessage": "Audios",
+    "description": "Media label"
+  },
+  "PyxZY2": {
+    "defaultMessage": "Cancel",
+    "description": "Button label"
+  },
+  "QBaiO0": {
+    "defaultMessage": "Add a screen",
+    "description": "Title of the screen types selection dialog"
+  },
+  "QBlqW9": {
+    "defaultMessage": "Videos",
+    "description": "Media label"
+  },
+  "QfpTKK": {
+    "defaultMessage": "Select a screen..."
+  },
+  "RK/QEY": {
+    "defaultMessage": "Unmute",
+    "description": "Button label"
+  },
+  "RucIeL": {
+    "defaultMessage": "Share options",
+    "description": "Title placeholder"
+  },
+  "SVLGTA": {
+    "defaultMessage": "Next",
+    "description": "Screen button label"
+  },
+  "TDAOl2": {
+    "defaultMessage": "created with",
+    "description": "Micromag branding"
+  },
+  "THKV4v": {
+    "defaultMessage": "Longitude",
+    "description": "Longitude description"
+  },
+  "Tol+/U": {
+    "defaultMessage": "Clear",
+    "description": "Button label"
+  },
+  "Tt4jN1": {
+    "defaultMessage": "Add",
+    "description": "Add button label in Media Gallery"
+  },
+  "U2RZp5": {
+    "defaultMessage": "Skip",
+    "description": "Button placeholder"
+  },
+  "UG3SXh": {
+    "defaultMessage": "Remove",
+    "description": "Remove button label in Media Gallery"
+  },
+  "UlZIP8": {
+    "defaultMessage": "OK",
+    "description": "Items finish edit button label"
+  },
+  "UtcYEP": {
+    "defaultMessage": "Custom fonts",
+    "description": "Font family group title"
+  },
+  "V+G2s+": {
+    "defaultMessage": "Add an image",
+    "description": "Button label in images field"
+  },
+  "VDu2FA": {
+    "defaultMessage": "Google Fonts",
+    "description": "Font family group title"
+  },
+  "WX83V9": {
+    "defaultMessage": "File name",
+    "description": "Field name"
+  },
+  "Wb5zY4": {
+    "defaultMessage": "Select a font file...",
+    "description": "Label when no value"
+  },
+  "WeD4nB": {
+    "defaultMessage": "Upload a video file",
+    "description": "Upload button label in Media Gallery"
+  },
+  "X7kRRa": {
+    "defaultMessage": "Heading",
+    "description": "Heading placeholder"
+  },
+  "X9mFEG": {
+    "defaultMessage": "Reject all",
+    "description": "Button label"
+  },
+  "XHO5Ua": {
+    "defaultMessage": "Expand visual",
+    "description": "Button label"
+  },
+  "XR5/Wk": {
+    "defaultMessage": "Edit",
+    "description": "Field label"
+  },
+  "Xb6r3F": {
+    "defaultMessage": "Cancel",
+    "description": "Delete in Media Gallery"
+  },
+  "XhgKcw": {
+    "defaultMessage": "Move the map to position the place",
+    "description": "Move the map to position the place description"
+  },
+  "XnyI69": {
+    "defaultMessage": "Audio",
+    "description": "Media type"
+  },
+  "Xr1v8l": {
+    "defaultMessage": "points gained",
+    "description": "Quiz label"
+  },
+  "YJZtWR": {
+    "defaultMessage": "Description",
+    "description": "Description in Media Gallery"
+  },
+  "YXhRxW": {
+    "defaultMessage": "No controls available",
+    "description": "Tooltip"
+  },
+  "YwySSO": {
+    "defaultMessage": "Vertical",
+    "description": "Field label"
+  },
+  "YyYrXp": {
+    "defaultMessage": "Loading",
+    "description": "Button label"
+  },
+  "ZG8/oK": {
+    "defaultMessage": "Subtitle",
+    "description": "Placeholder label"
+  },
+  "ZLDmja": {
+    "defaultMessage": "Submit",
+    "description": "Submit form button"
+  },
+  "ZxgNge": {
+    "defaultMessage": "Add an item",
+    "description": "Button label in items field"
+  },
+  "al5xjv": {
+    "defaultMessage": "Default fonts",
+    "description": "Font family group title"
+  },
+  "aovRFH": {
+    "defaultMessage": "Filename",
+    "description": "Label in Media Gallery"
+  },
+  "bCtuS/": {
+    "defaultMessage": "In this Micromag",
+    "description": "Media gallery source filter"
+  },
+  "bLYuuN": {
+    "defaultMessage": "You are on screen {current} of {total}.",
+    "description": "Nav ARIA label"
+  },
+  "bmO4Ss": {
+    "defaultMessage": "Entry Title",
+    "description": "Title placeholder"
+  },
+  "bv3rRe": {
+    "defaultMessage": "Button",
+    "description": "Button placeholder"
+  },
+  "c3hu9o": {
+    "defaultMessage": "Size",
+    "description": "Field name"
+  },
+  "c9VwT/": {
+    "defaultMessage": "Technical details",
+    "description": "Heading in Media Gallery"
+  },
+  "cXt3NU": {
+    "defaultMessage": "Close Popup",
+    "description": "Button label"
+  },
+  "ceaRdq": {
+    "defaultMessage": "Horoscope sign",
+    "description": "Sign placeholder"
+  },
+  "cej3hp": {
+    "defaultMessage": "Select Video",
+    "description": "Modal title"
+  },
+  "consent.ad_personalization_description": {
+    "defaultMessage": "Cookies used for ad targeting."
+  },
+  "consent.ad_personalization_title": {
+    "defaultMessage": "Ad Personalization"
+  },
+  "consent.ad_storage_description": {
+    "defaultMessage": "Cookies used for advertising purposes."
+  },
+  "consent.ad_storage_title": {
+    "defaultMessage": "Ad Storage"
+  },
+  "consent.ad_user_data_description": {
+    "defaultMessage": "Cookies used for user-specific ad data."
+  },
+  "consent.ad_user_data_title": {
+    "defaultMessage": "User Ad Data"
+  },
+  "consent.analytics_description": {
+    "defaultMessage": "Cookies used to measure user behavior."
+  },
+  "consent.analytics_title": {
+    "defaultMessage": "Analytics"
+  },
+  "consent.functionality_description": {
+    "defaultMessage": "Cookies required for the site to function properly."
+  },
+  "consent.functionality_title": {
+    "defaultMessage": "Functionnal"
+  },
+  "consent.personalization_storage_description": {
+    "defaultMessage": "Cookies used for personalizing user experience."
+  },
+  "consent.personalization_storage_title": {
+    "defaultMessage": "Personalization Storage"
+  },
+  "consent.security_storage_description": {
+    "defaultMessage": "Cookies used for security purposes."
+  },
+  "consent.security_storage_title": {
+    "defaultMessage": "Security Storage"
+  },
+  "d/01YO": {
+    "defaultMessage": "Share this Micromag!",
+    "description": "Share Incentive default label"
+  },
+  "d60tSn": {
+    "defaultMessage": "Subtitle",
+    "description": "Subtitle placeholder"
+  },
+  "dIvwcD": {
+    "defaultMessage": "Close",
+    "description": "Button label with icon"
+  },
+  "dSfmnf": {
+    "defaultMessage": "SMS",
+    "description": "Share button label"
+  },
+  "dj/p/q": {
+    "defaultMessage": "Close",
+    "description": "Button label"
+  },
+  "dqnkQk": {
+    "defaultMessage": "Legend",
+    "description": "Legend placeholder"
+  },
+  "dsRGuG": {
+    "defaultMessage": "We use cookies to improve your experience on our site and for marketing purposes. By accepting, you consent to the use of these cookies.",
+    "description": "Cookies message"
+  },
+  "e1I+KU": {
+    "defaultMessage": "Question",
+    "description": "Question placeholder"
+  },
+  "e6+aGf": {
+    "defaultMessage": "Select a media...",
+    "description": "Label when no value is provided to Media field"
+  },
+  "eCe9ZY": {
+    "defaultMessage": "Dimensions",
+    "description": "Field name"
+  },
+  "ebsPd4": {
+    "defaultMessage": "Image",
+    "description": "Image placeholder"
+  },
+  "eiaIIB": {
+    "defaultMessage": "This Micromag",
+    "description": "Media gallery source"
+  },
+  "enFs4g": {
+    "defaultMessage": "Advanced",
+    "description": "Name of the section in Fields"
+  },
+  "eoW0tZ": {
+    "defaultMessage": "Duration",
+    "description": "Label in Media Gallery"
+  },
+  "fVqgfl": {
+    "defaultMessage": "[no title]",
+    "description": "No title label in Media Gallery"
+  },
+  "fbiNiR": {
+    "defaultMessage": "Select a size...",
+    "description": "No value label"
+  },
+  "fpQzza": {
+    "defaultMessage": "Font",
+    "description": "Filter item label"
+  },
+  "g2CRt5": {
+    "defaultMessage": "Size",
+    "description": "Field label"
+  },
+  "gJTVcQ": {
+    "defaultMessage": "Select media..."
+  },
+  "gRxcTc": {
+    "defaultMessage": "Delete screen",
+    "description": "Delete screen button label"
+  },
+  "gfZs4J": {
+    "defaultMessage": "Skip Links",
+    "description": "Nav aria label"
+  },
+  "hoDz0O": {
+    "defaultMessage": "Description",
+    "description": "Placeholder label"
+  },
+  "hpiKce": {
+    "defaultMessage": "Delete screen",
+    "description": "Delete screen item"
+  },
+  "i+3ZrF": {
+    "defaultMessage": "Select a font family...",
+    "description": "No value label"
+  },
+  "iCf/MP": {
+    "defaultMessage": "Edit",
+    "description": "Button label in Media Gallery"
+  },
+  "j00v1T": {
+    "defaultMessage": "True",
+    "description": "Field label"
+  },
+  "jEK6B8": {
+    "defaultMessage": "By",
+    "description": "Author label"
+  },
+  "jf+4Hq": {
+    "defaultMessage": "Screens",
+    "description": "Title of the screens section"
+  },
+  "jnww6n": {
+    "defaultMessage": "Select an image...",
+    "description": "Label when no value is provided to Visual field"
+  },
+  "kBz8vF": {
+    "defaultMessage": "Name",
+    "description": "Name in Media Gallery"
+  },
+  "kf/5Tw": {
+    "defaultMessage": "Right",
+    "description": "Direction"
+  },
+  "kxsaD3": {
+    "defaultMessage": "Select Image",
+    "description": "Modal title"
+  },
+  "li7ADr": {
+    "defaultMessage": "Result",
+    "description": "Result placeholder"
+  },
+  "liyV7Y": {
+    "defaultMessage": "Size",
+    "description": "Label in Media Gallery"
+  },
+  "lvPGoX": {
+    "defaultMessage": "Our terms and conditions",
+    "description": "Cookies message"
+  },
+  "mOSkbf": {
+    "defaultMessage": "Usage",
+    "description": "Media label"
+  },
+  "mQiyAm": {
+    "defaultMessage": "Video",
+    "description": "Media type"
+  },
+  "mTqcmA": {
+    "defaultMessage": "Pause",
+    "description": "Button label"
+  },
+  "menus.pagination.next": {
+    "defaultMessage": "next"
+  },
+  "menus.pagination.previous": {
+    "defaultMessage": "Previous"
+  },
+  "mgjMWG": {
+    "defaultMessage": "columns",
+    "description": "Alignment label"
+  },
+  "mv37oK": {
+    "defaultMessage": "Dimension",
+    "description": "Label in Media Gallery"
+  },
+  "n/SxMs": {
+    "defaultMessage": "Search medias",
+    "description": "Input placeholder"
+  },
+  "n2teag": {
+    "defaultMessage": "Add an answer",
+    "description": "Button label in answers field"
+  },
+  "n9LoBJ": {
+    "defaultMessage": "Top",
+    "description": "Direction"
+  },
+  "o3R+FM": {
+    "defaultMessage": "Select a closed captions file...",
+    "description": "Label when no value is provided to Closed captions field"
+  },
+  "oAtOlP": {
+    "defaultMessage": "Heading",
+    "description": "Header placeholder"
+  },
+  "oLtEu6": {
+    "defaultMessage": "Video 360",
+    "description": "Video 360 placeholder"
+  },
+  "p6n6vY": {
+    "defaultMessage": "No answer...",
+    "description": "Label when there is no item in answers field"
+  },
+  "p6q/+/": {
+    "defaultMessage": "Delete screen",
+    "description": "Title of the delete screen dialog"
+  },
+  "pBNrdH": {
+    "defaultMessage": "Conversion",
+    "description": "Field title"
+  },
+  "pRzSQ7": {
+    "defaultMessage": "Overtitle",
+    "description": "Title placeholder"
+  },
+  "pfvDzR": {
+    "defaultMessage": "Added by",
+    "description": "Media label"
+  },
+  "q/tLk0": {
+    "defaultMessage": "Are you sure you want to delete this screen?",
+    "description": "Confirmation message before deleting a screen"
+  },
+  "qIw1nW": {
+    "defaultMessage": "Save",
+    "description": "Save in Media Gallery"
+  },
+  "qKQCxc": {
+    "defaultMessage": "Add a marker",
+    "description": "Button label in markers field"
+  },
+  "rmJBin": {
+    "defaultMessage": "Dimensions",
+    "description": "Field label"
+  },
+  "rqbRV2": {
+    "defaultMessage": "Sorry, this media could not be deleted.",
+    "description": "Delete error message in Media Gallery"
+  },
+  "rtwfuZ": {
+    "defaultMessage": "Actions",
+    "description": "Field name"
+  },
+  "rvOVCV": {
+    "defaultMessage": "Confirm selection",
+    "description": "Button label"
+  },
+  "sHYAUa": {
+    "defaultMessage": "Save my preferences",
+    "description": "Button label"
+  },
+  "sUR1xV": {
+    "defaultMessage": "Author",
+    "description": "Label in Media Gallery"
+  },
+  "sXfFFw": {
+    "defaultMessage": "Enter",
+    "description": "Screen button label"
+  },
+  "t+L1J/": {
+    "defaultMessage": "No image...",
+    "description": "Label when there is no item in images field"
+  },
+  "t2cFdl": {
+    "defaultMessage": "Active filters",
+    "description": "Active filters title"
+  },
+  "tAYwqp": {
+    "defaultMessage": "Add a slide",
+    "description": "Button label in slides field"
+  },
+  "tmfbUn": {
+    "defaultMessage": "Unused",
+    "description": "Media label"
+  },
+  "uSpItE": {
+    "defaultMessage": "Add tags...",
+    "description": "Dropdown select label"
+  },
+  "ufac8e": {
+    "defaultMessage": "Clear all",
+    "description": "Button label"
+  },
+  "ur6G0U": {
+    "defaultMessage": "Load more",
+    "description": "Load button label in Media Gallery"
+  },
+  "v9bqYj": {
+    "defaultMessage": "Go to next screen",
+    "description": "Button label"
+  },
+  "vYunz+": {
+    "defaultMessage": "Recent searches",
+    "description": "Media label"
+  },
+  "vdWMTA": {
+    "defaultMessage": "Surtitle",
+    "description": "Surtitle placeholder"
+  },
+  "vmrJ8U": {
+    "defaultMessage": "(current screen)",
+    "description": "Button label"
+  },
+  "wChc+A": {
+    "defaultMessage": "Edit style...",
+    "description": "No value label"
+  },
+  "wU++NJ": {
+    "defaultMessage": "Duration",
+    "description": "Field label"
+  },
+  "wkysUu": {
+    "defaultMessage": "Screens",
+    "description": "Button to show screens"
+  },
+  "wt1+dM": {
+    "defaultMessage": "Select an audio file...",
+    "description": "Label when no value is provided to Audio field"
+  },
+  "wy2g+x": {
+    "defaultMessage": "Are you sure you want to continue?",
+    "description": "Delete error message in Media Gallery"
+  },
+  "xAzv6g": {
+    "defaultMessage": "All sources",
+    "description": "Media gallery source"
+  },
+  "xFlbR7": {
+    "defaultMessage": "Link copied!",
+    "description": "Message displayed once text was copied successfully."
+  },
+  "xKUOLG": {
+    "defaultMessage": "Technical details",
+    "description": "Field title"
+  },
+  "xSERPA": {
+    "defaultMessage": "Video",
+    "description": "Filter item label"
+  },
+  "xTJlyi": {
+    "defaultMessage": "Horizontal",
+    "description": "Field label"
+  },
+  "xYqGzM": {
+    "defaultMessage": "Author",
+    "description": "Author placeholder"
+  },
+  "xuEZXD": {
+    "defaultMessage": "Edit",
+    "description": "Items edit button label"
+  },
+  "xuPbeq": {
+    "defaultMessage": "Start from the current screen",
+    "description": "Share mode"
+  },
+  "yByaBh": {
+    "defaultMessage": "Added by",
+    "description": "Field label"
+  },
+  "yCXMzz": {
+    "defaultMessage": "Close",
+    "description": "Close button label in Media Gallery"
+  },
+  "yHAmDD": {
+    "defaultMessage": "Image",
+    "description": "Filter item label"
+  },
+  "yMpGIc": {
+    "defaultMessage": "Article",
+    "description": "Article placeholder"
+  },
+  "yQRtgx": {
+    "defaultMessage": "Audio",
+    "description": "Filter item label"
+  },
+  "ygNvmz": {
+    "defaultMessage": "Description",
+    "description": "Field name"
+  },
+  "ylHNR3": {
+    "defaultMessage": "Learn more about our privacy policy",
+    "description": "Cookies message"
+  },
+  "z/VBX0": {
+    "defaultMessage": "Learn more",
+    "description": "Call to action default label"
+  },
+  "z4CiV1": {
+    "defaultMessage": "Text",
+    "description": "Text placeholder"
+  },
+  "z4Pr+g": {
+    "defaultMessage": "Visual (Image or Video)",
+    "description": "Placeholder label"
+  },
+  "zDH24s": {
+    "defaultMessage": "Latitude",
+    "description": "Latitude description"
+  },
+  "zGIcdn": {
+    "defaultMessage": "Sponsors",
+    "description": "Sponsors placeholder"
+  },
+  "zYH/31": {
+    "defaultMessage": "Go to previous screen",
+    "description": "Button label"
+  },
+  "zh2m/S": {
+    "defaultMessage": "Search fonts...",
+    "description": "Field placeholder"
+  },
+  "zl6zsZ": {
+    "defaultMessage": "Lede",
+    "description": "Lede placeholder"
+  }
 }

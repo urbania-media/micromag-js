@@ -10,3 +10,1669 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 3.2.0\n"
+
+# Answer placeholder
+#: +Ok+7S
+msgctxt "+Ok+7S"
+msgid "Answer"
+msgstr "Answer"
+
+# Cookies title
+#: +Ptk0B
+msgctxt "+Ptk0B"
+msgid "Your privacy settings"
+msgstr "Your privacy settings"
+
+# Sponsor label
+#: +TPjd4
+msgctxt "+TPjd4"
+msgid "Presented by"
+msgstr "Presented by"
+
+# Horoscope Subtitle
+#: +vzDdb
+msgctxt "+vzDdb"
+msgid "Word of the Week"
+msgstr "Word of the Week"
+
+# Modal title
+#: /0hgRs
+msgctxt "/0hgRs"
+msgid "Edit text"
+msgstr "Edit text"
+
+# Modal title
+#: /2i9do
+msgctxt "/2i9do"
+msgid "Choose media"
+msgstr "Choose media"
+
+# Media gallery source
+#: /62oe4
+msgctxt "/62oe4"
+msgid "My files"
+msgstr "My files"
+
+# Delete in Media Gallery
+#: /KQ87r
+msgctxt "/KQ87r"
+msgid "Delete media"
+msgstr "Delete media"
+
+# Date placeholder
+#: /MsgWe
+msgctxt "/MsgWe"
+msgid "Date"
+msgstr "Date"
+
+# Media label
+#: /OM5UY
+msgctxt "/OM5UY"
+msgid "Tags"
+msgstr "Tags"
+
+# Remove all button label
+#: /T/UDH
+msgctxt "/T/UDH"
+msgid "Remove all"
+msgstr "Remove all"
+
+# Image 360 placeholder
+#: /YQ+xP
+msgctxt "/YQ+xP"
+msgid "Image 360"
+msgstr "Image 360"
+
+# Media label
+#: /ca7BX
+msgctxt "/ca7BX"
+msgid "Types"
+msgstr "Types"
+
+# Credits placeholder
+#: /hupzO
+msgctxt "/hupzO"
+msgid "Credits"
+msgstr "Credits"
+
+# Field name
+#: 002oWQ
+msgctxt "002oWQ"
+msgid "Duration"
+msgstr "Duration"
+
+# Title placeholder
+#: 03U69o
+msgctxt "03U69o"
+msgid "Buttons"
+msgstr "Buttons"
+
+# Cancel button label
+#: 0GT0SI
+msgctxt "0GT0SI"
+msgid "Cancel"
+msgstr "Cancel"
+
+# Modal title
+#: 0hMiRN
+msgctxt "0hMiRN"
+msgid "Select Audio File"
+msgstr "Select Audio File"
+
+# Dropdown default all items label
+#: 15GBmG
+msgctxt "15GBmG"
+msgid "All"
+msgstr "All"
+
+# Popup label
+#: 17zT4Q
+msgctxt "17zT4Q"
+msgid "Popup"
+msgstr "Popup"
+
+# Media type
+#: 1dqmFw
+msgctxt "1dqmFw"
+msgid "Document"
+msgstr "Document"
+
+# Item label in items field
+#: 2/F1Q7
+msgctxt "2/F1Q7"
+msgid "#{index}"
+msgstr "#{index}"
+
+# Delete error message in Media Gallery
+#: 2FD6tj
+msgctxt "2FD6tj"
+msgid "This media is used by the following documents:"
+msgstr "This media is used by the following documents:"
+
+# Media label
+#: 2J05S0
+msgctxt "2J05S0"
+msgid "Images"
+msgstr "Images"
+
+# Field label
+#: 2LbLWQ
+msgctxt "2LbLWQ"
+msgid "None"
+msgstr "None"
+
+# Title placeholder
+#: 2ZOPe+
+msgctxt "2ZOPe+"
+msgid "Title"
+msgstr "Title"
+
+# Category placeholder
+#: 2c1WFV
+msgctxt "2c1WFV"
+msgid "Title"
+msgstr "Title"
+
+# Button label
+#: 2prwZ7
+msgctxt "2prwZ7"
+msgid "Progress slider"
+msgstr "Progress slider"
+
+# Upload button label in Media Gallery
+#: 3Ap0C1
+msgctxt "3Ap0C1"
+msgid "Upload a media"
+msgstr "Upload a media"
+
+# Label when there is no item in markers field
+#: 3E57H7
+msgctxt "3E57H7"
+msgid "No marker..."
+msgstr "No marker..."
+
+# Field label
+#: 3I2Xl7
+msgctxt "3I2Xl7"
+msgid "WebM"
+msgstr "WebM"
+
+# Field title
+#: 3RT69u
+msgctxt "3RT69u"
+msgid "Informations"
+msgstr "Informations"
+
+# Video placeholder
+#: 3ext9Q
+msgctxt "3ext9Q"
+msgid "Video"
+msgstr "Video"
+
+# Label when there is no item in images with caption field
+#: 3wiL2y
+msgctxt "3wiL2y"
+msgid "No image..."
+msgstr "No image..."
+
+# Button to view a screen
+#: 4POR3B
+msgctxt "4POR3B"
+msgid "View screen"
+msgstr "View screen"
+
+# Field label
+#: 4RV6+9
+msgctxt "4RV6+9"
+msgid "H264"
+msgstr "H264"
+
+# No value label
+#: 4YiKNK
+msgctxt "4YiKNK"
+msgid "Select a color..."
+msgstr "Select a color..."
+
+# Field default label
+#: 4b5gym
+msgctxt "4b5gym"
+msgid "Screen title"
+msgstr "Screen title"
+
+# Tags in Media Gallery
+#: 4fHMVj
+msgctxt "4fHMVj"
+msgid "Tags"
+msgstr "Tags"
+
+# Description placeholder
+#: 507VAi
+msgctxt "507VAi"
+msgid "Description"
+msgstr "Description"
+
+# Submit placeholder
+#: 5uH4x7
+msgctxt "5uH4x7"
+msgid "Submit"
+msgstr "Submit"
+
+# Upload button label in Media Gallery
+#: 6W4St0
+msgctxt "6W4St0"
+msgid "Upload an audio file"
+msgstr "Upload an audio file"
+
+# Authors placeholder
+#: 6jX5Tb
+msgctxt "6jX5Tb"
+msgid "Authors"
+msgstr "Authors"
+
+# Caption placeholder
+#: 6tIigB
+msgctxt "6tIigB"
+msgid "Caption"
+msgstr "Caption"
+
+# Modal title
+#: 790Q9C
+msgctxt "790Q9C"
+msgid "Select Subtitles File"
+msgstr "Select Subtitles File"
+
+# Filter label
+#: 7oXkoj
+msgctxt "7oXkoj"
+msgid "Authors"
+msgstr "Authors"
+
+# Button label
+#: 7tw6U2
+msgctxt "7tw6U2"
+msgid "Share"
+msgstr "Share"
+
+# Label in Media Gallery
+#: 7uyslu
+msgctxt "7uyslu"
+msgid "Description"
+msgstr "Description"
+
+# Button label
+#: 8NyYTH
+msgctxt "8NyYTH"
+msgid "Back"
+msgstr "Back"
+
+# Button label in Media Gallery
+#: 8TbpT7
+msgctxt "8TbpT7"
+msgid "Remove"
+msgstr "Remove"
+
+# Button label
+#: 8sWUOV
+msgctxt "8sWUOV"
+msgid "Add an font file"
+msgstr "Add an font file"
+
+# Button label
+#: 8yRYcm
+msgctxt "8yRYcm"
+msgid "Edit my settings"
+msgstr "Edit my settings"
+
+# Filter label
+#: 9/t5wK
+msgctxt "9/t5wK"
+msgid "Type"
+msgstr "Type"
+
+# Library source menu
+#: 9ZdD+Q
+msgctxt "9ZdD+Q"
+msgid "Library for"
+msgstr "Library for"
+
+# Filter label
+#: 9mXl24
+msgctxt "9mXl24"
+msgid "Tags"
+msgstr "Tags"
+
+# Button label in images with caption field
+#: 9n9+yP
+msgctxt "9n9+yP"
+msgid "Add an image"
+msgstr "Add an image"
+
+# Field label
+#: A/Vr8P
+msgctxt "A/Vr8P"
+msgid "False"
+msgstr "False"
+
+# Screen label in the breadcrumb
+#: AHvHaY
+msgctxt "AHvHaY"
+msgid "Parameters"
+msgstr "Parameters"
+
+# Aria announcement
+#: AIr8rM
+msgctxt "AIr8rM"
+msgid "Screen {current} of {length}"
+msgstr "Screen {current} of {length}"
+
+# Media label
+#: AQ8Aig
+msgctxt "AQ8Aig"
+msgid "Used"
+msgstr "Used"
+
+# No value label
+#: AV6gfh
+msgctxt "AV6gfh"
+msgid "Edit call to action..."
+msgstr "Edit call to action..."
+
+# Media type
+#: AwDQvD
+msgctxt "AwDQvD"
+msgid "Image"
+msgstr "Image"
+
+# Button placeholder
+#: AzN1aW
+msgctxt "AzN1aW"
+msgid "Back"
+msgstr "Back"
+
+# Label when no value is provided to Image field
+#: B1MeY+
+msgctxt "B1MeY+"
+msgid "Select an image..."
+msgstr "Select an image..."
+
+# Modal title
+#: B5Qrmw
+msgctxt "B5Qrmw"
+msgid "Select Font File"
+msgstr "Select Font File"
+
+# Upload button label in Media Gallery
+#: BAfC6s
+msgctxt "BAfC6s"
+msgid "Upload a closed captions file"
+msgstr "Upload a closed captions file"
+
+# Placeholder label
+#: BSTWf8
+msgctxt "BSTWf8"
+msgid "Title"
+msgstr "Title"
+
+# Success form message
+#: BpZoQZ
+msgctxt "BpZoQZ"
+msgid "Success"
+msgstr "Success"
+
+# Seek bar value
+#: C1VUEY
+msgctxt "C1VUEY"
+msgid "{current} of {duration}"
+msgstr "{current} of {duration}"
+
+# Button label
+#: CnVj9r
+msgctxt "CnVj9r"
+msgid "Skip to controls"
+msgstr "Skip to controls"
+
+# Quote placeholder
+#: CrzYgw
+msgctxt "CrzYgw"
+msgid "Quote"
+msgstr "Quote"
+
+# Share button label
+#: D21uVQ
+msgctxt "D21uVQ"
+msgid "Copy link"
+msgstr "Copy link"
+
+# Alignment label
+#: D29KoV
+msgctxt "D29KoV"
+msgid "left aligned"
+msgstr "left aligned"
+
+# Screen button label
+#: D7LIZQ
+msgctxt "D7LIZQ"
+msgid "Start"
+msgstr "Start"
+
+# Label when no value is provided to Video field
+#: DWEzCv
+msgctxt "DWEzCv"
+msgid "Select a video..."
+msgstr "Select a video..."
+
+# Save error message in Media Gallery
+#: DYjRd/
+msgctxt "DYjRd/"
+msgid "Sorry, this media could not be saved."
+msgstr "Sorry, this media could not be saved."
+
+# Media Gallery
+#: EDFyUp
+msgctxt "EDFyUp"
+msgid "Alternative text (accessibility)"
+msgstr "Alternative text (accessibility)"
+
+# Text placeholder
+#: EQdIAR
+msgctxt "EQdIAR"
+msgid "Description"
+msgstr "Description"
+
+# Label when no value is provided to Field with form
+#: EoVdMy
+msgctxt "EoVdMy"
+msgid "Edit content..."
+msgstr "Edit content..."
+
+# Button label
+#: F/gl4b
+msgctxt "F/gl4b"
+msgid "Menu"
+msgstr "Menu"
+
+# Alignment label
+#: FKOWH0
+msgctxt "FKOWH0"
+msgid "right aligned"
+msgstr "right aligned"
+
+# Placeholder label
+#: FOmgqv
+msgctxt "FOmgqv"
+msgid "Question"
+msgstr "Question"
+
+# Your name placeholder
+#: G/ITGY
+msgctxt "G/ITGY"
+msgid "Your name"
+msgstr "Your name"
+
+# Button label
+#: G1Gyjn
+msgctxt "G1Gyjn"
+msgid "Seek"
+msgstr "Seek"
+
+# Direction
+#: GPqjnH
+msgctxt "GPqjnH"
+msgid "Left"
+msgstr "Left"
+
+# Button label
+#: HpkW4J
+msgctxt "HpkW4J"
+msgid "Skip"
+msgstr "Skip"
+
+# Button to edit a screen
+#: HseFdk
+msgctxt "HseFdk"
+msgid "Edit"
+msgstr "Edit"
+
+# Button label
+#: HxW2pw
+msgctxt "HxW2pw"
+msgid "Accept all"
+msgstr "Accept all"
+
+# Category placeholder
+#: I5+AHN
+msgctxt "I5+AHN"
+msgid "Category"
+msgstr "Category"
+
+# Duplicate screen item
+#: IBjY5r
+msgctxt "IBjY5r"
+msgid "Duplicate screen"
+msgstr "Duplicate screen"
+
+# Placeholder label
+#: IE7U/Q
+msgctxt "IE7U/Q"
+msgid "Heading"
+msgstr "Heading"
+
+# Field name
+#: IOVper
+msgctxt "IOVper"
+msgid "Tags"
+msgstr "Tags"
+
+# Button label
+#: IbZVf0
+msgctxt "IbZVf0"
+msgid "Submit"
+msgstr "Submit"
+
+# Button label
+#: IoMJgw
+msgctxt "IoMJgw"
+msgid "Toggle article"
+msgstr "Toggle article"
+
+# Your message placeholder
+#: JAguka
+msgctxt "JAguka"
+msgid "Your message"
+msgstr "Your message"
+
+# Placeholder label
+#: JRZoe6
+msgctxt "JRZoe6"
+msgid "Content"
+msgstr "Content"
+
+# Button to create your first screen
+#: JoWKee
+msgctxt "JoWKee"
+msgid "Create your first screen"
+msgstr "Create your first screen"
+
+# Field label
+#: JuxiUN
+msgctxt "JuxiUN"
+msgid "Format"
+msgstr "Format"
+
+# Text placeholder
+#: JzSBzL
+msgctxt "JzSBzL"
+msgid "Visual"
+msgstr "Visual"
+
+# Search a place on Google Maps placeholder
+#: KB7N5E
+msgctxt "KB7N5E"
+msgid "Search a place on Google Maps"
+msgstr "Search a place on Google Maps"
+
+# Label when there is no item
+#: KCDOHI
+msgctxt "KCDOHI"
+msgid "No font..."
+msgstr "No font..."
+
+# Upload button label in Media Gallery
+#: KK5teQ
+msgctxt "KK5teQ"
+msgid "Upload a visual file"
+msgstr "Upload a visual file"
+
+# Upload button label in Media Gallery
+#: KdAKt7
+msgctxt "KdAKt7"
+msgid "Upload an image file"
+msgstr "Upload an image file"
+
+# Micromag branding
+#: LiMAIC
+msgctxt "LiMAIC"
+msgid "This Micromag was"
+msgstr "This Micromag was"
+
+# Button label
+#: LkVfwW
+msgctxt "LkVfwW"
+msgid "Screen {index}"
+msgstr "Screen {index}"
+
+# Share option label
+#: Lrwi2G
+msgctxt "Lrwi2G"
+msgid "Email"
+msgstr "Email"
+
+# Audio placeholder
+#: MYZwSA
+msgctxt "MYZwSA"
+msgid "Audio"
+msgstr "Audio"
+
+# Placeholder label
+#: N7Kj8z
+msgctxt "N7Kj8z"
+msgid "Button"
+msgstr "Button"
+
+# Conversation placeholder
+#: NmCfTO
+msgctxt "NmCfTO"
+msgid "Conversation"
+msgstr "Conversation"
+
+# Label when there is no item in slides field
+#: OdcEna
+msgctxt "OdcEna"
+msgid "No slide..."
+msgstr "No slide..."
+
+# Type Label in Media Gallery
+#: OkNUmk
+msgctxt "OkNUmk"
+msgid "Type"
+msgstr "Type"
+
+# Field name
+#: OzYWZz
+msgctxt "OzYWZz"
+msgid "Created at"
+msgstr "Created at"
+
+# Modal title
+#: P6ZtIq
+msgctxt "P6ZtIq"
+msgid "Select Document"
+msgstr "Select Document"
+
+# Alignment label
+#: P9A8cx
+msgctxt "P9A8cx"
+msgid "middle aligned"
+msgstr "middle aligned"
+
+# Direction
+#: PFNMAQ
+msgctxt "PFNMAQ"
+msgid "Bottom"
+msgstr "Bottom"
+
+# Label when there is no item in items field
+#: PKCv5M
+msgctxt "PKCv5M"
+msgid "No item..."
+msgstr "No item..."
+
+# Field label
+#: PN+75e
+msgctxt "PN+75e"
+msgid "Created at"
+msgstr "Created at"
+
+# Media label
+#: PNMMo/
+msgctxt "PNMMo/"
+msgid "Audios"
+msgstr "Audios"
+
+# Button label
+#: PyxZY2
+msgctxt "PyxZY2"
+msgid "Cancel"
+msgstr "Cancel"
+
+# Title of the screen types selection dialog
+#: QBaiO0
+msgctxt "QBaiO0"
+msgid "Add a screen"
+msgstr "Add a screen"
+
+# Media label
+#: QBlqW9
+msgctxt "QBlqW9"
+msgid "Videos"
+msgstr "Videos"
+
+#: QfpTKK
+msgctxt "QfpTKK"
+msgid "Select a screen..."
+msgstr "Select a screen..."
+
+# Button label
+#: RK/QEY
+msgctxt "RK/QEY"
+msgid "Unmute"
+msgstr "Unmute"
+
+# Title placeholder
+#: RucIeL
+msgctxt "RucIeL"
+msgid "Share options"
+msgstr "Share options"
+
+# Screen button label
+#: SVLGTA
+msgctxt "SVLGTA"
+msgid "Next"
+msgstr "Next"
+
+# Micromag branding
+#: TDAOl2
+msgctxt "TDAOl2"
+msgid "created with"
+msgstr "created with"
+
+# Longitude description
+#: THKV4v
+msgctxt "THKV4v"
+msgid "Longitude"
+msgstr "Longitude"
+
+# Button label
+#: Tol+/U
+msgctxt "Tol+/U"
+msgid "Clear"
+msgstr "Clear"
+
+# Add button label in Media Gallery
+#: Tt4jN1
+msgctxt "Tt4jN1"
+msgid "Add"
+msgstr "Add"
+
+# Button placeholder
+#: U2RZp5
+msgctxt "U2RZp5"
+msgid "Skip"
+msgstr "Skip"
+
+# Remove button label in Media Gallery
+#: UG3SXh
+msgctxt "UG3SXh"
+msgid "Remove"
+msgstr "Remove"
+
+# Items finish edit button label
+#: UlZIP8
+msgctxt "UlZIP8"
+msgid "OK"
+msgstr "OK"
+
+# Font family group title
+#: UtcYEP
+msgctxt "UtcYEP"
+msgid "Custom fonts"
+msgstr "Custom fonts"
+
+# Button label in images field
+#: V+G2s+
+msgctxt "V+G2s+"
+msgid "Add an image"
+msgstr "Add an image"
+
+# Font family group title
+#: VDu2FA
+msgctxt "VDu2FA"
+msgid "Google Fonts"
+msgstr "Google Fonts"
+
+# Field name
+#: WX83V9
+msgctxt "WX83V9"
+msgid "File name"
+msgstr "File name"
+
+# Label when no value
+#: Wb5zY4
+msgctxt "Wb5zY4"
+msgid "Select a font file..."
+msgstr "Select a font file..."
+
+# Upload button label in Media Gallery
+#: WeD4nB
+msgctxt "WeD4nB"
+msgid "Upload a video file"
+msgstr "Upload a video file"
+
+# Heading placeholder
+#: X7kRRa
+msgctxt "X7kRRa"
+msgid "Heading"
+msgstr "Heading"
+
+# Button label
+#: X9mFEG
+msgctxt "X9mFEG"
+msgid "Reject all"
+msgstr "Reject all"
+
+# Button label
+#: XHO5Ua
+msgctxt "XHO5Ua"
+msgid "Expand visual"
+msgstr "Expand visual"
+
+# Field label
+#: XR5/Wk
+msgctxt "XR5/Wk"
+msgid "Edit"
+msgstr "Edit"
+
+# Delete in Media Gallery
+#: Xb6r3F
+msgctxt "Xb6r3F"
+msgid "Cancel"
+msgstr "Cancel"
+
+# Move the map to position the place description
+#: XhgKcw
+msgctxt "XhgKcw"
+msgid "Move the map to position the place"
+msgstr "Move the map to position the place"
+
+# Media type
+#: XnyI69
+msgctxt "XnyI69"
+msgid "Audio"
+msgstr "Audio"
+
+# Quiz label
+#: Xr1v8l
+msgctxt "Xr1v8l"
+msgid "points gained"
+msgstr "points gained"
+
+# Description in Media Gallery
+#: YJZtWR
+msgctxt "YJZtWR"
+msgid "Description"
+msgstr "Description"
+
+# Tooltip
+#: YXhRxW
+msgctxt "YXhRxW"
+msgid "No controls available"
+msgstr "No controls available"
+
+# Field label
+#: YwySSO
+msgctxt "YwySSO"
+msgid "Vertical"
+msgstr "Vertical"
+
+# Button label
+#: YyYrXp
+msgctxt "YyYrXp"
+msgid "Loading"
+msgstr "Loading"
+
+# Placeholder label
+#: ZG8/oK
+msgctxt "ZG8/oK"
+msgid "Subtitle"
+msgstr "Subtitle"
+
+# Submit form button
+#: ZLDmja
+msgctxt "ZLDmja"
+msgid "Submit"
+msgstr "Submit"
+
+# Button label in items field
+#: ZxgNge
+msgctxt "ZxgNge"
+msgid "Add an item"
+msgstr "Add an item"
+
+# Font family group title
+#: al5xjv
+msgctxt "al5xjv"
+msgid "Default fonts"
+msgstr "Default fonts"
+
+# Label in Media Gallery
+#: aovRFH
+msgctxt "aovRFH"
+msgid "Filename"
+msgstr "Filename"
+
+# Media gallery source filter
+#: bCtuS/
+msgctxt "bCtuS/"
+msgid "In this Micromag"
+msgstr "In this Micromag"
+
+# Nav ARIA label
+#: bLYuuN
+msgctxt "bLYuuN"
+msgid "You are on screen {current} of {total}."
+msgstr "You are on screen {current} of {total}."
+
+# Title placeholder
+#: bmO4Ss
+msgctxt "bmO4Ss"
+msgid "Entry Title"
+msgstr "Entry Title"
+
+# Button placeholder
+#: bv3rRe
+msgctxt "bv3rRe"
+msgid "Button"
+msgstr "Button"
+
+# Field name
+#: c3hu9o
+msgctxt "c3hu9o"
+msgid "Size"
+msgstr "Size"
+
+# Heading in Media Gallery
+#: c9VwT/
+msgctxt "c9VwT/"
+msgid "Technical details"
+msgstr "Technical details"
+
+# Button label
+#: cXt3NU
+msgctxt "cXt3NU"
+msgid "Close Popup"
+msgstr "Close Popup"
+
+# Sign placeholder
+#: ceaRdq
+msgctxt "ceaRdq"
+msgid "Horoscope sign"
+msgstr "Horoscope sign"
+
+# Modal title
+#: cej3hp
+msgctxt "cej3hp"
+msgid "Select Video"
+msgstr "Select Video"
+
+#: consent.ad_personalization_description
+msgctxt "consent.ad_personalization_description"
+msgid "Cookies used for ad targeting."
+msgstr "Cookies used for ad targeting."
+
+#: consent.ad_personalization_title
+msgctxt "consent.ad_personalization_title"
+msgid "Ad Personalization"
+msgstr "Ad Personalization"
+
+#: consent.ad_storage_description
+msgctxt "consent.ad_storage_description"
+msgid "Cookies used for advertising purposes."
+msgstr "Cookies used for advertising purposes."
+
+#: consent.ad_storage_title
+msgctxt "consent.ad_storage_title"
+msgid "Ad Storage"
+msgstr "Ad Storage"
+
+#: consent.ad_user_data_description
+msgctxt "consent.ad_user_data_description"
+msgid "Cookies used for user-specific ad data."
+msgstr "Cookies used for user-specific ad data."
+
+#: consent.ad_user_data_title
+msgctxt "consent.ad_user_data_title"
+msgid "User Ad Data"
+msgstr "User Ad Data"
+
+#: consent.analytics_description
+msgctxt "consent.analytics_description"
+msgid "Cookies used to measure user behavior."
+msgstr "Cookies used to measure user behavior."
+
+#: consent.analytics_title
+msgctxt "consent.analytics_title"
+msgid "Analytics"
+msgstr "Analytics"
+
+#: consent.functionality_description
+msgctxt "consent.functionality_description"
+msgid "Cookies required for the site to function properly."
+msgstr "Cookies required for the site to function properly."
+
+#: consent.functionality_title
+msgctxt "consent.functionality_title"
+msgid "Functionnal"
+msgstr "Functionnal"
+
+#: consent.personalization_storage_description
+msgctxt "consent.personalization_storage_description"
+msgid "Cookies used for personalizing user experience."
+msgstr "Cookies used for personalizing user experience."
+
+#: consent.personalization_storage_title
+msgctxt "consent.personalization_storage_title"
+msgid "Personalization Storage"
+msgstr "Personalization Storage"
+
+#: consent.security_storage_description
+msgctxt "consent.security_storage_description"
+msgid "Cookies used for security purposes."
+msgstr "Cookies used for security purposes."
+
+#: consent.security_storage_title
+msgctxt "consent.security_storage_title"
+msgid "Security Storage"
+msgstr "Security Storage"
+
+# Share Incentive default label
+#: d/01YO
+msgctxt "d/01YO"
+msgid "Share this Micromag!"
+msgstr "Share this Micromag!"
+
+# Subtitle placeholder
+#: d60tSn
+msgctxt "d60tSn"
+msgid "Subtitle"
+msgstr "Subtitle"
+
+# Button label with icon
+#: dIvwcD
+msgctxt "dIvwcD"
+msgid "Close"
+msgstr "Close"
+
+# Share button label
+#: dSfmnf
+msgctxt "dSfmnf"
+msgid "SMS"
+msgstr "SMS"
+
+# Button label
+#: dj/p/q
+msgctxt "dj/p/q"
+msgid "Close"
+msgstr "Close"
+
+# Legend placeholder
+#: dqnkQk
+msgctxt "dqnkQk"
+msgid "Legend"
+msgstr "Legend"
+
+# Cookies message
+#: dsRGuG
+msgctxt "dsRGuG"
+msgid ""
+"We use cookies to improve your experience on our site and for marketing "
+"purposes. By accepting, you consent to the use of these cookies."
+msgstr ""
+"We use cookies to improve your experience on our site and for marketing "
+"purposes. By accepting, you consent to the use of these cookies."
+
+# Question placeholder
+#: e1I+KU
+msgctxt "e1I+KU"
+msgid "Question"
+msgstr "Question"
+
+# Label when no value is provided to Media field
+#: e6+aGf
+msgctxt "e6+aGf"
+msgid "Select a media..."
+msgstr "Select a media..."
+
+# Field name
+#: eCe9ZY
+msgctxt "eCe9ZY"
+msgid "Dimensions"
+msgstr "Dimensions"
+
+# Image placeholder
+#: ebsPd4
+msgctxt "ebsPd4"
+msgid "Image"
+msgstr "Image"
+
+# Media gallery source
+#: eiaIIB
+msgctxt "eiaIIB"
+msgid "This Micromag"
+msgstr "This Micromag"
+
+# Name of the section in Fields
+#: enFs4g
+msgctxt "enFs4g"
+msgid "Advanced"
+msgstr "Advanced"
+
+# Label in Media Gallery
+#: eoW0tZ
+msgctxt "eoW0tZ"
+msgid "Duration"
+msgstr "Duration"
+
+# No title label in Media Gallery
+#: fVqgfl
+msgctxt "fVqgfl"
+msgid "[no title]"
+msgstr "[no title]"
+
+# No value label
+#: fbiNiR
+msgctxt "fbiNiR"
+msgid "Select a size..."
+msgstr "Select a size..."
+
+# Filter item label
+#: fpQzza
+msgctxt "fpQzza"
+msgid "Font"
+msgstr "Font"
+
+# Field label
+#: g2CRt5
+msgctxt "g2CRt5"
+msgid "Size"
+msgstr "Size"
+
+#: gJTVcQ
+msgctxt "gJTVcQ"
+msgid "Select media..."
+msgstr "Select media..."
+
+# Delete screen button label
+#: gRxcTc
+msgctxt "gRxcTc"
+msgid "Delete screen"
+msgstr "Delete screen"
+
+# Nav aria label
+#: gfZs4J
+msgctxt "gfZs4J"
+msgid "Skip Links"
+msgstr "Skip Links"
+
+# Placeholder label
+#: hoDz0O
+msgctxt "hoDz0O"
+msgid "Description"
+msgstr "Description"
+
+# Delete screen item
+#: hpiKce
+msgctxt "hpiKce"
+msgid "Delete screen"
+msgstr "Delete screen"
+
+# No value label
+#: i+3ZrF
+msgctxt "i+3ZrF"
+msgid "Select a font family..."
+msgstr "Select a font family..."
+
+# Button label in Media Gallery
+#: iCf/MP
+msgctxt "iCf/MP"
+msgid "Edit"
+msgstr "Edit"
+
+# Field label
+#: j00v1T
+msgctxt "j00v1T"
+msgid "True"
+msgstr "True"
+
+# Author label
+#: jEK6B8
+msgctxt "jEK6B8"
+msgid "By"
+msgstr "By"
+
+# Title of the screens section
+#: jf+4Hq
+msgctxt "jf+4Hq"
+msgid "Screens"
+msgstr "Screens"
+
+# Label when no value is provided to Visual field
+#: jnww6n
+msgctxt "jnww6n"
+msgid "Select an image..."
+msgstr "Select an image..."
+
+# Name in Media Gallery
+#: kBz8vF
+msgctxt "kBz8vF"
+msgid "Name"
+msgstr "Name"
+
+# Direction
+#: kf/5Tw
+msgctxt "kf/5Tw"
+msgid "Right"
+msgstr "Right"
+
+# Modal title
+#: kxsaD3
+msgctxt "kxsaD3"
+msgid "Select Image"
+msgstr "Select Image"
+
+# Result placeholder
+#: li7ADr
+msgctxt "li7ADr"
+msgid "Result"
+msgstr "Result"
+
+# Label in Media Gallery
+#: liyV7Y
+msgctxt "liyV7Y"
+msgid "Size"
+msgstr "Size"
+
+# Cookies message
+#: lvPGoX
+msgctxt "lvPGoX"
+msgid "Our terms and conditions"
+msgstr "Our terms and conditions"
+
+# Media label
+#: mOSkbf
+msgctxt "mOSkbf"
+msgid "Usage"
+msgstr "Usage"
+
+# Media type
+#: mQiyAm
+msgctxt "mQiyAm"
+msgid "Video"
+msgstr "Video"
+
+# Button label
+#: mTqcmA
+msgctxt "mTqcmA"
+msgid "Pause"
+msgstr "Pause"
+
+#: menus.pagination.next
+msgctxt "menus.pagination.next"
+msgid "next"
+msgstr "next"
+
+#: menus.pagination.previous
+msgctxt "menus.pagination.previous"
+msgid "Previous"
+msgstr "Previous"
+
+# Alignment label
+#: mgjMWG
+msgctxt "mgjMWG"
+msgid "columns"
+msgstr "columns"
+
+# Label in Media Gallery
+#: mv37oK
+msgctxt "mv37oK"
+msgid "Dimension"
+msgstr "Dimension"
+
+# Input placeholder
+#: n/SxMs
+msgctxt "n/SxMs"
+msgid "Search medias"
+msgstr "Search medias"
+
+# Button label in answers field
+#: n2teag
+msgctxt "n2teag"
+msgid "Add an answer"
+msgstr "Add an answer"
+
+# Direction
+#: n9LoBJ
+msgctxt "n9LoBJ"
+msgid "Top"
+msgstr "Top"
+
+# Label when no value is provided to Closed captions field
+#: o3R+FM
+msgctxt "o3R+FM"
+msgid "Select a closed captions file..."
+msgstr "Select a closed captions file..."
+
+# Header placeholder
+#: oAtOlP
+msgctxt "oAtOlP"
+msgid "Heading"
+msgstr "Heading"
+
+# Video 360 placeholder
+#: oLtEu6
+msgctxt "oLtEu6"
+msgid "Video 360"
+msgstr "Video 360"
+
+# Label when there is no item in answers field
+#: p6n6vY
+msgctxt "p6n6vY"
+msgid "No answer..."
+msgstr "No answer..."
+
+# Title of the delete screen dialog
+#: p6q/+/
+msgctxt "p6q/+/"
+msgid "Delete screen"
+msgstr "Delete screen"
+
+# Field title
+#: pBNrdH
+msgctxt "pBNrdH"
+msgid "Conversion"
+msgstr "Conversion"
+
+# Title placeholder
+#: pRzSQ7
+msgctxt "pRzSQ7"
+msgid "Overtitle"
+msgstr "Overtitle"
+
+# Media label
+#: pfvDzR
+msgctxt "pfvDzR"
+msgid "Added by"
+msgstr "Added by"
+
+# Confirmation message before deleting a screen
+#: q/tLk0
+msgctxt "q/tLk0"
+msgid "Are you sure you want to delete this screen?"
+msgstr "Are you sure you want to delete this screen?"
+
+# Save in Media Gallery
+#: qIw1nW
+msgctxt "qIw1nW"
+msgid "Save"
+msgstr "Save"
+
+# Button label in markers field
+#: qKQCxc
+msgctxt "qKQCxc"
+msgid "Add a marker"
+msgstr "Add a marker"
+
+# Field label
+#: rmJBin
+msgctxt "rmJBin"
+msgid "Dimensions"
+msgstr "Dimensions"
+
+# Delete error message in Media Gallery
+#: rqbRV2
+msgctxt "rqbRV2"
+msgid "Sorry, this media could not be deleted."
+msgstr "Sorry, this media could not be deleted."
+
+# Field name
+#: rtwfuZ
+msgctxt "rtwfuZ"
+msgid "Actions"
+msgstr "Actions"
+
+# Button label
+#: rvOVCV
+msgctxt "rvOVCV"
+msgid "Confirm selection"
+msgstr "Confirm selection"
+
+# Button label
+#: sHYAUa
+msgctxt "sHYAUa"
+msgid "Save my preferences"
+msgstr "Save my preferences"
+
+# Label in Media Gallery
+#: sUR1xV
+msgctxt "sUR1xV"
+msgid "Author"
+msgstr "Author"
+
+# Screen button label
+#: sXfFFw
+msgctxt "sXfFFw"
+msgid "Enter"
+msgstr "Enter"
+
+# Label when there is no item in images field
+#: t+L1J/
+msgctxt "t+L1J/"
+msgid "No image..."
+msgstr "No image..."
+
+# Active filters title
+#: t2cFdl
+msgctxt "t2cFdl"
+msgid "Active filters"
+msgstr "Active filters"
+
+# Button label in slides field
+#: tAYwqp
+msgctxt "tAYwqp"
+msgid "Add a slide"
+msgstr "Add a slide"
+
+# Media label
+#: tmfbUn
+msgctxt "tmfbUn"
+msgid "Unused"
+msgstr "Unused"
+
+# Dropdown select label
+#: uSpItE
+msgctxt "uSpItE"
+msgid "Add tags..."
+msgstr "Add tags..."
+
+# Button label
+#: ufac8e
+msgctxt "ufac8e"
+msgid "Clear all"
+msgstr "Clear all"
+
+# Load button label in Media Gallery
+#: ur6G0U
+msgctxt "ur6G0U"
+msgid "Load more"
+msgstr "Load more"
+
+# Button label
+#: v9bqYj
+msgctxt "v9bqYj"
+msgid "Go to next screen"
+msgstr "Go to next screen"
+
+# Media label
+#: vYunz+
+msgctxt "vYunz+"
+msgid "Recent searches"
+msgstr "Recent searches"
+
+# Surtitle placeholder
+#: vdWMTA
+msgctxt "vdWMTA"
+msgid "Surtitle"
+msgstr "Surtitle"
+
+# Button label
+#: vmrJ8U
+msgctxt "vmrJ8U"
+msgid "(current screen)"
+msgstr "(current screen)"
+
+# No value label
+#: wChc+A
+msgctxt "wChc+A"
+msgid "Edit style..."
+msgstr "Edit style..."
+
+# Field label
+#: wU++NJ
+msgctxt "wU++NJ"
+msgid "Duration"
+msgstr "Duration"
+
+# Button to show screens
+#: wkysUu
+msgctxt "wkysUu"
+msgid "Screens"
+msgstr "Screens"
+
+# Label when no value is provided to Audio field
+#: wt1+dM
+msgctxt "wt1+dM"
+msgid "Select an audio file..."
+msgstr "Select an audio file..."
+
+# Delete error message in Media Gallery
+#: wy2g+x
+msgctxt "wy2g+x"
+msgid "Are you sure you want to continue?"
+msgstr "Are you sure you want to continue?"
+
+# Media gallery source
+#: xAzv6g
+msgctxt "xAzv6g"
+msgid "All sources"
+msgstr "All sources"
+
+# Message displayed once text was copied successfully.
+#: xFlbR7
+msgctxt "xFlbR7"
+msgid "Link copied!"
+msgstr "Link copied!"
+
+# Field title
+#: xKUOLG
+msgctxt "xKUOLG"
+msgid "Technical details"
+msgstr "Technical details"
+
+# Filter item label
+#: xSERPA
+msgctxt "xSERPA"
+msgid "Video"
+msgstr "Video"
+
+# Field label
+#: xTJlyi
+msgctxt "xTJlyi"
+msgid "Horizontal"
+msgstr "Horizontal"
+
+# Author placeholder
+#: xYqGzM
+msgctxt "xYqGzM"
+msgid "Author"
+msgstr "Author"
+
+# Items edit button label
+#: xuEZXD
+msgctxt "xuEZXD"
+msgid "Edit"
+msgstr "Edit"
+
+# Share mode
+#: xuPbeq
+msgctxt "xuPbeq"
+msgid "Start from the current screen"
+msgstr "Start from the current screen"
+
+# Field label
+#: yByaBh
+msgctxt "yByaBh"
+msgid "Added by"
+msgstr "Added by"
+
+# Close button label in Media Gallery
+#: yCXMzz
+msgctxt "yCXMzz"
+msgid "Close"
+msgstr "Close"
+
+# Filter item label
+#: yHAmDD
+msgctxt "yHAmDD"
+msgid "Image"
+msgstr "Image"
+
+# Article placeholder
+#: yMpGIc
+msgctxt "yMpGIc"
+msgid "Article"
+msgstr "Article"
+
+# Filter item label
+#: yQRtgx
+msgctxt "yQRtgx"
+msgid "Audio"
+msgstr "Audio"
+
+# Field name
+#: ygNvmz
+msgctxt "ygNvmz"
+msgid "Description"
+msgstr "Description"
+
+# Cookies message
+#: ylHNR3
+msgctxt "ylHNR3"
+msgid "Learn more about our privacy policy"
+msgstr "Learn more about our privacy policy"
+
+# Call to action default label
+#: z/VBX0
+msgctxt "z/VBX0"
+msgid "Learn more"
+msgstr "Learn more"
+
+# Text placeholder
+#: z4CiV1
+msgctxt "z4CiV1"
+msgid "Text"
+msgstr "Text"
+
+# Placeholder label
+#: z4Pr+g
+msgctxt "z4Pr+g"
+msgid "Visual (Image or Video)"
+msgstr "Visual (Image or Video)"
+
+# Latitude description
+#: zDH24s
+msgctxt "zDH24s"
+msgid "Latitude"
+msgstr "Latitude"
+
+# Sponsors placeholder
+#: zGIcdn
+msgctxt "zGIcdn"
+msgid "Sponsors"
+msgstr "Sponsors"
+
+# Button label
+#: zYH/31
+msgctxt "zYH/31"
+msgid "Go to previous screen"
+msgstr "Go to previous screen"
+
+# Field placeholder
+#: zh2m/S
+msgctxt "zh2m/S"
+msgid "Search fonts..."
+msgstr "Search fonts..."
+
+# Lede placeholder
+#: zl6zsZ
+msgctxt "zl6zsZ"
+msgid "Lede"
+msgstr "Lede"

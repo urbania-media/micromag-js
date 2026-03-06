@@ -1,1 +1,842 @@
-{}
+{
+    "+Ok+7S": {
+        "defaultMessage": "Answer"
+    },
+    "+Ptk0B": {
+        "defaultMessage": "Your privacy settings"
+    },
+    "+TPjd4": {
+        "defaultMessage": "Presented by"
+    },
+    "+vzDdb": {
+        "defaultMessage": "Word of the Week"
+    },
+    "/0hgRs": {
+        "defaultMessage": "Edit text"
+    },
+    "/2i9do": {
+        "defaultMessage": "Choose media"
+    },
+    "/62oe4": {
+        "defaultMessage": "My files"
+    },
+    "/KQ87r": {
+        "defaultMessage": "Delete media"
+    },
+    "/MsgWe": {
+        "defaultMessage": "Date"
+    },
+    "/OM5UY": {
+        "defaultMessage": "Tags"
+    },
+    "/T/UDH": {
+        "defaultMessage": "Remove all"
+    },
+    "/YQ+xP": {
+        "defaultMessage": "Image 360"
+    },
+    "/ca7BX": {
+        "defaultMessage": "Types"
+    },
+    "/hupzO": {
+        "defaultMessage": "Credits"
+    },
+    "002oWQ": {
+        "defaultMessage": "Duration"
+    },
+    "03U69o": {
+        "defaultMessage": "Buttons"
+    },
+    "0GT0SI": {
+        "defaultMessage": "Cancel"
+    },
+    "0hMiRN": {
+        "defaultMessage": "Select Audio File"
+    },
+    "15GBmG": {
+        "defaultMessage": "All"
+    },
+    "17zT4Q": {
+        "defaultMessage": "Popup"
+    },
+    "1dqmFw": {
+        "defaultMessage": "Document"
+    },
+    "2/F1Q7": {
+        "defaultMessage": "#{index}"
+    },
+    "2FD6tj": {
+        "defaultMessage": "This media is used by the following documents:"
+    },
+    "2J05S0": {
+        "defaultMessage": "Images"
+    },
+    "2LbLWQ": {
+        "defaultMessage": "None"
+    },
+    "2ZOPe+": {
+        "defaultMessage": "Title"
+    },
+    "2c1WFV": {
+        "defaultMessage": "Title"
+    },
+    "2prwZ7": {
+        "defaultMessage": "Progress slider"
+    },
+    "3Ap0C1": {
+        "defaultMessage": "Upload a media"
+    },
+    "3E57H7": {
+        "defaultMessage": "No marker..."
+    },
+    "3I2Xl7": {
+        "defaultMessage": "WebM"
+    },
+    "3RT69u": {
+        "defaultMessage": "Informations"
+    },
+    "3ext9Q": {
+        "defaultMessage": "Video"
+    },
+    "3wiL2y": {
+        "defaultMessage": "No image..."
+    },
+    "4POR3B": {
+        "defaultMessage": "View screen"
+    },
+    "4RV6+9": {
+        "defaultMessage": "H264"
+    },
+    "4YiKNK": {
+        "defaultMessage": "Select a color..."
+    },
+    "4b5gym": {
+        "defaultMessage": "Screen title"
+    },
+    "4fHMVj": {
+        "defaultMessage": "Tags"
+    },
+    "507VAi": {
+        "defaultMessage": "Description"
+    },
+    "5uH4x7": {
+        "defaultMessage": "Submit"
+    },
+    "6W4St0": {
+        "defaultMessage": "Upload an audio file"
+    },
+    "6jX5Tb": {
+        "defaultMessage": "Authors"
+    },
+    "6tIigB": {
+        "defaultMessage": "Caption"
+    },
+    "790Q9C": {
+        "defaultMessage": "Select Subtitles File"
+    },
+    "7oXkoj": {
+        "defaultMessage": "Authors"
+    },
+    "7tw6U2": {
+        "defaultMessage": "Share"
+    },
+    "7uyslu": {
+        "defaultMessage": "Description"
+    },
+    "8NyYTH": {
+        "defaultMessage": "Back"
+    },
+    "8TbpT7": {
+        "defaultMessage": "Remove"
+    },
+    "8sWUOV": {
+        "defaultMessage": "Add an font file"
+    },
+    "8yRYcm": {
+        "defaultMessage": "Edit my settings"
+    },
+    "9/t5wK": {
+        "defaultMessage": "Type"
+    },
+    "9ZdD+Q": {
+        "defaultMessage": "Library for"
+    },
+    "9mXl24": {
+        "defaultMessage": "Tags"
+    },
+    "9n9+yP": {
+        "defaultMessage": "Add an image"
+    },
+    "A/Vr8P": {
+        "defaultMessage": "False"
+    },
+    "AHvHaY": {
+        "defaultMessage": "Parameters"
+    },
+    "AIr8rM": {
+        "defaultMessage": "Screen {current} of {length}"
+    },
+    "AQ8Aig": {
+        "defaultMessage": "Used"
+    },
+    "AV6gfh": {
+        "defaultMessage": "Edit call to action..."
+    },
+    "AwDQvD": {
+        "defaultMessage": "Image"
+    },
+    "AzN1aW": {
+        "defaultMessage": "Back"
+    },
+    "B1MeY+": {
+        "defaultMessage": "Select an image..."
+    },
+    "B5Qrmw": {
+        "defaultMessage": "Select Font File"
+    },
+    "BAfC6s": {
+        "defaultMessage": "Upload a closed captions file"
+    },
+    "BSTWf8": {
+        "defaultMessage": "Title"
+    },
+    "BpZoQZ": {
+        "defaultMessage": "Success"
+    },
+    "C1VUEY": {
+        "defaultMessage": "{current} of {duration}"
+    },
+    "CnVj9r": {
+        "defaultMessage": "Skip to controls"
+    },
+    "CrzYgw": {
+        "defaultMessage": "Quote"
+    },
+    "D21uVQ": {
+        "defaultMessage": "Copy link"
+    },
+    "D29KoV": {
+        "defaultMessage": "left aligned"
+    },
+    "D7LIZQ": {
+        "defaultMessage": "Start"
+    },
+    "DWEzCv": {
+        "defaultMessage": "Select a video..."
+    },
+    "DYjRd/": {
+        "defaultMessage": "Sorry, this media could not be saved."
+    },
+    "EDFyUp": {
+        "defaultMessage": "Alternative text (accessibility)"
+    },
+    "EQdIAR": {
+        "defaultMessage": "Description"
+    },
+    "EoVdMy": {
+        "defaultMessage": "Edit content..."
+    },
+    "F/gl4b": {
+        "defaultMessage": "Menu"
+    },
+    "FKOWH0": {
+        "defaultMessage": "right aligned"
+    },
+    "FOmgqv": {
+        "defaultMessage": "Question"
+    },
+    "G/ITGY": {
+        "defaultMessage": "Your name"
+    },
+    "G1Gyjn": {
+        "defaultMessage": "Seek"
+    },
+    "GPqjnH": {
+        "defaultMessage": "Left"
+    },
+    "HpkW4J": {
+        "defaultMessage": "Skip"
+    },
+    "HseFdk": {
+        "defaultMessage": "Edit"
+    },
+    "HxW2pw": {
+        "defaultMessage": "Accept all"
+    },
+    "I5+AHN": {
+        "defaultMessage": "Category"
+    },
+    "IBjY5r": {
+        "defaultMessage": "Duplicate screen"
+    },
+    "IE7U/Q": {
+        "defaultMessage": "Heading"
+    },
+    "IOVper": {
+        "defaultMessage": "Tags"
+    },
+    "IbZVf0": {
+        "defaultMessage": "Submit"
+    },
+    "IoMJgw": {
+        "defaultMessage": "Toggle article"
+    },
+    "JAguka": {
+        "defaultMessage": "Your message"
+    },
+    "JRZoe6": {
+        "defaultMessage": "Content"
+    },
+    "JoWKee": {
+        "defaultMessage": "Create your first screen"
+    },
+    "JuxiUN": {
+        "defaultMessage": "Format"
+    },
+    "JzSBzL": {
+        "defaultMessage": "Visual"
+    },
+    "KB7N5E": {
+        "defaultMessage": "Search a place on Google Maps"
+    },
+    "KCDOHI": {
+        "defaultMessage": "No font..."
+    },
+    "KK5teQ": {
+        "defaultMessage": "Upload a visual file"
+    },
+    "KdAKt7": {
+        "defaultMessage": "Upload an image file"
+    },
+    "LiMAIC": {
+        "defaultMessage": "This Micromag was"
+    },
+    "LkVfwW": {
+        "defaultMessage": "Screen {index}"
+    },
+    "Lrwi2G": {
+        "defaultMessage": "Email"
+    },
+    "MYZwSA": {
+        "defaultMessage": "Audio"
+    },
+    "N7Kj8z": {
+        "defaultMessage": "Button"
+    },
+    "NmCfTO": {
+        "defaultMessage": "Conversation"
+    },
+    "OdcEna": {
+        "defaultMessage": "No slide..."
+    },
+    "OkNUmk": {
+        "defaultMessage": "Type"
+    },
+    "OzYWZz": {
+        "defaultMessage": "Created at"
+    },
+    "P6ZtIq": {
+        "defaultMessage": "Select Document"
+    },
+    "P9A8cx": {
+        "defaultMessage": "middle aligned"
+    },
+    "PFNMAQ": {
+        "defaultMessage": "Bottom"
+    },
+    "PKCv5M": {
+        "defaultMessage": "No item..."
+    },
+    "PN+75e": {
+        "defaultMessage": "Created at"
+    },
+    "PNMMo/": {
+        "defaultMessage": "Audios"
+    },
+    "PyxZY2": {
+        "defaultMessage": "Cancel"
+    },
+    "QBaiO0": {
+        "defaultMessage": "Add a screen"
+    },
+    "QBlqW9": {
+        "defaultMessage": "Videos"
+    },
+    "QfpTKK": {
+        "defaultMessage": "Select a screen..."
+    },
+    "RK/QEY": {
+        "defaultMessage": "Unmute"
+    },
+    "RucIeL": {
+        "defaultMessage": "Share options"
+    },
+    "SVLGTA": {
+        "defaultMessage": "Next"
+    },
+    "TDAOl2": {
+        "defaultMessage": "created with"
+    },
+    "THKV4v": {
+        "defaultMessage": "Longitude"
+    },
+    "Tol+/U": {
+        "defaultMessage": "Clear"
+    },
+    "Tt4jN1": {
+        "defaultMessage": "Add"
+    },
+    "U2RZp5": {
+        "defaultMessage": "Skip"
+    },
+    "UG3SXh": {
+        "defaultMessage": "Remove"
+    },
+    "UlZIP8": {
+        "defaultMessage": "OK"
+    },
+    "UtcYEP": {
+        "defaultMessage": "Custom fonts"
+    },
+    "V+G2s+": {
+        "defaultMessage": "Add an image"
+    },
+    "VDu2FA": {
+        "defaultMessage": "Google Fonts"
+    },
+    "WX83V9": {
+        "defaultMessage": "File name"
+    },
+    "Wb5zY4": {
+        "defaultMessage": "Select a font file..."
+    },
+    "WeD4nB": {
+        "defaultMessage": "Upload a video file"
+    },
+    "X7kRRa": {
+        "defaultMessage": "Heading"
+    },
+    "X9mFEG": {
+        "defaultMessage": "Reject all"
+    },
+    "XHO5Ua": {
+        "defaultMessage": "Expand visual"
+    },
+    "XR5/Wk": {
+        "defaultMessage": "Edit"
+    },
+    "Xb6r3F": {
+        "defaultMessage": "Cancel"
+    },
+    "XhgKcw": {
+        "defaultMessage": "Move the map to position the place"
+    },
+    "XnyI69": {
+        "defaultMessage": "Audio"
+    },
+    "Xr1v8l": {
+        "defaultMessage": "points gained"
+    },
+    "YJZtWR": {
+        "defaultMessage": "Description"
+    },
+    "YXhRxW": {
+        "defaultMessage": "No controls available"
+    },
+    "YwySSO": {
+        "defaultMessage": "Vertical"
+    },
+    "YyYrXp": {
+        "defaultMessage": "Loading"
+    },
+    "ZG8/oK": {
+        "defaultMessage": "Subtitle"
+    },
+    "ZLDmja": {
+        "defaultMessage": "Submit"
+    },
+    "ZxgNge": {
+        "defaultMessage": "Add an item"
+    },
+    "al5xjv": {
+        "defaultMessage": "Default fonts"
+    },
+    "aovRFH": {
+        "defaultMessage": "Filename"
+    },
+    "bCtuS/": {
+        "defaultMessage": "In this Micromag"
+    },
+    "bLYuuN": {
+        "defaultMessage": "You are on screen {current} of {total}."
+    },
+    "bmO4Ss": {
+        "defaultMessage": "Entry Title"
+    },
+    "bv3rRe": {
+        "defaultMessage": "Button"
+    },
+    "c3hu9o": {
+        "defaultMessage": "Size"
+    },
+    "c9VwT/": {
+        "defaultMessage": "Technical details"
+    },
+    "cXt3NU": {
+        "defaultMessage": "Close Popup"
+    },
+    "ceaRdq": {
+        "defaultMessage": "Horoscope sign"
+    },
+    "cej3hp": {
+        "defaultMessage": "Select Video"
+    },
+    "consent.ad_personalization_description": {
+        "defaultMessage": "Cookies used for ad targeting."
+    },
+    "consent.ad_personalization_title": {
+        "defaultMessage": "Ad Personalization"
+    },
+    "consent.ad_storage_description": {
+        "defaultMessage": "Cookies used for advertising purposes."
+    },
+    "consent.ad_storage_title": {
+        "defaultMessage": "Ad Storage"
+    },
+    "consent.ad_user_data_description": {
+        "defaultMessage": "Cookies used for user-specific ad data."
+    },
+    "consent.ad_user_data_title": {
+        "defaultMessage": "User Ad Data"
+    },
+    "consent.analytics_description": {
+        "defaultMessage": "Cookies used to measure user behavior."
+    },
+    "consent.analytics_title": {
+        "defaultMessage": "Analytics"
+    },
+    "consent.functionality_description": {
+        "defaultMessage": "Cookies required for the site to function properly."
+    },
+    "consent.functionality_title": {
+        "defaultMessage": "Functionnal"
+    },
+    "consent.personalization_storage_description": {
+        "defaultMessage": "Cookies used for personalizing user experience."
+    },
+    "consent.personalization_storage_title": {
+        "defaultMessage": "Personalization Storage"
+    },
+    "consent.security_storage_description": {
+        "defaultMessage": "Cookies used for security purposes."
+    },
+    "consent.security_storage_title": {
+        "defaultMessage": "Security Storage"
+    },
+    "d/01YO": {
+        "defaultMessage": "Share this Micromag!"
+    },
+    "d60tSn": {
+        "defaultMessage": "Subtitle"
+    },
+    "dIvwcD": {
+        "defaultMessage": "Close"
+    },
+    "dSfmnf": {
+        "defaultMessage": "SMS"
+    },
+    "dj/p/q": {
+        "defaultMessage": "Close"
+    },
+    "dqnkQk": {
+        "defaultMessage": "Legend"
+    },
+    "dsRGuG": {
+        "defaultMessage": "We use cookies to improve your experience on our site and for marketing purposes. By accepting, you consent to the use of these cookies."
+    },
+    "e1I+KU": {
+        "defaultMessage": "Question"
+    },
+    "e6+aGf": {
+        "defaultMessage": "Select a media..."
+    },
+    "eCe9ZY": {
+        "defaultMessage": "Dimensions"
+    },
+    "ebsPd4": {
+        "defaultMessage": "Image"
+    },
+    "eiaIIB": {
+        "defaultMessage": "This Micromag"
+    },
+    "enFs4g": {
+        "defaultMessage": "Advanced"
+    },
+    "eoW0tZ": {
+        "defaultMessage": "Duration"
+    },
+    "fVqgfl": {
+        "defaultMessage": "[no title]"
+    },
+    "fbiNiR": {
+        "defaultMessage": "Select a size..."
+    },
+    "fpQzza": {
+        "defaultMessage": "Font"
+    },
+    "g2CRt5": {
+        "defaultMessage": "Size"
+    },
+    "gJTVcQ": {
+        "defaultMessage": "Select media..."
+    },
+    "gRxcTc": {
+        "defaultMessage": "Delete screen"
+    },
+    "gfZs4J": {
+        "defaultMessage": "Skip Links"
+    },
+    "hoDz0O": {
+        "defaultMessage": "Description"
+    },
+    "hpiKce": {
+        "defaultMessage": "Delete screen"
+    },
+    "i+3ZrF": {
+        "defaultMessage": "Select a font family..."
+    },
+    "iCf/MP": {
+        "defaultMessage": "Edit"
+    },
+    "j00v1T": {
+        "defaultMessage": "True"
+    },
+    "jEK6B8": {
+        "defaultMessage": "By"
+    },
+    "jf+4Hq": {
+        "defaultMessage": "Screens"
+    },
+    "jnww6n": {
+        "defaultMessage": "Select an image..."
+    },
+    "kBz8vF": {
+        "defaultMessage": "Name"
+    },
+    "kf/5Tw": {
+        "defaultMessage": "Right"
+    },
+    "kxsaD3": {
+        "defaultMessage": "Select Image"
+    },
+    "li7ADr": {
+        "defaultMessage": "Result"
+    },
+    "liyV7Y": {
+        "defaultMessage": "Size"
+    },
+    "lvPGoX": {
+        "defaultMessage": "Our terms and conditions"
+    },
+    "mOSkbf": {
+        "defaultMessage": "Usage"
+    },
+    "mQiyAm": {
+        "defaultMessage": "Video"
+    },
+    "mTqcmA": {
+        "defaultMessage": "Pause"
+    },
+    "menus.pagination.next": {
+        "defaultMessage": "next"
+    },
+    "menus.pagination.previous": {
+        "defaultMessage": "Previous"
+    },
+    "mgjMWG": {
+        "defaultMessage": "columns"
+    },
+    "mv37oK": {
+        "defaultMessage": "Dimension"
+    },
+    "n/SxMs": {
+        "defaultMessage": "Search medias"
+    },
+    "n2teag": {
+        "defaultMessage": "Add an answer"
+    },
+    "n9LoBJ": {
+        "defaultMessage": "Top"
+    },
+    "o3R+FM": {
+        "defaultMessage": "Select a closed captions file..."
+    },
+    "oAtOlP": {
+        "defaultMessage": "Heading"
+    },
+    "oLtEu6": {
+        "defaultMessage": "Video 360"
+    },
+    "p6n6vY": {
+        "defaultMessage": "No answer..."
+    },
+    "p6q/+/": {
+        "defaultMessage": "Delete screen"
+    },
+    "pBNrdH": {
+        "defaultMessage": "Conversion"
+    },
+    "pRzSQ7": {
+        "defaultMessage": "Overtitle"
+    },
+    "pfvDzR": {
+        "defaultMessage": "Added by"
+    },
+    "q/tLk0": {
+        "defaultMessage": "Are you sure you want to delete this screen?"
+    },
+    "qIw1nW": {
+        "defaultMessage": "Save"
+    },
+    "qKQCxc": {
+        "defaultMessage": "Add a marker"
+    },
+    "rmJBin": {
+        "defaultMessage": "Dimensions"
+    },
+    "rqbRV2": {
+        "defaultMessage": "Sorry, this media could not be deleted."
+    },
+    "rtwfuZ": {
+        "defaultMessage": "Actions"
+    },
+    "rvOVCV": {
+        "defaultMessage": "Confirm selection"
+    },
+    "sHYAUa": {
+        "defaultMessage": "Save my preferences"
+    },
+    "sUR1xV": {
+        "defaultMessage": "Author"
+    },
+    "sXfFFw": {
+        "defaultMessage": "Enter"
+    },
+    "t+L1J/": {
+        "defaultMessage": "No image..."
+    },
+    "t2cFdl": {
+        "defaultMessage": "Active filters"
+    },
+    "tAYwqp": {
+        "defaultMessage": "Add a slide"
+    },
+    "tmfbUn": {
+        "defaultMessage": "Unused"
+    },
+    "uSpItE": {
+        "defaultMessage": "Add tags..."
+    },
+    "ufac8e": {
+        "defaultMessage": "Clear all"
+    },
+    "ur6G0U": {
+        "defaultMessage": "Load more"
+    },
+    "v9bqYj": {
+        "defaultMessage": "Go to next screen"
+    },
+    "vYunz+": {
+        "defaultMessage": "Recent searches"
+    },
+    "vdWMTA": {
+        "defaultMessage": "Surtitle"
+    },
+    "vmrJ8U": {
+        "defaultMessage": "(current screen)"
+    },
+    "wChc+A": {
+        "defaultMessage": "Edit style..."
+    },
+    "wU++NJ": {
+        "defaultMessage": "Duration"
+    },
+    "wkysUu": {
+        "defaultMessage": "Screens"
+    },
+    "wt1+dM": {
+        "defaultMessage": "Select an audio file..."
+    },
+    "wy2g+x": {
+        "defaultMessage": "Are you sure you want to continue?"
+    },
+    "xAzv6g": {
+        "defaultMessage": "All sources"
+    },
+    "xFlbR7": {
+        "defaultMessage": "Link copied!"
+    },
+    "xKUOLG": {
+        "defaultMessage": "Technical details"
+    },
+    "xSERPA": {
+        "defaultMessage": "Video"
+    },
+    "xTJlyi": {
+        "defaultMessage": "Horizontal"
+    },
+    "xYqGzM": {
+        "defaultMessage": "Author"
+    },
+    "xuEZXD": {
+        "defaultMessage": "Edit"
+    },
+    "xuPbeq": {
+        "defaultMessage": "Start from the current screen"
+    },
+    "yByaBh": {
+        "defaultMessage": "Added by"
+    },
+    "yCXMzz": {
+        "defaultMessage": "Close"
+    },
+    "yHAmDD": {
+        "defaultMessage": "Image"
+    },
+    "yMpGIc": {
+        "defaultMessage": "Article"
+    },
+    "yQRtgx": {
+        "defaultMessage": "Audio"
+    },
+    "ygNvmz": {
+        "defaultMessage": "Description"
+    },
+    "ylHNR3": {
+        "defaultMessage": "Learn more about our privacy policy"
+    },
+    "z/VBX0": {
+        "defaultMessage": "Learn more"
+    },
+    "z4CiV1": {
+        "defaultMessage": "Text"
+    },
+    "z4Pr+g": {
+        "defaultMessage": "Visual (Image or Video)"
+    },
+    "zDH24s": {
+        "defaultMessage": "Latitude"
+    },
+    "zGIcdn": {
+        "defaultMessage": "Sponsors"
+    },
+    "zYH/31": {
+        "defaultMessage": "Go to previous screen"
+    },
+    "zh2m/S": {
+        "defaultMessage": "Search fonts..."
+    },
+    "zl6zsZ": {
+        "defaultMessage": "Lede"
+    }
+}
