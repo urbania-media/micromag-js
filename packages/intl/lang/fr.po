@@ -11,6 +11,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 3.2.0\n"
 
+# Audio and Video screen group
+#: +9akmg
+msgctxt "+9akmg"
+msgid "Audio and Video"
+msgstr "Audio et Vidéo"
+
+# Field label
+#: +AEVbJ
+msgctxt "+AEVbJ"
+msgid "Title"
+msgstr "Titre"
+
+# Field label
+#: +FHxPO
+msgctxt "+FHxPO"
+msgid "Questions title"
+msgstr "Titre des questions"
+
+# State label
+#: +LvOvJ
+msgctxt "+LvOvJ"
+msgid "Markers"
+msgstr "Marqueurs"
+
+# Background field label
+#: +MPZRu
+msgctxt "+MPZRu"
+msgid "Background"
+msgstr "Arrière-plan"
+
 # Answer placeholder
 #: +Ok+7S
 msgctxt "+Ok+7S"
@@ -23,11 +53,29 @@ msgctxt "+Ptk0B"
 msgid "Your privacy settings"
 msgstr "Vos paramètres de confidentialité"
 
+# Published message style field label
+#: +SlKOi
+msgctxt "+SlKOi"
+msgid "Published message style"
+msgstr "Style du message publié"
+
 # Sponsor label
 #: +TPjd4
 msgctxt "+TPjd4"
 msgid "Presented by"
 msgstr "Présenté par"
+
+# Label when there is no item
+#: +nhSvj
+msgctxt "+nhSvj"
+msgid "No speaker..."
+msgstr "Aucun intervenant..."
+
+# Circle label
+#: +uInZz
+msgctxt "+uInZz"
+msgid "Circle"
+msgstr "Cercle"
 
 # Horoscope Subtitle
 #: +vzDdb
@@ -53,6 +101,12 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "Mes fichiers"
 
+# Number field label
+#: /6zaOP
+msgctxt "/6zaOP"
+msgid "Transition Delay (in seconds)"
+msgstr "Délai de transition (en secondes)"
+
 # Delete in Media Gallery
 #: /KQ87r
 msgctxt "/KQ87r"
@@ -71,11 +125,23 @@ msgctxt "/OM5UY"
 msgid "Tags"
 msgstr "Étiquettes"
 
+# Horoscope sign
+#: /PJA/1
+msgctxt "/PJA/1"
+msgid "Aries"
+msgstr "Bélier"
+
 # Remove all button label
 #: /T/UDH
 msgctxt "/T/UDH"
 msgid "Remove all"
-msgstr "Tout retirer"
+msgstr "Tout supprimer"
+
+# Field label
+#: /W31TQ
+msgctxt "/W31TQ"
+msgid "Embedded browser"
+msgstr "Navigateur intégré"
 
 # Image 360 placeholder
 #: /YQ+xP
@@ -113,17 +179,53 @@ msgctxt "0GT0SI"
 msgid "Cancel"
 msgstr "Annuler"
 
+# Breadcrumb field label
+#: 0GzLBc
+msgctxt "0GzLBc"
+msgid "Message"
+msgstr "Message"
+
+# Field label
+#: 0R+nB5
+msgctxt "0R+nB5"
+msgid "Custom URL"
+msgstr "URL personnalisée"
+
+# Horoscope sign
+#: 0acGK7
+msgctxt "0acGK7"
+msgid "Cancer"
+msgstr "Cancer"
+
 # Modal title
 #: 0hMiRN
 msgctxt "0hMiRN"
 msgid "Select Audio File"
 msgstr "Sélectionner un fichier audio"
 
+# Horoscope date
+#: 142Fjj
+msgctxt "142Fjj"
+msgid "May 21 - June 20"
+msgstr "21 mai - 20 juin"
+
 # Dropdown default all items label
 #: 15GBmG
 msgctxt "15GBmG"
 msgid "All"
 msgstr "Tous"
+
+# Audio field label
+#: 169xnt
+msgctxt "169xnt"
+msgid "Audio"
+msgstr "Audio"
+
+# Ranking screen title
+#: 17BMn2
+msgctxt "17BMn2"
+msgid "Ranking"
+msgstr "Classement"
 
 # Popup label
 #: 17zT4Q
@@ -136,6 +238,12 @@ msgstr "Popup"
 msgctxt "1dqmFw"
 msgid "Document"
 msgstr "Document"
+
+# Field label
+#: 1yNxAl
+msgctxt "1yNxAl"
+msgid "Card box style"
+msgstr "Style de la boîte de carte"
 
 # Item label in items field
 #: 2/F1Q7
@@ -173,17 +281,47 @@ msgctxt "2c1WFV"
 msgid "Title"
 msgstr "Titre"
 
+# Url field label
+#: 2pO2Cj
+msgctxt "2pO2Cj"
+msgid "Url"
+msgstr "URL"
+
 # Button label
 #: 2prwZ7
 msgctxt "2prwZ7"
 msgid "Progress slider"
 msgstr "Curseur de progression"
 
+# Field label
+#: 2uFkwE
+msgctxt "2uFkwE"
+msgid "Override default timing"
+msgstr "Remplacer le minutage par défaut"
+
+# Field label
+#: 31zuCS
+msgctxt "31zuCS"
+msgid "Line height"
+msgstr "Hauteur de ligne"
+
+# TimelineIllustrated screen title
+#: 33UbSd
+msgctxt "33UbSd"
+msgid "Timeline with images"
+msgstr "Chronologie avec images"
+
 # Upload button label in Media Gallery
 #: 3Ap0C1
 msgctxt "3Ap0C1"
 msgid "Upload a media"
 msgstr "Téléverser un média"
+
+# Field label
+#: 3B9cb3
+msgctxt "3B9cb3"
+msgid "Whatsapp"
+msgstr "Whatsapp"
 
 # Label when there is no item in markers field
 #: 3E57H7
@@ -197,6 +335,18 @@ msgctxt "3I2Xl7"
 msgid "WebM"
 msgstr "WebM"
 
+# Field label
+#: 3LEBIA
+msgctxt "3LEBIA"
+msgid "Angle"
+msgstr "Angle"
+
+# Legend field label
+#: 3OS3Ms
+msgctxt "3OS3Ms"
+msgid "Legend"
+msgstr "Légende"
+
 # Field title
 #: 3RT69u
 msgctxt "3RT69u"
@@ -209,17 +359,53 @@ msgctxt "3ext9Q"
 msgid "Video"
 msgstr "Vidéo"
 
+# Field label
+#: 3ifj0j
+msgctxt "3ifj0j"
+msgid "Entries"
+msgstr "Entrées"
+
+# Now date time message
+#: 3na7F8
+msgctxt "3na7F8"
+msgid "Now"
+msgstr "Maintenant"
+
+# Quote screen title
+#: 3q9GPv
+msgctxt "3q9GPv"
+msgid "Quote"
+msgstr "Citation"
+
 # Label when there is no item in images with caption field
 #: 3wiL2y
 msgctxt "3wiL2y"
 msgid "No image..."
 msgstr "Aucune image..."
 
+# Text field label
+#: 4E2gbX
+msgctxt "4E2gbX"
+msgid "Text"
+msgstr "Texte"
+
+# Field label
+#: 4H2n5r
+msgctxt "4H2n5r"
+msgid "Closed captions"
+msgstr "Sous-titres"
+
 # Button to view a screen
 #: 4POR3B
 msgctxt "4POR3B"
 msgid "View screen"
 msgstr "Voir l'écran"
+
+# Field label
+#: 4R/bdr
+msgctxt "4R/bdr"
+msgid "Message"
+msgstr "Message"
 
 # Field label
 #: 4RV6+9
@@ -239,11 +425,53 @@ msgctxt "4b5gym"
 msgid "Screen title"
 msgstr "Titre de l'écran"
 
+# Gallery Feed screen title
+#: 4bHvRS
+msgctxt "4bHvRS"
+msgid "Gallery Feed"
+msgstr "Galerie de flux"
+
 # Tags in Media Gallery
 #: 4fHMVj
 msgctxt "4fHMVj"
 msgid "Tags"
 msgstr "Étiquettes"
+
+# Horoscope sign
+#: 4g35M0
+msgctxt "4g35M0"
+msgid "Gemini"
+msgstr "Gémeaux"
+
+# Title field label
+#: 4grcMU
+msgctxt "4grcMU"
+msgid "Category"
+msgstr "Catégorie"
+
+# Layout field label
+#: 4iBXj2
+msgctxt "4iBXj2"
+msgid "Layout"
+msgstr "Mise en page"
+
+# Field label
+#: 4js1kW
+msgctxt "4js1kW"
+msgid "Share Options"
+msgstr "Options de partage"
+
+# Field label
+#: 4kSwvn
+msgctxt "4kSwvn"
+msgid "Thumbnail"
+msgstr "Miniature"
+
+# Field label
+#: 4w7K2K
+msgctxt "4w7K2K"
+msgid "Feedback text"
+msgstr "Texte de rétroaction"
 
 # Description placeholder
 #: 507VAi
@@ -251,11 +479,71 @@ msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
 
+# Visual field label
+#: 57hjHa
+msgctxt "57hjHa"
+msgid "Answer feedback image"
+msgstr "Image de rétroaction de la réponse"
+
+# visualsWithCaptions field label
+#: 59f2bg
+msgctxt "59f2bg"
+msgid "Images"
+msgstr "Images"
+
+# Share screen title
+#: 5mk1b+
+msgctxt "5mk1b+"
+msgid "Share"
+msgstr "Partager"
+
 # Submit placeholder
 #: 5uH4x7
 msgctxt "5uH4x7"
 msgid "Submit"
 msgstr "Soumettre"
+
+# Share screen group
+#: 64JlRq
+msgctxt "64JlRq"
+msgid "Share"
+msgstr "Partager"
+
+# Survey screen title
+#: 650XRF
+msgctxt "650XRF"
+msgid "Survey"
+msgstr "Sondage"
+
+# No value field label
+#: 65rc70
+msgctxt "65rc70"
+msgid "Edit style..."
+msgstr "Modifier le style..."
+
+# Background field label
+#: 68NE9W
+msgctxt "68NE9W"
+msgid "Alternatives"
+msgstr "Alternatives"
+
+# Timing field label
+#: 6DV50M
+msgctxt "6DV50M"
+msgid "Timing"
+msgstr "Minutage"
+
+# Field label
+#: 6MxaVf
+msgctxt "6MxaVf"
+msgid "Style"
+msgstr "Style"
+
+# Field section label
+#: 6Q4tcn
+msgctxt "6Q4tcn"
+msgid "Result style"
+msgstr "Style du résultat"
 
 # Upload button label in Media Gallery
 #: 6W4St0
@@ -263,11 +551,35 @@ msgctxt "6W4St0"
 msgid "Upload an audio file"
 msgstr "Téléverser un fichier audio"
 
+# Field label
+#: 6ak5YN
+msgctxt "6ak5YN"
+msgid "Side"
+msgstr "Côté"
+
+# Horoscope sign
+#: 6bd963
+msgctxt "6bd963"
+msgid "Virgo"
+msgstr "Vierge"
+
+# Field label
+#: 6iR9Mt
+msgctxt "6iR9Mt"
+msgid "Heading"
+msgstr "Titre"
+
 # Authors placeholder
 #: 6jX5Tb
 msgctxt "6jX5Tb"
 msgid "Authors"
 msgstr "Auteurs"
+
+# Images screen group
+#: 6mX2ya
+msgctxt "6mX2ya"
+msgid "Images"
+msgstr "Images"
 
 # Caption placeholder
 #: 6tIigB
@@ -275,11 +587,35 @@ msgctxt "6tIigB"
 msgid "Caption"
 msgstr "Légende"
 
+# Author field label
+#: 73hxYw
+msgctxt "73hxYw"
+msgid "Author"
+msgstr "Auteur"
+
+# Keypad screen title
+#: 75nZbY
+msgctxt "75nZbY"
+msgid "Keypad"
+msgstr "Clavier"
+
 # Modal title
 #: 790Q9C
 msgctxt "790Q9C"
 msgid "Select Subtitles File"
 msgstr "Sélectionner un fichier de sous-titres"
+
+# Horoscope date
+#: 7ZzlUE
+msgctxt "7ZzlUE"
+msgid "Oct 23 - Nov 22"
+msgstr "23 oct. - 22 nov."
+
+# Horoscope sign
+#: 7mMPO4
+msgctxt "7mMPO4"
+msgid "Sagittarius"
+msgstr "Sagittaire"
 
 # Filter label
 #: 7oXkoj
@@ -299,6 +635,42 @@ msgctxt "7uyslu"
 msgid "Description"
 msgstr "Description"
 
+#  UrbaniaHoroscope state
+#: 82g1F5
+msgctxt "82g1F5"
+msgid "Intro"
+msgstr "Intro"
+
+# Field label
+#: 83959F
+msgctxt "83959F"
+msgid "Items style"
+msgstr "Style des éléments"
+
+# Field label
+#: 862eE3
+msgctxt "862eE3"
+msgid "Border"
+msgstr "Bordure"
+
+# Quote field label
+#: 88/Ge8
+msgctxt "88/Ge8"
+msgid "Quote"
+msgstr "Citation"
+
+# field label
+#: 8A8cuq
+msgctxt "8A8cuq"
+msgid "Parameters"
+msgstr "Paramètres"
+
+# Field label
+#: 8Dmlwh
+msgctxt "8Dmlwh"
+msgid "Answer button layout"
+msgstr "Disposition des boutons de réponse"
+
 # Button label
 #: 8NyYTH
 msgctxt "8NyYTH"
@@ -312,10 +684,22 @@ msgid "Remove"
 msgstr "Retirer"
 
 # Button label
+#: 8oczXQ
+msgctxt "8oczXQ"
+msgid "Add a marker"
+msgstr "Ajouter un marqueur"
+
+# Button label
 #: 8sWUOV
 msgctxt "8sWUOV"
 msgid "Add an font file"
 msgstr "Ajouter un fichier de police"
+
+# Conversation field label
+#: 8tANs8
+msgctxt "8tANs8"
+msgid "Conversation"
+msgstr "Conversation"
 
 # Button label
 #: 8yRYcm
@@ -323,17 +707,47 @@ msgctxt "8yRYcm"
 msgid "Edit my settings"
 msgstr "Modifier mes paramètres"
 
+# Breadcrumb field label
+#: 8ySjDc
+msgctxt "8ySjDc"
+msgid "Item"
+msgstr "Élément"
+
 # Filter label
 #: 9/t5wK
 msgctxt "9/t5wK"
 msgid "Type"
 msgstr "Type"
 
+# Date field label
+#: 9AP246
+msgctxt "9AP246"
+msgid "Date"
+msgstr "Date"
+
+# Ascending field label
+#: 9DhYaZ
+msgctxt "9DhYaZ"
+msgid "Ascending"
+msgstr "Ascendant"
+
+# Field label
+#: 9PfjeE
+msgctxt "9PfjeE"
+msgid "Speaker style"
+msgstr "Style de l'intervenant"
+
 # Library source menu
 #: 9ZdD+Q
 msgctxt "9ZdD+Q"
 msgid "Library for"
 msgstr "Bibliothèque pour"
+
+# Dcreen title
+#: 9a5s+m
+msgctxt "9a5s+m"
+msgid "Title with box"
+msgstr "Titre avec boîte"
 
 # Filter label
 #: 9mXl24
@@ -347,11 +761,47 @@ msgctxt "9n9+yP"
 msgid "Add an image"
 msgstr "Ajouter une image"
 
+# Field section label
+#: 9omJnT
+msgctxt "9omJnT"
+msgid "Answer settings"
+msgstr "Paramètres de réponse"
+
+# Label when there is no item
+#: A+a0kL
+msgctxt "A+a0kL"
+msgid "No answer..."
+msgstr "Aucune réponse..."
+
 # Field label
 #: A/Vr8P
 msgctxt "A/Vr8P"
 msgid "False"
 msgstr "Faux"
+
+# Field label
+#: A7ncT3
+msgctxt "A7ncT3"
+msgid "Draggable"
+msgstr "Déplaçable"
+
+# ImageTitle screen title
+#: AA8TV9
+msgctxt "AA8TV9"
+msgid "Image with title"
+msgstr "Image avec titre"
+
+# Field label
+#: ACSasN
+msgctxt "ACSasN"
+msgid "URL"
+msgstr "URL"
+
+# Screen title
+#: ACkeH6
+msgctxt "ACkeH6"
+msgid "Quiz with multiple questions"
+msgstr "Quiz à questions multiples"
 
 # Screen label in the breadcrumb
 #: AHvHaY
@@ -377,6 +827,12 @@ msgctxt "AV6gfh"
 msgid "Edit call to action..."
 msgstr "Modifier l'appel à l'action..."
 
+# Field label
+#: Arl5Ze
+msgctxt "Arl5Ze"
+msgid "Button styles"
+msgstr "Styles de bouton"
+
 # Media type
 #: AwDQvD
 msgctxt "AwDQvD"
@@ -394,6 +850,12 @@ msgstr "Retour"
 msgctxt "B1MeY+"
 msgid "Select an image..."
 msgstr "Sélectionner une image..."
+
+# Field label
+#: B5C18D
+msgctxt "B5C18D"
+msgid "Badge"
+msgstr "Badge"
 
 # Modal title
 #: B5Qrmw
@@ -413,11 +875,29 @@ msgctxt "BSTWf8"
 msgid "Title"
 msgstr "Titre"
 
+# State label
+#: BgrRxZ
+msgctxt "BgrRxZ"
+msgid "Intro"
+msgstr "Intro"
+
+# Field label
+#: BnRW4y
+msgctxt "BnRW4y"
+msgid "Results title"
+msgstr "Titre des résultats"
+
 # Success form message
 #: BpZoQZ
 msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Succès"
+
+# Field label
+#: BwYZbB
+msgctxt "BwYZbB"
+msgid "With controls button"
+msgstr "Avec bouton de contrôle"
 
 # Seek bar value
 #: C1VUEY
@@ -425,11 +905,41 @@ msgctxt "C1VUEY"
 msgid "{current} of {duration}"
 msgstr "{current} de {duration}"
 
+# ImageText screen title
+#: CJmQeh
+msgctxt "CJmQeh"
+msgid "Image with text"
+msgstr "Image avec texte"
+
+# Field label
+#: CQzuFE
+msgctxt "CQzuFE"
+msgid "Feedback styles"
+msgstr "Styles de rétroaction"
+
+# Label when there is no item
+#: CWnXWp
+msgctxt "CWnXWp"
+msgid "No button yet"
+msgstr "Aucun bouton"
+
+# Button label field
+#: Cg3LGu
+msgctxt "Cg3LGu"
+msgid "Label"
+msgstr "Étiquette"
+
 # Button label
 #: CnVj9r
 msgctxt "CnVj9r"
 msgid "Skip to controls"
 msgstr "Passer aux contrôles"
+
+# Skip field label
+#: CpCykm
+msgctxt "CpCykm"
+msgid "Skip button"
+msgstr "Bouton passer"
 
 # Quote placeholder
 #: CrzYgw
@@ -455,6 +965,18 @@ msgctxt "D7LIZQ"
 msgid "Start"
 msgstr "Commencer"
 
+# Field label
+#: D7kxD3
+msgctxt "D7kxD3"
+msgid "Without bar"
+msgstr "Sans barre"
+
+# Field label
+#: DU1qdc
+msgctxt "DU1qdc"
+msgid "Text color"
+msgstr "Couleur du texte"
+
 # Label when no value is provided to Video field
 #: DWEzCv
 msgctxt "DWEzCv"
@@ -465,7 +987,7 @@ msgstr "Sélectionner une vidéo..."
 #: DYjRd/
 msgctxt "DYjRd/"
 msgid "Sorry, this media could not be saved."
-msgstr "Désolé, ce média n'a pas pu être sauvegardé."
+msgstr "Désolé, ce média n'a pas pu être enregistré."
 
 # Media Gallery
 #: EDFyUp
@@ -473,11 +995,29 @@ msgctxt "EDFyUp"
 msgid "Alternative text (accessibility)"
 msgstr "Texte alternatif (accessibilité)"
 
+# Horoscope sign
+#: EEUc6n
+msgctxt "EEUc6n"
+msgid "Leo"
+msgstr "Lion"
+
 # Text placeholder
 #: EQdIAR
 msgctxt "EQdIAR"
 msgid "Description"
 msgstr "Description"
+
+# Field label
+#: ET527E
+msgctxt "ET527E"
+msgid "Font family"
+msgstr "Famille de polices"
+
+# Subtitle field label
+#: EcZYpr
+msgctxt "EcZYpr"
+msgid "Subtitle"
+msgstr "Sous-titre"
 
 # Label when no value is provided to Field with form
 #: EoVdMy
@@ -485,11 +1025,35 @@ msgctxt "EoVdMy"
 msgid "Edit content..."
 msgstr "Modifier le contenu..."
 
+# Horoscope date
+#: Evl2dG
+msgctxt "Evl2dG"
+msgid "Feb 19 - Mar 20"
+msgstr "19 fév. - 20 mars"
+
 # Button label
 #: F/gl4b
 msgctxt "F/gl4b"
 msgid "Menu"
 msgstr "Menu"
+
+# Horoscope date
+#: F0QDfY
+msgctxt "F0QDfY"
+msgid "Sept 23 - Oct 22"
+msgstr "23 sept. - 22 oct."
+
+# Field label
+#: F2SD/0
+msgctxt "F2SD/0"
+msgid "Loop"
+msgstr "Boucle"
+
+# Urbania screen title
+#: F59wsl
+msgctxt "F59wsl"
+msgid "Urbania horoscope"
+msgstr "Horoscope Urbania"
 
 # Alignment label
 #: FKOWH0
@@ -503,6 +1067,18 @@ msgctxt "FOmgqv"
 msgid "Question"
 msgstr "Question"
 
+# Popup state
+#: FYm4w+
+msgctxt "FYm4w+"
+msgid "Popups"
+msgstr "Popups"
+
+# Field label
+#: FjuRaw
+msgctxt "FjuRaw"
+msgid "Keypad settings"
+msgstr "Paramètres du clavier"
+
 # Your name placeholder
 #: G/ITGY
 msgctxt "G/ITGY"
@@ -515,11 +1091,47 @@ msgctxt "G1Gyjn"
 msgid "Seek"
 msgstr "Rechercher"
 
+# Field label
+#: GMCLhn
+msgctxt "GMCLhn"
+msgid "Case"
+msgstr "Casse"
+
 # Direction
 #: GPqjnH
 msgctxt "GPqjnH"
 msgid "Left"
 msgstr "Gauche"
+
+# Video 360 screen title
+#: GRVidW
+msgctxt "GRVidW"
+msgid "360 Video"
+msgstr "Vidéo 360"
+
+# Timeline screen title
+#: GzoKNb
+msgctxt "GzoKNb"
+msgid "Timeline"
+msgstr "Chronologie"
+
+# ImageLegend screen title
+#: H1YcaV
+msgctxt "H1YcaV"
+msgid "Image with legend"
+msgstr "Image avec légende"
+
+# Label when there is no item
+#: HTd98/
+msgctxt "HTd98/"
+msgid "No message..."
+msgstr "Aucun message..."
+
+# Fields section label
+#: HWpflq
+msgctxt "HWpflq"
+msgid "Highlight"
+msgstr "Surbrillance"
 
 # Button label
 #: HpkW4J
@@ -533,11 +1145,23 @@ msgctxt "HseFdk"
 msgid "Edit"
 msgstr "Modifier"
 
+# Field label
+#: HwqzVR
+msgctxt "HwqzVR"
+msgid "Visual"
+msgstr "Visuel"
+
 # Button label
 #: HxW2pw
 msgctxt "HxW2pw"
 msgid "Accept all"
 msgstr "Tout accepter"
+
+# Field label
+#: I1hyZY
+msgctxt "I1hyZY"
+msgid "Answer icon value"
+msgstr "Valeur de l'icône de réponse"
 
 # Category placeholder
 #: I5+AHN
@@ -551,11 +1175,17 @@ msgctxt "IBjY5r"
 msgid "Duplicate screen"
 msgstr "Dupliquer l'écran"
 
+# Fields section label
+#: ICXTfR
+msgctxt "ICXTfR"
+msgid "Links"
+msgstr "Liens"
+
 # Placeholder label
 #: IE7U/Q
 msgctxt "IE7U/Q"
 msgid "Heading"
-msgstr "En-tête"
+msgstr "Titre"
 
 # Field name
 #: IOVper
@@ -575,11 +1205,47 @@ msgctxt "IoMJgw"
 msgid "Toggle article"
 msgstr "Afficher/masquer l'article"
 
+# Type field label
+#: J9e9Qb
+msgctxt "J9e9Qb"
+msgid "Video"
+msgstr "Vidéo"
+
 # Your message placeholder
 #: JAguka
 msgctxt "JAguka"
 msgid "Your message"
 msgstr "Votre message"
+
+# Field label
+#: JC9Qlf
+msgctxt "JC9Qlf"
+msgid "Speakers"
+msgstr "Intervenants"
+
+# Field label
+#: JDPMlG
+msgctxt "JDPMlG"
+msgid "Background color"
+msgstr "Couleur d'arrière-plan"
+
+# Field label
+#: JGvpwT
+msgctxt "JGvpwT"
+msgid "Visual width"
+msgstr "Largeur du visuel"
+
+# Field label
+#: JLYWNN
+msgctxt "JLYWNN"
+msgid "Invalid box style"
+msgstr "Style de boîte invalide"
+
+# Field label
+#: JMmYwg
+msgctxt "JMmYwg"
+msgid "Submit button"
+msgstr "Bouton soumettre"
 
 # Placeholder label
 #: JRZoe6
@@ -591,7 +1257,19 @@ msgstr "Contenu"
 #: JoWKee
 msgctxt "JoWKee"
 msgid "Create your first screen"
-msgstr "Créez votre premier écran"
+msgstr "Créer votre premier écran"
+
+# Field label
+#: JoyIgA
+msgctxt "JoyIgA"
+msgid "Minimum points for this result"
+msgstr "Points minimum pour ce résultat"
+
+# Field label
+#: Jti6I6
+msgctxt "Jti6I6"
+msgid "Lines color"
+msgstr "Couleur des lignes"
 
 # Field label
 #: JuxiUN
@@ -605,6 +1283,18 @@ msgctxt "JzSBzL"
 msgid "Visual"
 msgstr "Visuel"
 
+# No value field label
+#: K1BxIr
+msgctxt "K1BxIr"
+msgid "Edit metadata..."
+msgstr "Modifier les métadonnées..."
+
+# Field label
+#: K7AvPE
+msgctxt "K7AvPE"
+msgid "Multiline input"
+msgstr "Saisie multiligne"
+
 # Search a place on Google Maps placeholder
 #: KB7N5E
 msgctxt "KB7N5E"
@@ -616,6 +1306,18 @@ msgstr "Rechercher un lieu sur Google Maps"
 msgctxt "KCDOHI"
 msgid "No font..."
 msgstr "Aucune police..."
+
+# Field label
+#: KHWeV7
+msgctxt "KHWeV7"
+msgid "Answers"
+msgstr "Réponses"
+
+# Back field label
+#: KIXg9M
+msgctxt "KIXg9M"
+msgid "Back button"
+msgstr "Bouton retour"
 
 # Upload button label in Media Gallery
 #: KK5teQ
@@ -629,6 +1331,36 @@ msgctxt "KdAKt7"
 msgid "Upload an image file"
 msgstr "Téléverser un fichier image"
 
+# Breadcrumb field label
+#: KuzZbb
+msgctxt "KuzZbb"
+msgid "Background color"
+msgstr "Couleur d'arrière-plan"
+
+# Field label
+#: KvBdrU
+msgctxt "KvBdrU"
+msgid "Background text"
+msgstr "Texte d'arrière-plan"
+
+# Field label
+#: LFziCV
+msgctxt "LFziCV"
+msgid "Without right/wrong icon"
+msgstr "Sans icône vrai/faux"
+
+# Field label
+#: LI0Gz4
+msgctxt "LI0Gz4"
+msgid "Email"
+msgstr "Courriel"
+
+# Field label
+#: LOknw0
+msgctxt "LOknw0"
+msgid "Styles"
+msgstr "Styles"
+
 # Micromag branding
 #: LiMAIC
 msgctxt "LiMAIC"
@@ -641,11 +1373,41 @@ msgctxt "LkVfwW"
 msgid "Screen {index}"
 msgstr "Écran {index}"
 
+# Spacing field label
+#: Lp0bG4
+msgctxt "Lp0bG4"
+msgid "Bottom spacing"
+msgstr "Espacement du bas"
+
+# Button label
+#: LrRW+9
+msgctxt "LrRW+9"
+msgid "Add a button"
+msgstr "Ajouter un bouton"
+
 # Share option label
 #: Lrwi2G
 msgctxt "Lrwi2G"
 msgid "Email"
 msgstr "Courriel"
+
+# Field label
+#: Lz2+Ws
+msgctxt "Lz2+Ws"
+msgid "Answer feedback"
+msgstr "Rétroaction de la réponse"
+
+# Horoscope sign
+#: M/FGRs
+msgctxt "M/FGRs"
+msgid "Libra"
+msgstr "Balance"
+
+# Horoscope date
+#: MBgLeH
+msgctxt "MBgLeH"
+msgid "July 23 - Aug 22"
+msgstr "23 juill. - 22 août"
 
 # Audio placeholder
 #: MYZwSA
@@ -653,17 +1415,89 @@ msgctxt "MYZwSA"
 msgid "Audio"
 msgstr "Audio"
 
+# Slideshow screen title
+#: MhGUaY
+msgctxt "MhGUaY"
+msgid "Slideshow"
+msgstr "Diaporama"
+
+# GalleryCaptions screen title
+#: MmJQ7o
+msgctxt "MmJQ7o"
+msgid "Gallery with captions"
+msgstr "Galerie avec légendes"
+
+# Title field label
+#: N25iDO
+msgctxt "N25iDO"
+msgid "Title"
+msgstr "Titre"
+
+# Field label
+#: N4lZhy
+msgctxt "N4lZhy"
+msgid "Without line"
+msgstr "Sans ligne"
+
 # Placeholder label
 #: N7Kj8z
 msgctxt "N7Kj8z"
 msgid "Button"
 msgstr "Bouton"
 
+# Field label
+#: NVUpOG
+msgctxt "NVUpOG"
+msgid "Map fit markers"
+msgstr "Ajuster la carte aux marqueurs"
+
+# Field label
+#: NbTtNk
+msgctxt "NbTtNk"
+msgid "Bad answer icon color"
+msgstr "Couleur de l'icône de mauvaise réponse"
+
 # Conversation placeholder
 #: NmCfTO
 msgctxt "NmCfTO"
 msgid "Conversation"
 msgstr "Conversation"
+
+# Horoscope sign
+#: NumcrW
+msgctxt "NumcrW"
+msgid "Capricorn"
+msgstr "Capricorne"
+
+# Field left label
+#: O2JVA+
+msgctxt "O2JVA+"
+msgid "Left"
+msgstr "Gauche"
+
+# Field label
+#: OEckOD
+msgctxt "OEckOD"
+msgid "Text style"
+msgstr "Style du texte"
+
+# Field label
+#: OJi+eg
+msgctxt "OJi+eg"
+msgid "Label"
+msgstr "Étiquette"
+
+# Field label
+#: OPxJx/
+msgctxt "OPxJx/"
+msgid "Layout"
+msgstr "Mise en page"
+
+# Field label
+#: OSl7A6
+msgctxt "OSl7A6"
+msgid "Swipe up"
+msgstr "Glisser vers le haut"
 
 # Label when there is no item in slides field
 #: OdcEna
@@ -677,11 +1511,23 @@ msgctxt "OkNUmk"
 msgid "Type"
 msgstr "Type"
 
+# Horoscope date
+#: Op1ZIp
+msgctxt "Op1ZIp"
+msgid "Jan 21 - Feb 18"
+msgstr "21 janv. - 18 fév."
+
 # Field name
 #: OzYWZz
 msgctxt "OzYWZz"
 msgid "Created at"
 msgstr "Créé le"
+
+# TitleSubtitle screen title
+#: P1dwGU
+msgctxt "P1dwGU"
+msgid "Title with subtitle"
+msgstr "Titre avec sous-titre"
 
 # Modal title
 #: P6ZtIq
@@ -694,6 +1540,12 @@ msgstr "Sélectionner un document"
 msgctxt "P9A8cx"
 msgid "middle aligned"
 msgstr "aligné au centre"
+
+# Label when there is no item
+#: PAQRf4
+msgctxt "PAQRf4"
+msgid "No item yet"
+msgstr "Aucun élément"
 
 # Direction
 #: PFNMAQ
@@ -719,6 +1571,12 @@ msgctxt "PNMMo/"
 msgid "Audios"
 msgstr "Audios"
 
+# Field label
+#: PYokTY
+msgctxt "PYokTY"
+msgid "Label box style"
+msgstr "Style de la boîte d'étiquette"
+
 # Button label
 #: PyxZY2
 msgctxt "PyxZY2"
@@ -737,16 +1595,70 @@ msgctxt "QBlqW9"
 msgid "Videos"
 msgstr "Vidéos"
 
+# Button label
+#: QSmRdP
+msgctxt "QSmRdP"
+msgid "Add an image"
+msgstr "Ajouter une image"
+
+# Heading field label
+#: Qe03Xz
+msgctxt "Qe03Xz"
+msgid "Sign Subtitle"
+msgstr "Sous-titre du signe"
+
 #: QfpTKK
 msgctxt "QfpTKK"
 msgid "Select a screen..."
 msgstr "Sélectionner un écran..."
 
+# Reading speed label
+#: QjbLZ9
+msgctxt "QjbLZ9"
+msgid "Reading speed (in Words Per Minute)"
+msgstr "Vitesse de lecture (en mots par minute)"
+
+# Field label
+#: Qw8cb5
+msgctxt "Qw8cb5"
+msgid "Sponsor color"
+msgstr "Couleur du commanditaire"
+
+# Field label
+#: Qz7nUz
+msgctxt "Qz7nUz"
+msgid "Caption style"
+msgstr "Style de la légende"
+
+# Field section label
+#: R9DB4a
+msgctxt "R9DB4a"
+msgid "Styles"
+msgstr "Styles"
+
+# Field label
+#: RHMS2f
+msgctxt "RHMS2f"
+msgid "Line color"
+msgstr "Couleur de la ligne"
+
 # Button label
 #: RK/QEY
 msgctxt "RK/QEY"
 msgid "Unmute"
-msgstr "Réactiver le son"
+msgstr "Activer le son"
+
+# Message field label
+#: RcLsua
+msgctxt "RcLsua"
+msgid "Message"
+msgstr "Message"
+
+# Field label
+#: Rl7C1A
+msgctxt "Rl7C1A"
+msgid "Controls color"
+msgstr "Couleur des contrôles"
 
 # Title placeholder
 #: RucIeL
@@ -754,11 +1666,53 @@ msgctxt "RucIeL"
 msgid "Share options"
 msgstr "Options de partage"
 
+# Field label
+#: S+WiGT
+msgctxt "S+WiGT"
+msgid "Percentage Text"
+msgstr "Texte de pourcentage"
+
+# Text and Images screen group
+#: S/mavZ
+msgctxt "S/mavZ"
+msgid "Text and Images"
+msgstr "Texte et Images"
+
+# Field label
+#: S1F/re
+msgctxt "S1F/re"
+msgid "Columns"
+msgstr "Colonnes"
+
+# Text screen title
+#: S9YpbV
+msgctxt "S9YpbV"
+msgid "Text"
+msgstr "Texte"
+
 # Screen button label
 #: SVLGTA
 msgctxt "SVLGTA"
 msgid "Next"
 msgstr "Suivant"
+
+# Published name style field label
+#: SyMSDa
+msgctxt "SyMSDa"
+msgid "Published name style"
+msgstr "Style du nom publié"
+
+# Field label
+#: T0pi1u
+msgctxt "T0pi1u"
+msgid "With seek bar"
+msgstr "Avec barre de recherche"
+
+# Field label
+#: T9NZPQ
+msgctxt "T9NZPQ"
+msgid "Images"
+msgstr "Images"
 
 # Micromag branding
 #: TDAOl2
@@ -771,6 +1725,18 @@ msgstr "créé avec"
 msgctxt "THKV4v"
 msgid "Longitude"
 msgstr "Longitude"
+
+# Field label
+#: TTPc+y
+msgctxt "TTPc+y"
+msgid "Use square keys"
+msgstr "Utiliser des touches carrées"
+
+# Field label
+#: TZUu3s
+msgctxt "TZUu3s"
+msgid "Blur"
+msgstr "Flou"
 
 # Button label
 #: Tol+/U
@@ -790,11 +1756,29 @@ msgctxt "U2RZp5"
 msgid "Skip"
 msgstr "Passer"
 
+# Video screen title
+#: UBXIYP
+msgctxt "UBXIYP"
+msgid "Video"
+msgstr "Vidéo"
+
 # Remove button label in Media Gallery
 #: UG3SXh
 msgctxt "UG3SXh"
 msgid "Remove"
 msgstr "Retirer"
+
+# Field label
+#: UUv8FR
+msgctxt "UUv8FR"
+msgid "Name"
+msgstr "Nom"
+
+# Numbers style field label
+#: UdrdRF
+msgctxt "UdrdRF"
+msgid "Numbers style"
+msgstr "Style des chiffres"
 
 # Items finish edit button label
 #: UlZIP8
@@ -820,11 +1804,29 @@ msgctxt "VDu2FA"
 msgid "Google Fonts"
 msgstr "Google Fonts"
 
+# State label
+#: VMd1oG
+msgctxt "VMd1oG"
+msgid "Questions"
+msgstr "Questions"
+
+# Field label
+#: W5qWPj
+msgctxt "W5qWPj"
+msgid "Center"
+msgstr "Centre"
+
 # Field name
 #: WX83V9
 msgctxt "WX83V9"
 msgid "File name"
 msgstr "Nom du fichier"
+
+# Text field label
+#: WY14Zu
+msgctxt "WY14Zu"
+msgid "Sponsor"
+msgstr "Commanditaire"
 
 # Label when no value
 #: Wb5zY4
@@ -838,11 +1840,35 @@ msgctxt "WeD4nB"
 msgid "Upload a video file"
 msgstr "Téléverser un fichier vidéo"
 
+# Submit button section label
+#: WjigmA
+msgctxt "WjigmA"
+msgid "Submit button"
+msgstr "Bouton soumettre"
+
+# Field label
+#: WlNxMj
+msgctxt "WlNxMj"
+msgid "Repeat"
+msgstr "Répéter"
+
+# Fields section label
+#: Wr9olU
+msgctxt "Wr9olU"
+msgid "Typography"
+msgstr "Typographie"
+
 # Heading placeholder
 #: X7kRRa
 msgctxt "X7kRRa"
 msgid "Heading"
-msgstr "En-tête"
+msgstr "Titre"
+
+# Breadcrumb field label
+#: X97njD
+msgctxt "X97njD"
+msgid "Entry"
+msgstr "Entrée"
 
 # Button label
 #: X9mFEG
@@ -856,11 +1882,29 @@ msgctxt "XHO5Ua"
 msgid "Expand visual"
 msgstr "Agrandir le visuel"
 
+# Breadcrumb field label
+#: XJ2Xc+
+msgctxt "XJ2Xc+"
+msgid "Answer"
+msgstr "Réponse"
+
+# Horoscope sign
+#: XKcyqx
+msgctxt "XKcyqx"
+msgid "Taurus"
+msgstr "Taureau"
+
 # Field label
 #: XR5/Wk
 msgctxt "XR5/Wk"
 msgid "Edit"
 msgstr "Modifier"
+
+# GalleryFeedCaptions screen title
+#: XTJGzY
+msgctxt "XTJGzY"
+msgid "Gallery feed with captions"
+msgstr "Galerie de flux avec légendes"
 
 # Delete in Media Gallery
 #: Xb6r3F
@@ -886,11 +1930,29 @@ msgctxt "Xr1v8l"
 msgid "points gained"
 msgstr "points gagnés"
 
+# Text field label
+#: Y7bs1v
+msgctxt "Y7bs1v"
+msgid "Description"
+msgstr "Description"
+
+# Overtitle field label
+#: YD9M2p
+msgctxt "YD9M2p"
+msgid "Overtitle"
+msgstr "Surtître"
+
 # Description in Media Gallery
 #: YJZtWR
 msgctxt "YJZtWR"
 msgid "Description"
 msgstr "Description"
+
+# Field label
+#: YWcp4v
+msgctxt "YWcp4v"
+msgid "Bullet filled"
+msgstr "Puce remplie"
 
 # Tooltip
 #: YXhRxW
@@ -899,16 +1961,52 @@ msgid "No controls available"
 msgstr "Aucun contrôle disponible"
 
 # Field label
+#: Yu/PB5
+msgctxt "Yu/PB5"
+msgid "Next button"
+msgstr "Bouton suivant"
+
+# Field label
 #: YwySSO
 msgctxt "YwySSO"
 msgid "Vertical"
 msgstr "Vertical"
+
+# Horoscope sign
+#: YyPYHk
+msgctxt "YyPYHk"
+msgid "Scorpio"
+msgstr "Scorpion"
 
 # Button label
 #: YyYrXp
 msgctxt "YyYrXp"
 msgid "Loading"
 msgstr "Chargement"
+
+# Screen group
+#: Z27IP6
+msgctxt "Z27IP6"
+msgid "Map"
+msgstr "Carte"
+
+# Keypad state
+#: Z4f5qh
+msgctxt "Z4f5qh"
+msgid "Buttons"
+msgstr "Boutons"
+
+# Field label
+#: Z5jrDS
+msgctxt "Z5jrDS"
+msgid "Letter spacing"
+msgstr "Espacement des lettres"
+
+# Field label
+#: ZCe0r4
+msgctxt "ZCe0r4"
+msgid "Description"
+msgstr "Description"
 
 # Placeholder label
 #: ZG8/oK
@@ -922,11 +2020,41 @@ msgctxt "ZLDmja"
 msgid "Submit"
 msgstr "Soumettre"
 
+# Field label
+#: ZMS1Wv
+msgctxt "ZMS1Wv"
+msgid "Text"
+msgstr "Texte"
+
+# Horoscope date
+#: ZeosMy
+msgctxt "ZeosMy"
+msgid "Mar 21 - Apr 19"
+msgstr "21 mars - 19 avr."
+
+# Screen group
+#: ZiWlL6
+msgctxt "ZiWlL6"
+msgid "Questions"
+msgstr "Questions"
+
+# Spacing field label
+#: Zpl5bJ
+msgctxt "Zpl5bJ"
+msgid "Spacing"
+msgstr "Espacement"
+
 # Button label in items field
 #: ZxgNge
 msgctxt "ZxgNge"
 msgid "Add an item"
 msgstr "Ajouter un élément"
+
+# Field label
+#: aarOkd
+msgctxt "aarOkd"
+msgid "Color"
+msgstr "Couleur"
 
 # Font family group title
 #: al5xjv
@@ -934,11 +2062,29 @@ msgctxt "al5xjv"
 msgid "Default fonts"
 msgstr "Polices par défaut"
 
+# Field label
+#: amEvH1
+msgctxt "amEvH1"
+msgid "Fit"
+msgstr "Ajuster"
+
+# Field label
+#: ao5VYd
+msgctxt "ao5VYd"
+msgid "Valid box style"
+msgstr "Style de boîte valide"
+
 # Label in Media Gallery
 #: aovRFH
 msgctxt "aovRFH"
 msgid "Filename"
-msgstr "Nom du fichier"
+msgstr "Nom de fichier"
+
+# UrbaniaHoroscope state
+#: ap68Fp
+msgctxt "ap68Fp"
+msgid "Signs"
+msgstr "Signes"
 
 # Media gallery source filter
 #: bCtuS/
@@ -951,6 +2097,24 @@ msgstr "Dans ce Micromag"
 msgctxt "bLYuuN"
 msgid "You are on screen {current} of {total}."
 msgstr "Vous êtes à l'écran {current} de {total}."
+
+# Horoscope date
+#: bMdONM
+msgctxt "bMdONM"
+msgid "June 21 - July 22"
+msgstr "21 juin - 22 juill."
+
+# Field help text
+#: bQsPrs
+msgctxt "bQsPrs"
+msgid "If this field is left empty, this Micromag's URL will be shared."
+msgstr "Si ce champ est laissé vide, l'URL de ce Micromag sera partagée."
+
+# Audio screen title
+#: bhEaUt
+msgctxt "bhEaUt"
+msgid "Audio"
+msgstr "Audio"
 
 # Title placeholder
 #: bmO4Ss
@@ -970,11 +2134,29 @@ msgctxt "c3hu9o"
 msgid "Size"
 msgstr "Taille"
 
+# Field label
+#: c7rrcG
+msgctxt "c7rrcG"
+msgid "With animated wave"
+msgstr "Avec onde animée"
+
 # Heading in Media Gallery
 #: c9VwT/
 msgctxt "c9VwT/"
 msgid "Technical details"
 msgstr "Détails techniques"
+
+# Field label
+#: cDj1mZ
+msgctxt "cDj1mZ"
+msgid "Background"
+msgstr "Arrière-plan"
+
+# List screen group
+#: cGItoy
+msgctxt "cGItoy"
+msgid "List"
+msgstr "Liste"
 
 # Button label
 #: cXt3NU
@@ -1022,7 +2204,7 @@ msgstr "Cookies utilisés pour les données publicitaires spécifiques à l'util
 #: consent.ad_user_data_title
 msgctxt "consent.ad_user_data_title"
 msgid "User Ad Data"
-msgstr "Données publicitaires utilisateur"
+msgstr "Données publicitaires de l'utilisateur"
 
 #: consent.analytics_description
 msgctxt "consent.analytics_description"
@@ -1064,11 +2246,29 @@ msgctxt "consent.security_storage_title"
 msgid "Security Storage"
 msgstr "Stockage de sécurité"
 
+# Field label
+#: crLqJd
+msgctxt "crLqJd"
+msgid "Without percentage"
+msgstr "Sans pourcentage"
+
+# Text field label
+#: cuKSQz
+msgctxt "cuKSQz"
+msgid "Lede"
+msgstr "Chapeau"
+
 # Share Incentive default label
 #: d/01YO
 msgctxt "d/01YO"
 msgid "Share this Micromag!"
-msgstr "Partagez ce Micromag!"
+msgstr "Partagez ce Micromag !"
+
+# Field label
+#: d3va12
+msgctxt "d3va12"
+msgid "SMS"
+msgstr "SMS"
 
 # Subtitle placeholder
 #: d60tSn
@@ -1076,11 +2276,29 @@ msgctxt "d60tSn"
 msgid "Subtitle"
 msgstr "Sous-titre"
 
+# Breadcrumb field label
+#: dCG1T1
+msgctxt "dCG1T1"
+msgid "Background video"
+msgstr "Vidéo d'arrière-plan"
+
+# Label when there is no item
+#: dFMzBu
+msgctxt "dFMzBu"
+msgid "No image..."
+msgstr "Aucune image..."
+
 # Button label with icon
 #: dIvwcD
 msgctxt "dIvwcD"
 msgid "Close"
 msgstr "Fermer"
+
+# Screen title
+#: dPYwJG
+msgctxt "dPYwJG"
+msgid "Map"
+msgstr "Carte"
 
 # Share button label
 #: dSfmnf
@@ -1088,11 +2306,23 @@ msgctxt "dSfmnf"
 msgid "SMS"
 msgstr "SMS"
 
+# Title screen title
+#: dVcog7
+msgctxt "dVcog7"
+msgid "Title"
+msgstr "Titre"
+
 # Button label
 #: dj/p/q
 msgctxt "dj/p/q"
 msgid "Close"
 msgstr "Fermer"
+
+# Image fit field label
+#: dkBBRa
+msgctxt "dkBBRa"
+msgid "Image fit"
+msgstr "Ajustement de l'image"
 
 # Legend placeholder
 #: dqnkQk
@@ -1108,8 +2338,14 @@ msgid ""
 "purposes. By accepting, you consent to the use of these cookies."
 msgstr ""
 "Nous utilisons des cookies pour améliorer votre expérience sur notre site "
-"et à des fins marketing. En acceptant, vous consentez à l'utilisation de "
+"et à des fins de marketing. En acceptant, vous consentez à l'utilisation de "
 "ces cookies."
+
+# Horoscope sign
+#: dxAumJ
+msgctxt "dxAumJ"
+msgid "Pisces"
+msgstr "Poissons"
 
 # Question placeholder
 #: e1I+KU
@@ -1117,11 +2353,23 @@ msgctxt "e1I+KU"
 msgid "Question"
 msgstr "Question"
 
+# Field label
+#: e4UTx9
+msgctxt "e4UTx9"
+msgid "Results"
+msgstr "Résultats"
+
 # Label when no value is provided to Media field
 #: e6+aGf
 msgctxt "e6+aGf"
 msgid "Select a media..."
 msgstr "Sélectionner un média..."
+
+# Field label
+#: eBFxNl
+msgctxt "eBFxNl"
+msgid "Call to Action"
+msgstr "Appel à l'action"
 
 # Field name
 #: eCe9ZY
@@ -1129,11 +2377,47 @@ msgctxt "eCe9ZY"
 msgid "Dimensions"
 msgstr "Dimensions"
 
+# Field label
+#: eDMxHS
+msgctxt "eDMxHS"
+msgid "Font weight"
+msgstr "Graisse de la police"
+
+# Sort game screen title
+#: eJMcXw
+msgctxt "eJMcXw"
+msgid "Sort game"
+msgstr "Jeu de tri"
+
+# Field label
+#: eNdbJF
+msgctxt "eNdbJF"
+msgid "Appear delay (seconds)"
+msgstr "Délai d'apparition (secondes)"
+
+# ImageTitleText screen title
+#: eWIM/8
+msgctxt "eWIM/8"
+msgid "Image with title and text"
+msgstr "Image avec titre et texte"
+
+# State label
+#: eYHEYe
+msgctxt "eYHEYe"
+msgid "Map"
+msgstr "Carte"
+
 # Image placeholder
 #: ebsPd4
 msgctxt "ebsPd4"
 msgid "Image"
 msgstr "Image"
+
+# Field label
+#: ehuj8A
+msgctxt "ehuj8A"
+msgid "Without image zoom"
+msgstr "Sans zoom sur l'image"
 
 # Media gallery source
 #: eiaIIB
@@ -1153,11 +2437,65 @@ msgctxt "eoW0tZ"
 msgid "Duration"
 msgstr "Durée"
 
+# Field label
+#: ex1Bgx
+msgctxt "ex1Bgx"
+msgid "Results style"
+msgstr "Style des résultats"
+
+# Breadcrumb field label
+#: f1XHNG
+msgctxt "f1XHNG"
+msgid "Button"
+msgstr "Bouton"
+
+# Field label
+#: f5Yipd
+msgctxt "f5Yipd"
+msgid "Box"
+msgstr "Boîte"
+
+# Field label
+#: f68O+0
+msgctxt "f68O+0"
+msgid "Messages"
+msgstr "Messages"
+
+# Horoscope sign
+#: fBii8l
+msgctxt "fBii8l"
+msgid "Aquarius"
+msgstr "Verseau"
+
+# Text screen group
+#: fIawTr
+msgctxt "fIawTr"
+msgid "Text"
+msgstr "Texte"
+
+# Field label
+#: fLdjGi
+msgctxt "fLdjGi"
+msgid "Word of the week"
+msgstr "Mot de la semaine"
+
+# Field label
+#: fOYYk7
+msgctxt "fOYYk7"
+msgid "Align items"
+msgstr "Aligner les éléments"
+
 # No title label in Media Gallery
 #: fVqgfl
 msgctxt "fVqgfl"
 msgid "[no title]"
 msgstr "[sans titre]"
+
+# Field label
+#: fbUW2U
+msgctxt "fbUW2U"
+msgid "Items"
+msgstr "Éléments"
 
 # No value label
 #: fbiNiR
@@ -1171,11 +2509,29 @@ msgctxt "fpQzza"
 msgid "Font"
 msgstr "Police"
 
+# Square label
+#: fusnxf
+msgctxt "fusnxf"
+msgid "Square"
+msgstr "Carré"
+
 # Field label
 #: g2CRt5
 msgctxt "g2CRt5"
 msgid "Size"
 msgstr "Taille"
+
+# Field label
+#: g4nybp
+msgctxt "g4nybp"
+msgid "Footer"
+msgstr "Pied de page"
+
+# Contribution screen title
+#: g6b9Lg
+msgctxt "g6b9Lg"
+msgid "Contribution"
+msgstr "Contribution"
 
 #: gJTVcQ
 msgctxt "gJTVcQ"
@@ -1192,7 +2548,37 @@ msgstr "Supprimer l'écran"
 #: gfZs4J
 msgctxt "gfZs4J"
 msgid "Skip Links"
-msgstr "Liens d'évitement"
+msgstr "Liens rapides"
+
+# Field label
+#: gwPu/I
+msgctxt "gwPu/I"
+msgid "Buttons text"
+msgstr "Texte des boutons"
+
+# Custom styles
+#: hPXJzA
+msgctxt "hPXJzA"
+msgid "Box params"
+msgstr "Paramètres de boîte"
+
+# Field label
+#: hUUIQt
+msgctxt "hUUIQt"
+msgid "Mute audio of background video"
+msgstr "Couper le son de la vidéo d'arrière-plan"
+
+# Question field label
+#: hVE7TA
+msgctxt "hVE7TA"
+msgid "Question"
+msgstr "Question"
+
+# Field label
+#: hZcXoa
+msgctxt "hZcXoa"
+msgid "Good answer icon color"
+msgstr "Couleur de l'icône de bonne réponse"
 
 # Placeholder label
 #: hoDz0O
@@ -1206,17 +2592,95 @@ msgctxt "hpiKce"
 msgid "Delete screen"
 msgstr "Supprimer l'écran"
 
+# Field label
+#: hqOIl4
+msgctxt "hqOIl4"
+msgid "Avatar"
+msgstr "Avatar"
+
+# Field label
+#: hvxkzE
+msgctxt "hvxkzE"
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+# Field label
+#: hzt68m
+msgctxt "hzt68m"
+msgid "Audio"
+msgstr "Audio"
+
+# Title field label
+#: hzvEim
+msgctxt "hzvEim"
+msgid "Sponsor Label"
+msgstr "Étiquette du commanditaire"
+
 # No value label
 #: i+3ZrF
 msgctxt "i+3ZrF"
 msgid "Select a font family..."
 msgstr "Sélectionner une famille de polices..."
 
+# Field label
+#: i6bmbD
+msgctxt "i6bmbD"
+msgid "Button"
+msgstr "Bouton"
+
 # Button label in Media Gallery
 #: iCf/MP
 msgctxt "iCf/MP"
 msgid "Edit"
 msgstr "Modifier"
+
+# Label when there is no item
+#: iHV3W3
+msgctxt "iHV3W3"
+msgid "No entry..."
+msgstr "Aucune entrée..."
+
+# Field label
+#: iJ61ZT
+msgctxt "iJ61ZT"
+msgid "Writing state duration (seconds)"
+msgstr "Durée de l'état d'écriture (secondes)"
+
+# Field label
+#: iL9RLu
+msgctxt "iL9RLu"
+msgid "Collaborator"
+msgstr "Collaborateur"
+
+# Field label
+#: iQ5Uf7
+msgctxt "iQ5Uf7"
+msgid "Default feedback"
+msgstr "Rétroaction par défaut"
+
+# Field label
+#: iipV5Q
+msgctxt "iipV5Q"
+msgid "Type"
+msgstr "Type"
+
+# Field label
+#: iltluX
+msgctxt "iltluX"
+msgid "Numbers text"
+msgstr "Texte des chiffres"
+
+# Field label
+#: irG6mX
+msgctxt "irG6mX"
+msgid "Distance"
+msgstr "Distance"
+
+# Field label
+#: ivs8GN
+msgctxt "ivs8GN"
+msgid "Closed captions file"
+msgstr "Fichier de sous-titres"
 
 # Field label
 #: j00v1T
@@ -1230,6 +2694,24 @@ msgctxt "jEK6B8"
 msgid "By"
 msgstr "Par"
 
+# Section label
+#: jINZkT
+msgctxt "jINZkT"
+msgid "Results"
+msgstr "Résultats"
+
+# Field label
+#: jWAJW4
+msgctxt "jWAJW4"
+msgid "Points"
+msgstr "Points"
+
+# Gallery screen title
+#: jaFXki
+msgctxt "jaFXki"
+msgid "Gallery"
+msgstr "Galerie"
+
 # Title of the screens section
 #: jf+4Hq
 msgctxt "jf+4Hq"
@@ -1241,6 +2723,24 @@ msgstr "Écrans"
 msgctxt "jnww6n"
 msgid "Select an image..."
 msgstr "Sélectionner une image..."
+
+# Visuals field label
+#: k+coTi
+msgctxt "k+coTi"
+msgid "Image"
+msgstr "Image"
+
+# Button label
+#: k4gTZl
+msgctxt "k4gTZl"
+msgid "Add an item"
+msgstr "Ajouter un élément"
+
+# Field label
+#: k81FRn
+msgctxt "k81FRn"
+msgid "Message style"
+msgstr "Style du message"
 
 # Name in Media Gallery
 #: kBz8vF
@@ -1260,6 +2760,24 @@ msgctxt "kxsaD3"
 msgid "Select Image"
 msgstr "Sélectionner une image"
 
+# Button label
+#: l/Y6or
+msgctxt "l/Y6or"
+msgid "Add an entry"
+msgstr "Ajouter une entrée"
+
+# Field label
+#: l5uLMd
+msgctxt "l5uLMd"
+msgid "Buttons"
+msgstr "Boutons"
+
+# Button label
+#: lGh/NP
+msgctxt "lGh/NP"
+msgid "Add an answer"
+msgstr "Ajouter une réponse"
+
 # Result placeholder
 #: li7ADr
 msgctxt "li7ADr"
@@ -1276,7 +2794,7 @@ msgstr "Taille"
 #: lvPGoX
 msgctxt "lvPGoX"
 msgid "Our terms and conditions"
-msgstr "Nos conditions d'utilisation"
+msgstr "Nos termes et conditions"
 
 # Media label
 #: mOSkbf
@@ -1296,6 +2814,12 @@ msgctxt "mTqcmA"
 msgid "Pause"
 msgstr "Pause"
 
+# Field label
+#: mXeSkg
+msgctxt "mXeSkg"
+msgid "Link"
+msgstr "Lien"
+
 #: menus.pagination.next
 msgctxt "menus.pagination.next"
 msgid "next"
@@ -1312,11 +2836,35 @@ msgctxt "mgjMWG"
 msgid "columns"
 msgstr "colonnes"
 
+# Field label
+#: mlucL+
+msgctxt "mlucL+"
+msgid "Twitter"
+msgstr "Twitter"
+
+# Field label
+#: muPX/j
+msgctxt "muPX/j"
+msgid "Speaker"
+msgstr "Intervenant"
+
+# Visuals field label
+#: muYwrB
+msgctxt "muYwrB"
+msgid "Images"
+msgstr "Images"
+
 # Label in Media Gallery
 #: mv37oK
 msgctxt "mv37oK"
 msgid "Dimension"
 msgstr "Dimension"
+
+# Field label
+#: my7Kox
+msgctxt "my7Kox"
+msgid "Inactive buttons text"
+msgstr "Texte des boutons inactifs"
 
 # Input placeholder
 #: n/SxMs
@@ -1330,11 +2878,41 @@ msgctxt "n2teag"
 msgid "Add an answer"
 msgstr "Ajouter une réponse"
 
+# Field label
+#: n8zmLY
+msgctxt "n8zmLY"
+msgid "Go to next screen on end"
+msgstr "Passer à l'écran suivant à la fin"
+
 # Direction
 #: n9LoBJ
 msgctxt "n9LoBJ"
 msgid "Top"
 msgstr "Haut"
+
+# Urbania screen title
+#: nJgzwC
+msgctxt "nJgzwC"
+msgid "Urbania article"
+msgstr "Article Urbania"
+
+# Name field label
+#: nXVNeg
+msgctxt "nXVNeg"
+msgid "Name"
+msgstr "Nom"
+
+# field label
+#: nc8LF0
+msgctxt "nc8LF0"
+msgid "Metadata"
+msgstr "Métadonnées"
+
+# Field label
+#: nno1Pq
+msgctxt "nno1Pq"
+msgid "Button style"
+msgstr "Style du bouton"
 
 # Label when no value is provided to Closed captions field
 #: o3R+FM
@@ -1346,13 +2924,49 @@ msgstr "Sélectionner un fichier de sous-titres..."
 #: oAtOlP
 msgctxt "oAtOlP"
 msgid "Heading"
-msgstr "En-tête"
+msgstr "Titre"
+
+# TextTitle screen title
+#: oCBQKV
+msgctxt "oCBQKV"
+msgid "Text with title"
+msgstr "Texte avec titre"
 
 # Video 360 placeholder
 #: oLtEu6
 msgctxt "oLtEu6"
 msgid "Video 360"
 msgstr "Vidéo 360"
+
+# Urbania screen group
+#: oPjl8f
+msgctxt "oPjl8f"
+msgid "Urbania"
+msgstr "Urbania"
+
+# Button label
+#: opcGwP
+msgctxt "opcGwP"
+msgid "Add a speaker"
+msgstr "Ajouter un intervenant"
+
+# Article screen title
+#: ouMwWq
+msgctxt "ouMwWq"
+msgid "Article"
+msgstr "Article"
+
+# Field label
+#: p1pghO
+msgctxt "p1pghO"
+msgid "Box style"
+msgstr "Style de la boîte"
+
+# Field label
+#: p5RHzq
+msgctxt "p5RHzq"
+msgid "Button text style"
+msgstr "Style du texte des boutons"
 
 # Label when there is no item in answers field
 #: p6n6vY
@@ -1366,17 +2980,35 @@ msgctxt "p6q/+/"
 msgid "Delete screen"
 msgstr "Supprimer l'écran"
 
+# Field label
+#: p85qJD
+msgctxt "p85qJD"
+msgid "Caption"
+msgstr "Légende"
+
 # Field title
 #: pBNrdH
 msgctxt "pBNrdH"
 msgid "Conversion"
 msgstr "Conversion"
 
+# Type field label
+#: pE7UhY
+msgctxt "pE7UhY"
+msgid "Article"
+msgstr "Article"
+
+# Field label
+#: pJgYyE
+msgctxt "pJgYyE"
+msgid "AutoPlay"
+msgstr "Lecture automatique"
+
 # Title placeholder
 #: pRzSQ7
 msgctxt "pRzSQ7"
 msgid "Overtitle"
-msgstr "Surtitre"
+msgstr "Surtître"
 
 # Media label
 #: pfvDzR
@@ -1384,17 +3016,35 @@ msgctxt "pfvDzR"
 msgid "Added by"
 msgstr "Ajouté par"
 
+# Field label
+#: ppGXAR
+msgctxt "ppGXAR"
+msgid "Show the answer count"
+msgstr "Afficher le nombre de réponses"
+
+# Type field label
+#: ppq6CK
+msgctxt "ppq6CK"
+msgid "Type"
+msgstr "Type"
+
+# Field right label
+#: ptJkUl
+msgctxt "ptJkUl"
+msgid "Right"
+msgstr "Droite"
+
 # Confirmation message before deleting a screen
 #: q/tLk0
 msgctxt "q/tLk0"
 msgid "Are you sure you want to delete this screen?"
-msgstr "Êtes-vous sûr de vouloir supprimer cet écran?"
+msgstr "Êtes-vous sûr de vouloir supprimer cet écran ?"
 
 # Save in Media Gallery
 #: qIw1nW
 msgctxt "qIw1nW"
 msgid "Save"
-msgstr "Sauvegarder"
+msgstr "Enregistrer"
 
 # Button label in markers field
 #: qKQCxc
@@ -1403,10 +3053,76 @@ msgid "Add a marker"
 msgstr "Ajouter un marqueur"
 
 # Field label
+#: qhjeuO
+msgctxt "qhjeuO"
+msgid "Padding"
+msgstr "Marge intérieure"
+
+# Field label
+#: qjL/eA
+msgctxt "qjL/eA"
+msgid "Bar"
+msgstr "Barre"
+
+# Breadcrumb field label
+#: qroLmS
+msgctxt "qroLmS"
+msgid "Marker"
+msgstr "Marqueur"
+
+# Field label
+#: r+bcpa
+msgctxt "r+bcpa"
+msgid "Facebook"
+msgstr "Facebook"
+
+# Horoscope date
+#: rAkTvt
+msgctxt "rAkTvt"
+msgid "Dec 22 - Jan 20"
+msgstr "22 déc. - 20 janv."
+
+# Conversation screen title
+#: rBPIgw
+msgctxt "rBPIgw"
+msgid "Conversation"
+msgstr "Conversation"
+
+# Field label
+#: rKuiKj
+msgctxt "rKuiKj"
+msgid "Copy link"
+msgstr "Copier le lien"
+
+# Horoscope date
+#: raUY02
+msgctxt "raUY02"
+msgid "Apr 20 - May 20"
+msgstr "20 avr. - 20 mai"
+
+# Label when there is no item
+#: rdFCsN
+msgctxt "rdFCsN"
+msgid "No marker..."
+msgstr "Aucun marqueur..."
+
+# Field label
+#: rhuDxI
+msgctxt "rhuDxI"
+msgid "Header"
+msgstr "En-tête"
+
+# Field label
 #: rmJBin
 msgctxt "rmJBin"
 msgid "Dimensions"
 msgstr "Dimensions"
+
+# Screen title
+#: ro6yHS
+msgctxt "ro6yHS"
+msgid "Map with image markers"
+msgstr "Carte avec marqueurs d'images"
 
 # Delete error message in Media Gallery
 #: rqbRV2
@@ -1426,11 +3142,41 @@ msgctxt "rvOVCV"
 msgid "Confirm selection"
 msgstr "Confirmer la sélection"
 
+# Field label
+#: rzXCu2
+msgctxt "rzXCu2"
+msgid "Label style"
+msgstr "Style de l'étiquette"
+
+# Breadcrumb field label
+#: rzdds2
+msgctxt "rzdds2"
+msgid "Speaker"
+msgstr "Intervenant"
+
+# Entries field label
+#: sESmah
+msgctxt "sESmah"
+msgid "Entries"
+msgstr "Entrées"
+
 # Button label
 #: sHYAUa
 msgctxt "sHYAUa"
 msgid "Save my preferences"
-msgstr "Sauvegarder mes préférences"
+msgstr "Enregistrer mes préférences"
+
+# Keypad item state
+#: sSahY1
+msgctxt "sSahY1"
+msgid "Popup"
+msgstr "Popup"
+
+# Urbania screen title
+#: sUP5BO
+msgctxt "sUP5BO"
+msgid "Urbania recommendation"
+msgstr "Recommandation Urbania"
 
 # Label in Media Gallery
 #: sUR1xV
@@ -1462,11 +3208,77 @@ msgctxt "tAYwqp"
 msgid "Add a slide"
 msgstr "Ajouter une diapositive"
 
+# Field label
+#: tYGev7
+msgctxt "tYGev7"
+msgid "Font size"
+msgstr "Taille de police"
+
 # Media label
 #: tmfbUn
 msgctxt "tmfbUn"
 msgid "Unused"
 msgstr "Inutilisé"
+
+# Field label
+#: trQFlb
+msgctxt "trQFlb"
+msgid "Put audio before text"
+msgstr "Placer l'audio avant le texte"
+
+# Field label
+#: trSRbk
+msgctxt "trSRbk"
+msgid "Placeholder"
+msgstr "Espace réservé"
+
+# Video field label
+#: tvl2Zc
+msgctxt "tvl2Zc"
+msgid "Video"
+msgstr "Vidéo"
+
+# Field label
+#: twTaAZ
+msgctxt "twTaAZ"
+msgid "Bullet shape"
+msgstr "Forme de puce"
+
+# Field label
+#: u3ok54
+msgctxt "u3ok54"
+msgid "Position"
+msgstr "Position"
+
+# Submit field label
+#: uAKPQ9
+msgctxt "uAKPQ9"
+msgid "Submit"
+msgstr "Soumettre"
+
+# Field label
+#: uDHTZn
+msgctxt "uDHTZn"
+msgid "Results description"
+msgstr "Description des résultats"
+
+# Image screen title
+#: uJ9eBc
+msgctxt "uJ9eBc"
+msgid "Image"
+msgstr "Image"
+
+# Title screen group
+#: uKJRh2
+msgctxt "uKJRh2"
+msgid "Title"
+msgstr "Titre"
+
+# Field label
+#: uNpHnA
+msgctxt "uNpHnA"
+msgid "Bullet color"
+msgstr "Couleur de puce"
 
 # Dropdown select label
 #: uSpItE
@@ -1474,11 +3286,41 @@ msgctxt "uSpItE"
 msgid "Add tags..."
 msgstr "Ajouter des étiquettes..."
 
+# Field label
+#: uaL28k
+msgctxt "uaL28k"
+msgid "Share Incentive"
+msgstr "Incitation au partage"
+
+# Field label
+#: udLCuY
+msgctxt "udLCuY"
+msgid "Shadow"
+msgstr "Ombre"
+
 # Button label
 #: ufac8e
 msgctxt "ufac8e"
 msgid "Clear all"
 msgstr "Tout effacer"
+
+# State label
+#: uiTxd7
+msgctxt "uiTxd7"
+msgid "Results"
+msgstr "Résultats"
+
+# Field label
+#: uoF5Pv
+msgctxt "uoF5Pv"
+msgid "Content"
+msgstr "Contenu"
+
+# Credits field label
+#: upzOTm
+msgctxt "upzOTm"
+msgid "Credits"
+msgstr "Crédits"
 
 # Load button label in Media Gallery
 #: ur6G0U
@@ -1486,17 +3328,53 @@ msgctxt "ur6G0U"
 msgid "Load more"
 msgstr "Charger plus"
 
+# Breadcrumb field label
+#: uwcXzb
+msgctxt "uwcXzb"
+msgid "Image"
+msgstr "Image"
+
+# Field label
+#: v1r3AA
+msgctxt "v1r3AA"
+msgid "Progress bar color"
+msgstr "Couleur de la barre de progression"
+
+# Today date message
+#: v4Qtl9
+msgctxt "v4Qtl9"
+msgid "Today"
+msgstr "Aujourd'hui"
+
 # Button label
 #: v9bqYj
 msgctxt "v9bqYj"
 msgid "Go to next screen"
-msgstr "Aller à l'écran suivant"
+msgstr "Passer à l'écran suivant"
+
+# Field label
+#: vERejo
+msgctxt "vERejo"
+msgid "Video"
+msgstr "Vidéo"
+
+# Field label
+#: vRzzo6
+msgctxt "vRzzo6"
+msgid "Zoom"
+msgstr "Zoom"
 
 # Media label
 #: vYunz+
 msgctxt "vYunz+"
 msgid "Recent searches"
 msgstr "Recherches récentes"
+
+# TitleSubtitleCredits screen title
+#: vZrFq6
+msgctxt "vZrFq6"
+msgid "Title with subtitle and credits"
+msgstr "Titre avec sous-titre et crédits"
 
 # Surtitle placeholder
 #: vdWMTA
@@ -1508,7 +3386,19 @@ msgstr "Surtitre"
 #: vmrJ8U
 msgctxt "vmrJ8U"
 msgid "(current screen)"
-msgstr "(écran actuel)"
+msgstr "(écran courant)"
+
+# Breadcrumb field label
+#: vxEtY1
+msgctxt "vxEtY1"
+msgid "Background image"
+msgstr "Image d'arrière-plan"
+
+# Screen group
+#: w3+kFW
+msgctxt "w3+kFW"
+msgid "Game"
+msgstr "Jeu"
 
 # No value label
 #: wChc+A
@@ -1534,11 +3424,17 @@ msgctxt "wt1+dM"
 msgid "Select an audio file..."
 msgstr "Sélectionner un fichier audio..."
 
+# Heading field label
+#: wx5PI0
+msgctxt "wx5PI0"
+msgid "Heading"
+msgstr "Titre"
+
 # Delete error message in Media Gallery
 #: wy2g+x
 msgctxt "wy2g+x"
 msgid "Are you sure you want to continue?"
-msgstr "Êtes-vous sûr de vouloir continuer?"
+msgstr "Êtes-vous sûr de vouloir continuer ?"
 
 # Media gallery source
 #: xAzv6g
@@ -1546,11 +3442,23 @@ msgctxt "xAzv6g"
 msgid "All sources"
 msgstr "Toutes les sources"
 
+# Button label
+#: xCj1gI
+msgctxt "xCj1gI"
+msgid "Add a message"
+msgstr "Ajouter un message"
+
 # Message displayed once text was copied successfully.
 #: xFlbR7
 msgctxt "xFlbR7"
 msgid "Link copied!"
-msgstr "Lien copié!"
+msgstr "Lien copié !"
+
+# Field label
+#: xKG76H
+msgctxt "xKG76H"
+msgid "Rounded corners"
+msgstr "Coins arrondis"
 
 # Field title
 #: xKUOLG
@@ -1558,11 +3466,23 @@ msgctxt "xKUOLG"
 msgid "Technical details"
 msgstr "Détails techniques"
 
+# Horoscope date
+#: xL0GD2
+msgctxt "xL0GD2"
+msgid "Aug 23 - Sept 22"
+msgstr "23 août - 22 sept."
+
 # Filter item label
 #: xSERPA
 msgctxt "xSERPA"
 msgid "Video"
 msgstr "Vidéo"
+
+# Field label
+#: xT/onn
+msgctxt "xT/onn"
+msgid "Image"
+msgstr "Image"
 
 # Field label
 #: xTJlyi
@@ -1576,6 +3496,42 @@ msgctxt "xYqGzM"
 msgid "Author"
 msgstr "Auteur"
 
+# Field label
+#: xac4z/
+msgctxt "xac4z/"
+msgid "Entry styles"
+msgstr "Styles d'entrée"
+
+# Field label
+#: xcHW4o
+msgctxt "xcHW4o"
+msgid "Can view answers"
+msgstr "Peut voir les réponses"
+
+# UrbaniaHoroscope state
+#: xj0o1v
+msgctxt "xj0o1v"
+msgid "Grid"
+msgstr "Grille"
+
+# Field label
+#: xlFOg3
+msgctxt "xlFOg3"
+msgid "Inactive buttons"
+msgstr "Boutons inactifs"
+
+# Field label
+#: xmp9nw
+msgctxt "xmp9nw"
+msgid "Spacing"
+msgstr "Espacement"
+
+# Visual field label
+#: xsipID
+msgctxt "xsipID"
+msgid "Image"
+msgstr "Image"
+
 # Items edit button label
 #: xuEZXD
 msgctxt "xuEZXD"
@@ -1586,7 +3542,19 @@ msgstr "Modifier"
 #: xuPbeq
 msgctxt "xuPbeq"
 msgid "Start from the current screen"
-msgstr "Commencer à partir de l'écran actuel"
+msgstr "Commencer à partir de l'écran courant"
+
+# Fields section label
+#: y7xsPe
+msgctxt "y7xsPe"
+msgid "Advanced settings"
+msgstr "Paramètres avancés"
+
+# Visual field label
+#: yA4B6h
+msgctxt "yA4B6h"
+msgid "Result feedback image"
+msgstr "Image de rétroaction du résultat"
 
 # Field label
 #: yByaBh
@@ -1599,6 +3567,24 @@ msgstr "Ajouté par"
 msgctxt "yCXMzz"
 msgid "Close"
 msgstr "Fermer"
+
+# Horoscope date
+#: yCj5uv
+msgctxt "yCj5uv"
+msgid "Nov 23 - Dec 21"
+msgstr "23 nov. - 21 déc."
+
+# Text field label
+#: yEG9zh
+msgctxt "yEG9zh"
+msgid "Date"
+msgstr "Date"
+
+# Field label
+#: yGd82s
+msgctxt "yGd82s"
+msgid "Custom answer"
+msgstr "Réponse personnalisée"
 
 # Filter item label
 #: yHAmDD
@@ -1636,6 +3622,12 @@ msgctxt "z/VBX0"
 msgid "Learn more"
 msgstr "En savoir plus"
 
+# Title field label
+#: z2I2bJ
+msgctxt "z2I2bJ"
+msgid "Overtitle"
+msgstr "Surtître"
+
 # Text placeholder
 #: z4CiV1
 msgctxt "z4CiV1"
@@ -1648,11 +3640,23 @@ msgctxt "z4Pr+g"
 msgid "Visual (Image or Video)"
 msgstr "Visuel (Image ou Vidéo)"
 
+# Field label
+#: z9nSIG
+msgctxt "z9nSIG"
+msgid "Content text style"
+msgstr "Style du texte de contenu"
+
 # Latitude description
 #: zDH24s
 msgctxt "zDH24s"
 msgid "Latitude"
 msgstr "Latitude"
+
+# Urbania screen title
+#: zDdDqI
+msgctxt "zDdDqI"
+msgid "Urbania trivia"
+msgstr "Anecdotes Urbania"
 
 # Sponsors placeholder
 #: zGIcdn
@@ -1660,11 +3664,23 @@ msgctxt "zGIcdn"
 msgid "Sponsors"
 msgstr "Commanditaires"
 
+# Text field label
+#: zLxBdl
+msgctxt "zLxBdl"
+msgid "Location"
+msgstr "Lieu"
+
+# Quiz screen title
+#: zW7IVm
+msgctxt "zW7IVm"
+msgid "Quiz"
+msgstr "Quiz"
+
 # Button label
 #: zYH/31
 msgctxt "zYH/31"
 msgid "Go to previous screen"
-msgstr "Aller à l'écran précédent"
+msgstr "Passer à l'écran précédent"
 
 # Field placeholder
 #: zh2m/S
@@ -1677,3 +3693,15 @@ msgstr "Rechercher des polices..."
 msgctxt "zl6zsZ"
 msgid "Lede"
 msgstr "Chapeau"
+
+# Field label
+#: zrK6ak
+msgctxt "zrK6ak"
+msgid "Heading text style"
+msgstr "Style du texte d'en-tête"
+
+# Field label
+#: zueWSA
+msgctxt "zueWSA"
+msgid "Audio attachment"
+msgstr "Pièce jointe audio"

@@ -1,12 +1,36 @@
 {
+    "+9akmg": {
+        "defaultMessage": "Audio et Vidéo"
+    },
+    "+AEVbJ": {
+        "defaultMessage": "Titre"
+    },
+    "+FHxPO": {
+        "defaultMessage": "Titre des questions"
+    },
+    "+LvOvJ": {
+        "defaultMessage": "Marqueurs"
+    },
+    "+MPZRu": {
+        "defaultMessage": "Arrière-plan"
+    },
     "+Ok+7S": {
         "defaultMessage": "Réponse"
     },
     "+Ptk0B": {
         "defaultMessage": "Vos paramètres de confidentialité"
     },
+    "+SlKOi": {
+        "defaultMessage": "Style du message publié"
+    },
     "+TPjd4": {
         "defaultMessage": "Présenté par"
+    },
+    "+nhSvj": {
+        "defaultMessage": "Aucun intervenant..."
+    },
+    "+uInZz": {
+        "defaultMessage": "Cercle"
     },
     "+vzDdb": {
         "defaultMessage": "Mot de la semaine"
@@ -20,6 +44,9 @@
     "/62oe4": {
         "defaultMessage": "Mes fichiers"
     },
+    "/6zaOP": {
+        "defaultMessage": "Délai de transition (en secondes)"
+    },
     "/KQ87r": {
         "defaultMessage": "Supprimer le média"
     },
@@ -29,8 +56,14 @@
     "/OM5UY": {
         "defaultMessage": "Étiquettes"
     },
+    "/PJA/1": {
+        "defaultMessage": "Bélier"
+    },
     "/T/UDH": {
-        "defaultMessage": "Tout retirer"
+        "defaultMessage": "Tout supprimer"
+    },
+    "/W31TQ": {
+        "defaultMessage": "Navigateur intégré"
     },
     "/YQ+xP": {
         "defaultMessage": "Image 360"
@@ -50,17 +83,38 @@
     "0GT0SI": {
         "defaultMessage": "Annuler"
     },
+    "0GzLBc": {
+        "defaultMessage": "Message"
+    },
+    "0R+nB5": {
+        "defaultMessage": "URL personnalisée"
+    },
+    "0acGK7": {
+        "defaultMessage": "Cancer"
+    },
     "0hMiRN": {
         "defaultMessage": "Sélectionner un fichier audio"
     },
+    "142Fjj": {
+        "defaultMessage": "21 mai - 20 juin"
+    },
     "15GBmG": {
         "defaultMessage": "Tous"
+    },
+    "169xnt": {
+        "defaultMessage": "Audio"
+    },
+    "17BMn2": {
+        "defaultMessage": "Classement"
     },
     "17zT4Q": {
         "defaultMessage": "Popup"
     },
     "1dqmFw": {
         "defaultMessage": "Document"
+    },
+    "1yNxAl": {
+        "defaultMessage": "Style de la boîte de carte"
     },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
@@ -80,11 +134,26 @@
     "2c1WFV": {
         "defaultMessage": "Titre"
     },
+    "2pO2Cj": {
+        "defaultMessage": "URL"
+    },
     "2prwZ7": {
         "defaultMessage": "Curseur de progression"
     },
+    "2uFkwE": {
+        "defaultMessage": "Remplacer le minutage par défaut"
+    },
+    "31zuCS": {
+        "defaultMessage": "Hauteur de ligne"
+    },
+    "33UbSd": {
+        "defaultMessage": "Chronologie avec images"
+    },
     "3Ap0C1": {
         "defaultMessage": "Téléverser un média"
+    },
+    "3B9cb3": {
+        "defaultMessage": "Whatsapp"
     },
     "3E57H7": {
         "defaultMessage": "Aucun marqueur..."
@@ -92,17 +161,41 @@
     "3I2Xl7": {
         "defaultMessage": "WebM"
     },
+    "3LEBIA": {
+        "defaultMessage": "Angle"
+    },
+    "3OS3Ms": {
+        "defaultMessage": "Légende"
+    },
     "3RT69u": {
         "defaultMessage": "Informations"
     },
     "3ext9Q": {
         "defaultMessage": "Vidéo"
     },
+    "3ifj0j": {
+        "defaultMessage": "Entrées"
+    },
+    "3na7F8": {
+        "defaultMessage": "Maintenant"
+    },
+    "3q9GPv": {
+        "defaultMessage": "Citation"
+    },
     "3wiL2y": {
         "defaultMessage": "Aucune image..."
     },
+    "4E2gbX": {
+        "defaultMessage": "Texte"
+    },
+    "4H2n5r": {
+        "defaultMessage": "Sous-titres"
+    },
     "4POR3B": {
         "defaultMessage": "Voir l'écran"
+    },
+    "4R/bdr": {
+        "defaultMessage": "Message"
     },
     "4RV6+9": {
         "defaultMessage": "H264"
@@ -113,26 +206,101 @@
     "4b5gym": {
         "defaultMessage": "Titre de l'écran"
     },
+    "4bHvRS": {
+        "defaultMessage": "Galerie de flux"
+    },
     "4fHMVj": {
         "defaultMessage": "Étiquettes"
+    },
+    "4g35M0": {
+        "defaultMessage": "Gémeaux"
+    },
+    "4grcMU": {
+        "defaultMessage": "Catégorie"
+    },
+    "4iBXj2": {
+        "defaultMessage": "Mise en page"
+    },
+    "4js1kW": {
+        "defaultMessage": "Options de partage"
+    },
+    "4kSwvn": {
+        "defaultMessage": "Miniature"
+    },
+    "4w7K2K": {
+        "defaultMessage": "Texte de rétroaction"
     },
     "507VAi": {
         "defaultMessage": "Description"
     },
+    "57hjHa": {
+        "defaultMessage": "Image de rétroaction de la réponse"
+    },
+    "59f2bg": {
+        "defaultMessage": "Images"
+    },
+    "5mk1b+": {
+        "defaultMessage": "Partager"
+    },
     "5uH4x7": {
         "defaultMessage": "Soumettre"
+    },
+    "64JlRq": {
+        "defaultMessage": "Partager"
+    },
+    "650XRF": {
+        "defaultMessage": "Sondage"
+    },
+    "65rc70": {
+        "defaultMessage": "Modifier le style..."
+    },
+    "68NE9W": {
+        "defaultMessage": "Alternatives"
+    },
+    "6DV50M": {
+        "defaultMessage": "Minutage"
+    },
+    "6MxaVf": {
+        "defaultMessage": "Style"
+    },
+    "6Q4tcn": {
+        "defaultMessage": "Style du résultat"
     },
     "6W4St0": {
         "defaultMessage": "Téléverser un fichier audio"
     },
+    "6ak5YN": {
+        "defaultMessage": "Côté"
+    },
+    "6bd963": {
+        "defaultMessage": "Vierge"
+    },
+    "6iR9Mt": {
+        "defaultMessage": "Titre"
+    },
     "6jX5Tb": {
         "defaultMessage": "Auteurs"
+    },
+    "6mX2ya": {
+        "defaultMessage": "Images"
     },
     "6tIigB": {
         "defaultMessage": "Légende"
     },
+    "73hxYw": {
+        "defaultMessage": "Auteur"
+    },
+    "75nZbY": {
+        "defaultMessage": "Clavier"
+    },
     "790Q9C": {
         "defaultMessage": "Sélectionner un fichier de sous-titres"
+    },
+    "7ZzlUE": {
+        "defaultMessage": "23 oct. - 22 nov."
+    },
+    "7mMPO4": {
+        "defaultMessage": "Sagittaire"
     },
     "7oXkoj": {
         "defaultMessage": "Auteurs"
@@ -143,23 +311,62 @@
     "7uyslu": {
         "defaultMessage": "Description"
     },
+    "82g1F5": {
+        "defaultMessage": "Intro"
+    },
+    "83959F": {
+        "defaultMessage": "Style des éléments"
+    },
+    "862eE3": {
+        "defaultMessage": "Bordure"
+    },
+    "88/Ge8": {
+        "defaultMessage": "Citation"
+    },
+    "8A8cuq": {
+        "defaultMessage": "Paramètres"
+    },
+    "8Dmlwh": {
+        "defaultMessage": "Disposition des boutons de réponse"
+    },
     "8NyYTH": {
         "defaultMessage": "Retour"
     },
     "8TbpT7": {
         "defaultMessage": "Retirer"
     },
+    "8oczXQ": {
+        "defaultMessage": "Ajouter un marqueur"
+    },
     "8sWUOV": {
         "defaultMessage": "Ajouter un fichier de police"
+    },
+    "8tANs8": {
+        "defaultMessage": "Conversation"
     },
     "8yRYcm": {
         "defaultMessage": "Modifier mes paramètres"
     },
+    "8ySjDc": {
+        "defaultMessage": "Élément"
+    },
     "9/t5wK": {
         "defaultMessage": "Type"
     },
+    "9AP246": {
+        "defaultMessage": "Date"
+    },
+    "9DhYaZ": {
+        "defaultMessage": "Ascendant"
+    },
+    "9PfjeE": {
+        "defaultMessage": "Style de l'intervenant"
+    },
     "9ZdD+Q": {
         "defaultMessage": "Bibliothèque pour"
+    },
+    "9a5s+m": {
+        "defaultMessage": "Titre avec boîte"
     },
     "9mXl24": {
         "defaultMessage": "Étiquettes"
@@ -167,8 +374,26 @@
     "9n9+yP": {
         "defaultMessage": "Ajouter une image"
     },
+    "9omJnT": {
+        "defaultMessage": "Paramètres de réponse"
+    },
+    "A+a0kL": {
+        "defaultMessage": "Aucune réponse..."
+    },
     "A/Vr8P": {
         "defaultMessage": "Faux"
+    },
+    "A7ncT3": {
+        "defaultMessage": "Déplaçable"
+    },
+    "AA8TV9": {
+        "defaultMessage": "Image avec titre"
+    },
+    "ACSasN": {
+        "defaultMessage": "URL"
+    },
+    "ACkeH6": {
+        "defaultMessage": "Quiz à questions multiples"
     },
     "AHvHaY": {
         "defaultMessage": "Paramètres"
@@ -182,6 +407,9 @@
     "AV6gfh": {
         "defaultMessage": "Modifier l'appel à l'action..."
     },
+    "Arl5Ze": {
+        "defaultMessage": "Styles de bouton"
+    },
     "AwDQvD": {
         "defaultMessage": "Image"
     },
@@ -190,6 +418,9 @@
     },
     "B1MeY+": {
         "defaultMessage": "Sélectionner une image..."
+    },
+    "B5C18D": {
+        "defaultMessage": "Badge"
     },
     "B5Qrmw": {
         "defaultMessage": "Sélectionner un fichier de police"
@@ -200,14 +431,38 @@
     "BSTWf8": {
         "defaultMessage": "Titre"
     },
+    "BgrRxZ": {
+        "defaultMessage": "Intro"
+    },
+    "BnRW4y": {
+        "defaultMessage": "Titre des résultats"
+    },
     "BpZoQZ": {
         "defaultMessage": "Succès"
+    },
+    "BwYZbB": {
+        "defaultMessage": "Avec bouton de contrôle"
     },
     "C1VUEY": {
         "defaultMessage": "{current} de {duration}"
     },
+    "CJmQeh": {
+        "defaultMessage": "Image avec texte"
+    },
+    "CQzuFE": {
+        "defaultMessage": "Styles de rétroaction"
+    },
+    "CWnXWp": {
+        "defaultMessage": "Aucun bouton"
+    },
+    "Cg3LGu": {
+        "defaultMessage": "Étiquette"
+    },
     "CnVj9r": {
         "defaultMessage": "Passer aux contrôles"
+    },
+    "CpCykm": {
+        "defaultMessage": "Bouton passer"
     },
     "CrzYgw": {
         "defaultMessage": "Citation"
@@ -221,23 +476,50 @@
     "D7LIZQ": {
         "defaultMessage": "Commencer"
     },
+    "D7kxD3": {
+        "defaultMessage": "Sans barre"
+    },
+    "DU1qdc": {
+        "defaultMessage": "Couleur du texte"
+    },
     "DWEzCv": {
         "defaultMessage": "Sélectionner une vidéo..."
     },
     "DYjRd/": {
-        "defaultMessage": "Désolé, ce média n'a pas pu être sauvegardé."
+        "defaultMessage": "Désolé, ce média n'a pas pu être enregistré."
     },
     "EDFyUp": {
         "defaultMessage": "Texte alternatif (accessibilité)"
     },
+    "EEUc6n": {
+        "defaultMessage": "Lion"
+    },
     "EQdIAR": {
         "defaultMessage": "Description"
+    },
+    "ET527E": {
+        "defaultMessage": "Famille de polices"
+    },
+    "EcZYpr": {
+        "defaultMessage": "Sous-titre"
     },
     "EoVdMy": {
         "defaultMessage": "Modifier le contenu..."
     },
+    "Evl2dG": {
+        "defaultMessage": "19 fév. - 20 mars"
+    },
     "F/gl4b": {
         "defaultMessage": "Menu"
+    },
+    "F0QDfY": {
+        "defaultMessage": "23 sept. - 22 oct."
+    },
+    "F2SD/0": {
+        "defaultMessage": "Boucle"
+    },
+    "F59wsl": {
+        "defaultMessage": "Horoscope Urbania"
     },
     "FKOWH0": {
         "defaultMessage": "aligné à droite"
@@ -245,14 +527,38 @@
     "FOmgqv": {
         "defaultMessage": "Question"
     },
+    "FYm4w+": {
+        "defaultMessage": "Popups"
+    },
+    "FjuRaw": {
+        "defaultMessage": "Paramètres du clavier"
+    },
     "G/ITGY": {
         "defaultMessage": "Votre nom"
     },
     "G1Gyjn": {
         "defaultMessage": "Rechercher"
     },
+    "GMCLhn": {
+        "defaultMessage": "Casse"
+    },
     "GPqjnH": {
         "defaultMessage": "Gauche"
+    },
+    "GRVidW": {
+        "defaultMessage": "Vidéo 360"
+    },
+    "GzoKNb": {
+        "defaultMessage": "Chronologie"
+    },
+    "H1YcaV": {
+        "defaultMessage": "Image avec légende"
+    },
+    "HTd98/": {
+        "defaultMessage": "Aucun message..."
+    },
+    "HWpflq": {
+        "defaultMessage": "Surbrillance"
     },
     "HpkW4J": {
         "defaultMessage": "Passer"
@@ -260,8 +566,14 @@
     "HseFdk": {
         "defaultMessage": "Modifier"
     },
+    "HwqzVR": {
+        "defaultMessage": "Visuel"
+    },
     "HxW2pw": {
         "defaultMessage": "Tout accepter"
+    },
+    "I1hyZY": {
+        "defaultMessage": "Valeur de l'icône de réponse"
     },
     "I5+AHN": {
         "defaultMessage": "Catégorie"
@@ -269,8 +581,11 @@
     "IBjY5r": {
         "defaultMessage": "Dupliquer l'écran"
     },
+    "ICXTfR": {
+        "defaultMessage": "Liens"
+    },
     "IE7U/Q": {
-        "defaultMessage": "En-tête"
+        "defaultMessage": "Titre"
     },
     "IOVper": {
         "defaultMessage": "Étiquettes"
@@ -281,14 +596,38 @@
     "IoMJgw": {
         "defaultMessage": "Afficher/masquer l'article"
     },
+    "J9e9Qb": {
+        "defaultMessage": "Vidéo"
+    },
     "JAguka": {
         "defaultMessage": "Votre message"
+    },
+    "JC9Qlf": {
+        "defaultMessage": "Intervenants"
+    },
+    "JDPMlG": {
+        "defaultMessage": "Couleur d'arrière-plan"
+    },
+    "JGvpwT": {
+        "defaultMessage": "Largeur du visuel"
+    },
+    "JLYWNN": {
+        "defaultMessage": "Style de boîte invalide"
+    },
+    "JMmYwg": {
+        "defaultMessage": "Bouton soumettre"
     },
     "JRZoe6": {
         "defaultMessage": "Contenu"
     },
     "JoWKee": {
-        "defaultMessage": "Créez votre premier écran"
+        "defaultMessage": "Créer votre premier écran"
+    },
+    "JoyIgA": {
+        "defaultMessage": "Points minimum pour ce résultat"
+    },
+    "Jti6I6": {
+        "defaultMessage": "Couleur des lignes"
     },
     "JuxiUN": {
         "defaultMessage": "Format"
@@ -296,11 +635,23 @@
     "JzSBzL": {
         "defaultMessage": "Visuel"
     },
+    "K1BxIr": {
+        "defaultMessage": "Modifier les métadonnées..."
+    },
+    "K7AvPE": {
+        "defaultMessage": "Saisie multiligne"
+    },
     "KB7N5E": {
         "defaultMessage": "Rechercher un lieu sur Google Maps"
     },
     "KCDOHI": {
         "defaultMessage": "Aucune police..."
+    },
+    "KHWeV7": {
+        "defaultMessage": "Réponses"
+    },
+    "KIXg9M": {
+        "defaultMessage": "Bouton retour"
     },
     "KK5teQ": {
         "defaultMessage": "Téléverser un fichier visuel"
@@ -308,23 +659,89 @@
     "KdAKt7": {
         "defaultMessage": "Téléverser un fichier image"
     },
+    "KuzZbb": {
+        "defaultMessage": "Couleur d'arrière-plan"
+    },
+    "KvBdrU": {
+        "defaultMessage": "Texte d'arrière-plan"
+    },
+    "LFziCV": {
+        "defaultMessage": "Sans icône vrai/faux"
+    },
+    "LI0Gz4": {
+        "defaultMessage": "Courriel"
+    },
+    "LOknw0": {
+        "defaultMessage": "Styles"
+    },
     "LiMAIC": {
         "defaultMessage": "Ce Micromag a été"
     },
     "LkVfwW": {
         "defaultMessage": "Écran {index}"
     },
+    "Lp0bG4": {
+        "defaultMessage": "Espacement du bas"
+    },
+    "LrRW+9": {
+        "defaultMessage": "Ajouter un bouton"
+    },
     "Lrwi2G": {
         "defaultMessage": "Courriel"
+    },
+    "Lz2+Ws": {
+        "defaultMessage": "Rétroaction de la réponse"
+    },
+    "M/FGRs": {
+        "defaultMessage": "Balance"
+    },
+    "MBgLeH": {
+        "defaultMessage": "23 juill. - 22 août"
     },
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
+    "MhGUaY": {
+        "defaultMessage": "Diaporama"
+    },
+    "MmJQ7o": {
+        "defaultMessage": "Galerie avec légendes"
+    },
+    "N25iDO": {
+        "defaultMessage": "Titre"
+    },
+    "N4lZhy": {
+        "defaultMessage": "Sans ligne"
+    },
     "N7Kj8z": {
         "defaultMessage": "Bouton"
     },
+    "NVUpOG": {
+        "defaultMessage": "Ajuster la carte aux marqueurs"
+    },
+    "NbTtNk": {
+        "defaultMessage": "Couleur de l'icône de mauvaise réponse"
+    },
     "NmCfTO": {
         "defaultMessage": "Conversation"
+    },
+    "NumcrW": {
+        "defaultMessage": "Capricorne"
+    },
+    "O2JVA+": {
+        "defaultMessage": "Gauche"
+    },
+    "OEckOD": {
+        "defaultMessage": "Style du texte"
+    },
+    "OJi+eg": {
+        "defaultMessage": "Étiquette"
+    },
+    "OPxJx/": {
+        "defaultMessage": "Mise en page"
+    },
+    "OSl7A6": {
+        "defaultMessage": "Glisser vers le haut"
     },
     "OdcEna": {
         "defaultMessage": "Aucune diapositive..."
@@ -332,14 +749,23 @@
     "OkNUmk": {
         "defaultMessage": "Type"
     },
+    "Op1ZIp": {
+        "defaultMessage": "21 janv. - 18 fév."
+    },
     "OzYWZz": {
         "defaultMessage": "Créé le"
+    },
+    "P1dwGU": {
+        "defaultMessage": "Titre avec sous-titre"
     },
     "P6ZtIq": {
         "defaultMessage": "Sélectionner un document"
     },
     "P9A8cx": {
         "defaultMessage": "aligné au centre"
+    },
+    "PAQRf4": {
+        "defaultMessage": "Aucun élément"
     },
     "PFNMAQ": {
         "defaultMessage": "Bas"
@@ -353,6 +779,9 @@
     "PNMMo/": {
         "defaultMessage": "Audios"
     },
+    "PYokTY": {
+        "defaultMessage": "Style de la boîte d'étiquette"
+    },
     "PyxZY2": {
         "defaultMessage": "Annuler"
     },
@@ -362,23 +791,77 @@
     "QBlqW9": {
         "defaultMessage": "Vidéos"
     },
+    "QSmRdP": {
+        "defaultMessage": "Ajouter une image"
+    },
+    "Qe03Xz": {
+        "defaultMessage": "Sous-titre du signe"
+    },
     "QfpTKK": {
         "defaultMessage": "Sélectionner un écran..."
     },
+    "QjbLZ9": {
+        "defaultMessage": "Vitesse de lecture (en mots par minute)"
+    },
+    "Qw8cb5": {
+        "defaultMessage": "Couleur du commanditaire"
+    },
+    "Qz7nUz": {
+        "defaultMessage": "Style de la légende"
+    },
+    "R9DB4a": {
+        "defaultMessage": "Styles"
+    },
+    "RHMS2f": {
+        "defaultMessage": "Couleur de la ligne"
+    },
     "RK/QEY": {
-        "defaultMessage": "Réactiver le son"
+        "defaultMessage": "Activer le son"
+    },
+    "RcLsua": {
+        "defaultMessage": "Message"
+    },
+    "Rl7C1A": {
+        "defaultMessage": "Couleur des contrôles"
     },
     "RucIeL": {
         "defaultMessage": "Options de partage"
     },
+    "S+WiGT": {
+        "defaultMessage": "Texte de pourcentage"
+    },
+    "S/mavZ": {
+        "defaultMessage": "Texte et Images"
+    },
+    "S1F/re": {
+        "defaultMessage": "Colonnes"
+    },
+    "S9YpbV": {
+        "defaultMessage": "Texte"
+    },
     "SVLGTA": {
         "defaultMessage": "Suivant"
+    },
+    "SyMSDa": {
+        "defaultMessage": "Style du nom publié"
+    },
+    "T0pi1u": {
+        "defaultMessage": "Avec barre de recherche"
+    },
+    "T9NZPQ": {
+        "defaultMessage": "Images"
     },
     "TDAOl2": {
         "defaultMessage": "créé avec"
     },
     "THKV4v": {
         "defaultMessage": "Longitude"
+    },
+    "TTPc+y": {
+        "defaultMessage": "Utiliser des touches carrées"
+    },
+    "TZUu3s": {
+        "defaultMessage": "Flou"
     },
     "Tol+/U": {
         "defaultMessage": "Effacer"
@@ -389,8 +872,17 @@
     "U2RZp5": {
         "defaultMessage": "Passer"
     },
+    "UBXIYP": {
+        "defaultMessage": "Vidéo"
+    },
     "UG3SXh": {
         "defaultMessage": "Retirer"
+    },
+    "UUv8FR": {
+        "defaultMessage": "Nom"
+    },
+    "UdrdRF": {
+        "defaultMessage": "Style des chiffres"
     },
     "UlZIP8": {
         "defaultMessage": "OK"
@@ -404,8 +896,17 @@
     "VDu2FA": {
         "defaultMessage": "Google Fonts"
     },
+    "VMd1oG": {
+        "defaultMessage": "Questions"
+    },
+    "W5qWPj": {
+        "defaultMessage": "Centre"
+    },
     "WX83V9": {
         "defaultMessage": "Nom du fichier"
+    },
+    "WY14Zu": {
+        "defaultMessage": "Commanditaire"
     },
     "Wb5zY4": {
         "defaultMessage": "Sélectionner un fichier de police..."
@@ -413,8 +914,20 @@
     "WeD4nB": {
         "defaultMessage": "Téléverser un fichier vidéo"
     },
+    "WjigmA": {
+        "defaultMessage": "Bouton soumettre"
+    },
+    "WlNxMj": {
+        "defaultMessage": "Répéter"
+    },
+    "Wr9olU": {
+        "defaultMessage": "Typographie"
+    },
     "X7kRRa": {
-        "defaultMessage": "En-tête"
+        "defaultMessage": "Titre"
+    },
+    "X97njD": {
+        "defaultMessage": "Entrée"
     },
     "X9mFEG": {
         "defaultMessage": "Tout refuser"
@@ -422,8 +935,17 @@
     "XHO5Ua": {
         "defaultMessage": "Agrandir le visuel"
     },
+    "XJ2Xc+": {
+        "defaultMessage": "Réponse"
+    },
+    "XKcyqx": {
+        "defaultMessage": "Taureau"
+    },
     "XR5/Wk": {
         "defaultMessage": "Modifier"
+    },
+    "XTJGzY": {
+        "defaultMessage": "Galerie de flux avec légendes"
     },
     "Xb6r3F": {
         "defaultMessage": "Annuler"
@@ -437,17 +959,44 @@
     "Xr1v8l": {
         "defaultMessage": "points gagnés"
     },
+    "Y7bs1v": {
+        "defaultMessage": "Description"
+    },
+    "YD9M2p": {
+        "defaultMessage": "Surtître"
+    },
     "YJZtWR": {
         "defaultMessage": "Description"
+    },
+    "YWcp4v": {
+        "defaultMessage": "Puce remplie"
     },
     "YXhRxW": {
         "defaultMessage": "Aucun contrôle disponible"
     },
+    "Yu/PB5": {
+        "defaultMessage": "Bouton suivant"
+    },
     "YwySSO": {
         "defaultMessage": "Vertical"
     },
+    "YyPYHk": {
+        "defaultMessage": "Scorpion"
+    },
     "YyYrXp": {
         "defaultMessage": "Chargement"
+    },
+    "Z27IP6": {
+        "defaultMessage": "Carte"
+    },
+    "Z4f5qh": {
+        "defaultMessage": "Boutons"
+    },
+    "Z5jrDS": {
+        "defaultMessage": "Espacement des lettres"
+    },
+    "ZCe0r4": {
+        "defaultMessage": "Description"
     },
     "ZG8/oK": {
         "defaultMessage": "Sous-titre"
@@ -455,20 +1004,53 @@
     "ZLDmja": {
         "defaultMessage": "Soumettre"
     },
+    "ZMS1Wv": {
+        "defaultMessage": "Texte"
+    },
+    "ZeosMy": {
+        "defaultMessage": "21 mars - 19 avr."
+    },
+    "ZiWlL6": {
+        "defaultMessage": "Questions"
+    },
+    "Zpl5bJ": {
+        "defaultMessage": "Espacement"
+    },
     "ZxgNge": {
         "defaultMessage": "Ajouter un élément"
+    },
+    "aarOkd": {
+        "defaultMessage": "Couleur"
     },
     "al5xjv": {
         "defaultMessage": "Polices par défaut"
     },
+    "amEvH1": {
+        "defaultMessage": "Ajuster"
+    },
+    "ao5VYd": {
+        "defaultMessage": "Style de boîte valide"
+    },
     "aovRFH": {
-        "defaultMessage": "Nom du fichier"
+        "defaultMessage": "Nom de fichier"
+    },
+    "ap68Fp": {
+        "defaultMessage": "Signes"
     },
     "bCtuS/": {
         "defaultMessage": "Dans ce Micromag"
     },
     "bLYuuN": {
         "defaultMessage": "Vous êtes à l'écran {current} de {total}."
+    },
+    "bMdONM": {
+        "defaultMessage": "21 juin - 22 juill."
+    },
+    "bQsPrs": {
+        "defaultMessage": "Si ce champ est laissé vide, l'URL de ce Micromag sera partagée."
+    },
+    "bhEaUt": {
+        "defaultMessage": "Audio"
     },
     "bmO4Ss": {
         "defaultMessage": "Titre de l'entrée"
@@ -479,8 +1061,17 @@
     "c3hu9o": {
         "defaultMessage": "Taille"
     },
+    "c7rrcG": {
+        "defaultMessage": "Avec onde animée"
+    },
     "c9VwT/": {
         "defaultMessage": "Détails techniques"
+    },
+    "cDj1mZ": {
+        "defaultMessage": "Arrière-plan"
+    },
+    "cGItoy": {
+        "defaultMessage": "Liste"
     },
     "cXt3NU": {
         "defaultMessage": "Fermer le popup"
@@ -507,7 +1098,7 @@
         "defaultMessage": "Cookies utilisés pour les données publicitaires spécifiques à l'utilisateur."
     },
     "consent.ad_user_data_title": {
-        "defaultMessage": "Données publicitaires utilisateur"
+        "defaultMessage": "Données publicitaires de l'utilisateur"
     },
     "consent.analytics_description": {
         "defaultMessage": "Cookies utilisés pour mesurer le comportement des utilisateurs."
@@ -533,38 +1124,89 @@
     "consent.security_storage_title": {
         "defaultMessage": "Stockage de sécurité"
     },
+    "crLqJd": {
+        "defaultMessage": "Sans pourcentage"
+    },
+    "cuKSQz": {
+        "defaultMessage": "Chapeau"
+    },
     "d/01YO": {
-        "defaultMessage": "Partagez ce Micromag!"
+        "defaultMessage": "Partagez ce Micromag !"
+    },
+    "d3va12": {
+        "defaultMessage": "SMS"
     },
     "d60tSn": {
         "defaultMessage": "Sous-titre"
     },
+    "dCG1T1": {
+        "defaultMessage": "Vidéo d'arrière-plan"
+    },
+    "dFMzBu": {
+        "defaultMessage": "Aucune image..."
+    },
     "dIvwcD": {
         "defaultMessage": "Fermer"
+    },
+    "dPYwJG": {
+        "defaultMessage": "Carte"
     },
     "dSfmnf": {
         "defaultMessage": "SMS"
     },
+    "dVcog7": {
+        "defaultMessage": "Titre"
+    },
     "dj/p/q": {
         "defaultMessage": "Fermer"
+    },
+    "dkBBRa": {
+        "defaultMessage": "Ajustement de l'image"
     },
     "dqnkQk": {
         "defaultMessage": "Légende"
     },
     "dsRGuG": {
-        "defaultMessage": "Nous utilisons des cookies pour améliorer votre expérience sur notre site et à des fins marketing. En acceptant, vous consentez à l'utilisation de ces cookies."
+        "defaultMessage": "Nous utilisons des cookies pour améliorer votre expérience sur notre site et à des fins de marketing. En acceptant, vous consentez à l'utilisation de ces cookies."
+    },
+    "dxAumJ": {
+        "defaultMessage": "Poissons"
     },
     "e1I+KU": {
         "defaultMessage": "Question"
     },
+    "e4UTx9": {
+        "defaultMessage": "Résultats"
+    },
     "e6+aGf": {
         "defaultMessage": "Sélectionner un média..."
+    },
+    "eBFxNl": {
+        "defaultMessage": "Appel à l'action"
     },
     "eCe9ZY": {
         "defaultMessage": "Dimensions"
     },
+    "eDMxHS": {
+        "defaultMessage": "Graisse de la police"
+    },
+    "eJMcXw": {
+        "defaultMessage": "Jeu de tri"
+    },
+    "eNdbJF": {
+        "defaultMessage": "Délai d'apparition (secondes)"
+    },
+    "eWIM/8": {
+        "defaultMessage": "Image avec titre et texte"
+    },
+    "eYHEYe": {
+        "defaultMessage": "Carte"
+    },
     "ebsPd4": {
         "defaultMessage": "Image"
+    },
+    "ehuj8A": {
+        "defaultMessage": "Sans zoom sur l'image"
     },
     "eiaIIB": {
         "defaultMessage": "Ce Micromag"
@@ -575,8 +1217,35 @@
     "eoW0tZ": {
         "defaultMessage": "Durée"
     },
+    "ex1Bgx": {
+        "defaultMessage": "Style des résultats"
+    },
+    "f1XHNG": {
+        "defaultMessage": "Bouton"
+    },
+    "f5Yipd": {
+        "defaultMessage": "Boîte"
+    },
+    "f68O+0": {
+        "defaultMessage": "Messages"
+    },
+    "fBii8l": {
+        "defaultMessage": "Verseau"
+    },
+    "fIawTr": {
+        "defaultMessage": "Texte"
+    },
+    "fLdjGi": {
+        "defaultMessage": "Mot de la semaine"
+    },
+    "fOYYk7": {
+        "defaultMessage": "Aligner les éléments"
+    },
     "fVqgfl": {
         "defaultMessage": "[sans titre]"
+    },
+    "fbUW2U": {
+        "defaultMessage": "Éléments"
     },
     "fbiNiR": {
         "defaultMessage": "Sélectionner une taille..."
@@ -584,8 +1253,17 @@
     "fpQzza": {
         "defaultMessage": "Police"
     },
+    "fusnxf": {
+        "defaultMessage": "Carré"
+    },
     "g2CRt5": {
         "defaultMessage": "Taille"
+    },
+    "g4nybp": {
+        "defaultMessage": "Pied de page"
+    },
+    "g6b9Lg": {
+        "defaultMessage": "Contribution"
     },
     "gJTVcQ": {
         "defaultMessage": "Sélectionner un média..."
@@ -594,7 +1272,22 @@
         "defaultMessage": "Supprimer l'écran"
     },
     "gfZs4J": {
-        "defaultMessage": "Liens d'évitement"
+        "defaultMessage": "Liens rapides"
+    },
+    "gwPu/I": {
+        "defaultMessage": "Texte des boutons"
+    },
+    "hPXJzA": {
+        "defaultMessage": "Paramètres de boîte"
+    },
+    "hUUIQt": {
+        "defaultMessage": "Couper le son de la vidéo d'arrière-plan"
+    },
+    "hVE7TA": {
+        "defaultMessage": "Question"
+    },
+    "hZcXoa": {
+        "defaultMessage": "Couleur de l'icône de bonne réponse"
     },
     "hoDz0O": {
         "defaultMessage": "Description"
@@ -602,11 +1295,50 @@
     "hpiKce": {
         "defaultMessage": "Supprimer l'écran"
     },
+    "hqOIl4": {
+        "defaultMessage": "Avatar"
+    },
+    "hvxkzE": {
+        "defaultMessage": "LinkedIn"
+    },
+    "hzt68m": {
+        "defaultMessage": "Audio"
+    },
+    "hzvEim": {
+        "defaultMessage": "Étiquette du commanditaire"
+    },
     "i+3ZrF": {
         "defaultMessage": "Sélectionner une famille de polices..."
     },
+    "i6bmbD": {
+        "defaultMessage": "Bouton"
+    },
     "iCf/MP": {
         "defaultMessage": "Modifier"
+    },
+    "iHV3W3": {
+        "defaultMessage": "Aucune entrée..."
+    },
+    "iJ61ZT": {
+        "defaultMessage": "Durée de l'état d'écriture (secondes)"
+    },
+    "iL9RLu": {
+        "defaultMessage": "Collaborateur"
+    },
+    "iQ5Uf7": {
+        "defaultMessage": "Rétroaction par défaut"
+    },
+    "iipV5Q": {
+        "defaultMessage": "Type"
+    },
+    "iltluX": {
+        "defaultMessage": "Texte des chiffres"
+    },
+    "irG6mX": {
+        "defaultMessage": "Distance"
+    },
+    "ivs8GN": {
+        "defaultMessage": "Fichier de sous-titres"
     },
     "j00v1T": {
         "defaultMessage": "Vrai"
@@ -614,11 +1346,29 @@
     "jEK6B8": {
         "defaultMessage": "Par"
     },
+    "jINZkT": {
+        "defaultMessage": "Résultats"
+    },
+    "jWAJW4": {
+        "defaultMessage": "Points"
+    },
+    "jaFXki": {
+        "defaultMessage": "Galerie"
+    },
     "jf+4Hq": {
         "defaultMessage": "Écrans"
     },
     "jnww6n": {
         "defaultMessage": "Sélectionner une image..."
+    },
+    "k+coTi": {
+        "defaultMessage": "Image"
+    },
+    "k4gTZl": {
+        "defaultMessage": "Ajouter un élément"
+    },
+    "k81FRn": {
+        "defaultMessage": "Style du message"
     },
     "kBz8vF": {
         "defaultMessage": "Nom"
@@ -629,6 +1379,15 @@
     "kxsaD3": {
         "defaultMessage": "Sélectionner une image"
     },
+    "l/Y6or": {
+        "defaultMessage": "Ajouter une entrée"
+    },
+    "l5uLMd": {
+        "defaultMessage": "Boutons"
+    },
+    "lGh/NP": {
+        "defaultMessage": "Ajouter une réponse"
+    },
     "li7ADr": {
         "defaultMessage": "Résultat"
     },
@@ -636,7 +1395,7 @@
         "defaultMessage": "Taille"
     },
     "lvPGoX": {
-        "defaultMessage": "Nos conditions d'utilisation"
+        "defaultMessage": "Nos termes et conditions"
     },
     "mOSkbf": {
         "defaultMessage": "Utilisation"
@@ -647,6 +1406,9 @@
     "mTqcmA": {
         "defaultMessage": "Pause"
     },
+    "mXeSkg": {
+        "defaultMessage": "Lien"
+    },
     "menus.pagination.next": {
         "defaultMessage": "suivant"
     },
@@ -656,8 +1418,20 @@
     "mgjMWG": {
         "defaultMessage": "colonnes"
     },
+    "mlucL+": {
+        "defaultMessage": "Twitter"
+    },
+    "muPX/j": {
+        "defaultMessage": "Intervenant"
+    },
+    "muYwrB": {
+        "defaultMessage": "Images"
+    },
     "mv37oK": {
         "defaultMessage": "Dimension"
+    },
+    "my7Kox": {
+        "defaultMessage": "Texte des boutons inactifs"
     },
     "n/SxMs": {
         "defaultMessage": "Rechercher des médias"
@@ -665,17 +1439,50 @@
     "n2teag": {
         "defaultMessage": "Ajouter une réponse"
     },
+    "n8zmLY": {
+        "defaultMessage": "Passer à l'écran suivant à la fin"
+    },
     "n9LoBJ": {
         "defaultMessage": "Haut"
+    },
+    "nJgzwC": {
+        "defaultMessage": "Article Urbania"
+    },
+    "nXVNeg": {
+        "defaultMessage": "Nom"
+    },
+    "nc8LF0": {
+        "defaultMessage": "Métadonnées"
+    },
+    "nno1Pq": {
+        "defaultMessage": "Style du bouton"
     },
     "o3R+FM": {
         "defaultMessage": "Sélectionner un fichier de sous-titres..."
     },
     "oAtOlP": {
-        "defaultMessage": "En-tête"
+        "defaultMessage": "Titre"
+    },
+    "oCBQKV": {
+        "defaultMessage": "Texte avec titre"
     },
     "oLtEu6": {
         "defaultMessage": "Vidéo 360"
+    },
+    "oPjl8f": {
+        "defaultMessage": "Urbania"
+    },
+    "opcGwP": {
+        "defaultMessage": "Ajouter un intervenant"
+    },
+    "ouMwWq": {
+        "defaultMessage": "Article"
+    },
+    "p1pghO": {
+        "defaultMessage": "Style de la boîte"
+    },
+    "p5RHzq": {
+        "defaultMessage": "Style du texte des boutons"
     },
     "p6n6vY": {
         "defaultMessage": "Aucune réponse..."
@@ -683,26 +1490,77 @@
     "p6q/+/": {
         "defaultMessage": "Supprimer l'écran"
     },
+    "p85qJD": {
+        "defaultMessage": "Légende"
+    },
     "pBNrdH": {
         "defaultMessage": "Conversion"
     },
+    "pE7UhY": {
+        "defaultMessage": "Article"
+    },
+    "pJgYyE": {
+        "defaultMessage": "Lecture automatique"
+    },
     "pRzSQ7": {
-        "defaultMessage": "Surtitre"
+        "defaultMessage": "Surtître"
     },
     "pfvDzR": {
         "defaultMessage": "Ajouté par"
     },
+    "ppGXAR": {
+        "defaultMessage": "Afficher le nombre de réponses"
+    },
+    "ppq6CK": {
+        "defaultMessage": "Type"
+    },
+    "ptJkUl": {
+        "defaultMessage": "Droite"
+    },
     "q/tLk0": {
-        "defaultMessage": "Êtes-vous sûr de vouloir supprimer cet écran?"
+        "defaultMessage": "Êtes-vous sûr de vouloir supprimer cet écran ?"
     },
     "qIw1nW": {
-        "defaultMessage": "Sauvegarder"
+        "defaultMessage": "Enregistrer"
     },
     "qKQCxc": {
         "defaultMessage": "Ajouter un marqueur"
     },
+    "qhjeuO": {
+        "defaultMessage": "Marge intérieure"
+    },
+    "qjL/eA": {
+        "defaultMessage": "Barre"
+    },
+    "qroLmS": {
+        "defaultMessage": "Marqueur"
+    },
+    "r+bcpa": {
+        "defaultMessage": "Facebook"
+    },
+    "rAkTvt": {
+        "defaultMessage": "22 déc. - 20 janv."
+    },
+    "rBPIgw": {
+        "defaultMessage": "Conversation"
+    },
+    "rKuiKj": {
+        "defaultMessage": "Copier le lien"
+    },
+    "raUY02": {
+        "defaultMessage": "20 avr. - 20 mai"
+    },
+    "rdFCsN": {
+        "defaultMessage": "Aucun marqueur..."
+    },
+    "rhuDxI": {
+        "defaultMessage": "En-tête"
+    },
     "rmJBin": {
         "defaultMessage": "Dimensions"
+    },
+    "ro6yHS": {
+        "defaultMessage": "Carte avec marqueurs d'images"
     },
     "rqbRV2": {
         "defaultMessage": "Désolé, ce média n'a pas pu être supprimé."
@@ -713,8 +1571,23 @@
     "rvOVCV": {
         "defaultMessage": "Confirmer la sélection"
     },
+    "rzXCu2": {
+        "defaultMessage": "Style de l'étiquette"
+    },
+    "rzdds2": {
+        "defaultMessage": "Intervenant"
+    },
+    "sESmah": {
+        "defaultMessage": "Entrées"
+    },
     "sHYAUa": {
-        "defaultMessage": "Sauvegarder mes préférences"
+        "defaultMessage": "Enregistrer mes préférences"
+    },
+    "sSahY1": {
+        "defaultMessage": "Popup"
+    },
+    "sUP5BO": {
+        "defaultMessage": "Recommandation Urbania"
     },
     "sUR1xV": {
         "defaultMessage": "Auteur"
@@ -731,29 +1604,101 @@
     "tAYwqp": {
         "defaultMessage": "Ajouter une diapositive"
     },
+    "tYGev7": {
+        "defaultMessage": "Taille de police"
+    },
     "tmfbUn": {
         "defaultMessage": "Inutilisé"
+    },
+    "trQFlb": {
+        "defaultMessage": "Placer l'audio avant le texte"
+    },
+    "trSRbk": {
+        "defaultMessage": "Espace réservé"
+    },
+    "tvl2Zc": {
+        "defaultMessage": "Vidéo"
+    },
+    "twTaAZ": {
+        "defaultMessage": "Forme de puce"
+    },
+    "u3ok54": {
+        "defaultMessage": "Position"
+    },
+    "uAKPQ9": {
+        "defaultMessage": "Soumettre"
+    },
+    "uDHTZn": {
+        "defaultMessage": "Description des résultats"
+    },
+    "uJ9eBc": {
+        "defaultMessage": "Image"
+    },
+    "uKJRh2": {
+        "defaultMessage": "Titre"
+    },
+    "uNpHnA": {
+        "defaultMessage": "Couleur de puce"
     },
     "uSpItE": {
         "defaultMessage": "Ajouter des étiquettes..."
     },
+    "uaL28k": {
+        "defaultMessage": "Incitation au partage"
+    },
+    "udLCuY": {
+        "defaultMessage": "Ombre"
+    },
     "ufac8e": {
         "defaultMessage": "Tout effacer"
+    },
+    "uiTxd7": {
+        "defaultMessage": "Résultats"
+    },
+    "uoF5Pv": {
+        "defaultMessage": "Contenu"
+    },
+    "upzOTm": {
+        "defaultMessage": "Crédits"
     },
     "ur6G0U": {
         "defaultMessage": "Charger plus"
     },
+    "uwcXzb": {
+        "defaultMessage": "Image"
+    },
+    "v1r3AA": {
+        "defaultMessage": "Couleur de la barre de progression"
+    },
+    "v4Qtl9": {
+        "defaultMessage": "Aujourd'hui"
+    },
     "v9bqYj": {
-        "defaultMessage": "Aller à l'écran suivant"
+        "defaultMessage": "Passer à l'écran suivant"
+    },
+    "vERejo": {
+        "defaultMessage": "Vidéo"
+    },
+    "vRzzo6": {
+        "defaultMessage": "Zoom"
     },
     "vYunz+": {
         "defaultMessage": "Recherches récentes"
+    },
+    "vZrFq6": {
+        "defaultMessage": "Titre avec sous-titre et crédits"
     },
     "vdWMTA": {
         "defaultMessage": "Surtitre"
     },
     "vmrJ8U": {
-        "defaultMessage": "(écran actuel)"
+        "defaultMessage": "(écran courant)"
+    },
+    "vxEtY1": {
+        "defaultMessage": "Image d'arrière-plan"
+    },
+    "w3+kFW": {
+        "defaultMessage": "Jeu"
     },
     "wChc+A": {
         "defaultMessage": "Modifier le style..."
@@ -767,20 +1712,35 @@
     "wt1+dM": {
         "defaultMessage": "Sélectionner un fichier audio..."
     },
+    "wx5PI0": {
+        "defaultMessage": "Titre"
+    },
     "wy2g+x": {
-        "defaultMessage": "Êtes-vous sûr de vouloir continuer?"
+        "defaultMessage": "Êtes-vous sûr de vouloir continuer ?"
     },
     "xAzv6g": {
         "defaultMessage": "Toutes les sources"
     },
+    "xCj1gI": {
+        "defaultMessage": "Ajouter un message"
+    },
     "xFlbR7": {
-        "defaultMessage": "Lien copié!"
+        "defaultMessage": "Lien copié !"
+    },
+    "xKG76H": {
+        "defaultMessage": "Coins arrondis"
     },
     "xKUOLG": {
         "defaultMessage": "Détails techniques"
     },
+    "xL0GD2": {
+        "defaultMessage": "23 août - 22 sept."
+    },
     "xSERPA": {
         "defaultMessage": "Vidéo"
+    },
+    "xT/onn": {
+        "defaultMessage": "Image"
     },
     "xTJlyi": {
         "defaultMessage": "Horizontal"
@@ -788,17 +1748,50 @@
     "xYqGzM": {
         "defaultMessage": "Auteur"
     },
+    "xac4z/": {
+        "defaultMessage": "Styles d'entrée"
+    },
+    "xcHW4o": {
+        "defaultMessage": "Peut voir les réponses"
+    },
+    "xj0o1v": {
+        "defaultMessage": "Grille"
+    },
+    "xlFOg3": {
+        "defaultMessage": "Boutons inactifs"
+    },
+    "xmp9nw": {
+        "defaultMessage": "Espacement"
+    },
+    "xsipID": {
+        "defaultMessage": "Image"
+    },
     "xuEZXD": {
         "defaultMessage": "Modifier"
     },
     "xuPbeq": {
-        "defaultMessage": "Commencer à partir de l'écran actuel"
+        "defaultMessage": "Commencer à partir de l'écran courant"
+    },
+    "y7xsPe": {
+        "defaultMessage": "Paramètres avancés"
+    },
+    "yA4B6h": {
+        "defaultMessage": "Image de rétroaction du résultat"
     },
     "yByaBh": {
         "defaultMessage": "Ajouté par"
     },
     "yCXMzz": {
         "defaultMessage": "Fermer"
+    },
+    "yCj5uv": {
+        "defaultMessage": "23 nov. - 21 déc."
+    },
+    "yEG9zh": {
+        "defaultMessage": "Date"
+    },
+    "yGd82s": {
+        "defaultMessage": "Réponse personnalisée"
     },
     "yHAmDD": {
         "defaultMessage": "Image"
@@ -818,25 +1811,46 @@
     "z/VBX0": {
         "defaultMessage": "En savoir plus"
     },
+    "z2I2bJ": {
+        "defaultMessage": "Surtître"
+    },
     "z4CiV1": {
         "defaultMessage": "Texte"
     },
     "z4Pr+g": {
         "defaultMessage": "Visuel (Image ou Vidéo)"
     },
+    "z9nSIG": {
+        "defaultMessage": "Style du texte de contenu"
+    },
     "zDH24s": {
         "defaultMessage": "Latitude"
+    },
+    "zDdDqI": {
+        "defaultMessage": "Anecdotes Urbania"
     },
     "zGIcdn": {
         "defaultMessage": "Commanditaires"
     },
+    "zLxBdl": {
+        "defaultMessage": "Lieu"
+    },
+    "zW7IVm": {
+        "defaultMessage": "Quiz"
+    },
     "zYH/31": {
-        "defaultMessage": "Aller à l'écran précédent"
+        "defaultMessage": "Passer à l'écran précédent"
     },
     "zh2m/S": {
         "defaultMessage": "Rechercher des polices..."
     },
     "zl6zsZ": {
         "defaultMessage": "Chapeau"
+    },
+    "zrK6ak": {
+        "defaultMessage": "Style du texte d'en-tête"
+    },
+    "zueWSA": {
+        "defaultMessage": "Pièce jointe audio"
     }
 }

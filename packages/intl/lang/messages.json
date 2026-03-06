@@ -1,4 +1,24 @@
 {
+  "+9akmg": {
+    "defaultMessage": "Audio and Video",
+    "description": "Audio and Video screen group"
+  },
+  "+AEVbJ": {
+    "defaultMessage": "Title",
+    "description": "Field label"
+  },
+  "+FHxPO": {
+    "defaultMessage": "Questions title",
+    "description": "Field label"
+  },
+  "+LvOvJ": {
+    "defaultMessage": "Markers",
+    "description": "State label"
+  },
+  "+MPZRu": {
+    "defaultMessage": "Background",
+    "description": "Background field label"
+  },
   "+Ok+7S": {
     "defaultMessage": "Answer",
     "description": "Answer placeholder"
@@ -7,9 +27,21 @@
     "defaultMessage": "Your privacy settings",
     "description": "Cookies title"
   },
+  "+SlKOi": {
+    "defaultMessage": "Published message style",
+    "description": "Published message style field label"
+  },
   "+TPjd4": {
     "defaultMessage": "Presented by",
     "description": "Sponsor label"
+  },
+  "+nhSvj": {
+    "defaultMessage": "No speaker...",
+    "description": "Label when there is no item"
+  },
+  "+uInZz": {
+    "defaultMessage": "Circle",
+    "description": "Circle label"
   },
   "+vzDdb": {
     "defaultMessage": "Word of the Week",
@@ -27,6 +59,10 @@
     "defaultMessage": "My files",
     "description": "Media gallery source"
   },
+  "/6zaOP": {
+    "defaultMessage": "Transition Delay (in seconds)",
+    "description": "Number field label"
+  },
   "/KQ87r": {
     "defaultMessage": "Delete media",
     "description": "Delete in Media Gallery"
@@ -39,9 +75,17 @@
     "defaultMessage": "Tags",
     "description": "Media label"
   },
+  "/PJA/1": {
+    "defaultMessage": "Aries",
+    "description": "Horoscope sign"
+  },
   "/T/UDH": {
     "defaultMessage": "Remove all",
     "description": "Remove all button label"
+  },
+  "/W31TQ": {
+    "defaultMessage": "Embedded browser",
+    "description": "Field label"
   },
   "/YQ+xP": {
     "defaultMessage": "Image 360",
@@ -67,13 +111,37 @@
     "defaultMessage": "Cancel",
     "description": "Cancel button label"
   },
+  "0GzLBc": {
+    "defaultMessage": "Message",
+    "description": "Breadcrumb field label"
+  },
+  "0R+nB5": {
+    "defaultMessage": "Custom URL",
+    "description": "Field label"
+  },
+  "0acGK7": {
+    "defaultMessage": "Cancer",
+    "description": "Horoscope sign"
+  },
   "0hMiRN": {
     "defaultMessage": "Select Audio File",
     "description": "Modal title"
   },
+  "142Fjj": {
+    "defaultMessage": "May 21 - June 20",
+    "description": "Horoscope date"
+  },
   "15GBmG": {
     "defaultMessage": "All",
     "description": "Dropdown default all items label"
+  },
+  "169xnt": {
+    "defaultMessage": "Audio",
+    "description": "Audio field label"
+  },
+  "17BMn2": {
+    "defaultMessage": "Ranking",
+    "description": "Ranking screen title"
   },
   "17zT4Q": {
     "defaultMessage": "Popup",
@@ -82,6 +150,10 @@
   "1dqmFw": {
     "defaultMessage": "Document",
     "description": "Media type"
+  },
+  "1yNxAl": {
+    "defaultMessage": "Card box style",
+    "description": "Field label"
   },
   "2/F1Q7": {
     "defaultMessage": "#{index}",
@@ -107,13 +179,33 @@
     "defaultMessage": "Title",
     "description": "Category placeholder"
   },
+  "2pO2Cj": {
+    "defaultMessage": "Url",
+    "description": "Url field label"
+  },
   "2prwZ7": {
     "defaultMessage": "Progress slider",
     "description": "Button label"
   },
+  "2uFkwE": {
+    "defaultMessage": "Override default timing",
+    "description": "Field label"
+  },
+  "31zuCS": {
+    "defaultMessage": "Line height",
+    "description": "Field label"
+  },
+  "33UbSd": {
+    "defaultMessage": "Timeline with images",
+    "description": "TimelineIllustrated screen title"
+  },
   "3Ap0C1": {
     "defaultMessage": "Upload a media",
     "description": "Upload button label in Media Gallery"
+  },
+  "3B9cb3": {
+    "defaultMessage": "Whatsapp",
+    "description": "Field label"
   },
   "3E57H7": {
     "defaultMessage": "No marker...",
@@ -123,6 +215,14 @@
     "defaultMessage": "WebM",
     "description": "Field label"
   },
+  "3LEBIA": {
+    "defaultMessage": "Angle",
+    "description": "Field label"
+  },
+  "3OS3Ms": {
+    "defaultMessage": "Legend",
+    "description": "Legend field label"
+  },
   "3RT69u": {
     "defaultMessage": "Informations",
     "description": "Field title"
@@ -131,13 +231,37 @@
     "defaultMessage": "Video",
     "description": "Video placeholder"
   },
+  "3ifj0j": {
+    "defaultMessage": "Entries",
+    "description": "Field label"
+  },
+  "3na7F8": {
+    "defaultMessage": "Now",
+    "description": "Now date time message"
+  },
+  "3q9GPv": {
+    "defaultMessage": "Quote",
+    "description": "Quote screen title"
+  },
   "3wiL2y": {
     "defaultMessage": "No image...",
     "description": "Label when there is no item in images with caption field"
   },
+  "4E2gbX": {
+    "defaultMessage": "Text",
+    "description": "Text field label"
+  },
+  "4H2n5r": {
+    "defaultMessage": "Closed captions",
+    "description": "Field label"
+  },
   "4POR3B": {
     "defaultMessage": "View screen",
     "description": "Button to view a screen"
+  },
+  "4R/bdr": {
+    "defaultMessage": "Message",
+    "description": "Field label"
   },
   "4RV6+9": {
     "defaultMessage": "H264",
@@ -151,33 +275,133 @@
     "defaultMessage": "Screen title",
     "description": "Field default label"
   },
+  "4bHvRS": {
+    "defaultMessage": "Gallery Feed",
+    "description": "Gallery Feed screen title"
+  },
   "4fHMVj": {
     "defaultMessage": "Tags",
     "description": "Tags in Media Gallery"
+  },
+  "4g35M0": {
+    "defaultMessage": "Gemini",
+    "description": "Horoscope sign"
+  },
+  "4grcMU": {
+    "defaultMessage": "Category",
+    "description": "Title field label"
+  },
+  "4iBXj2": {
+    "defaultMessage": "Layout",
+    "description": "Layout field label"
+  },
+  "4js1kW": {
+    "defaultMessage": "Share Options",
+    "description": "Field label"
+  },
+  "4kSwvn": {
+    "defaultMessage": "Thumbnail",
+    "description": "Field label"
+  },
+  "4w7K2K": {
+    "defaultMessage": "Feedback text",
+    "description": "Field label"
   },
   "507VAi": {
     "defaultMessage": "Description",
     "description": "Description placeholder"
   },
+  "57hjHa": {
+    "defaultMessage": "Answer feedback image",
+    "description": "Visual field label"
+  },
+  "59f2bg": {
+    "defaultMessage": "Images",
+    "description": "visualsWithCaptions field label"
+  },
+  "5mk1b+": {
+    "defaultMessage": "Share",
+    "description": "Share screen title"
+  },
   "5uH4x7": {
     "defaultMessage": "Submit",
     "description": "Submit placeholder"
+  },
+  "64JlRq": {
+    "defaultMessage": "Share",
+    "description": "Share screen group"
+  },
+  "650XRF": {
+    "defaultMessage": "Survey",
+    "description": "Survey screen title"
+  },
+  "65rc70": {
+    "defaultMessage": "Edit style...",
+    "description": "No value field label"
+  },
+  "68NE9W": {
+    "defaultMessage": "Alternatives",
+    "description": "Background field label"
+  },
+  "6DV50M": {
+    "defaultMessage": "Timing",
+    "description": "Timing field label"
+  },
+  "6MxaVf": {
+    "defaultMessage": "Style",
+    "description": "Field label"
+  },
+  "6Q4tcn": {
+    "defaultMessage": "Result style",
+    "description": "Field section label"
   },
   "6W4St0": {
     "defaultMessage": "Upload an audio file",
     "description": "Upload button label in Media Gallery"
   },
+  "6ak5YN": {
+    "defaultMessage": "Side",
+    "description": "Field label"
+  },
+  "6bd963": {
+    "defaultMessage": "Virgo",
+    "description": "Horoscope sign"
+  },
+  "6iR9Mt": {
+    "defaultMessage": "Heading",
+    "description": "Field label"
+  },
   "6jX5Tb": {
     "defaultMessage": "Authors",
     "description": "Authors placeholder"
+  },
+  "6mX2ya": {
+    "defaultMessage": "Images",
+    "description": "Images screen group"
   },
   "6tIigB": {
     "defaultMessage": "Caption",
     "description": "Caption placeholder"
   },
+  "73hxYw": {
+    "defaultMessage": "Author",
+    "description": "Author field label"
+  },
+  "75nZbY": {
+    "defaultMessage": "Keypad",
+    "description": "Keypad screen title"
+  },
   "790Q9C": {
     "defaultMessage": "Select Subtitles File",
     "description": "Modal title"
+  },
+  "7ZzlUE": {
+    "defaultMessage": "Oct 23 - Nov 22",
+    "description": "Horoscope date"
+  },
+  "7mMPO4": {
+    "defaultMessage": "Sagittarius",
+    "description": "Horoscope sign"
   },
   "7oXkoj": {
     "defaultMessage": "Authors",
@@ -191,6 +415,30 @@
     "defaultMessage": "Description",
     "description": "Label in Media Gallery"
   },
+  "82g1F5": {
+    "defaultMessage": "Intro",
+    "description": " UrbaniaHoroscope state"
+  },
+  "83959F": {
+    "defaultMessage": "Items style",
+    "description": "Field label"
+  },
+  "862eE3": {
+    "defaultMessage": "Border",
+    "description": "Field label"
+  },
+  "88/Ge8": {
+    "defaultMessage": "Quote",
+    "description": "Quote field label"
+  },
+  "8A8cuq": {
+    "defaultMessage": "Parameters",
+    "description": "field label"
+  },
+  "8Dmlwh": {
+    "defaultMessage": "Answer button layout",
+    "description": "Field label"
+  },
   "8NyYTH": {
     "defaultMessage": "Back",
     "description": "Button label"
@@ -199,21 +447,49 @@
     "defaultMessage": "Remove",
     "description": "Button label in Media Gallery"
   },
+  "8oczXQ": {
+    "defaultMessage": "Add a marker",
+    "description": "Button label"
+  },
   "8sWUOV": {
     "defaultMessage": "Add an font file",
     "description": "Button label"
+  },
+  "8tANs8": {
+    "defaultMessage": "Conversation",
+    "description": "Conversation field label"
   },
   "8yRYcm": {
     "defaultMessage": "Edit my settings",
     "description": "Button label"
   },
+  "8ySjDc": {
+    "defaultMessage": "Item",
+    "description": "Breadcrumb field label"
+  },
   "9/t5wK": {
     "defaultMessage": "Type",
     "description": "Filter label"
   },
+  "9AP246": {
+    "defaultMessage": "Date",
+    "description": "Date field label"
+  },
+  "9DhYaZ": {
+    "defaultMessage": "Ascending",
+    "description": "Ascending field label"
+  },
+  "9PfjeE": {
+    "defaultMessage": "Speaker style",
+    "description": "Field label"
+  },
   "9ZdD+Q": {
     "defaultMessage": "Library for",
     "description": "Library source menu"
+  },
+  "9a5s+m": {
+    "defaultMessage": "Title with box",
+    "description": "Dcreen title"
   },
   "9mXl24": {
     "defaultMessage": "Tags",
@@ -223,9 +499,33 @@
     "defaultMessage": "Add an image",
     "description": "Button label in images with caption field"
   },
+  "9omJnT": {
+    "defaultMessage": "Answer settings",
+    "description": "Field section label"
+  },
+  "A+a0kL": {
+    "defaultMessage": "No answer...",
+    "description": "Label when there is no item"
+  },
   "A/Vr8P": {
     "defaultMessage": "False",
     "description": "Field label"
+  },
+  "A7ncT3": {
+    "defaultMessage": "Draggable",
+    "description": "Field label"
+  },
+  "AA8TV9": {
+    "defaultMessage": "Image with title",
+    "description": "ImageTitle screen title"
+  },
+  "ACSasN": {
+    "defaultMessage": "URL",
+    "description": "Field label"
+  },
+  "ACkeH6": {
+    "defaultMessage": "Quiz with multiple questions",
+    "description": "Screen title"
   },
   "AHvHaY": {
     "defaultMessage": "Parameters",
@@ -243,6 +543,10 @@
     "defaultMessage": "Edit call to action...",
     "description": "No value label"
   },
+  "Arl5Ze": {
+    "defaultMessage": "Button styles",
+    "description": "Field label"
+  },
   "AwDQvD": {
     "defaultMessage": "Image",
     "description": "Media type"
@@ -254,6 +558,10 @@
   "B1MeY+": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
+  },
+  "B5C18D": {
+    "defaultMessage": "Badge",
+    "description": "Field label"
   },
   "B5Qrmw": {
     "defaultMessage": "Select Font File",
@@ -267,17 +575,49 @@
     "defaultMessage": "Title",
     "description": "Placeholder label"
   },
+  "BgrRxZ": {
+    "defaultMessage": "Intro",
+    "description": "State label"
+  },
+  "BnRW4y": {
+    "defaultMessage": "Results title",
+    "description": "Field label"
+  },
   "BpZoQZ": {
     "defaultMessage": "Success",
     "description": "Success form message"
+  },
+  "BwYZbB": {
+    "defaultMessage": "With controls button",
+    "description": "Field label"
   },
   "C1VUEY": {
     "defaultMessage": "{current} of {duration}",
     "description": "Seek bar value"
   },
+  "CJmQeh": {
+    "defaultMessage": "Image with text",
+    "description": "ImageText screen title"
+  },
+  "CQzuFE": {
+    "defaultMessage": "Feedback styles",
+    "description": "Field label"
+  },
+  "CWnXWp": {
+    "defaultMessage": "No button yet",
+    "description": "Label when there is no item"
+  },
+  "Cg3LGu": {
+    "defaultMessage": "Label",
+    "description": "Button label field"
+  },
   "CnVj9r": {
     "defaultMessage": "Skip to controls",
     "description": "Button label"
+  },
+  "CpCykm": {
+    "defaultMessage": "Skip button",
+    "description": "Skip field label"
   },
   "CrzYgw": {
     "defaultMessage": "Quote",
@@ -295,6 +635,14 @@
     "defaultMessage": "Start",
     "description": "Screen button label"
   },
+  "D7kxD3": {
+    "defaultMessage": "Without bar",
+    "description": "Field label"
+  },
+  "DU1qdc": {
+    "defaultMessage": "Text color",
+    "description": "Field label"
+  },
   "DWEzCv": {
     "defaultMessage": "Select a video...",
     "description": "Label when no value is provided to Video field"
@@ -307,17 +655,45 @@
     "defaultMessage": "Alternative text (accessibility)",
     "description": "Media Gallery"
   },
+  "EEUc6n": {
+    "defaultMessage": "Leo",
+    "description": "Horoscope sign"
+  },
   "EQdIAR": {
     "defaultMessage": "Description",
     "description": "Text placeholder"
+  },
+  "ET527E": {
+    "defaultMessage": "Font family",
+    "description": "Field label"
+  },
+  "EcZYpr": {
+    "defaultMessage": "Subtitle",
+    "description": "Subtitle field label"
   },
   "EoVdMy": {
     "defaultMessage": "Edit content...",
     "description": "Label when no value is provided to Field with form"
   },
+  "Evl2dG": {
+    "defaultMessage": "Feb 19 - Mar 20",
+    "description": "Horoscope date"
+  },
   "F/gl4b": {
     "defaultMessage": "Menu",
     "description": "Button label"
+  },
+  "F0QDfY": {
+    "defaultMessage": "Sept 23 - Oct 22",
+    "description": "Horoscope date"
+  },
+  "F2SD/0": {
+    "defaultMessage": "Loop",
+    "description": "Field label"
+  },
+  "F59wsl": {
+    "defaultMessage": "Urbania horoscope",
+    "description": "Urbania screen title"
   },
   "FKOWH0": {
     "defaultMessage": "right aligned",
@@ -327,6 +703,14 @@
     "defaultMessage": "Question",
     "description": "Placeholder label"
   },
+  "FYm4w+": {
+    "defaultMessage": "Popups",
+    "description": "Popup state"
+  },
+  "FjuRaw": {
+    "defaultMessage": "Keypad settings",
+    "description": "Field label"
+  },
   "G/ITGY": {
     "defaultMessage": "Your name",
     "description": "Your name placeholder"
@@ -335,9 +719,33 @@
     "defaultMessage": "Seek",
     "description": "Button label"
   },
+  "GMCLhn": {
+    "defaultMessage": "Case",
+    "description": "Field label"
+  },
   "GPqjnH": {
     "defaultMessage": "Left",
     "description": "Direction"
+  },
+  "GRVidW": {
+    "defaultMessage": "360 Video",
+    "description": "Video 360 screen title"
+  },
+  "GzoKNb": {
+    "defaultMessage": "Timeline",
+    "description": "Timeline screen title"
+  },
+  "H1YcaV": {
+    "defaultMessage": "Image with legend",
+    "description": "ImageLegend screen title"
+  },
+  "HTd98/": {
+    "defaultMessage": "No message...",
+    "description": "Label when there is no item"
+  },
+  "HWpflq": {
+    "defaultMessage": "Highlight",
+    "description": "Fields section label"
   },
   "HpkW4J": {
     "defaultMessage": "Skip",
@@ -347,9 +755,17 @@
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
   },
+  "HwqzVR": {
+    "defaultMessage": "Visual",
+    "description": "Field label"
+  },
   "HxW2pw": {
     "defaultMessage": "Accept all",
     "description": "Button label"
+  },
+  "I1hyZY": {
+    "defaultMessage": "Answer icon value",
+    "description": "Field label"
   },
   "I5+AHN": {
     "defaultMessage": "Category",
@@ -358,6 +774,10 @@
   "IBjY5r": {
     "defaultMessage": "Duplicate screen",
     "description": "Duplicate screen item"
+  },
+  "ICXTfR": {
+    "defaultMessage": "Links",
+    "description": "Fields section label"
   },
   "IE7U/Q": {
     "defaultMessage": "Heading",
@@ -375,9 +795,33 @@
     "defaultMessage": "Toggle article",
     "description": "Button label"
   },
+  "J9e9Qb": {
+    "defaultMessage": "Video",
+    "description": "Type field label"
+  },
   "JAguka": {
     "defaultMessage": "Your message",
     "description": "Your message placeholder"
+  },
+  "JC9Qlf": {
+    "defaultMessage": "Speakers",
+    "description": "Field label"
+  },
+  "JDPMlG": {
+    "defaultMessage": "Background color",
+    "description": "Field label"
+  },
+  "JGvpwT": {
+    "defaultMessage": "Visual width",
+    "description": "Field label"
+  },
+  "JLYWNN": {
+    "defaultMessage": "Invalid box style",
+    "description": "Field label"
+  },
+  "JMmYwg": {
+    "defaultMessage": "Submit button",
+    "description": "Field label"
   },
   "JRZoe6": {
     "defaultMessage": "Content",
@@ -387,6 +831,14 @@
     "defaultMessage": "Create your first screen",
     "description": "Button to create your first screen"
   },
+  "JoyIgA": {
+    "defaultMessage": "Minimum points for this result",
+    "description": "Field label"
+  },
+  "Jti6I6": {
+    "defaultMessage": "Lines color",
+    "description": "Field label"
+  },
   "JuxiUN": {
     "defaultMessage": "Format",
     "description": "Field label"
@@ -394,6 +846,14 @@
   "JzSBzL": {
     "defaultMessage": "Visual",
     "description": "Text placeholder"
+  },
+  "K1BxIr": {
+    "defaultMessage": "Edit metadata...",
+    "description": "No value field label"
+  },
+  "K7AvPE": {
+    "defaultMessage": "Multiline input",
+    "description": "Field label"
   },
   "KB7N5E": {
     "defaultMessage": "Search a place on Google Maps",
@@ -403,6 +863,14 @@
     "defaultMessage": "No font...",
     "description": "Label when there is no item"
   },
+  "KHWeV7": {
+    "defaultMessage": "Answers",
+    "description": "Field label"
+  },
+  "KIXg9M": {
+    "defaultMessage": "Back button",
+    "description": "Back field label"
+  },
   "KK5teQ": {
     "defaultMessage": "Upload a visual file",
     "description": "Upload button label in Media Gallery"
@@ -410,6 +878,26 @@
   "KdAKt7": {
     "defaultMessage": "Upload an image file",
     "description": "Upload button label in Media Gallery"
+  },
+  "KuzZbb": {
+    "defaultMessage": "Background color",
+    "description": "Breadcrumb field label"
+  },
+  "KvBdrU": {
+    "defaultMessage": "Background text",
+    "description": "Field label"
+  },
+  "LFziCV": {
+    "defaultMessage": "Without right/wrong icon",
+    "description": "Field label"
+  },
+  "LI0Gz4": {
+    "defaultMessage": "Email",
+    "description": "Field label"
+  },
+  "LOknw0": {
+    "defaultMessage": "Styles",
+    "description": "Field label"
   },
   "LiMAIC": {
     "defaultMessage": "This Micromag was",
@@ -419,21 +907,89 @@
     "defaultMessage": "Screen {index}",
     "description": "Button label"
   },
+  "Lp0bG4": {
+    "defaultMessage": "Bottom spacing",
+    "description": "Spacing field label"
+  },
+  "LrRW+9": {
+    "defaultMessage": "Add a button",
+    "description": "Button label"
+  },
   "Lrwi2G": {
     "defaultMessage": "Email",
     "description": "Share option label"
+  },
+  "Lz2+Ws": {
+    "defaultMessage": "Answer feedback",
+    "description": "Field label"
+  },
+  "M/FGRs": {
+    "defaultMessage": "Libra",
+    "description": "Horoscope sign"
+  },
+  "MBgLeH": {
+    "defaultMessage": "July 23 - Aug 22",
+    "description": "Horoscope date"
   },
   "MYZwSA": {
     "defaultMessage": "Audio",
     "description": "Audio placeholder"
   },
+  "MhGUaY": {
+    "defaultMessage": "Slideshow",
+    "description": "Slideshow screen title"
+  },
+  "MmJQ7o": {
+    "defaultMessage": "Gallery with captions",
+    "description": "GalleryCaptions screen title"
+  },
+  "N25iDO": {
+    "defaultMessage": "Title",
+    "description": "Title field label"
+  },
+  "N4lZhy": {
+    "defaultMessage": "Without line",
+    "description": "Field label"
+  },
   "N7Kj8z": {
     "defaultMessage": "Button",
     "description": "Placeholder label"
   },
+  "NVUpOG": {
+    "defaultMessage": "Map fit markers",
+    "description": "Field label"
+  },
+  "NbTtNk": {
+    "defaultMessage": "Bad answer icon color",
+    "description": "Field label"
+  },
   "NmCfTO": {
     "defaultMessage": "Conversation",
     "description": "Conversation placeholder"
+  },
+  "NumcrW": {
+    "defaultMessage": "Capricorn",
+    "description": "Horoscope sign"
+  },
+  "O2JVA+": {
+    "defaultMessage": "Left",
+    "description": "Field left label"
+  },
+  "OEckOD": {
+    "defaultMessage": "Text style",
+    "description": "Field label"
+  },
+  "OJi+eg": {
+    "defaultMessage": "Label",
+    "description": "Field label"
+  },
+  "OPxJx/": {
+    "defaultMessage": "Layout",
+    "description": "Field label"
+  },
+  "OSl7A6": {
+    "defaultMessage": "Swipe up",
+    "description": "Field label"
   },
   "OdcEna": {
     "defaultMessage": "No slide...",
@@ -443,9 +999,17 @@
     "defaultMessage": "Type",
     "description": "Type Label in Media Gallery"
   },
+  "Op1ZIp": {
+    "defaultMessage": "Jan 21 - Feb 18",
+    "description": "Horoscope date"
+  },
   "OzYWZz": {
     "defaultMessage": "Created at",
     "description": "Field name"
+  },
+  "P1dwGU": {
+    "defaultMessage": "Title with subtitle",
+    "description": "TitleSubtitle screen title"
   },
   "P6ZtIq": {
     "defaultMessage": "Select Document",
@@ -454,6 +1018,10 @@
   "P9A8cx": {
     "defaultMessage": "middle aligned",
     "description": "Alignment label"
+  },
+  "PAQRf4": {
+    "defaultMessage": "No item yet",
+    "description": "Label when there is no item"
   },
   "PFNMAQ": {
     "defaultMessage": "Bottom",
@@ -471,6 +1039,10 @@
     "defaultMessage": "Audios",
     "description": "Media label"
   },
+  "PYokTY": {
+    "defaultMessage": "Label box style",
+    "description": "Field label"
+  },
   "PyxZY2": {
     "defaultMessage": "Cancel",
     "description": "Button label"
@@ -483,20 +1055,84 @@
     "defaultMessage": "Videos",
     "description": "Media label"
   },
+  "QSmRdP": {
+    "defaultMessage": "Add an image",
+    "description": "Button label"
+  },
+  "Qe03Xz": {
+    "defaultMessage": "Sign Subtitle",
+    "description": "Heading field label"
+  },
   "QfpTKK": {
     "defaultMessage": "Select a screen..."
+  },
+  "QjbLZ9": {
+    "defaultMessage": "Reading speed (in Words Per Minute)",
+    "description": "Reading speed label"
+  },
+  "Qw8cb5": {
+    "defaultMessage": "Sponsor color",
+    "description": "Field label"
+  },
+  "Qz7nUz": {
+    "defaultMessage": "Caption style",
+    "description": "Field label"
+  },
+  "R9DB4a": {
+    "defaultMessage": "Styles",
+    "description": "Field section label"
+  },
+  "RHMS2f": {
+    "defaultMessage": "Line color",
+    "description": "Field label"
   },
   "RK/QEY": {
     "defaultMessage": "Unmute",
     "description": "Button label"
   },
+  "RcLsua": {
+    "defaultMessage": "Message",
+    "description": "Message field label"
+  },
+  "Rl7C1A": {
+    "defaultMessage": "Controls color",
+    "description": "Field label"
+  },
   "RucIeL": {
     "defaultMessage": "Share options",
     "description": "Title placeholder"
   },
+  "S+WiGT": {
+    "defaultMessage": "Percentage Text",
+    "description": "Field label"
+  },
+  "S/mavZ": {
+    "defaultMessage": "Text and Images",
+    "description": "Text and Images screen group"
+  },
+  "S1F/re": {
+    "defaultMessage": "Columns",
+    "description": "Field label"
+  },
+  "S9YpbV": {
+    "defaultMessage": "Text",
+    "description": "Text screen title"
+  },
   "SVLGTA": {
     "defaultMessage": "Next",
     "description": "Screen button label"
+  },
+  "SyMSDa": {
+    "defaultMessage": "Published name style",
+    "description": "Published name style field label"
+  },
+  "T0pi1u": {
+    "defaultMessage": "With seek bar",
+    "description": "Field label"
+  },
+  "T9NZPQ": {
+    "defaultMessage": "Images",
+    "description": "Field label"
   },
   "TDAOl2": {
     "defaultMessage": "created with",
@@ -505,6 +1141,14 @@
   "THKV4v": {
     "defaultMessage": "Longitude",
     "description": "Longitude description"
+  },
+  "TTPc+y": {
+    "defaultMessage": "Use square keys",
+    "description": "Field label"
+  },
+  "TZUu3s": {
+    "defaultMessage": "Blur",
+    "description": "Field label"
   },
   "Tol+/U": {
     "defaultMessage": "Clear",
@@ -518,9 +1162,21 @@
     "defaultMessage": "Skip",
     "description": "Button placeholder"
   },
+  "UBXIYP": {
+    "defaultMessage": "Video",
+    "description": "Video screen title"
+  },
   "UG3SXh": {
     "defaultMessage": "Remove",
     "description": "Remove button label in Media Gallery"
+  },
+  "UUv8FR": {
+    "defaultMessage": "Name",
+    "description": "Field label"
+  },
+  "UdrdRF": {
+    "defaultMessage": "Numbers style",
+    "description": "Numbers style field label"
   },
   "UlZIP8": {
     "defaultMessage": "OK",
@@ -538,9 +1194,21 @@
     "defaultMessage": "Google Fonts",
     "description": "Font family group title"
   },
+  "VMd1oG": {
+    "defaultMessage": "Questions",
+    "description": "State label"
+  },
+  "W5qWPj": {
+    "defaultMessage": "Center",
+    "description": "Field label"
+  },
   "WX83V9": {
     "defaultMessage": "File name",
     "description": "Field name"
+  },
+  "WY14Zu": {
+    "defaultMessage": "Sponsor",
+    "description": "Text field label"
   },
   "Wb5zY4": {
     "defaultMessage": "Select a font file...",
@@ -550,9 +1218,25 @@
     "defaultMessage": "Upload a video file",
     "description": "Upload button label in Media Gallery"
   },
+  "WjigmA": {
+    "defaultMessage": "Submit button",
+    "description": "Submit button section label"
+  },
+  "WlNxMj": {
+    "defaultMessage": "Repeat",
+    "description": "Field label"
+  },
+  "Wr9olU": {
+    "defaultMessage": "Typography",
+    "description": "Fields section label"
+  },
   "X7kRRa": {
     "defaultMessage": "Heading",
     "description": "Heading placeholder"
+  },
+  "X97njD": {
+    "defaultMessage": "Entry",
+    "description": "Breadcrumb field label"
   },
   "X9mFEG": {
     "defaultMessage": "Reject all",
@@ -562,9 +1246,21 @@
     "defaultMessage": "Expand visual",
     "description": "Button label"
   },
+  "XJ2Xc+": {
+    "defaultMessage": "Answer",
+    "description": "Breadcrumb field label"
+  },
+  "XKcyqx": {
+    "defaultMessage": "Taurus",
+    "description": "Horoscope sign"
+  },
   "XR5/Wk": {
     "defaultMessage": "Edit",
     "description": "Field label"
+  },
+  "XTJGzY": {
+    "defaultMessage": "Gallery feed with captions",
+    "description": "GalleryFeedCaptions screen title"
   },
   "Xb6r3F": {
     "defaultMessage": "Cancel",
@@ -582,21 +1278,57 @@
     "defaultMessage": "points gained",
     "description": "Quiz label"
   },
+  "Y7bs1v": {
+    "defaultMessage": "Description",
+    "description": "Text field label"
+  },
+  "YD9M2p": {
+    "defaultMessage": "Overtitle",
+    "description": "Overtitle field label"
+  },
   "YJZtWR": {
     "defaultMessage": "Description",
     "description": "Description in Media Gallery"
+  },
+  "YWcp4v": {
+    "defaultMessage": "Bullet filled",
+    "description": "Field label"
   },
   "YXhRxW": {
     "defaultMessage": "No controls available",
     "description": "Tooltip"
   },
+  "Yu/PB5": {
+    "defaultMessage": "Next button",
+    "description": "Field label"
+  },
   "YwySSO": {
     "defaultMessage": "Vertical",
     "description": "Field label"
   },
+  "YyPYHk": {
+    "defaultMessage": "Scorpio",
+    "description": "Horoscope sign"
+  },
   "YyYrXp": {
     "defaultMessage": "Loading",
     "description": "Button label"
+  },
+  "Z27IP6": {
+    "defaultMessage": "Map",
+    "description": "Screen group"
+  },
+  "Z4f5qh": {
+    "defaultMessage": "Buttons",
+    "description": "Keypad state"
+  },
+  "Z5jrDS": {
+    "defaultMessage": "Letter spacing",
+    "description": "Field label"
+  },
+  "ZCe0r4": {
+    "defaultMessage": "Description",
+    "description": "Field label"
   },
   "ZG8/oK": {
     "defaultMessage": "Subtitle",
@@ -606,17 +1338,49 @@
     "defaultMessage": "Submit",
     "description": "Submit form button"
   },
+  "ZMS1Wv": {
+    "defaultMessage": "Text",
+    "description": "Field label"
+  },
+  "ZeosMy": {
+    "defaultMessage": "Mar 21 - Apr 19",
+    "description": "Horoscope date"
+  },
+  "ZiWlL6": {
+    "defaultMessage": "Questions",
+    "description": "Screen group"
+  },
+  "Zpl5bJ": {
+    "defaultMessage": "Spacing",
+    "description": "Spacing field label"
+  },
   "ZxgNge": {
     "defaultMessage": "Add an item",
     "description": "Button label in items field"
+  },
+  "aarOkd": {
+    "defaultMessage": "Color",
+    "description": "Field label"
   },
   "al5xjv": {
     "defaultMessage": "Default fonts",
     "description": "Font family group title"
   },
+  "amEvH1": {
+    "defaultMessage": "Fit",
+    "description": "Field label"
+  },
+  "ao5VYd": {
+    "defaultMessage": "Valid box style",
+    "description": "Field label"
+  },
   "aovRFH": {
     "defaultMessage": "Filename",
     "description": "Label in Media Gallery"
+  },
+  "ap68Fp": {
+    "defaultMessage": "Signs",
+    "description": "UrbaniaHoroscope state"
   },
   "bCtuS/": {
     "defaultMessage": "In this Micromag",
@@ -625,6 +1389,18 @@
   "bLYuuN": {
     "defaultMessage": "You are on screen {current} of {total}.",
     "description": "Nav ARIA label"
+  },
+  "bMdONM": {
+    "defaultMessage": "June 21 - July 22",
+    "description": "Horoscope date"
+  },
+  "bQsPrs": {
+    "defaultMessage": "If this field is left empty, this Micromag's URL will be shared.",
+    "description": "Field help text"
+  },
+  "bhEaUt": {
+    "defaultMessage": "Audio",
+    "description": "Audio screen title"
   },
   "bmO4Ss": {
     "defaultMessage": "Entry Title",
@@ -638,9 +1414,21 @@
     "defaultMessage": "Size",
     "description": "Field name"
   },
+  "c7rrcG": {
+    "defaultMessage": "With animated wave",
+    "description": "Field label"
+  },
   "c9VwT/": {
     "defaultMessage": "Technical details",
     "description": "Heading in Media Gallery"
+  },
+  "cDj1mZ": {
+    "defaultMessage": "Background",
+    "description": "Field label"
+  },
+  "cGItoy": {
+    "defaultMessage": "List",
+    "description": "List screen group"
   },
   "cXt3NU": {
     "defaultMessage": "Close Popup",
@@ -696,25 +1484,57 @@
   "consent.security_storage_title": {
     "defaultMessage": "Security Storage"
   },
+  "crLqJd": {
+    "defaultMessage": "Without percentage",
+    "description": "Field label"
+  },
+  "cuKSQz": {
+    "defaultMessage": "Lede",
+    "description": "Text field label"
+  },
   "d/01YO": {
     "defaultMessage": "Share this Micromag!",
     "description": "Share Incentive default label"
+  },
+  "d3va12": {
+    "defaultMessage": "SMS",
+    "description": "Field label"
   },
   "d60tSn": {
     "defaultMessage": "Subtitle",
     "description": "Subtitle placeholder"
   },
+  "dCG1T1": {
+    "defaultMessage": "Background video",
+    "description": "Breadcrumb field label"
+  },
+  "dFMzBu": {
+    "defaultMessage": "No image...",
+    "description": "Label when there is no item"
+  },
   "dIvwcD": {
     "defaultMessage": "Close",
     "description": "Button label with icon"
+  },
+  "dPYwJG": {
+    "defaultMessage": "Map",
+    "description": "Screen title"
   },
   "dSfmnf": {
     "defaultMessage": "SMS",
     "description": "Share button label"
   },
+  "dVcog7": {
+    "defaultMessage": "Title",
+    "description": "Title screen title"
+  },
   "dj/p/q": {
     "defaultMessage": "Close",
     "description": "Button label"
+  },
+  "dkBBRa": {
+    "defaultMessage": "Image fit",
+    "description": "Image fit field label"
   },
   "dqnkQk": {
     "defaultMessage": "Legend",
@@ -724,21 +1544,57 @@
     "defaultMessage": "We use cookies to improve your experience on our site and for marketing purposes. By accepting, you consent to the use of these cookies.",
     "description": "Cookies message"
   },
+  "dxAumJ": {
+    "defaultMessage": "Pisces",
+    "description": "Horoscope sign"
+  },
   "e1I+KU": {
     "defaultMessage": "Question",
     "description": "Question placeholder"
+  },
+  "e4UTx9": {
+    "defaultMessage": "Results",
+    "description": "Field label"
   },
   "e6+aGf": {
     "defaultMessage": "Select a media...",
     "description": "Label when no value is provided to Media field"
   },
+  "eBFxNl": {
+    "defaultMessage": "Call to Action",
+    "description": "Field label"
+  },
   "eCe9ZY": {
     "defaultMessage": "Dimensions",
     "description": "Field name"
   },
+  "eDMxHS": {
+    "defaultMessage": "Font weight",
+    "description": "Field label"
+  },
+  "eJMcXw": {
+    "defaultMessage": "Sort game",
+    "description": "Sort game screen title"
+  },
+  "eNdbJF": {
+    "defaultMessage": "Appear delay (seconds)",
+    "description": "Field label"
+  },
+  "eWIM/8": {
+    "defaultMessage": "Image with title and text",
+    "description": "ImageTitleText screen title"
+  },
+  "eYHEYe": {
+    "defaultMessage": "Map",
+    "description": "State label"
+  },
   "ebsPd4": {
     "defaultMessage": "Image",
     "description": "Image placeholder"
+  },
+  "ehuj8A": {
+    "defaultMessage": "Without image zoom",
+    "description": "Field label"
   },
   "eiaIIB": {
     "defaultMessage": "This Micromag",
@@ -752,9 +1608,45 @@
     "defaultMessage": "Duration",
     "description": "Label in Media Gallery"
   },
+  "ex1Bgx": {
+    "defaultMessage": "Results style",
+    "description": "Field label"
+  },
+  "f1XHNG": {
+    "defaultMessage": "Button",
+    "description": "Breadcrumb field label"
+  },
+  "f5Yipd": {
+    "defaultMessage": "Box",
+    "description": "Field label"
+  },
+  "f68O+0": {
+    "defaultMessage": "Messages",
+    "description": "Field label"
+  },
+  "fBii8l": {
+    "defaultMessage": "Aquarius",
+    "description": "Horoscope sign"
+  },
+  "fIawTr": {
+    "defaultMessage": "Text",
+    "description": "Text screen group"
+  },
+  "fLdjGi": {
+    "defaultMessage": "Word of the week",
+    "description": "Field label"
+  },
+  "fOYYk7": {
+    "defaultMessage": "Align items",
+    "description": "Field label"
+  },
   "fVqgfl": {
     "defaultMessage": "[no title]",
     "description": "No title label in Media Gallery"
+  },
+  "fbUW2U": {
+    "defaultMessage": "Items",
+    "description": "Field label"
   },
   "fbiNiR": {
     "defaultMessage": "Select a size...",
@@ -764,9 +1656,21 @@
     "defaultMessage": "Font",
     "description": "Filter item label"
   },
+  "fusnxf": {
+    "defaultMessage": "Square",
+    "description": "Square label"
+  },
   "g2CRt5": {
     "defaultMessage": "Size",
     "description": "Field label"
+  },
+  "g4nybp": {
+    "defaultMessage": "Footer",
+    "description": "Field label"
+  },
+  "g6b9Lg": {
+    "defaultMessage": "Contribution",
+    "description": "Contribution screen title"
   },
   "gJTVcQ": {
     "defaultMessage": "Select media..."
@@ -779,6 +1683,26 @@
     "defaultMessage": "Skip Links",
     "description": "Nav aria label"
   },
+  "gwPu/I": {
+    "defaultMessage": "Buttons text",
+    "description": "Field label"
+  },
+  "hPXJzA": {
+    "defaultMessage": "Box params",
+    "description": "Custom styles"
+  },
+  "hUUIQt": {
+    "defaultMessage": "Mute audio of background video",
+    "description": "Field label"
+  },
+  "hVE7TA": {
+    "defaultMessage": "Question",
+    "description": "Question field label"
+  },
+  "hZcXoa": {
+    "defaultMessage": "Good answer icon color",
+    "description": "Field label"
+  },
   "hoDz0O": {
     "defaultMessage": "Description",
     "description": "Placeholder label"
@@ -787,13 +1711,65 @@
     "defaultMessage": "Delete screen",
     "description": "Delete screen item"
   },
+  "hqOIl4": {
+    "defaultMessage": "Avatar",
+    "description": "Field label"
+  },
+  "hvxkzE": {
+    "defaultMessage": "LinkedIn",
+    "description": "Field label"
+  },
+  "hzt68m": {
+    "defaultMessage": "Audio",
+    "description": "Field label"
+  },
+  "hzvEim": {
+    "defaultMessage": "Sponsor Label",
+    "description": "Title field label"
+  },
   "i+3ZrF": {
     "defaultMessage": "Select a font family...",
     "description": "No value label"
   },
+  "i6bmbD": {
+    "defaultMessage": "Button",
+    "description": "Field label"
+  },
   "iCf/MP": {
     "defaultMessage": "Edit",
     "description": "Button label in Media Gallery"
+  },
+  "iHV3W3": {
+    "defaultMessage": "No entry...",
+    "description": "Label when there is no item"
+  },
+  "iJ61ZT": {
+    "defaultMessage": "Writing state duration (seconds)",
+    "description": "Field label"
+  },
+  "iL9RLu": {
+    "defaultMessage": "Collaborator",
+    "description": "Field label"
+  },
+  "iQ5Uf7": {
+    "defaultMessage": "Default feedback",
+    "description": "Field label"
+  },
+  "iipV5Q": {
+    "defaultMessage": "Type",
+    "description": "Field label"
+  },
+  "iltluX": {
+    "defaultMessage": "Numbers text",
+    "description": "Field label"
+  },
+  "irG6mX": {
+    "defaultMessage": "Distance",
+    "description": "Field label"
+  },
+  "ivs8GN": {
+    "defaultMessage": "Closed captions file",
+    "description": "Field label"
   },
   "j00v1T": {
     "defaultMessage": "True",
@@ -803,6 +1779,18 @@
     "defaultMessage": "By",
     "description": "Author label"
   },
+  "jINZkT": {
+    "defaultMessage": "Results",
+    "description": "Section label"
+  },
+  "jWAJW4": {
+    "defaultMessage": "Points",
+    "description": "Field label"
+  },
+  "jaFXki": {
+    "defaultMessage": "Gallery",
+    "description": "Gallery screen title"
+  },
   "jf+4Hq": {
     "defaultMessage": "Screens",
     "description": "Title of the screens section"
@@ -810,6 +1798,18 @@
   "jnww6n": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Visual field"
+  },
+  "k+coTi": {
+    "defaultMessage": "Image",
+    "description": "Visuals field label"
+  },
+  "k4gTZl": {
+    "defaultMessage": "Add an item",
+    "description": "Button label"
+  },
+  "k81FRn": {
+    "defaultMessage": "Message style",
+    "description": "Field label"
   },
   "kBz8vF": {
     "defaultMessage": "Name",
@@ -822,6 +1822,18 @@
   "kxsaD3": {
     "defaultMessage": "Select Image",
     "description": "Modal title"
+  },
+  "l/Y6or": {
+    "defaultMessage": "Add an entry",
+    "description": "Button label"
+  },
+  "l5uLMd": {
+    "defaultMessage": "Buttons",
+    "description": "Field label"
+  },
+  "lGh/NP": {
+    "defaultMessage": "Add an answer",
+    "description": "Button label"
   },
   "li7ADr": {
     "defaultMessage": "Result",
@@ -847,6 +1859,10 @@
     "defaultMessage": "Pause",
     "description": "Button label"
   },
+  "mXeSkg": {
+    "defaultMessage": "Link",
+    "description": "Field label"
+  },
   "menus.pagination.next": {
     "defaultMessage": "next"
   },
@@ -857,9 +1873,25 @@
     "defaultMessage": "columns",
     "description": "Alignment label"
   },
+  "mlucL+": {
+    "defaultMessage": "Twitter",
+    "description": "Field label"
+  },
+  "muPX/j": {
+    "defaultMessage": "Speaker",
+    "description": "Field label"
+  },
+  "muYwrB": {
+    "defaultMessage": "Images",
+    "description": "Visuals field label"
+  },
   "mv37oK": {
     "defaultMessage": "Dimension",
     "description": "Label in Media Gallery"
+  },
+  "my7Kox": {
+    "defaultMessage": "Inactive buttons text",
+    "description": "Field label"
   },
   "n/SxMs": {
     "defaultMessage": "Search medias",
@@ -869,9 +1901,29 @@
     "defaultMessage": "Add an answer",
     "description": "Button label in answers field"
   },
+  "n8zmLY": {
+    "defaultMessage": "Go to next screen on end",
+    "description": "Field label"
+  },
   "n9LoBJ": {
     "defaultMessage": "Top",
     "description": "Direction"
+  },
+  "nJgzwC": {
+    "defaultMessage": "Urbania article",
+    "description": "Urbania screen title"
+  },
+  "nXVNeg": {
+    "defaultMessage": "Name",
+    "description": "Name field label"
+  },
+  "nc8LF0": {
+    "defaultMessage": "Metadata",
+    "description": "field label"
+  },
+  "nno1Pq": {
+    "defaultMessage": "Button style",
+    "description": "Field label"
   },
   "o3R+FM": {
     "defaultMessage": "Select a closed captions file...",
@@ -881,9 +1933,33 @@
     "defaultMessage": "Heading",
     "description": "Header placeholder"
   },
+  "oCBQKV": {
+    "defaultMessage": "Text with title",
+    "description": "TextTitle screen title"
+  },
   "oLtEu6": {
     "defaultMessage": "Video 360",
     "description": "Video 360 placeholder"
+  },
+  "oPjl8f": {
+    "defaultMessage": "Urbania",
+    "description": "Urbania screen group"
+  },
+  "opcGwP": {
+    "defaultMessage": "Add a speaker",
+    "description": "Button label"
+  },
+  "ouMwWq": {
+    "defaultMessage": "Article",
+    "description": "Article screen title"
+  },
+  "p1pghO": {
+    "defaultMessage": "Box style",
+    "description": "Field label"
+  },
+  "p5RHzq": {
+    "defaultMessage": "Button text style",
+    "description": "Field label"
   },
   "p6n6vY": {
     "defaultMessage": "No answer...",
@@ -893,9 +1969,21 @@
     "defaultMessage": "Delete screen",
     "description": "Title of the delete screen dialog"
   },
+  "p85qJD": {
+    "defaultMessage": "Caption",
+    "description": "Field label"
+  },
   "pBNrdH": {
     "defaultMessage": "Conversion",
     "description": "Field title"
+  },
+  "pE7UhY": {
+    "defaultMessage": "Article",
+    "description": "Type field label"
+  },
+  "pJgYyE": {
+    "defaultMessage": "AutoPlay",
+    "description": "Field label"
   },
   "pRzSQ7": {
     "defaultMessage": "Overtitle",
@@ -904,6 +1992,18 @@
   "pfvDzR": {
     "defaultMessage": "Added by",
     "description": "Media label"
+  },
+  "ppGXAR": {
+    "defaultMessage": "Show the answer count",
+    "description": "Field label"
+  },
+  "ppq6CK": {
+    "defaultMessage": "Type",
+    "description": "Type field label"
+  },
+  "ptJkUl": {
+    "defaultMessage": "Right",
+    "description": "Field right label"
   },
   "q/tLk0": {
     "defaultMessage": "Are you sure you want to delete this screen?",
@@ -917,9 +2017,53 @@
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
   },
+  "qhjeuO": {
+    "defaultMessage": "Padding",
+    "description": "Field label"
+  },
+  "qjL/eA": {
+    "defaultMessage": "Bar",
+    "description": "Field label"
+  },
+  "qroLmS": {
+    "defaultMessage": "Marker",
+    "description": "Breadcrumb field label"
+  },
+  "r+bcpa": {
+    "defaultMessage": "Facebook",
+    "description": "Field label"
+  },
+  "rAkTvt": {
+    "defaultMessage": "Dec 22 - Jan 20",
+    "description": "Horoscope date"
+  },
+  "rBPIgw": {
+    "defaultMessage": "Conversation",
+    "description": "Conversation screen title"
+  },
+  "rKuiKj": {
+    "defaultMessage": "Copy link",
+    "description": "Field label"
+  },
+  "raUY02": {
+    "defaultMessage": "Apr 20 - May 20",
+    "description": "Horoscope date"
+  },
+  "rdFCsN": {
+    "defaultMessage": "No marker...",
+    "description": "Label when there is no item"
+  },
+  "rhuDxI": {
+    "defaultMessage": "Header",
+    "description": "Field label"
+  },
   "rmJBin": {
     "defaultMessage": "Dimensions",
     "description": "Field label"
+  },
+  "ro6yHS": {
+    "defaultMessage": "Map with image markers",
+    "description": "Screen title"
   },
   "rqbRV2": {
     "defaultMessage": "Sorry, this media could not be deleted.",
@@ -933,9 +2077,29 @@
     "defaultMessage": "Confirm selection",
     "description": "Button label"
   },
+  "rzXCu2": {
+    "defaultMessage": "Label style",
+    "description": "Field label"
+  },
+  "rzdds2": {
+    "defaultMessage": "Speaker",
+    "description": "Breadcrumb field label"
+  },
+  "sESmah": {
+    "defaultMessage": "Entries",
+    "description": "Entries field label"
+  },
   "sHYAUa": {
     "defaultMessage": "Save my preferences",
     "description": "Button label"
+  },
+  "sSahY1": {
+    "defaultMessage": "Popup",
+    "description": "Keypad item state"
+  },
+  "sUP5BO": {
+    "defaultMessage": "Urbania recommendation",
+    "description": "Urbania screen title"
   },
   "sUR1xV": {
     "defaultMessage": "Author",
@@ -957,29 +2121,117 @@
     "defaultMessage": "Add a slide",
     "description": "Button label in slides field"
   },
+  "tYGev7": {
+    "defaultMessage": "Font size",
+    "description": "Field label"
+  },
   "tmfbUn": {
     "defaultMessage": "Unused",
     "description": "Media label"
+  },
+  "trQFlb": {
+    "defaultMessage": "Put audio before text",
+    "description": "Field label"
+  },
+  "trSRbk": {
+    "defaultMessage": "Placeholder",
+    "description": "Field label"
+  },
+  "tvl2Zc": {
+    "defaultMessage": "Video",
+    "description": "Video field label"
+  },
+  "twTaAZ": {
+    "defaultMessage": "Bullet shape",
+    "description": "Field label"
+  },
+  "u3ok54": {
+    "defaultMessage": "Position",
+    "description": "Field label"
+  },
+  "uAKPQ9": {
+    "defaultMessage": "Submit",
+    "description": "Submit field label"
+  },
+  "uDHTZn": {
+    "defaultMessage": "Results description",
+    "description": "Field label"
+  },
+  "uJ9eBc": {
+    "defaultMessage": "Image",
+    "description": "Image screen title"
+  },
+  "uKJRh2": {
+    "defaultMessage": "Title",
+    "description": "Title screen group"
+  },
+  "uNpHnA": {
+    "defaultMessage": "Bullet color",
+    "description": "Field label"
   },
   "uSpItE": {
     "defaultMessage": "Add tags...",
     "description": "Dropdown select label"
   },
+  "uaL28k": {
+    "defaultMessage": "Share Incentive",
+    "description": "Field label"
+  },
+  "udLCuY": {
+    "defaultMessage": "Shadow",
+    "description": "Field label"
+  },
   "ufac8e": {
     "defaultMessage": "Clear all",
     "description": "Button label"
+  },
+  "uiTxd7": {
+    "defaultMessage": "Results",
+    "description": "State label"
+  },
+  "uoF5Pv": {
+    "defaultMessage": "Content",
+    "description": "Field label"
+  },
+  "upzOTm": {
+    "defaultMessage": "Credits",
+    "description": "Credits field label"
   },
   "ur6G0U": {
     "defaultMessage": "Load more",
     "description": "Load button label in Media Gallery"
   },
+  "uwcXzb": {
+    "defaultMessage": "Image",
+    "description": "Breadcrumb field label"
+  },
+  "v1r3AA": {
+    "defaultMessage": "Progress bar color",
+    "description": "Field label"
+  },
+  "v4Qtl9": {
+    "defaultMessage": "Today",
+    "description": "Today date message"
+  },
   "v9bqYj": {
     "defaultMessage": "Go to next screen",
     "description": "Button label"
   },
+  "vERejo": {
+    "defaultMessage": "Video",
+    "description": "Field label"
+  },
+  "vRzzo6": {
+    "defaultMessage": "Zoom",
+    "description": "Field label"
+  },
   "vYunz+": {
     "defaultMessage": "Recent searches",
     "description": "Media label"
+  },
+  "vZrFq6": {
+    "defaultMessage": "Title with subtitle and credits",
+    "description": "TitleSubtitleCredits screen title"
   },
   "vdWMTA": {
     "defaultMessage": "Surtitle",
@@ -988,6 +2240,14 @@
   "vmrJ8U": {
     "defaultMessage": "(current screen)",
     "description": "Button label"
+  },
+  "vxEtY1": {
+    "defaultMessage": "Background image",
+    "description": "Breadcrumb field label"
+  },
+  "w3+kFW": {
+    "defaultMessage": "Game",
+    "description": "Screen group"
   },
   "wChc+A": {
     "defaultMessage": "Edit style...",
@@ -1005,6 +2265,10 @@
     "defaultMessage": "Select an audio file...",
     "description": "Label when no value is provided to Audio field"
   },
+  "wx5PI0": {
+    "defaultMessage": "Heading",
+    "description": "Heading field label"
+  },
   "wy2g+x": {
     "defaultMessage": "Are you sure you want to continue?",
     "description": "Delete error message in Media Gallery"
@@ -1013,17 +2277,33 @@
     "defaultMessage": "All sources",
     "description": "Media gallery source"
   },
+  "xCj1gI": {
+    "defaultMessage": "Add a message",
+    "description": "Button label"
+  },
   "xFlbR7": {
     "defaultMessage": "Link copied!",
     "description": "Message displayed once text was copied successfully."
+  },
+  "xKG76H": {
+    "defaultMessage": "Rounded corners",
+    "description": "Field label"
   },
   "xKUOLG": {
     "defaultMessage": "Technical details",
     "description": "Field title"
   },
+  "xL0GD2": {
+    "defaultMessage": "Aug 23 - Sept 22",
+    "description": "Horoscope date"
+  },
   "xSERPA": {
     "defaultMessage": "Video",
     "description": "Filter item label"
+  },
+  "xT/onn": {
+    "defaultMessage": "Image",
+    "description": "Field label"
   },
   "xTJlyi": {
     "defaultMessage": "Horizontal",
@@ -1033,6 +2313,30 @@
     "defaultMessage": "Author",
     "description": "Author placeholder"
   },
+  "xac4z/": {
+    "defaultMessage": "Entry styles",
+    "description": "Field label"
+  },
+  "xcHW4o": {
+    "defaultMessage": "Can view answers",
+    "description": "Field label"
+  },
+  "xj0o1v": {
+    "defaultMessage": "Grid",
+    "description": "UrbaniaHoroscope state"
+  },
+  "xlFOg3": {
+    "defaultMessage": "Inactive buttons",
+    "description": "Field label"
+  },
+  "xmp9nw": {
+    "defaultMessage": "Spacing",
+    "description": "Field label"
+  },
+  "xsipID": {
+    "defaultMessage": "Image",
+    "description": "Visual field label"
+  },
   "xuEZXD": {
     "defaultMessage": "Edit",
     "description": "Items edit button label"
@@ -1041,6 +2345,14 @@
     "defaultMessage": "Start from the current screen",
     "description": "Share mode"
   },
+  "y7xsPe": {
+    "defaultMessage": "Advanced settings",
+    "description": "Fields section label"
+  },
+  "yA4B6h": {
+    "defaultMessage": "Result feedback image",
+    "description": "Visual field label"
+  },
   "yByaBh": {
     "defaultMessage": "Added by",
     "description": "Field label"
@@ -1048,6 +2360,18 @@
   "yCXMzz": {
     "defaultMessage": "Close",
     "description": "Close button label in Media Gallery"
+  },
+  "yCj5uv": {
+    "defaultMessage": "Nov 23 - Dec 21",
+    "description": "Horoscope date"
+  },
+  "yEG9zh": {
+    "defaultMessage": "Date",
+    "description": "Text field label"
+  },
+  "yGd82s": {
+    "defaultMessage": "Custom answer",
+    "description": "Field label"
   },
   "yHAmDD": {
     "defaultMessage": "Image",
@@ -1073,6 +2397,10 @@
     "defaultMessage": "Learn more",
     "description": "Call to action default label"
   },
+  "z2I2bJ": {
+    "defaultMessage": "Overtitle",
+    "description": "Title field label"
+  },
   "z4CiV1": {
     "defaultMessage": "Text",
     "description": "Text placeholder"
@@ -1081,13 +2409,29 @@
     "defaultMessage": "Visual (Image or Video)",
     "description": "Placeholder label"
   },
+  "z9nSIG": {
+    "defaultMessage": "Content text style",
+    "description": "Field label"
+  },
   "zDH24s": {
     "defaultMessage": "Latitude",
     "description": "Latitude description"
   },
+  "zDdDqI": {
+    "defaultMessage": "Urbania trivia",
+    "description": "Urbania screen title"
+  },
   "zGIcdn": {
     "defaultMessage": "Sponsors",
     "description": "Sponsors placeholder"
+  },
+  "zLxBdl": {
+    "defaultMessage": "Location",
+    "description": "Text field label"
+  },
+  "zW7IVm": {
+    "defaultMessage": "Quiz",
+    "description": "Quiz screen title"
   },
   "zYH/31": {
     "defaultMessage": "Go to previous screen",
@@ -1100,5 +2444,13 @@
   "zl6zsZ": {
     "defaultMessage": "Lede",
     "description": "Lede placeholder"
+  },
+  "zrK6ak": {
+    "defaultMessage": "Heading text style",
+    "description": "Field label"
+  },
+  "zueWSA": {
+    "defaultMessage": "Audio attachment",
+    "description": "Field label"
   }
 }
