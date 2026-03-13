@@ -2,10 +2,11 @@ import React from 'react';
 
 interface PlayIconProps {
     className?: string | null;
-    color?: string;
+    color?: string | null;
 }
 
 function PlayIcon({ color = '#fff', className = null }: PlayIconProps) {
+    console.log('color', color);
     return (
         <svg
             width="40"

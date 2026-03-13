@@ -164,9 +164,9 @@ function PlaybackControls({
     const isCollapsed = (controls && !controlsVisible && playing) || (!controls && mediaHasAudio);
 
     const playIcon = playing ? (
-        <PauseIcon className={styles.icon} />
+        <PauseIcon className={styles.icon} color="currentColor" />
     ) : (
-        <PlayIcon className={styles.icon} />
+        <PlayIcon className={styles.icon} color="currentColor" />
     );
 
     return (
@@ -195,7 +195,12 @@ function PlaybackControls({
                     }}
                     onClick={playing ? onPause : onPlay}
                     focusable={controlsVisible}
-                    icon={<PlayIcon className={classNames([styles.icon, styles.offset])} />}
+                    icon={
+                        <PlayIcon
+                            className={classNames([styles.icon, styles.offset])}
+                            color="currentColor"
+                        />
+                    }
                     aria-pressed={!playing}
                     aria-label={intl.formatMessage({
                         defaultMessage: 'Pause',
@@ -265,9 +270,9 @@ function PlaybackControls({
                 focusable={controlsVisible || mediaHasAudio}
                 icon={
                     muted ? (
-                        <UnmuteIcon className={styles.icon} />
+                        <UnmuteIcon className={styles.icon} color="currentColor" />
                     ) : (
-                        <MuteIcon className={styles.icon} />
+                        <MuteIcon className={styles.icon} color="currentColor" />
                     )
                 }
                 aria-pressed={!muted}
