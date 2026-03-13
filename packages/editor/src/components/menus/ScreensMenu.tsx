@@ -13,6 +13,8 @@ import SortableTree from '../sortable/SortableTree';
 
 import styles from '../../styles/menus/screens.module.css';
 
+const emptyArray: never[] = [];
+
 interface ScreensMenuProps {
     items?: MenuItem[];
     withPreview?: boolean;
@@ -32,7 +34,7 @@ interface ScreensMenuProps {
 }
 
 function ScreensMenu({
-    items = [],
+    items = emptyArray,
     withPreview = false,
     withPlaceholder = false,
     withName = false,

@@ -21,6 +21,8 @@ import ActiveFilters from './ActiveFilters';
 
 import styles from '../../styles/partials/navbar.module.css';
 
+const emptyArray: never[] = [];
+
 interface NavbarProps {
     types?: string[];
     filters?: unknown;
@@ -48,8 +50,8 @@ function Navbar({
     media = null,
     selectedMedia = null,
     storyId = null,
-    tags = [],
-    authors = [],
+    tags = emptyArray,
+    authors = emptyArray,
     loading = false,
     withoutSource = false,
     withoutType = true,

@@ -6,6 +6,8 @@ import { withPanels } from '../../contexts';
 
 import styles from '../../styles/panels/panels.module.css';
 
+const emptyArray: never[] = [];
+
 interface PanelsContainerProps {
     panels?: Panel[];
     setPanelsContainer?: ((...args: unknown[]) => void) | null;
@@ -13,7 +15,7 @@ interface PanelsContainerProps {
 }
 
 function PanelsContainer({
-    panels = [],
+    panels = emptyArray,
     setPanelsContainer = null,
     className = null,
 }: PanelsContainerProps) {

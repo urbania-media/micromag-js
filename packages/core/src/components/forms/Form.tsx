@@ -16,6 +16,8 @@ import FieldForm from './Field';
 
 import styles from '../../styles/forms/form.module.css';
 
+const emptyArray: never[] = [];
+
 interface FormProps {
     action: string;
     method?: string;
@@ -48,7 +50,7 @@ interface FormProps {
 function Form({
     action,
     method = 'POST',
-    fields: initialFields = [],
+    fields: initialFields = emptyArray,
     initialValue = null,
     postForm = null,
 

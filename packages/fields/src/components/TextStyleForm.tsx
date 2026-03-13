@@ -7,6 +7,8 @@ import { getFontFamilyFromFont, getStyleFromText } from '@micromag/core/utils';
 
 import FieldWithForm from './FieldWithForm';
 
+const emptyArray: never[] = [];
+
 interface TextStyleFormProps {
     value?: { color?: string; alpha?: number } | null;
     fields?: { id?: string }[];
@@ -20,7 +22,7 @@ interface TextStyleFormProps {
 
 function TextStyleForm({
     value = null,
-    fields = [],
+    fields = emptyArray,
     sections = null,
     onChange = null,
     closeForm = null,

@@ -7,6 +7,8 @@ import Button from '../buttons/Button';
 import Link from '../partials/Link';
 import Dropdown from './Dropdown';
 
+const emptyArray: never[] = [];
+
 interface MenuProps {
     items?: MenuItem[];
     tagName?: string;
@@ -28,7 +30,7 @@ interface MenuProps {
 }
 
 function Menu({
-    items = [],
+    items = emptyArray,
     tagName = 'ul',
     itemTagName = 'li',
     children = null,

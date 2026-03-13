@@ -6,6 +6,11 @@ import TextField from './Text';
 
 import styles from '../styles/autocomplete.module.css';
 
+const emptyArray: never[] = [];
+const defaultSearchOptions = {
+    keys: ['label', 'value'],
+};
+
 interface AutocompleteFieldProps {
     items?: { label?: string; value?: number | string }[];
     value?: string | null;
@@ -27,13 +32,9 @@ interface AutocompleteFieldProps {
 }
 
 function AutocompleteField({
-    items = [],
+    items = emptyArray,
     value = null,
-
-    searchOptions = {
-        // Search in `label` and in `value` items in an object array
-        keys: ['label', 'value'],
-    },
+    searchOptions = defaultSearchOptions,
 
     maxResults = 10,
     showEmpty = false,

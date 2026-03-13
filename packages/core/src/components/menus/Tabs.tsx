@@ -6,6 +6,8 @@ import Buttons from '../buttons/Buttons';
 
 import styles from '../../styles/menus/tabs.module.css';
 
+const emptyArray: never[] = [];
+
 interface TabsMenuProps {
     items?: MenuItem[];
     size?: ButtonSize | null;
@@ -17,7 +19,7 @@ interface TabsMenuProps {
 }
 
 function TabsMenu({
-    items = [],
+    items = emptyArray,
     size = null,
     theme = 'secondary',
     renderItemButton = null,

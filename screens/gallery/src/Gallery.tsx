@@ -41,6 +41,8 @@ import layoutProps from './layouts';
 
 import styles from './gallery.module.css';
 
+const emptyArray: never[] = [];
+
 interface GalleryScreenProps {
     layout?:
         | 'two-vertical-equal'
@@ -75,7 +77,7 @@ interface GalleryScreenProps {
 
 function GalleryScreen({
     layout = 'four-mosaic',
-    images = [],
+    images = emptyArray,
     withCaptions = false,
     imageCaptionStyle = null,
     background = null,

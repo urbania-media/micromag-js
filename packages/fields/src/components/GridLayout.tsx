@@ -10,6 +10,8 @@ import Radios from './Radios';
 
 import styles from '../styles/grid-layout.module.css';
 
+const emptyArray: never[] = [];
+
 interface GridLayoutProps {
     grids?: GridLayoutType[];
     value?: { rows?: number; columns?: number[] }[] | null;
@@ -18,7 +20,7 @@ interface GridLayoutProps {
 }
 
 function GridLayout({
-    grids = [],
+    grids = emptyArray,
     value = null,
     className = null,
     onChange = null,

@@ -10,6 +10,8 @@ import { useDocumentEvent } from '../../hooks';
 import Label from '../partials/Label';
 import Link from '../partials/Link';
 
+const emptyArray: never[] = [];
+
 interface DropdownProps {
     items?: MenuItem[];
     children?: React.ReactNode | null;
@@ -22,7 +24,7 @@ interface DropdownProps {
 }
 
 function Dropdown({
-    items = [],
+    items = emptyArray,
     children = null,
     visible = false,
     align = null,

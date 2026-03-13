@@ -8,6 +8,8 @@ import Label from '../partials/Label';
 
 import styles from '../../styles/menus/breadcrumb.module.css';
 
+const emptyArray: never[] = [];
+
 interface BreadcrumbProps {
     items?: MenuItem[];
     theme?: BootstrapTheme | null;
@@ -18,7 +20,7 @@ interface BreadcrumbProps {
 }
 
 function Breadcrumb({
-    items = [],
+    items = emptyArray,
     theme = null,
     separator = null,
     withoutBar = false,

@@ -52,6 +52,8 @@ const stopDragEventsPropagation = {
     onPointerUp: (e) => e.stopPropagation(),
     onPointerDown: (e) => e.stopPropagation(),
 };
+const emptyArray: never[] = [];
+
 interface MapScreenProps {
     layout?: 'normal';
     draggable?: boolean;
@@ -74,7 +76,7 @@ interface MapScreenProps {
 function MapScreen({
     layout = 'normal',
     draggable = true,
-    markers = [],
+    markers = emptyArray,
     title = null,
     description = null,
     button = null,

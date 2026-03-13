@@ -6,6 +6,9 @@ import { getComponentFromName, getFieldFromPath, setFieldValue } from '../../uti
 
 import { FieldContextProvider, useFieldComponent, useFieldsManager } from '../../contexts';
 
+const emptyArray: never[] = [];
+const emptyObject = {} as const;
+
 interface FieldFormProps {
     name?: string | null;
     value?: Component | null;
@@ -23,8 +26,8 @@ function FieldForm({
     name = null,
     value = null,
     form = null,
-    formComponents = {},
-    fields = [],
+    formComponents = emptyObject,
+    fields = emptyArray,
     className = null,
     onChange = null,
     gotoFieldForm,

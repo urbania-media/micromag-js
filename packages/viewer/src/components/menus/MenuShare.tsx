@@ -12,6 +12,8 @@ import MicromagPreview from '../partials/MicromagPreview';
 
 import styles from '../../styles/menus/menu-share.module.css';
 
+const emptyArray: never[] = [];
+
 interface ViewerMenuShareProps {
     viewerTheme?: ViewerTheme;
     menuWidth?: number;
@@ -32,7 +34,7 @@ function ViewerMenuShare({
     menuWidth = null,
     title = null,
     description = null,
-    items = [],
+    items = emptyArray,
     shareOptions = null,
     focusable = true,
     paddingTop = null,

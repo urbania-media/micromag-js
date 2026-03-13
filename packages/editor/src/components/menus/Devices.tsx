@@ -9,13 +9,15 @@ import DeviceButton from '../buttons/Device';
 
 import styles from '../../styles/menus/devices.module.css';
 
+const emptyArray: never[] = [];
+
 interface DevicesMenuProps {
     items?: MenuItem[];
     className?: string;
     onClickItem?: (...args: unknown[]) => void;
 }
 
-function DevicesMenu({ items = [], className = null, onClickItem = null }) {
+function DevicesMenu({ items = emptyArray, className = null, onClickItem = null }) {
     return (
         <Tabs
             items={items}

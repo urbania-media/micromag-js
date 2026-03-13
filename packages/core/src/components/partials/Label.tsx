@@ -4,13 +4,15 @@ import { FormattedMessage } from 'react-intl';
 
 import { isMessage } from '../../utils';
 
+const emptyObject = {} as const;
+
 interface LabelProps {
     children: Label;
     isHtml?: boolean;
     values?: Record<string, unknown>;
 }
 
-function Label({ children, isHtml = false, values = {} }: LabelProps) {
+function Label({ children, isHtml = false, values = emptyObject }: LabelProps) {
     const Message = isHtml ? FormattedMessage : FormattedMessage;
     return isMessage(children) ? <Message values={values} {...children} /> : children;
 }

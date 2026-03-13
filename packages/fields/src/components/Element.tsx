@@ -4,6 +4,8 @@ import type { FormField } from '@micromag/core';
 
 import Fields from './Fields';
 
+const emptyArray: never[] = [];
+
 interface ElementFieldProps {
     name?: string | null;
     fields?: FormField[];
@@ -16,7 +18,7 @@ interface ElementFieldProps {
 
 function ElementField({
     name = null,
-    fields: formFields = [],
+    fields: formFields = emptyArray,
     value = null,
     gotoFieldForm = null,
     closeFieldForm = null,

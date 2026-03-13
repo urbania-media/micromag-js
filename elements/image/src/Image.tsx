@@ -9,6 +9,8 @@ import { getOptimalImageUrl } from '@micromag/core/utils';
 
 import styles from './styles.module.css';
 
+const emptyObject = {} as const;
+
 interface ImageProps {
     media?: ImageMedia | null;
     alt?: string | null;
@@ -33,8 +35,8 @@ function Image({
     height = null,
     resolution = 1,
     objectFit = null,
-    containerStyle = {},
-    imageStyle = {},
+    containerStyle = emptyObject,
+    imageStyle = emptyObject,
     className = null,
     imageClassName = null,
     onLoaded = null,

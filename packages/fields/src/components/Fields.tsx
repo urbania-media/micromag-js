@@ -13,6 +13,8 @@ import FieldRow from './FieldRow';
 
 import styles from '../styles/fields.module.css';
 
+const emptyArray: never[] = [];
+
 interface FieldsProps {
     name?: string | null;
     fields?: FormField[];
@@ -38,7 +40,7 @@ interface FieldsProps {
 
 function Fields({
     name: namespace = null,
-    fields = [],
+    fields = emptyArray,
     excludedFields = null,
     value = null,
     errors = null,

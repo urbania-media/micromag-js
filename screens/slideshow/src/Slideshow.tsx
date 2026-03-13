@@ -31,6 +31,8 @@ import Visual from '@micromag/element-visual';
 
 import styles from './slideshow.module.css';
 
+const emptyArray: never[] = [];
+
 interface SlideshowScreenProps {
     slides?: ImageMedia[] | ImageElement[];
     withCaptions?: boolean;
@@ -48,7 +50,7 @@ interface SlideshowScreenProps {
 }
 
 function SlideshowScreen({
-    slides = [],
+    slides = emptyArray,
     withCaptions = false,
     background = null,
     header = null,

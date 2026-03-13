@@ -12,6 +12,8 @@ import MenuScreen from './MenuScreen';
 
 import styles from '../../styles/menus/menu-preview.module.css';
 
+const emptyArray: never[] = [];
+
 interface ViewerMenuPreviewProps {
     viewerTheme?: ViewerTheme;
     header?: React.ReactNode;
@@ -36,7 +38,7 @@ function ViewerMenuPreview({
     screenSize = null,
     title = null,
     menuWidth = null,
-    items = [],
+    items = emptyArray,
     focusable = true,
     onClickScreen = null,
     maxThumbsWidth = 140,

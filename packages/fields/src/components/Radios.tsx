@@ -9,6 +9,8 @@ import getSelectOptions from '../utils/getSelectOptions';
 
 import styles from '../styles/radios.module.css';
 
+const emptyArray: never[] = [];
+
 interface RadiosProps {
     name?: string | null;
     value?: string | null;
@@ -24,7 +26,7 @@ interface RadiosProps {
 function Radios({
     name = null,
     value = null,
-    options = [],
+    options = emptyArray,
     withBackground = false,
     className = null,
     buttonClassName = null,

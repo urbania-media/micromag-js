@@ -6,6 +6,8 @@ import Button from './Button';
 
 import styles from '../../styles/buttons/buttons.module.css';
 
+const emptyArray: never[] = [];
+
 interface ButtonsProps {
     buttons?: Button[];
     size?: ButtonSize | null;
@@ -17,7 +19,7 @@ interface ButtonsProps {
 }
 
 function Buttons({
-    buttons = [],
+    buttons = emptyArray,
     size = null,
     theme = undefined,
     renderButton = null,

@@ -9,6 +9,8 @@ import getSelectOptions from '../utils/getSelectOptions';
 
 import styles from '../styles/checkboxes.module.css';
 
+const emptyArray: never[] = [];
+
 interface CheckboxesProps {
     name?: string | null;
     value?: string[] | null;
@@ -23,7 +25,7 @@ function Checkboxes({
     name = null,
     value = null,
     singleChoice = false,
-    options = [],
+    options = emptyArray,
     className = null,
     buttonClassName = null,
     onChange = null,

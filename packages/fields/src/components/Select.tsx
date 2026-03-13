@@ -8,6 +8,8 @@ import getSelectOptions from '../utils/getSelectOptions';
 
 import styles from '../styles/select.module.css';
 
+const emptyArray: never[] = [];
+
 interface SelectFieldProps {
     value?: string | null;
     options?: SelectOption[];
@@ -18,7 +20,7 @@ interface SelectFieldProps {
 
 function SelectField({
     value = null,
-    options = [],
+    options = emptyArray,
     disabled = false,
     className = null,
     onChange = null,

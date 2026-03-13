@@ -10,6 +10,8 @@ import MenuDot from './MenuDot';
 
 import styles from '../../styles/menus/menu-dots.module.css';
 
+const emptyArray: never[] = [];
+
 interface ViewerMenuDotsProps {
     direction?: 'horizontal' | 'vertical';
     items?: MenuItem[];
@@ -26,7 +28,7 @@ interface ViewerMenuDotsProps {
 
 function ViewerMenuDots({
     direction = 'horizontal',
-    items = [],
+    items = emptyArray,
     onClickDot = null,
     onClickScreensMenu = null,
     colors = null,

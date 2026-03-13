@@ -13,6 +13,8 @@ import { useMediaUpdate, useMediaDelete, useMediaRequestDelete } from '@micromag
 
 import styles from '../../styles/partials/media-metadata.module.css';
 
+const emptyArray: never[] = [];
+
 interface MediaMetadataProps {
     media?: Media;
     tags?: Tag[];
@@ -25,7 +27,7 @@ interface MediaMetadataProps {
 
 function MediaMetadata({
     media = null,
-    tags: allTags = [],
+    tags: allTags = emptyArray,
     onChange = null,
     onClickClose = null,
     onClickSave = null,

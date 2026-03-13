@@ -14,6 +14,8 @@ import TagSection from './TagSection';
 
 import styles from '../../styles/forms/search-filters.module.css';
 
+const emptyArray: never[] = [];
+
 interface SearchFiltersProps {
     filters?: Record<string, unknown>;
     sections?: Record<string, unknown>[];
@@ -24,7 +26,7 @@ interface SearchFiltersProps {
 
 function SearchFilters({
     filters = null,
-    sections = [],
+    sections = emptyArray,
     onChange = null,
     onClose = null,
     className = null,

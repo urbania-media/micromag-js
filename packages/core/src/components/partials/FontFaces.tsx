@@ -2,6 +2,23 @@
 import isObject from 'lodash/isObject';
 import React from 'react';
 
+const emptyArray: never[] = [];
+
+const defaultFormats = [
+    'eot',
+    'woff2',
+    'woff',
+    {
+        name: 'otf',
+        format: 'opentype',
+    },
+    {
+        name: 'ttf',
+        format: 'truetype',
+    },
+    'svg',
+];
+
 const getUrlsFromMedia = (media, formats) => {
     const { files = {} } = media || {};
     const { original: originalFile = null } = files || {};
@@ -32,22 +49,8 @@ interface FontFacesProps {
 }
 
 function FontFaces({
-    fonts = [],
-
-    formats = [
-        'eot',
-        'woff2',
-        'woff',
-        {
-            name: 'otf',
-            format: 'opentype',
-        },
-        {
-            name: 'ttf',
-            format: 'truetype',
-        },
-        'svg',
-    ],
+    fonts = emptyArray,
+    formats = defaultFormats,
 }: FontFacesProps) {
     const fontFaces = (fonts || [])
         .filter((it) => isObject(it) && it.type === 'custom' && (it.media || null) !== null)

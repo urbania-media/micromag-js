@@ -10,6 +10,8 @@ import type { SelectOption } from '@micromag/core';
 import getSelectOptions from '../utils/getSelectOptions';
 import { selectTheme } from '../utils/selectTheme';
 
+const emptyArray: never[] = [];
+
 interface SelectAdvancedFieldProps {
     name?: string | null;
     value?: string | null;
@@ -23,7 +25,7 @@ interface SelectAdvancedFieldProps {
 function SelectAdvancedField({
     name = null,
     value = null,
-    options = [],
+    options = emptyArray,
     withoutReset = false,
     disabled = false,
     className = null,

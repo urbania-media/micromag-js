@@ -11,6 +11,8 @@ import CloseButton from '../buttons/Close';
 
 import styles from '../../styles/partials/active-filters.module.css';
 
+const emptyArray: never[] = [];
+
 interface ActiveFiltersProps {
     filters?: { types?: string[]; tags?: string[]; users?: string[]; usage?: ('used' | 'unused')[] };
     onChange?: (...args: unknown[]) => void;
@@ -19,7 +21,7 @@ interface ActiveFiltersProps {
     className?: string;
 }
 
-function ActiveFilters({ filters = null, onChange = null, onReset = null, sections = [], className = null }) {
+function ActiveFilters({ filters = null, onChange = null, onReset = null, sections = emptyArray, className = null }) {
     const handleReset = useCallback(() => {
         if (onReset !== null) {
             onReset();

@@ -4,6 +4,9 @@ import isString from 'lodash/isString';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
+const emptyArray: never[] = [];
+const emptyObject = {} as const;
+
 interface MetaProps {
     title?: string | null;
     url?: string | null;
@@ -29,13 +32,13 @@ function Meta({
         favicon = null,
         rssUrl = null,
         atomUrl = null,
-        microformats = [],
+        microformats = emptyArray,
         language = null,
     } = metadata || {};
 
     const realTitle = title !== null ? `${title} | ${suffix}` : fullTitle;
 
-    const { url: imageUrl = null, metadata: imageMetadata = {} } = image || {};
+    const { url: imageUrl = null, metadata: imageMetadata = emptyObject } = image || {};
     const { width: imageWidth = null, height: imageHeight = null } = imageMetadata || {};
     const { url: faviconUrl = null } = favicon || {};
 

@@ -13,6 +13,14 @@ import useCKEditor from '../hooks/useCKEditor';
 
 import styles from '../styles/text-editor.module.css';
 
+const emptyArray: never[] = [];
+const defaultEditorConfigValue = {
+    toolbar: ['bold', 'italic', 'superscript', 'highlight', '|', 'link', 'blockquote'],
+    link: {
+        addTargetToExternalLinks: true,
+    },
+};
+
 interface TextEditorFieldProps {
     value?: string | null;
     size?: FormControlSize | null;
@@ -34,12 +42,7 @@ function TextEditorField({
     className = null,
     textStyle = null,
 
-    editorConfig = {
-        toolbar: ['bold', 'italic', 'superscript', 'highlight', '|', 'link', 'blockquote'],
-        link: {
-            addTargetToExternalLinks: true,
-        },
-    },
+    editorConfig = defaultEditorConfigValue,
 
     inline = false,
     withHighlightColors = false,
@@ -54,9 +57,9 @@ function TextEditorField({
     const {
         Editor = null,
         InlineEditor = null,
-        defaultPlugins = [],
-        fullPlugins = [],
-        inlinePlugins = [],
+        defaultPlugins = emptyArray,
+        fullPlugins = emptyArray,
+        inlinePlugins = emptyArray,
     } = useCKEditor();
 
     const getColors = useGetColors();

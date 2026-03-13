@@ -12,6 +12,8 @@ export const ELEMENTS_NAMESPACE = 'elements';
 
 export const ComponentsContext = React.createContext(null);
 
+const emptyComponents = {};
+
 /**
  * Hooks
  */
@@ -25,7 +27,7 @@ export const useComponentsManager = (namespace = null) => {
     return finalManager;
 };
 
-export const useComponents = (namespace = null, defaultComponents = {}) => {
+export const useComponents = (namespace = null, defaultComponents = emptyComponents) => {
     const manager = useComponentsManager();
     return manager.getComponents(namespace) || defaultComponents;
 };
@@ -45,7 +47,7 @@ export const useComponent = (name, defaultComponent = null, namespace = null) =>
  */
 export const useFieldsComponentsManager = () => useComponentsManager(FIELDS_NAMESPACE);
 
-export const useFieldsComponents = (defaultComponents = {}) =>
+export const useFieldsComponents = (defaultComponents = emptyComponents) =>
     useComponents(FIELDS_NAMESPACE, defaultComponents);
 
 export const useFieldComponent = (name, defaultComponent = null) =>
@@ -56,7 +58,7 @@ export const useFieldComponent = (name, defaultComponent = null) =>
  */
 export const useScreensComponentsManager = () => useComponentsManager(SCREENS_NAMESPACE);
 
-export const useScreensComponents = (defaultComponents = {}) =>
+export const useScreensComponents = (defaultComponents = emptyComponents) =>
     useComponents(SCREENS_NAMESPACE, defaultComponents);
 
 export const useScreenComponent = (name, defaultComponent = null) =>
@@ -67,7 +69,7 @@ export const useScreenComponent = (name, defaultComponent = null) =>
  */
 export const useFormsComponentsManager = () => useComponentsManager(FORMS_NAMESPACE);
 
-export const useFormsComponents = (defaultComponents = {}) =>
+export const useFormsComponents = (defaultComponents = emptyComponents) =>
     useComponents(FORMS_NAMESPACE, defaultComponents);
 
 export const useFormComponent = (name, defaultComponent = null) =>
@@ -78,7 +80,7 @@ export const useFormComponent = (name, defaultComponent = null) =>
  */
 export const useModalsComponentsManager = () => useComponentsManager(MODALS_NAMESPACE);
 
-export const useModalsComponents = (defaultComponents = {}) =>
+export const useModalsComponents = (defaultComponents = emptyComponents) =>
     useComponents(MODALS_NAMESPACE, defaultComponents);
 
 export const useModalComponent = (name, defaultComponent = null) =>
@@ -89,7 +91,7 @@ export const useModalComponent = (name, defaultComponent = null) =>
  */
 export const useElementsComponentsManager = () => useComponentsManager(ELEMENTS_NAMESPACE);
 
-export const useElementsComponents = (defaultComponents = {}) =>
+export const useElementsComponents = (defaultComponents = emptyComponents) =>
     useComponents(ELEMENTS_NAMESPACE, defaultComponents);
 
 export const useElementComponent = (name, defaultComponent = null) =>
@@ -98,8 +100,6 @@ export const useElementComponent = (name, defaultComponent = null) =>
 /**
  * Provider
  */
-const emptyComponents = {};
-
 interface ComponentsProviderProps {
     children: React.ReactNode;
     namespace?: string;

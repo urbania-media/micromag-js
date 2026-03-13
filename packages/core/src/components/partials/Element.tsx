@@ -5,6 +5,8 @@ import { pascalCase } from '../../utils';
 
 import PlaceholderBlock from './PlaceholderBlock';
 
+const emptyObject = {} as const;
+
 interface ElementComponentProps {
     name: string;
     components: Record<string, unknown>;
@@ -17,7 +19,7 @@ interface ElementComponentProps {
 function ElementComponent({
     name,
     components,
-    props = {},
+    props = emptyObject,
     isPlaceholder = false,
     className = null,
     placeholderProps = null,

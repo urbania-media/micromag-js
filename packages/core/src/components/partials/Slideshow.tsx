@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 
 import styles from '../../styles/partials/slideshow.module.css';
 
+const emptyArray: never[] = [];
+
 interface SlideshowProps {
     items?: React.ReactNode[];
     auto?: boolean;
@@ -15,7 +17,7 @@ interface SlideshowProps {
 }
 
 function Slideshow({
-    items = [],
+    items = emptyArray,
     auto = true,
     delay = 5000,
     width = null,

@@ -8,6 +8,8 @@ import { selectTheme } from '../utils/selectTheme';
 
 import styles from '../styles/tokens.module.css';
 
+const emptyArray: never[] = [];
+
 interface TokensProps {
     value?: unknown[] | null;
     onChange?: ((...args: unknown[]) => void) | null;
@@ -21,7 +23,7 @@ interface TokensProps {
 
 function Tokens({
     value = null,
-    options = [],
+    options = emptyArray,
     loadOptions = null,
     getOptionLabel = undefined,
     getOptionValue = undefined,
