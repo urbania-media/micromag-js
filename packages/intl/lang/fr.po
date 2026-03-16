@@ -2387,7 +2387,7 @@ msgstr "Graisse de la police"
 #: eJMcXw
 msgctxt "eJMcXw"
 msgid "Sort game"
-msgstr "Jeu de tri"
+msgstr "Jeu de l'ordre"
 
 # Field label
 #: eNdbJF

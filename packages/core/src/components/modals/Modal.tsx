@@ -23,6 +23,7 @@ function Modal({ id = null, children = null, position = 'center', title = null }
         }),
         [title],
     );
+
     return (
         <Portal id={finalId} data={data}>
             <div

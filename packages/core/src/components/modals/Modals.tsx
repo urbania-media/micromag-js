@@ -17,7 +17,6 @@ function ModalsContainer({ modals, setModalsContainer, className = null }: Modal
     useEffect(() => {
         setModalsContainer(containerRef.current);
     }, []);
-
     return (
         <div
             className={classNames([

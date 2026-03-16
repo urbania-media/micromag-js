@@ -7,6 +7,6 @@
         position: fixed;
         z-index: 1000;
         background-color: rgb(28 28 28 / 0.5);
-        inset: 10px;
+        inset: 0;
     }
 }

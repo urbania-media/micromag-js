@@ -61,11 +61,16 @@
     background-color: #e9e9e9;
 }
 
+/* Badges */
+.text-bg-secondary {
+    color: #000 !important;
+}
+
 /* ===== Buttons ===== */
 
 .btn {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: var(--bs-btn-padding-y, 0.5rem);
+    padding-bottom: var(--bs-btn-padding-y, 0.5rem);
     font-weight: 600;
 }
 

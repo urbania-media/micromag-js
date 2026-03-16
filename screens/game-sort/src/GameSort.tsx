@@ -528,7 +528,7 @@ function GameSort({
                         >
                             <Text {...results} />
                         </div>
-                    ) : (
+                    ) : !isPlaceholder ? (
                         <Button
                             className={styles.submitButton}
                             disabled={validated !== null}
@@ -545,7 +545,7 @@ function GameSort({
                                     description: 'Button label',
                                 })}
                         </Button>
-                    )}
+                    ) : null}
                     {!isPlaceholder && hasFooter ? (
                         <div
                             className={styles.footer}
