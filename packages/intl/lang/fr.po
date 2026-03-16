@@ -123,7 +123,7 @@ msgstr "Date"
 #: /OM5UY
 msgctxt "/OM5UY"
 msgid "Tags"
-msgstr "Étiquettes"
+msgstr "Libellés"
 
 # Horoscope sign
 #: /PJA/1
@@ -435,7 +435,7 @@ msgstr "Galerie de flux"
 #: 4fHMVj
 msgctxt "4fHMVj"
 msgid "Tags"
-msgstr "Étiquettes"
+msgstr "Libellés"
 
 # Horoscope sign
 #: 4g35M0
@@ -753,7 +753,7 @@ msgstr "Titre avec boîte"
 #: 9mXl24
 msgctxt "9mXl24"
 msgid "Tags"
-msgstr "Étiquettes"
+msgstr "Libellés"
 
 # Button label in images with caption field
 #: 9n9+yP
@@ -927,7 +927,7 @@ msgstr "Aucun bouton"
 #: Cg3LGu
 msgctxt "Cg3LGu"
 msgid "Label"
-msgstr "Étiquette"
+msgstr "Libellé"
 
 # Button label
 #: CnVj9r
@@ -1011,7 +1011,7 @@ msgstr "Description"
 #: ET527E
 msgctxt "ET527E"
 msgid "Font family"
-msgstr "Famille de polices"
+msgstr "Police"
 
 # Subtitle field label
 #: EcZYpr
@@ -1191,7 +1191,7 @@ msgstr "Titre"
 #: IOVper
 msgctxt "IOVper"
 msgid "Tags"
-msgstr "Étiquettes"
+msgstr "Libellés"
 
 # Button label
 #: IbZVf0
@@ -1485,7 +1485,7 @@ msgstr "Style du texte"
 #: OJi+eg
 msgctxt "OJi+eg"
 msgid "Label"
-msgstr "Étiquette"
+msgstr "Libellé"
 
 # Field label
 #: OPxJx/
@@ -1497,7 +1497,7 @@ msgstr "Mise en page"
 #: OSl7A6
 msgctxt "OSl7A6"
 msgid "Swipe up"
-msgstr "Glisser vers le haut"
+msgstr "Glisser"
 
 # Label when there is no item in slides field
 #: OdcEna
@@ -1575,7 +1575,7 @@ msgstr "Audios"
 #: PYokTY
 msgctxt "PYokTY"
 msgid "Label box style"
-msgstr "Style de la boîte d'étiquette"
+msgstr "Style de la boîte d'Libellé"
 
 # Button label
 #: PyxZY2
@@ -2614,13 +2614,13 @@ msgstr "Audio"
 #: hzvEim
 msgctxt "hzvEim"
 msgid "Sponsor Label"
-msgstr "Étiquette du commanditaire"
+msgstr "Libellé du commanditaire"
 
 # No value label
 #: i+3ZrF
 msgctxt "i+3ZrF"
 msgid "Select a font family..."
-msgstr "Sélectionner une famille de polices..."
+msgstr "Sélectionner une police..."
 
 # Field label
 #: i6bmbD
@@ -3146,7 +3146,7 @@ msgstr "Confirmer la sélection"
 #: rzXCu2
 msgctxt "rzXCu2"
 msgid "Label style"
-msgstr "Style de l'étiquette"
+msgstr "Style de l'Libellé"
 
 # Breadcrumb field label
 #: rzdds2
@@ -3284,7 +3284,7 @@ msgstr "Couleur de puce"
 #: uSpItE
 msgctxt "uSpItE"
 msgid "Add tags..."
-msgstr "Ajouter des étiquettes..."
+msgstr "Ajouter des Libellés..."
 
 # Field label
 #: uaL28k

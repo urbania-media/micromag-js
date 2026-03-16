@@ -54,7 +54,7 @@
         "defaultMessage": "Date"
     },
     "/OM5UY": {
-        "defaultMessage": "Étiquettes"
+        "defaultMessage": "Libellés"
     },
     "/PJA/1": {
         "defaultMessage": "Bélier"
@@ -210,7 +210,7 @@
         "defaultMessage": "Galerie de flux"
     },
     "4fHMVj": {
-        "defaultMessage": "Étiquettes"
+        "defaultMessage": "Libellés"
     },
     "4g35M0": {
         "defaultMessage": "Gémeaux"
@@ -369,7 +369,7 @@
         "defaultMessage": "Titre avec boîte"
     },
     "9mXl24": {
-        "defaultMessage": "Étiquettes"
+        "defaultMessage": "Libellés"
     },
     "9n9+yP": {
         "defaultMessage": "Ajouter une image"
@@ -456,7 +456,7 @@
         "defaultMessage": "Aucun bouton"
     },
     "Cg3LGu": {
-        "defaultMessage": "Étiquette"
+        "defaultMessage": "Libellé"
     },
     "CnVj9r": {
         "defaultMessage": "Passer aux contrôles"
@@ -498,7 +498,7 @@
         "defaultMessage": "Description"
     },
     "ET527E": {
-        "defaultMessage": "Famille de polices"
+        "defaultMessage": "Police"
     },
     "EcZYpr": {
         "defaultMessage": "Sous-titre"
@@ -588,7 +588,7 @@
         "defaultMessage": "Titre"
     },
     "IOVper": {
-        "defaultMessage": "Étiquettes"
+        "defaultMessage": "Libellés"
     },
     "IbZVf0": {
         "defaultMessage": "Soumettre"
@@ -735,13 +735,13 @@
         "defaultMessage": "Style du texte"
     },
     "OJi+eg": {
-        "defaultMessage": "Étiquette"
+        "defaultMessage": "Libellé"
     },
     "OPxJx/": {
         "defaultMessage": "Mise en page"
     },
     "OSl7A6": {
-        "defaultMessage": "Glisser vers le haut"
+        "defaultMessage": "Glisser"
     },
     "OdcEna": {
         "defaultMessage": "Aucune diapositive..."
@@ -780,7 +780,7 @@
         "defaultMessage": "Audios"
     },
     "PYokTY": {
-        "defaultMessage": "Style de la boîte d'étiquette"
+        "defaultMessage": "Style de la boîte d'Libellé"
     },
     "PyxZY2": {
         "defaultMessage": "Annuler"
@@ -1305,10 +1305,10 @@
         "defaultMessage": "Audio"
     },
     "hzvEim": {
-        "defaultMessage": "Étiquette du commanditaire"
+        "defaultMessage": "Libellé du commanditaire"
     },
     "i+3ZrF": {
-        "defaultMessage": "Sélectionner une famille de polices..."
+        "defaultMessage": "Sélectionner une police..."
     },
     "i6bmbD": {
         "defaultMessage": "Bouton"
@@ -1572,7 +1572,7 @@
         "defaultMessage": "Confirmer la sélection"
     },
     "rzXCu2": {
-        "defaultMessage": "Style de l'étiquette"
+        "defaultMessage": "Style de l'Libellé"
     },
     "rzdds2": {
         "defaultMessage": "Intervenant"
@@ -1641,7 +1641,7 @@
         "defaultMessage": "Couleur de puce"
     },
     "uSpItE": {
-        "defaultMessage": "Ajouter des étiquettes..."
+        "defaultMessage": "Ajouter des Libellés..."
     },
     "uaL28k": {
         "defaultMessage": "Incitation au partage"
