@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import { useForm } from '../../hooks';
 import { validateFields } from '../../utils';
 
-import { useFieldComponent } from '../../contexts';
+import { useFieldComponent, useFieldContext } from '../../contexts';
 import BackButton from '../buttons/Back';
 import Button from '../buttons/Button';
 import Buttons from '../buttons/Buttons';
@@ -131,6 +131,8 @@ function Form({
 
     const canSave = validateFields(fields, value);
 
+    const fieldContext = useFieldContext();
+
     const [fieldPaths, setFieldPaths] = useState([]);
 
     const gotoFieldForm = useCallback(
@@ -190,6 +192,7 @@ function Form({
                         onChange={setValue}
                         gotoFieldForm={gotoFieldForm}
                         closeFieldForm={closeFieldForm}
+                        fieldContext={fieldContext}
                     />
                 </div>
             ) : null}

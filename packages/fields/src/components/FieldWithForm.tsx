@@ -103,7 +103,7 @@ function FieldWithForm({
         // Strip html
         labelElement =
             labelString !== null && isString(labelString)
-                ? labelString.replace(/(<([^>]+)>)/gi, '')
+                ? labelString.replace(/(<([^>]+)>)/gi, '').replace(/\&nbsp;/g, ' ')
                 : null;
 
         labelElement = React.isValidElement(labelValue) ? labelValue : labelElement;

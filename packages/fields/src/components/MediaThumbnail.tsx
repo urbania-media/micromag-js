@@ -57,7 +57,7 @@ function MediaThumbnail({
                 },
             ])}
         >
-            <Image {...props} isForm value={isObject(value) ? value : null} onChange={onChange} />
+            <Image {...props} isForm value={isObject(value) ? value : null} onChange={onChange} closeForm={null} />
         </div>
     ) : (
         <div
@@ -80,8 +80,8 @@ function MediaThumbnail({
                     />
                 </div>
             ) : null}
-            <FieldRow {...props} withForm>
-                <Image value={isObject(value) ? value : null} onChange={onChange} {...props} />
+            <FieldRow {...props}>
+                <Image {...props} value={isObject(value) ? value : null} onChange={onChange} closeForm={null} />
             </FieldRow>
         </div>
     );

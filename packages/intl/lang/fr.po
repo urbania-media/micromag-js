@@ -1575,7 +1575,7 @@ msgstr "Audios"
 #: PYokTY
 msgctxt "PYokTY"
 msgid "Label box style"
-msgstr "Style de la boîte d'Libellé"
+msgstr "Style de la boîte de libellé"
 
 # Button label
 #: PyxZY2
@@ -1706,7 +1706,7 @@ msgstr "Style du nom publié"
 #: T0pi1u
 msgctxt "T0pi1u"
 msgid "With seek bar"
-msgstr "Avec barre de recherche"
+msgstr "Avec barre d'avancement"
 
 # Field label
 #: T9NZPQ
@@ -3146,7 +3146,7 @@ msgstr "Confirmer la sélection"
 #: rzXCu2
 msgctxt "rzXCu2"
 msgid "Label style"
-msgstr "Style de l'Libellé"
+msgstr "Style de libellé"
 
 # Breadcrumb field label
 #: rzdds2

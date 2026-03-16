@@ -55,7 +55,7 @@ function ConversationMessage({
     className = null,
     audioEventsChannelName = null,
 }: ConversationMessageProps) {
-    const { message: messageBody, image = null, audio, putAudioBeforeText } = message || {};
+    const { message: messageBody, image = null, audio, putAudioBeforeText = false } = message || {};
     const {
         avatar = null,
         name: speakerName,

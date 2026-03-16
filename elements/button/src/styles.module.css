@@ -62,6 +62,7 @@
 
         &.layoutLabelOver {
             position: relative;
+            overflow: hidden;
 
             .text {
                 position: absolute;

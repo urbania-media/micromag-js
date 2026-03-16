@@ -16,6 +16,7 @@ import { v4 as uuid } from 'uuid';
 
 import type { FormField, Label as LabelType } from '@micromag/core';
 import { Button, Empty, Label } from '@micromag/core/components';
+import { useFieldContext } from '@micromag/core/contexts';
 
 import Field from './Field';
 
@@ -80,20 +81,20 @@ function ItemsField({
     //     isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
     const [editing, setEditing] = useState(false);
     const idMap = useRef((value || []).map(() => uuid()));
+    const fieldContext = useFieldContext();
 
     const onClickAdd = useCallback(() => {
         const newDefaultValue = getDefaultValue !== null ? getDefaultValue() : null;
         const newValue = [...(value || []), newDefaultValue];
-
         idMap.current = [...idMap.current, uuid()];
 
         if (onChange !== null) {
             onChange(newValue);
         }
         if (gotoFieldForm !== null) {
-            gotoFieldForm(`${name}.${newValue.length - 1}`);
+            gotoFieldForm(`${name}.${newValue.length - 1}`, null, fieldContext);
         }
-    }, [value, onChange, getDefaultValue, gotoFieldForm, name]);
+    }, [value, onChange, getDefaultValue, gotoFieldForm, name, fieldContext]);
 
     const onClickEdit = useCallback(() => {
         setEditing((old) => !old);
@@ -144,9 +145,9 @@ function ItemsField({
     const gotoForms = useMemo(
         () =>
             value !== null
-                ? value.map((val, index) => () => gotoFieldForm(`${name}.${index}`))
+                ? value.map((val, index) => () => gotoFieldForm(`${name}.${index}`, null, fieldContext))
                 : null,
-        [value, gotoFieldForm],
+        [value, gotoFieldForm, fieldContext],
     );
 
     const closeForms = useMemo(

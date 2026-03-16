@@ -20,6 +20,7 @@ function ImageField({ value: value = null, ...props }: ImageFieldProps) {
                 />
             }
             {...props}
+            value={value}
             type="image"
         />
     );
